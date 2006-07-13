@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2004-2006 IBM Corporation and others.
+ * Copyright (c) 2004, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.7 2006/04/28 17:51:32 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.7.2.1 2006/07/13 19:22:22 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
