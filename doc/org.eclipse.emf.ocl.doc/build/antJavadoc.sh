@@ -28,7 +28,7 @@ function groupPackage
 	if [ "x$hasToken" != "x"  ]; then
 		srcDir=$currentPath/../../$plugin/src
 		if [ -d "$srcDir" ]; then
-			packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package *\(.*\);.*/\1/' | sed -e 's/[ ]*//g' | sort | uniq | xargs | sed -e 's/ /:/g'`
+			packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ ]*//g' | sort | uniq | xargs | sed -e 's/ /:/g'`
 			packages=`echo $packages | sed -e 's/\//\\\\\\//g' | sed -e 's/\./\\\\\./g'`
 	
 			sed -e "s/\@plugin\@/${packages}/g" $currentPath/javadoc.xml.template > $currentPath/javadoc.xml.template.tmp
@@ -50,11 +50,9 @@ pluginDirs=`find $currentPath/../.. -name "${pluginName}*" -maxdepth 1 -type d -
 # All the jars in the plugins directory
 classpath=`find $eclipseDir/plugins -name "*.jar" -printf "%p:"`
 
-# Calculates the packagesets and the calls to copyDocFiles (used in javadoc.xml.template) (used in javadoc.xml.template)
-# also calculates pluginIDs used in the PDE Javadoc extension point in the plugin.xml 
+# Calculates the packagesets and the calls to copyDocFiles
 packagesets=""
 copydocfiles=""
-pluginIDs=""
 for pluginDir in $pluginDirs; do
 	pluginDir=`echo $pluginDir | sed -e 's/\/runtime$//g'`
 	srcDir=$pluginDir/src
@@ -64,8 +62,6 @@ for pluginDir in $pluginDirs; do
 		packagesets=$packagesets""$javadocExclusions
 		packagesets=$packagesets"</packageset>"
 		copydocfiles=$copydocfiles"<copyDocFiles pluginDir=\"$pluginDir\"/>"
-		pluginID=`echo "$pluginDir" | sed -e 's|.*plugins/org|org|'`
-		pluginIDs=$pluginIDs"<plugin id=\"$pluginID\"/>"
 	fi
 done
 
@@ -77,11 +73,6 @@ if [ -f $currentPath/javadoc.xml.template ]; then
 else
 	cp $currentPath/javadoc.xml.template $currentPath/javadoc.xml.template.tmp;
 fi
-
-# Replaces the token <!-- @pluginIDs@ --> in the plugin.xml by the value of pluginIDs
-pluginIDs=`echo $pluginIDs | sed -e 's/\//\\\\\\//g' | sed -e 's/\./\\\\\./g'`
-sed -e "s/<\!-- \@pluginIDs\@ -->/${pluginIDs}/g" $currentPath/../plugin.xml > plugin2.xml
-mv plugin2.xml $currentPath/../plugin.xml
 
 # Replaces the token @packagesets@ in the template by the actual value
 packagesets=`echo $packagesets | sed -e 's/\//\\\\\\//g' | sed -e 's/\./\\\\\./g'`
