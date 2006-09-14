@@ -39,6 +39,7 @@
  <!-- ============================= -->
   <extension point="org.eclipse.pde.core.javadoc">
       <javadoc path="references/javadoc"> <!-- defaults to reference/api -->
+          <!-- @pluginIDs@ -->
       </javadoc>
   </extension>
    
