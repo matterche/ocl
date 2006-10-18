@@ -27,18 +27,19 @@
 	<!-- <target name="javadoc" depends="extractPlatformJavadoc"> -->
 	
 	<target name="javadoc">
-		<echo message="Get JDK1.4-compatible Doclet from R2_2_maintenance and use with javadoc"/>
+		<echo message="Get Doclet and compile it with JDK1.4 for use with javadoc"/>
 		<cvs cvsRoot=":pserver:anonymous@dev.eclipse.org:/cvsroot/tools" 
 			package="org.eclipse.emf.releng.build/org.eclipse.emf.build" 
 			tag="R2_2_maintenance"
 			reallyquiet="yes"/>
-		<delete verbose="true">
-			<fileset dir="org.eclipse.emf.releng.build/org.eclipse.emf.build" excludes="emf.build_jdk14.jar"/>
-			<fileset dir="org.eclipse.emf.releng.build" includes="*"/>
-		</delete>
+		<delete dir="org.eclipse.emf.releng.build/org.eclipse.emf.build/src/CVS"/>
+		<move todir="."><fileset dir="org.eclipse.emf.releng.build/org.eclipse.emf.build/src"/></move>
+	
+		<javac srcdir="org/eclipse/emf/build/doclet" classpath=".:${java.home}/../lib/tools.jar" failonerror="true"/>
+		
 		<javadoc 
 			destdir="${destDir}" 
-			classpath="${classpath}:org.eclipse.emf.releng.build/org.eclipse.emf.build/emf.build_jdk14.jar"
+			classpath="${classpath}"
 			overview="${overview}"
 
 			windowtitle="EMF OCL Javadoc"
