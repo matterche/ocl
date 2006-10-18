@@ -26,7 +26,7 @@
 	<!-- TODO Enable linking to the platform javadoc -->
 	<!-- <target name="javadoc" depends="extractPlatformJavadoc"> -->
 	
-	<target name="javadoc" depends="extractPlatformJavadoc">
+	<target name="javadoc">
 		<echo message="Get JDK1.4-compatible Doclet from R2_2_maintenance and use with javadoc"/>
 		<cvs cvsRoot=":pserver:anonymous@dev.eclipse.org:/cvsroot/tools" 
 			package="org.eclipse.emf.releng.build/org.eclipse.emf.build" 
