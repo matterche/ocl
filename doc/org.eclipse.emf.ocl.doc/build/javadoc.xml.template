@@ -32,13 +32,13 @@
 			package="org.eclipse.emf.releng.build/org.eclipse.emf.build" 
 			tag="R2_2_maintenance"
 			reallyquiet="yes"/>
-		<delete quiet="true">
+		<delete verbose="true">
 			<fileset dir="org.eclipse.emf.releng.build/org.eclipse.emf.build" excludes="emf.build_jdk14.jar"/>
 			<fileset dir="org.eclipse.emf.releng.build" includes="*"/>
 		</delete>
 		<javadoc 
 			destdir="${destDir}" 
-			classpath="${classpath}:../org.eclipse.emf.releng.build/org.eclipse.emf.build/emf.build_jdk14.jar"
+			classpath="${classpath}:org.eclipse.emf.releng.build/org.eclipse.emf.build/emf.build_jdk14.jar"
 			overview="${overview}"
 
 			windowtitle="EMF OCL Javadoc"
