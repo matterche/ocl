@@ -30,9 +30,8 @@
 		<echo message="Get JDK1.4-compatible Doclet from R2_2_maintenance and use with javadoc"/>
 		<cvs cvsRoot=":pserver:anonymous@dev.eclipse.org:/cvsroot/tools" 
 			package="org.eclipse.emf.releng.build/org.eclipse.emf.build" 
-			tag="R2_2_maintenance"
-			reallyquiet="yes"/>
-		<delete quiet="true">
+			tag="R2_2_maintenance"/>
+		<delete>
 			<fileset dir="org.eclipse.emf.releng.build/org.eclipse.emf.build" excludes="emf.build_jdk14.jar"/>
 			<fileset dir="org.eclipse.emf.releng.build" includes="*"/>
 		</delete>
