@@ -10,10 +10,11 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
+ *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.12 2008/05/17 20:41:35 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.12.2.1 2008/07/16 16:08:07 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2924,7 +2925,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                     String message = OCLMessages.bind(
                         OCLMessages.NonStaticAttribute_ERROR_,
                         lastToken);
-                    ERROR(attribute, "enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
+                    ERROR(enumLiteralExpCS.getSimpleNameCS(),
+						"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
                 }
                 
                 PropertyCallExp<C, P> pcExp = oclFactory.createPropertyCallExp();
