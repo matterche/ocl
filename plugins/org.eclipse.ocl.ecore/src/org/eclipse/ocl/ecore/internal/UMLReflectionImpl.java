@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.6 2007/10/15 22:23:10 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.6.2.1 2008/07/30 18:41:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -541,29 +541,30 @@ public class UMLReflectionImpl
     
         Class<?> instanceClass = dataType.getInstanceClass();
     
-        // Boolean/boolean -> OCL_BOOLEAN
-        if (instanceClass == Boolean.class
-            || instanceClass == boolean.class) {
-            return OCLStandardLibraryImpl.INSTANCE.getBoolean();
-        } else if (instanceClass == Double.class
-            || instanceClass == double.class
-            || instanceClass == Float.class || instanceClass == float.class) {
-            return OCLStandardLibraryImpl.INSTANCE.getReal();
-        } else if (instanceClass == String.class) {
-            return OCLStandardLibraryImpl.INSTANCE.getString();
-        } else if (instanceClass == Integer.class
-            || instanceClass == int.class || instanceClass == Long.class
-            || instanceClass == long.class || instanceClass == Short.class
-            || instanceClass == short.class) {
-            return OCLStandardLibraryImpl.INSTANCE.getInteger();
-        } else if (List.class.isAssignableFrom(instanceClass)) {
-            return OCLStandardLibraryImpl.INSTANCE.getSequence();
-        } else if (Set.class.isAssignableFrom(instanceClass)) {
-            return OCLStandardLibraryImpl.INSTANCE.getSet();
-        } else if (Collection.class.isAssignableFrom(instanceClass)) {
-            return OCLStandardLibraryImpl.INSTANCE.getCollection();
-        } else if (instanceClass == Object.class) {
-            return OCLStandardLibraryImpl.INSTANCE.getOclAny();
+        if (instanceClass != null) {
+	        if (instanceClass == Boolean.class
+	            || instanceClass == boolean.class) {
+	            return OCLStandardLibraryImpl.INSTANCE.getBoolean();
+	        } else if (instanceClass == Double.class
+	            || instanceClass == double.class
+	            || instanceClass == Float.class || instanceClass == float.class) {
+	            return OCLStandardLibraryImpl.INSTANCE.getReal();
+	        } else if (instanceClass == String.class) {
+	            return OCLStandardLibraryImpl.INSTANCE.getString();
+	        } else if (instanceClass == Integer.class
+	            || instanceClass == int.class || instanceClass == Long.class
+	            || instanceClass == long.class || instanceClass == Short.class
+	            || instanceClass == short.class) {
+	            return OCLStandardLibraryImpl.INSTANCE.getInteger();
+	        } else if (List.class.isAssignableFrom(instanceClass)) {
+	            return OCLStandardLibraryImpl.INSTANCE.getSequence();
+	        } else if (Set.class.isAssignableFrom(instanceClass)) {
+	            return OCLStandardLibraryImpl.INSTANCE.getSet();
+	        } else if (Collection.class.isAssignableFrom(instanceClass)) {
+	            return OCLStandardLibraryImpl.INSTANCE.getCollection();
+	        } else if (instanceClass == Object.class) {
+	            return OCLStandardLibraryImpl.INSTANCE.getOclAny();
+	        }
         }
         
         // All other data types map to themselves
