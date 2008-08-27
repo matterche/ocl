@@ -12,10 +12,11 @@
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *               - Bug 237126
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
+ *   Zeligsoft - Bug 243526
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.12.2.2 2008/07/16 16:45:09 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.12.2.3 2008/08/27 12:50:40 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -1869,6 +1870,31 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		return astNode;
 	}
+	
+	/**
+	 * Creates a variable expression with the variable that it references.
+	 * 
+	 * @param env the current parsing environment
+	 * @param cst the concrete syntax that produces the variable expression
+	 * @param var the referred variable
+	 * 
+	 * @return the variable expression
+	 */
+	private VariableExp<C, PM> createVariableExp(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			CSTNode cst, Variable<C, PM> var) {
+		VariableExp<C, PM> result = oclFactory.createVariableExp();
+
+		initASTMapping(env, result, cst);
+
+		if (var != null) {
+			result.setType(var.getType());
+			result.setReferredVariable(var);
+			result.setName(var.getName());
+		}
+
+		return result;
+	}
 
 	/**
 	 * QualifiersCS
@@ -1930,11 +1956,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					ref.setType(TypeUtil.getPropertyType(env, sourceType, property));
 					
 					if (source == null) {
-						VariableExp<C, PM> src = oclFactory.createVariableExp();
-						initASTMapping(env, src, arg);
 						Variable<C, PM> implicitSource = env.lookupImplicitSourceForProperty(simpleName);
-						src.setType(implicitSource.getType());
-						src.setReferredVariable(implicitSource);
+						VariableExp<C, PM> src = createVariableExp(env, arg, implicitSource);
+						ref.setSource(src);
 					}
 		
 					initStartEndPositions(ref, qualifier);
@@ -2190,12 +2214,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 			TRACE("variableExpCS", "Variable Expression: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
 			
-			VariableExp<C, PM> vexp = oclFactory.createVariableExp();	
-			initASTMapping(env, vexp, simpleNameCS);
-			vexp.setReferredVariable(vdcl);
-			
-			vexp.setType(vdcl.getType());
-			astNode = vexp;
+			astNode = createVariableExp(env, simpleNameCS, vdcl);	
 		} else if ((property = lookupProperty(simpleNameCS, env, sourceElementType, simpleName)) != null) {
 			
 			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
@@ -2207,12 +2226,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			if (source != null) {
 				propertyCall.setSource(source);
 			} else {
-				VariableExp<C, PM> src = oclFactory.createVariableExp();
-				initASTMapping(env, src, simpleNameCS);
 				Variable<C, PM> implicitSource =
 					env.lookupImplicitSourceForProperty(simpleName);
-				src.setType(implicitSource.getType());
-				src.setReferredVariable(implicitSource);
+				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
+					implicitSource);
 				
 				propertyCall.setSource(src);
 			}
@@ -2229,12 +2246,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			if (source != null) {
 				acref.setSource(source);
 			} else {
-				VariableExp<C, PM> src = oclFactory.createVariableExp();
-				initASTMapping(env, src, simpleNameCS);
 				Variable<C, PM> implicitSource =
 					env.lookupImplicitSourceForAssociationClass(simpleName);
-				src.setType(implicitSource.getType());
-				src.setReferredVariable(implicitSource);
+				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
+					implicitSource);
 				
 				acref.setSource(src);
 			}
@@ -2332,11 +2347,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		iters.add(itervar);
 		result.setBody(propertyCall);
 		result.setName("collect");//$NON-NLS-1$
-		VariableExp<C, PM> vexp = oclFactory.createVariableExp();
-		initASTMapping(env, vexp, cstNode);
-		vexp.setType(itervar.getType());
-		vexp.setReferredVariable(itervar);
-		vexp.setName(itervar.getName());
+		VariableExp<C, PM> vexp = createVariableExp(env, cstNode, itervar);
 		
 		/* adjust the source variable for the body expression to be the
 		   newly generated implicit iterator variable */
@@ -3622,10 +3633,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		if (source == null) {  // create an implicit source
-			VariableExp<C, PM> vexp = oclFactory.createVariableExp();
-			initASTMapping(env, vexp, operationCallExpCS);
 			Variable<C, PM> implicitSource = lookupImplicitSourceForOperation(
-					operationCallExpCS, env, args, operationName);
+				operationCallExpCS, env, args, operationName);
+			VariableExp<C, PM> vexp = createVariableExp(env,
+				operationCallExpCS, implicitSource);
 			
 			if (implicitSource == null) {
 				String errMessage = name + "(";//$NON-NLS-1$
