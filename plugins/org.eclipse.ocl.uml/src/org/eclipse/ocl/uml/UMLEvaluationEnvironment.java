@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 247079
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.11.2.1 2008/07/16 14:54:45 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.11.2.2 2008/09/12 19:49:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -1118,7 +1119,9 @@ public class UMLEvaluationEnvironment
                         break;
                     }
 
-                    nesting = nesting.getNearestPackage();
+					nesting = (nesting.getOwner() == null)
+						? null
+						: nesting.getOwner().getNearestPackage();
                 }
             }
 
