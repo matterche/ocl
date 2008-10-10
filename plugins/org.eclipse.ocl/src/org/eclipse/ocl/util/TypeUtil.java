@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
+ *   Stefan Schulze - Bug 245619
+ *   Zeligsoft - Bug 245619
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.11 2008/03/27 14:43:20 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.11.2.1 2008/10/10 16:48:40 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -883,6 +885,13 @@ public class TypeUtil {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type1, C type2) {
 		
+		if (type1 != null) {
+			type1 = env.getUMLReflection().getOCLType(type1);
+		}
+		if (type2 != null) {
+			type2 = env.getUMLReflection().getOCLType(type2);
+		}
+		
 		// simplest case is when the types actually are the same
 		if (type1 == type2) {
 			return SAME_TYPE;
@@ -1161,7 +1170,14 @@ public class TypeUtil {
 	C commonSuperType(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type1, C type2) {
-	
+		
+		if (type1 != null) {
+			type1 = env.getUMLReflection().asOCLType(type1);
+		}
+		if (type2 != null) {
+			type2 = env.getUMLReflection().asOCLType(type2);
+		}
+		
 		if (ObjectUtil.equal(type1, type2)) {
 			return type2;
 		}
