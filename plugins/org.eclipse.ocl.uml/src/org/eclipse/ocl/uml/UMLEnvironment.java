@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.13 2008/01/03 15:28:31 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.13.2.1 2008/11/02 17:46:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -457,16 +457,41 @@ public class UMLEnvironment
             if (next.isBinary()) {
                 Property end = next.getMemberEnd(name, null);
 
-                // only match the end if the other end is a not property of
-                // 'classifier'
-                if ((end != null)
-                    && !OCLUMLUtil.getAllAttributes(classifier)
-                        .contains(end.getOtherEnd())) {
-                    ends.add(end);
-                }
+				if ((end != null)
+					&& isNonNavigableAssocationEndOf(end, classifier)) {
+
+					ends.add(end);
+				}
             }
         }
     }
+    
+	/**
+	 * A foreign method for the {@link Property} that queries whether it is a
+	 * non-navigable association end of a given classifier. This means that the
+	 * end is association-owned and opposite to a classifier-owned end whose
+	 * type is a supertype of the specified classifier.
+	 * 
+	 * @param associationEnd
+	 *            the purported non-navigable association end
+	 * @param endClassifier
+	 *            a classifier from which we purport to navigate the association
+	 * @return <code>true</code> if the association-end is a non-navigable end
+	 *         of the classifier; <code>false</code>, otherwise
+	 */
+	private static boolean isNonNavigableAssocationEndOf(
+			Property associationEnd, Classifier endClassifier) {
+		
+		boolean result = associationEnd.getOwningAssociation() != null;
+		if (result) {
+			Property otherEnd = associationEnd.getOtherEnd();
+			
+			result = (otherEnd != null) && (otherEnd.getType() != null)
+				&& endClassifier.conformsTo(otherEnd.getType());
+		}
+		
+		return result;
+	}
     
     @Override
     protected void findUnnamedAssociationEnds(Classifier classifier, String name,
@@ -478,17 +503,14 @@ public class UMLEnvironment
             if (next.isBinary()) {
                 for (Property end : next.getMemberEnds()) {
                     if (isUnnamed(end)) {
-                        Type type = end.getType();
-                        if ((type != null) && initialLower(type).equals(name)) {
-                            // only match the end if the other end is not a
-                            // property of 'classifier'
-                            if (!OCLUMLUtil.getAllAttributes(classifier).contains(
-                                    end.getOtherEnd())) {
-                                ends.add(end);
-                            }
-                        }
-                    }
-                }
+						Type type = end.getType();
+						if ((type != null) && initialLower(type).equals(name)
+							&& isNonNavigableAssocationEndOf(end, classifier)) {
+							
+							ends.add(end);
+						}
+					}
+				}
             }
         }
     }
