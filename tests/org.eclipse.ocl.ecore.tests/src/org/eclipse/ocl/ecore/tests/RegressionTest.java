@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243526
+ *   Zeligsoft - Bugs 243526, 259740
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.7.2.1 2008/08/27 12:50:52 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.7.2.2 2009/01/07 13:47:14 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1816,5 +1816,20 @@ public class RegressionTest
 				assertEquals(ve.getReferredVariable().getName(), ve.getName());
 			}
 		}
+    }
+    
+    /**
+     * Ensures that we can reference the UnlimitedNatural type by name.
+     */
+    public void test_refToUnlimitedNaturalType_259740() {
+		parse(
+			"package ocltest context Apple " + //$NON-NLS-1$
+			"inv: let u : UnlimitedNatural = * in u.abs()" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
+
+		parse(
+			"package ocltest context Apple " + //$NON-NLS-1$
+			"inv: let i : Integer = -1 in not i.oclIsKindOf(UnlimitedNatural)" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
     }
 }
