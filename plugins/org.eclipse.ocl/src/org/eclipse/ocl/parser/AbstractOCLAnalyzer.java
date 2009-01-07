@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,11 @@
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *               - Bug 237126
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
- *   Zeligsoft - Bugs 243526, 243079
+ *   Zeligsoft - Bugs 243526, 243079, 259740
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.12.2.4 2008/08/27 20:37:16 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.12.2.5 2009/01/07 13:47:08 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2170,6 +2170,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			case SimpleTypeEnum.OCL_VOID:
 			case SimpleTypeEnum.INVALID:
 			case SimpleTypeEnum.OCL_MESSAGE:
+			case SimpleTypeEnum.UNLIMITED_NATURAL:
 				// if we have a source, then this is a feature call
 				if (source == null) {
 					classifier = primitiveTypeCS(simpleNameCS.getType(), env);
