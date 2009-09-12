@@ -12,11 +12,13 @@
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
+*   Zeligsoft - Bug 243976
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.10 2009/09/04 13:40:43 ewillink Exp $
+* $Id: OCLParsersym.java,v 1.10.2.1 2009/09/12 18:11:36 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -136,7 +138,7 @@ public interface OCLParsersym {
       TK_MULTI_LINE_COMMENT = 101,
       TK_ERROR_TOKEN = 102;
 
-      public final static String orderedTerminalSymbols[] = {
+    public final static String orderedTerminalSymbols[] = {
                  "",
                  "LPAREN",
                  "IDENTIFIER",
@@ -242,5 +244,6 @@ public interface OCLParsersym {
                  "ERROR_TOKEN"
              };
 
+    public final static int numTokenKinds = orderedTerminalSymbols.length;
     public final static boolean isValidForParser = true;
 }

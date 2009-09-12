@@ -15,7 +15,7 @@
 *
 * </copyright>
 *
-* $Id: AbstractLexer.java,v 1.2 2008/10/04 00:54:10 cdamus Exp $
+* $Id: AbstractLexer.java,v 1.2.6.1 2009/09/12 18:11:37 asanchez Exp $
 */
 
 package org.eclipse.ocl.lpg;
@@ -23,9 +23,9 @@ package org.eclipse.ocl.lpg;
 import java.io.IOException;
 import java.io.Reader;
 
-import lpg.lpgjavaruntime.LpgLexStream;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.RuleAction;
+import lpg.runtime.LpgLexStream;
+import lpg.runtime.Monitor;
+import lpg.runtime.RuleAction;
 
 
 /**
@@ -126,12 +126,13 @@ public abstract class AbstractLexer extends LpgLexStream implements RuleAction
 	 * Note that other variants of reportError either feed this one, are fed from a default implementation
 	 * of this one or originate in the parser, where a ParserErrorHandler can intercept them.
 	 */
-	@Override public void reportError(int leftToken, int rightToken) {
+	@Override public void reportError(int errorCode, int leftToken, int errorToken,
+			int rightToken, String[] errorInfo) {
 		BasicEnvironment environment = getEnvironment();
 		if (environment != null)
-			environment.lexerError(computeErrorCode(leftToken, rightToken), leftToken, rightToken);
+			environment.lexerError(errorCode, errorToken, rightToken);
 		else
-			super.reportError(leftToken, rightToken);
+			super.reportError(errorCode, leftToken, errorToken, rightToken, errorInfo);
 	}
 
     /**
@@ -141,7 +142,7 @@ public abstract class AbstractLexer extends LpgLexStream implements RuleAction
 	public void initialize(char[] inputChars) {
 		setInputChars(inputChars);
         setStreamLength(inputChars.length);
-        computeLineOffsets();        
+        computeLineOffsets();
 	}
 
 	/**

@@ -13,11 +13,11 @@
  *
  * </copyright>
  *
- * $Id: CSTNode.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTNode.java,v 1.3.6.1 2009/09/12 18:11:37 asanchez Exp $
  */
 package org.eclipse.ocl.cst;
 
-import lpg.lpgjavaruntime.IToken;
+import lpg.runtime.IToken;
 import org.eclipse.emf.ecore.EObject;
 
 /**

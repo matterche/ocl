@@ -12,11 +12,13 @@
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
+*   Zeligsoft - Bug 243976
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.7 2009/09/04 13:40:44 ewillink Exp $
+* $Id: OCLBacktrackingParser.java,v 1.7.2.1 2009/09/12 18:11:36 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -43,15 +45,15 @@ import org.eclipse.ocl.cst.VariableCS;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import lpg.lpgjavaruntime.BadParseException;
-import lpg.lpgjavaruntime.BadParseSymFileException;
-import lpg.lpgjavaruntime.BacktrackingParser;
-import lpg.lpgjavaruntime.DiagnoseParser;
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.NotBacktrackParseTableException;
-import lpg.lpgjavaruntime.ParseTable;
-import lpg.lpgjavaruntime.RuleAction;
+import lpg.runtime.BadParseException;
+import lpg.runtime.BadParseSymFileException;
+import lpg.runtime.BacktrackingParser;
+import lpg.runtime.DiagnoseParser;
+import lpg.runtime.IToken;
+import lpg.runtime.Monitor;
+import lpg.runtime.NotBacktrackParseTableException;
+import lpg.runtime.ParseTable;
+import lpg.runtime.RuleAction;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.cst.DefCS;

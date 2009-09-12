@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp. and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,11 +10,13 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+*               - Bug 259818
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.6 2009/09/04 13:40:43 ewillink Exp $
+* $Id: OCLLexersym.java,v 1.6.2.1 2009/09/12 18:11:36 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -130,7 +132,7 @@ public interface OCLLexersym {
       Char_Equal = 15,
       Char_EOF = 99;
 
-      public final static String orderedTerminalSymbols[] = {
+    public final static String orderedTerminalSymbols[] = {
                  "",
                  "0",
                  "1",
@@ -237,5 +239,6 @@ public interface OCLLexersym {
                  "CtlCharNotWS"
              };
 
+    public final static int numTokenKinds = orderedTerminalSymbols.length;
     public final static boolean isValidForParser = true;
 }

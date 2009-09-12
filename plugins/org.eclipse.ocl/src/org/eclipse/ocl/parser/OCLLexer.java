@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp. and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,16 +10,18 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+*               - Bug 259818
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.8 2009/09/04 13:40:43 ewillink Exp $
+* $Id: OCLLexer.java,v 1.8.2.1 2009/09/12 18:11:36 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser;
 
-import lpg.lpgjavaruntime.*;
+import lpg.runtime.*;
 import org.eclipse.ocl.lpg.AbstractLexer;
 import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.Environment;
@@ -52,7 +54,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
     
 	public OCLLexer(Environment<?,?,?,?,?,?,?,?,?,?,?,?> environment, char[] chars) {
 		this(environment, chars, "OCL", ECLIPSE_TAB_VALUE);
-		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
+		kwLexer = new OCLKWLexer(getInputChars(), OCLParsersym.TK_IDENTIFIER);
 	}
 
     public OCLLexer(Environment<?,?,?,?,?,?,?,?,?,?,?,?> environment, char[] input_chars, String filename, int tab)  {
@@ -81,7 +83,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
     {
         super.initialize(content, filename);
         if (kwLexer == null)
-             kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
+             kwLexer = new OCLKWLexer(getInputChars(), OCLParsersym.TK_IDENTIFIER);
         else
              kwLexer.setInputChars(getInputChars());
     }
@@ -92,7 +94,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
     @Override
     public void setInputChars(char[] inputChars) {
 		super.setInputChars(inputChars);
-		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
+		kwLexer = new OCLKWLexer(getInputChars(), OCLParsersym.TK_IDENTIFIER);
 	}
     
     @Override
@@ -108,12 +110,12 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
         lexParser.parseCharacters(monitor);  // Lex the input characters
             
         int i = getStreamIndex();
-        parser.makeToken(i, i, TK_EOF_TOKEN); // and end with the end of file token
+        parser.makeToken(i, i, OCLParsersym.TK_EOF_TOKEN); // and end with the end of file token
         parser.setStreamLength(parser.getSize());
             
         return;
     }
-    
+        
     final void makeToken(int kind)
     {
         int startOffset = getLeftSpan(),
@@ -126,7 +128,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
     {
         int startOffset = getLeftSpan(),
             endOffset = getRightSpan();
-        super.getPrsStream().makeAdjunct(startOffset, endOffset, kind);
+        super.getIPrsStream().makeAdjunct(startOffset, endOffset, kind);
     }
 
     final void skipToken()
@@ -317,7 +319,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 2:  Token ::= EscapedSQ
             //
             case 2: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(OCLParsersym.TK_STRING_LITERAL);
 	            break;
             }
 	 
@@ -325,7 +327,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 3:  Token ::= SingleQuote SLNotSQ SingleQuote
             //
             case 3: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(OCLParsersym.TK_STRING_LITERAL);
 	            break;
             }
 	 
@@ -333,7 +335,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 4:  Token ::= Acute SLNotSQOpt Acute
             //
             case 4: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(OCLParsersym.TK_STRING_LITERAL);
 	            break;
             }
 	 
@@ -341,7 +343,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 5:  Token ::= BackQuote SLNotSQOpt Acute
             //
             case 5: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(OCLParsersym.TK_STRING_LITERAL);
 	            break;
             }
 	 
@@ -349,7 +351,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 6:  Token ::= IntegerLiteral
             //
             case 6: { 
-				makeToken(TK_INTEGER_LITERAL);
+				makeToken(OCLParsersym.TK_INTEGER_LITERAL);
 	            break;
             }
 	 
@@ -357,7 +359,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 7:  Token ::= RealLiteral
             //
             case 7: { 
-				makeToken(TK_REAL_LITERAL);
+				makeToken(OCLParsersym.TK_REAL_LITERAL);
 	            break;
             }
 	 
@@ -365,7 +367,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 8:  Token ::= NumericOperation
             //
             case 8: { 
-				makeToken(TK_NUMERIC_OPERATION);
+				makeToken(OCLParsersym.TK_NUMERIC_OPERATION);
 	            break;
             }
 	 
@@ -373,7 +375,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 9:  Token ::= IntegerRangeStart
             //
             case 9: { 
-				makeToken(TK_INTEGER_RANGE_START);
+				makeToken(OCLParsersym.TK_INTEGER_RANGE_START);
 	            break;
             }
 	 
@@ -381,7 +383,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 10:  Token ::= SLC
             //
             case 10: { 
-				makeComment(TK_SINGLE_LINE_COMMENT);
+				makeComment(OCLParsersym.TK_SINGLE_LINE_COMMENT);
 	            break;
             }
 	 
@@ -389,7 +391,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 11:  Token ::= / * Inside Stars /
             //
             case 11: { 
-                makeComment(TK_MULTI_LINE_COMMENT);
+                makeComment(OCLParsersym.TK_MULTI_LINE_COMMENT);
                 break;
             }
      
@@ -405,7 +407,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 13:  Token ::= +
             //
             case 13: { 
-				makeToken(TK_PLUS);
+				makeToken(OCLParsersym.TK_PLUS);
 	            break;
             }
 	 
@@ -413,7 +415,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 14:  Token ::= -
             //
             case 14: { 
-				makeToken(TK_MINUS);
+				makeToken(OCLParsersym.TK_MINUS);
 	            break;
             }
 	 
@@ -421,7 +423,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 15:  Token ::= *
             //
             case 15: { 
-				makeToken(TK_MULTIPLY);
+				makeToken(OCLParsersym.TK_MULTIPLY);
 	            break;
             }
 	 
@@ -429,7 +431,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 16:  Token ::= /
             //
             case 16: { 
-				makeToken(TK_DIVIDE);
+				makeToken(OCLParsersym.TK_DIVIDE);
 	            break;
             }
 	 
@@ -437,7 +439,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 17:  Token ::= (
             //
             case 17: { 
-				makeToken(TK_LPAREN);
+				makeToken(OCLParsersym.TK_LPAREN);
 	            break;
             }
 	 
@@ -445,7 +447,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 18:  Token ::= )
             //
             case 18: { 
-				makeToken(TK_RPAREN);
+				makeToken(OCLParsersym.TK_RPAREN);
 	            break;
             }
 	 
@@ -453,7 +455,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 19:  Token ::= >
             //
             case 19: { 
-				makeToken(TK_GREATER);
+				makeToken(OCLParsersym.TK_GREATER);
 	            break;
             }
 	 
@@ -461,7 +463,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 20:  Token ::= <
             //
             case 20: { 
-				makeToken(TK_LESS);
+				makeToken(OCLParsersym.TK_LESS);
 	            break;
             }
 	 
@@ -469,7 +471,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 21:  Token ::= =
             //
             case 21: { 
-				makeToken(TK_EQUAL);
+				makeToken(OCLParsersym.TK_EQUAL);
 	            break;
             }
 	 
@@ -477,7 +479,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 22:  Token ::= > =
             //
             case 22: { 
-				makeToken(TK_GREATER_EQUAL);
+				makeToken(OCLParsersym.TK_GREATER_EQUAL);
 	            break;
             }
 	 
@@ -485,7 +487,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 23:  Token ::= < =
             //
             case 23: { 
-				makeToken(TK_LESS_EQUAL);
+				makeToken(OCLParsersym.TK_LESS_EQUAL);
 	            break;
             }
 	 
@@ -493,7 +495,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 24:  Token ::= < >
             //
             case 24: { 
-				makeToken(TK_NOT_EQUAL);
+				makeToken(OCLParsersym.TK_NOT_EQUAL);
 	            break;
             }
 	 
@@ -501,7 +503,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 25:  Token ::= [
             //
             case 25: { 
-				makeToken(TK_LBRACKET);
+				makeToken(OCLParsersym.TK_LBRACKET);
 	            break;
             }
 	 
@@ -509,7 +511,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 26:  Token ::= ]
             //
             case 26: { 
-				makeToken(TK_RBRACKET);
+				makeToken(OCLParsersym.TK_RBRACKET);
 	            break;
             }
 	 
@@ -517,7 +519,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 27:  Token ::= {
             //
             case 27: { 
-				makeToken(TK_LBRACE);
+				makeToken(OCLParsersym.TK_LBRACE);
 	            break;
             }
 	 
@@ -525,7 +527,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 28:  Token ::= }
             //
             case 28: { 
-				makeToken(TK_RBRACE);
+				makeToken(OCLParsersym.TK_RBRACE);
 	            break;
             }
 	 
@@ -533,7 +535,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 29:  Token ::= - >
             //
             case 29: { 
-				makeToken(TK_ARROW);
+				makeToken(OCLParsersym.TK_ARROW);
 	            break;
             }
 	 
@@ -541,7 +543,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 30:  Token ::= |
             //
             case 30: { 
-				makeToken(TK_BAR);
+				makeToken(OCLParsersym.TK_BAR);
 	            break;
             }
 	 
@@ -549,7 +551,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 31:  Token ::= ,
             //
             case 31: { 
-				makeToken(TK_COMMA);
+				makeToken(OCLParsersym.TK_COMMA);
 	            break;
             }
 	 
@@ -557,7 +559,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 32:  Token ::= :
             //
             case 32: { 
-				makeToken(TK_COLON);
+				makeToken(OCLParsersym.TK_COLON);
 	            break;
             }
 	 
@@ -565,7 +567,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 33:  Token ::= : :
             //
             case 33: { 
-				makeToken(TK_COLONCOLON);
+				makeToken(OCLParsersym.TK_COLONCOLON);
 	            break;
             }
 	 
@@ -573,7 +575,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 34:  Token ::= ;
             //
             case 34: { 
-				makeToken(TK_SEMICOLON);
+				makeToken(OCLParsersym.TK_SEMICOLON);
 	            break;
             }
 	 
@@ -581,7 +583,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 35:  Token ::= .
             //
             case 35: { 
-				makeToken(TK_DOT);
+				makeToken(OCLParsersym.TK_DOT);
 	            break;
             }
 	 
@@ -589,7 +591,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 36:  Token ::= . .
             //
             case 36: { 
-				makeToken(TK_DOTDOT);
+				makeToken(OCLParsersym.TK_DOTDOT);
 	            break;
             }
 	 
@@ -597,7 +599,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 37:  Token ::= @ p r e
             //
             case 37: { 
-				makeToken(TK_ATPRE);
+				makeToken(OCLParsersym.TK_ATPRE);
 	            break;
             }
 	 
@@ -605,7 +607,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 38:  Token ::= ^
             //
             case 38: { 
-				makeToken(TK_CARET);
+				makeToken(OCLParsersym.TK_CARET);
 	            break;
             }
 	 
@@ -613,7 +615,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 39:  Token ::= ^ ^
             //
             case 39: { 
-				makeToken(TK_CARETCARET);
+				makeToken(OCLParsersym.TK_CARETCARET);
 	            break;
             }
 	 
@@ -621,7 +623,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 40:  Token ::= ?
             //
             case 40: { 
-				makeToken(TK_QUESTIONMARK);
+				makeToken(OCLParsersym.TK_QUESTIONMARK);
 	            break;
             }
 	

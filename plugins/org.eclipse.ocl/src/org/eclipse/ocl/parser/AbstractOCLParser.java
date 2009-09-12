@@ -16,16 +16,16 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.8 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.8.2.1 2009/09/12 18:11:36 asanchez Exp $
  */
 package org.eclipse.ocl.parser;
 
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.NullExportedSymbolsException;
-import lpg.lpgjavaruntime.NullTerminalSymbolsException;
-import lpg.lpgjavaruntime.ParseErrorCodes;
-import lpg.lpgjavaruntime.UndefinedEofSymbolException;
-import lpg.lpgjavaruntime.UnimplementedTerminalsException;
+import lpg.runtime.IToken;
+import lpg.runtime.NullExportedSymbolsException;
+import lpg.runtime.NullTerminalSymbolsException;
+import lpg.runtime.ParseErrorCodes;
+import lpg.runtime.UndefinedEofSymbolException;
+import lpg.runtime.UnimplementedTerminalsException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
@@ -696,7 +696,7 @@ public abstract class AbstractOCLParser
 				if (i >= n) {
 					reportError(
 						ParseErrorCodes.INVALID_CODE,
-						"", stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(), //$NON-NLS-1$
+						stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(),
 						OCLMessages.StringNotProperlyClosed_ERROR);
 				}
 				char nextCh = rawString.charAt(i);
@@ -765,7 +765,7 @@ public abstract class AbstractOCLParser
 							if (unescapedChar < 0) {
 								reportError(
 									ParseErrorCodes.INVALID_CODE,
-									"", stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(), //$NON-NLS-1$
+									stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(),
 									OCLMessages.InvalidEscapeSequence_ERROR);
 							}
 							break;

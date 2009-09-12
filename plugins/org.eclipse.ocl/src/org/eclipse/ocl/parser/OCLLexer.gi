@@ -1,20 +1,18 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp. and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
 -- * http://www.eclipse.org/legal/epl-v10.html
--- *
+-- *f
 -- * Contributors:
--- *   IBM - Initial API and implementation
--- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
--- *   Borland - Bug 242880
+-- *   See (or edit) Notice Declaration below
 -- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.3 2009/08/28 20:43:11 ewillink Exp $
+-- * $Id: OCLLexer.gi,v 1.1.2.1 2009/09/12 18:11:36 asanchez Exp $
 -- */
 --
 -- The OCL Lexer
@@ -26,12 +24,12 @@
 %options single-productions
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/LexerTemplateD.g
-%options filter=OCLKWLexer.g
+%options template=../lpg/LexerTemplateD.gi
+%options filter=OCLKWLexer.gi
 %options export_terminals=("OCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
-$Define
+%Define
 
 	--
 	-- Definition of macros used in the template
@@ -48,13 +46,13 @@ $Define
 	$kw_lexer_class /.OCLKWLexer./
 	$copyright_contributions /.*./
 
-$End
+%End
 
-$Notice
+%Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -63,27 +61,29 @@ $Notice
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+ *               - Bug 259818
  *   Borland - Bug 242880
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
  $copyright_contributions
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.3 2009/08/28 20:43:11 ewillink Exp $
+ * $Id: OCLLexer.gi,v 1.1.2.1 2009/09/12 18:11:36 asanchez Exp $
  */
 	./
-$End
+%End
 
-$Include
-	LexerBasicMap.g
-$End
+%Import
+	LexerBasicMap.gi
+%End
 
-$Globals
+%Globals
     /.import $environment_import;
     import org.eclipse.ocl.lpg.BasicEnvironment;
     import org.eclipse.ocl.util.OCLUtil;
     ./
-$End
+%End
 
-$Export
+%Export
 
 	IDENTIFIER
 	STRING_LITERAL
@@ -128,9 +128,9 @@ $Export
 	SINGLE_LINE_COMMENT
 	MULTI_LINE_COMMENT
 
-$End
+%End
 
-$Terminals
+%Terminals
 	CtlCharNotWS
 
 	LF   CR   HT   FF
@@ -181,13 +181,13 @@ $Terminals
 	RightParen   ::= ')'
 	Equal        ::= '='
 
-$End
+%End
 
-$Start
+%Start
 	Token
-$End
+%End
 
-$Rules
+%Rules
 
 	---------------------  Rules for Scanned Tokens --------------------------------
 	-- The lexer creates an array list of tokens which is defined in the PrsStream class.
@@ -201,11 +201,11 @@ $Rules
 	--  
 	-- Regarding rules for parsing in general, note that for a rhs symbol Ai, the 
 	-- method $getToken(i) returns the location of the leftmost character derived from Ai.  
-	-- The method $getLeftSpan(i) returns the same location unless Ai produces $empty in which case
-	-- it returns the location of the last character derived before reducing Ai to $empty. 
+	-- The method $getLeftSpan(i) returns the same location unless Ai produces %empty in which case
+	-- it returns the location of the last character derived before reducing Ai to %empty. 
 	-- The method $getRightSpan(i) returns the location of the rightmost character derived from Ai 
-	-- unless Ai produces $empty in which case it returns the location of the last character 
-	-- derived before reducing Ai to $empty.
+	-- unless Ai produces %empty in which case it returns the location of the last character 
+	-- derived before reducing Ai to %empty.
 	--------------------------------------------------------------------------------
 	Token ::= Identifier
 		/.$BeginAction
@@ -460,7 +460,7 @@ $Rules
     Inside ::= Inside Stars NotSlashOrStar
              | Inside '/'
              | Inside NotSlashOrStar
-             | $empty
+             | %empty
 
     Stars -> '*'
            | Stars '*'
@@ -593,7 +593,7 @@ $Rules
 	SLNotSQ -> NotSQ
 	         | SLNotSQ NotSQ
 
-	SLNotSQOpt -> $empty
+	SLNotSQOpt -> %empty
 	            | SLNotSQ
 
 	QuotedName -> '"' SLNotDQ '"'
@@ -610,4 +610,4 @@ $Rules
 
 	IntegerRangeStart -> Integer '.' '.'
 
-$End
+%End

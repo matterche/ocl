@@ -9,10 +9,11 @@
 -- *
 -- * Contributors:
 -- *   E.D. Willink - Initial API and implementation
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLBacktrackingParser.g,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+-- * $Id: OCLBacktrackingParser.g,v 1.1.6.1 2009/09/12 18:11:36 asanchez Exp $
 -- */
 --
 -- The OCL Backtracking Parser
@@ -33,27 +34,28 @@
 %options backtrack
 %options noserialize
 %options package=org.eclipse.ocl.parser.backtracking
-%options import_terminals=OCLBacktrackingLexer.g
+%options import_terminals=OCLBacktrackingLexer.gi
 %options ast_type=CSTNode
 %options programming_language=java
-%options action=("*.java", "/.", "./")
-%options ParseTable=lpg.lpgjavaruntime.ParseTable
+%options action-block=("*.java", "/.", "./")
+%options ParseTable=lpg.runtime.ParseTable
 %options include_directory=".;..;../../lpg"
 
-$Include
-	OCLParserErrors.g
-$End
+%Import
+	OCLParserErrors.gi
+%End
 
-$Globals
+%Globals
 	/.
 		import org.eclipse.ocl.parser.AbstractOCLParser;
 	./
-$End
+%End
 
-$Define
+%Define
 	$lex_stream_class /.OCLBacktrackingLexer./
 	$prs_parser_class /.BacktrackingParser./
 	$prs_parser_exception /.NotBacktrackParseTableException./
 	$prs_parser_throw /.throw new RuntimeException("****Error: Regenerate $prs_type.java with -BACKTRACK option")./
 	$prs_parse_args /.error_repair_count./
-$End
+%End
+

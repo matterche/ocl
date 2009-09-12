@@ -1,34 +1,32 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2007 IBM Corporation and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
 -- * http://www.eclipse.org/legal/epl-v10.html
 -- *
 -- * Contributors:
--- *   IBM - Initial API and implementation
--- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
--- *   E.D.Willink - Bug 285633 static definitions
+-- *   See (or edit) Notice Declaration below
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.g,v 1.3 2009/09/04 08:27:07 ewillink Exp $
+-- * $Id: OCLKWLexer.gi,v 1.1.2.1 2009/09/12 18:11:36 asanchez Exp $
 -- */
 --
 -- The OCL KeyWord Lexer
 --
 
-%Options slr
-%Options fp=OCLKWLexer,prefix=Char_
+%options slr
+%options fp=OCLKWLexer,prefix=Char_
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/KeywordTemplateD.g
+%options template=../lpg/KeywordTemplateD.gi
 %options export_terminals=("OCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
-$Define
+%Define
 
 	--
 	-- Definition of macros used in the template
@@ -36,14 +34,14 @@ $Define
 	$action_class /.$file_prefix./
 	$eof_char /.Char_EOF./
 	$copyright_contributions /.*./
+	
+%End
 
-$End
-
-$Notice
+%Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,23 +50,25 @@ $Notice
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+ *   E.D.Willink - Bug 285633 static definitions
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 $copyright_contributions
  * </copyright>
  *
- * $Id: OCLKWLexer.g,v 1.3 2009/09/04 08:27:07 ewillink Exp $
+ * 
  */
 	./
-$End
+%End
 
-$Globals
+%Globals
 	/../
-$End
+%End
 
-$Include
-	KWLexerMap.g
-$End
+%Import
+	KWLexerMap.gi
+%End
 
-$Export
+%Export
 	self
 	inv
 	pre
@@ -165,23 +165,13 @@ $Export
 	OclVoid
 	OclInvalid
 	OclMessage
-$End
+%End
 
-$Terminals
-	DollarSign
-	a b c d e f g h i j k l m n o p q r s t u v w x y z
-	A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-$End
-
-$Eof
-	EOF
-$End
-
-$Start
+%Start
 	KeyWord
-$End
+%End
 
-$Rules
+%Rules
 
 -- The Goal for the parser is a single Keyword
 
@@ -569,4 +559,4 @@ $Rules
 			$setResult($_static);
 		  $EndAction
 		./
-$End
+%End

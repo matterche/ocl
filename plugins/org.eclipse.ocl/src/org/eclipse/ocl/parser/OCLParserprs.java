@@ -12,11 +12,13 @@
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
+*   Zeligsoft - Bug 243976
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLParserprs.java,v 1.11 2009/09/04 13:40:43 ewillink Exp $
+* $Id: OCLParserprs.java,v 1.11.2.1 2009/09/12 18:11:36 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -25,7 +27,113 @@ package org.eclipse.ocl.parser;
  * @noextend This interface is not intended to be extended by clients.
  */
 @SuppressWarnings("nls")
-public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym {
+public class OCLParserprs implements lpg.runtime.ParseTable, OCLParsersym {
+    public final static int ERROR_SYMBOL = 102;
+    public final int getErrorSymbol() { return ERROR_SYMBOL; }
+
+    public final static int SCOPE_UBOUND = 43;
+    public final int getScopeUbound() { return SCOPE_UBOUND; }
+
+    public final static int SCOPE_SIZE = 44;
+    public final int getScopeSize() { return SCOPE_SIZE; }
+
+    public final static int MAX_NAME_LENGTH = 26;
+    public final int getMaxNameLength() { return MAX_NAME_LENGTH; }
+
+    public final static int NUM_STATES = 213;
+    public final int getNumStates() { return NUM_STATES; }
+
+    public final static int NT_OFFSET = 102;
+    public final int getNtOffset() { return NT_OFFSET; }
+
+    public final static int LA_STATE_OFFSET = 3457;
+    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
+
+    public final static int MAX_LA = 2;
+    public final int getMaxLa() { return MAX_LA; }
+
+    public final static int NUM_RULES = 275;
+    public final int getNumRules() { return NUM_RULES; }
+
+    public final static int NUM_NONTERMINALS = 106;
+    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
+
+    public final static int NUM_SYMBOLS = 208;
+    public final int getNumSymbols() { return NUM_SYMBOLS; }
+
+    public final static int SEGMENT_SIZE = 8192;
+    public final int getSegmentSize() { return SEGMENT_SIZE; }
+
+    public final static int START_STATE = 2971;
+    public final int getStartState() { return START_STATE; }
+
+    public final static int IDENTIFIER_SYMBOL = 2;
+    public final int getIdentifier_SYMBOL() { return IDENTIFIER_SYMBOL; }
+
+    public final static int EOFT_SYMBOL = 97;
+    public final int getEoftSymbol() { return EOFT_SYMBOL; }
+
+    public final static int EOLT_SYMBOL = 97;
+    public final int getEoltSymbol() { return EOLT_SYMBOL; }
+
+    public final static int ACCEPT_ACTION = 3181;
+    public final int getAcceptAction() { return ACCEPT_ACTION; }
+
+    public final static int ERROR_ACTION = 3182;
+    public final int getErrorAction() { return ERROR_ACTION; }
+
+    public final static boolean BACKTRACK = false;
+    public final boolean getBacktrack() { return BACKTRACK; }
+
+    public final int getStartSymbol() { return lhs(0); }
+    public final boolean isValidForParser() { return OCLParsersym.isValidForParser; }
+
+
+    public interface IsNullable {
+        public final static byte isNullable[] = {0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,1,0,0,0,0,1,1,0,
+            0,0,0,0,0,0,0,0,0,0,
+            1,1,0,0,0,0,0,0,0,1,
+            0,0,0,1,0,0,0,0,0,0,
+            1,1,0,0,0,0,0,1,1,0,
+            0,1,0,0,0,0,0,0
+        };
+    };
+    public final static byte isNullable[] = IsNullable.isNullable;
+    public final boolean isNullable(int index) { return isNullable[index] != 0; }
+
+    public interface ProsthesesIndex {
+        public final static byte prosthesesIndex[] = {0,
+            55,54,9,21,63,5,6,7,10,3,
+            8,15,50,51,11,40,42,44,48,49,
+            57,58,59,60,61,62,68,69,70,71,
+            72,41,43,38,39,34,35,36,37,32,
+            33,30,31,28,29,25,26,27,78,23,
+            52,53,79,81,82,24,47,98,99,100,
+            101,104,89,92,93,94,4,12,19,20,
+            22,66,67,74,80,84,85,87,88,95,
+            97,2,13,14,17,18,45,46,56,64,
+            65,73,75,76,77,83,86,90,91,96,
+            102,103,105,106,1,16
+        };
+    };
+    public final static byte prosthesesIndex[] = ProsthesesIndex.prosthesesIndex;
+    public final int prosthesesIndex(int index) { return prosthesesIndex[index]; }
 
     public interface IsKeyword {
         public final static byte isKeyword[] = {0,
@@ -1206,29 +1314,29 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
 
     public interface ScopeRhs {
         public final static char scopeRhs[] = {0,
-            180,1,105,88,0,12,0,180,1,105,
-            87,0,148,93,148,92,148,71,0,45,
-            0,148,92,148,71,0,44,119,45,0,
-            148,71,0,43,119,44,119,45,0,178,
-            67,0,52,119,0,154,81,105,0,16,
-            0,0,159,1,153,111,0,159,1,153,
+            180,1,105,88,0,4,0,180,1,105,
+            87,0,148,93,148,92,148,71,0,94,
+            0,148,92,148,71,0,93,148,94,0,
+            148,71,0,92,148,93,148,94,0,178,
+            67,0,96,148,0,154,81,105,0,75,
+            153,0,159,1,153,111,0,159,1,153,
             113,0,159,1,153,170,0,198,1,59,
-            0,155,1,107,0,155,24,2,0,7,
-            119,0,148,72,152,84,152,1,185,0,
-            152,84,152,1,185,0,18,119,12,0,
-            152,1,185,0,22,118,18,119,12,0,
+            0,155,1,107,0,155,24,2,0,3,
+            148,0,148,72,152,84,152,1,185,0,
+            152,84,152,1,185,0,72,148,4,0,
+            152,1,185,0,84,152,72,148,4,0,
             148,72,152,1,185,0,148,72,152,36,
             152,1,186,0,152,36,152,1,186,0,
-            152,1,186,0,19,118,18,119,12,0,
+            152,1,186,0,36,152,72,148,4,0,
             148,72,152,1,186,0,148,1,186,0,
-            194,68,59,0,14,0,192,68,107,0,
+            194,68,59,0,80,0,192,68,107,0,
             154,81,117,0,148,1,0,159,1,105,
-            69,106,0,159,1,60,0,136,0,4,
-            133,0,3,133,0,140,0,2,131,0,
-            1,131,0,142,0,9,128,0,8,128,
-            0,6,128,0,5,128,0,144,0,10,
-            126,0,7,126,0,146,0,48,124,0,
-            47,124,0,46,124,0
+            69,106,0,159,1,60,0,136,0,19,
+            134,0,18,134,0,140,0,35,137,0,
+            34,137,0,142,0,23,139,0,22,139,
+            0,21,139,0,20,139,0,144,0,5,
+            143,0,3,143,0,146,0,28,145,0,
+            27,145,0,26,145,0
         };
     };
     public final static char scopeRhs[] = ScopeRhs.scopeRhs;
@@ -1450,53 +1558,6 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
     public final static String name[] = Name.name;
     public final String name(int index) { return name[index]; }
 
-    public final static int
-           ERROR_SYMBOL      = 102,
-           SCOPE_UBOUND      = 43,
-           SCOPE_SIZE        = 44,
-           MAX_NAME_LENGTH   = 26;
-
-    public final int getErrorSymbol() { return ERROR_SYMBOL; }
-    public final int getScopeUbound() { return SCOPE_UBOUND; }
-    public final int getScopeSize() { return SCOPE_SIZE; }
-    public final int getMaxNameLength() { return MAX_NAME_LENGTH; }
-
-    public final static int
-           NUM_STATES        = 213,
-           NT_OFFSET         = 102,
-           LA_STATE_OFFSET   = 3457,
-           MAX_LA            = 2,
-           NUM_RULES         = 275,
-           NUM_NONTERMINALS  = 106,
-           NUM_SYMBOLS       = 208,
-           SEGMENT_SIZE      = 8192,
-           START_STATE       = 2971,
-           IDENTIFIER_SYMBOL = 2,
-           EOFT_SYMBOL       = 97,
-           EOLT_SYMBOL       = 97,
-           ACCEPT_ACTION     = 3181,
-           ERROR_ACTION      = 3182;
-
-    public final static boolean BACKTRACK = false;
-
-    public final int getNumStates() { return NUM_STATES; }
-    public final int getNtOffset() { return NT_OFFSET; }
-    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
-    public final int getMaxLa() { return MAX_LA; }
-    public final int getNumRules() { return NUM_RULES; }
-    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
-    public final int getNumSymbols() { return NUM_SYMBOLS; }
-    public final int getSegmentSize() { return SEGMENT_SIZE; }
-    public final int getStartState() { return START_STATE; }
-    public final int getStartSymbol() { return lhs[0]; }
-    public final int getIdentifierSymbol() { return IDENTIFIER_SYMBOL; }
-    public final int getEoftSymbol() { return EOFT_SYMBOL; }
-    public final int getEoltSymbol() { return EOLT_SYMBOL; }
-    public final int getAcceptAction() { return ACCEPT_ACTION; }
-    public final int getErrorAction() { return ERROR_ACTION; }
-    public final boolean isValidForParser() { return isValidForParser; }
-    public final boolean getBacktrack() { return BACKTRACK; }
-
     public final int originalState(int state) {
         return -baseCheck[state];
     }
@@ -1510,10 +1571,16 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
         return inSymb[originalState(state)];
     }
 
+    /**
+     * assert(! goto_default);
+     */
     public final int ntAction(int state, int sym) {
         return baseAction[state + sym];
     }
 
+    /**
+     * assert(! shift_default);
+     */
     public final int tAction(int state, int sym) {
         int i = baseAction[state],
             k = i + sym;

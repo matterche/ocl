@@ -9,27 +9,28 @@
 -- *
 -- * Contributors:
 -- *   E.D. Willink - Initial API and implementation
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParserErrors.g,v 1.2 2009/09/04 13:40:44 ewillink Exp $
+-- * $Id: OCLParserErrors.gi,v 1.1.2.1 2009/09/12 18:11:36 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The OCL Parser
 --
 
-$Include
+%Import
 	OCLParser.g
-$End
+%End
 
-$Include
-	EssentialOCLErrors.g
-$End
+%Import
+	EssentialOCLErrors.gi
+%End
 
-$Rules
+%Rules
 
 	classifierContextDeclCS ::= context pathNameCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_INV_OR_DEF);
 					CSTNode result = createClassifierContextDeclCS(
 							(PathNameCS)$getSym(2),
@@ -37,11 +38,11 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	defExpressionCS ::= typedVariableCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_EQUALS);
 					VariableCS variableCS = (VariableCS)$getSym(1);
 					CSTNode result = createDefExpressionCS(
@@ -51,10 +52,10 @@ $Rules
 						);
 					setOffsets(result, variableCS, getIToken($getToken(2)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	defExpressionCS ::= IDENTIFIER ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					VariableCS variableCS = createVariableCS(
 								getTokenText($getToken(1)),
 								null,
@@ -68,57 +69,57 @@ $Rules
 						);
 					setOffsets(result, variableCS, getIToken($getToken(2)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	initOrDerValueCS ::= init ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createInitValueCS(null);
 					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	initOrDerValueCS ::= derive ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createDerValueCS(null);
 					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	invOrDefCS ::= inv simpleNameCS ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createInvCS(
 							(SimpleNameCS)$getSym(2),
 							null
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./	
 	invOrDefCS ::= def simpleNameCS ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createDefCS(
 							(SimpleNameCS)$getSym(2),
 							null
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	packageDeclarationCS ::= package pathNameCS contextDeclCSmopt ERROR_Empty endpackage
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createPackageDeclarationCS(
 							(PathNameCS)$getSym(2),
 							(EList)$getSym(3)
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	packageDeclarationCS ::= package pathNameCS contextDeclCSmopt ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_ENDPACKAGE);
 					CSTNode result = createPackageDeclarationCS(
 							(PathNameCS)$getSym(2),
@@ -126,21 +127,21 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	packageDeclarationCS ::= package ERROR_PathNameCS
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createPackageDeclarationCS(
 							(PathNameCS)$getSym(2),
 							new BasicEList()
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	prePostOrBodyDeclCS ::= pre simpleNameCS ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createPrePostOrBodyDeclCS(
 							PrePostOrBodyEnum.PRE_LITERAL,
 							(SimpleNameCS)$getSym(2),
@@ -148,10 +149,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	prePostOrBodyDeclCS ::= post simpleNameCS ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createPrePostOrBodyDeclCS(
 							PrePostOrBodyEnum.POST_LITERAL,
 							(SimpleNameCS)$getSym(2),
@@ -159,10 +160,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	prePostOrBodyDeclCS ::= body simpleNameCS ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createPrePostOrBodyDeclCS(
 							PrePostOrBodyEnum.BODY_LITERAL,
 							(SimpleNameCS)$getSym(2),
@@ -170,11 +171,11 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	propertyContextCS ::= context pathNameCS '::' ERROR_SimpleNameCS
-		/.$BeginJava
+		/.$BeginCode
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(4);
 					CSTNode result = createPropertyContextCS(
 							(PathNameCS)$getSym(2),
@@ -184,7 +185,7 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), simpleNameCS);
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
-$End
+%End

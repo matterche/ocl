@@ -9,44 +9,45 @@
 -- *
 -- * Contributors:
 -- *   E.D.Willink - Initial API and implementation
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLErrors.g,v 1.2 2009/09/04 13:40:44 ewillink Exp $
+-- * $Id: EssentialOCLErrors.gi,v 1.1.2.1 2009/09/12 18:11:36 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser
 --
 
-$Rules
+%Rules
 	ERROR_Colon ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_COLON);
-		  $EndJava
+		  $EndCode
 		./
 	ERROR_Empty ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.EXTRA_TOKENS);
-		  $EndJava
+		  $EndCode
 		./
 	ERROR_IsMarkedPreCS ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_AT_PRE);
 					$setResult(null);
-		  $EndJava
+		  $EndCode
 		./
 
 	ERROR_PathNameCS ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_PATH_NAME);
 					CSTNode result = createPathNameCS(createSimpleNameCS(SimpleTypeEnum.IDENTIFIER_LITERAL, getTokenText($getToken(1))));
 					setOffsets(result, getIToken($getToken(1)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	ERROR_SimpleNameCS ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_SIMPLE_NAME);
 					SimpleNameCS result = createSimpleNameCS(
 							SimpleTypeEnum.IDENTIFIER_LITERAL,
@@ -54,11 +55,11 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	attrOrNavCallExpCS ::= simpleNameCS '[' argumentsCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RBRACK);
 					CSTNode result = createFeatureCallExpCS(
 							(SimpleNameCS)$getSym(1),
@@ -67,11 +68,11 @@ $Rules
 						);
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	collectionTypeCS ::= collectionTypeIdentifierCS '(' typeCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RPAREN);
 					Object[] objs = (Object[])$getSym(1);
 					CSTNode result = createCollectionTypeCS(
@@ -80,10 +81,10 @@ $Rules
 						);
 					setOffsets(result, (IToken)objs[0], getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	collectionTypeCS ::= collectionTypeIdentifierCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_LPAREN);
 					Object[] objs = (Object[])$getSym(1);
 					CSTNode result = createCollectionTypeCS(
@@ -92,11 +93,11 @@ $Rules
 						);
 					setOffsets(result, (IToken)objs[0], getIToken($getToken(2)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	dotArrowExpCS ::=  pathNameCS '::' ERROR_SimpleNameCS '(' argumentsCSopt ')'
-		/.$BeginJava
+		/.$BeginCode
 					OperationCallExpCS result = createOperationCallExpCS(
 							(PathNameCS)$getSym(1),
 							(SimpleNameCS)$getSym(3),
@@ -105,12 +106,12 @@ $Rules
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(6)));
 					result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 -- FIXME	dotArrowExpCS ::= NUMERIC_OPERATION ERROR_SimpleNameCS
 
 	enumLiteralExpCS ::= pathNameCS '::' ERROR_SimpleNameCS
-		/.$BeginJava
+		/.$BeginCode
 					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
 					CSTNode result = createEnumLiteralExpCS(
@@ -119,7 +120,7 @@ $Rules
 						);
 					setOffsets(result, pathNameCS, simpleNameCS);
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	featureCallExpCS ::= unaryName ERROR_IsMarkedPreCS '(' argumentsCSopt ')'
@@ -127,7 +128,7 @@ $Rules
 	keywordOperationCallExpCS ::= keywordAsName ERROR_IsMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= binaryName ERROR_IsMarkedPreCS '(' argumentsCSopt ')'
-		/.$BeginJava
+		/.$BeginCode
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
 					CSTNode result = createOperationCallExpCS(
 							simpleNameCS,
@@ -136,10 +137,10 @@ $Rules
 						);
 					setOffsets(result, simpleNameCS, getIToken($getToken(5)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCallExpCS ::= oclIsInStateName ERROR_IsMarkedPreCS '(' stateExpCS ')'
-		/.$BeginJava
+		/.$BeginCode
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
 					CSTNode result = createOperationCallExpCS(
 							simpleNameCS,
@@ -148,11 +149,11 @@ $Rules
 						);
 					setOffsets(result, simpleNameCS, getIToken($getToken(5)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	ifExpCS ::= if oclExpressionCS then oclExpressionCS else oclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_ENDIF);
 					CSTNode result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
@@ -161,10 +162,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(7)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	ifExpCS ::= if oclExpressionCS then oclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(5), OCLParserErrors.MISSING_ELSE_ENDIF);
 					CSTNode result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
@@ -173,10 +174,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	ifExpCS ::= if oclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE_ENDIF);
 					CSTNode result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
@@ -185,10 +186,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	ifExpCS ::= if ERROR_TOKEN endif
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE);
 					CSTNode result = createIfExpCS(
 							createInvalidLiteralExpCS(getTokenText($getToken(2))),
@@ -197,13 +198,13 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 		
 	messageExpCS ::= '^' simpleNameCS ERROR_TOKEN
 		/.$NewCase./
 	messageExpCS ::= '^^' simpleNameCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_MESSAGE_ARGUMENTS);
 					CSTNode result = createMessageExpCS(
 							getIToken($getToken(1)).getKind() == $sym_type.TK_CARET,
@@ -212,12 +213,12 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	messageExpCS ::= '^' ERROR_SimpleNameCS
 		/.$NewCase./
 	messageExpCS ::= '^^' ERROR_SimpleNameCS
-		/.$BeginJava
+		/.$BeginCode
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(2);
 					CSTNode result = createMessageExpCS(
 							getIToken($getToken(1)).getKind() == $sym_type.TK_CARET,
@@ -226,28 +227,28 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), simpleNameCS);
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	oclExpCS ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_EXPR);
 					CSTNode result = createInvalidLiteralExpCS(getTokenText($getToken(1)));
 					setOffsets(result, getIToken($getToken(1)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	oclExpCS ::= '(' oclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_RPAREN);
 					CSTNode result = (CSTNode)$getSym(2);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	operationCS1 ::= IDENTIFIER '(' parametersCSopt ')' ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					CSTNode result = createOperationCS(
 							getTokenText($getToken(1)),
 							(EList)$getSym(3),
@@ -255,10 +256,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCS1 ::= IDENTIFIER '(' parametersCSopt ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RPAREN);
 					CSTNode result = createOperationCS(
 							getTokenText($getToken(1)),
@@ -267,10 +268,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCS1 ::= IDENTIFIER ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_LPAREN);
 					CSTNode result = createOperationCS(
 							getTokenText($getToken(1)),
@@ -279,10 +280,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCS1 ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_IDENTIFIER);
 					CSTNode result = createOperationCS(
 							getTokenText($getToken(1)),
@@ -291,10 +292,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCS2 ::= pathNameCS '::' simpleNameCS '(' parametersCSopt ')' ERROR_Colon
-		/.$BeginJava
+		/.$BeginCode
 					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
 					CSTNode result = createOperationCS(
 							pathNameCS,
@@ -304,10 +305,10 @@ $Rules
 						);
 					setOffsets(result, pathNameCS, getIToken($getToken(7)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCS2 ::= pathNameCS '::' simpleNameCS '(' parametersCSopt ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(6), OCLParserErrors.MISSING_RPAREN);
 					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
 					CSTNode result = createOperationCS(
@@ -318,10 +319,10 @@ $Rules
 						);
 					setOffsets(result, pathNameCS, getIToken($getToken(7)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCS2 ::= pathNameCS '::' simpleNameCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_LPAREN);
 					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
 					CSTNode result = createOperationCS(
@@ -332,10 +333,10 @@ $Rules
 						);
 					setOffsets(result, pathNameCS, getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	operationCS2 ::= pathNameCS '::' ERROR_SimpleNameCS
-		/.$BeginJava
+		/.$BeginCode
 					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
 					CSTNode result = createOperationCS(
@@ -346,20 +347,20 @@ $Rules
 						);
 					setOffsets(result, pathNameCS, simpleNameCS);
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	parametersCS ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_PARAMETERS);
 					EList result = new BasicEList();
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	parametersCS ::= parametersCS ',' ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_PARAMETER);
-		  $EndJava
+		  $EndCode
 		./
 
 	pathNameCS -> ERROR_PathNameCS
@@ -367,16 +368,16 @@ $Rules
 	simpleNameCSopt -> ERROR_SimpleNameCS
 
 	tupleLiteralExpCS ::= Tuple ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_LBRACE);
 					CSTNode result = createTupleLiteralExpCS((EList)$getSym(3));
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	variableCS ::= IDENTIFIER ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_VARIABLE_TYPE);
 					CSTNode result = createVariableCS(
 							getTokenText($getToken(1)),
@@ -385,13 +386,13 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	variableExpCS ::= simpleNameCS '[' argumentsCS ERROR_TOKEN
 		/.$NewCase./
 	variableExpCS ::= keywordAsName1 '[' argumentsCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RBRACK);
 					CSTNode result = createVariableExpCS(
 							(SimpleNameCS)$getSym(1),
@@ -400,17 +401,17 @@ $Rules
 						);
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	variableListCS ::= ERROR_TOKEN
 		/.$NewCase./
 	variableListCS2 ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_VARIABLES);
 					EList result = new BasicEList();
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
-$End
+%End
