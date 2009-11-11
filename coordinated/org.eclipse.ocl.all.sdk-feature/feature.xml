@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.ocl.all.sdk"
+      id="org.eclipse.ocl20a.all.sdk"
       label="%featureName"
       version="3.0.0.qualifier"
       provider-name="%providerName"
@@ -28,23 +28,23 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <includes
-         id="org.eclipse.ocl.all"
+         id="org.eclipse.ocl20a.all"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.doc"
+         id="org.eclipse.ocl20a.doc"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.source"
+         id="org.eclipse.ocl20a.source"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.uml.source"
+         id="org.eclipse.ocl20a.uml.source"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.edit"
+         id="org.eclipse.ocl20a.edit"
          version="0.0.0"/>
 
 </feature>

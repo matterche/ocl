@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.ocl.doc"
+      id="org.eclipse.ocl20a.doc"
       label="%featureName"
       version="3.0.0.qualifier"
       provider-name="%providerName"
@@ -36,14 +36,14 @@ http://www.eclipse.org/legal/epl-v10.html
    </requires>
 
    <plugin
-         id="org.eclipse.ocl.doc"
+         id="org.eclipse.ocl20a.doc"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.ocl.examples"
+         id="org.eclipse.emf.ocl20a.examples"
          download-size="0"
          install-size="0"
          version="0.0.0"

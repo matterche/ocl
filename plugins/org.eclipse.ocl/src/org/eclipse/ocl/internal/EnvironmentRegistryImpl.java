@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.5 2009/11/04 19:44:06 aigdalov Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.5.2.1 2009/11/11 13:19:36 aigdalov Exp $
  */
 
 package org.eclipse.ocl.internal;
@@ -79,6 +79,9 @@ public class EnvironmentRegistryImpl implements Registry {
 				if (descriptor.matches(abstractSyntaxElement)) {
 					// instantiate the descriptor now
 					next = descriptor.instantiate();
+					if (next == null) {
+						continue;
+					}
 					environments.set(i, next);
 				}
 			}
@@ -128,8 +131,7 @@ public class EnvironmentRegistryImpl implements Registry {
 			new java.util.HashMap<String, EnvironmentDescriptor>();
 		
 		RegistryReader(OCLPlugin plugin) {
-			// FIXME
-			namespace = "org.eclipse.ocl"; //$NON-NLS-1$ //plugin.getSymbolicName();
+			namespace = "org.eclipse.ocl"; //$NON-NLS-1$
 		}
 		
 		void readRegistry() {
@@ -175,12 +177,16 @@ public class EnvironmentRegistryImpl implements Registry {
 					@Override
 					EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createFactory() {
 						try {
-							return (EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>)
-								element.createExecutableExtension(A_CLASS);
+							Object executableExtension = element.createExecutableExtension(A_CLASS);
+							
+							// Filter out environment factories for other version of MDT OCL
+							if (executableExtension instanceof EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+								return (EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) executableExtension;
+							}
 						} catch (CoreException e) {
                             OCLPlugin.getInstance().log(e);
-							return null;
 						}
+						return null;
 					}};
 				descriptors.put(className, descriptor);
 				environments.add(descriptor);
