@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.5.2.1 2009/11/11 13:19:36 aigdalov Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.5.2.2 2009/11/15 18:02:59 aigdalov Exp $
  */
 
 package org.eclipse.ocl.internal;
@@ -291,6 +291,10 @@ public class EnvironmentRegistryImpl implements Registry {
 			if (env == null) {
 				EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> factory =
 					createFactory();
+				
+				if (factory == null) {
+					return null;
+				}
 			
 				env = factory.createEnvironment();
 			}
