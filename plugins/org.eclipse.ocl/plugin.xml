@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
+<?eclipse version="3.2"?>
 
 <!--
  Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
@@ -12,11 +12,11 @@
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869, 243976, 256040
 
- $Id: plugin.xml,v 1.7 2008/11/24 00:21:49 cdamus Exp $
+ $Id: plugin.xml,v 1.7.8.1 2009/11/18 15:25:01 aigdalov Exp $
 -->
 
 <plugin>
-   <extension-point id="environments" name="%oclenv.point.name" schema="schema/environments.exsd"/>
+   <extension-point id="org.eclipse.ocl.environments" name="%oclenv.point.name" schema="schema/environments.exsd"/>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
