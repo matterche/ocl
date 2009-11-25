@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.5.2.2 2009/11/15 18:02:59 aigdalov Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.5.2.3 2009/11/25 13:55:46 aigdalov Exp $
  */
 
 package org.eclipse.ocl.internal;
@@ -79,9 +79,6 @@ public class EnvironmentRegistryImpl implements Registry {
 				if (descriptor.matches(abstractSyntaxElement)) {
 					// instantiate the descriptor now
 					next = descriptor.instantiate();
-					if (next == null) {
-						continue;
-					}
 					environments.set(i, next);
 				}
 			}
@@ -131,7 +128,7 @@ public class EnvironmentRegistryImpl implements Registry {
 			new java.util.HashMap<String, EnvironmentDescriptor>();
 		
 		RegistryReader(OCLPlugin plugin) {
-			namespace = "org.eclipse.ocl"; //$NON-NLS-1$
+			namespace = plugin.getSymbolicName();
 		}
 		
 		void readRegistry() {
@@ -177,16 +174,12 @@ public class EnvironmentRegistryImpl implements Registry {
 					@Override
 					EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createFactory() {
 						try {
-							Object executableExtension = element.createExecutableExtension(A_CLASS);
-							
-							// Filter out environment factories for other version of MDT OCL
-							if (executableExtension instanceof EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-								return (EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) executableExtension;
-							}
+							return (EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>)
+								element.createExecutableExtension(A_CLASS);
 						} catch (CoreException e) {
                             OCLPlugin.getInstance().log(e);
+							return null;
 						}
-						return null;
 					}};
 				descriptors.put(className, descriptor);
 				environments.add(descriptor);
@@ -291,10 +284,6 @@ public class EnvironmentRegistryImpl implements Registry {
 			if (env == null) {
 				EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> factory =
 					createFactory();
-				
-				if (factory == null) {
-					return null;
-				}
 			
 				env = factory.createEnvironment();
 			}
