@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.3 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: AllTests.java,v 1.3.10.1 2009/11/25 12:12:08 aigdalov Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -36,9 +36,11 @@ public class AllTests
 
 	public AllTests() {
 		super(""); //$NON-NLS-1$
+		System.out.println("TEST1");
 	}
 
 	public static Test suite() {
+		System.out.println("TEST2");
 		if (System.getProperty("standalone") != null) { //$NON-NLS-1$
 			// running tests stand-alone:  must set up the environment registry
 			Environment.Registry.INSTANCE.registerEnvironment(
@@ -50,6 +52,7 @@ public class AllTests
 
 	public Object run(Object args)
 		throws Exception {
+		System.out.println("TEST3");
 
 		TestRunner.run(suite());
 		return Arrays
