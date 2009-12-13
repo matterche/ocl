@@ -1,0 +1,55 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id: OCLLibraryOperation.java,v 1.1.2.1 2009/12/13 18:44:51 ewillink Exp $
+ */
+package org.eclipse.ocl.library;
+
+import org.eclipse.ocl.LibraryOperation;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>OCL Library Operation</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperationClass <em>Library Operation Class</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryOperation()
+ * @model
+ * @generated
+ */
+public interface OCLLibraryOperation extends OCLOperation {
+
+	/**
+	 * Returns the value of the '<em><b>Library Operation Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Library Operation Class</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Library Operation Class</em>' attribute.
+	 * @see #setLibraryOperationClass(Class)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryOperation_LibraryOperationClass()
+	 * @model required="true"
+	 * @generated
+	 */
+	Class<? extends LibraryOperation> getLibraryOperationClass();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperationClass <em>Library Operation Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Library Operation Class</em>' attribute.
+	 * @see #getLibraryOperationClass()
+	 * @generated
+	 */
+	void setLibraryOperationClass(Class<? extends LibraryOperation> value);
+} // OCLLibraryOperation
