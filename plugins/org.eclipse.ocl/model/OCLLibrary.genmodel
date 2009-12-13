@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl/src"
+    creationIcons="false" modelPluginID="org.eclipse.ocl" modelName="OCLLibrary" editPluginClass="org.eclipse.ocl.library.provider.OCLLibraryEditPlugin"
+    editorPluginClass="org.eclipse.ocl.library.presentation.OCLLibraryEditorPlugin"
+    richClientPlatform="true" testSuiteClass="org.eclipse.ocl.library.tests.OCLLibraryAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    binaryCompatibleReflectiveMethods="true" editPluginID="org.eclipse.ocl.edit">
+  <foreignModel>OCLLibrary.ecore</foreignModel>
+  <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
+      fileExtensions="oclstdlib" ecorePackage="OCLLibrary.ecore#/">
+    <nestedGenPackages prefix="Library" disposableProviderFactory="true" multipleEditorPages="false"
+        contentTypeIdentifier="org.eclipse.ocl.library" fileExtensions="oclstdlib"
+        ecorePackage="OCLLibrary.ecore#//library">
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLConstraintOperation"/>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLConstraintProperty"/>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLLibrary.ecore#//library/OCLElement/name"/>
+      </genClasses>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLGenericType">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLGenericType/parameter"/>
+      </genClasses>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLLibraryOperation"/>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLLibraryProperty"/>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLMetaModelOperation"/>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLMetaModelProperty"/>
+      <genClasses image="false" ecoreClass="OCLLibrary.ecore#//library/OCLOperation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLOperation/parameter"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLOperation/type"/>
+      </genClasses>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLPackage/type"/>
+      </genClasses>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLParameter">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLParameter/type"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="OCLLibrary.ecore#//library/OCLProperty">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLProperty/type"/>
+      </genClasses>
+      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLType">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/conforms"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/operation"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/property"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
