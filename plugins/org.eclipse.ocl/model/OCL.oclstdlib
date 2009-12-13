@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ocl.lib:OCLPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ocl.lib="http://www.eclipse.org/ocl/3.0.0/OCL/Library" name="oclstdlib">
+  <type name="OclAny">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="=" type="//@type.1" libraryOperationClass="org.eclipse.ocl.LibraryOperation">
+      <parameter name="object2" type="//@type.0"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="&lt;>" type="//@type.1">
+      <parameter name="object2" type="//@type.0"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclIsNew" type="//@type.1"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclIsUndefined" type="//@type.1"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclIsInvalid" type="//@type.1"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclAsType" type="//@type.15">
+      <parameter name="type" type="//@type.6"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclIsTypeOf" type="//@type.1">
+      <parameter name="type" type="//@type.6"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclIsKindOf" type="//@type.1">
+      <parameter name="type" type="//@type.6"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclIsInState" type="//@type.1">
+      <parameter name="statespec" type="//@type.16"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="oclType" type="//@type.6"/>
+  </type>
+  <type name="Boolean" conforms="//@type.0">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="or" type="//@type.1">
+      <parameter name="b" type="//@type.1"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="xor" type="//@type.1">
+      <parameter name="b" type="//@type.1"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="and" type="//@type.1">
+      <parameter name="b" type="//@type.1"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="not" type="//@type.1"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="implies" type="//@type.1">
+      <parameter name="b" type="//@type.1"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toString" type="//@type.4"/>
+  </type>
+  <type name="Integer" conforms="//@type.3">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="-" type="//@type.2"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="+" type="//@type.2">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="-" type="//@type.2">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="*" type="//@type.2">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="/" type="//@type.3">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="abs" type="//@type.2"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="div" type="//@type.2">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="mod" type="//@type.2">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="max" type="//@type.2">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="min" type="//@type.2">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toString" type="//@type.4"/>
+  </type>
+  <type name="Real" conforms="//@type.0">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="+" type="//@type.3">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="-" type="//@type.3">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="*" type="//@type.3">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="-" type="//@type.3"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="/" type="//@type.3">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="abs" type="//@type.3">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="floor" type="//@type.3"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="round" type="//@type.3"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="max" type="//@type.3">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="min" type="//@type.3">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name=">" type="//@type.1">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="&lt;" type="//@type.1">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="&lt;=" type="//@type.1">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name=">=" type="//@type.1">
+      <parameter name="r" type="//@type.3"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toString" type="//@type.4"/>
+  </type>
+  <type name="String" conforms="//@type.0">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="+" type="//@type.4">
+      <parameter name="s" type="//@type.4"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="size" type="//@type.2"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="concat" type="//@type.4">
+      <parameter name="s" type="//@type.4"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="substring" type="//@type.4">
+      <parameter name="lower" type="//@type.2"/>
+      <parameter name="upper" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toInteger" type="//@type.2"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toReal" type="//@type.3"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toUpperCase" type="//@type.4"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toLowerCase" type="//@type.4"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="indexOf" type="//@type.2">
+      <parameter name="s" type="//@type.4"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="equalsIgnoreCase" type="//@type.2">
+      <parameter name="s" type="//@type.4"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="at" type="//@type.4">
+      <parameter name="i" type="//@type.2"/>
+    </operation>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="characters" type="//@type.12"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="toBoolean" type="//@type.1"/>
+  </type>
+  <type name="UnlimitedNatural" conforms="//@type.2"/>
+  <type name="Classifier" conforms="//@type.0"/>
+  <type name="OclMessage" conforms="//@type.0">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="hasReturned" type="//@type.1"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="result" type="//@type.15"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="isOperationCall" type="//@type.1"/>
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="isSignalSent" type="//@type.1"/>
+  </type>
+  <type name="Collection" conforms="//@type.0"/>
+  <type name="Bag" conforms="//@type.8"/>
+  <type name="OrderedSet" conforms="//@type.8"/>
+  <type name="Set" conforms="//@type.8"/>
+  <type name="Sequence" conforms="//@type.8"/>
+  <type name="OclVoid" conforms="//@type.0">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="=" type="//@type.0">
+      <parameter name="object2" type="//@type.0"/>
+    </operation>
+  </type>
+  <type name="OclInvalid" conforms="//@type.13">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="=" type="//@type.0">
+      <parameter name="object2" type="//@type.0"/>
+    </operation>
+  </type>
+  <type name="T" conforms="//@type.0"/>
+  <type name="OclState" conforms="//@type.0"/>
+  <type xsi:type="ocl.lib:OCLGenericType" name="Collection" conforms="//@type.0" parameter="//@type.15">
+    <operation xsi:type="ocl.lib:OCLLibraryOperation" name="=" type="//@type.1">
+      <parameter name="c" type="//@type.0"/>
+    </operation>
+  </type>
+</ocl.lib:OCLPackage>
