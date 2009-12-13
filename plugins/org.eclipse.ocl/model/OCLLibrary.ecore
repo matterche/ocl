@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
+    nsURI="http://www.eclipse.org/ocl/3.0.0/OCLLibrary" nsPrefix="ocl">
+  <eSubpackages name="library" nsURI="http://www.eclipse.org/ocl/3.0.0/OCL/Library"
+      nsPrefix="ocl.lib">
+    <eClassifiers xsi:type="ecore:EClass" name="OCLConstraintOperation" eSuperTypes="#//library/OCLOperation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLConstraintProperty" eSuperTypes="#//library/OCLProperty"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLElement" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLGenericType" eSuperTypes="#//library/OCLType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+          upperBound="-1" eType="#//library/OCLType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryOperation" eSuperTypes="#//library/OCLOperation">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryOperationClass"
+          lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments>
+            <eUpperBound eClassifier="#//library/LibraryOperation"/>
+          </eTypeArguments>
+        </eGenericType>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryProperty" eSuperTypes="#//library/OCLProperty">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryPropertyClass"
+          lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments>
+            <eUpperBound eClassifier="#//library/LibraryProperty"/>
+          </eTypeArguments>
+        </eGenericType>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLMetaModelOperation" eSuperTypes="#//library/OCLOperation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLMetaModelProperty" eSuperTypes="#//library/OCLProperty"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLOperation" abstract="true" eSuperTypes="#//library/OCLElement">
+      <eOperations name="canEvaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          eExceptions="#//library/Exception">
+        <eParameters name="operationCall" eType="#//library/OperationCallExp"/>
+      </eOperations>
+      <eOperations name="evaluate" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+          eExceptions="#//library/Exception">
+        <eParameters name="evaluationVisitor" eType="#//library/EvaluationVisitor"/>
+        <eParameters name="operationCall" eType="#//library/OperationCallExp"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+          eType="#//library/OCLParameter" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//library/OCLType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLPackage" eSuperTypes="#//library/OCLElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
+          eType="#//library/OCLPackage" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
+          upperBound="-1" eType="#//library/OCLType" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLParameter" eSuperTypes="#//library/OCLElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//library/OCLType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLProperty" abstract="true" eSuperTypes="#//library/OCLElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//library/OCLType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLType" eSuperTypes="#//library/OCLElement">
+      <eOperations name="conformsTo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="type" eType="#//library/OCLType"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conforms" ordered="false"
+          upperBound="-1" eType="#//library/OCLType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
+          upperBound="-1" eType="#//library/OCLOperation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="property" ordered="false"
+          upperBound="-1" eType="#//library/OCLProperty" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="EvaluationVisitor" instanceClassName="org.eclipse.ocl.EvaluationVisitor"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="OperationCallExp" instanceClassName="org.eclipse.ocl.expressions.OperationCallExp"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="LibraryOperation" instanceClassName="org.eclipse.ocl.LibraryOperation"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="LibraryProperty" instanceClassName="org.eclipse.ocl.LibraryProperty"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
+  </eSubpackages>
+</ecore:EPackage>
