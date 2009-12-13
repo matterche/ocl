@@ -12,10 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ParserBacktrackingTest.java,v 1.1 2009/10/15 19:46:28 ewillink Exp $
+ * $Id: ParserBacktrackingTest.java,v 1.1.4.1 2009/12/13 21:21:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -46,13 +49,15 @@ public class ParserBacktrackingTest
 	private final class MyProblemHandler extends AbstractProblemHandler
 	{
 		protected final String source;
-		protected final String failure;
+		protected final List<String> failures = new ArrayList<String>();
 		private int errors = 0;
 		
-		private MyProblemHandler(AbstractParser parser, String source, String failure) {
+		private MyProblemHandler(AbstractParser parser, String source, String... failures) {
 			super(parser);
 			this.source = source;
-			this.failure = failure;
+			if (failures != null)
+				for (String failure : failures)
+					this.failures.add(failure);
 		}
 		
 		public int getErrors() {
@@ -62,10 +67,8 @@ public class ParserBacktrackingTest
 		@Override
 		public void handleProblem(Severity problemSeverity, Phase processingPhase, String problemMessage,
 				String processingContext, int startOffset, int endOffset) {
-			if (!failure.equals(problemMessage))
+			if ((errors > failures.size()) || !failures.get(errors).equals(problemMessage))
 				fail("Unexpected failure '" + problemMessage + "' in '" + source + "'");
-			if (errors > 1)
-				fail("Repeated failure '" + problemMessage + "' in '" + source + "'");
 			errors++;
 		}
 	}
@@ -154,22 +157,60 @@ public class ParserBacktrackingTest
 			"\"endif\" expected after \"false\"");
     }
 
-	private void checkDocumentWithParseFailure(String oclText, String failure) {
+	public void test_packageMissingEndPackage_277620() {
+		checkDocumentWithParseFailure(
+			"package context Xyzzy inv: 1 = 1 ",
+			"\"<simpleName>\" expected after \"package\"",
+			"\"endpackage\" expected after \"1\"");
+    }
+
+	public void test_packageMissingName_277620() {
+		parseConstraint(
+			"package /*name*/ context Xyzzy inv: 1 = 1 endpackage"
+);
+    }
+
+	private void checkDocumentWithParseFailure(String oclText, String... failures) {
 		Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> environment = ocl.getEnvironment();
 		AbstractBasicEnvironment abstractBasicEnvironment = (AbstractBasicEnvironment)environment;
 		OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(environment, oclText.toCharArray());
 		OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
 		parser.setDefaultRepairCount(10);
-		MyProblemHandler problemHandler = new MyProblemHandler(parser, oclText, failure);
+		MyProblemHandler problemHandler = new MyProblemHandler(parser, oclText, failures);
 		abstractBasicEnvironment.setProblemHandler(problemHandler);
-		try {
+//		try {
 			lexer.lexToTokens(parser);
 			CSTNode cst = parser.parseTokensToCST();
-			if (problemHandler.getErrors() != 1)
-				fail("Expected failure '" + failure + "' not found in '" + oclText + "'");
+			int expectedErrors = failures != null ? failures.length : 0;
+			if (problemHandler.getErrors() < expectedErrors)
+				fail("Expected failure '" + failures[problemHandler.getErrors()] + "' not found in '" + oclText + "'");
+//			if (problemHandler.getErrors() < expectedErrors)
+//				fail("Expected failure '" + failures[problemHandler.getErrors()] + "' not found in '" + oclText + "'");
 			assertNotNull(cst);
-        } catch (Exception e) {
-            assertEquals(failure, e.getLocalizedMessage());
-        }
+//        } catch (Exception e) {
+//            assertEquals(failure, e.getLocalizedMessage());
+//        }
+	}
+
+	private void checkDocumentAfterParseFailure(String oclText, String... failures) {
+		Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> environment = ocl.getEnvironment();
+		AbstractBasicEnvironment abstractBasicEnvironment = (AbstractBasicEnvironment)environment;
+		OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(environment, oclText.toCharArray());
+		OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
+		parser.setDefaultRepairCount(10);
+		MyProblemHandler problemHandler = new MyProblemHandler(parser, oclText, failures);
+		abstractBasicEnvironment.setProblemHandler(problemHandler);
+//		try {
+			lexer.lexToTokens(parser);
+			CSTNode cst = parser.parseTokensToCST();
+			int expectedErrors = failures != null ? failures.length : 0;
+			if (problemHandler.getErrors() < expectedErrors)
+				fail("Expected failure '" + failures[problemHandler.getErrors()] + "' not found in '" + oclText + "'");
+//			if (problemHandler.getErrors() < expectedErrors)
+//				fail("Expected failure '" + failures[problemHandler.getErrors()] + "' not found in '" + oclText + "'");
+			assertNotNull(cst);
+//        } catch (Exception e) {
+//            assertEquals(failure, e.getLocalizedMessage());
+//        }
 	}
 }
