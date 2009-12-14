@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.12 2009/12/07 06:16:37 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.12.2.1 2009/12/14 22:02:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -1096,7 +1096,7 @@ public class RegressionTest
 				"inv: null.oclAsType(Integer) " +
 				" endpackage"));
 			
-		assertNull(result);
+		assertEquals(getNull(), result);
 	}
 	
 	/**

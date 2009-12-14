@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: UMLTestReflection.java,v 1.1 2009/11/26 20:46:38 ewillink Exp $
+ * $Id: UMLTestReflection.java,v 1.1.2.1 2009/12/14 22:02:28 ewillink Exp $
  */
 package org.eclipse.ocl.uml.tests;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -110,6 +113,8 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 			newInstance.setParserRepairCount(Integer.parseInt(repairs));
 		return newInstance;
 	}
+	
+	private Map<String, String> normalizers = null;
 
 	public UMLTestReflection(UMLEnvironment env) {
 		super(env);
@@ -130,6 +135,10 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 
 	public Comment createComment() {
 		return UMLFactory.eINSTANCE.createComment();
+	}
+
+	public void createGeneralization(Classifier special, Classifier general) {
+		special.createGeneralization(general);
 	}
 
 	public Package createNestedPackage(Package aPackage, String name) {
@@ -221,20 +230,17 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 //        fruitPackage = null;
 	} */
 
-	public String getAbstractOperationName() {
-		return "isAbstract";
+	public String denormalize(String key) {
+		if (normalizers == null) {
+			normalizers = new HashMap<String, String>();
+			normalizers.put("Reference", "Property");
+			normalizers.put("String", "\"String\"");
+		}
+		return normalizers.get(key);
 	}
 
-	public String getAttributeParentTypeName() {
-		return "DataType";
-	}
-
-	public String getAttributeTypeName() {
-		return "Property";
-	}
-
-	public String getAttributesFeatureName() {
-		return "ownedAttribute";
+	public Property getAttribute(Classifier classifier, String name, Type type) {
+		return classifier.getAttribute(name, type);
 	}
 
 	public Classifier getBigDecimal() {
@@ -253,10 +259,6 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		return (Classifier) umlMetamodel.getOwnedType("Class");
 	}
 
-	public String getClassTypeName() {
-		return "Class";
-	}
-
 	public Classifier getClassifierTypeContext() {
 		return (Classifier) umlMetamodel.getOwnedType("Classifier");
 	}
@@ -269,34 +271,14 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	public Classifier getCommentTypeContext() {
 		return (Classifier) umlMetamodel.getOwnedType("Comment");
 	}
-
-	public String getCommentElementName() {
-		return "body";
-	}
-
-	public String getCommentTypeName() {
-		return "Comment";
-	}
-
-	public String getConformsToOperationName() {
-		return "conformsTo";
-	}
 	
 	public java.lang.Class<Constraint> getConstraintClass() {
 		return Constraint.class;
 	}
 
-	public String getDataTypeTypeName() {
-		return "DataType";
-	}
-
 //	public Classifier getDefaultSetType(Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> environment) {
 //		return environment.getOCLStandardLibrary().getInvalid();
 //	}
-
-	public String getDerivedOperationName() {
-		return "isDerived";
-	}
 
 	public EPackage getEPackage(Package pkg) {
 		return UMLUtil.convertToEcore(pkg, null).iterator().next();
@@ -318,10 +300,6 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		return ecorePrimitiveTypes;
 	}
 
-	public String getEnumerationTypeName() {
-		return "Enumeration";
-	}
-
 	public String getFruitModelPath() {
 		return "/model/OCLTest.uml";
 	}
@@ -329,14 +307,6 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	public Classifier getMetaclass(String name) {
         return (Classifier) umlMetamodel.getOwnedType(name);
     }
-
-	public String getModelPackageName() {
-		return "uml";
-	}
-
-	public String getMultiplicityElementTypeName() {
-		return "MultiplicityElement";
-	}
 
 	public Package getOCLMetaModel() {
 		return oclMetamodel;
@@ -357,14 +327,6 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 
 	public Classifier getStringTypeContext() {
 		return OCLStandardLibraryImpl.INSTANCE.getString();
-	}
-
-	public String getStringTypeName() {
-		return "\"String\"";
-	}
-
-	public String getTypesPackageName() {
-		return "UMLPrimitiveTypes";
 	}
 	
 	public PrimitiveType getUMLBoolean() {
@@ -397,10 +359,6 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 
 	public int getUnlimitedValue() {
 		return LiteralUnlimitedNatural.UNLIMITED;
-	}
-
-	public String getUpperOperationName() {
-		return "upper";
 	}
 
 /*	public Map<URI, URI> initRegistries() {
@@ -461,6 +419,17 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 				true).getContents().get(0);
 		}
     } */
+
+	public boolean isOrdered(String key) {
+		return false;
+	}
+
+	public boolean isUnique(String key) {
+		if ("nestedPackage".equals(key)) {
+			return true;
+		}
+		return false;
+	}
 	
 	public void setAbstract(Class aClass, boolean isAbstract) {
 		aClass.setIsAbstract(isAbstract);
@@ -488,6 +457,10 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 
 	public void setNsURI(Package aPackage, String name) {
 //		aPackage.setNsPrefix(name);
+	}
+
+	public void setOperationUpper(Operation anOperation, int value) {
+		anOperation.setUpper(value);
 	}
 
 	public void setUpper(Property aProperty, int value) {

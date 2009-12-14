@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.10 2009/11/28 18:08:20 ewillink Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.10.2.1 2009/12/14 22:02:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -405,7 +405,7 @@ public class UMLEnvironmentTest
                 Pattern pattern = Pattern.compile((String) args[0]);
                 Matcher matcher = pattern.matcher((String) source);
                 
-                return matcher.matches()? matcher.group() : null;
+                return matcher.matches()? matcher.group() : getNull();
             }
             
             throw new UnsupportedOperationException();  // unknown operation
