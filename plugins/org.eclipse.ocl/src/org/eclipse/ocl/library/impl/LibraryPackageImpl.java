@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackageImpl.java,v 1.1.2.1 2009/12/13 18:44:27 ewillink Exp $
+ * $Id: LibraryPackageImpl.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.library.OCLType;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
+ * @since 3.0
  * <!-- end-user-doc -->
  * @generated
  */
@@ -664,10 +665,12 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		addEParameter(op, this.getOperationCallExp(), "operationCall", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
-		op = addEOperation(oclOperationEClass, ecorePackage.getEObject(), "evaluate", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(oclOperationEClass, ecorePackage.getEJavaObject(), "evaluate", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEvaluationVisitor(), "evaluationVisitor", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperationCallExp(), "operationCall", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
+
+		addEOperation(oclOperationEClass, ecorePackage.getEJavaObject(), "getOperationCode", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(oclPackageEClass, OCLPackage.class, "OCLPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOCLPackage_Extends(), this.getOCLPackage(), null, "extends", null, 0, -1, OCLPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

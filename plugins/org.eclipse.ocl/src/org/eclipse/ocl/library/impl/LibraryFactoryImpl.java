@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.1 2009/12/13 18:44:27 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.library.*;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
+ * @since 3.0
  * <!-- end-user-doc -->
  * @generated
  */

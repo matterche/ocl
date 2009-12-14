@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.1 2009/12/13 18:44:51 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.2 2009/12/14 21:59:09 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
+ * @since 3.0
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.library.LibraryPackage
  * @generated

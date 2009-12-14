@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperation.java,v 1.1.2.1 2009/12/13 18:44:51 ewillink Exp $
+ * $Id: OCLLibraryOperation.java,v 1.1.2.2 2009/12/14 21:59:08 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -12,6 +12,7 @@ import org.eclipse.ocl.LibraryOperation;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>OCL Library Operation</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>

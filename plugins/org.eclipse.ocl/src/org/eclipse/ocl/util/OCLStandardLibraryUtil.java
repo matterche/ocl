@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.1 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -2138,8 +2138,8 @@ public final class OCLStandardLibraryUtil {
 	 * @since 1.3
 	 */
 	@SuppressWarnings("unchecked")
-	public static <C> Collection<C> getAllSupertypes(
-			Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
+	public static <C, O> Collection<C> getAllSupertypes(
+			Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
 			PredefinedType<?> type) {
 
 		Collection<C> result;

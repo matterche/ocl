@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperation.java,v 1.1.2.1 2009/12/13 18:44:51 ewillink Exp $
+ * $Id: OCLOperation.java,v 1.1.2.2 2009/12/14 21:59:09 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -14,6 +14,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>OCL Operation</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>
@@ -85,6 +86,14 @@ public interface OCLOperation extends OCLElement {
 	 * @model exceptions="org.eclipse.ocl.library.Exception" evaluationVisitorDataType="org.eclipse.ocl.library.EvaluationVisitor" operationCallDataType="org.eclipse.ocl.library.OperationCallExp"
 	 * @generated
 	 */
-	EObject evaluate(EvaluationVisitor evaluationVisitor, OperationCallExp operationCall) throws Exception;
+	Object evaluate(EvaluationVisitor evaluationVisitor, OperationCallExp operationCall) throws Exception;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Object getOperationCode();
 
 } // OCLOperation

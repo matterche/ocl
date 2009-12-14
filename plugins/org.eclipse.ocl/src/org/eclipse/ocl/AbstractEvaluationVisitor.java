@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11.6.1 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
@@ -169,13 +170,23 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	}
 	
     /**
-     * Obtains my environment's implementation of the <tt>OclInvalid</tt> value.
+     * Obtains my environment's implementation of the <tt>invalid</tt> value.
      * 
      * @return the invalid result
      * @since 3.0
      */
-	protected final Object getInvalid() {
+	protected final EObject getInvalid() {
 		return getStandardLibrary().getInvalid();
+	}
+	
+    /**
+     * Obtains my environment's implementation of the <tt>null</tt> value.
+     * 
+     * @return the null result
+     * @since 3.0
+     */
+	protected final EObject getNull() {
+		return getStandardLibrary().getNull();
 	}
     
     /**
@@ -310,7 +321,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @return whether it is undefined
 	 */
 	protected boolean isUndefined(Object value) {
-		return (value == null) || 
+		return (value == null) ||		// FIXME Deprecated null
+			(value == getEnvironment().getOCLStandardLibrary().getNull()) ||
 			(value == getEnvironment().getOCLStandardLibrary().getInvalid());
 	}
     
@@ -441,7 +453,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		
 		// the type of null is OclVoid, except that we aren't even allowed to
 		// ask if not lax-null-handling
-		if (value == null) {
+		if ((value == null) || (value == stdlib.getNull())) {	// FIXME Deprecated null
 			return isLaxNullHandling()
 				? Boolean.valueOf(type instanceof VoidType<?>)
 				: null;

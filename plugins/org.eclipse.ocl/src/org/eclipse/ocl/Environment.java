@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.6 2007/12/14 17:09:29 cdamus Exp $
+ * $Id: Environment.java,v 1.6.12.1 2009/12/14 21:59:10 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -21,6 +21,7 @@ package org.eclipse.ocl;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.EnvironmentRegistryImpl;
@@ -587,6 +588,15 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      * @return the appropriate reflection instance
      */
     UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> getUMLReflection();
+    
+    /**
+     * Obtains the operation-specific instance of {@link OperationVisitor} to
+     * handle evaluation of <tt>operation<tt>.
+     * 
+     * @return the operation visitor.
+     * @since 3.0
+     */
+    LibraryOperation getOperation(Object operationCode);
 	
     /**
      * A registry of environments.  The registry may be consulted to find a

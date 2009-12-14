@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLGenericTypeImpl.java,v 1.1.2.1 2009/12/13 18:44:26 ewillink Exp $
+ * $Id: OCLGenericTypeImpl.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.library.OCLType;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>OCL Generic Type</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

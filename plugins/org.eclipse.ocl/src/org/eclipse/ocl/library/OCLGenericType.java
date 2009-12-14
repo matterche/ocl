@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLGenericType.java,v 1.1.2.1 2009/12/13 18:44:51 ewillink Exp $
+ * $Id: OCLGenericType.java,v 1.1.2.2 2009/12/14 21:59:09 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>OCL Generic Type</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>

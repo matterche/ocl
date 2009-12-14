@@ -15,12 +15,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.20 2009/12/04 21:25:20 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.20.2.1 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,9 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.evaluator.operations.OclIsInvalidOperation;
+import org.eclipse.ocl.evaluator.operations.OclIsUndefinedOperation;
+import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -1267,5 +1271,26 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			return "VariableEntry[" + name + ", "  //$NON-NLS-1$//$NON-NLS-2$
 				+ (isExplicit? "explicit, " : "implicit, ") + variable + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
+	}
+
+    private Map<Object, LibraryOperation> operationVisitors = null;
+    
+    /**
+	 * @since 3.0
+	 */
+	public LibraryOperation getOperation(Object operationCode) {
+		if (operationVisitors == null) {
+			operationVisitors = new HashMap<Object, LibraryOperation>();
+			addOperation(OclIsInvalidOperation.INSTANCE);
+			addOperation(OclIsUndefinedOperation.INSTANCE);
+		}
+		return operationVisitors.get(operationCode);
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public void addOperation(LibraryOperation operationVisitor) {
+		operationVisitors.put(operationVisitor.getOperationCode(), operationVisitor);
 	}
 }

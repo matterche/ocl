@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.1 2009/12/14 21:59:10 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -33,6 +33,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -132,6 +133,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	@Override
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
+		// FIXME environment overrides ??
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
+		try {
+			LibraryOperation operationVisitor = environment.getOperation(oc.getOperationCode());
+			if ((operationVisitor != null) && operationVisitor.canEvaluate(oc)) {
+				return operationVisitor.evaluate(this, oc);
+			}
+		}
+		catch (Exception e) {
+			return environment.getOCLStandardLibrary().getInvalid();
+		}
 		// check if source type is primitive and handle the
 		// primitive ops "inline". Otherwise use java reflection
 		// to invoke the operation (there is currently no means
@@ -150,6 +162,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// by the condition regardless of the other value.
 		// all irrespective of the order of the arguments.
 
+		EvaluationEnvironment<C, O, P, CLS, E> evaluationEnvironment = getEvaluationEnvironment();
 		OCLExpression<C> source = oc.getSource();
 		C sourceType = source.getType();
 		O oper = oc.getReferredOperation();
@@ -162,7 +175,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		OCLExpression<C> body = getOperationBody(oper);
 		if ((body != null) || opCode <= 0 /* not a pre-defined operation */
-				|| getEvaluationEnvironment().overrides(oper, opCode)) {
+				|| evaluationEnvironment.overrides(oper, opCode)) {
 			// delegate evaluation to the evaluation environment
 			
 			// evaluate args
@@ -189,7 +202,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				    if (opCode <= 0) {
 				        opCode = inferOperationCode(oper, opCode);
 				    }
-					result = getEvaluationEnvironment().callOperation(
+					result = evaluationEnvironment.callOperation(
 							oper, opCode, sourceVal, evalArgs);
 				}
 				
@@ -302,9 +315,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// if source is undefined and the operation is not
 				// undefined, then this expression is invalid
-				if (isUndefined(sourceVal)
-						&& opCode != PredefinedType.OCL_IS_UNDEFINED
-						&& opCode != PredefinedType.OCL_IS_INVALID) {
+				if (isUndefined(sourceVal)) {
                     return getInvalid();
                 }
 				
@@ -391,16 +402,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					case PredefinedType.NOT:
 						return (((Boolean) sourceVal).booleanValue()) ? Boolean.FALSE
 							: Boolean.TRUE;
-
-					case PredefinedType.OCL_IS_UNDEFINED:
-						// OclAny::oclIsUndefined()
-						return isUndefined(sourceVal)?
-								Boolean.TRUE : Boolean.FALSE;
-
-					case PredefinedType.OCL_IS_INVALID:
-						// OclAny::oclIsInvalid()
-						return (sourceVal == getInvalid())?
-								Boolean.TRUE : Boolean.FALSE;
 
 					case PredefinedType.SIZE:
 						if (sourceType == getString()) {
@@ -1050,8 +1051,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							CollectionType<C, O> collType = (CollectionType<C, O>) oc.getType();
 							
 							return CollectionUtil.product(
-									getEvaluationEnvironment(),
-									getEnvironment(),
+									evaluationEnvironment,
+									environment,
 									sourceColl,
 									(Collection<?>) argVal,
 									collType.getElementType());
@@ -1221,16 +1222,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				}
 			}
 
-			if (opCode == PredefinedType.OCL_IS_UNDEFINED) {
-				return isUndefined(sourceVal)?
-						Boolean.TRUE : Boolean.FALSE;
-			}
-
-			if (opCode == PredefinedType.OCL_IS_INVALID) {
-				return (sourceVal == getInvalid())?
-						Boolean.TRUE : Boolean.FALSE;
-			}
-
 			// result is invalid if source is undefined
 			if (isUndefined(sourceVal)) {
 			    switch (opCode) {
@@ -1342,7 +1333,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return getInvalid();
 		}
 
-		return null;
+		return getInvalid();
 	}
 	
 	/**
@@ -2086,7 +2077,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitNullLiteralExp(NullLiteralExp<C> il) {
 		// the single OclVoid instance is equivalent to Java null
-		return null;
+		return getNull();
 	}
 
 	/**

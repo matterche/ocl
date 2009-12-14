@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryProperty.java,v 1.1.2.1 2009/12/13 18:44:51 ewillink Exp $
+ * $Id: OCLLibraryProperty.java,v 1.1.2.2 2009/12/14 21:59:09 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -12,6 +12,7 @@ import org.eclipse.ocl.LibraryProperty;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>OCL Library Property</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>

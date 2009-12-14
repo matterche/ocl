@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryAdapterFactory.java,v 1.1.2.1 2009/12/13 18:44:00 ewillink Exp $
+ * $Id: LibraryAdapterFactory.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -19,6 +19,7 @@ import org.eclipse.ocl.library.*;
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * @since 3.0
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.library.LibraryPackage
  * @generated

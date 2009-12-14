@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibrary.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: OCLStandardLibrary.java,v 1.3.6.1 2009/12/14 21:59:10 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
 
 
@@ -62,9 +63,20 @@ public interface OCLStandardLibrary<C> {
      * identified by the token <tt>invalid</tt>.
      * 
      * @return the <tt>invalid</tt> instance
-     *     (an instance of {@link #getInvalid() invalid})
+     *     (an instance of {@link #getOclInvalid() OclInvalid})
+     * @since 3.0
      */
-	Object getInvalid();
+	EObject getInvalid();
+	
+    /**
+     * Obtains the single instance of the {@link #getOclVoid() OclVoid} type,
+     * identified by the token <tt>null</tt>.
+     * 
+     * @return the <tt>invalid</tt> instance
+     *     (an instance of {@link #getOclVoid() OclVoid})
+     * @since 3.0
+     */
+	EObject getNull();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
