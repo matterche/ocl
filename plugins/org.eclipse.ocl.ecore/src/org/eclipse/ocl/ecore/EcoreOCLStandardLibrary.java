@@ -11,8 +11,11 @@
 package org.eclipse.ocl.ecore;
 
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
 /**
@@ -77,8 +80,18 @@ public class EcoreOCLStandardLibrary implements OCLStandardLibrary<EClassifier>{
 		return stdLibBuilder.getOclExpression();
 	}
 
-	public Object getInvalid() {		
+	/**
+	 * @since 3.0
+	 */
+	public EObject getInvalid() {		
 		return stdLibBuilder.getInvalid();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public EObject getNull() {		
+		return stdLibBuilder.getNull();
 	}
 
 	public EClassifier getOclMessage() {		

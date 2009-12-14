@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.9 2009/09/01 20:11:57 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.9.6.1 2009/12/14 22:01:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -96,6 +96,10 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
     public static final EObject INVALID = stdlibPackage.getEFactoryInstance().create(
         (EClass) stdlibPackage.getEClassifier("Invalid_Class")); //$NON-NLS-1$
     
+    /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
+    public static final EObject NULL = stdlibPackage.getEFactoryInstance().create(
+        (EClass) stdlibPackage.getEClassifier("OclVoid_Class")); //FIXME Null_Class
+    
     // not instantiable by clients
 	private OCLStandardLibraryImpl() {
 		super();
@@ -133,8 +137,12 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		return OCL_ELEMENT;
 	}
 
-	public Object getInvalid() {
+	public EObject getInvalid() {
 		return INVALID;
+	}
+
+	public EObject getNull() {
+		return NULL;
 	}
 
 	public EClassifier getState() {
