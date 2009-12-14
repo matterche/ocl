@@ -42,11 +42,12 @@
           eExceptions="#//library/Exception">
         <eParameters name="operationCall" eType="#//library/OperationCallExp"/>
       </eOperations>
-      <eOperations name="evaluate" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+      <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
           eExceptions="#//library/Exception">
         <eParameters name="evaluationVisitor" eType="#//library/EvaluationVisitor"/>
         <eParameters name="operationCall" eType="#//library/OperationCallExp"/>
       </eOperations>
+      <eOperations name="getOperationCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
           eType="#//library/OCLParameter" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
