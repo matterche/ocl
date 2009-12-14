@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007,2009 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,10 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Ed Willink - Bug 296409
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.3.4.1 2009/12/14 22:03:04 ewillink Exp $
+ * $Id: EvaluateOperationsTest.java,v 1.1.2.1 2009/12/14 22:03:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -33,16 +32,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.tests.GenericKeywordsTest;
+import org.eclipse.ocl.tests.GenericEvaluateOperationsTest;
 
 /**
- * Tests for usages of model features whose names coincide with "keywords"
- * defined as reserved words by the OCL specification.
- * 
- * @author Christian W. Damus (cdamus)
+ * Tests for iterator expressions.
  */
-public class KeywordsTest
-extends GenericKeywordsTest<EObject, EPackage, EClassifier, EClassifier, EClass, EDataType, EClassifier, EEnum, EOperation, EParameter, EStructuralFeature,
+public class EvaluateOperationsTest
+extends GenericEvaluateOperationsTest<EObject, EPackage, EClassifier, EClassifier, EClass, EDataType, EClassifier, EEnum, EOperation, EParameter, EStructuralFeature,
 EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint> {
 
 	@Override

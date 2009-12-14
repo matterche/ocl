@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.17 2009/12/07 06:16:40 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.17.2.1 2009/12/14 22:03:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1161,7 +1161,7 @@ public class RegressionTest
 				"inv: null.oclAsType(Integer) " +
 				" endpackage"));
 			
-		assertNull(result);
+		assertEquals(getNull(), result);
 	}
 	
 	/**

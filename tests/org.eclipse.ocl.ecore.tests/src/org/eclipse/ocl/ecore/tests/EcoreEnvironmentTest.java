@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.9 2009/11/28 17:41:00 ewillink Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.9.2.1 2009/12/14 22:03:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -253,7 +253,7 @@ public class EcoreEnvironmentTest
 	            Pattern pattern = Pattern.compile((String) args[0]);
 	            Matcher matcher = pattern.matcher((String) source);
 	            
-	            return matcher.matches()? matcher.group() : null;
+	            return matcher.matches()? matcher.group() : getOCLStandardLibrary().getNull();
 	        }
 	        
 	        throw new UnsupportedOperationException();  // unknown operation
