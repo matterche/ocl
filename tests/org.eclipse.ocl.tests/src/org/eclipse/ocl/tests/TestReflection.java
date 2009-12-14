@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TestReflection.java,v 1.1 2009/11/26 20:44:38 ewillink Exp $
+ * $Id: TestReflection.java,v 1.1.2.1 2009/12/14 22:02:06 ewillink Exp $
  */
 package org.eclipse.ocl.tests;
 
@@ -50,6 +50,11 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 
 	EObject createComment();
 
+	/**
+	 * Creates a new {@link org.eclipse.uml2.uml.Generalization}, with the specified '<em><b>General</b></em>', and appends it to the '<em><b>Generalization</b></em>' containment reference list.
+	 */
+	void createGeneralization(C special, C general);
+
 	PK createNestedPackage(PK aPackage, String name);
 
 	PA createOwnedAttribute(CLS aClass, String name, C type);
@@ -70,13 +75,21 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 
 	PK createPackage(String name);
 
-	String getAbstractOperationName();
+	/**
+	 * Return the denormalized key for use in an OCL test expressions.
+	 * For instance map Reference to Property for UML and to EReference for Ecore.
+	 * 
+	 * @return denormalized key if defined or null if undefined.
+	 */
+	String denormalize(String key);
 
-	String getAttributeParentTypeName();
-
-	String getAttributeTypeName();
-
-	String getAttributesFeatureName();
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>' from the '<em><b>Attribute</b></em>' reference list.
+	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
+	 * @param type The '<em><b>Type</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
+	 */
+	P getAttribute(C classifier, String name, T type);
 
 	C getBigDecimal();
 
@@ -86,27 +99,15 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 
 	C getClassTypeContext();
 
-	String getClassTypeName();
-
 	C getClassifierTypeContext();
 
 	C getCollectionKindTypeContext();
 
-	String getCommentElementName();
-
 	C getCommentTypeContext();
-
-	String getCommentTypeName();
-
-	String getConformsToOperationName();
 	
 	Class<CT> getConstraintClass();
 
-//	String getDataTypeTypeName();
-
 //	C getDefaultSetType(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment);
-
-	String getDerivedOperationName();
 
 	EPackage getEPackage(PK pkg);
 	
@@ -118,15 +119,9 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 
 	PK getEcorePrimitiveTypes();
 
-	String getEnumerationTypeName();
-
 	String getFruitModelPath();
     
 	C getMetaclass(String name);
-
-	String getModelPackageName();
-
-	String getMultiplicityElementTypeName();
 	
 	String getNsURI(PK aPackage);
 
@@ -135,10 +130,6 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 	PK getResourcePackage(ResourceSet resourceSet, URI uri);
 
 	C getStringTypeContext();
-
-	String getStringTypeName();
-
-	String getTypesPackageName();
 	
 	PT getUMLBoolean();
 
@@ -156,7 +147,15 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 
 	int getUnlimitedValue();
 
-	String getUpperOperationName();
+	/**
+	 * Return true if key denotes an ordered multiplicity.
+	 */
+    boolean isOrdered(String key);
+
+	/**
+	 * Return true if key denotes a unique multiplicity.
+	 */
+    boolean isUnique(String key);
 
 	void setAbstract(CLS aClass, boolean isAbstract);
 
@@ -171,6 +170,8 @@ public interface TestReflection<E, PK extends E, T extends E, C extends T, CLS e
 	void setNsPrefix(PK aPackage, String name);
 	
 	void setNsURI(PK aPackage, String name);
+
+	void setOperationUpper(O anOperation, int value);
 
 	void setUpper(P aProperty, int value);
 
