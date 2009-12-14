@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.10 2009/09/01 20:11:00 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.10.6.1 2009/12/14 22:02:17 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -97,7 +98,11 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
     public static final OCLStandardLibraryImpl INSTANCE = new OCLStandardLibraryImpl();
     
     /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    public static Object INVALID =
+    public static EObject INVALID =
+        org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
+    
+    /** The singleton instance of the <tt>OclVoid</tt> standard library type. */
+    public static EObject NULL =
         org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
 
     /** The package containing the OCL Standard Library classifiers. */
@@ -140,8 +145,12 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
 		return OCL_ELEMENT;
 	}
 
-	public Object getInvalid() {
+	public EObject getInvalid() {
 		return INVALID;
+	}
+
+	public EObject getNull() {
+		return NULL;
 	}
 
 	public Classifier getState() {
