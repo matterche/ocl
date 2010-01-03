@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelPropertyItemProvider.java,v 1.1.2.1 2009/12/13 21:20:34 ewillink Exp $
+ * $Id: OCLMetaModelPropertyItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -69,7 +69,7 @@ public class OCLMetaModelPropertyItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLMetaModelProperty"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLMetaModelProperty")); //$NON-NLS-1$
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class OCLMetaModelPropertyItemProvider
 	public String getText(Object object) {
 		String label = ((OCLMetaModelProperty)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_OCLMetaModelProperty_type") :
-			getString("_UI_OCLMetaModelProperty_type") + " " + label;
+			getString("_UI_OCLMetaModelProperty_type") : //$NON-NLS-1$
+			getString("_UI_OCLMetaModelProperty_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

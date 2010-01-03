@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLParameterItemProvider.java,v 1.1.2.1 2009/12/13 21:20:34 ewillink Exp $
+ * $Id: OCLParameterItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -73,8 +73,8 @@ public class OCLParameterItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLParameter_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLParameter_type_feature", "_UI_OCLParameter_type"),
+				 getString("_UI_OCLParameter_type_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLParameter_type_feature", "_UI_OCLParameter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LibraryPackage.Literals.OCL_PARAMETER__TYPE,
 				 true,
 				 false,
@@ -92,7 +92,7 @@ public class OCLParameterItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLParameter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLParameter")); //$NON-NLS-1$
 	}
 
 	/**

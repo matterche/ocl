@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeItemProvider.java,v 1.1.2.1 2009/12/13 21:20:34 ewillink Exp $
+ * $Id: OCLTypeItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -79,8 +79,8 @@ public class OCLTypeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLType_conforms_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLType_conforms_feature", "_UI_OCLType_type"),
+				 getString("_UI_OCLType_conforms_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLType_conforms_feature", "_UI_OCLType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LibraryPackage.Literals.OCL_TYPE__CONFORMS,
 				 true,
 				 false,
@@ -129,7 +129,7 @@ public class OCLTypeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLType"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLType")); //$NON-NLS-1$
 	}
 
 	/**

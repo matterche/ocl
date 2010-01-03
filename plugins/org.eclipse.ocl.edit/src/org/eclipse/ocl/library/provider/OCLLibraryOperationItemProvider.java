@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.1 2009/12/13 21:20:34 ewillink Exp $
+ * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -60,6 +60,7 @@ public class OCLLibraryOperationItemProvider
 			super.getPropertyDescriptors(object);
 
 			addLibraryOperationClassPropertyDescriptor(object);
+			addLibraryOperationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,13 +76,35 @@ public class OCLLibraryOperationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLLibraryOperation_libraryOperationClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryOperation_libraryOperationClass_feature", "_UI_OCLLibraryOperation_type"),
+				 getString("_UI_OCLLibraryOperation_libraryOperationClass_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryOperation_libraryOperationClass_feature", "_UI_OCLLibraryOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LibraryPackage.Literals.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Library Operation feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLibraryOperationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLLibraryOperation_libraryOperation_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryOperation_libraryOperation_feature", "_UI_OCLLibraryOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -94,7 +117,7 @@ public class OCLLibraryOperationItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLLibraryOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLLibraryOperation")); //$NON-NLS-1$
 	}
 
 	/**

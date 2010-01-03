@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelOperationItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
+ * $Id: OCLInvalidTypeItemProvider.java,v 1.1.2.1 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -20,16 +20,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.ocl.library.OCLMetaModelOperation;
+import org.eclipse.ocl.library.OCLInvalidType;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLMetaModelOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLInvalidType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLMetaModelOperationItemProvider
-	extends OCLOperationItemProvider
+public class OCLInvalidTypeItemProvider
+	extends OCLTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +42,7 @@ public class OCLMetaModelOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLMetaModelOperationItemProvider(AdapterFactory adapterFactory) {
+	public OCLInvalidTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,14 +62,14 @@ public class OCLMetaModelOperationItemProvider
 	}
 
 	/**
-	 * This returns OCLMetaModelOperation.gif.
+	 * This returns OCLInvalidType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLMetaModelOperation")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLInvalidType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -80,10 +80,10 @@ public class OCLMetaModelOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLMetaModelOperation)object).getName();
+		String label = ((OCLInvalidType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_OCLMetaModelOperation_type") : //$NON-NLS-1$
-			getString("_UI_OCLMetaModelOperation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_OCLInvalidType_type") : //$NON-NLS-1$
+			getString("_UI_OCLInvalidType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

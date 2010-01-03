@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLConstraintOperationItemProvider.java,v 1.1.2.1 2009/12/13 21:20:34 ewillink Exp $
+ * $Id: OCLConstraintOperationItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -69,7 +69,7 @@ public class OCLConstraintOperationItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLConstraintOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLConstraintOperation")); //$NON-NLS-1$
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class OCLConstraintOperationItemProvider
 	public String getText(Object object) {
 		String label = ((OCLConstraintOperation)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_OCLConstraintOperation_type") :
-			getString("_UI_OCLConstraintOperation_type") + " " + label;
+			getString("_UI_OCLConstraintOperation_type") : //$NON-NLS-1$
+			getString("_UI_OCLConstraintOperation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLConstraintPropertyItemProvider.java,v 1.1.2.1 2009/12/13 21:20:34 ewillink Exp $
+ * $Id: OCLConstraintPropertyItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -69,7 +69,7 @@ public class OCLConstraintPropertyItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLConstraintProperty"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLConstraintProperty")); //$NON-NLS-1$
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class OCLConstraintPropertyItemProvider
 	public String getText(Object object) {
 		String label = ((OCLConstraintProperty)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_OCLConstraintProperty_type") :
-			getString("_UI_OCLConstraintProperty_type") + " " + label;
+			getString("_UI_OCLConstraintProperty_type") : //$NON-NLS-1$
+			getString("_UI_OCLConstraintProperty_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

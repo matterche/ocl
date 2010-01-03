@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLGenericTypeItemProvider.java,v 1.1.2.1 2009/12/13 21:20:34 ewillink Exp $
+ * $Id: OCLGenericTypeItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLGenericType;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLGenericType} object.
@@ -73,8 +72,8 @@ public class OCLGenericTypeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLGenericType_parameter_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLGenericType_parameter_feature", "_UI_OCLGenericType_type"),
+				 getString("_UI_OCLGenericType_parameter_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLGenericType_parameter_feature", "_UI_OCLGenericType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LibraryPackage.Literals.OCL_GENERIC_TYPE__PARAMETER,
 				 true,
 				 false,
@@ -92,7 +91,7 @@ public class OCLGenericTypeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLGenericType"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLGenericType")); //$NON-NLS-1$
 	}
 
 	/**

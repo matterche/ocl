@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLElementItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
+ * $Id: LibraryOperationItemProvider.java,v 1.1.2.1 2010/01/03 22:50:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -22,22 +22,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLElement;
-import org.eclipse.ocl.library.OCLGenericType;
-import org.eclipse.ocl.library.OCLType;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLElement} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.LibraryOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLElementItemProvider
+public class LibraryOperationItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +46,7 @@ public class OCLElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLElementItemProvider(AdapterFactory adapterFactory) {
+	public LibraryOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,42 +61,42 @@ public class OCLElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
+			addReferencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the References feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addReferencesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLElement_name_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLElement_name_feature", "_UI_OCLElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_ELEMENT__NAME,
+				 getString("_UI_LibraryOperation_references_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryOperation_references_feature", "_UI_LibraryOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.LIBRARY_OPERATION__REFERENCES,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns OCLElement.gif.
+	 * This returns LibraryOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLElement")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LibraryOperation")); //$NON-NLS-1$
 	}
 
 	/**
@@ -112,10 +107,7 @@ public class OCLElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLElement)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLElement_type") : //$NON-NLS-1$
-			getString("_UI_OCLElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_LibraryOperation_type"); //$NON-NLS-1$
 	}
 
 	/**
@@ -128,12 +120,6 @@ public class OCLElementItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(OCLElement.class)) {
-			case LibraryPackage.OCL_ELEMENT__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -160,24 +146,4 @@ public class OCLElementItemProvider
 		return OCLLibraryEditPlugin.INSTANCE;
 	}
 
-	protected void appendName(StringBuffer s, Object object) {
-		OCLElement oclElement = object instanceof OCLElement ? (OCLElement)object : null;
-		String name = oclElement != null ? oclElement.getName() : null;
-		s.append(String.valueOf(name));
-	}
-
-	protected void appendType(StringBuffer s, Object object) {
-		OCLType oclType = object instanceof OCLType ? (OCLType)object : null;
-		appendName(s, oclType);
-		if (oclType instanceof OCLGenericType) {
-			s.append("<");
-			String prefix = "";
-			for (OCLType type : ((OCLGenericType)oclType).getParameter()) {
-				s.append(prefix);
-				appendType(s, type);
-				prefix = ", ";
-			}
-			s.append(">");
-		}
-	}
 }
