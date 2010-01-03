@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackage.java,v 1.10 2009/12/06 18:19:54 ewillink Exp $
+ * $Id: UMLPackage.java,v 1.10.2.1 2010/01/03 22:51:35 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -10292,6 +10292,16 @@ public interface UMLPackage
 	int OPERATION_CALL_EXP__OPERATION_CODE = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>New Referred Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OPERATION_CALL_EXP__NEW_REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10299,7 +10309,7 @@ public interface UMLPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
+	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.10.6.1 2009/12/14 22:02:17 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.10.6.2 2010/01/03 22:51:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.ElementType;
 import org.eclipse.ocl.types.InvalidType;
@@ -42,6 +43,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.uml.OCL;
+import org.eclipse.ocl.uml.OCLExpression;
 import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLFactory;
@@ -98,12 +100,15 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
     public static final OCLStandardLibraryImpl INSTANCE = new OCLStandardLibraryImpl();
     
     /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    public static EObject INVALID =
-        org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
+    public static OCLExpression INVALID =
+        UMLFactory.eINSTANCE.createInvalidLiteralExp();
     
     /** The singleton instance of the <tt>OclVoid</tt> standard library type. */
-    public static EObject NULL =
-        org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
+    public static OCLExpression NULL =
+        UMLFactory.eINSTANCE.createNullLiteralExp();
+    
+    /** The singleton instance of the <tt>UnlimitedNatural</tt> standard library type. */
+    private static OCLExpression UNLIMITED = null;
 
     /** The package containing the OCL Standard Library classifiers. */
 	public static Package stdlibPackage = init();
@@ -145,11 +150,11 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
 		return OCL_ELEMENT;
 	}
 
-	public EObject getInvalid() {
+	public OCLExpression getInvalid() {
 		return INVALID;
 	}
 
-	public EObject getNull() {
+	public OCLExpression getNull() {
 		return NULL;
 	}
 
@@ -199,6 +204,14 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
 	
 	public Classifier getOclExpression() {
 		return OCL_EXPRESSION;
+	}
+
+	public EObject getUnlimited() {
+		if (UNLIMITED == null) {
+			UNLIMITED = UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
+	    	((UnlimitedNaturalLiteralExp<?>)UNLIMITED).setIntegerSymbol(-1); 
+		}
+		return UNLIMITED;
 	}
 	
     private static Package init() {

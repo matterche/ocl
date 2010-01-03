@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.12 2009/12/06 18:21:35 ewillink Exp $
+ * $Id: UMLPackageImpl.java,v 1.12.2.1 2010/01/03 22:51:35 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.uml.AnyType;
@@ -498,6 +499,7 @@ public class UMLPackageImpl
 		UtilitiesPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();
 		org.eclipse.uml2.uml.UMLPackage.eINSTANCE.eClass();
+		LibraryPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theUMLPackage.createPackageContents();

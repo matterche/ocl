@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.16 2009/11/26 20:43:07 ewillink Exp $
+ * $Id: UMLEnvironment.java,v 1.16.2.1 2010/01/03 22:51:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -38,6 +38,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.lpg.FormattingHelper;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
@@ -243,6 +244,11 @@ public class UMLEnvironment
             Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> env) {
         super.setParent((UMLEnvironment) env);
     }
+
+	@Override
+	public OCLLibrary createOCLLibrary() {
+		return UMLOCLLibrary.getDefault();
+	}
 
     // implements the inherited specification
     public OCLStandardLibrary<Classifier> getOCLStandardLibrary() {

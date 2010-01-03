@@ -11,11 +11,10 @@
 package org.eclipse.ocl.uml;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.evaluator.operations.OperationVisitor;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 
 /**
@@ -83,14 +82,14 @@ public class UMLOCLStandardLibrary implements OCLStandardLibrary<Classifier>{
 	/**
 	 * @since 3.0
 	 */
-	public EObject getInvalid() {		
+	public OCLExpression getInvalid() {		
 		return stdLibBuilder.getInvalid();
 	}
 
 	/**
 	 * @since 3.0
 	 */
-	public EObject getNull() {		
+	public OCLExpression getNull() {		
 		return stdLibBuilder.getNull();
 	}
 
@@ -136,6 +135,13 @@ public class UMLOCLStandardLibrary implements OCLStandardLibrary<Classifier>{
 
 	public Classifier getT2() {
 		return stdLibBuilder.getT2();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public EObject getUnlimited() {
+		return stdLibBuilder.getUnlimited();
 	}
 
 	public Classifier getUnlimitedNatural() {
