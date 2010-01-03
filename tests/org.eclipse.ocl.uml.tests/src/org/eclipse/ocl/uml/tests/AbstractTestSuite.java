@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.21 2009/11/28 18:03:26 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.21.2.1 2010/01/03 22:48:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -149,6 +149,11 @@ public abstract class AbstractTestSuite
 	public static CheckedTestSuite suite() {
 		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel");
 		
+		result.createTestSuite(EvaluateOclAnyOperationsTest.class, "Evaluate OclAny Operations Tests");
+		result.createTestSuite(EvaluateBooleanOperationsTest.class, "Evaluate Boolean Operations Tests");
+		result.createTestSuite(EvaluateNumericOperationsTest.class, "Evaluate Numeric Operations Tests");
+		result.createTestSuite(EvaluateStringOperationsTest.class, "Evaluate String Operations Tests");
+
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
         result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests");
 		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
