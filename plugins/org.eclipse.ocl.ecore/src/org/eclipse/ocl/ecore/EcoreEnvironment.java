@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.8 2008/11/02 00:46:58 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.8.10.1 2010/01/03 22:52:05 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -49,6 +49,7 @@ import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.OCLFactory;
@@ -118,7 +119,6 @@ public class EcoreEnvironment
 	
 	private TypeResolver<EClassifier, EOperation, EStructuralFeature> typeResolver;
 	
-
 	/**
 	 * Initializes me with a package registry for package look-ups.
 	 * 
@@ -678,6 +678,11 @@ public class EcoreEnvironment
 		
 		return (constraint != null)
 				&& UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
+	}
+
+	@Override
+	protected OCLLibrary createOCLLibrary() {
+		return EcoreOCLLibrary.getDefault();
 	}
 }
 

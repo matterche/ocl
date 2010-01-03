@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.12 2009/06/25 19:23:32 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.12.8.1 2010/01/03 22:52:05 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -46,6 +46,7 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 //import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.expressions.operations.OperationCallExpOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
@@ -62,6 +63,7 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl#getOperationCode <em>Operation Code</em>}</li>
+ *   <li>{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl#getNewReferredOperation <em>New Referred Operation</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,6 +102,17 @@ public class OperationCallExpImpl
 	 * @ordered
 	 */
 	protected static final int OPERATION_CODE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getNewReferredOperation() <em>New Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getNewReferredOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLType newReferredOperation;
 
 	private int operationCode = -1;
 
@@ -225,6 +238,53 @@ public class OperationCallExpImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLType getNewReferredOperation() {
+		if (newReferredOperation != null && newReferredOperation.eIsProxy()) {
+			InternalEObject oldNewReferredOperation = (InternalEObject) newReferredOperation;
+			newReferredOperation = (OCLType) eResolveProxy(oldNewReferredOperation);
+			if (newReferredOperation != oldNewReferredOperation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+						this,
+						Notification.RESOLVE,
+						EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION,
+						oldNewReferredOperation, newReferredOperation));
+			}
+		}
+		return newReferredOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLType basicGetNewReferredOperation() {
+		return newReferredOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNewReferredOperation(OCLType newNewReferredOperation) {
+		OCLType oldNewReferredOperation = newReferredOperation;
+		newReferredOperation = newNewReferredOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION,
+				oldNewReferredOperation, newReferredOperation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -277,6 +337,10 @@ public class OperationCallExpImpl
 				return basicGetReferredOperation();
 			case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				return getOperationCode();
+			case EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				if (resolve)
+					return getNewReferredOperation();
+				return basicGetNewReferredOperation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -302,6 +366,9 @@ public class OperationCallExpImpl
 			case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				setOperationCode((Integer) newValue);
 				return;
+			case EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				setNewReferredOperation((OCLType) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -323,6 +390,9 @@ public class OperationCallExpImpl
 			case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				setOperationCode(OPERATION_CODE_EDEFAULT);
 				return;
+			case EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				setNewReferredOperation((OCLType) null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -341,6 +411,8 @@ public class OperationCallExpImpl
 				return referredOperation != null;
 			case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				return getOperationCode() != OPERATION_CODE_EDEFAULT;
+			case EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				return newReferredOperation != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -360,6 +432,8 @@ public class OperationCallExpImpl
 					return ExpressionsPackage.OPERATION_CALL_EXP__REFERRED_OPERATION;
 				case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE :
 					return ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE;
+				case EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+					return ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION;
 				default :
 					return -1;
 			}
@@ -382,6 +456,8 @@ public class OperationCallExpImpl
 					return EcorePackage.OPERATION_CALL_EXP__REFERRED_OPERATION;
 				case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 					return EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE;
+				case ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+					return EcorePackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION;
 				default :
 					return -1;
 			}

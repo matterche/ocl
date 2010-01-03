@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.13 2009/12/06 18:15:39 ewillink Exp $
+ * $Id: EcorePackageImpl.java,v 1.13.2.1 2010/01/03 22:52:04 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -80,6 +80,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.VoidType;
 import org.eclipse.ocl.ecore.util.EcoreValidator;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
@@ -521,6 +522,7 @@ public class EcorePackageImpl
 		TypesPackage.eINSTANCE.eClass();
 		UtilitiesPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();
+		LibraryPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theEcorePackage.createPackageContents();

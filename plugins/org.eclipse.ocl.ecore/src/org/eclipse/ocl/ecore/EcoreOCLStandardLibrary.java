@@ -12,10 +12,8 @@ package org.eclipse.ocl.ecore;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
-import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
 /**
@@ -83,14 +81,14 @@ public class EcoreOCLStandardLibrary implements OCLStandardLibrary<EClassifier>{
 	/**
 	 * @since 3.0
 	 */
-	public EObject getInvalid() {		
+	public OCLExpression getInvalid() {		
 		return stdLibBuilder.getInvalid();
 	}
 
 	/**
 	 * @since 3.0
 	 */
-	public EObject getNull() {		
+	public OCLExpression getNull() {		
 		return stdLibBuilder.getNull();
 	}
 
@@ -147,5 +145,12 @@ public class EcoreOCLStandardLibrary implements OCLStandardLibrary<EClassifier>{
 	 */
 	public EPackage getOCLStdLibPackage() {
 		return OCLStandardLibraryImpl.stdlibPackage;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public EObject getUnlimited() {
+		return stdLibBuilder.getUnlimited();
 	}
 }

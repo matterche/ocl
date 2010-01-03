@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.9.6.1 2009/12/14 22:01:29 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.9.6.2 2010/01/03 22:52:05 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -42,6 +42,8 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.ElementType;
 import org.eclipse.ocl.types.InvalidType;
@@ -93,12 +95,17 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 	public static EPackage stdlibPackage = init();
     
     /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    public static final EObject INVALID = stdlibPackage.getEFactoryInstance().create(
-        (EClass) stdlibPackage.getEClassifier("Invalid_Class")); //$NON-NLS-1$
+    public static final OCLExpression INVALID = EcoreFactory.eINSTANCE.createInvalidLiteralExp();
+//    	stdlibPackage.getEFactoryInstance().create(
+//        (EClass) stdlibPackage.getEClassifier("OclInvalid_Class")); //$NON-NLS-1$
     
     /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    public static final EObject NULL = stdlibPackage.getEFactoryInstance().create(
-        (EClass) stdlibPackage.getEClassifier("OclVoid_Class")); //FIXME Null_Class
+    public static final OCLExpression NULL = EcoreFactory.eINSTANCE.createNullLiteralExp();
+//    stdlibPackage.getEFactoryInstance().create(
+//        (EClass) stdlibPackage.getEClassifier("OclVoid_Class")); //$NON-NLS-1$ FIXME Null_Class
+    
+    /** The singleton instance of the <tt>UnlimitedNatural</tt> standard library type. */
+    private static OCLExpression UNLIMITED = null;
     
     // not instantiable by clients
 	private OCLStandardLibraryImpl() {
@@ -137,11 +144,11 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		return OCL_ELEMENT;
 	}
 
-	public EObject getInvalid() {
+	public OCLExpression getInvalid() {
 		return INVALID;
 	}
 
-	public EObject getNull() {
+	public OCLExpression getNull() {
 		return NULL;
 	}
 
@@ -191,6 +198,14 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 	
 	public EClassifier getOclExpression() {
 		return OCL_EXPRESSION;
+	}
+
+	public EObject getUnlimited() {
+		if (UNLIMITED == null) {
+			UNLIMITED = EcoreFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
+	    	((UnlimitedNaturalLiteralExp<?>)UNLIMITED).setIntegerSymbol(-1); 
+		}
+		return UNLIMITED;
 	}
 	
     private static EPackage init() {

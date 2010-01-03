@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackage.java,v 1.11 2009/12/06 18:15:20 ewillink Exp $
+ * $Id: EcorePackage.java,v 1.11.2.1 2010/01/03 22:52:05 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -6054,13 +6054,23 @@ public interface EcorePackage
 	int OPERATION_CALL_EXP__OPERATION_CODE = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>New Referred Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__NEW_REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
+	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
