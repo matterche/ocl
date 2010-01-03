@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.2 2010/01/03 22:53:51 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.3 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -100,6 +100,7 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(SIZE_NAME, SIZE);
 		operationCodes.put(CONCAT_NAME, CONCAT);
 		operationCodes.put(SUBSTRING_NAME, SUBSTRING);
+		operationCodes.put(TO_BOOLEAN_NAME, TO_BOOLEAN);
 		operationCodes.put(TO_INTEGER_NAME, TO_INTEGER);
 		operationCodes.put(TO_REAL_NAME, TO_REAL);
 		operationCodes.put(XOR_NAME, XOR);
@@ -269,6 +270,8 @@ public final class OCLStandardLibraryUtil {
 				return CONCAT_NAME;
 			case SUBSTRING :
 				return SUBSTRING_NAME;
+			case TO_BOOLEAN :
+				return TO_BOOLEAN_NAME;
 			case TO_INTEGER :
 				return TO_INTEGER_NAME;
 			case TO_REAL :
@@ -720,6 +723,7 @@ public final class OCLStandardLibraryUtil {
 			case NOT :
 			case AND :
 			case OR :
+			case TO_BOOLEAN :
 				return stdlib.getBoolean();
 			case MIN :
 			case MAX :
@@ -1386,8 +1390,10 @@ public final class OCLStandardLibraryUtil {
 		result.add(createTernaryOperation(uml, stdlib.getString(),
 			SUBSTRING_NAME, stdlib.getInteger(),
 			"lower", stdlib.getInteger(), "upper"));//$NON-NLS-1$ //$NON-NLS-2$
-		result.add(createUnaryOperation(uml, stdlib.getInteger(),
+		result.add(createUnaryOperation(uml, stdlib.getBoolean(),
 			TO_INTEGER_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getInteger(),
+			TO_BOOLEAN_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getReal(), TO_REAL_NAME));
 		result
 			.add(createUnaryOperation(uml, stdlib.getString(), TO_LOWER_NAME));

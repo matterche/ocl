@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.5.10.1 2010/01/03 22:53:51 ewillink Exp $
+ * $Id: PredefinedType.java,v 1.5.10.2 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -137,6 +137,16 @@ public interface PredefinedType<O>
 	 * @since 3.0
 	 */
 	String TO_UPPER_CASE_NAME = "toUpperCase"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	int TO_BOOLEAN = 30;
+
+	/**
+	 * @since 3.0
+	 */
+	String TO_BOOLEAN_NAME = "toBoolean"; //$NON-NLS-1$
 
 	/*
 	 * OclType operations.

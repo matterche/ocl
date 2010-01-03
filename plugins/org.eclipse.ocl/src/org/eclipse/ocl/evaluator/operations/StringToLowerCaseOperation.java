@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringToLowerCaseOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
+ * $Id: StringToLowerCaseOperation.java,v 1.1.2.2 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -20,7 +20,7 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
- * StringToLowerCaseOperation realises the String::toLower() library operation.
+ * StringToLowerCaseOperation realises the String::toLowerCase() library operation.
  * 
  * @since 3.0
  */

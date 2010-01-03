@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.2 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.3 2010/01/03 23:41:16 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -289,28 +289,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				// evaluate this operation
 				switch (opCode) {
 						
-					case PredefinedType.MINUS:
-						// Integer::minus()
-						if (sourceVal instanceof Integer) {
-                            return - (Integer) sourceVal;
-                        } else if (sourceVal instanceof Long) {
-                            return - (Long) sourceVal;
-                        }
-
-						// Double::minus()
-						return - (Double) sourceVal;
-
 					case PredefinedType.SIZE:
 						if (sourceType instanceof CollectionType<?, ?>) {
 							return new Integer(((Collection<?>) sourceVal).size());
 						}
-					case PredefinedType.TO_INTEGER:
-						// String::toInteger()
-						return Integer.valueOf((String) sourceVal);
-
-					case PredefinedType.TO_REAL:
-						// String::toReal()
-						return Double.valueOf((String) sourceVal);
 
 					case PredefinedType.IS_EMPTY:
 						// Collection::isEmpty()

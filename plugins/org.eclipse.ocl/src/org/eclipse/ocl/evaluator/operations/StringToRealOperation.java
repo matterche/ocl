@@ -12,25 +12,32 @@
  *
  * </copyright>
  *
- * $Id: StringToUpperCaseOperation.java,v 1.1.2.2 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: StringToRealOperation.java,v 1.1.2.1 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
+
+import java.math.BigDecimal;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
- * StringToUpperCaseOperation realises the String::toUpperCase() library operation.
+ * StringToRealOperation realises the String::toReal() library operation.
  * 
  * @since 3.0
  */
-public class StringToUpperCaseOperation extends AbstractOperation
+public class StringToRealOperation extends AbstractOperation
 {
 	@Override
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
 		Object sourceVal = evaluateSource(visitor, operationCall);
 		if (isString(sourceVal)) {
-			return String.valueOf(sourceVal).toUpperCase();
+			String string = String.valueOf(sourceVal).trim();
+			try {
+				return Double.valueOf(string);
+			} catch (NumberFormatException e1) {
+				return new BigDecimal(string);
+			}
 		}			
 		return null;
 	}

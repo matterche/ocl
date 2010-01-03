@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.2 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.3 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -144,6 +144,10 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 
 	protected boolean isBoolean(Object value) {
 		return value instanceof Boolean;
+	}
+
+	protected boolean isInteger(Object value) {
+		return !isUnlimited(value) && ((value instanceof Integer) || (value instanceof Long) || (value instanceof BigInteger));
 	}
 
 	/**

@@ -12,25 +12,36 @@
  *
  * </copyright>
  *
- * $Id: StringToUpperCaseOperation.java,v 1.1.2.2 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: StringToIntegerOperation.java,v 1.1.2.1 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
+
+import java.math.BigInteger;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
- * StringToUpperCaseOperation realises the String::toUpperCase() library operation.
+ * StringToIntegerOperation realises the String::toInteger() library operation.
  * 
  * @since 3.0
  */
-public class StringToUpperCaseOperation extends AbstractOperation
+public class StringToIntegerOperation extends AbstractOperation
 {
 	@Override
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
 		Object sourceVal = evaluateSource(visitor, operationCall);
 		if (isString(sourceVal)) {
-			return String.valueOf(sourceVal).toUpperCase();
+			String string = String.valueOf(sourceVal).trim();
+			try {
+				return Integer.valueOf(string);
+			} catch (NumberFormatException e1) {
+				try {
+					return Long.valueOf(string);
+				} catch (NumberFormatException e2) {
+					return new BigInteger(string);
+				}				
+			}
 		}			
 		return null;
 	}

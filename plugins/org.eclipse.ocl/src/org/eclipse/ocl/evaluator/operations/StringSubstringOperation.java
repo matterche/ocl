@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringToUpperCaseOperation.java,v 1.1.2.2 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: StringSubstringOperation.java,v 1.1.2.1 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -20,17 +20,24 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
- * StringToUpperCaseOperation realises the String::toUpperCase() library operation.
+ * StringSubstringOperation realises the String::substring() library operation.
  * 
  * @since 3.0
  */
-public class StringToUpperCaseOperation extends AbstractOperation
+public class StringSubstringOperation extends AbstractOperation
 {
 	@Override
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
 		Object sourceVal = evaluateSource(visitor, operationCall);
-		if (isString(sourceVal)) {
-			return String.valueOf(sourceVal).toUpperCase();
+		Object arg0Val = evaluateArgument(visitor, operationCall, 0);
+		Object arg1Val = evaluateArgument(visitor, operationCall, 1);
+		if (isString(sourceVal) && isInteger(arg0Val) && isInteger(arg1Val)) {
+			String string = String.valueOf(sourceVal);
+			int size = string.length();
+			int lower = ((Number)arg0Val).intValue();
+			int upper = ((Number)arg1Val).intValue();
+			if ((0 < lower) && (lower <= upper) && (upper <= size))
+				return string.substring(lower-1, upper);
 		}			
 		return null;
 	}

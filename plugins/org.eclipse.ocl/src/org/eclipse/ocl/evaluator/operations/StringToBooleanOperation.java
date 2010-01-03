@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringToUpperCaseOperation.java,v 1.1.2.2 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: StringToBooleanOperation.java,v 1.1.2.1 2010/01/03 23:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -20,17 +20,18 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
- * StringToUpperCaseOperation realises the String::toUpperCase() library operation.
+ * StringToBooleanOperation realises the String::toBoolean() library operation.
  * 
  * @since 3.0
  */
-public class StringToUpperCaseOperation extends AbstractOperation
+public class StringToBooleanOperation extends AbstractOperation
 {
 	@Override
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
 		Object sourceVal = evaluateSource(visitor, operationCall);
 		if (isString(sourceVal)) {
-			return String.valueOf(sourceVal).toUpperCase();
+			String string = String.valueOf(sourceVal);
+			return "true".equals(string); //$NON-NLS-1$
 		}			
 		return null;
 	}
