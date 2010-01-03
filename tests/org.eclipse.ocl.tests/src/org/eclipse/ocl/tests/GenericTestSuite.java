@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.3.2.1 2009/12/14 22:02:06 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.3.2.2 2010/01/03 22:48:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -49,7 +49,9 @@ import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -94,6 +96,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	private static ArrayList<Resource> standardResources;
 
 	private static boolean initialized = false;
+	protected static boolean OCL20A = false;		// True for MDT OCL 1.3.0 behaviour
 
     public static <T> Collection<T> createBag(T... elements) {
     	Collection<T> collection = CollectionUtil.createNewBag();
@@ -325,6 +328,30 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	}
 
 	/**
+	 * Assert that the result of evaluating an expression as a query is equal to expected.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryEquals(Object context, Double expected, String expression, double tolerance) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			if (value instanceof Double) {
+				double delta = (Double)value - expected;
+				if ((delta < -tolerance) || (tolerance < delta)) {
+					assertEquals(denormalized, expected, value);
+				}
+			}
+			else {
+				assertEquals(denormalized, expected, value);				
+			}
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
 	 * Assert that the result of evaluating an expression as a query is the same as expected.
 	 */
 	protected Object assertQueryEvaluate(Object context, String expression) {
@@ -355,6 +382,20 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	}
 
 	/**
+	 * Assert that the result of evaluating an expression as a query is false,
+	 * unless unlessCondition is true in which case the result is true.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryFalse(boolean unlessCondition, Object context, String expression) {
+		if (unlessCondition) {
+			return assertQueryTrue(context, expression);
+		}
+		else {
+			return assertQueryFalse(context, expression);
+		}
+	}
+
+	/**
 	 * Assert that the result of evaluating an expression as a query is invalid.
 	 * @return the evaluation result
 	 */
@@ -362,7 +403,9 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		String denormalized = denormalize(expression);
 		try {
 			Object value = evaluate(helper, context, denormalized);
-			assertInvalid(value);
+			if (!(value instanceof InvalidLiteralExp<?>)) {
+				assertEquals(denormalized, environment.getOCLLibrary().getInvalid(), value);
+			}
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -427,6 +470,38 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		try {
 			Object value = evaluate(helper, context, denormalized);
 			assertEquals(denormalized, true, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is true,
+	 * unless unlessCondition is true in which case the result is false.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryTrue(boolean unlessCondition, Object context, String expression) {
+		if (unlessCondition) {
+			return assertQueryFalse(context, expression);
+		}
+		else {
+			return assertQueryTrue(context, expression);
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is an unlimited value.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryUnlimited(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			if (!(value instanceof UnlimitedNaturalLiteralExp<?>) || !((UnlimitedNaturalLiteralExp<?>)value).isUnlimited()) {
+				assertEquals(denormalized, environment.getOCLLibrary().getUnlimited(), value);
+			}
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -756,7 +831,8 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
     }
 	
 	protected Object getInvalid() {
-		return getOCLStandardLibrary().getInvalid();
+//		return getOCLStandardLibrary().getInvalid();
+		return environment.getOCLLibrary().getInvalid();
 	}
     
 	protected C getMetaclass(String name) {
@@ -764,7 +840,8 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	}
 	
 	protected Object getNull() {
-		return getOCLStandardLibrary().getNull();
+//		return getOCLStandardLibrary().getNull();
+		return environment.getOCLLibrary().getNull();
 	}
 	
 	protected OCLStandardLibrary<C> getOCLStandardLibrary() {
