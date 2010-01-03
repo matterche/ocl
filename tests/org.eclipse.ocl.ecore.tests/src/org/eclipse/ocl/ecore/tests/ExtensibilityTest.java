@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExtensibilityTest.java,v 1.3.2.1 2009/12/14 22:03:04 ewillink Exp $
+ * $Id: ExtensibilityTest.java,v 1.3.2.2 2010/01/03 22:47:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -37,7 +37,6 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.LibraryOperation;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
@@ -48,9 +47,9 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -412,8 +411,8 @@ public class ExtensibilityTest
             delegate.undefine(feature);
         }
 
-		public LibraryOperation getOperation(Object operationCode) {
-			return delegate.getOperation(operationCode);
+		public OCLLibrary getOCLLibrary() {
+			return delegate.getOCLLibrary();
 		}
 	}
 
