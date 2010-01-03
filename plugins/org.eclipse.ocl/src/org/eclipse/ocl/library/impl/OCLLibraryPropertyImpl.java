@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryPropertyImpl.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: OCLLibraryPropertyImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -147,7 +147,7 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (libraryPropertyClass: ");
+		result.append(" (libraryPropertyClass: "); //$NON-NLS-1$
 		result.append(libraryPropertyClass);
 		result.append(')');
 		return result.toString();

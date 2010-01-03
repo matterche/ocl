@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperation.java,v 1.1.2.2 2009/12/14 21:59:09 ewillink Exp $
+ * $Id: OCLOperation.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
@@ -20,8 +19,10 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.library.OCLOperation#isIterator <em>Is Iterator</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLOperation#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,6 +31,32 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * @generated
  */
 public interface OCLOperation extends OCLElement {
+	/**
+	 * Returns the value of the '<em><b>Is Iterator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Iterator</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Iterator</em>' attribute.
+	 * @see #setIsIterator(boolean)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_IsIterator()
+	 * @model
+	 * @generated
+	 */
+	boolean isIterator();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLOperation#isIterator <em>Is Iterator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Iterator</em>' attribute.
+	 * @see #isIterator()
+	 * @generated
+	 */
+	void setIsIterator(boolean value);
+
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLParameter}.
@@ -73,12 +100,32 @@ public interface OCLOperation extends OCLElement {
 	void setType(OCLType value);
 
 	/**
+	 * Returns the value of the '<em><b>Container</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLType#getOperation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Container</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model exceptions="org.eclipse.ocl.library.Exception" operationCallDataType="org.eclipse.ocl.library.OperationCallExp"
+	 * @return the value of the '<em>Container</em>' container reference.
+	 * @see #setContainer(OCLType)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_Container()
+	 * @see org.eclipse.ocl.library.OCLType#getOperation
+	 * @model opposite="operation" transient="false"
 	 * @generated
 	 */
-	boolean canEvaluate(OperationCallExp operationCall) throws Exception;
+	OCLType getContainer();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLOperation#getContainer <em>Container</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Container</em>' container reference.
+	 * @see #getContainer()
+	 * @generated
+	 */
+	void setContainer(OCLType value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,7 +133,7 @@ public interface OCLOperation extends OCLElement {
 	 * @model exceptions="org.eclipse.ocl.library.Exception" evaluationVisitorDataType="org.eclipse.ocl.library.EvaluationVisitor" operationCallDataType="org.eclipse.ocl.library.OperationCallExp"
 	 * @generated
 	 */
-	Object evaluate(EvaluationVisitor evaluationVisitor, OperationCallExp operationCall) throws Exception;
+	Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, OperationCallExp<?, ?> operationCall) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibrary.java,v 1.3.6.1 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: OCLStandardLibrary.java,v 1.3.6.2 2010/01/03 22:53:49 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -215,4 +215,9 @@ public interface OCLStandardLibrary<C> {
      * @return the <tt>T2</tt> type parameter (an instance of {@link AnyType})
      */
     C getT2();
+
+	/**
+	 * @since 3.0
+	 */
+	EObject getUnlimited();
 }

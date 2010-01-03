@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryAdapterFactory.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: LibraryAdapterFactory.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -77,20 +77,44 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createOCLConstraintOperationAdapter();
 			}
 			@Override
-			public Adapter caseOCLConstraintProperty(OCLConstraintProperty object) {
-				return createOCLConstraintPropertyAdapter();
+			public Adapter caseOCLOperation(OCLOperation object) {
+				return createOCLOperationAdapter();
 			}
 			@Override
 			public Adapter caseOCLElement(OCLElement object) {
 				return createOCLElementAdapter();
 			}
 			@Override
+			public Adapter caseOCLParameter(OCLParameter object) {
+				return createOCLParameterAdapter();
+			}
+			@Override
+			public Adapter caseOCLType(OCLType object) {
+				return createOCLTypeAdapter();
+			}
+			@Override
+			public Adapter caseOCLProperty(OCLProperty object) {
+				return createOCLPropertyAdapter();
+			}
+			@Override
+			public Adapter caseOCLConstraintProperty(OCLConstraintProperty object) {
+				return createOCLConstraintPropertyAdapter();
+			}
+			@Override
 			public Adapter caseOCLGenericType(OCLGenericType object) {
 				return createOCLGenericTypeAdapter();
 			}
 			@Override
+			public Adapter caseOCLInvalidType(OCLInvalidType object) {
+				return createOCLInvalidTypeAdapter();
+			}
+			@Override
 			public Adapter caseOCLLibraryOperation(OCLLibraryOperation object) {
 				return createOCLLibraryOperationAdapter();
+			}
+			@Override
+			public Adapter caseLibraryOperation(LibraryOperation object) {
+				return createLibraryOperationAdapter();
 			}
 			@Override
 			public Adapter caseOCLLibraryProperty(OCLLibraryProperty object) {
@@ -105,24 +129,12 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createOCLMetaModelPropertyAdapter();
 			}
 			@Override
-			public Adapter caseOCLOperation(OCLOperation object) {
-				return createOCLOperationAdapter();
-			}
-			@Override
 			public Adapter caseOCLPackage(OCLPackage object) {
 				return createOCLPackageAdapter();
 			}
 			@Override
-			public Adapter caseOCLParameter(OCLParameter object) {
-				return createOCLParameterAdapter();
-			}
-			@Override
-			public Adapter caseOCLProperty(OCLProperty object) {
-				return createOCLPropertyAdapter();
-			}
-			@Override
-			public Adapter caseOCLType(OCLType object) {
-				return createOCLTypeAdapter();
+			public Adapter caseOCLVoidType(OCLVoidType object) {
+				return createOCLVoidTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -201,6 +213,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLInvalidType <em>OCL Invalid Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLInvalidType
+	 * @generated
+	 */
+	public Adapter createOCLInvalidTypeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLLibraryOperation <em>OCL Library Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -211,6 +237,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLLibraryOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.LibraryOperation <em>Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.LibraryOperation
+	 * @generated
+	 */
+	public Adapter createLibraryOperationAdapter() {
 		return null;
 	}
 
@@ -323,6 +363,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLVoidType <em>OCL Void Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLVoidType
+	 * @generated
+	 */
+	public Adapter createOCLVoidTypeAdapter() {
 		return null;
 	}
 

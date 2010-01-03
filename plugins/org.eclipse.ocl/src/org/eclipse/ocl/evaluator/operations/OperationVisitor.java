@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationVisitor.java,v 1.1.2.1 2009/12/14 21:59:09 ewillink Exp $
+ * $Id: OperationVisitor.java,v 1.1.2.2 2010/01/03 22:53:48 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -41,7 +41,7 @@ public interface OperationVisitor
 	 * @param oc
 	 * @return the result 
 	 */
-	<C, O> Object evaluate(EvaluationVisitor<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<C, O> operationCall);
+	Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall);
 
 	Object getOperationCode();
 }

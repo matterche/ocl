@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackage.java,v 1.1.2.2 2009/12/14 21:59:08 ewillink Exp $
+ * $Id: OCLPackage.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -46,6 +46,7 @@ public interface OCLPackage extends OCLElement {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLType}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLType#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' containment reference list isn't clear,
@@ -54,9 +55,34 @@ public interface OCLPackage extends OCLElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' containment reference list.
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLPackage_Type()
-	 * @model containment="true" ordered="false"
+	 * @see org.eclipse.ocl.library.OCLType#getContainer
+	 * @model opposite="container" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<OCLType> getType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLType getType(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation);
 
 } // OCLPackage

@@ -2,11 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationValidator.java,v 1.1.2.1 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: OCLLibraryOperationValidator.java,v 1.1.2.2 2010/01/03 22:53:51 ewillink Exp $
  */
 package org.eclipse.ocl.library.validation;
 
-import org.eclipse.ocl.LibraryOperation;
+import org.eclipse.ocl.library.LibraryOperation;
 
 /**
  * A sample validator interface for {@link org.eclipse.ocl.library.OCLLibraryOperation}.

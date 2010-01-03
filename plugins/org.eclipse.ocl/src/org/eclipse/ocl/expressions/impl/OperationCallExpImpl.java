@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.10.8.1 2010/01/03 22:53:51 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.operations.OperationCallExpOperations;
+import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -50,6 +51,7 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl#getOperationCode <em>Operation Code</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl#getNewReferredOperation <em>New Referred Operation</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +90,17 @@ public class OperationCallExpImpl<C, O>
 	 * @ordered
 	 */
 	protected static final int OPERATION_CODE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getNewReferredOperation() <em>New Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getNewReferredOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLType newReferredOperation;
 
 	private int operationCode = -1;
 
@@ -217,6 +230,53 @@ public class OperationCallExpImpl<C, O>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLType getNewReferredOperation() {
+		if (newReferredOperation != null && newReferredOperation.eIsProxy()) {
+			InternalEObject oldNewReferredOperation = (InternalEObject) newReferredOperation;
+			newReferredOperation = (OCLType) eResolveProxy(oldNewReferredOperation);
+			if (newReferredOperation != oldNewReferredOperation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+						this,
+						Notification.RESOLVE,
+						ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION,
+						oldNewReferredOperation, newReferredOperation));
+			}
+		}
+		return newReferredOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLType basicGetNewReferredOperation() {
+		return newReferredOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNewReferredOperation(OCLType newNewReferredOperation) {
+		OCLType oldNewReferredOperation = newReferredOperation;
+		newReferredOperation = newNewReferredOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION,
+				oldNewReferredOperation, newReferredOperation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -269,6 +329,10 @@ public class OperationCallExpImpl<C, O>
 				return basicGetReferredOperation();
 			case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				return getOperationCode();
+			case ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				if (resolve)
+					return getNewReferredOperation();
+				return basicGetNewReferredOperation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -293,6 +357,9 @@ public class OperationCallExpImpl<C, O>
 			case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				setOperationCode((Integer) newValue);
 				return;
+			case ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				setNewReferredOperation((OCLType) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -314,6 +381,9 @@ public class OperationCallExpImpl<C, O>
 			case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				setOperationCode(OPERATION_CODE_EDEFAULT);
 				return;
+			case ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				setNewReferredOperation((OCLType) null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -332,6 +402,8 @@ public class OperationCallExpImpl<C, O>
 				return referredOperation != null;
 			case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				return getOperationCode() != OPERATION_CODE_EDEFAULT;
+			case ExpressionsPackage.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION :
+				return newReferredOperation != null;
 		}
 		return super.eIsSet(featureID);
 	}

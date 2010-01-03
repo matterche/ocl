@@ -12,22 +12,26 @@
  *
  * </copyright>
  *
- * $Id: ZeroArgumentOperation.java,v 1.1.2.1 2009/12/14 21:59:09 ewillink Exp $
+ * $Id: StringSizeOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
+import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
+ * StringSizeOperation realises the String::size() library operation.
+ * 
  * @since 3.0
  */
-public abstract class ZeroArgumentOperation extends AbstractOperation
+public class StringSizeOperation extends AbstractOperation
 {
-	protected ZeroArgumentOperation(Object operationCode) {
-		super(operationCode);
-	}
-
-	public boolean canEvaluate(OperationCallExp<?, ?> operationCall) {
-		return getNumArguments(operationCall) == 0;
+	@Override
+	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
+		Object sourceVal = evaluateSource(visitor, operationCall);
+		if (isString(sourceVal)) {
+			return String.valueOf(sourceVal).length();
+		}			
+		return null;
 	}
 }

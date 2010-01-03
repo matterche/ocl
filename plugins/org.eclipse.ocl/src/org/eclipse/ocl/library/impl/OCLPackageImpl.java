@@ -2,22 +2,22 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackageImpl.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: OCLPackageImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLType;
@@ -56,6 +56,11 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	 * @ordered
 	 */
 	protected EList<OCLType> type;
+	
+	/**
+	 * Library operations created to support the serialised class references.
+	 */
+	private Map<Class<? extends LibraryOperation>, LibraryOperation> libraryOperationMap = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,9 +100,62 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	 */
 	public EList<OCLType> getType() {
 		if (type == null) {
-			type = new EObjectContainmentEList<OCLType>(OCLType.class, this, LibraryPackage.OCL_PACKAGE__TYPE);
+			type = new EObjectContainmentWithInverseEList<OCLType>(OCLType.class, this, LibraryPackage.OCL_PACKAGE__TYPE, LibraryPackage.OCL_TYPE__CONTAINER);
 		}
 		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLType getType(String name) {
+		for (OCLType aType : type) {
+			if (name.equals(aType.getName())) {
+				return aType;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass) {
+		if (libraryOperationMap != null) {
+			return libraryOperationMap .get(libraryOperationClass);
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation) {
+		if (libraryOperationMap == null) {
+			libraryOperationMap = new HashMap<Class<? extends LibraryOperation>, LibraryOperation>();
+		}
+		libraryOperationMap.put(libraryOperationClass, libraryOperation);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LibraryPackage.OCL_PACKAGE__TYPE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getType()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

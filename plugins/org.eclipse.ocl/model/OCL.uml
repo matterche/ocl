@@ -1123,6 +1123,10 @@
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_un1aQtppEdu-d8Dv4wLx9Q"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="__SvMEOmyEd6ZhMcS-shFnQ" name="newReferredOperation">
+          <type xmi:type="uml:Class" href="OCLLibrary.uml#_P7_A8-m0Ed6ZhMcS-shFnQ"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4Jm7UOm0Ed6ZhMcS-shFnQ"/>
+        </ownedAttribute>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_un1aQ9ppEdu-d8Dv4wLx9Q" name="FeatureCallExp_C">
           <templateBinding xmi:id="_un1aRNppEdu-d8Dv4wLx9Q" signature="_unvVINppEdu-d8Dv4wLx9Q">
             <parameterSubstitution xmi:id="_un1aRdppEdu-d8Dv4wLx9Q" formal="_unvVIdppEdu-d8Dv4wLx9Q" actual="_un1aONppEdu-d8Dv4wLx9Q"/>
@@ -2302,4 +2306,6 @@
   <Ecore:EParameter xmi:id="_SCfO4N1nEduZ74nG8yJaxg" base_Parameter="_FcnTgN1nEduZ74nG8yJaxg"/>
   <Ecore_1:EClass xmi:id="_1lMzkNXZEd6ci-srLwOkAQ" base_Class="_-PCtwNLlEd6hmvYFRJXZTA"/>
   <Ecore:EReference xmi:id="_82aXYNXZEd6ci-srLwOkAQ" base_Property="_ykFGANLmEd6hmvYFRJXZTA"/>
+  <Ecore_1:EClass xmi:id="_mC6toOmyEd6ZhMcS-shFnQ" instanceClassName="org.eclipse.ocl.library.OCLType"/>
+  <Ecore:EReference xmi:id="_O3X-oOmzEd6ZhMcS-shFnQ" base_Property="__SvMEOmyEd6ZhMcS-shFnQ"/>
 </xmi:XMI>

@@ -12,42 +12,129 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.1 2009/12/14 21:59:09 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.2 2010/01/03 22:53:48 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.LibraryOperation;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.library.impl.LibraryOperationImpl;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
 
 /**
  * @since 3.0
  */
-public abstract class AbstractOperation implements LibraryOperation
+public abstract class AbstractOperation extends LibraryOperationImpl
 {
-	protected final Object operationCode;
-
-	public AbstractOperation(Object operationCode) {
-		this.operationCode = operationCode;
+	public static BigDecimal bigDecimalValueOf(Object val) {
+		if (val instanceof BigDecimal) {
+			return (BigDecimal) val;
+		}
+		else if (val instanceof BigInteger) {
+			return new BigDecimal((BigInteger)val);
+		}
+		else if (val instanceof Number) {
+			return BigDecimal.valueOf(((Number)val).doubleValue());
+		}
+		else {
+			return null;
+		}
 	}
 
+	public static BigInteger bigIntegerValueOf(Object val) {
+		if (val instanceof BigInteger) {
+			return (BigInteger) val;
+		}
+		else if (val instanceof Number) {
+			return BigInteger.valueOf(((Number)val).longValue());
+		}
+		else if (val instanceof UnlimitedNaturalLiteralExp<?>) {
+			return BigInteger.valueOf(((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol());
+		}
+		else {
+			return null;
+		}
+	}
 
-	protected <C, O> Object evaluateSource(EvaluationVisitor<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<C, O> operationCall) {
+	public static Double doubleValueOf(Object val) {
+		if (val instanceof Double) {
+			return (Double)val;
+		}
+		else if (val instanceof Number) {
+			return Double.valueOf(((Number)val).doubleValue());
+		}
+		else {
+			return null;
+		}
+	}
+
+	public static Integer integerValueOf(Object val) {
+		if (val instanceof Integer) {
+			return (Integer)val;
+		}
+		else if (val instanceof Number) {
+			return Integer.valueOf(((Number)val).intValue());
+		}
+		else if (val instanceof UnlimitedNaturalLiteralExp<?>) {
+			return ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+		}
+		else {
+			return null;
+		}
+	}
+
+	public static Long longValueOf(Object val) {
+		if (val instanceof Long) {
+			return (Long)val;
+		}
+		else if (val instanceof Number) {
+			return Long.valueOf(((Number)val).longValue());
+		}
+		else if (val instanceof UnlimitedNaturalLiteralExp<?>) {
+			return Long.valueOf(((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol());
+		}
+		else {
+			return null;
+		}
+	}
+
+	protected <C> Object evaluateArgument(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<C, ?> operationCall, int argumentNumber) {
 		try {
-			OCLExpression<?> source = operationCall.getSource();
-			return source.accept(visitor);
+			List<OCLExpression<C>> args = operationCall.getArgument();
+			if ((args != null) && (0 <= argumentNumber) && (argumentNumber < args.size())) {
+				OCLExpression<?> arg = args.get(argumentNumber);
+				Object argVal = arg.accept(visitor);
+				return argVal;
+			}
 		}
 		catch (Exception e) {
-			Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
-			OCLStandardLibrary<?> oclStandardLibrary = environment.getOCLStandardLibrary();
-			return oclStandardLibrary.getInvalid();
 		}
+		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
+		OCLStandardLibrary<?> oclStandardLibrary = environment.getOCLStandardLibrary();
+		return oclStandardLibrary.getInvalid();
+	}
+
+	protected Object evaluateSource(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
+		try {
+			OCLExpression<?> source = operationCall.getSource();
+			Object sourceVal = source.accept(visitor);
+			return sourceVal;
+		}
+		catch (Exception e) {
+		}
+		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
+		OCLStandardLibrary<?> oclStandardLibrary = environment.getOCLStandardLibrary();
+		return oclStandardLibrary.getInvalid();
 	}
 
 	protected int getNumArguments(OperationCallExp<?, ?> operationCall) {
@@ -55,8 +142,8 @@ public abstract class AbstractOperation implements LibraryOperation
 		return args.size();
 	}
 
-	public Object getOperationCode() {
-		return operationCode;
+	protected boolean isBoolean(Object value) {
+		return value instanceof Boolean;
 	}
 
 	/**
@@ -67,12 +154,10 @@ public abstract class AbstractOperation implements LibraryOperation
 	 * 
 	 * @return whether it is undefined
 	 */
-	protected boolean isUndefined(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object value) {
-		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
-		OCLStandardLibrary<?> oclStandardLibrary = environment.getOCLStandardLibrary();
+	protected boolean isUndefined(Object value) {
 		return (value == null) || 		// FIXME Deprecated
-		(value == oclStandardLibrary.getNull()) || 
-		(value == oclStandardLibrary.getInvalid());
+		(value instanceof NullLiteralExp<?>) || 
+		(value instanceof InvalidLiteralExp<?>);
 	}
 	
 	/**
@@ -82,11 +167,40 @@ public abstract class AbstractOperation implements LibraryOperation
 	 * 
 	 * @return whether it is undefined
 	 */
-	protected boolean isInvalid(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object value) {
-		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
-		OCLStandardLibrary<?> oclStandardLibrary = environment.getOCLStandardLibrary();
+	protected boolean isInvalid(Object value) {
 		return (value == null) || 		// FIXME Deprecated
-		(value == oclStandardLibrary.getInvalid());
+			(value instanceof InvalidLiteralExp<?>);
+	}
+	
+	/**
+	 * Convenience method to determine whether the specified value is the <tt>null</tt> value.
+	 * 
+	 * @param value a value
+	 * 
+	 * @return whether it is undefined
+	 */
+	protected boolean isNull(Object value) {
+		return value instanceof NullLiteralExp<?>;
+	}
+
+	protected boolean isString(Object value) {
+		return (value instanceof String) || (value instanceof StringBuffer);
+	}
+	
+	protected boolean isUnlimited(Object value) {
+		return (value instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)value).isUnlimited();
+	}
+
+	protected boolean isUnlimited(BigInteger value) {
+		return value.signum() < 0;
+	}
+
+	protected boolean isUnlimited(Integer value) {
+		return Integer.signum(value) < 0;
+	}
+
+	protected boolean isUnlimited(Long value) {
+		return Long.signum(value) < 0;
 	}
 	
 //	public String toString() {

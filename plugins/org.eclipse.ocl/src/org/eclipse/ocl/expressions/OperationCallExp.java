@@ -13,13 +13,14 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExp.java,v 1.7 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: OperationCallExp.java,v 1.7.10.1 2010/01/03 22:53:48 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.library.OCLType;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.ocl.expressions.OperationCallExp#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.OperationCallExp#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.OperationCallExp#getOperationCode <em>Operation Code</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.OperationCallExp#getNewReferredOperation <em>New Referred Operation</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,6 +113,34 @@ public interface OperationCallExp<C, O>
 	 * @generated
 	 */
 	void setOperationCode(int value);
+
+	/**
+	 * Returns the value of the '<em><b>New Referred Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Referred Operation</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>New Referred Operation</em>' reference.
+	 * @see #setNewReferredOperation(OCLType)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getOperationCallExp_NewReferredOperation()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	OCLType getNewReferredOperation();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.OperationCallExp#getNewReferredOperation <em>New Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>New Referred Operation</em>' reference.
+	 * @see #getNewReferredOperation()
+	 * @generated
+	 */
+	void setNewReferredOperation(OCLType value);
 
 	/**
 	 * <!-- begin-user-doc -->

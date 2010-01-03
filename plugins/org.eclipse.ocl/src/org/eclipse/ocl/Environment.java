@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.6.12.1 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: Environment.java,v 1.6.12.2 2010/01/03 22:53:47 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -21,10 +21,10 @@ package org.eclipse.ocl;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.EnvironmentRegistryImpl;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.Adaptable;
@@ -176,6 +176,13 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      * @return the OCL Standard Library implementation for this environment
      */
 	OCLStandardLibrary<C> getOCLStandardLibrary();
+
+	/**
+	 * Get the OCL library used by this environment.
+	 * 
+	 * @since 3.0
+	 */
+	OCLLibrary getOCLLibrary();
 	
 	/**
 	 * Obtains a type resolver to be used to create (and cache) concrete bindings
@@ -596,7 +603,7 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      * @return the operation visitor.
      * @since 3.0
      */
-    LibraryOperation getOperation(Object operationCode);
+//    LibraryOperation getOperation(Object operationCode);
 	
     /**
      * A registry of environments.  The registry may be consulted to find a

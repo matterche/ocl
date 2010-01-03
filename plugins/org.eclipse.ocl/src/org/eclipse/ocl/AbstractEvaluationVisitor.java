@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11.6.1 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11.6.2 2010/01/03 22:53:48 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -441,6 +441,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @param typeArg the type to check
 	 * @return true if the object is an instance of the type, false otherwise.
 	 */
+	@Deprecated
 	protected Boolean oclIsTypeOf(Object value, Object typeArg) {
 		@SuppressWarnings("unchecked")
 		C type = (C) typeArg;
@@ -478,6 +479,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @param typeArg the type to check
 	 * @return true iff the value is of the type or one of its super types.
 	 */
+	@Deprecated
 	protected Boolean oclIsKindOf(Object value, Object typeArg) {
 		@SuppressWarnings("unchecked")
 		C type = (C) typeArg;

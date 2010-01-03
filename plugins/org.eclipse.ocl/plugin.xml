@@ -12,7 +12,7 @@
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869, 243976, 256040
 
- $Id: plugin.xml,v 1.7 2008/11/24 00:21:49 cdamus Exp $
+ $Id: plugin.xml,v 1.7.10.1 2010/01/03 22:53:51 ewillink Exp $
 -->
 
 <plugin>
@@ -46,6 +46,13 @@
        genModel = "model/OCLCST.genmodel" /> 
   </extension>
 
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/ocl/3.0.0/OCL/Library" 
+       class = "org.eclipse.ocl.library.LibraryPackage"
+       genModel = "model/OCLLibrary.genmodel" /> 
+  </extension>
+
   <extension
         point="org.eclipse.emf.ecore.content_parser">
      <parser
@@ -57,6 +64,12 @@
      <parser
            contentTypeIdentifier="org.eclipse.ocl.cst"
            class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl" />
+  </extension>
+  
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="oclstdlib" 
+       class="org.eclipse.ocl.library.util.LibraryResourceFactoryImpl" />
   </extension>
 
   <extension
@@ -112,10 +125,8 @@
   </extension>
   <extension
         point="org.eclipse.team.core.fileTypes">
-     <fileTypes
-           extension="oclxmi"
-           type="text">
-     </fileTypes>
+     <fileTypes extension="oclxmi" type="text"/>
+     <fileTypes extension="oclstdlib" type="text"/>
   </extension>
 
 </plugin>

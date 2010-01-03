@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidType.java,v 1.4 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: InvalidType.java,v 1.4.10.1 2010/01/03 22:53:49 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -34,6 +34,6 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public interface InvalidType<O>
 		extends PredefinedType<O> {
 
-	String SINGLETON_NAME = "Invalid"; //$NON-NLS-1$
+	String SINGLETON_NAME = "OclInvalid"; //$NON-NLS-1$
 
 } // InvalidType

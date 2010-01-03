@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.4 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: EvaluationEnvironment.java,v 1.4.12.1 2010/01/03 22:53:47 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -197,6 +197,7 @@ public interface EvaluationEnvironment<C, O, P, CLS, E> {
      * @return <code>true</code> if the specified classifier is the object's
      *     type or some supertype thereof; <code>false</code>, otherwise
      */
+	@Deprecated
     boolean isKindOf(Object object, C classifier);
     
     /**
@@ -207,6 +208,7 @@ public interface EvaluationEnvironment<C, O, P, CLS, E> {
      * @return <code>true</code> if ths specified classifier is the object's
      *     type; <code>false</code>, otherwise
      */
+	@Deprecated
     boolean isTypeOf(Object object, C classifier);
     
     /**

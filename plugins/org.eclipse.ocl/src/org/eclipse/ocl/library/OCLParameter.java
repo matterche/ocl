@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLParameter.java,v 1.1.2.1 2009/12/13 18:44:51 ewillink Exp $
+ * $Id: OCLParameter.java,v 1.1.2.2 2010/01/03 22:53:47 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -10,6 +10,7 @@ package org.eclipse.ocl.library;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>OCL Parameter</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>

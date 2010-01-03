@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.1 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.2 2010/01/03 22:53:48 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -33,7 +33,6 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -78,6 +77,8 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.InvalidType;
@@ -89,8 +90,6 @@ import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.util.ObjectUtil;
-import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
@@ -135,14 +134,19 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
 		// FIXME environment overrides ??
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
+		OCLLibrary oclLibrary = environment.getOCLLibrary();
 		try {
-			LibraryOperation operationVisitor = environment.getOperation(oc.getOperationCode());
-			if ((operationVisitor != null) && operationVisitor.canEvaluate(oc)) {
-				return operationVisitor.evaluate(this, oc);
+			OCLOperation oclOperation = oclLibrary.getOperation(oc);
+			if (oclOperation != null) {
+				Object result = oclOperation.evaluate(this, oc);
+				if (result == null) {
+					result = oclLibrary.getInvalid();
+				}
+				return result;
 			}
 		}
 		catch (Exception e) {
-			return environment.getOCLStandardLibrary().getInvalid();
+			return oclLibrary.getInvalid();
 		}
 		// check if source type is primitive and handle the
 		// primitive ops "inline". Otherwise use java reflection
@@ -264,43 +268,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		//
 		// The semantics for inequality are dual.
 		// 
-		if (opCode == PredefinedType.EQUAL) {
-			// evaluate argument
-			OCLExpression<C> arg = args.get(0);
-			Object argVal = arg.accept(getVisitor());
-	        
-	        if (sourceVal instanceof Number) {
-	            // coerce to Long or Double, if possible, for comparison
-	            sourceVal = higherPrecisionNumber((Number) sourceVal);
-	        }
-	        
-	        if (argVal instanceof Number) {
-	            // coerce to Long or Double, if possible, for comparison
-	            argVal = higherPrecisionNumber((Number) argVal);
-	        }
-
-			return Boolean.valueOf(ObjectUtil.equal(sourceVal, argVal));
-		}
-
-		else if (opCode == PredefinedType.NOT_EQUAL) {
-			// notEquals
-
-			// evaluate argument
-			OCLExpression<C> arg = args.get(0);
-			Object argVal = arg.accept(getVisitor());
-		       
-	        if (sourceVal instanceof Number) {
-	            // coerce to Long or Double, if possible, for comparison
-	            sourceVal = higherPrecisionNumber((Number) sourceVal);
-	        }
-           
-            if (argVal instanceof Number) {
-                // coerce to Long or Double, if possible, for comparison
-                argVal = higherPrecisionNumber((Number) argVal);
-            }
-
-			return Boolean.valueOf(!ObjectUtil.equal(sourceVal, argVal));
-		}
 
 		if (sourceType instanceof PrimitiveType<?>
 			|| sourceType instanceof CollectionType<?, ?>
@@ -333,81 +300,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// Double::minus()
 						return - (Double) sourceVal;
 
-					case PredefinedType.ABS:
-						if (sourceVal instanceof Integer) {
-						    int sourceInt = (Integer) sourceVal;
-                            
-                            if (sourceType == getUnlimitedNatural()) {
-                                // the unlimited value has no absolute
-                                if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                    return getInvalid();
-                                }
-                            }
-                            
-							// Integer::abs()
-							return Math.abs(sourceInt);
-                        } else if (sourceVal instanceof Long) {
-                            long sourceInt = (Long) sourceVal;
-                            
-                            if (sourceType == getUnlimitedNatural()) {
-                                // the unlimited value has no absolute
-                                if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                    return getInvalid();
-                                }
-                            }
-                            
-                            // Integer::abs()
-                            return Math.abs(sourceInt);
-                        }
-                        
-						// Real::abs()
-						return Math.abs((Double) sourceVal);
-
-					case PredefinedType.FLOOR:
-						if (sourceVal instanceof Double) {
-							// Real::floor()
-							return (int) Math.floor((Double) sourceVal);
-						}
-
-                        if (sourceType == getUnlimitedNatural()) {
-                            long sourceInt = (Long) higherPrecisionNumber((Number) sourceVal);
-                            
-                            // the unlimited value has no floor
-                            if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                return getInvalid();
-                            }
-                        }
-                        
-						// Integer::floor()
-						return sourceVal;
-
-					case PredefinedType.ROUND:
-						if (sourceVal instanceof Double) {
-							// Real::round()
-							return (int) Math.round((Double) sourceVal);
-						}
-
-                        if (sourceType == getUnlimitedNatural()) {
-                            long sourceInt = (Long) higherPrecisionNumber((Number) sourceVal);
-                            
-                            // the unlimited value can't be rounded
-                            if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                return getInvalid();
-                            }
-                        }
-                        
-						// Integer::round()
-						return sourceVal;
-
-					case PredefinedType.NOT:
-						return (((Boolean) sourceVal).booleanValue()) ? Boolean.FALSE
-							: Boolean.TRUE;
-
 					case PredefinedType.SIZE:
-						if (sourceType == getString()) {
-							// String::size()
-							return new Integer(((String) sourceVal).length());
-						} else if (sourceType instanceof CollectionType<?, ?>) {
+						if (sourceType instanceof CollectionType<?, ?>) {
 							return new Integer(((Collection<?>) sourceVal).size());
 						}
 					case PredefinedType.TO_INTEGER:
@@ -417,14 +311,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					case PredefinedType.TO_REAL:
 						// String::toReal()
 						return Double.valueOf((String) sourceVal);
-
-					case PredefinedType.TO_LOWER:
-						// String::toLower()
-						return UnicodeSupport.toLowerCase((String) sourceVal);
-
-					case PredefinedType.TO_UPPER:
-						// String::toUpper()
-						return UnicodeSupport.toUpperCase((String) sourceVal);
 
 					case PredefinedType.IS_EMPTY:
 						// Collection::isEmpty()
@@ -497,63 +383,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				C argType = arg.getType();
 				
 	            if (isUndefined(sourceVal)) {
-	                switch (opCode) {
-	                case PredefinedType.OCL_IS_TYPE_OF:
-	                case PredefinedType.OCL_IS_KIND_OF:
-	                case PredefinedType.OCL_AS_TYPE:
-	                    if (isLaxNullHandling()) {
-	                        break;
-	                    } else {
-	                        return getInvalid();
-	                    }
-	                default:
-	                    return getInvalid();
-	                }
+	                return getInvalid();
 	            }
 
-				// AnyType::oclIsTypeOf(OclType)
-				if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
-                    return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
-                } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
-                    return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
-                } else if (opCode == PredefinedType.OCL_AS_TYPE) {
-					// Type conversions for the built-in, non-collection
-					// types are completely checked in the parser. The only
-					// actual work that
-					// needs to be done here is to convert from Any/Real to
-					// Integer
-					// and back (necessary since in OCL Integers extend
-					// Reals but this is not true of the java primtives).
-
-					// if the source is undefined or the conversion to
-					// OclVoid so is the result
-					if (sourceVal == null || (argType instanceof VoidType<?>)) {
-                        return null;
-                    }
-					if (sourceVal == getInvalid() || (argType instanceof InvalidType<?>)) {
-                        return getInvalid();
-                    }
-
-					if (sourceVal instanceof Double
-						&& (argType == getInteger())) {
-                        return new Integer(((Double) sourceVal).intValue());
-                    } else if (sourceVal instanceof Integer
-						&& (argType == getReal())) {
-                        
-                        if (sourceType == getUnlimitedNatural()) {
-                            int sourceInt = (Integer) sourceVal;
-                            
-                            // the unlimited value is positive infinity
-                            if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                return Double.POSITIVE_INFINITY;
-                            }
-                        }
-                        
-						return new Double(((Integer) sourceVal).doubleValue());
-                    }
-                    
-					return sourceVal;
-				}
 				
 				// evaluate arg, unless we have a boolean operation
 				Object argVal = null;
@@ -586,88 +418,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             && argInt == UnlimitedNaturalLiteralExp.UNLIMITED;
                     
                     if (sourceUnlimited && argUnlimited) {
-                        switch (opCode) {
-                            case PredefinedType.LESS_THAN:
-                            case PredefinedType.LESS_THAN_EQUAL:
-                            case PredefinedType.GREATER_THAN:
-                            case PredefinedType.GREATER_THAN_EQUAL:
-                                // two inifinte values cannot be compared.  We
-                                //   allow = and <> only to test for unbounded
-                                //   multiplicities
-                                return Boolean.FALSE;
-                            default:
-                                // cannot do arithmetic on the unlimited value
-                                return getInvalid();
-                            }
+                        return getInvalid();
                     } else if (sourceUnlimited || argUnlimited) {
-                        switch (opCode) {
-                        case PredefinedType.LESS_THAN:
-                        case PredefinedType.LESS_THAN_EQUAL:
-                            return argUnlimited;
-                        case PredefinedType.GREATER_THAN:
-                        case PredefinedType.GREATER_THAN_EQUAL:
-                            return sourceUnlimited;
-                        default:
-                            // cannot do arithmetic on the unlimited value
-                            return getInvalid();
-                        }
+                        return getInvalid();
                     }
                     
 					switch (opCode) {
-
-						// Integer::plus(Integer)
-						case PredefinedType.PLUS:
-							return coerceNumber(sourceInt + argInt);
-
-						// Integer::minus(Integer)
-						case PredefinedType.MINUS:
-							return coerceNumber(sourceInt - argInt);
-
-						// Integer::times(Integer)
-						case PredefinedType.TIMES:
-							return coerceNumber(sourceInt * argInt);
-
-						// Integer::divide(Integer)
-						case PredefinedType.DIVIDE: {
-							// denominator of 0 means undefined
-							double num = sourceInt;
-							double denom = argInt;
-							return (denom == 0.0) ? getInvalid() : num / denom;
-						}
-
-						// Integer::div(Integer)
-						case PredefinedType.DIV:
-							// denominator of 0 means undefined
-							return (argInt == 0) ? getInvalid() :
-							    coerceNumber(sourceInt / argInt);
-
-						// Integer::mod(Integer)
-						case PredefinedType.MOD:
-							return coerceNumber(sourceInt % argInt);
-
-						// Integer::max(Integer)
-						case PredefinedType.MAX:
-							return coerceNumber(Math.max(sourceInt, argInt));
-
-						// Integer::min(Integer)
-						case PredefinedType.MIN:
-							return coerceNumber(Math.min(sourceInt, argInt));
-
-						// Integer::lessThan(Integer)
-						case PredefinedType.LESS_THAN:
-							return sourceInt < argInt;
-
-						// Integer::greaterThan(Integer)
-						case PredefinedType.GREATER_THAN:
-							return sourceInt > argInt;
-
-						// Integer::lessThanEqual(Integer)
-						case PredefinedType.LESS_THAN_EQUAL:
-							return sourceInt <= argInt;
-
-						// Integer::greaterThanEqual(Integer)
-						case PredefinedType.GREATER_THAN_EQUAL:
-							return sourceInt >= argInt;
 
 						default: {
 							String message = OCLMessages.bind(
@@ -687,69 +443,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					//
 
                     long sourceInt = (Long) sourceVal;
-                    double argReal = (Double) argVal;
                     
                     if (sourceType == getUnlimitedNatural()) {
                         if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                            switch (opCode) {
-                            case PredefinedType.LESS_THAN:
-                                // unlimited is not less than or equal to
-                                //   any Real value
-                                return Boolean.FALSE;
-                            case PredefinedType.GREATER_THAN:
-                            case PredefinedType.GREATER_THAN_EQUAL:
-                                // unlimited is greater than 
-                                //   every Real value
-                                return Boolean.TRUE;
-                            default:
-                                // cannot do arithmetic on the unlimited value
-                                return getInvalid();
-                            }
+                            return getInvalid();
                         }
                     }
                     
 					switch (opCode) {
-
-						// Integer::plus(Real)
-						case PredefinedType.PLUS:
-							return coerceNumber(sourceInt + argReal);
-
-						// Integer::minus(Real)
-						case PredefinedType.MINUS:
-							return coerceNumber(sourceInt - argReal);
-
-						// Integer::times(Real)
-						case PredefinedType.TIMES:
-							return coerceNumber(sourceInt * argReal);
-
-						// Integer::divide(Real)
-                        case PredefinedType.DIVIDE:
-                            // denominator of 0 results in undefined
-                            return (argReal == 0.0) ? getInvalid() : sourceInt / argReal;
-
-						// Integer::max(Real)
-						case PredefinedType.MAX:
-							return coerceNumber(Math.max(sourceInt, argReal));
-
-						// Integer::min(Real)
-						case PredefinedType.MIN:
-							return coerceNumber(Math.min(sourceInt, argReal));
-
-						// Integer::lessThan(Real)
-						case PredefinedType.LESS_THAN:
-							return sourceInt < argReal;
-
-						// Integer::greaterThan(Real)
-						case PredefinedType.GREATER_THAN:
-							return sourceInt > argReal;
-
-						// Integer::lessThanEqual(Real)
-						case PredefinedType.LESS_THAN_EQUAL:
-							return sourceInt <= argReal;
-
-						// Integer::greaterThanEqual(Real)
-						case PredefinedType.GREATER_THAN_EQUAL:
-							return sourceInt >= argReal;
 
 						default: {
 							String message = OCLMessages.bind(
@@ -766,7 +467,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				else if (sourceVal instanceof Double
 					&& argVal instanceof Long) {
 				    
-				    double sourceReal = (Double) sourceVal;
 				    long argInt = (Long) argVal;
 				    
 					//
@@ -775,20 +475,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
                     if (argType == getUnlimitedNatural()) {
                         if (argInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                            switch (opCode) {
-                            case PredefinedType.LESS_THAN:
-                                // unlimited is greater than 
-                                //   every Real value
-                                return Boolean.TRUE;
-                            case PredefinedType.GREATER_THAN:
-                            case PredefinedType.GREATER_THAN_EQUAL:
-                                // unlimited is not less than or equal to
-                                //   any Real value
-                                return Boolean.FALSE;
-                            default:
-                                // cannot do arithmetic on the unlimited value
-                                return getInvalid();
-                            }
+                            return getInvalid();
                         }
                     }
 
@@ -796,47 +483,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     // the result to any other precision because OCL Reals are
                     // represented as Doubles, anyway
 					switch (opCode) {
-
-						// Real::plus(Integer)
-						case PredefinedType.PLUS:
-							return sourceReal + argInt;
-
-						// Real::minus(Integer)
-						case PredefinedType.MINUS:
-							return sourceReal - argInt;
-
-						// Real::times(Integer)
-						case PredefinedType.TIMES:
-							return sourceReal * argInt;
-
-						// Real::divide(Integer)
-                        case PredefinedType.DIVIDE:
-                            // denominator of 0 results in undefined
-                            return (argInt == 0) ? getInvalid() : sourceReal / argInt;
-
-						// Real::max(Integer)
-						case PredefinedType.MAX:
-							return Math.max(sourceReal, argInt);
-
-						// Real::min(Integer)
-						case PredefinedType.MIN:
-							return Math.min(sourceReal, argInt);
-
-						// Real::lessThan(Integer)
-						case PredefinedType.LESS_THAN:
-							return sourceReal < argInt;
-
-						// Real::greaterThan(Integer)
-						case PredefinedType.GREATER_THAN:
-							return sourceReal > argInt;
-
-						// Real::lessThanEqual(Integer)
-						case PredefinedType.LESS_THAN_EQUAL:
-							return sourceReal <= argInt;
-
-						// Real::greaterThanEqual(Integer)
-						case PredefinedType.GREATER_THAN_EQUAL:
-							return sourceReal >= argInt;
 
 						default: {
 							String message = OCLMessages.bind(
@@ -851,55 +497,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				} else if (sourceVal instanceof Double
 					&& argVal instanceof Double) {
 				    
-                    double sourceReal = (Double) sourceVal;
-                    double argReal = (Double) argVal;
-				    
 					//
 					// source is a real and single arg is a real
 					//	
 
 					switch (opCode) {
-
-						// Real::plus(Real)
-						case PredefinedType.PLUS:
-							return sourceReal + argReal;
-
-						// Real::minus(Real)
-						case PredefinedType.MINUS:
-							return sourceReal - argReal;
-
-						// Real::times(Real)
-						case PredefinedType.TIMES:
-							return sourceReal * argReal;
-
-						// Real::divide(Real)
-						case PredefinedType.DIVIDE:
-                            // denominator of 0 results in undefined
-                            return (argReal == 0.0) ? getInvalid() : sourceReal / argReal;
-
-						// Real::max(Real)
-						case PredefinedType.MAX:
-							return Math.max(sourceReal, argReal);
-
-						// Real::min(Real)
-						case PredefinedType.MIN:
-							return Math.min(sourceReal, argReal);
-
-						// Real::lessThan(Real)
-						case PredefinedType.LESS_THAN:
-							return sourceReal < argReal;
-
-						// Real::greaterThan(Real)
-						case PredefinedType.GREATER_THAN:
-							return sourceReal > argReal;
-
-						// Real::lessThanEqual(Real)
-						case PredefinedType.LESS_THAN_EQUAL:
-							return sourceReal <= argReal;
-
-						// Real::greaterThanEqual(Real)
-						case PredefinedType.GREATER_THAN_EQUAL:
-							return sourceReal >= argReal;
 
 						default: {
 							String message = OCLMessages.bind(
@@ -911,92 +513,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							throw error;
 						}
 					}
-				} else if (sourceVal instanceof Boolean) {
-					// the logic with an undefined value is basic 3-valued
-					// logic:
-					// null represents the undefined value
-
-					// boolean source and single boolean arg
-					switch (opCode) {
-						// Boolean::or(Boolean)
-						case PredefinedType.OR:
-							if (Boolean.TRUE.equals(sourceVal)) {
-                                return Boolean.TRUE;
-                            }
-							
-							// must evaluate the argument now
-							argVal = arg.accept(getVisitor());
-							return argVal;
-
-						// Boolean::xor(Boolean)
-						case PredefinedType.XOR:
-							// XOR does not have a short-circuit
-							argVal = arg.accept(getVisitor());
-							
-							if (sourceVal == null) {
-                                return argVal;
-                            }
-							return (argVal == null) ? sourceVal
-								: (((Boolean) sourceVal).booleanValue()
-									^ ((Boolean) argVal).booleanValue() ? Boolean.TRUE
-									: Boolean.FALSE);
-
-						// Boolean::and(Boolean)
-						case PredefinedType.AND:
-							if (!Boolean.TRUE.equals(sourceVal)) {
-                                return Boolean.FALSE;
-                            }
-							
-							// must evaluate the argument now
-							argVal = arg.accept(getVisitor());
-							return argVal;
-
-						// Boolean::implies
-						case PredefinedType.IMPLIES:
-							if (Boolean.FALSE.equals(sourceVal)) {
-                                return Boolean.TRUE;
-                            }
-							
-							// must evaluate the argument now
-							argVal = arg.accept(getVisitor());
-							return argVal;
-
-						default: {
-							String message = OCLMessages.bind(
-									OCLMessages.UnknownOperation_ERROR_,
-									getName(oper));
-							RuntimeException error = new RuntimeException(message);
-							OCLPlugin.throwing(getClass(),
-								"visitOperationCallExp", error);//$NON-NLS-1$
-							throw error;
-						}
-					}
-
 				}
 
 				else if (sourceVal instanceof String
 					&& argVal instanceof String) {
 
 					switch (opCode) {
-						// String::concat(String)
-						case PredefinedType.CONCAT:
-							return ((String) sourceVal).concat((String) argVal);
-
-						// Handle < (lessThan)
-						case PredefinedType.LESS_THAN:
-							return Boolean.valueOf(((String) sourceVal).compareTo((String) argVal) < 0);
-
-						//	Handle <= (lessThanEqual)
-						case PredefinedType.LESS_THAN_EQUAL:
-							return Boolean.valueOf(((String) sourceVal).compareTo((String) argVal) <= 0);
-
-						// Handle > (greaterThan)
-						case PredefinedType.GREATER_THAN:
-							return Boolean.valueOf(((String) sourceVal).compareTo((String) argVal) > 0);
-
-						// Handle > (greaterThanEqual)
-						case PredefinedType.GREATER_THAN_EQUAL:
-							return Boolean.valueOf(((String) sourceVal).compareTo((String) argVal) >= 0);
 
 						default: {
 							String message = OCLMessages.bind(
@@ -1110,35 +632,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							return CollectionUtil.indexOf(sourceColl,
 								argVal);
 					} // end of collection type switch
-				} else if (sourceVal instanceof Comparable<?>) {
-
-					// Handle < (lessThan)
-					if (opCode == PredefinedType.LESS_THAN) {
-						@SuppressWarnings("unchecked")
-						Comparable<Object> comp = (Comparable<Object>) sourceVal;
-						return Boolean.valueOf(comp.compareTo(argVal) < 0);
-					}
-
-					//	Handle <= (lessThanEqual)
-					else if (opCode == PredefinedType.LESS_THAN_EQUAL) {
-						@SuppressWarnings("unchecked")
-						Comparable<Object> comp = (Comparable<Object>) sourceVal;
-						return Boolean.valueOf(comp.compareTo(argVal) <= 0);
-					}
-
-					// Handle > (greaterThan)
-					else if (opCode == PredefinedType.GREATER_THAN) {
-						@SuppressWarnings("unchecked")
-						Comparable<Object> comp = (Comparable<Object>) sourceVal;
-						return Boolean.valueOf(comp.compareTo(argVal) > 0);
-					}
-
-					// Handle > (greaterThanEqual)
-					else if (opCode == PredefinedType.GREATER_THAN_EQUAL) {
-						@SuppressWarnings("unchecked")
-						Comparable<Object> comp = (Comparable<Object>) sourceVal;
-						return Boolean.valueOf(comp.compareTo(argVal) >= 0);
-					}
 				}
 			} else {
 				//
@@ -1224,106 +717,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 			// result is invalid if source is undefined
 			if (isUndefined(sourceVal)) {
-			    switch (opCode) {
-                case PredefinedType.OCL_IS_TYPE_OF:
-                case PredefinedType.OCL_IS_KIND_OF:
-                case PredefinedType.OCL_AS_TYPE:
-                    if (isLaxNullHandling()) {
-                        break;
-                    } else {
-                        return getInvalid();
-                    }
-                default:
-                    return getInvalid();
-			    }
+			    return getInvalid();
 			}
 
 			// Handle type check and conversion:
-
-			// AnyType::oclIsTypeOf(OclType)
-			if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
-				OCLExpression<C> arg = args.get(0);
-				return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
-			}
-
-			// AnyType::oclIsKindOf(OclType)
-			else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
-				OCLExpression<C> arg = args.get(0);
-				return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
-			}
-
-			// AnyType::oclAsType(OclType)
-			else if (opCode == PredefinedType.OCL_AS_TYPE) {
-				// Check if the source object type is really
-				// conformant to the arg type. Note that
-				// it is not possible to do this check 100%
-				// at parse time because we only have the
-				// declared type of the source to check
-				// against the arg type and it may happen
-				// that the declared type is not conformant
-				// but a subtype of it is. For example,
-				// if there are four types A, B, C, and D;
-				// B is subtype of both A and C; D is a subtype of A;
-				// and x is a variable of type A; then it is impossible
-				// to know at parse time whether x.oclAsType(C)
-				// is a valid conversion. If x is an object of
-				// type B then it is; if x is an object of type D
-				// then it isn't; and this cannot be determined
-				// until runtime.				
-				OCLExpression<C> arg = args.get(0);
-				
-				@SuppressWarnings("unchecked")
-				C type = (C) arg.accept(getVisitor());
-				if (Boolean.TRUE.equals(oclIsKindOf(sourceVal, type))) {
-					return sourceVal;
-				} else {
-					return getInvalid();
-				}
-			}
-
-			// Handle < (lessThan)
-			else if ((opCode == PredefinedType.LESS_THAN) && (sourceVal instanceof Comparable<?>)) {
-				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
-				OCLExpression<C> arg = args.get(0);
-				
-				@SuppressWarnings("unchecked")
-				Comparable<Object> evalArg = (Comparable<Object>) arg.accept(getVisitor());
-				return Boolean.valueOf(compContext.compareTo(evalArg) < 0);
-			}
-
-			//	Handle <= (lessThanEqual)
-			else if ((opCode == PredefinedType.LESS_THAN_EQUAL) && (sourceVal instanceof Comparable<?>)) {
-				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
-				OCLExpression<C> arg = args.get(0);
-				
-				@SuppressWarnings("unchecked")
-				Comparable<Object> evalArg = (Comparable<Object>) arg.accept(getVisitor());
-				return Boolean.valueOf(compContext.compareTo(evalArg) <= 0);
-			}
-
-			// Handle > (greaterThan)
-			else if ((opCode == PredefinedType.GREATER_THAN) && (sourceVal instanceof Comparable<?>)) {
-				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
-				OCLExpression<C> arg = args.get(0);
-				
-				@SuppressWarnings("unchecked")
-				Comparable evalArg = (Comparable) arg.accept(getVisitor());
-				return Boolean.valueOf(compContext.compareTo(evalArg) > 0);
-			}
-
-			// Handle > (greaterThanEqual)
-			else if ((opCode == PredefinedType.GREATER_THAN_EQUAL) && (sourceVal instanceof Comparable<?>)) {
-				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
-				OCLExpression<C> arg = args.get(0);
-				
-				@SuppressWarnings("unchecked")
-				Comparable<Object> evalArg = (Comparable<Object>) arg.accept(getVisitor());
-				return Boolean.valueOf(compContext.compareTo(evalArg) >= 0);
-			}
 			
 			//
 			// unknown operation (shouldn't have gotten this far if we
@@ -2035,7 +1432,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     @Override
     public Object visitUnlimitedNaturalLiteralExp(
             UnlimitedNaturalLiteralExp<C> literalExp) {
-        return literalExp.getIntegerSymbol();
+        Integer integerSymbol = literalExp.getIntegerSymbol();
+		if (integerSymbol >= 0) {
+			return integerSymbol;
+		}
+		return literalExp;
     }
 
 	/**

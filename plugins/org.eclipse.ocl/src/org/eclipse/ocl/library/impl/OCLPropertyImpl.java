@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPropertyImpl.java,v 1.1.2.1 2009/12/13 18:44:26 ewillink Exp $
+ * $Id: OCLPropertyImpl.java,v 1.1.2.2 2010/01/03 22:53:50 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.library.OCLType;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>OCL Property</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

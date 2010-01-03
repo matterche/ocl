@@ -15,13 +15,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.20.2.1 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.20.2.2 2010/01/03 22:53:48 ewillink Exp $
  */
 package org.eclipse.ocl;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -29,12 +28,11 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.evaluator.operations.OclIsInvalidOperation;
-import org.eclipse.ocl.evaluator.operations.OclIsUndefinedOperation;
-import org.eclipse.ocl.evaluator.operations.OperationVisitor;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Option;
@@ -1173,7 +1171,78 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         }
     }    
 
+	private OCLLibrary oclLibrary;
+
+	/**
+	 * @since 3.0
+	 */
+	public OCLType getUnlimitedNatural() {
+		return getOCLLibrary().getUnlimitedNatural();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public OCLType getString() {
+		return getOCLLibrary().getString();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public OCLType getReal() {
+		return getOCLLibrary().getReal();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public OCLType getInteger() {
+		return getOCLLibrary().getInteger();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public OCLType getBoolean() {
+		return getOCLLibrary().getBoolean();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public OCLType getOclAny() {
+		return getOCLLibrary().getOclAny();
+	}
+
+	/**
+	 * Get the OCL library used by this environment. If no OCL library has yet been established 
+	 * {@linkplain #createOCLLibrary()} is invoked to create the default one.
+	 * 
+	 * @since 3.0
+	 */
+	public OCLLibrary getOCLLibrary() {
+		if (oclLibrary == null) {
+			setOCLLibrary(createOCLLibrary());
+		}
+		return oclLibrary;
+	}
+
+	/**
+	 * Define the OCL library to be used by the environment. Provided this method is
+	 * invoked before any invocation of {@linkplain #getOCLLibrary()}, this allows an 
+	 * @since 3.0
+	 */
+	public void setOCLLibrary(OCLLibrary oclLibrary) {
+		this.oclLibrary = oclLibrary;
+	}
+
     /**
+	 * @since 3.0
+	 */
+    protected abstract OCLLibrary createOCLLibrary();
+
+	/**
      * Obtains my extensible type checker utility.  If it has not already been
      * initialized before, then it is lazily {@linkplain #createTypeChecker()}.
      * 
@@ -1273,11 +1342,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 	}
 
-    private Map<Object, LibraryOperation> operationVisitors = null;
+//    private Map<Object, LibraryOperation> operationVisitors = null;
     
     /**
 	 * @since 3.0
-	 */
+	 *
 	public LibraryOperation getOperation(Object operationCode) {
 		if (operationVisitors == null) {
 			operationVisitors = new HashMap<Object, LibraryOperation>();
@@ -1285,12 +1354,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			addOperation(OclIsUndefinedOperation.INSTANCE);
 		}
 		return operationVisitors.get(operationCode);
-	}
+	} */
 
 	/**
 	 * @since 3.0
-	 */
+	 *
 	public void addOperation(LibraryOperation operationVisitor) {
 		operationVisitors.put(operationVisitor.getOperationCode(), operationVisitor);
-	}
+	} */
 }

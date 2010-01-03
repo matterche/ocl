@@ -1,53 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl/src"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
     creationIcons="false" modelPluginID="org.eclipse.ocl" modelName="OCLLibrary" editPluginClass="org.eclipse.ocl.library.provider.OCLLibraryEditPlugin"
     editorPluginClass="org.eclipse.ocl.library.presentation.OCLLibraryEditorPlugin"
-    richClientPlatform="true" testSuiteClass="org.eclipse.ocl.library.tests.OCLLibraryAllTests"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    nonNLSMarkers="true" richClientPlatform="true" testSuiteClass="org.eclipse.ocl.library.tests.OCLLibraryAllTests"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0" copyrightFields="false"
     binaryCompatibleReflectiveMethods="true" editPluginID="org.eclipse.ocl.edit">
-  <foreignModel>OCLLibrary.ecore</foreignModel>
-  <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
-      fileExtensions="oclstdlib" ecorePackage="OCLLibrary.ecore#/">
-    <nestedGenPackages prefix="Library" disposableProviderFactory="true" multipleEditorPages="false"
-        contentTypeIdentifier="org.eclipse.ocl.library" fileExtensions="oclstdlib"
-        ecorePackage="OCLLibrary.ecore#//library">
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLConstraintOperation"/>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLConstraintProperty"/>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLElement">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLLibrary.ecore#//library/OCLElement/name"/>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>OCLLibrary.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
+      disposableProviderFactory="true" fileExtensions="oclstdlib" ecorePackage="OCLLibrary.ecore#/">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Library" basePackage="org.eclipse.ocl"
+        disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl.library"
+        fileExtensions="oclstdlib" ecorePackage="OCLLibrary.ecore#//library">
+      <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="OCLLibrary.ecore#//library/Exception"/>
+      <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="OCLLibrary.ecore#//library/OperationCallExp"/>
+      <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="OCLLibrary.ecore#//library/EvaluationVisitor"/>
+      <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="OCLLibrary.ecore#//library/LibraryOperation"/>
+      <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="OCLLibrary.ecore#//library/LibraryProperty"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLConstraintOperation"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLLibrary.ecore#//library/OCLOperation">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLLibrary.ecore#//library/OCLOperation/isIterator"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLOperation/parameter"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLOperation/type"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLOperation/canEvaluate">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLOperation/canEvaluate/operationCall"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLOperation/evaluate">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLOperation/evaluate/evaluationVisitor"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLOperation/evaluate/operationCall"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLOperation/getOperationCode"/>
       </genClasses>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLGenericType">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLGenericType/parameter"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLElement">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLLibrary.ecore#//library/OCLElement/name"/>
       </genClasses>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLLibraryOperation"/>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLLibraryProperty"/>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLMetaModelOperation"/>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLMetaModelProperty"/>
-      <genClasses image="false" ecoreClass="OCLLibrary.ecore#//library/OCLOperation">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLOperation/parameter"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLOperation/type"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLParameter">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLParameter/type"/>
       </genClasses>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLPackage">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLPackage/type"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLType">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/conforms"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/operation"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/property"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLType/conformsTo">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLType/conformsTo/type"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLType/getOperation">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLType/getOperation/name"/>
+        </genOperations>
       </genClasses>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLParameter">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLParameter/type"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLLibrary.ecore#//library/OCLProperty">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLProperty/type"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCLLibrary.ecore#//library/OCLProperty">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLProperty/type"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLConstraintProperty"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLGenericType">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLGenericType/parameter"/>
       </genClasses>
-      <genClasses ecoreClass="OCLLibrary.ecore#//library/OCLType">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/conforms"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/operation"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLType/property"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLInvalidType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLLibraryOperation">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLLibrary.ecore#//library/OCLLibraryOperation/libraryOperationClass"/>
       </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLLibraryProperty">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLLibrary.ecore#//library/OCLLibraryProperty/libraryPropertyClass"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLMetaModelOperation"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLMetaModelProperty"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLPackage">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLPackage/extends"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLPackage/type"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLPackage/getType">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLPackage/getType/name"/>
+        </genOperations>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLVoidType"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

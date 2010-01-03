@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperation.java,v 1.1.2.2 2009/12/14 21:59:08 ewillink Exp $
+ * $Id: OCLLibraryOperation.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
-import org.eclipse.ocl.LibraryOperation;
 
 
 /**
@@ -19,6 +18,7 @@ import org.eclipse.ocl.LibraryOperation;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperationClass <em>Library Operation Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperation <em>Library Operation</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,4 +53,21 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * @generated
 	 */
 	void setLibraryOperationClass(Class<? extends LibraryOperation> value);
+
+	/**
+	 * Returns the value of the '<em><b>Library Operation</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.LibraryOperation#getReferences <em>References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Library Operation</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Library Operation</em>' reference.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryOperation_LibraryOperation()
+	 * @see org.eclipse.ocl.library.LibraryOperation#getReferences
+	 * @model opposite="references" resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	LibraryOperation getLibraryOperation();
 } // OCLLibraryOperation

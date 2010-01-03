@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.1 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.2 2010/01/03 22:53:51 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -106,7 +106,9 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(FLOOR_NAME, FLOOR);
 		operationCodes.put(ROUND_NAME, ROUND);
 		operationCodes.put(TO_LOWER_NAME, TO_LOWER);
+		operationCodes.put(TO_LOWER_CASE_NAME, TO_LOWER);
 		operationCodes.put(TO_UPPER_NAME, TO_UPPER);
+		operationCodes.put(TO_UPPER_CASE_NAME, TO_UPPER);
 		operationCodes.put(ALL_INSTANCES_NAME, ALL_INSTANCES);
 		operationCodes.put(EQUAL_NAME, EQUAL);
 		operationCodes.put(NOT_EQUAL_NAME, NOT_EQUAL);
@@ -121,6 +123,7 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(GREATER_THAN_EQUAL_NAME, GREATER_THAN_EQUAL);
 		operationCodes.put(OCL_IS_NEW_NAME, OCL_IS_NEW);
 		operationCodes.put(OCL_IS_IN_STATE_NAME, OCL_IS_IN_STATE);
+		operationCodes.put(OCL_TYPE_NAME, OCL_TYPE);
 		operationCodes.put(HAS_RETURNED_NAME, HAS_RETURNED);
 		operationCodes.put(RESULT_NAME, RESULT);
 		operationCodes.put(IS_SIGNAL_SENT_NAME, IS_SIGNAL_SENT);
@@ -178,6 +181,7 @@ public final class OCLStandardLibraryUtil {
 		oclAnyOperationCodes.put(GREATER_THAN_EQUAL_NAME, GREATER_THAN_EQUAL);
 		oclAnyOperationCodes.put(OCL_IS_NEW_NAME, OCL_IS_NEW);
 		oclAnyOperationCodes.put(OCL_IS_IN_STATE_NAME, OCL_IS_IN_STATE);
+		oclAnyOperationCodes.put(OCL_TYPE_NAME, OCL_TYPE);
 	}
 
 	// not instantiable by clients
@@ -276,9 +280,9 @@ public final class OCLStandardLibraryUtil {
 			case ROUND :
 				return ROUND_NAME;
 			case TO_LOWER :
-				return TO_LOWER_NAME;
+				return TO_LOWER_CASE_NAME;
 			case TO_UPPER :
-				return TO_UPPER_NAME;
+				return TO_UPPER_CASE_NAME;
 			case ALL_INSTANCES :
 				return ALL_INSTANCES_NAME;
 			case EQUAL :
@@ -307,6 +311,8 @@ public final class OCLStandardLibraryUtil {
 				return OCL_IS_NEW_NAME;
 			case OCL_IS_IN_STATE :
 				return OCL_IS_IN_STATE_NAME;
+			case OCL_TYPE :
+				return OCL_TYPE_NAME;
 			case HAS_RETURNED :
 				return HAS_RETURNED_NAME;
 			case RESULT :
@@ -1386,7 +1392,11 @@ public final class OCLStandardLibraryUtil {
 		result
 			.add(createUnaryOperation(uml, stdlib.getString(), TO_LOWER_NAME));
 		result
+			.add(createUnaryOperation(uml, stdlib.getString(), TO_LOWER_CASE_NAME));
+		result
 			.add(createUnaryOperation(uml, stdlib.getString(), TO_UPPER_NAME));
+		result
+			.add(createUnaryOperation(uml, stdlib.getString(), TO_UPPER_CASE_NAME));
 
 		return result;
 	}

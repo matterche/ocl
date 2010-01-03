@@ -12,30 +12,24 @@
  *
  * </copyright>
  *
- * $Id: OclIsUndefinedOperation.java,v 1.1.2.1 2009/12/14 21:59:09 ewillink Exp $
+ * $Id: OclIsUndefinedOperation.java,v 1.1.2.2 2010/01/03 22:53:48 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
- * OclIsInvalidOperation realises the oclIsUndefined() library operation.
+ * OclIsUndefinedOperation realises the oclIsUndefined() library operation.
  * 
  * @since 3.0
  */
-public class OclIsUndefinedOperation extends ZeroArgumentOperation
+public class OclIsUndefinedOperation extends AbstractOperation
 {
-	public static final OclIsUndefinedOperation INSTANCE = new OclIsUndefinedOperation();
-	
-	protected OclIsUndefinedOperation() {
-		super(PredefinedType.OCL_IS_UNDEFINED);
-	}
-
-	public <C, O> Object evaluate(EvaluationVisitor<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<C, O> operationCall) {
+	@Override
+	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
 		Object sourceVal = evaluateSource(visitor, operationCall);
-		if (isUndefined(visitor, sourceVal)) {
+		if (isUndefined(sourceVal)) {
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;

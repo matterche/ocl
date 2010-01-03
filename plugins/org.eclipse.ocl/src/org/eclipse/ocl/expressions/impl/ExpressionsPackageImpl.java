@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.11 2009/05/26 20:06:35 aigdalov Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.11.10.1 2010/01/03 22:53:50 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -68,6 +68,7 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.types.impl.TypesPackageImpl;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
@@ -412,6 +413,9 @@ public class ExpressionsPackageImpl
 			: new ExpressionsPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		LibraryPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		TypesPackageImpl theTypesPackage = (TypesPackageImpl) (EPackage.Registry.INSTANCE
@@ -966,6 +970,17 @@ public class ExpressionsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperationCallExp_NewReferredOperation() {
+		return (EReference) operationCallExpEClass.getEStructuralFeatures()
+			.get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1303,6 +1318,8 @@ public class ExpressionsPackageImpl
 			OPERATION_CALL_EXP__REFERRED_OPERATION);
 		createEAttribute(operationCallExpEClass,
 			OPERATION_CALL_EXP__OPERATION_CODE);
+		createEReference(operationCallExpEClass,
+			OPERATION_CALL_EXP__NEW_REFERRED_OPERATION);
 
 		propertyCallExpEClass = createEClass(PROPERTY_CALL_EXP);
 		createEReference(propertyCallExpEClass,
@@ -1383,6 +1400,8 @@ public class ExpressionsPackageImpl
 		// Obtain other dependent packages
 		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(UtilitiesPackage.eNS_URI);
+		LibraryPackage theLibraryPackage = (LibraryPackage) EPackage.Registry.INSTANCE
+			.getEPackage(LibraryPackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter associationClassCallExpEClass_C = addETypeParameter(
@@ -2327,6 +2346,11 @@ public class ExpressionsPackageImpl
 			getOperationCallExp_OperationCode(),
 			ecorePackage.getEInt(),
 			"operationCode", null, 0, 1, OperationCallExp.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(
+			getOperationCallExp_NewReferredOperation(),
+			theLibraryPackage.getOCLType(),
+			null,
+			"newReferredOperation", null, 0, 1, OperationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(operationCallExpEClass, ecorePackage.getEBoolean(),
 			"checkArgumentsConform", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

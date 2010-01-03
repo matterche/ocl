@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.5 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: PredefinedType.java,v 1.5.10.1 2010/01/03 22:53:51 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -125,10 +125,18 @@ public interface PredefinedType<O>
 	int TO_LOWER = 28;
 
 	String TO_LOWER_NAME = "toLower"; //$NON-NLS-1$
+	/**
+	 * @since 3.0
+	 */
+	String TO_LOWER_CASE_NAME = "toLowerCase"; //$NON-NLS-1$
 
 	int TO_UPPER = 29;
 
 	String TO_UPPER_NAME = "toUpper"; //$NON-NLS-1$
+	/**
+	 * @since 3.0
+	 */
+	String TO_UPPER_CASE_NAME = "toUpperCase"; //$NON-NLS-1$
 
 	/*
 	 * OclType operations.
@@ -191,6 +199,16 @@ public interface PredefinedType<O>
 	int OCL_IS_IN_STATE = 72;
 
 	String OCL_IS_IN_STATE_NAME = "oclIsInState"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	int OCL_TYPE = 73;
+
+	/**
+	 * @since 3.0
+	 */
+	String OCL_TYPE_NAME = "oclType"; //$NON-NLS-1$
 
 	/*
 	 * OclMessage operations

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackage.java,v 1.10 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: ExpressionsPackage.java,v 1.10.10.1 2010/01/03 22:53:48 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -1861,6 +1861,16 @@ public interface ExpressionsPackage
 	int OPERATION_CALL_EXP__OPERATION_CODE = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>New Referred Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OPERATION_CALL_EXP__NEW_REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1868,7 +1878,7 @@ public interface ExpressionsPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
+	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -2934,6 +2944,18 @@ public interface ExpressionsPackage
 	EAttribute getOperationCallExp_OperationCode();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.expressions.OperationCallExp#getNewReferredOperation <em>New Referred Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>New Referred Operation</em>'.
+	 * @see org.eclipse.ocl.expressions.OperationCallExp#getNewReferredOperation()
+	 * @see #getOperationCallExp()
+	 * @generated
+	 */
+	EReference getOperationCallExp_NewReferredOperation();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.expressions.PrimitiveLiteralExp <em>Primitive Literal Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3708,6 +3730,16 @@ public interface ExpressionsPackage
 		 */
 		EAttribute OPERATION_CALL_EXP__OPERATION_CODE = eINSTANCE
 			.getOperationCallExp_OperationCode();
+
+		/**
+		 * The meta object literal for the '<em><b>New Referred Operation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CALL_EXP__NEW_REFERRED_OPERATION = eINSTANCE
+			.getOperationCallExp_NewReferredOperation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.expressions.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLElementImpl.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: OCLElementImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -159,7 +159,7 @@ public abstract class OCLElementImpl extends EObjectImpl implements OCLElement {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(')');
 		return result.toString();

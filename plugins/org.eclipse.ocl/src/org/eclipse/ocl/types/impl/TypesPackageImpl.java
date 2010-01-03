@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.11 2009/12/06 18:12:59 ewillink Exp $
+ * $Id: TypesPackageImpl.java,v 1.11.2.1 2010/01/03 22:53:51 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
+import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -206,6 +207,9 @@ public class TypesPackageImpl
 			: new TypesPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		LibraryPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl) (EPackage.Registry.INSTANCE

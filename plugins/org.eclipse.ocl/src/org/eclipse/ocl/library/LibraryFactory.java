@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.2 2009/12/14 21:59:09 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -54,6 +54,15 @@ public interface LibraryFactory extends EFactory {
 	OCLGenericType createOCLGenericType();
 
 	/**
+	 * Returns a new object of class '<em>OCL Invalid Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Invalid Type</em>'.
+	 * @generated
+	 */
+	OCLInvalidType createOCLInvalidType();
+
+	/**
 	 * Returns a new object of class '<em>OCL Library Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,6 +70,15 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLLibraryOperation createOCLLibraryOperation();
+
+	/**
+	 * Returns a new object of class '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation</em>'.
+	 * @generated
+	 */
+	LibraryOperation createLibraryOperation();
 
 	/**
 	 * Returns a new object of class '<em>OCL Library Property</em>'.
@@ -115,6 +133,15 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLType createOCLType();
+
+	/**
+	 * Returns a new object of class '<em>OCL Void Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Void Type</em>'.
+	 * @generated
+	 */
+	OCLVoidType createOCLVoidType();
 
 	/**
 	 * Returns the package supported by this factory.
