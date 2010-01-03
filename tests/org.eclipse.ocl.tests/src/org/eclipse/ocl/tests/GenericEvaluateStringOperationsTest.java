@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.1 2010/01/03 22:48:51 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.2 2010/01/03 23:41:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -209,31 +209,31 @@ public abstract class GenericEvaluateStringOperationsTest<E extends EObject, PK 
 		assertQueryEquals(null, "t", "'test'.substring(1, 1)");
 		assertQueryEquals(null, "es", "'test'.substring(2, 3)");
 		assertQueryEquals(null, "t", "'test'.substring(4, 4)");
-	}
-
-	public void testStringSubstringIllegalArguments() {
-		/*
-		 * FIXME in OCL, substring(2, 1) is the equivalent of java's
-		 * substring(1,1) : an empty String. However this really looks like it
-		 * should fail.
-		 */
+		// illegal
 		assertQueryInvalid(null, "'test'.substring(2, 1)");
 		assertQueryInvalid(null, "'test'.substring(3, 1)");
-	}
-
-	public void testStringSubstringInvalid() {
+		// out of bounds
+		assertQueryInvalid(null, "'test'.substring(0, 1)");
+		assertQueryInvalid(null, "'test'.substring(4, 5)");
+		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.substring(1, 1)");
 		assertQueryInvalid(null, "let s : String = invalid in s.substring(5, 5)");
-	}
-
-	public void testStringSubstringNull() {
+		// null
 		assertQueryInvalid(null, "let s : String = null in s.substring(1, 1)");
 		assertQueryInvalid(null, "let s : String = null in s.substring(5, 5)");
 	}
 
-	public void testStringSubstringOutOfBounds() {
-		assertQueryInvalid(null, "'test'.substring(0, 1)");
-		assertQueryInvalid(null, "'test'.substring(4, 5)");
+	public void testStringToBoolean() {
+		assertQueryTrue(null, "'true'.toBoolean()");
+		assertQueryFalse(null, "' true'.toBoolean()");
+		assertQueryFalse(null, "'true '.toBoolean()");
+		assertQueryFalse(null, "'True'.toBoolean()");
+		assertQueryFalse(null, "'false'.toBoolean()");
+		assertQueryFalse(null, "'-4'.toBoolean()");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.toBoolean()");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.toBoolean()");
 	}
 
 	public void testStringToInteger() {
@@ -243,13 +243,9 @@ public abstract class GenericEvaluateStringOperationsTest<E extends EObject, PK 
 
 		assertQueryInvalid(null, "'2.4.0'.toInteger()");
 		assertQueryInvalid(null, "'a'.toInteger()");
-	}
-
-	public void testStringToIntegerInvalid() {
+		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toInteger()");
-	}
-
-	public void testStringToIntegerNull() {
+		// null
 		assertQueryInvalid(null, "let s : String = null in s.toInteger()");
 	}
 
@@ -274,13 +270,9 @@ public abstract class GenericEvaluateStringOperationsTest<E extends EObject, PK 
 
 		assertQueryInvalid(null, "'2.4.0'.toReal()");
 		assertQueryInvalid(null, "'a'.toReal()");
-	}
-
-	public void testStringToRealInvalid() {
+		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toReal()");
-	}
-
-	public void testStringToRealNull() {
+		// null
 		assertQueryInvalid(null, "let s : String = null in s.toReal()");
 	}
 
