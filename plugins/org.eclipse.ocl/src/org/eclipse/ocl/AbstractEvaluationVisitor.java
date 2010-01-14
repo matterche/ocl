@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11.6.2 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11.6.3 2010/01/14 21:33:16 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -60,7 +61,10 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	
 	private EvaluationEnvironment<C, O, P, CLS, E> evalEnv;
 	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env;
-	private OCLStandardLibrary<C> stdlib;
+	/**
+	 * @since 3.0
+	 */
+	protected final OCLLibrary library;
 	
 	private Map<? extends CLS, ? extends Set<? extends E>> extentMap;
 
@@ -87,7 +91,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
         
         this.evalEnv = evalEnv;
         this.env = env;
-        stdlib = env.getOCLStandardLibrary();
+        library = env.getOCLLibrary();
         this.extentMap = extentMap;
         
         this.visitor = this;  // assume I have no decorator
@@ -165,8 +169,9 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * 
      * @return the OCL standard library
      */
+	@Deprecated
 	protected OCLStandardLibrary<C> getStandardLibrary() {
-		return stdlib;
+		return env.getOCLStandardLibrary();
 	}
 	
     /**
@@ -175,6 +180,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * @return the invalid result
      * @since 3.0
      */
+	@Deprecated
 	protected final EObject getInvalid() {
 		return getStandardLibrary().getInvalid();
 	}
@@ -185,6 +191,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * @return the null result
      * @since 3.0
      */
+	@Deprecated
 	protected final EObject getNull() {
 		return getStandardLibrary().getNull();
 	}
@@ -194,6 +201,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * 
      * @return the boolean type
      */
+	@Deprecated
     protected final C getBoolean() {
         return getStandardLibrary().getBoolean();
     }
@@ -203,6 +211,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * 
      * @return the string type
      */
+	@Deprecated
     protected final C getString() {
         return getStandardLibrary().getString();
     }
@@ -212,6 +221,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * 
      * @return the integer type
      */
+	@Deprecated
     protected final C getInteger() {
         return getStandardLibrary().getInteger();
     }
@@ -221,6 +231,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * 
      * @return the unlimited natural type
      */
+	@Deprecated
     protected final C getUnlimitedNatural() {
         return getStandardLibrary().getUnlimitedNatural();
     }
@@ -230,6 +241,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * 
      * @return the real type
      */
+	@Deprecated
     protected final C getReal() {
         return getStandardLibrary().getReal();
     }
@@ -268,7 +280,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
                 OCLMessages.bind(OCLMessages.EvaluationFailed_ERROR_, msg), e);
             
             // failure to evaluate results in invalid
-            return getInvalid();
+            return library.getInvalid();
         }
 	}
 	
@@ -454,7 +466,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		
 		// the type of null is OclVoid, except that we aren't even allowed to
 		// ask if not lax-null-handling
-		if ((value == null) || (value == stdlib.getNull())) {	// FIXME Deprecated null
+		if ((value == null) || (value == getNull())) {	// FIXME Deprecated null
 			return isLaxNullHandling()
 				? Boolean.valueOf(type instanceof VoidType<?>)
 				: null;
@@ -462,7 +474,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 
 		// the type of invalid is OclInvalid, except that we aren't even allowed
 		// to ask if not lax-null-handling
-		if (value == stdlib.getInvalid()) {
+		if (value == getInvalid()) {
 			return isLaxNullHandling()
 				? Boolean.valueOf(type instanceof InvalidType<?>)
 				: null;

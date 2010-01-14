@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.5.10.2 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: PredefinedType.java,v 1.5.10.3 2010/01/14 21:33:16 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -125,6 +125,7 @@ public interface PredefinedType<O>
 	int TO_LOWER = 28;
 
 	String TO_LOWER_NAME = "toLower"; //$NON-NLS-1$
+
 	/**
 	 * @since 3.0
 	 */
@@ -133,6 +134,7 @@ public interface PredefinedType<O>
 	int TO_UPPER = 29;
 
 	String TO_UPPER_NAME = "toUpper"; //$NON-NLS-1$
+
 	/**
 	 * @since 3.0
 	 */

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.13 2009/10/15 19:38:06 ewillink Exp $
+ * $Id: CSTPackageImpl.java,v 1.13.4.1 2010/01/14 21:33:15 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -471,6 +471,13 @@ public class CSTPackageImpl
 	 * @generated
 	 */
 	private EDataType iTokenEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType numberEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1786,6 +1793,16 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getNumber() {
+		return numberEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -2040,6 +2057,7 @@ public class CSTPackageImpl
 
 		// Create data types
 		iTokenEDataType = createEDataType(ITOKEN);
+		numberEDataType = createEDataType(NUMBER);
 	}
 
 	/**
@@ -2589,7 +2607,7 @@ public class CSTPackageImpl
 			"IntegerLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
 			getIntegerLiteralExpCS_IntegerSymbol(),
-			ecorePackage.getEIntegerObject(),
+			this.getNumber(),
 			"integerSymbol", null, 0, 1, IntegerLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
@@ -2598,7 +2616,7 @@ public class CSTPackageImpl
 			"UnlimitedNaturalLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
 			getUnlimitedNaturalLiteralExpCS_IntegerSymbol(),
-			ecorePackage.getEIntegerObject(),
+			this.getNumber(),
 			"integerSymbol", null, 0, 1, UnlimitedNaturalLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
@@ -2607,7 +2625,7 @@ public class CSTPackageImpl
 			"RealLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
 			getRealLiteralExpCS_RealSymbol(),
-			ecorePackage.getEDoubleObject(),
+			this.getNumber(),
 			"realSymbol", null, 0, 1, RealLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
@@ -2787,6 +2805,8 @@ public class CSTPackageImpl
 		// Initialize data types
 		initEDataType(iTokenEDataType, IToken.class,
 			"IToken", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(numberEDataType, Number.class,
+			"Number", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCSImpl.java,v 1.6 2009/11/10 19:15:16 ewillink Exp $
+ * $Id: PathNameCSImpl.java,v 1.6.4.1 2010/01/14 21:33:15 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -177,7 +177,9 @@ public class PathNameCSImpl
 		Object node = newAst;
 		for (int i = simpleNames.size() - 1; i >= 0; --i) {
 			simpleNames.get(i).setAst(node);
-			node = node instanceof EObject ? ((EObject)node).eContainer() : null;
+			node = node instanceof EObject
+				? ((EObject) node).eContainer()
+				: null;
 		}
 		super.setAst(newAst);
 	}

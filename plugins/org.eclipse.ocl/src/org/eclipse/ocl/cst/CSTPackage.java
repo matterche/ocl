@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.12 2009/10/15 19:37:46 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.12.4.1 2010/01/14 21:33:16 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -4803,6 +4803,17 @@ public interface CSTPackage
 	int ITOKEN = 54;
 
 	/**
+	 * The meta object id for the '<em>Number</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Number
+	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getNumber()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int NUMBER = 55;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.CSTNode <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6226,6 +6237,18 @@ public interface CSTPackage
 	EDataType getIToken();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Number <em>Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Number</em>'.
+	 * @see java.lang.Number
+	 * @model instanceClass="java.lang.Number"
+	 * @generated
+	 */
+	EDataType getNumber();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6516,7 +6539,7 @@ public interface CSTPackage
 		/**
 		 * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
-	 * @since 3.0
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -7502,6 +7525,17 @@ public interface CSTPackage
 		 * @generated
 		 */
 		EDataType ITOKEN = eINSTANCE.getIToken();
+
+		/**
+		 * The meta object literal for the '<em>Number</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Number
+		 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getNumber()
+		 * @generated
+		 */
+		EDataType NUMBER = eINSTANCE.getNumber();
 
 	}
 

@@ -13,12 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.11 2009/12/06 18:13:35 ewillink Exp $
+ * $Id: UtilitiesPackage.java,v 1.11.2.1 2010/01/14 21:33:16 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 

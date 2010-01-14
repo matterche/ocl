@@ -13,12 +13,14 @@
  * 
  * </copyright>
  *
- * $Id: TypesSwitch.java,v 1.7 2009/12/06 18:13:20 ewillink Exp $
+ * $Id: TypesSwitch.java,v 1.7.2.1 2010/01/14 21:33:16 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 
+import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;

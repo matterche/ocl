@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.3 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.4 2010/01/14 21:33:16 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -76,6 +76,7 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateOne;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLOperation;
@@ -132,21 +133,21 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	@Override
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
-		// FIXME environment overrides ??
-		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
-		OCLLibrary oclLibrary = environment.getOCLLibrary();
 		try {
-			OCLOperation oclOperation = oclLibrary.getOperation(oc);
+			OCLOperation oclOperation = library.getOperation(oc);
 			if (oclOperation != null) {
 				Object result = oclOperation.evaluate(this, oc);
 				if (result == null) {
-					result = oclLibrary.getInvalid();
+					result = library.getInvalid();
+				}
+				else if (result instanceof Number) {
+					result = NumberUtil.coerceNumber((Number) result);
 				}
 				return result;
 			}
 		}
 		catch (Exception e) {
-			return oclLibrary.getInvalid();
+			return library.getInvalid();
 		}
 		// check if source type is primitive and handle the
 		// primitive ops "inline". Otherwise use java reflection
@@ -556,7 +557,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							
 							return CollectionUtil.product(
 									evaluationEnvironment,
-									environment,
+									getEnvironment(),
 									sourceColl,
 									(Collection<?>) argVal,
 									collType.getElementType());
@@ -1414,11 +1415,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     @Override
     public Object visitUnlimitedNaturalLiteralExp(
             UnlimitedNaturalLiteralExp<C> literalExp) {
-        Integer integerSymbol = literalExp.getIntegerSymbol();
-		if (integerSymbol >= 0) {
-			return integerSymbol;
+        if (!literalExp.isUnlimited()) {
+			return literalExp.getIntegerSymbol();
 		}
-		return literalExp;
+		else {
+			return literalExp;
+		}
     }
 
 	/**

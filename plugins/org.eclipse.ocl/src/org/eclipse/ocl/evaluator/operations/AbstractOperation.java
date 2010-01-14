@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.3 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.4 2010/01/14 21:33:15 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -52,14 +52,14 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 	}
 
 	public static BigInteger bigIntegerValueOf(Object val) {
+		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
+			val = ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+		}
 		if (val instanceof BigInteger) {
 			return (BigInteger) val;
 		}
 		else if (val instanceof Number) {
 			return BigInteger.valueOf(((Number)val).longValue());
-		}
-		else if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			return BigInteger.valueOf(((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol());
 		}
 		else {
 			return null;
@@ -79,14 +79,14 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 	}
 
 	public static Integer integerValueOf(Object val) {
+		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
+			val = ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+		}
 		if (val instanceof Integer) {
 			return (Integer)val;
 		}
 		else if (val instanceof Number) {
 			return Integer.valueOf(((Number)val).intValue());
-		}
-		else if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			return ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
 		}
 		else {
 			return null;
@@ -94,14 +94,14 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 	}
 
 	public static Long longValueOf(Object val) {
+		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
+			val = ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+		}
 		if (val instanceof Long) {
 			return (Long)val;
 		}
 		else if (val instanceof Number) {
 			return Long.valueOf(((Number)val).longValue());
-		}
-		else if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			return Long.valueOf(((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol());
 		}
 		else {
 			return null;

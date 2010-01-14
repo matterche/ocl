@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLLibrary.java,v 1.1.2.1 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: AbstractOCLLibrary.java,v 1.1.2.2 2010/01/14 21:33:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -39,6 +39,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.library.util.LibraryResource;
+import org.eclipse.ocl.library.util.LibraryResourceFactoryImpl;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -345,7 +346,7 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 		? resourceSet.getResourceFactoryRegistry()
 		: Resource.Factory.Registry.INSTANCE;
 //		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-//			"oclstdlib", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
+//			"oclstdlib", new LibraryResourceFactoryImpl()); //$NON-NLS-1$
 		String oclLocation = System.getProperty("org.eclipse.ocl.resources"); //$NON-NLS-1$
 		if (oclLocation == null)
 			return "'org.eclipse.ocl.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$

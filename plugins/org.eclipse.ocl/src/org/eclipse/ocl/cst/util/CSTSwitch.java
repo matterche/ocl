@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTSwitch.java,v 1.8 2009/10/15 19:38:31 ewillink Exp $
+ * $Id: CSTSwitch.java,v 1.8.4.1 2010/01/14 21:33:15 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.cst.*;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.CSTPackage;

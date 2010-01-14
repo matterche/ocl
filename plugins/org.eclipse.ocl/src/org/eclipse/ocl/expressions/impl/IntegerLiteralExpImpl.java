@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.7 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.7.10.1 2010/01/14 21:33:15 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -85,6 +85,7 @@ public class IntegerLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -94,6 +95,7 @@ public class IntegerLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

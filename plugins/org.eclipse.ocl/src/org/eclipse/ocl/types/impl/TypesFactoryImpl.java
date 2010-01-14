@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesFactoryImpl.java,v 1.6 2009/12/06 18:12:59 ewillink Exp $
+ * $Id: TypesFactoryImpl.java,v 1.6.2.1 2010/01/14 21:33:14 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.AnyType;
