@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.10.6.2 2010/01/03 22:51:35 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.10.6.3 2010/01/14 21:32:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -100,8 +100,10 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
     public static final OCLStandardLibraryImpl INSTANCE = new OCLStandardLibraryImpl();
     
     /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    public static OCLExpression INVALID =
-        UMLFactory.eINSTANCE.createInvalidLiteralExp();
+    public static EObject INVALID =
+        org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
+//    public static OCLExpression INVALID =
+//        UMLFactory.eINSTANCE.createInvalidLiteralExp();
     
     /** The singleton instance of the <tt>OclVoid</tt> standard library type. */
     public static OCLExpression NULL =
@@ -150,7 +152,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
 		return OCL_ELEMENT;
 	}
 
-	public OCLExpression getInvalid() {
+	public EObject getInvalid() {
 		return INVALID;
 	}
 

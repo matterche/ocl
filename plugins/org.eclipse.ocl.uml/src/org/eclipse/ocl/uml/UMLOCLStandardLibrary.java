@@ -82,7 +82,7 @@ public class UMLOCLStandardLibrary implements OCLStandardLibrary<Classifier>{
 	/**
 	 * @since 3.0
 	 */
-	public OCLExpression getInvalid() {		
+	public EObject getInvalid() {		
 		return stdLibBuilder.getInvalid();
 	}
 
