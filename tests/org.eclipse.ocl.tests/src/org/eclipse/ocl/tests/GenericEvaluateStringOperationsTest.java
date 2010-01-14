@@ -8,11 +8,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   L.Goubert, E.D.Willink - Initial API and implementation
+ *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.2 2010/01/03 23:41:11 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.3 2010/01/14 21:33:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;

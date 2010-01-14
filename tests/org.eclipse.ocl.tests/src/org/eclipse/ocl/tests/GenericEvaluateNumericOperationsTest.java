@@ -8,14 +8,16 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   L.Goubert, E.D.Willink - Initial API and implementation
+ *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
  *
- * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.1 2010/01/03 22:48:51 ewillink Exp $
+ * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.2 2010/01/14 21:33:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
+
+import java.math.BigInteger;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -34,6 +36,15 @@ public abstract class GenericEvaluateNumericOperationsTest<E extends EObject, PK
         helper.setContext(getMetaclass(denormalize("%Package")));
     }
 
+    public void testBigInteger() {
+    	Integer maxInteger = Integer.valueOf(Integer.MAX_VALUE);
+    	Long maxLong = Long.valueOf(Long.MAX_VALUE);
+    	BigInteger bigInt = BigInteger.valueOf(maxLong).add(BigInteger.valueOf(maxInteger));
+    	assertQueryEquals(null, maxInteger, maxInteger.toString());
+    	assertQueryEquals(null, maxLong, maxLong.toString());
+    	assertQueryEquals(null, bigInt, bigInt.toString());
+    }
+    
 	public void testNumberAbs() {
 		// Integer::abs()
 		assertQueryEquals(null, Integer.valueOf(3), "3.abs()");
