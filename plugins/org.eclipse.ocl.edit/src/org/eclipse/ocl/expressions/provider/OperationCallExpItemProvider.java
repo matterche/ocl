@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpItemProvider.java,v 1.1 2009/10/30 18:47:57 ewillink Exp $
+ * $Id: OperationCallExpItemProvider.java,v 1.1.4.1 2010/01/14 21:33:26 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -70,6 +70,7 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 
 			addReferredOperationPropertyDescriptor(object);
 			addOperationCodePropertyDescriptor(object);
+			addNewReferredOperationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +112,25 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 						ExpressionsPackage.Literals.OPERATION_CALL_EXP__OPERATION_CODE,
 						true, false, false,
 						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the New Referred Operation feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNewReferredOperationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_OperationCallExp_newReferredOperation_feature"), //$NON-NLS-1$
+						getString(
+								"_UI_PropertyDescriptor_description", "_UI_OperationCallExp_newReferredOperation_feature", "_UI_OperationCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						ExpressionsPackage.Literals.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION,
+						true, false, true, null, null, null));
 	}
 
 	/**
