@@ -13,13 +13,14 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.11 2009/11/28 17:47:59 ewillink Exp $
+ * $Id: SerializationTest.java,v 1.11.2.1 2010/01/15 17:27:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -84,6 +85,38 @@ public class SerializationTest
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
 				"self.eSubpackages->size() > 2");
+
+		String toStringForm = expr.toString();
+		String serialForm = serialize(expr);
+		
+		expr = loadExpression(serialForm);
+		validate(expr);  // ensure that it is structurally valid
+		assertEquals(toStringForm, expr.toString());  // should "look" the same
+	}
+	
+	/**
+	 * Tests the serialization of an expression that uses OCL integer values.
+	 */
+	public void test_integerTypeSerialization() {
+		OCLExpression<EClassifier> expr = parseExpression(
+				EcorePackage.Literals.EPACKAGE,
+				BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.valueOf(1)) + " > " + Long.MAX_VALUE + " - " + Integer.MAX_VALUE);
+
+		String toStringForm = expr.toString();
+		String serialForm = serialize(expr);
+		
+		expr = loadExpression(serialForm);
+		validate(expr);  // ensure that it is structurally valid
+		assertEquals(toStringForm, expr.toString());  // should "look" the same
+	}
+	
+	/**
+	 * Tests the serialization of an expression that uses OCL real values.
+	 */
+	public void test_realTypeSerialization() {
+		OCLExpression<EClassifier> expr = parseExpression(
+				EcorePackage.Literals.EPACKAGE,
+				"12345678901234567890.123456789e44 > 1.234");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);

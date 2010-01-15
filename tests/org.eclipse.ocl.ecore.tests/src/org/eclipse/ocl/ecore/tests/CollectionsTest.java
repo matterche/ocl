@@ -14,11 +14,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.17 2009/12/06 09:36:52 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.17.2.1 2010/01/15 17:27:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -867,38 +868,38 @@ public class CollectionsTest
 
 		try {
 			Collection<?> result = (Collection<?>) evaluate(helper,
-				new Integer(1), "Sequence{1 .. 10}");
+				Integer.valueOf(1), "Sequence{1 .. 10}");
 
 			for (int i = 1; i <= 10; i++) {
-				assertTrue(result.contains(new Integer(i)));
+				assertTrue(result.contains(BigInteger.valueOf(i)));
 			}
 
 			result = (Collection<?>) evaluate(helper, new Integer(1),
 				"Sequence{1, (2+1)..(3+4), 10}");
 
-			assertTrue(result.contains(new Integer(1)));
+			assertTrue(result.contains(BigInteger.valueOf(1)));
 			for (int i = 3; i <= 7; i++) {
-				assertTrue(result.contains(new Integer(i)));
+				assertTrue(result.contains(BigInteger.valueOf(i)));
 			}
-			assertTrue(result.contains(new Integer(10)));
+			assertTrue(result.contains(BigInteger.valueOf(10)));
 
 			// try the first expression without spaces (needed a grammar change)
-			result = (Collection<?>) evaluate(helper, new Integer(1),
+			result = (Collection<?>) evaluate(helper, Integer.valueOf(1),
 				"Sequence{1..10}");
 
 			for (int i = 1; i <= 10; i++) {
-				assertTrue(result.contains(new Integer(i)));
+				assertTrue(result.contains(BigInteger.valueOf(i)));
 			}
 
 			// and a negation, too (the same grammar change)
-			result = (Collection<?>) evaluate(helper, new Integer(1),
+			result = (Collection<?>) evaluate(helper, Integer.valueOf(1),
 				"Sequence{-20, -10..-1, 1}");
 
-			assertTrue(result.contains(new Integer(-20)));
+			assertTrue(result.contains(BigInteger.valueOf(-20)));
 			for (int i = -10; i <= -1; i++) {
-				assertTrue(result.contains(new Integer(i)));
+				assertTrue(result.contains(BigInteger.valueOf(i)));
 			}
-			assertTrue(result.contains(new Integer(1)));
+			assertTrue(result.contains(BigInteger.valueOf(1)));
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}

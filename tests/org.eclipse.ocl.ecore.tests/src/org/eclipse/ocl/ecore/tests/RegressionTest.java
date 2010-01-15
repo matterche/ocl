@@ -13,11 +13,12 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.17.2.2 2010/01/15 07:39:55 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.17.2.3 2010/01/15 17:27:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -1075,15 +1076,15 @@ public class RegressionTest
 		// got as many product tuples as required (2 x 3)
 		assertEquals(6, product.size());
 		
-		Map<String, Set<Integer>> expectedTuples =
-			new java.util.HashMap<String, Set<Integer>>();
-		Set<Integer> values = new java.util.HashSet<Integer>();
-		values.add(1);
-		values.add(2);
-		values.add(3);
+		Map<String, Set<BigInteger>> expectedTuples =
+			new java.util.HashMap<String, Set<BigInteger>>();
+		Set<BigInteger> values = new java.util.HashSet<BigInteger>();
+		values.add(BigInteger.valueOf(1));
+		values.add(BigInteger.valueOf(2));
+		values.add(BigInteger.valueOf(3));
 		
-		expectedTuples.put("foo", new java.util.HashSet<Integer>(values));
-		expectedTuples.put("bar", new java.util.HashSet<Integer>(values));
+		expectedTuples.put("foo", new java.util.HashSet<BigInteger>(values));
+		expectedTuples.put("bar", new java.util.HashSet<BigInteger>(values));
 		
 		for (Tuple<EOperation, EStructuralFeature> tuple : product) {
 			values = expectedTuples.get(tuple.getValue("first"));

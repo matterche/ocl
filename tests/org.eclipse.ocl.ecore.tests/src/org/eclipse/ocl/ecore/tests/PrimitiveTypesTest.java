@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.7 2009/11/28 17:48:50 ewillink Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.7.2.1 2010/01/15 17:27:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -65,7 +65,7 @@ public class PrimitiveTypesTest
 			.getUnlimitedNatural(), expression.getType());
 
 		Object result = evaluate(expression);
-		assertEquals(UnlimitedNaturalLiteralExp.UNLIMITED, result);
+		assertTrue(((UnlimitedNaturalLiteralExp<?>)result).isUnlimited());
 	}
 
 	/**
@@ -87,9 +87,9 @@ public class PrimitiveTypesTest
 			assertFalse(check(helper, 1, "* <> *"));
 
 			assertFalse(check(helper, 1, "* < *"));
-			assertFalse(check(helper, 1, "* <= *"));
+	        assertQueryTrue(OCL20A, 1, "* <= *");
 			assertFalse(check(helper, 1, "* > *"));
-			assertFalse(check(helper, 1, "* >= *"));
+	        assertQueryTrue(OCL20A, 1, "* >= *");
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
@@ -102,6 +102,7 @@ public class PrimitiveTypesTest
 	public void test_unlimitedValueArithmetic_integers() {
 		helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
 
+		assertQueryInvalid(1, "2 + *");
 		try {
 			assertInvalid(evaluate(helper, 1, "2 + *"));
 		} catch (Exception e) {
@@ -149,6 +150,7 @@ public class PrimitiveTypesTest
 		helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
 
 		try {
+			assertInvalid(evaluate(helper, 1, "-*"));
 			assertInvalid(evaluate(helper, 1, "*.round()"));
 			assertInvalid(evaluate(helper, 1, "*.floor()"));
 			assertInvalid(evaluate(helper, 1, "*.abs()"));
