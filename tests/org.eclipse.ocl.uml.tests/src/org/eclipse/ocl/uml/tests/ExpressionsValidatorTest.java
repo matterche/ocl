@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.5 2009/11/28 18:16:05 ewillink Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.5.2.1 2010/01/15 17:27:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -849,7 +849,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	
 	public void test_UnlimitedNaturalLiteralExp_checkNaturalType() {
 		UnlimitedNaturalLiteralExp ul = factory.createUnlimitedNaturalLiteralExp();
-		ul.setIntegerSymbol(42);
+		ul.setUnlimitedNaturalSymbol(42);
 		ul.setType(apple);
 		
 		assertProblem(ul, ExpressionsValidator.UNLIMITED_NATURAL_LITERAL_EXP__NATURAL_TYPE);

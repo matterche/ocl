@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.11 2009/11/28 18:11:00 ewillink Exp $
+ * $Id: ComparisonTest.java,v 1.11.2.1 2010/01/15 17:27:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -385,16 +385,16 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertEquals(new Integer(1), evaluate(helper, thing, "3 - 2"));
-			assertEquals(new Integer(3), evaluate(helper, thing, "1 + 2"));
-			assertEquals(new Double(2.0), evaluate(helper, thing, "6 / 3"));
-			assertEquals(new Integer(6), evaluate(helper, thing, "2 * 3"));
-			assertEquals(new Integer(-1), evaluate(helper, thing, "- 1"));
-			assertEquals(new Integer(3), evaluate(helper, thing, "(2 - 5).abs()"));
-			assertEquals(new Integer(3), evaluate(helper, thing, "3.max(2)"));
-			assertEquals(new Integer(2), evaluate(helper, thing, "3.min(2)"));
-			assertEquals(new Integer(3), evaluate(helper, thing, "7.div(2)"));
-			assertEquals(new Integer(1), evaluate(helper, thing, "7.mod(2)"));
+			assertEquals(1, evaluate(helper, thing, "3 - 2"));
+			assertEquals(3, evaluate(helper, thing, "1 + 2"));
+			assertEquals(2.0, evaluate(helper, thing, "6 / 3"));
+			assertEquals(6, evaluate(helper, thing, "2 * 3"));
+			assertEquals(-1, evaluate(helper, thing, "- 1"));
+			assertEquals(3, evaluate(helper, thing, "(2 - 5).abs()"));
+			assertEquals(3, evaluate(helper, thing, "3.max(2)"));
+			assertEquals(2, evaluate(helper, thing, "3.min(2)"));
+			assertEquals(3, evaluate(helper, thing, "7.div(2)"));
+			assertEquals(1, evaluate(helper, thing, "7.mod(2)"));
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
@@ -407,14 +407,14 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertEquals(new Double(1.0), evaluate(helper, thing, "3.0 - 2.0"));
-			assertEquals(new Double(3.0), evaluate(helper, thing, "1.0 + 2.0"));
-			assertEquals(new Double(2.0), evaluate(helper, thing, "6.0 / 3.0"));
-			assertEquals(new Double(6.0), evaluate(helper, thing, "2.0 * 3.0"));
-			assertEquals(new Double(-1.0), evaluate(helper, thing, "- 1.0"));
-			assertEquals(new Double(3.0), evaluate(helper, thing, "(2.0 - 5.0).abs()"));
-			assertEquals(new Double(3.0), evaluate(helper, thing, "3.0.max(2.0)"));
-			assertEquals(new Double(2.0), evaluate(helper, thing, "3.0.min(2.0)"));
+			assertEquals(1.0, evaluate(helper, thing, "3.0 - 2.0"));
+			assertEquals(3.0, evaluate(helper, thing, "1.0 + 2.0"));
+			assertEquals(2.0, evaluate(helper, thing, "6.0 / 3.0"));
+			assertEquals(6.0, evaluate(helper, thing, "2.0 * 3.0"));
+			assertEquals(-1.0, evaluate(helper, thing, "- 1.0"));
+			assertEquals(3.0, evaluate(helper, thing, "(2.0 - 5.0).abs()"));
+			assertEquals(3.0, evaluate(helper, thing, "3.0.max(2.0)"));
+			assertEquals(2.0, evaluate(helper, thing, "3.0.min(2.0)"));
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
@@ -428,12 +428,17 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertEquals(new Double(1.0), evaluate(helper, thing, "3 - 2.0"));
-			assertEquals(new Double(3.0), evaluate(helper, thing, "1 + 2.0"));
-			assertEquals(new Double(2.0), evaluate(helper, thing, "6 / 3.0"));
-			assertEquals(new Double(6.0), evaluate(helper, thing, "2 * 3.0"));
-			assertEquals(new Double(3.0), evaluate(helper, thing, "3.max(2.0)"));
-			assertEquals(new Double(2.0), evaluate(helper, thing, "3.min(2.0)"));
+			assertEquals(1.0, evaluate(helper, thing, "3 - 2.0"));
+			assertEquals(3.0, evaluate(helper, thing, "1 + 2.0"));
+			assertEquals(2.0, evaluate(helper, thing, "6 / 3.0"));
+			assertEquals(6.0, evaluate(helper, thing, "2 * 3.0"));
+			assertEquals(3.0, evaluate(helper, thing, "3.max(2.0)"));
+			assertEquals(2.0, evaluate(helper, thing, "3.min(2.0)"));
+			assertEquals(2, evaluate(helper, thing, "2.oclAsType(Integer)"));
+			assertEquals(2, evaluate(helper, thing, "2.0.oclAsType(Integer)"));
+			assertInvalid(evaluate(helper, thing, "2.5.oclAsType(Integer)"));
+			assertEquals(3.0, evaluate(helper, thing, "3.oclAsType(Real)"));
+			assertEquals(3.0, evaluate(helper, thing, "3.0.oclAsType(Real)"));
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
