@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackage.java,v 1.10.10.1 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: ExpressionsPackage.java,v 1.10.10.2 2010/01/15 07:42:25 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -38,8 +38,6 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * @see org.eclipse.ocl.expressions.ExpressionsFactory
  * @model kind="package"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface ExpressionsPackage
 		extends EPackage {
@@ -93,7 +91,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.OCLExpressionImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOCLExpression()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION = 4;
 
@@ -103,7 +100,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
@@ -113,7 +109,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
 
@@ -123,7 +118,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
@@ -134,7 +128,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.CallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCallExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP = 3;
 
@@ -144,7 +137,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -154,7 +146,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -164,7 +155,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP__PROPERTY_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -174,7 +164,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP__PROPERTY_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -184,7 +173,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP__SOURCE = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
@@ -194,7 +182,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 3;
 
@@ -205,7 +192,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.FeatureCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getFeatureCallExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP = 2;
 
@@ -215,7 +201,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP__START_POSITION = CALL_EXP__START_POSITION;
 
@@ -225,7 +210,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP__END_POSITION = CALL_EXP__END_POSITION;
 
@@ -235,7 +219,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP__PROPERTY_START_POSITION = CALL_EXP__PROPERTY_START_POSITION;
 
@@ -245,7 +228,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP__PROPERTY_END_POSITION = CALL_EXP__PROPERTY_END_POSITION;
 
@@ -255,7 +237,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP__SOURCE = CALL_EXP__SOURCE;
 
@@ -265,7 +246,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP__MARKED_PRE = CALL_EXP_FEATURE_COUNT + 0;
 
@@ -275,7 +255,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 1;
 
@@ -286,7 +265,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.NavigationCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNavigationCallExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP = 1;
 
@@ -296,7 +274,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__START_POSITION = FEATURE_CALL_EXP__START_POSITION;
 
@@ -306,7 +283,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__END_POSITION = FEATURE_CALL_EXP__END_POSITION;
 
@@ -316,7 +292,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__PROPERTY_START_POSITION = FEATURE_CALL_EXP__PROPERTY_START_POSITION;
 
@@ -326,7 +301,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__PROPERTY_END_POSITION = FEATURE_CALL_EXP__PROPERTY_END_POSITION;
 
@@ -336,7 +310,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__SOURCE = FEATURE_CALL_EXP__SOURCE;
 
@@ -346,7 +319,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__MARKED_PRE = FEATURE_CALL_EXP__MARKED_PRE;
 
@@ -356,7 +328,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__QUALIFIER = FEATURE_CALL_EXP_FEATURE_COUNT + 0;
 
@@ -366,7 +337,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
 
@@ -376,7 +346,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NAVIGATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
@@ -387,7 +356,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.AssociationClassCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getAssociationClassCallExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP = 0;
 
@@ -397,7 +365,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
 
@@ -407,7 +374,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
 
@@ -417,7 +383,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
 
@@ -427,7 +392,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
 
@@ -437,7 +401,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
 
@@ -447,7 +410,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
 
@@ -457,7 +419,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
 
@@ -467,7 +428,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
 
@@ -477,7 +437,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
 
@@ -487,7 +446,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
@@ -498,7 +456,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.LiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP = 7;
 
@@ -508,7 +465,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -518,7 +474,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -528,7 +483,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -539,7 +493,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.PrimitiveLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP = 6;
 
@@ -549,7 +502,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
 
@@ -559,7 +511,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
 
@@ -569,7 +520,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -580,7 +530,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.BooleanLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getBooleanLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP = 5;
 
@@ -590,7 +539,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP__START_POSITION = PRIMITIVE_LITERAL_EXP__START_POSITION;
 
@@ -600,7 +548,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP__END_POSITION = PRIMITIVE_LITERAL_EXP__END_POSITION;
 
@@ -610,7 +557,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -620,7 +566,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -631,7 +576,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.CollectionLiteralPartImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralPart()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART = 9;
 
@@ -641,7 +585,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
@@ -652,7 +595,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.CollectionItemImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionItem()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_ITEM = 8;
 
@@ -662,7 +604,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_ITEM__ITEM = COLLECTION_LITERAL_PART_FEATURE_COUNT + 0;
 
@@ -672,7 +613,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
 
@@ -683,7 +623,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.CollectionLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP = 10;
 
@@ -693,7 +632,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
 
@@ -703,7 +641,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
 
@@ -713,7 +650,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP__KIND = LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -723,7 +659,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP__PART = LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -733,7 +668,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP__SIMPLE_RANGE = LITERAL_EXP_FEATURE_COUNT + 2;
 
@@ -743,7 +677,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 3;
 
@@ -754,7 +687,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.CollectionRangeImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionRange()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE = 11;
 
@@ -764,7 +696,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE__FIRST = COLLECTION_LITERAL_PART_FEATURE_COUNT + 0;
 
@@ -774,7 +705,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE__LAST = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
 
@@ -784,7 +714,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 2;
 
@@ -795,7 +724,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.EnumLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getEnumLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ENUM_LITERAL_EXP = 12;
 
@@ -805,7 +733,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ENUM_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
 
@@ -815,7 +742,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ENUM_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
 
@@ -825,7 +751,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL = LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -835,7 +760,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ENUM_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -846,7 +770,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.IfExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIfExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP = 13;
 
@@ -856,7 +779,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -866,7 +788,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -876,7 +797,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP__CONDITION = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -886,7 +806,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP__THEN_EXPRESSION = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -896,7 +815,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP__ELSE_EXPRESSION = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
@@ -906,7 +824,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 3;
 
@@ -917,7 +834,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.NumericLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNumericLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NUMERIC_LITERAL_EXP = 15;
 
@@ -927,7 +843,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NUMERIC_LITERAL_EXP__START_POSITION = PRIMITIVE_LITERAL_EXP__START_POSITION;
 
@@ -937,7 +852,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NUMERIC_LITERAL_EXP__END_POSITION = PRIMITIVE_LITERAL_EXP__END_POSITION;
 
@@ -947,7 +861,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -958,7 +871,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIntegerLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP = 14;
 
@@ -968,7 +880,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP__START_POSITION = NUMERIC_LITERAL_EXP__START_POSITION;
 
@@ -978,7 +889,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP__END_POSITION = NUMERIC_LITERAL_EXP__END_POSITION;
 
@@ -988,7 +898,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -998,7 +907,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -1009,7 +917,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP = 16;
 
@@ -1019,7 +926,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP__START_POSITION = NUMERIC_LITERAL_EXP__START_POSITION;
 
@@ -1029,7 +935,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP__END_POSITION = NUMERIC_LITERAL_EXP__END_POSITION;
 
@@ -1039,7 +944,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -1049,7 +953,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -1059,7 +962,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
 
@@ -1070,7 +972,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.InvalidLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getInvalidLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP = 17;
 
@@ -1080,7 +981,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
 
@@ -1090,7 +990,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
 
@@ -1100,7 +999,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -1111,7 +1009,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.LoopExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLoopExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP = 19;
 
@@ -1121,7 +1018,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP__START_POSITION = CALL_EXP__START_POSITION;
 
@@ -1131,7 +1027,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP__END_POSITION = CALL_EXP__END_POSITION;
 
@@ -1141,7 +1036,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP__PROPERTY_START_POSITION = CALL_EXP__PROPERTY_START_POSITION;
 
@@ -1151,7 +1045,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP__PROPERTY_END_POSITION = CALL_EXP__PROPERTY_END_POSITION;
 
@@ -1161,7 +1054,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP__SOURCE = CALL_EXP__SOURCE;
 
@@ -1171,7 +1063,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP__BODY = CALL_EXP_FEATURE_COUNT + 0;
 
@@ -1181,7 +1072,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP__ITERATOR = CALL_EXP_FEATURE_COUNT + 1;
 
@@ -1191,7 +1081,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 2;
 
@@ -1202,7 +1091,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.IterateExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIterateExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP = 18;
 
@@ -1212,7 +1100,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__START_POSITION = LOOP_EXP__START_POSITION;
 
@@ -1222,7 +1109,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__END_POSITION = LOOP_EXP__END_POSITION;
 
@@ -1232,7 +1118,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__PROPERTY_START_POSITION = LOOP_EXP__PROPERTY_START_POSITION;
 
@@ -1242,7 +1127,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__PROPERTY_END_POSITION = LOOP_EXP__PROPERTY_END_POSITION;
 
@@ -1252,7 +1136,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__SOURCE = LOOP_EXP__SOURCE;
 
@@ -1262,7 +1145,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__BODY = LOOP_EXP__BODY;
 
@@ -1272,7 +1154,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__ITERATOR = LOOP_EXP__ITERATOR;
 
@@ -1282,7 +1163,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP__RESULT = LOOP_EXP_FEATURE_COUNT + 0;
 
@@ -1292,7 +1172,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 1;
 
@@ -1303,7 +1182,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.IteratorExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIteratorExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP = 21;
 
@@ -1314,7 +1192,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.LetExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLetExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP = 22;
 
@@ -1325,7 +1202,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.MessageExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getMessageExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP = 23;
 
@@ -1336,7 +1212,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.NullLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNullLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP = 24;
 
@@ -1347,7 +1222,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.OperationCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOperationCallExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP = 25;
 
@@ -1358,7 +1232,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.PropertyCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getPropertyCallExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP = 26;
 
@@ -1369,7 +1242,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.RealLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getRealLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP = 27;
 
@@ -1380,7 +1252,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.StateExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStateExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STATE_EXP = 28;
 
@@ -1391,7 +1262,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.StringLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStringLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP = 29;
 
@@ -1402,7 +1272,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP = 30;
 
@@ -1413,7 +1282,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralPart()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART = 31;
 
@@ -1424,7 +1292,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.TypeExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTypeExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_EXP = 32;
 
@@ -1435,7 +1302,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNSPECIFIED_VALUE_EXP = 33;
 
@@ -1446,7 +1312,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.VariableImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariable()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE = 20;
 
@@ -1456,7 +1321,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
@@ -1466,7 +1330,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
 
@@ -1476,7 +1339,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
@@ -1486,7 +1348,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
 
@@ -1496,7 +1357,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE__INIT_EXPRESSION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
 
@@ -1506,7 +1366,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE__REPRESENTED_PARAMETER = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
 
@@ -1516,7 +1375,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
 
@@ -1526,7 +1384,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP__START_POSITION = LOOP_EXP__START_POSITION;
 
@@ -1536,7 +1393,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP__END_POSITION = LOOP_EXP__END_POSITION;
 
@@ -1546,7 +1402,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP__PROPERTY_START_POSITION = LOOP_EXP__PROPERTY_START_POSITION;
 
@@ -1556,7 +1411,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP__PROPERTY_END_POSITION = LOOP_EXP__PROPERTY_END_POSITION;
 
@@ -1566,7 +1420,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP__SOURCE = LOOP_EXP__SOURCE;
 
@@ -1576,7 +1429,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP__BODY = LOOP_EXP__BODY;
 
@@ -1586,7 +1438,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP__ITERATOR = LOOP_EXP__ITERATOR;
 
@@ -1596,7 +1447,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 0;
 
@@ -1606,7 +1456,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -1616,7 +1465,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -1626,7 +1474,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP__IN = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -1636,7 +1483,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP__VARIABLE = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -1646,7 +1492,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
@@ -1656,7 +1501,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -1666,7 +1510,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -1676,7 +1519,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__PROPERTY_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -1686,7 +1528,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__PROPERTY_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -1696,7 +1537,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__TARGET = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
@@ -1706,7 +1546,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__ARGUMENT = OCL_EXPRESSION_FEATURE_COUNT + 3;
 
@@ -1716,7 +1555,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__CALLED_OPERATION = OCL_EXPRESSION_FEATURE_COUNT + 4;
 
@@ -1726,7 +1564,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP__SENT_SIGNAL = OCL_EXPRESSION_FEATURE_COUNT + 5;
 
@@ -1736,7 +1573,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 6;
 
@@ -1746,7 +1582,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
 
@@ -1756,7 +1591,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
 
@@ -1766,7 +1600,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -1776,7 +1609,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__START_POSITION = FEATURE_CALL_EXP__START_POSITION;
 
@@ -1786,7 +1618,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__END_POSITION = FEATURE_CALL_EXP__END_POSITION;
 
@@ -1796,7 +1627,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__PROPERTY_START_POSITION = FEATURE_CALL_EXP__PROPERTY_START_POSITION;
 
@@ -1806,7 +1636,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__PROPERTY_END_POSITION = FEATURE_CALL_EXP__PROPERTY_END_POSITION;
 
@@ -1816,7 +1645,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__SOURCE = FEATURE_CALL_EXP__SOURCE;
 
@@ -1826,7 +1654,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__MARKED_PRE = FEATURE_CALL_EXP__MARKED_PRE;
 
@@ -1836,7 +1663,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__ARGUMENT = FEATURE_CALL_EXP_FEATURE_COUNT + 0;
 
@@ -1846,7 +1672,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
 
@@ -1856,17 +1681,16 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__OPERATION_CODE = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>New Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP__NEW_REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
 
@@ -1876,7 +1700,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 4;
 
@@ -1886,7 +1709,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
 
@@ -1896,7 +1718,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
 
@@ -1906,7 +1727,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
 
@@ -1916,7 +1736,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
 
@@ -1926,7 +1745,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
 
@@ -1936,7 +1754,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
 
@@ -1946,7 +1763,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
 
@@ -1956,7 +1772,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
 
@@ -1966,7 +1781,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
 
@@ -1976,7 +1790,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
@@ -1986,7 +1799,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP__START_POSITION = NUMERIC_LITERAL_EXP__START_POSITION;
 
@@ -1996,7 +1808,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP__END_POSITION = NUMERIC_LITERAL_EXP__END_POSITION;
 
@@ -2006,7 +1817,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP__REAL_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -2016,7 +1826,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -2026,7 +1835,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STATE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -2036,7 +1844,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STATE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -2046,7 +1853,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STATE_EXP__REFERRED_STATE = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -2056,7 +1862,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STATE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -2066,7 +1871,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP__START_POSITION = PRIMITIVE_LITERAL_EXP__START_POSITION;
 
@@ -2076,7 +1880,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP__END_POSITION = PRIMITIVE_LITERAL_EXP__END_POSITION;
 
@@ -2086,7 +1889,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -2096,7 +1898,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -2106,7 +1907,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
 
@@ -2116,7 +1916,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
 
@@ -2126,7 +1925,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP__PART = LITERAL_EXP_FEATURE_COUNT + 0;
 
@@ -2136,7 +1934,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
 
@@ -2146,7 +1943,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
@@ -2156,7 +1952,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
 
@@ -2166,7 +1961,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
@@ -2176,7 +1970,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
 
@@ -2186,7 +1979,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART__VALUE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
 
@@ -2196,7 +1988,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART__ATTRIBUTE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
 
@@ -2206,7 +1997,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
 
@@ -2216,7 +2006,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -2226,7 +2015,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -2236,7 +2024,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_EXP__REFERRED_TYPE = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -2246,7 +2033,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -2256,7 +2042,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNSPECIFIED_VALUE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -2266,7 +2051,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNSPECIFIED_VALUE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -2276,7 +2060,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -2286,7 +2069,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -2296,7 +2078,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNSPECIFIED_VALUE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
@@ -2307,7 +2088,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.VariableExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariableExp()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP = 34;
 
@@ -2317,7 +2097,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
 
@@ -2327,7 +2106,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
 
@@ -2337,7 +2115,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP__REFERRED_VARIABLE = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
@@ -2347,7 +2124,6 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
@@ -2358,7 +2134,6 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.CollectionKind
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionKind()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_KIND = 35;
 
@@ -3216,8 +2991,6 @@ public interface ExpressionsPackage
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @noimplement This interface is not intended to be implemented by clients.
-	 * @noextend This interface is not intended to be extended by clients.
 	 */
 	interface Literals {
 

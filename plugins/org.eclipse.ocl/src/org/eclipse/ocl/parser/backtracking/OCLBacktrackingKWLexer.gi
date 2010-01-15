@@ -10,10 +10,11 @@
 -- * Contributors:
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLBacktrackingKWLexer.g,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+-- * $Id: OCLBacktrackingKWLexer.gi,v 1.2.2.2 2010/01/15 07:42:27 ewillink Exp $
 -- */
 --
 -- The OCL Backtracking KeyWord Lexer, which is nominally identical to the
@@ -21,14 +22,14 @@
 -- to share reliably.
 --
 
-%Options slr
-%Options fp=OCLBacktrackingKWLexer,prefix=Char_
+%options slr
+%options fp=OCLBacktrackingKWLexer,prefix=Char_
 %options noserialize
 %options package=org.eclipse.ocl.parser.backtracking
-%options template=../../lpg/KeywordTemplateD.g
+%options template=../../lpg/KeywordTemplateD.gi
 %options export_terminals=("OCLBacktrackingParsersym.java", "TK_")
 %options include_directory="..;../../lpg"
 
-$Include
-	OCLKWLexer.g
-$End
+%Import
+	OCLKWLexer.gi
+%End

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExp.java,v 1.7.10.1 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: OperationCallExp.java,v 1.7.10.2 2010/01/15 07:42:26 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -40,8 +40,6 @@ import org.eclipse.ocl.library.OCLType;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getOperationCallExp()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface OperationCallExp<C, O>
 		extends FeatureCallExp<C> {

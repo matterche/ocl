@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsFactory.java,v 1.7 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: ExpressionsFactory.java,v 1.7.10.1 2010/01/15 07:42:25 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -26,8 +26,6 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.expressions.ExpressionsPackage
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface ExpressionsFactory
 		extends EFactory {

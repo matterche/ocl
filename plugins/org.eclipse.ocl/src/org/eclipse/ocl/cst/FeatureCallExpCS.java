@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpCS.java,v 1.4 2009/10/15 19:37:46 ewillink Exp $
+ * $Id: FeatureCallExpCS.java,v 1.4.4.1 2010/01/15 07:42:28 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -36,8 +36,6 @@ import org.eclipse.emf.common.util.EList;
  * @see org.eclipse.ocl.cst.CSTPackage#getFeatureCallExpCS()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface FeatureCallExpCS
 		extends CallExpCS {

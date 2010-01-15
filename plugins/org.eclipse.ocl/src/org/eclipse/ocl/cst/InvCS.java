@@ -11,7 +11,7 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 243976
  *
- * $Id: InvCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: InvCS.java,v 1.3.10.1 2010/01/15 07:42:28 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -30,8 +30,6 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getInvCS()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface InvCS
 		extends InvOrDefCS {

@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLBacktrackingParser.g,v 1.2 2009/10/15 19:41:25 ewillink Exp $
+-- * $Id: OCLBacktrackingParser.g,v 1.2.4.1 2010/01/15 07:42:27 ewillink Exp $
 -- */
 --
 -- The OCL Backtracking Parser
@@ -33,27 +33,28 @@
 %options backtrack
 %options noserialize
 %options package=org.eclipse.ocl.parser.backtracking
-%options import_terminals=OCLBacktrackingLexer.g
+%options import_terminals=OCLBacktrackingLexer.gi
 %options ast_type=CSTNode
 %options programming_language=java
-%options action=("*.java", "/.", "./")
-%options ParseTable=lpg.lpgjavaruntime.ParseTable
+%options action-block=("*.java", "/.", "./")
+%options ParseTable=lpg.runtime.ParseTable
 %options include_directory=".;..;../../lpg"
 
-$Include
-	OCLParserErrors.g
-$End
+%Import
+	OCLParserErrors.gi
+%End
 
-$Globals
+%Globals
 	/.
 		import org.eclipse.ocl.parser.AbstractOCLParser;
 	./
-$End
+%End
 
-$Define
+%Define
 	$lex_stream_class /.OCLBacktrackingLexer./
 	$prs_parser_class /.BacktrackingParser./
 	$prs_parser_exception /.NotBacktrackParseTableException./
 	$prs_parser_throw /.throw new RuntimeException("****Error: Regenerate $prs_type.java with -BACKTRACK option")./
+	$prs_fuzzy_parse_call/.fuzzyParse./
 	$prs_parse_args /.error_repair_count./
-$End
+%End
