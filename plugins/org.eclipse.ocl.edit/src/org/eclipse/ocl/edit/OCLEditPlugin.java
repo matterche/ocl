@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLEditPlugin.java,v 1.1.4.1 2010/01/14 21:33:26 ewillink Exp $
+ * $Id: OCLEditPlugin.java,v 1.1.4.2 2010/01/15 17:27:30 ewillink Exp $
  */
 package org.eclipse.ocl.edit;
 
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.ocl.library.provider.OCLLibraryEditPlugin;
 
 /**
@@ -51,7 +52,8 @@ public final class OCLEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public OCLEditPlugin() {
-		super(new ResourceLocator[] { OCLLibraryEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+				OCLLibraryEditPlugin.INSTANCE, });
 	}
 
 	/**
