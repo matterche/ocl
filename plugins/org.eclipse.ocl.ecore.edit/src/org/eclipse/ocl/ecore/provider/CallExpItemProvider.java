@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpItemProvider.java,v 1.1 2009/10/30 18:58:09 ewillink Exp $
+ * $Id: CallExpItemProvider.java,v 1.1.4.1 2010/01/15 07:41:30 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -148,6 +148,16 @@ public class CallExpItemProvider extends OCLExpressionItemProvider implements
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

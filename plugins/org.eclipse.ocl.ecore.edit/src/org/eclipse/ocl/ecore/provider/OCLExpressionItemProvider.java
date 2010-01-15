@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionItemProvider.java,v 1.1 2009/10/30 18:58:01 ewillink Exp $
+ * $Id: OCLExpressionItemProvider.java,v 1.1.4.1 2010/01/15 07:41:29 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -117,6 +117,16 @@ public class OCLExpressionItemProvider extends ETypedElementItemProvider
 						UtilitiesPackage.Literals.AST_NODE__END_POSITION, true,
 						false, false,
 						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

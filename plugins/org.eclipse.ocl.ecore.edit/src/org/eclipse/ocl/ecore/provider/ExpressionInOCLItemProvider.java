@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOCLItemProvider.java,v 1.2 2009/12/06 18:31:01 ewillink Exp $
+ * $Id: ExpressionInOCLItemProvider.java,v 1.2.2.1 2010/01/15 07:41:29 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -43,6 +43,7 @@ import org.eclipse.ocl.ecore.edit.OCLEcoreEditPlugin;
 
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 
+import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.types.TypesFactory;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
@@ -130,6 +131,16 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/ExpressionInOCL")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -559,10 +570,6 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				EcoreFactory.eINSTANCE.createVariableExp()));
 
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
-
 		newChildDescriptors
 				.add(createChildParameter(
 						UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -596,6 +603,10 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
 
 		newChildDescriptors
 				.add(createChildParameter(
@@ -796,6 +807,58 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLType()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLConstraintProperty()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLGenericType()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLInvalidType()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLLibraryOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createLibraryOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLLibraryProperty()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLMetaModelOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLMetaModelProperty()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLVoidType()));
 	}
 
 	/**

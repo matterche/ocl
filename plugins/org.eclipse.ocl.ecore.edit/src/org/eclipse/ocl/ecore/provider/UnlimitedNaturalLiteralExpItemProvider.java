@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpItemProvider.java,v 1.1 2009/10/30 18:58:12 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpItemProvider.java,v 1.1.4.1 2010/01/15 07:41:30 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -124,6 +124,16 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/UnlimitedNaturalLiteralExp")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

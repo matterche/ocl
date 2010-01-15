@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartItemProvider.java,v 1.2 2009/12/06 18:32:02 ewillink Exp $
+ * $Id: TupleLiteralPartItemProvider.java,v 1.2.2.1 2010/01/15 07:41:30 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -47,6 +47,7 @@ import org.eclipse.ocl.ecore.edit.OCLEcoreEditPlugin;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 
+import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.types.TypesFactory;
 
 import org.eclipse.ocl.utilities.UtilitiesPackage;
@@ -213,6 +214,16 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/TupleLiteralPart")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -622,10 +633,6 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				EcoreFactory.eINSTANCE.createVariableExp()));
 
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
-
 		newChildDescriptors
 				.add(createChildParameter(
 						ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -659,6 +666,10 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
 
 		newChildDescriptors
 				.add(createChildParameter(
@@ -859,6 +870,58 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLParameter()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLConstraintProperty()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLGenericType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLInvalidType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLLibraryOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createLibraryOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLLibraryProperty()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLMetaModelOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLMetaModelProperty()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLVoidType()));
 	}
 
 	/**

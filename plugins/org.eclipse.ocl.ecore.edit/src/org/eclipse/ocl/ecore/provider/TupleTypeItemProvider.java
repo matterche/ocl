@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeItemProvider.java,v 1.1 2009/10/30 18:57:43 ewillink Exp $
+ * $Id: TupleTypeItemProvider.java,v 1.1.4.1 2010/01/15 07:41:28 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -104,6 +104,16 @@ public class TupleTypeItemProvider extends EClassItemProvider implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/TupleType")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

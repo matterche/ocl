@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpItemProvider.java,v 1.1 2009/10/30 18:57:47 ewillink Exp $
+ * $Id: OperationCallExpItemProvider.java,v 1.1.4.1 2010/01/15 07:41:28 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -73,6 +73,7 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 
 			addReferredOperationPropertyDescriptor(object);
 			addOperationCodePropertyDescriptor(object);
+			addNewReferredOperationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -117,6 +118,25 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the New Referred Operation feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNewReferredOperationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_OperationCallExp_newReferredOperation_feature"), //$NON-NLS-1$
+						getString(
+								"_UI_PropertyDescriptor_description", "_UI_OperationCallExp_newReferredOperation_feature", "_UI_OperationCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						ExpressionsPackage.Literals.OPERATION_CALL_EXP__NEW_REFERRED_OPERATION,
+						true, false, true, null, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -158,6 +178,16 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/OperationCallExp")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
