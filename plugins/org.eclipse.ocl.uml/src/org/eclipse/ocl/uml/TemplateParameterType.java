@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterType.java,v 1.1 2009/12/06 18:17:24 ewillink Exp $
+ * $Id: TemplateParameterType.java,v 1.1.2.1 2010/01/15 07:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -38,8 +38,6 @@ import org.eclipse.uml2.uml.Type;
  * @see org.eclipse.ocl.uml.UMLPackage#getTemplateParameterType()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface TemplateParameterType
 		extends Classifier,

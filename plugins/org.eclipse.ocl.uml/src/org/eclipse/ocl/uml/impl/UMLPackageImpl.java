@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.12.2.1 2010/01/03 22:51:35 ewillink Exp $
+ * $Id: UMLPackageImpl.java,v 1.12.2.2 2010/01/15 07:40:51 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.uml.AnyType;
@@ -499,7 +498,6 @@ public class UMLPackageImpl
 		UtilitiesPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();
 		org.eclipse.uml2.uml.UMLPackage.eINSTANCE.eClass();
-		LibraryPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theUMLPackage.createPackageContents();
@@ -1878,7 +1876,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createSubsetsAnnotations() {
-		String source = "subsets"; //$NON-NLS-1$	    
+		String source = "subsets"; //$NON-NLS-1$		
 		addAnnotation(getAnyType_OwnedOperation(), source, new String[]{},
 			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
 				.appendFragment("//Classifier/feature") //$NON-NLS-1$
@@ -1917,7 +1915,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$							    
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$								
 		addAnnotation(expressionInOCLEClass, source, new String[]{
 			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
 		});
@@ -1933,7 +1931,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$									    
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$										
 		addAnnotation(oclExpressionEClass, source, new String[]{
 			"constraints", "has_type" //$NON-NLS-1$ //$NON-NLS-2$
 		});

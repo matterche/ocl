@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.3 2008/11/30 22:06:24 cdamus Exp $
+ * $Id: LoopExp.java,v 1.3.10.1 2010/01/15 07:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -29,8 +29,6 @@ import org.eclipse.uml2.uml.Parameter;
  * @see org.eclipse.ocl.uml.UMLPackage#getLoopExp()
  * @model abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface LoopExp
 		extends CallExp,

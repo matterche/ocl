@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCL.java,v 1.5 2008/11/30 22:06:24 cdamus Exp $
+ * $Id: ExpressionInOCL.java,v 1.5.10.1 2010/01/15 07:40:47 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -30,8 +30,6 @@ import org.eclipse.uml2.uml.Parameter;
  * @see org.eclipse.ocl.uml.UMLPackage#getExpressionInOCL()
  * @model extendedMetaData="name='ExpressionInOcl'"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface ExpressionInOCL
 		extends OpaqueExpression,
