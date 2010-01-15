@@ -13,10 +13,11 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.9 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.9.10.1 2010/01/15 17:27:21 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.math.BigInteger;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -63,7 +64,7 @@ public class IntegerLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
+	protected static final BigInteger INTEGER_SYMBOL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
@@ -73,7 +74,7 @@ public class IntegerLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
+	protected BigInteger integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,20 +97,22 @@ public class IntegerLiteralExpImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer getIntegerSymbol() {
+	public BigInteger getIntegerSymbol() {
 		return integerSymbol;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIntegerSymbol(Integer newIntegerSymbol) {
-		Integer oldIntegerSymbol = integerSymbol;
+	public void setIntegerSymbol(BigInteger newIntegerSymbol) {
+		BigInteger oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -126,6 +129,15 @@ public class IntegerLiteralExpImpl
 			Map<Object, Object> context) {
 		return IntegerLiteralExpOperations.checkIntegerType(this, diagnostics,
 			context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setIntegerSymbol(Integer value) {
+		setIntegerSymbol(BigInteger.valueOf(value));
 	}
 
 	/**
@@ -151,7 +163,7 @@ public class IntegerLiteralExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
-				setIntegerSymbol((Integer) newValue);
+				setIntegerSymbol((BigInteger) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

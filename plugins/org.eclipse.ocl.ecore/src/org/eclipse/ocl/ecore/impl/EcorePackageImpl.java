@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.13.2.2 2010/01/15 07:40:09 ewillink Exp $
+ * $Id: EcorePackageImpl.java,v 1.13.2.3 2010/01/15 17:27:21 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -518,7 +518,6 @@ public class EcorePackageImpl
 		isInited = true;
 
 		// Initialize simple dependencies
-		org.eclipse.emf.ecore.EcorePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		UtilitiesPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();

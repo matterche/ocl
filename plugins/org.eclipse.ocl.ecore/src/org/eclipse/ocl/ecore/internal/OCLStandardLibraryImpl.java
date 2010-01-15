@@ -13,11 +13,13 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.9.6.2 2010/01/03 22:52:05 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.9.6.3 2010/01/15 17:27:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 
@@ -344,8 +346,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		
 		OCL_BOOLEAN.setInstanceClass(Boolean.class);
 		OCL_STRING.setInstanceClass(String.class);
-		OCL_INTEGER.setInstanceClass(Integer.class);
-		OCL_REAL.setInstanceClass(Double.class);
+		OCL_INTEGER.setInstanceClass(BigInteger.class);
+		OCL_REAL.setInstanceClass(BigDecimal.class);
 		
 		register(OCL_ANY).getEOperations().addAll(
             OCLStandardLibraryUtil.createAnyTypeOperations(env));

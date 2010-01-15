@@ -13,28 +13,26 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.8 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.8.10.1 2010/01/15 17:27:21 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
-//import org.eclipse.emf.common.util.BasicDiagnostic;
-//import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-//import org.eclipse.emf.ecore.plugin.EcorePlugin;
-//import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.RealLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-
-//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.RealLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -63,7 +61,7 @@ public class RealLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Double REAL_SYMBOL_EDEFAULT = null;
+	protected static final BigDecimal REAL_SYMBOL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
@@ -73,7 +71,7 @@ public class RealLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected Double realSymbol = REAL_SYMBOL_EDEFAULT;
+	protected BigDecimal realSymbol = REAL_SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,20 +104,22 @@ public class RealLiteralExpImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Double getRealSymbol() {
+	public BigDecimal getRealSymbol() {
 		return realSymbol;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRealSymbol(Double newRealSymbol) {
-		Double oldRealSymbol = realSymbol;
+	public void setRealSymbol(BigDecimal newRealSymbol) {
+		BigDecimal oldRealSymbol = realSymbol;
 		realSymbol = newRealSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -136,6 +136,15 @@ public class RealLiteralExpImpl
 			Map<Object, Object> context) {
 		return RealLiteralExpOperations.checkRealType(this, diagnostics,
 			context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setRealSymbol(Double value) {
+		setRealSymbol(new BigDecimal(value));
 	}
 
 	/**
@@ -161,7 +170,7 @@ public class RealLiteralExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL :
-				setRealSymbol((Double) newValue);
+				setRealSymbol((BigDecimal) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
