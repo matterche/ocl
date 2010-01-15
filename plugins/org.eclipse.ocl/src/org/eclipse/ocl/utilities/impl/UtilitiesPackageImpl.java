@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackageImpl.java,v 1.11.2.1 2010/01/03 22:53:51 ewillink Exp $
+ * $Id: UtilitiesPackageImpl.java,v 1.11.2.2 2010/01/15 07:47:24 ewillink Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 
@@ -967,7 +967,7 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$	    
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
 		addAnnotation(expressionInOCLEClass, source, new String[]{
 			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
 		});

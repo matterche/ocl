@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.5.10.3 2010/01/14 21:33:16 ewillink Exp $
+ * $Id: PredefinedType.java,v 1.5.10.4 2010/01/15 07:47:24 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -29,8 +29,6 @@ import org.eclipse.ocl.Environment;
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getPredefinedType()
  * @model interface="true" abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface PredefinedType<O>
 		extends EObject {

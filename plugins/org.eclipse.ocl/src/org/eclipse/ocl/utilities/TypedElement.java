@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypedElement.java,v 1.8 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: TypedElement.java,v 1.8.10.1 2010/01/15 07:47:24 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -27,8 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getTypedElement()
  * @model interface="true" abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface TypedElement<C>
 		extends EObject {
