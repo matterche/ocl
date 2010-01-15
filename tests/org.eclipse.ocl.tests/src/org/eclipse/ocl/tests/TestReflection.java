@@ -8,11 +8,12 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Ed Willink - Bug 254919; Initial API and implementation
+ *   E.D.Willink - Initial API and implementation
+ *   E.D.Willink - Bug 254919, 296409
  *
  * </copyright>
  *
- * $Id: TestReflection.java,v 1.1.2.1 2009/12/14 22:02:06 ewillink Exp $
+ * $Id: TestReflection.java,v 1.1.2.2 2010/01/15 07:40:26 ewillink Exp $
  */
 package org.eclipse.ocl.tests;
 

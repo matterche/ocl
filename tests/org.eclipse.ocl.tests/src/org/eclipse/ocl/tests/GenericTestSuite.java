@@ -10,12 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
- *   Ed Willink - Bug 254919
+ *   E.D.Willink - Bug 254919, 296409, 298634
  *   Obeo - Bug 291310
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.3.2.2 2010/01/03 22:48:51 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.3.2.3 2010/01/15 07:40:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -27,7 +27,7 @@ import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
@@ -76,7 +76,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	// set this variable true when testing for memory leaks
     private static boolean DISPOSE_RESOURCE_SET = false;
 	
-    protected static final class CheckedTestSuite extends TestSuite {
+    public static final class CheckedTestSuite extends TestSuite {
 
 		public CheckedTestSuite(String name) {
 			super(name);
@@ -109,7 +109,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
     }
 
     public static <T> Set<T> createOrderedSet(T... elements) {
-    	Set<T> collection = new LinkedHashSet<T>();
+    	Set<T> collection = CollectionUtil.createNewOrderedSet();
     	if (elements != null) {
     		for (T element : elements) {
     			collection.add(element);
@@ -119,7 +119,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
     }
 
     public static <T> List<T> createSequence(T... elements) {
-    	List<T> collection = new ArrayList<T>();
+    	List<T> collection = CollectionUtil.createNewSequence();
     	if (elements != null) {
     		for (T element : elements) {
     			collection.add(element);
@@ -129,7 +129,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
     }
 
     public static <T> Set<T> createSet(T... elements) {
-    	Set<T> collection = new HashSet<T>();
+    	Set<T> collection = CollectionUtil.createNewSet();
     	if (elements != null) {
     		for (T element : elements) {
     			collection.add(element);
@@ -320,6 +320,16 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		try {
 			Object value = evaluate(helper, context, denormalized);
 			assertEquals(denormalized, expected, value);
+			if (expected instanceof LinkedHashSet) {
+				assertTrue(denormalized, value instanceof LinkedHashSet);
+				Iterator<?> es = ((LinkedHashSet<?>)expected).iterator();
+				Iterator<?> vs = ((LinkedHashSet<?>)value).iterator();
+				while (es.hasNext()) {
+					Object e = es.next();
+					Object v = vs.next();
+					assertEquals(denormalized, e, v);
+				}
+			}
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());

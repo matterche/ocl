@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2006, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Bug 296409, 297541
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.1 2009/12/14 22:02:06 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.2 2010/01/15 07:40:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -21,7 +22,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -57,13 +57,13 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
         // pkg1
-        //  pkg2
-        //   jim
-        //  bob
-        //  pkg3
-        //   pkg4
-        //   pkg5
-        //    george
+        // pkg1::pkg2
+        // pkg1::pkg2::jim
+        // pkg1::bob
+        // pkg1::pkg3
+        // pkg1::pkg3::pkg4
+        // pkg1::pkg3::pkg5
+        // pkg1::pkg3::pkg5::george
 
         pkg1 = reflection.createPackage("pkg1");
         pkg2 = reflection.createNestedPackage(pkg1, "pkg2");
@@ -96,8 +96,9 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
      * Tests the select() iterator.
      */
 	public void test_select() {
+		boolean isOrdered = reflection.isOrdered("nestedPackage");
 	    @SuppressWarnings("unchecked")
-        Set<PK> expected = createSet(pkg2, pkg3);
+        Collection<PK> expected = createCollection(isOrdered, true, pkg2, pkg3);
 
         // complete form
         assertQueryEquals(pkg1, expected, "%nestedPackage->select(p : %Package | p.name <> 'bob')");
@@ -108,16 +109,18 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         // shortest form
         assertQueryEquals(pkg1, expected, "%nestedPackage->select(name <> 'bob')");
 
-        LinkedHashSet<PK> expected2 = new LinkedHashSet<PK>(reflection.getNestedPackages(pkg1));
-        assertQueryEquals(pkg1, expected2, "%nestedPackage->select(true)");
+        expected.clear();
+        expected.addAll(reflection.getNestedPackages(pkg1));
+        assertQueryEquals(pkg1, expected, "%nestedPackage->select(true)");
     }
 
     /**
      * Tests the reject() iterator.
      */
     public void test_reject() {
+		boolean isOrdered = reflection.isOrdered("nestedPackage");
 	    @SuppressWarnings("unchecked")
-        Set<PK> expected = createSet(pkg2, pkg3);
+        Collection<PK> expected = createCollection(isOrdered, true, pkg2, pkg3);
 
         // complete form
         assertQueryEquals(pkg1, expected, "%nestedPackage->reject(p : %Package | p.name = 'bob')");
@@ -128,8 +131,8 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         // shortest form
         assertQueryEquals(pkg1, expected, "%nestedPackage->reject(name = 'bob')");
 
-        LinkedHashSet<PK> expected2 = new LinkedHashSet<PK>();
-        assertQueryEquals(pkg1, expected2, "%nestedPackage->reject(true)");
+        expected.clear();
+        assertQueryEquals(pkg1, expected, "%nestedPackage->reject(true)");
     }
 
     /**
@@ -332,18 +335,27 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
      * Tests the closure() iterator.
      */
     public void test_closure() {
+    	boolean nestedIsOrdered = reflection.isOrdered("nestedPackage"); // Ecore and UML differ here
+    	boolean nestingIsOrdered = reflection.isOrdered("nestingPackage");
 	    @SuppressWarnings("unchecked")
-        Set<PK> expected1 = createSet(pkg1, pkg3, pkg5); // closure does not include self (george)
+        Collection<PK> expected1 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5); // closure does not include self (george)
         assertQueryEquals(george, expected1, "self->closure(%nestingPackage)");
 
 	    @SuppressWarnings("unchecked")
-        Set<PK> expected2 = createSet(pkg2, pkg3, pkg4, pkg5, jim, bob, george);
+	    Collection<PK> expected2 = createCollection(nestedIsOrdered, true, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage->asSequence())");
+	    @SuppressWarnings("unchecked")
+	    Collection<PK> expected3 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
-	    @SuppressWarnings("unchecked")
-        Set<PK> expected3 = createSet();
-        assertQueryEquals(pkg1, expected3, "self->closure(%nestingPackage)");
+        Collection<PK> expected4 = createCollection(nestingIsOrdered, true);
+        assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
+        // empty closure
+        assertQueryEquals(pkg1, expected4, "self->asSequence()->closure(%nestingPackage)");
     }
 
     /**
@@ -541,6 +553,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
     	Set<Integer> e1 = Collections.singleton(new Integer(1));
     	Object e2 = getNull();
     	Set<Integer> e3 = Collections.singleton(new Integer(3));
+        @SuppressWarnings("unchecked")
         Collection<? extends Object> expected = createBag(e1, e2, e3);
         assertQueryEquals(EcorePackage.eINSTANCE, expected,
             "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)");
