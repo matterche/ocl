@@ -8,11 +8,12 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Ed Willink - Bug 254919; Initial API and implementation
+ *   E.D.Willink - Initial API and implementation
+ *   E.D.Willink - Bug 254919, 296409
  *
  * </copyright>
  *
- * $Id: EcoreTestReflection.java,v 1.1.2.1 2009/12/14 22:03:04 ewillink Exp $
+ * $Id: EcoreTestReflection.java,v 1.1.2.2 2010/01/15 07:39:55 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 
@@ -65,8 +66,6 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 {
 	public static final EcoreTestReflection INSTANCE = new EcoreTestReflection();
 	public static final String PLUGIN_ID = "org.eclipse.ocl.ecore.tests";
-	
-//	private static Map<URI, URI> uriMap;		
 
 	public static OCL createOCL() {
 		OCL newInstance = OCL.newInstance();
@@ -76,6 +75,9 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 		return newInstance;
 	}
 	
+	/**
+	 * Map of %Key to value for denormalizing OCL test code.
+	 */
 	private Map<String, String> normalizers = null;
 
 	public void addSupertype(EClass aClass, EClass superClass) {
@@ -195,6 +197,7 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 			normalizers.put("Reference", "EReference");
 			normalizers.put("String", "EString");
 			normalizers.put("Type", "EClassifier");
+			normalizers.put("container", "eContainer");
 			normalizers.put("nestedPackage", "eSubpackages");
 			normalizers.put("nestingPackage", "eSuperPackage");
 			normalizers.put("opposite", "eOpposite");

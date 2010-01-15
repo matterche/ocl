@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Ed Willink - Bug 296409
+ *   E.D.Willink - Bug 283509, 296409
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.3.4.1 2009/12/14 22:03:04 ewillink Exp $
+ * $Id: KeywordsTest.java,v 1.3.4.2 2010/01/15 07:39:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2006, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Bug 296409
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.9.2.1 2009/12/14 22:03:04 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.9.2.2 2010/01/15 07:39:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -55,8 +56,8 @@ EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAc
      */
 	@Override
 	public void test_sortedByRequiresComparability_192729() {
-    	EClassifier context = getMetaclass(denormalize("%Package"));
     	super.test_sortedByRequiresComparability_192729();
+    	EClassifier context = getMetaclass(denormalize("%Package"));
         
         // EDate defines '<' by having a Comparable instance class
         assertQuery(context, "let dates : Sequence(%Date) = Sequence{} in dates->sortedBy(e | e)");

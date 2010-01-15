@@ -10,11 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
- *   Ed Willink - Bug 254919
+ *   Ed Willink - Bug 254919, 298634
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.24.2.2 2010/01/03 22:47:58 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.24.2.3 2010/01/15 07:39:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -23,8 +23,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collections;
-
-import junit.framework.Test;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -103,20 +101,17 @@ public abstract class AbstractTestSuite
 	protected final OCLFactory oclFactory = OCLFactoryImpl.INSTANCE;
 
 	/**
-	 * Creates the test suite.
+	 * Adds parser-style independent tests to the test suite.
 	 * 
-	 * @return the suite
+	 * @param the suite
 	 */
-	public static Test suite() {
-		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for Ecore Metamodel");
-		
+	public static void suite(CheckedTestSuite result) {
 		result.createTestSuite(EvaluateOclAnyOperationsTest.class, "Evaluate OclAny Operations Tests");
 		result.createTestSuite(EvaluateBooleanOperationsTest.class, "Evaluate Boolean Operations Tests");
 		result.createTestSuite(EvaluateNumericOperationsTest.class, "Evaluate Numeric Operations Tests");
 		result.createTestSuite(EvaluateStringOperationsTest.class, "Evaluate String Operations Tests");
 
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
-
 		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests");
 		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
         result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests");
@@ -150,13 +145,15 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests");
 		result.createTestSuite(SerializationTest.class, "Serialization Tests");
 		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests");
-		
-		String repairs = System.getProperty("org.eclipse.ocl.ecore.tests.repairs");
-		if (repairs != null) {
-			result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests");
-		}
-		
-		return result;
+	}
+	
+	/**
+	 * Adds backtracking tests to the test suite.
+	 * 
+	 * @param the suite
+	 */
+	public static void suiteBacktracking(CheckedTestSuite result) {
+		result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests");
 	}
 	
 	//
