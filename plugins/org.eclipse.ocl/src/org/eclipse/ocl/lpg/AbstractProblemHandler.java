@@ -13,11 +13,11 @@
  *
  * </copyright>
  *
- * $Id: AbstractProblemHandler.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: AbstractProblemHandler.java,v 1.1.12.1 2010/01/15 07:46:38 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
-import lpg.lpgjavaruntime.ParseErrorCodes;
+import lpg.runtime.ParseErrorCodes;
 
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
