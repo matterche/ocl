@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageExpOperations.java,v 1.4.8.1 2010/01/03 22:53:51 ewillink Exp $
+ * $Id: MessageExpOperations.java,v 1.4.8.2 2010/01/15 07:45:23 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 

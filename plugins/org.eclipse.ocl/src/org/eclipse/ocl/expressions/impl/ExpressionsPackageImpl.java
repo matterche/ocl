@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.11.10.1 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.11.10.2 2010/01/15 07:45:23 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -2577,7 +2577,7 @@ public class ExpressionsPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$	    
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
 		addAnnotation(oclExpressionEClass, source, new String[]{
 			"name", "OclExpression" //$NON-NLS-1$ //$NON-NLS-2$
 		});
