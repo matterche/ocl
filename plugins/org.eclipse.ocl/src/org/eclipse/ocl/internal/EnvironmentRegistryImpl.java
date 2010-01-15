@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.5 2009/11/04 19:44:06 aigdalov Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.5.4.1 2010/01/15 07:46:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal;
@@ -66,7 +66,7 @@ public class EnvironmentRegistryImpl implements Registry {
 	Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getEnvironmentFor(
 			Object abstractSyntaxElement) {
 		
-		if (abstractSyntaxElement instanceof TypedElement) {
+		if (abstractSyntaxElement instanceof TypedElement<?>) {
 			return getEnvironmentFor(((TypedElement<?>) abstractSyntaxElement).getType());
 		}
 		
@@ -83,7 +83,7 @@ public class EnvironmentRegistryImpl implements Registry {
 				}
 			}
 			
-			if (next instanceof Environment) {
+			if (next instanceof Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
 				Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
 					(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) next;
 				UMLReflection<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> uml = env.getUMLReflection();
