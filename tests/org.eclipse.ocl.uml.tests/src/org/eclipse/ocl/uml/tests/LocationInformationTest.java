@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.7 2009/11/28 18:08:08 ewillink Exp $
+ * $Id: LocationInformationTest.java,v 1.7.2.1 2010/01/15 07:40:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -611,12 +611,12 @@ public class LocationInformationTest
 
 		@SuppressWarnings("unchecked")
 		private boolean isExempt(OCLExpression<Classifier> expr) {
-			if (expr instanceof VariableExp) {
+			if (expr instanceof VariableExp<?, ?>) {
 				return isImplicit(((VariableExp<Classifier, Parameter>) expr).getReferredVariable());
 			}
 
-			return (expr instanceof CollectionLiteralExp)
-				|| (expr instanceof CollectionLiteralPart);
+			return (expr instanceof CollectionLiteralExp<?>)
+				|| (expr instanceof CollectionLiteralPart<?>);
 		}
 
 		private boolean isImplicit(Variable<Classifier, Parameter> vdecl) {

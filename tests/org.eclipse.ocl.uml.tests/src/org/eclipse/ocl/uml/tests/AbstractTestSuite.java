@@ -11,11 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 245897, 179990
  *   Radek Dvorak - Bug 261128
- *   Ed Willink - Bug 254919
+ *   Ed Willink - Bug 254919, 298634
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.21.2.1 2010/01/03 22:48:01 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.21.2.2 2010/01/15 07:40:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -142,13 +142,11 @@ public abstract class AbstractTestSuite
 	protected Operation util_processSequence;
 
 	/**
-	 * Creates the test suite.
+	 * Adds parser-style independent tests to the test suite.
 	 * 
-	 * @return the suite
+	 * @param the suite
 	 */
-	public static CheckedTestSuite suite() {
-		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel");
-		
+	public static void suite(CheckedTestSuite result) {
 		result.createTestSuite(EvaluateOclAnyOperationsTest.class, "Evaluate OclAny Operations Tests");
 		result.createTestSuite(EvaluateBooleanOperationsTest.class, "Evaluate Boolean Operations Tests");
 		result.createTestSuite(EvaluateNumericOperationsTest.class, "Evaluate Numeric Operations Tests");
@@ -183,8 +181,15 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests");
 		result.createTestSuite(SerializationTest.class, "Serialization Tests");
 		result.createTestSuite(EvaluationHaltedTest.class, "UML Halted Evaluation Tests");
+	}
 		
-		return result;
+	/**
+	 * Adds backtracking tests to the test suite.
+	 * 
+	 * @param the suite
+	 */
+	public static void suiteBacktracking(CheckedTestSuite result) {
+		result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests");
 	}
 	
 	//
