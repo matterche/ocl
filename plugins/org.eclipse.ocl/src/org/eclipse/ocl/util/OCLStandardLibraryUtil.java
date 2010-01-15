@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.3 2010/01/03 23:41:16 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.4 2010/01/15 07:47:00 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -2154,14 +2154,14 @@ public final class OCLStandardLibraryUtil {
 	 * @since 1.3
 	 */
 	@SuppressWarnings("unchecked")
-	public static <C, O> Collection<C> getAllSupertypes(
-			Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
+	public static <C> Collection<C> getAllSupertypes(
+			Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
 			PredefinedType<?> type) {
 
 		Collection<C> result;
 		OCLStandardLibrary<C> stdlib = env.getOCLStandardLibrary();
 
-		if (type instanceof CollectionType) {
+		if (type instanceof CollectionType<?, ?>) {
 			CollectionType<?, ?> collType = (CollectionType<?, ?>) type;
 
 			switch (collType.getKind()) {
@@ -2178,7 +2178,7 @@ public final class OCLStandardLibraryUtil {
 			}
 		} else if (type == stdlib.getInteger()) {
 			result = Arrays.asList(stdlib.getReal(), stdlib.getOclAny());
-		} else if (type instanceof AnyType) {
+		} else if (type instanceof AnyType<?>) {
 			result = Collections.emptySet();
 		} else {
 			result = Collections.singleton(stdlib.getOclAny());

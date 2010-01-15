@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.11.2.1 2010/01/03 22:53:51 ewillink Exp $
+ * $Id: TypesPackageImpl.java,v 1.11.2.2 2010/01/15 07:47:00 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -864,7 +864,7 @@ public class TypesPackageImpl
 	 * @generated
 	 */
 	protected void createDuplicatesAnnotations() {
-		String source = "duplicates"; //$NON-NLS-1$	    
+		String source = "duplicates"; //$NON-NLS-1$		
 		addAnnotation(bagTypeEClass, source, new String[]{});
 		addAnnotation(orderedSetTypeEClass, source, new String[]{});
 		addAnnotation(sequenceTypeEClass, source, new String[]{});
