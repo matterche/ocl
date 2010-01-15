@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCSImpl.java,v 1.6.4.1 2010/01/14 21:33:15 ewillink Exp $
+ * $Id: PathNameCSImpl.java,v 1.6.4.2 2010/01/15 07:45:07 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
