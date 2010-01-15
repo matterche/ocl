@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackage.java,v 1.10.2.2 2010/01/15 07:40:49 ewillink Exp $
+ * $Id: UMLPackage.java,v 1.10.2.3 2010/01/15 17:27:28 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -9617,15 +9617,14 @@ public interface UMLPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__END_POSITION = NUMERIC_LITERAL_EXP__END_POSITION;
 
 	/**
-	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
+	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.16 2009/09/01 20:11:00 ewillink Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.16.6.1 2010/01/15 17:27:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -49,6 +49,7 @@ import org.eclipse.ocl.uml.options.UMLEvaluationOptions;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.uml2.common.util.UML2Util;
@@ -787,7 +788,7 @@ public class UMLEvaluationEnvironment
 
             if (index >= 0) {
                 Object actualValue = getValue(slot);
-
+                actualValue = ObjectUtil.normalise(actualValue);
                 if (UML2Util.safeEquals(actualValue, values.get(index))) {
                     found++;
                 }
