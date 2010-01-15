@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeItemProvider.java,v 1.1 2009/10/30 18:47:59 ewillink Exp $
+ * $Id: AnyTypeItemProvider.java,v 1.1.4.1 2010/01/15 07:41:14 ewillink Exp $
  */
 package org.eclipse.ocl.types.provider;
 
@@ -78,6 +78,16 @@ public class AnyTypeItemProvider extends ItemProviderAdapter implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/AnyType")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
