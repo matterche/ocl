@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreSwitch.java,v 1.10 2009/12/06 18:16:10 ewillink Exp $
+ * $Id: EcoreSwitch.java,v 1.10.2.1 2010/01/15 07:40:09 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.ocl.ecore.*;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.BagType;

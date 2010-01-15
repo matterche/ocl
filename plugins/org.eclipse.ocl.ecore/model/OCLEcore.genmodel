@@ -6,7 +6,7 @@
     dynamicTemplates="true" modelName="OCLEcore" modelPluginClass="org.eclipse.ocl.ecore.internal.OCLEcorePlugin"
     editPluginClass="org.eclipse.ocl.ecore.edit.OCLEcoreEditPlugin" editorPluginClass="org.eclipse.ocl.ecore.editor.OCLEcoreEditorPlugin"
     nonNLSMarkers="true" codeFormatting="true" booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl/model/OCL.genmodel#//ocl">
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl/model/OCL.genmodel#//ocl ../../org.eclipse.ocl/model/OCLLibrary.genmodel#//ocl">
   <foreignModel>OCLEcore.ecore</foreignModel>
   <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
       contentTypeIdentifier="org.eclipse.ocl" fileExtensions="oclxmi" ecorePackage="OCLEcore.ecore#/">

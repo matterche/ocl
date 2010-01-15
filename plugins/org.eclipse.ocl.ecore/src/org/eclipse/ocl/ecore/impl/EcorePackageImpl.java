@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.13.2.1 2010/01/03 22:52:04 ewillink Exp $
+ * $Id: EcorePackageImpl.java,v 1.13.2.2 2010/01/15 07:40:09 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -522,7 +522,6 @@ public class EcorePackageImpl
 		TypesPackage.eINSTANCE.eClass();
 		UtilitiesPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();
-		LibraryPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theEcorePackage.createPackageContents();
