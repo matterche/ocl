@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.16 2009/10/10 07:09:03 ewillink Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.16.4.1 2010/01/15 07:46:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
-import lpg.lpgjavaruntime.IToken;
+import lpg.runtime.IToken;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
