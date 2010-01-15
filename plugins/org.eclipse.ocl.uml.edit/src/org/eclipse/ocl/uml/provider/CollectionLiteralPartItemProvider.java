@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartItemProvider.java,v 1.1 2009/10/30 19:05:15 ewillink Exp $
+ * $Id: CollectionLiteralPartItemProvider.java,v 1.1.4.1 2010/01/15 07:42:52 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -69,6 +69,16 @@ public class CollectionLiteralPartItemProvider extends TypedElementItemProvider
 
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

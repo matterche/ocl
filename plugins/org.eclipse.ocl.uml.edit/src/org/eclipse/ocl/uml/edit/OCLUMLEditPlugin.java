@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLEditPlugin.java,v 1.1 2009/10/30 19:06:07 ewillink Exp $
+ * $Id: OCLUMLEditPlugin.java,v 1.1.4.1 2010/01/15 07:42:53 ewillink Exp $
  */
 package org.eclipse.ocl.uml.edit;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 import org.eclipse.ocl.edit.OCLEditPlugin;
 
+import org.eclipse.ocl.library.provider.OCLLibraryEditPlugin;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
@@ -57,7 +58,8 @@ public final class OCLUMLEditPlugin extends EMFPlugin {
 	 */
 	public OCLUMLEditPlugin() {
 		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				OCLEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
+				OCLEditPlugin.INSTANCE, OCLLibraryEditPlugin.INSTANCE,
+				UMLEditPlugin.INSTANCE, });
 	}
 
 	/**

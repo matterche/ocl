@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyCallExpItemProvider.java,v 1.1 2009/10/30 19:05:16 ewillink Exp $
+ * $Id: PropertyCallExpItemProvider.java,v 1.1.4.1 2010/01/15 07:42:52 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -98,6 +98,16 @@ public class PropertyCallExpItemProvider extends NavigationCallExpItemProvider
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/PropertyCallExp")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpItemProvider.java,v 1.1 2009/10/30 19:05:21 ewillink Exp $
+ * $Id: FeatureCallExpItemProvider.java,v 1.1.4.1 2010/01/15 07:42:53 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -90,6 +90,16 @@ public class FeatureCallExpItemProvider extends CallExpItemProvider implements
 						ExpressionsPackage.Literals.FEATURE_CALL_EXP__MARKED_PRE,
 						true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
