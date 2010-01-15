@@ -9,7 +9,8 @@
     rootImplementsInterface="" featureMapWrapperInterface="" featureMapWrapperInternalInterface=""
     featureMapWrapperClass="" codeFormatting="true" testSuiteClass="org.eclipse.ocl.tests.OCLAllTests"
     booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="5.0" copyrightFields="false" binaryCompatibleReflectiveMethods="true">
+    complianceLevel="5.0" copyrightFields="false" binaryCompatibleReflectiveMethods="true"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
     <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
@@ -240,7 +241,7 @@
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/IntegerLiteralExpCS/integerSymbol"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/UnlimitedNaturalLiteralExpCS">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/UnlimitedNaturalLiteralExpCS/integerSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/UnlimitedNaturalLiteralExpCS/unlimitedNaturalSymbol"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/RealLiteralExpCS">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/RealLiteralExpCS/realSymbol"/>

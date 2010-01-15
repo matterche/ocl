@@ -13,9 +13,11 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpCS.java,v 1.3.10.1 2010/01/15 07:42:29 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpCS.java,v 1.3.10.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
+
+import java.math.BigInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +27,7 @@ package org.eclipse.ocl.cst;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getIntegerSymbol <em>Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,29 +39,31 @@ public interface UnlimitedNaturalLiteralExpCS
 		extends PrimitiveLiteralExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Integer Symbol</b></em>' attribute.
+	 * Returns the value of the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Integer Symbol</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Unlimited Natural Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Integer Symbol</em>' attribute.
-	 * @see #setIntegerSymbol(Integer)
-	 * @see org.eclipse.ocl.cst.CSTPackage#getUnlimitedNaturalLiteralExpCS_IntegerSymbol()
+	 * @return the value of the '<em>Unlimited Natural Symbol</em>' attribute.
+	 * @see #setUnlimitedNaturalSymbol(BigInteger)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getUnlimitedNaturalLiteralExpCS_UnlimitedNaturalSymbol()
 	 * @model
 	 * @generated
 	 */
-	Integer getIntegerSymbol();
+	BigInteger getUnlimitedNaturalSymbol();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getIntegerSymbol <em>Integer Symbol</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Integer Symbol</em>' attribute.
-	 * @see #getIntegerSymbol()
+	 * @param value the new value of the '<em>Unlimited Natural Symbol</em>' attribute.
+	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
 	 */
-	void setIntegerSymbol(Integer value);
+	void setUnlimitedNaturalSymbol(BigInteger value);
 
 } // UnlimitedNaturalLiteralExpCS

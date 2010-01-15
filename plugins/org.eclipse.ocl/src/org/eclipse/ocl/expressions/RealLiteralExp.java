@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: RealLiteralExp.java,v 1.6.10.1 2010/01/15 07:42:25 ewillink Exp $
+ * $Id: RealLiteralExp.java,v 1.6.10.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
@@ -46,24 +47,26 @@ public interface RealLiteralExp<C>
 	 * If the meaning of the '<em>Real Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Real Symbol</em>' attribute.
-	 * @see #setRealSymbol(Double)
+	 * @see #setRealSymbol(BigDecimal)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getRealLiteralExp_RealSymbol()
 	 * @model
 	 * @generated
 	 */
-	Double getRealSymbol();
+	BigDecimal getRealSymbol();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.expressions.RealLiteralExp#getRealSymbol <em>Real Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Real Symbol</em>' attribute.
 	 * @see #getRealSymbol()
 	 * @generated
 	 */
-	void setRealSymbol(Double value);
+	void setRealSymbol(BigDecimal value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,5 +81,13 @@ public interface RealLiteralExp<C>
 	 */
 	boolean checkRealType(DiagnosticChain diagnostics,
 			Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model valueRequired="true" valueOrdered="false"
+	 * @generated
+	 */
+	void setRealSymbol(Double value);
 
 } // RealLiteralExp

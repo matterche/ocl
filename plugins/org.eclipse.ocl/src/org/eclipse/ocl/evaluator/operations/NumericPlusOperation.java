@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericPlusOperation.java,v 1.1.2.1 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: NumericPlusOperation.java,v 1.1.2.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -28,42 +28,12 @@ import java.math.BigInteger;
 public class NumericPlusOperation extends NumericBinaryOperation
 {
 	@Override
-	protected Object evaluateBigDecimal(Limitation limitation, BigDecimal left, BigDecimal right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return left.add(right);
-			default: return null;
-		}
+	protected Object evaluateInteger(BigInteger left, BigInteger right) {
+		return left.add(right);
 	}
 
 	@Override
-	protected Object evaluateBigInteger(Limitation limitation, BigInteger left, BigInteger right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return left.add(right);
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateDouble(Limitation limitation, Double left, Double right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return left + right;
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateInteger(Limitation limitation, Integer left, Integer right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return left + right;
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateLong(Limitation limitation, Long left, Long right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return left + right;
-			default: return null;
-		}
+	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
+		return left.add(right);
 	}
 }

@@ -16,10 +16,11 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.11.4.1 2010/01/15 07:42:26 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.11.4.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -80,12 +81,14 @@ import org.eclipse.ocl.cst.TypeCS;
 import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.cst.VariableCS;
 import org.eclipse.ocl.cst.VariableExpCS;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractLexer;
 import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.ProblemOption;
+import org.eclipse.ocl.util.ObjectUtil;
 
 public abstract class AbstractOCLParser
 		extends AbstractParser {
@@ -491,7 +494,7 @@ public abstract class AbstractOCLParser
 		IntegerLiteralExpCS result = CSTFactory.eINSTANCE
 			.createIntegerLiteralExpCS();
 		result.setSymbol(string);
-		result.setIntegerSymbol(Integer.valueOf(string));
+		result.setIntegerSymbol(ObjectUtil.createBigInteger(string));
 		return result;
 	}
 
@@ -502,9 +505,9 @@ public abstract class AbstractOCLParser
 			.createUnlimitedNaturalLiteralExpCS();
 		result.setSymbol(string);
 		if ("*".equals(string)) {
-			result.setIntegerSymbol(-1);
+			result.setUnlimitedNaturalSymbol(UnlimitedNaturalLiteralExp.UNLIMITED);
 		} else {
-			result.setIntegerSymbol(Integer.valueOf(string));
+			result.setUnlimitedNaturalSymbol(ObjectUtil.createBigInteger(string));
 		}
 		return result;
 	}
@@ -512,7 +515,7 @@ public abstract class AbstractOCLParser
 	protected RealLiteralExpCS createRealLiteralExpCS(String string) {
 		RealLiteralExpCS result = CSTFactory.eINSTANCE.createRealLiteralExpCS();
 		result.setSymbol(string);
-		result.setRealSymbol(Double.valueOf(string));
+		result.setRealSymbol(new BigDecimal(string));
 		return result;
 	}
 

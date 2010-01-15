@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: NumberUtil.java,v 1.2 2008/09/10 18:44:18 cdamus Exp $
+ * $Id: NumberUtil.java,v 1.2.10.1 2010/01/15 17:27:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -63,8 +63,10 @@ public class NumberUtil {
                 result = number;
             }
         } else if (number instanceof BigInteger) {
-            if (isInteger((BigInteger) number)) {
+        	if (isInteger((BigInteger) number)) {
                 result = number.intValue();
+            } else if (isLong((BigInteger) number)) {
+                result = number.longValue();
             } else {
                 // do nothing, NFE will occur
                 result = number;
@@ -103,7 +105,7 @@ public class NumberUtil {
     private static boolean isLong(BigInteger number) {
         long i = number.longValue();
         BigInteger b = new BigInteger(String.valueOf(i));
-        
+      
         return number.equals(b);
     }
 
@@ -123,36 +125,20 @@ public class NumberUtil {
      * 
      * @param number a number to coerce to <tt>Long</tt> or <tt>Double</tt>
      * @return the coerced number, or the original number, in case of overflow
+     * 
+     * @deprecated use ObjectUtil.normalize
      */
     public static Number higherPrecisionNumber(Number number) { 
-        Number result;
-        
-        if ((number instanceof Integer) || (number instanceof Byte) ||
-                (number instanceof Short)) {
-            result = number.longValue();
-        } else if (number instanceof Long) {
-            result = number;
-        } else if (number instanceof BigInteger) {
-            if (isLong((BigInteger) number)) {
-                result = number.longValue();
-            } else {
-                // do nothing, NFE will occur
-                result = number;
-            }
-        } else if (number instanceof Float) {
-            result = number.doubleValue();
-        } else if (number instanceof BigDecimal) {
-            if (isDouble((BigDecimal) number)) {
-                result = number.doubleValue();
-            } else {
-                // do nothing, NFE will occur
-                result = number;
-            }
+        if ((number instanceof BigInteger) || (number instanceof BigDecimal)) {
+        	return number;
+        } else if ((number instanceof Integer) || (number instanceof Byte) ||
+                (number instanceof Short) || (number instanceof Long)) {
+            return BigInteger.valueOf(number.longValue());
+        } else if ((number instanceof Double) || (number instanceof Float)) {
+            return new BigDecimal(number.doubleValue());
         } else {
             // some odd-ball number we've never heard of.  NFE will occur
-            result = number;
+            return number;
         }
-        
-        return result;
     }
 }

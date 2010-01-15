@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.12.4.2 2010/01/15 07:42:28 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.12.4.3 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -3568,15 +3568,14 @@ public interface CSTPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
 	/**
-	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
+	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__UNLIMITED_NATURAL_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp CS</em>' class.
@@ -3668,8 +3667,6 @@ public interface CSTPackage
 	/**
 	 * The feature id for the '<em><b>Real Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6243,15 +6240,16 @@ public interface CSTPackage
 	EClass getUnlimitedNaturalLiteralExpCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getIntegerSymbol <em>Integer Symbol</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Integer Symbol</em>'.
-	 * @see org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getIntegerSymbol()
+	 * @return the meta object for the attribute '<em>Unlimited Natural Symbol</em>'.
+	 * @see org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS#getUnlimitedNaturalSymbol()
 	 * @see #getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	EAttribute getUnlimitedNaturalLiteralExpCS_IntegerSymbol();
+	EAttribute getUnlimitedNaturalLiteralExpCS_UnlimitedNaturalSymbol();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.RealLiteralExpCS <em>Real Literal Exp CS</em>}'.
@@ -7560,13 +7558,14 @@ public interface CSTPackage
 			.getUnlimitedNaturalLiteralExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Integer Symbol</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Unlimited Natural Symbol</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL = eINSTANCE
-			.getUnlimitedNaturalLiteralExpCS_IntegerSymbol();
+		EAttribute UNLIMITED_NATURAL_LITERAL_EXP_CS__UNLIMITED_NATURAL_SYMBOL = eINSTANCE
+			.getUnlimitedNaturalLiteralExpCS_UnlimitedNaturalSymbol();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.RealLiteralExpCSImpl <em>Real Literal Exp CS</em>}' class.

@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.8 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.8.10.1 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.math.BigInteger;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -37,7 +38,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getIntegerSymbol <em>Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#isUnlimited <em>Unlimited</em>}</li>
  * </ul>
  * </p>
@@ -49,24 +50,24 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 		implements UnlimitedNaturalLiteralExp<C> {
 
 	/**
-	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * The default value of the '{@link #getUnlimitedNaturalSymbol() <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIntegerSymbol()
+	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
+	protected static final BigInteger UNLIMITED_NATURAL_SYMBOL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * The cached value of the '{@link #getUnlimitedNaturalSymbol() <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIntegerSymbol()
+	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
+	protected BigInteger unlimitedNaturalSymbol = UNLIMITED_NATURAL_SYMBOL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isUnlimited() <em>Unlimited</em>}' attribute.
@@ -102,8 +103,8 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer getIntegerSymbol() {
-		return integerSymbol;
+	public BigInteger getUnlimitedNaturalSymbol() {
+		return unlimitedNaturalSymbol;
 	}
 
 	/**
@@ -111,15 +112,15 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIntegerSymbol(Integer newIntegerSymbol) {
-		Integer oldIntegerSymbol = integerSymbol;
-		integerSymbol = newIntegerSymbol;
+	public void setUnlimitedNaturalSymbol(BigInteger newUnlimitedNaturalSymbol) {
+		BigInteger oldUnlimitedNaturalSymbol = unlimitedNaturalSymbol;
+		unlimitedNaturalSymbol = newUnlimitedNaturalSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(
 				this,
 				Notification.SET,
-				ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
-				oldIntegerSymbol, integerSymbol));
+				ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL,
+				oldUnlimitedNaturalSymbol, unlimitedNaturalSymbol));
 	}
 
 	/**
@@ -128,7 +129,8 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * @generated NOT
 	 */
 	public boolean isUnlimited() {
-		return getIntegerSymbol() == UNLIMITED;
+		return (unlimitedNaturalSymbol == null)
+			|| (unlimitedNaturalSymbol == UNLIMITED);
 	}
 
 	/**
@@ -144,14 +146,34 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @deprecated use setUnlimitedNaturalSymbol
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setIntegerSymbol(Integer value) {
+		setUnlimitedNaturalSymbol(value);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setUnlimitedNaturalSymbol(Integer value) {
+		setUnlimitedNaturalSymbol(BigInteger.valueOf(value));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
-				return getIntegerSymbol();
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL :
+				return getUnlimitedNaturalSymbol();
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
 				return isUnlimited();
 		}
@@ -166,8 +188,8 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
-				setIntegerSymbol((Integer) newValue);
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL :
+				setUnlimitedNaturalSymbol((BigInteger) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -181,8 +203,8 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
-				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL :
+				setUnlimitedNaturalSymbol(UNLIMITED_NATURAL_SYMBOL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -196,10 +218,11 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
-				return INTEGER_SYMBOL_EDEFAULT == null
-					? integerSymbol != null
-					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL :
+				return UNLIMITED_NATURAL_SYMBOL_EDEFAULT == null
+					? unlimitedNaturalSymbol != null
+					: !UNLIMITED_NATURAL_SYMBOL_EDEFAULT
+						.equals(unlimitedNaturalSymbol);
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
 				return isUnlimited() != UNLIMITED_EDEFAULT;
 		}

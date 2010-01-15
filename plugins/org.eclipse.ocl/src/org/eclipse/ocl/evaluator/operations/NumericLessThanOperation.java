@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NumericLessThanOperation.java,v 1.1.2.1 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: NumericLessThanOperation.java,v 1.1.2.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 /**
@@ -25,13 +28,17 @@ package org.eclipse.ocl.evaluator.operations;
 public class NumericLessThanOperation extends NumericBinaryOperation
 {
 	@Override
-	protected <T extends Number & Comparable<T>> Object evaluate(Limitation limitation, T left, T right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return left.compareTo(right) < 0;
-			case LIMITED_UNLIMITED: return Boolean.TRUE;
-			case UNLIMITED_LIMITED: return Boolean.FALSE;
-			case UNLIMITED_UNLIMITED: return Boolean.FALSE;
-			default: return null;
-		}
+	protected Object evaluateInteger(BigInteger left, BigInteger right) {
+		return left.compareTo(right) < 0;
+	}
+
+	@Override
+	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
+		return left.compareTo(right) < 0;
+	}
+
+	@Override
+	protected Object evaluateUnlimited(Object left, Object right) {
+		return !isUnlimited(left) && isUnlimited(right);
 	}
 }

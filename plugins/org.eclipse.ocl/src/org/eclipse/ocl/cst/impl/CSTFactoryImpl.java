@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.8.4.2 2010/01/15 07:45:07 ewillink Exp $
+ * $Id: CSTFactoryImpl.java,v 1.8.4.3 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -75,6 +75,7 @@ import org.eclipse.ocl.cst.TupleTypeCS;
 import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.cst.VariableCS;
 import org.eclipse.ocl.cst.VariableExpCS;
+import org.eclipse.ocl.util.ObjectUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -815,6 +816,28 @@ public class CSTFactoryImpl
 	public String convertITokenToString(EDataType eDataType,
 			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Number createNumberFromString(EDataType eDataType,
+			String initialValue) {
+		return ObjectUtil.createNumber(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String convertNumberToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue.toString();
 	}
 
 	/**

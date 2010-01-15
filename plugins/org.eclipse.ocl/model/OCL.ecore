@@ -1119,7 +1119,10 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eOperations name="setIntegerSymbol" ordered="false" lowerBound="1">
+        <eParameters name="value" ordered="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBigInteger"/>
       <eGenericSuperTypes eClassifier="#//expressions/NumericLiteralExp">
         <eTypeArguments eTypeParameter="#//expressions/IntegerLiteralExp/C"/>
       </eGenericSuperTypes>
@@ -1151,7 +1154,14 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eOperations name="setIntegerSymbol" ordered="false" lowerBound="1">
+        <eParameters name="value" ordered="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
+      </eOperations>
+      <eOperations name="setUnlimitedNaturalSymbol" ordered="false" lowerBound="1">
+        <eParameters name="value" ordered="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBigInteger"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimited" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           changeable="false" volatile="true" transient="true" derived="true"/>
@@ -1705,7 +1715,10 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+      <eOperations name="setRealSymbol" ordered="false" lowerBound="1">
+        <eParameters name="value" ordered="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDoubleObject"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBigDecimal"/>
       <eGenericSuperTypes eClassifier="#//expressions/NumericLiteralExp">
         <eTypeArguments eTypeParameter="#//expressions/RealLiteralExp/C"/>
       </eGenericSuperTypes>

@@ -10,18 +10,19 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesFactoryImpl.java,v 1.6 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: UtilitiesFactoryImpl.java,v 1.6.10.1 2010/01/15 17:27:39 ewillink Exp $
  * /
  *******************************************************************************/
 package org.eclipse.ocl.utilities.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-//import org.eclipse.ocl.utilities.*;
+import org.eclipse.ocl.utilities.*;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.UtilitiesFactory;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
@@ -76,6 +77,28 @@ public class UtilitiesFactoryImpl
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Number createNumberFromString(EDataType eDataType,
+			String initialValue) {
+		return ObjectUtil.createNumber(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String convertNumberToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue.toString();
 	}
 
 	/**

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.10 2009/09/04 10:19:33 asanchez Exp $
+ * $Id: ToStringVisitor.java,v 1.10.6.1 2010/01/15 17:27:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -372,8 +372,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
             return "*"; //$NON-NLS-1$
         }
         
-        return (unl.getIntegerSymbol() == null)? NULL_PLACEHOLDER
-                : unl.getIntegerSymbol().toString();
+        return (unl.getUnlimitedNaturalSymbol() == null)? NULL_PLACEHOLDER
+                : unl.getUnlimitedNaturalSymbol().toString();
     }
     
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericBinaryOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
+ * $Id: NumericBinaryOperation.java,v 1.1.2.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -30,87 +30,89 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  */
 public abstract class NumericBinaryOperation extends AbstractOperation
 {
-	enum Limitation {
-		LIMITED_LIMITED,
-		LIMITED_UNLIMITED,
-		UNLIMITED_LIMITED,
-		UNLIMITED_UNLIMITED
-	}
-
 	@Override
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
 		Object sourceVal = evaluateSource(visitor, operationCall);
 		Object argVal = evaluateArgument(visitor, operationCall, 0);
-		Object result = null;
-		Limitation limitation;
-		if (isUnlimited(sourceVal)) {
-			limitation = isUnlimited(argVal) ? Limitation.UNLIMITED_UNLIMITED : Limitation.UNLIMITED_LIMITED;
+		if (isInvalid(sourceVal) || isInvalid(argVal)) {
+			return evaluateInvalid(sourceVal, argVal);
 		}
-		else {
-			limitation = isUnlimited(argVal) ? Limitation.LIMITED_UNLIMITED : Limitation.LIMITED_LIMITED;
+		else if (isNull(sourceVal) || isNull(argVal)) {
+			return evaluateNull(sourceVal, argVal);
 		}
-		
-		boolean realSource = (sourceVal instanceof BigDecimal) || (sourceVal instanceof Double) || (sourceVal instanceof Float); 
-		boolean realArg = (argVal instanceof BigDecimal) || (argVal instanceof Double) || (argVal instanceof Float); 
-		if ((sourceVal instanceof BigDecimal)
-		 || (argVal instanceof BigDecimal) 
-		 || ((sourceVal instanceof BigInteger) && realArg) 
-		 || ((argVal instanceof BigInteger) && realSource)) {
-			BigDecimal left = bigDecimalValueOf(sourceVal);
-			BigDecimal right = bigDecimalValueOf(argVal);
-			result = evaluateBigDecimal(limitation, left, right, sourceVal, argVal);			
+		else if (isUnlimited(sourceVal) || isUnlimited(argVal)) {
+				return evaluateUnlimited(sourceVal, argVal);
 		}
-		else if (realSource || realArg) {
-			Double left = doubleValueOf(sourceVal);
-			Double right = doubleValueOf(argVal);
-			result = evaluateDouble(limitation, left, right, sourceVal, argVal);			
+		else if (sourceVal instanceof BigInteger) {
+			if (argVal instanceof BigInteger) {
+				return evaluateInteger((BigInteger)sourceVal, (BigInteger)argVal);
+			}
+			sourceVal = new BigDecimal((BigInteger)sourceVal);
 		}
-		else if ((sourceVal instanceof BigInteger) 
-		 || (argVal instanceof BigInteger)) {
-			BigInteger left = bigIntegerValueOf(sourceVal);
-			BigInteger right = bigIntegerValueOf(argVal);
-			result = evaluateBigInteger(limitation, left, right, sourceVal, argVal);			
+		else if (argVal instanceof BigInteger) {
+			argVal = new BigDecimal((BigInteger)argVal);
 		}
-		else if ((sourceVal instanceof Long) 
-		 || (argVal instanceof Long)) {
-			Long left = longValueOf(sourceVal);
-			Long right = longValueOf(argVal);
-			result = evaluateLong(limitation, left, right, sourceVal, argVal);			
-		}
-		else {
-			Integer left = integerValueOf(sourceVal);
-			Integer right = integerValueOf(argVal);
-			result = evaluateInteger(limitation, left, right, sourceVal, argVal);			
-		}
-		return result;
+		return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
+	}
+	
+	/**
+	 * Evaluate an operation for which both left and right are Integer.
+	 * @param left argument
+	 * @param right argument
+	 * @return result
+	 */
+	protected Object evaluateInteger(BigInteger left, BigInteger right) {
+		return evaluate(left, right);
+	}
+	
+	/**
+	 * Evaluate an operation for which at least one of left and right are invalid.
+	 * @param left argument
+	 * @param right argument
+	 * @return result
+	 */
+	protected Object evaluateInvalid(Object left, Object right) {
+		return null;
+	}
+	
+	/**
+	 * Evaluate an operation for which at least one of left and right are null
+	 * and for which neither left nor right are invalid.
+	 * @param left argument
+	 * @param right argument
+	 * @return result
+	 */
+	protected Object evaluateNull(Object left, Object right) {
+		return null;
 	}
 
-	protected Object evaluateBigDecimal(Limitation limitation, BigDecimal left, BigDecimal right, Object leftVal, Object rightVal) {
-		return evaluate(limitation, left, right, leftVal, rightVal);
+	/**
+	 * Evaluate an operation for which both left and right are Real.
+	 * @param left argument
+	 * @param right argument
+	 * @return result
+	 */
+	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
+		return evaluate(left, right);
 	}
 	
-	protected Object evaluateBigInteger(Limitation limitation, BigInteger left, BigInteger right, Object leftVal, Object rightVal) {
-		return evaluate(limitation, left, right, leftVal, rightVal);
-	}
-	
-	protected Object evaluateDouble(Limitation limitation, Double left, Double right, Object leftVal, Object rightVal) {
-		return evaluate(limitation, left, right, leftVal, rightVal);
-	}
-	
-	protected Object evaluateInteger(Limitation limitation, Integer left, Integer right, Object leftVal, Object rightVal) {
-		return evaluate(limitation, left, right, leftVal, rightVal);
-	}
-	
-	protected Object evaluateLong(Limitation limitation, Long left, Long right, Object leftVal, Object rightVal) {
-		return evaluate(limitation, left, right, leftVal, rightVal);
+	/**
+	 * Evaluate an operation for which at least one of left and right are unlimited
+	 * and for which neither left nor right are invalid or null.
+	 * @param left argument
+	 * @param right argument
+	 * @return result
+	 */
+	protected Object evaluateUnlimited(Object left, Object right) {
+		return null;
 	}
 	
 	/**
 	 * Return the result of evaluating the operation on left and right which are both
-	 * of the same derived Number type. The limitation identifies which of left and
-	 * right are unlimited numbers. A null return or an exception may be used for invalid.
+	 * of the same derived Number type. 
+	 * A null return or an exception may be used for invalid.
 	 */
-	protected <T extends Number & Comparable<T>> Object evaluate(Limitation limitation, T left, T right, Object leftVal, Object rightVal) {
+	protected <T extends Number & Comparable<T>> Object evaluate(T left, T right) {
 		return null;
 	}
 }

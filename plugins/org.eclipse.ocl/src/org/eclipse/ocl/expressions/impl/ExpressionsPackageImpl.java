@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.11.10.2 2010/01/15 07:45:23 ewillink Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.11.10.3 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
@@ -415,6 +416,7 @@ public class ExpressionsPackageImpl
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		LibraryPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -714,7 +716,7 @@ public class ExpressionsPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUnlimitedNaturalLiteralExp_IntegerSymbol() {
+	public EAttribute getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol() {
 		return (EAttribute) unlimitedNaturalLiteralExpEClass
 			.getEStructuralFeatures().get(0);
 	}
@@ -1281,7 +1283,7 @@ public class ExpressionsPackageImpl
 
 		unlimitedNaturalLiteralExpEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP);
 		createEAttribute(unlimitedNaturalLiteralExpEClass,
-			UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL);
+			UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL);
 		createEAttribute(unlimitedNaturalLiteralExpEClass,
 			UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED);
 
@@ -1400,6 +1402,8 @@ public class ExpressionsPackageImpl
 		// Obtain other dependent packages
 		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(UtilitiesPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+			.getEPackage(EcorePackage.eNS_URI);
 		LibraryPackage theLibraryPackage = (LibraryPackage) EPackage.Registry.INSTANCE
 			.getEPackage(LibraryPackage.eNS_URI);
 
@@ -1970,7 +1974,7 @@ public class ExpressionsPackageImpl
 			"IntegerLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
 			getIntegerLiteralExp_IntegerSymbol(),
-			ecorePackage.getEIntegerObject(),
+			theEcorePackage.getEBigInteger(),
 			"integerSymbol", null, 0, 1, IntegerLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(integerLiteralExpEClass, ecorePackage.getEBoolean(),
@@ -1984,6 +1988,11 @@ public class ExpressionsPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
+		op = addEOperation(integerLiteralExpEClass, null,
+			"setIntegerSymbol", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEIntegerObject(),
+			"value", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(
 			numericLiteralExpEClass,
 			NumericLiteralExp.class,
@@ -1994,9 +2003,9 @@ public class ExpressionsPackageImpl
 			UnlimitedNaturalLiteralExp.class,
 			"UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
-			getUnlimitedNaturalLiteralExp_IntegerSymbol(),
-			ecorePackage.getEIntegerObject(),
-			"integerSymbol", null, 0, 1, UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+			getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol(),
+			theEcorePackage.getEBigInteger(),
+			"unlimitedNaturalSymbol", null, 0, 1, UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(
 			getUnlimitedNaturalLiteralExp_Unlimited(),
 			ecorePackage.getEBoolean(),
@@ -2012,6 +2021,16 @@ public class ExpressionsPackageImpl
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(unlimitedNaturalLiteralExpEClass, null,
+			"setIntegerSymbol", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEIntegerObject(),
+			"value", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(unlimitedNaturalLiteralExpEClass, null,
+			"setUnlimitedNaturalSymbol", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEIntegerObject(),
+			"value", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			invalidLiteralExpEClass,
@@ -2402,7 +2421,7 @@ public class ExpressionsPackageImpl
 			"RealLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
 			getRealLiteralExp_RealSymbol(),
-			ecorePackage.getEDoubleObject(),
+			theEcorePackage.getEBigDecimal(),
 			"realSymbol", null, 0, 1, RealLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(realLiteralExpEClass, ecorePackage.getEBoolean(),
@@ -2415,6 +2434,11 @@ public class ExpressionsPackageImpl
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(realLiteralExpEClass, null,
+			"setRealSymbol", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEDoubleObject(),
+			"value", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			stateExpEClass,

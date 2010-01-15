@@ -509,21 +509,21 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-A_8fEduhWtVvKtiQ7w" name="IntegerLiteralExpCS">
         <generalization xmi:id="_qdx-BP8fEduhWtVvKtiQ7w" general="_qdx9__8fEduhWtVvKtiQ7w"/>
         <ownedAttribute xmi:id="_qdx-Bf8fEduhWtVvKtiQ7w" name="integerSymbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBigInteger"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-Bv8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-B_8fEduhWtVvKtiQ7w" name="UnlimitedNaturalLiteralExpCS">
         <generalization xmi:id="_qdx-CP8fEduhWtVvKtiQ7w" general="_qdx9__8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_qdx-Cf8fEduhWtVvKtiQ7w" name="integerSymbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+        <ownedAttribute xmi:id="_qdx-Cf8fEduhWtVvKtiQ7w" name="unlimitedNaturalSymbol" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBigInteger"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-Cv8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-C_8fEduhWtVvKtiQ7w" name="RealLiteralExpCS">
         <generalization xmi:id="_qdx-DP8fEduhWtVvKtiQ7w" general="_qdx9__8fEduhWtVvKtiQ7w"/>
         <ownedAttribute xmi:id="_qdx-Df8fEduhWtVvKtiQ7w" name="realSymbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBigDecimal"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-Dv8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
       </packagedElement>
@@ -856,4 +856,6 @@
   <Ecore:EClass xmi:id="_u2txsL8sEd2tbsirxV4pLA" base_Class="_WuZt4L8sEd2tbsirxV4pLA"/>
   <Ecore:EReference xmi:id="_xEai4L8tEd2tbsirxV4pLA" base_Property="_woRO4L8sEd2tbsirxV4pLA"/>
   <Ecore:EAttribute xmi:id="_K42H8AKSEd6O0MANVU0HEw" base_Property="_HPVqoAKSEd6O0MANVU0HEw"/>
+  <Ecore:EAttribute xmi:id="_GDcw4P9qEd67_agdSFnrQQ"/>
+  <Ecore:EDataType xmi:id="__GNnEP9rEd67_agdSFnrQQ" instanceClassName="java.lang.Number"/>
 </xmi:XMI>

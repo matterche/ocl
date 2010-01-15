@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11.6.3 2010/01/14 21:33:16 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11.6.4 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -552,6 +552,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * @return the coerced number, or the original number, in case of overflow
      * 
      * @since 1.2
+     * @deprecated use ObjectUtil.normalize
      */
     protected Number higherPrecisionNumber(Number number) {
         return NumberUtil.higherPrecisionNumber(number);

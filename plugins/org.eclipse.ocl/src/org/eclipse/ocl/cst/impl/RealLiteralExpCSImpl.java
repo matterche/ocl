@@ -13,10 +13,11 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: RealLiteralExpCSImpl.java,v 1.3.10.1 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
+import java.math.BigDecimal;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -48,7 +49,7 @@ public class RealLiteralExpCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Double REAL_SYMBOL_EDEFAULT = null;
+	protected static final BigDecimal REAL_SYMBOL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
@@ -58,7 +59,7 @@ public class RealLiteralExpCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected Double realSymbol = REAL_SYMBOL_EDEFAULT;
+	protected BigDecimal realSymbol = REAL_SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,20 +82,22 @@ public class RealLiteralExpCSImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Double getRealSymbol() {
+	public BigDecimal getRealSymbol() {
 		return realSymbol;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRealSymbol(Double newRealSymbol) {
-		Double oldRealSymbol = realSymbol;
+	public void setRealSymbol(BigDecimal newRealSymbol) {
+		BigDecimal oldRealSymbol = realSymbol;
 		realSymbol = newRealSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -125,7 +128,7 @@ public class RealLiteralExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL :
-				setRealSymbol((Double) newValue);
+				setRealSymbol((BigDecimal) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

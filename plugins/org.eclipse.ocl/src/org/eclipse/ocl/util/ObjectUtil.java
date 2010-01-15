@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ObjectUtil.java,v 1.5 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: ObjectUtil.java,v 1.5.8.1 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -23,7 +25,7 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.internal.evaluation.NumberUtil;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 
 /**
  * Certain generic utility operations on objects.
@@ -31,6 +33,9 @@ import org.eclipse.ocl.internal.evaluation.NumberUtil;
  * @author Christian W. Damus (cdamus)
  */
 public class ObjectUtil {
+
+	private static final String maxLongValue = Long.toString(Long.MAX_VALUE);
+	private static final int maxLongSize = maxLongValue.length();
 
 	/**
      * Computes the equivalence of two objects, accounting for primitive numeric
@@ -51,22 +56,23 @@ public class ObjectUtil {
 
 		// primitive types
 		if (isPrimitive(anObject) || isPrimitive(anotherObject)) {
-		    if (anObject instanceof Integer) {
-		        anObject = NumberUtil.higherPrecisionNumber((Integer) anObject);
-		    }
-            if (anotherObject instanceof Integer) {
-                anotherObject = NumberUtil.higherPrecisionNumber((Integer) anotherObject);
-            }
-		    
-			if (anObject instanceof Long && anotherObject instanceof Long) {
-                return ((Long) anObject).longValue() == ((Long) anotherObject).longValue();
-            } else if (anObject instanceof Long && anotherObject instanceof Double) {
-                return ((Long) anObject).doubleValue() == ((Double) anotherObject).doubleValue();
-            } else if (anObject instanceof Double && anotherObject instanceof Long) {
-                return ((Double) anObject).doubleValue() == ((Long) anotherObject).doubleValue();
-            } else if (anObject instanceof Double && anotherObject instanceof Double) {
-                return ((Double) anObject).doubleValue() == ((Double) anotherObject).doubleValue();
-            } else if (anObject instanceof String && anotherObject instanceof String) {
+		    if (anObject instanceof Number && anotherObject instanceof Number) {
+		        anObject = ObjectUtil.normalise(anObject);
+                anotherObject = ObjectUtil.normalise(anotherObject);
+				if (anObject instanceof BigInteger) {
+					if (anotherObject instanceof BigInteger) {
+		                return anObject.equals(anotherObject);
+					}
+					anObject = new BigDecimal((BigInteger) anObject);
+				}
+				else if (anotherObject instanceof BigInteger) {
+					anotherObject = new BigDecimal((BigInteger) anotherObject);
+				}
+				BigDecimal delta = ((BigDecimal) anObject).subtract((BigDecimal) anotherObject);
+				return delta.signum() == 0;
+			} else if (anObject instanceof UnlimitedNaturalLiteralExp<?> && anotherObject instanceof UnlimitedNaturalLiteralExp<?>) {
+                return ((UnlimitedNaturalLiteralExp<?>)anObject).isUnlimited() && ((UnlimitedNaturalLiteralExp<?>)anotherObject).isUnlimited();
+			} else if (anObject instanceof String && anotherObject instanceof String) {
                 return anObject.equals(anotherObject);
             } else if (anObject instanceof Boolean && anotherObject instanceof Boolean) {
                 return ((Boolean) anObject).booleanValue() == ((Boolean) anotherObject).booleanValue();
@@ -109,6 +115,10 @@ public class ObjectUtil {
                 return 37 * ((Long) anObject).intValue();
             } else if (anObject instanceof Double) {
                 return 37 * ((Double) anObject).intValue();
+            } else if (anObject instanceof BigDecimal) {
+                return 37 * ((BigDecimal) anObject).intValue();
+            } else if (anObject instanceof BigInteger) {
+                return 37 * ((BigInteger) anObject).intValue();
             } else if (anObject instanceof String) {
                 return anObject.hashCode();
             } else if (anObject instanceof Boolean) {
@@ -133,8 +143,42 @@ public class ObjectUtil {
      * @return whether it is an OCL primitive value
      */
 	public static boolean isPrimitive(Object o) {
-		return o instanceof Integer || o instanceof Long || o instanceof String
-			|| o instanceof Boolean || o instanceof Double;
+		return o instanceof Integer || o instanceof Long || o instanceof BigInteger
+			|| o instanceof String || o instanceof Boolean
+			|| o instanceof Double || o instanceof BigDecimal || o instanceof UnlimitedNaturalLiteralExp<?>;
+	}
+	
+	/**
+	 * Creates a BigInteger representation for aValue.
+	 * @param aValue the string representation of a (non-negative) integer number
+	 * @return the numeric representation
+	 * @throws NumberFormatException if representation cannot be created
+	 * @since 3.0
+	 */
+	public static BigInteger createBigInteger(String aValue) {
+		int len = aValue.length();
+		if ((len < maxLongSize) || ((len == maxLongSize) && (maxLongValue.compareTo(aValue) >= 0))) {
+			return BigInteger.valueOf(Long.parseLong(aValue));
+		}
+		else {
+			return new BigInteger(aValue);
+		}
+	}
+	
+	/**
+	 * Creates a BigInteger or BigDecimal representation for aValue.
+	 * @param aValue the string representation of a (non-negative) integer number
+	 * @return the numeric representation
+	 * @throws NumberFormatException if representation cannot be created
+	 * @since 3.0
+	 */
+	@SuppressWarnings("nls")
+	public static Number createNumber(String aValue) {
+		if (aValue.contains(".") || aValue.contains("e") || aValue.contains("E")) {
+			return new BigDecimal(aValue);
+		} else {
+			return ObjectUtil.createBigInteger(aValue);
+		}
 	}
 
 	/**
@@ -160,5 +204,29 @@ public class ObjectUtil {
 	            dispose(next);
 	        }
 	    }
+	}
+
+    /**
+     * <p>
+     * Normalises the given object converting numbers to either <tt>BigDecimal</tt> or <tt>BigInteger</tt> precision.
+     * </p>
+     * 
+     * @param object to normalise
+     * @return the normalised object
+     *
+	 * @since 3.0
+	 */
+	public static Object normalise(Object object) {
+		if (object instanceof Number) {
+	        if ((object instanceof BigInteger) || (object instanceof BigDecimal)) {
+	        	return object;
+	        } else if ((object instanceof Byte) || (object instanceof Short) ||
+	                (object instanceof Integer) || (object instanceof Long)) {
+	            return BigInteger.valueOf(((Number)object).longValue());
+	        } else if ((object instanceof Float) || (object instanceof Double)) {
+	            return new BigDecimal(((Number)object).doubleValue());
+	        }
+	    }
+        return object;
 	}
 }

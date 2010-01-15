@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.13.4.2 2010/01/15 07:45:06 ewillink Exp $
+ * $Id: CSTPackageImpl.java,v 1.13.4.3 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTFactory;
@@ -528,6 +529,9 @@ public class CSTPackageImpl
 			: new CSTPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theCSTPackage.createPackageContents();
@@ -1296,10 +1300,11 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUnlimitedNaturalLiteralExpCS_IntegerSymbol() {
+	public EAttribute getUnlimitedNaturalLiteralExpCS_UnlimitedNaturalSymbol() {
 		return (EAttribute) unlimitedNaturalLiteralExpCSEClass
 			.getEStructuralFeatures().get(0);
 	}
@@ -1978,7 +1983,7 @@ public class CSTPackageImpl
 
 		unlimitedNaturalLiteralExpCSEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP_CS);
 		createEAttribute(unlimitedNaturalLiteralExpCSEClass,
-			UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL);
+			UNLIMITED_NATURAL_LITERAL_EXP_CS__UNLIMITED_NATURAL_SYMBOL);
 
 		realLiteralExpCSEClass = createEClass(REAL_LITERAL_EXP_CS);
 		createEAttribute(realLiteralExpCSEClass,
@@ -2065,6 +2070,10 @@ public class CSTPackageImpl
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
+
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+			.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -2589,7 +2598,7 @@ public class CSTPackageImpl
 			"IntegerLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
 			getIntegerLiteralExpCS_IntegerSymbol(),
-			ecorePackage.getEIntegerObject(),
+			theEcorePackage.getEBigInteger(),
 			"integerSymbol", null, 0, 1, IntegerLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
@@ -2597,9 +2606,9 @@ public class CSTPackageImpl
 			UnlimitedNaturalLiteralExpCS.class,
 			"UnlimitedNaturalLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
-			getUnlimitedNaturalLiteralExpCS_IntegerSymbol(),
-			ecorePackage.getEIntegerObject(),
-			"integerSymbol", null, 0, 1, UnlimitedNaturalLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+			getUnlimitedNaturalLiteralExpCS_UnlimitedNaturalSymbol(),
+			theEcorePackage.getEBigInteger(),
+			"unlimitedNaturalSymbol", null, 0, 1, UnlimitedNaturalLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			realLiteralExpCSEClass,
@@ -2607,7 +2616,7 @@ public class CSTPackageImpl
 			"RealLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(
 			getRealLiteralExpCS_RealSymbol(),
-			ecorePackage.getEDoubleObject(),
+			theEcorePackage.getEBigDecimal(),
 			"realSymbol", null, 0, 1, RealLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(

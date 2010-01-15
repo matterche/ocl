@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NumericMaxOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
+ * $Id: NumericMaxOperation.java,v 1.1.2.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 /**
@@ -27,36 +28,20 @@ import java.math.BigDecimal;
 public class NumericMaxOperation extends NumericBinaryOperation
 {
 	@Override
-	protected <T extends Number & Comparable<T>> Object evaluate(Limitation limitation, T left, T right, Object leftVal, Object rightVal) {
-		if ((left == null) || (right == null)) {
+	protected Object evaluateInteger(BigInteger left, BigInteger right) {
+		return left.max(right);
+	}
+
+	@Override
+	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
+		return left.max(right);
+	}
+
+	@Override
+	protected Object evaluateUnlimited(Object left, Object right) {
+		if (!isUnlimitedNatural(left) || !isUnlimitedNatural(right)) {
 			return null;
-		}			
-		switch (limitation) {
-			case LIMITED_LIMITED: return left.compareTo(right) > 0 ? left : right;
-			case LIMITED_UNLIMITED: return rightVal;			// Use the passed UnlimitedNaturalLiteralExp
-			case UNLIMITED_LIMITED: return leftVal;
-			case UNLIMITED_UNLIMITED: return leftVal;
-			default: return null;
 		}
-	}
-
-	@Override
-	protected Object evaluateBigDecimal(Limitation limitation, BigDecimal left,
-			BigDecimal right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return super.evaluateBigDecimal(limitation, left, right, leftVal, rightVal);
-			case UNLIMITED_UNLIMITED: return super.evaluateBigDecimal(limitation, left, right, leftVal, rightVal);
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateDouble(Limitation limitation, Double left,
-			Double right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return super.evaluateDouble(limitation, left, right, leftVal, rightVal);
-			case UNLIMITED_UNLIMITED: return super.evaluateDouble(limitation, left, right, leftVal, rightVal);
-			default: return null;
-		}
+		return isUnlimited(left) ? left : right;
 	}
 }

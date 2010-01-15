@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.4 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.4.10.1 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -39,6 +39,8 @@ import org.eclipse.ocl.util.OCLUtil;
  * The following operations are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#checkNaturalType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Natural Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#setIntegerSymbol(java.lang.Integer) <em>Set Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#setUnlimitedNaturalSymbol(java.lang.Integer) <em>Set Unlimited Natural Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,6 +96,31 @@ public class UnlimitedNaturalLiteralExpOperations
 		}
 
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public static <C> void setIntegerSymbol(
+			UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExp,
+			Integer value) {
+		unlimitedNaturalLiteralExp.setUnlimitedNaturalSymbol(value);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public static <C> void setUnlimitedNaturalSymbol(
+			UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExp,
+			Integer setUnlimitedNaturalSymbol) {
+		unlimitedNaturalLiteralExp
+			.setUnlimitedNaturalSymbol(setUnlimitedNaturalSymbol);
 	}
 
 } // UnlimitedNaturalLiteralExpOperations

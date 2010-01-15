@@ -13,9 +13,11 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExpCS.java,v 1.3.10.1 2010/01/15 07:42:28 ewillink Exp $
+ * $Id: RealLiteralExpCS.java,v 1.3.10.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
+
+import java.math.BigDecimal;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,23 +45,25 @@ public interface RealLiteralExpCS
 	 * If the meaning of the '<em>Real Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Real Symbol</em>' attribute.
-	 * @see #setRealSymbol(Double)
+	 * @see #setRealSymbol(BigDecimal)
 	 * @see org.eclipse.ocl.cst.CSTPackage#getRealLiteralExpCS_RealSymbol()
 	 * @model
 	 * @generated
 	 */
-	Double getRealSymbol();
+	BigDecimal getRealSymbol();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.cst.RealLiteralExpCS#getRealSymbol <em>Real Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Real Symbol</em>' attribute.
 	 * @see #getRealSymbol()
 	 * @generated
 	 */
-	void setRealSymbol(Double value);
+	void setRealSymbol(BigDecimal value);
 
 } // RealLiteralExpCS

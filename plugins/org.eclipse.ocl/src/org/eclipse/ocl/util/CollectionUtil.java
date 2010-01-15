@@ -13,10 +13,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.8.8.1 2010/01/15 07:47:00 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.8.8.2 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -182,12 +184,24 @@ public class CollectionUtil {
                 currVal += ((Integer) it.next()).intValue();
             }
             return new Integer(currVal);
+        } else if (object instanceof BigInteger) {
+        	BigInteger currVal = BigInteger.valueOf(0);
+            for (it = self.iterator(); it.hasNext();) {
+                currVal = currVal.add((BigInteger) it.next());
+            }
+            return currVal;
         } else if (object instanceof Double) {
             double currVal = 0.0;
             for (it = self.iterator(); it.hasNext();) {
                 currVal += ((Double) it.next()).doubleValue();
             }
             return new Double(currVal);
+        } else if (object instanceof BigDecimal) {
+        	BigDecimal currVal = BigDecimal.ZERO;
+            for (it = self.iterator(); it.hasNext();) {
+                currVal = currVal.add((BigDecimal) it.next());
+            }
+            return currVal;
         } else {
             IllegalArgumentException error = new IllegalArgumentException(
             		OCLMessages.SumOperator_ERROR_);

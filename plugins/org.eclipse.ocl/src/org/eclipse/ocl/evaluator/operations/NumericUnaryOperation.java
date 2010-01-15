@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericUnaryOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
+ * $Id: NumericUnaryOperation.java,v 1.1.2.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -21,7 +21,6 @@ import java.math.BigInteger;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 
 /**
  * AbstractUnaryOperation dispatches a unary library operation to
@@ -31,76 +30,38 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
  */
 public abstract class NumericUnaryOperation extends AbstractOperation
 {
-	enum Limitation {
-		LIMITED,
-		UNLIMITED
-	}
-
 	@Override
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
 		Object sourceVal = evaluateSource(visitor, operationCall);
-		Object result = null;
-		Limitation limitation = isUnlimited(sourceVal) ? Limitation.UNLIMITED : Limitation.LIMITED;	
-		if (sourceVal instanceof BigDecimal) {
-			BigDecimal left = bigDecimalValueOf(sourceVal);
-			if (left != null) {
-				result = evaluateBigDecimal(limitation, left, sourceVal);			
-			}
-		}
-		else if ((sourceVal instanceof Double) || (sourceVal instanceof Float)) {
-			Double left = doubleValueOf(sourceVal);
-			if (left != null) {
-				result = evaluateDouble(limitation, left, sourceVal);			
-			}
+		if (isUnlimited(sourceVal)) {
+			return evaluateUnlimited(sourceVal);			
 		}
 		else if (sourceVal instanceof BigInteger) {
-			BigInteger left = bigIntegerValueOf(sourceVal);
-			if (left != null) {
-				result = evaluateBigInteger(limitation, left, sourceVal);			
-			}
+			return evaluateInteger((BigInteger)sourceVal);			
 		}
-		else if (sourceVal instanceof Long) {
-			Long left = longValueOf(sourceVal);
-			if (left != null) {
-				result = evaluateLong(limitation, left, sourceVal);			
-			}
+		else if (sourceVal instanceof BigDecimal) {
+			return evaluateReal((BigDecimal)sourceVal);			
 		}
-		else if ((sourceVal instanceof Integer) 
-		 || (sourceVal instanceof UnlimitedNaturalLiteralExp<?>)) {
-			Integer left = integerValueOf(sourceVal);
-			if (left != null) {
-				result = evaluateInteger(limitation, left, sourceVal);			
-			}
-		}
-		return result;
+		return null;
 	}
 
-	protected Object evaluateBigDecimal(Limitation limitation, BigDecimal left, Object leftVal) {
-		return evaluate(limitation, left, leftVal);
+	protected Object evaluateReal(BigDecimal left) {
+		return evaluate(left);
 	}
 	
-	protected Object evaluateBigInteger(Limitation limitation, BigInteger left, Object leftVal) {
-		return evaluate(limitation, left, leftVal);
+	protected Object evaluateInteger(BigInteger left) {
+		return evaluate(left);
 	}
 	
-	protected Object evaluateDouble(Limitation limitation, Double left,  Object leftVal) {
-		return evaluate(limitation, left, leftVal);
-	}
-	
-	protected Object evaluateInteger(Limitation limitation, Integer left, Object leftVal) {
-		return evaluate(limitation, left, leftVal);
-	}
-	
-	protected Object evaluateLong(Limitation limitation, Long left, Object leftVal) {
-		return evaluate(limitation, left, leftVal);
+	protected Object evaluateUnlimited(Object left) {
+		return null;
 	}
 	
 	/**
-	 * Return the result of evaluating the operation on left and right which are both
-	 * of the same derived Number type. The limitation identifies which of left and
-	 * right are unlimited numbers. A null return or an exception may be used for invalid.
+	 * Return the result of evaluating the operation on left. 
+	 * A null return or an exception may be used for invalid.
 	 */
-	protected <T extends Number & Comparable<T>> Object evaluate(Limitation limitation, T left, Object leftVal) {
+	protected <T extends Number & Comparable<T>> Object evaluate(T left) {
 		return null;
 	}
 }

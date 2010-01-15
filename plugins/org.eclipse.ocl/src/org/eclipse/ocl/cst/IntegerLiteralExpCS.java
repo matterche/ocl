@@ -13,9 +13,11 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpCS.java,v 1.3.10.1 2010/01/15 07:42:29 ewillink Exp $
+ * $Id: IntegerLiteralExpCS.java,v 1.3.10.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
+
+import java.math.BigInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,23 +45,25 @@ public interface IntegerLiteralExpCS
 	 * If the meaning of the '<em>Integer Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Integer Symbol</em>' attribute.
-	 * @see #setIntegerSymbol(Integer)
+	 * @see #setIntegerSymbol(BigInteger)
 	 * @see org.eclipse.ocl.cst.CSTPackage#getIntegerLiteralExpCS_IntegerSymbol()
 	 * @model
 	 * @generated
 	 */
-	Integer getIntegerSymbol();
+	BigInteger getIntegerSymbol();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.cst.IntegerLiteralExpCS#getIntegerSymbol <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Integer Symbol</em>' attribute.
 	 * @see #getIntegerSymbol()
 	 * @generated
 	 */
-	void setIntegerSymbol(Integer value);
+	void setIntegerSymbol(BigInteger value);
 
 } // IntegerLiteralExpCS

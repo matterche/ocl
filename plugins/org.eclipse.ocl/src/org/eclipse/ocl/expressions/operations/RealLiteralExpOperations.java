@@ -13,19 +13,18 @@
  * 
  * </copyright>
  *
- * $Id: RealLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: RealLiteralExpOperations.java,v 1.3.10.1 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.RealLiteralExp;
-
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.OCLUtil;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.util.OCLUtil;
  * The following operations are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.RealLiteralExp#checkRealType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Real Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.RealLiteralExp#setRealSymbol(java.lang.Double) <em>Set Real Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,6 +91,17 @@ public class RealLiteralExpOperations
 		}
 
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public static <C> void setRealSymbol(RealLiteralExp<C> realLiteralExp,
+			Double value) {
+		realLiteralExp.setRealSymbol(new BigDecimal(value));
 	}
 
 } // RealLiteralExpOperations

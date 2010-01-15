@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: NumericFloorOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
+ * $Id: NumericFloorOperation.java,v 1.1.2.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 
 
 /**
@@ -28,42 +29,12 @@ import java.math.BigInteger;
 public class NumericFloorOperation extends NumericUnaryOperation
 {
 	@Override
-	protected Object evaluateBigDecimal(Limitation limitation, BigDecimal left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return left.divideToIntegralValue(BigDecimal.ONE).toBigInteger();
-			default: return null;
-		}
+	protected Object evaluateInteger(BigInteger left) {
+		return left;
 	}
-
+	
 	@Override
-	protected Object evaluateBigInteger(Limitation limitation, BigInteger left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return left;
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateDouble(Limitation limitation, Double left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return Double.valueOf(Math.floor(left)).longValue();
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateInteger(Limitation limitation, Integer left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return left;
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateLong(Limitation limitation, Long left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return left;
-			default: return null;
-		}
+	protected Object evaluateReal(BigDecimal left) {
+		return left.setScale(0, RoundingMode.FLOOR).toBigInteger();
 	}
 }

@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.7.10.1 2010/01/14 21:33:15 ewillink Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.7.10.2 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.math.BigInteger;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -52,7 +53,7 @@ public class IntegerLiteralExpImpl<C>
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
+	protected static final BigInteger INTEGER_SYMBOL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
@@ -62,7 +63,7 @@ public class IntegerLiteralExpImpl<C>
 	 * @generated
 	 * @ordered
 	 */
-	protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
+	protected BigInteger integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,8 +90,22 @@ public class IntegerLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer getIntegerSymbol() {
+	public BigInteger getIntegerSymbol() {
 		return integerSymbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIntegerSymbol(BigInteger newIntegerSymbol) {
+		BigInteger oldIntegerSymbol = integerSymbol;
+		integerSymbol = newIntegerSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -99,13 +114,8 @@ public class IntegerLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIntegerSymbol(Integer newIntegerSymbol) {
-		Integer oldIntegerSymbol = integerSymbol;
-		integerSymbol = newIntegerSymbol;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL,
-				oldIntegerSymbol, integerSymbol));
+	public void setIntegerSymbol(Integer value) {
+		IntegerLiteralExpOperations.setIntegerSymbol(this, value);
 	}
 
 	/**
@@ -142,7 +152,7 @@ public class IntegerLiteralExpImpl<C>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
-				setIntegerSymbol((Integer) newValue);
+				setIntegerSymbol((BigInteger) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

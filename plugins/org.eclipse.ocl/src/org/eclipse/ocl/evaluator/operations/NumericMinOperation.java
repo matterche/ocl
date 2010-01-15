@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NumericMinOperation.java,v 1.1.2.1 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: NumericMinOperation.java,v 1.1.2.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 /**
@@ -25,16 +28,20 @@ package org.eclipse.ocl.evaluator.operations;
 public class NumericMinOperation extends NumericBinaryOperation
 {
 	@Override
-	protected <T extends Number & Comparable<T>> Object evaluate(Limitation limitation, T left, T right, Object leftVal, Object rightVal) {
-		if ((left == null) || (right == null)) {
+	protected Object evaluateInteger(BigInteger left, BigInteger right) {
+		return left.min(right);
+	}
+
+	@Override
+	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
+		return left.min(right);
+	}
+
+	@Override
+	protected Object evaluateUnlimited(Object left, Object right) {
+		if (!isUnlimitedNatural(left) || !isUnlimitedNatural(right)) {
 			return null;
-		}			
-		switch (limitation) {
-			case LIMITED_LIMITED: return left.compareTo(right) < 0 ? left : right;
-			case LIMITED_UNLIMITED: return left;
-			case UNLIMITED_LIMITED: return right;
-			case UNLIMITED_UNLIMITED: return leftVal;		// Use the passed UnlimitedNaturalLiteralExp
-			default: return null;
 		}
+		return isUnlimited(right) ? left : right;
 	}
 }

@@ -15,11 +15,12 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.5 2010/01/15 07:44:26 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.6 2010/01/15 17:27:39 ewillink Exp $
  */
 
 package org.eclipse.ocl;
 
+import java.math.BigInteger;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -92,6 +93,7 @@ import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
@@ -140,9 +142,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				Object result = oclOperation.evaluate(this, oc);
 				if (result == null) {
 					result = library.getInvalid();
-				}
-				else if (result instanceof Number) {
-					result = NumberUtil.coerceNumber((Number) result);
 				}
 				return result;
 			}
@@ -293,7 +292,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						
 					case PredefinedType.SIZE:
 						if (sourceType instanceof CollectionType<?, ?>) {
-							return new Integer(((Collection<?>) sourceVal).size());
+							return BigInteger.valueOf(((Collection<?>) sourceVal).size());
 						}
 
 					case PredefinedType.IS_EMPTY:
@@ -362,9 +361,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// evaluate argument
 				OCLExpression<C> arg = args.get(0);
-
-				// get argument type
-				C argType = arg.getType();
 				
 	            if (isUndefined(sourceVal)) {
 	                return getInvalid();
@@ -376,130 +372,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				if (!(sourceVal instanceof Boolean)) {
 					argVal = arg.accept(getVisitor());
 				}
-
-				if (sourceVal instanceof Number) {
-                    // we have a numeric operation.  Promote to high precision
-                    sourceVal = higherPrecisionNumber((Number) sourceVal);
-                    
-                    if (argVal instanceof Number) {
-                        argVal = higherPrecisionNumber((Number) argVal);
-                    }
-				}
 				
-				if (sourceVal instanceof Long && argVal instanceof Long) {
-					//
-					// source and single arg are both integers
-					//
-
-                    long sourceInt = (Long) sourceVal;
-                    long argInt = (Long) argVal;
-                    
-                    boolean sourceUnlimited =
-                        sourceType == getUnlimitedNatural()
-                            && sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED;
-                    boolean argUnlimited =
-                        argType == getUnlimitedNatural()
-                            && argInt == UnlimitedNaturalLiteralExp.UNLIMITED;
-                    
-                    if (sourceUnlimited && argUnlimited) {
-                        return getInvalid();
-                    } else if (sourceUnlimited || argUnlimited) {
-                        return getInvalid();
-                    }
-                    
-					switch (opCode) {
-
-						default: {
-							String message = OCLMessages.bind(
-									OCLMessages.UnknownOperation_ERROR_,
-									getName(oper));
-							RuntimeException error = new RuntimeException(message);
-							OCLPlugin.throwing(getClass(),
-								"visitOperationCallExp", error);//$NON-NLS-1$
-							throw error;
-						}
-					}
-				} else if (sourceVal instanceof Long
-					&& argVal instanceof Double) {
-				    
-					//
-					// source is an integer and single arg is a real
-					//
-
-                    long sourceInt = (Long) sourceVal;
-                    
-                    if (sourceType == getUnlimitedNatural()) {
-                        if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                            return getInvalid();
-                        }
-                    }
-                    
-					switch (opCode) {
-
-						default: {
-							String message = OCLMessages.bind(
-									OCLMessages.UnknownOperation_ERROR_,
-									getName(oper));
-							RuntimeException error = new RuntimeException(message);
-							OCLPlugin.throwing(getClass(),
-								"visitOperationCallExp", error);//$NON-NLS-1$
-							throw error;
-						}
-					}
-				}
-
-				else if (sourceVal instanceof Double
-					&& argVal instanceof Long) {
-				    
-				    long argInt = (Long) argVal;
-				    
-					//
-					// source is a real and single arg is an integer
-					//	
-
-                    if (argType == getUnlimitedNatural()) {
-                        if (argInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                            return getInvalid();
-                        }
-                    }
-
-                    // for these arithmetic operations, don't need to coerce
-                    // the result to any other precision because OCL Reals are
-                    // represented as Doubles, anyway
-					switch (opCode) {
-
-						default: {
-							String message = OCLMessages.bind(
-									OCLMessages.UnknownOperation_ERROR_,
-								getName(oper));
-							RuntimeException error = new RuntimeException(message);
-							OCLPlugin.throwing(getClass(),
-								"visitOperationCallExp", error);//$NON-NLS-1$
-							throw error;
-						}
-					}
-				} else if (sourceVal instanceof Double
-					&& argVal instanceof Double) {
-				    
-					//
-					// source is a real and single arg is a real
-					//	
-
-					switch (opCode) {
-
-						default: {
-							String message = OCLMessages.bind(
-									OCLMessages.UnknownOperation_ERROR_,
-								getName(oper));
-							RuntimeException error = new RuntimeException(message);
-							OCLPlugin.throwing(getClass(),
-								"visitOperationCallExp", error);//$NON-NLS-1$
-							throw error;
-						}
-					}
-				}
-
-				else if (sourceVal instanceof String
+				if (sourceVal instanceof String
 					&& argVal instanceof String) {
 
 					switch (opCode) {
@@ -607,7 +481,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						case PredefinedType.AT: {
 							// OrderedSet, Sequence::at(Integer)
-							int indexVal = ((Integer) argVal).intValue();
+							int indexVal = ((BigInteger) argVal).intValue();
 							return CollectionUtil.at(sourceColl, indexVal);
 						}
 
@@ -647,27 +521,27 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// just one ternary string operation
 					// String::substring(Integer, Integer)
 					// index orgin 1 for OCL
-					int lower = ((Integer) arg1).intValue() - 1;
-					int upper = ((Integer) arg2).intValue();
+					int lower = ((BigInteger) arg1).intValue() - 1;
+					int upper = ((BigInteger) arg2).intValue();
 					return ((String) sourceVal).substring(lower, upper);
 				} else if (sourceVal instanceof Collection<?>) {
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
 					if (opCode == PredefinedType.INSERT_AT) {
 						// OrderedSet, Sequence::insertAt(Integer, T)
-						int index = ((Integer) arg1).intValue();
+						int index = ((BigInteger) arg1).intValue();
 						return CollectionUtil.insertAt(sourceColl, index,
 							arg2);
 					} else if (opCode == PredefinedType.SUB_ORDERED_SET) {
 						// OrderedSet, Sequence::subOrderedSet(Integer, Integer)
-						int lower = ((Integer) arg1).intValue();
-						int upper = ((Integer) arg2).intValue();
+						int lower = ((BigInteger) arg1).intValue();
+						int upper = ((BigInteger) arg2).intValue();
 						return CollectionUtil.subOrderedSet(sourceColl,
 							lower, upper);
 					} else if (opCode == PredefinedType.SUB_SEQUENCE) {
 						// Sequence::subSequence(Integer, Integer)
-						int lower = ((Integer) arg1).intValue();
-						int upper = ((Integer) arg2).intValue();
+						int lower = ((BigInteger) arg1).intValue();
+						int upper = ((BigInteger) arg2).intValue();
 						return CollectionUtil.subSequence(sourceColl,
 							lower, upper);
 					}
@@ -1416,12 +1290,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     @Override
     public Object visitUnlimitedNaturalLiteralExp(
             UnlimitedNaturalLiteralExp<C> literalExp) {
-        if (!literalExp.isUnlimited()) {
-			return literalExp.getIntegerSymbol();
-		}
-		else {
-			return literalExp;
-		}
+        return literalExp.isUnlimited() ? literalExp : literalExp.getUnlimitedNaturalSymbol();
     }
 
 	/**
@@ -1506,13 +1375,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			OCLExpression<C> last = collRange.getLast();
 
 			// evaluate first value
-			Integer firstVal = (Integer) first.accept(getVisitor());
+			Number firstVal = (BigInteger) first.accept(getVisitor());
 			if (firstVal == null) {
 				result.add(null);
 				return result;
 			}
 			// evaluate last value
-			Integer lastVal = (Integer) last.accept(getVisitor());
+			Number lastVal = (BigInteger) last.accept(getVisitor());
 			if (lastVal == null) {
 				result.add(null);
 				return result;
@@ -1545,15 +1414,15 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					OCLExpression<C> last = range.getLast();
 
 					// evaluate first value
-					Integer firstVal = (Integer) first.accept(getVisitor());
-					Integer lastVal = (Integer) last.accept(getVisitor());
+					BigInteger firstVal = (BigInteger) first.accept(getVisitor());
+					BigInteger lastVal = (BigInteger) last.accept(getVisitor());
 					if (!((firstVal == null) || (lastVal == null))) {
 						// TODO: enhance IntegerRangeList to support multiple ranges
 						// add values between first and last inclusive
 						int firstInt = firstVal.intValue();
 						int lastInt = lastVal.intValue();
 						for (int i = firstInt; i <= lastInt; i++) {
-                            result.add(new Integer(i));
+                            result.add(BigInteger.valueOf(i));
                         }
 					}
 				} // end of collection range
@@ -1567,7 +1436,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 	// private static inner class for lazy lists over an integer range
 	private static final class IntegerRangeList
-		extends AbstractList<Integer> {
+		extends AbstractList<BigInteger> {
 
 //		public IntegerRangeList() {
 //			super();
@@ -1593,7 +1462,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 
 		@Override
-        public Integer get(int index) {
+        public BigInteger get(int index) {
 			if (index < 0 || index >= size()) {
 				String message = OCLMessages.bind(
 						OCLMessages.IndexOutOfRange_ERROR_,
@@ -1606,29 +1475,29 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				OCLPlugin.throwing(getClass(), "get", error);//$NON-NLS-1$
 				throw error;
 			}
-			return new Integer(first + index);
+			return BigInteger.valueOf(first + index);
 		}
 
 		@Override
-        public Iterator<Integer> iterator() {
+        public Iterator<BigInteger> iterator() {
 			// local iterator class that provides
 			// hasNext() and next() methods appropriate
 			// for this range set
 			class IntegerRangeIterator
-				implements Iterator<Integer> {
+				implements Iterator<BigInteger> {
 
 				public IntegerRangeIterator() {
 					curr = first;
 					initialized = false;
 				}
 
-				public Integer next() {
+				public BigInteger next() {
 					if (!initialized) {
 						curr = first - 1;
 						initialized = true;
 					}
 					if (hasNext()) {
-                        return new Integer(++curr);
+                        return BigInteger.valueOf(++curr);
                     }
 					throw new NoSuchElementException();
 				}

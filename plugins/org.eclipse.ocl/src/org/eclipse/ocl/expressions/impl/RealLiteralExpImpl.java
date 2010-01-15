@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.7.10.1 2010/01/14 21:33:15 ewillink Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.7.10.2 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -52,7 +53,7 @@ public class RealLiteralExpImpl<C>
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Double REAL_SYMBOL_EDEFAULT = null;
+	protected static final BigDecimal REAL_SYMBOL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
@@ -62,7 +63,7 @@ public class RealLiteralExpImpl<C>
 	 * @generated
 	 * @ordered
 	 */
-	protected Double realSymbol = REAL_SYMBOL_EDEFAULT;
+	protected BigDecimal realSymbol = REAL_SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,8 +90,22 @@ public class RealLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Double getRealSymbol() {
+	public BigDecimal getRealSymbol() {
 		return realSymbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRealSymbol(BigDecimal newRealSymbol) {
+		BigDecimal oldRealSymbol = realSymbol;
+		realSymbol = newRealSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL,
+				oldRealSymbol, realSymbol));
 	}
 
 	/**
@@ -99,13 +114,8 @@ public class RealLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRealSymbol(Double newRealSymbol) {
-		Double oldRealSymbol = realSymbol;
-		realSymbol = newRealSymbol;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL,
-				oldRealSymbol, realSymbol));
+	public void setRealSymbol(Double value) {
+		RealLiteralExpOperations.setRealSymbol(this, value);
 	}
 
 	/**
@@ -142,7 +152,7 @@ public class RealLiteralExpImpl<C>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
-				setRealSymbol((Double) newValue);
+				setRealSymbol((BigDecimal) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

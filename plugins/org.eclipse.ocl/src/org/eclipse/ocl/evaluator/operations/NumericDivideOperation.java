@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericDivideOperation.java,v 1.1.2.1 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: NumericDivideOperation.java,v 1.1.2.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -28,61 +28,28 @@ import java.math.RoundingMode;
  */
 public class NumericDivideOperation extends NumericBinaryOperation
 {
+	private static final int MINIMUM_SCALE = Double.SIZE/2;		// Gives nearly twice the precision of Double
+
 	protected BigDecimal divideBigDecimal(BigDecimal left, BigDecimal right) {
 		try {
-			return left.divide(right, RoundingMode.HALF_EVEN);
+			if (right.signum() == 0) {
+				return null;
+			}
+			int scale = Math.max(left.scale() - right.scale(), MINIMUM_SCALE);
+			BigDecimal result = left.divide(right, scale, RoundingMode.HALF_EVEN);
+			return result;
 		} catch (ArithmeticException e) {
 			return null;
 		}
 	}
-	
-	protected Double divideDouble(double left, double right) {
-		double result = left / right;
-		if (Double.isInfinite(result) || Double.isNaN(result)) {
-			return null;
-		}
-		else {
-			return result;
-		}
+
+	@Override
+	protected Object evaluateInteger(BigInteger left, BigInteger right) {
+		return divideBigDecimal(new BigDecimal(left), new BigDecimal(right));
 	}
 
 	@Override
-	protected Object evaluateBigDecimal(Limitation limitation, BigDecimal left, BigDecimal right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return divideBigDecimal(left, right);
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateBigInteger(Limitation limitation, BigInteger left, BigInteger right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return divideBigDecimal(new BigDecimal(left), new BigDecimal(right));
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateDouble(Limitation limitation, Double left, Double right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return divideDouble(left, right);
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateInteger(Limitation limitation, Integer left, Integer right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return divideDouble(left, right);
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateLong(Limitation limitation, Long left, Long right, Object leftVal, Object rightVal) {
-		switch (limitation) {
-			case LIMITED_LIMITED: return divideDouble(left, right);
-			default: return null;
-		}
+	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
+		return divideBigDecimal(left, right);
 	}
 }

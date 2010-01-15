@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.12.4.1 2010/01/15 07:44:26 ewillink Exp $
+ * $Id: OCL.java,v 1.12.4.2 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -27,10 +27,12 @@ import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.internal.OCLDebugOptions;
 import org.eclipse.ocl.internal.OCLPlugin;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.evaluation.QueryImpl;
 import org.eclipse.ocl.internal.helper.HelperUtil;
 import org.eclipse.ocl.lpg.ProblemHandler;
@@ -418,20 +420,55 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * Evaluates a query expression on a context object (which is bound to the
 	 * <tt>self</tt> variable). Clients should use the
 	 * {@link #isInvalid(Object)} method to check whether the evaluation result
-	 * is <tt>OclInvalid</tt>.
+	 * is <tt>invalid</tt>.
+	 * <p>Any BigDecimal or BigInteger result is converted to the smallest of Double, or Long or
+	 * Integer when possible. Use {@link #rawEvaluate(Object, Object)} to retain the internal precision.</p>
 	 * 
 	 * @param context
 	 *            the context (self) object
 	 * @param expression
 	 *            the OCL expression to evaluate
 	 * 
-	 * @return the value of the expression, or <tt>OclInvalid</tt> if the
+	 * @return the value of the expression, or <tt>invalid</tt> if the
+	 *         evaluation fails for reasons other than a run-time exception
+	 * 
+	 * @see #isInvalid(Object)
+	 * @see #rawEvaluate(Object, Object)
+	 * @see #check(Object, Object)
+	 */
+	public Object evaluate(Object context, OCLExpression<C> expression) {
+		Object result = rawEvaluate(context, expression);
+		if (result instanceof Number) {
+			result = NumberUtil.coerceNumber((Number) result);
+		}
+		return result;
+	}
+
+	/**
+	 * Evaluates a query expression on a context object (which is bound to the
+	 * <tt>self</tt> variable). Clients should use the
+	 * {@link #isInvalid(Object)} method to check whether the evaluation result
+	 * is <tt>invalid</tt>.
+	 * <br>Any Real result is represented by a BigDecimal object.
+	 * <br>Any Integer result is represented by a BigInteger object.
+	 * <br>Any (limited) UnlimitedNatural result is represented by a BigInteger object.
+	 * <br>The unlimited UnlimitedNatural result is represented by an UnlimitedNaturalLiteralExp object
+	 * whose value is UnlimitedNaturalLiteralExp.UNLIMITED.
+	 * 
+	 * @param context
+	 *            the context (self) object
+	 * @param expression
+	 *            the OCL expression to evaluate
+	 * 
+	 * @return the value of the expression, or <tt>invalid</tt> if the
 	 *         evaluation fails for reasons other than a run-time exception
 	 * 
 	 * @see #isInvalid(Object)
 	 * @see #check(Object, Object)
+	 * @see #evaluate(Object, Object)
+	 * @since 3.0
 	 */
-	public Object evaluate(Object context, OCLExpression<C> expression) {
+	public Object rawEvaluate(Object context, OCLExpression<C> expression) {
 		evaluationProblems = null;
 		
 		// can determine a more appropriate context from the context
@@ -478,7 +515,8 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @see #evaluate(Object, OCLExpression)
 	 */
 	public boolean isInvalid(Object value) {
-		return getEnvironment().getOCLStandardLibrary().getInvalid() == value;
+		return value instanceof InvalidLiteralExp<?>;
+//		return getEnvironment().getOCLStandardLibrary().getInvalid() == value;
 	}
 
 	/**

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackage.java,v 1.10.10.2 2010/01/15 07:42:25 ewillink Exp $
+ * $Id: ExpressionsPackage.java,v 1.10.10.3 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -939,13 +939,13 @@ public interface ExpressionsPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__END_POSITION = NUMERIC_LITERAL_EXP__END_POSITION;
 
 	/**
-	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
+	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.
@@ -2423,15 +2423,15 @@ public interface ExpressionsPackage
 	EClass getUnlimitedNaturalLiteralExp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Integer Symbol</em>'.
-	 * @see org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getIntegerSymbol()
+	 * @return the meta object for the attribute '<em>Unlimited Natural Symbol</em>'.
+	 * @see org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol()
 	 * @see #getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	EAttribute getUnlimitedNaturalLiteralExp_IntegerSymbol();
+	EAttribute getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#isUnlimited <em>Unlimited</em>}'.
@@ -3248,13 +3248,13 @@ public interface ExpressionsPackage
 			.getUnlimitedNaturalLiteralExp();
 
 		/**
-		 * The meta object literal for the '<em><b>Integer Symbol</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Unlimited Natural Symbol</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = eINSTANCE
-			.getUnlimitedNaturalLiteralExp_IntegerSymbol();
+		EAttribute UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL = eINSTANCE
+			.getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol();
 
 		/**
 		 * The meta object literal for the '<em><b>Unlimited</b></em>' attribute feature.

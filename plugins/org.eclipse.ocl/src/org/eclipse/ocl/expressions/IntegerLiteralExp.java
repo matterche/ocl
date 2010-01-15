@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: IntegerLiteralExp.java,v 1.6.10.1 2010/01/15 07:42:25 ewillink Exp $
+ * $Id: IntegerLiteralExp.java,v 1.6.10.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.math.BigInteger;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
@@ -46,24 +47,26 @@ public interface IntegerLiteralExp<C>
 	 * If the meaning of the '<em>Integer Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Integer Symbol</em>' attribute.
-	 * @see #setIntegerSymbol(Integer)
+	 * @see #setIntegerSymbol(BigInteger)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIntegerLiteralExp_IntegerSymbol()
 	 * @model
 	 * @generated
 	 */
-	Integer getIntegerSymbol();
+	BigInteger getIntegerSymbol();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.expressions.IntegerLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Integer Symbol</em>' attribute.
 	 * @see #getIntegerSymbol()
 	 * @generated
 	 */
-	void setIntegerSymbol(Integer value);
+	void setIntegerSymbol(BigInteger value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,5 +81,13 @@ public interface IntegerLiteralExp<C>
 	 */
 	boolean checkIntegerType(DiagnosticChain diagnostics,
 			Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model valueRequired="true" valueOrdered="false"
+	 * @generated
+	 */
+	void setIntegerSymbol(Integer value);
 
 } // IntegerLiteralExp

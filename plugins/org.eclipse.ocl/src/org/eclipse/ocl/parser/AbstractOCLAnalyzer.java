@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.2 2010/01/15 07:42:26 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.3 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2937,8 +2937,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		UnlimitedNaturalLiteralExp<C> astNode = oclFactory
 			.createUnlimitedNaturalLiteralExp();
 		initASTMapping(env, astNode, unlimitedNaturalLiteralExpCS);
-		astNode.setIntegerSymbol(unlimitedNaturalLiteralExpCS
-			.getIntegerSymbol());
+		astNode.setUnlimitedNaturalSymbol(unlimitedNaturalLiteralExpCS
+			.getUnlimitedNaturalSymbol());
 		astNode.setType(env.getOCLStandardLibrary().getUnlimitedNatural());
 		TRACE(
 			"unlimitedNaturalLiteralExpCS", "UnlimitedNatural: " + unlimitedNaturalLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$

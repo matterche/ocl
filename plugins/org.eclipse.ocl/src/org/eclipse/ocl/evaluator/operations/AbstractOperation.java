@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.4 2010/01/14 21:33:15 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.5 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -53,7 +53,7 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 
 	public static BigInteger bigIntegerValueOf(Object val) {
 		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			val = ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+			val = ((UnlimitedNaturalLiteralExp<?>)val).getUnlimitedNaturalSymbol();
 		}
 		if (val instanceof BigInteger) {
 			return (BigInteger) val;
@@ -66,7 +66,7 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		}
 	}
 
-	public static Double doubleValueOf(Object val) {
+/*	public static Double doubleValueOf(Object val) {
 		if (val instanceof Double) {
 			return (Double)val;
 		}
@@ -76,11 +76,11 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		else {
 			return null;
 		}
-	}
+	} */
 
-	public static Integer integerValueOf(Object val) {
+/*	public static Integer integerValueOf(Object val) {
 		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			val = ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+			val = ((UnlimitedNaturalLiteralExp<?>)val).getUnlimitedNaturalSymbol();
 		}
 		if (val instanceof Integer) {
 			return (Integer)val;
@@ -91,11 +91,11 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		else {
 			return null;
 		}
-	}
+	} */
 
-	public static Long longValueOf(Object val) {
+/*	public static Long longValueOf(Object val) {
 		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			val = ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+			val = ((UnlimitedNaturalLiteralExp<?>)val).getUnlimitedNaturalSymbol();
 		}
 		if (val instanceof Long) {
 			return (Long)val;
@@ -106,7 +106,7 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		else {
 			return null;
 		}
-	}
+	} */
 
 	protected <C> Object evaluateArgument(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<C, ?> operationCall, int argumentNumber) {
 		try {
@@ -147,7 +147,7 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 	}
 
 	protected boolean isInteger(Object value) {
-		return !isUnlimited(value) && ((value instanceof Integer) || (value instanceof Long) || (value instanceof BigInteger));
+		return value instanceof BigInteger;
 	}
 
 	/**
@@ -199,13 +199,17 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		return value.signum() < 0;
 	}
 
-	protected boolean isUnlimited(Integer value) {
-		return Integer.signum(value) < 0;
+	protected boolean isUnlimitedNatural(Object value) {
+		return isUnlimited(value) || ((value instanceof BigInteger) && (((BigInteger)value).signum() >= 0));
 	}
+	
+//	protected boolean isUnlimited(Integer value) {
+//		return Integer.signum(value) < 0;
+//	}
 
-	protected boolean isUnlimited(Long value) {
-		return Long.signum(value) < 0;
-	}
+//	protected boolean isUnlimited(Long value) {
+//		return Long.signum(value) < 0;
+//	}
 	
 //	public String toString() {
 //		Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();

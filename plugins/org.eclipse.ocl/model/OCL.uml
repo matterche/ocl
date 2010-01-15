@@ -714,7 +714,7 @@
         </ownedTemplateSignature>
         <generalization xmi:id="_unvVyNppEdu-d8Dv4wLx9Q" general="_unvVy9ppEdu-d8Dv4wLx9Q"/>
         <ownedAttribute xmi:id="_unvVydppEdu-d8Dv4wLx9Q" name="integerSymbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBigInteger"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvVytppEdu-d8Dv4wLx9Q"/>
         </ownedAttribute>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_unvVy9ppEdu-d8Dv4wLx9Q" name="NumericLiteralExp_C">
@@ -722,6 +722,11 @@
             <parameterSubstitution xmi:id="_unvVzdppEdu-d8Dv4wLx9Q" formal="_unvV0NppEdu-d8Dv4wLx9Q" actual="_unvVx9ppEdu-d8Dv4wLx9Q"/>
           </templateBinding>
         </nestedClassifier>
+        <ownedOperation xmi:id="_-fBR4AA0Ed-7_agdSFnrQQ" name="setIntegerSymbol">
+          <ownedParameter xmi:id="_BpWf4AA1Ed-7_agdSFnrQQ" name="value">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EIntegerObject"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVztppEdu-d8Dv4wLx9Q" name="NumericLiteralExp" isAbstract="true">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVz9ppEdu-d8Dv4wLx9Q" parameter="_unvV0NppEdu-d8Dv4wLx9Q">
@@ -749,8 +754,8 @@
           </ownedParameter>
         </ownedTemplateSignature>
         <generalization xmi:id="_unvV2tppEdu-d8Dv4wLx9Q" general="_unvV3tppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvV29ppEdu-d8Dv4wLx9Q" name="integerSymbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+        <ownedAttribute xmi:id="_unvV29ppEdu-d8Dv4wLx9Q" name="unlimitedNaturalSymbol" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBigInteger"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvV3NppEdu-d8Dv4wLx9Q"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_unvV3dppEdu-d8Dv4wLx9Q" name="unlimited" visibility="public" isOrdered="true" isReadOnly="true" isDerived="true">
@@ -761,6 +766,16 @@
             <parameterSubstitution xmi:id="_unvV4NppEdu-d8Dv4wLx9Q" formal="_unvV0NppEdu-d8Dv4wLx9Q" actual="_unvV2dppEdu-d8Dv4wLx9Q"/>
           </templateBinding>
         </nestedClassifier>
+        <ownedOperation xmi:id="_4u-wcAA1Ed-7_agdSFnrQQ" name="setIntegerSymbol">
+          <ownedParameter xmi:id="_4u-wcQA1Ed-7_agdSFnrQQ" name="value">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EIntegerObject"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_6MG1wAA1Ed-7_agdSFnrQQ" name="setUnlimitedNaturalSymbol">
+          <ownedParameter xmi:id="_6MG1wQA1Ed-7_agdSFnrQQ" name="value">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EIntegerObject"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvV4dppEdu-d8Dv4wLx9Q" name="InvalidLiteralExp">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvV4tppEdu-d8Dv4wLx9Q" parameter="_unvV49ppEdu-d8Dv4wLx9Q">
@@ -1187,7 +1202,7 @@
         </ownedTemplateSignature>
         <generalization xmi:id="_un1aYNppEdu-d8Dv4wLx9Q" general="_un1aY9ppEdu-d8Dv4wLx9Q"/>
         <ownedAttribute xmi:id="_un1aYdppEdu-d8Dv4wLx9Q" name="realSymbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBigDecimal"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_un1aYtppEdu-d8Dv4wLx9Q"/>
         </ownedAttribute>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_un1aY9ppEdu-d8Dv4wLx9Q" name="NumericLiteralExp_C">
@@ -1195,6 +1210,11 @@
             <parameterSubstitution xmi:id="_un1aZdppEdu-d8Dv4wLx9Q" formal="_unvV0NppEdu-d8Dv4wLx9Q" actual="_un1aX9ppEdu-d8Dv4wLx9Q"/>
           </templateBinding>
         </nestedClassifier>
+        <ownedOperation xmi:id="_QCQfIAA1Ed-7_agdSFnrQQ" name="setRealSymbol">
+          <ownedParameter xmi:id="_QCQfIQA1Ed-7_agdSFnrQQ" name="value">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDoubleObject"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1aZtppEdu-d8Dv4wLx9Q" name="StateExp">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1aZ9ppEdu-d8Dv4wLx9Q" parameter="_un1aaNppEdu-d8Dv4wLx9Q _un1aatppEdu-d8Dv4wLx9Q">
@@ -2308,4 +2328,7 @@
   <Ecore:EReference xmi:id="_82aXYNXZEd6ci-srLwOkAQ" base_Property="_ykFGANLmEd6hmvYFRJXZTA"/>
   <Ecore_1:EClass xmi:id="_mC6toOmyEd6ZhMcS-shFnQ" instanceClassName="org.eclipse.ocl.library.OCLType"/>
   <Ecore:EReference xmi:id="_O3X-oOmzEd6ZhMcS-shFnQ" base_Property="__SvMEOmyEd6ZhMcS-shFnQ"/>
+  <Ecore:EDataType xmi:id="_t-sakP9tEd67_agdSFnrQQ" instanceClassName="java.lang.Number"/>
+  <Ecore:EOperation xmi:id="_HzTgsAA1Ed-7_agdSFnrQQ" base_Operation="_-fBR4AA0Ed-7_agdSFnrQQ"/>
+  <Ecore:EParameter xmi:id="_JKevAAA1Ed-7_agdSFnrQQ" base_Parameter="_BpWf4AA1Ed-7_agdSFnrQQ"/>
 </xmi:XMI>

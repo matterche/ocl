@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericAbsOperation.java,v 1.1.2.1 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: NumericAbsOperation.java,v 1.1.2.2 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -28,42 +28,12 @@ import java.math.BigInteger;
 public class NumericAbsOperation extends NumericUnaryOperation
 {
 	@Override
-	protected Object evaluateBigDecimal(Limitation limitation, BigDecimal left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return left.abs();
-			default: return null;
-		}
+	protected Object evaluateInteger(BigInteger left) {
+		return left.abs();
 	}
-
+	
 	@Override
-	protected Object evaluateBigInteger(Limitation limitation, BigInteger left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return left.abs();
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateDouble(Limitation limitation, Double left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return Math.abs(left);
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateInteger(Limitation limitation, Integer left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return Math.abs(left);
-			default: return null;
-		}
-	}
-
-	@Override
-	protected Object evaluateLong(Limitation limitation, Long left, Object leftVal) {
-		switch (limitation) {
-			case LIMITED: return Math.abs(left);
-			default: return null;
-		}
+	protected Object evaluateReal(BigDecimal left) {
+		return left.abs();
 	}
 }

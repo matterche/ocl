@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackageImpl.java,v 1.11.2.2 2010/01/15 07:47:24 ewillink Exp $
+ * $Id: UtilitiesPackageImpl.java,v 1.11.2.3 2010/01/15 17:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
@@ -158,6 +159,7 @@ public class UtilitiesPackageImpl
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		LibraryPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies

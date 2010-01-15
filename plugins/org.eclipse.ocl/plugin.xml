@@ -12,7 +12,7 @@
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869, 243976, 256040
 
- $Id: plugin.xml,v 1.7.10.1 2010/01/03 22:53:51 ewillink Exp $
+ $Id: plugin.xml,v 1.7.10.2 2010/01/15 17:27:39 ewillink Exp $
 -->
 
 <plugin>
@@ -127,6 +127,14 @@
         point="org.eclipse.team.core.fileTypes">
      <fileTypes extension="oclxmi" type="text"/>
      <fileTypes extension="oclstdlib" type="text"/>
+  </extension>
+
+  <extension
+     point="org.eclipse.emf.ecore.uri_mapping">
+    <mapping
+       source="pathmap://OCL_LIBRARIES/"
+       target="platform:/plugin/org.eclipse.ocl/libraries/">
+    </mapping>
   </extension>
 
 </plugin>

@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: IntegerLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: IntegerLiteralExpOperations.java,v 1.3.10.1 2010/01/15 17:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
+import java.math.BigInteger;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -39,6 +40,7 @@ import org.eclipse.ocl.util.OCLUtil;
  * The following operations are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.IntegerLiteralExp#checkIntegerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Integer Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.IntegerLiteralExp#setIntegerSymbol(java.lang.Integer) <em>Set Integer Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,6 +94,17 @@ public class IntegerLiteralExpOperations
 		}
 
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public static <C> void setIntegerSymbol(
+			IntegerLiteralExp<C> integerLiteralExp, Integer value) {
+		integerLiteralExp.setIntegerSymbol(BigInteger.valueOf(value));
 	}
 
 } // IntegerLiteralExpOperations

@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExp.java,v 1.7.10.1 2010/01/15 07:42:25 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExp.java,v 1.7.10.2 2010/01/15 17:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.math.BigInteger;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
@@ -28,7 +29,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#isUnlimited <em>Unlimited</em>}</li>
  * </ul>
  * </p>
@@ -40,34 +41,36 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 public interface UnlimitedNaturalLiteralExp<C>
 		extends NumericLiteralExp<C> {
 
-	/** Java value denoting the OCL unlimited value. */
-	int UNLIMITED = -1;
-
 	/**
-	 * Returns the value of the '<em><b>Integer Symbol</b></em>' attribute.
+	 * Returns the value of the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Integer Symbol</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Unlimited Natural Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Integer Symbol</em>' attribute.
-	 * @see #setIntegerSymbol(Integer)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getUnlimitedNaturalLiteralExp_IntegerSymbol()
+	 * @return the value of the '<em>Unlimited Natural Symbol</em>' attribute.
+	 * @see #setUnlimitedNaturalSymbol(BigInteger)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol()
 	 * @model
 	 * @generated
 	 */
-	Integer getIntegerSymbol();
+	BigInteger getUnlimitedNaturalSymbol();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Integer Symbol</em>' attribute.
-	 * @see #getIntegerSymbol()
+	 * @param value the new value of the '<em>Unlimited Natural Symbol</em>' attribute.
+	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
 	 */
-	void setIntegerSymbol(Integer value);
+	void setUnlimitedNaturalSymbol(BigInteger value);
+
+	/** Java value denoting the OCL unlimited value. */
+	BigInteger UNLIMITED = BigInteger.valueOf(-1);
 
 	/**
 	 * Returns the value of the '<em><b>Unlimited</b></em>' attribute.
@@ -97,5 +100,23 @@ public interface UnlimitedNaturalLiteralExp<C>
 	 */
 	boolean checkNaturalType(DiagnosticChain diagnostics,
 			Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @deprecated use setUnlimitedNaturalSymbol
+	 * <!-- end-user-doc -->
+	 * @model valueRequired="true" valueOrdered="false"
+	 * @generated
+	 */
+	void setIntegerSymbol(Integer value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @model valueRequired="true" valueOrdered="false"
+	 * @generated
+	 */
+	void setUnlimitedNaturalSymbol(Integer value);
 
 } // UnlimitedNaturalLiteralExp
