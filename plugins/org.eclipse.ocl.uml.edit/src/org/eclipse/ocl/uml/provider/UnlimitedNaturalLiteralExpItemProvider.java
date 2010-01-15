@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpItemProvider.java,v 1.1.4.1 2010/01/15 07:42:51 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpItemProvider.java,v 1.1.4.2 2010/01/15 17:27:43 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -68,28 +68,28 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIntegerSymbolPropertyDescriptor(object);
+			addUnlimitedNaturalSymbolPropertyDescriptor(object);
 			addUnlimitedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Integer Symbol feature.
+	 * This adds a property descriptor for the Unlimited Natural Symbol feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIntegerSymbolPropertyDescriptor(Object object) {
+	protected void addUnlimitedNaturalSymbolPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(
 						((ComposeableAdapterFactory) adapterFactory)
 								.getRootAdapterFactory(),
 						getResourceLocator(),
-						getString("_UI_UnlimitedNaturalLiteralExp_integerSymbol_feature"), //$NON-NLS-1$
+						getString("_UI_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol_feature"), //$NON-NLS-1$
 						getString(
-								"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_integerSymbol_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+								"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL,
 						true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -161,7 +161,7 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UnlimitedNaturalLiteralExp.class)) {
-		case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+		case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
 		case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
