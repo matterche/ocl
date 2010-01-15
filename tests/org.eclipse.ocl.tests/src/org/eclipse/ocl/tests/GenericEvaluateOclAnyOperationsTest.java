@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.1 2010/01/03 22:48:51 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.2 2010/01/15 17:27:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -74,17 +74,19 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryTrue(null, "true.oclAsType(OclAny)");
 		assertQueryInvalid(null, "true.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "true.oclAsType(OclInvalid)");
-		assertQueryEquals(null, Integer.valueOf(3), "3.oclAsType(Integer)");
-		assertQueryEquals(null, Integer.valueOf(3), "3.oclAsType(Real)");
+		assertQueryEquals(null, 3, "3.oclAsType(Integer)");
+		assertQueryEquals(null, 3, "3.oclAsType(Real)");
+		assertQueryInvalid(null, "3.0.oclAsType(Integer)");
+		assertQueryEquals(null, 3.0, "3.0.oclAsType(Real)");
 		assertQueryInvalid(null, "3.oclAsType(String)");
-		assertQueryEquals(null, Integer.valueOf(3), "3.oclAsType(OclAny)");
+		assertQueryEquals(null, 3, "3.oclAsType(OclAny)");
 		assertQueryInvalid(null, "3.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "3.oclAsType(OclInvalid)");
 
 		assertQueryInvalid(null, "3.14.oclAsType(Integer)");
-		assertQueryEquals(null, Double.valueOf(3.14), "3.14.oclAsType(Real)");
+		assertQueryEquals(null, 3.14, "3.14.oclAsType(Real)");
 		assertQueryInvalid(null, "3.14.oclAsType(String)");
-		assertQueryEquals(null, Double.valueOf(3.14), "3.14.oclAsType(OclAny)");
+		assertQueryEquals(null, 3.14, "3.14.oclAsType(OclAny)");
 		assertQueryInvalid(null, "3.14.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "3.14.oclAsType(OclInvalid)");
 
