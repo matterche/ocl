@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryEditor.java,v 1.1.2.2 2010/01/03 22:50:36 ewillink Exp $
+ * $Id: LibraryEditor.java,v 1.1.2.3 2010/01/18 08:57:58 ewillink Exp $
  */
 package org.eclipse.ocl.library.presentation;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;

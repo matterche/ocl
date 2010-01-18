@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryEditorAdvisor.java,v 1.1.2.1 2010/01/03 22:50:36 ewillink Exp $
+ * $Id: OCLLibraryEditorAdvisor.java,v 1.1.2.2 2010/01/18 08:57:58 ewillink Exp $
  */
 package org.eclipse.ocl.library.presentation;
 
 import java.io.File;
 import java.util.Arrays;
 
+import java.util.List;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
@@ -46,10 +47,12 @@ import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.ocl.library.presentation.OCLLibraryEditorPlugin;
+import org.eclipse.emf.ecore.presentation.EcoreEditor;
 
 
 /**
