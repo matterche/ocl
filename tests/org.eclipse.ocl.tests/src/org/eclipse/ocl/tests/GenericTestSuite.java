@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.3.2.3 2010/01/15 07:40:26 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.3.2.4 2010/01/18 08:57:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -50,6 +50,7 @@ import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.Variable;
@@ -427,7 +428,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	 * Assert that the result of evaluating an expression as a query is not null.
 	 * @return the evaluation result
 	 */
-	protected Object assertQueryNotNull(Object context, String expression) {
+	protected Object assertQueryNotJavaNull(Object context, String expression) {
 		String denormalized = denormalize(expression);
 		try {
 			Object value = evaluate(helper, context, denormalized);
@@ -448,6 +449,24 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		try {
 			Object value = evaluate(helper, context, denormalized);
 			assertNotSame(denormalized, expected, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is OCL null.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryNull(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			if (!(value instanceof NullLiteralExp<?>)) {
+				assertEquals(denormalized, environment.getOCLLibrary().getNull(), value);
+			}
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());

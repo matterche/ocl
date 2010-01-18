@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.2 2010/01/15 07:40:26 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.3 2010/01/18 08:57:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -151,7 +151,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         // negative
         assertQueryNotSame(pkg1, bob, "%nestedPackage->any(name = 'pkg2')");
 
-        assertQueryNotNull(pkg1, "%nestedPackage->any(true)");
+        assertQueryNotJavaNull(pkg1, "%nestedPackage->any(true)");
     }
 
     /**
@@ -166,7 +166,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         // different result
         assertQueryTrue(pkg1, "Sequence{}->isUnique(e | e)");
 
-        assertQueryNotNull(pkg1, "%nestedPackage->isUnique(name)");
+        assertQueryNotJavaNull(pkg1, "%nestedPackage->isUnique(name)");
     }
 
     /**

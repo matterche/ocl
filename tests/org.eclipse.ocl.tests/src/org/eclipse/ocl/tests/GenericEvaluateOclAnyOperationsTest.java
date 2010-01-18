@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.2 2010/01/15 17:27:26 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.3 2010/01/18 08:57:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -75,8 +75,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryInvalid(null, "true.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "true.oclAsType(OclInvalid)");
 		assertQueryEquals(null, 3, "3.oclAsType(Integer)");
-		assertQueryEquals(null, 3, "3.oclAsType(Real)");
-		assertQueryInvalid(null, "3.0.oclAsType(Integer)");
+		assertQueryEquals(null, 3.0, "3.oclAsType(Real)");
+		assertQueryEquals(null, 3, "3.0.oclAsType(Integer)");
 		assertQueryEquals(null, 3.0, "3.0.oclAsType(Real)");
 		assertQueryInvalid(null, "3.oclAsType(String)");
 		assertQueryEquals(null, 3, "3.oclAsType(OclAny)");
