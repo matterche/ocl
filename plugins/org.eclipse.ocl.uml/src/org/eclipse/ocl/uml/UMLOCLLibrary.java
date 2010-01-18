@@ -54,7 +54,7 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<Classifier>
 		return classifier.getGenerals();
 	}
 
-	protected OCLOperation resolveOperation(Object referredOperation) {
+	protected OCLOperation resolveOperation(OCLType dynamicType, Object referredOperation) {
 		Operation operation = (Operation) referredOperation;
 		org.eclipse.uml2.uml.Class classifier = operation.getClass_();
 		OCLType thisType = getOCLTypeOfType(classifier);
