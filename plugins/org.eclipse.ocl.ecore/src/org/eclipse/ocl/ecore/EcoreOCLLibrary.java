@@ -59,7 +59,7 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<EClass>
 		return classifier.getESuperTypes();
 	}
 
-	protected OCLOperation resolveOperation(Object referredOperation) {
+	protected OCLOperation resolveOperation(OCLType dynamicType, Object referredOperation) {
 		EOperation eOperation = (EOperation) referredOperation;
 		EClass classifier = eOperation.getEContainingClass();
 		EClassifier realClassifier = OCLStandardLibraryImpl.getRealClassifier(classifier);
