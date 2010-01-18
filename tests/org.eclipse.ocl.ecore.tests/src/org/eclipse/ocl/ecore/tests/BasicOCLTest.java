@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.15 2009/11/28 17:40:23 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.15.2.1 2010/01/18 22:07:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -317,7 +317,7 @@ public class BasicOCLTest
 	public void test_dataTypeAsContext() {
 		OCLExpression<EClassifier> expr = parse(
 			"package ecore context EString " +
-			"inv: self.toUpper() <> self.toLower() " +
+			"inv: self.toUpperCase() <> self.toLowerCase() " +
 			"endpackage ");
 		
 		assertTrue(check(expr, "anything"));
@@ -325,7 +325,7 @@ public class BasicOCLTest
 		
 		expr = parse(
 			"package ecore context EString " +
-			"inv: self.toUpper() " +
+			"inv: self.toUpperCase() " +
 			"endpackage ");
 		
 		assertEquals("ANYTHING", evaluate(expr, "anything"));

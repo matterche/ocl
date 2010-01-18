@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.7.2.1 2010/01/15 17:27:14 ewillink Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.7.2.2 2010/01/18 22:07:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -158,8 +158,10 @@ public class PrimitiveTypesTest
 			assertInvalid(evaluate(helper, 1, "* - *"));
 			assertInvalid(evaluate(helper, 1, "* / *"));
 			assertInvalid(evaluate(helper, 1, "* * *"));
-			assertInvalid(evaluate(helper, 1, "*.min(*)"));
-			assertInvalid(evaluate(helper, 1, "*.max(*)"));
+//			assertInvalid(evaluate(helper, 1, "*.min(*)"));
+			assertQueryUnlimited(1, "*.min(*)");
+//			assertInvalid(evaluate(helper, 1, "*.max(*)"));
+			assertQueryUnlimited(1, "*.min(*)");
 			assertInvalid(evaluate(helper, 1, "*.mod(*)"));
 			assertInvalid(evaluate(helper, 1, "*.div(*)"));
 		} catch (Exception e) {

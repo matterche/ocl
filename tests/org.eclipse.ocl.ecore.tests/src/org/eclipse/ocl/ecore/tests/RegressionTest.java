@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.17.2.3 2010/01/15 17:27:14 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.17.2.4 2010/01/18 22:07:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -477,7 +477,7 @@ public class RegressionTest
 	public void test_toLower_RATLC00529981() {
 		OCLExpression<EClassifier> expr = parse(
 			"package ocltest context Fruit " +
-			"inv: 'AlPHaBet'.toLower() " +
+			"inv: 'AlPHaBet'.toLowerCase() " +
 			"endpackage");
 		
 		Object value = evaluate(expr);
@@ -492,7 +492,7 @@ public class RegressionTest
 	public void test_toUpper_RATLC00529981() {
 		OCLExpression<EClassifier> expr = parse(
 			"package ocltest context Fruit " +
-			"inv: 'AlPHaBet'.toUpper() " +
+			"inv: 'AlPHaBet'.toUpperCase() " +
 			"endpackage");
 		
 		Object value = evaluate(expr);
