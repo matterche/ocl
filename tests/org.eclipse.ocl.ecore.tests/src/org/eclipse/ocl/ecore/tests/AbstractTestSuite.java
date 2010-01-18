@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.24.2.3 2010/01/15 07:39:53 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.24.2.4 2010/01/18 08:57:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -108,6 +108,7 @@ public abstract class AbstractTestSuite
 	public static void suite(CheckedTestSuite result) {
 		result.createTestSuite(EvaluateOclAnyOperationsTest.class, "Evaluate OclAny Operations Tests");
 		result.createTestSuite(EvaluateBooleanOperationsTest.class, "Evaluate Boolean Operations Tests");
+		result.createTestSuite(EvaluateCollectionOperationsTest.class, "Evaluate Collection Operations Tests");
 		result.createTestSuite(EvaluateNumericOperationsTest.class, "Evaluate Numeric Operations Tests");
 		result.createTestSuite(EvaluateStringOperationsTest.class, "Evaluate String Operations Tests");
 
