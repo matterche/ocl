@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclIsTypeOfOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
+ * $Id: OclIsTypeOfOperation.java,v 1.1.2.2 2010/01/18 08:57:51 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -30,10 +30,9 @@ import org.eclipse.ocl.library.OCLType;
 public class OclIsTypeOfOperation extends AbstractOperation
 {
 	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
+	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
 		OCLLibrary library = environment.getOCLLibrary();
-		Object sourceVal = evaluateSource(visitor, operationCall);
 		OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
 		Object argVal = evaluateArgument(visitor, operationCall, 0);
 		OCLType argType = library.getOCLTypeOfType(argVal);

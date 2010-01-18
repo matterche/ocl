@@ -53,7 +53,7 @@ public interface OCLLibrary extends OCLStandardLibrary<OCLType> {
 
 	OCLType getOclExpression();
 	
-	OCLOperation getOperation(OperationCallExp<?,?> operationCall);
+	OCLOperation getOperation(OCLType sourceType, OperationCallExp<?,?> operationCall);
 	
 	OCLType getOCLTypeOfType(Object object);
 	

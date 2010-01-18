@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.4 2010/01/15 07:47:00 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.5 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -157,6 +157,7 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(APPEND_NAME, APPEND);
 		operationCodes.put(SUB_ORDERED_SET_NAME, SUB_ORDERED_SET);
 		operationCodes.put(SYMMETRIC_DIFFERENCE_NAME, SYMMETRIC_DIFFERENCE);
+		operationCodes.put(OCL_AS_COLLECTION_NAME, OCL_AS_COLLECTION);
 		operationCodes.put(EXISTS_NAME, EXISTS);
 		operationCodes.put(FOR_ALL_NAME, FOR_ALL);
 		operationCodes.put(IS_UNIQUE_NAME, IS_UNIQUE);
@@ -380,6 +381,8 @@ public final class OCLStandardLibraryUtil {
 				return SUB_ORDERED_SET_NAME;
 			case SYMMETRIC_DIFFERENCE :
 				return SYMMETRIC_DIFFERENCE_NAME;
+			case OCL_AS_COLLECTION :
+				return OCL_AS_COLLECTION_NAME;
 			case EXISTS :
 				return EXISTS_NAME;
 			case FOR_ALL :
@@ -671,6 +674,8 @@ public final class OCLStandardLibraryUtil {
 			case OCL_IS_UNDEFINED :
 			case OCL_IS_INVALID :
 				return stdlib.getBoolean();
+			case OCL_AS_COLLECTION :
+				return getCollectionType(env, env.getOCLFactory(), sourceType);
 		}
 
 		// unknown operation (shouldn't get here)
@@ -822,6 +827,8 @@ public final class OCLStandardLibraryUtil {
 				return getSequenceType(env, oclFactory, elemType);
 			case COLLECT_NESTED :
 				return getBagType(env, oclFactory, stdlib.getT2());
+			case OCL_AS_COLLECTION :
+				return sourceType;
 		}
 
 		return getCollectionTypeResultTypeOf(problemObject, env, bagType,
@@ -925,6 +932,8 @@ public final class OCLStandardLibraryUtil {
 				return getOrderedSetType(env, oclFactory, elemType);
 			case COLLECT_NESTED :
 				return getBagType(env, oclFactory, stdlib.getT2());
+			case OCL_AS_COLLECTION :
+				return sourceType;
 		}
 
 		return getCollectionTypeResultTypeOf(problemObject, env, setType,
@@ -996,6 +1005,8 @@ public final class OCLStandardLibraryUtil {
 				return getBagType(env, oclFactory, elemType);
 			case AS_SEQUENCE :
 				return getSequenceType(env, oclFactory, elemType);
+			case OCL_AS_COLLECTION :
+				return sourceType;
 		}
 
 		@SuppressWarnings("unchecked")
@@ -1078,6 +1089,8 @@ public final class OCLStandardLibraryUtil {
 				return sourceType;
 			case COLLECT_NESTED :
 				return getSequenceType(env, oclFactory, stdlib.getT2());
+			case OCL_AS_COLLECTION :
+				return sourceType;
 		}
 
 		return getCollectionTypeResultTypeOf(problemObject, env, seqType,
@@ -1261,6 +1274,8 @@ public final class OCLStandardLibraryUtil {
 			OCL_IS_NEW_NAME));
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
 			OCL_IS_IN_STATE_NAME, stdlib.getState(), "statespec")); //$NON-NLS-1$
+		result.add(createUnaryOperation(uml, stdlib.getCollection(),
+			OCL_AS_COLLECTION_NAME));
 
 		return result;
 	}
@@ -1662,6 +1677,7 @@ public final class OCLStandardLibraryUtil {
 			AS_SEQUENCE_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
 			AS_ORDERED_SET_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getSet(), OCL_AS_COLLECTION_NAME));
 
 		return result;
 	}
@@ -1757,6 +1773,7 @@ public final class OCLStandardLibraryUtil {
 			AS_SEQUENCE_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
 			AS_ORDERED_SET_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getBag(), OCL_AS_COLLECTION_NAME));
 
 		return result;
 	}
@@ -1817,6 +1834,7 @@ public final class OCLStandardLibraryUtil {
 			AS_SEQUENCE_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
 			AS_ORDERED_SET_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getSequence(), OCL_AS_COLLECTION_NAME));
 
 		return result;
 	}

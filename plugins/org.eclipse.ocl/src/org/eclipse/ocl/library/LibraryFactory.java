@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.4 2010/01/18 08:57:52 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -25,6 +25,15 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	LibraryFactory eINSTANCE = org.eclipse.ocl.library.impl.LibraryFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation</em>'.
+	 * @generated
+	 */
+	LibraryOperation createLibraryOperation();
 
 	/**
 	 * Returns a new object of class '<em>OCL Constraint Operation</em>'.
@@ -70,15 +79,6 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLLibraryOperation createOCLLibraryOperation();
-
-	/**
-	 * Returns a new object of class '<em>Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operation</em>'.
-	 * @generated
-	 */
-	LibraryOperation createLibraryOperation();
 
 	/**
 	 * Returns a new object of class '<em>OCL Library Property</em>'.

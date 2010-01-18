@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.6 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.7 2010/01/18 08:57:53 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -35,6 +35,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.evaluator.operations.AbstractOperation;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -78,10 +79,9 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateOne;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
-import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLOperation;
+import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.InvalidType;
@@ -93,7 +93,6 @@ import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
@@ -137,9 +136,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
 		try {
-			OCLOperation oclOperation = library.getOperation(oc);
+			OCLExpression<?> source = oc.getSource();
+			Object sourceVal = source.accept(this);
+			OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
+			OCLOperation oclOperation = library.getOperation(sourceType, oc);
 			if (oclOperation != null) {
-				Object result = oclOperation.evaluate(this, oc);
+				Object result = oclOperation.evaluate(this, sourceVal, oc);
 				if (result == null) {
 					result = library.getInvalid();
 				}
@@ -276,85 +278,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			|| getUMLReflection().isDataType(sourceType)
 			|| (sourceType instanceof VoidType<?>) || (sourceType instanceof InvalidType<?>)) {
 
-			if (numArgs == 0) {
-				//
-				// unary operations:
-				//
-
-				// if source is undefined and the operation is not
-				// undefined, then this expression is invalid
-				if (isUndefined(sourceVal)) {
-                    return getInvalid();
-                }
-				
-				// evaluate this operation
-				switch (opCode) {
-						
-					case PredefinedType.SIZE:
-						if (sourceType instanceof CollectionType<?, ?>) {
-							return BigInteger.valueOf(((Collection<?>) sourceVal).size());
-						}
-
-					case PredefinedType.IS_EMPTY:
-						// Collection::isEmpty()
-						return Boolean.valueOf(((Collection<?>) sourceVal)
-							.isEmpty());
-
-					case PredefinedType.NOT_EMPTY:
-						// Collection::notEmpty()
-						return Boolean.valueOf(!((Collection<?>) sourceVal)
-							.isEmpty());
-
-					case PredefinedType.SUM:
-						// Collection::sum()
-						Number num = (Number) CollectionUtil.sum((Collection<?>) sourceVal);
-						
-						if (num == null) {
-							// empty collection
-							@SuppressWarnings("unchecked")
-							CollectionType<C, O> numCollType = (CollectionType<C, O>) sourceType;
-							C numType = numCollType.getElementType();
-							
-							if (numType == getReal()) {
-								num = new Double(0.0);
-							} else if (numType == getInteger()) {
-								num = new Integer(0);
-							}
-						}
-						
-						return num;
-
-					case PredefinedType.FLATTEN:
-						// Set, Bag, Sequence, OrderedSet::flatten()
-						return CollectionUtil.flatten((Collection<?>) sourceVal);
-
-					case PredefinedType.AS_SET:
-						// Set, Bag, Sequence, OrderedSet::asSet()
-						return CollectionUtil.asSet((Collection<?>) sourceVal);
-
-					case PredefinedType.AS_BAG:
-						// Set, Bag, Sequence, OrderedSet::asBag()
-						return CollectionUtil.asBag((Collection<?>) sourceVal);
-
-					case PredefinedType.AS_ORDERED_SET:
-						// Set, Bag, Sequence, OrderedSet::asOrderedSet()
-						return CollectionUtil.asOrderedSet((Collection<?>) sourceVal);
-
-					case PredefinedType.AS_SEQUENCE:
-						// Set, Bag, Sequence, OrderedSet::asSequence)
-						return CollectionUtil.asSequence((Collection<?>) sourceVal);
-
-					case PredefinedType.FIRST:
-						// OrderedSet::first()
-						return CollectionUtil.first((Collection<?>) sourceVal);
-
-					case PredefinedType.LAST:
-						// OrderedSet::last()
-						return CollectionUtil.last((Collection<?>) sourceVal);
-
-				} // end of unary operation switch
-
-			} else if (numArgs == 1) {
+			if (numArgs == 1) {
 				//
 				// binary operations:
 				//
@@ -397,99 +321,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         return argVal;
                     }
                     
-					switch (opCode) {
-						case PredefinedType.INCLUDES:
-							// Collection::includes(T)
-							return CollectionUtil.includes(sourceColl,
-								argVal) ? Boolean.TRUE : Boolean.FALSE;
-
-						case PredefinedType.EXCLUDES:
-							// Collection::excludes(T)
-							return CollectionUtil.excludes(sourceColl,
-								argVal) ? Boolean.TRUE : Boolean.FALSE;
-
-						case PredefinedType.COUNT:
-							// Collection::count(T)
-							return new Integer(CollectionUtil.count(
-								sourceColl, argVal));
-
-						case PredefinedType.INCLUDES_ALL:
-							// Collection::includesAll(T)
-							return CollectionUtil.includesAll(sourceColl,
-								(Collection<?>) argVal) ? Boolean.TRUE
-								: Boolean.FALSE;
-
-						case PredefinedType.EXCLUDES_ALL:
-							// Collection::excludesAll(T)
-							return CollectionUtil.excludesAll(sourceColl,
-								(Collection<?>) argVal) ? Boolean.TRUE
-								: Boolean.FALSE;
-
-						case PredefinedType.PRODUCT: {
-							// Collection::product(Collection(T2))
-							@SuppressWarnings("unchecked")
-							CollectionType<C, O> collType = (CollectionType<C, O>) oc.getType();
-							
-							return CollectionUtil.product(
-									evaluationEnvironment,
-									getEnvironment(),
-									sourceColl,
-									(Collection<?>) argVal,
-									collType.getElementType());
-						}
-						case PredefinedType.UNION: {
-							// Set, Bag::union(Set, Bag)
-							Collection<?> argColl = (Collection<?>) argVal;
-							return CollectionUtil.union(sourceColl, argColl);
-						}
-
-						case PredefinedType.INTERSECTION: {
-							// Set, Bag::intersection(Set, Bag)
-							Collection<?> argColl = (Collection<?>) argVal;
-							return CollectionUtil.intersection(sourceColl,
-								argColl);
-						}
-
-						case PredefinedType.MINUS:
-							// Set::minus(Set)
-							return CollectionUtil.minus((Set<?>) sourceColl,
-								(Set<?>) argVal);
-
-						case PredefinedType.INCLUDING:
-							// Set, Bag, Sequence::including(T)
-							return CollectionUtil.including(sourceColl,
-								argVal);
-
-						case PredefinedType.EXCLUDING:
-							// Set, Bag, Sequence::excluding(T)
-							return CollectionUtil.excluding(sourceColl,
-								argVal);
-
-						case PredefinedType.SYMMETRIC_DIFFERENCE:
-							// Set::symmetricDifference(Set)
-							return CollectionUtil.symmetricDifference(
-								(Set<?>) sourceColl, (Set<?>) argVal);
-
-						case PredefinedType.APPEND:
-							// OrderedSet, Sequence::append(T)
-							return CollectionUtil.append(sourceColl, argVal);
-
-						case PredefinedType.PREPEND:
-							// OrderedSet, Sequence::prepend(T)
-							return CollectionUtil.prepend(sourceColl,
-								argVal);
-
-						case PredefinedType.AT: {
-							// OrderedSet, Sequence::at(Integer)
-							int indexVal = ((BigInteger) argVal).intValue();
-							return CollectionUtil.at(sourceColl, indexVal);
-						}
-
-						case PredefinedType.INDEX_OF:
-							// OrderedSet, Sequence::indexOf(T)
-							return CollectionUtil.indexOf(sourceColl,
-								argVal);
-					} // end of collection type switch
 				}
 			} else {
 				//
@@ -524,28 +355,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					int lower = ((BigInteger) arg1).intValue() - 1;
 					int upper = ((BigInteger) arg2).intValue();
 					return ((String) sourceVal).substring(lower, upper);
-				} else if (sourceVal instanceof Collection<?>) {
-					@SuppressWarnings("unchecked")
-					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
-					if (opCode == PredefinedType.INSERT_AT) {
-						// OrderedSet, Sequence::insertAt(Integer, T)
-						int index = ((BigInteger) arg1).intValue();
-						return CollectionUtil.insertAt(sourceColl, index,
-							arg2);
-					} else if (opCode == PredefinedType.SUB_ORDERED_SET) {
-						// OrderedSet, Sequence::subOrderedSet(Integer, Integer)
-						int lower = ((BigInteger) arg1).intValue();
-						int upper = ((BigInteger) arg2).intValue();
-						return CollectionUtil.subOrderedSet(sourceColl,
-							lower, upper);
-					} else if (opCode == PredefinedType.SUB_SEQUENCE) {
-						// Sequence::subSequence(Integer, Integer)
-						int lower = ((BigInteger) arg1).intValue();
-						int upper = ((BigInteger) arg2).intValue();
-						return CollectionUtil.subSequence(sourceColl,
-							lower, upper);
-					}
-				}
+				} 
 			}
 		} else {
 			
@@ -1377,13 +1187,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// evaluate first value
 			Number firstVal = (BigInteger) first.accept(getVisitor());
 			if (firstVal == null) {
-				result.add(null);
+				CollectionUtil.add(result, null);
 				return result;
 			}
 			// evaluate last value
 			Number lastVal = (BigInteger) last.accept(getVisitor());
 			if (lastVal == null) {
-				result.add(null);
+				CollectionUtil.add(result, null);
 				return result;
 			}
 
@@ -1403,10 +1213,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					CollectionItem<C> item = (CollectionItem<C>) part;
 					OCLExpression<C> itemExp = item.getItem();
 					Object itemVal = itemExp.accept(getVisitor());
-					if (itemVal != null) {
-						// add it to the result set
-						result.add(itemVal);
+					if (AbstractOperation.isInvalid(itemVal)) {
+						return library.getInvalid();
 					}
+					CollectionUtil.add(result, itemVal);
 				} else {
 					// Collection range
 					CollectionRange<C> range = (CollectionRange<C>) part;
@@ -1422,7 +1232,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						int firstInt = firstVal.intValue();
 						int lastInt = lastVal.intValue();
 						for (int i = firstInt; i <= lastInt; i++) {
-                            result.add(BigInteger.valueOf(i));
+							CollectionUtil.add(result, BigInteger.valueOf(i));
                         }
 					}
 				} // end of collection range

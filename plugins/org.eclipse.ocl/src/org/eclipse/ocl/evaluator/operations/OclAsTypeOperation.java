@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAsTypeOperation.java,v 1.1.2.1 2010/01/03 22:53:49 ewillink Exp $
+ * $Id: OclAsTypeOperation.java,v 1.1.2.2 2010/01/18 08:57:51 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -23,33 +23,35 @@ import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLType;
 
 /**
- * OclAsTypeOperation realises the oclIsTypeOf() library operation.
+ * OclAsTypeOperation realises the OclAny::oclIsTypeOf() library operation.
  * 
  * @since 3.0
  */
 public class OclAsTypeOperation extends AbstractOperation
 {
 	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
+	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
 		OCLLibrary library = environment.getOCLLibrary();
-		Object sourceVal = evaluateSource(visitor, operationCall);
 		OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
-		Object argVal = evaluateArgument(visitor, operationCall, 0);
-		OCLType argType = library.getOCLTypeOfType(argVal);
-		if ((sourceType == null) || !sourceType.conformsTo(argType)) {
+		if (sourceType == null) {
 			return null;
 		}
-		else if ((sourceType == library.getUnlimitedNatural()) && ((argType == library.getInteger()) || (argType == library.getReal()))) {
-			if (isUnlimited(sourceVal)) {
-				return null;
-			}
-			else {
-				return sourceVal;
-			}			
+		Object argVal = evaluateArgument(visitor, operationCall, 0);
+		OCLType argType = library.getOCLTypeOfType(argVal);
+		if (sourceType.conformsTo(argType)) {
+			return evaluateConforming(library, sourceVal, argType);
 		}
 		else {
-			return sourceVal;
-		}			
+			return evaluateNonConforming(library, sourceVal, argType);
+		}
+	}
+
+	protected Object evaluateConforming(OCLLibrary library, Object sourceVal, OCLType argType) {
+		return sourceVal;
+	}
+
+	protected Object evaluateNonConforming(OCLLibrary library, Object sourceVal, OCLType argType) {
+		return null;
 	}
 }

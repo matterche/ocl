@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ObjectUtil.java,v 1.5.8.1 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: ObjectUtil.java,v 1.5.8.2 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -48,6 +48,7 @@ public class ObjectUtil {
      * @return whether they are equivalent as far as OCL is concerned
      */
 	public static boolean equal(Object anObject, Object anotherObject) {
+		// FIXME This should be driven Built-in and User-defined '=' operations.
 		// if either value is undefined, the result is true just if both are
 		// undefined and false otherwise.
 		if (anObject == null || anotherObject == null) {
@@ -89,7 +90,6 @@ public class ObjectUtil {
 		} else if ((anotherObject instanceof EEnumLiteral) && (anObject instanceof Enumerator)) {
 			return ((EEnumLiteral) anotherObject).getInstance() == anObject;
 		}
-		
 		return anObject.equals(anotherObject);
 	}
 	

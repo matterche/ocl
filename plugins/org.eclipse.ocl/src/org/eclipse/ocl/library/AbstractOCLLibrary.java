@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLLibrary.java,v 1.1.2.2 2010/01/14 21:33:15 ewillink Exp $
+ * $Id: AbstractOCLLibrary.java,v 1.1.2.3 2010/01/18 08:57:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -21,8 +21,11 @@ package org.eclipse.ocl.library;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -34,12 +37,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.LiteralExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.library.util.LibraryResource;
-import org.eclipse.ocl.library.util.LibraryResourceFactoryImpl;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -52,6 +55,7 @@ import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.util.Bag;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
@@ -261,7 +265,7 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 	public EObject getUnlimited() {
 		if (UNLIMITED == null) {
 		    UNLIMITED = ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
-		    UNLIMITED.setIntegerSymbol(-1);
+		    UNLIMITED.setUnlimitedNaturalSymbol(UnlimitedNaturalLiteralExp.UNLIMITED);
 		    UNLIMITED.setType(getUnlimitedNatural());
 		}
 		return UNLIMITED;
@@ -404,7 +408,7 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 		};
 	}
 	
-	public OCLOperation getOperation(OperationCallExp<?, ?> operationCall) {
+	public OCLOperation getOperation(OCLType dynamicType, OperationCallExp<?, ?> operationCall) {
 		Object referredOperation = operationCall.getReferredOperation();
 		if (referredOperation instanceof OCLOperation) {
 			return (OCLOperation)referredOperation;
@@ -421,6 +425,13 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 				return getOclVoid();
 			}
 			else if (object instanceof AnyType<?>) {
+				String name = ((AnyType<?>)object).getName();
+				if ("T".equals(name)) {
+					return getT();
+				}
+				else if ("T2".equals(name)) {
+					return getT2();
+				}
 				return getOclAny();
 			}
 			else if (object instanceof TypeType<?, ?>) {
@@ -460,6 +471,9 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 				else if (object instanceof SetType<?, ?>) {
 					return getSet();
 				}
+				else {
+					return getCollection();
+				}
 			}
 			else if (object instanceof TupleType<?, ?>) {
 // FIXME				return getTuple();
@@ -469,38 +483,26 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 	}
     
 	public OCLType getOCLTypeOfValue(Object object) {
-		if (object instanceof InvalidLiteralExp<?>) {			// FIXME This should not be needed
-			return getOclInvalid();
-		}
-		else if (object instanceof NullLiteralExp<?>) {			// FIXME This should not be needed
-			return getOclVoid();
-		}
-		else if ((object instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)object).isUnlimited()) {			// FIXME This should not be needed
-			return getUnlimitedNatural();
-		}
-		else if (object instanceof Number) {
-			if (object instanceof Integer) {
-				return ((Integer)object).intValue() >= 0
-				? getUnlimitedNatural()
-				: getInteger();
+		if (object instanceof Number) {
+			if (object instanceof BigInteger) {
+				return ((BigInteger)object).signum() >= 0 ? getUnlimitedNatural() : getInteger();
 			}
-			else if (object instanceof Long) {
-				return ((Long)object).longValue() >= 0
-				? getUnlimitedNatural()
-				: getInteger();
-			}
-			else if ((object instanceof BigDecimal) || (object instanceof Double) || (object instanceof Float)) {
+			else if (object instanceof BigDecimal) {
 				return getReal();
 			}
-			else if (object instanceof BigInteger) {
-				return ((BigInteger)object).signum() >= 0
-				? getUnlimitedNatural()
-				: getInteger();
+		}
+		else if (object instanceof Collection<?>) {
+			if (object instanceof LinkedHashSet<?>) {
+				return getOrderedSet();
 			}
-			else if (object instanceof Short) {
-				return ((Short)object).shortValue() >= 0
-				? getUnlimitedNatural()
-				: getInteger();
+			else if (object instanceof Set<?>) {
+				return getSet();
+			}
+			else if (object instanceof List<?>) {
+				return getSequence();
+			}
+			else if (object instanceof Bag<?>) {
+				return getBag();
 			}
 		}
 		else if (object instanceof Boolean) {
@@ -509,6 +511,17 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 		else if ((object instanceof String) || (object instanceof StringBuffer)) {
 			return getString();
 		}
+		else if (object instanceof LiteralExp<?>) {
+			if (object instanceof InvalidLiteralExp<?>) {
+				return getOclInvalid();
+			}
+			else if (object instanceof NullLiteralExp<?>) {
+				return getOclVoid();
+			}
+			else if ((object instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)object).isUnlimited()) {			// FIXME This should not be needed
+				return getUnlimitedNatural();
+			}
+		}		 
 		return null;
 	}
 	

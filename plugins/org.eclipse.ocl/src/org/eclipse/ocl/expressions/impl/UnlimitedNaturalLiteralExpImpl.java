@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.8.10.1 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.8.10.2 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -52,6 +52,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	/**
 	 * The default value of the '{@link #getUnlimitedNaturalSymbol() <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
@@ -62,6 +63,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	/**
 	 * The cached value of the '{@link #getUnlimitedNaturalSymbol() <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
@@ -100,6 +102,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -109,6 +112,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

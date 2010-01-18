@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.7.10.2 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.7.10.3 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -96,6 +96,7 @@ public class RealLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

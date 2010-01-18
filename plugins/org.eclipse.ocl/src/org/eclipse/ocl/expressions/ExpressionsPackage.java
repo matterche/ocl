@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackage.java,v 1.10.10.3 2010/01/15 17:27:37 ewillink Exp $
+ * $Id: ExpressionsPackage.java,v 1.10.10.4 2010/01/18 08:57:50 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -941,6 +941,7 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2425,6 +2426,7 @@ public interface ExpressionsPackage
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Unlimited Natural Symbol</em>'.
 	 * @see org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol()
@@ -2989,6 +2991,8 @@ public interface ExpressionsPackage
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
+	 * @noimplement This interface is not intended to be implemented by clients.
+	 * @noextend This interface is not intended to be extended by clients.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -3250,6 +3254,7 @@ public interface ExpressionsPackage
 		/**
 		 * The meta object literal for the '<em><b>Unlimited Natural Symbol</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */

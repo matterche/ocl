@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclIsUndefinedOperation.java,v 1.1.2.2 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: OclIsUndefinedOperation.java,v 1.1.2.3 2010/01/18 08:57:51 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
@@ -27,8 +27,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 public class OclIsUndefinedOperation extends AbstractOperation
 {
 	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
-		Object sourceVal = evaluateSource(visitor, operationCall);
+	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
 		if (isUndefined(sourceVal)) {
 			return Boolean.TRUE;
 		}

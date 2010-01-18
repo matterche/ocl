@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibrarySwitch.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: LibrarySwitch.java,v 1.1.2.4 2010/01/18 08:57:51 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -88,6 +88,12 @@ public class LibrarySwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case LibraryPackage.LIBRARY_OPERATION: {
+				LibraryOperation libraryOperation = (LibraryOperation)theEObject;
+				T result = caseLibraryOperation(libraryOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LibraryPackage.OCL_CONSTRAINT_OPERATION: {
 				OCLConstraintOperation oclConstraintOperation = (OCLConstraintOperation)theEObject;
 				T result = caseOCLConstraintOperation(oclConstraintOperation);
@@ -96,45 +102,17 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LibraryPackage.OCL_OPERATION: {
-				OCLOperation oclOperation = (OCLOperation)theEObject;
-				T result = caseOCLOperation(oclOperation);
-				if (result == null) result = caseOCLElement(oclOperation);
+			case LibraryPackage.OCL_CONSTRAINT_PROPERTY: {
+				OCLConstraintProperty oclConstraintProperty = (OCLConstraintProperty)theEObject;
+				T result = caseOCLConstraintProperty(oclConstraintProperty);
+				if (result == null) result = caseOCLProperty(oclConstraintProperty);
+				if (result == null) result = caseOCLElement(oclConstraintProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case LibraryPackage.OCL_ELEMENT: {
 				OCLElement oclElement = (OCLElement)theEObject;
 				T result = caseOCLElement(oclElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LibraryPackage.OCL_PARAMETER: {
-				OCLParameter oclParameter = (OCLParameter)theEObject;
-				T result = caseOCLParameter(oclParameter);
-				if (result == null) result = caseOCLElement(oclParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LibraryPackage.OCL_TYPE: {
-				OCLType oclType = (OCLType)theEObject;
-				T result = caseOCLType(oclType);
-				if (result == null) result = caseOCLElement(oclType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LibraryPackage.OCL_PROPERTY: {
-				OCLProperty oclProperty = (OCLProperty)theEObject;
-				T result = caseOCLProperty(oclProperty);
-				if (result == null) result = caseOCLElement(oclProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LibraryPackage.OCL_CONSTRAINT_PROPERTY: {
-				OCLConstraintProperty oclConstraintProperty = (OCLConstraintProperty)theEObject;
-				T result = caseOCLConstraintProperty(oclConstraintProperty);
-				if (result == null) result = caseOCLProperty(oclConstraintProperty);
-				if (result == null) result = caseOCLElement(oclConstraintProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,12 +140,6 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LibraryPackage.LIBRARY_OPERATION: {
-				LibraryOperation libraryOperation = (LibraryOperation)theEObject;
-				T result = caseLibraryOperation(libraryOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case LibraryPackage.OCL_LIBRARY_PROPERTY: {
 				OCLLibraryProperty oclLibraryProperty = (OCLLibraryProperty)theEObject;
 				T result = caseOCLLibraryProperty(oclLibraryProperty);
@@ -192,10 +164,38 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LibraryPackage.OCL_OPERATION: {
+				OCLOperation oclOperation = (OCLOperation)theEObject;
+				T result = caseOCLOperation(oclOperation);
+				if (result == null) result = caseOCLElement(oclOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LibraryPackage.OCL_PACKAGE: {
 				OCLPackage oclPackage = (OCLPackage)theEObject;
 				T result = caseOCLPackage(oclPackage);
 				if (result == null) result = caseOCLElement(oclPackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_PARAMETER: {
+				OCLParameter oclParameter = (OCLParameter)theEObject;
+				T result = caseOCLParameter(oclParameter);
+				if (result == null) result = caseOCLElement(oclParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_PROPERTY: {
+				OCLProperty oclProperty = (OCLProperty)theEObject;
+				T result = caseOCLProperty(oclProperty);
+				if (result == null) result = caseOCLElement(oclProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_TYPE: {
+				OCLType oclType = (OCLType)theEObject;
+				T result = caseOCLType(oclType);
+				if (result == null) result = caseOCLElement(oclType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -209,6 +209,21 @@ public class LibrarySwitch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLibraryOperation(LibraryOperation object) {
+		return null;
 	}
 
 	/**
@@ -298,21 +313,6 @@ public class LibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLLibraryOperation(OCLLibraryOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLibraryOperation(LibraryOperation object) {
 		return null;
 	}
 

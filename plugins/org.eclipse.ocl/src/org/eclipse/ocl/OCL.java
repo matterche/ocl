@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.12.4.2 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: OCL.java,v 1.12.4.3 2010/01/18 08:57:54 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -437,6 +437,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @see #check(Object, Object)
 	 */
 	public Object evaluate(Object context, OCLExpression<C> expression) {
+		context = ObjectUtil.normalise(context);
 		Object result = rawEvaluate(context, expression);
 		if (result instanceof Number) {
 			result = NumberUtil.coerceNumber((Number) result);

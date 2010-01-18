@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryOperation.java,v 1.1.2.1 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: LibraryOperation.java,v 1.1.2.2 2010/01/18 08:57:52 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -56,6 +56,6 @@ public interface LibraryOperation extends EObject {
 	 * @model exceptions="org.eclipse.ocl.library.Exception" evaluationVisitorDataType="org.eclipse.ocl.library.EvaluationVisitor" operationCallDataType="org.eclipse.ocl.library.OperationCallExp"
 	 * @generated
 	 */
-	Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, OperationCallExp<?, ?> operationCall) throws Exception;
+	Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, OperationCallExp<?, ?> operationCall) throws Exception;
 
 } // LibraryOperation

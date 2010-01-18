@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.4 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.LibraryProperty;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
@@ -76,18 +77,18 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case LibraryPackage.LIBRARY_OPERATION: return createLibraryOperation();
 			case LibraryPackage.OCL_CONSTRAINT_OPERATION: return createOCLConstraintOperation();
-			case LibraryPackage.OCL_PARAMETER: return createOCLParameter();
-			case LibraryPackage.OCL_TYPE: return createOCLType();
 			case LibraryPackage.OCL_CONSTRAINT_PROPERTY: return createOCLConstraintProperty();
 			case LibraryPackage.OCL_GENERIC_TYPE: return createOCLGenericType();
 			case LibraryPackage.OCL_INVALID_TYPE: return createOCLInvalidType();
 			case LibraryPackage.OCL_LIBRARY_OPERATION: return createOCLLibraryOperation();
-			case LibraryPackage.LIBRARY_OPERATION: return createLibraryOperation();
 			case LibraryPackage.OCL_LIBRARY_PROPERTY: return createOCLLibraryProperty();
 			case LibraryPackage.OCL_META_MODEL_OPERATION: return createOCLMetaModelOperation();
 			case LibraryPackage.OCL_META_MODEL_PROPERTY: return createOCLMetaModelProperty();
 			case LibraryPackage.OCL_PACKAGE: return createOCLPackage();
+			case LibraryPackage.OCL_PARAMETER: return createOCLParameter();
+			case LibraryPackage.OCL_TYPE: return createOCLType();
 			case LibraryPackage.OCL_VOID_TYPE: return createOCLVoidType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -104,12 +105,12 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 		switch (eDataType.getClassifierID()) {
 			case LibraryPackage.EXCEPTION:
 				return createExceptionFromString(eDataType, initialValue);
-			case LibraryPackage.OPERATION_CALL_EXP:
-				return createOperationCallExpFromString(eDataType, initialValue);
 			case LibraryPackage.EVALUATION_VISITOR:
 				return createEvaluationVisitorFromString(eDataType, initialValue);
 			case LibraryPackage.LIBRARY_PROPERTY:
 				return createLibraryPropertyFromString(eDataType, initialValue);
+			case LibraryPackage.OPERATION_CALL_EXP:
+				return createOperationCallExpFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -125,15 +126,25 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 		switch (eDataType.getClassifierID()) {
 			case LibraryPackage.EXCEPTION:
 				return convertExceptionToString(eDataType, instanceValue);
-			case LibraryPackage.OPERATION_CALL_EXP:
-				return convertOperationCallExpToString(eDataType, instanceValue);
 			case LibraryPackage.EVALUATION_VISITOR:
 				return convertEvaluationVisitorToString(eDataType, instanceValue);
 			case LibraryPackage.LIBRARY_PROPERTY:
 				return convertLibraryPropertyToString(eDataType, instanceValue);
+			case LibraryPackage.OPERATION_CALL_EXP:
+				return convertOperationCallExpToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LibraryOperation createLibraryOperation() {
+		LibraryOperationImpl libraryOperation = new LibraryOperationImpl();
+		return libraryOperation;
 	}
 
 	/**
@@ -184,16 +195,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public OCLLibraryOperation createOCLLibraryOperation() {
 		OCLLibraryOperationImpl oclLibraryOperation = new OCLLibraryOperationImpl();
 		return oclLibraryOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LibraryOperation createLibraryOperation() {
-		LibraryOperationImpl libraryOperation = new LibraryOperationImpl();
-		return libraryOperation;
 	}
 
 	/**

@@ -2,11 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperation.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: OCLLibraryOperation.java,v 1.1.2.4 2010/01/18 08:57:51 ewillink Exp $
  */
 package org.eclipse.ocl.library;
-
-
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +57,7 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.LibraryOperation#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Library Operation</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Library Operation</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

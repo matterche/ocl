@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelOperationImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLMetaModelOperationImpl.java,v 1.1.2.4 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -45,7 +45,7 @@ public class OCLMetaModelOperationImpl extends OCLOperationImpl implements OCLMe
 	}
 
 	@Override
-	public EObject evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, OperationCallExp<?, ?> operationCall) throws Exception {
+	public EObject evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, OperationCallExp<?, ?> operationCall) throws Exception {
 		throw new UnsupportedOperationException(getClass().getName() + ".evaluate"); //$NON-NLS-1$
 	}
 

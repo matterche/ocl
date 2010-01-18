@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.3 2010/01/15 17:27:38 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.4 2010/01/18 08:57:52 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -565,15 +565,48 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			String operName, OCLExpression<C> source, C ownerType,
 			List<OCLExpression<C>> args) {
 
-		OperationCallExp<C, O> result;
-
-		result = oclFactory.createOperationCallExp();
-		initASTMapping(env, result, operationCallExpCS);
-		result.setSource(source);
-
 		// Performs method signature checking
 		O oper = lookupOperation(operationCallExpCS.getSimpleNameCS(), env,
 			ownerType, operName, args);
+
+		return genOperationCallExp(env, operationCallExpCS, oper, rule,
+			operName, source, ownerType, args);
+	}
+
+	/**
+	 * Generate an OperationCallExp node. operName is the input name of the
+	 * operation, which must be matched against the datatype of the operation
+	 * source.
+	 * 
+	 * @param env
+	 *            the current environment
+	 * @param operationCallExpCS
+	 *            the operation call CST node
+	 * @param rule
+	 *            the name of the concrete syntax rule that we are processing
+	 * @param operName
+	 *            the operation name
+	 * @param source
+	 *            the operation's source expression
+	 * @param ownerType
+	 *            the type that defines the operation, in which we will look it
+	 *            up. This can differ from the type of the source expression in
+	 *            the case of an implicit collect iterator
+	 * @param args
+	 *            the operation arguments
+	 * @since 3.0
+	 */
+	protected OperationCallExp<C, O> genOperationCallExp(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpressionCS cstNode, O oper, String rule,
+			String operName, OCLExpression<C> source, C ownerType,
+			List<OCLExpression<C>> args) {
+
+		OperationCallExp<C, O> result;
+
+		result = oclFactory.createOperationCallExp();
+		initASTMapping(env, result, cstNode);
+		result.setSource(source);
 
 		// sometimes we use the resolved name in case the environment's look-up
 		// supports aliasing
@@ -585,7 +618,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					operName, args), (ownerType == null)
 					? null
 					: uml.getName(ownerType));
-			ERROR(operationCallExpCS, rule, message);
+			ERROR(cstNode, rule, message);
 			result.setType(env.getOCLStandardLibrary().getOclVoid());
 		} else {
 			resolvedName = uml.getName(oper);
@@ -598,7 +631,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (args != null) {
 			for (OCLExpression<C> arg : args) {
 				if (arg == null) {
-					ERROR(operationCallExpCS, rule, OCLMessages.BadArg_ERROR_);
+					ERROR(cstNode, rule, OCLMessages.BadArg_ERROR_);
 				} else {
 					callargs.add(arg);
 				}
@@ -622,7 +655,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 
 			result.setOperationCode(opcode);
-			resultType = TypeUtil.getResultType(operationCallExpCS, env,
+			resultType = TypeUtil.getResultType(cstNode, env,
 				ownerType, oper, args);
 			if (resultType == null) {
 				resultType = getOCLType(env, oper);
@@ -3481,24 +3514,20 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		 * The source must be a collection type.
 		 */
 		if (!(astNode.getType() instanceof CollectionType<?, ?>)) {
-			CollectionLiteralExp<C> astNode1 = oclFactory
-				.createCollectionLiteralExp();
+			List<OCLExpression<C>> args = Collections.emptyList();
+			String operationName = PredefinedType.OCL_AS_COLLECTION_NAME;
+			C operationSourceType = astNode.getType();
+			O oper = lookupOperation(oclExpressionCS, env, operationSourceType, operationName, args);
+			OperationCallExp<C, O> astNode1 = genOperationCallExp(env, oclExpressionCS, oper,
+				"operationCallExpCS", operationName,//$NON-NLS-1$
+				astNode, operationSourceType, args);
 			initASTMapping(env, astNode1, oclExpressionCS, null);
-			astNode1.setKind(CollectionKind.SET_LITERAL);
-			List<CollectionLiteralPart<C>> collectionParts = astNode1.getPart();
-			CollectionItem<C> collItem = oclFactory.createCollectionItem();
-			initASTMapping(env, collItem, oclExpressionCS, null);
-			collItem.setType(astNode.getType());
-			collItem.setItem(astNode);
-			collectionParts.add(collItem);
-
+//			initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());
 			C type = getCollectionType(oclExpressionCS, env,
-				astNode1.getKind(), astNode.getType());
-
+				CollectionKind.COLLECTION_LITERAL, astNode.getType());
 			astNode1.setType(type);
-
 			if (isErrorNode(astNode)) {
-				// propagate error mark to the collection literal
+					// propagate error mark to the collection literal
 				markAsErrorNode(astNode1);
 			}
 

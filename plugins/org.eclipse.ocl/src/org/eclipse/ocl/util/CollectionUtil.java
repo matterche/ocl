@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.8.8.2 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.8.8.3 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -59,7 +59,13 @@ public class CollectionUtil {
      * @return whether the collection includes the object
      */
     public static boolean includes(Collection<?> self, Object object) {
-    	return self.contains(object);
+    	// Note that BigInteger(4) and BigDecimal(4.0) are the 'same object'
+    	for (Object element : self) {
+    		if (ObjectUtil.equal(element, object)) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
     /**
@@ -171,7 +177,7 @@ public class CollectionUtil {
     public static Object sum(Collection<?> self) {
 
         if (self.isEmpty()) {
-            return null; // undefined
+            return BigInteger.ZERO;
         }
         
         Iterator<?> it = self.iterator();
@@ -300,9 +306,9 @@ public class CollectionUtil {
         
         // if either collection is empty, then so is the result
         if (size1 == 0) {
-            return createNewCollection(self);
+            return createNewCollectionOfSameKind(self);
         } else if (size2 == 0) {
-            return createNewCollection(c);
+            return createNewCollectionOfSameKind(self);
         }
         
         Collection<E> result = null;
@@ -359,11 +365,11 @@ public class CollectionUtil {
     		Collection<? extends E> self, Collection<? extends E> c) {
     	
     	// if either argument is empty, then the union is the other
-    	if (self.isEmpty()) {
-            return createNewCollection(c);
-        } else if (c.isEmpty()) {
-            return createNewCollection(self);
-        }
+//    	if (self.isEmpty()) {
+//            return createNewCollection(c);
+//        } else if (c.isEmpty()) {
+//            return createNewCollection(self);
+//        }
     	
         Collection<E> result = null;
         if (self instanceof Bag<?> || c instanceof Bag<?>) {
@@ -374,7 +380,7 @@ public class CollectionUtil {
             result = createNewSet(self);
         }
         
-        result.addAll(c);
+        addAll(result, c);
 
         return result;
     }
@@ -391,45 +397,32 @@ public class CollectionUtil {
      * @param self the source collection
      * @return the flattened collection
      */
-    public static Collection<?> flatten(Collection<?> self) {
-        Collection<?> result = self;
-        
-        for (;;) {
-            if (result.isEmpty()) {
-                break;
+	public static <E> Collection<E> flatten(Collection<E> self) {
+        // loop until no collections remain to be flattened
+        for (Collection<E> result = self, newResult; true; result = newResult) {
+        	newResult = null;
+        	for (E object : result) {
+                if (object instanceof Collection<?>) {
+                    if (newResult == null) {
+                    	newResult = createNewCollectionOfSameKind(result);
+                    }
+                    for (E object2 : result) {
+                        if (object2 instanceof Collection<?>) {
+                            break;                          
+                        }
+                        add(newResult, object2);
+                    }
+                    @SuppressWarnings("unchecked")
+                    Collection<E> coll = (Collection<E>)object;
+					addAll(newResult, coll);
+                } else if (newResult != null) {
+                    add(newResult, object);
+                }
             }
-            
-            Iterator<?> it = result.iterator();
-            Object object = it.next();
-    
-            // if the element type is not a collection type, the result is the
-            // current collection.
-            if (!(object instanceof Collection<?>)) {
-                break;
+            if (newResult == null) {
+            	return result;
             }
-    
-            Collection<Object> newResult = null;
-            if (result instanceof Bag<?>) {
-                newResult = createNewBag();
-            } else if (result instanceof Set<?>) {
-                newResult = createNewSet();
-            } else {
-                // Sequence
-                newResult = createNewSequence();
-            }
-            
-            // the element type is a collection type -- flatten one level
-            newResult.addAll((Collection<?>) object);
-            while (it.hasNext()) {
-                newResult.addAll((Collection<?>) it.next());
-            }
-            
-            result = newResult;
-            // loop until the result is empty or the first element is not a
-            // collection
         }
-        
-        return result;
     }
 
     /**
@@ -552,7 +545,7 @@ public class CollectionUtil {
             result = createNewSequence(self);
         }
 
-        result.add(object);
+        add(result, object);
         
         return result;
     }
@@ -674,6 +667,46 @@ public class CollectionUtil {
     }
 
     /**
+     * Add a value to a Collection, observing the uniqueness
+     * properties of the collection.
+     * 
+     * @param self the source collection
+     * @param object an object
+     * @return true if the element was added
+     * @since 3.0
+     */
+    public static <E> boolean add(Collection<E> self, E object) {
+    	// Note that BigInteger(4) and BigDecimal(4.0) are the 'same object'
+        if ((self instanceof Set<?>) && includes(self, object)) {
+            return false;
+        }
+        return self.add(object);
+    }
+
+    /**
+     * Add a collection of values to a Collection, observing the uniqueness
+     * properties of the collection.
+     * 
+     * @param self the source collection
+     * @param objects objects to add
+     * @return true if the element was added
+     * @since 3.0
+     */
+    public static <E> void addAll(Collection<E> self, Collection<? extends E> objects) {
+    	// Note that BigInteger(4) and BigDecimal(4.0) are the 'same object'
+        if (self instanceof Set<?>) {
+        	for (E object : objects) {
+        		if (!includes(self, object)) {
+        	        self.add(object);
+        		}
+        	}
+        }
+        else {
+        	self.addAll(objects);	
+        }
+    }
+
+    /**
      * Implementation of the OCL
      * <ul>
      * <li><tt>OrderedSet::append(object : T) : OrderedSet(T)</tt></li>
@@ -719,7 +752,7 @@ public class CollectionUtil {
             result = createNewSequence();
         }
         result.add(object);
-        result.addAll(self);
+        addAll(result, self);
         return result;
     }
 
@@ -747,28 +780,34 @@ public class CollectionUtil {
 					+ self.size());
         }
         
-        Collection<E> result;
+        Iterator<E> it = self.iterator();
         if (self instanceof LinkedHashSet<?>) {
-            result = createNewOrderedSet();
-        } else {
-            result = createNewSequence();
-        }
-        
-        int curr = 0;
-        for (Iterator<E> it = self.iterator(); it.hasNext();) {
-            if (curr == index) {
-                result.add(object);
+        	LinkedHashSet<E> result = createNewOrderedSet();
+            for (int curr = 0; curr < index; curr++) {
+            	E element = it.next();
+            	if (!ObjectUtil.equal(element, object)) {
+            		result.add(element);
+            	}
             }
-            result.add(it.next());
-            curr++;
+    		result.add(object);
+            while (it.hasNext()) {
+            	E element = it.next();
+            	if (!ObjectUtil.equal(element, object)) {
+            		result.add(element);
+            	}
+            }
+            return result;
+        } else {
+            List<E> result = createNewSequence();
+            for (int curr = 0; curr < index; curr++) {
+            	result.add(it.next());
+            }
+    		result.add(object);
+            while (it.hasNext()) {
+            	result.add(it.next());
+            }
+            return result;
         }
-        
-        if (index == self.size()) {
-        	// the loop finished before we could add the object
-        	result.add(object);
-        }
-        
-        return result;
     }
 
     /**
@@ -906,7 +945,10 @@ public class CollectionUtil {
      */
     public static <E> E first(Collection<E> self) {
         if (self.isEmpty()) {
-            return null; // undefined
+            return null; // invalid
+        }
+        if (self instanceof List<?>) {
+        	return ((List<E>)self).get(0);
         }
         return self.iterator().next();
     }
@@ -914,8 +956,8 @@ public class CollectionUtil {
     /**
      * Implementation of the OCL
      * <ul>
-     * <li><tt>OrderedSet::lset() : T</tt></li>
-     * <li><tt>Sequence::lset() : T</tt></li>
+     * <li><tt>OrderedSet::last() : T</tt></li>
+     * <li><tt>Sequence::last() : T</tt></li>
      * </ul>
      * operations.
      * 
@@ -924,7 +966,10 @@ public class CollectionUtil {
      */
     public static <E> E last(Collection<E> self) {
         if (self.isEmpty()) {
-            return null; // undefined
+            return null; // invalid
+        }
+        if (self instanceof List<?>) {
+        	return ((List<E>)self).get(self.size()-1);
         }
         E result = null;
         for (E next : self) {
@@ -956,6 +1001,81 @@ public class CollectionUtil {
         }
         
         return null; // undefined
+    }
+
+    /**
+     * Implementation of the OCL
+     * <ul>
+     * <li><tt>OrderedSet::reverse() : OrderedSet(T)</tt></li>
+     * <li><tt>Sequence::reverse() : Sequence(T)</tt></li>
+     * </ul>
+     * operations.
+     * 
+     * @param self the source collection
+     * @param object an object
+     * @return the reversed source collection
+     * @since 3.0
+     */
+	public static <E> Collection<E> reverse(Collection<E> self) {
+        Collection<E> result;
+    	Object[] elements = self.toArray();
+        if (self instanceof LinkedHashSet<?>) {
+        	result = createNewOrderedSet();
+        } else {
+            result = createNewSequence();
+        }
+        for (int i = elements.length; --i >= 0; ) {
+            @SuppressWarnings("unchecked")
+        	E element = (E)elements[i];
+			result.add(element);
+        }
+        return result;
+    }
+
+    /**
+     * Implementation of the OCL
+     * <tt>Collection::max() : T</tt>
+     * operation.
+     * 
+     * @param self the source collection
+     * @return the maximum of the collection's elements
+     * @since 3.0
+     */
+	public static Object max(Collection<?> self) {
+        Comparable<Object> maxVal = null;
+        for (Iterator<?> it = self.iterator(); it.hasNext();) {
+            @SuppressWarnings("unchecked")
+            Comparable<Object> element = (Comparable<Object>) it.next();
+        	if (maxVal == null) {
+        		maxVal = element;
+        	} else if (maxVal.compareTo(element) > 0) {
+        		maxVal = element;
+        	}
+        }
+        return maxVal;
+    }
+
+    /**
+     * Implementation of the OCL
+     * <tt>Collection::max() : T</tt>
+     * operation.
+     * 
+     * @param self the source collection
+     * @return the minimum of the collection's elements
+     * @since 3.0
+     */
+	public static Object min(Collection<?> self) {
+        Comparable<Object> minVal = null;
+        for (Iterator<?> it = self.iterator(); it.hasNext();) {
+            @SuppressWarnings("unchecked")
+            Comparable<Object> element = (Comparable<Object>) it.next();
+        	if (minVal == null) {
+        		minVal = element;
+        	} else if (minVal.compareTo(element) < 0) {
+        		minVal = element;
+        	}
+        }
+        return minVal;
     }
 
     /**

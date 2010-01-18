@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLLibraryOperationImpl.java,v 1.1.2.4 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -202,7 +202,7 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	}
 
 	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, OperationCallExp<?, ?> operationCall) throws Exception {
-		return getLibraryOperation().evaluate(evaluationVisitor, operationCall);
+	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object sourceVal, OperationCallExp<?, ?> operationCall) throws Exception {
+		return getLibraryOperation().evaluate(evaluationVisitor, sourceVal, operationCall);
 	}
 } //OCLLibraryOperationImpl

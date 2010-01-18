@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperationImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLOperationImpl.java,v 1.1.2.4 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -218,7 +218,7 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public abstract Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, OperationCallExp<?, ?> operationCall) throws Exception;
+	public abstract Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, OperationCallExp<?, ?> operationCall) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc -->

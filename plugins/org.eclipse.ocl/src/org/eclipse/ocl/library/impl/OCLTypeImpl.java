@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeImpl.java,v 1.1.2.2 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLTypeImpl.java,v 1.1.2.3 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -229,20 +229,6 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLOperation getOperation(String name) {
-		for (OCLOperation anOperation : operation) {
-			if (name.equals(anOperation.getName())) {
-				return anOperation;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -257,6 +243,20 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 				return basicSetContainer((OCLPackage)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLOperation getOperation(String name) {
+		for (OCLOperation anOperation : operation) {
+			if (name.equals(anOperation.getName())) {
+				return anOperation;
+			}
+		}
+		return null;
 	}
 
 	/**

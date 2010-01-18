@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.5.10.4 2010/01/15 07:47:24 ewillink Exp $
+ * $Id: PredefinedType.java,v 1.5.10.5 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -353,6 +353,16 @@ public interface PredefinedType<O>
 	int SYMMETRIC_DIFFERENCE = 167;
 
 	String SYMMETRIC_DIFFERENCE_NAME = "symmetricDifference"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	int OCL_AS_COLLECTION = 168;
+
+	/**
+	 * @since 3.0
+	 */
+	String OCL_AS_COLLECTION_NAME = "oclAsCollection"; //$NON-NLS-1$
 
 	/*
 	 * Collection iterators.

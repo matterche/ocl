@@ -2,28 +2,21 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryOperationImpl.java,v 1.1.2.1 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: LibraryOperationImpl.java,v 1.1.2.2 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.EvaluationVisitor;
-
 import org.eclipse.ocl.expressions.OperationCallExp;
-
 import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLLibraryOperation;
@@ -89,7 +82,7 @@ public class LibraryOperationImpl extends EObjectImpl implements LibraryOperatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, OperationCallExp<?, ?> operationCall) throws Exception {
+	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, OperationCallExp<?, ?> operationCall) throws Exception {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

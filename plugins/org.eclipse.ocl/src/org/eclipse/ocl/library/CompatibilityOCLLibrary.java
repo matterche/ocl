@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityOCLLibrary.java,v 1.1.2.1 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: CompatibilityOCLLibrary.java,v 1.1.2.2 2010/01/18 08:57:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -36,7 +36,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  */
 public abstract class CompatibilityOCLLibrary<C extends EObject> extends AbstractOCLLibrary
 {
-	protected Map<Object, OCLOperation> operationMap = new HashMap<Object, OCLOperation>();
+	protected Map<OCLType, Map<Object, OCLOperation>> operationMaps = new HashMap<OCLType, Map<Object, OCLOperation>>();
     protected Map<C, OCLType> typeMap = new HashMap<C, OCLType>();
 
     public CompatibilityOCLLibrary(String libraryURI) {
@@ -104,15 +104,20 @@ public abstract class CompatibilityOCLLibrary<C extends EObject> extends Abstrac
 	}
 	
 	@Override
-	public OCLOperation getOperation(OperationCallExp<?, ?> operationCall) {
-		OCLOperation oclOperation = super.getOperation(operationCall);
+	public OCLOperation getOperation(OCLType dynamicType, OperationCallExp<?, ?> operationCall) {
+		OCLOperation oclOperation = super.getOperation(dynamicType, operationCall);
 		if (oclOperation != null) {
 			return oclOperation;
+		}
+		Map<Object, OCLOperation> operationMap = operationMaps.get(dynamicType);
+		if (operationMap == null) {
+			operationMap = new HashMap<Object, OCLOperation>();
+			operationMaps.put(dynamicType, operationMap);
 		}
 		Object referredOperation = operationCall.getReferredOperation();
 		OCLOperation operation = operationMap.get(referredOperation);
 		if (operation == null) {
-			operation = resolveOperation(referredOperation);
+			operation = resolveOperation(dynamicType, referredOperation);
 			if (operation != null) {
 				operationMap.put(referredOperation, operation);
 			}			
@@ -122,5 +127,5 @@ public abstract class CompatibilityOCLLibrary<C extends EObject> extends Abstrac
 
 	protected abstract List<C> getSuperTypes(C classifier);
 
-	protected abstract OCLOperation resolveOperation(Object referredOperation);
+	protected abstract OCLOperation resolveOperation(OCLType dynamicType, Object referredOperation);
 }

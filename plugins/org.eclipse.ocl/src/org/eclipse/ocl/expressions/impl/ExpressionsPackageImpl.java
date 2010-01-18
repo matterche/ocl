@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.11.10.3 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.11.10.4 2010/01/18 08:57:53 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -713,6 +713,7 @@ public class ExpressionsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

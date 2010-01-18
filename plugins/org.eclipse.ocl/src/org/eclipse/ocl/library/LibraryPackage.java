@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackage.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: LibraryPackage.java,v 1.1.2.4 2010/01/18 08:57:52 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -77,7 +77,195 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLElement()
 	 * @generated
 	 */
-	int OCL_ELEMENT = 2;
+	int OCL_ELEMENT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLOperationImpl <em>OCL Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLOperationImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLOperation()
+	 * @generated
+	 */
+	int OCL_OPERATION = 10;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLConstraintOperationImpl <em>OCL Constraint Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLConstraintOperationImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLConstraintOperation()
+	 * @generated
+	 */
+	int OCL_CONSTRAINT_OPERATION = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLPropertyImpl <em>OCL Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLPropertyImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLProperty()
+	 * @generated
+	 */
+	int OCL_PROPERTY = 13;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLConstraintPropertyImpl <em>OCL Constraint Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLConstraintPropertyImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLConstraintProperty()
+	 * @generated
+	 */
+	int OCL_CONSTRAINT_PROPERTY = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLLibraryOperationImpl <em>OCL Library Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLLibraryOperationImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLLibraryOperation()
+	 * @generated
+	 */
+	int OCL_LIBRARY_OPERATION = 6;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLLibraryPropertyImpl <em>OCL Library Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLLibraryPropertyImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLLibraryProperty()
+	 * @generated
+	 */
+	int OCL_LIBRARY_PROPERTY = 7;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLMetaModelOperationImpl <em>OCL Meta Model Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLMetaModelOperationImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLMetaModelOperation()
+	 * @generated
+	 */
+	int OCL_META_MODEL_OPERATION = 8;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLMetaModelPropertyImpl <em>OCL Meta Model Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLMetaModelPropertyImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLMetaModelProperty()
+	 * @generated
+	 */
+	int OCL_META_MODEL_PROPERTY = 9;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLPackageImpl <em>OCL Package</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLPackageImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLPackage()
+	 * @generated
+	 */
+	int OCL_PACKAGE = 11;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLParameterImpl <em>OCL Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLParameterImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLParameter()
+	 * @generated
+	 */
+	int OCL_PARAMETER = 12;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLTypeImpl <em>OCL Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLTypeImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLType()
+	 * @generated
+	 */
+	int OCL_TYPE = 14;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLGenericTypeImpl <em>OCL Generic Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLGenericTypeImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLGenericType()
+	 * @generated
+	 */
+	int OCL_GENERIC_TYPE = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLInvalidTypeImpl <em>OCL Invalid Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLInvalidTypeImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLInvalidType()
+	 * @generated
+	 */
+	int OCL_INVALID_TYPE = 5;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLVoidTypeImpl <em>OCL Void Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLVoidTypeImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLVoidType()
+	 * @generated
+	 */
+	int OCL_VOID_TYPE = 15;
+
+	/**
+	 * The meta object id for the '<em>Evaluation Visitor</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.EvaluationVisitor
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getEvaluationVisitor()
+	 * @generated
+	 */
+	int EVALUATION_VISITOR = 17;
+
+	/**
+	 * The meta object id for the '<em>Operation Call Exp</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.OperationCallExp
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOperationCallExp()
+	 * @generated
+	 */
+	int OPERATION_CALL_EXP = 19;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.LibraryOperationImpl <em>Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.LibraryOperationImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getLibraryOperation()
+	 * @generated
+	 */
+	int LIBRARY_OPERATION = 0;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_OPERATION__REFERENCES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_OPERATION_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -96,16 +284,6 @@ public interface LibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_ELEMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLOperationImpl <em>OCL Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLOperationImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLOperation()
-	 * @generated
-	 */
-	int OCL_OPERATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -162,16 +340,6 @@ public interface LibraryPackage extends EPackage {
 	int OCL_OPERATION_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLConstraintOperationImpl <em>OCL Constraint Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLConstraintOperationImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLConstraintOperation()
-	 * @generated
-	 */
-	int OCL_CONSTRAINT_OPERATION = 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -226,123 +394,13 @@ public interface LibraryPackage extends EPackage {
 	int OCL_CONSTRAINT_OPERATION_FEATURE_COUNT = OCL_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLPropertyImpl <em>OCL Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLPropertyImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLProperty()
-	 * @generated
-	 */
-	int OCL_PROPERTY = 5;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLConstraintPropertyImpl <em>OCL Constraint Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLConstraintPropertyImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLConstraintProperty()
-	 * @generated
-	 */
-	int OCL_CONSTRAINT_PROPERTY = 6;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLLibraryOperationImpl <em>OCL Library Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLLibraryOperationImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLLibraryOperation()
-	 * @generated
-	 */
-	int OCL_LIBRARY_OPERATION = 9;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLLibraryPropertyImpl <em>OCL Library Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLLibraryPropertyImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLLibraryProperty()
-	 * @generated
-	 */
-	int OCL_LIBRARY_PROPERTY = 11;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLMetaModelOperationImpl <em>OCL Meta Model Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLMetaModelOperationImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLMetaModelOperation()
-	 * @generated
-	 */
-	int OCL_META_MODEL_OPERATION = 12;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLMetaModelPropertyImpl <em>OCL Meta Model Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLMetaModelPropertyImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLMetaModelProperty()
-	 * @generated
-	 */
-	int OCL_META_MODEL_PROPERTY = 13;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLPackageImpl <em>OCL Package</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLPackageImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLPackage()
-	 * @generated
-	 */
-	int OCL_PACKAGE = 14;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLParameterImpl <em>OCL Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLParameterImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLParameter()
-	 * @generated
-	 */
-	int OCL_PARAMETER = 3;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLTypeImpl <em>OCL Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLTypeImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLType()
-	 * @generated
-	 */
-	int OCL_TYPE = 4;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLGenericTypeImpl <em>OCL Generic Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLGenericTypeImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLGenericType()
-	 * @generated
-	 */
-	int OCL_GENERIC_TYPE = 7;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLInvalidTypeImpl <em>OCL Invalid Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLInvalidTypeImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLInvalidType()
-	 * @generated
-	 */
-	int OCL_INVALID_TYPE = 8;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_PARAMETER__NAME = OCL_ELEMENT__NAME;
+	int OCL_PROPERTY__NAME = OCL_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -351,16 +409,43 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_PARAMETER__TYPE = OCL_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_PROPERTY__TYPE = OCL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>OCL Parameter</em>' class.
+	 * The number of structural features of the '<em>OCL Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_PARAMETER_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 1;
+	int OCL_PROPERTY_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_PROPERTY__NAME = OCL_PROPERTY__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_PROPERTY__TYPE = OCL_PROPERTY__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>OCL Constraint Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_PROPERTY_FEATURE_COUNT = OCL_PROPERTY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -415,60 +500,6 @@ public interface LibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_TYPE_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_PROPERTY__NAME = OCL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_PROPERTY__TYPE = OCL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>OCL Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_PROPERTY_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_CONSTRAINT_PROPERTY__NAME = OCL_PROPERTY__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_CONSTRAINT_PROPERTY__TYPE = OCL_PROPERTY__TYPE;
-
-	/**
-	 * The number of structural features of the '<em>OCL Constraint Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_CONSTRAINT_PROPERTY_FEATURE_COUNT = OCL_PROPERTY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -660,64 +691,6 @@ public interface LibraryPackage extends EPackage {
 	int OCL_LIBRARY_OPERATION_FEATURE_COUNT = OCL_OPERATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLVoidTypeImpl <em>OCL Void Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.OCLVoidTypeImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLVoidType()
-	 * @generated
-	 */
-	int OCL_VOID_TYPE = 15;
-
-	/**
-	 * The meta object id for the '<em>Evaluation Visitor</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.EvaluationVisitor
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getEvaluationVisitor()
-	 * @generated
-	 */
-	int EVALUATION_VISITOR = 18;
-
-	/**
-	 * The meta object id for the '<em>Operation Call Exp</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.OperationCallExp
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOperationCallExp()
-	 * @generated
-	 */
-	int OPERATION_CALL_EXP = 17;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.LibraryOperationImpl <em>Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.impl.LibraryOperationImpl
-	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getLibraryOperation()
-	 * @generated
-	 */
-	int LIBRARY_OPERATION = 10;
-
-	/**
-	 * The feature id for the '<em><b>References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_OPERATION__REFERENCES = 0;
-
-	/**
-	 * The number of structural features of the '<em>Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_OPERATION_FEATURE_COUNT = 1;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -877,6 +850,33 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	int OCL_PARAMETER__NAME = OCL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PARAMETER__TYPE = OCL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>OCL Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PARAMETER_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int OCL_VOID_TYPE__NAME = OCL_TYPE__NAME;
 
 	/**
@@ -932,7 +932,7 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getLibraryProperty()
 	 * @generated
 	 */
-	int LIBRARY_PROPERTY = 19;
+	int LIBRARY_PROPERTY = 18;
 
 
 	/**

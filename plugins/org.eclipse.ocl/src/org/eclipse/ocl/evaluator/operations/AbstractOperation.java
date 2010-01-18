@@ -12,13 +12,16 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.5 2010/01/15 17:27:37 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.6 2010/01/18 08:57:50 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.operations;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
@@ -29,6 +32,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.library.impl.LibraryOperationImpl;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.util.CollectionUtil;
 
 
 /**
@@ -66,47 +70,87 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		}
 	}
 
-/*	public static Double doubleValueOf(Object val) {
-		if (val instanceof Double) {
-			return (Double)val;
-		}
-		else if (val instanceof Number) {
-			return Double.valueOf(((Number)val).doubleValue());
-		}
-		else {
+	public static Collection<?> convertToCollection(Object object) {
+		if (isInvalid(object)) {
 			return null;
 		}
-	} */
+		else if (isNull(object)) {
+			return CollectionUtil.createNewBag();
+		}
+		else if (object instanceof Collection<?>) {
+			return (Collection<?>)object;
+		}
+		else {
+			Set<Object> sourceSet = CollectionUtil.createNewSet();
+			sourceSet.add(object);
+			return sourceSet;
+		}
+	}
 
-/*	public static Integer integerValueOf(Object val) {
-		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			val = ((UnlimitedNaturalLiteralExp<?>)val).getUnlimitedNaturalSymbol();
-		}
-		if (val instanceof Integer) {
-			return (Integer)val;
-		}
-		else if (val instanceof Number) {
-			return Integer.valueOf(((Number)val).intValue());
-		}
-		else {
-			return null;
-		}
-	} */
+	public static boolean isBoolean(Object value) {
+		return value instanceof Boolean;
+	}
 
-/*	public static Long longValueOf(Object val) {
-		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
-			val = ((UnlimitedNaturalLiteralExp<?>)val).getUnlimitedNaturalSymbol();
-		}
-		if (val instanceof Long) {
-			return (Long)val;
-		}
-		else if (val instanceof Number) {
-			return Long.valueOf(((Number)val).longValue());
-		}
-		else {
-			return null;
-		}
-	} */
+	public static boolean isInteger(Object value) {
+		return value instanceof BigInteger;
+	}
+	
+	/**
+	 * Convenience method to determine whether the specified value is the <tt>invalid</tt> value.
+	 * 
+	 * @param value a value
+	 * 
+	 * @return whether it is undefined
+	 */
+	public static boolean isInvalid(Object value) {
+		return (value == null) || 		// FIXME Deprecated
+			(value instanceof InvalidLiteralExp<?>);
+	}
+
+	/**
+	 * Convenience method to determine whether the specified value is the <tt>null</tt>
+     * or <tt>invalid</tt> value.
+	 * 
+	 * @param value a value
+	 * 
+	 * @return whether it is undefined
+	 */
+	public static boolean isUndefined(Object value) {
+		return (value == null) || 		// FIXME Deprecated
+		(value instanceof NullLiteralExp<?>) || 
+		(value instanceof InvalidLiteralExp<?>);
+	}
+	
+	/**
+	 * Convenience method to determine whether the specified value is the <tt>null</tt> value.
+	 * 
+	 * @param value a value
+	 * 
+	 * @return whether it is undefined
+	 */
+	public static boolean isNull(Object value) {
+		return value instanceof NullLiteralExp<?>;
+	}
+	
+	public static boolean isOrderedCollection(Object sourceVal) {
+		return (sourceVal instanceof LinkedHashSet<?>) || (sourceVal instanceof List<?>);
+	}
+
+	public static boolean isString(Object value) {
+		return (value instanceof String) || (value instanceof StringBuffer);
+	}
+	
+	public static boolean isUnlimited(Object value) {
+		return (value instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)value).isUnlimited();
+	}
+
+	public static boolean isUnlimited(BigInteger value) {
+		return value.signum() < 0;
+	}
+
+	public static boolean isUnlimitedNatural(Object value) {
+		return isUnlimited(value) || ((value instanceof BigInteger) && (((BigInteger)value).signum() >= 0));
+	}
 
 	protected <C> Object evaluateArgument(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<C, ?> operationCall, int argumentNumber) {
 		try {
@@ -124,92 +168,10 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		return oclStandardLibrary.getInvalid();
 	}
 
-	protected Object evaluateSource(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<?, ?> operationCall) {
-		try {
-			OCLExpression<?> source = operationCall.getSource();
-			Object sourceVal = source.accept(visitor);
-			return sourceVal;
-		}
-		catch (Exception e) {
-		}
-		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
-		OCLStandardLibrary<?> oclStandardLibrary = environment.getOCLStandardLibrary();
-		return oclStandardLibrary.getInvalid();
-	}
-
 	protected int getNumArguments(OperationCallExp<?, ?> operationCall) {
 		List<?> args = operationCall.getArgument();
 		return args.size();
 	}
-
-	protected boolean isBoolean(Object value) {
-		return value instanceof Boolean;
-	}
-
-	protected boolean isInteger(Object value) {
-		return value instanceof BigInteger;
-	}
-
-	/**
-	 * Convenience method to determine whether the specified value is the <tt>null</tt>
-     * or <tt>invalid</tt> value.
-	 * 
-	 * @param value a value
-	 * 
-	 * @return whether it is undefined
-	 */
-	protected boolean isUndefined(Object value) {
-		return (value == null) || 		// FIXME Deprecated
-		(value instanceof NullLiteralExp<?>) || 
-		(value instanceof InvalidLiteralExp<?>);
-	}
-	
-	/**
-	 * Convenience method to determine whether the specified value is the <tt>invalid</tt> value.
-	 * 
-	 * @param value a value
-	 * 
-	 * @return whether it is undefined
-	 */
-	protected boolean isInvalid(Object value) {
-		return (value == null) || 		// FIXME Deprecated
-			(value instanceof InvalidLiteralExp<?>);
-	}
-	
-	/**
-	 * Convenience method to determine whether the specified value is the <tt>null</tt> value.
-	 * 
-	 * @param value a value
-	 * 
-	 * @return whether it is undefined
-	 */
-	protected boolean isNull(Object value) {
-		return value instanceof NullLiteralExp<?>;
-	}
-
-	protected boolean isString(Object value) {
-		return (value instanceof String) || (value instanceof StringBuffer);
-	}
-	
-	protected boolean isUnlimited(Object value) {
-		return (value instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)value).isUnlimited();
-	}
-
-	protected boolean isUnlimited(BigInteger value) {
-		return value.signum() < 0;
-	}
-
-	protected boolean isUnlimitedNatural(Object value) {
-		return isUnlimited(value) || ((value instanceof BigInteger) && (((BigInteger)value).signum() >= 0));
-	}
-	
-//	protected boolean isUnlimited(Integer value) {
-//		return Integer.signum(value) < 0;
-//	}
-
-//	protected boolean isUnlimited(Long value) {
-//		return Long.signum(value) < 0;
-//	}
 	
 //	public String toString() {
 //		Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
