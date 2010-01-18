@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.4 2010/01/18 08:57:52 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.5 2010/01/18 22:07:17 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -3522,7 +3522,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				"operationCallExpCS", operationName,//$NON-NLS-1$
 				astNode, operationSourceType, args);
 			initASTMapping(env, astNode1, oclExpressionCS, null);
-//			initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());
+			initStartEndPositions(astNode1, oclExpressionCS);
 			C type = getCollectionType(oclExpressionCS, env,
 				CollectionKind.COLLECTION_LITERAL, astNode.getType());
 			astNode1.setType(type);

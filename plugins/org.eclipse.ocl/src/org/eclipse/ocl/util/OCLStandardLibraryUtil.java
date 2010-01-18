@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.5 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.6 2010/01/18 22:07:17 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -1159,6 +1159,14 @@ public final class OCLStandardLibraryUtil {
 					.getT2());
 			case CLOSURE :
 				return getSetType(env, env.getOCLFactory(), stdlib.getT2());
+			case AS_BAG :
+				return getBagType(env, env.getOCLFactory(), collType.getElementType());
+			case AS_SEQUENCE :
+				return getSequenceType(env, env.getOCLFactory(), collType.getElementType());
+			case AS_SET :
+				return getSetType(env, env.getOCLFactory(), collType.getElementType());
+			case AS_ORDERED_SET :
+				return getOrderedSetType(env, env.getOCLFactory(), collType.getElementType());
 		}
 
 		String message = OCLMessages.bind(OCLMessages.CollectionType_ERROR_,
@@ -1615,6 +1623,14 @@ public final class OCLStandardLibraryUtil {
 		result.add(createUnaryOperation(uml, stdlib.getBoolean(),
 			NOT_EMPTY_NAME));
 
+		result.add(createUnaryOperation(uml, stdlib.getBag(), AS_BAG_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getSet(), AS_SET_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getSequence(),
+			AS_SEQUENCE_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
+			AS_ORDERED_SET_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getCollection(), OCL_AS_COLLECTION_NAME));
+				
 		OCLFactory oclFactory = env.getOCLFactory();
 		C resultType = getSetType(env, oclFactory, getTupleType(env,
 			oclFactory, createTupleParts(env, stdlib.getT(), stdlib.getT2())));
@@ -1671,13 +1687,6 @@ public final class OCLStandardLibraryUtil {
 			SYMMETRIC_DIFFERENCE_NAME, stdlib.getSet(), "s"));//$NON-NLS-1$
 		result.add(createUnaryOperation(uml, getSetType(env, env
 			.getOCLFactory(), stdlib.getT2()), FLATTEN_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getBag(), AS_BAG_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getSet(), AS_SET_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getSequence(),
-			AS_SEQUENCE_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
-			AS_ORDERED_SET_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getSet(), OCL_AS_COLLECTION_NAME));
 
 		return result;
 	}
@@ -1767,12 +1776,6 @@ public final class OCLStandardLibraryUtil {
 			stdlib.getT(), "object"));//$NON-NLS-1$
 		result.add(createUnaryOperation(uml, getBagType(env, env
 			.getOCLFactory(), stdlib.getT2()), FLATTEN_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getBag(), AS_BAG_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getSet(), AS_SET_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getSequence(),
-			AS_SEQUENCE_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
-			AS_ORDERED_SET_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getBag(), OCL_AS_COLLECTION_NAME));
 
 		return result;
@@ -1828,12 +1831,6 @@ public final class OCLStandardLibraryUtil {
 		result.add(createUnaryOperation(uml, stdlib.getT(), LAST_NAME));
 		result.add(createUnaryOperation(uml, getSequenceType(env, env
 			.getOCLFactory(), stdlib.getT2()), FLATTEN_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getBag(), AS_BAG_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getSet(), AS_SET_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getBoolean(),
-			AS_SEQUENCE_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
-			AS_ORDERED_SET_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getSequence(), OCL_AS_COLLECTION_NAME));
 
 		return result;

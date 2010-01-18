@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeImpl.java,v 1.1.2.3 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: OCLTypeImpl.java,v 1.1.2.4 2010/01/18 22:07:16 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -383,4 +383,16 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+		StringBuffer result = new StringBuffer();
+		result.append(getName());
+		return result.toString();
+	}
 } //OCLTypeImpl

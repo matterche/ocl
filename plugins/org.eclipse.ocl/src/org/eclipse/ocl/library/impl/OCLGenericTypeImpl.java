@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLGenericTypeImpl.java,v 1.1.2.2 2009/12/14 21:59:10 ewillink Exp $
+ * $Id: OCLGenericTypeImpl.java,v 1.1.2.3 2010/01/18 22:07:17 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -132,6 +132,27 @@ public class OCLGenericTypeImpl extends OCLTypeImpl implements OCLGenericType {
 				return parameter != null && !parameter.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+		StringBuffer result = new StringBuffer();
+		result.append(getName());
+		result.append("("); //$NON-NLS-1$
+		int iMax = parameter != null ? parameter.size() : 0;
+		for (int i = 0; i < iMax; i++) {
+			if (i > 0) {
+				result.append(","); //$NON-NLS-1$
+			}
+			result.append(parameter);
+		}
+		result.append(")"); //$NON-NLS-1$
+		return result.toString();
 	}
 
 } //OCLGenericTypeImpl
