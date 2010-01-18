@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.3 2010/01/18 08:57:41 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.4 2010/01/18 22:07:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -273,7 +273,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         String self = "foo";
         List<String> expected = createSequence("THIS AND", "THAT", "THE OTHER");
 
-        assertQueryEquals(self, expected, "Sequence{Sequence{'this and', 'that'}, Sequence{'the other'}}->collect(s : Sequence(String) | s.toUpper())");
+        assertQueryEquals(self, expected, "Sequence{Sequence{'this and', 'that'}, Sequence{'the other'}}->collect(s : Sequence(String) | s.toUpperCase())");
     }
 
     /**

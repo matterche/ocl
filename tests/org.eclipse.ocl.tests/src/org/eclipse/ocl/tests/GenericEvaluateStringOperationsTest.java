@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009,2010 Eclipse Modeling Project and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.3 2010/01/14 21:33:38 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.4 2010/01/18 22:07:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;

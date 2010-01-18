@@ -1,23 +1,24 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2009,2010 Eclipse Modeling Project and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   IBM - Initial API and implementation
+ *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.3 2010/01/18 08:57:41 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.4 2010/01/18 22:07:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.options.EvaluationOptions;
 
 /**
  * Tests for OclAny operations.
@@ -64,6 +65,328 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
         helper.setContext(getMetaclass(denormalize("%Package")));
     }
 
+	public void testEqualInvalid() {
+		/*
+		 * FIXME we're expecting here results as specified in 2.0 : (11.2.4) any
+		 * call on invalid results in invalid. Note that 2.1 didn't alter
+		 * this statement but added in 11.2.5 an override of '=' so that it
+		 * returns "true if object is invalid". Which should we respect in the
+		 * implementation? respecting 11.2.4 is better as far as error handling
+		 * is concerned ... but then we should probably respect 11.2.3 and have
+		 * '=' fail on 'null'.
+		 */
+		assertQueryFalse(null, "invalid = 3");
+		assertQueryFalse(null, "3 = invalid");
+		assertQueryFalse(null, "invalid = 3.0");
+		assertQueryFalse(null, "3.0 = invalid");
+
+		assertQueryFalse(null, "invalid = 'test'");
+		assertQueryFalse(null, "'test' = invalid");
+		assertQueryFalse(null, "invalid = true");
+		assertQueryFalse(null, "false = invalid");
+		assertQueryFalse(null, "invalid = Sequence{}");
+		assertQueryFalse(null, "Sequence{} = invalid");
+
+		assertQueryTrue(null, "invalid = invalid");
+	}
+
+	public void testEqualNull() {
+		assertQueryFalse(null, "null = 3");
+		assertQueryFalse(null, "3 = null");
+		assertQueryFalse(null, "null = 3.0");
+		assertQueryFalse(null, "3.0 = null");
+
+		assertQueryFalse(null, "null = 'test'");
+		assertQueryFalse(null, "'test' = null");
+		assertQueryFalse(null, "null = true");
+		assertQueryFalse(null, "false = null");
+		assertQueryFalse(null, "null = Sequence{}");
+		assertQueryFalse(null, "Sequence{} = null");
+
+		assertQueryTrue(null, "null = null");
+	}
+
+	public void testGreaterThanInvalid() {
+		assertQueryInvalid(null, "invalid > 0");
+		assertQueryInvalid(null, "0 > invalid");
+		assertQueryInvalid(null, "invalid > invalid");
+	}
+
+	public void testGreaterThanNull() {
+		assertQueryInvalid(null, "null > 0");
+		assertQueryInvalid(null, "0 > null");
+		assertQueryInvalid(null, "null > null");
+	}
+
+	public void testGreaterThanOrEqualInvalid() {
+		assertQueryInvalid(null, "invalid >= 0");
+		assertQueryInvalid(null, "0 >= invalid");
+		assertQueryInvalid(null, "invalid >= invalid");
+	}
+
+	public void testGreaterThanOrEqualNull() {
+		assertQueryInvalid(null, "null >= 0");
+		assertQueryInvalid(null, "0 >= null");
+		assertQueryInvalid(null, "null >= null");
+	}
+
+	public void testLessThanInvalid() {
+		assertQueryInvalid(null, "invalid < 0");
+		assertQueryInvalid(null, "0 < invalid");
+		assertQueryInvalid(null, "invalid < invalid");
+	}
+
+	public void testLessThanNull() {
+		// FIXME '=' is defined for null ... why not <? at least <= should be.
+		assertQueryInvalid(null, "null < 0");
+		assertQueryInvalid(null, "0 < null");
+		assertQueryInvalid(null, "null < null");
+	}
+
+	public void testLessThanOrEqualInvalid() {
+		assertQueryInvalid(null, "invalid <= 0");
+		assertQueryInvalid(null, "0 <= invalid");
+		assertQueryInvalid(null, "invalid <= invalid");
+	}
+
+	public void testLessThanOrEqualNull() {
+		assertQueryInvalid(null, "null <= 0");
+		assertQueryInvalid(null, "0 <= null");
+		assertQueryInvalid(null, "null <= null");
+	}
+
+	public void testNotEqualInvalid() {
+		/*
+		 * FIXME we're expecting here results as specified in 2.0 : (11.2.4) any
+		 * call on invalid results in invalid. Note that 2.1 didn't alter
+		 * this statement but added in 11.2.5 an override of '=' so that it
+		 * returns "true if object is invalid". Which should we respect in the
+		 * implementation? respecting 11.2.4 is better as far as error handling
+		 * is concerned ... but then we should probably respect 11.2.3 and have
+		 * '=' fail on 'null'.
+		 */
+		assertQueryTrue(null, "invalid <> 3");
+		assertQueryTrue(null, "3 <> invalid");
+		assertQueryTrue(null, "invalid <> 3.0");
+		assertQueryTrue(null, "3.0 <> invalid");
+
+		assertQueryTrue(null, "invalid <> 'test'");
+		assertQueryTrue(null, "'test' <> invalid");
+		assertQueryTrue(null, "invalid <> true");
+		assertQueryTrue(null, "false <> invalid");
+		assertQueryTrue(null, "invalid <> Sequence{}");
+		assertQueryTrue(null, "Sequence{} <> invalid");
+
+		assertQueryFalse(null, "invalid <> invalid");
+	}
+
+	public void testNotEqualNull() {
+		assertQueryTrue(null, "null <> 3");
+		assertQueryTrue(null, "3 <> null");
+		assertQueryTrue(null, "null <> 3.0");
+		assertQueryTrue(null, "3.0 <> null");
+
+		assertQueryTrue(null, "null <> 'test'");
+		assertQueryTrue(null, "'test' <> null");
+		assertQueryTrue(null, "null <> true");
+		assertQueryTrue(null, "false <> null");
+		assertQueryTrue(null, "null <> Sequence{}");
+		assertQueryTrue(null, "Sequence{} <> null");
+
+		assertQueryFalse(null, "null <> null");
+	}
+
+	public void testOclAsTypeInvalidLaxNullHandlingInvalid() {
+		assertQueryInvalid(null, "invalid.oclAsType(String)");
+		assertQueryInvalid(null, "invalid.oclAsType(EClass)");
+		assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
+		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
+	}
+
+/* FIXME	public void testOclAsTypeLaxNullHandlingNull() {
+		/ *
+		 * FIXME EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
+		 * "null" is the expected result whatever the given type. We should
+		 * either fix the evaluation or the javadoc.
+		 * /
+		assertQueryNull(null, "null.oclAsType(String)");
+		assertQueryNull(null, "null.oclAsType(Integer)");
+		assertQueryNull(null, "null.oclAsType(EClass)");
+		assertQueryNull(null, "null.oclAsType(OclVoid)");
+		assertQueryNull(null, "null.oclAsType(OclInvalid)");
+	} */
+
+	public void testOclAsTypeNoLaxNullHandlingInvalid() {
+		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
+			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
+		// If this assert ever fails, LAX_NULL_HANDLING's default changed
+		assertEquals(Boolean.TRUE, oldNullHandling);
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
+
+		assertQueryInvalid(null, "invalid.oclAsType(String)");
+		assertQueryInvalid(null, "invalid.oclAsType(Integer)");
+		assertQueryInvalid(null, "invalid.oclAsType(EClass)");
+		assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
+		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
+
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
+	}
+
+/* FIXME	public void testOclAsTypeNoLaxNullHandlingNull() {
+		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
+			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
+		// If this assert ever fails, LAX_NULL_HANDLING's default changed
+		assertEquals(Boolean.TRUE, oldNullHandling);
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
+
+		assertQueryInvalid(null, "null.oclAsType(String)");
+		assertQueryInvalid(null, "null.oclAsType(Integer)");
+		assertQueryInvalid(null, "null.oclAsType(EClass)");
+		assertQueryInvalid(null, "null.oclAsType(OclVoid)");
+		assertQueryInvalid(null, "null.oclAsType(OclInvalid)");
+
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
+	} */
+
+	public void testOclIsInvalidInvalid() {
+		assertQueryTrue(null, "invalid.oclIsInvalid()");
+	}
+
+	public void testOclIsInvalidNull() {
+		assertQueryFalse(null, "null.oclIsInvalid()");
+	}
+
+/* FIXME	public void testOclIsKindOfInvalidLaxNullHandling() {
+		/ *
+		 * FIXME why is the evaluation of oclIsKindOf altered for invalid
+		 * with LAX_NULL_HANDLING off? That is no documented behavior.
+		 * /
+		assertQueryInvalid(null, "invalid.oclIsKindOf(String)");
+		assertQueryInvalid(null, "invalid.oclIsKindOf(EClass)");
+		assertQueryInvalid(null, "invalid.oclIsKindOf(OclVoid)");
+		assertQueryInvalid(null, "invalid.oclIsKindOf(OclInvalid)");
+	} */
+
+/* FIXME	public void testOclIsKindOfInvalidNoLaxHandling() {
+		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
+			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
+		// If this assert ever fails, LAX_NULL_HANDLING's default changed
+		assertEquals(Boolean.TRUE, oldNullHandling);
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
+
+		assertQueryInvalid(null, "invalid.oclIsKindOf(String)");
+		assertQueryInvalid(null, "invalid.oclIsKindOf(Integer)");
+		assertQueryInvalid(null, "invalid.oclIsKindOf(EClass)");
+		assertQueryInvalid(null, "invalid.oclIsKindOf(OclVoid)");
+		assertQueryInvalid(null, "invalid.oclIsKindOf(OclInvalid)");
+
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
+	} */
+
+	public void testOclIsKindOfNullLaxNullHandling() {
+		/*
+		 * FIXME EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
+		 * "true" is the expected result whatever the given type. We should
+		 * either fix the evaluation or the javadoc.
+		 */
+		assertQueryTrue(null, "null.oclIsKindOf(String)");
+		assertQueryTrue(null, "null.oclIsKindOf(Integer)");
+		assertQueryTrue(null, "null.oclIsKindOf(EClass)");
+		assertQueryTrue(null, "null.oclIsKindOf(OclVoid)");
+		assertQueryFalse(null, "null.oclIsKindOf(OclInvalid)");
+	}
+
+/* FIXME	public void testOclIsKindOfNullNoLaxHandling() {
+		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
+			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
+		// If this assert ever fails, LAX_NULL_HANDLING's default changed
+		assertEquals(Boolean.TRUE, oldNullHandling);
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
+
+		assertQueryInvalid(null, "null.oclIsKindOf(String)");
+		assertQueryInvalid(null, "null.oclIsKindOf(Integer)");
+		assertQueryInvalid(null, "null.oclIsKindOf(EClass)");
+		assertQueryInvalid(null, "null.oclIsKindOf(OclVoid)");
+		assertQueryInvalid(null, "null.oclIsKindOf(OclInvalid)");
+
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
+	} */
+
+	public void testOclIsTypeOfInvalidLaxNullHandling() {
+		/*
+		 * FIXME why is the evaluation of oclIsTypeOf altered for invalid
+		 * with LAX_NULL_HANDLING off? That is no documented behavior.
+		 */
+		assertQueryFalse(null, "invalid.oclIsTypeOf(String)");
+		assertQueryFalse(null, "invalid.oclIsTypeOf(EClass)");
+		assertQueryFalse(null, "invalid.oclIsTypeOf(OclVoid)");
+		assertQueryTrue(null, "invalid.oclIsTypeOf(OclInvalid)");
+	}
+
+/* FIXME	public void testOclIsTypeOfInvalidNoLaxNullHandling() {
+		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
+			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
+		// If this assert ever fails, LAX_NULL_HANDLING's default changed
+		assertEquals(Boolean.TRUE, oldNullHandling);
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
+
+		assertQueryInvalid(null, "invalid.oclIsTypeOf(String)");
+		assertQueryInvalid(null, "invalid.oclIsTypeOf(Integer)");
+		assertQueryInvalid(null, "invalid.oclIsTypeOf(EClass)");
+		assertQueryInvalid(null, "invalid.oclIsTypeOf(OclVoid)");
+		assertQueryInvalid(null, "invalid.oclIsTypeOf(OclInvalid)");
+
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
+	} */
+
+	public void testOclIsTypeOfNullLaxNullHandling() {
+		/*
+		 * FIXME EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
+		 * "true" is the expected result whatever the given type. We should
+		 * either fix the evaluation or the javadoc.
+		 */
+		assertQueryFalse(null, "null.oclIsTypeOf(String)");
+		assertQueryFalse(null, "null.oclIsTypeOf(Integer)");
+		assertQueryFalse(null, "null.oclIsTypeOf(EClass)");
+		assertQueryTrue(null, "null.oclIsTypeOf(OclVoid)");
+		assertQueryFalse(null, "null.oclIsTypeOf(OclInvalid)");
+	}
+
+/* FIXME	public void testOclIsTypeOfNullNoLaxNullHandling() {
+		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
+			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
+		// If this assert ever fails, LAX_NULL_HANDLING's default changed
+		assertEquals(Boolean.TRUE, oldNullHandling);
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
+
+		assertQueryInvalid(null, "null.oclIsTypeOf(String)");
+		assertQueryInvalid(null, "null.oclIsTypeOf(Integer)");
+		assertQueryInvalid(null, "null.oclIsTypeOf(EClass)");
+		assertQueryInvalid(null, "null.oclIsTypeOf(OclVoid)");
+		assertQueryInvalid(null, "null.oclIsTypeOf(OclInvalid)");
+
+		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
+	} */
+
+	public void testOclIsUndefinedInvalid() {
+		assertQueryTrue(null, "invalid.oclIsUndefined()");
+	}
+
+	public void testOclIsUndefinedNull() {
+		assertQueryTrue(null, "null.oclIsUndefined()");
+	}
     /**
      * Tests the oclAsType() operator.
      */
