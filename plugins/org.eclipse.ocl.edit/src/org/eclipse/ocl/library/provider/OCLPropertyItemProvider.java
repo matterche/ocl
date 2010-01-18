@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPropertyItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
+ * $Id: OCLPropertyItemProvider.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -82,6 +82,16 @@ public class OCLPropertyItemProvider
 				 null,
 				 null,
 				 null));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

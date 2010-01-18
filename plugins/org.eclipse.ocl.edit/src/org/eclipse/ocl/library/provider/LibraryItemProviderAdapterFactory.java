@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
+ * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -73,6 +73,29 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
 		supportedTypes.add(IItemPropertySource.class);
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.LibraryOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LibraryOperationItemProvider libraryOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.LibraryOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLibraryOperationAdapter() {
+		if (libraryOperationItemProvider == null) {
+			libraryOperationItemProvider = new LibraryOperationItemProvider(this);
+		}
+
+		return libraryOperationItemProvider;
 	}
 
 	/**
@@ -188,29 +211,6 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 		}
 
 		return oclLibraryOperationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.LibraryOperation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LibraryOperationItemProvider libraryOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.LibraryOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLibraryOperationAdapter() {
-		if (libraryOperationItemProvider == null) {
-			libraryOperationItemProvider = new LibraryOperationItemProvider(this);
-		}
-
-		return libraryOperationItemProvider;
 	}
 
 	/**
@@ -473,18 +473,18 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
+		if (libraryOperationItemProvider != null) libraryOperationItemProvider.dispose();
 		if (oclConstraintOperationItemProvider != null) oclConstraintOperationItemProvider.dispose();
-		if (oclParameterItemProvider != null) oclParameterItemProvider.dispose();
-		if (oclTypeItemProvider != null) oclTypeItemProvider.dispose();
 		if (oclConstraintPropertyItemProvider != null) oclConstraintPropertyItemProvider.dispose();
 		if (oclGenericTypeItemProvider != null) oclGenericTypeItemProvider.dispose();
 		if (oclInvalidTypeItemProvider != null) oclInvalidTypeItemProvider.dispose();
 		if (oclLibraryOperationItemProvider != null) oclLibraryOperationItemProvider.dispose();
-		if (libraryOperationItemProvider != null) libraryOperationItemProvider.dispose();
 		if (oclLibraryPropertyItemProvider != null) oclLibraryPropertyItemProvider.dispose();
 		if (oclMetaModelOperationItemProvider != null) oclMetaModelOperationItemProvider.dispose();
 		if (oclMetaModelPropertyItemProvider != null) oclMetaModelPropertyItemProvider.dispose();
 		if (oclPackageItemProvider != null) oclPackageItemProvider.dispose();
+		if (oclParameterItemProvider != null) oclParameterItemProvider.dispose();
+		if (oclTypeItemProvider != null) oclTypeItemProvider.dispose();
 		if (oclVoidTypeItemProvider != null) oclVoidTypeItemProvider.dispose();
 	}
 

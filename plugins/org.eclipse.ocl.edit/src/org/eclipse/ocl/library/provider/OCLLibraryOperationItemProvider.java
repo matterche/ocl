@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.2 2010/01/03 22:50:30 ewillink Exp $
+ * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -101,9 +101,9 @@ public class OCLLibraryOperationItemProvider
 				 getString("_UI_OCLLibraryOperation_libraryOperation_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryOperation_libraryOperation_feature", "_UI_OCLLibraryOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LibraryPackage.Literals.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION,
-				 true,
 				 false,
-				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -118,6 +118,16 @@ public class OCLLibraryOperationItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLLibraryOperation")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
