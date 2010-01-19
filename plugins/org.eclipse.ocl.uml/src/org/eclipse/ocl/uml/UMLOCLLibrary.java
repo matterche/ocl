@@ -8,6 +8,7 @@ import org.eclipse.ocl.library.CompatibilityOCLLibrary;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 
@@ -56,13 +57,14 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<Classifier>
 
 	protected OCLOperation resolveOperation(OCLType dynamicType, Object referredOperation) {
 		Operation operation = (Operation) referredOperation;
-		org.eclipse.uml2.uml.Class classifier = operation.getClass_();
+		Element classifier = operation.getOwner();
 		OCLType thisType = getOCLTypeOfType(classifier);
 		String operationName = operation.getName();
 		EList<OCLType> parameterTypes = new BasicEList<OCLType>();
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			parameterTypes.add(getOCLTypeOfType(parameter.getType()));
 		}
+		parameterTypes.remove(0);			// Lose the 'result' parameter
 		return thisType.getOperation(operationName, parameterTypes);
 	}
 }
