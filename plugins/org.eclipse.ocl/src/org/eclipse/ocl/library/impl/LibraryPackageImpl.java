@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackageImpl.java,v 1.1.2.4 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: LibraryPackageImpl.java,v 1.1.2.5 2010/01/19 08:11:55 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.LibraryProperty;

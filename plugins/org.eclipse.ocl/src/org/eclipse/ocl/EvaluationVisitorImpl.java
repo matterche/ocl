@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.7 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.8 2010/01/19 08:11:55 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -200,7 +200,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				if (body != null) {
 					// if source is undefined, result is OclInvalid
 					if (isUndefined(sourceVal)) {
-						return getInvalid();
+						return library.getInvalid();
 					}
 					
 					result = call(oper, body, sourceVal, evalArgs);
@@ -230,47 +230,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						"visitOperationCallExp", //$NON-NLS-1$
 						e.getLocalizedMessage()),
 					e);
-				return getInvalid();
+				return library.getInvalid();
 			}
 		}
-		
-		// inline primitive and collection operation evaluation for increased
-		// efficiency
-
-		// We handle equals and notEquals separately since they require type
-		// checking
-
-		// The semantics for equality are as follows:
-		//
-		// Define primtive(type) := type in {Boolean, String, Integer, Double,
-		// Void}
-		//
-		// For the expression x = y, let t1 = runtimeType(x1), t2 =
-		// runtimeType(x2)
-		//
-		// if primitive(t1) or primitive(t2) then
-		// 		we use the java semantics for the corresponding built-in primitive
-		// types EXCEPT for
-		//		the following cases:
-		//		(1) when one or the type is Void, the result is true just when both x
-		// and y are undefined.
-		//		(2) when the t1 and t2 are non-conformant (for example t1 = String,
-		// t2 = Integer) then
-		//			the result is false.
-		//
-		//		For example,
-		// 			"1 = 1.0" evaluates to true (unlike "(new Integer(1)).equals(new
-		// Double(1.0))" which evalutes to false).
-		//			"1 = 'x'" evalutes to false
-		//			"(1/0) = 1" evaluates to false
-		//			"(1/0) = (1/0)" evaluates to true
-		//
-		// otherwise, for non-primitive types, we use the "equals" method to
-		// determine equality, which is, by default,
-		// object identity.
-		//
-		// The semantics for inequality are dual.
-		// 
 
 		if (sourceType instanceof PrimitiveType<?>
 			|| sourceType instanceof CollectionType<?, ?>
@@ -278,85 +240,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			|| getUMLReflection().isDataType(sourceType)
 			|| (sourceType instanceof VoidType<?>) || (sourceType instanceof InvalidType<?>)) {
 
-			if (numArgs == 1) {
-				//
-				// binary operations:
-				//
-
-				// evaluate argument
-				OCLExpression<C> arg = args.get(0);
-				
-	            if (isUndefined(sourceVal)) {
-	                return getInvalid();
-	            }
-
-				
-				// evaluate arg, unless we have a boolean operation
-				Object argVal = null;
-				if (!(sourceVal instanceof Boolean)) {
-					argVal = arg.accept(getVisitor());
-				}
-				
-				if (sourceVal instanceof String
-					&& argVal instanceof String) {
-
-					switch (opCode) {
-
-						default: {
-							String message = OCLMessages.bind(
-									OCLMessages.UnknownOperation_ERROR_,
-									getName(oper));
-							RuntimeException error = new RuntimeException(message);
-							OCLPlugin.throwing(getClass(),
-								"visitOperationCallExp", error);//$NON-NLS-1$
-							throw error;
-						}
-					}
-				} else if (sourceVal instanceof Collection<?>) {
-					@SuppressWarnings("unchecked")
-					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
-
-                    // bug 183144:  inputting OclInvalid should result in OclInvalid
-                    if (argVal == getInvalid()) {
-                        return argVal;
-                    }
-                    
-				}
-			} else {
-				//
-				// ternary operations
-				//
-
-				// check if undefined
-				if (isUndefined(sourceVal)) {
-                    return getInvalid();
-                }
-
-				// evaluate arg1
-				Object arg1 = args.get(0).accept(getVisitor());
-
-				// check if undefined
-				if (isUndefined(arg1)) {
-                    return getInvalid();
-                }
-
-				// evaluate arg2
-				Object arg2 = args.get(1).accept(getVisitor());
-
-				// check if undefined
-				if (isUndefined(arg2)) {
-                    return getInvalid();
-                }
-
-				if (sourceVal instanceof String) {
-					// just one ternary string operation
-					// String::substring(Integer, Integer)
-					// index orgin 1 for OCL
-					int lower = ((BigInteger) arg1).intValue() - 1;
-					int upper = ((BigInteger) arg2).intValue();
-					return ((String) sourceVal).substring(lower, upper);
-				} 
-			}
 		} else {
 			
 			// Handle allInstances
@@ -382,23 +265,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					return Collections.EMPTY_SET;
 				}
 			}
-
-			// result is invalid if source is undefined
-			if (isUndefined(sourceVal)) {
-			    return getInvalid();
-			}
-
-			// Handle type check and conversion:
-			
-			//
-			// unknown operation (shouldn't have gotten this far if we
-			//   successfully parsed and/or validated the expression
-			//
-
-			return getInvalid();
 		}
 
-		return getInvalid();
+		return library.getInvalid();
 	}
 	
 	/**
@@ -448,7 +317,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// value of iteration expression is undefined if the source is
 			//   null or OclInvalid
 			if (isUndefined(sourceValue)) {
-				return getInvalid();
+				return library.getInvalid();
 			}
 			
 			Collection<?> coll = (Collection<?>) sourceValue;
@@ -481,7 +350,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// value of iteration expression is undefined if the source is
 			//   null or OclInvalid
 			if (isUndefined(sourceValue)) {
-				return getInvalid();
+				return library.getInvalid();
 			}
 			
 			Collection<?> sourceCollection = (Collection<?>) sourceValue;
@@ -818,7 +687,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// TODO: find an efficient way to do this.
 			Object evaluationResult = is.evaluate(coll, iterators, body, resultName);
 			
-			if (evaluationResult == getInvalid()) {
+			if (evaluationResult == library.getInvalid()) {
 				// handle the OclInvalid result
 				return evaluationResult;
 			}
@@ -955,7 +824,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// if source is undefined, result is OclInvalid
 		if (isUndefined(context)) {
-            return getInvalid();
+            return library.getInvalid();
         }
 
 		OCLExpression<C> derivation = getPropertyBody(property);
@@ -1007,7 +876,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		Object context = ae.getSource().accept(getVisitor());
 		
 		if (isUndefined(context)) {
-			return getInvalid();
+			return library.getInvalid();
 		}
 		
 		// evaluate attribute on source value
@@ -1136,13 +1005,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
 		// just make up some object to take the place of the OclInvalid literal
-		return getInvalid();
+		return library.getInvalid();
 	}
 
 	@Override
     public Object visitNullLiteralExp(NullLiteralExp<C> il) {
 		// the single OclVoid instance is equivalent to Java null
-		return getNull();
+		return library.getNull();
 	}
 
 	/**

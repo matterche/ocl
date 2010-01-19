@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityOCLLibrary.java,v 1.1.2.2 2010/01/18 08:57:52 ewillink Exp $
+ * $Id: CompatibilityOCLLibrary.java,v 1.1.2.3 2010/01/19 08:11:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -116,11 +116,9 @@ public abstract class CompatibilityOCLLibrary<C extends EObject> extends Abstrac
 		}
 		Object referredOperation = operationCall.getReferredOperation();
 		OCLOperation operation = operationMap.get(referredOperation);
-		if (operation == null) {
+		if ((operation == null) && !operationMap.containsKey(referredOperation)) {
 			operation = resolveOperation(dynamicType, referredOperation);
-			if (operation != null) {
-				operationMap.put(referredOperation, operation);
-			}			
+			operationMap.put(referredOperation, operation);
 		}
 		return operation;
 	}
