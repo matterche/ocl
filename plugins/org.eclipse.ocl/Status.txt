@@ -1,0 +1,49 @@
+Ecore tests: 36 failures
+UML tests: 116 failures
+
+Meta-model
+----------
+
+What do T and T2 really mean?
+
+Do they match the OCL specification?
+
+Are they meta-modelled usefully?
+
+Are they implemented usefully?
+
+Support library extension so that OCL.oclstdlib is extended by MDTOCL.oclstdlib.
+
+Library
+-------
+
+Activate Environment.setLibrary()
+
+Provide alternate libraries.
+
+Analysis
+--------
+
+Operation/Property should be looked up with reference to the generic library model
+
+Operation/Property should be defined into the generic library model
+
+Evaluation
+----------
+
+todo
+
+allInstances
+Collection max/min/reverse tests
+Numerous FIXME tests
+meta-model operations
+defined operations
+any kind of property
+
+Non-OCL facilities
+------------------
+
+Compatibility support needed for
+asLong()
+isSuperTypeOf()
+EObject
