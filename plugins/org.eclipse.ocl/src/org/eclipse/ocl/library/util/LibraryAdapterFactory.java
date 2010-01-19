@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryAdapterFactory.java,v 1.1.2.4 2010/01/18 08:57:51 ewillink Exp $
+ * $Id: LibraryAdapterFactory.java,v 1.1.2.5 2010/01/19 22:34:19 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -77,6 +77,10 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryOperationAdapter();
 			}
 			@Override
+			public Adapter caseOCLClassifier(OCLClassifier object) {
+				return createOCLClassifierAdapter();
+			}
+			@Override
 			public Adapter caseOCLConstraintOperation(OCLConstraintOperation object) {
 				return createOCLConstraintOperationAdapter();
 			}
@@ -85,8 +89,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createOCLConstraintPropertyAdapter();
 			}
 			@Override
+			public Adapter caseOCLDataType(OCLDataType object) {
+				return createOCLDataTypeAdapter();
+			}
+			@Override
 			public Adapter caseOCLElement(OCLElement object) {
 				return createOCLElementAdapter();
+			}
+			@Override
+			public Adapter caseOCLEnumeration(OCLEnumeration object) {
+				return createOCLEnumerationAdapter();
+			}
+			@Override
+			public Adapter caseOCLEnumerationLiteral(OCLEnumerationLiteral object) {
+				return createOCLEnumerationLiteralAdapter();
 			}
 			@Override
 			public Adapter caseOCLGenericType(OCLGenericType object) {
@@ -171,6 +187,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLClassifier <em>OCL Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLClassifier
+	 * @generated
+	 */
+	public Adapter createOCLClassifierAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLConstraintOperation <em>OCL Constraint Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -199,6 +229,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLDataType <em>OCL Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLDataType
+	 * @generated
+	 */
+	public Adapter createOCLDataTypeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLElement <em>OCL Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -209,6 +253,34 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLEnumeration <em>OCL Enumeration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLEnumeration
+	 * @generated
+	 */
+	public Adapter createOCLEnumerationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLEnumerationLiteral <em>OCL Enumeration Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLEnumerationLiteral
+	 * @generated
+	 */
+	public Adapter createOCLEnumerationLiteralAdapter() {
 		return null;
 	}
 

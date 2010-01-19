@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelOperation.java,v 1.1.2.3 2010/01/19 22:34:19 ewillink Exp $
+ * $Id: OCLDataType.java,v 1.1.2.1 2010/01/19 22:34:19 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -11,22 +11,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>OCL Meta Model Operation</b></em>'.
+ * A representation of the model object '<em><b>OCL Data Type</b></em>'.
  * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.OCLMetaModelOperation#getMetaModelElement <em>Meta Model Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLDataType#getMetaModelElement <em>Meta Model Element</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.library.LibraryPackage#getOCLMetaModelOperation()
+ * @see org.eclipse.ocl.library.LibraryPackage#getOCLDataType()
  * @model
  * @generated
  */
-public interface OCLMetaModelOperation extends OCLOperation {
+public interface OCLDataType extends OCLType {
 
 	/**
 	 * Returns the value of the '<em><b>Meta Model Element</b></em>' reference.
@@ -38,14 +38,14 @@ public interface OCLMetaModelOperation extends OCLOperation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Meta Model Element</em>' reference.
 	 * @see #setMetaModelElement(EObject)
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLMetaModelOperation_MetaModelElement()
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLDataType_MetaModelElement()
 	 * @model
 	 * @generated
 	 */
 	EObject getMetaModelElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLMetaModelOperation#getMetaModelElement <em>Meta Model Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLDataType#getMetaModelElement <em>Meta Model Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Meta Model Element</em>' reference.
@@ -53,4 +53,4 @@ public interface OCLMetaModelOperation extends OCLOperation {
 	 * @generated
 	 */
 	void setMetaModelElement(EObject value);
-} // OCLMetaModelOperation
+} // OCLDataType

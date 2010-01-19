@@ -40,6 +40,8 @@ meta-model operations
 defined operations
 any kind of property
 
+Deep normalisation / denormalisation of evaluate().
+
 Non-OCL facilities
 ------------------
 

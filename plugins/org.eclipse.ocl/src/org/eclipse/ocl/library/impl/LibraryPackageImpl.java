@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackageImpl.java,v 1.1.2.5 2010/01/19 08:11:55 ewillink Exp $
+ * $Id: LibraryPackageImpl.java,v 1.1.2.6 2010/01/19 22:34:20 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -20,9 +20,13 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLClassifier;
 import org.eclipse.ocl.library.OCLConstraintOperation;
 import org.eclipse.ocl.library.OCLConstraintProperty;
+import org.eclipse.ocl.library.OCLDataType;
 import org.eclipse.ocl.library.OCLElement;
+import org.eclipse.ocl.library.OCLEnumeration;
+import org.eclipse.ocl.library.OCLEnumerationLiteral;
 import org.eclipse.ocl.library.OCLGenericType;
 import org.eclipse.ocl.library.OCLInvalidType;
 import org.eclipse.ocl.library.OCLLibraryOperation;
@@ -56,6 +60,13 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass oclClassifierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass oclConstraintOperationEClass = null;
 
 	/**
@@ -70,7 +81,28 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass oclDataTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass oclElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclEnumerationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclEnumerationLiteralEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -268,6 +300,24 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOCLDataType() {
+		return oclDataTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLDataType_MetaModelElement() {
+		return (EReference)oclDataTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOCLElement() {
 		return oclElementEClass;
 	}
@@ -279,6 +329,60 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 */
 	public EAttribute getOCLElement_Name() {
 		return (EAttribute)oclElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLEnumeration() {
+		return oclEnumerationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumeration_Literals() {
+		return (EReference)oclEnumerationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumeration_MetaModelElement() {
+		return (EReference)oclEnumerationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLEnumerationLiteral() {
+		return oclEnumerationLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumerationLiteral_Container() {
+		return (EReference)oclEnumerationLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumerationLiteral_MetaModelElement() {
+		return (EReference)oclEnumerationLiteralEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -367,8 +471,26 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getOCLMetaModelOperation_MetaModelElement() {
+		return (EReference)oclMetaModelOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOCLMetaModelProperty() {
 		return oclMetaModelPropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLMetaModelProperty_MetaModelElement() {
+		return (EReference)oclMetaModelPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -574,6 +696,24 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOCLClassifier() {
+		return oclClassifierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLClassifier_MetaModelElement() {
+		return (EReference)oclClassifierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getLibraryProperty() {
 		return libraryPropertyEDataType;
 	}
@@ -618,12 +758,26 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		libraryOperationEClass = createEClass(LIBRARY_OPERATION);
 		createEReference(libraryOperationEClass, LIBRARY_OPERATION__REFERENCES);
 
+		oclClassifierEClass = createEClass(OCL_CLASSIFIER);
+		createEReference(oclClassifierEClass, OCL_CLASSIFIER__META_MODEL_ELEMENT);
+
 		oclConstraintOperationEClass = createEClass(OCL_CONSTRAINT_OPERATION);
 
 		oclConstraintPropertyEClass = createEClass(OCL_CONSTRAINT_PROPERTY);
 
+		oclDataTypeEClass = createEClass(OCL_DATA_TYPE);
+		createEReference(oclDataTypeEClass, OCL_DATA_TYPE__META_MODEL_ELEMENT);
+
 		oclElementEClass = createEClass(OCL_ELEMENT);
 		createEAttribute(oclElementEClass, OCL_ELEMENT__NAME);
+
+		oclEnumerationEClass = createEClass(OCL_ENUMERATION);
+		createEReference(oclEnumerationEClass, OCL_ENUMERATION__LITERALS);
+		createEReference(oclEnumerationEClass, OCL_ENUMERATION__META_MODEL_ELEMENT);
+
+		oclEnumerationLiteralEClass = createEClass(OCL_ENUMERATION_LITERAL);
+		createEReference(oclEnumerationLiteralEClass, OCL_ENUMERATION_LITERAL__CONTAINER);
+		createEReference(oclEnumerationLiteralEClass, OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT);
 
 		oclGenericTypeEClass = createEClass(OCL_GENERIC_TYPE);
 		createEReference(oclGenericTypeEClass, OCL_GENERIC_TYPE__PARAMETER);
@@ -638,8 +792,10 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		createEAttribute(oclLibraryPropertyEClass, OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS);
 
 		oclMetaModelOperationEClass = createEClass(OCL_META_MODEL_OPERATION);
+		createEReference(oclMetaModelOperationEClass, OCL_META_MODEL_OPERATION__META_MODEL_ELEMENT);
 
 		oclMetaModelPropertyEClass = createEClass(OCL_META_MODEL_PROPERTY);
+		createEReference(oclMetaModelPropertyEClass, OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT);
 
 		oclOperationEClass = createEClass(OCL_OPERATION);
 		createEAttribute(oclOperationEClass, OCL_OPERATION__IS_ITERATOR);
@@ -700,8 +856,12 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		oclClassifierEClass.getESuperTypes().add(this.getOCLType());
 		oclConstraintOperationEClass.getESuperTypes().add(this.getOCLOperation());
 		oclConstraintPropertyEClass.getESuperTypes().add(this.getOCLProperty());
+		oclDataTypeEClass.getESuperTypes().add(this.getOCLType());
+		oclEnumerationEClass.getESuperTypes().add(this.getOCLType());
+		oclEnumerationLiteralEClass.getESuperTypes().add(this.getOCLElement());
 		oclGenericTypeEClass.getESuperTypes().add(this.getOCLType());
 		oclInvalidTypeEClass.getESuperTypes().add(this.getOCLType());
 		oclLibraryOperationEClass.getESuperTypes().add(this.getOCLOperation());
@@ -725,12 +885,26 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		addEParameter(op, this.getOperationCallExp(), "operationCall", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEException(op, this.getException());
 
+		initEClass(oclClassifierEClass, OCLClassifier.class, "OCLClassifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLClassifier_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(oclConstraintOperationEClass, OCLConstraintOperation.class, "OCLConstraintOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(oclConstraintPropertyEClass, OCLConstraintProperty.class, "OCLConstraintProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		initEClass(oclDataTypeEClass, OCLDataType.class, "OCLDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLDataType_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(oclElementEClass, OCLElement.class, "OCLElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getOCLElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, OCLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclEnumerationEClass, OCLEnumeration.class, "OCLEnumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLEnumeration_Literals(), this.getOCLEnumerationLiteral(), this.getOCLEnumerationLiteral_Container(), "literals", null, 0, -1, OCLEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOCLEnumeration_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclEnumerationLiteralEClass, OCLEnumerationLiteral.class, "OCLEnumerationLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLEnumerationLiteral_Container(), this.getOCLEnumeration(), this.getOCLEnumeration_Literals(), "container", null, 0, 1, OCLEnumerationLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOCLEnumerationLiteral_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLEnumerationLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(oclGenericTypeEClass, OCLGenericType.class, "OCLGenericType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getOCLGenericType_Parameter(), this.getOCLType(), null, "parameter", null, 1, -1, OCLGenericType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -755,8 +929,10 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		initEAttribute(getOCLLibraryProperty_LibraryPropertyClass(), g1, "libraryPropertyClass", null, 1, 1, OCLLibraryProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(oclMetaModelOperationEClass, OCLMetaModelOperation.class, "OCLMetaModelOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLMetaModelOperation_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLMetaModelOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(oclMetaModelPropertyEClass, OCLMetaModelProperty.class, "OCLMetaModelProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLMetaModelProperty_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLMetaModelProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(oclOperationEClass, OCLOperation.class, "OCLOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getOCLOperation_IsIterator(), ecorePackage.getEBoolean(), "isIterator", null, 0, 1, OCLOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

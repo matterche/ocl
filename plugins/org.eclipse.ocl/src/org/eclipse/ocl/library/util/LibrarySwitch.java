@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibrarySwitch.java,v 1.1.2.4 2010/01/18 08:57:51 ewillink Exp $
+ * $Id: LibrarySwitch.java,v 1.1.2.5 2010/01/19 22:34:19 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -94,6 +94,14 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LibraryPackage.OCL_CLASSIFIER: {
+				OCLClassifier oclClassifier = (OCLClassifier)theEObject;
+				T result = caseOCLClassifier(oclClassifier);
+				if (result == null) result = caseOCLType(oclClassifier);
+				if (result == null) result = caseOCLElement(oclClassifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LibraryPackage.OCL_CONSTRAINT_OPERATION: {
 				OCLConstraintOperation oclConstraintOperation = (OCLConstraintOperation)theEObject;
 				T result = caseOCLConstraintOperation(oclConstraintOperation);
@@ -110,9 +118,32 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LibraryPackage.OCL_DATA_TYPE: {
+				OCLDataType oclDataType = (OCLDataType)theEObject;
+				T result = caseOCLDataType(oclDataType);
+				if (result == null) result = caseOCLType(oclDataType);
+				if (result == null) result = caseOCLElement(oclDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LibraryPackage.OCL_ELEMENT: {
 				OCLElement oclElement = (OCLElement)theEObject;
 				T result = caseOCLElement(oclElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_ENUMERATION: {
+				OCLEnumeration oclEnumeration = (OCLEnumeration)theEObject;
+				T result = caseOCLEnumeration(oclEnumeration);
+				if (result == null) result = caseOCLType(oclEnumeration);
+				if (result == null) result = caseOCLElement(oclEnumeration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_ENUMERATION_LITERAL: {
+				OCLEnumerationLiteral oclEnumerationLiteral = (OCLEnumerationLiteral)theEObject;
+				T result = caseOCLEnumerationLiteral(oclEnumerationLiteral);
+				if (result == null) result = caseOCLElement(oclEnumerationLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -227,6 +258,21 @@ public class LibrarySwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Classifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLClassifier(OCLClassifier object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>OCL Constraint Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -257,6 +303,21 @@ public class LibrarySwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Data Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Data Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLDataType(OCLDataType object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>OCL Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -268,6 +329,36 @@ public class LibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLElement(OCLElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Enumeration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Enumeration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLEnumeration(OCLEnumeration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Enumeration Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Enumeration Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLEnumerationLiteral(OCLEnumerationLiteral object) {
 		return null;
 	}
 

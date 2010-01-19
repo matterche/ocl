@@ -169,13 +169,29 @@
     </operation>
   </type>
   <type xmi:id="__yw-n_ZbEd6fb4shsxiV7w" name="UnlimitedNatural" conforms="__yw-W_ZbEd6fb4shsxiV7w"/>
-  <type xmi:id="__yw-oPZbEd6fb4shsxiV7w" name="Classifier" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
+  <type xmi:type="ocl.lib:OCLClassifier" xmi:id="_kHCFwQT7Ed-v36yE__FUNA" name="Classifier" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
+  <type xmi:type="ocl.lib:OCLInvalidType" xmi:id="_B65IYPZcEd6fb4shsxiV7w" name="OclInvalid" conforms="_M_DZYPZcEd6fb4shsxiV7w">
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-r_ZbEd6fb4shsxiV7w" name="=" type="__yeDUvZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.evaluator.operations.EqualOperation">
+      <parameter xmi:id="__yw-sPZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
+    </operation>
+  </type>
   <type xmi:id="__yw-ofZbEd6fb4shsxiV7w" name="OclMessage" conforms="__yeDUvZbEd6fb4shsxiV7w">
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-ovZbEd6fb4shsxiV7w" name="hasReturned" type="__yw-UPZbEd6fb4shsxiV7w"/>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-o_ZbEd6fb4shsxiV7w" name="result" type="__yw-sfZbEd6fb4shsxiV7w"/>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-pPZbEd6fb4shsxiV7w" name="isOperationCall" type="__yw-UPZbEd6fb4shsxiV7w"/>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-pfZbEd6fb4shsxiV7w" name="isSignalSent" type="__yw-UPZbEd6fb4shsxiV7w"/>
   </type>
+  <type xmi:id="__yw-svZbEd6fb4shsxiV7w" name="OclState" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
+  <type xmi:id="_sEfdEPgtEd6lM4WSu-rNiA" name="OclType" conforms="__yeDUvZbEd6fb4shsxiV7w">
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_GBasIATyEd-S7eYJcF-v8g" name="allInstances" type="_V9dDIAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.evaluator.operations.ClassifierAllInstancesOperation"/>
+  </type>
+  <type xmi:type="ocl.lib:OCLVoidType" xmi:id="_M_DZYPZcEd6fb4shsxiV7w" name="OclVoid" conforms="__yeDUvZbEd6fb4shsxiV7w">
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-rPZbEd6fb4shsxiV7w" name="=" type="__yeDUvZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.evaluator.operations.EqualOperation">
+      <parameter xmi:id="__yw-rfZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
+    </operation>
+  </type>
+  <type xmi:id="__yw-sfZbEd6fb4shsxiV7w" name="T" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
+  <type xmi:id="_5NwIAAJiEd-76ZtiYoMJkQ" name="T2" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
   <type xmi:type="ocl.lib:OCLGenericType" xmi:id="_RCgMEAJiEd-76ZtiYoMJkQ" name="Bag" conforms="_AJqmsAJiEd-76ZtiYoMJkQ _uv9I4AJhEd-76ZtiYoMJkQ" parameter="__yw-sfZbEd6fb4shsxiV7w">
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_wlqH0ALFEd-8D_H1NPKJaw" name="=" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.evaluator.collection.CollectionEqualsOperation">
       <parameter xmi:id="_wlqH0QLFEd-8D_H1NPKJaw" name="bag" type="_RCgMEAJiEd-76ZtiYoMJkQ"/>
@@ -331,18 +347,4 @@
     </operation>
   </type>
   <type xmi:type="ocl.lib:OCLGenericType" xmi:id="_7lxkwAJhEd-76ZtiYoMJkQ" name="UniqueCollection" conforms="__y6vQPZbEd6fb4shsxiV7w" parameter="__yw-sfZbEd6fb4shsxiV7w"/>
-  <type xmi:type="ocl.lib:OCLInvalidType" xmi:id="_B65IYPZcEd6fb4shsxiV7w" name="OclInvalid" conforms="_M_DZYPZcEd6fb4shsxiV7w">
-    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-r_ZbEd6fb4shsxiV7w" name="=" type="__yeDUvZbEd6fb4shsxiV7w">
-      <parameter xmi:id="__yw-sPZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
-    </operation>
-  </type>
-  <type xmi:type="ocl.lib:OCLVoidType" xmi:id="_M_DZYPZcEd6fb4shsxiV7w" name="OclVoid" conforms="__yeDUvZbEd6fb4shsxiV7w">
-    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-rPZbEd6fb4shsxiV7w" name="=" type="__yeDUvZbEd6fb4shsxiV7w">
-      <parameter xmi:id="__yw-rfZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
-    </operation>
-  </type>
-  <type xmi:id="__yw-sfZbEd6fb4shsxiV7w" name="T" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
-  <type xmi:id="__yw-svZbEd6fb4shsxiV7w" name="OclState" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
-  <type xmi:id="_sEfdEPgtEd6lM4WSu-rNiA" name="OclType" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
-  <type xmi:id="_5NwIAAJiEd-76ZtiYoMJkQ" name="T2" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
 </ocl.lib:OCLPackage>

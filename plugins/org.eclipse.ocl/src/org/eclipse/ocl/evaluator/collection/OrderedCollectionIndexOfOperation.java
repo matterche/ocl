@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionIndexOfOperation.java,v 1.1.2.1 2010/01/18 08:57:49 ewillink Exp $
+ * $Id: OrderedCollectionIndexOfOperation.java,v 1.1.2.2 2010/01/19 22:34:20 ewillink Exp $
  */
 package org.eclipse.ocl.evaluator.collection;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 import org.eclipse.ocl.util.CollectionUtil;
@@ -29,6 +30,6 @@ public class OrderedCollectionIndexOfOperation extends AbstractOrderedCollection
 {
 	@Override
 	protected Object evaluateCollection(Collection<?> sourceVal, Object argVal) {
-		return CollectionUtil.indexOf(sourceVal, argVal);
+		return BigInteger.valueOf(CollectionUtil.indexOf(sourceVal, argVal));
 	}
 }

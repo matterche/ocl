@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.4 2010/01/18 08:57:52 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.5 2010/01/19 22:34:19 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -36,6 +36,15 @@ public interface LibraryFactory extends EFactory {
 	LibraryOperation createLibraryOperation();
 
 	/**
+	 * Returns a new object of class '<em>OCL Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Classifier</em>'.
+	 * @generated
+	 */
+	OCLClassifier createOCLClassifier();
+
+	/**
 	 * Returns a new object of class '<em>OCL Constraint Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +61,33 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLConstraintProperty createOCLConstraintProperty();
+
+	/**
+	 * Returns a new object of class '<em>OCL Data Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Data Type</em>'.
+	 * @generated
+	 */
+	OCLDataType createOCLDataType();
+
+	/**
+	 * Returns a new object of class '<em>OCL Enumeration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Enumeration</em>'.
+	 * @generated
+	 */
+	OCLEnumeration createOCLEnumeration();
+
+	/**
+	 * Returns a new object of class '<em>OCL Enumeration Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Enumeration Literal</em>'.
+	 * @generated
+	 */
+	OCLEnumerationLiteral createOCLEnumerationLiteral();
 
 	/**
 	 * Returns a new object of class '<em>OCL Generic Type</em>'.

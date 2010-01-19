@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityOCLLibrary.java,v 1.1.2.3 2010/01/19 08:11:55 ewillink Exp $
+ * $Id: CompatibilityOCLLibrary.java,v 1.1.2.4 2010/01/19 22:34:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -34,44 +34,93 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * 
  * @since 3.0
  */
-public abstract class CompatibilityOCLLibrary<C extends EObject> extends AbstractOCLLibrary
+public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE> extends AbstractOCLLibrary
 {
-	protected Map<OCLType, Map<Object, OCLOperation>> operationMaps = new HashMap<OCLType, Map<Object, OCLOperation>>();
-    protected Map<C, OCLType> typeMap = new HashMap<C, OCLType>();
+	protected Map<OCLType, Map<OF, OCLOperation>> operationMaps = new HashMap<OCLType, Map<OF, OCLOperation>>();
+    protected Map<T, OCLType> typeMap = new HashMap<T, OCLType>();
 
     public CompatibilityOCLLibrary(String libraryURI) {
 		super(libraryURI);
 	}
     
-    public void addType(C object, OCLType type) {
+    public void addType(T object, OCLType type) {
     	typeMap.put(object, type);
     }
 
-	protected abstract C asClass(Object object);
+	protected abstract T asMetaType(Object object);
 
-	protected abstract C asMetaClass(Object object);
+	protected abstract T asType(Object object);
 
-	protected OCLType createOCLType(C classifier, Map<EObject, OCLType> visited) {
-		OCLType type = LibraryFactory.eINSTANCE.createOCLType();
-		type.setName(getName(classifier));
-		addType(classifier, type);
-		visited.put(classifier, type);
-		List<C> eSuperTypes = getSuperTypes(classifier);
+	protected OCLClassifier createOCLClassifier(CT aClassifier, Map<T, OCLType> visited) {
+		OCLClassifier oclClassifier = LibraryFactory.eINSTANCE.createOCLClassifier();
+		oclClassifier.setName(getName(aClassifier));
+		oclClassifier.setMetaModelElement(aClassifier);
+		addType(aClassifier, oclClassifier);
+		visited.put(aClassifier, oclClassifier);		
+		for (OF anOperation : getOperations(aClassifier)) {
+			OCLMetaModelOperation oclOperation = LibraryFactory.eINSTANCE.createOCLMetaModelOperation();
+			oclOperation.setName(getName(anOperation));
+			oclOperation.setMetaModelElement(anOperation);
+			oclClassifier.getOperation().add(oclOperation);
+			oclOperation.setType(getOCLTypeOfType(getReturnType(anOperation)));
+			for (OP aParameter : getParameters(anOperation)) {
+				OCLParameter oclParameter = LibraryFactory.eINSTANCE.createOCLParameter();
+				oclParameter.setName(getName(aParameter));
+				oclOperation.getParameter().add(oclParameter);
+				oclParameter.setType(getOCLTypeOfType(getType(aParameter)));
+			}
+		}
+		for (PF aProperty : getProperties(aClassifier)) {
+			OCLMetaModelProperty oclProperty = LibraryFactory.eINSTANCE.createOCLMetaModelProperty();
+			oclProperty.setName(getName(aProperty));
+			oclClassifier.getProperty().add(oclProperty);
+			oclProperty.setType(getOCLTypeOfType(getType(aProperty)));
+		}		
+		List<? extends T> eSuperTypes = getSuperTypes(aClassifier);
 		if ((eSuperTypes != null) && !eSuperTypes.isEmpty()) {
-	 		for (C superType : eSuperTypes) {
+	 		for (T superType : eSuperTypes) {
 				if (!visited.containsKey(superType)) {
 					OCLType superOCLType = createOCLType(superType, visited);
-					type.getConforms().add(superOCLType);
+					oclClassifier.getConforms().add(superOCLType);
 				}
 			}
 		}
 		else {
-			type.getConforms().add(getOclAny());
+			oclClassifier.getConforms().add(getOclAny());
 		}
-		return type;
+		return oclClassifier;
 	}
 
-	protected abstract String getName(C classifier);
+	protected OCLDataType createOCLDataType(DT aDataType, Map<T, OCLType> visited) {
+		OCLDataType oclDataType = LibraryFactory.eINSTANCE.createOCLDataType();
+		oclDataType.setName(getName(aDataType));
+		oclDataType.setMetaModelElement(aDataType);
+		oclDataType.getConforms().add(getOclAny());
+		addType(aDataType, oclDataType);
+		return oclDataType;
+	}
+
+	protected OCLEnumeration createOCLEnumeration(ET anEnumeration, Map<T, OCLType> visited) {
+		OCLEnumeration oclEnumeration = LibraryFactory.eINSTANCE.createOCLEnumeration();
+		oclEnumeration.setName(getName(anEnumeration));
+		oclEnumeration.setMetaModelElement(anEnumeration);
+		oclEnumeration.getConforms().add(getOclAny());
+		addType(anEnumeration, oclEnumeration);
+		visited.put(anEnumeration, oclEnumeration);
+		for (EL aLiteral : getLiterals(anEnumeration)) {
+			OCLEnumerationLiteral oclLiteral = LibraryFactory.eINSTANCE.createOCLEnumerationLiteral();
+			oclLiteral.setName(getName(aLiteral));
+			oclLiteral.setMetaModelElement(aLiteral);
+			oclEnumeration.getLiterals().add(oclLiteral);
+		}
+		return oclEnumeration;
+	}
+
+	protected abstract OCLType createOCLType(T aType, Map<T, OCLType> visited);
+
+	protected abstract List<EL> getLiterals(ET enumeration);
+
+	protected abstract String getName(NE namedElement);
 
 	@Override
 	public OCLType getOCLTypeOfType(Object object) {
@@ -80,9 +129,9 @@ public abstract class CompatibilityOCLLibrary<C extends EObject> extends Abstrac
 			oclType = typeMap.get(object);
 		}
 		if (oclType == null) {
-			C classifier = asClass(object);
-			if (classifier != null) {
-				oclType = createOCLType(classifier, new HashMap<EObject, OCLType>());
+			T aType = asType(object);
+			if (aType != null) {
+				oclType = createOCLType(aType, new HashMap<T, OCLType>());
 			}
 		}
 		return oclType;
@@ -92,11 +141,11 @@ public abstract class CompatibilityOCLLibrary<C extends EObject> extends Abstrac
 	public OCLType getOCLTypeOfValue(Object object) {
 		OCLType type = super.getOCLTypeOfValue(object);
 		if (type == null) {
-			C classifier = asMetaClass(object);
-			if (classifier != null) {
-				type = typeMap.get(classifier);
+			T aType = asMetaType(object);
+			if (aType != null) {
+				type = typeMap.get(aType);
 				if (type == null) {
-					type = createOCLType(classifier, new HashMap<EObject, OCLType>());
+					type = createOCLType(aType, new HashMap<T, OCLType>());
 				}
 			}
 		}
@@ -109,12 +158,13 @@ public abstract class CompatibilityOCLLibrary<C extends EObject> extends Abstrac
 		if (oclOperation != null) {
 			return oclOperation;
 		}
-		Map<Object, OCLOperation> operationMap = operationMaps.get(dynamicType);
+		Map<OF, OCLOperation> operationMap = operationMaps.get(dynamicType);
 		if (operationMap == null) {
-			operationMap = new HashMap<Object, OCLOperation>();
+			operationMap = new HashMap<OF, OCLOperation>();
 			operationMaps.put(dynamicType, operationMap);
 		}
-		Object referredOperation = operationCall.getReferredOperation();
+		@SuppressWarnings("unchecked")
+		OF referredOperation = (OF) operationCall.getReferredOperation();
 		OCLOperation operation = operationMap.get(referredOperation);
 		if ((operation == null) && !operationMap.containsKey(referredOperation)) {
 			operation = resolveOperation(dynamicType, referredOperation);
@@ -123,7 +173,19 @@ public abstract class CompatibilityOCLLibrary<C extends EObject> extends Abstrac
 		return operation;
 	}
 
-	protected abstract List<C> getSuperTypes(C classifier);
+	protected abstract List<OF> getOperations(CT aClassifier);
 
-	protected abstract OCLOperation resolveOperation(OCLType dynamicType, Object referredOperation);
+	protected abstract List<OP> getParameters(OF anOperation);
+
+	protected abstract List<PF> getProperties(CT aClassifier);
+
+	protected abstract T getReturnType(OF anOperation);
+
+	protected abstract List<? extends T> getSuperTypes(CT classifier);
+
+	protected abstract T getType(TE typedElement);
+	
+	public abstract void loadPackage(PK aPackage);
+
+	protected abstract OCLOperation resolveOperation(OCLType dynamicType, OF anOperation);
 }

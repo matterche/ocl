@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.5 2010/01/19 08:11:55 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.6 2010/01/19 22:34:20 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.LibraryProperty;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
@@ -77,8 +78,12 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case LibraryPackage.LIBRARY_OPERATION: return createLibraryOperation();
+			case LibraryPackage.OCL_CLASSIFIER: return createOCLClassifier();
 			case LibraryPackage.OCL_CONSTRAINT_OPERATION: return createOCLConstraintOperation();
 			case LibraryPackage.OCL_CONSTRAINT_PROPERTY: return createOCLConstraintProperty();
+			case LibraryPackage.OCL_DATA_TYPE: return createOCLDataType();
+			case LibraryPackage.OCL_ENUMERATION: return createOCLEnumeration();
+			case LibraryPackage.OCL_ENUMERATION_LITERAL: return createOCLEnumerationLiteral();
 			case LibraryPackage.OCL_GENERIC_TYPE: return createOCLGenericType();
 			case LibraryPackage.OCL_INVALID_TYPE: return createOCLInvalidType();
 			case LibraryPackage.OCL_LIBRARY_OPERATION: return createOCLLibraryOperation();
@@ -151,6 +156,16 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OCLClassifier createOCLClassifier() {
+		OCLClassifierImpl oclClassifier = new OCLClassifierImpl();
+		return oclClassifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OCLConstraintOperation createOCLConstraintOperation() {
 		OCLConstraintOperationImpl oclConstraintOperation = new OCLConstraintOperationImpl();
 		return oclConstraintOperation;
@@ -164,6 +179,36 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public OCLConstraintProperty createOCLConstraintProperty() {
 		OCLConstraintPropertyImpl oclConstraintProperty = new OCLConstraintPropertyImpl();
 		return oclConstraintProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLDataType createOCLDataType() {
+		OCLDataTypeImpl oclDataType = new OCLDataTypeImpl();
+		return oclDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLEnumeration createOCLEnumeration() {
+		OCLEnumerationImpl oclEnumeration = new OCLEnumerationImpl();
+		return oclEnumeration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLEnumerationLiteral createOCLEnumerationLiteral() {
+		OCLEnumerationLiteralImpl oclEnumerationLiteral = new OCLEnumerationLiteralImpl();
+		return oclEnumerationLiteral;
 	}
 
 	/**

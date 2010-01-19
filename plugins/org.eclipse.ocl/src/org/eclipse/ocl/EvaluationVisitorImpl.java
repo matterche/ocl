@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.8 2010/01/19 08:11:55 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.9 2010/01/19 22:34:20 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -171,7 +171,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		EvaluationEnvironment<C, O, P, CLS, E> evaluationEnvironment = getEvaluationEnvironment();
 		OCLExpression<C> source = oc.getSource();
-		C sourceType = source.getType();
 		O oper = oc.getReferredOperation();
 		int opCode = oc.getOperationCode();
 		List<OCLExpression<C>> args = oc.getArgument();
@@ -230,40 +229,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						"visitOperationCallExp", //$NON-NLS-1$
 						e.getLocalizedMessage()),
 					e);
-				return library.getInvalid();
-			}
-		}
-
-		if (sourceType instanceof PrimitiveType<?>
-			|| sourceType instanceof CollectionType<?, ?>
-			|| getUMLReflection().isEnumeration(sourceType)
-			|| getUMLReflection().isDataType(sourceType)
-			|| (sourceType instanceof VoidType<?>) || (sourceType instanceof InvalidType<?>)) {
-
-		} else {
-			
-			// Handle allInstances
-			if (opCode == PredefinedType.ALL_INSTANCES) {
-				// can assume classifier type, otherwise the expression would
-				//    not have parsed (or validated)
-				@SuppressWarnings("unchecked")
-				C classifier = (C) sourceVal; 
-				
-				if (getUMLReflection().isEnumeration(classifier)) {
-					// the instances are the literals
-					return new java.util.HashSet<EL>(
-                            getUMLReflection().getEnumerationLiterals(classifier));
-				} else if (sourceVal instanceof VoidType<?>) {
-					// OclVoid has a single instance: null
-					Set<Object> result = new java.util.HashSet<Object>();
-					result.add(null);
-					return result;
-				} else if (getUMLReflection().isClass(classifier)) {
-					return getExtentMap().get(sourceVal);
-				} else {
-					// other types do not have numerable instances
-					return Collections.EMPTY_SET;
-				}
 			}
 		}
 
