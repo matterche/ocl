@@ -10,7 +10,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesFactoryImpl.java,v 1.6.10.1 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: UtilitiesFactoryImpl.java,v 1.6.10.2 2010/01/20 06:09:33 ewillink Exp $
  * /
  *******************************************************************************/
 package org.eclipse.ocl.utilities.impl;
@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.UtilitiesFactory;
 import org.eclipse.ocl.utilities.UtilitiesPackage;

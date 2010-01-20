@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.8.4.3 2010/01/15 17:27:37 ewillink Exp $
+ * $Id: CSTFactoryImpl.java,v 1.8.4.4 2010/01/20 06:09:33 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.cst.*;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTFactory;
 import org.eclipse.ocl.cst.CSTPackage;

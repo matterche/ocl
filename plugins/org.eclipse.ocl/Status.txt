@@ -40,7 +40,16 @@ meta-model operations
 defined operations
 any kind of property
 
-Deep normalisation / denormalisation of evaluate().
+Deep per-element normalisation of evaluate() input. ? should be in visitVariableExp() ??
+
+Deep mutual denormalisation of evaluate() result.
+
+Evaluation visitor for iterators, properties
+
+Synthesis
+---------
+
+API method should be defined.
 
 Non-OCL facilities
 ------------------

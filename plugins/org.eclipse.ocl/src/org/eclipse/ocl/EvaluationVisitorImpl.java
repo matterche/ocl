@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.9 2010/01/19 22:34:20 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.10 2010/01/20 06:09:34 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -35,7 +35,6 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.evaluator.operations.AbstractOperation;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -82,14 +81,12 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
-import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OrderedSetType;
-import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
-import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;

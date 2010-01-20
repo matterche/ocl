@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.9.4.1 2010/01/14 21:33:15 ewillink Exp $
+ * $Id: CSTAdapterFactory.java,v 1.9.4.2 2010/01/20 06:09:27 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -21,7 +21,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.cst.*;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.CSTPackage;

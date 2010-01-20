@@ -13,19 +13,17 @@
  * 
  * </copyright>
  *
- * $Id: TypesValidator.java,v 1.4.2.1 2010/01/14 21:33:16 ewillink Exp $
+ * $Id: TypesValidator.java,v 1.4.2.2 2010/01/20 06:07:40 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.internal.OCLPlugin;
-import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
