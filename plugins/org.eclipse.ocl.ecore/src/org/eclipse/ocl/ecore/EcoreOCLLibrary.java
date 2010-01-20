@@ -27,6 +27,7 @@ import org.eclipse.ocl.library.OCLClassifier;
 import org.eclipse.ocl.library.OCLDataType;
 import org.eclipse.ocl.library.OCLEnumeration;
 import org.eclipse.ocl.library.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLMetaModelOperation;
 import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLOperation;
@@ -40,7 +41,7 @@ import org.eclipse.ocl.library.OCLType;
  * 
  * @since 3.0
  */
-public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETypedElement, EPackage, EClassifier, EClass, EDataType, EEnum, EEnumLiteral, EOperation, EParameter, EStructuralFeature>
+public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETypedElement, EPackage, EClassifier, EClass, TupleType, EDataType, EEnum, EEnumLiteral, EOperation, EParameter, EStructuralFeature>
 {
 	private static EcoreOCLLibrary DEFAULT = null;
 
@@ -103,6 +104,9 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 		else if (aType instanceof EDataType) {
 			return createOCLDataType((EDataType) aType, visited);
 		}
+		else if (aType instanceof TupleType) {
+			return createOCLTupleType((TupleType) aType, visited);
+		}
 		else if (aType instanceof EClass) {
 			return createOCLClassifier((EClass) aType, visited);
 		}
@@ -144,6 +148,11 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 	@Override
 	protected List<? extends EClassifier> getSuperTypes(EClass classifier) {
 		return classifier.getESuperTypes();
+	}
+
+	@Override
+	protected List<? extends EStructuralFeature> getTupleParts(TupleType aTupleType) {
+		return aTupleType.oclProperties();
 	}
 
 	@Override

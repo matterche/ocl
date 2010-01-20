@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreOCLClassifierImpl.java,v 1.1.2.1 2010/01/20 09:09:37 ewillink Exp $
+ * $Id: EcoreOCLClassifierImpl.java,v 1.1.2.2 2010/01/20 16:57:28 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.impl;
 
@@ -40,6 +40,21 @@ public class EcoreOCLClassifierImpl extends OCLClassifierImpl implements EcoreOC
 	@Override
 	protected EClass eStaticClass() {
 		return EcoreLibraryPackage.Literals.ECORE_OCL_CLASSIFIER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+		StringBuffer s = new StringBuffer();
+		s.append("<ecore> ");
+		s.append(super.toString());
+		return s.toString();
 	}
 
 } //EcoreOCLClassifierImpl

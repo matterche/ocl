@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.8.10.1 2010/01/03 22:52:05 ewillink Exp $
+ * $Id: EcoreEnvironment.java,v 1.8.10.2 2010/01/20 16:57:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -433,7 +433,7 @@ public class EcoreEnvironment
 			org.eclipse.ocl.expressions.Variable<
 				EClassifier, EParameter> variable,
 			Constraint constraint) {
-		
+    	super.defineAttribute(owner, variable, constraint);
 		EStructuralFeature result;
 		
 		String name = variable.getName();
@@ -474,6 +474,7 @@ public class EcoreEnvironment
 			List<org.eclipse.ocl.expressions.Variable<
 				EClassifier, EParameter>> params,
 			Constraint constraint) {
+    	super.defineOperation(owner, name, type, params, constraint);
 		EOperation result = EcoreFactory.eINSTANCE.createEOperation();
 		
 		result.setName(name);
