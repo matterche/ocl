@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLInvalidTypeItemProvider.java,v 1.1.2.2 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: OCLInvalidTypeItemProvider.java,v 1.1.2.3 2010/01/20 06:10:28 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,15 +12,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import org.eclipse.ocl.library.OCLInvalidType;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLInvalidType} object.
@@ -86,14 +83,11 @@ public class OCLInvalidTypeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLInvalidType)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLInvalidType_type") : //$NON-NLS-1$
-			getString("_UI_OCLInvalidType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**

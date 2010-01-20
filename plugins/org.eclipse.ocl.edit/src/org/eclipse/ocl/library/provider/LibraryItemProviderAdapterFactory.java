@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.4 2010/01/20 06:10:27 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -99,6 +99,29 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLClassifier} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLClassifierItemProvider oclClassifierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLClassifier}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLClassifierAdapter() {
+		if (oclClassifierItemProvider == null) {
+			oclClassifierItemProvider = new OCLClassifierItemProvider(this);
+		}
+
+		return oclClassifierItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLConstraintOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,6 +165,75 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 		}
 
 		return oclConstraintPropertyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLDataType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLDataTypeItemProvider oclDataTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLDataType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLDataTypeAdapter() {
+		if (oclDataTypeItemProvider == null) {
+			oclDataTypeItemProvider = new OCLDataTypeItemProvider(this);
+		}
+
+		return oclDataTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLEnumeration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLEnumerationItemProvider oclEnumerationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLEnumeration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLEnumerationAdapter() {
+		if (oclEnumerationItemProvider == null) {
+			oclEnumerationItemProvider = new OCLEnumerationItemProvider(this);
+		}
+
+		return oclEnumerationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLEnumerationLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLEnumerationLiteralItemProvider oclEnumerationLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLEnumerationLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLEnumerationLiteralAdapter() {
+		if (oclEnumerationLiteralItemProvider == null) {
+			oclEnumerationLiteralItemProvider = new OCLEnumerationLiteralItemProvider(this);
+		}
+
+		return oclEnumerationLiteralItemProvider;
 	}
 
 	/**
@@ -474,8 +566,12 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 */
 	public void dispose() {
 		if (libraryOperationItemProvider != null) libraryOperationItemProvider.dispose();
+		if (oclClassifierItemProvider != null) oclClassifierItemProvider.dispose();
 		if (oclConstraintOperationItemProvider != null) oclConstraintOperationItemProvider.dispose();
 		if (oclConstraintPropertyItemProvider != null) oclConstraintPropertyItemProvider.dispose();
+		if (oclDataTypeItemProvider != null) oclDataTypeItemProvider.dispose();
+		if (oclEnumerationItemProvider != null) oclEnumerationItemProvider.dispose();
+		if (oclEnumerationLiteralItemProvider != null) oclEnumerationLiteralItemProvider.dispose();
 		if (oclGenericTypeItemProvider != null) oclGenericTypeItemProvider.dispose();
 		if (oclInvalidTypeItemProvider != null) oclInvalidTypeItemProvider.dispose();
 		if (oclLibraryOperationItemProvider != null) oclLibraryOperationItemProvider.dispose();

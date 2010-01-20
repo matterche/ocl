@@ -2,14 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryEditPlugin.java,v 1.1.2.2 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: OCLLibraryEditPlugin.java,v 1.1.2.3 2010/01/20 06:10:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the OCLLibrary edit plugin.
