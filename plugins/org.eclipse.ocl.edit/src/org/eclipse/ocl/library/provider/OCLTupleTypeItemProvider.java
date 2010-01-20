@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLClassifierItemProvider.java,v 1.1.2.3 2010/01/20 16:57:17 ewillink Exp $
+ * $Id: OCLTupleTypeItemProvider.java,v 1.1.2.1 2010/01/20 16:57:17 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -22,15 +22,15 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLClassifier;
+import org.eclipse.ocl.library.OCLTupleType;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLClassifier} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLTupleType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLClassifierItemProvider
+public class OCLTupleTypeItemProvider
 	extends OCLTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +44,7 @@ public class OCLClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLClassifierItemProvider(AdapterFactory adapterFactory) {
+	public OCLTupleTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,6 +87,17 @@ public class OCLClassifierItemProvider
 	}
 
 	/**
+	 * This returns OCLTupleType.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLTupleType")); //$NON-NLS-1$
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -104,10 +115,10 @@ public class OCLClassifierItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLClassifier)object).getName();
+		String label = ((OCLTupleType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_OCLClassifier_type") : //$NON-NLS-1$
-			getString("_UI_OCLClassifier_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_OCLTupleType_type") : //$NON-NLS-1$
+			getString("_UI_OCLTupleType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

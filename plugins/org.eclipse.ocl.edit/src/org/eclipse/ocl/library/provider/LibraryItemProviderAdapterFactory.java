@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.5 2010/01/20 09:10:03 ewillink Exp $
+ * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.6 2010/01/20 16:57:17 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -352,6 +352,29 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLTupleType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLTupleTypeItemProvider oclTupleTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLTupleType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLTupleTypeAdapter() {
+		if (oclTupleTypeItemProvider == null) {
+			oclTupleTypeItemProvider = new OCLTupleTypeItemProvider(this);
+		}
+
+		return oclTupleTypeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -484,6 +507,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 		if (oclLibraryPropertyItemProvider != null) oclLibraryPropertyItemProvider.dispose();
 		if (oclPackageItemProvider != null) oclPackageItemProvider.dispose();
 		if (oclParameterItemProvider != null) oclParameterItemProvider.dispose();
+		if (oclTupleTypeItemProvider != null) oclTupleTypeItemProvider.dispose();
 		if (oclTypeItemProvider != null) oclTypeItemProvider.dispose();
 		if (oclVoidTypeItemProvider != null) oclVoidTypeItemProvider.dispose();
 	}
