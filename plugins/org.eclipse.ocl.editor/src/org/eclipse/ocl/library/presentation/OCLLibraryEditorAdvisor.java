@@ -2,17 +2,20 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryEditorAdvisor.java,v 1.1.2.2 2010/01/18 08:57:58 ewillink Exp $
+ * $Id: OCLLibraryEditorAdvisor.java,v 1.1.2.3 2010/01/20 09:09:34 ewillink Exp $
  */
 package org.eclipse.ocl.library.presentation;
 
 import java.io.File;
 import java.util.Arrays;
 
-import java.util.List;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.ui.action.LoadResourceAction;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -43,16 +46,6 @@ import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
-
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.emf.edit.ui.action.LoadResourceAction;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-
-import org.eclipse.ocl.library.presentation.OCLLibraryEditorPlugin;
-import org.eclipse.emf.ecore.presentation.EcoreEditor;
 
 
 /**
