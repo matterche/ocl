@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeItemProvider.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: OCLTypeItemProvider.java,v 1.1.2.4 2010/01/20 09:10:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -204,11 +204,6 @@ public class OCLTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_TYPE__OPERATION,
-				 LibraryFactory.eINSTANCE.createOCLMetaModelOperation()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(LibraryPackage.Literals.OCL_TYPE__PROPERTY,
 				 LibraryFactory.eINSTANCE.createOCLConstraintProperty()));
 
@@ -216,11 +211,6 @@ public class OCLTypeItemProvider
 			(createChildParameter
 				(LibraryPackage.Literals.OCL_TYPE__PROPERTY,
 				 LibraryFactory.eINSTANCE.createOCLLibraryProperty()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_TYPE__PROPERTY,
-				 LibraryFactory.eINSTANCE.createOCLMetaModelProperty()));
 	}
 
 }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLEnumerationLiteralItemProvider.java,v 1.1.2.2 2010/01/20 09:10:03 ewillink Exp $
+ * $Id: OCLAnyTypeItemProvider.java,v 1.1.2.1 2010/01/20 09:10:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,8 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -21,17 +19,14 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLEnumerationLiteral;
-
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLEnumerationLiteral} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLAnyType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLEnumerationLiteralItemProvider
-	extends OCLElementItemProvider
+public class OCLAnyTypeItemProvider
+	extends OCLTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -44,7 +39,7 @@ public class OCLEnumerationLiteralItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLEnumerationLiteralItemProvider(AdapterFactory adapterFactory) {
+	public OCLAnyTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,31 +54,19 @@ public class OCLEnumerationLiteralItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Meta Model Element feature.
+	 * This returns OCLAnyType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMetaModelElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OCLMetaModelElement_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelElement_metaModelElement_feature", "_UI_OCLMetaModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLAnyType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -100,14 +83,11 @@ public class OCLEnumerationLiteralItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLEnumerationLiteral)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLEnumerationLiteral_type") : //$NON-NLS-1$
-			getString("_UI_OCLEnumerationLiteral_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**

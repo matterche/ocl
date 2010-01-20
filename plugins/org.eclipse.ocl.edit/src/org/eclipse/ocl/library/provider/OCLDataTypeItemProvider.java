@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLDataTypeItemProvider.java,v 1.1.2.1 2010/01/20 06:10:29 ewillink Exp $
+ * $Id: OCLDataTypeItemProvider.java,v 1.1.2.2 2010/01/20 09:10:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -75,26 +75,15 @@ public class OCLDataTypeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLDataType_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLDataType_metaModelElement_feature", "_UI_OCLDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_DATA_TYPE__META_MODEL_ELEMENT,
+				 getString("_UI_OCLMetaModelElement_metaModelElement_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelElement_metaModelElement_feature", "_UI_OCLMetaModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT,
 				 true,
 				 false,
 				 true,
 				 null,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns OCLDataType.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLDataType")); //$NON-NLS-1$
 	}
 
 	/**

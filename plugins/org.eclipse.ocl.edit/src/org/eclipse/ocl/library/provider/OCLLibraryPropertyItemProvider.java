@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryPropertyItemProvider.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: OCLLibraryPropertyItemProvider.java,v 1.1.2.4 2010/01/20 09:10:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -60,6 +60,7 @@ public class OCLLibraryPropertyItemProvider
 			super.getPropertyDescriptors(object);
 
 			addLibraryPropertyClassPropertyDescriptor(object);
+			addLibraryPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,6 +83,28 @@ public class OCLLibraryPropertyItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Library Property feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLibraryPropertyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLLibraryProperty_libraryProperty_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryProperty_libraryProperty_feature", "_UI_OCLLibraryProperty_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY,
+				 false,
+				 false,
+				 false,
+				 null,
 				 null,
 				 null));
 	}

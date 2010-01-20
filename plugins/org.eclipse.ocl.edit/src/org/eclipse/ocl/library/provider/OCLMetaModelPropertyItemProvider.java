@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelPropertyItemProvider.java,v 1.1.2.4 2010/01/20 06:10:28 ewillink Exp $
+ * $Id: OCLMetaModelPropertyItemProvider.java,v 1.1.2.5 2010/01/20 09:10:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -75,9 +75,9 @@ public class OCLMetaModelPropertyItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLMetaModelProperty_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelProperty_metaModelElement_feature", "_UI_OCLMetaModelProperty_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT,
+				 getString("_UI_OCLMetaModelElement_metaModelElement_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelElement_metaModelElement_feature", "_UI_OCLMetaModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT,
 				 true,
 				 false,
 				 true,

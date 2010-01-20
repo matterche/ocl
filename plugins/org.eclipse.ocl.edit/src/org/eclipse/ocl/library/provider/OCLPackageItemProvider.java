@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackageItemProvider.java,v 1.1.2.4 2010/01/20 06:10:28 ewillink Exp $
+ * $Id: OCLPackageItemProvider.java,v 1.1.2.5 2010/01/20 09:10:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -176,17 +176,7 @@ public class OCLPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLClassifier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLDataType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLEnumeration()));
+				 LibraryFactory.eINSTANCE.createOCLAnyType()));
 
 		newChildDescriptors.add
 			(createChildParameter

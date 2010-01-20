@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpItemProvider.java,v 1.2.2.3 2010/01/15 17:27:30 ewillink Exp $
+ * $Id: MessageExpItemProvider.java,v 1.2.2.4 2010/01/20 09:10:03 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -639,15 +639,19 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
+				LibraryFactory.eINSTANCE.createLibraryOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				LibraryFactory.eINSTANCE.createOCLParameter()));
+				LibraryFactory.eINSTANCE.createLibraryProperty()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				LibraryFactory.eINSTANCE.createOCLType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -667,23 +671,15 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				LibraryFactory.eINSTANCE.createLibraryOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				LibraryFactory.eINSTANCE.createOCLLibraryProperty()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				LibraryFactory.eINSTANCE.createOCLMetaModelOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				LibraryFactory.eINSTANCE.createOCLMetaModelProperty()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				LibraryFactory.eINSTANCE.createOCLPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				LibraryFactory.eINSTANCE.createOCLParameter()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -915,15 +911,19 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
+				LibraryFactory.eINSTANCE.createLibraryOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				LibraryFactory.eINSTANCE.createOCLParameter()));
+				LibraryFactory.eINSTANCE.createLibraryProperty()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				LibraryFactory.eINSTANCE.createOCLType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -943,23 +943,15 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				LibraryFactory.eINSTANCE.createLibraryOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				LibraryFactory.eINSTANCE.createOCLLibraryProperty()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				LibraryFactory.eINSTANCE.createOCLMetaModelOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				LibraryFactory.eINSTANCE.createOCLMetaModelProperty()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				LibraryFactory.eINSTANCE.createOCLPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				LibraryFactory.eINSTANCE.createOCLParameter()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
