@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.8.8.3 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.8.8.4 2010/01/20 17:58:05 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -476,18 +476,18 @@ public class CollectionUtil {
      */
     public static <E> Collection<E> excluding(Collection<E> self, Object object) {
         Collection<E> result = null;
-        if (self instanceof Set<?>) {
+        if (self instanceof LinkedHashSet<?>) {
+            result = createNewOrderedSet(self);
+        } else if (self instanceof Set<?>) {
             result = createNewSet(self);
         } else if (self instanceof Bag<?>) {
             result = createNewBag(self);
-        } else if (self instanceof List<?>) {
+        } else {
             List<E> resultSeq = createNewSequence(self);
             while (resultSeq.remove(object)) {
                 ; // for sequences we need to remove all the matching elements
             }
             return resultSeq;
-        } else {
-            result = createNewOrderedSet(self);
         }
 
         // non-sequences (bags remove all occurrences internally)
@@ -537,7 +537,9 @@ public class CollectionUtil {
     public static <E> Collection<E> including(Collection<E> self, E object) {
         Collection<E> result;
         
-        if (self instanceof Set<?>) {
+        if (self instanceof LinkedHashSet<?>) {
+            result = createNewOrderedSet(self);
+        } else if (self instanceof Set<?>) {
             result = createNewSet(self);
         } else if (self instanceof Bag<?>) {
             result = createNewBag(self);

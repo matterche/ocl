@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.11 2010/01/20 09:09:33 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.12 2010/01/20 17:58:06 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -138,16 +138,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			Object sourceVal = source.accept(this);
 			OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
 			OCLOperation oclOperation = library.getOperation(sourceType, oc);
-			if (oclOperation != null) {
-				Object result = oclOperation.evaluate(this, sourceVal, oc);
-				if (result == null) {
-					result = library.getInvalid();
-				}
-				return result;
+			if (oclOperation == null) {
+				return library.getInvalid();		// Undefined operation
 			}
+			Object result = oclOperation.evaluate(this, sourceVal, oc);
+			if (result == null) {
+				return library.getInvalid();		// Invalid result
+			}
+			return result;							// Valid result
 		}
 		catch (Exception e) {
-			return library.getInvalid();
+			return library.getInvalid();			// Failed evaluation
 		}
 		// check if source type is primitive and handle the
 		// primitive ops "inline". Otherwise use java reflection
@@ -167,7 +168,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// by the condition regardless of the other value.
 		// all irrespective of the order of the arguments.
 
-		EvaluationEnvironment<C, O, P, CLS, E> evaluationEnvironment = getEvaluationEnvironment();
+/*		EvaluationEnvironment<C, O, P, CLS, E> evaluationEnvironment = getEvaluationEnvironment();
 		OCLExpression<C> source = oc.getSource();
 		O oper = oc.getReferredOperation();
 		int opCode = oc.getOperationCode();
@@ -178,7 +179,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		Object sourceVal = source.accept(getVisitor());
 		
 		OCLExpression<C> body = getOperationBody(oper);
-		if ((body != null) || opCode <= 0 /* not a pre-defined operation */
+		if ((body != null) || opCode <= 0 / * not a pre-defined operation * /
 				|| evaluationEnvironment.overrides(oper, opCode)) {
 			// delegate evaluation to the evaluation environment
 			
@@ -230,7 +231,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 		}
 
-		return library.getInvalid();
+		return library.getInvalid(); */
 	}
 	
 	/**

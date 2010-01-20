@@ -226,12 +226,18 @@
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_tLrjAQK_Ed-8D_H1NPKJaw" name="excludesAll" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionExcludesAllOperation">
       <parameter xmi:id="_tLrjAgK_Ed-8D_H1NPKJaw" name="c2" type="__y6vQPZbEd6fb4shsxiV7w"/>
     </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_Eiu5AAXhEd-WObo1UCNnaA" name="excluding" type="__y6vQPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionExcludingOperation">
+      <parameter xmi:id="_Eiu5AQXhEd-WObo1UCNnaA" name="object" type="__yw-sfZbEd6fb4shsxiV7w"/>
+    </operation>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_7ymDUAJiEd-76ZtiYoMJkQ" name="flatten" type="__y6vQPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionFlattenOperation"/>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_8DFcIAK_Ed-8D_H1NPKJaw" name="includes" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionIncludesOperation">
       <parameter xmi:id="_8DFcIQK_Ed-8D_H1NPKJaw" name="object" type="__yw-sfZbEd6fb4shsxiV7w"/>
     </operation>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_2mpooAK_Ed-8D_H1NPKJaw" name="includesAll" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionIncludesAllOperation">
       <parameter xmi:id="_2mpooQK_Ed-8D_H1NPKJaw" name="c2" type="__y6vQPZbEd6fb4shsxiV7w"/>
+    </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_Co4bcAXhEd-WObo1UCNnaA" name="including" type="__y6vQPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionIncludingOperation">
+      <parameter xmi:id="_Co4bcQXhEd-WObo1UCNnaA" name="object" type="__yw-sfZbEd6fb4shsxiV7w"/>
     </operation>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_sE7ssQIXEd-crfyTg8ns8A" name="isEmpty" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionIsEmptyOperation"/>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_E3_x4ALBEd-8D_H1NPKJaw" name="max" type="__yw-sfZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionMaxOperation"/>
@@ -275,8 +281,20 @@
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_LaZAQANjEd-S7eYJcF-v8g" name="&lt;>" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionNotEqualsOperation">
       <parameter xmi:id="_LaZAQQNjEd-S7eYJcF-v8g" name="o" type="_C-SDYAJiEd-76ZtiYoMJkQ"/>
     </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_Hir7oAXkEd-WObo1UCNnaA" name="-" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.SetMinusOperation">
+      <parameter xmi:id="_Hir7oQXkEd-WObo1UCNnaA" name="s" type="_V9dDIAJiEd-76ZtiYoMJkQ"/>
+    </operation>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_7j0JYALDEd-8D_H1NPKJaw" name="append" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.OrderedCollectionAppendOperation">
       <parameter xmi:id="_7j0JYQLDEd-8D_H1NPKJaw" name="object" type="__yw-sfZbEd6fb4shsxiV7w"/>
+    </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_8naoQAXgEd-WObo1UCNnaA" name="excluding" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionExcludingOperation">
+      <parameter xmi:id="_8naoQQXgEd-WObo1UCNnaA" name="object" type="__yw-sfZbEd6fb4shsxiV7w"/>
+    </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_6FjIcQXgEd-WObo1UCNnaA" name="including" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionIncludingOperation">
+      <parameter xmi:id="_6FjIcgXgEd-WObo1UCNnaA" name="object" type="__yw-sfZbEd6fb4shsxiV7w"/>
+    </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_ajwgMAXhEd-WObo1UCNnaA" name="intersection" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionIntersectionOperation">
+      <parameter xmi:id="_ajwgMQXhEd-WObo1UCNnaA" name="o" type="_V9dDIAJiEd-76ZtiYoMJkQ"/>
     </operation>
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_MYCUgALEEd-8D_H1NPKJaw" name="insertAt" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.OrderedCollectionInsertAtOperation">
       <parameter xmi:id="_MYCUgQLEEd-8D_H1NPKJaw" name="index" type="__yw-W_ZbEd6fb4shsxiV7w"/>
@@ -289,6 +307,15 @@
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_n62wUALEEd-8D_H1NPKJaw" name="subOrderedSet" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.OrderedSetSubOrderedSetOperation">
       <parameter xmi:id="_n62wUQLEEd-8D_H1NPKJaw" name="lower" type="__yw-W_ZbEd6fb4shsxiV7w"/>
       <parameter xmi:id="_n62wUgLEEd-8D_H1NPKJaw" name="upper" type="__yw-W_ZbEd6fb4shsxiV7w"/>
+    </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_UGgokAXkEd-WObo1UCNnaA" name="symmetricDifference" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.SetSymmetricDifferenceOperation">
+      <parameter xmi:id="_UGgokQXkEd-WObo1UCNnaA" name="s" type="_V9dDIAJiEd-76ZtiYoMJkQ"/>
+    </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_LlqJMAXhEd-WObo1UCNnaA" name="union" type="_C-SDYAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionUnionOperation">
+      <parameter xmi:id="_LlqJMQXhEd-WObo1UCNnaA" name="o" type="_C-SDYAJiEd-76ZtiYoMJkQ"/>
+    </operation>
+    <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_lqdu4AXhEd-WObo1UCNnaA" name="union" type="_V9dDIAJiEd-76ZtiYoMJkQ" libraryOperationClass="org.eclipse.ocl.library.collection.CollectionUnionOperation">
+      <parameter xmi:id="_lqdu4QXhEd-WObo1UCNnaA" name="s" type="_V9dDIAJiEd-76ZtiYoMJkQ"/>
     </operation>
   </type>
   <type xmi:type="ocl.lib:OCLGenericType" xmi:id="_LEmqQAJiEd-76ZtiYoMJkQ" name="Sequence" conforms="_4sZj4AJhEd-76ZtiYoMJkQ _AJqmsAJiEd-76ZtiYoMJkQ" parameter="__yw-sfZbEd6fb4shsxiV7w">

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionAsSetOperation.java,v 1.1.2.1 2010/01/20 06:07:55 ewillink Exp $
+ * $Id: CollectionAsSetOperation.java,v 1.1.2.2 2010/01/20 17:58:05 ewillink Exp $
  */
 package org.eclipse.ocl.library.collection;
 
@@ -29,6 +29,6 @@ public class CollectionAsSetOperation extends AbstractCollectionUnaryOperation
 {
 	@Override
 	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.asSet((Collection<?>) sourceVal);
+		return CollectionUtil.asSet(sourceVal);
 	}
 }

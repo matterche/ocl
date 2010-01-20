@@ -16,10 +16,12 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.12.4.3 2010/01/18 08:57:54 ewillink Exp $
+ * $Id: OCL.java,v 1.12.4.4 2010/01/20 17:58:05 ewillink Exp $
  */
 package org.eclipse.ocl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,6 +43,7 @@ import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexer;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -440,6 +443,12 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		context = ObjectUtil.normalise(context);
 		Object result = rawEvaluate(context, expression);
 		if (result instanceof Number) {
+			C type = expression.getType();
+			if ((type instanceof PrimitiveType<?>)
+			  && PrimitiveType.REAL_NAME.equals(((PrimitiveType<?>)type).getName())
+			  && (result instanceof BigInteger)) {
+				result = new BigDecimal((BigInteger)result);
+			}
 			result = NumberUtil.coerceNumber((Number) result);
 		}
 		return result;
