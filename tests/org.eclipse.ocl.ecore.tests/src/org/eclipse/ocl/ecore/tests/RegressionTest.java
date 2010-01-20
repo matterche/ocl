@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.17.2.4 2010/01/18 22:07:12 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.17.2.5 2010/01/20 06:04:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -838,7 +838,7 @@ public class RegressionTest
 			" endpackage"));
 		
 		Set<Object> expected = new java.util.HashSet<Object>();
-		expected.add(null);
+		expected.add(getNull());
 		
 		assertEquals(expected, result);
 	}
