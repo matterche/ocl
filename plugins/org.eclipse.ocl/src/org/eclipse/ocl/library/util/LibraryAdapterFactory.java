@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryAdapterFactory.java,v 1.1.2.5 2010/01/19 22:34:19 ewillink Exp $
+ * $Id: LibraryAdapterFactory.java,v 1.1.2.6 2010/01/20 09:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -77,6 +77,14 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryOperationAdapter();
 			}
 			@Override
+			public Adapter caseLibraryProperty(LibraryProperty object) {
+				return createLibraryPropertyAdapter();
+			}
+			@Override
+			public Adapter caseOCLAnyType(OCLAnyType object) {
+				return createOCLAnyTypeAdapter();
+			}
+			@Override
 			public Adapter caseOCLClassifier(OCLClassifier object) {
 				return createOCLClassifierAdapter();
 			}
@@ -119,6 +127,10 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOCLLibraryProperty(OCLLibraryProperty object) {
 				return createOCLLibraryPropertyAdapter();
+			}
+			@Override
+			public Adapter caseOCLMetaModelElement(OCLMetaModelElement object) {
+				return createOCLMetaModelElementAdapter();
 			}
 			@Override
 			public Adapter caseOCLMetaModelOperation(OCLMetaModelOperation object) {
@@ -183,6 +195,34 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLibraryOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.LibraryProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.LibraryProperty
+	 * @generated
+	 */
+	public Adapter createLibraryPropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLAnyType <em>OCL Any Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLAnyType
+	 * @generated
+	 */
+	public Adapter createOCLAnyTypeAdapter() {
 		return null;
 	}
 
@@ -337,6 +377,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLLibraryPropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLMetaModelElement <em>OCL Meta Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLMetaModelElement
+	 * @generated
+	 */
+	public Adapter createOCLMetaModelElementAdapter() {
 		return null;
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.6 2010/01/19 22:34:20 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.7 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -13,20 +13,19 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.LibraryProperty;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.OCLConstraintOperation;
 import org.eclipse.ocl.library.OCLConstraintProperty;
 import org.eclipse.ocl.library.OCLGenericType;
 import org.eclipse.ocl.library.OCLInvalidType;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
@@ -78,18 +77,14 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case LibraryPackage.LIBRARY_OPERATION: return createLibraryOperation();
-			case LibraryPackage.OCL_CLASSIFIER: return createOCLClassifier();
+			case LibraryPackage.LIBRARY_PROPERTY: return createLibraryProperty();
+			case LibraryPackage.OCL_ANY_TYPE: return createOCLAnyType();
 			case LibraryPackage.OCL_CONSTRAINT_OPERATION: return createOCLConstraintOperation();
 			case LibraryPackage.OCL_CONSTRAINT_PROPERTY: return createOCLConstraintProperty();
-			case LibraryPackage.OCL_DATA_TYPE: return createOCLDataType();
-			case LibraryPackage.OCL_ENUMERATION: return createOCLEnumeration();
-			case LibraryPackage.OCL_ENUMERATION_LITERAL: return createOCLEnumerationLiteral();
 			case LibraryPackage.OCL_GENERIC_TYPE: return createOCLGenericType();
 			case LibraryPackage.OCL_INVALID_TYPE: return createOCLInvalidType();
 			case LibraryPackage.OCL_LIBRARY_OPERATION: return createOCLLibraryOperation();
 			case LibraryPackage.OCL_LIBRARY_PROPERTY: return createOCLLibraryProperty();
-			case LibraryPackage.OCL_META_MODEL_OPERATION: return createOCLMetaModelOperation();
-			case LibraryPackage.OCL_META_MODEL_PROPERTY: return createOCLMetaModelProperty();
 			case LibraryPackage.OCL_PACKAGE: return createOCLPackage();
 			case LibraryPackage.OCL_PARAMETER: return createOCLParameter();
 			case LibraryPackage.OCL_TYPE: return createOCLType();
@@ -111,10 +106,10 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 				return createExceptionFromString(eDataType, initialValue);
 			case LibraryPackage.EVALUATION_VISITOR:
 				return createEvaluationVisitorFromString(eDataType, initialValue);
-			case LibraryPackage.LIBRARY_PROPERTY:
-				return createLibraryPropertyFromString(eDataType, initialValue);
 			case LibraryPackage.OPERATION_CALL_EXP:
 				return createOperationCallExpFromString(eDataType, initialValue);
+			case LibraryPackage.PROPERTY_CALL_EXP:
+				return createPropertyCallExpFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -132,10 +127,10 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 				return convertExceptionToString(eDataType, instanceValue);
 			case LibraryPackage.EVALUATION_VISITOR:
 				return convertEvaluationVisitorToString(eDataType, instanceValue);
-			case LibraryPackage.LIBRARY_PROPERTY:
-				return convertLibraryPropertyToString(eDataType, instanceValue);
 			case LibraryPackage.OPERATION_CALL_EXP:
 				return convertOperationCallExpToString(eDataType, instanceValue);
+			case LibraryPackage.PROPERTY_CALL_EXP:
+				return convertPropertyCallExpToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -156,9 +151,19 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLClassifier createOCLClassifier() {
-		OCLClassifierImpl oclClassifier = new OCLClassifierImpl();
-		return oclClassifier;
+	public LibraryProperty createLibraryProperty() {
+		LibraryPropertyImpl libraryProperty = new LibraryPropertyImpl();
+		return libraryProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLAnyType createOCLAnyType() {
+		OCLAnyTypeImpl oclAnyType = new OCLAnyTypeImpl();
+		return oclAnyType;
 	}
 
 	/**
@@ -179,36 +184,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public OCLConstraintProperty createOCLConstraintProperty() {
 		OCLConstraintPropertyImpl oclConstraintProperty = new OCLConstraintPropertyImpl();
 		return oclConstraintProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLDataType createOCLDataType() {
-		OCLDataTypeImpl oclDataType = new OCLDataTypeImpl();
-		return oclDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLEnumeration createOCLEnumeration() {
-		OCLEnumerationImpl oclEnumeration = new OCLEnumerationImpl();
-		return oclEnumeration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLEnumerationLiteral createOCLEnumerationLiteral() {
-		OCLEnumerationLiteralImpl oclEnumerationLiteral = new OCLEnumerationLiteralImpl();
-		return oclEnumerationLiteral;
 	}
 
 	/**
@@ -256,26 +231,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLMetaModelOperation createOCLMetaModelOperation() {
-		OCLMetaModelOperationImpl oclMetaModelOperation = new OCLMetaModelOperationImpl();
-		return oclMetaModelOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLMetaModelProperty createOCLMetaModelProperty() {
-		OCLMetaModelPropertyImpl oclMetaModelProperty = new OCLMetaModelPropertyImpl();
-		return oclMetaModelProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OCLPackage createOCLPackage() {
 		OCLPackageImpl oclPackage = new OCLPackageImpl();
 		return oclPackage;
@@ -314,57 +269,55 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	@SuppressWarnings("unchecked")
-	public EvaluationVisitor createEvaluationVisitorFromString(EDataType eDataType, String initialValue) {
-		return (EvaluationVisitor)super.createFromString(initialValue);
+	public EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createEvaluationVisitorFromString(EDataType eDataType, String initialValue) {
+		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String convertEvaluationVisitorToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(instanceValue);
+		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	@SuppressWarnings("unchecked")
-	public OperationCallExp createOperationCallExpFromString(EDataType eDataType, String initialValue) {
-		return (OperationCallExp)super.createFromString(initialValue);
+	public OperationCallExp<?, ?> createOperationCallExpFromString(EDataType eDataType, String initialValue) {
+		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String convertOperationCallExpToString(EDataType eDataType, Object instanceValue) {
+		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public PropertyCallExp<?, ?> createPropertyCallExpFromString(EDataType eDataType, String initialValue) {
+		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPropertyCallExpToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LibraryProperty createLibraryPropertyFromString(EDataType eDataType, String initialValue) {
-		return (LibraryProperty)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertLibraryPropertyToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

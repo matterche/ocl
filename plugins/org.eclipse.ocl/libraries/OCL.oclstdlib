@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ocl.lib:OCLPackage xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ocl.lib="http://www.eclipse.org/ocl/3.0.0/OCL/Library" xmi:id="__yeDUfZbEd6fb4shsxiV7w" name="oclstdlib">
-  <type xmi:id="__yeDUvZbEd6fb4shsxiV7w" name="OclAny">
+  <type xmi:type="ocl.lib:OCLAnyType" xmi:id="__yeDUvZbEd6fb4shsxiV7w" name="OclAny">
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-QPZbEd6fb4shsxiV7w" name="=" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.EqualOperation">
       <parameter xmi:id="__yw-QfZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
     </operation>
@@ -169,7 +169,6 @@
     </operation>
   </type>
   <type xmi:id="__yw-n_ZbEd6fb4shsxiV7w" name="UnlimitedNatural" conforms="__yw-W_ZbEd6fb4shsxiV7w"/>
-  <type xmi:type="ocl.lib:OCLClassifier" xmi:id="_kHCFwQT7Ed-v36yE__FUNA" name="Classifier" conforms="__yeDUvZbEd6fb4shsxiV7w"/>
   <type xmi:type="ocl.lib:OCLInvalidType" xmi:id="_B65IYPZcEd6fb4shsxiV7w" name="OclInvalid" conforms="_M_DZYPZcEd6fb4shsxiV7w">
     <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-r_ZbEd6fb4shsxiV7w" name="=" type="__yeDUvZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.EqualOperation">
       <parameter xmi:id="__yw-sPZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>

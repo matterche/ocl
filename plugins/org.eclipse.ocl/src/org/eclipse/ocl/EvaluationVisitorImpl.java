@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.10 2010/01/20 06:09:34 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.11 2010/01/20 09:09:33 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -80,6 +80,7 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.library.OCLOperation;
+import org.eclipse.ocl.library.OCLProperty;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.types.BagType;
@@ -778,6 +779,27 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	@Override
     public Object visitPropertyCallExp(PropertyCallExp<C, P> pc) {
+		try {
+			OCLExpression<?> source = pc.getSource();
+			Object sourceVal = source.accept(this);
+			OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
+			OCLProperty oclProperty = library.getProperty(sourceType, pc);
+			if (oclProperty != null) {
+				Object result = oclProperty.evaluate(this, sourceVal, pc);
+				if (result == null) {
+					result = library.getInvalid();
+				}
+				return result;
+			}
+		}
+		catch (Exception e) {
+			return library.getInvalid();
+		}
+
+		
+		
+		
+		
 		P property = pc.getReferredProperty();
 		OCLExpression<C> source = pc.getSource();
 

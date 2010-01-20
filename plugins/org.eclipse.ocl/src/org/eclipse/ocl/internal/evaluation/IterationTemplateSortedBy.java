@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateSortedBy.java,v 1.3 2009/09/01 20:11:22 ewillink Exp $
+ * $Id: IterationTemplateSortedBy.java,v 1.3.6.1 2010/01/20 09:09:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -58,7 +58,7 @@ public class IterationTemplateSortedBy<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS
 		// "isDone" mechanism below would have caused the evaluation to stop.
 		// If the body result is undefined then the entire expression's value
 		// is invalid
-		if ((bodyVal == null) || (bodyVal == getInvalid())) {
+		if (isUndefined(bodyVal)) {
 			setDone(true);
 			return getInvalid();
 		}

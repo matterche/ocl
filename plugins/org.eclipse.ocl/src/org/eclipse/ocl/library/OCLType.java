@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLType.java,v 1.1.2.2 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: OCLType.java,v 1.1.2.3 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -118,9 +118,17 @@ public interface OCLType extends OCLElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model typesMany="true"
+	 * @model parameterTypesMany="true"
 	 * @generated
 	 */
-	OCLOperation getOperation(String name, EList<OCLType> types);
+	OCLOperation getOperation(String name, EList<OCLType> parameterTypes);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLProperty getProperty(String name);
 
 } // OCLType

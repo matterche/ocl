@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollectNested.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: IterationTemplateCollectNested.java,v 1.3.6.1 2010/01/20 09:09:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -49,7 +49,7 @@ public final class IterationTemplateCollectNested<PK, C, O, P, EL, PM, S, COA, S
 		
 		// If the body result is invalid then the entire expression's value
 		// is invalid, because OCL does not permit invalid in a collection
-		if (bodyVal == getInvalid()) {
+		if (isInvalid(bodyVal)) {
 			setDone(true);
 			return bodyVal;
 		}

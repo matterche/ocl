@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityOCLLibrary.java,v 1.1.2.4 2010/01/19 22:34:19 ewillink Exp $
+ * $Id: CompatibilityOCLLibrary.java,v 1.1.2.5 2010/01/20 09:09:33 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -24,6 +24,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 
 /**
  * A CompatibilityOCLLibrary extends the {@link AbstractOCLLibrary} to provide backward compatibility
@@ -37,6 +38,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE> extends AbstractOCLLibrary
 {
 	protected Map<OCLType, Map<OF, OCLOperation>> operationMaps = new HashMap<OCLType, Map<OF, OCLOperation>>();
+	protected Map<OCLType, Map<PF, OCLProperty>> propertyMaps = new HashMap<OCLType, Map<PF, OCLProperty>>();
     protected Map<T, OCLType> typeMap = new HashMap<T, OCLType>();
 
     public CompatibilityOCLLibrary(String libraryURI) {
@@ -51,14 +53,16 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract T asType(Object object);
 
+	protected abstract OCLClassifier createOCLClassifier();
+
 	protected OCLClassifier createOCLClassifier(CT aClassifier, Map<T, OCLType> visited) {
-		OCLClassifier oclClassifier = LibraryFactory.eINSTANCE.createOCLClassifier();
+		OCLClassifier oclClassifier = createOCLClassifier();
 		oclClassifier.setName(getName(aClassifier));
 		oclClassifier.setMetaModelElement(aClassifier);
 		addType(aClassifier, oclClassifier);
 		visited.put(aClassifier, oclClassifier);		
 		for (OF anOperation : getOperations(aClassifier)) {
-			OCLMetaModelOperation oclOperation = LibraryFactory.eINSTANCE.createOCLMetaModelOperation();
+			OCLMetaModelOperation oclOperation = createOCLMetaModelOperation();
 			oclOperation.setName(getName(anOperation));
 			oclOperation.setMetaModelElement(anOperation);
 			oclClassifier.getOperation().add(oclOperation);
@@ -66,13 +70,15 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 			for (OP aParameter : getParameters(anOperation)) {
 				OCLParameter oclParameter = LibraryFactory.eINSTANCE.createOCLParameter();
 				oclParameter.setName(getName(aParameter));
+//				oclParameter.setMetaModelElement(aParameter);
 				oclOperation.getParameter().add(oclParameter);
 				oclParameter.setType(getOCLTypeOfType(getType(aParameter)));
 			}
 		}
 		for (PF aProperty : getProperties(aClassifier)) {
-			OCLMetaModelProperty oclProperty = LibraryFactory.eINSTANCE.createOCLMetaModelProperty();
+			OCLMetaModelProperty oclProperty = createOCLMetaModelProperty();
 			oclProperty.setName(getName(aProperty));
+			oclProperty.setMetaModelElement(aProperty);
 			oclClassifier.getProperty().add(oclProperty);
 			oclProperty.setType(getOCLTypeOfType(getType(aProperty)));
 		}		
@@ -91,8 +97,10 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 		return oclClassifier;
 	}
 
+	protected abstract OCLDataType createOCLDataType();
+	
 	protected OCLDataType createOCLDataType(DT aDataType, Map<T, OCLType> visited) {
-		OCLDataType oclDataType = LibraryFactory.eINSTANCE.createOCLDataType();
+		OCLDataType oclDataType = createOCLDataType();
 		oclDataType.setName(getName(aDataType));
 		oclDataType.setMetaModelElement(aDataType);
 		oclDataType.getConforms().add(getOclAny());
@@ -100,21 +108,29 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 		return oclDataType;
 	}
 
+	protected abstract OCLEnumeration createOCLEnumeration();
+
 	protected OCLEnumeration createOCLEnumeration(ET anEnumeration, Map<T, OCLType> visited) {
-		OCLEnumeration oclEnumeration = LibraryFactory.eINSTANCE.createOCLEnumeration();
+		OCLEnumeration oclEnumeration = createOCLEnumeration();
 		oclEnumeration.setName(getName(anEnumeration));
 		oclEnumeration.setMetaModelElement(anEnumeration);
 		oclEnumeration.getConforms().add(getOclAny());
 		addType(anEnumeration, oclEnumeration);
 		visited.put(anEnumeration, oclEnumeration);
 		for (EL aLiteral : getLiterals(anEnumeration)) {
-			OCLEnumerationLiteral oclLiteral = LibraryFactory.eINSTANCE.createOCLEnumerationLiteral();
+			OCLEnumerationLiteral oclLiteral = createOCLEnumerationLiteral();
 			oclLiteral.setName(getName(aLiteral));
 			oclLiteral.setMetaModelElement(aLiteral);
 			oclEnumeration.getLiterals().add(oclLiteral);
 		}
 		return oclEnumeration;
 	}
+	
+	protected abstract OCLEnumerationLiteral createOCLEnumerationLiteral();
+
+	protected abstract OCLMetaModelOperation createOCLMetaModelOperation();
+
+	protected abstract OCLMetaModelProperty createOCLMetaModelProperty();
 
 	protected abstract OCLType createOCLType(T aType, Map<T, OCLType> visited);
 
@@ -178,6 +194,27 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 	protected abstract List<OP> getParameters(OF anOperation);
 
 	protected abstract List<PF> getProperties(CT aClassifier);
+	
+	@Override
+	public OCLProperty getProperty(OCLType dynamicType, PropertyCallExp<?, ?> propertyCall) {
+		OCLProperty oclProperty = super.getProperty(dynamicType, propertyCall);
+		if (oclProperty != null) {
+			return oclProperty;
+		}
+		Map<PF, OCLProperty> propertyMap = propertyMaps.get(dynamicType);
+		if (propertyMap == null) {
+			propertyMap = new HashMap<PF, OCLProperty>();
+			propertyMaps.put(dynamicType, propertyMap);
+		}
+		@SuppressWarnings("unchecked")
+		PF referredProperty = (PF) propertyCall.getReferredProperty();
+		OCLProperty property = propertyMap.get(referredProperty);
+		if ((property == null) && !propertyMap.containsKey(referredProperty)) {
+			property = resolveProperty(dynamicType, referredProperty);
+			propertyMap.put(referredProperty, property);
+		}
+		return property;
+	}
 
 	protected abstract T getReturnType(OF anOperation);
 
@@ -188,4 +225,6 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 	public abstract void loadPackage(PK aPackage);
 
 	protected abstract OCLOperation resolveOperation(OCLType dynamicType, OF anOperation);
+
+	protected abstract OCLProperty resolveProperty(OCLType dynamicType, PF aProperty);
 }

@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryProperty.java,v 1.1.2.2 2009/12/14 21:59:09 ewillink Exp $
+ * $Id: OCLLibraryProperty.java,v 1.1.2.3 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
-import org.eclipse.ocl.LibraryProperty;
 
 
 /**
@@ -19,6 +18,7 @@ import org.eclipse.ocl.LibraryProperty;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryPropertyClass <em>Library Property Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryProperty <em>Library Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,4 +53,19 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * @generated
 	 */
 	void setLibraryPropertyClass(Class<? extends LibraryProperty> value);
+
+	/**
+	 * Returns the value of the '<em><b>Library Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Library Property</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Library Property</em>' reference.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryProperty_LibraryProperty()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	LibraryProperty getLibraryProperty();
 } // OCLLibraryProperty

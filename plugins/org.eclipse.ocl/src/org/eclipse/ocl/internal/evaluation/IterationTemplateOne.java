@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateOne.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: IterationTemplateOne.java,v 1.3.6.1 2010/01/20 09:09:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -51,7 +51,7 @@ public class IterationTemplateOne<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// If the body result is undefined then the entire expression's value
 		// is invalid
-		if ((body == null) || (body == getInvalid())) {
+		if (isUndefined(body)) {
 			setDone(true);
 			return getInvalid();
 		}

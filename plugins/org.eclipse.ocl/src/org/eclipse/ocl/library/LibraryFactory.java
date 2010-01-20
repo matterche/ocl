@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.5 2010/01/19 22:34:19 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.6 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -36,13 +36,22 @@ public interface LibraryFactory extends EFactory {
 	LibraryOperation createLibraryOperation();
 
 	/**
-	 * Returns a new object of class '<em>OCL Classifier</em>'.
+	 * Returns a new object of class '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Classifier</em>'.
+	 * @return a new object of class '<em>Property</em>'.
 	 * @generated
 	 */
-	OCLClassifier createOCLClassifier();
+	LibraryProperty createLibraryProperty();
+
+	/**
+	 * Returns a new object of class '<em>OCL Any Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Any Type</em>'.
+	 * @generated
+	 */
+	OCLAnyType createOCLAnyType();
 
 	/**
 	 * Returns a new object of class '<em>OCL Constraint Operation</em>'.
@@ -61,33 +70,6 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLConstraintProperty createOCLConstraintProperty();
-
-	/**
-	 * Returns a new object of class '<em>OCL Data Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Data Type</em>'.
-	 * @generated
-	 */
-	OCLDataType createOCLDataType();
-
-	/**
-	 * Returns a new object of class '<em>OCL Enumeration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Enumeration</em>'.
-	 * @generated
-	 */
-	OCLEnumeration createOCLEnumeration();
-
-	/**
-	 * Returns a new object of class '<em>OCL Enumeration Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Enumeration Literal</em>'.
-	 * @generated
-	 */
-	OCLEnumerationLiteral createOCLEnumerationLiteral();
 
 	/**
 	 * Returns a new object of class '<em>OCL Generic Type</em>'.
@@ -124,24 +106,6 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLLibraryProperty createOCLLibraryProperty();
-
-	/**
-	 * Returns a new object of class '<em>OCL Meta Model Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Meta Model Operation</em>'.
-	 * @generated
-	 */
-	OCLMetaModelOperation createOCLMetaModelOperation();
-
-	/**
-	 * Returns a new object of class '<em>OCL Meta Model Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Meta Model Property</em>'.
-	 * @generated
-	 */
-	OCLMetaModelProperty createOCLMetaModelProperty();
 
 	/**
 	 * Returns a new object of class '<em>OCL Package</em>'.

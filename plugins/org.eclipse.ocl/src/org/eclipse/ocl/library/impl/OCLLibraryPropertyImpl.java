@@ -2,16 +2,15 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryPropertyImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLLibraryPropertyImpl.java,v 1.1.2.4 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.LibraryProperty;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.OCLLibraryProperty;
 
 /**
@@ -23,6 +22,7 @@ import org.eclipse.ocl.library.OCLLibraryProperty;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLLibraryPropertyImpl#getLibraryPropertyClass <em>Library Property Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLLibraryPropertyImpl#getLibraryProperty <em>Library Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,6 +38,15 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	 * @ordered
 	 */
 	protected Class<? extends LibraryProperty> libraryPropertyClass;
+	/**
+	 * The cached value of the '{@link #getLibraryProperty() <em>Library Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLibraryProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected LibraryProperty libraryProperty;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,11 +92,22 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LibraryProperty getLibraryProperty() {
+		return libraryProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS:
 				return getLibraryPropertyClass();
+			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY:
+				return getLibraryProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,6 +153,8 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 		switch (featureID) {
 			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS:
 				return libraryPropertyClass != null;
+			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY:
+				return libraryProperty != null;
 		}
 		return super.eIsSet(featureID);
 	}

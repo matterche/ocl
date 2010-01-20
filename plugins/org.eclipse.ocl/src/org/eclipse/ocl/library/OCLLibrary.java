@@ -2,6 +2,7 @@ package org.eclipse.ocl.library;
 
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
 /**
@@ -54,6 +55,8 @@ public interface OCLLibrary extends OCLStandardLibrary<OCLType> {
 	OCLType getOclExpression();
 	
 	OCLOperation getOperation(OCLType sourceType, OperationCallExp<?,?> operationCall);
+	
+	OCLProperty getProperty(OCLType sourceType, PropertyCallExp<?,?> propertyCall);
 	
 	OCLType getOCLTypeOfType(Object object);
 	

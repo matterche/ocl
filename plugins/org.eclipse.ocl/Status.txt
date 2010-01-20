@@ -39,6 +39,7 @@ Numerous FIXME tests
 meta-model operations
 defined operations
 any kind of property
+UML library asMetaClass
 
 Deep per-element normalisation of evaluate() input. ? should be in visitVariableExp() ??
 
@@ -50,6 +51,11 @@ Synthesis
 ---------
 
 API method should be defined.
+
+Tests
+-----
+
+Check for any NPEs and CCEs and IAEs being silently/correctly treated as invalid.
 
 Non-OCL facilities
 ------------------

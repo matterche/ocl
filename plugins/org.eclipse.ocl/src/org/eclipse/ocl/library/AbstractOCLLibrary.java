@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLLibrary.java,v 1.1.2.3 2010/01/18 08:57:52 ewillink Exp $
+ * $Id: AbstractOCLLibrary.java,v 1.1.2.4 2010/01/20 09:09:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -41,6 +41,7 @@ import org.eclipse.ocl.expressions.LiteralExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.library.util.LibraryResource;
 import org.eclipse.ocl.types.AnyType;
@@ -527,5 +528,13 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 	
 	public List<OCLPackage> getPackages() {
 		return packages;
+	}
+	
+	public OCLProperty getProperty(OCLType dynamicType, PropertyCallExp<?, ?> propertyCall) {
+		Object referredProperty = propertyCall.getReferredProperty();
+		if (referredProperty instanceof OCLProperty) {
+			return (OCLProperty)referredProperty;
+		}
+		return null;
 	}
 }

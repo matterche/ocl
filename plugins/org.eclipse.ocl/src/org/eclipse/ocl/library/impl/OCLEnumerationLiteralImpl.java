@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLEnumerationLiteralImpl.java,v 1.1.2.1 2010/01/19 22:34:20 ewillink Exp $
+ * $Id: OCLEnumerationLiteralImpl.java,v 1.1.2.2 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLEnumeration;
 import org.eclipse.ocl.library.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.OCLMetaModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,14 +30,14 @@ import org.eclipse.ocl.library.OCLEnumerationLiteral;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLEnumerationLiteralImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLEnumerationLiteralImpl#getMetaModelElement <em>Meta Model Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLEnumerationLiteralImpl#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class OCLEnumerationLiteralImpl extends OCLElementImpl implements OCLEnumerationLiteral {
+public abstract class OCLEnumerationLiteralImpl extends OCLElementImpl implements OCLEnumerationLiteral {
 	/**
 	 * The cached value of the '{@link #getMetaModelElement() <em>Meta Model Element</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -197,11 +198,11 @@ public class OCLEnumerationLiteralImpl extends OCLElementImpl implements OCLEnum
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
-				return getContainer();
 			case LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT:
 				if (resolve) return getMetaModelElement();
 				return basicGetMetaModelElement();
+			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
+				return getContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,11 +215,11 @@ public class OCLEnumerationLiteralImpl extends OCLElementImpl implements OCLEnum
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
-				setContainer((OCLEnumeration)newValue);
-				return;
 			case LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT:
 				setMetaModelElement((EObject)newValue);
+				return;
+			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
+				setContainer((OCLEnumeration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -232,11 +233,11 @@ public class OCLEnumerationLiteralImpl extends OCLElementImpl implements OCLEnum
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
-				setContainer((OCLEnumeration)null);
-				return;
 			case LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT:
 				setMetaModelElement((EObject)null);
+				return;
+			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
+				setContainer((OCLEnumeration)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -250,12 +251,44 @@ public class OCLEnumerationLiteralImpl extends OCLElementImpl implements OCLEnum
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
-				return getContainer() != null;
 			case LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT:
 				return metaModelElement != null;
+			case LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER:
+				return getContainer() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == OCLMetaModelElement.class) {
+			switch (derivedFeatureID) {
+				case LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT: return LibraryPackage.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == OCLMetaModelElement.class) {
+			switch (baseFeatureID) {
+				case LibraryPackage.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT: return LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //OCLEnumerationLiteralImpl

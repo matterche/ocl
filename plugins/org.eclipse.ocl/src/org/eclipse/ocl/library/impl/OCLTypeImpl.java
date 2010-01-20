@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeImpl.java,v 1.1.2.4 2010/01/18 22:07:16 ewillink Exp $
+ * $Id: OCLTypeImpl.java,v 1.1.2.5 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -220,6 +220,30 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 				OCLOperation anOperation = superType.getOperation(name, types);
 				if (anOperation != null) {
 					return anOperation;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLProperty getProperty(String name) {
+		if (property != null) {
+			for (OCLProperty anProperty : property) {
+				if (name.equals(anProperty.getName())) {
+					return anProperty;
+				}
+			}
+		}
+		if (conforms != null) {
+			for (OCLType superType : conforms) {
+				OCLProperty aProperty = superType.getProperty(name);
+				if (aProperty != null) {
+					return aProperty;
 				}
 			}
 		}

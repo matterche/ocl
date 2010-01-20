@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.5 2009/09/01 20:11:22 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.5.6.1 2010/01/20 09:09:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -24,8 +24,11 @@ import java.util.List;
 
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
 public class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
@@ -177,11 +180,28 @@ public class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		return bodyVal;
 	}
 	
+	@Deprecated // Use getOCLLibrary
 	protected OCLStandardLibrary<C> getOCLStandardLibrary() {
 		return evalVisitor.getEnvironment().getOCLStandardLibrary();
 	}
 	
+	protected OCLLibrary getOCLLibrary() {
+		return evalVisitor.getEnvironment().getOCLLibrary();
+	}
+	
 	protected Object getInvalid() {
-		return getOCLStandardLibrary().getInvalid();
+		return getOCLLibrary().getInvalid();
+	}
+
+	protected boolean isInvalid(Object bodyVal) {
+		return bodyVal instanceof InvalidLiteralExp<?>;
+	}
+
+	protected boolean isNull(Object bodyVal) {
+		return bodyVal instanceof NullLiteralExp<?>;
+	}
+
+	protected boolean isUndefined(Object bodyVal) {
+		return isInvalid(bodyVal) || isNull(bodyVal);
 	}
 }

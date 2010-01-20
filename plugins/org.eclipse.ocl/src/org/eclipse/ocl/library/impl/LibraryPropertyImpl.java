@@ -2,54 +2,59 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPropertyImpl.java,v 1.1.2.3 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: LibraryPropertyImpl.java,v 1.1.2.1 2010/01/20 09:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectEList;
 
 import org.eclipse.ocl.EvaluationVisitor;
+
 import org.eclipse.ocl.expressions.PropertyCallExp;
+
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLProperty;
-import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.LibraryProperty;
+import org.eclipse.ocl.library.OCLLibraryProperty;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>OCL Property</b></em>'.
+ * An implementation of the model object '<em><b>Property</b></em>'.
  * @since 3.0
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLPropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.LibraryPropertyImpl#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLProperty {
+public class LibraryPropertyImpl extends EObjectImpl implements LibraryProperty {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getReferences()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType type;
+	protected EList<OCLLibraryProperty> references;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLPropertyImpl() {
+	protected LibraryPropertyImpl() {
 		super();
 	}
 
@@ -60,7 +65,7 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return LibraryPackage.Literals.OCL_PROPERTY;
+		return LibraryPackage.Literals.LIBRARY_PROPERTY;
 	}
 
 	/**
@@ -68,45 +73,21 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLType getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (OCLType)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LibraryPackage.OCL_PROPERTY__TYPE, oldType, type));
-			}
+	public EList<OCLLibraryProperty> getReferences() {
+		if (references == null) {
+			references = new EObjectEList<OCLLibraryProperty>(OCLLibraryProperty.class, this, LibraryPackage.LIBRARY_PROPERTY__REFERENCES);
 		}
-		return type;
+		return references;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 */
-	public OCLType basicGetType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(OCLType newType) {
-		OCLType oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_PROPERTY__TYPE, oldType, type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, PropertyCallExp<?, ?> propertyCall) throws Exception {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -118,9 +99,8 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PROPERTY__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+			case LibraryPackage.LIBRARY_PROPERTY__REFERENCES:
+				return getReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,11 +110,13 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PROPERTY__TYPE:
-				setType((OCLType)newValue);
+			case LibraryPackage.LIBRARY_PROPERTY__REFERENCES:
+				getReferences().clear();
+				getReferences().addAll((Collection<? extends OCLLibraryProperty>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,8 +130,8 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PROPERTY__TYPE:
-				setType((OCLType)null);
+			case LibraryPackage.LIBRARY_PROPERTY__REFERENCES:
+				getReferences().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -163,10 +145,10 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PROPERTY__TYPE:
-				return type != null;
+			case LibraryPackage.LIBRARY_PROPERTY__REFERENCES:
+				return references != null && !references.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //OCLPropertyImpl
+} //LibraryPropertyImpl

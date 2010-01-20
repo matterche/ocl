@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibrarySwitch.java,v 1.1.2.5 2010/01/19 22:34:19 ewillink Exp $
+ * $Id: LibrarySwitch.java,v 1.1.2.6 2010/01/20 09:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -94,10 +94,25 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LibraryPackage.LIBRARY_PROPERTY: {
+				LibraryProperty libraryProperty = (LibraryProperty)theEObject;
+				T result = caseLibraryProperty(libraryProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_ANY_TYPE: {
+				OCLAnyType oclAnyType = (OCLAnyType)theEObject;
+				T result = caseOCLAnyType(oclAnyType);
+				if (result == null) result = caseOCLType(oclAnyType);
+				if (result == null) result = caseOCLElement(oclAnyType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LibraryPackage.OCL_CLASSIFIER: {
 				OCLClassifier oclClassifier = (OCLClassifier)theEObject;
 				T result = caseOCLClassifier(oclClassifier);
 				if (result == null) result = caseOCLType(oclClassifier);
+				if (result == null) result = caseOCLMetaModelElement(oclClassifier);
 				if (result == null) result = caseOCLElement(oclClassifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -122,6 +137,7 @@ public class LibrarySwitch<T> {
 				OCLDataType oclDataType = (OCLDataType)theEObject;
 				T result = caseOCLDataType(oclDataType);
 				if (result == null) result = caseOCLType(oclDataType);
+				if (result == null) result = caseOCLMetaModelElement(oclDataType);
 				if (result == null) result = caseOCLElement(oclDataType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -136,6 +152,7 @@ public class LibrarySwitch<T> {
 				OCLEnumeration oclEnumeration = (OCLEnumeration)theEObject;
 				T result = caseOCLEnumeration(oclEnumeration);
 				if (result == null) result = caseOCLType(oclEnumeration);
+				if (result == null) result = caseOCLMetaModelElement(oclEnumeration);
 				if (result == null) result = caseOCLElement(oclEnumeration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -144,6 +161,7 @@ public class LibrarySwitch<T> {
 				OCLEnumerationLiteral oclEnumerationLiteral = (OCLEnumerationLiteral)theEObject;
 				T result = caseOCLEnumerationLiteral(oclEnumerationLiteral);
 				if (result == null) result = caseOCLElement(oclEnumerationLiteral);
+				if (result == null) result = caseOCLMetaModelElement(oclEnumerationLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -179,10 +197,17 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LibraryPackage.OCL_META_MODEL_ELEMENT: {
+				OCLMetaModelElement oclMetaModelElement = (OCLMetaModelElement)theEObject;
+				T result = caseOCLMetaModelElement(oclMetaModelElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LibraryPackage.OCL_META_MODEL_OPERATION: {
 				OCLMetaModelOperation oclMetaModelOperation = (OCLMetaModelOperation)theEObject;
 				T result = caseOCLMetaModelOperation(oclMetaModelOperation);
 				if (result == null) result = caseOCLOperation(oclMetaModelOperation);
+				if (result == null) result = caseOCLMetaModelElement(oclMetaModelOperation);
 				if (result == null) result = caseOCLElement(oclMetaModelOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -191,6 +216,7 @@ public class LibrarySwitch<T> {
 				OCLMetaModelProperty oclMetaModelProperty = (OCLMetaModelProperty)theEObject;
 				T result = caseOCLMetaModelProperty(oclMetaModelProperty);
 				if (result == null) result = caseOCLProperty(oclMetaModelProperty);
+				if (result == null) result = caseOCLMetaModelElement(oclMetaModelProperty);
 				if (result == null) result = caseOCLElement(oclMetaModelProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -254,6 +280,36 @@ public class LibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseLibraryOperation(LibraryOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLibraryProperty(LibraryProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Any Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Any Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLAnyType(OCLAnyType object) {
 		return null;
 	}
 
@@ -419,6 +475,21 @@ public class LibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLLibraryProperty(OCLLibraryProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Meta Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Meta Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLMetaModelElement(OCLMetaModelElement object) {
 		return null;
 	}
 

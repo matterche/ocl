@@ -2,9 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLProperty.java,v 1.1.2.2 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: OCLProperty.java,v 1.1.2.3 2010/01/20 09:09:33 ewillink Exp $
  */
 package org.eclipse.ocl.library;
+
+import org.eclipse.ocl.EvaluationVisitor;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 
 
 /**
@@ -50,5 +53,13 @@ public interface OCLProperty extends OCLElement {
 	 * @generated
 	 */
 	void setType(OCLType value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="org.eclipse.ocl.library.Exception" evaluationVisitorDataType="org.eclipse.ocl.library.EvaluationVisitor" propertyCallDataType="org.eclipse.ocl.library.PropertyCallExp"
+	 * @generated
+	 */
+	Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, PropertyCallExp<?, ?> propertyCall) throws Exception;
 
 } // OCLProperty

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollect.java,v 1.5 2009/09/01 20:11:22 ewillink Exp $
+ * $Id: IterationTemplateCollect.java,v 1.5.6.1 2010/01/20 09:09:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -51,7 +51,7 @@ public class IterationTemplateCollect<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 		
 		// If the body result is invalid then the entire expression's value
 		// is invalid, because OCL does not permit invalid in a collection
-		if (bodyVal == getInvalid()) {
+		if (isInvalid(bodyVal)) {
 			setDone(true);
 			return bodyVal;
 		}

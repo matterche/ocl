@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLEnumerationLiteral.java,v 1.1.2.1 2010/01/19 22:34:19 ewillink Exp $
+ * $Id: OCLEnumerationLiteral.java,v 1.1.2.2 2010/01/20 09:09:33 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
-import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -19,15 +18,14 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLEnumerationLiteral#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLEnumerationLiteral#getMetaModelElement <em>Meta Model Element</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.library.LibraryPackage#getOCLEnumerationLiteral()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface OCLEnumerationLiteral extends OCLElement {
+public interface OCLEnumerationLiteral extends OCLElement, OCLMetaModelElement {
 	/**
 	 * Returns the value of the '<em><b>Container</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLEnumeration#getLiterals <em>Literals</em>}'.
@@ -55,31 +53,5 @@ public interface OCLEnumerationLiteral extends OCLElement {
 	 * @generated
 	 */
 	void setContainer(OCLEnumeration value);
-
-	/**
-	 * Returns the value of the '<em><b>Meta Model Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Meta Model Element</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model Element</em>' reference.
-	 * @see #setMetaModelElement(EObject)
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLEnumerationLiteral_MetaModelElement()
-	 * @model
-	 * @generated
-	 */
-	EObject getMetaModelElement();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLEnumerationLiteral#getMetaModelElement <em>Meta Model Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Model Element</em>' reference.
-	 * @see #getMetaModelElement()
-	 * @generated
-	 */
-	void setMetaModelElement(EObject value);
 
 } // OCLEnumerationLiteral
