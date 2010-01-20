@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.17.2.1 2010/01/15 17:27:14 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.17.2.2 2010/01/20 17:58:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -101,7 +101,8 @@ public class CollectionsTest
 
 			result = (Set<?>) ocl.evaluate("", expr);
 
-			expected = Arrays.asList(new Object[]{"a", "b", "c", "d", "e"});
+//			expected = Arrays.asList(new Object[]{"a", "b", "c", "d", "e"});
+			expected = Arrays.asList(new Object[]{"a", "b", "d", "c", "e"});
 
 			assertEquals(expected, new java.util.ArrayList<Object>(result));
 		} catch (Exception e) {
