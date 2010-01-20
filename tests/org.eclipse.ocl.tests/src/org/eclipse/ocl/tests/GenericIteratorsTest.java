@@ -13,11 +13,12 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.4 2010/01/18 22:07:14 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.5 2010/01/20 09:09:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -550,10 +551,9 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
-    	Set<Integer> e1 = Collections.singleton(new Integer(1));
+    	Set<BigInteger> e1 = Collections.singleton(BigInteger.valueOf(1));
     	Object e2 = getNull();
-    	Set<Integer> e3 = Collections.singleton(new Integer(3));
-        @SuppressWarnings("unchecked")
+    	Set<BigInteger> e3 = Collections.singleton(BigInteger.valueOf(3));
         Collection<? extends Object> expected = createBag(e1, e2, e3);
         assertQueryEquals(EcorePackage.eINSTANCE, expected,
             "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)");

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.1 2010/01/18 08:57:41 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.2 2010/01/20 09:09:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.Bag;
 import org.eclipse.ocl.util.CollectionUtil;
