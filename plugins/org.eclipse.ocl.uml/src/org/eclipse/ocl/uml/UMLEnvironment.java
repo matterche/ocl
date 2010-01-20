@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.16.2.1 2010/01/03 22:51:35 ewillink Exp $
+ * $Id: UMLEnvironment.java,v 1.16.2.2 2010/01/20 16:57:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -645,7 +645,7 @@ public class UMLEnvironment
     // implements the inherited specification
     public Property defineAttribute(Classifier owner,
             Variable<Classifier, Parameter> variable, Constraint constraint) {
-
+    	super.defineAttribute(owner, variable, constraint);
         Property result;
 
         String name = variable.getName();
@@ -669,6 +669,7 @@ public class UMLEnvironment
     public Operation defineOperation(Classifier owner, String name,
             Classifier type, List<Variable<Classifier, Parameter>> params,
             Constraint constraint) {
+    	super.defineOperation(owner, name, type, params, constraint);
         Operation result = UMLFactory.eINSTANCE.createOperation();
 
         result.addKeyword(UMLReflection.OCL_HELPER);

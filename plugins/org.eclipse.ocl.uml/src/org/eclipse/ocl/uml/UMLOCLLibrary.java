@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.TypedElement;
 
  * @since 3.0
  */
-public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, TypedElement, Package, Type, Class, DataType, Enumeration, EnumerationLiteral, Operation, Parameter, Property>
+public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, TypedElement, Package, Type, Class, TupleType, DataType, Enumeration, EnumerationLiteral, Operation, Parameter, Property>
 {
 	private static UMLOCLLibrary DEFAULT = null;
 
@@ -102,6 +102,9 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 		else if (aType instanceof DataType) {
 			return createOCLDataType((DataType) aType, visited);
 		}
+		else if (aType instanceof TupleType) {
+			return createOCLTupleType((TupleType) aType, visited);
+		}
 		else if (aType instanceof Class) {
 			return createOCLClassifier((Class) aType, visited);
 		}
@@ -142,8 +145,13 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	}
 
 	@Override
-	protected List<? extends Classifier> getSuperTypes(Class classifier) {
-		return classifier.getGenerals();
+	protected List<? extends Classifier> getSuperTypes(Class aClassifier) {
+		return aClassifier.getGenerals();
+	}
+
+	@Override
+	protected List<? extends Property> getTupleParts(TupleType aTupleType) {
+		return aTupleType.oclProperties();
 	}
 
 	@Override
