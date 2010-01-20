@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartItemProvider.java,v 1.2.2.1 2010/01/15 07:41:30 ewillink Exp $
+ * $Id: TupleLiteralPartItemProvider.java,v 1.2.2.2 2010/01/20 09:09:21 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -873,15 +873,19 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
+				LibraryFactory.eINSTANCE.createLibraryOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				LibraryFactory.eINSTANCE.createOCLParameter()));
+				LibraryFactory.eINSTANCE.createLibraryProperty()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				LibraryFactory.eINSTANCE.createOCLType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLConstraintOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -901,23 +905,15 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				LibraryFactory.eINSTANCE.createLibraryOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				LibraryFactory.eINSTANCE.createOCLLibraryProperty()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				LibraryFactory.eINSTANCE.createOCLMetaModelOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				LibraryFactory.eINSTANCE.createOCLMetaModelProperty()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				LibraryFactory.eINSTANCE.createOCLPackage()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLParameter()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
