@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
+    nsURI="http://www.eclipse.org/ocl/3.0.0/OCLUML" nsPrefix="ocl">
+  <eSubpackages name="uml" nsURI="http://www.eclipse.org/ocl/3.0.0/UML" nsPrefix="ocl.uml">
+    <eSubpackages name="library" nsURI="http://www.eclipse.org/ocl/3.0.0/UMLLibrary"
+        nsPrefix="ocl.ecore.lib">
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLClassifier" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLClassifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLDataType" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLDataType"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLEnumeration" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLEnumeration"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLEnumerationLiteral" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLEnumerationLiteral"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLOperation" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLMetaModelOperation"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLProperty" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLMetaModelProperty"/>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>

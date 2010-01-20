@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactoryImpl.java,v 1.9.2.1 2010/01/15 07:40:51 ewillink Exp $
+ * $Id: UMLFactoryImpl.java,v 1.9.2.2 2010/01/20 09:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.uml.*;
 import org.eclipse.ocl.uml.AnyType;
 import org.eclipse.ocl.uml.AssociationClassCallExp;
 import org.eclipse.ocl.uml.BagType;

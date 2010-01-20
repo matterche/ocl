@@ -6,9 +6,17 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.library.CompatibilityOCLLibrary;
+import org.eclipse.ocl.library.OCLClassifier;
+import org.eclipse.ocl.library.OCLDataType;
+import org.eclipse.ocl.library.OCLEnumeration;
+import org.eclipse.ocl.library.OCLEnumerationLiteral;
 import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLMetaModelOperation;
+import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLOperation;
+import org.eclipse.ocl.library.OCLProperty;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.uml.library.UMLLibraryFactory;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
@@ -54,6 +62,36 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	@Override
 	protected Classifier asType(Object object) {
 		return (object instanceof Classifier) ? (Classifier)object : null;
+	}
+
+	@Override
+	protected OCLClassifier createOCLClassifier() {
+		return UMLLibraryFactory.eINSTANCE.createUMLOCLClassifier();
+	}
+
+	@Override
+	protected OCLDataType createOCLDataType() {
+		return UMLLibraryFactory.eINSTANCE.createUMLOCLDataType();
+	}
+
+	@Override
+	protected OCLEnumeration createOCLEnumeration() {
+		return UMLLibraryFactory.eINSTANCE.createUMLOCLEnumeration();
+	}
+
+	@Override
+	protected OCLEnumerationLiteral createOCLEnumerationLiteral() {
+		return UMLLibraryFactory.eINSTANCE.createUMLOCLEnumerationLiteral();
+	}
+
+	@Override
+	protected OCLMetaModelOperation createOCLMetaModelOperation() {
+		return UMLLibraryFactory.eINSTANCE.createUMLOCLOperation();
+	}
+
+	@Override
+	protected OCLMetaModelProperty createOCLMetaModelProperty() {
+		return UMLLibraryFactory.eINSTANCE.createUMLOCLProperty();
 	}
 
 	@Override
@@ -135,5 +173,12 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 		}
 		parameterTypes.remove(0);			// Lose the 'result' parameter
 		return thisType.getOperation(operationName, parameterTypes);
+	}
+
+	protected OCLProperty resolveProperty(OCLType dynamicType, Property umlProperty) {
+		Element classifier = umlProperty.getOwner();
+		OCLType thisType = getOCLTypeOfType(classifier);
+		String propertyName = umlProperty.getName();
+		return thisType.getProperty(propertyName);
 	}
 }
