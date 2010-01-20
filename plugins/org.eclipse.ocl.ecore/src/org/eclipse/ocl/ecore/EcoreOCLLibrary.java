@@ -4,14 +4,22 @@
 package org.eclipse.ocl.ecore;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.library.CompatibilityOCLLibrary;
 import org.eclipse.ocl.library.OCLOperation;
@@ -24,7 +32,7 @@ import org.eclipse.ocl.library.OCLType;
  * 
  * @since 3.0
  */
-public class EcoreOCLLibrary extends CompatibilityOCLLibrary<EClass>
+public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETypedElement, EPackage, EClassifier, EClass, EDataType, EEnum, EEnumLiteral, EOperation, EParameter, EStructuralFeature>
 {
 	private static EcoreOCLLibrary DEFAULT = null;
 
@@ -40,36 +48,91 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<EClass>
 	}
 
 	@Override
-	protected EClass asClass(Object object) {
-		return (object instanceof EClass) ? (EClass)object : null;
-	}
-
-	@Override
-	protected EClass asMetaClass(Object object) {
+	protected EClassifier asMetaType(Object object) {
 		return (object instanceof EObject) ? ((EObject)object).eClass() : null;
 	}
 
 	@Override
-	protected String getName(EClass classifier) {
-		return classifier.getName();
+	protected EClassifier asType(Object object) {
+		return (object instanceof EClassifier) ? (EClassifier)object : null;
 	}
 
 	@Override
-	protected List<EClass> getSuperTypes(EClass classifier) {
+	protected OCLType createOCLType(EClassifier aType, Map<EClassifier, OCLType> visited) {
+		if (aType instanceof EEnum) {
+			return createOCLEnumeration((EEnum) aType, visited);
+		}
+		else if (aType instanceof EDataType) {
+			return createOCLDataType((EDataType) aType, visited);
+		}
+		else if (aType instanceof EClass) {
+			return createOCLClassifier((EClass) aType, visited);
+		}
+		else {
+			return null;
+		}
+	}
+
+	@Override
+	protected List<EEnumLiteral> getLiterals(EEnum anEnumeration) {
+		return anEnumeration.getELiterals();
+	}
+
+	@Override
+	protected String getName(ENamedElement namedElement) {
+		return namedElement.getName();
+	}
+
+	@Override
+	protected List<EOperation> getOperations(EClass aClassifier) {
+		return aClassifier.getEOperations();
+	}
+
+	@Override
+	protected List<EParameter> getParameters(EOperation anOperation) {
+		return anOperation.getEParameters();
+	}
+
+	@Override
+	protected List<EStructuralFeature> getProperties(EClass aClassifier) {
+		return aClassifier.getEStructuralFeatures();
+	}
+
+	@Override
+	protected EClassifier getReturnType(EOperation anOperation) {
+		return anOperation.getEType();
+	}
+
+	@Override
+	protected List<? extends EClassifier> getSuperTypes(EClass classifier) {
 		return classifier.getESuperTypes();
 	}
 
-	protected OCLOperation resolveOperation(OCLType dynamicType, Object referredOperation) {
-		EOperation eOperation = (EOperation) referredOperation;
-		EClass classifier = eOperation.getEContainingClass();
+	@Override
+	protected EClassifier getType(ETypedElement typedElement) {
+		return typedElement.getEType();
+	}
+
+	@Override
+	public void loadPackage(EPackage aPackage) {
+		for (EClassifier ecoreClassifier : aPackage.getEClassifiers()) {
+			getOCLTypeOfType(ecoreClassifier);
+		}
+		for (EPackage ecorePackage : aPackage.getESubpackages()) {
+			loadPackage(ecorePackage);
+		}
+	}
+
+	protected OCLOperation resolveOperation(OCLType dynamicType, EOperation ecoreOperation) {
+		EClass classifier = ecoreOperation.getEContainingClass();
 		EClassifier realClassifier = OCLStandardLibraryImpl.getRealClassifier(classifier);
 		if (realClassifier == null) {
 			realClassifier = classifier;
 		}
 		OCLType thisType = getOCLTypeOfType(realClassifier);
-		String operationName = eOperation.getName();
+		String operationName = ecoreOperation.getName();
 		EList<OCLType> parameterTypes = new BasicEList<OCLType>();
-		for (EParameter parameter : eOperation.getEParameters()) {
+		for (EParameter parameter : ecoreOperation.getEParameters()) {
 			parameterTypes.add(getOCLTypeOfType(parameter.getEType()));
 		}
 		return thisType.getOperation(operationName, parameterTypes);
