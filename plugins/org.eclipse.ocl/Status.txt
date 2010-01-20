@@ -1,5 +1,5 @@
-Ecore tests: 36 failures
-UML tests: 116 failures
+Ecore tests: 38 failures
+UML tests: 142 failures
 
 Meta-model
 ----------
@@ -26,18 +26,13 @@ Analysis
 
 Operation/Property should be looked up with reference to the generic library model
 
-Operation/Property should be defined into the generic library model
-
 Evaluation
 ----------
 
 todo
 
-allInstances
 Collection max/min/reverse tests
 Numerous FIXME tests
-meta-model operations
-defined operations
 any kind of property
 UML library asMetaClass
 
@@ -45,7 +40,7 @@ Deep per-element normalisation of evaluate() input. ? should be in visitVariable
 
 Deep mutual denormalisation of evaluate() result.
 
-Evaluation visitor for iterators, properties
+Evaluation visitor for iterators
 
 Synthesis
 ---------

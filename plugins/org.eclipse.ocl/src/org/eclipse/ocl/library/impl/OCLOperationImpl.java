@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperationImpl.java,v 1.1.2.4 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: OCLOperationImpl.java,v 1.1.2.5 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.EvaluationVisitor;
@@ -129,7 +129,7 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 	 */
 	public EList<OCLParameter> getParameter() {
 		if (parameter == null) {
-			parameter = new EObjectContainmentEList<OCLParameter>(OCLParameter.class, this, LibraryPackage.OCL_OPERATION__PARAMETER);
+			parameter = new EObjectContainmentWithInverseEList<OCLParameter>(OCLParameter.class, this, LibraryPackage.OCL_OPERATION__PARAMETER, LibraryPackage.OCL_PARAMETER__CONTAINER);
 		}
 		return parameter;
 	}
@@ -236,9 +236,12 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case LibraryPackage.OCL_OPERATION__PARAMETER:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameter()).basicAdd(otherEnd, msgs);
 			case LibraryPackage.OCL_OPERATION__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -376,22 +379,22 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
-		StringBuffer result = new StringBuffer();
+		StringBuffer s = new StringBuffer();
 		if (getContainer() != null) {
-			result.append(getContainer().getName());
-			result.append("::"); //$NON-NLS-1$
+			appendName(s, getContainer());
+			s.append("::"); //$NON-NLS-1$
 		}
-		result.append(getName());
-		result.append("("); //$NON-NLS-1$
+		appendName(s, this);
+		s.append("("); //$NON-NLS-1$
 		int iMax = parameter != null ? parameter.size() : 0;
 		for (int i = 0; i < iMax; i++) {
 			if (i > 0) {
-				result.append(","); //$NON-NLS-1$
+				s.append(","); //$NON-NLS-1$
 			}
-			result.append(parameter.get(i).getType().getName());
+			appendType(s, parameter.get(i));
 		}
-		result.append(")"); //$NON-NLS-1$
-		return result.toString();
+		s.append(")"); //$NON-NLS-1$
+		return s.toString();
 	}
 
 } //OCLOperationImpl

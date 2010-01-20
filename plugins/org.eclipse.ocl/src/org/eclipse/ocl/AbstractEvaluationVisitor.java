@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11.6.4 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11.6.5 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -267,7 +267,9 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 */
 	public Object visitExpression(OCLExpression<C> expression) {
         try {
-            return expression.accept(getVisitor());
+            EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor = getVisitor();
+			Object result = expression.accept(visitor);
+			return result;
         } catch (EvaluationHaltedException e) {
         	// evaluation stopped on demand, propagate further
         	throw e;

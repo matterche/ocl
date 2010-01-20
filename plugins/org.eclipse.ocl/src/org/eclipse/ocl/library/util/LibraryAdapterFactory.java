@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryAdapterFactory.java,v 1.1.2.6 2010/01/20 09:09:31 ewillink Exp $
+ * $Id: LibraryAdapterFactory.java,v 1.1.2.7 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -155,6 +155,10 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOCLProperty(OCLProperty object) {
 				return createOCLPropertyAdapter();
+			}
+			@Override
+			public Adapter caseOCLTupleType(OCLTupleType object) {
+				return createOCLTupleTypeAdapter();
 			}
 			@Override
 			public Adapter caseOCLType(OCLType object) {
@@ -475,6 +479,20 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLPropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTupleType <em>OCL Tuple Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLTupleType
+	 * @generated
+	 */
+	public Adapter createOCLTupleTypeAdapter() {
 		return null;
 	}
 

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityOCLLibrary.java,v 1.1.2.5 2010/01/20 09:09:33 ewillink Exp $
+ * $Id: CompatibilityOCLLibrary.java,v 1.1.2.6 2010/01/20 16:57:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -35,7 +35,7 @@ import org.eclipse.ocl.expressions.PropertyCallExp;
  * 
  * @since 3.0
  */
-public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE> extends AbstractOCLLibrary
+public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, TT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE> extends AbstractOCLLibrary
 {
 	protected Map<OCLType, Map<OF, OCLOperation>> operationMaps = new HashMap<OCLType, Map<OF, OCLOperation>>();
 	protected Map<OCLType, Map<PF, OCLProperty>> propertyMaps = new HashMap<OCLType, Map<PF, OCLProperty>>();
@@ -132,6 +132,20 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract OCLMetaModelProperty createOCLMetaModelProperty();
 
+	protected OCLTupleType createOCLTupleType(TT aTupleType, Map<T, OCLType> visited) {
+		OCLTupleType oclTupleType = LibraryFactory.eINSTANCE.createOCLTupleType();
+		oclTupleType.setName(getName(aTupleType));
+		oclTupleType.setMetaModelElement(aTupleType);
+		for (PF aProperty : getTupleParts(aTupleType)) {
+			OCLMetaModelProperty oclProperty = createOCLMetaModelProperty();
+			oclProperty.setName(getName(aProperty));
+			oclProperty.setMetaModelElement(aProperty);
+			oclTupleType.getProperty().add(oclProperty);
+			oclProperty.setType(getOCLTypeOfType(getType(aProperty)));
+		}
+		return oclTupleType;
+	}
+
 	protected abstract OCLType createOCLType(T aType, Map<T, OCLType> visited);
 
 	protected abstract List<EL> getLiterals(ET enumeration);
@@ -219,6 +233,8 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 	protected abstract T getReturnType(OF anOperation);
 
 	protected abstract List<? extends T> getSuperTypes(CT classifier);
+
+	protected abstract List<? extends PF> getTupleParts(TT aTupleType);
 
 	protected abstract T getType(TE typedElement);
 	

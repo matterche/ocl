@@ -15,13 +15,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.20.2.2 2010/01/03 22:53:48 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.20.2.3 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,8 +44,10 @@ import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * A partial implementation of the {@link Environment} interface providing
@@ -1241,6 +1244,39 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @since 3.0
 	 */
     protected abstract OCLLibrary createOCLLibrary();
+    
+    /**
+	 * @since 3.0
+	 */
+    public P defineAttribute(C owner, Variable<C, PM> variable, CT constraint) {
+    	OCLLibrary oclLibrary = getOCLLibrary();
+    	OCLType ownerType = oclLibrary.getOCLTypeOfType(owner);
+		OCLType valueType = oclLibrary.getOCLTypeOfType(variable.getType());
+		ExpressionInOCL<C, PM> specification = getUMLReflection().getSpecification(constraint);
+		String stereoType = getUMLReflection().getStereotype(constraint);
+		oclLibrary.defineProperty(ownerType, variable.getName(), valueType, stereoType, specification);
+		return null;
+    }
+    
+    /**
+	 * @since 3.0
+	 */
+	public O defineOperation(C owner, String name,
+			C returnType, List<Variable<C, PM>> params, CT constraint) {
+    	OCLLibrary oclLibrary = getOCLLibrary();
+    	OCLType ownerType = oclLibrary.getOCLTypeOfType(owner);
+		OCLType oclReturnType = oclLibrary.getOCLTypeOfType(returnType);
+		UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
+		ExpressionInOCL<C, PM> specification = umlReflection.getSpecification(constraint);
+		String stereoType = umlReflection.getStereotype(constraint);
+		LinkedHashMap<String, OCLType> oclParams = new LinkedHashMap<String, OCLType>();
+		for (Variable<C,PM> param : params) {
+	    	OCLType paramType = oclLibrary.getOCLTypeOfType(param.getType());
+			oclParams.put(param.getName(), paramType);
+		}
+		oclLibrary.defineOperation(ownerType, name, oclReturnType, oclParams, stereoType, specification);
+		return null;
+	}
 
 	/**
      * Obtains my extensible type checker utility.  If it has not already been

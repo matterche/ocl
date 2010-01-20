@@ -2,17 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPropertyImpl.java,v 1.1.2.3 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLPropertyImpl.java,v 1.1.2.4 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.library.LibraryPackage;
@@ -27,6 +29,7 @@ import org.eclipse.ocl.library.OCLType;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLPropertyImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLPropertyImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -61,6 +64,47 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	@Override
 	protected EClass eStaticClass() {
 		return LibraryPackage.Literals.OCL_PROPERTY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLType getContainer() {
+		if (eContainerFeatureID() != LibraryPackage.OCL_PROPERTY__CONTAINER) return null;
+		return (OCLType)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainer(OCLType newContainer, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainer, LibraryPackage.OCL_PROPERTY__CONTAINER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainer(OCLType newContainer) {
+		if (newContainer != eInternalContainer() || (eContainerFeatureID() != LibraryPackage.OCL_PROPERTY__CONTAINER && newContainer != null)) {
+			if (EcoreUtil.isAncestor(this, newContainer))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainer != null)
+				msgs = ((InternalEObject)newContainer).eInverseAdd(this, LibraryPackage.OCL_TYPE__PROPERTY, OCLType.class, msgs);
+			msgs = basicSetContainer(newContainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_PROPERTY__CONTAINER, newContainer, newContainer));
 	}
 
 	/**
@@ -116,8 +160,54 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LibraryPackage.OCL_PROPERTY__CONTAINER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainer((OCLType)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LibraryPackage.OCL_PROPERTY__CONTAINER:
+				return basicSetContainer(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case LibraryPackage.OCL_PROPERTY__CONTAINER:
+				return eInternalContainer().eInverseRemove(this, LibraryPackage.OCL_TYPE__PROPERTY, OCLType.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case LibraryPackage.OCL_PROPERTY__CONTAINER:
+				return getContainer();
 			case LibraryPackage.OCL_PROPERTY__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -133,6 +223,9 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case LibraryPackage.OCL_PROPERTY__CONTAINER:
+				setContainer((OCLType)newValue);
+				return;
 			case LibraryPackage.OCL_PROPERTY__TYPE:
 				setType((OCLType)newValue);
 				return;
@@ -148,6 +241,9 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case LibraryPackage.OCL_PROPERTY__CONTAINER:
+				setContainer((OCLType)null);
+				return;
 			case LibraryPackage.OCL_PROPERTY__TYPE:
 				setType((OCLType)null);
 				return;
@@ -163,10 +259,32 @@ public abstract class OCLPropertyImpl extends OCLElementImpl implements OCLPrope
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case LibraryPackage.OCL_PROPERTY__CONTAINER:
+				return getContainer() != null;
 			case LibraryPackage.OCL_PROPERTY__TYPE:
 				return type != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+		StringBuffer s = new StringBuffer();
+		if (getContainer() != null) {
+			appendName(s, getContainer());
+			s.append("::");
+		}
+		appendName(s, this);
+		s.append(" : ");
+		appendType(s, getType());
+		return s.toString();
 	}
 
 } //OCLPropertyImpl

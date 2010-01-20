@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLElementImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLElementImpl.java,v 1.1.2.4 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLElement;
+import org.eclipse.ocl.library.OCLGenericType;
+import org.eclipse.ocl.library.OCLType;
 
 /**
  * <!-- begin-user-doc -->
@@ -163,6 +165,28 @@ public abstract class OCLElementImpl extends EObjectImpl implements OCLElement {
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+
+	protected void appendName(StringBuffer s, Object object) {
+		OCLElement oclElement = object instanceof OCLElement ? (OCLElement)object : null;
+		String name = oclElement != null ? oclElement.getName() : null;
+		s.append(String.valueOf(name));
+	}
+
+	@SuppressWarnings("nls")
+	protected void appendType(StringBuffer s, Object object) {
+		OCLType oclType = object instanceof OCLType ? (OCLType)object : null;
+		appendName(s, oclType);
+		if (oclType instanceof OCLGenericType) {
+			s.append("<");
+			String prefix = "";
+			for (OCLType type : ((OCLGenericType)oclType).getParameter()) {
+				s.append(prefix);
+				appendType(s, type);
+				prefix = ", ";
+			}
+			s.append(">");
+		}
 	}
 
 } //OCLElementImpl

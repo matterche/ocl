@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLProperty.java,v 1.1.2.3 2010/01/20 09:09:33 ewillink Exp $
+ * $Id: OCLProperty.java,v 1.1.2.4 2010/01/20 16:57:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -19,6 +19,7 @@ import org.eclipse.ocl.expressions.PropertyCallExp;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLProperty#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -28,6 +29,34 @@ import org.eclipse.ocl.expressions.PropertyCallExp;
  * @generated
  */
 public interface OCLProperty extends OCLElement {
+	/**
+	 * Returns the value of the '<em><b>Container</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLType#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Container</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Container</em>' container reference.
+	 * @see #setContainer(OCLType)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLProperty_Container()
+	 * @see org.eclipse.ocl.library.OCLType#getProperty
+	 * @model opposite="property" transient="false"
+	 * @generated
+	 */
+	OCLType getContainer();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Container</em>' container reference.
+	 * @see #getContainer()
+	 * @generated
+	 */
+	void setContainer(OCLType value);
+
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->

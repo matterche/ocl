@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperation.java,v 1.1.2.4 2010/01/18 08:57:51 ewillink Exp $
+ * $Id: OCLOperation.java,v 1.1.2.5 2010/01/20 16:57:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -60,6 +60,7 @@ public interface OCLOperation extends OCLElement {
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLParameter}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLParameter#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameter</em>' containment reference list isn't clear,
@@ -68,7 +69,8 @@ public interface OCLOperation extends OCLElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameter</em>' containment reference list.
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_Parameter()
-	 * @model containment="true"
+	 * @see org.eclipse.ocl.library.OCLParameter#getContainer
+	 * @model opposite="container" containment="true"
 	 * @generated
 	 */
 	EList<OCLParameter> getParameter();

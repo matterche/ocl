@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: StringSizeOperation.java,v 1.1.2.1 2010/01/20 06:07:25 ewillink Exp $
+ * $Id: StringSizeOperation.java,v 1.1.2.2 2010/01/20 16:57:25 ewillink Exp $
  */
 package org.eclipse.ocl.library.string;
+
+import java.math.BigInteger;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
@@ -29,9 +31,9 @@ public class StringSizeOperation extends AbstractOperation
 {
 	@Override
 	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
-		if (isString(sourceVal)) {
-			return String.valueOf(sourceVal).length();
-		}			
-		return null;
+		if (!isString(sourceVal)) {
+			return null;
+		}
+		return BigInteger.valueOf(String.valueOf(sourceVal).length());
 	}
 }

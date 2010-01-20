@@ -1,14 +1,21 @@
 package org.eclipse.ocl.library;
 
+import java.util.LinkedHashMap;
+
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
  * @since 3.0
  */
 public interface OCLLibrary extends OCLStandardLibrary<OCLType> {
+
+	OCLOperation defineOperation(OCLType ownerType, String name, OCLType returnType, LinkedHashMap<String, OCLType> params, String stereotype, ExpressionInOCL<?, ?> specification);
+
+	OCLProperty defineProperty(OCLType ownerType, String name, OCLType valueType, String stereotype, ExpressionInOCL<?, ?> specification);
 
 	OCLType getBoolean();
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibrarySwitch.java,v 1.1.2.6 2010/01/20 09:09:31 ewillink Exp $
+ * $Id: LibrarySwitch.java,v 1.1.2.7 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -246,6 +246,15 @@ public class LibrarySwitch<T> {
 				OCLProperty oclProperty = (OCLProperty)theEObject;
 				T result = caseOCLProperty(oclProperty);
 				if (result == null) result = caseOCLElement(oclProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_TUPLE_TYPE: {
+				OCLTupleType oclTupleType = (OCLTupleType)theEObject;
+				T result = caseOCLTupleType(oclTupleType);
+				if (result == null) result = caseOCLType(oclTupleType);
+				if (result == null) result = caseOCLMetaModelElement(oclTupleType);
+				if (result == null) result = caseOCLElement(oclTupleType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -580,6 +589,21 @@ public class LibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLProperty(OCLProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Tuple Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Tuple Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLTupleType(OCLTupleType object) {
 		return null;
 	}
 

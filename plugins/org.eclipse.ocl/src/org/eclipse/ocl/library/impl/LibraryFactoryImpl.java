@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.7 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.8 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.LibraryProperty;
+import org.eclipse.ocl.library.OCLAnyType;
 import org.eclipse.ocl.library.OCLConstraintOperation;
 import org.eclipse.ocl.library.OCLConstraintProperty;
 import org.eclipse.ocl.library.OCLGenericType;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.OCLVoidType;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,6 +89,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 			case LibraryPackage.OCL_LIBRARY_PROPERTY: return createOCLLibraryProperty();
 			case LibraryPackage.OCL_PACKAGE: return createOCLPackage();
 			case LibraryPackage.OCL_PARAMETER: return createOCLParameter();
+			case LibraryPackage.OCL_TUPLE_TYPE: return createOCLTupleType();
 			case LibraryPackage.OCL_TYPE: return createOCLType();
 			case LibraryPackage.OCL_VOID_TYPE: return createOCLVoidType();
 			default:
@@ -106,6 +109,8 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 				return createExceptionFromString(eDataType, initialValue);
 			case LibraryPackage.EVALUATION_VISITOR:
 				return createEvaluationVisitorFromString(eDataType, initialValue);
+			case LibraryPackage.EXPRESSION_IN_OCL:
+				return createExpressionInOCLFromString(eDataType, initialValue);
 			case LibraryPackage.OPERATION_CALL_EXP:
 				return createOperationCallExpFromString(eDataType, initialValue);
 			case LibraryPackage.PROPERTY_CALL_EXP:
@@ -127,6 +132,8 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 				return convertExceptionToString(eDataType, instanceValue);
 			case LibraryPackage.EVALUATION_VISITOR:
 				return convertEvaluationVisitorToString(eDataType, instanceValue);
+			case LibraryPackage.EXPRESSION_IN_OCL:
+				return convertExpressionInOCLToString(eDataType, instanceValue);
 			case LibraryPackage.OPERATION_CALL_EXP:
 				return convertOperationCallExpToString(eDataType, instanceValue);
 			case LibraryPackage.PROPERTY_CALL_EXP:
@@ -251,6 +258,16 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OCLTupleType createOCLTupleType() {
+		OCLTupleTypeImpl oclTupleType = new OCLTupleTypeImpl();
+		return oclTupleType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OCLType createOCLType() {
 		OCLTypeImpl oclType = new OCLTypeImpl();
 		return oclType;
@@ -282,6 +299,25 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 */
 	public String convertEvaluationVisitorToString(EDataType eDataType, Object instanceValue) {
 		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public ExpressionInOCL createExpressionInOCLFromString(EDataType eDataType, String initialValue) {
+		return (ExpressionInOCL)super.createFromString(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertExpressionInOCLToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(instanceValue);
 	}
 
 	/**

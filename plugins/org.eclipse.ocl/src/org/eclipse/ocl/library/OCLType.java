@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLType.java,v 1.1.2.3 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLType.java,v 1.1.2.4 2010/01/20 16:57:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -66,6 +66,7 @@ public interface OCLType extends OCLElement {
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLProperty}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' containment reference list isn't clear,
@@ -74,7 +75,8 @@ public interface OCLType extends OCLElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property</em>' containment reference list.
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLType_Property()
-	 * @model containment="true" ordered="false"
+	 * @see org.eclipse.ocl.library.OCLProperty#getContainer
+	 * @model opposite="container" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<OCLProperty> getProperty();

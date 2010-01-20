@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLLibrary.java,v 1.1.2.4 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: AbstractOCLLibrary.java,v 1.1.2.5 2010/01/20 16:57:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -22,10 +22,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -57,6 +59,7 @@ import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.Bag;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
@@ -106,6 +109,35 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
     
 	public AbstractOCLLibrary(String libraryURI) {
 		init(libraryURI);
+	}
+
+	public OCLConstraintOperation defineOperation(OCLType ownerType, String name,
+			OCLType returnType, LinkedHashMap<String, OCLType> params, String stereotype,
+			ExpressionInOCL<?, ?> specification) {
+		OCLConstraintOperation operation = LibraryFactory.eINSTANCE.createOCLConstraintOperation();
+		operation.setName(name);
+		operation.setType(returnType);
+		for (Entry<String, OCLType> entry : params.entrySet()) {
+			OCLParameter parameter = LibraryFactory.eINSTANCE.createOCLParameter();
+			parameter.setName(entry.getKey());
+			parameter.setType(entry.getValue());
+			operation.getParameter().add(parameter);
+		}
+		operation.setStereotype(stereotype);
+		operation.setSpecification(specification);
+		ownerType.getOperation().add(operation);
+		return operation;
+	}
+
+	public OCLConstraintProperty defineProperty(OCLType ownerType, String name,
+			OCLType valueType, String stereotype, ExpressionInOCL<?, ?> specification) {
+		OCLConstraintProperty property = LibraryFactory.eINSTANCE.createOCLConstraintProperty();
+		property.setName(name);
+		property.setType(valueType);
+		property.setStereotype(stereotype);
+		property.setSpecification(specification);
+		ownerType.getProperty().add(property);
+		return property;
 	}
 	
 	/* (non-Javadoc)
@@ -477,7 +509,9 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 				}
 			}
 			else if (object instanceof TupleType<?, ?>) {
-// FIXME				return getTuple();
+				if (object instanceof OCLTupleType) {
+					return (OCLTupleType) object;
+				}
 			}
 		}
 		return null;

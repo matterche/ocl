@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeImpl.java,v 1.1.2.5 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLTypeImpl.java,v 1.1.2.6 2010/01/20 16:57:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -124,7 +123,7 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	 */
 	public EList<OCLProperty> getProperty() {
 		if (property == null) {
-			property = new EObjectContainmentEList<OCLProperty>(OCLProperty.class, this, LibraryPackage.OCL_TYPE__PROPERTY);
+			property = new EObjectContainmentWithInverseEList<OCLProperty>(OCLProperty.class, this, LibraryPackage.OCL_TYPE__PROPERTY, LibraryPackage.OCL_PROPERTY__CONTAINER);
 		}
 		return property;
 	}
@@ -261,6 +260,8 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 		switch (featureID) {
 			case LibraryPackage.OCL_TYPE__OPERATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperation()).basicAdd(otherEnd, msgs);
+			case LibraryPackage.OCL_TYPE__PROPERTY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProperty()).basicAdd(otherEnd, msgs);
 			case LibraryPackage.OCL_TYPE__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

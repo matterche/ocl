@@ -27,8 +27,16 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLAnyType" eSuperTypes="#//library/OCLType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OCLClassifier" abstract="true" eSuperTypes="#//library/OCLType #//library/OCLMetaModelElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="OCLConstraintOperation" eSuperTypes="#//library/OCLOperation"/>
-    <eClassifiers xsi:type="ecore:EClass" name="OCLConstraintProperty" eSuperTypes="#//library/OCLProperty"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLConstraintOperation" eSuperTypes="#//library/OCLOperation">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" eType="#//library/ExpressionInOCL"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLConstraintProperty" eSuperTypes="#//library/OCLProperty">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" eType="#//library/ExpressionInOCL"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLDataType" abstract="true" eSuperTypes="#//library/OCLType #//library/OCLMetaModelElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="OCLElement" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
@@ -91,7 +99,7 @@
       <eOperations name="getOperationCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
-          eType="#//library/OCLParameter" containment="true"/>
+          eType="#//library/OCLParameter" containment="true" eOpposite="#//library/OCLParameter/container"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="#//library/OCLType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/OCLType"
@@ -126,6 +134,8 @@
           upperBound="-1" eType="#//library/OCLType" containment="true" eOpposite="#//library/OCLType/container"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLParameter" eSuperTypes="#//library/OCLElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/OCLOperation"
+          eOpposite="#//library/OCLOperation/parameter"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="#//library/OCLType"/>
     </eClassifiers>
@@ -136,9 +146,12 @@
         <eParameters name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
         <eParameters name="propertyCall" eType="#//library/PropertyCallExp"/>
       </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/OCLType"
+          eOpposite="#//library/OCLType/property"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="#//library/OCLType"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLTupleType" eSuperTypes="#//library/OCLType #//library/OCLMetaModelElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="OCLType" eSuperTypes="#//library/OCLElement">
       <eOperations name="conformsTo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="type" eType="#//library/OCLType"/>
@@ -155,13 +168,14 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
           upperBound="-1" eType="#//library/OCLOperation" containment="true" eOpposite="#//library/OCLOperation/container"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="property" ordered="false"
-          upperBound="-1" eType="#//library/OCLProperty" containment="true"/>
+          upperBound="-1" eType="#//library/OCLProperty" containment="true" eOpposite="#//library/OCLProperty/container"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/OCLPackage"
           eOpposite="#//library/OCLPackage/type"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLVoidType" eSuperTypes="#//library/OCLType"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
     <eClassifiers xsi:type="ecore:EDataType" name="EvaluationVisitor" instanceTypeName="org.eclipse.ocl.EvaluationVisitor&lt;?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="ExpressionInOCL" instanceTypeName="org.eclipse.ocl.utilities.ExpressionInOCL&lt;?, ?>"/>
     <eClassifiers xsi:type="ecore:EDataType" name="OperationCallExp" instanceTypeName="org.eclipse.ocl.expressions.OperationCallExp&lt;?, ?>"/>
     <eClassifiers xsi:type="ecore:EDataType" name="PropertyCallExp" instanceTypeName="org.eclipse.ocl.expressions.PropertyCallExp&lt;?, ?>"/>
   </eSubpackages>

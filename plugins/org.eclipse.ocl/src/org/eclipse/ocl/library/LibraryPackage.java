@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackage.java,v 1.1.2.6 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: LibraryPackage.java,v 1.1.2.7 2010/01/20 16:57:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -187,7 +187,7 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLType()
 	 * @generated
 	 */
-	int OCL_TYPE = 21;
+	int OCL_TYPE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLGenericTypeImpl <em>OCL Generic Type</em>}' class.
@@ -217,7 +217,7 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLVoidType()
 	 * @generated
 	 */
-	int OCL_VOID_TYPE = 22;
+	int OCL_VOID_TYPE = 23;
 
 	/**
 	 * The meta object id for the '<em>Evaluation Visitor</em>' data type.
@@ -227,7 +227,17 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getEvaluationVisitor()
 	 * @generated
 	 */
-	int EVALUATION_VISITOR = 24;
+	int EVALUATION_VISITOR = 25;
+
+	/**
+	 * The meta object id for the '<em>Expression In OCL</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.utilities.ExpressionInOCL
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getExpressionInOCL()
+	 * @generated
+	 */
+	int EXPRESSION_IN_OCL = 26;
 
 	/**
 	 * The meta object id for the '<em>Operation Call Exp</em>' data type.
@@ -237,7 +247,7 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 25;
+	int OPERATION_CALL_EXP = 27;
 
 	/**
 	 * The meta object id for the '<em>Property Call Exp</em>' data type.
@@ -247,7 +257,7 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 26;
+	int PROPERTY_CALL_EXP = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.LibraryOperationImpl <em>Operation</em>}' class.
@@ -645,13 +655,31 @@ public interface LibraryPackage extends EPackage {
 	int OCL_CONSTRAINT_OPERATION__CONTAINER = OCL_OPERATION__CONTAINER;
 
 	/**
+	 * The feature id for the '<em><b>Specification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_OPERATION__SPECIFICATION = OCL_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_OPERATION__STEREOTYPE = OCL_OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>OCL Constraint Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_CONSTRAINT_OPERATION_FEATURE_COUNT = OCL_OPERATION_FEATURE_COUNT + 0;
+	int OCL_CONSTRAINT_OPERATION_FEATURE_COUNT = OCL_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -663,13 +691,22 @@ public interface LibraryPackage extends EPackage {
 	int OCL_PROPERTY__NAME = OCL_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PROPERTY__CONTAINER = OCL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_PROPERTY__TYPE = OCL_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_PROPERTY__TYPE = OCL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>OCL Property</em>' class.
@@ -678,7 +715,7 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_PROPERTY_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 1;
+	int OCL_PROPERTY_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -690,6 +727,15 @@ public interface LibraryPackage extends EPackage {
 	int OCL_CONSTRAINT_PROPERTY__NAME = OCL_PROPERTY__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_PROPERTY__CONTAINER = OCL_PROPERTY__CONTAINER;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -699,13 +745,31 @@ public interface LibraryPackage extends EPackage {
 	int OCL_CONSTRAINT_PROPERTY__TYPE = OCL_PROPERTY__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Specification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_PROPERTY__SPECIFICATION = OCL_PROPERTY_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT_PROPERTY__STEREOTYPE = OCL_PROPERTY_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>OCL Constraint Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_CONSTRAINT_PROPERTY_FEATURE_COUNT = OCL_PROPERTY_FEATURE_COUNT + 0;
+	int OCL_CONSTRAINT_PROPERTY_FEATURE_COUNT = OCL_PROPERTY_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1077,6 +1141,15 @@ public interface LibraryPackage extends EPackage {
 	int OCL_LIBRARY_PROPERTY__NAME = OCL_PROPERTY__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_LIBRARY_PROPERTY__CONTAINER = OCL_PROPERTY__CONTAINER;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1213,6 +1286,15 @@ public interface LibraryPackage extends EPackage {
 	int OCL_META_MODEL_PROPERTY__NAME = OCL_PROPERTY__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_META_MODEL_PROPERTY__CONTAINER = OCL_PROPERTY__CONTAINER;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1285,13 +1367,22 @@ public interface LibraryPackage extends EPackage {
 	int OCL_PARAMETER__NAME = OCL_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PARAMETER__CONTAINER = OCL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_PARAMETER__TYPE = OCL_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_PARAMETER__TYPE = OCL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>OCL Parameter</em>' class.
@@ -1300,7 +1391,80 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_PARAMETER_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 1;
+	int OCL_PARAMETER_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.impl.OCLTupleTypeImpl <em>OCL Tuple Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.impl.OCLTupleTypeImpl
+	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLTupleType()
+	 * @generated
+	 */
+	int OCL_TUPLE_TYPE = 21;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TUPLE_TYPE__NAME = OCL_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TUPLE_TYPE__CONFORMS = OCL_TYPE__CONFORMS;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TUPLE_TYPE__OPERATION = OCL_TYPE__OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TUPLE_TYPE__PROPERTY = OCL_TYPE__PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TUPLE_TYPE__CONTAINER = OCL_TYPE__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TUPLE_TYPE__META_MODEL_ELEMENT = OCL_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>OCL Tuple Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TUPLE_TYPE_FEATURE_COUNT = OCL_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1364,7 +1528,7 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 23;
+	int EXCEPTION = 24;
 
 
 	/**
@@ -1378,6 +1542,28 @@ public interface LibraryPackage extends EPackage {
 	EClass getOCLConstraintOperation();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.library.OCLConstraintOperation#getSpecification <em>Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Specification</em>'.
+	 * @see org.eclipse.ocl.library.OCLConstraintOperation#getSpecification()
+	 * @see #getOCLConstraintOperation()
+	 * @generated
+	 */
+	EAttribute getOCLConstraintOperation_Specification();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.library.OCLConstraintOperation#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stereotype</em>'.
+	 * @see org.eclipse.ocl.library.OCLConstraintOperation#getStereotype()
+	 * @see #getOCLConstraintOperation()
+	 * @generated
+	 */
+	EAttribute getOCLConstraintOperation_Stereotype();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.library.OCLConstraintProperty <em>OCL Constraint Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1386,6 +1572,28 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOCLConstraintProperty();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.library.OCLConstraintProperty#getSpecification <em>Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Specification</em>'.
+	 * @see org.eclipse.ocl.library.OCLConstraintProperty#getSpecification()
+	 * @see #getOCLConstraintProperty()
+	 * @generated
+	 */
+	EAttribute getOCLConstraintProperty_Specification();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.library.OCLConstraintProperty#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stereotype</em>'.
+	 * @see org.eclipse.ocl.library.OCLConstraintProperty#getStereotype()
+	 * @see #getOCLConstraintProperty()
+	 * @generated
+	 */
+	EAttribute getOCLConstraintProperty_Stereotype();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.library.OCLDataType <em>OCL Data Type</em>}'.
@@ -1693,6 +1901,17 @@ public interface LibraryPackage extends EPackage {
 	EClass getOCLParameter();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.library.OCLParameter#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Container</em>'.
+	 * @see org.eclipse.ocl.library.OCLParameter#getContainer()
+	 * @see #getOCLParameter()
+	 * @generated
+	 */
+	EReference getOCLParameter_Container();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.library.OCLParameter#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1714,6 +1933,17 @@ public interface LibraryPackage extends EPackage {
 	EClass getOCLProperty();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Container</em>'.
+	 * @see org.eclipse.ocl.library.OCLProperty#getContainer()
+	 * @see #getOCLProperty()
+	 * @generated
+	 */
+	EReference getOCLProperty_Container();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.library.OCLProperty#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1723,6 +1953,16 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOCLProperty_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.library.OCLTupleType <em>OCL Tuple Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OCL Tuple Type</em>'.
+	 * @see org.eclipse.ocl.library.OCLTupleType
+	 * @generated
+	 */
+	EClass getOCLTupleType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.library.OCLType <em>OCL Type</em>}'.
@@ -1798,6 +2038,17 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getEvaluationVisitor();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.utilities.ExpressionInOCL <em>Expression In OCL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Expression In OCL</em>'.
+	 * @see org.eclipse.ocl.utilities.ExpressionInOCL
+	 * @model instanceClass="org.eclipse.ocl.utilities.ExpressionInOCL<?, ?>"
+	 * @generated
+	 */
+	EDataType getExpressionInOCL();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.ocl.expressions.OperationCallExp <em>Operation Call Exp</em>}'.
@@ -1927,6 +2178,22 @@ public interface LibraryPackage extends EPackage {
 		EClass OCL_CONSTRAINT_OPERATION = eINSTANCE.getOCLConstraintOperation();
 
 		/**
+		 * The meta object literal for the '<em><b>Specification</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_CONSTRAINT_OPERATION__SPECIFICATION = eINSTANCE.getOCLConstraintOperation_Specification();
+
+		/**
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_CONSTRAINT_OPERATION__STEREOTYPE = eINSTANCE.getOCLConstraintOperation_Stereotype();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.library.impl.OCLConstraintPropertyImpl <em>OCL Constraint Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1935,6 +2202,22 @@ public interface LibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OCL_CONSTRAINT_PROPERTY = eINSTANCE.getOCLConstraintProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Specification</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_CONSTRAINT_PROPERTY__SPECIFICATION = eINSTANCE.getOCLConstraintProperty_Specification();
+
+		/**
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_CONSTRAINT_PROPERTY__STEREOTYPE = eINSTANCE.getOCLConstraintProperty_Stereotype();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.library.impl.OCLDataTypeImpl <em>OCL Data Type</em>}' class.
@@ -2197,6 +2480,14 @@ public interface LibraryPackage extends EPackage {
 		EClass OCL_PARAMETER = eINSTANCE.getOCLParameter();
 
 		/**
+		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_PARAMETER__CONTAINER = eINSTANCE.getOCLParameter_Container();
+
+		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2215,12 +2506,30 @@ public interface LibraryPackage extends EPackage {
 		EClass OCL_PROPERTY = eINSTANCE.getOCLProperty();
 
 		/**
+		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_PROPERTY__CONTAINER = eINSTANCE.getOCLProperty_Container();
+
+		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference OCL_PROPERTY__TYPE = eINSTANCE.getOCLProperty_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.library.impl.OCLTupleTypeImpl <em>OCL Tuple Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.library.impl.OCLTupleTypeImpl
+		 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getOCLTupleType()
+		 * @generated
+		 */
+		EClass OCL_TUPLE_TYPE = eINSTANCE.getOCLTupleType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.library.impl.OCLTypeImpl <em>OCL Type</em>}' class.
@@ -2283,6 +2592,16 @@ public interface LibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType EVALUATION_VISITOR = eINSTANCE.getEvaluationVisitor();
+
+		/**
+		 * The meta object literal for the '<em>Expression In OCL</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.utilities.ExpressionInOCL
+		 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getExpressionInOCL()
+		 * @generated
+		 */
+		EDataType EXPRESSION_IN_OCL = eINSTANCE.getExpressionInOCL();
 
 		/**
 		 * The meta object literal for the '<em>Operation Call Exp</em>' data type.

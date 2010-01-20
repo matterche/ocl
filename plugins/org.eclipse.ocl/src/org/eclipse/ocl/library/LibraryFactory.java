@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.6 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.7 2010/01/20 16:57:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -124,6 +124,15 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLParameter createOCLParameter();
+
+	/**
+	 * Returns a new object of class '<em>OCL Tuple Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Tuple Type</em>'.
+	 * @generated
+	 */
+	OCLTupleType createOCLTupleType();
 
 	/**
 	 * Returns a new object of class '<em>OCL Type</em>'.
