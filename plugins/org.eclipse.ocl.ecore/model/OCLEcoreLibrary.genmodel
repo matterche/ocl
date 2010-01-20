@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.ecore/src"
+    modelPluginID="org.eclipse.ocl.ecore" modelName="EcoreLibrary" nonNLSMarkers="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.ocl/model/OCLLibrary.genmodel#//ocl">
+  <foreignModel>OCLEcoreLibrary.ecore</foreignModel>
+  <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
+      ecorePackage="OCLEcoreLibrary.ecore#/">
+    <nestedGenPackages prefix="OCLEcore" disposableProviderFactory="true" ecorePackage="OCLEcoreLibrary.ecore#//ecore">
+      <nestedGenPackages prefix="EcoreLibrary" disposableProviderFactory="true" fileExtensions=""
+          ecorePackage="OCLEcoreLibrary.ecore#//ecore/library">
+        <genClasses ecoreClass="OCLEcoreLibrary.ecore#//ecore/library/EcoreOCLClassifier"/>
+        <genClasses ecoreClass="OCLEcoreLibrary.ecore#//ecore/library/EcoreOCLDataType"/>
+        <genClasses ecoreClass="OCLEcoreLibrary.ecore#//ecore/library/EcoreOCLEnumeration"/>
+        <genClasses ecoreClass="OCLEcoreLibrary.ecore#//ecore/library/EcoreOCLEnumerationLiteral"/>
+        <genClasses ecoreClass="OCLEcoreLibrary.ecore#//ecore/library/EcoreOCLOperation"/>
+        <genClasses ecoreClass="OCLEcoreLibrary.ecore#//ecore/library/EcoreOCLProperty"/>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

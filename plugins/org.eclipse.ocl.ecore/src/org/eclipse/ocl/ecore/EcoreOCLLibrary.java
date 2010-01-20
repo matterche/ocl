@@ -21,8 +21,16 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.ecore.library.EcoreLibraryFactory;
 import org.eclipse.ocl.library.CompatibilityOCLLibrary;
+import org.eclipse.ocl.library.OCLClassifier;
+import org.eclipse.ocl.library.OCLDataType;
+import org.eclipse.ocl.library.OCLEnumeration;
+import org.eclipse.ocl.library.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.OCLMetaModelOperation;
+import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLOperation;
+import org.eclipse.ocl.library.OCLProperty;
 import org.eclipse.ocl.library.OCLType;
 
 /**
@@ -55,6 +63,36 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 	@Override
 	protected EClassifier asType(Object object) {
 		return (object instanceof EClassifier) ? (EClassifier)object : null;
+	}
+
+	@Override
+	protected OCLClassifier createOCLClassifier() {
+		return EcoreLibraryFactory.eINSTANCE.createEcoreOCLClassifier();
+	}
+
+	@Override
+	protected OCLDataType createOCLDataType() {
+		return EcoreLibraryFactory.eINSTANCE.createEcoreOCLDataType();
+	}
+
+	@Override
+	protected OCLEnumeration createOCLEnumeration() {
+		return EcoreLibraryFactory.eINSTANCE.createEcoreOCLEnumeration();
+	}
+
+	@Override
+	protected OCLEnumerationLiteral createOCLEnumerationLiteral() {
+		return EcoreLibraryFactory.eINSTANCE.createEcoreOCLEnumerationLiteral();
+	}
+
+	@Override
+	protected OCLMetaModelOperation createOCLMetaModelOperation() {
+		return EcoreLibraryFactory.eINSTANCE.createEcoreOCLOperation();
+	}
+
+	@Override
+	protected OCLMetaModelProperty createOCLMetaModelProperty() {
+		return EcoreLibraryFactory.eINSTANCE.createEcoreOCLProperty();
 	}
 
 	@Override
@@ -136,5 +174,16 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 			parameterTypes.add(getOCLTypeOfType(parameter.getEType()));
 		}
 		return thisType.getOperation(operationName, parameterTypes);
+	}
+
+	protected OCLProperty resolveProperty(OCLType dynamicType, EStructuralFeature ecoreProperty) {
+		EClass classifier = ecoreProperty.getEContainingClass();
+		EClassifier realClassifier = OCLStandardLibraryImpl.getRealClassifier(classifier);
+		if (realClassifier == null) {
+			realClassifier = classifier;
+		}
+		OCLType thisType = getOCLTypeOfType(realClassifier);
+		String propertyName = ecoreProperty.getName();
+		return thisType.getProperty(propertyName);
 	}
 }

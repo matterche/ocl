@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreFactoryImpl.java,v 1.9.2.1 2010/01/15 07:40:09 ewillink Exp $
+ * $Id: EcoreFactoryImpl.java,v 1.9.2.2 2010/01/20 09:09:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.ecore.*;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.BagType;

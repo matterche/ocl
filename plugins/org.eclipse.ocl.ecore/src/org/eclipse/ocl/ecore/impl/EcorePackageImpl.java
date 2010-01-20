@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.13.2.3 2010/01/15 17:27:21 ewillink Exp $
+ * $Id: EcorePackageImpl.java,v 1.13.2.4 2010/01/20 09:09:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -80,7 +80,6 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.VoidType;
 import org.eclipse.ocl.ecore.util.EcoreValidator;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
