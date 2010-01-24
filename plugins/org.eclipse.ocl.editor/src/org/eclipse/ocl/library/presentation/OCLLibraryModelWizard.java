@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryModelWizard.java,v 1.1.2.2 2010/01/03 22:50:36 ewillink Exp $
+ * $Id: OCLLibraryModelWizard.java,v 1.1.2.1 2010/01/24 07:40:19 ewillink Exp $
  */
 package org.eclipse.ocl.library.presentation;
 
@@ -35,7 +35,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.provider.OCLLibraryEditPlugin;
+import org.eclipse.ocl.library.provider.LibraryEditPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -58,7 +58,7 @@ import org.eclipse.ui.IWorkbench;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LibraryModelWizard extends Wizard implements INewWizard {
+public class OCLLibraryModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_LibraryEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_OCLLibraryEditorFilenameExtensions").split("\\s*,\\s*"))); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -75,7 +75,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		OCLLibraryEditorPlugin.INSTANCE.getString("_UI_LibraryEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		OCLLibraryEditorPlugin.INSTANCE.getString("_UI_OCLLibraryEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	/**
 	 * This caches an instance of the model package.
@@ -83,7 +83,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibraryPackage libraryPackage = LibraryPackage.eINSTANCE;
+	protected LibraryPackage oclLibraryPackage = LibraryPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -91,7 +91,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibraryFactory libraryFactory = libraryPackage.getLibraryFactory();
+	protected LibraryFactory oclLibraryFactory = oclLibraryPackage.getLibraryFactory();
 
 	/**
 	 * This is the initial object creation page.
@@ -99,7 +99,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibraryModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected OCLLibraryModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -135,7 +135,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(OCLLibraryEditorPlugin.INSTANCE.getImage("full/wizban/NewLibrary"))); //$NON-NLS-1$
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(OCLLibraryEditorPlugin.INSTANCE.getImage("full/wizban/NewOCLLibrary"))); //$NON-NLS-1$
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : libraryPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : oclLibraryPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -167,8 +167,8 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)libraryPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = libraryFactory.create(eClass);
+		EClass eClass = (EClass)oclLibraryPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = oclLibraryFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -246,7 +246,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class LibraryModelWizardInitialObjectCreationPage extends WizardPage {
+	public class OCLLibraryModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -281,7 +281,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public LibraryModelWizardInitialObjectCreationPage(String pageId) {
+		public OCLLibraryModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -345,7 +345,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 				(new SelectionAdapter() {
 					 @Override
 					 public void widgetSelected(SelectionEvent event) {
-						 String[] filters = LibraryEditor.FILE_EXTENSION_FILTERS.toArray(new String[LibraryEditor.FILE_EXTENSION_FILTERS.size()]);
+						 String[] filters = OCLLibraryEditor.FILE_EXTENSION_FILTERS.toArray(new String[OCLLibraryEditor.FILE_EXTENSION_FILTERS.size()]);
 						 String[] files = OCLLibraryEditorAdvisor.openFilePathDialog(getShell(), SWT.SAVE, filters);
 						 if (files.length > 0) {
 							 fileField.setText(files[0]);
@@ -505,7 +505,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 				encodingField.clearSelection();
 				fileField.selectAll();
 				fileField.setFocus();
-		}
+		}		
 
 		/**
 		 * Returns the label for the specified type name.
@@ -515,7 +515,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 */
 		protected String getLabel(String typeName) {
 			try {
-				return OCLLibraryEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
+				return LibraryEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			catch(MissingResourceException mre) {
 				OCLLibraryEditorPlugin.INSTANCE.log(mre);
@@ -548,8 +548,8 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 */
 		@Override
 	public void addPages() {
-		initialObjectCreationPage = new LibraryModelWizardInitialObjectCreationPage("Whatever2"); //$NON-NLS-1$
-		initialObjectCreationPage.setTitle(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_LibraryModelWizard_label")); //$NON-NLS-1$
+		initialObjectCreationPage = new OCLLibraryModelWizardInitialObjectCreationPage("Whatever2"); //$NON-NLS-1$
+		initialObjectCreationPage.setTitle(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_OCLLibraryModelWizard_label")); //$NON-NLS-1$
 		initialObjectCreationPage.setDescription(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description")); //$NON-NLS-1$
 		addPage(initialObjectCreationPage);
 	}

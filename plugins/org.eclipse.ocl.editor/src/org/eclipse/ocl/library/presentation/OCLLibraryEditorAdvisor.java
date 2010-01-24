@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryEditorAdvisor.java,v 1.1.2.3 2010/01/20 09:09:34 ewillink Exp $
+ * $Id: OCLLibraryEditorAdvisor.java,v 1.1.2.4 2010/01/24 07:40:20 ewillink Exp $
  */
 package org.eclipse.ocl.library.presentation;
 
@@ -14,6 +14,7 @@ import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.ocl.library.presentation.OCLLibraryEditorPlugin;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.action.GroupMarker;
@@ -61,7 +62,7 @@ public final class OCLLibraryEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final String[] FILE_EXTENSION_FILTERS = LibraryEditor.FILE_EXTENSION_FILTERS.toArray(new String[0]); 
+	private static final String[] FILE_EXTENSION_FILTERS = OCLLibraryEditor.FILE_EXTENSION_FILTERS.toArray(new String[0]); 
 
 	/**
 	 * This looks up a string in the plugin's plugin.properties file.

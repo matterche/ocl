@@ -1,15 +1,24 @@
 /**
  * <copyright>
+ *
+ * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
  * </copyright>
  *
- * $Id: LibraryActionBarContributor.java,v 1.1.2.2 2010/01/03 22:50:36 ewillink Exp $
+ * $Id: ExpressionsActionBarContributor.java,v 1.1.2.1 2010/01/24 07:40:21 ewillink Exp $
  */
-package org.eclipse.ocl.library.presentation;
+package org.eclipse.ocl.expressions.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -39,43 +48,21 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 
-import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.ocl.editor.OCLEditorPlugin;
+
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * This is the action bar contributor for the Library model editor.
+ * This is the action bar contributor for the Expressions model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LibraryActionBarContributor
-	extends EditingDomainActionBarContributor
-	implements ISelectionChangedListener {
-	/**
-	 * Action to create objects from the Library model.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class NewAction extends WorkbenchWindowActionDelegate {
-		/**
-		 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public void run(IAction action) {
-			LibraryModelWizard wizard = new LibraryModelWizard();
-			wizard.init(getWindow().getWorkbench(), StructuredSelection.EMPTY);
-			WizardDialog wizardDialog = new WizardDialog(getWindow().getShell(), wizard);
-			wizardDialog.open();
-		}
-	}
-
+public class ExpressionsActionBarContributor extends
+		EditingDomainActionBarContributor implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 * <!-- begin-user-doc -->
@@ -98,19 +85,19 @@ public class LibraryActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction =
-		new Action(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
-		{
-			@Override
-			public void run() {
-				try {
-					getPage().showView("org.eclipse.ui.views.PropertySheet"); //$NON-NLS-1$
-				}
-				catch (PartInitException exception) {
-					OCLLibraryEditorPlugin.INSTANCE.log(exception);
-				}
+	protected IAction showPropertiesViewAction = new Action(
+			OCLEditorPlugin.INSTANCE
+					.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
+	{
+		@Override
+		public void run() {
+			try {
+				getPage().showView("org.eclipse.ui.views.PropertySheet"); //$NON-NLS-1$
+			} catch (PartInitException exception) {
+				OCLEditorPlugin.INSTANCE.log(exception);
 			}
-		};
+		}
+	};
 
 	/**
 	 * This action refreshes the viewer of the current editor if the editor
@@ -119,24 +106,25 @@ public class LibraryActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IAction refreshViewerAction =
-		new Action(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) //$NON-NLS-1$
-		{
-			@Override
-			public boolean isEnabled() {
-				return activeEditorPart instanceof IViewerProvider;
-			}
+	protected IAction refreshViewerAction = new Action(OCLEditorPlugin.INSTANCE
+			.getString("_UI_RefreshViewer_menu_item")) //$NON-NLS-1$
+	{
+		@Override
+		public boolean isEnabled() {
+			return activeEditorPart instanceof IViewerProvider;
+		}
 
-			@Override
-			public void run() {
-				if (activeEditorPart instanceof IViewerProvider) {
-					Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
-					if (viewer != null) {
-						viewer.refresh();
-					}
+		@Override
+		public void run() {
+			if (activeEditorPart instanceof IViewerProvider) {
+				Viewer viewer = ((IViewerProvider) activeEditorPart)
+						.getViewer();
+				if (viewer != null) {
+					viewer.refresh();
 				}
 			}
-		};
+		}
+	};
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
@@ -178,7 +166,7 @@ public class LibraryActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibraryActionBarContributor() {
+	public ExpressionsActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
@@ -193,8 +181,8 @@ public class LibraryActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		toolBarManager.add(new Separator("library-settings")); //$NON-NLS-1$
-		toolBarManager.add(new Separator("library-additions")); //$NON-NLS-1$
+		toolBarManager.add(new Separator("expressions-settings")); //$NON-NLS-1$
+		toolBarManager.add(new Separator("expressions-additions")); //$NON-NLS-1$
 	}
 
 	/**
@@ -208,7 +196,9 @@ public class LibraryActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_LibraryEditor_menu"), "org.eclipse.ocl.libraryMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
+		IMenuManager submenuManager = new MenuManager(
+				OCLEditorPlugin.INSTANCE
+						.getString("_UI_ExpressionsEditor_menu"), "org.eclipse.ocl.expressionsMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
 		menuManager.insertAfter("additions", submenuManager); //$NON-NLS-1$
 		submenuManager.add(new Separator("settings")); //$NON-NLS-1$
 		submenuManager.add(new Separator("actions")); //$NON-NLS-1$
@@ -217,22 +207,23 @@ public class LibraryActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
+		createChildMenuManager = new MenuManager(OCLEditorPlugin.INSTANCE
+				.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
 		submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
+		createSiblingMenuManager = new MenuManager(OCLEditorPlugin.INSTANCE
+				.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
 		submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
 
 		// Force an update because Eclipse hides empty menus now.
 		//
-		submenuManager.addMenuListener
-			(new IMenuListener() {
-				 public void menuAboutToShow(IMenuManager menuManager) {
-					 menuManager.updateAll(true);
-				 }
-			 });
+		submenuManager.addMenuListener(new IMenuListener() {
+			public void menuAboutToShow(IMenuManager menuManager) {
+				menuManager.updateAll(true);
+			}
+		});
 
 		addGlobalActions(submenuManager);
 	}
@@ -255,15 +246,15 @@ public class LibraryActionBarContributor
 		}
 		if (part == null) {
 			selectionProvider = null;
-		}
-		else {
+		} else {
 			selectionProvider = part.getSite().getSelectionProvider();
 			selectionProvider.addSelectionChangedListener(this);
 
 			// Fake a selection changed event to update the menus.
 			//
 			if (selectionProvider.getSelection() != null) {
-				selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
+				selectionChanged(new SelectionChangedEvent(selectionProvider,
+						selectionProvider.getSelection()));
 			}
 		}
 	}
@@ -292,10 +283,13 @@ public class LibraryActionBarContributor
 		Collection<?> newSiblingDescriptors = null;
 
 		ISelection selection = event.getSelection();
-		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
-			Object object = ((IStructuredSelection)selection).getFirstElement();
+		if (selection instanceof IStructuredSelection
+				&& ((IStructuredSelection) selection).size() == 1) {
+			Object object = ((IStructuredSelection) selection)
+					.getFirstElement();
 
-			EditingDomain domain = ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
+			EditingDomain domain = ((IEditingDomainProvider) activeEditorPart)
+					.getEditingDomain();
 
 			newChildDescriptors = domain.getNewChildDescriptors(object, null);
 			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
@@ -303,15 +297,18 @@ public class LibraryActionBarContributor
 
 		// Generate actions for selection; populate and redraw the menus.
 		//
-		createChildActions = generateCreateChildActions(newChildDescriptors, selection);
-		createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
+		createChildActions = generateCreateChildActions(newChildDescriptors,
+				selection);
+		createSiblingActions = generateCreateSiblingActions(
+				newSiblingDescriptors, selection);
 
 		if (createChildMenuManager != null) {
 			populateManager(createChildMenuManager, createChildActions, null);
 			createChildMenuManager.update(true);
 		}
 		if (createSiblingMenuManager != null) {
-			populateManager(createSiblingMenuManager, createSiblingActions, null);
+			populateManager(createSiblingMenuManager, createSiblingActions,
+					null);
 			createSiblingMenuManager.update(true);
 		}
 	}
@@ -323,11 +320,13 @@ public class LibraryActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
+	protected Collection<IAction> generateCreateChildActions(
+			Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
+				actions.add(new CreateChildAction(activeEditorPart, selection,
+						descriptor));
 			}
 		}
 		return actions;
@@ -340,11 +339,13 @@ public class LibraryActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
+	protected Collection<IAction> generateCreateSiblingActions(
+			Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
+				actions.add(new CreateSiblingAction(activeEditorPart,
+						selection, descriptor));
 			}
 		}
 		return actions;
@@ -359,19 +360,19 @@ public class LibraryActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
+	protected void populateManager(IContributionManager manager,
+			Collection<? extends IAction> actions, String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
 					manager.insertBefore(contributionID, action);
-				}
-				else {
+				} else {
 					manager.add(action);
 				}
 			}
 		}
 	}
-		
+
 	/**
 	 * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
 	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.
@@ -379,7 +380,8 @@ public class LibraryActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
+	protected void depopulateManager(IContributionManager manager,
+			Collection<? extends IAction> actions) {
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
 			for (int i = 0; i < items.length; i++) {
@@ -387,13 +389,15 @@ public class LibraryActionBarContributor
 				//
 				IContributionItem contributionItem = items[i];
 				while (contributionItem instanceof SubContributionItem) {
-					contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
+					contributionItem = ((SubContributionItem) contributionItem)
+							.getInnerItem();
 				}
 
 				// Delete the ActionContributionItems with matching action.
 				//
 				if (contributionItem instanceof ActionContributionItem) {
-					IAction action = ((ActionContributionItem)contributionItem).getAction();
+					IAction action = ((ActionContributionItem) contributionItem)
+							.getAction();
 					if (actions.contains(action)) {
 						manager.remove(contributionItem);
 					}
@@ -413,11 +417,13 @@ public class LibraryActionBarContributor
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
+		submenuManager = new MenuManager(OCLEditorPlugin.INSTANCE
+				.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
 		populateManager(submenuManager, createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 
-		submenuManager = new MenuManager(OCLLibraryEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
+		submenuManager = new MenuManager(OCLEditorPlugin.INSTANCE
+				.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
 		populateManager(submenuManager, createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 	}
@@ -433,7 +439,7 @@ public class LibraryActionBarContributor
 		menuManager.insertAfter("additions-end", new Separator("ui-actions")); //$NON-NLS-1$ //$NON-NLS-2$
 		menuManager.insertAfter("ui-actions", showPropertiesViewAction); //$NON-NLS-1$
 
-		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());		
+		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());
 		menuManager.insertAfter("ui-actions", refreshViewerAction); //$NON-NLS-1$
 
 		super.addGlobalActions(menuManager);

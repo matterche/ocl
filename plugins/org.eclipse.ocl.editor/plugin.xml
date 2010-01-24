@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1.2.1 2009/12/13 18:52:51 ewillink Exp $
+ $Id: plugin.xml,v 1.1.2.2 2010/01/24 07:40:21 ewillink Exp $
 -->
 
 <plugin>
@@ -17,7 +17,7 @@
       <wizard
             id="org.eclipse.ocl.library.presentation.LibraryModelWizardID"
             name="%_UI_LibraryModelWizard_label"
-            class="org.eclipse.ocl.library.presentation.LibraryModelWizard"
+            class="org.eclipse.ocl.library.presentation.OCLLibraryModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/LibraryModelFile.gif">
          <description>%_UI_LibraryModelWizard_description</description>
@@ -27,8 +27,8 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.ocl.library.presentation.LibraryEditor"
-            contributorClass="org.eclipse.ocl.library.presentation.LibraryActionBarContributor"
+            class="org.eclipse.ocl.library.presentation.OCLLibraryEditor"
+            contributorClass="org.eclipse.ocl.library.presentation.OCLLibraryActionBarContributor"
             extensions="oclstdlib"
             icon="icons/full/obj16/LibraryModelFile.gif"
             id="org.eclipse.ocl.library.presentation.LibraryEditorID"
