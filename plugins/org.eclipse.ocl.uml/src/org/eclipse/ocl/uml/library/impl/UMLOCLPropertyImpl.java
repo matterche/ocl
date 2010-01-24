@@ -2,14 +2,16 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLOCLPropertyImpl.java,v 1.1.2.2 2010/01/20 16:57:22 ewillink Exp $
+ * $Id: UMLOCLPropertyImpl.java,v 1.1.2.3 2010/01/24 07:40:39 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.EvaluationVisitor;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.library.impl.OCLMetaModelPropertyImpl;
-
 import org.eclipse.ocl.uml.library.UMLLibraryPackage;
 import org.eclipse.ocl.uml.library.UMLOCLProperty;
 
@@ -42,19 +44,11 @@ public class UMLOCLPropertyImpl extends OCLMetaModelPropertyImpl implements UMLO
 		return UMLLibraryPackage.Literals.UMLOCL_PROPERTY;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-		StringBuffer s = new StringBuffer();
-		s.append("<uml> ");
-		s.append(super.toString());
-		return s.toString();
+	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(
+			EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> evaluationVisitor,
+			Object source, PropertyCallExp<C, P> propertyCall) {
+		EObject eObject = (EObject) source;
+		EStructuralFeature eFeature = (EStructuralFeature) metaModelElement;
+		return eObject.eGet(eFeature);
 	}
-
 } //UMLOCLPropertyImpl

@@ -1,5 +1,8 @@
 package org.eclipse.ocl.uml;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +13,6 @@ import org.eclipse.ocl.library.OCLClassifier;
 import org.eclipse.ocl.library.OCLDataType;
 import org.eclipse.ocl.library.OCLEnumeration;
 import org.eclipse.ocl.library.OCLEnumerationLiteral;
-import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLMetaModelOperation;
 import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLOperation;
@@ -99,11 +101,11 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 		if (aType instanceof Enumeration) {
 			return createOCLEnumeration((Enumeration) aType, visited);
 		}
-		else if (aType instanceof DataType) {
-			return createOCLDataType((DataType) aType, visited);
-		}
 		else if (aType instanceof TupleType) {
 			return createOCLTupleType((TupleType) aType, visited);
+		}
+		else if (aType instanceof DataType) {
+			return createOCLDataType((DataType) aType, visited);
 		}
 		else if (aType instanceof Class) {
 			return createOCLClassifier((Class) aType, visited);
@@ -129,6 +131,16 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	}
 
 	@Override
+	protected Package getNestingPackage(Package aPackage) {
+		return aPackage.getNestingPackage();
+	}
+
+	@Override
+	protected Package getPackage(Type aType) {
+		return (Package) aType.getOwner();
+	}
+
+	@Override
 	protected List<Parameter> getParameters(Operation anOperation) {
 		EList<Parameter> ownedParameters = anOperation.getOwnedParameters();
 		return ownedParameters.subList(1, ownedParameters.size());
@@ -145,25 +157,32 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	}
 
 	@Override
+	protected List<? extends Property> getSortedTupleParts(TupleType aTupleType) {
+		List<Property> parts = new ArrayList<Property>(aTupleType.oclProperties());
+		Collections.sort(parts, new Comparator<Property>()
+		{
+			public int compare(Property o1, Property o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		return parts;
+	}
+
+	@Override
 	protected List<? extends Classifier> getSuperTypes(Class aClassifier) {
 		return aClassifier.getGenerals();
 	}
 
 	@Override
-	protected List<? extends Property> getTupleParts(TupleType aTupleType) {
-		return aTupleType.oclProperties();
-	}
-
-	@Override
-	protected Type getType(TypedElement typedElement) {
-		return typedElement.getType();
+	protected OCLType getLibraryTypeOfTypedElement(TypedElement typedElement) {
+		return (OCLType) typedElement.getType();		// FIXME
 	}
 
 	@Override
 	public void loadPackage(Package aPackage) {
 		for (Element umlElement : aPackage.getOwnedElements()) {
 			if (umlElement instanceof Classifier) {
-				getOCLTypeOfType(umlElement);
+				getLibraryTypeOfType(umlElement);
 			}
 		}
 		for (Package umlPackage : aPackage.getNestedPackages()) {
@@ -171,21 +190,21 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 		}
 	}
 
-	protected OCLOperation resolveOperation(OCLType dynamicType, Operation umlOperation) {
+	protected List<OCLOperation> resolveOperations(OCLType dynamicType, Operation umlOperation) {
 		Element classifier = umlOperation.getOwner();
-		OCLType thisType = getOCLTypeOfType(classifier);
+		OCLType thisType = getLibraryTypeOfType(classifier);
 		String operationName = umlOperation.getName();
 		EList<OCLType> parameterTypes = new BasicEList<OCLType>();
 		for (Parameter parameter : umlOperation.getOwnedParameters()) {
-			parameterTypes.add(getOCLTypeOfType(parameter.getType()));
+			parameterTypes.add(getLibraryTypeOfType(parameter.getType()));
 		}
 		parameterTypes.remove(0);			// Lose the 'result' parameter
-		return thisType.getOperation(operationName, parameterTypes);
+		return thisType.getOperations(operationName, parameterTypes);
 	}
 
 	protected OCLProperty resolveProperty(OCLType dynamicType, Property umlProperty) {
 		Element classifier = umlProperty.getOwner();
-		OCLType thisType = getOCLTypeOfType(classifier);
+		OCLType thisType = getLibraryTypeOfType(classifier);
 		String propertyName = umlProperty.getName();
 		return thisType.getProperty(propertyName);
 	}

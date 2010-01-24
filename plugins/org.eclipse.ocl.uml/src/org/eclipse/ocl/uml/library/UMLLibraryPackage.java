@@ -2,13 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLLibraryPackage.java,v 1.1.2.1 2010/01/20 09:09:23 ewillink Exp $
+ * $Id: UMLLibraryPackage.java,v 1.1.2.2 2010/01/24 07:40:39 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.ocl.library.LibraryPackage;
 
 /**
@@ -261,15 +260,6 @@ public interface UMLLibraryPackage extends EPackage {
 	int UMLOCL_ENUMERATION__CONTAINER = LibraryPackage.OCL_ENUMERATION__CONTAINER;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UMLOCL_ENUMERATION__META_MODEL_ELEMENT = LibraryPackage.OCL_ENUMERATION__META_MODEL_ELEMENT;
-
-	/**
 	 * The feature id for the '<em><b>Literals</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -307,15 +297,6 @@ public interface UMLLibraryPackage extends EPackage {
 	int UMLOCL_ENUMERATION_LITERAL__NAME = LibraryPackage.OCL_ENUMERATION_LITERAL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UMLOCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT = LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT;
-
-	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,6 +304,15 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int UMLOCL_ENUMERATION_LITERAL__CONTAINER = LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT = LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>UMLOCL Enumeration Literal</em>' class.
@@ -353,6 +343,15 @@ public interface UMLLibraryPackage extends EPackage {
 	int UMLOCL_OPERATION__NAME = LibraryPackage.OCL_META_MODEL_OPERATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_OPERATION__TYPE = LibraryPackage.OCL_META_MODEL_OPERATION__TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Is Iterator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,15 +368,6 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int UMLOCL_OPERATION__PARAMETER = LibraryPackage.OCL_META_MODEL_OPERATION__PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UMLOCL_OPERATION__TYPE = LibraryPackage.OCL_META_MODEL_OPERATION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -433,6 +423,15 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int UMLOCL_PROPERTY__TYPE = LibraryPackage.OCL_META_MODEL_PROPERTY__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_PROPERTY__CONTAINER = LibraryPackage.OCL_META_MODEL_PROPERTY__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.

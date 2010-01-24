@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLOCLEnumerationLiteralImpl.java,v 1.1.2.2 2010/01/20 16:57:22 ewillink Exp $
+ * $Id: UMLOCLEnumerationLiteralImpl.java,v 1.1.2.3 2010/01/24 07:40:39 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library.impl;
 
@@ -41,20 +41,4 @@ public class UMLOCLEnumerationLiteralImpl extends OCLEnumerationLiteralImpl impl
 	protected EClass eStaticClass() {
 		return UMLLibraryPackage.Literals.UMLOCL_ENUMERATION_LITERAL;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-		StringBuffer s = new StringBuffer();
-		s.append("<uml> ");
-		s.append(super.toString());
-		return s.toString();
-	}
-
 } //UMLOCLEnumerationLiteralImpl

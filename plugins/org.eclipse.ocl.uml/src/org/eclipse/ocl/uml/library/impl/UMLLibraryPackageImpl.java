@@ -2,17 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLLibraryPackageImpl.java,v 1.1.2.1 2010/01/20 09:09:24 ewillink Exp $
+ * $Id: UMLLibraryPackageImpl.java,v 1.1.2.2 2010/01/24 07:40:39 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.ocl.library.LibraryPackage;
-
 import org.eclipse.ocl.uml.library.UMLLibraryFactory;
 import org.eclipse.ocl.uml.library.UMLLibraryPackage;
 import org.eclipse.ocl.uml.library.UMLOCLClassifier;
@@ -254,19 +251,19 @@ public class UMLLibraryPackageImpl extends EPackageImpl implements UMLLibraryPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		LibraryPackage theLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
+		LibraryPackage theOCLLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		umloclClassifierEClass.getESuperTypes().add(theLibraryPackage.getOCLClassifier());
-		umloclDataTypeEClass.getESuperTypes().add(theLibraryPackage.getOCLDataType());
-		umloclEnumerationEClass.getESuperTypes().add(theLibraryPackage.getOCLEnumeration());
-		umloclEnumerationLiteralEClass.getESuperTypes().add(theLibraryPackage.getOCLEnumerationLiteral());
-		umloclOperationEClass.getESuperTypes().add(theLibraryPackage.getOCLMetaModelOperation());
-		umloclPropertyEClass.getESuperTypes().add(theLibraryPackage.getOCLMetaModelProperty());
+		umloclClassifierEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLClassifier());
+		umloclDataTypeEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLDataType());
+		umloclEnumerationEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLEnumeration());
+		umloclEnumerationLiteralEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLEnumerationLiteral());
+		umloclOperationEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLMetaModelOperation());
+		umloclPropertyEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLMetaModelProperty());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(umloclClassifierEClass, UMLOCLClassifier.class, "UMLOCLClassifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

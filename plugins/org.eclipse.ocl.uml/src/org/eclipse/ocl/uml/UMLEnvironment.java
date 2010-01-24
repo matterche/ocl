@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.16.2.2 2010/01/20 16:57:22 ewillink Exp $
+ * $Id: UMLEnvironment.java,v 1.16.2.3 2010/01/24 07:40:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -38,7 +38,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.lpg.FormattingHelper;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
@@ -246,7 +246,7 @@ public class UMLEnvironment
     }
 
 	@Override
-	public OCLLibrary createOCLLibrary() {
+	public OCLRoot createOCLLibrary() {
 		return UMLOCLLibrary.getDefault();
 	}
 
@@ -645,13 +645,11 @@ public class UMLEnvironment
     // implements the inherited specification
     public Property defineAttribute(Classifier owner,
             Variable<Classifier, Parameter> variable, Constraint constraint) {
-    	super.defineAttribute(owner, variable, constraint);
-        Property result;
 
         String name = variable.getName();
         Classifier type = variable.getType();
-
-        result = UMLFactory.eINSTANCE.createProperty();
+        mergeProperty(owner, name, type, constraint);
+        Property result = UMLFactory.eINSTANCE.createProperty();
 
         result.addKeyword(UMLReflection.OCL_HELPER);
 
@@ -669,7 +667,7 @@ public class UMLEnvironment
     public Operation defineOperation(Classifier owner, String name,
             Classifier type, List<Variable<Classifier, Parameter>> params,
             Constraint constraint) {
-    	super.defineOperation(owner, name, type, params, constraint);
+    	mergeOperation(owner, name, type, params, constraint);
         Operation result = UMLFactory.eINSTANCE.createOperation();
 
         result.addKeyword(UMLReflection.OCL_HELPER);
