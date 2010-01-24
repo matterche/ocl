@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryOperationItemProvider.java,v 1.1.2.2 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: OCLSequenceTypeItemProvider.java,v 1.1.2.1 2010/01/24 07:40:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,28 +12,21 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
-import org.eclipse.ocl.library.LibraryPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.LibraryOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLSequenceType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LibraryOperationItemProvider
-	extends ItemProviderAdapter
+public class OCLSequenceTypeItemProvider
+	extends OCLCollectionTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +39,7 @@ public class LibraryOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibraryOperationItemProvider(AdapterFactory adapterFactory) {
+	public OCLSequenceTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,42 +54,19 @@ public class LibraryOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addReferencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the References feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReferencesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LibraryOperation_references_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryOperation_references_feature", "_UI_LibraryOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.LIBRARY_OPERATION__REFERENCES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns LibraryOperation.gif.
+	 * This returns OCLSequenceType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LibraryOperation")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLSequenceType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -113,11 +83,11 @@ public class LibraryOperationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LibraryOperation_type"); //$NON-NLS-1$
+		return super.getText(object);
 	}
 
 	/**
@@ -143,17 +113,6 @@ public class LibraryOperationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return OCLLibraryEditPlugin.INSTANCE;
 	}
 
 }

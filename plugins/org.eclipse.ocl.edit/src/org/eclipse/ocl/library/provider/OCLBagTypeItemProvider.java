@@ -1,20 +1,11 @@
 /**
  * <copyright>
- *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   IBM - Initial API and implementation
- *
  * </copyright>
  *
- * $Id: InvalidLiteralExpItemProvider.java,v 1.1.4.2 2010/01/24 07:40:28 ewillink Exp $
+ * $Id: OCLBagTypeItemProvider.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
  */
-package org.eclipse.ocl.expressions.provider;
+package org.eclipse.ocl.library.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -27,24 +18,28 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.ocl.expressions.InvalidLiteralExp;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.expressions.InvalidLiteralExp} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLBagType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvalidLiteralExpItemProvider extends LiteralExpItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class OCLBagTypeItemProvider
+	extends OCLCollectionTypeItemProvider
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvalidLiteralExpItemProvider(AdapterFactory adapterFactory) {
+	public OCLBagTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,15 +59,14 @@ public class InvalidLiteralExpItemProvider extends LiteralExpItemProvider
 	}
 
 	/**
-	 * This returns InvalidLiteralExp.gif.
+	 * This returns OCLBagType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/InvalidLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLBagType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -89,12 +83,11 @@ public class InvalidLiteralExpItemProvider extends LiteralExpItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		InvalidLiteralExp<?> invalidLiteralExp = (InvalidLiteralExp<?>) object;
-		return getString("_UI_InvalidLiteralExp_type") + " " + invalidLiteralExp.getStartPosition(); //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**
@@ -118,8 +111,7 @@ public class InvalidLiteralExpItemProvider extends LiteralExpItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

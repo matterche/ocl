@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsItemProviderAdapterFactory.java,v 1.1 2009/10/30 18:47:52 ewillink Exp $
+ * $Id: ExpressionsItemProviderAdapterFactory.java,v 1.1.4.1 2010/01/24 07:40:28 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -22,7 +22,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -34,7 +33,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.ocl.expressions.util.ExpressionsAdapterFactory;
 
 /**

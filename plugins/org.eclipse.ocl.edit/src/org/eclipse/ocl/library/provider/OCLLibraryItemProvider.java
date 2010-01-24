@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackageItemProvider.java,v 1.1.2.7 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLLibraryItemProvider.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,15 +23,15 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLPackage;
+import org.eclipse.ocl.library.OCLLibrary;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLPackage} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLLibrary} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLPackageItemProvider
+public class OCLLibraryItemProvider
 	extends OCLPackageParentItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +45,7 @@ public class OCLPackageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLPackageItemProvider(AdapterFactory adapterFactory) {
+	public OCLLibraryItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,8 +60,31 @@ public class OCLPackageItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addExtendsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Extends feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExtendsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLLibrary_extends_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibrary_extends_feature", "_UI_OCLLibrary_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_LIBRARY__EXTENDS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -75,7 +99,7 @@ public class OCLPackageItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LibraryPackage.Literals.OCL_PACKAGE__TYPE);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_LIBRARY__TYPE);
 		}
 		return childrenFeatures;
 	}
@@ -94,14 +118,14 @@ public class OCLPackageItemProvider
 	}
 
 	/**
-	 * This returns OCLPackage.gif.
+	 * This returns OCLLibrary.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLPackage")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLLibrary")); //$NON-NLS-1$
 	}
 
 	/**
@@ -136,8 +160,8 @@ public class OCLPackageItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(OCLPackage.class)) {
-			case LibraryPackage.OCL_PACKAGE__TYPE:
+		switch (notification.getFeatureID(OCLLibrary.class)) {
+			case LibraryPackage.OCL_LIBRARY__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -157,77 +181,77 @@ public class OCLPackageItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLAnyType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLCollectionType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLBagType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLInvalidType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLNonOrderedCollectionType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLNonUniqueCollectionType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLOrderedCollectionType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLOrderedSetType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLTemplateParameterType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLSequenceType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLSetType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLTupleType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLUniqueCollectionType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
+				(LibraryPackage.Literals.OCL_LIBRARY__TYPE,
 				 LibraryFactory.eINSTANCE.createOCLVoidType()));
 	}
 

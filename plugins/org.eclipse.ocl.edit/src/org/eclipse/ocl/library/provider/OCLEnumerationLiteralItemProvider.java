@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLEnumerationLiteralItemProvider.java,v 1.1.2.2 2010/01/20 09:10:03 ewillink Exp $
+ * $Id: OCLEnumerationLiteralItemProvider.java,v 1.1.2.3 2010/01/24 07:40:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,7 +19,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLEnumerationLiteral;
 
@@ -31,7 +29,7 @@ import org.eclipse.ocl.library.OCLEnumerationLiteral;
  * @generated
  */
 public class OCLEnumerationLiteralItemProvider
-	extends OCLElementItemProvider
+	extends OCLNamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -75,9 +73,9 @@ public class OCLEnumerationLiteralItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLMetaModelElement_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelElement_metaModelElement_feature", "_UI_OCLMetaModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT,
+				 getString("_UI_OCLEnumerationLiteral_metaModelElement_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLEnumerationLiteral_metaModelElement_feature", "_UI_OCLEnumerationLiteral_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT,
 				 true,
 				 false,
 				 true,

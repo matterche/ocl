@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperationItemProvider.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: OCLOperationItemProvider.java,v 1.1.2.4 2010/01/24 07:40:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -34,7 +34,7 @@ import org.eclipse.ocl.library.OCLParameter;
  * @generated
  */
 public class OCLOperationItemProvider
-	extends OCLElementItemProvider
+	extends OCLTypedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -63,7 +63,6 @@ public class OCLOperationItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIsIteratorPropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,28 +85,6 @@ public class OCLOperationItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OCLOperation_type_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLOperation_type_feature", "_UI_OCLOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_OPERATION__TYPE,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

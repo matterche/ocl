@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLEnumerationItemProvider.java,v 1.1.2.2 2010/01/20 09:10:03 ewillink Exp $
+ * $Id: OCLEnumerationItemProvider.java,v 1.1.2.3 2010/01/24 07:40:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -75,9 +75,9 @@ public class OCLEnumerationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLMetaModelElement_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelElement_metaModelElement_feature", "_UI_OCLMetaModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT,
+				 getString("_UI_OCLEnumeration_metaModelElement_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLEnumeration_metaModelElement_feature", "_UI_OCLEnumeration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_ENUMERATION__META_MODEL_ELEMENT,
 				 true,
 				 false,
 				 true,

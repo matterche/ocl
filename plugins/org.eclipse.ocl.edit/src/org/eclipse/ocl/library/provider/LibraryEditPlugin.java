@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryEditPlugin.java,v 1.1.2.3 2010/01/20 06:10:29 ewillink Exp $
+ * $Id: LibraryEditPlugin.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -10,19 +10,19 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the OCLLibrary edit plugin.
+ * This is the central singleton for the Library edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class OCLLibraryEditPlugin extends EMFPlugin {
+public final class LibraryEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final OCLLibraryEditPlugin INSTANCE = new OCLLibraryEditPlugin();
+	public static final LibraryEditPlugin INSTANCE = new LibraryEditPlugin();
 
 	/**
 	 * Keep track of the singleton.
@@ -38,7 +38,7 @@ public final class OCLLibraryEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLLibraryEditPlugin() {
+	public LibraryEditPlugin() {
 		super
 		  (new ResourceLocator [] {
 		   });

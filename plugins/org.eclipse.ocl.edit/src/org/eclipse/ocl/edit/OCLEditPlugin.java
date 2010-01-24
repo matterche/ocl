@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLEditPlugin.java,v 1.1.4.2 2010/01/15 17:27:30 ewillink Exp $
+ * $Id: OCLEditPlugin.java,v 1.1.4.3 2010/01/24 07:40:31 ewillink Exp $
  */
 package org.eclipse.ocl.edit;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.ocl.library.provider.OCLLibraryEditPlugin;
+import org.eclipse.ocl.library.provider.LibraryEditPlugin;
 
 /**
  * This is the central singleton for the OCL edit plugin.
@@ -53,7 +53,7 @@ public final class OCLEditPlugin extends EMFPlugin {
 	 */
 	public OCLEditPlugin() {
 		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				OCLLibraryEditPlugin.INSTANCE, });
+				LibraryEditPlugin.INSTANCE, });
 	}
 
 	/**

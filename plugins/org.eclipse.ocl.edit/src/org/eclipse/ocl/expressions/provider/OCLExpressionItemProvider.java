@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionItemProvider.java,v 1.1.4.1 2010/01/15 07:41:09 ewillink Exp $
+ * $Id: OCLExpressionItemProvider.java,v 1.1.4.2 2010/01/24 07:40:27 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -21,9 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -34,12 +32,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.ocl.edit.OCLEditPlugin;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
-
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
 /**

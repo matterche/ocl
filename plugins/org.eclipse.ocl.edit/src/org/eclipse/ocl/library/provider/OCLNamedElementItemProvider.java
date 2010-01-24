@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLGenericTypeItemProvider.java,v 1.1.2.4 2010/01/20 06:10:29 ewillink Exp $
+ * $Id: OCLNamedElementItemProvider.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -19,16 +19,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLNamedElement;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLGenericType} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLNamedElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLGenericTypeItemProvider
-	extends OCLTypeItemProvider
+public class OCLNamedElementItemProvider
+	extends OCLElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -41,7 +44,7 @@ public class OCLGenericTypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLGenericTypeItemProvider(AdapterFactory adapterFactory) {
+	public OCLNamedElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -56,42 +59,31 @@ public class OCLGenericTypeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addParameterPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Parameter feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addParameterPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLGenericType_parameter_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLGenericType_parameter_feature", "_UI_OCLGenericType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_GENERIC_TYPE__PARAMETER,
+				 getString("_UI_OCLNamedElement_name_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLNamedElement_name_feature", "_UI_OCLNamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_NAMED_ELEMENT__NAME,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns OCLGenericType.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLGenericType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -108,11 +100,14 @@ public class OCLGenericTypeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((OCLNamedElement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_OCLNamedElement_type") : //$NON-NLS-1$
+			getString("_UI_OCLNamedElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -125,6 +120,12 @@ public class OCLGenericTypeItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(OCLNamedElement.class)) {
+			case LibraryPackage.OCL_NAMED_ELEMENT__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

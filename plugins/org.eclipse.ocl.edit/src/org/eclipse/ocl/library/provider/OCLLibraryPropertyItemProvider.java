@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryPropertyItemProvider.java,v 1.1.2.4 2010/01/20 09:10:03 ewillink Exp $
+ * $Id: OCLLibraryPropertyItemProvider.java,v 1.1.2.5 2010/01/24 07:40:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -104,7 +104,7 @@ public class OCLLibraryPropertyItemProvider
 				 false,
 				 false,
 				 false,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}

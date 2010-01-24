@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.3 2010/01/18 08:57:56 ewillink Exp $
+ * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.4 2010/01/24 07:40:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -104,7 +104,7 @@ public class OCLLibraryOperationItemProvider
 				 false,
 				 false,
 				 false,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}

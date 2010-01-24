@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLConstraintOperationItemProvider.java,v 1.1.2.4 2010/01/20 16:57:17 ewillink Exp $
+ * $Id: OCLCollectionTypeItemProvider.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -19,19 +19,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLConstraintOperation;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLConstraintOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLCollectionType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLConstraintOperationItemProvider
-	extends OCLOperationItemProvider
+public class OCLCollectionTypeItemProvider
+	extends OCLTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -44,7 +41,7 @@ public class OCLConstraintOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLConstraintOperationItemProvider(AdapterFactory adapterFactory) {
+	public OCLCollectionTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,65 +56,42 @@ public class OCLConstraintOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSpecificationPropertyDescriptor(object);
-			addStereotypePropertyDescriptor(object);
+			addElementTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Specification feature.
+	 * This adds a property descriptor for the Element Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSpecificationPropertyDescriptor(Object object) {
+	protected void addElementTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLConstraintOperation_specification_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLConstraintOperation_specification_feature", "_UI_OCLConstraintOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_CONSTRAINT_OPERATION__SPECIFICATION,
+				 getString("_UI_OCLCollectionType_elementType_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCollectionType_elementType_feature", "_UI_OCLCollectionType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_COLLECTION_TYPE__ELEMENT_TYPE,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Stereotype feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStereotypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OCLConstraintOperation_stereotype_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLConstraintOperation_stereotype_feature", "_UI_OCLConstraintOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_CONSTRAINT_OPERATION__STEREOTYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns OCLConstraintOperation.gif.
+	 * This returns OCLCollectionType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLConstraintOperation")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLCollectionType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -138,13 +112,13 @@ public class OCLConstraintOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		StringBuffer s = new StringBuffer();
-		appendType(s, ((OCLConstraintOperation)object).getContainer()); 
-		s.append("::");
-		appendName(s, object); 
-		s.append("(...)");
-		appendType(s, ((OCLConstraintOperation)object).getType()); 
-		return s.toString();
+		return super.getText(object);
+	}
+
+	@Override
+	protected void appendType(StringBuffer s, Object object) {
+		super.appendType(s, object);
+		s.append("<T>");
 	}
 
 	/**
@@ -157,13 +131,6 @@ public class OCLConstraintOperationItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(OCLConstraintOperation.class)) {
-			case LibraryPackage.OCL_CONSTRAINT_OPERATION__SPECIFICATION:
-			case LibraryPackage.OCL_CONSTRAINT_OPERATION__STEREOTYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
