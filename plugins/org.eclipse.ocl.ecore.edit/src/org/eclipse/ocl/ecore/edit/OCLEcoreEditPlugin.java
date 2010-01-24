@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLEcoreEditPlugin.java,v 1.1.4.1 2010/01/15 07:41:31 ewillink Exp $
+ * $Id: OCLEcoreEditPlugin.java,v 1.1.4.2 2010/01/24 07:40:37 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.edit;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 import org.eclipse.ocl.edit.OCLEditPlugin;
-import org.eclipse.ocl.library.provider.OCLLibraryEditPlugin;
+import org.eclipse.ocl.library.provider.LibraryEditPlugin;
 
 /**
  * This is the central singleton for the OCLEcore edit plugin.
@@ -56,7 +56,7 @@ public final class OCLEcoreEditPlugin extends EMFPlugin {
 	 */
 	public OCLEcoreEditPlugin() {
 		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				OCLEditPlugin.INSTANCE, OCLLibraryEditPlugin.INSTANCE, });
+				OCLEditPlugin.INSTANCE, LibraryEditPlugin.INSTANCE, });
 	}
 
 	/**

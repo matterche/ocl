@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpItemProvider.java,v 1.1.4.1 2010/01/15 07:41:29 ewillink Exp $
+ * $Id: IteratorExpItemProvider.java,v 1.1.4.2 2010/01/24 07:40:35 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -21,16 +21,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.ocl.ecore.IteratorExp;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 
 /**
