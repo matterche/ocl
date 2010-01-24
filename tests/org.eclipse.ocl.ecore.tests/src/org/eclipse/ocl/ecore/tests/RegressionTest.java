@@ -13,13 +13,12 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.17.2.5 2010/01/20 06:04:27 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.17.2.6 2010/01/24 14:02:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.math.BigInteger;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -853,7 +852,7 @@ public class RegressionTest
 			"inv: ecore::EMap.allInstances() " +
 			" endpackage"));
 		
-		assertEquals(Collections.EMPTY_SET, result);
+		assertInvalid(result);
 	}
 	
 	/**
