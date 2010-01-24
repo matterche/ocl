@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExtensibilityTest.java,v 1.3.2.2 2010/01/03 22:47:58 ewillink Exp $
+ * $Id: ExtensibilityTest.java,v 1.3.2.3 2010/01/24 07:41:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -49,7 +49,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.merged.AbstractMergedLibrary;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -411,8 +411,8 @@ public class ExtensibilityTest
             delegate.undefine(feature);
         }
 
-		public OCLLibrary getOCLLibrary() {
-			return delegate.getOCLLibrary();
+		public AbstractMergedLibrary getMergedLibrary() {
+			return delegate.getMergedLibrary();
 		}
 	}
 
