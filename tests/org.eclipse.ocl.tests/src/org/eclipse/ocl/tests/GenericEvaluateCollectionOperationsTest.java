@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.3 2010/01/20 17:58:09 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.4 2010/01/24 07:40:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -130,8 +130,10 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "Sequence{'a', 'b'}->append(invalid)");
 		assertQueryInvalid(null, "OrderedSet{'a', 'b'}->append(invalid)");
 		// null collection
-		assertQueryInvalid(null, "let s : Sequence(String) = null in s->append('a')");
-		assertQueryInvalid(null, "let o : OrderedSet(String) = null in o->append('a')");
+//		assertQueryResults(null, "Bag{'a'}", "let s : Bag(String) = null in s->append('a')");
+		assertQueryResults(null, "OrderedSet{'a'}", "let o : OrderedSet(String) = null in o->append('a')");
+		assertQueryResults(null, "Sequence{'a'}", "let s : Sequence(String) = null in s->append('a')");
+//		assertQueryResults(null, "Set{'a'}", "let o : Set(String) = null in o->append('a')");
 		// null collection element
 		assertQueryResults(null, "Sequence{'a', 'b', null}", "Sequence{'a', 'b'}->append(null)");
 		assertQueryResults(null, "OrderedSet{'a', 'b', null}", "OrderedSet{'a', 'b'}->append(null)");
@@ -397,7 +399,7 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryFalse(null, "Sequence{} = null");
 		assertQueryFalse(null, "Set{} = null");
 
-		assertQueryTrue(null, "null = Bag{}");
+		assertQueryFalse(null, "null = Bag{}");
 		assertQueryFalse(null, "null = OrderedSet{}");
 		assertQueryFalse(null, "null = Sequence{}");
 		assertQueryFalse(null, "null = Set{}");
@@ -580,10 +582,10 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "Set{'a', 'b'}->excluding(invalid)");
 		assertQueryInvalid(null, "OrderedSet{'a', 'b'}->excluding(invalid)");
 		// null collection
-		assertQueryResults(null, "Bag{}", "let s : Sequence(String) = null in s->excluding('a')");
+		assertQueryResults(null, "Sequence{}", "let s : Sequence(String) = null in s->excluding('a')");
 		assertQueryResults(null, "Bag{}", "let b : Bag(String) = null in b->excluding('a')");
-		assertQueryResults(null, "Bag{}", "let s : Set(String) = null in s->excluding('a')");
-		assertQueryResults(null, "Bag{}", "let o : OrderedSet(String) = null in o->excluding('a')");
+		assertQueryResults(null, "Set{}", "let s : Set(String) = null in s->excluding('a')");
+		assertQueryResults(null, "OrderedSet{}", "let o : OrderedSet(String) = null in o->excluding('a')");
 		// invalid collection element
 		assertQueryResults(null, "Sequence{'a', 'b'}", "Sequence{null, 'a', null, 'b'}->excluding(null)");
 		assertQueryResults(null, "Bag{'b', 'a'}", "Bag{null, 'a', null, 'b'}->excluding(null)");
@@ -649,10 +651,10 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->flatten()");
 		assertQueryInvalid(null, "let o : OrderedSet(Integer) = invalid in o->flatten()");
 		// non collection
-		assertQueryResults(null, "Bag{}", "let s : Sequence(Integer) = null in s->flatten()");
+		assertQueryResults(null, "Sequence{}", "let s : Sequence(Integer) = null in s->flatten()");
 		assertQueryResults(null, "Bag{}", "let b : Bag(Integer) = null in b->flatten()");
-		assertQueryResults(null, "Bag{}", "let s : Set(Integer) = null in s->flatten()");
-		assertQueryResults(null, "Bag{}", "let o : OrderedSet(Integer) = null in o->flatten()");
+		assertQueryResults(null, "Set{}", "let s : Set(Integer) = null in s->flatten()");
+		assertQueryResults(null, "OrderedSet{}", "let o : OrderedSet(Integer) = null in o->flatten()");
 		// pseudo collection
 // FIXME		assertQueryResults(null, "Set{1}", "1->flatten()");
 // FIXME		assertQueryResults(null, "Set{1}", "let s : Sequence(Integer) = null in 1->flatten()");
@@ -822,10 +824,10 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "Set{'a', 'b'}->including(invalid)");
 		assertQueryInvalid(null, "OrderedSet{'a', 'b'}->including(invalid)");
 		// null collection
-		assertQueryResults(null, "Bag{'a'}", "let s : Sequence(String) = null in s->including('a')");
+		assertQueryResults(null, "Sequence{'a'}", "let s : Sequence(String) = null in s->including('a')");
 		assertQueryResults(null, "Bag{'a'}", "let b : Bag(String) = null in b->including('a')");
-		assertQueryResults(null, "Bag{'a'}", "let s : Set(String) = null in s->including('a')");
-		assertQueryResults(null, "Bag{'a'}", "let o : OrderedSet(String) = null in o->including('a')");
+		assertQueryResults(null, "Set{'a'}", "let s : Set(String) = null in s->including('a')");
+		assertQueryResults(null, "OrderedSet{'a'}", "let o : OrderedSet(String) = null in o->including('a')");
 		// null collection element
 		assertQueryResults(null, "Sequence{'a', 'b', null}", "Sequence{'a', 'b'}->including(null)");
 		assertQueryResults(null, "Bag{null, 'b', 'a'}", "Bag{'a', 'b'}->including(null)");
@@ -871,8 +873,8 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "Sequence{'a'}->insertAt(1, invalid)");
 		assertQueryInvalid(null, "OrderedSet{'a'}->insertAt(1, invalid)");
 		// null collection
-		assertQueryInvalid(null, "let s : Sequence(String) = null in s->insertAt(1, 'a')");
-		assertQueryInvalid(null, "let o : OrderedSet(String) = null in o->insertAt(1, 'a')");
+		assertQueryResults(null, "Sequence{'a'}", "let s : Sequence(String) = null in s->insertAt(1, 'a')");
+		assertQueryResults(null, "OrderedSet{'a'}", "let o : OrderedSet(String) = null in o->insertAt(1, 'a')");
 		// null collection element
 		assertQueryResults(null, "Sequence{null, 'a'}", "Sequence{'a'}->insertAt(1, null)");
 		assertQueryResults(null, "OrderedSet{'a', null}", "OrderedSet{'a'}->insertAt(2, null)");
@@ -950,8 +952,8 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "Bag{3, invalid}->intersection(Set{4})");
 		assertQueryInvalid(null, "Bag{3, 4}->intersection(Bag{invalid})");
 		// null collection
-		assertQueryEquals(null, emptyBag, "let s : Set(Integer) = null in s->intersection(Set{4})");
-		assertQueryEquals(null, emptyBag, "let s : Set(Integer) = null in s->intersection(Bag{4})");
+		assertQueryEquals(null, emptySet, "let s : Set(Integer) = null in s->intersection(Set{4})");
+		assertQueryEquals(null, emptySet, "let s : Set(Integer) = null in s->intersection(Bag{4})");
 		assertQueryEquals(null, emptyBag, "let b : Bag(Integer) = null in b->intersection(Set{4})");
 		assertQueryEquals(null, emptyBag, "let b : Bag(Integer) = null in b->intersection(Bag{4})");
 
@@ -1033,15 +1035,15 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 	} */
 
 	public void testCollectionMinus() {
-		assertQueryResults(null, "Set{'b'}", "Set{'a', 'b', 'c'} - Set{'c', 'a'}");
-		/*
+/*		assertQueryResults(null, "Set{'b'}", "Set{'a', 'b', 'c'} - Set{'c', 'a'}");
+		/ *
 		 * FIXME this is no specified operation. If we define
 		 * "OrderedSet::-(Set) : Set", we also need "Set::-(OrderedSet) : Set"
 		 * and "OrderedSet::-(OrderedSet) : OrderedSet". That being said,
 		 * "OrderedSet::-(Set) : Set" should be
 		 * "OrderedSet::-(Set) : OrderedSet". revisit all "testCollectionMinus*"
 		 * to add the new
-		 */
+		 * /
 // FIXME		assertQueryResults(null, "Set{'b'}", "OrderedSet{'a', 'b', 'c'} - Set{'c', 'a'}");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Set(String) = invalid in s - Set{'c'}");
@@ -1050,8 +1052,8 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "Set{'a', invalid} - Set{'c', invalid}");
 		assertQueryInvalid(null, "Set{'a', invalid} - Set{'c', 'a'}");
 		// null collection
-		assertQueryInvalid(null, "let s : Set(String) = null in s - Set{'c', null}");
-		assertQueryInvalid(null, "let s : Set(String) = null in Set{'a', null} - s");
+		assertQueryResults(null, "Set{}", "let s : Set(String) = null in s - Set{'c', null}");
+*/		assertQueryResults(null, "Set{'a', null}", "let s : Set(String) = null in Set{'a', null} - s");
 		// null collection element
 		assertQueryResults(null, "Set{'a'}", "Set{'a', null} - Set{'c', null}");
 		assertQueryResults(null, "Set{null}", "Set{'a', null} - Set{'c', 'a'}");
@@ -1179,8 +1181,8 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "Sequence{'a', 'b'}->prepend(invalid)");
 		assertQueryInvalid(null, "OrderedSet{'a', 'b'}->prepend(invalid)");
 		// null collection
-		assertQueryInvalid(null, "let s : Sequence(String) = null in s->prepend('a')");
-		assertQueryInvalid(null, "let o : OrderedSet(String) = null in o->prepend('a')");
+		assertQueryResults(null, "Sequence{'a'}", "let s : Sequence(String) = null in s->prepend('a')");
+		assertQueryResults(null, "OrderedSet{'a'}", "let o : OrderedSet(String) = null in o->prepend('a')");
 		// null collection element
 		assertQueryResults(null, "Sequence{null, 'a', 'b'}", "Sequence{'a', 'b'}->prepend(null)");
 		assertQueryResults(null, "OrderedSet{null, 'a', 'b'}", "OrderedSet{'a', 'b'}->prepend(null)");
@@ -1248,10 +1250,10 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 	}
 
 	public void testCollectionProductNull() {
-		assertQueryInvalid(null, "let s : Sequence(Integer) = null in OrderedSet{3, 4}->product(s)");
-		assertQueryInvalid(null, "let b : Bag(Integer) = null in Set{3, 4}->product(b)");
-		assertQueryInvalid(null, "let s : Set(Integer) = null in Bag{3, 4}->product(s)");
-		assertQueryInvalid(null, "let o : OrderedSet(Integer) = null in Sequence{3, 4}->product(o)");
+		assertQueryResults(null, "Set{}", "let s : Sequence(Integer) = null in OrderedSet{3, 4}->product(s)");
+		assertQueryResults(null, "Set{}", "let b : Bag(Integer) = null in Set{3, 4}->product(b)");
+		assertQueryResults(null, "Set{}", "let s : Set(Integer) = null in Bag{3, 4}->product(s)");
+		assertQueryResults(null, "Set{}", "let o : OrderedSet(Integer) = null in Sequence{3, 4}->product(o)");
 
 		assertQueryResults(null, "Set{}", "let s : Sequence(Integer) = null in s->product(OrderedSet{3, 4})");
 		assertQueryResults(null, "Set{}", "let b : Bag(Integer) = null in b->product(Set{3, 4})");
@@ -1374,7 +1376,7 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		// invalid collection element
 		assertQueryInvalid(null, "Set{'a', invalid, 'b'}->symmetricDifference(Set{'b', 'c'})");
 		// null collection
-		assertQueryInvalid(null, "let s : Set(String) = null in s->symmetricDifference(Set{'a'})");
+		assertQueryResults(null, "Set{'a'}", "let s : Set(String) = null in s->symmetricDifference(Set{'a'})");
 		// null collection element
 		assertQueryResults(null, "Set{'a', null, 'c'}", "Set{'a', null, 'b'}->symmetricDifference(Set{'b', 'c'})");
 	}
@@ -1445,17 +1447,17 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 	}
 
 	public void testCollectionUnionNull() {
-		assertQueryResults(null, "Bag{'a'}", "let s : Set(String) = null in s->union(Set{'a'})");
+		assertQueryResults(null, "Set{'a'}", "let s : Set(String) = null in s->union(Set{'a'})");
 		assertQueryResults(null, "Bag{'a'}", "let s : Set(String) = null in s->union(Bag{'a'})");
 		assertQueryResults(null, "Bag{'a'}", "let b : Bag(String) = null in b->union(Bag{'a'})");
 		assertQueryResults(null, "Bag{'a'}", "let b : Bag(String) = null in b->union(Set{'a'})");
-		assertQueryResults(null, "Bag{'a'}", "let s : Sequence(String) = null in s->union(Sequence{'a'})");
+		assertQueryResults(null, "Sequence{'a'}", "let s : Sequence(String) = null in s->union(Sequence{'a'})");
 
-		assertQueryResults(null, "Bag{'a'}", "let s : Set(String) = null in Set{'a'}->union(s)");
+		assertQueryResults(null, "Set{'a'}", "let s : Set(String) = null in Set{'a'}->union(s)");
 		assertQueryResults(null, "Bag{'a'}", "let s : Set(String) = null in Bag{'a'}->union(s)");
 		assertQueryResults(null, "Bag{'a'}", "let b : Bag(String) = null in Bag{'a'}->union(b)");
 		assertQueryResults(null, "Bag{'a'}", "let b : Bag(String) = null in Set{'a'}->union(b)");
-		assertQueryResults(null, "Bag{'a'}", "let s : Sequence(String) = null in Sequence{'a'}->union(s)");
+		assertQueryResults(null, "Sequence{'a'}", "let s : Sequence(String) = null in Sequence{'a'}->union(s)");
 	}
 
 	public void testCollectionUnionNullValue() {

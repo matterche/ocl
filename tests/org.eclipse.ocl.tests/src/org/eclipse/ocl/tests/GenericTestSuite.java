@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.3.2.4 2010/01/18 08:57:41 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.3.2.5 2010/01/24 07:40:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -415,7 +415,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		try {
 			Object value = evaluate(helper, context, denormalized);
 			if (!(value instanceof InvalidLiteralExp<?>)) {
-				assertEquals(denormalized, environment.getOCLLibrary().getInvalid(), value);
+				assertEquals(denormalized, environment.getMergedLibrary().getInvalid(), value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -465,7 +465,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		try {
 			Object value = evaluate(helper, context, denormalized);
 			if (!(value instanceof NullLiteralExp<?>)) {
-				assertEquals(denormalized, environment.getOCLLibrary().getNull(), value);
+				assertEquals(denormalized, environment.getMergedLibrary().getNull(), value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -529,7 +529,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		try {
 			Object value = evaluate(helper, context, denormalized);
 			if (!(value instanceof UnlimitedNaturalLiteralExp<?>) || !((UnlimitedNaturalLiteralExp<?>)value).isUnlimited()) {
-				assertEquals(denormalized, environment.getOCLLibrary().getUnlimited(), value);
+				assertEquals(denormalized, environment.getMergedLibrary().getUnlimited(), value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -861,7 +861,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	
 	protected Object getInvalid() {
 //		return getOCLStandardLibrary().getInvalid();
-		return environment.getOCLLibrary().getInvalid();
+		return environment.getMergedLibrary().getInvalid();
 	}
     
 	protected C getMetaclass(String name) {
@@ -870,7 +870,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	
 	protected Object getNull() {
 //		return getOCLStandardLibrary().getNull();
-		return environment.getOCLLibrary().getNull();
+		return environment.getMergedLibrary().getNull();
 	}
 	
 	protected OCLStandardLibrary<C> getOCLStandardLibrary() {
