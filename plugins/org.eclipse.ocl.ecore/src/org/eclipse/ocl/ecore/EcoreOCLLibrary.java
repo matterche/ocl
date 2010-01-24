@@ -109,6 +109,18 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 			return createOCLTupleType((TupleType) aType, visited);
 		}
 		else if (aType instanceof EDataType) {
+			if (aType == org.eclipse.emf.ecore.EcorePackage.Literals.EBOOLEAN) {
+				return getBoolean();
+			}
+			else if (aType == org.eclipse.emf.ecore.EcorePackage.Literals.EDOUBLE) {
+				return getReal();
+			}
+			else if (aType == org.eclipse.emf.ecore.EcorePackage.Literals.EINT) {
+				return getInteger();
+			}
+			else if (aType == org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING) {
+				return getString();
+			}
 			return createOCLDataType((EDataType) aType, visited);
 		}
 		else if (aType instanceof EClass) {

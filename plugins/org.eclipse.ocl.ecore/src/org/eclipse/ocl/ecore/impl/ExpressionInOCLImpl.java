@@ -13,7 +13,7 @@
  *   
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.10 2009/12/06 18:15:39 ewillink Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.10.2.1 2010/01/24 14:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -42,6 +42,7 @@ import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 
+import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -481,6 +482,22 @@ public class ExpressionInOCLImpl
 				return generatedType != null && !generatedType.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+
+		return this
+			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
+				.getInstance(this));
 	}
 
 } //ExpressionInOCLImpl
