@@ -8,11 +8,14 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.library.CompatibilityOCLLibrary;
 import org.eclipse.ocl.library.OCLClassifier;
 import org.eclipse.ocl.library.OCLDataType;
 import org.eclipse.ocl.library.OCLEnumeration;
 import org.eclipse.ocl.library.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLMetaModelOperation;
 import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLOperation;
@@ -40,7 +43,7 @@ import org.eclipse.uml2.uml.TypedElement;
 
  * @since 3.0
  */
-public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, TypedElement, Package, Type, Class, TupleType, DataType, Enumeration, EnumerationLiteral, Operation, Parameter, Property>
+public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, TypedElement, Package, Type, Class, TupleType, DataType, Enumeration, EnumerationLiteral, Operation, Parameter, Property, EClass>
 {
 	private static UMLOCLLibrary DEFAULT = null;
 
@@ -55,10 +58,8 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 		super(libraryURI);
 	}
 
-	@Override
-	protected Classifier asMetaType(Object object) {
-//		return (object instanceof Element) ? ((Operation)object).eClass() : null;
-		throw new UnsupportedOperationException();
+	protected EClass asMetaType(Object object) {
+		return (object instanceof EObject) ? ((EObject)object).eClass() : null;
 	}
 
 	@Override
@@ -97,7 +98,7 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	}
 
 	@Override
-	protected OCLType createOCLType(Type aType, Map<Type, OCLType> visited) {
+	protected OCLType createOCLType(EObject aType, Map<EObject, OCLType> visited) {
 		if (aType instanceof Enumeration) {
 			return createOCLEnumeration((Enumeration) aType, visited);
 		}
@@ -110,6 +111,9 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 		else if (aType instanceof Class) {
 			return createOCLClassifier((Class) aType, visited);
 		}
+//		else if (aType instanceof EClass) {
+//			return createOCLClassifier((Class) aType, visited);
+//		}
 		else {
 			return null;
 		}
