@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedTypeImpl.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
+ * $Id: MergedTypeImpl.java,v 1.1.2.3 2010/01/24 14:02:18 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -602,9 +602,9 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 					}
 				}
 			}
-		}
-		if (conformingOperations != null) {
-			return conformingOperations;
+			if (conformingOperations != null) {
+				return conformingOperations;
+			}
 		}
 		for (OCLType superType : getConforms()) {
 			MergedType superMergedType = mergedLibrary.getMergedType(superType);

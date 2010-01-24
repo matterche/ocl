@@ -1,5 +1,5 @@
-Ecore tests: 38 failures
-UML tests: 147 failures
+Ecore tests: 36 failures
+UML tests: 11+147 failures
 
 Meta-model
 ----------

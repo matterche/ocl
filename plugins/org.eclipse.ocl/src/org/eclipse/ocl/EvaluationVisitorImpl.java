@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.14 2010/01/24 12:26:03 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.15 2010/01/24 14:02:20 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -84,7 +84,6 @@ import org.eclipse.ocl.library.OCLOrderedSetType;
 import org.eclipse.ocl.library.OCLSequenceType;
 import org.eclipse.ocl.library.OCLSetType;
 import org.eclipse.ocl.library.OCLType;
-import org.eclipse.ocl.library.OCLVoidType;
 import org.eclipse.ocl.library.merged.MergedOperation;
 import org.eclipse.ocl.library.merged.MergedProperty;
 import org.eclipse.ocl.library.operations.AbstractOperation;
@@ -93,6 +92,7 @@ import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
@@ -143,16 +143,21 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			OCLExpression<?> source = oc.getSource();
 			Object sourceVal = source.accept(this);
 			Object staticSourceType = source.getType();
-			OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, staticSourceType);
-			if (sourceType instanceof OCLVoidType) {
-				sourceType = library.getLibraryTypeOfType(staticSourceType);
-				sourceVal = createNullCollection(sourceType);					
+			OCLType sourceType;
+			if (staticSourceType instanceof TypeType<?, ?>) {
+				sourceType = library.getLibraryTypeOfType(sourceVal);
+			}
+			else {
+				sourceType = library.getLibraryTypeOfValue(sourceVal, staticSourceType);
+				if (AbstractOperation.isNull(sourceVal)) {
+					sourceType = library.getLibraryTypeOfType(staticSourceType);
+					sourceVal = createNullCollection(sourceType);					
+				}
 			}
 			O referredOperation = oc.getReferredOperation();
 			UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
 			String operationName = umlReflection.getName(referredOperation);
 			List<PM> arguments = umlReflection.getParameters(referredOperation);
-//			List<OCLExpression<C>> arguments = oc.getArgument();
 			int iMax = arguments.size();
 			OCLType[] oclArguments = null;
 			if (iMax > 0) {

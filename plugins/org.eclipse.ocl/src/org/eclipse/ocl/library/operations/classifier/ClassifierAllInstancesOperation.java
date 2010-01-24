@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.1 2010/01/24 07:41:20 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.2 2010/01/24 14:02:20 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.classifier;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,6 +34,6 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Map<?, ? extends Set<?>> extentMap = visitor.getExtentMap();
 		Set<?> instances = extentMap.get(sourceVal);
-		return instances;
+		return instances != null ? instances : Collections.EMPTY_SET;
 	}
 }

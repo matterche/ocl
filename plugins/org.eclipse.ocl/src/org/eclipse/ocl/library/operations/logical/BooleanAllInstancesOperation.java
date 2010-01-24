@@ -12,23 +12,33 @@
  *
  * </copyright>
  *
- * $Id: OclInvalidAllInstancesOperation.java,v 1.1.2.2 2010/01/24 14:02:18 ewillink Exp $
+ * $Id: BooleanAllInstancesOperation.java,v 1.1.2.1 2010/01/24 14:02:18 ewillink Exp $
  */
-package org.eclipse.ocl.library.operations.oclinvalid;
+package org.eclipse.ocl.library.operations.logical;
+
+import java.util.Set;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.util.CollectionUtil;
 
 /**
- * OclInvalidAllInstancesOperation realises the OclInvalid::allInstances() library operation.
+ * BooleanAllInstancesOperation realises the Boolean::allInstances() library operation.
  * 
  * @since 3.0
  */
-public class OclInvalidAllInstancesOperation extends AbstractOperation
+public class BooleanAllInstancesOperation extends AbstractOperation
 {
+	private static Set<Boolean> allInstances = null;
+	
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		// OclInvalid has a single instance: invalid that cannot be returned in a collection
-		return null;
+		// Boolean has two instances: false, true
+		if (allInstances == null) {
+			allInstances = CollectionUtil.createNewSet();
+			allInstances.add(Boolean.FALSE);
+			allInstances.add(Boolean.TRUE);
+		}
+		return allInstances;
 	}
 }
