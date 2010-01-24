@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryProperty.java,v 1.1.2.3 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLLibraryProperty.java,v 1.1.2.4 2010/01/24 07:40:54 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -42,7 +42,7 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * @model required="true"
 	 * @generated
 	 */
-	Class<? extends LibraryProperty> getLibraryPropertyClass();
+	Class<? extends ILibraryProperty> getLibraryPropertyClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryPropertyClass <em>Library Property Class</em>}' attribute.
@@ -52,20 +52,31 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * @see #getLibraryPropertyClass()
 	 * @generated
 	 */
-	void setLibraryPropertyClass(Class<? extends LibraryProperty> value);
+	void setLibraryPropertyClass(Class<? extends ILibraryProperty> value);
 
 	/**
-	 * Returns the value of the '<em><b>Library Property</b></em>' reference.
+	 * Returns the value of the '<em><b>Library Property</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Library Property</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Library Property</em>' reference.
+	 * @return the value of the '<em>Library Property</em>' attribute.
+	 * @see #setLibraryProperty(ILibraryProperty)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryProperty_LibraryProperty()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @model dataType="org.eclipse.ocl.library.ILibraryProperty" transient="true"
 	 * @generated
 	 */
-	LibraryProperty getLibraryProperty();
+	ILibraryProperty getLibraryProperty();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryProperty <em>Library Property</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Library Property</em>' attribute.
+	 * @see #getLibraryProperty()
+	 * @generated
+	 */
+	void setLibraryProperty(ILibraryProperty value);
 } // OCLLibraryProperty

@@ -2,15 +2,15 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryPropertyImpl.java,v 1.1.2.4 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLLibraryPropertyImpl.java,v 1.1.2.5 2010/01/24 07:41:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.library.ILibraryProperty;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.OCLLibraryProperty;
 
 /**
@@ -37,16 +37,25 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	 * @generated
 	 * @ordered
 	 */
-	protected Class<? extends LibraryProperty> libraryPropertyClass;
+	protected Class<? extends ILibraryProperty> libraryPropertyClass;
 	/**
-	 * The cached value of the '{@link #getLibraryProperty() <em>Library Property</em>}' reference.
+	 * The default value of the '{@link #getLibraryProperty() <em>Library Property</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLibraryProperty()
 	 * @generated
 	 * @ordered
 	 */
-	protected LibraryProperty libraryProperty;
+	protected static final ILibraryProperty LIBRARY_PROPERTY_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getLibraryProperty() <em>Library Property</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLibraryProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected ILibraryProperty libraryProperty = LIBRARY_PROPERTY_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +80,7 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Class<? extends LibraryProperty> getLibraryPropertyClass() {
+	public Class<? extends ILibraryProperty> getLibraryPropertyClass() {
 		return libraryPropertyClass;
 	}
 
@@ -80,8 +89,8 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLibraryPropertyClass(Class<? extends LibraryProperty> newLibraryPropertyClass) {
-		Class<? extends LibraryProperty> oldLibraryPropertyClass = libraryPropertyClass;
+	public void setLibraryPropertyClass(Class<? extends ILibraryProperty> newLibraryPropertyClass) {
+		Class<? extends ILibraryProperty> oldLibraryPropertyClass = libraryPropertyClass;
 		libraryPropertyClass = newLibraryPropertyClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS, oldLibraryPropertyClass, libraryPropertyClass));
@@ -92,8 +101,20 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibraryProperty getLibraryProperty() {
+	public ILibraryProperty getLibraryProperty() {
 		return libraryProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLibraryProperty(ILibraryProperty newLibraryProperty) {
+		ILibraryProperty oldLibraryProperty = libraryProperty;
+		libraryProperty = newLibraryProperty;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY, oldLibraryProperty, libraryProperty));
 	}
 
 	/**
@@ -122,7 +143,10 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS:
-				setLibraryPropertyClass((Class<? extends LibraryProperty>)newValue);
+				setLibraryPropertyClass((Class<? extends ILibraryProperty>)newValue);
+				return;
+			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY:
+				setLibraryProperty((ILibraryProperty)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,7 +161,10 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS:
-				setLibraryPropertyClass((Class<? extends LibraryProperty>)null);
+				setLibraryPropertyClass((Class<? extends ILibraryProperty>)null);
+				return;
+			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY:
+				setLibraryProperty(LIBRARY_PROPERTY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -154,7 +181,7 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS:
 				return libraryPropertyClass != null;
 			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY:
-				return libraryProperty != null;
+				return LIBRARY_PROPERTY_EDEFAULT == null ? libraryProperty != null : !LIBRARY_PROPERTY_EDEFAULT.equals(libraryProperty);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -171,8 +198,9 @@ public class OCLLibraryPropertyImpl extends OCLPropertyImpl implements OCLLibrar
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (libraryPropertyClass: "); //$NON-NLS-1$
 		result.append(libraryPropertyClass);
+		result.append(", libraryProperty: "); //$NON-NLS-1$
+		result.append(libraryProperty);
 		result.append(')');
 		return result.toString();
 	}
-
 } //OCLLibraryPropertyImpl

@@ -13,21 +13,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLLibrary.java,v 1.1.2.5 2010/01/20 16:57:25 ewillink Exp $
+ * $Id: AbstractOCLLibrary.java,v 1.1.2.6 2010/01/24 07:40:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -37,365 +30,15 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
-import org.eclipse.ocl.expressions.InvalidLiteralExp;
-import org.eclipse.ocl.expressions.LiteralExp;
-import org.eclipse.ocl.expressions.NullLiteralExp;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.PropertyCallExp;
-import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.library.impl.OCLRootImpl;
 import org.eclipse.ocl.library.util.LibraryResource;
-import org.eclipse.ocl.types.AnyType;
-import org.eclipse.ocl.types.BagType;
-import org.eclipse.ocl.types.CollectionType;
-import org.eclipse.ocl.types.InvalidType;
-import org.eclipse.ocl.types.MessageType;
-import org.eclipse.ocl.types.OrderedSetType;
-import org.eclipse.ocl.types.PrimitiveType;
-import org.eclipse.ocl.types.SequenceType;
-import org.eclipse.ocl.types.SetType;
-import org.eclipse.ocl.types.TupleType;
-import org.eclipse.ocl.types.TypeType;
-import org.eclipse.ocl.types.VoidType;
-import org.eclipse.ocl.util.Bag;
-import org.eclipse.ocl.utilities.ExpressionInOCL;
-import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
  * Implementation of the {@link OCLLibrary} for the Ecore environment.
  * @since 3.0
  */
-public abstract class AbstractOCLLibrary implements OCLLibrary {
-	private List<OCLPackage> packages = new ArrayList<OCLPackage>(); // That contribute to the library 
-	private OCLType OCL_ANY;
-	private OCLType OCL_BOOLEAN;
-	private OCLType OCL_INTEGER;
-	private OCLType OCL_INVALID;
-	private OCLType OCL_MESSAGE;
-	private OCLType OCL_REAL;
-	private OCLType OCL_STRING;
-    private OCLType OCL_UNLIMITED_NATURAL;
-	private OCLType OCL_VOID;
-	
-	private OCLType OCL_TYPE;
-
-	private OCLType OCL_T;
-	private OCLType OCL_T2;
-	
-	private OCLType OCL_SET;
-	private OCLType OCL_ORDERED_SET;
-	private OCLType OCL_BAG;
-	private OCLType OCL_SEQUENCE;
-	private OCLType OCL_COLLECTION;
-	
-//	private OCLType STATE;
-//	private OCLType OCL_EXPRESSION;
-    
-    /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    private static InvalidLiteralExp<OCLType> INVALID = null;
-//    	libraryPackage.getEFactoryInstance().create(
-//        LibraryPackage.Literals.OCL_INVALID_TYPE);   // FIXME
-    
-    /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    private static NullLiteralExp<OCLType> NULL = null;
-//    	libraryPackage.getEFactoryInstance().create(
-//    	LibraryPackage.Literals.OCL_VOID_TYPE);   // FIXME
-
-    /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
-    private static UnlimitedNaturalLiteralExp<OCLType> UNLIMITED = null;
-//    	libraryPackage.getEFactoryInstance().create(
-//    	LibraryPackage.Literals.OCL_VOID_TYPE);   // FIXME
-    
-	public AbstractOCLLibrary(String libraryURI) {
-		init(libraryURI);
-	}
-
-	public OCLConstraintOperation defineOperation(OCLType ownerType, String name,
-			OCLType returnType, LinkedHashMap<String, OCLType> params, String stereotype,
-			ExpressionInOCL<?, ?> specification) {
-		OCLConstraintOperation operation = LibraryFactory.eINSTANCE.createOCLConstraintOperation();
-		operation.setName(name);
-		operation.setType(returnType);
-		for (Entry<String, OCLType> entry : params.entrySet()) {
-			OCLParameter parameter = LibraryFactory.eINSTANCE.createOCLParameter();
-			parameter.setName(entry.getKey());
-			parameter.setType(entry.getValue());
-			operation.getParameter().add(parameter);
-		}
-		operation.setStereotype(stereotype);
-		operation.setSpecification(specification);
-		ownerType.getOperation().add(operation);
-		return operation;
-	}
-
-	public OCLConstraintProperty defineProperty(OCLType ownerType, String name,
-			OCLType valueType, String stereotype, ExpressionInOCL<?, ?> specification) {
-		OCLConstraintProperty property = LibraryFactory.eINSTANCE.createOCLConstraintProperty();
-		property.setName(name);
-		property.setType(valueType);
-		property.setStereotype(stereotype);
-		property.setSpecification(specification);
-		ownerType.getProperty().add(property);
-		return property;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getBoolean()
-	 */
-	public OCLType getBoolean() {
-		return OCL_BOOLEAN;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getInteger()
-	 */
-	public OCLType getInteger() {
-		return OCL_INTEGER;
-	}
-
-    /* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getUnlimitedNatural()
-	 */
-    public OCLType getUnlimitedNatural() {
-        return OCL_UNLIMITED_NATURAL;
-    }
-    
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOclInvalid()
-	 */
-	public OCLType getOclInvalid() {
-		return OCL_INVALID;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getReal()
-	 */
-	public OCLType getReal() {
-		return OCL_REAL;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getString()
-	 */
-	public OCLType getString() {
-		return OCL_STRING;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOclAny()
-	 */
-	public OCLType getOclAny() {
-		return OCL_ANY;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOclElement()
-	 */
-	public OCLType getOclElement() {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getOclElement"); //$NON-NLS-1$
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getInvalid()
-	 */
-	public OCLExpression<OCLType> getInvalid() {
-		if (INVALID == null) {
-			INVALID = ExpressionsFactory.eINSTANCE.createInvalidLiteralExp();
-			INVALID.setType(getOclInvalid());
-		}
-		return INVALID;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getNull()
-	 */
-	public OCLExpression<OCLType> getNull() {
-		if (NULL == null) {
-			NULL = ExpressionsFactory.eINSTANCE.createNullLiteralExp();
-			NULL.setType(getOclVoid());
-		}
-		return NULL;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getState()
-	 */
-	public OCLType getState() {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getState"); //$NON-NLS-1$
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOclMessage()
-	 */
-	public OCLType getOclMessage() {
-		return OCL_MESSAGE;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOclType()
-	 */
-	public OCLType getOclType() {
-		return OCL_TYPE;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOclVoid()
-	 */
-	public OCLType getOclVoid() {
-		return OCL_VOID;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getT()
-	 */
-	public OCLType getT() {
-		return OCL_T;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getT2()
-	 */
-	public OCLType getT2() {
-		return OCL_T2;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getSet()
-	 */
-	public OCLType getSet() {
-		return OCL_SET;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOrderedSet()
-	 */
-	public OCLType getOrderedSet() {
-		return OCL_ORDERED_SET;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getBag()
-	 */
-	public OCLType getBag() {
-		return OCL_BAG;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getSequence()
-	 */
-	public OCLType getSequence() {
-		return OCL_SEQUENCE;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getCollection()
-	 */
-	public OCLType getCollection() {
-		return OCL_COLLECTION;
-	}
-
-	public EObject getUnlimited() {
-		if (UNLIMITED == null) {
-		    UNLIMITED = ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
-		    UNLIMITED.setUnlimitedNaturalSymbol(UnlimitedNaturalLiteralExp.UNLIMITED);
-		    UNLIMITED.setType(getUnlimitedNatural());
-		}
-		return UNLIMITED;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.library.internal.OCLLibrary#getOclExpression()
-	 */
-	public OCLType getOclExpression() {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getOclExpression"); //$NON-NLS-1$
-	}
-	
-    protected OCLPackage init(String libraryURI) {
-        URI oclstdlibURI = URI.createURI(libraryURI != null ? libraryURI : LibraryResource.OCL_STANDARD_LIBRARY_URI);
-        ResourceSet rset = new ResourceSetImpl();
-        // Ensure that an EcoreResource factory is registered for the ecore extension.
-        // Note that when running standalone, a registration in the global registry is not certain.
-        initializeResourceFactory(rset);
-        Resource res = null;
-        
-        try {
-            Resource load = rset.getResource(oclstdlibURI, true);
-            
-            // transfer the loaded resource contents to a new resource that
-            //    decodes URI fragments when resolving objects 
-            res = getEcoreResourceFactory().createResource(load.getURI());
-            res.getContents().addAll(load.getContents());
-            
-            OCLPackage stdlibPackage = (OCLPackage) res.getContents().get(0);
-            packages.add(stdlibPackage);
-            OCL_ANY = stdlibPackage.getType(AnyType.SINGLETON_NAME);
-//            OCL_ELEMENT = stdlibPackage.getType(ElementType.SINGLETON_NAME);
-            OCL_BOOLEAN = stdlibPackage.getType(PrimitiveType.BOOLEAN_NAME);
-            OCL_INTEGER = stdlibPackage.getType(PrimitiveType.INTEGER_NAME);
-            OCL_REAL = stdlibPackage.getType(PrimitiveType.REAL_NAME);
-            OCL_STRING = stdlibPackage.getType(PrimitiveType.STRING_NAME);
-            OCL_UNLIMITED_NATURAL = stdlibPackage.getType(PrimitiveType.UNLIMITED_NATURAL_NAME);
-
-            OCL_INVALID = stdlibPackage.getType(InvalidType.SINGLETON_NAME);
-            OCL_VOID = stdlibPackage.getType(VoidType.SINGLETON_NAME);
-            OCL_MESSAGE = stdlibPackage.getType(MessageType.SINGLETON_NAME);
-
-            
-            OCL_T = stdlibPackage.getType("T"); //$NON-NLS-1$
-            OCL_T2 = stdlibPackage.getType("T2"); //$NON-NLS-1$
-            
-//            OCL_TYPE = (EClassifier) EcoreUtil.getObjectByType(
-//                    stdlibPackage.getEClassifiers(),
-//                    EcorePackage.Literals.TYPE_TYPE);
-            OCL_TYPE = stdlibPackage.getType(TypeType.SINGLETON_NAME);
-            
-            OCL_SET = stdlibPackage.getType("Set"); //$NON-NLS-1$
-            OCL_ORDERED_SET = stdlibPackage.getType("OrderedSet"); //$NON-NLS-1$
-            OCL_BAG = stdlibPackage.getType("Bag"); //$NON-NLS-1$
-            OCL_SEQUENCE = stdlibPackage.getType("Sequence"); //$NON-NLS-1$
-            
-            // don't use EcoreUtil because the other collection types would match
-            OCL_COLLECTION = stdlibPackage.getType("Collection"); //$NON-NLS-1$
-            
-//            STATE = stdlibPackage.getType("State"); //$NON-NLS-1$
-//            OCL_EXPRESSION = stdlibPackage.getType("OclExpression"); //$NON-NLS-1$
-            
-      //      EPackage libraryPackage = LibraryPackage.eINSTANCE;
-      //      EPackage.Registry.INSTANCE.put(libraryPackage.getNsURI(), libraryPackage);
-            
-            return stdlibPackage;
-//        } catch (Exception e) {
-            // normal case: the library file isn't there because we are
-            //    generating it on the fly.  Let's do that, then
-            
-//            return build();
-        } finally {
-            if (res != null) {
-                // don't want this resource to be in a resource set
-                rset.getResources().remove(res);
-            }
-        }
-    }
-
-	private static String initializeResourceFactory(ResourceSet resourceSet) {
-		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
-		? resourceSet.getResourceFactoryRegistry()
-		: Resource.Factory.Registry.INSTANCE;
-//		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-//			"oclstdlib", new LibraryResourceFactoryImpl()); //$NON-NLS-1$
-		String oclLocation = System.getProperty("org.eclipse.ocl.resources"); //$NON-NLS-1$
-		if (oclLocation == null)
-			return "'org.eclipse.ocl.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
-		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-			LibraryResource.FILE_EXTENSION, LibraryResource.Factory.INSTANCE);
-		Map<URI, URI> uriMap = resourceSet != null
-			? resourceSet.getURIConverter().getURIMap()
-			: URIConverter.URI_MAP;		
-		uriMap.put(URI.createURI(LibraryResource.OCL_STANDARD_LIBRARY_URI), URI.createFileURI(oclLocation + "/libraries/OCL.oclstdlib")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(LibraryResource.LIBRARIES_PATHMAP), URI.createFileURI(oclLocation + "/libraries/")); //$NON-NLS-1$
-		return null;
-	}
+public abstract class AbstractOCLLibrary extends OCLRootImpl { //implements OCLLibrary {
 
 	/**
 	 * Obtains the best available resource factory suitable for serializing
@@ -440,135 +83,82 @@ public abstract class AbstractOCLLibrary implements OCLLibrary {
 			}
 		};
 	}
-	
-	public OCLOperation getOperation(OCLType dynamicType, OperationCallExp<?, ?> operationCall) {
-		Object referredOperation = operationCall.getReferredOperation();
-		if (referredOperation instanceof OCLOperation) {
-			return (OCLOperation)referredOperation;
-		}
-		return null;
-	}
 
-	public OCLType getOCLTypeOfType(Object object) {
-		if (object instanceof PredefinedType<?>) {
-			if (object instanceof InvalidType<?>) {
-				return getOclInvalid();
-			}
-			else if (object instanceof VoidType<?>) {
-				return getOclVoid();
-			}
-			else if (object instanceof AnyType<?>) {
-				String name = ((AnyType<?>)object).getName();
-				if ("T".equals(name)) {
-					return getT();
-				}
-				else if ("T2".equals(name)) {
-					return getT2();
-				}
-				return getOclAny();
-			}
-			else if (object instanceof TypeType<?, ?>) {
-				return getOclType();
-			}
-			else if (object instanceof MessageType<?, ?, ?>) {
-				return getOclMessage();
-			}
-			else if (object instanceof PrimitiveType<?>) {
-				String name = ((PrimitiveType<?>)object).getName();
-				if (PrimitiveType.BOOLEAN_NAME.equals(name)) {
-					return getBoolean();
-				}
-				else if (PrimitiveType.INTEGER_NAME.equals(name)) {
-					return getInteger();
-				}
-				else if (PrimitiveType.REAL_NAME.equals(name)) {
-					return getReal();
-				}
-				else if (PrimitiveType.STRING_NAME.equals(name)) {
-					return getString();
-				}
-				else if (PrimitiveType.UNLIMITED_NATURAL_NAME.equals(name)) {
-					return getUnlimitedNatural();
-				}
-			}
-			else if (object instanceof CollectionType<?, ?>) {
-				if (object instanceof BagType<?, ?>) {
-					return getBag();
-				}
-				else if (object instanceof OrderedSetType<?, ?>) {
-					return getOrderedSet();
-				}
-				else if (object instanceof SequenceType<?, ?>) {
-					return getSequence();
-				}
-				else if (object instanceof SetType<?, ?>) {
-					return getSet();
-				}
-				else {
-					return getCollection();
-				}
-			}
-			else if (object instanceof TupleType<?, ?>) {
-				if (object instanceof OCLTupleType) {
-					return (OCLTupleType) object;
-				}
-			}
-		}
+	private static String initializeResourceFactory(ResourceSet resourceSet) {
+		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
+		? resourceSet.getResourceFactoryRegistry()
+		: Resource.Factory.Registry.INSTANCE;
+//		resourceFactoryRegistry.getExtensionToFactoryMap().put(
+//			"oclstdlib", new LibraryResourceFactoryImpl()); //$NON-NLS-1$
+		String oclLocation = System.getProperty("org.eclipse.ocl.resources"); //$NON-NLS-1$
+		if (oclLocation == null)
+			return "'org.eclipse.ocl.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
+		resourceFactoryRegistry.getExtensionToFactoryMap().put(
+			LibraryResource.FILE_EXTENSION, LibraryResource.Factory.INSTANCE);
+		Map<URI, URI> uriMap = resourceSet != null
+			? resourceSet.getURIConverter().getURIMap()
+			: URIConverter.URI_MAP;		
+		uriMap.put(URI.createURI(LibraryResource.OCL_STANDARD_LIBRARY_URI), URI.createFileURI(oclLocation + "/libraries/OCL.oclstdlib")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(LibraryResource.LIBRARIES_PATHMAP), URI.createFileURI(oclLocation + "/libraries/")); //$NON-NLS-1$
 		return null;
 	}
     
-	public OCLType getOCLTypeOfValue(Object object) {
-		if (object instanceof Number) {
-			if (object instanceof BigInteger) {
-				return ((BigInteger)object).signum() >= 0 ? getUnlimitedNatural() : getInteger();
-			}
-			else if (object instanceof BigDecimal) {
-				return getReal();
-			}
+	public AbstractOCLLibrary(String libraryURI) {
+		init(libraryURI);
+	}
+	
+
+ 	public List<OCLOperation> getOperations(OCLType dynamicType, OperationCallExp<?, ?> operationCall) {
+		Object referredOperation = operationCall.getReferredOperation();
+		if (referredOperation instanceof OCLOperation) {
+			return Collections.singletonList((OCLOperation)referredOperation);
 		}
-		else if (object instanceof Collection<?>) {
-			if (object instanceof LinkedHashSet<?>) {
-				return getOrderedSet();
-			}
-			else if (object instanceof Set<?>) {
-				return getSet();
-			}
-			else if (object instanceof List<?>) {
-				return getSequence();
-			}
-			else if (object instanceof Bag<?>) {
-				return getBag();
-			}
-		}
-		else if (object instanceof Boolean) {
-			return getBoolean();
-		}
-		else if ((object instanceof String) || (object instanceof StringBuffer)) {
-			return getString();
-		}
-		else if (object instanceof LiteralExp<?>) {
-			if (object instanceof InvalidLiteralExp<?>) {
-				return getOclInvalid();
-			}
-			else if (object instanceof NullLiteralExp<?>) {
-				return getOclVoid();
-			}
-			else if ((object instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)object).isUnlimited()) {			// FIXME This should not be needed
-				return getUnlimitedNatural();
-			}
-		}		 
 		return null;
 	}
 	
-	public List<OCLPackage> getPackages() {
-		return packages;
-	}
-	
-	public OCLProperty getProperty(OCLType dynamicType, PropertyCallExp<?, ?> propertyCall) {
+/*	public OCLProperty getProperty(OCLType dynamicType, PropertyCallExp<?, ?> propertyCall) {
 		Object referredProperty = propertyCall.getReferredProperty();
 		if (referredProperty instanceof OCLProperty) {
 			return (OCLProperty)referredProperty;
 		}
 		return null;
-	}
+	} */
+	
+    protected void init(String libraryURI) {
+        URI oclstdlibURI = URI.createURI(libraryURI != null ? libraryURI : LibraryResource.OCL_STANDARD_LIBRARY_URI);
+        ResourceSet rset = new ResourceSetImpl();
+        // Ensure that an EcoreResource factory is registered for the ecore extension.
+        // Note that when running standalone, a registration in the global registry is not certain.
+        initializeResourceFactory(rset);
+//        Resource res = null;
+        
+        try {
+            Resource load = rset.getResource(oclstdlibURI, true);
+            
+            // transfer the loaded resource contents to a new resource that
+            // FIXME    decodes URI fragments when resolving objects 
+//            res = getEcoreResourceFactory().createResource(load.getURI());
+//            res.getContents().addAll(load.getContents());
+            OCLLibrary library = (OCLLibrary) load.getContents().get(0);
+            getPackage().addAll(library.getPackage());
+            
+//            OCL_T = stdlibPackage.getType("T"); //$NON-NLS-1$
+//            OCL_T2 = stdlibPackage.getType("T2"); //$NON-NLS-1$
+                        
+      //      EPackage libraryPackage = LibraryPackage.eINSTANCE;
+      //      EPackage.Registry.INSTANCE.put(libraryPackage.getNsURI(), libraryPackage);
+            
+//            return stdlibPackage;
+//        } catch (Exception e) {
+            // normal case: the library file isn't there because we are
+            //    generating it on the fly.  Let's do that, then
+            
+//            return build();
+        } finally {
+//            if (res != null) {
+                // don't want this resource to be in a resource set
+//                rset.getResources().remove(res);
+//            }
+        }
+    }
 }

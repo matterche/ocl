@@ -2,13 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperation.java,v 1.1.2.5 2010/01/20 16:57:25 ewillink Exp $
+ * $Id: OCLOperation.java,v 1.1.2.6 2010/01/24 07:40:53 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +19,6 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#isIterator <em>Is Iterator</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLOperation#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
@@ -30,7 +27,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * @model abstract="true"
  * @generated
  */
-public interface OCLOperation extends OCLElement {
+public interface OCLOperation extends OCLTypedElement {
 	/**
 	 * Returns the value of the '<em><b>Is Iterator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -76,32 +73,6 @@ public interface OCLOperation extends OCLElement {
 	EList<OCLParameter> getParameter();
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(OCLType)
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_Type()
-	 * @model required="true"
-	 * @generated
-	 */
-	OCLType getType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLOperation#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(OCLType value);
-
-	/**
 	 * Returns the value of the '<em><b>Container</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLType#getOperation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
@@ -128,14 +99,6 @@ public interface OCLOperation extends OCLElement {
 	 * @generated
 	 */
 	void setContainer(OCLType value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model exceptions="org.eclipse.ocl.library.Exception" evaluationVisitorDataType="org.eclipse.ocl.library.EvaluationVisitor" operationCallDataType="org.eclipse.ocl.library.OperationCallExp"
-	 * @generated
-	 */
-	Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, OperationCallExp<?, ?> operationCall) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc -->

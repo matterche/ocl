@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLType.java,v 1.1.2.4 2010/01/20 16:57:25 ewillink Exp $
+ * $Id: OCLType.java,v 1.1.2.5 2010/01/24 07:40:53 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface OCLType extends OCLElement {
+public interface OCLType extends OCLNamedElement {
 	/**
 	 * Returns the value of the '<em><b>Conforms</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLType}.
@@ -66,7 +66,6 @@ public interface OCLType extends OCLElement {
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLProperty}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' containment reference list isn't clear,
@@ -75,8 +74,7 @@ public interface OCLType extends OCLElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property</em>' containment reference list.
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLType_Property()
-	 * @see org.eclipse.ocl.library.OCLProperty#getContainer
-	 * @model opposite="container" containment="true" ordered="false"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<OCLProperty> getProperty();
@@ -120,10 +118,34 @@ public interface OCLType extends OCLElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	OCLType getNormalizedType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model parameterTypesMany="true"
 	 * @generated
 	 */
-	OCLOperation getOperation(String name, EList<OCLType> parameterTypes);
+	EList<OCLOperation> getOperations(String name, EList<OCLType> parameterTypes);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLType getTemplateBinding(OCLTemplateParameterType templateParameter);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<OCLTemplateParameterType> getTemplateParameter();
 
 	/**
 	 * <!-- begin-user-doc -->

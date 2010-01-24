@@ -12,7 +12,7 @@
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869, 243976, 256040
 
- $Id: plugin.xml,v 1.7.10.2 2010/01/15 17:27:39 ewillink Exp $
+ $Id: plugin.xml,v 1.7.10.3 2010/01/24 07:41:12 ewillink Exp $
 -->
 
 <plugin>
@@ -49,7 +49,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/ocl/3.0.0/OCL/Library" 
-       class = "org.eclipse.ocl.library.LibraryPackage"
+       class = "org.eclipse.ocl.library.OCLPackage"
        genModel = "model/OCLLibrary.genmodel" /> 
   </extension>
 

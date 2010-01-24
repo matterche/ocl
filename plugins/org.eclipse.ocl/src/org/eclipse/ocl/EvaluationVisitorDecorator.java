@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.3 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.3.8.1 2010/01/24 07:41:19 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -141,6 +141,22 @@ public class EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CL
     public Map<? extends CLS, ? extends Set<? extends E>> getExtentMap() {
         return getDelegate().getExtentMap();
     }
+
+    /**
+     * Delegates to my decorated visitor.
+     * @since 3.0
+     */
+	public Object visitArgument(OperationCallExp<C, O> operationCall, int argumentNumber) {
+        return getDelegate().visitArgument(operationCall, argumentNumber);
+	}
+
+    /**
+     * Delegates to my decorated visitor.
+     * @since 3.0
+     */
+	public Object visitBody(OCLExpression<C> body, Map<String, Object> envVals) {
+        return getDelegate().visitBody(body, envVals);
+	}
 
     /**
      * Delegates to my decorated visitor.

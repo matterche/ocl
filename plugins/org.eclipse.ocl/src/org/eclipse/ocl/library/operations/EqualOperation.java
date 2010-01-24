@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EqualOperation.java,v 1.1.2.1 2010/01/20 06:08:21 ewillink Exp $
+ * $Id: EqualOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -26,9 +26,8 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  */
 public class EqualOperation extends AbstractOperation
 {
-	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
-		Object argVal = evaluateArgument(visitor, operationCall, 0);
+	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Boolean evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
+		Object argVal = visitor.visitArgument(operationCall, 0);
 		if (isInvalid(sourceVal) && isInvalid(argVal)) {
 			return true;
 		}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperation.java,v 1.1.2.4 2010/01/18 08:57:51 ewillink Exp $
+ * $Id: OCLLibraryOperation.java,v 1.1.2.5 2010/01/24 07:40:53 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -40,7 +40,7 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * @model required="true"
 	 * @generated
 	 */
-	Class<? extends LibraryOperation> getLibraryOperationClass();
+	Class<? extends ILibraryOperation> getLibraryOperationClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperationClass <em>Library Operation Class</em>}' attribute.
@@ -50,22 +50,31 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * @see #getLibraryOperationClass()
 	 * @generated
 	 */
-	void setLibraryOperationClass(Class<? extends LibraryOperation> value);
+	void setLibraryOperationClass(Class<? extends ILibraryOperation> value);
 
 	/**
-	 * Returns the value of the '<em><b>Library Operation</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.LibraryOperation#getReferences <em>References</em>}'.
+	 * Returns the value of the '<em><b>Library Operation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Library Operation</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Library Operation</em>' reference.
+	 * @return the value of the '<em>Library Operation</em>' attribute.
+	 * @see #setLibraryOperation(ILibraryOperation)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryOperation_LibraryOperation()
-	 * @see org.eclipse.ocl.library.LibraryOperation#getReferences
-	 * @model opposite="references" resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @model dataType="org.eclipse.ocl.library.ILibraryOperation" transient="true"
 	 * @generated
 	 */
-	LibraryOperation getLibraryOperation();
+	ILibraryOperation getLibraryOperation();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperation <em>Library Operation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Library Operation</em>' attribute.
+	 * @see #getLibraryOperation()
+	 * @generated
+	 */
+	void setLibraryOperation(ILibraryOperation value);
 } // OCLLibraryOperation

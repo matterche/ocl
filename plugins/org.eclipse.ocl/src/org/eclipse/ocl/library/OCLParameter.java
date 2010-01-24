@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLParameter.java,v 1.1.2.3 2010/01/20 16:57:25 ewillink Exp $
+ * $Id: OCLParameter.java,v 1.1.2.4 2010/01/24 07:40:55 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -17,7 +17,6 @@ package org.eclipse.ocl.library;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLParameter#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLParameter#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,7 +24,7 @@ package org.eclipse.ocl.library;
  * @model
  * @generated
  */
-public interface OCLParameter extends OCLElement {
+public interface OCLParameter extends OCLTypedElement {
 	/**
 	 * Returns the value of the '<em><b>Container</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLOperation#getParameter <em>Parameter</em>}'.
@@ -53,31 +52,5 @@ public interface OCLParameter extends OCLElement {
 	 * @generated
 	 */
 	void setContainer(OCLOperation value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(OCLType)
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLParameter_Type()
-	 * @model required="true"
-	 * @generated
-	 */
-	OCLType getType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLParameter#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(OCLType value);
 
 } // OCLParameter

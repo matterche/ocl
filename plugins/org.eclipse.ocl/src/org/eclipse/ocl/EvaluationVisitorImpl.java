@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.12 2010/01/20 17:58:06 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.13 2010/01/24 07:41:19 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -79,9 +79,14 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.library.OCLOperation;
-import org.eclipse.ocl.library.OCLProperty;
+import org.eclipse.ocl.library.OCLCollectionType;
+import org.eclipse.ocl.library.OCLOrderedSetType;
+import org.eclipse.ocl.library.OCLSequenceType;
+import org.eclipse.ocl.library.OCLSetType;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLVoidType;
+import org.eclipse.ocl.library.merged.MergedOperation;
+import org.eclipse.ocl.library.merged.MergedProperty;
 import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -92,6 +97,7 @@ import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -136,131 +142,68 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		try {
 			OCLExpression<?> source = oc.getSource();
 			Object sourceVal = source.accept(this);
-			OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
-			OCLOperation oclOperation = library.getOperation(sourceType, oc);
-			if (oclOperation == null) {
-				return library.getInvalid();		// Undefined operation
+			Object staticSourceType = source.getType();
+			OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, staticSourceType);
+			if (sourceType instanceof OCLVoidType) {
+				sourceType = library.getLibraryTypeOfType(staticSourceType);
+				sourceVal = createNullCollection(sourceType);					
 			}
+			O referredOperation = oc.getReferredOperation();
+			UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
+			String operationName = umlReflection.getName(referredOperation);
+			List<PM> arguments = umlReflection.getParameters(referredOperation);
+//			List<OCLExpression<C>> arguments = oc.getArgument();
+			int iMax = arguments.size();
+			OCLType[] oclArguments = null;
+			if (iMax > 0) {
+				oclArguments = new OCLType[iMax];
+				int i = 0;
+				for (PM anArgument : arguments) {
+					oclArguments[i++] = library.getLibraryTypeOfType(umlReflection.getOCLType(anArgument));
+				}		
+			}
+			List<MergedOperation> oclOperations = library.getMergedOperations(sourceType, operationName, oclArguments);
+			if (oclOperations == null) {
+				return getInvalid("Undefined operation: " + oc); //$NON-NLS-1$
+			}
+			MergedOperation oclOperation = oclOperations.get(0);	// FIXME select best overload
 			Object result = oclOperation.evaluate(this, sourceVal, oc);
 			if (result == null) {
-				return library.getInvalid();		// Invalid result
+				return getInvalid("Invalid result: " + oc); //$NON-NLS-1$
 			}
 			return result;							// Valid result
+	    } catch (EvaluationHaltedException e) {
+			// evaluation stopped on demand, propagate father	        
+	    	throw e;				
+	    } catch (Exception e) {
+			OCLPlugin.catching(getClass(), "visitOperationCallExp", e);//$NON-NLS-1$
+			String message = OCLMessages.bind(OCLMessages.ErrorMessage_ERROR_,
+				"visitOperationCallExp", e.getLocalizedMessage()); //$NON-NLS-1$
+			OCLPlugin.log(Diagnostic.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING, message, e);
+			return getInvalid("Failed evaluation: " + oc); //$NON-NLS-1$
 		}
-		catch (Exception e) {
-			return library.getInvalid();			// Failed evaluation
-		}
-		// check if source type is primitive and handle the
-		// primitive ops "inline". Otherwise use java reflection
-		// to invoke the operation (there is currently no means
-		// to do this directly in EMF).
-
-		// Note: Generally the result of an operation invocation on the
-		// undefined
-		// object or with an undefined argument is undefined except in the
-		// following
-		// cases prescribed by the spec (p. 2-10, sec. 2.4.11)
-		// 1. true || <anything> is true
-		// 2. false && <anything> is false
-		// 3. false implies <anything> is true
-		// 4. if <condition> <something1> else <something2> has the value
-		// dictated
-		// by the condition regardless of the other value.
-		// all irrespective of the order of the arguments.
-
-/*		EvaluationEnvironment<C, O, P, CLS, E> evaluationEnvironment = getEvaluationEnvironment();
-		OCLExpression<C> source = oc.getSource();
-		O oper = oc.getReferredOperation();
-		int opCode = oc.getOperationCode();
-		List<OCLExpression<C>> args = oc.getArgument();
-		int numArgs = args.size();
-
-		// evaluate source
-		Object sourceVal = source.accept(getVisitor());
-		
-		OCLExpression<C> body = getOperationBody(oper);
-		if ((body != null) || opCode <= 0 / * not a pre-defined operation * /
-				|| evaluationEnvironment.overrides(oper, opCode)) {
-			// delegate evaluation to the evaluation environment
-			
-			// evaluate args
-			Object[] evalArgs = new Object[numArgs];
-			int i = 0;
-			for (Iterator<OCLExpression<C>> it = args.iterator(); it.hasNext(); i++) {
-				OCLExpression<C> arg = it.next();
-				evalArgs[i] = arg.accept(getVisitor());
-			}
-	
-			// ask the environment to evaluate
-			try {
-				Object result;
-				
-				if (body != null) {
-					// if source is undefined, result is OclInvalid
-					if (isUndefined(sourceVal)) {
-						return library.getInvalid();
-					}
-					
-					result = call(oper, body, sourceVal, evalArgs);
-				} else {
-				    // handle <, <=, >, and >= operators
-				    if (opCode <= 0) {
-				        opCode = inferOperationCode(oper, opCode);
-				    }
-					result = evaluationEnvironment.callOperation(
-							oper, opCode, sourceVal, evalArgs);
-				}
-				
-				return result;
-	        } catch (EvaluationHaltedException e) {
-				// evaluation stopped on demand, propagate father	        
-	        	throw e;				
-			} catch (UnsupportedOperationException ignore) {
-				// let the EvaluationVisitor do its thing
-			} catch (Exception e) {
-				OCLPlugin
-					.catching(getClass(), "visitOperationCallExp", e);//$NON-NLS-1$
-				OCLPlugin.log(
-					Diagnostic.ERROR,
-					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
-					OCLMessages.bind(
-						OCLMessages.ErrorMessage_ERROR_,
-						"visitOperationCallExp", //$NON-NLS-1$
-						e.getLocalizedMessage()),
-					e);
-			}
-		}
-
-		return library.getInvalid(); */
 	}
-	
+
 	/**
-	 * Infers a standard operation code from the name of a user-defined
-	 * operation.  This applies for cases where a standard operation is not
-	 * defined by the OCL Standard Library, but is implemented nonetheless by
-	 * the interpreter.
-	 * 
-	 * @param operation the operation
-     * @param opcode the original operation code from the AST
-	 * @return the appropriate operation code, or the original <tt>opcode</tt>
-     *     if there is no matching standard operation
+	 * @since 3.0
 	 */
-	private int inferOperationCode(O operation, int opcode) {
-	    int result = opcode;
-	    String opName = getName(operation);
-	    
-        if (PredefinedType.LESS_THAN_NAME.equals(opName)) {
-            result = PredefinedType.LESS_THAN;
-        } else if (PredefinedType.GREATER_THAN_NAME.equals(opName)) {
-            result = PredefinedType.GREATER_THAN;
-        } else if (PredefinedType.LESS_THAN_EQUAL_NAME.equals(opName)) {
-            result = PredefinedType.LESS_THAN_EQUAL;
-        } else if (PredefinedType.GREATER_THAN_EQUAL_NAME.equals(opName)) {
-            result = PredefinedType.GREATER_THAN_EQUAL;
-        }
-        
-        return result;
-    }
+	public Object createNullCollection(OCLType sourceType) {
+		if (sourceType instanceof OCLSetType) {
+			return CollectionUtil.createNewSet();
+		}
+		else if (sourceType instanceof OCLOrderedSetType) {
+			return CollectionUtil.createNewOrderedSet();
+		}
+		else if (sourceType instanceof OCLSequenceType) {
+			return CollectionUtil.createNewSequence();
+		}
+		else if (sourceType instanceof OCLCollectionType) {
+			return CollectionUtil.createNewBag();
+		}
+		else {
+			return getNull();
+		}
+	}
 
 	/**
 	 * Callback for an IterateExp visit.
@@ -281,7 +224,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// value of iteration expression is undefined if the source is
 			//   null or OclInvalid
 			if (isUndefined(sourceValue)) {
-				return library.getInvalid();
+				return getInvalid();
 			}
 			
 			Collection<?> coll = (Collection<?>) sourceValue;
@@ -314,7 +257,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// value of iteration expression is undefined if the source is
 			//   null or OclInvalid
 			if (isUndefined(sourceValue)) {
-				return library.getInvalid();
+				return getInvalid();
 			}
 			
 			Collection<?> sourceCollection = (Collection<?>) sourceValue;
@@ -651,7 +594,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// TODO: find an efficient way to do this.
 			Object evaluationResult = is.evaluate(coll, iterators, body, resultName);
 			
-			if (evaluationResult == library.getInvalid()) {
+			if (AbstractOperation.isInvalid(evaluationResult)) {
 				// handle the OclInvalid result
 				return evaluationResult;
 			}
@@ -783,25 +726,35 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		try {
 			OCLExpression<?> source = pc.getSource();
 			Object sourceVal = source.accept(this);
-			OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
-			OCLProperty oclProperty = library.getProperty(sourceType, pc);
-			if (oclProperty != null) {
-				Object result = oclProperty.evaluate(this, sourceVal, pc);
-				if (result == null) {
-					result = library.getInvalid();
-				}
-				return result;
+			OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, source.getType());
+			P referredProperty = pc.getReferredProperty();
+			String propertyName = getUMLReflection().getName(referredProperty);
+			MergedProperty oclProperty = library.getMergedProperty(sourceType, propertyName);
+			if (oclProperty == null) {
+				result = getInvalid("Undefined Property: " + pc); //$NON-NLS-1$
 			}
-		}
+			Object result = oclProperty.evaluate(this, sourceVal, pc);
+			if (result == null) {
+				result = getInvalid("Invalid result: " + pc); //$NON-NLS-1$
+			}
+			return result;
+		} catch (EvaluationHaltedException e) {
+			// evaluation stopped on demand, propagate father	        
+	    	throw e;				
+	    } 
 		catch (Exception e) {
-			return library.getInvalid();
+			OCLPlugin.catching(getClass(), "visitPropertyCallExp", e);//$NON-NLS-1$
+			String message = OCLMessages.bind(OCLMessages.ErrorMessage_ERROR_,
+				"visitPropertyCallExp", e.getLocalizedMessage());//$NON-NLS-1$			
+			OCLPlugin.log(Diagnostic.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING, message, e);
+			return getInvalid("Failed evaluation: " + pc); //$NON-NLS-1$
 		}
 
 		
 		
+/*		
 		
-		
-		P property = pc.getReferredProperty();
+		P property = referredProperty;
 		OCLExpression<C> source = pc.getSource();
 
 		// evaluate source
@@ -809,7 +762,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// if source is undefined, result is OclInvalid
 		if (isUndefined(context)) {
-            return library.getInvalid();
+            return getInvalid();
         }
 
 		OCLExpression<C> derivation = getPropertyBody(property);
@@ -846,7 +799,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			result = collection;
 		}
 		
-		return result;
+		return result; */
 	}
 
 	/**
@@ -861,7 +814,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		Object context = ae.getSource().accept(getVisitor());
 		
 		if (isUndefined(context)) {
-			return library.getInvalid();
+			return getInvalid();
 		}
 		
 		// evaluate attribute on source value
@@ -990,13 +943,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
 		// just make up some object to take the place of the OclInvalid literal
-		return library.getInvalid();
+		return getInvalid();
 	}
 
 	@Override
     public Object visitNullLiteralExp(NullLiteralExp<C> il) {
 		// the single OclVoid instance is equivalent to Java null
-		return library.getNull();
+		return getNull();
 	}
 
 	/**
@@ -1068,7 +1021,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					OCLExpression<C> itemExp = item.getItem();
 					Object itemVal = itemExp.accept(getVisitor());
 					if (AbstractOperation.isInvalid(itemVal)) {
-						return library.getInvalid();
+						return getInvalid();
 					}
 					CollectionUtil.add(result, itemVal);
 				} else {
@@ -1214,4 +1167,54 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
 		return tp.getValue().accept(getVisitor());
 	}
+
+	/**
+	 * @since 3.0
+	 */
+	public Object visitArgument(OperationCallExp<C, O> operationCall, int argumentNumber) {
+		try {
+			List<OCLExpression<C>> args = operationCall.getArgument();
+			if ((args != null) && (0 <= argumentNumber) && (argumentNumber < args.size())) {
+				OCLExpression<?> arg = args.get(argumentNumber);
+				Object argVal = arg.accept(this);
+				if (AbstractOperation.isNull(argVal)) {
+					C argType = getUMLReflection().getOCLType(arg);
+					OCLType oclType = getEnvironment().getMergedLibrary().getLibraryTypeOfType(argType);
+					if (oclType instanceof OCLCollectionType) {
+						argVal = createNullCollection(oclType);
+					}
+				}
+				return argVal;
+			}
+		}
+		catch (Exception e) {
+		}
+		return getInvalid();
+	}
+	
+    
+    /**
+	 * @since 3.0
+	 */
+    public Object visitBody(OCLExpression<C> body, Map<String, Object> envVals) {
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> myEnv = getEnvironment();
+
+		EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> factory =
+			myEnv.getFactory();
+
+    	// create a nested evaluation environment for this operation call
+    	EvaluationEnvironment<C, O, P, CLS, E> nested =
+    		factory.createEvaluationEnvironment(getEvaluationEnvironment());
+    	
+    	// add the bindings to the local variables
+    	for (Map.Entry<String, Object> arg : envVals.entrySet()) {
+    		nested.add(arg.getKey(), arg.getValue());
+    	}
+    	
+    	Map<? extends CLS, ? extends Set<? extends E>> extentMap = getExtentMap();
+		EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> nestedEvaluationVisitor = factory.createEvaluationVisitor(myEnv, nested, extentMap);
+		return body.accept(nestedEvaluationVisitor);
+    }
+	
+	
 } //EvaluationVisitorImpl

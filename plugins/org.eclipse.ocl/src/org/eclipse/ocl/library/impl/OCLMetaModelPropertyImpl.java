@@ -2,18 +2,16 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelPropertyImpl.java,v 1.1.2.4 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLMetaModelPropertyImpl.java,v 1.1.2.5 2010/01/24 07:41:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLMetaModelElement;
 import org.eclipse.ocl.library.OCLMetaModelProperty;
 
 /**
@@ -156,37 +154,4 @@ public abstract class OCLMetaModelPropertyImpl extends OCLPropertyImpl implement
 		}
 		return super.eIsSet(featureID);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == OCLMetaModelElement.class) {
-			switch (derivedFeatureID) {
-				case LibraryPackage.OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT: return LibraryPackage.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == OCLMetaModelElement.class) {
-			switch (baseFeatureID) {
-				case LibraryPackage.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT: return LibraryPackage.OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
 } //OCLMetaModelPropertyImpl

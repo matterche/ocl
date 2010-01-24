@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLAnyTypeImpl.java,v 1.1.2.1 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLAnyTypeImpl.java,v 1.1.2.2 2010/01/24 07:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLAnyType;
 

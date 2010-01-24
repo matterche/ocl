@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OclIsKindOfOperation.java,v 1.1.2.1 2010/01/20 06:08:23 ewillink Exp $
+ * $Id: OclIsKindOfOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.merged.MergedLibrary;
 
 /**
  * OclIsKindOfOperation realises the oclIsKindOf() library operation.
@@ -29,13 +29,12 @@ import org.eclipse.ocl.library.OCLType;
  */
 public class OclIsKindOfOperation extends AbstractOperation
 {
-	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
+	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
-		OCLLibrary library = environment.getOCLLibrary();
-		OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
-		Object argVal = evaluateArgument(visitor, operationCall, 0);
-		OCLType argType = library.getOCLTypeOfType(argVal);
+		MergedLibrary library = environment.getMergedLibrary();
+		OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, operationCall.getSource().getType());
+		Object argVal = visitor.visitArgument(operationCall, 0);
+		OCLType argType = library.getLibraryTypeOfType(argVal);
 		return (sourceType != null) && sourceType.conformsTo(argType);
 	}
 }

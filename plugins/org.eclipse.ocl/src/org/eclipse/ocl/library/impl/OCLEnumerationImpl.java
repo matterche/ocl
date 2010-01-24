@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLEnumerationImpl.java,v 1.1.2.2 2010/01/20 09:09:32 ewillink Exp $
+ * $Id: OCLEnumerationImpl.java,v 1.1.2.3 2010/01/24 07:41:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -10,21 +10,16 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLEnumeration;
 import org.eclipse.ocl.library.OCLEnumerationLiteral;
-import org.eclipse.ocl.library.OCLMetaModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,18 +80,6 @@ public abstract class OCLEnumerationImpl extends OCLTypeImpl implements OCLEnume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OCLEnumerationLiteral> getLiterals() {
-		if (literals == null) {
-			literals = new EObjectContainmentWithInverseEList<OCLEnumerationLiteral>(OCLEnumerationLiteral.class, this, LibraryPackage.OCL_ENUMERATION__LITERALS, LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER);
-		}
-		return literals;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EObject getMetaModelElement() {
 		if (metaModelElement != null && metaModelElement.eIsProxy()) {
 			InternalEObject oldMetaModelElement = (InternalEObject)metaModelElement;
@@ -128,6 +111,18 @@ public abstract class OCLEnumerationImpl extends OCLTypeImpl implements OCLEnume
 		metaModelElement = newMetaModelElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_ENUMERATION__META_MODEL_ELEMENT, oldMetaModelElement, metaModelElement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OCLEnumerationLiteral> getLiterals() {
+		if (literals == null) {
+			literals = new EObjectContainmentWithInverseEList<OCLEnumerationLiteral>(OCLEnumerationLiteral.class, this, LibraryPackage.OCL_ENUMERATION__LITERALS, LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER);
+		}
+		return literals;
 	}
 
 	/**
@@ -228,38 +223,6 @@ public abstract class OCLEnumerationImpl extends OCLTypeImpl implements OCLEnume
 				return literals != null && !literals.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == OCLMetaModelElement.class) {
-			switch (derivedFeatureID) {
-				case LibraryPackage.OCL_ENUMERATION__META_MODEL_ELEMENT: return LibraryPackage.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == OCLMetaModelElement.class) {
-			switch (baseFeatureID) {
-				case LibraryPackage.OCL_META_MODEL_ELEMENT__META_MODEL_ELEMENT: return LibraryPackage.OCL_ENUMERATION__META_MODEL_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //OCLEnumerationImpl

@@ -2,21 +2,16 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLElementImpl.java,v 1.1.2.4 2010/01/20 16:57:26 ewillink Exp $
+ * $Id: OCLElementImpl.java,v 1.1.2.5 2010/01/24 07:41:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLElement;
-import org.eclipse.ocl.library.OCLGenericType;
-import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLLibrary;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,35 +19,11 @@ import org.eclipse.ocl.library.OCLType;
  * @since 3.0
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLElementImpl#getName <em>Name</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class OCLElementImpl extends EObjectImpl implements OCLElement {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,105 +46,56 @@ public abstract class OCLElementImpl extends EObjectImpl implements OCLElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public String getName() {
-		return name;
+	public abstract String getName();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getQualifiedName() {
+		StringBuffer s = new StringBuffer();
+		appendQualifiedName(s);
+		return s.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_ELEMENT__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LibraryPackage.OCL_ELEMENT__NAME:
-				return getName();
+	public OCLLibrary getLibrary() {
+		if (eContainer instanceof OCLElement) {
+			return ((OCLElement)eContainer).getLibrary();
 		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LibraryPackage.OCL_ELEMENT__NAME:
-				setName((String)newValue);
-				return;
+		else {
+			return null;
 		}
-		super.eSet(featureID, newValue);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LibraryPackage.OCL_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LibraryPackage.OCL_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
-
-	protected void appendName(StringBuffer s, Object object) {
-		OCLElement oclElement = object instanceof OCLElement ? (OCLElement)object : null;
-		String name = oclElement != null ? oclElement.getName() : null;
+	public void appendName(StringBuffer s) {
+		String name = getName();
 		s.append(String.valueOf(name));
 	}
 
-	@SuppressWarnings("nls")
+	public void appendQualifiedName(StringBuffer s) {
+		String name = getName();
+		EObject eContainer = eContainer();
+		if (eContainer instanceof OCLElement) {
+			int oldLength = s.length();
+			((OCLElement)eContainer).appendQualifiedName(s);
+			if (s.length() > oldLength) {
+				s.append("::"); //$NON-NLS-1$
+			}
+			s.append(String.valueOf(name));
+		} else if (name != null) {
+			s.append(name);
+		}
+	}
+
+/*	@SuppressWarnings("nls")
 	protected void appendType(StringBuffer s, Object object) {
 		OCLType oclType = object instanceof OCLType ? (OCLType)object : null;
 		appendName(s, oclType);
@@ -187,6 +109,22 @@ public abstract class OCLElementImpl extends EObjectImpl implements OCLElement {
 			}
 			s.append(">");
 		}
+	} */
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	@Override
+	public String toString() {
+		StringBuffer s = new StringBuffer();
+		s.append("<");
+		s.append(eClass().getName());
+		s.append("> ");
+		appendQualifiedName(s);
+		return s.toString();
 	}
 
 } //OCLElementImpl

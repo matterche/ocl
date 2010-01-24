@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.6.4.1 2010/01/15 07:46:38 ewillink Exp $
+ * $Id: AbstractParser.java,v 1.6.4.2 2010/01/24 07:41:18 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -289,6 +289,7 @@ public abstract class AbstractParser
 		this.defaultRepairCount = defaultRepairCount;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void setLexStream(AbstractLexer lexStream) {
 		super.resetLexStream(lexStream);
 	}

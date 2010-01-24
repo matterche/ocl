@@ -2,24 +2,24 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackageImpl.java,v 1.1.2.3 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLPackageImpl.java,v 1.1.2.4 2010/01/24 07:41:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLPackage;
+import org.eclipse.ocl.library.OCLPackageParent;
 import org.eclipse.ocl.library.OCLType;
 
 /**
@@ -30,23 +30,14 @@ import org.eclipse.ocl.library.OCLType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLPackageImpl#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLPackageImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLPackageImpl#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
-	/**
-	 * The cached value of the '{@link #getExtends() <em>Extends</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtends()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OCLPackage> extends_;
+public class OCLPackageImpl extends OCLPackageParentImpl implements OCLPackage {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -56,11 +47,6 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	 * @ordered
 	 */
 	protected EList<OCLType> type;
-	
-	/**
-	 * Library operations created to support the serialised class references.
-	 */
-	private Map<Class<? extends LibraryOperation>, LibraryOperation> libraryOperationMap = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,18 +72,6 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OCLPackage> getExtends() {
-		if (extends_ == null) {
-			extends_ = new EObjectContainmentEList<OCLPackage>(OCLPackage.class, this, LibraryPackage.OCL_PACKAGE__EXTENDS);
-		}
-		return extends_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<OCLType> getType() {
 		if (type == null) {
 			type = new EObjectContainmentWithInverseEList<OCLType>(OCLType.class, this, LibraryPackage.OCL_PACKAGE__TYPE, LibraryPackage.OCL_TYPE__CONTAINER);
@@ -108,39 +82,58 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLPackageParent getContainer() {
+		if (eContainerFeatureID() != LibraryPackage.OCL_PACKAGE__CONTAINER) return null;
+		return (OCLPackageParent)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainer(OCLPackageParent newContainer, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainer, LibraryPackage.OCL_PACKAGE__CONTAINER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainer(OCLPackageParent newContainer) {
+		if (newContainer != eInternalContainer() || (eContainerFeatureID() != LibraryPackage.OCL_PACKAGE__CONTAINER && newContainer != null)) {
+			if (EcoreUtil.isAncestor(this, newContainer))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainer != null)
+				msgs = ((InternalEObject)newContainer).eInverseAdd(this, LibraryPackage.OCL_PACKAGE_PARENT__PACKAGE, OCLPackageParent.class, msgs);
+			msgs = basicSetContainer(newContainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_PACKAGE__CONTAINER, newContainer, newContainer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public OCLType getType(String name) {
-		for (OCLType aType : type) {
-			if (name.equals(aType.getName())) {
-				return aType;
+		if (type != null) {
+			for (OCLType aType : type) {
+				if (name.equals(aType.getName())) {
+					return aType;
+				}
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass) {
-		if (libraryOperationMap != null) {
-			return libraryOperationMap .get(libraryOperationClass);
-		}
-		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation) {
-		if (libraryOperationMap == null) {
-			libraryOperationMap = new HashMap<Class<? extends LibraryOperation>, LibraryOperation>();
-		}
-		libraryOperationMap.put(libraryOperationClass, libraryOperation);
 	}
 
 	/**
@@ -154,6 +147,10 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 		switch (featureID) {
 			case LibraryPackage.OCL_PACKAGE__TYPE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getType()).basicAdd(otherEnd, msgs);
+			case LibraryPackage.OCL_PACKAGE__CONTAINER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainer((OCLPackageParent)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -166,10 +163,10 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PACKAGE__EXTENDS:
-				return ((InternalEList<?>)getExtends()).basicRemove(otherEnd, msgs);
 			case LibraryPackage.OCL_PACKAGE__TYPE:
 				return ((InternalEList<?>)getType()).basicRemove(otherEnd, msgs);
+			case LibraryPackage.OCL_PACKAGE__CONTAINER:
+				return basicSetContainer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -180,12 +177,26 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case LibraryPackage.OCL_PACKAGE__CONTAINER:
+				return eInternalContainer().eInverseRemove(this, LibraryPackage.OCL_PACKAGE_PARENT__PACKAGE, OCLPackageParent.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PACKAGE__EXTENDS:
-				return getExtends();
 			case LibraryPackage.OCL_PACKAGE__TYPE:
 				return getType();
+			case LibraryPackage.OCL_PACKAGE__CONTAINER:
+				return getContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,13 +210,12 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PACKAGE__EXTENDS:
-				getExtends().clear();
-				getExtends().addAll((Collection<? extends OCLPackage>)newValue);
-				return;
 			case LibraryPackage.OCL_PACKAGE__TYPE:
 				getType().clear();
 				getType().addAll((Collection<? extends OCLType>)newValue);
+				return;
+			case LibraryPackage.OCL_PACKAGE__CONTAINER:
+				setContainer((OCLPackageParent)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -219,11 +229,11 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PACKAGE__EXTENDS:
-				getExtends().clear();
-				return;
 			case LibraryPackage.OCL_PACKAGE__TYPE:
 				getType().clear();
+				return;
+			case LibraryPackage.OCL_PACKAGE__CONTAINER:
+				setContainer((OCLPackageParent)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -237,10 +247,10 @@ public class OCLPackageImpl extends OCLElementImpl implements OCLPackage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_PACKAGE__EXTENDS:
-				return extends_ != null && !extends_.isEmpty();
 			case LibraryPackage.OCL_PACKAGE__TYPE:
 				return type != null && !type.isEmpty();
+			case LibraryPackage.OCL_PACKAGE__CONTAINER:
+				return getContainer() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeImpl.java,v 1.1.2.6 2010/01/20 16:57:26 ewillink Exp $
+ * $Id: OCLTypeImpl.java,v 1.1.2.7 2010/01/24 07:41:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -10,10 +10,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -23,6 +25,7 @@ import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLProperty;
+import org.eclipse.ocl.library.OCLTemplateParameterType;
 import org.eclipse.ocl.library.OCLType;
 
 /**
@@ -42,7 +45,8 @@ import org.eclipse.ocl.library.OCLType;
  *
  * @generated
  */
-public class OCLTypeImpl extends OCLElementImpl implements OCLType {
+public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
+	private static EList<OCLTemplateParameterType> emptyList = new BasicEList<OCLTemplateParameterType>();
 	/**
 	 * The cached value of the '{@link #getConforms() <em>Conforms</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -123,7 +127,7 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	 */
 	public EList<OCLProperty> getProperty() {
 		if (property == null) {
-			property = new EObjectContainmentWithInverseEList<OCLProperty>(OCLProperty.class, this, LibraryPackage.OCL_TYPE__PROPERTY, LibraryPackage.OCL_PROPERTY__CONTAINER);
+			property = new EObjectContainmentEList<OCLProperty>(OCLProperty.class, this, LibraryPackage.OCL_TYPE__PROPERTY);
 		}
 		return property;
 	}
@@ -192,7 +196,17 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLOperation getOperation(String name, EList<OCLType> types) {
+	public OCLType getNormalizedType() {
+		return this;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<OCLOperation> getOperations(String name, EList<OCLType> types) {
+		EList<OCLOperation> operations = null;
 		if (operation != null) {
 			int size = types.size();
 			for (OCLOperation anOperation : operation) {
@@ -203,12 +217,12 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 						for (; i < size; i++) {
 							OCLType parameterType = parameters.get(i).getType();
 							OCLType opType = types.get(i);
-							if (!opType.conformsTo(parameterType)) {
+							if (!opType.conformsTo(parameterType) && !parameterType.conformsTo(opType)) {
 								break;
 							}
 						}
 						if (i >= size) {
-							return anOperation;
+							operations = addOperation(operations, anOperation);
 						}
 					}
 				}
@@ -216,13 +230,49 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 		}
 		if (conforms != null) {
 			for (OCLType superType : conforms) {
-				OCLOperation anOperation = superType.getOperation(name, types);
-				if (anOperation != null) {
-					return anOperation;
+				EList<OCLOperation> superOperations = superType.getOperations(name, types);
+				if (superOperations != null) {
+					for (OCLOperation superOperation : superOperations) {
+						operations = addOperation(operations, superOperation);
+					}
 				}
 			}
 		}
+		return operations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLType getTemplateBinding(OCLTemplateParameterType templateParameter) {
 		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<OCLTemplateParameterType> getTemplateParameter() {
+		if (emptyList == null) {
+			emptyList = new BasicEList<OCLTemplateParameterType>();
+		}
+		return emptyList;
+	}
+
+	private EList<OCLOperation> addOperation(EList<OCLOperation> operations, OCLOperation anOperation) {
+		if (operations == null) {
+			operations = new BasicEList<OCLOperation>();
+			operations.add(anOperation);
+		}
+		else {
+			if (false) { // test overload visibility
+				
+			}
+		}
+		return operations;
 	}
 
 	/**
@@ -260,8 +310,6 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 		switch (featureID) {
 			case LibraryPackage.OCL_TYPE__OPERATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperation()).basicAdd(otherEnd, msgs);
-			case LibraryPackage.OCL_TYPE__PROPERTY:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProperty()).basicAdd(otherEnd, msgs);
 			case LibraryPackage.OCL_TYPE__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -415,9 +463,6 @@ public class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-		StringBuffer result = new StringBuffer();
-		result.append(getName());
-		return result.toString();
+		return super.toString();
 	}
 } //OCLTypeImpl

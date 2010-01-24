@@ -2,13 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLProperty.java,v 1.1.2.4 2010/01/20 16:57:25 ewillink Exp $
+ * $Id: OCLProperty.java,v 1.1.2.5 2010/01/24 07:40:57 ewillink Exp $
  */
 package org.eclipse.ocl.library;
-
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.PropertyCallExp;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +16,6 @@ import org.eclipse.ocl.expressions.PropertyCallExp;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLProperty#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,67 +23,30 @@ import org.eclipse.ocl.expressions.PropertyCallExp;
  * @model abstract="true"
  * @generated
  */
-public interface OCLProperty extends OCLElement {
+public interface OCLProperty extends OCLTypedElement {
 	/**
-	 * Returns the value of the '<em><b>Container</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLType#getProperty <em>Property</em>}'.
+	 * Returns the value of the '<em><b>Container</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Container</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container</em>' container reference.
+	 * @return the value of the '<em>Container</em>' reference.
 	 * @see #setContainer(OCLType)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLProperty_Container()
-	 * @see org.eclipse.ocl.library.OCLType#getProperty
-	 * @model opposite="property" transient="false"
+	 * @model
 	 * @generated
 	 */
 	OCLType getContainer();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container</em>' container reference.
+	 * @param value the new value of the '<em>Container</em>' reference.
 	 * @see #getContainer()
 	 * @generated
 	 */
 	void setContainer(OCLType value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(OCLType)
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLProperty_Type()
-	 * @model required="true"
-	 * @generated
-	 */
-	OCLType getType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLProperty#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(OCLType value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model exceptions="org.eclipse.ocl.library.Exception" evaluationVisitorDataType="org.eclipse.ocl.library.EvaluationVisitor" propertyCallDataType="org.eclipse.ocl.library.PropertyCallExp"
-	 * @generated
-	 */
-	Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, PropertyCallExp<?, ?> propertyCall) throws Exception;
-
 } // OCLProperty

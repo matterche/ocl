@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
+    nsURI="http://www.eclipse.org/ocl/3.0.0/OCL/MergedLibrary2" nsPrefix="ocl">
+  <eSubpackages name="library" nsURI="http://www.eclipse.org/ocl/3.0.0/OCL/MergedLibrary1"
+      nsPrefix="ocl.lib">
+    <eSubpackages name="merged" nsURI="http://www.eclipse.org/ocl/3.0.0/OCL/MergedLibrary"
+        nsPrefix="ocl.lib.merge">
+      <eClassifiers xsi:type="ecore:EClass" name="MergedLibrary" abstract="true" eSuperTypes="OCLLibrary.ecore#//library/OCLNamedElement OCLLibrary.ecore#//library/OCLCache">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="baseLibrary" eType="ecore:EClass OCLLibrary.ecore#//library/OCLRoot"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedLibraryOperation" eSuperTypes="#//library/merged/MergedOperation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLLibraryOperation" unsettable="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedLibraryProperty" eSuperTypes="#//library/merged/MergedProperty">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLLibraryProperty" unsettable="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedMetaModelOperation" eSuperTypes="#//library/merged/MergedOperation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLMetaModelOperation"
+            unsettable="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="body">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedMetaModelProperty" eSuperTypes="#//library/merged/MergedProperty">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLMetaModelProperty" unsettable="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedOperation" abstract="true"
+          eSuperTypes="OCLLibrary.ecore#//library/OCLElement">
+        <eOperations name="getBody">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eOperations name="getParameter" upperBound="-1" eType="ecore:EClass OCLLibrary.ecore#//library/OCLParameter"/>
+        <eOperations name="getType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        <eOperations name="setBody">
+          <eParameters name="body">
+            <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="post" upperBound="-1">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="pre" upperBound="-1">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedOperationDefinition" eSuperTypes="#//library/merged/MergedOperation">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLParameter" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="body">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedProperty" abstract="true"
+          eSuperTypes="OCLLibrary.ecore#//library/OCLElement">
+        <eOperations name="getType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="init">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="derive">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedPropertyDefinition" eSuperTypes="#//library/merged/MergedProperty">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedType" eSuperTypes="OCLLibrary.ecore#//library/OCLElement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="mergedLibrary" lowerBound="1"
+            eType="#//library/merged/MergedLibrary" unsettable="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLType" unsettable="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="conforms" ordered="false"
+            upperBound="-1" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
+            upperBound="-1" eType="#//library/merged/MergedOperation" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="property" upperBound="-1"
+            eType="#//library/merged/MergedProperty" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="inv">
+          <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>

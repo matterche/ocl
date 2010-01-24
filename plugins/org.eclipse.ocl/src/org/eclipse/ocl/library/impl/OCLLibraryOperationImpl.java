@@ -2,21 +2,17 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationImpl.java,v 1.1.2.4 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: OCLLibraryOperationImpl.java,v 1.1.2.5 2010/01/24 07:41:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.LibraryOperation;
+import org.eclipse.ocl.library.ILibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLLibraryOperation;
-import org.eclipse.ocl.library.OCLPackage;
-import org.eclipse.ocl.library.OCLType;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +38,16 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	 * @generated
 	 * @ordered
 	 */
-	protected Class<? extends LibraryOperation> libraryOperationClass;
+	protected Class<? extends ILibraryOperation> libraryOperationClass;
+	/**
+	 * The default value of the '{@link #getLibraryOperation() <em>Library Operation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLibraryOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ILibraryOperation LIBRARY_OPERATION_EDEFAULT = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +72,7 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Class<? extends LibraryOperation> getLibraryOperationClass() {
+	public Class<? extends ILibraryOperation> getLibraryOperationClass() {
 		return libraryOperationClass;
 	}
 
@@ -76,8 +81,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLibraryOperationClass(Class<? extends LibraryOperation> newLibraryOperationClass) {
-		Class<? extends LibraryOperation> oldLibraryOperationClass = libraryOperationClass;
+	public void setLibraryOperationClass(Class<? extends ILibraryOperation> newLibraryOperationClass) {
+		Class<? extends ILibraryOperation> oldLibraryOperationClass = libraryOperationClass;
 		libraryOperationClass = newLibraryOperationClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS, oldLibraryOperationClass, libraryOperationClass));
@@ -109,7 +114,10 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
-				setLibraryOperationClass((Class<? extends LibraryOperation>)newValue);
+				setLibraryOperationClass((Class<? extends ILibraryOperation>)newValue);
+				return;
+			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION:
+				setLibraryOperation((ILibraryOperation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,7 +132,10 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
-				setLibraryOperationClass((Class<? extends LibraryOperation>)null);
+				setLibraryOperationClass((Class<? extends ILibraryOperation>)null);
+				return;
+			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION:
+				setLibraryOperation(LIBRARY_OPERATION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,7 +152,7 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
 				return libraryOperationClass != null;
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION:
-				return libraryOperation != null;
+				return LIBRARY_OPERATION_EDEFAULT == null ? libraryOperation != null : !LIBRARY_OPERATION_EDEFAULT.equals(libraryOperation);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -163,13 +174,12 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 		return result.toString();
 	}
 
-	private LibraryOperation libraryOperation = null;
+	private ILibraryOperation libraryOperation = null;
 
-	public LibraryOperation getLibraryOperation() {
+	public ILibraryOperation getLibraryOperation() {
 		if (libraryOperation == null) {
-			OCLType parentType = getContainer();
-			OCLPackage parentPackage = parentType.getContainer();
-			LibraryOperation libraryOperation = parentPackage.getLibraryOperation(libraryOperationClass);
+			OCLLibrary library = getLibrary();
+			libraryOperation = library.getLibraryOperation(libraryOperationClass);
 			if (libraryOperation == null) {
 				try {
 					libraryOperation = libraryOperationClass.newInstance();
@@ -179,8 +189,7 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 				}
 			}
 			if (libraryOperation != null) {
-				parentPackage.putLibraryOperation(libraryOperationClass, libraryOperation);
-				basicSetLibraryOperation(libraryOperation, null);
+				library.putLibraryOperation(libraryOperationClass, libraryOperation);
 			}
 		}
 		return libraryOperation;
@@ -191,18 +200,10 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLibraryOperation(LibraryOperation newLibraryOperation, NotificationChain msgs) {
-		LibraryOperation oldLibraryOperation = libraryOperation;
+	public void setLibraryOperation(ILibraryOperation newLibraryOperation) {
+		ILibraryOperation oldLibraryOperation = libraryOperation;
 		libraryOperation = newLibraryOperation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION, oldLibraryOperation, newLibraryOperation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object sourceVal, OperationCallExp<?, ?> operationCall) throws Exception {
-		return getLibraryOperation().evaluate(evaluationVisitor, sourceVal, operationCall);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION, oldLibraryOperation, libraryOperation));
 	}
 } //OCLLibraryOperationImpl

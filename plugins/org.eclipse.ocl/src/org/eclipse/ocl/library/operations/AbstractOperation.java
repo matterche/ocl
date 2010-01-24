@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.1 2010/01/20 06:08:22 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -23,22 +23,18 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.library.impl.LibraryOperationImpl;
-import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.library.ILibraryOperation;
 import org.eclipse.ocl.util.CollectionUtil;
 
 
 /**
  * @since 3.0
  */
-public abstract class AbstractOperation extends LibraryOperationImpl
+public abstract class AbstractOperation implements ILibraryOperation
 {
 	public static BigDecimal bigDecimalValueOf(Object val) {
 		if (val instanceof BigDecimal) {
@@ -87,6 +83,10 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 		}
 	}
 
+	public static<T>  T createInvalid(T invalid, String reason) {
+		return invalid;
+	}
+	
 	public static boolean isBoolean(Object value) {
 		return value instanceof Boolean;
 	}
@@ -150,22 +150,6 @@ public abstract class AbstractOperation extends LibraryOperationImpl
 
 	public static boolean isUnlimitedNatural(Object value) {
 		return isUnlimited(value) || ((value instanceof BigInteger) && (((BigInteger)value).signum() >= 0));
-	}
-
-	protected <C> Object evaluateArgument(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, OperationCallExp<C, ?> operationCall, int argumentNumber) {
-		try {
-			List<OCLExpression<C>> args = operationCall.getArgument();
-			if ((args != null) && (0 <= argumentNumber) && (argumentNumber < args.size())) {
-				OCLExpression<?> arg = args.get(argumentNumber);
-				Object argVal = arg.accept(visitor);
-				return argVal;
-			}
-		}
-		catch (Exception e) {
-		}
-		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
-		OCLStandardLibrary<?> oclStandardLibrary = environment.getOCLStandardLibrary();
-		return oclStandardLibrary.getInvalid();
 	}
 
 	protected int getNumArguments(OperationCallExp<?, ?> operationCall) {

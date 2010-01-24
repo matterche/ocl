@@ -15,14 +15,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.20.2.3 2010/01/20 16:57:26 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.20.2.4 2010/01/24 07:41:19 ewillink Exp $
  */
 package org.eclipse.ocl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +32,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.merged.AbstractMergedLibrary;
+import org.eclipse.ocl.library.merged.MergedLibrary;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Option;
@@ -190,10 +192,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public PK getContextPackage() {
 		if (contextPackage != null) {
 			return contextPackage;
-		} else if (getInternalParent() != null) {
-			return getInternalParent().getContextPackage();
 		}
-		
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getContextPackage();
+		}
 		return null;
 	}
 
@@ -215,10 +218,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public O getContextOperation() {
 		if (contextOperation != null) {
 			return contextOperation;
-		} else if (getInternalParent() != null) {
-			return getInternalParent().getContextOperation();
+		} 
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getContextOperation();
 		}
-		
 		return null;
 	}
 
@@ -236,10 +240,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public P getContextProperty() {
 		if (contextProperty != null) {
 			return contextProperty;
-		} else if (getInternalParent() != null) {
-			return getInternalParent().getContextProperty();
+		} 
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getContextProperty();
 		}
-		
 		return null;
 	}
 
@@ -280,9 +285,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 		}
 		
-		if (getInternalParent() != null) {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
 			// add all non-shadowed parent variables
-			for (Variable<C, PM> parentVar : getInternalParent().getVariables()) {
+			for (Variable<C, PM> parentVar : internalParent.getVariables()) {
 				if (lookupLocal(parentVar.getName()) == null) {
 					result.add(parentVar);
 				}
@@ -369,10 +375,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public Variable<C, PM> getSelfVariable() {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
 		Variable<C, PM> result = selfVariable;
 		
-		if ((result == null) && (getInternalParent() != null)) {
-			result = getInternalParent().getSelfVariable();
+		if ((result == null) && (internalParent != null)) {
+			result = internalParent.getSelfVariable();
 		}
 		
 		return result;
@@ -397,18 +404,20 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      */
     @Deprecated
 	protected void addProperty(C owner, P property) {
-		if (getInternalParent() != null) {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
 			// propagate additional properties as high as possible so that they
 			//    will be accessible to all child environments of the root
-		    getInternalParent().addHelperProperty(owner, property);
+		    internalParent.addHelperProperty(owner, property);
 		} else {
 			getTypeResolver().resolveAdditionalAttribute(owner, property);
 		}
 	}
 	
 	public List<P> getAdditionalAttributes(C classifier) {
-		if (getInternalParent() != null) {
-			return getInternalParent().getAdditionalAttributes(classifier);
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getAdditionalAttributes(classifier);
 		}
 		
 		List<P> result = null;
@@ -461,18 +470,20 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      */
     @Deprecated
     protected void addOperation(C owner, O operation) {
-        if (getInternalParent() != null) {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+        if (internalParent != null) {
             // propagate additional operations as high as possible so that they
             //    will be accessible to all child environments of the root
-            getInternalParent().addHelperOperation(owner, operation);
+            internalParent.addHelperOperation(owner, operation);
         } else {
             getTypeResolver().resolveAdditionalOperation(owner, operation);
         }
     }
 	
 	public List<O> getAdditionalOperations(C classifier) {
-		if (getInternalParent() != null) {
-			return getInternalParent().getAdditionalOperations(classifier);
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getAdditionalOperations(classifier);
 		}
 		
 		List<O> result = null;
@@ -508,19 +519,22 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public void setInitConstraint(P property, CT constraint) {
-		if (getInternalParent() != null) {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
 			// propagate initializers as high as possible so that they
 			//    will be accessible to all child environments of the root
-			getInternalParent().setInitConstraint(property, constraint);
+			internalParent.setInitConstraint(property, constraint);
 		} else {
 			propertyInitializers.put(property, constraint);
+			mergeProperty(property, constraint);
 		}
 	}
 
     // implements the interface method
 	public CT getInitConstraint(P property) {
-		if (getInternalParent() != null) {
-			return getInternalParent().getInitConstraint(property);
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getInitConstraint(property);
 		}
 		
     	return propertyInitializers.get(property);
@@ -528,19 +542,22 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public void setDeriveConstraint(P property, CT constraint) {
-		if (getInternalParent() != null) {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
 			// propagate derivations as high as possible so that they
 			//    will be accessible to all child environments of the root
-			getInternalParent().setDeriveConstraint(property, constraint);
+			internalParent.setDeriveConstraint(property, constraint);
 		} else {
 			propertyDerivations.put(property, constraint);
+			mergeProperty(property, constraint);
 		}
 	}
 	
     // implements the interface method
 	public CT getDeriveConstraint(P property) {
-		if (getInternalParent() != null) {
-			return getInternalParent().getDeriveConstraint(property);
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getDeriveConstraint(property);
 		}
 		
     	return propertyDerivations.get(property);
@@ -548,19 +565,22 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public void setBodyCondition(O operation, CT constraint) {
-		if (getInternalParent() != null) {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
 			// propagate bodies as high as possible so that they
 			//    will be accessible to all child environments of the root
-			getInternalParent().setBodyCondition(operation, constraint);
+			internalParent.setBodyCondition(operation, constraint);
 		} else {
 			operationBodies.put(operation, constraint);
+			mergeOperation(operation, constraint);
 		}
 	}
 	
     // implements the interface method
 	public CT getBodyCondition(O operation) {
-		if (getInternalParent() != null) {
-			return getInternalParent().getBodyCondition(operation);
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getBodyCondition(operation);
 		}
 		
     	return operationBodies.get(operation);
@@ -596,8 +616,9 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			return elem;
 		}
 
-		if (getInternalParent() != null) {
-			return getInternalParent().lookup(name);
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.lookup(name);
 		} else {
             return null;
         }
@@ -1174,48 +1195,48 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         }
     }    
 
-	private OCLLibrary oclLibrary;
+	private AbstractMergedLibrary mergedLibrary;
 
 	/**
 	 * @since 3.0
 	 */
 	public OCLType getUnlimitedNatural() {
-		return getOCLLibrary().getUnlimitedNatural();
+		return getMergedLibrary().getUnlimitedNatural();
 	}
 
 	/**
 	 * @since 3.0
 	 */
 	public OCLType getString() {
-		return getOCLLibrary().getString();
+		return getMergedLibrary().getString();
 	}
 
 	/**
 	 * @since 3.0
 	 */
 	public OCLType getReal() {
-		return getOCLLibrary().getReal();
+		return getMergedLibrary().getReal();
 	}
 
 	/**
 	 * @since 3.0
 	 */
 	public OCLType getInteger() {
-		return getOCLLibrary().getInteger();
+		return getMergedLibrary().getInteger();
 	}
 
 	/**
 	 * @since 3.0
 	 */
 	public OCLType getBoolean() {
-		return getOCLLibrary().getBoolean();
+		return getMergedLibrary().getBoolean();
 	}
 
 	/**
 	 * @since 3.0
 	 */
 	public OCLType getOclAny() {
-		return getOCLLibrary().getOclAny();
+		return getMergedLibrary().getOclAny();
 	}
 
 	/**
@@ -1224,59 +1245,96 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * 
 	 * @since 3.0
 	 */
-	public OCLLibrary getOCLLibrary() {
-		if (oclLibrary == null) {
+	public AbstractMergedLibrary getMergedLibrary() {
+		if (mergedLibrary == null) {
 			setOCLLibrary(createOCLLibrary());
 		}
-		return oclLibrary;
+		return mergedLibrary;
 	}
 
 	/**
 	 * Define the OCL library to be used by the environment. Provided this method is
-	 * invoked before any invocation of {@linkplain #getOCLLibrary()}, this allows an 
+	 * invoked before any invocation of {@linkplain #getMergedLibrary()}, this allows an 
 	 * @since 3.0
 	 */
-	public void setOCLLibrary(OCLLibrary oclLibrary) {
-		this.oclLibrary = oclLibrary;
+	public void setOCLLibrary(OCLRoot oclLibrary) {
+		this.mergedLibrary = new AbstractMergedLibrary(oclLibrary);
 	}
 
     /**
 	 * @since 3.0
 	 */
-    protected abstract OCLLibrary createOCLLibrary();
+    protected abstract OCLRoot createOCLLibrary();
     
     /**
 	 * @since 3.0
 	 */
-    public P defineAttribute(C owner, Variable<C, PM> variable, CT constraint) {
-    	OCLLibrary oclLibrary = getOCLLibrary();
-    	OCLType ownerType = oclLibrary.getOCLTypeOfType(owner);
-		OCLType valueType = oclLibrary.getOCLTypeOfType(variable.getType());
-		ExpressionInOCL<C, PM> specification = getUMLReflection().getSpecification(constraint);
-		String stereoType = getUMLReflection().getStereotype(constraint);
-		oclLibrary.defineProperty(ownerType, variable.getName(), valueType, stereoType, specification);
-		return null;
-    }
-    
-    /**
-	 * @since 3.0
-	 */
-	public O defineOperation(C owner, String name,
+	protected O mergeOperation(C owner, String name,
 			C returnType, List<Variable<C, PM>> params, CT constraint) {
-    	OCLLibrary oclLibrary = getOCLLibrary();
-    	OCLType ownerType = oclLibrary.getOCLTypeOfType(owner);
-		OCLType oclReturnType = oclLibrary.getOCLTypeOfType(returnType);
+		int iMax = params.size();
+		String[] paramNames = new String[iMax];
+		List<C> paramTypes = new ArrayList<C>();
+		int i = 0;
+		for (Variable<C,PM> param : params) {
+			paramNames[i++] = param.getName();
+	    	paramTypes.add(param.getType());
+		}
+		mergeOperation(owner, name, returnType, paramNames, paramTypes, constraint);
+		return null;
+	}
+	private void mergeOperation(O operation, CT constraint) {
+		UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
+		C owner = umlReflection.getOwningClassifier(operation);
+		String name = umlReflection.getName(operation);
+		C type = umlReflection.getOCLType(operation);
+		List<PM> parameters = umlReflection.getParameters(operation);
+		int iMax = parameters.size();
+		String[] paramNames = new String[iMax];
+		List<C> paramTypes = new ArrayList<C>();
+		int i = 0;
+		for (PM param : parameters) {
+			paramNames[i++] = umlReflection.getName(param);
+			paramTypes.add(umlReflection.getOCLType(param));
+		}
+		mergeOperation(owner, name, type, paramNames, paramTypes, constraint);
+	}
+	private O mergeOperation(C ownerType, String name, C returnType,
+			String[] paramNames, List<C> paramTypes, CT constraint) {
+		MergedLibrary mergedLibrary = getMergedLibrary();
+		OCLType oclOwnerType = mergedLibrary.getLibraryTypeOfType(ownerType);
+		OCLType oclReturnType = mergedLibrary.getLibraryTypeOfType(returnType);
+		int iMax = paramTypes.size();
+		OCLType[] oclParamTypes = new OCLType[iMax];
+		for (int i = 0; i < iMax; i++) {
+			oclParamTypes[i] = mergedLibrary.getLibraryTypeOfType(paramTypes.get(i));
+		}
 		UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
 		ExpressionInOCL<C, PM> specification = umlReflection.getSpecification(constraint);
 		String stereoType = umlReflection.getStereotype(constraint);
-		LinkedHashMap<String, OCLType> oclParams = new LinkedHashMap<String, OCLType>();
-		for (Variable<C,PM> param : params) {
-	    	OCLType paramType = oclLibrary.getOCLTypeOfType(param.getType());
-			oclParams.put(param.getName(), paramType);
-		}
-		oclLibrary.defineOperation(ownerType, name, oclReturnType, oclParams, stereoType, specification);
+		mergedLibrary.mergeOperation(oclOwnerType, name, oclReturnType, paramNames, oclParamTypes, stereoType, specification);
 		return null;
 	}
+    
+
+	private void mergeProperty(P property, CT constraint) {
+		UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
+		C owner = umlReflection.getOwningClassifier(property);
+		String name = umlReflection.getName(property);
+		C type = umlReflection.getOCLType(property);
+		mergeProperty(owner, name, type, constraint);
+	}
+    /**
+	 * @since 3.0
+	 */
+    protected P mergeProperty(C owner, String name, C type, CT constraint) {
+    	MergedLibrary mergedLibrary = getMergedLibrary();
+    	OCLType ownerType = mergedLibrary.getLibraryTypeOfType(owner);
+		OCLType valueType = mergedLibrary.getLibraryTypeOfType(type);
+		ExpressionInOCL<C, PM> specification = getUMLReflection().getSpecification(constraint);
+		String stereoType = getUMLReflection().getStereotype(constraint);
+		mergedLibrary.mergeProperty(ownerType, name, valueType, stereoType, specification);
+		return null;
+    }
 
 	/**
      * Obtains my extensible type checker utility.  If it has not already been

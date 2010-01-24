@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: EvaluationVisitor.java,v 1.1.14.1 2010/01/24 07:41:19 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -62,6 +63,22 @@ public interface EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	public Map<? extends CLS, ? extends Set<? extends E>> getExtentMap();
 	
 	/**
+	 * Evaluates the specified <tt>operationCall</tt> <tt>argumentNumber</tt>  on the current "self" context
+	 * object.  This result type of this expression may be any type.  An
+	 * implementation will typically just call {@link Visitable#accept(Visitor)}
+	 * on the <tt>expression</tt>, but is free to elaborate on that.  Thus,
+	 * clients should not simply ask the <tt>expression</tt> to accept this
+	 * visitor.
+	 * 
+	 * @param operationCall providing the argument to evaluate
+	 * @param argumentNumber the argumentNumber to evaluate
+	 * 
+	 * @return the value of the expression
+	 * @since 3.0
+	 */
+	public Object visitArgument(OperationCallExp<C, O> operationCall, int argumentNumber);
+	
+	/**
 	 * Evaluates the specified <tt>expression</tt> on the current "self" context
 	 * object.  This result type of this expression may be any type.  An
 	 * implementation will typically just call {@link Visitable#accept(Visitor)}
@@ -90,4 +107,17 @@ public interface EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 *    (or <tt>OclInvalid</tt>)
 	 */
 	public Object visitConstraint(CT constraint);
+	
+    /**
+     * Invokes a nested evaluation of <tt>body</tt> on the <tt>body</tt>
+     * with the map of self and parameter names to values added to the
+     * nested evaluation environment.
+     * 
+     * @param body the operation's body expression
+     * @param envVals map of self and parameter names to argument values
+     * 
+     * @since 3.0
+     */	
+    public Object visitBody(OCLExpression<C> body, Map<String, Object> envVals);
+
 }

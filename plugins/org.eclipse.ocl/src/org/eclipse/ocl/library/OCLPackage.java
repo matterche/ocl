@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackage.java,v 1.1.2.3 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: OCLPackage.java,v 1.1.2.4 2010/01/24 07:40:53 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -10,15 +10,22 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>OCL Package</b></em>'.
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
+ * <ul>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
+ * </ul>
  * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.OCLPackage#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLPackage#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLPackage#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,23 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface OCLPackage extends OCLElement {
-	/**
-	 * Returns the value of the '<em><b>Extends</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.library.OCLPackage}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extends</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extends</em>' containment reference list.
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLPackage_Extends()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<OCLPackage> getExtends();
-
+public interface OCLPackage extends OCLPackageParent {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLType}.
@@ -62,6 +53,34 @@ public interface OCLPackage extends OCLElement {
 	EList<OCLType> getType();
 
 	/**
+	 * Returns the value of the '<em><b>Container</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLPackageParent#getPackage <em>Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Container</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Container</em>' container reference.
+	 * @see #setContainer(OCLPackageParent)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLPackage_Container()
+	 * @see org.eclipse.ocl.library.OCLPackageParent#getPackage
+	 * @model opposite="package" transient="false"
+	 * @generated
+	 */
+	OCLPackageParent getContainer();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLPackage#getContainer <em>Container</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Container</em>' container reference.
+	 * @see #getContainer()
+	 * @generated
+	 */
+	void setContainer(OCLPackageParent value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model
@@ -69,20 +88,4 @@ public interface OCLPackage extends OCLElement {
 	 */
 	OCLType getType(String name);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation);
-
-} // OCLPackage
+} //OCLLibraryPackage

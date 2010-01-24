@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLInvalidTypeImpl.java,v 1.1.2.1 2010/01/03 22:53:50 ewillink Exp $
+ * $Id: OCLInvalidTypeImpl.java,v 1.1.2.2 2010/01/24 07:41:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLInvalidType;
 import org.eclipse.ocl.library.OCLType;

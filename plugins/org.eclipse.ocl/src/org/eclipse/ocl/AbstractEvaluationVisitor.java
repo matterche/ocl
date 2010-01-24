@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11.6.5 2010/01/20 16:57:26 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11.6.6 2010/01/24 07:41:19 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -28,7 +28,8 @@ import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -64,7 +65,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	/**
 	 * @since 3.0
 	 */
-	protected final OCLLibrary library;
+	protected final MergedLibrary library;
 	
 	private Map<? extends CLS, ? extends Set<? extends E>> extentMap;
 
@@ -91,7 +92,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
         
         this.evalEnv = evalEnv;
         this.env = env;
-        library = env.getOCLLibrary();
+        library = env.getMergedLibrary();
         this.extentMap = extentMap;
         
         this.visitor = this;  // assume I have no decorator
@@ -180,9 +181,18 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * @return the invalid result
      * @since 3.0
      */
-	@Deprecated
-	protected final EObject getInvalid() {
-		return getStandardLibrary().getInvalid();
+	protected final Object getInvalid() {
+		return library.getInvalid();
+	}
+	
+    /**
+     * Obtains my environment's implementation of the <tt>invalid</tt> value.
+     * 
+     * @return the invalid result
+     * @since 3.0
+     */
+	protected final Object getInvalid(String reason) {
+		return AbstractOperation.createInvalid(library.getInvalid(), reason);
 	}
 	
     /**
@@ -191,9 +201,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * @return the null result
      * @since 3.0
      */
-	@Deprecated
 	protected final EObject getNull() {
-		return getStandardLibrary().getNull();
+		return library.getNull();
 	}
     
     /**
@@ -348,6 +357,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * @param body the operation's body expression
      * @param target the object on which to evaluate the operation body
      * @param args the arguments to the operation call
+     * 
+     * @deprecated use visitBody()
      */
     protected Object call(O operation, OCLExpression<C> body, Object target, Object[] args) {
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> myEnv =

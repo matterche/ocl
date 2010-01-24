@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAsCollectionOperation.java,v 1.1.2.1 2010/01/20 06:08:24 ewillink Exp $
+ * $Id: OclAsCollectionOperation.java,v 1.1.2.2 2010/01/24 07:41:11 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -30,8 +30,7 @@ import org.eclipse.ocl.util.CollectionUtil;
  */
 public class OclAsCollectionOperation extends AbstractOperation
 {
-	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
+	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		if (isInvalid(sourceVal)) {
 			return null;
 		}

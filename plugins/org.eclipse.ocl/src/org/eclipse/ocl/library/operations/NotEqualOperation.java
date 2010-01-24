@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NotEqualOperation.java,v 1.1.2.1 2010/01/20 06:08:22 ewillink Exp $
+ * $Id: NotEqualOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -24,20 +24,10 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * 
  * @since 3.0
  */
-public class NotEqualOperation extends AbstractOperation
+public class NotEqualOperation extends EqualOperation
 {
 	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
-		Object argVal = evaluateArgument(visitor, operationCall, 0);
-		if (isInvalid(sourceVal) && isInvalid(argVal)) {
-			return false;
-		}
-		if (isNull(sourceVal) && isNull(argVal)) {
-			return false;
-		}
-		if (isUndefined(sourceVal) && isUndefined(argVal)) {
-			return true;
-		}
-		return sourceVal != argVal;
+	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Boolean evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
+		return !super.evaluate(visitor, sourceVal, operationCall);
 	}
 }

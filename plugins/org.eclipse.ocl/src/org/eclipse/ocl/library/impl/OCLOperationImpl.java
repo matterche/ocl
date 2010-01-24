@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperationImpl.java,v 1.1.2.5 2010/01/20 16:57:26 ewillink Exp $
+ * $Id: OCLOperationImpl.java,v 1.1.2.6 2010/01/24 07:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLParameter;
@@ -34,14 +32,13 @@ import org.eclipse.ocl.library.OCLType;
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#isIterator <em>Is Iterator</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOperation {
+public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OCLOperation {
 	/**
 	 * The default value of the '{@link #isIterator() <em>Is Iterator</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,16 +68,6 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 	 * @ordered
 	 */
 	protected EList<OCLParameter> parameter;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLType type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,44 +126,6 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLType getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (OCLType)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LibraryPackage.OCL_OPERATION__TYPE, oldType, type));
-			}
-		}
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLType basicGetType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(OCLType newType) {
-		OCLType oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_OPERATION__TYPE, oldType, type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OCLType getContainer() {
 		if (eContainerFeatureID() != LibraryPackage.OCL_OPERATION__CONTAINER) return null;
 		return (OCLType)eContainer();
@@ -212,13 +161,6 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_OPERATION__CONTAINER, newContainer, newContainer));
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public abstract Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> evaluationVisitor, Object source, OperationCallExp<?, ?> operationCall) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -292,9 +234,6 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 				return isIterator();
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				return getParameter();
-			case LibraryPackage.OCL_OPERATION__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 			case LibraryPackage.OCL_OPERATION__CONTAINER:
 				return getContainer();
 		}
@@ -317,9 +256,6 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 				getParameter().clear();
 				getParameter().addAll((Collection<? extends OCLParameter>)newValue);
 				return;
-			case LibraryPackage.OCL_OPERATION__TYPE:
-				setType((OCLType)newValue);
-				return;
 			case LibraryPackage.OCL_OPERATION__CONTAINER:
 				setContainer((OCLType)newValue);
 				return;
@@ -341,9 +277,6 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				getParameter().clear();
 				return;
-			case LibraryPackage.OCL_OPERATION__TYPE:
-				setType((OCLType)null);
-				return;
 			case LibraryPackage.OCL_OPERATION__CONTAINER:
 				setContainer((OCLType)null);
 				return;
@@ -363,38 +296,37 @@ public abstract class OCLOperationImpl extends OCLElementImpl implements OCLOper
 				return isIterator != IS_ITERATOR_EDEFAULT;
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				return parameter != null && !parameter.isEmpty();
-			case LibraryPackage.OCL_OPERATION__TYPE:
-				return type != null;
 			case LibraryPackage.OCL_OPERATION__CONTAINER:
 				return getContainer() != null;
 		}
 		return super.eIsSet(featureID);
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 		StringBuffer s = new StringBuffer();
-		if (getContainer() != null) {
-			appendName(s, getContainer());
-			s.append("::"); //$NON-NLS-1$
-		}
-		appendName(s, this);
-		s.append("("); //$NON-NLS-1$
+		appendQualifiedName(s);
+		s.append("(");
 		int iMax = parameter != null ? parameter.size() : 0;
 		for (int i = 0; i < iMax; i++) {
 			if (i > 0) {
-				s.append(","); //$NON-NLS-1$
+				s.append(",");
 			}
-			appendType(s, parameter.get(i));
+			parameter.get(i).appendName(s);
+			s.append(" : ");
+			parameter.get(i).getType().appendQualifiedName(s);
 		}
-		s.append(")"); //$NON-NLS-1$
+		s.append(") : ");
+		if (type != null) {
+			type.appendQualifiedName(s);
+		}
 		return s.toString();
 	}
-
 } //OCLOperationImpl

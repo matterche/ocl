@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.5.6.1 2010/01/20 09:09:31 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.5.6.2 2010/01/24 07:41:17 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -28,7 +28,7 @@ import org.eclipse.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.merged.MergedLibrary;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
 public class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
@@ -185,8 +185,8 @@ public class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		return evalVisitor.getEnvironment().getOCLStandardLibrary();
 	}
 	
-	protected OCLLibrary getOCLLibrary() {
-		return evalVisitor.getEnvironment().getOCLLibrary();
+	protected MergedLibrary getOCLLibrary() {
+		return evalVisitor.getEnvironment().getMergedLibrary();
 	}
 	
 	protected Object getInvalid() {

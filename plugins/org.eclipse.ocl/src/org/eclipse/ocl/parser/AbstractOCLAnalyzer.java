@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.5 2010/01/18 22:07:17 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.6 2010/01/24 07:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -213,6 +213,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	/**
 	 * @since 1.3
 	 */
+	@Override
 	@SuppressWarnings("deprecation")
 	public AbstractOCLParser getAbstractParser() {
 		return (AbstractOCLParser) super.getParser();

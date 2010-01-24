@@ -1,5 +1,5 @@
-Ecore tests: 38 failures
-UML tests: 142 failures
+Ecore tests: 58 failures
+UML tests: 151 failures
 
 Meta-model
 ----------
@@ -13,6 +13,8 @@ Are they meta-modelled usefully?
 Are they implemented usefully?
 
 Support library extension so that OCL.oclstdlib is extended by MDTOCL.oclstdlib.
+
+Serialisation/Deserialisation of merged meta-model.
 
 Library
 -------
@@ -41,6 +43,8 @@ Deep per-element normalisation of evaluate() input. ? should be in visitVariable
 Deep mutual denormalisation of evaluate() result.
 
 Evaluation visitor for iterators
+
+UOEs
 
 Synthesis
 ---------

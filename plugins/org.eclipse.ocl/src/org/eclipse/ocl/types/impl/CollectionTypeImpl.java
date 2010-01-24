@@ -13,16 +13,16 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.8.10.1 2010/01/15 07:47:00 ewillink Exp $
+ * $Id: CollectionTypeImpl.java,v 1.8.10.2 2010/01/24 07:41:11 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

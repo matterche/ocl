@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OclTypeOperation.java,v 1.1.2.1 2010/01/20 06:08:23 ewillink Exp $
+ * $Id: OclTypeOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.merged.MergedLibrary;
 
 /**
  * OclTypeOperation realises the oclType() library operation.
@@ -29,11 +29,10 @@ import org.eclipse.ocl.library.OCLType;
  */
 public class OclTypeOperation extends AbstractOperation
 {
-	@Override
-	public Object evaluate(EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor, Object sourceVal, OperationCallExp<?, ?> operationCall) {
+	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
-		OCLLibrary library = environment.getOCLLibrary();
-		OCLType sourceType = library.getOCLTypeOfValue(sourceVal);
+		MergedLibrary library = environment.getMergedLibrary();
+		OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, operationCall.getSource().getType());
 		return sourceType;
 	}
 }

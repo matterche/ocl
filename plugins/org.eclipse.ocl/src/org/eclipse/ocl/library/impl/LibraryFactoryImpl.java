@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.8 2010/01/20 16:57:26 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.9 2010/01/24 07:41:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -12,26 +12,29 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.PropertyCallExp;
-import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.LibraryFactory;
-import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.OCLAnyType;
-import org.eclipse.ocl.library.OCLConstraintOperation;
-import org.eclipse.ocl.library.OCLConstraintProperty;
-import org.eclipse.ocl.library.OCLGenericType;
+import org.eclipse.ocl.library.OCLBagType;
+import org.eclipse.ocl.library.OCLCollectionType;
 import org.eclipse.ocl.library.OCLInvalidType;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
+import org.eclipse.ocl.library.OCLNonOrderedCollectionType;
+import org.eclipse.ocl.library.OCLNonUniqueCollectionType;
+import org.eclipse.ocl.library.OCLOrderedCollectionType;
+import org.eclipse.ocl.library.OCLOrderedSetType;
 import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLParameter;
+import org.eclipse.ocl.library.OCLRoot;
+import org.eclipse.ocl.library.OCLSequenceType;
+import org.eclipse.ocl.library.OCLSetType;
+import org.eclipse.ocl.library.OCLTemplateParameterType;
+import org.eclipse.ocl.library.OCLTupleType;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLUniqueCollectionType;
 import org.eclipse.ocl.library.OCLVoidType;
-import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,19 +81,26 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LibraryPackage.LIBRARY_OPERATION: return createLibraryOperation();
-			case LibraryPackage.LIBRARY_PROPERTY: return createLibraryProperty();
+			case LibraryPackage.OCL_LIBRARY: return createOCLLibrary();
 			case LibraryPackage.OCL_ANY_TYPE: return createOCLAnyType();
-			case LibraryPackage.OCL_CONSTRAINT_OPERATION: return createOCLConstraintOperation();
-			case LibraryPackage.OCL_CONSTRAINT_PROPERTY: return createOCLConstraintProperty();
-			case LibraryPackage.OCL_GENERIC_TYPE: return createOCLGenericType();
+			case LibraryPackage.OCL_BAG_TYPE: return createOCLBagType();
+			case LibraryPackage.OCL_COLLECTION_TYPE: return createOCLCollectionType();
 			case LibraryPackage.OCL_INVALID_TYPE: return createOCLInvalidType();
 			case LibraryPackage.OCL_LIBRARY_OPERATION: return createOCLLibraryOperation();
 			case LibraryPackage.OCL_LIBRARY_PROPERTY: return createOCLLibraryProperty();
+			case LibraryPackage.OCL_NON_ORDERED_COLLECTION_TYPE: return createOCLNonOrderedCollectionType();
+			case LibraryPackage.OCL_NON_UNIQUE_COLLECTION_TYPE: return createOCLNonUniqueCollectionType();
+			case LibraryPackage.OCL_ORDERED_COLLECTION_TYPE: return createOCLOrderedCollectionType();
+			case LibraryPackage.OCL_ORDERED_SET_TYPE: return createOCLOrderedSetType();
 			case LibraryPackage.OCL_PACKAGE: return createOCLPackage();
 			case LibraryPackage.OCL_PARAMETER: return createOCLParameter();
+			case LibraryPackage.OCL_TEMPLATE_PARAMETER_TYPE: return createOCLTemplateParameterType();
+			case LibraryPackage.OCL_ROOT: return createOCLRoot();
+			case LibraryPackage.OCL_SEQUENCE_TYPE: return createOCLSequenceType();
+			case LibraryPackage.OCL_SET_TYPE: return createOCLSetType();
 			case LibraryPackage.OCL_TUPLE_TYPE: return createOCLTupleType();
 			case LibraryPackage.OCL_TYPE: return createOCLType();
+			case LibraryPackage.OCL_UNIQUE_COLLECTION_TYPE: return createOCLUniqueCollectionType();
 			case LibraryPackage.OCL_VOID_TYPE: return createOCLVoidType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -105,16 +115,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case LibraryPackage.EXCEPTION:
-				return createExceptionFromString(eDataType, initialValue);
-			case LibraryPackage.EVALUATION_VISITOR:
-				return createEvaluationVisitorFromString(eDataType, initialValue);
-			case LibraryPackage.EXPRESSION_IN_OCL:
-				return createExpressionInOCLFromString(eDataType, initialValue);
-			case LibraryPackage.OPERATION_CALL_EXP:
-				return createOperationCallExpFromString(eDataType, initialValue);
-			case LibraryPackage.PROPERTY_CALL_EXP:
-				return createPropertyCallExpFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -128,16 +128,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case LibraryPackage.EXCEPTION:
-				return convertExceptionToString(eDataType, instanceValue);
-			case LibraryPackage.EVALUATION_VISITOR:
-				return convertEvaluationVisitorToString(eDataType, instanceValue);
-			case LibraryPackage.EXPRESSION_IN_OCL:
-				return convertExpressionInOCLToString(eDataType, instanceValue);
-			case LibraryPackage.OPERATION_CALL_EXP:
-				return convertOperationCallExpToString(eDataType, instanceValue);
-			case LibraryPackage.PROPERTY_CALL_EXP:
-				return convertPropertyCallExpToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -148,19 +138,9 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibraryOperation createLibraryOperation() {
-		LibraryOperationImpl libraryOperation = new LibraryOperationImpl();
-		return libraryOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LibraryProperty createLibraryProperty() {
-		LibraryPropertyImpl libraryProperty = new LibraryPropertyImpl();
-		return libraryProperty;
+	public OCLLibrary createOCLLibrary() {
+		OCLLibraryImpl oclLibrary = new OCLLibraryImpl();
+		return oclLibrary;
 	}
 
 	/**
@@ -178,9 +158,9 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLConstraintOperation createOCLConstraintOperation() {
-		OCLConstraintOperationImpl oclConstraintOperation = new OCLConstraintOperationImpl();
-		return oclConstraintOperation;
+	public OCLBagType createOCLBagType() {
+		OCLBagTypeImpl oclBagType = new OCLBagTypeImpl();
+		return oclBagType;
 	}
 
 	/**
@@ -188,19 +168,9 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLConstraintProperty createOCLConstraintProperty() {
-		OCLConstraintPropertyImpl oclConstraintProperty = new OCLConstraintPropertyImpl();
-		return oclConstraintProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLGenericType createOCLGenericType() {
-		OCLGenericTypeImpl oclGenericType = new OCLGenericTypeImpl();
-		return oclGenericType;
+	public OCLCollectionType createOCLCollectionType() {
+		OCLCollectionTypeImpl oclCollectionType = new OCLCollectionTypeImpl();
+		return oclCollectionType;
 	}
 
 	/**
@@ -238,6 +208,46 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OCLNonOrderedCollectionType createOCLNonOrderedCollectionType() {
+		OCLNonOrderedCollectionTypeImpl oclNonOrderedCollectionType = new OCLNonOrderedCollectionTypeImpl();
+		return oclNonOrderedCollectionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLNonUniqueCollectionType createOCLNonUniqueCollectionType() {
+		OCLNonUniqueCollectionTypeImpl oclNonUniqueCollectionType = new OCLNonUniqueCollectionTypeImpl();
+		return oclNonUniqueCollectionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLOrderedCollectionType createOCLOrderedCollectionType() {
+		OCLOrderedCollectionTypeImpl oclOrderedCollectionType = new OCLOrderedCollectionTypeImpl();
+		return oclOrderedCollectionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLOrderedSetType createOCLOrderedSetType() {
+		OCLOrderedSetTypeImpl oclOrderedSetType = new OCLOrderedSetTypeImpl();
+		return oclOrderedSetType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OCLPackage createOCLPackage() {
 		OCLPackageImpl oclPackage = new OCLPackageImpl();
 		return oclPackage;
@@ -251,6 +261,26 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public OCLParameter createOCLParameter() {
 		OCLParameterImpl oclParameter = new OCLParameterImpl();
 		return oclParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLTemplateParameterType createOCLTemplateParameterType() {
+		OCLTemplateParameterTypeImpl oclTemplateParameterType = new OCLTemplateParameterTypeImpl();
+		return oclTemplateParameterType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLRoot createOCLRoot() {
+		OCLRootImpl oclRoot = new OCLRootImpl();
+		return oclRoot;
 	}
 
 	/**
@@ -278,100 +308,19 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OCLUniqueCollectionType createOCLUniqueCollectionType() {
+		OCLUniqueCollectionTypeImpl oclUniqueCollectionType = new OCLUniqueCollectionTypeImpl();
+		return oclUniqueCollectionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OCLVoidType createOCLVoidType() {
 		OCLVoidTypeImpl oclVoidType = new OCLVoidTypeImpl();
 		return oclVoidType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createEvaluationVisitorFromString(EDataType eDataType, String initialValue) {
-		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String convertEvaluationVisitorToString(EDataType eDataType, Object instanceValue) {
-		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public ExpressionInOCL createExpressionInOCLFromString(EDataType eDataType, String initialValue) {
-		return (ExpressionInOCL)super.createFromString(initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertExpressionInOCLToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OperationCallExp<?, ?> createOperationCallExpFromString(EDataType eDataType, String initialValue) {
-		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String convertOperationCallExpToString(EDataType eDataType, Object instanceValue) {
-		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public PropertyCallExp<?, ?> createPropertyCallExpFromString(EDataType eDataType, String initialValue) {
-		throw new UnsupportedOperationException();  // Cannot happen; only used as parameter
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertPropertyCallExpToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Exception createExceptionFromString(EDataType eDataType, String initialValue) {
-		return (Exception)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**
@@ -386,6 +335,26 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLSequenceType createOCLSequenceType() {
+		OCLSequenceTypeImpl oclSequenceType = new OCLSequenceTypeImpl();
+		return oclSequenceType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLSetType createOCLSetType() {
+		OCLSetTypeImpl oclSetType = new OCLSetTypeImpl();
+		return oclSetType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -394,4 +363,4 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 		return LibraryPackage.eINSTANCE;
 	}
 
-} //LibraryFactoryImpl
+} //OCLLibraryFactoryImpl

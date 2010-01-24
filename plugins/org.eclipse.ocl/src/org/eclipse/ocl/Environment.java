@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.6.12.2 2010/01/03 22:53:47 ewillink Exp $
+ * $Id: Environment.java,v 1.6.12.3 2010/01/24 07:41:19 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -24,7 +24,7 @@ import java.util.List;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.EnvironmentRegistryImpl;
-import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.merged.AbstractMergedLibrary;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.Adaptable;
@@ -182,7 +182,7 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * 
 	 * @since 3.0
 	 */
-	OCLLibrary getOCLLibrary();
+	AbstractMergedLibrary getMergedLibrary();
 	
 	/**
 	 * Obtains a type resolver to be used to create (and cache) concrete bindings

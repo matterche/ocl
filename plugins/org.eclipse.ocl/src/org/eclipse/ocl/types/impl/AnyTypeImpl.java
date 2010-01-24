@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.6 2008/11/24 00:21:41 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.6.10.1 2010/01/24 07:41:11 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.TypesPackage;
-
-//import org.eclipse.ocl.types.operations.AnyTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 /**
