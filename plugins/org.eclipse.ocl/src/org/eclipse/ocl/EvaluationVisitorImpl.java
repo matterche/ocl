@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.15 2010/01/24 14:02:20 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.16 2010/01/24 15:13:10 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -153,6 +153,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					sourceType = library.getLibraryTypeOfType(staticSourceType);
 					sourceVal = createNullCollection(sourceType);					
 				}
+			}
+			if (sourceType == null) {
+				return getInvalid("Undefined source type: " + oc); //$NON-NLS-1$
 			}
 			O referredOperation = oc.getReferredOperation();
 			UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();

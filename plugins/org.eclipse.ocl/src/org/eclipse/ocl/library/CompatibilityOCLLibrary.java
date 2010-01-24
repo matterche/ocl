@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityOCLLibrary.java,v 1.1.2.7 2010/01/24 07:40:55 ewillink Exp $
+ * $Id: CompatibilityOCLLibrary.java,v 1.1.2.8 2010/01/24 15:13:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -35,11 +35,11 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * 
  * @since 3.0
  */
-public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, TT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE> extends AbstractOCLLibrary
+public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, TT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE, MT extends EObject> extends AbstractOCLLibrary
 {
 	private Map<OCLType, Map<OF, List<OCLOperation>>> operationMaps = new HashMap<OCLType, Map<OF, List<OCLOperation>>>();
 //	private Map<OCLType, Map<PF, OCLProperty>> propertyMaps = new HashMap<OCLType, Map<PF, OCLProperty>>();
-    private Map<T, OCLType> typeMap = new HashMap<T, OCLType>();
+    private Map<EObject, OCLType> typeMap = new HashMap<EObject, OCLType>();
     private Map<Integer, List<OCLTupleType>> tupleTypeMap = null;
 
     public CompatibilityOCLLibrary(String libraryURI) {
@@ -54,13 +54,13 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 //    	ownedTypes.put(type.getQualifiedName(), type);
     }
 
-	protected abstract T asMetaType(Object object);
+	protected abstract MT asMetaType(Object object);
 
 	protected abstract T asType(Object object);
 
 	protected abstract OCLClassifier createOCLClassifier();
 
-	protected OCLClassifier createOCLClassifier(CT aClassifier, Map<T, OCLType> visited) {
+	protected OCLClassifier createOCLClassifier(CT aClassifier, Map<EObject, OCLType> visited) {
 		OCLClassifier oclClassifier = createOCLClassifier();
 		oclClassifier.setName(getName(aClassifier));
 		oclClassifier.setMetaModelElement(aClassifier);
@@ -107,7 +107,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract OCLDataType createOCLDataType();
 	
-	protected OCLDataType createOCLDataType(DT aDataType, Map<T, OCLType> visited) {
+	protected OCLDataType createOCLDataType(DT aDataType, Map<EObject, OCLType> visited) {
 		OCLDataType oclDataType = createOCLDataType();
 		oclDataType.setName(getName(aDataType));
 		oclDataType.setMetaModelElement(aDataType);
@@ -118,7 +118,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract OCLEnumeration createOCLEnumeration();
 
-	protected OCLEnumeration createOCLEnumeration(ET anEnumeration, Map<T, OCLType> visited) {
+	protected OCLEnumeration createOCLEnumeration(ET anEnumeration, Map<EObject, OCLType> visited) {
 		OCLEnumeration oclEnumeration = createOCLEnumeration();
 		oclEnumeration.setName(getName(anEnumeration));
 		oclEnumeration.setMetaModelElement(anEnumeration);
@@ -140,7 +140,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract OCLMetaModelProperty createOCLMetaModelProperty();
 
-	protected OCLTupleType createOCLTupleType(TT aTupleType, Map<T, OCLType> visited) {
+	protected OCLTupleType createOCLTupleType(TT aTupleType, Map<EObject, OCLType> visited) {
 	    if (tupleTypeMap == null) {
 	    	tupleTypeMap = new HashMap<Integer, List<OCLTupleType>>();
 	    }
@@ -211,7 +211,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 		return hash;
 	}
 
-	protected abstract OCLType createOCLType(T aType, Map<T, OCLType> visited);
+	protected abstract OCLType createOCLType(EObject aType, Map<EObject, OCLType> visited);
 
 	protected abstract List<EL> getLiterals(ET enumeration);
 
@@ -226,7 +226,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 		if (oclType == null) {
 			T aType = asType(object);
 			if (aType != null) {
-				oclType = createOCLType(aType, new HashMap<T, OCLType>());
+				oclType = createOCLType(aType, new HashMap<EObject, OCLType>());
 			}
 		}
 		return oclType;
@@ -236,11 +236,11 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 	public OCLType getLibraryTypeOfValue(Object value, Object staticType) {
 		OCLType type = super.getLibraryTypeOfValue(value, staticType);
 		if (type == null) {
-			T aType = asMetaType(value);
+			MT aType = asMetaType(value);
 			if (aType != null) {
 				type = typeMap.get(aType);
 				if (type == null) {
-					type = createOCLType(aType, new HashMap<T, OCLType>());
+					type = createOCLType(aType, new HashMap<EObject, OCLType>());
 				}
 			}
 		}
