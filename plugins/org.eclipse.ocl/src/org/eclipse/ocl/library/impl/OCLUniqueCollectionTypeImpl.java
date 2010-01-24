@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLUniqueCollectionTypeImpl.java,v 1.1.2.1 2010/01/24 07:41:15 ewillink Exp $
+ * $Id: OCLUniqueCollectionTypeImpl.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -13,6 +13,7 @@ import org.eclipse.ocl.library.OCLUniqueCollectionType;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>OCL Unique Collection Type</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  * <p>
  * </p>

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.20.2.4 2010/01/24 07:41:19 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.20.2.5 2010/01/24 12:26:03 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -1246,6 +1246,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @since 3.0
 	 */
 	public AbstractMergedLibrary getMergedLibrary() {
+		Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> internalParent = getInternalParent();
+		if (internalParent != null) {
+			return internalParent.getMergedLibrary();
+		}		
 		if (mergedLibrary == null) {
 			setOCLLibrary(createOCLLibrary());
 		}

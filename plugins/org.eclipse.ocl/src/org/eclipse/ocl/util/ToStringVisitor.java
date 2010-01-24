@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.10.6.1 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.10.6.2 2010/01/24 12:26:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -121,6 +121,25 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	public static <C, O, P, EL, PM, S, COA, SSA, CT>
 	ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT> getInstance(
 			TypedElement<C> element) {
+		
+		return new ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>(
+				(Environment<?, C, O, P, EL, PM, S, COA, SSA, CT, ?, ?>)
+					Environment.Registry.INSTANCE.getEnvironmentFor(element));
+	}
+	
+	/**
+	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
+	 * expression or other typed element.
+	 * 
+	 * @param element an OCL expression or other typed element such as a variable
+	 * 
+	 * @return the corresponding instance
+	 * @since 3.0
+	 */
+	@SuppressWarnings("unchecked")
+	public static <C, O, P, EL, PM, S, COA, SSA, CT>
+	ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT> getInstance(
+			ExpressionInOCL<C, PM> element) {
 		
 		return new ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>(
 				(Environment<?, C, O, P, EL, PM, S, COA, SSA, CT, ?, ?>)
@@ -631,7 +650,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 */
 	@Override
     public String visitExpressionInOCL(ExpressionInOCL<C, PM> expression) {
-		return expression.getBodyExpression().accept(this);
+		OCLExpression<C> bodyExpression = expression.getBodyExpression();
+		return bodyExpression != null ? bodyExpression.accept(this) : "<null>"; //$NON-NLS-1$
 	}
 
     /**
@@ -673,10 +693,10 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
             result.append("init: "); //$NON-NLS-1$
         } else if (UMLReflection.DERIVATION.equals(stereo)) {
             result.append("derive: "); //$NON-NLS-1$
-        } else if (UMLReflection.POSTCONDITION.equals(stereo)) {
+        } else if (UMLReflection.DEFINITION.equals(stereo)) {
             result.append("def: "); //$NON-NLS-1$
             
-            EObject elem = constrained.get(1);
+            EObject elem = constrained.size() > 1 ? constrained.get(1) : null;
             
             if (isOperation(elem)) {
                 @SuppressWarnings("unchecked")
@@ -686,8 +706,9 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
                 @SuppressWarnings("unchecked")
                 P prop = (P) elem;
                 appendPropertySignature(result, prop);
+            } else if (elem == null) {
+                result.append("<null>"); //$NON-NLS-1$
             }
-            
             result.append(" = "); //$NON-NLS-1$
         } else {
             result.append("inv: "); //$NON-NLS-1$

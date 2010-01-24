@@ -2,11 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedType.java,v 1.1.2.1 2010/01/24 07:41:02 ewillink Exp $
+ * $Id: MergedType.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
-import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.library.OCLElement;
@@ -215,8 +215,12 @@ public interface MergedType extends OCLElement {
 	 * @generated
 	 */
 	boolean isSetType();
+
+	void addOperation(MergedOperation mergedOperation);
+
+	void addProperty(MergedProperty mergedProperty);
 	
-	List<MergedOperation> getConformingOperations(String name, OCLType[] oclArguments);
+	Set<MergedOperation> getConformingOperations(String name, OCLType[] oclArguments);
 	
 	MergedProperty getConformingProperty(String name);
 

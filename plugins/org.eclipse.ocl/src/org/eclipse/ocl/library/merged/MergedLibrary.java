@@ -2,15 +2,15 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedLibrary.java,v 1.1.2.1 2010/01/24 07:41:03 ewillink Exp $
+ * $Id: MergedLibrary.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
-import java.util.List;
+import java.util.Set;
 
 import org.eclipse.ocl.library.OCLCache;
-import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.OCLNamedElement;
+import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
@@ -58,9 +58,9 @@ public interface MergedLibrary extends OCLNamedElement, OCLCache {
 	 */
 	void setBaseLibrary(OCLRoot value);
 
-	List<MergedOperation> getMergedOperations(OCLType dynamicType, String name, OCLType[] oclArguments);
+	Set<MergedOperation> getConformingOperations(OCLType dynamicType, String name, OCLType[] oclArguments);
 
-	MergedProperty getMergedProperty(OCLType sourceType, String name);
+	MergedProperty getConformingProperty(OCLType sourceType, String name);
 	
 	MergedType getMergedType(OCLType superType);
 

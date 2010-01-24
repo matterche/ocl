@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.13 2010/01/24 07:41:19 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.14 2010/01/24 12:26:03 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -162,11 +162,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					oclArguments[i++] = library.getLibraryTypeOfType(umlReflection.getOCLType(anArgument));
 				}		
 			}
-			List<MergedOperation> oclOperations = library.getMergedOperations(sourceType, operationName, oclArguments);
+			Set<MergedOperation> oclOperations = library.getConformingOperations(sourceType, operationName, oclArguments);
 			if (oclOperations == null) {
 				return getInvalid("Undefined operation: " + oc); //$NON-NLS-1$
 			}
-			MergedOperation oclOperation = oclOperations.get(0);	// FIXME select best overload
+			MergedOperation oclOperation = oclOperations.iterator().next();	// FIXME select best overload
 			Object result = oclOperation.evaluate(this, sourceVal, oc);
 			if (result == null) {
 				return getInvalid("Invalid result: " + oc); //$NON-NLS-1$
@@ -729,7 +729,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, source.getType());
 			P referredProperty = pc.getReferredProperty();
 			String propertyName = getUMLReflection().getName(referredProperty);
-			MergedProperty oclProperty = library.getMergedProperty(sourceType, propertyName);
+			MergedProperty oclProperty = library.getConformingProperty(sourceType, propertyName);
 			if (oclProperty == null) {
 				result = getInvalid("Undefined Property: " + pc); //$NON-NLS-1$
 			}

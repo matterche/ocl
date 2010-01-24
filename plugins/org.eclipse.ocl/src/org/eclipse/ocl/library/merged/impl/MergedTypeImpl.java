@@ -2,15 +2,17 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedTypeImpl.java,v 1.1.2.1 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: MergedTypeImpl.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -122,6 +124,12 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	protected EList<MergedOperation> operation;
 
 	/**
+	 * MergedOperation indexed by name.
+	 * @generated NOT
+	 */
+	protected Map<String, List<MergedOperation>> operationsMap;
+
+	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +138,12 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	 * @ordered
 	 */
 	protected EList<MergedProperty> property;
+
+	/**
+	 * MergedProperty indexed by name.
+	 * @generated NOT
+	 */
+	protected Map<String, MergedProperty> propertyMap;
 
 	/**
 	 * The cached value of the '{@link #getInv() <em>Inv</em>}' reference.
@@ -510,82 +524,39 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	public String getName() {
 		return type != null ? type.getName() : null;
 	}
-	
-	public MergedProperty getLocalProperty(String name) {
-		if (property == null) {
-			List<MergedProperty> mergedProperties = getProperty();
-			for (OCLProperty property : getType().getProperty()) {
-				if (property instanceof OCLLibraryProperty) {
-					MergedLibraryProperty mergedProperty = OCLMergedLibraryFactory.eINSTANCE.createMergedLibraryProperty();
-					mergedProperty.setProperty((OCLLibraryProperty) property);
-					mergedProperties.add(mergedProperty);
-				}
-				else if (property instanceof OCLMetaModelProperty) {
-					MergedMetaModelProperty mergedProperty = OCLMergedLibraryFactory.eINSTANCE.createMergedMetaModelProperty();
-					mergedProperty.setProperty((OCLMetaModelProperty) property);
-					mergedProperties.add(mergedProperty);
-				}
-			}
-		}
-		for (MergedProperty property : getProperty()) {
-			if (name.equals(property.getName())) {
-				return property;
-			}
-		}
-		return null;
-	}
-	
-	public MergedProperty getConformingProperty(String name) {
-		MergedProperty mergedProperty = getLocalProperty(name);
-		if (mergedProperty != null) {
-			return mergedProperty;
-		}
-		for (OCLType superType : getConforms()) {
-			MergedType superMergedType = mergedLibrary.getMergedType(superType);
-			mergedProperty = superMergedType.getConformingProperty(name);
-			if (mergedProperty != null) {
-				return mergedProperty;
-			}
-		}
-		return null;
-	}
-	
-	public MergedOperation getExactOperation(String name, OCLType[] oclArguments) {
-		if (operation == null) {
+
+	public void addOperation(MergedOperation mergedOperation) {
+		getOperation().add(mergedOperation);
+		if (operationsMap == null) {
 			loadOperations();
 		}
-		int iMax = oclArguments != null ? oclArguments.length : 0;
-		for (MergedOperation mergedOperation : getOperation()) {
-			if (name.equals(mergedOperation.getName())) {
-				List<OCLParameter> mergedParameters = mergedOperation.getParameter();
-				if (mergedParameters.size() == iMax) {
-					boolean allOpsOk = true;
-					for (int i = 0; i < iMax; i++) {
-						OCLParameter mergedParameter = mergedParameters.get(i);
-						OCLType parameterType = mergedParameter.getType();
-						OCLType argumentType = oclArguments[i];
-						if (argumentType != parameterType) {
-							allOpsOk = false;
-							break;
-						}
-					}
-					if (allOpsOk) {
-						return mergedOperation;
-					}
-				}
-			}
+		String name = mergedOperation.getName();
+		List<MergedOperation> operations = operationsMap.get(name);
+		if (operations == null) {
+			operations = new ArrayList<MergedOperation>();
+			operationsMap.put(name, operations);
 		}
-		return null;
+		operations.add(mergedOperation);
+	}
+
+	public void addProperty(MergedProperty mergedProperty) {
+		getProperty().add(mergedProperty);
+		if (propertyMap == null) {
+			loadProperties();
+		}
+		String name = mergedProperty.getName();
+		propertyMap.put(name, mergedProperty);
 	}
 	
-	public List<MergedOperation> getConformingOperations(String name, OCLType[] oclArguments) {
-		if (operation == null) {
+	public Set<MergedOperation> getConformingOperations(String name, OCLType[] oclArguments) {
+		if (operationsMap == null) {
 			loadOperations();
 		}
-		List<MergedOperation> mergedOperations = null;
-		int iMax = oclArguments != null ? oclArguments.length : 0;
-		for (MergedOperation mergedOperation : getOperation()) {
-			if (name.equals(mergedOperation.getName())) {
+		Set<MergedOperation> conformingOperations = null;
+		List<MergedOperation> mergedOperations = operationsMap.get(name);
+		if (mergedOperations != null) {
+			int iMax = oclArguments != null ? oclArguments.length : 0;
+			for (MergedOperation mergedOperation : mergedOperations) {
 				List<OCLParameter> mergedParameters = mergedOperation.getParameter();
 				if (mergedParameters.size() == iMax) {
 					Map<OCLTemplateParameterType, OCLType> parameterBindings = null;
@@ -624,39 +595,110 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 						}
 					}
 					if (allOpsOk) {
-						if (mergedOperations == null) {
-							mergedOperations = new ArrayList<MergedOperation>();
+						if (conformingOperations == null) {
+							conformingOperations = new HashSet<MergedOperation>();
 						}
-						mergedOperations.add(mergedOperation);
+						conformingOperations.add(mergedOperation);
 					}
 				}
 			}
 		}
-		if (mergedOperations != null) {
-			return mergedOperations;
+		if (conformingOperations != null) {
+			return conformingOperations;
 		}
 		for (OCLType superType : getConforms()) {
 			MergedType superMergedType = mergedLibrary.getMergedType(superType);
-			mergedOperations = superMergedType.getConformingOperations(name, oclArguments);
-			if (mergedOperations != null) {
-				return mergedOperations;
+			conformingOperations = superMergedType.getConformingOperations(name, oclArguments);
+			if (conformingOperations != null) {
+				return conformingOperations;
 			}
 		}
 		return null;
 	}
+	
+	public MergedProperty getConformingProperty(String name) {
+		if (propertyMap == null) {
+			loadProperties();
+		}
+		MergedProperty mergedProperty = propertyMap.get(name);
+		if (mergedProperty != null) {
+			return mergedProperty;
+		}
+		for (OCLType superType : getConforms()) {
+			MergedType superMergedType = mergedLibrary.getMergedType(superType);
+			mergedProperty = superMergedType.getConformingProperty(name);
+			if (mergedProperty != null) {
+				return mergedProperty;
+			}
+		}
+		return null;
+	}
+	
+	public MergedOperation getExactOperation(String name, OCLType[] oclArguments) {
+		if (operationsMap == null) {
+			loadOperations();
+		}
+		List<MergedOperation> mergedOperations = operationsMap.get(name);
+		if (mergedOperations != null) {
+			int iMax = oclArguments != null ? oclArguments.length : 0;
+			for (MergedOperation mergedOperation : mergedOperations) {
+				List<OCLParameter> mergedParameters = mergedOperation.getParameter();
+				if (mergedParameters.size() == iMax) {
+					boolean allOpsOk = true;
+					for (int i = 0; i < iMax; i++) {
+						OCLParameter mergedParameter = mergedParameters.get(i);
+						OCLType parameterType = mergedParameter.getType();
+						OCLType argumentType = oclArguments[i];
+						if (argumentType != parameterType) {
+							allOpsOk = false;
+							break;
+						}
+					}
+					if (allOpsOk) {
+						return mergedOperation;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public MergedProperty getLocalProperty(String name) {
+		if (propertyMap == null) {
+			loadProperties();
+		}
+		MergedProperty property = propertyMap.get(name);
+		return property;
+	}
 
 	private void loadOperations() {
-		List<MergedOperation> mergedOperations = getOperation();
+		operationsMap = new HashMap<String, List<MergedOperation>>();
 		for (OCLOperation operation : getType().getOperation()) {
 			if (operation instanceof OCLLibraryOperation) {
 				MergedLibraryOperation mergedOperation = OCLMergedLibraryFactory.eINSTANCE.createMergedLibraryOperation();
 				mergedOperation.setOperation((OCLLibraryOperation) operation);
-				mergedOperations.add(mergedOperation);
+				addOperation(mergedOperation);
 			}
 			else if (operation instanceof OCLMetaModelOperation) {
 				MergedMetaModelOperation mergedOperation = OCLMergedLibraryFactory.eINSTANCE.createMergedMetaModelOperation();
 				mergedOperation.setOperation((OCLMetaModelOperation) operation);
-				mergedOperations.add(mergedOperation);
+				addOperation(mergedOperation);
+			}
+		}
+	}
+
+	private void loadProperties() {
+		propertyMap = new HashMap<String, MergedProperty>();
+		for (OCLProperty property : getType().getProperty()) {
+			if (property instanceof OCLLibraryProperty) {
+				MergedLibraryProperty mergedProperty = OCLMergedLibraryFactory.eINSTANCE.createMergedLibraryProperty();
+				mergedProperty.setProperty((OCLLibraryProperty) property);
+				addProperty(mergedProperty);
+			}
+			else if (property instanceof OCLMetaModelProperty) {
+				MergedMetaModelProperty mergedProperty = OCLMergedLibraryFactory.eINSTANCE.createMergedMetaModelProperty();
+				mergedProperty.setProperty((OCLMetaModelProperty) property);
+				addProperty(mergedProperty);
 			}
 		}
 	}

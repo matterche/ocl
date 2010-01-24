@@ -13,18 +13,19 @@
  *
  * </copyright>
  *
- * $Id: AbstractMergedLibrary.java,v 1.1.2.1 2010/01/24 07:41:02 ewillink Exp $
+ * $Id: AbstractMergedLibrary.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.library.merged;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.LibraryFactory;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLParameter;
+import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.merged.impl.MergedLibraryImpl;
 import org.eclipse.ocl.library.operations.AbstractOperation;
@@ -43,12 +44,12 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
 		this.baseLibrary = baseLibrary;
 	}
 	
-	public List<MergedOperation> getMergedOperations(OCLType dynamicType, String name, OCLType[] oclArguments) {
+	public Set<MergedOperation> getConformingOperations(OCLType dynamicType, String name, OCLType[] oclArguments) {
 		MergedType mergedType = getMergedType(dynamicType);
 		return mergedType.getConformingOperations(name, oclArguments);
 	}
 	
-	public MergedProperty getMergedProperty(OCLType dynamicType, String name) {
+	public MergedProperty getConformingProperty(OCLType dynamicType, String name) {
 		MergedType mergedType = getMergedType(dynamicType);
 		return mergedType.getConformingProperty(name);
 	}
@@ -82,7 +83,7 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
 			}
 			mergedOperation = mergedOperationDefinition;
 		}
-		if (UMLReflection.BODY.equals(stereotype)) {
+		if (UMLReflection.DEFINITION.equals(stereotype)) {
 			if (mergedOperation.getBody() != null) {
 				return AbstractOperation.createInvalid(null, "Duplicate body: " + mergedOperation); //$NON-NLS-1$
 			}
@@ -97,7 +98,7 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
 		else {
 			return AbstractOperation.createInvalid(null, "Unknown stereotype: " + mergedOperation); //$NON-NLS-1$			
 		}
-		mergedType.getOperation().add(mergedOperation);
+		mergedType.addOperation(mergedOperation);
 		return mergedOperation;
 	}
 
@@ -109,7 +110,7 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
 			MergedPropertyDefinition mergedPropertyDefinition = OCLMergedLibraryFactory.eINSTANCE.createMergedPropertyDefinition();
 			mergedPropertyDefinition.setName(name);
 			mergedPropertyDefinition.setType(valueType);
-			mergedType.getProperty().add(mergedPropertyDefinition);
+			mergedType.addProperty(mergedPropertyDefinition);
 			mergedProperty = mergedPropertyDefinition;
 		}
 		else {
@@ -123,7 +124,7 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
 			}
 			mergedProperty.setDerive(specification);
 		}
-		else if (UMLReflection.INITIAL.equals(stereotype)) {
+		else if (UMLReflection.INITIAL.equals(stereotype) || UMLReflection.DEFINITION.equals(stereotype)) {
 			if (mergedProperty.getInit() != null) {
 				return AbstractOperation.createInvalid(null, "Duplicate init: " + mergedProperty); //$NON-NLS-1$
 			}
