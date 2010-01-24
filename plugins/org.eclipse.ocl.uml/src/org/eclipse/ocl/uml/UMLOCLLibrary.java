@@ -137,7 +137,11 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 
 	@Override
 	protected Package getPackage(Type aType) {
-		return (Package) aType.getOwner();
+		Element owner = aType.getOwner();
+		while (owner instanceof Class) {
+			owner = owner.getOwner();
+		}
+		return (Package) owner;
 	}
 
 	@Override
@@ -175,7 +179,29 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 
 	@Override
 	protected OCLType getLibraryTypeOfTypedElement(TypedElement typedElement) {
-		return (OCLType) typedElement.getType();		// FIXME
+		OCLType elementType = getLibraryTypeOfType(typedElement.getType());
+/*		if (!typedElement.isMany()) {
+			return elementType;
+		}
+		else {
+			if (typedElement.isUnique()) {
+				if (typedElement.isOrdered()) {
+					return getOrderedSetType(elementType);
+				}
+				else {
+					return getSetType(elementType);
+				}
+			}
+			else {
+				if (typedElement.isOrdered()) {
+					return getSequenceType(elementType);
+				}
+				else {
+					return getBagType(elementType);
+				}
+			}
+		} */
+		return elementType;
 	}
 
 	@Override
