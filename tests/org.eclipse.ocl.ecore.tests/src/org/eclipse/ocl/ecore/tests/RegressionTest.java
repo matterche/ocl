@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.17.2.6 2010/01/24 14:02:22 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.17.2.7 2010/01/24 14:56:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1102,6 +1102,7 @@ public class RegressionTest
 	 * referenced bugzilla.
 	 */
 	public void test_iterationToString_126454() {
+		int testValue = 7;
 		EPackage fakePkg = EcoreFactory.eINSTANCE.createEPackage();
 		fakePkg.setName("fake");
 		EClass fake = EcoreFactory.eINSTANCE.createEClass();
@@ -1109,12 +1110,12 @@ public class RegressionTest
 		fakePkg.getEClassifiers().add(fake);
 		EAttribute eattr = EcoreFactory.eINSTANCE.createEAttribute();
 		eattr.setName("e");
-		eattr.setEType(EcorePackage.Literals.EINT);
+		eattr.setEType(EcorePackage.Literals.EBIG_INTEGER);
 		eattr.setUpperBound(1);  // not a collection
 		fake.getEStructuralFeatures().add(eattr);
 		
 		EObject aFake = fakePkg.getEFactoryInstance().create(fake);
-		aFake.eSet(eattr, new Integer(7));
+		aFake.eSet(eattr, BigInteger.valueOf(testValue));
 		
 		helper.setContext(fake);
 		
@@ -1125,7 +1126,7 @@ public class RegressionTest
 			String toStringResult = expr.toString();
 			expr = helper.createQuery(toStringResult);
 			
-			assertEquals(aFake.eGet(eattr), ocl.evaluate(aFake, expr));
+			assertEquals(testValue, ocl.evaluate(aFake, expr));
 		} catch (Exception exc) {
 			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
 		}
