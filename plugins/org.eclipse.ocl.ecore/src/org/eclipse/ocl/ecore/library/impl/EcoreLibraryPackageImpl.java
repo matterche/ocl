@@ -2,15 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreLibraryPackageImpl.java,v 1.1.2.1 2010/01/20 09:09:37 ewillink Exp $
+ * $Id: EcoreLibraryPackageImpl.java,v 1.1.2.2 2010/01/24 07:40:42 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.ocl.ecore.library.EcoreLibraryFactory;
 import org.eclipse.ocl.ecore.library.EcoreLibraryPackage;
 import org.eclipse.ocl.ecore.library.EcoreOCLClassifier;
@@ -19,7 +17,6 @@ import org.eclipse.ocl.ecore.library.EcoreOCLEnumeration;
 import org.eclipse.ocl.ecore.library.EcoreOCLEnumerationLiteral;
 import org.eclipse.ocl.ecore.library.EcoreOCLOperation;
 import org.eclipse.ocl.ecore.library.EcoreOCLProperty;
-
 import org.eclipse.ocl.library.LibraryPackage;
 
 /**
@@ -254,19 +251,19 @@ public class EcoreLibraryPackageImpl extends EPackageImpl implements EcoreLibrar
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		LibraryPackage theLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
+		LibraryPackage theOCLLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		ecoreOCLClassifierEClass.getESuperTypes().add(theLibraryPackage.getOCLClassifier());
-		ecoreOCLDataTypeEClass.getESuperTypes().add(theLibraryPackage.getOCLDataType());
-		ecoreOCLEnumerationEClass.getESuperTypes().add(theLibraryPackage.getOCLEnumeration());
-		ecoreOCLEnumerationLiteralEClass.getESuperTypes().add(theLibraryPackage.getOCLEnumerationLiteral());
-		ecoreOCLOperationEClass.getESuperTypes().add(theLibraryPackage.getOCLMetaModelOperation());
-		ecoreOCLPropertyEClass.getESuperTypes().add(theLibraryPackage.getOCLMetaModelProperty());
+		ecoreOCLClassifierEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLClassifier());
+		ecoreOCLDataTypeEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLDataType());
+		ecoreOCLEnumerationEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLEnumeration());
+		ecoreOCLEnumerationLiteralEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLEnumerationLiteral());
+		ecoreOCLOperationEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLMetaModelOperation());
+		ecoreOCLPropertyEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLMetaModelProperty());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(ecoreOCLClassifierEClass, EcoreOCLClassifier.class, "EcoreOCLClassifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

@@ -2,30 +2,33 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreLibraryAdapterFactory.java,v 1.1.2.1 2010/01/20 09:09:39 ewillink Exp $
+ * $Id: EcoreLibraryAdapterFactory.java,v 1.1.2.2 2010/01/24 07:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.ocl.ecore.library.*;
-
+import org.eclipse.ocl.ecore.library.EcoreLibraryPackage;
+import org.eclipse.ocl.ecore.library.EcoreOCLClassifier;
+import org.eclipse.ocl.ecore.library.EcoreOCLDataType;
+import org.eclipse.ocl.ecore.library.EcoreOCLEnumeration;
+import org.eclipse.ocl.ecore.library.EcoreOCLEnumerationLiteral;
+import org.eclipse.ocl.ecore.library.EcoreOCLOperation;
+import org.eclipse.ocl.ecore.library.EcoreOCLProperty;
 import org.eclipse.ocl.library.OCLClassifier;
 import org.eclipse.ocl.library.OCLDataType;
 import org.eclipse.ocl.library.OCLElement;
 import org.eclipse.ocl.library.OCLEnumeration;
 import org.eclipse.ocl.library.OCLEnumerationLiteral;
-import org.eclipse.ocl.library.OCLMetaModelElement;
 import org.eclipse.ocl.library.OCLMetaModelOperation;
 import org.eclipse.ocl.library.OCLMetaModelProperty;
+import org.eclipse.ocl.library.OCLNamedElement;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLProperty;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -112,12 +115,12 @@ public class EcoreLibraryAdapterFactory extends AdapterFactoryImpl {
 				return createOCLElementAdapter();
 			}
 			@Override
-			public Adapter caseOCLType(OCLType object) {
-				return createOCLTypeAdapter();
+			public Adapter caseOCLNamedElement(OCLNamedElement object) {
+				return createOCLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseOCLMetaModelElement(OCLMetaModelElement object) {
-				return createOCLMetaModelElementAdapter();
+			public Adapter caseOCLType(OCLType object) {
+				return createOCLTypeAdapter();
 			}
 			@Override
 			public Adapter caseOCLClassifier(OCLClassifier object) {
@@ -134,6 +137,10 @@ public class EcoreLibraryAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOCLEnumerationLiteral(OCLEnumerationLiteral object) {
 				return createOCLEnumerationLiteralAdapter();
+			}
+			@Override
+			public Adapter caseOCLTypedElement(OCLTypedElement object) {
+				return createOCLTypedElementAdapter();
 			}
 			@Override
 			public Adapter caseOCLOperation(OCLOperation object) {
@@ -270,6 +277,20 @@ public class EcoreLibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLNamedElement <em>OCL Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLNamedElement
+	 * @generated
+	 */
+	public Adapter createOCLNamedElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLType <em>OCL Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -280,20 +301,6 @@ public class EcoreLibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLMetaModelElement <em>OCL Meta Model Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLMetaModelElement
-	 * @generated
-	 */
-	public Adapter createOCLMetaModelElementAdapter() {
 		return null;
 	}
 
@@ -350,6 +357,20 @@ public class EcoreLibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLEnumerationLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTypedElement <em>OCL Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLTypedElement
+	 * @generated
+	 */
+	public Adapter createOCLTypedElementAdapter() {
 		return null;
 	}
 

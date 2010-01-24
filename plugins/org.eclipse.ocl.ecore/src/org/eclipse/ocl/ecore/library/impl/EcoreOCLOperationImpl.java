@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreOCLOperationImpl.java,v 1.1.2.2 2010/01/20 16:57:28 ewillink Exp $
+ * $Id: EcoreOCLOperationImpl.java,v 1.1.2.3 2010/01/24 07:40:42 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.impl;
 
@@ -41,20 +41,4 @@ public class EcoreOCLOperationImpl extends OCLMetaModelOperationImpl implements 
 	protected EClass eStaticClass() {
 		return EcoreLibraryPackage.Literals.ECORE_OCL_OPERATION;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-		StringBuffer s = new StringBuffer();
-		s.append("<ecore> ");
-		s.append(super.toString());
-		return s.toString();
-	}
-
 } //EcoreOCLOperationImpl

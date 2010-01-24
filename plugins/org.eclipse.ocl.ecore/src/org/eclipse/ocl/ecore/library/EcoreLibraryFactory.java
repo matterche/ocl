@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreLibraryFactory.java,v 1.1.2.1 2010/01/20 09:09:39 ewillink Exp $
+ * $Id: EcoreLibraryFactory.java,v 1.1.2.2 2010/01/24 07:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library;
 
@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
+ * @since 3.0
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.ecore.library.EcoreLibraryPackage
  * @generated

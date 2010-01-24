@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.8.10.2 2010/01/20 16:57:28 ewillink Exp $
+ * $Id: EcoreEnvironment.java,v 1.8.10.3 2010/01/24 07:40:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -49,7 +49,7 @@ import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.OCLFactory;
@@ -433,12 +433,11 @@ public class EcoreEnvironment
 			org.eclipse.ocl.expressions.Variable<
 				EClassifier, EParameter> variable,
 			Constraint constraint) {
-    	super.defineAttribute(owner, variable, constraint);
-		EStructuralFeature result;
 		
 		String name = variable.getName();
 		EClassifier type = variable.getType();
-		
+		mergeProperty(owner, name, type, constraint);
+		EStructuralFeature result;		
 		if (type instanceof EClass) {
 			result = EcoreFactory.eINSTANCE.createEReference();
 		} else {
@@ -474,7 +473,7 @@ public class EcoreEnvironment
 			List<org.eclipse.ocl.expressions.Variable<
 				EClassifier, EParameter>> params,
 			Constraint constraint) {
-    	super.defineOperation(owner, name, type, params, constraint);
+		mergeOperation(owner, name, type, params, constraint);
 		EOperation result = EcoreFactory.eINSTANCE.createEOperation();
 		
 		result.setName(name);
@@ -682,7 +681,7 @@ public class EcoreEnvironment
 	}
 
 	@Override
-	protected OCLLibrary createOCLLibrary() {
+	protected OCLRoot createOCLLibrary() {
 		return EcoreOCLLibrary.getDefault();
 	}
 }
