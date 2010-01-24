@@ -45,7 +45,7 @@ import org.eclipse.ocl.library.OCLVoidType;
  * 
  * @since 3.0
  */
-public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETypedElement, EPackage, EClassifier, EClass, TupleType, EDataType, EEnum, EEnumLiteral, EOperation, EParameter, EStructuralFeature>
+public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETypedElement, EPackage, EClassifier, EClass, TupleType, EDataType, EEnum, EEnumLiteral, EOperation, EParameter, EStructuralFeature, EClass>
 {
 	private static EcoreOCLLibrary DEFAULT = null;
 
@@ -60,8 +60,7 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 		super(libraryURI);
 	}
 
-	@Override
-	protected EClassifier asMetaType(Object object) {
+	protected EClass asMetaType(Object object) {
 		return (object instanceof EObject) ? ((EObject)object).eClass() : null;
 	}
 
@@ -101,7 +100,7 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 	}
 
 	@Override
-	protected OCLType createOCLType(EClassifier aType, Map<EClassifier, OCLType> visited) {
+	protected OCLType createOCLType(EObject aType, Map<EObject, OCLType> visited) {
 		if (aType instanceof EEnum) {
 			return createOCLEnumeration((EEnum) aType, visited);
 		}
