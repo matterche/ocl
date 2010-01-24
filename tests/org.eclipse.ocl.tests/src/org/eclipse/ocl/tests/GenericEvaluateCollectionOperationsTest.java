@@ -12,20 +12,17 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.4 2010/01/24 07:40:23 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.5 2010/01/24 14:02:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
 
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.Bag;
@@ -37,82 +34,6 @@ import org.eclipse.ocl.util.CollectionUtil;
 @SuppressWarnings("nls")
 public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject, PK extends E, T extends E, C extends T, CLS extends C, DT extends C, PT extends C, ET extends DT, O extends E, PM extends E, P extends E, PA extends P, PR extends P, EL, S, COA, SSA, CT>
 	extends GenericTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, PR, EL, S, COA, SSA, CT> {
-	/**
-	 * Creates a query given the expression that is to be evaluated, then
-	 * asserts its result is equal to the evaluation of the given
-	 * <code>expectedResultExpression</code>.
-	 * <p>
-	 * If either the expected result or the expression result is a double, we'll
-	 * compare the two with a margin of 0.001.
-	 * </p>
-	 * 
-	 * @param expectedResult
-	 *            Object with which the query's result is to be compared.
-	 * @param expression
-	 *            Expression that is to be evaluated. Note that we'll use
-	 *            {@link EClass} as this expression's context.
-	 */
-	protected Object assertQueryResults(Object context, String expectedResultExpression, String expression) {
-		String denormalizedExpectedResultExpression = denormalize(expectedResultExpression);
-		try {
-			Object expectedResultQuery = evaluate(helper, null, denormalizedExpectedResultExpression);
-			Object result = assertQueryEquals(context, expectedResultQuery, expression);
-			return result;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalizedExpectedResultExpression + "\": " + e.getLocalizedMessage());
-			return null;
-		}
-	}
-	/**
-	 * Creates a query given the expression that is to be evaluated, then
-	 * asserts its result contains all elements included in
-	 * <code>expectedResult</code>.
-	 * 
-	 * @param expectedResult
-	 *            Collection with which the query's result is to be compared.
-	 * @param expression
-	 *            Expression that is to be evaluated. Note that we'll use
-	 *            {@link EClass} as this expression's context.
-	 */
-	protected Object assertResultContainsAll(Object context, Collection<Object> expectedResult, String expression) {
-		String denormalizedExpression = denormalize(expression);
-		try {
-			Object result = evaluate(helper, context, denormalizedExpression);
-			assertTrue(expectedResult.getClass().isInstance(result));
-			assertSame(expectedResult.size(), ((Collection<?>) result).size());
-			assertTrue("Expected " + result + " to contain " + expectedResult, CollectionUtil.includesAll((Collection<?>) result, expectedResult));
-			return result;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalizedExpression + "\": " + e.getLocalizedMessage());
-			return null;
-		}
-	}
-
-	/**
-	 * Creates a query given the expression that is to be evaluated, then
-	 * asserts its result contains all elements included in
-	 * <code>expectedResult</code>.
-	 * 
-	 * @param expectedResultExpression
-	 *            Expression which is to be evaluated to determine the expected
-	 *            result.
-	 * @param expression
-	 *            Expression that is to be evaluated. Note that we'll use
-	 *            {@link EClass} as this expression's context.
-	 */
-	@SuppressWarnings("unchecked")
-	protected Object assertResultContainsAll(Object context, String expectedResultExpression, String expression) {
-		String denormalizedExpectedResultExpression = denormalize(expectedResultExpression);
-		try {
-			Object expectedResultQuery = evaluate(helper, null, denormalizedExpectedResultExpression);
-			assertTrue(expectedResultQuery instanceof Collection<?>);
-			Object result = assertResultContainsAll(context, (Collection<Object>) expectedResultQuery, expression);
-			return result;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalizedExpectedResultExpression + "\": " + e.getLocalizedMessage());
-			return null;
-		}
-	}
 
     @Override
     protected void setUp() {

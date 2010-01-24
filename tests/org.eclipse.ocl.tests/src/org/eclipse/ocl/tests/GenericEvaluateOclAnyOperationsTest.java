@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.4 2010/01/18 22:07:14 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.5 2010/01/24 14:02:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -582,4 +582,20 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
         assertQueryFalse(pkg1, "'null'.oclIsUndefined()");
         assertQueryFalse(pkg1, "self.oclIsUndefined()");
     }
+	
+	/**
+	 * Tests the allInstances() operator.
+	 */
+	public void test_allInstances() {
+		assertQueryResults(null, "Set{true,false}", "Boolean.allInstances()");
+		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
+		assertQueryResults(null, "Set{}", "%Package.allInstances()");
+		assertQueryEquals(pkg1, 1, "%Package.allInstances()->size()");
+		assertQueryInvalid(null, "Integer.allInstances()");
+		assertQueryInvalid(null, "String.allInstances()");
+// FIXME		assertQueryInvalid(null, "Set(Integer).allInstances()");
+		assertQueryInvalid(null, "OclAny.allInstances()");
+		assertQueryInvalid(null, "OclInvalid.allInstances()");
+		// FIXME Enumeration
+	}
 }
