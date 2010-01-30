@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.6 2009/11/28 17:50:02 ewillink Exp $
+ * $Id: StatesTest.java,v 1.6.2.1 2010/01/30 22:25:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CallOperationAction;
@@ -41,6 +42,7 @@ import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
@@ -83,6 +85,29 @@ public class StatesTest
 		}
 	}
 	
+	/**
+	 * Tests of the oclIsInState() expression for Collections.
+	 */
+	public void test_Collections_isInState() {
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			helper.createInvariant("Sequence{'a'}->oclIsInState(Bad::Rotten)");
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage());
+		}
+
+		try {
+			// just to make sure that the test above wasn't a fluke.
+			helper.createInvariant("Set{1, 2}->oclIsInState(Bad::Rotten)");
+			
+			fail("Should have failed to parse non-existent state");
+		} catch (Exception e) {
+			// success
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
+		}
+	}
+
 	/**
 	 * Tests some validation of the oclIsInState() expression.
 	 */
@@ -267,6 +292,8 @@ public class StatesTest
 					states.add(appleBruised);
 					states.add(appleRotten);
 				}
+			} else if (owner instanceof SequenceType<?, ?>) {
+				states.add(appleRotten);
 			}
 		}
 		
