@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.5 2010/01/24 14:02:37 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.6 2010/01/30 07:48:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -106,6 +106,17 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryTrue(null, "null = null");
 	}
 
+	public void testEqualType() {
+		assertQueryTrue(null, "Boolean = Boolean");
+		assertQueryFalse(null, "Boolean = Integer");
+		assertQueryTrue(null, "OclVoid = OclVoid");
+		assertQueryTrue(null, "OclInvalid = OclInvalid");
+		assertQueryFalse(null, "OclInvalid = OclVoid");
+		assertQueryTrue(null, "Set(String) = Set(String)");
+		assertQueryFalse(null, "Set(String) = Set(Integer)");
+		assertQueryFalse(null, "Set(String) = Sequence(String)");
+	}
+	
 	public void testGreaterThanInvalid() {
 		assertQueryInvalid(null, "invalid > 0");
 		assertQueryInvalid(null, "0 > invalid");
