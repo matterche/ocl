@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelOperationItemProvider.java,v 1.1.2.6 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLBoundTypeItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,17 +20,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
+import org.eclipse.ocl.library.OCLBoundType;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLMetaModelOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLBoundType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLMetaModelOperationItemProvider
-	extends OCLOperationItemProvider
+public class OCLBoundTypeItemProvider
+	extends OCLTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +45,7 @@ public class OCLMetaModelOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLMetaModelOperationItemProvider(AdapterFactory adapterFactory) {
+	public OCLBoundTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,25 +60,25 @@ public class OCLMetaModelOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelElementPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Meta Model Element feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMetaModelElementPropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLMetaModelOperation_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelOperation_metaModelElement_feature", "_UI_OCLMetaModelOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_META_MODEL_OPERATION__META_MODEL_ELEMENT,
+				 getString("_UI_OCLBoundType_type_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLBoundType_type_feature", "_UI_OCLBoundType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_BOUND_TYPE__TYPE,
 				 true,
 				 false,
 				 true,
@@ -85,14 +88,44 @@ public class OCLMetaModelOperationItemProvider
 	}
 
 	/**
-	 * This returns OCLMetaModelOperation.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_BOUND_TYPE__TYPE_BINDING);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns OCLBoundType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLMetaModelOperation")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLBoundType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -109,14 +142,11 @@ public class OCLMetaModelOperationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLMetaModelOperation)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLMetaModelOperation_type") : //$NON-NLS-1$
-			getString("_UI_OCLMetaModelOperation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**
@@ -129,6 +159,12 @@ public class OCLMetaModelOperationItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(OCLBoundType.class)) {
+			case LibraryPackage.OCL_BOUND_TYPE__TYPE_BINDING:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -142,6 +178,11 @@ public class OCLMetaModelOperationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_BOUND_TYPE__TYPE_BINDING,
+				 LibraryFactory.eINSTANCE.createOCLTypeBinding()));
 	}
 
 }

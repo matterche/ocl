@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLNonUniqueCollectionTypeItemProvider.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
+ * $Id: OCLIteratorItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -18,16 +18,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.ocl.library.OCLNonUniqueCollectionType;
+import org.eclipse.ocl.library.OCLIterator;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLNonUniqueCollectionType} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLIterator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLNonUniqueCollectionTypeItemProvider
-	extends OCLCollectionTypeItemProvider
+public class OCLIteratorItemProvider
+	extends OCLTypedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -40,7 +40,7 @@ public class OCLNonUniqueCollectionTypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLNonUniqueCollectionTypeItemProvider(AdapterFactory adapterFactory) {
+	public OCLIteratorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,14 +60,14 @@ public class OCLNonUniqueCollectionTypeItemProvider
 	}
 
 	/**
-	 * This returns OCLNonUniqueCollectionType.gif.
+	 * This returns OCLIterator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLNonUniqueCollectionType")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLIterator")); //$NON-NLS-1$
 	}
 
 	/**
@@ -84,14 +84,15 @@ public class OCLNonUniqueCollectionTypeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLNonUniqueCollectionType)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLNonUniqueCollectionType_type") : //$NON-NLS-1$
-			getString("_UI_OCLNonUniqueCollectionType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		StringBuffer s = new StringBuffer();
+		appendName(s, (OCLIterator)object);
+		s.append(" : ");
+		appendSignature(s, ((OCLIterator)object).getType()); 
+		return s.toString();
 	}
 
 	/**

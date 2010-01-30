@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLAnyTypeItemProvider.java,v 1.1.2.1 2010/01/20 09:10:03 ewillink Exp $
+ * $Id: OCLAnyTypeItemProvider.java,v 1.1.2.2 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class OCLAnyTypeItemProvider
-	extends OCLTypeItemProvider
+	extends OCLConcreteTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

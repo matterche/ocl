@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLElementItemProvider.java,v 1.1.2.4 2010/01/24 07:40:30 ewillink Exp $
+ * $Id: OCLElementItemProvider.java,v 1.1.2.5 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.ocl.library.OCLElement;
-import org.eclipse.ocl.library.OCLType;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLElement} object.
@@ -87,11 +86,13 @@ public class OCLElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_OCLElement_type"); //$NON-NLS-1$
+		StringBuffer s = new StringBuffer();
+		appendSignature(s, (OCLElement) object); 
+		return s.toString();
 	}
 
 	/**
@@ -130,14 +131,30 @@ public class OCLElementItemProvider
 		return LibraryEditPlugin.INSTANCE;
 	}
 
-	protected void appendName(StringBuffer s, Object object) {
-		OCLElement oclElement = object instanceof OCLElement ? (OCLElement)object : null;
-		String name = oclElement != null ? oclElement.getName() : null;
-		s.append(String.valueOf(name));
+	protected void appendName(StringBuffer s, OCLElement oclElement) {
+		if (oclElement != null) {
+			oclElement.appendName(s);
+		}
+		else {
+			s.append("null");
+		}
 	}
 
-	protected void appendType(StringBuffer s, Object object) {
-		OCLType oclType = object instanceof OCLType ? (OCLType)object : null;
-		appendName(s, oclType);
+	protected void appendQualifiedName(StringBuffer s, OCLElement oclElement) {
+		if (oclElement != null) {
+			oclElement.appendQualifiedName(s);
+		}
+		else {
+			s.append("null");
+		}
+	}
+
+	protected void appendSignature(StringBuffer s, OCLElement oclElement) {
+		if (oclElement != null) {
+			oclElement.appendSignature(s);
+		}
+		else {
+			s.append("null");
+		}
 	}
 }

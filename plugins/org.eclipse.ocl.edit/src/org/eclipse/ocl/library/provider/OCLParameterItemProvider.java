@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLParameterItemProvider.java,v 1.1.2.4 2010/01/24 07:40:30 ewillink Exp $
+ * $Id: OCLParameterItemProvider.java,v 1.1.2.5 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -89,9 +89,9 @@ public class OCLParameterItemProvider
 	@Override
 	public String getText(Object object) {
 		StringBuffer s = new StringBuffer();
-		appendName(s, object);
+		appendName(s, (OCLParameter)object);
 		s.append(" : ");
-		appendType(s, ((OCLParameter)object).getType()); 
+		appendSignature(s, ((OCLParameter)object).getType()); 
 		return s.toString();
 	}
 

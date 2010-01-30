@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLClassifierItemProvider.java,v 1.1.2.4 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLTypeBindingItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -20,16 +20,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLClassifier;
+import org.eclipse.ocl.library.OCLTypeBinding;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLClassifier} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLTypeBinding} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLClassifierItemProvider
-	extends OCLTypeItemProvider
+public class OCLTypeBindingItemProvider
+	extends OCLElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +42,7 @@ public class OCLClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLClassifierItemProvider(AdapterFactory adapterFactory) {
+	public OCLTypeBindingItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,31 +57,88 @@ public class OCLClassifierItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelElementPropertyDescriptor(object);
+			addTypeParameterPropertyDescriptor(object);
+			addTypeValuePropertyDescriptor(object);
+			addBoundTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Meta Model Element feature.
+	 * This adds a property descriptor for the Type Parameter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMetaModelElementPropertyDescriptor(Object object) {
+	protected void addTypeParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLClassifier_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLClassifier_metaModelElement_feature", "_UI_OCLClassifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_CLASSIFIER__META_MODEL_ELEMENT,
+				 getString("_UI_OCLTypeBinding_typeParameter_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLTypeBinding_typeParameter_feature", "_UI_OCLTypeBinding_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_TYPE_BINDING__TYPE_PARAMETER,
 				 true,
 				 false,
 				 true,
 				 null,
 				 null,
 				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type Value feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypeValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLTypeBinding_typeValue_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLTypeBinding_typeValue_feature", "_UI_OCLTypeBinding_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_TYPE_BINDING__TYPE_VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Bound Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBoundTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLTypeBinding_boundType_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLTypeBinding_boundType_feature", "_UI_OCLTypeBinding_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_TYPE_BINDING__BOUND_TYPE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns OCLTypeBinding.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLTypeBinding")); //$NON-NLS-1$
 	}
 
 	/**
@@ -98,14 +155,15 @@ public class OCLClassifierItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLClassifier)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLClassifier_type") : //$NON-NLS-1$
-			getString("_UI_OCLClassifier_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		StringBuffer s = new StringBuffer();
+		appendQualifiedName(s, ((OCLTypeBinding)object).getTypeValue());
+		s.append(" => ");
+		appendQualifiedName(s, ((OCLTypeBinding)object).getTypeParameter());
+		return s.toString();
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMetaModelPropertyItemProvider.java,v 1.1.2.6 2010/01/24 07:40:30 ewillink Exp $
+ * $Id: OCLJavaTypeItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -19,17 +19,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
+import org.eclipse.ocl.library.OCLJavaType;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLMetaModelProperty} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLJavaType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLMetaModelPropertyItemProvider
-	extends OCLPropertyItemProvider
+public class OCLJavaTypeItemProvider
+	extends OCLConcreteTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +44,7 @@ public class OCLMetaModelPropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLMetaModelPropertyItemProvider(AdapterFactory adapterFactory) {
+	public OCLJavaTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,42 +59,42 @@ public class OCLMetaModelPropertyItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelElementPropertyDescriptor(object);
+			addJavaClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Meta Model Element feature.
+	 * This adds a property descriptor for the Java Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMetaModelElementPropertyDescriptor(Object object) {
+	protected void addJavaClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLMetaModelProperty_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLMetaModelProperty_metaModelElement_feature", "_UI_OCLMetaModelProperty_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT,
+				 getString("_UI_OCLJavaType_javaClass_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLJavaType_javaClass_feature", "_UI_OCLJavaType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_JAVA_TYPE__JAVA_CLASS,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns OCLMetaModelProperty.gif.
+	 * This returns OCLJavaType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLMetaModelProperty")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLJavaType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -109,14 +111,11 @@ public class OCLMetaModelPropertyItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLMetaModelProperty)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLMetaModelProperty_type") : //$NON-NLS-1$
-			getString("_UI_OCLMetaModelProperty_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**
@@ -129,6 +128,12 @@ public class OCLMetaModelPropertyItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(OCLJavaType.class)) {
+			case LibraryPackage.OCL_JAVA_TYPE__JAVA_CLASS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

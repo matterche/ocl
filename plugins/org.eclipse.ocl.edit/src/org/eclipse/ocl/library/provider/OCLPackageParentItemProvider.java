@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackageParentItemProvider.java,v 1.1.2.1 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLPackageParentItemProvider.java,v 1.1.2.2 2010/01/30 07:49:44 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -107,14 +107,11 @@ public class OCLPackageParentItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLPackageParent)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLPackageParent_type") : //$NON-NLS-1$
-			getString("_UI_OCLPackageParent_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**

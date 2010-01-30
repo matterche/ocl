@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackageItemProvider.java,v 1.1.2.7 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLPackageItemProvider.java,v 1.1.2.8 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -158,7 +158,7 @@ public class OCLPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLType()));
+				 LibraryFactory.eINSTANCE.createOCLConcreteType()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -168,12 +168,7 @@ public class OCLPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLCollectionType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLBagType()));
+				 LibraryFactory.eINSTANCE.createOCLDeprecatedType()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -183,47 +178,7 @@ public class OCLPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLNonOrderedCollectionType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLNonUniqueCollectionType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLOrderedCollectionType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLOrderedSetType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLTemplateParameterType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLSequenceType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLSetType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLTupleType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_PACKAGE__TYPE,
-				 LibraryFactory.eINSTANCE.createOCLUniqueCollectionType()));
+				 LibraryFactory.eINSTANCE.createOCLJavaType()));
 
 		newChildDescriptors.add
 			(createChildParameter

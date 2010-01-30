@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.7 2010/01/24 07:40:28 ewillink Exp $
+ * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.8 2010/01/30 07:49:44 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -74,29 +74,6 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLLibrary} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLLibraryItemProvider oclLibraryItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLLibrary}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLLibraryAdapter() {
-		if (oclLibraryItemProvider == null) {
-			oclLibraryItemProvider = new OCLLibraryItemProvider(this);
-		}
-
-		return oclLibraryItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLAnyType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,49 +97,95 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLBagType} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLLibrary} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLBagTypeItemProvider oclBagTypeItemProvider;
+	protected OCLLibraryItemProvider oclLibraryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLBagType}.
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLLibrary}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOCLBagTypeAdapter() {
-		if (oclBagTypeItemProvider == null) {
-			oclBagTypeItemProvider = new OCLBagTypeItemProvider(this);
+	public Adapter createOCLLibraryAdapter() {
+		if (oclLibraryItemProvider == null) {
+			oclLibraryItemProvider = new OCLLibraryItemProvider(this);
 		}
 
-		return oclBagTypeItemProvider;
+		return oclLibraryItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLCollectionType} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLBoundType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLCollectionTypeItemProvider oclCollectionTypeItemProvider;
+	protected OCLBoundTypeItemProvider oclBoundTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLCollectionType}.
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLBoundType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOCLCollectionTypeAdapter() {
-		if (oclCollectionTypeItemProvider == null) {
-			oclCollectionTypeItemProvider = new OCLCollectionTypeItemProvider(this);
+	public Adapter createOCLBoundTypeAdapter() {
+		if (oclBoundTypeItemProvider == null) {
+			oclBoundTypeItemProvider = new OCLBoundTypeItemProvider(this);
 		}
 
-		return oclCollectionTypeItemProvider;
+		return oclBoundTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLConcreteType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLConcreteTypeItemProvider oclConcreteTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLConcreteType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLConcreteTypeAdapter() {
+		if (oclConcreteTypeItemProvider == null) {
+			oclConcreteTypeItemProvider = new OCLConcreteTypeItemProvider(this);
+		}
+
+		return oclConcreteTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLDeprecatedType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLDeprecatedTypeItemProvider oclDeprecatedTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLDeprecatedType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLDeprecatedTypeAdapter() {
+		if (oclDeprecatedTypeItemProvider == null) {
+			oclDeprecatedTypeItemProvider = new OCLDeprecatedTypeItemProvider(this);
+		}
+
+		return oclDeprecatedTypeItemProvider;
 	}
 
 	/**
@@ -186,6 +209,52 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 		}
 
 		return oclInvalidTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLIterator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLIteratorItemProvider oclIteratorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLIterator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLIteratorAdapter() {
+		if (oclIteratorItemProvider == null) {
+			oclIteratorItemProvider = new OCLIteratorItemProvider(this);
+		}
+
+		return oclIteratorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLJavaType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLJavaTypeItemProvider oclJavaTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLJavaType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLJavaTypeAdapter() {
+		if (oclJavaTypeItemProvider == null) {
+			oclJavaTypeItemProvider = new OCLJavaTypeItemProvider(this);
+		}
+
+		return oclJavaTypeItemProvider;
 	}
 
 	/**
@@ -235,98 +304,6 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLNonOrderedCollectionType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLNonOrderedCollectionTypeItemProvider oclNonOrderedCollectionTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLNonOrderedCollectionType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLNonOrderedCollectionTypeAdapter() {
-		if (oclNonOrderedCollectionTypeItemProvider == null) {
-			oclNonOrderedCollectionTypeItemProvider = new OCLNonOrderedCollectionTypeItemProvider(this);
-		}
-
-		return oclNonOrderedCollectionTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLNonUniqueCollectionType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLNonUniqueCollectionTypeItemProvider oclNonUniqueCollectionTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLNonUniqueCollectionType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLNonUniqueCollectionTypeAdapter() {
-		if (oclNonUniqueCollectionTypeItemProvider == null) {
-			oclNonUniqueCollectionTypeItemProvider = new OCLNonUniqueCollectionTypeItemProvider(this);
-		}
-
-		return oclNonUniqueCollectionTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLOrderedCollectionType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLOrderedCollectionTypeItemProvider oclOrderedCollectionTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLOrderedCollectionType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLOrderedCollectionTypeAdapter() {
-		if (oclOrderedCollectionTypeItemProvider == null) {
-			oclOrderedCollectionTypeItemProvider = new OCLOrderedCollectionTypeItemProvider(this);
-		}
-
-		return oclOrderedCollectionTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLOrderedSetType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLOrderedSetTypeItemProvider oclOrderedSetTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLOrderedSetType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLOrderedSetTypeAdapter() {
-		if (oclOrderedSetTypeItemProvider == null) {
-			oclOrderedSetTypeItemProvider = new OCLOrderedSetTypeItemProvider(this);
-		}
-
-		return oclOrderedSetTypeItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLPackage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -373,29 +350,6 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLTemplateParameterType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLTemplateParameterTypeItemProvider oclTemplateParameterTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLTemplateParameterType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLTemplateParameterTypeAdapter() {
-		if (oclTemplateParameterTypeItemProvider == null) {
-			oclTemplateParameterTypeItemProvider = new OCLTemplateParameterTypeItemProvider(this);
-		}
-
-		return oclTemplateParameterTypeItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLRoot} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -419,118 +373,49 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLSequenceType} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLTypeBinding} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLSequenceTypeItemProvider oclSequenceTypeItemProvider;
+	protected OCLTypeBindingItemProvider oclTypeBindingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLSequenceType}.
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLTypeBinding}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOCLSequenceTypeAdapter() {
-		if (oclSequenceTypeItemProvider == null) {
-			oclSequenceTypeItemProvider = new OCLSequenceTypeItemProvider(this);
+	public Adapter createOCLTypeBindingAdapter() {
+		if (oclTypeBindingItemProvider == null) {
+			oclTypeBindingItemProvider = new OCLTypeBindingItemProvider(this);
 		}
 
-		return oclSequenceTypeItemProvider;
+		return oclTypeBindingItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLSetType} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLTypeParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLSetTypeItemProvider oclSetTypeItemProvider;
+	protected OCLTypeParameterItemProvider oclTypeParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLSetType}.
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLTypeParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOCLSetTypeAdapter() {
-		if (oclSetTypeItemProvider == null) {
-			oclSetTypeItemProvider = new OCLSetTypeItemProvider(this);
+	public Adapter createOCLTypeParameterAdapter() {
+		if (oclTypeParameterItemProvider == null) {
+			oclTypeParameterItemProvider = new OCLTypeParameterItemProvider(this);
 		}
 
-		return oclSetTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLTupleType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLTupleTypeItemProvider oclTupleTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLTupleType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLTupleTypeAdapter() {
-		if (oclTupleTypeItemProvider == null) {
-			oclTupleTypeItemProvider = new OCLTupleTypeItemProvider(this);
-		}
-
-		return oclTupleTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLTypeItemProvider oclTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLTypeAdapter() {
-		if (oclTypeItemProvider == null) {
-			oclTypeItemProvider = new OCLTypeItemProvider(this);
-		}
-
-		return oclTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLUniqueCollectionType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLUniqueCollectionTypeItemProvider oclUniqueCollectionTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLUniqueCollectionType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLUniqueCollectionTypeAdapter() {
-		if (oclUniqueCollectionTypeItemProvider == null) {
-			oclUniqueCollectionTypeItemProvider = new OCLUniqueCollectionTypeItemProvider(this);
-		}
-
-		return oclUniqueCollectionTypeItemProvider;
+		return oclTypeParameterItemProvider;
 	}
 
 	/**
@@ -655,26 +540,21 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (oclLibraryItemProvider != null) oclLibraryItemProvider.dispose();
 		if (oclAnyTypeItemProvider != null) oclAnyTypeItemProvider.dispose();
-		if (oclBagTypeItemProvider != null) oclBagTypeItemProvider.dispose();
-		if (oclCollectionTypeItemProvider != null) oclCollectionTypeItemProvider.dispose();
+		if (oclBoundTypeItemProvider != null) oclBoundTypeItemProvider.dispose();
+		if (oclConcreteTypeItemProvider != null) oclConcreteTypeItemProvider.dispose();
+		if (oclDeprecatedTypeItemProvider != null) oclDeprecatedTypeItemProvider.dispose();
 		if (oclInvalidTypeItemProvider != null) oclInvalidTypeItemProvider.dispose();
+		if (oclIteratorItemProvider != null) oclIteratorItemProvider.dispose();
+		if (oclJavaTypeItemProvider != null) oclJavaTypeItemProvider.dispose();
+		if (oclLibraryItemProvider != null) oclLibraryItemProvider.dispose();
 		if (oclLibraryOperationItemProvider != null) oclLibraryOperationItemProvider.dispose();
 		if (oclLibraryPropertyItemProvider != null) oclLibraryPropertyItemProvider.dispose();
-		if (oclNonOrderedCollectionTypeItemProvider != null) oclNonOrderedCollectionTypeItemProvider.dispose();
-		if (oclNonUniqueCollectionTypeItemProvider != null) oclNonUniqueCollectionTypeItemProvider.dispose();
-		if (oclOrderedCollectionTypeItemProvider != null) oclOrderedCollectionTypeItemProvider.dispose();
-		if (oclOrderedSetTypeItemProvider != null) oclOrderedSetTypeItemProvider.dispose();
 		if (oclPackageItemProvider != null) oclPackageItemProvider.dispose();
 		if (oclParameterItemProvider != null) oclParameterItemProvider.dispose();
-		if (oclTemplateParameterTypeItemProvider != null) oclTemplateParameterTypeItemProvider.dispose();
 		if (oclRootItemProvider != null) oclRootItemProvider.dispose();
-		if (oclSequenceTypeItemProvider != null) oclSequenceTypeItemProvider.dispose();
-		if (oclSetTypeItemProvider != null) oclSetTypeItemProvider.dispose();
-		if (oclTupleTypeItemProvider != null) oclTupleTypeItemProvider.dispose();
-		if (oclTypeItemProvider != null) oclTypeItemProvider.dispose();
-		if (oclUniqueCollectionTypeItemProvider != null) oclUniqueCollectionTypeItemProvider.dispose();
+		if (oclTypeBindingItemProvider != null) oclTypeBindingItemProvider.dispose();
+		if (oclTypeParameterItemProvider != null) oclTypeParameterItemProvider.dispose();
 		if (oclVoidTypeItemProvider != null) oclVoidTypeItemProvider.dispose();
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLSequenceTypeItemProvider.java,v 1.1.2.1 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLTypeParameterParentItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,21 +12,26 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.ocl.library.LibraryFactory;
+import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLTypeParameterParent;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLSequenceType} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLTypeParameterParent} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLSequenceTypeItemProvider
-	extends OCLCollectionTypeItemProvider
+public class OCLTypeParameterParentItemProvider
+	extends OCLNamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -39,7 +44,7 @@ public class OCLSequenceTypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLSequenceTypeItemProvider(AdapterFactory adapterFactory) {
+	public OCLTypeParameterParentItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,14 +64,33 @@ public class OCLSequenceTypeItemProvider
 	}
 
 	/**
-	 * This returns OCLSequenceType.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLSequenceType")); //$NON-NLS-1$
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -83,11 +107,14 @@ public class OCLSequenceTypeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((OCLTypeParameterParent)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_OCLTypeParameterParent_type") : //$NON-NLS-1$
+			getString("_UI_OCLTypeParameterParent_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -100,6 +127,12 @@ public class OCLSequenceTypeItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(OCLTypeParameterParent.class)) {
+			case LibraryPackage.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -113,6 +146,11 @@ public class OCLSequenceTypeItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER,
+				 LibraryFactory.eINSTANCE.createOCLTypeParameter()));
 	}
 
 }

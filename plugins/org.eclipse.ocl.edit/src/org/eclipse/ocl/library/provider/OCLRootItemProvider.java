@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLRootItemProvider.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
+ * $Id: OCLRootItemProvider.java,v 1.1.2.2 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLRoot;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLRoot} object.
@@ -63,6 +62,7 @@ public class OCLRootItemProvider
 			addCollectionPropertyDescriptor(object);
 			addEnumerationPropertyDescriptor(object);
 			addIntegerPropertyDescriptor(object);
+			addJavaPropertyDescriptor(object);
 			addOclAnyPropertyDescriptor(object);
 			addOclInvalidPropertyDescriptor(object);
 			addOclMessagePropertyDescriptor(object);
@@ -74,9 +74,6 @@ public class OCLRootItemProvider
 			addSequencePropertyDescriptor(object);
 			addSetPropertyDescriptor(object);
 			addStringPropertyDescriptor(object);
-			addTPropertyDescriptor(object);
-			addTListPropertyDescriptor(object);
-			addT2PropertyDescriptor(object);
 			addUnlimitedNaturalPropertyDescriptor(object);
 			addInvalidPropertyDescriptor(object);
 			addNullPropertyDescriptor(object);
@@ -209,6 +206,28 @@ public class OCLRootItemProvider
 				 getString("_UI_OCLCache_integer_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_integer_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LibraryPackage.Literals.OCL_CACHE__INTEGER,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Java feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addJavaPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLCache_java_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_java_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_CACHE__JAVA,
 				 false,
 				 false,
 				 false,
@@ -460,72 +479,6 @@ public class OCLRootItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the T feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OCLCache_t_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_t_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_CACHE__T,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the TList feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTListPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OCLCache_tList_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_tList_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_CACHE__TLIST,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the T2 feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addT2PropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OCLCache_t2_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_t2_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_CACHE__T2,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Unlimited Natural feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -638,14 +591,11 @@ public class OCLRootItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLRoot)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLRoot_type") : //$NON-NLS-1$
-			getString("_UI_OCLRoot_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLEnumerationItemProvider.java,v 1.1.2.3 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLConcreteTypeItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -20,17 +20,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLEnumeration;
+import org.eclipse.ocl.library.OCLConcreteType;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLEnumeration} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLConcreteType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLEnumerationItemProvider
+public class OCLConcreteTypeItemProvider
 	extends OCLTypeItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +46,7 @@ public class OCLEnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLEnumerationItemProvider(AdapterFactory adapterFactory) {
+	public OCLConcreteTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,29 +61,29 @@ public class OCLEnumerationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelElementPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Meta Model Element feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMetaModelElementPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLEnumeration_metaModelElement_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLEnumeration_metaModelElement_feature", "_UI_OCLEnumeration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_ENUMERATION__META_MODEL_ELEMENT,
+				 getString("_UI_OCLNamedElement_name_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLNamedElement_name_feature", "_UI_OCLNamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_NAMED_ELEMENT__NAME,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -98,7 +100,10 @@ public class OCLEnumerationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LibraryPackage.Literals.OCL_ENUMERATION__LITERALS);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_CONCRETE_TYPE__OPERATION);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_CONCRETE_TYPE__PROPERTY);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_CONCRETE_TYPE__BOUND_TYPE);
 		}
 		return childrenFeatures;
 	}
@@ -117,6 +122,17 @@ public class OCLEnumerationItemProvider
 	}
 
 	/**
+	 * This returns OCLConcreteType.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLConcreteType")); //$NON-NLS-1$
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,14 +146,11 @@ public class OCLEnumerationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLEnumeration)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLEnumeration_type") : //$NON-NLS-1$
-			getString("_UI_OCLEnumeration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**
@@ -151,8 +164,14 @@ public class OCLEnumerationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(OCLEnumeration.class)) {
-			case LibraryPackage.OCL_ENUMERATION__LITERALS:
+		switch (notification.getFeatureID(OCLConcreteType.class)) {
+			case LibraryPackage.OCL_CONCRETE_TYPE__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case LibraryPackage.OCL_CONCRETE_TYPE__TYPE_PARAMETER:
+			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
+			case LibraryPackage.OCL_CONCRETE_TYPE__PROPERTY:
+			case LibraryPackage.OCL_CONCRETE_TYPE__BOUND_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -169,6 +188,26 @@ public class OCLEnumerationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER,
+				 LibraryFactory.eINSTANCE.createOCLTypeParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_CONCRETE_TYPE__OPERATION,
+				 LibraryFactory.eINSTANCE.createOCLLibraryOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_CONCRETE_TYPE__PROPERTY,
+				 LibraryFactory.eINSTANCE.createOCLLibraryProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_CONCRETE_TYPE__BOUND_TYPE,
+				 LibraryFactory.eINSTANCE.createOCLBoundType()));
 	}
 
 }

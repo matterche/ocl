@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperationItemProvider.java,v 1.1.2.4 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLOperationItemProvider.java,v 1.1.2.5 2010/01/30 07:49:44 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -25,7 +25,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLOperation;
-import org.eclipse.ocl.library.OCLParameter;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLOperation} object.
@@ -62,25 +61,25 @@ public class OCLOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsIteratorPropertyDescriptor(object);
+			addIsStaticPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Iterator feature.
+	 * This adds a property descriptor for the Is Static feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsIteratorPropertyDescriptor(Object object) {
+	protected void addIsStaticPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLOperation_isIterator_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLOperation_isIterator_feature", "_UI_OCLOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_OPERATION__IS_ITERATOR,
+				 getString("_UI_OCLOperation_isStatic_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLOperation_isStatic_feature", "_UI_OCLOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_OPERATION__IS_STATIC,
 				 true,
 				 false,
 				 false,
@@ -101,6 +100,8 @@ public class OCLOperationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_OPERATION__ITERATOR);
 			childrenFeatures.add(LibraryPackage.Literals.OCL_OPERATION__PARAMETER);
 		}
 		return childrenFeatures;
@@ -137,18 +138,29 @@ public class OCLOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		StringBuffer s = new StringBuffer();
-		appendName(s, object);
+/*		StringBuffer s = new StringBuffer();
+		appendName(s, (OCLOperation)object);
 		s.append("(");
 		String prefix = "";
+		List<OCLIterator> iterators = ((OCLOperation)object).getIterator();
+		if (!iterators.isEmpty()) {
+			for (OCLIterator iterator : iterators) {
+				s.append(prefix);
+				appendSignature(s, iterator.getType());
+				prefix = ", ";
+			}
+			s.append(" | ");
+			prefix = "";
+		}
 		for (OCLParameter parameter : ((OCLOperation)object).getParameter()) {
 			s.append(prefix);
-			appendType(s, parameter.getType());
+			appendSignature(s, parameter.getType());
 			prefix = ", ";
 		}
 		s.append(") : ");
-		appendType(s, ((OCLOperation)object).getType()); 
-		return s.toString();
+		appendSignature(s, ((OCLOperation)object).getType()); 
+		return s.toString(); */
+		return super.getText(object);
 	}
 
 	/**
@@ -163,9 +175,11 @@ public class OCLOperationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OCLOperation.class)) {
-			case LibraryPackage.OCL_OPERATION__IS_ITERATOR:
+			case LibraryPackage.OCL_OPERATION__IS_STATIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case LibraryPackage.OCL_OPERATION__TYPE_PARAMETER:
+			case LibraryPackage.OCL_OPERATION__ITERATOR:
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -183,6 +197,16 @@ public class OCLOperationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER,
+				 LibraryFactory.eINSTANCE.createOCLTypeParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_OPERATION__ITERATOR,
+				 LibraryFactory.eINSTANCE.createOCLIterator()));
 
 		newChildDescriptors.add
 			(createChildParameter

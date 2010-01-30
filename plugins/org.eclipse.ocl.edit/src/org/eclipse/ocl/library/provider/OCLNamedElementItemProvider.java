@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLNamedElementItemProvider.java,v 1.1.2.1 2010/01/24 07:40:30 ewillink Exp $
+ * $Id: OCLNamedElementItemProvider.java,v 1.1.2.2 2010/01/30 07:49:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -100,14 +100,11 @@ public class OCLNamedElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OCLNamedElement)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_OCLNamedElement_type") : //$NON-NLS-1$
-			getString("_UI_OCLNamedElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return super.getText(object);
 	}
 
 	/**
