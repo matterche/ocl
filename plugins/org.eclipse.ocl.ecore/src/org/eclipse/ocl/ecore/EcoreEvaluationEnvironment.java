@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.9 2009/09/01 20:11:57 ewillink Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.9.6.1 2010/01/30 22:25:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -357,6 +357,10 @@ public class EcoreEvaluationEnvironment
         if ((object.getClass() == Integer.class)
             && (classifier.getInstanceClass() == Double.class)) {
             return Boolean.TRUE;
+        }
+        
+        if (classifier == OCLStandardLibraryImpl.INSTANCE.getOclAny()) {
+        	return true;
         }
 
         return classifier.isInstance(object);
