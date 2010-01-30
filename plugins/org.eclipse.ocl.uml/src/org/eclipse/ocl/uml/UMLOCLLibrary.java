@@ -11,16 +11,18 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.library.CompatibilityOCLLibrary;
-import org.eclipse.ocl.library.OCLClassifier;
-import org.eclipse.ocl.library.OCLDataType;
-import org.eclipse.ocl.library.OCLEnumeration;
-import org.eclipse.ocl.library.OCLEnumerationLiteral;
 import org.eclipse.ocl.library.OCLLibrary;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLProperty;
+import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.merged.OCLClassifier;
+import org.eclipse.ocl.library.merged.OCLDataType;
+import org.eclipse.ocl.library.merged.OCLEnumeration;
+import org.eclipse.ocl.library.merged.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 import org.eclipse.ocl.uml.library.UMLLibraryFactory;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -43,7 +45,7 @@ import org.eclipse.uml2.uml.TypedElement;
 
  * @since 3.0
  */
-public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, TypedElement, Package, Type, Class, TupleType, DataType, Enumeration, EnumerationLiteral, Operation, Parameter, Property, EClass>
+public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, TypedElement, Package, Type, Class, TupleType, DataType, Enumeration, EnumerationLiteral, Operation, Parameter, Property>
 {
 	private static UMLOCLLibrary DEFAULT = null;
 
@@ -98,18 +100,18 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	}
 
 	@Override
-	protected OCLType createOCLType(EObject aType, Map<EObject, OCLType> visited) {
+	protected OCLConcreteType createOCLType(MergedLibrary mergedLibrary, Object aType, Map<Object, OCLConcreteType> visited) {
 		if (aType instanceof Enumeration) {
-			return createOCLEnumeration((Enumeration) aType, visited);
+			return createOCLEnumeration(mergedLibrary, (Enumeration) aType, visited);
 		}
 		else if (aType instanceof TupleType) {
-			return createOCLTupleType((TupleType) aType, visited);
+			return createOCLTupleType(mergedLibrary, (TupleType) aType, visited);
 		}
 		else if (aType instanceof DataType) {
-			return createOCLDataType((DataType) aType, visited);
+			return createOCLDataType(mergedLibrary, (DataType) aType, visited);
 		}
 		else if (aType instanceof Class) {
-			return createOCLClassifier((Class) aType, visited);
+			return createOCLClassifier(mergedLibrary, (Class) aType, visited);
 		}
 //		else if (aType instanceof EClass) {
 //			return createOCLClassifier((Class) aType, visited);
@@ -182,8 +184,8 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	}
 
 	@Override
-	protected OCLType getLibraryTypeOfTypedElement(TypedElement typedElement) {
-		OCLType elementType = getLibraryTypeOfType(typedElement.getType());
+	protected OCLType getLibraryTypeOfTypedElement(MergedLibrary mergedLibrary, TypedElement typedElement) {
+		OCLType elementType = mergedLibrary.getLibraryTypeOfType(typedElement.getType());
 /*		if (!typedElement.isMany()) {
 			return elementType;
 		}
@@ -209,32 +211,32 @@ public final class UMLOCLLibrary extends CompatibilityOCLLibrary<NamedElement, T
 	}
 
 	@Override
-	public void loadPackage(Package aPackage) {
+	public void loadPackage(MergedLibrary mergedLibrary, Package aPackage) {
 		for (Element umlElement : aPackage.getOwnedElements()) {
 			if (umlElement instanceof Classifier) {
-				getLibraryTypeOfType(umlElement);
+				mergedLibrary.getLibraryTypeOfType(umlElement);
 			}
 		}
 		for (Package umlPackage : aPackage.getNestedPackages()) {
-			loadPackage(umlPackage);
+			loadPackage(mergedLibrary, umlPackage);
 		}
 	}
 
-	protected List<OCLOperation> resolveOperations(OCLType dynamicType, Operation umlOperation) {
+	protected List<OCLOperation> resolveOperations(MergedLibrary mergedLibrary, OCLType dynamicType, Operation umlOperation) {
 		Element classifier = umlOperation.getOwner();
-		OCLType thisType = getLibraryTypeOfType(classifier);
+		OCLType thisType = mergedLibrary.getLibraryTypeOfType(classifier);
 		String operationName = umlOperation.getName();
 		EList<OCLType> parameterTypes = new BasicEList<OCLType>();
 		for (Parameter parameter : umlOperation.getOwnedParameters()) {
-			parameterTypes.add(getLibraryTypeOfType(parameter.getType()));
+			parameterTypes.add(mergedLibrary.getLibraryTypeOfType(parameter.getType()));
 		}
 		parameterTypes.remove(0);			// Lose the 'result' parameter
-		return thisType.getOperations(operationName, parameterTypes);
+		return thisType.getOperations(operationName, parameterTypes, dynamicType);
 	}
 
-	protected OCLProperty resolveProperty(OCLType dynamicType, Property umlProperty) {
+	protected OCLProperty resolveProperty(MergedLibrary mergedLibrary, OCLType dynamicType, Property umlProperty) {
 		Element classifier = umlProperty.getOwner();
-		OCLType thisType = getLibraryTypeOfType(classifier);
+		OCLType thisType = mergedLibrary.getLibraryTypeOfType(classifier);
 		String propertyName = umlProperty.getName();
 		return thisType.getProperty(propertyName);
 	}

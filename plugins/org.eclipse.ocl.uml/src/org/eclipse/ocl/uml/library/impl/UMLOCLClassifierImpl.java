@@ -2,13 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLOCLClassifierImpl.java,v 1.1.2.3 2010/01/24 07:40:39 ewillink Exp $
+ * $Id: UMLOCLClassifierImpl.java,v 1.1.2.4 2010/01/30 07:49:48 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.ocl.library.impl.OCLClassifierImpl;
+import org.eclipse.ocl.library.merged.impl.OCLClassifierImpl;
 
 import org.eclipse.ocl.uml.library.UMLLibraryPackage;
 import org.eclipse.ocl.uml.library.UMLOCLClassifier;

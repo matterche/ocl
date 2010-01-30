@@ -3,19 +3,19 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.uml/src"
     modelPluginID="org.eclipse.ocl.uml" modelName="OCLUMLLibrary" nonNLSMarkers="true"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.ocl/model/OCLLibrary.genmodel#//ocl">
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl/model/OCLLibrary.genmodel#//ocl ../../org.eclipse.ocl/model/MergedLibrary.genmodel#//ocl platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl">
   <foreignModel>OCLUMLLibrary.ecore</foreignModel>
   <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
       ecorePackage="OCLUMLLibrary.ecore#/">
-    <nestedGenPackages prefix="UML" disposableProviderFactory="true" ecorePackage="OCLUMLLibrary.ecore#//uml">
-      <nestedGenPackages prefix="UMLLibrary" disposableProviderFactory="true" fileExtensions=""
-          ecorePackage="OCLUMLLibrary.ecore#//uml/library">
+    <nestedGenPackages prefix="UML" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
+        ecorePackage="OCLUMLLibrary.ecore#//uml">
+      <nestedGenPackages prefix="UMLLibrary" basePackage="org.eclipse.ocl.uml" disposableProviderFactory="true"
+          fileExtensions="" ecorePackage="OCLUMLLibrary.ecore#//uml/library">
         <genClasses ecoreClass="OCLUMLLibrary.ecore#//uml/library/UMLOCLClassifier"/>
         <genClasses ecoreClass="OCLUMLLibrary.ecore#//uml/library/UMLOCLDataType"/>
         <genClasses ecoreClass="OCLUMLLibrary.ecore#//uml/library/UMLOCLEnumeration"/>
         <genClasses ecoreClass="OCLUMLLibrary.ecore#//uml/library/UMLOCLEnumerationLiteral"/>
         <genClasses ecoreClass="OCLUMLLibrary.ecore#//uml/library/UMLOCLOperation"/>
-        <genClasses ecoreClass="OCLUMLLibrary.ecore#//uml/library/UMLOCLProperty"/>
       </nestedGenPackages>
     </nestedGenPackages>
   </genPackages>

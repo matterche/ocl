@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLLibrarySwitch.java,v 1.1.2.2 2010/01/24 07:40:39 ewillink Exp $
+ * $Id: UMLLibrarySwitch.java,v 1.1.2.3 2010/01/30 07:49:48 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library.util;
 
@@ -10,18 +10,21 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.library.OCLClassifier;
-import org.eclipse.ocl.library.OCLDataType;
+import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLElement;
-import org.eclipse.ocl.library.OCLEnumeration;
-import org.eclipse.ocl.library.OCLEnumerationLiteral;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLNamedElement;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLProperty;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeParameterParent;
+import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.OCLTypedElement;
+import org.eclipse.ocl.library.merged.OCLClassifier;
+import org.eclipse.ocl.library.merged.OCLDataType;
+import org.eclipse.ocl.library.merged.OCLEnumeration;
+import org.eclipse.ocl.library.merged.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 import org.eclipse.ocl.uml.library.UMLLibraryPackage;
 import org.eclipse.ocl.uml.library.UMLOCLClassifier;
 import org.eclipse.ocl.uml.library.UMLOCLDataType;
@@ -108,7 +111,10 @@ public class UMLLibrarySwitch<T> {
 				UMLOCLClassifier umloclClassifier = (UMLOCLClassifier)theEObject;
 				T result = caseUMLOCLClassifier(umloclClassifier);
 				if (result == null) result = caseOCLClassifier(umloclClassifier);
+				if (result == null) result = caseOCLConcreteType(umloclClassifier);
 				if (result == null) result = caseOCLType(umloclClassifier);
+				if (result == null) result = caseOCLTypeParameterParent(umloclClassifier);
+				if (result == null) result = caseOCLTypeValue(umloclClassifier);
 				if (result == null) result = caseOCLNamedElement(umloclClassifier);
 				if (result == null) result = caseOCLElement(umloclClassifier);
 				if (result == null) result = defaultCase(theEObject);
@@ -118,7 +124,10 @@ public class UMLLibrarySwitch<T> {
 				UMLOCLDataType umloclDataType = (UMLOCLDataType)theEObject;
 				T result = caseUMLOCLDataType(umloclDataType);
 				if (result == null) result = caseOCLDataType(umloclDataType);
+				if (result == null) result = caseOCLConcreteType(umloclDataType);
 				if (result == null) result = caseOCLType(umloclDataType);
+				if (result == null) result = caseOCLTypeParameterParent(umloclDataType);
+				if (result == null) result = caseOCLTypeValue(umloclDataType);
 				if (result == null) result = caseOCLNamedElement(umloclDataType);
 				if (result == null) result = caseOCLElement(umloclDataType);
 				if (result == null) result = defaultCase(theEObject);
@@ -128,7 +137,10 @@ public class UMLLibrarySwitch<T> {
 				UMLOCLEnumeration umloclEnumeration = (UMLOCLEnumeration)theEObject;
 				T result = caseUMLOCLEnumeration(umloclEnumeration);
 				if (result == null) result = caseOCLEnumeration(umloclEnumeration);
+				if (result == null) result = caseOCLConcreteType(umloclEnumeration);
 				if (result == null) result = caseOCLType(umloclEnumeration);
+				if (result == null) result = caseOCLTypeParameterParent(umloclEnumeration);
+				if (result == null) result = caseOCLTypeValue(umloclEnumeration);
 				if (result == null) result = caseOCLNamedElement(umloclEnumeration);
 				if (result == null) result = caseOCLElement(umloclEnumeration);
 				if (result == null) result = defaultCase(theEObject);
@@ -149,6 +161,7 @@ public class UMLLibrarySwitch<T> {
 				if (result == null) result = caseOCLMetaModelOperation(umloclOperation);
 				if (result == null) result = caseOCLOperation(umloclOperation);
 				if (result == null) result = caseOCLTypedElement(umloclOperation);
+				if (result == null) result = caseOCLTypeParameterParent(umloclOperation);
 				if (result == null) result = caseOCLNamedElement(umloclOperation);
 				if (result == null) result = caseOCLElement(umloclOperation);
 				if (result == null) result = defaultCase(theEObject);
@@ -290,6 +303,36 @@ public class UMLLibrarySwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Type Parameter Parent</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Type Parameter Parent</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLTypeParameterParent(OCLTypeParameterParent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Type Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Type Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLTypeValue(OCLTypeValue object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>OCL Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -301,6 +344,21 @@ public class UMLLibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLType(OCLType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Concrete Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Concrete Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLConcreteType(OCLConcreteType object) {
 		return null;
 	}
 

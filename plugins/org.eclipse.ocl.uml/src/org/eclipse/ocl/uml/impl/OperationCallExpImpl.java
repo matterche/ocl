@@ -13,13 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.8.8.1 2010/01/03 22:51:35 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.8.8.2 2010/01/30 07:49:47 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;

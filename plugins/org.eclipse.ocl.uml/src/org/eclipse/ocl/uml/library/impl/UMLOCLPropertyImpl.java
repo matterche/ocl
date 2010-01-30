@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLOCLPropertyImpl.java,v 1.1.2.3 2010/01/24 07:40:39 ewillink Exp $
+ * $Id: UMLOCLPropertyImpl.java,v 1.1.2.4 2010/01/30 07:49:48 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library.impl;
 
@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.PropertyCallExp;
-import org.eclipse.ocl.library.impl.OCLMetaModelPropertyImpl;
+import org.eclipse.ocl.library.merged.impl.OCLMetaModelPropertyImpl;
 import org.eclipse.ocl.uml.library.UMLLibraryPackage;
 import org.eclipse.ocl.uml.library.UMLOCLProperty;
 

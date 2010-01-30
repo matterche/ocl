@@ -2,11 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLOCLProperty.java,v 1.1.2.1 2010/01/20 09:09:23 ewillink Exp $
+ * $Id: UMLOCLProperty.java,v 1.1.2.2 2010/01/30 07:49:47 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library;
 
-import org.eclipse.ocl.library.OCLMetaModelProperty;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 
 /**
  * <!-- begin-user-doc -->

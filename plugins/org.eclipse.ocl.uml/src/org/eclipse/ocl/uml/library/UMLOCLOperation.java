@@ -2,11 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLOCLOperation.java,v 1.1.2.1 2010/01/20 09:09:23 ewillink Exp $
+ * $Id: UMLOCLOperation.java,v 1.1.2.2 2010/01/30 07:49:48 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library;
 
-import org.eclipse.ocl.library.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
 
 /**
  * <!-- begin-user-doc -->

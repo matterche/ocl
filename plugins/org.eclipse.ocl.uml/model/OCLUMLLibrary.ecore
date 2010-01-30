@@ -6,12 +6,12 @@
   <eSubpackages name="uml" nsURI="http://www.eclipse.org/ocl/3.0.0/UML" nsPrefix="ocl.uml">
     <eSubpackages name="library" nsURI="http://www.eclipse.org/ocl/3.0.0/UMLLibrary"
         nsPrefix="ocl.ecore.lib">
-      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLClassifier" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLClassifier"/>
-      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLDataType" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLDataType"/>
-      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLEnumeration" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLEnumeration"/>
-      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLEnumerationLiteral" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLEnumerationLiteral"/>
-      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLOperation" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLMetaModelOperation"/>
-      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLProperty" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLMetaModelProperty"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLClassifier" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLClassifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLDataType" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLDataType"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLEnumeration" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLEnumeration"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLEnumerationLiteral" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLEnumerationLiteral"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLOperation" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLMetaModelOperation"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UMLOCLProperty" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLMetaModelProperty"/>
     </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

@@ -2,14 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLLibraryPackageImpl.java,v 1.1.2.2 2010/01/24 07:40:39 ewillink Exp $
+ * $Id: UMLLibraryPackageImpl.java,v 1.1.2.3 2010/01/30 07:49:48 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
 import org.eclipse.ocl.uml.library.UMLLibraryFactory;
 import org.eclipse.ocl.uml.library.UMLLibraryPackage;
 import org.eclipse.ocl.uml.library.UMLOCLClassifier;
@@ -115,7 +115,7 @@ public class UMLLibraryPackageImpl extends EPackageImpl implements UMLLibraryPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		LibraryPackage.eINSTANCE.eClass();
+		OCLMergedLibraryPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theUMLLibraryPackage.createPackageContents();
@@ -251,19 +251,19 @@ public class UMLLibraryPackageImpl extends EPackageImpl implements UMLLibraryPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		LibraryPackage theOCLLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
+		OCLMergedLibraryPackage theOCLMergedLibraryPackage = (OCLMergedLibraryPackage)EPackage.Registry.INSTANCE.getEPackage(OCLMergedLibraryPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		umloclClassifierEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLClassifier());
-		umloclDataTypeEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLDataType());
-		umloclEnumerationEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLEnumeration());
-		umloclEnumerationLiteralEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLEnumerationLiteral());
-		umloclOperationEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLMetaModelOperation());
-		umloclPropertyEClass.getESuperTypes().add(theOCLLibraryPackage.getOCLMetaModelProperty());
+		umloclClassifierEClass.getESuperTypes().add(theOCLMergedLibraryPackage.getOCLClassifier());
+		umloclDataTypeEClass.getESuperTypes().add(theOCLMergedLibraryPackage.getOCLDataType());
+		umloclEnumerationEClass.getESuperTypes().add(theOCLMergedLibraryPackage.getOCLEnumeration());
+		umloclEnumerationLiteralEClass.getESuperTypes().add(theOCLMergedLibraryPackage.getOCLEnumerationLiteral());
+		umloclOperationEClass.getESuperTypes().add(theOCLMergedLibraryPackage.getOCLMetaModelOperation());
+		umloclPropertyEClass.getESuperTypes().add(theOCLMergedLibraryPackage.getOCLMetaModelProperty());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(umloclClassifierEClass, UMLOCLClassifier.class, "UMLOCLClassifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

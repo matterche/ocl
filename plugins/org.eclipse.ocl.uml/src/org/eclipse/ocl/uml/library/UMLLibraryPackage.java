@@ -2,13 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UMLLibraryPackage.java,v 1.1.2.2 2010/01/24 07:40:39 ewillink Exp $
+ * $Id: UMLLibraryPackage.java,v 1.1.2.3 2010/01/30 07:49:47 ewillink Exp $
  */
 package org.eclipse.ocl.uml.library;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -69,40 +69,31 @@ public interface UMLLibraryPackage extends EPackage {
 	int UMLOCL_CLASSIFIER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UMLOCL_CLASSIFIER__NAME = LibraryPackage.OCL_CLASSIFIER__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_CLASSIFIER__CONFORMS = LibraryPackage.OCL_CLASSIFIER__CONFORMS;
+	int UMLOCL_CLASSIFIER__CONFORMS = OCLMergedLibraryPackage.OCL_CLASSIFIER__CONFORMS;
 
 	/**
-	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_CLASSIFIER__OPERATION = LibraryPackage.OCL_CLASSIFIER__OPERATION;
+	int UMLOCL_CLASSIFIER__NAME = OCLMergedLibraryPackage.OCL_CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_CLASSIFIER__PROPERTY = LibraryPackage.OCL_CLASSIFIER__PROPERTY;
+	int UMLOCL_CLASSIFIER__TYPE_PARAMETER = OCLMergedLibraryPackage.OCL_CLASSIFIER__TYPE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -111,7 +102,34 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_CLASSIFIER__CONTAINER = LibraryPackage.OCL_CLASSIFIER__CONTAINER;
+	int UMLOCL_CLASSIFIER__CONTAINER = OCLMergedLibraryPackage.OCL_CLASSIFIER__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_CLASSIFIER__OPERATION = OCLMergedLibraryPackage.OCL_CLASSIFIER__OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_CLASSIFIER__PROPERTY = OCLMergedLibraryPackage.OCL_CLASSIFIER__PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Bound Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_CLASSIFIER__BOUND_TYPE = OCLMergedLibraryPackage.OCL_CLASSIFIER__BOUND_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
@@ -120,7 +138,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_CLASSIFIER__META_MODEL_ELEMENT = LibraryPackage.OCL_CLASSIFIER__META_MODEL_ELEMENT;
+	int UMLOCL_CLASSIFIER__META_MODEL_ELEMENT = OCLMergedLibraryPackage.OCL_CLASSIFIER__META_MODEL_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>UMLOCL Classifier</em>' class.
@@ -129,7 +147,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_CLASSIFIER_FEATURE_COUNT = LibraryPackage.OCL_CLASSIFIER_FEATURE_COUNT + 0;
+	int UMLOCL_CLASSIFIER_FEATURE_COUNT = OCLMergedLibraryPackage.OCL_CLASSIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.library.impl.UMLOCLDataTypeImpl <em>UMLOCL Data Type</em>}' class.
@@ -142,40 +160,31 @@ public interface UMLLibraryPackage extends EPackage {
 	int UMLOCL_DATA_TYPE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UMLOCL_DATA_TYPE__NAME = LibraryPackage.OCL_DATA_TYPE__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_DATA_TYPE__CONFORMS = LibraryPackage.OCL_DATA_TYPE__CONFORMS;
+	int UMLOCL_DATA_TYPE__CONFORMS = OCLMergedLibraryPackage.OCL_DATA_TYPE__CONFORMS;
 
 	/**
-	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_DATA_TYPE__OPERATION = LibraryPackage.OCL_DATA_TYPE__OPERATION;
+	int UMLOCL_DATA_TYPE__NAME = OCLMergedLibraryPackage.OCL_DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_DATA_TYPE__PROPERTY = LibraryPackage.OCL_DATA_TYPE__PROPERTY;
+	int UMLOCL_DATA_TYPE__TYPE_PARAMETER = OCLMergedLibraryPackage.OCL_DATA_TYPE__TYPE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -184,7 +193,34 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_DATA_TYPE__CONTAINER = LibraryPackage.OCL_DATA_TYPE__CONTAINER;
+	int UMLOCL_DATA_TYPE__CONTAINER = OCLMergedLibraryPackage.OCL_DATA_TYPE__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_DATA_TYPE__OPERATION = OCLMergedLibraryPackage.OCL_DATA_TYPE__OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_DATA_TYPE__PROPERTY = OCLMergedLibraryPackage.OCL_DATA_TYPE__PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Bound Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_DATA_TYPE__BOUND_TYPE = OCLMergedLibraryPackage.OCL_DATA_TYPE__BOUND_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
@@ -193,7 +229,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_DATA_TYPE__META_MODEL_ELEMENT = LibraryPackage.OCL_DATA_TYPE__META_MODEL_ELEMENT;
+	int UMLOCL_DATA_TYPE__META_MODEL_ELEMENT = OCLMergedLibraryPackage.OCL_DATA_TYPE__META_MODEL_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>UMLOCL Data Type</em>' class.
@@ -202,7 +238,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_DATA_TYPE_FEATURE_COUNT = LibraryPackage.OCL_DATA_TYPE_FEATURE_COUNT + 0;
+	int UMLOCL_DATA_TYPE_FEATURE_COUNT = OCLMergedLibraryPackage.OCL_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.library.impl.UMLOCLEnumerationImpl <em>UMLOCL Enumeration</em>}' class.
@@ -215,40 +251,31 @@ public interface UMLLibraryPackage extends EPackage {
 	int UMLOCL_ENUMERATION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UMLOCL_ENUMERATION__NAME = LibraryPackage.OCL_ENUMERATION__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION__CONFORMS = LibraryPackage.OCL_ENUMERATION__CONFORMS;
+	int UMLOCL_ENUMERATION__CONFORMS = OCLMergedLibraryPackage.OCL_ENUMERATION__CONFORMS;
 
 	/**
-	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION__OPERATION = LibraryPackage.OCL_ENUMERATION__OPERATION;
+	int UMLOCL_ENUMERATION__NAME = OCLMergedLibraryPackage.OCL_ENUMERATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION__PROPERTY = LibraryPackage.OCL_ENUMERATION__PROPERTY;
+	int UMLOCL_ENUMERATION__TYPE_PARAMETER = OCLMergedLibraryPackage.OCL_ENUMERATION__TYPE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -257,7 +284,43 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION__CONTAINER = LibraryPackage.OCL_ENUMERATION__CONTAINER;
+	int UMLOCL_ENUMERATION__CONTAINER = OCLMergedLibraryPackage.OCL_ENUMERATION__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_ENUMERATION__OPERATION = OCLMergedLibraryPackage.OCL_ENUMERATION__OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_ENUMERATION__PROPERTY = OCLMergedLibraryPackage.OCL_ENUMERATION__PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Bound Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_ENUMERATION__BOUND_TYPE = OCLMergedLibraryPackage.OCL_ENUMERATION__BOUND_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_ENUMERATION__META_MODEL_ELEMENT = OCLMergedLibraryPackage.OCL_ENUMERATION__META_MODEL_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Literals</b></em>' containment reference list.
@@ -266,7 +329,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION__LITERALS = LibraryPackage.OCL_ENUMERATION__LITERALS;
+	int UMLOCL_ENUMERATION__LITERALS = OCLMergedLibraryPackage.OCL_ENUMERATION__LITERALS;
 
 	/**
 	 * The number of structural features of the '<em>UMLOCL Enumeration</em>' class.
@@ -275,7 +338,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION_FEATURE_COUNT = LibraryPackage.OCL_ENUMERATION_FEATURE_COUNT + 0;
+	int UMLOCL_ENUMERATION_FEATURE_COUNT = OCLMergedLibraryPackage.OCL_ENUMERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.library.impl.UMLOCLEnumerationLiteralImpl <em>UMLOCL Enumeration Literal</em>}' class.
@@ -294,7 +357,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION_LITERAL__NAME = LibraryPackage.OCL_ENUMERATION_LITERAL__NAME;
+	int UMLOCL_ENUMERATION_LITERAL__NAME = OCLMergedLibraryPackage.OCL_ENUMERATION_LITERAL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -303,7 +366,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION_LITERAL__CONTAINER = LibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER;
+	int UMLOCL_ENUMERATION_LITERAL__CONTAINER = OCLMergedLibraryPackage.OCL_ENUMERATION_LITERAL__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
@@ -312,7 +375,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT = LibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT;
+	int UMLOCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT = OCLMergedLibraryPackage.OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>UMLOCL Enumeration Literal</em>' class.
@@ -321,7 +384,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_ENUMERATION_LITERAL_FEATURE_COUNT = LibraryPackage.OCL_ENUMERATION_LITERAL_FEATURE_COUNT + 0;
+	int UMLOCL_ENUMERATION_LITERAL_FEATURE_COUNT = OCLMergedLibraryPackage.OCL_ENUMERATION_LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.library.impl.UMLOCLOperationImpl <em>UMLOCL Operation</em>}' class.
@@ -340,7 +403,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_OPERATION__NAME = LibraryPackage.OCL_META_MODEL_OPERATION__NAME;
+	int UMLOCL_OPERATION__NAME = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -349,25 +412,25 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_OPERATION__TYPE = LibraryPackage.OCL_META_MODEL_OPERATION__TYPE;
+	int UMLOCL_OPERATION__TYPE = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Is Iterator</b></em>' attribute.
+	 * The feature id for the '<em><b>Bound Type</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_OPERATION__IS_ITERATOR = LibraryPackage.OCL_META_MODEL_OPERATION__IS_ITERATOR;
+	int UMLOCL_OPERATION__BOUND_TYPE = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__BOUND_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_OPERATION__PARAMETER = LibraryPackage.OCL_META_MODEL_OPERATION__PARAMETER;
+	int UMLOCL_OPERATION__TYPE_PARAMETER = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__TYPE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -376,7 +439,25 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_OPERATION__CONTAINER = LibraryPackage.OCL_META_MODEL_OPERATION__CONTAINER;
+	int UMLOCL_OPERATION__CONTAINER = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_OPERATION__ITERATOR = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_OPERATION__PARAMETER = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
@@ -385,7 +466,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_OPERATION__META_MODEL_ELEMENT = LibraryPackage.OCL_META_MODEL_OPERATION__META_MODEL_ELEMENT;
+	int UMLOCL_OPERATION__META_MODEL_ELEMENT = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__META_MODEL_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>UMLOCL Operation</em>' class.
@@ -394,7 +475,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_OPERATION_FEATURE_COUNT = LibraryPackage.OCL_META_MODEL_OPERATION_FEATURE_COUNT + 0;
+	int UMLOCL_OPERATION_FEATURE_COUNT = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.library.impl.UMLOCLPropertyImpl <em>UMLOCL Property</em>}' class.
@@ -413,7 +494,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_PROPERTY__NAME = LibraryPackage.OCL_META_MODEL_PROPERTY__NAME;
+	int UMLOCL_PROPERTY__NAME = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -422,7 +503,16 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_PROPERTY__TYPE = LibraryPackage.OCL_META_MODEL_PROPERTY__TYPE;
+	int UMLOCL_PROPERTY__TYPE = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Bound Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UMLOCL_PROPERTY__BOUND_TYPE = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY__BOUND_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' reference.
@@ -431,7 +521,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_PROPERTY__CONTAINER = LibraryPackage.OCL_META_MODEL_PROPERTY__CONTAINER;
+	int UMLOCL_PROPERTY__CONTAINER = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.
@@ -440,7 +530,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_PROPERTY__META_MODEL_ELEMENT = LibraryPackage.OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT;
+	int UMLOCL_PROPERTY__META_MODEL_ELEMENT = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>UMLOCL Property</em>' class.
@@ -449,8 +539,7 @@ public interface UMLLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UMLOCL_PROPERTY_FEATURE_COUNT = LibraryPackage.OCL_META_MODEL_PROPERTY_FEATURE_COUNT + 0;
-
+	int UMLOCL_PROPERTY_FEATURE_COUNT = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.uml.library.UMLOCLClassifier <em>UMLOCL Classifier</em>}'.
