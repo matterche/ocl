@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOCLItemProvider.java,v 1.2.2.3 2010/01/24 07:40:16 ewillink Exp $
+ * $Id: ExpressionInOCLItemProvider.java,v 1.2.2.4 2010/01/30 07:49:50 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -781,11 +781,7 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLLibrary()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLType()));
+				LibraryFactory.eINSTANCE.createOCLConcreteType()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -793,15 +789,27 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLCollectionType()));
+				LibraryFactory.eINSTANCE.createOCLBoundType()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLBagType()));
+				LibraryFactory.eINSTANCE.createOCLDeprecatedType()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				LibraryFactory.eINSTANCE.createOCLInvalidType()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLIterator()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLJavaType()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLLibrary()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
@@ -813,22 +821,6 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLNonOrderedCollectionType()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLNonUniqueCollectionType()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLOrderedCollectionType()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLOrderedSetType()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				LibraryFactory.eINSTANCE.createOCLPackage()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -837,27 +829,15 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLTemplateParameterType()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				LibraryFactory.eINSTANCE.createOCLRoot()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLSequenceType()));
+				LibraryFactory.eINSTANCE.createOCLTypeBinding()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLSetType()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLTupleType()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLUniqueCollectionType()));
+				LibraryFactory.eINSTANCE.createOCLTypeParameter()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
