@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.5.6.1 2010/01/15 07:44:26 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.5.6.2 2010/01/30 20:15:36 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -174,13 +174,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		// and so does OclAny, also
 		if (type1 == stdlib.getOclAny()) {
-			return (type2 instanceof CollectionType<?, ?>)
-				? UNRELATED_TYPE
-				: STRICT_SUPERTYPE;
+			return STRICT_SUPERTYPE;
 		} else if (type2 == stdlib.getOclAny()) {
-			return (type1 instanceof CollectionType<?, ?>)
-				? UNRELATED_TYPE
-				: STRICT_SUBTYPE;
+			return STRICT_SUBTYPE;
 		}
 
 		// handle primitive types
@@ -1020,7 +1016,14 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 			popType = resolveGenericType(owner, popType, argType);
 
-			if (popType == stdlib.getT()) {
+			if (popType == stdlib.getT()) {		// FIXME This is old suspect code
+				// this is a collection operation, and the collection is empty
+				// (element type is OclVoid). Any argument matches in this
+				// case, because any kind of element can be considered to not
+				// be in an empty collection
+				continue;
+			}
+			if ((popType instanceof CollectionType<?, ?>) && (((CollectionType<?, ?>)popType).getElementType() == stdlib.getT())) {
 				// this is a collection operation, and the collection is empty
 				// (element type is OclVoid). Any argument matches in this
 				// case, because any kind of element can be considered to not

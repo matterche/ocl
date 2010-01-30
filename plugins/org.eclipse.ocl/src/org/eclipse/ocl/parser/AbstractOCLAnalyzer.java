@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.7 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.8 2010/01/30 20:15:36 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -3523,7 +3523,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		 */
 		if (!(astNode.getType() instanceof CollectionType<?, ?>)) {
 			List<OCLExpression<C>> args = Collections.emptyList();
-			String operationName = PredefinedType.OCL_AS_COLLECTION_NAME;
+			String operationName = PredefinedType.OCL_AS_SET_NAME;
 			C operationSourceType = astNode.getType();
 			O oper = lookupOperation(oclExpressionCS, env, operationSourceType, operationName, args);
 			OperationCallExp<C, O> astNode1 = genOperationCallExp(env, oclExpressionCS, oper,
@@ -3532,7 +3532,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			initASTMapping(env, astNode1, oclExpressionCS, null);
 			initStartEndPositions(astNode1, oclExpressionCS);
 			C type = getCollectionType(oclExpressionCS, env,
-				CollectionKind.COLLECTION_LITERAL, astNode.getType());
+				CollectionKind.SET_LITERAL, astNode.getType());
 			astNode1.setType(type);
 			if (isErrorNode(astNode)) {
 					// propagate error mark to the collection literal

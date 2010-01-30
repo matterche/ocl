@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryValidator.java,v 1.1.2.1 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: LibraryValidator.java,v 1.1.2.2 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -15,7 +15,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.ILibraryOperation;
 import org.eclipse.ocl.library.ILibraryProperty;
 import org.eclipse.ocl.library.LibraryPackage;

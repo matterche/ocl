@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.8.8.4 2010/01/20 17:58:05 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.8.8.5 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -21,7 +21,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -91,6 +90,7 @@ public class CollectionUtil {
      * @return the number of occurrences of the object in the collection
      */
     public static int count(Collection<?> self, Object object) {
+    	// FIXME Exploit hashCode to give much faster response for Sets.
         int count = 0;
         for (Object next : self) {
             if (ObjectUtil.equal(next, object)) {
@@ -258,7 +258,7 @@ public class CollectionUtil {
             }
             
             return true;
-        } else if (self instanceof Set<?> && c instanceof Set<?>) {
+        } else if (self instanceof Set<?> && c instanceof Set<?> && !(self instanceof LinkedHashSet<?>) && !(c instanceof LinkedHashSet<?>)) {
         	return ((Set<?>) self).equals(c);
         } else {
         	// incompatible OCL types
@@ -299,50 +299,25 @@ public class CollectionUtil {
      * @return the intersection of the source set or bag with the other set or bag
      */
     public static <E> Collection<E> intersection(
-    		Collection<? extends E> self, Collection<? extends E> c) {
-    	
-        int size1 = self.size();
-        int size2 = c.size();
-        
-        // if either collection is empty, then so is the result
-        if (size1 == 0) {
-            return createNewCollectionOfSameKind(self);
-        } else if (size2 == 0) {
-            return createNewCollectionOfSameKind(self);
-        }
-        
-        Collection<E> result = null;
-
-        if (self instanceof Set<?> || c instanceof Set<?>) {
+    		Collection<? extends E> self, Collection<? extends E> c) {       
+    	Collection<E> result;
+    	if (self instanceof Set<?> || c instanceof Set<?>) {
             // if either argument is a set, so is the result
-            if (size1 == 0 || size2 == 0) {
-                return Collections.emptySet();
-            }
             result = createNewSet();
-        } else {
-            // both arguments are bags, so is the result
-            if (size1 == 0 || size2 == 0) {
-                return BagImpl.emptyBag();
-            }
-            result = createNewBag();
+    	}
+    	else {
+    		result = createNewBag();
+    	}
+        // loop over the smaller collection and add the appropriate number of elements
+        Collection<? extends E> smaller = self.size() < c.size() ? self : c;
+        for (E e : smaller) {
+        	if (!includes(result, e)) {
+	        	int iMax = Math.min(count(self, e), count(c, e));
+	        	for (int i = 0; i < iMax; i++) {
+	        		result.add(e);
+	        	}
+        	}
         }
-
-        // loop over the smaller collection and add only elements
-        // that are in the larger collection
-        if (self.size() > c.size()) {
-            for (E e : c) {
-                if (includes(self, e)) {
-                    result.add(e);
-                }
-            }
-        } else {
-            for (E e : self) {
-                if (includes(c, e)) {
-                    result.add(e);
-                }
-            }
-        }
-
         return result;
     }
 

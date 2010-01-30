@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionNotEqualOperation.java,v 1.1.2.2 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: CollectionNotEqualOperation.java,v 1.1.2.3 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
@@ -35,6 +35,11 @@ public class CollectionNotEqualOperation extends CollectionEqualOperation
 		return !super.evaluateInvalid(sourceVal, argVal);
 	}
 	
+	@Override
+	protected Boolean evaluateNonCollection(Object sourceVal, Object argVal) {
+		return !super.evaluateNonCollection(sourceVal, argVal);
+	}
+
 	@Override
 	protected Boolean evaluateNull(Object sourceVal, Object argVal) {
 		return !super.evaluateNull(sourceVal, argVal);

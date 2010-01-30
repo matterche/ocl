@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionEqualOperation.java,v 1.1.2.2 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: CollectionEqualOperation.java,v 1.1.2.3 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
@@ -37,6 +37,11 @@ public class CollectionEqualOperation extends AbstractCollectionPairedOperation
 		return isInvalid(sourceVal) && isInvalid(argVal);
 	}
 	
+	@Override
+	protected Boolean evaluateNonCollection(Object sourceVal, Object argVal) {
+		return Boolean.FALSE;
+	}
+
 	@Override
 	protected Boolean evaluateNull(Object sourceVal, Object argVal) {
 		return isNull(sourceVal) && isNull(argVal);

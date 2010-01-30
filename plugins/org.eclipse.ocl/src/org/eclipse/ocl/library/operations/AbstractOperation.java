@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.3 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.4 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -21,14 +21,12 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.library.ILibraryOperation;
-import org.eclipse.ocl.util.CollectionUtil;
 
 
 /**
@@ -77,9 +75,9 @@ public abstract class AbstractOperation implements ILibraryOperation
 			return (Collection<?>)object;
 		}
 		else {
-			Set<Object> sourceSet = CollectionUtil.createNewSet();
-			sourceSet.add(object);
-			return sourceSet;
+//			Set<Object> sourceSet = CollectionUtil.createNewSet();
+//			sourceSet.add(object);
+			return null;
 		}
 	}
 

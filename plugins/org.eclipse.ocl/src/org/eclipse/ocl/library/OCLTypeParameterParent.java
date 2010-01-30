@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeParameterParent.java,v 1.1.2.1 2010/01/30 07:49:19 ewillink Exp $
+ * $Id: OCLTypeParameterParent.java,v 1.1.2.2 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>OCL Type Parameter Parent</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>

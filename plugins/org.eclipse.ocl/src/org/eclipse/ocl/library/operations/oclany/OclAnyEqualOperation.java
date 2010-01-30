@@ -12,19 +12,20 @@
  *
  * </copyright>
  *
- * $Id: EqualOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
+ * $Id: OclAnyEqualOperation.java,v 1.1.2.1 2010/01/30 20:15:36 ewillink Exp $
  */
-package org.eclipse.ocl.library.operations;
+package org.eclipse.ocl.library.operations.oclany;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.library.operations.AbstractOperation;
 
 /**
- * EqualOperation realises the OCLAny::=() library operation.
+ * OclAnyEqualOperation realises the OCLAny::=() library operation.
  * 
  * @since 3.0
  */
-public class EqualOperation extends AbstractOperation
+public class OclAnyEqualOperation extends AbstractOperation
 {
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Boolean evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Object argVal = visitor.visitArgument(operationCall, 0);

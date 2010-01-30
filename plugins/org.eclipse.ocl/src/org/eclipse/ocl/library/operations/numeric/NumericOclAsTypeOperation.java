@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericOclAsTypeOperation.java,v 1.1.2.1 2010/01/24 07:40:59 ewillink Exp $
+ * $Id: NumericOclAsTypeOperation.java,v 1.1.2.2 2010/01/30 20:15:36 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.numeric;
 
@@ -21,14 +21,14 @@ import java.math.BigInteger;
 
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.merged.MergedLibrary;
-import org.eclipse.ocl.library.operations.OclAsTypeOperation;
+import org.eclipse.ocl.library.operations.oclany.OclAnyOclAsTypeOperation;
 
 /**
  * NumericOclAsTypeOperation realises the Real::oclIsTypeOf() library operation.
  * 
  * @since 3.0
  */
-public class NumericOclAsTypeOperation extends OclAsTypeOperation
+public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 {
 	@Override
 	protected Object evaluateConforming(MergedLibrary library, Object sourceVal, OCLType argType) {

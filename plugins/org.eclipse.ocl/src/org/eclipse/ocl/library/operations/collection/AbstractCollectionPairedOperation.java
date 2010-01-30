@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.2 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.3 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
@@ -38,14 +38,23 @@ public abstract class AbstractCollectionPairedOperation extends AbstractOperatio
 		if (isNull(sourceVal) || isNull(argVal)) {
 			return evaluateNull(sourceVal, argVal);
 		}		
-		Collection<?> sourceColl = convertToCollection(sourceVal);
-		Collection<?> argColl = convertToCollection(argVal);		// FIXME Pass target collection kind
-		return evaluateCollection(sourceColl, argColl);
+//		Collection<?> sourceColl = convertToCollection(sourceVal);
+//		Collection<?> argColl = convertToCollection(argVal);		// FIXME Pass target collection kind
+		if ((sourceVal instanceof Collection<?>) && (argVal instanceof Collection<?>)) {
+			return evaluateCollection((Collection<?>)sourceVal, (Collection<?>)argVal);
+		}
+		else {
+			return evaluateNonCollection(sourceVal, argVal);
+		}
 	}
 	
 	protected abstract Object evaluateCollection(Collection<?> sourceVal, Collection<?> argVal);
 	
 	protected Object evaluateInvalid(Object sourceVal, Object argVal) {
+		return null;
+	}
+	
+	protected Object evaluateNonCollection(Object sourceVal, Object argVal) {
 		return null;
 	}
 	

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryValidator.java,v 1.1.2.1 2010/01/30 07:49:31 ewillink Exp $
+ * $Id: OCLMergedLibraryValidator.java,v 1.1.2.2 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.util;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.library.util.LibraryValidator;
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
+ * @since 3.0
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.library.merged.OCLMergedLibraryPackage
  * @generated

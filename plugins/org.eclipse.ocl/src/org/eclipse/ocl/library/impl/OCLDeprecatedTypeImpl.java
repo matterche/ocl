@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLDeprecatedTypeImpl.java,v 1.1.2.1 2010/01/30 07:49:23 ewillink Exp $
+ * $Id: OCLDeprecatedTypeImpl.java,v 1.1.2.2 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -14,6 +14,7 @@ import org.eclipse.ocl.library.OCLDeprecatedType;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>OCL Deprecated Type</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  * <p>
  * </p>

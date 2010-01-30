@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.10 2010/01/30 07:49:31 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.11 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLAnyType;

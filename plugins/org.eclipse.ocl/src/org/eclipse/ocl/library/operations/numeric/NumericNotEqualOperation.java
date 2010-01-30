@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericNotEqualOperation.java,v 1.1.2.1 2010/01/24 07:40:59 ewillink Exp $
+ * $Id: NumericNotEqualOperation.java,v 1.1.2.2 2010/01/30 20:15:36 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.numeric;
 
@@ -35,6 +35,11 @@ public class NumericNotEqualOperation extends NumericEqualOperation
 	@Override
 	protected Boolean evaluateInvalid(Object left, Object right) {
 		return !super.evaluateInvalid(left, right);
+	}
+
+	@Override
+	protected Boolean evaluateNonNumeric(Object left, Object right) {
+		return !super.evaluateNonNumeric(left, right);
 	}
 
 	@Override

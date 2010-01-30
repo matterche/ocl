@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: NotEqualOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
+ * $Id: OclAnyNotEqualOperation.java,v 1.1.2.1 2010/01/30 20:15:36 ewillink Exp $
  */
-package org.eclipse.ocl.library.operations;
+package org.eclipse.ocl.library.operations.oclany;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
- * NotEqualOperation realises the OCLAny::<>() library operation.
+ * OclAnyNotEqualOperation realises the OCLAny::<>() library operation.
  * 
  * @since 3.0
  */
-public class NotEqualOperation extends EqualOperation
+public class OclAnyNotEqualOperation extends OclAnyEqualOperation
 {
 	@Override
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Boolean evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {

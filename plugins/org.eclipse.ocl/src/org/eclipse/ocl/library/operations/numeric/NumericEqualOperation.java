@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericEqualOperation.java,v 1.1.2.1 2010/01/24 07:40:59 ewillink Exp $
+ * $Id: NumericEqualOperation.java,v 1.1.2.2 2010/01/30 20:15:36 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.numeric;
 
@@ -34,6 +34,11 @@ public class NumericEqualOperation extends AbstractNumericBinaryOperation
 	@Override
 	protected Boolean evaluateInvalid(Object left, Object right) {
 		return isInvalid(left) == isInvalid(right);
+	}
+
+	@Override
+	protected Boolean evaluateNonNumeric(Object left, Object right) {
+		return Boolean.FALSE;
 	}
 
 	@Override

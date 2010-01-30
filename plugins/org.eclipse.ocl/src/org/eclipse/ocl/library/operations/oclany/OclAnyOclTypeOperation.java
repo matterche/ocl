@@ -12,22 +12,23 @@
  *
  * </copyright>
  *
- * $Id: OclTypeOperation.java,v 1.1.2.3 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: OclAnyOclTypeOperation.java,v 1.1.2.1 2010/01/30 20:15:36 ewillink Exp $
  */
-package org.eclipse.ocl.library.operations;
+package org.eclipse.ocl.library.operations.oclany;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.operations.AbstractOperation;
 
 /**
- * OclTypeOperation realises the oclType() library operation.
+ * OclAnyOclTypeOperation realises the OclAny::oclType() library operation.
  * 
  * @since 3.0
  */
-public class OclTypeOperation extends AbstractOperation
+public class OclAnyOclTypeOperation extends AbstractOperation
 {
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();

@@ -12,22 +12,23 @@
  *
  * </copyright>
  *
- * $Id: OclIsKindOfOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
+ * $Id: OclAnyOclIsKindOfOperation.java,v 1.1.2.1 2010/01/30 20:15:36 ewillink Exp $
  */
-package org.eclipse.ocl.library.operations;
+package org.eclipse.ocl.library.operations.oclany;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.operations.AbstractOperation;
 
 /**
- * OclIsKindOfOperation realises the oclIsKindOf() library operation.
+ * OclAnyOclIsKindOfOperation realises the OclAny::oclIsKindOf() library operation.
  * 
  * @since 3.0
  */
-public class OclIsKindOfOperation extends AbstractOperation
+public class OclAnyOclIsKindOfOperation extends AbstractOperation
 {
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();

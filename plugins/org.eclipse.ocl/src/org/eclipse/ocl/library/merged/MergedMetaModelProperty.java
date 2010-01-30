@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedMetaModelProperty.java,v 1.1.2.2 2010/01/30 07:49:34 ewillink Exp $
+ * $Id: MergedMetaModelProperty.java,v 1.1.2.3 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -10,6 +10,7 @@ package org.eclipse.ocl.library.merged;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Merged Meta Model Property</b></em>'.
+ * @since 3.0
  * <!-- end-user-doc -->
  *
  * <p>

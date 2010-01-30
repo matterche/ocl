@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryAdapterFactory.java,v 1.1.2.9 2010/01/30 07:49:37 ewillink Exp $
+ * $Id: LibraryAdapterFactory.java,v 1.1.2.10 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLAnyType;
 import org.eclipse.ocl.library.OCLBoundType;

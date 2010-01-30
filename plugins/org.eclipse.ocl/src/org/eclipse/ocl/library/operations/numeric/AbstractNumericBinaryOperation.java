@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.1 2010/01/24 07:40:58 ewillink Exp $
+ * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.2 2010/01/30 20:15:36 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.numeric;
 
@@ -40,18 +40,27 @@ public abstract class AbstractNumericBinaryOperation extends AbstractOperation
 			return evaluateNull(sourceVal, argVal);
 		}
 		else if (isUnlimited(sourceVal) || isUnlimited(argVal)) {
-				return evaluateUnlimited(sourceVal, argVal);
+			return evaluateUnlimited(sourceVal, argVal);
 		}
 		else if (sourceVal instanceof BigInteger) {
 			if (argVal instanceof BigInteger) {
 				return evaluateInteger((BigInteger)sourceVal, (BigInteger)argVal);
 			}
-			sourceVal = new BigDecimal((BigInteger)sourceVal);
+			else if (argVal instanceof BigDecimal) {
+				sourceVal = new BigDecimal((BigInteger)sourceVal);
+				return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
+			}
 		}
-		else if (argVal instanceof BigInteger) {
-			argVal = new BigDecimal((BigInteger)argVal);
+		else if (sourceVal instanceof BigDecimal) {
+			if (argVal instanceof BigDecimal) {
+				return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
+			}
+			else if (argVal instanceof BigInteger) {
+				argVal = new BigDecimal((BigInteger)argVal);
+				return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
+			}
 		}
-		return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
+		return evaluateNonNumeric(sourceVal, argVal);
 	}
 	
 	/**
@@ -71,6 +80,17 @@ public abstract class AbstractNumericBinaryOperation extends AbstractOperation
 	 * @return result
 	 */
 	protected Object evaluateInvalid(Object left, Object right) {
+		return null;
+	}
+	
+	/**
+	 * Evaluate an operation for which at least neither left or right is null or invalid
+	 * but at least one of left and right are a non-numeric value.
+	 * @param left argument
+	 * @param right argument
+	 * @return result
+	 */
+	protected Object evaluateNonNumeric(Object left, Object right) {
 		return null;
 	}
 	

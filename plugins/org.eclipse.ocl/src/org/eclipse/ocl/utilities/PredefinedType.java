@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.5.10.5 2010/01/18 08:57:53 ewillink Exp $
+ * $Id: PredefinedType.java,v 1.5.10.6 2010/01/30 20:15:36 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -357,12 +357,12 @@ public interface PredefinedType<O>
 	/**
 	 * @since 3.0
 	 */
-	int OCL_AS_COLLECTION = 168;
+	int OCL_AS_SET = 168;
 
 	/**
 	 * @since 3.0
 	 */
-	String OCL_AS_COLLECTION_NAME = "oclAsCollection"; //$NON-NLS-1$
+	String OCL_AS_SET_NAME = "oclAsSet"; //$NON-NLS-1$
 
 	/*
 	 * Collection iterators.

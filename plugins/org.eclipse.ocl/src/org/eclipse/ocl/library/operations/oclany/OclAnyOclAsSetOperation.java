@@ -12,23 +12,24 @@
  *
  * </copyright>
  *
- * $Id: OclAsCollectionOperation.java,v 1.1.2.3 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: OclAnyOclAsSetOperation.java,v 1.1.2.1 2010/01/30 20:15:36 ewillink Exp $
  */
-package org.eclipse.ocl.library.operations;
+package org.eclipse.ocl.library.operations.oclany;
 
 import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
- * OclAsCollectionOperation realises the oclAsCollection() library operation.
+ * OclAnyOclAsSetOperation realises the OclAny::oclAsSet() library operation.
  * 
  * @since 3.0
  */
-public class OclAsCollectionOperation extends AbstractOperation
+public class OclAnyOclAsSetOperation extends AbstractOperation
 {
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		if (isInvalid(sourceVal)) {

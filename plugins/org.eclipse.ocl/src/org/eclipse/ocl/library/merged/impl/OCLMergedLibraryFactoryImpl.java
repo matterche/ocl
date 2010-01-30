@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryFactoryImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
+ * $Id: OCLMergedLibraryFactoryImpl.java,v 1.1.2.3 2010/01/30 20:15:36 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.library.merged.*;
 import org.eclipse.ocl.library.merged.MergedLibraryOperation;
 import org.eclipse.ocl.library.merged.MergedLibraryProperty;
 import org.eclipse.ocl.library.merged.MergedMetaModelOperation;

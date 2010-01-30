@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.6 2010/01/18 22:07:17 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.7 2010/01/30 20:15:35 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -157,7 +157,7 @@ public final class OCLStandardLibraryUtil {
 		operationCodes.put(APPEND_NAME, APPEND);
 		operationCodes.put(SUB_ORDERED_SET_NAME, SUB_ORDERED_SET);
 		operationCodes.put(SYMMETRIC_DIFFERENCE_NAME, SYMMETRIC_DIFFERENCE);
-		operationCodes.put(OCL_AS_COLLECTION_NAME, OCL_AS_COLLECTION);
+		operationCodes.put(OCL_AS_SET_NAME, OCL_AS_SET);
 		operationCodes.put(EXISTS_NAME, EXISTS);
 		operationCodes.put(FOR_ALL_NAME, FOR_ALL);
 		operationCodes.put(IS_UNIQUE_NAME, IS_UNIQUE);
@@ -381,8 +381,8 @@ public final class OCLStandardLibraryUtil {
 				return SUB_ORDERED_SET_NAME;
 			case SYMMETRIC_DIFFERENCE :
 				return SYMMETRIC_DIFFERENCE_NAME;
-			case OCL_AS_COLLECTION :
-				return OCL_AS_COLLECTION_NAME;
+			case OCL_AS_SET :
+				return OCL_AS_SET_NAME;
 			case EXISTS :
 				return EXISTS_NAME;
 			case FOR_ALL :
@@ -674,8 +674,8 @@ public final class OCLStandardLibraryUtil {
 			case OCL_IS_UNDEFINED :
 			case OCL_IS_INVALID :
 				return stdlib.getBoolean();
-			case OCL_AS_COLLECTION :
-				return getCollectionType(env, env.getOCLFactory(), sourceType);
+			case OCL_AS_SET :
+				return getSetType(env, env.getOCLFactory(), sourceType);
 		}
 
 		// unknown operation (shouldn't get here)
@@ -827,8 +827,8 @@ public final class OCLStandardLibraryUtil {
 				return getSequenceType(env, oclFactory, elemType);
 			case COLLECT_NESTED :
 				return getBagType(env, oclFactory, stdlib.getT2());
-			case OCL_AS_COLLECTION :
-				return sourceType;
+			case OCL_AS_SET :
+				return getSetType(env, oclFactory, elemType);
 		}
 
 		return getCollectionTypeResultTypeOf(problemObject, env, bagType,
@@ -932,8 +932,8 @@ public final class OCLStandardLibraryUtil {
 				return getOrderedSetType(env, oclFactory, elemType);
 			case COLLECT_NESTED :
 				return getBagType(env, oclFactory, stdlib.getT2());
-			case OCL_AS_COLLECTION :
-				return sourceType;
+			case OCL_AS_SET :
+				return getSetType(env, oclFactory, elemType);
 		}
 
 		return getCollectionTypeResultTypeOf(problemObject, env, setType,
@@ -1005,8 +1005,8 @@ public final class OCLStandardLibraryUtil {
 				return getBagType(env, oclFactory, elemType);
 			case AS_SEQUENCE :
 				return getSequenceType(env, oclFactory, elemType);
-			case OCL_AS_COLLECTION :
-				return sourceType;
+			case OCL_AS_SET :
+				return getSetType(env, oclFactory, elemType);
 		}
 
 		@SuppressWarnings("unchecked")
@@ -1089,8 +1089,8 @@ public final class OCLStandardLibraryUtil {
 				return sourceType;
 			case COLLECT_NESTED :
 				return getSequenceType(env, oclFactory, stdlib.getT2());
-			case OCL_AS_COLLECTION :
-				return sourceType;
+			case OCL_AS_SET :
+				return getSetType(env, oclFactory, elemType);
 		}
 
 		return getCollectionTypeResultTypeOf(problemObject, env, seqType,
@@ -1283,7 +1283,7 @@ public final class OCLStandardLibraryUtil {
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
 			OCL_IS_IN_STATE_NAME, stdlib.getState(), "statespec")); //$NON-NLS-1$
 		result.add(createUnaryOperation(uml, stdlib.getCollection(),
-			OCL_AS_COLLECTION_NAME));
+			OCL_AS_SET_NAME));
 
 		return result;
 	}
@@ -1603,11 +1603,20 @@ public final class OCLStandardLibraryUtil {
 	public static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> List<O> createCollectionOperations(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env) {
 		List<O> result = new java.util.ArrayList<O>(COLLECTION_OPERATION_COUNT);
+		result.addAll(createAnyOperations(env));
 
 		OCLStandardLibrary<C> stdlib = env.getOCLStandardLibrary();
 		UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env
 			.getUMLReflection();
 
+//		result.add(createBinaryOperation(uml, stdlib.getBoolean(), EQUAL_NAME,
+//			stdlib.getCollection(), "set"));//$NON-NLS-1$
+//		result.add(createBinaryOperation(uml, stdlib.getBoolean(), EQUAL_NAME,
+//			stdlib.getOclAny(), "set"));//$NON-NLS-1$
+//		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+//			NOT_EQUAL_NAME, stdlib.getCollection(), "set")); //$NON-NLS-1$
+//		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+//			NOT_EQUAL_NAME, stdlib.getOclAny(), "set")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getInteger(), COUNT_NAME,
 			stdlib.getT(), "object")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
@@ -1629,7 +1638,7 @@ public final class OCLStandardLibraryUtil {
 			AS_SEQUENCE_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getOrderedSet(),
 			AS_ORDERED_SET_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getCollection(), OCL_AS_COLLECTION_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getCollection(), OCL_AS_SET_NAME));
 				
 		OCLFactory oclFactory = env.getOCLFactory();
 		C resultType = getSetType(env, oclFactory, getTupleType(env,
@@ -1665,10 +1674,6 @@ public final class OCLStandardLibraryUtil {
 		UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env
 			.getUMLReflection();
 
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(), EQUAL_NAME,
-			stdlib.getSet(), "set"));//$NON-NLS-1$
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
-			NOT_EQUAL_NAME, stdlib.getSet(), "set")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getBag(), UNION_NAME,
 			stdlib.getBag(), "bag")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getSet(), UNION_NAME,
@@ -1712,10 +1717,6 @@ public final class OCLStandardLibraryUtil {
 		UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env
 			.getUMLReflection();
 
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(), EQUAL_NAME,
-			stdlib.getOrderedSet(), "s"));//$NON-NLS-1$
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
-			NOT_EQUAL_NAME, stdlib.getOrderedSet(), "s"));//$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getOrderedSet(),
 			APPEND_NAME, stdlib.getT(), "object"));//$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getT(), AT_NAME, stdlib
@@ -1758,10 +1759,6 @@ public final class OCLStandardLibraryUtil {
 		UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env
 			.getUMLReflection();
 
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(), EQUAL_NAME,
-			stdlib.getBag(), "bag"));//$NON-NLS-1$
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
-			NOT_EQUAL_NAME, stdlib.getBag(), "bag")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getBag(), UNION_NAME,
 			stdlib.getBag(), "bag")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getBag(), UNION_NAME,
@@ -1776,7 +1773,7 @@ public final class OCLStandardLibraryUtil {
 			stdlib.getT(), "object"));//$NON-NLS-1$
 		result.add(createUnaryOperation(uml, getBagType(env, env
 			.getOCLFactory(), stdlib.getT2()), FLATTEN_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getBag(), OCL_AS_COLLECTION_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getBag(), OCL_AS_SET_NAME));
 
 		return result;
 	}
@@ -1803,10 +1800,6 @@ public final class OCLStandardLibraryUtil {
 		UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env
 			.getUMLReflection();
 
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(), EQUAL_NAME,
-			stdlib.getSequence(), "s"));//$NON-NLS-1$
-		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
-			NOT_EQUAL_NAME, stdlib.getSequence(), "s")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getSequence(), UNION_NAME,
 			stdlib.getSequence(), "s")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(), APPEND_NAME,
@@ -1831,7 +1824,7 @@ public final class OCLStandardLibraryUtil {
 		result.add(createUnaryOperation(uml, stdlib.getT(), LAST_NAME));
 		result.add(createUnaryOperation(uml, getSequenceType(env, env
 			.getOCLFactory(), stdlib.getT2()), FLATTEN_NAME));
-		result.add(createUnaryOperation(uml, stdlib.getSequence(), OCL_AS_COLLECTION_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getSequence(), OCL_AS_SET_NAME));
 
 		return result;
 	}

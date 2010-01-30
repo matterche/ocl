@@ -215,35 +215,35 @@
       </boundType>
     </type>
     <type xmi:type="ocl.lib:OCLAnyType" xmi:id="__yeDUvZbEd6fb4shsxiV7w" name="OclAny">
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_VYMZEQ0aEd-ODeQALz2CZA" name="=" type="__yw-UPZbEd6fb4shsxiV7w" isStatic="true" libraryOperationClass="org.eclipse.ocl.library.operations.EqualOperation">
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_VYMZEQ0aEd-ODeQALz2CZA" name="=" type="__yw-UPZbEd6fb4shsxiV7w" isStatic="true" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyEqualOperation">
         <parameter xmi:id="_VYMZEg0aEd-ODeQALz2CZA" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
       </operation>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_XQGV4A0aEd-ODeQALz2CZA" name="&lt;>" type="__yw-UPZbEd6fb4shsxiV7w" isStatic="true" libraryOperationClass="org.eclipse.ocl.library.operations.NotEqualOperation">
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_XQGV4A0aEd-ODeQALz2CZA" name="&lt;>" type="__yw-UPZbEd6fb4shsxiV7w" isStatic="true" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyNotEqualOperation">
         <parameter xmi:id="_XQGV4Q0aEd-ODeQALz2CZA" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
       </operation>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-QPZbEd6fb4shsxiV7w" name="=" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.EqualOperation">
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-QPZbEd6fb4shsxiV7w" name="=" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyEqualOperation">
         <parameter xmi:id="__yw-QfZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
       </operation>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-QvZbEd6fb4shsxiV7w" name="&lt;>" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.NotEqualOperation">
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-QvZbEd6fb4shsxiV7w" name="&lt;>" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyNotEqualOperation">
         <parameter xmi:id="__yw-Q_ZbEd6fb4shsxiV7w" name="object2" type="__yeDUvZbEd6fb4shsxiV7w"/>
       </operation>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_BS9oMAOuEd-S7eYJcF-v8g" name="oclAsCollection" type="_wMXYIAwHEd-arbHZL_9wRg" libraryOperationClass="org.eclipse.ocl.library.operations.OclAsCollectionOperation"/>
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="_BS9oMAOuEd-S7eYJcF-v8g" name="oclAsSet" type="_wMXYIAwHEd-arbHZL_9wRg" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyOclAsSetOperation"/>
       <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-RPZbEd6fb4shsxiV7w" name="oclIsNew" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyUnsupportedOperation"/>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-RfZbEd6fb4shsxiV7w" name="oclIsUndefined" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.OclIsUndefinedOperation"/>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-RvZbEd6fb4shsxiV7w" name="oclIsInvalid" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.OclIsInvalidOperation"/>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-R_ZbEd6fb4shsxiV7w" name="oclAsType" type="__yeDUvZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.OclAsTypeOperation">
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-RfZbEd6fb4shsxiV7w" name="oclIsUndefined" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyOclIsUndefinedOperation"/>
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-RvZbEd6fb4shsxiV7w" name="oclIsInvalid" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyOclIsInvalidOperation"/>
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-R_ZbEd6fb4shsxiV7w" name="oclAsType" type="__yeDUvZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyOclAsTypeOperation">
         <parameter xmi:id="__yw-SPZbEd6fb4shsxiV7w" name="type" type="__yeDUvZbEd6fb4shsxiV7w"/>
       </operation>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-SfZbEd6fb4shsxiV7w" name="oclIsTypeOf" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.OclIsTypeOfOperation">
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-SfZbEd6fb4shsxiV7w" name="oclIsTypeOf" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyOclIsTypeOfOperation">
         <parameter xmi:id="__yw-SvZbEd6fb4shsxiV7w" name="type" type="__yeDUvZbEd6fb4shsxiV7w"/>
       </operation>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-S_ZbEd6fb4shsxiV7w" name="oclIsKindOf" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.OclIsKindOfOperation">
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-S_ZbEd6fb4shsxiV7w" name="oclIsKindOf" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyOclIsKindOfOperation">
         <parameter xmi:id="__yw-TPZbEd6fb4shsxiV7w" name="type" type="__yeDUvZbEd6fb4shsxiV7w"/>
       </operation>
       <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-TfZbEd6fb4shsxiV7w" name="oclIsInState" type="__yw-UPZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyUnsupportedOperation">
         <parameter xmi:id="__yw-TvZbEd6fb4shsxiV7w" name="statespec" type="__yw-svZbEd6fb4shsxiV7w"/>
       </operation>
-      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-T_ZbEd6fb4shsxiV7w" name="oclType" type="__yeDUvZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.OclTypeOperation"/>
+      <operation xmi:type="ocl.lib:OCLLibraryOperation" xmi:id="__yw-T_ZbEd6fb4shsxiV7w" name="oclType" type="__yeDUvZbEd6fb4shsxiV7w" libraryOperationClass="org.eclipse.ocl.library.operations.oclany.OclAnyOclTypeOperation"/>
       <boundType xmi:id="_wMXYIAwHEd-arbHZL_9wRg" conforms="__y6vQPZbEd6fb4shsxiV7w" type="__y6vQPZbEd6fb4shsxiV7w">
         <typeBinding xmi:id="_wMXYIQwHEd-arbHZL_9wRg" typeParameter="_4_1foAnoEd-UXur8p2_Hew" typeValue="__yeDUvZbEd6fb4shsxiV7w"/>
       </boundType>
