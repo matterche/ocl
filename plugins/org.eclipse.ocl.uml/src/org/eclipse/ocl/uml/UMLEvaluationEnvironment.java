@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.16.6.1 2010/01/15 17:27:29 ewillink Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.16.6.2 2010/01/30 22:25:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -986,6 +986,10 @@ public class UMLEvaluationEnvironment
                         && (classifier == OCLStandardLibraryImpl.INSTANCE.getReal())) {
                         return true;
                     }
+                    
+                    if (classifier == OCLStandardLibraryImpl.INSTANCE.getOclAny()) {
+                    	return true;
+                    }
     
                     return type.conformsTo(classifier);
                 }
@@ -1000,6 +1004,10 @@ public class UMLEvaluationEnvironment
             }
             break;
         case RUNTIME_OBJECTS:
+            if (classifier == OCLStandardLibraryImpl.INSTANCE.getOclAny()) {
+            	return true;
+            }
+
             if (object instanceof EObject) {
                 // special case for Integer/UnlimitedNatural and Real
                 // which are not related types in java but are in OCL
