@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.4 2010/01/18 22:07:14 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.5 2010/01/30 20:15:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -57,6 +57,7 @@ public abstract class GenericEvaluateStringOperationsTest<E extends EObject, PK 
 	}
 
 	public void testStringGreaterThan() {
+		// FIXME Analyzer-extraOperation String::> should not be defined
 		assertQueryFalse(null, "'3' > '4'");
 		assertQueryFalse(null, "'a' > 'b'");
 		assertQueryFalse(null, "'aardvark' > 'aardvarks'");
@@ -79,6 +80,7 @@ public abstract class GenericEvaluateStringOperationsTest<E extends EObject, PK 
 	}
 
 	public void testStringGreaterThanOrEqual() {
+		// FIXME Analyzer-extraOperation String::>= should not be defined
 		assertQueryFalse(null, "'3' >= '4'");
 		assertQueryFalse(null, "'a' >= 'b'");
 		assertQueryFalse(null, "'aardvark' >= 'aardvarks'");
@@ -101,11 +103,7 @@ public abstract class GenericEvaluateStringOperationsTest<E extends EObject, PK 
 	}
 
 	public void testStringLessThan() {
-		/*
-		 * FIXME the standard library doesn't define either less than, less than
-		 * or equal, greater than or greater than or equal. Neither should then
-		 * compile. If we do define these, why not define them for boolean?
-		 */
+		// FIXME Analyzer-extraOperation String::< should not be defined
 		assertQueryTrue(null, "'3' < '4'");
 		assertQueryTrue(null, "'a' < 'b'");
 		assertQueryTrue(null, "'aardvark' < 'aardvarks'");
@@ -128,6 +126,7 @@ public abstract class GenericEvaluateStringOperationsTest<E extends EObject, PK 
 	}
 
 	public void testStringLessThanOrEqual() {
+		// FIXME Analyzer-extraOperation String::<= should not be defined
 		assertQueryTrue(null, "'3' <= '4'");
 		assertQueryTrue(null, "'a' <= 'b'");
 		assertQueryTrue(null, "'aardvark' <= 'aardvarks'");

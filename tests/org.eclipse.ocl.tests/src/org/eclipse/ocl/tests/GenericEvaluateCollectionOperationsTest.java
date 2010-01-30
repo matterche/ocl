@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.6 2010/01/30 07:48:58 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.7 2010/01/30 20:15:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -21,10 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.Bag;
 import org.eclipse.ocl.util.CollectionUtil;
 
@@ -250,23 +247,23 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} = Sequence{4, 5, 'test'}");
 		assertQueryTrue(null, "Sequence{4, 5, 'test', 5} = Sequence{4, 5, 'test', 5}");
 		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} = OrderedSet{4, 5, 'test'}");
-// FIXME		assertQueryFalse(null, "Sequence{4, 5, 'test'} = OrderedSet{4, 5, 'test', 5}");
-// FIXME		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} = Sequence{4, 5, 'test'}");
+		assertQueryFalse(null, "Sequence{4, 5, 'test'} = OrderedSet{4, 5, 'test', 5}");
+		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} = Sequence{4, 5, 'test'}");
 
 		// distinct order, same quantities
 		assertQueryFalse(null, "Sequence{4, 5, 'test'} = Sequence{4, 'test', 5}");
 		assertQueryFalse(null, "Sequence{4, 5, 'test', 5} = Sequence{5, 4, 'test', 5}");
 		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} = OrderedSet{4, 'test', 5}");
-// FIXME		assertQueryFalse(null, "Sequence{4, 5, 'test'} = OrderedSet{5, 4, 'test', 5}");
-// FIXME		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} = Sequence{5, 4, 'test'}");
+		assertQueryFalse(null, "Sequence{4, 5, 'test'} = OrderedSet{5, 4, 'test', 5}");
+		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} = Sequence{5, 4, 'test'}");
 
 		// distinct quantities
 		assertQueryFalse(null, "Sequence{4, 5, 'test', 5} = Sequence{4, 5, 'test'}");
-// FIXME		assertQueryFalse(null, "Sequence{4, 5, 'test', 5} = OrderedSet{4, 5, 'test', 5}");
-// FIXME		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} = Sequence{4, 5, 'test', 5}");
+		assertQueryFalse(null, "Sequence{4, 5, 'test', 5} = OrderedSet{4, 5, 'test', 5}");
+		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} = Sequence{4, 5, 'test', 5}");
 	}
 
-/* FIXME	public void testCollectionEqualOrderedXUnordered() {
+	public void testCollectionEqualOrderedXUnordered() {
 		// same quantities
 		assertQueryFalse(null, "Sequence{4, 5, 'test'} = Set{4, 'test', 5, 4}");
 		assertQueryFalse(null, "Sequence{4, 5, 'test', 4} = Bag{4, 'test', 5, 4}");
@@ -277,19 +274,19 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryFalse(null, "Sequence{4, 5, 'test', 4} = Set{4, 'test', 5, 4}");
 		assertQueryFalse(null, "Sequence{4, 5, 'test'} = Bag{4, 'test', 5, 4}");
 		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 4} = Bag{4, 'test', 5, 4}");
-	} */
+	}
 
 	public void testCollectionEqualUnorderedXUnordered() {
 		// same quantities
-// FIXME		assertQueryTrue(null, "Bag{4, 5, 'test'} = Set{4, 'test', 5, 4}");
+		assertQueryFalse(null, "Bag{4, 5, 'test'} = Set{4, 'test', 5, 4}");
 		assertQueryTrue(null, "Bag{4, 5, 'test', 4} = Bag{4, 'test', 5, 4}");
 		assertQueryTrue(null, "Set{4, 5, 'test', 4} = Set{4, 'test', 5, 4}");
-// FIXME		assertQueryTrue(null, "Set{4, 5, 'test', 4} = Bag{4, 'test', 5}");
+		assertQueryFalse(null, "Set{4, 5, 'test', 4} = Bag{4, 'test', 5}");
 
 		// distinct quantities
-// FIXME		assertQueryFalse(null, "Bag{4, 5, 'test', 4} = Set{4, 'test', 5, 4}");
+		assertQueryFalse(null, "Bag{4, 5, 'test', 4} = Set{4, 'test', 5, 4}");
 		assertQueryFalse(null, "Bag{4, 5, 'test'} = Bag{4, 'test', 5, 4}");
-// FIXME		assertQueryFalse(null, "Set{4, 5, 'test', 4} = Bag{4, 'test', 5, 4}");
+		assertQueryFalse(null, "Set{4, 5, 'test', 4} = Bag{4, 'test', 5, 4}");
 	}
 
 	public void testCollectionEqualInvalid() {
@@ -305,15 +302,15 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 	}
 
 	public void testCollectionEqualNull() {		
-// FIXME		assertQueryFalse(null, "Bag{1} = 1");
-// FIXME		assertQueryFalse(null, "OrderedSet{1} = 1");
-// FIXME		assertQueryFalse(null, "Sequence{1} = 1");
-// FIXME		assertQueryTrue(null, "Set{1} = 1");
+		assertQueryFalse(null, "Bag{1} = 1");
+		assertQueryFalse(null, "OrderedSet{1} = 1");
+		assertQueryFalse(null, "Sequence{1} = 1");
+		assertQueryFalse(null, "Set{1} = 1");
 
-// FIXME		assertQueryFalse(null, "1 = Bag{1}");
-// FIXME		assertQueryFalse(null, "1 = OrderedSet{1}");
-// FIXME		assertQueryFalse(null, "1 = Sequence{1}");
-// FIXME		assertQueryTrue(null, "1 = Set{1}");
+		assertQueryFalse(null, "1 = Bag{1}");
+		assertQueryFalse(null, "1 = OrderedSet{1}");
+		assertQueryFalse(null, "1 = Sequence{1}");
+		assertQueryFalse(null, "1 = Set{1}");
 		
 		assertQueryFalse(null, "Bag{} = null");
 		assertQueryFalse(null, "OrderedSet{} = null");
@@ -326,10 +323,7 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryFalse(null, "null = Set{}");
 
 		assertQueryFalse(null, "let b : Bag(Integer) = null in b = Bag{}");
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"let b : Bag(Integer) = null, s : Set(Integer) = Set{} in b = s",
-        	OCLMessages.OperationNotFound_ERROR_, "=(Set(Integer))", "Bag(Integer)");	
-		
+		assertQueryFalse(null, "let b : Bag(Integer) = null, s : Set(Integer) = Set{} in b = s");	
 		assertQueryFalse(null, "let s : Sequence(Integer) = null in s = Sequence{5}");
 		assertQueryFalse(null, "let b : Bag(Integer) = null in Bag{5} = b");
 		assertQueryFalse(null, "let s : Set(Integer) = null in s = Set{5}");
@@ -483,7 +477,7 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 
 	public void testCollectionExcluding() {
 		/*
-		 * FIXME raise issue for adding OrderedSet::excluding ... especially
+		 * FIXME OMG-issue to add OrderedSet::excluding
 		 * since it's defined in oclstdlib.ecore. However the defined
 		 * "OrderedSet::excluding(T) : Set" should be
 		 * "OrderedSet::excluding(T) : OrderedSet"
@@ -577,11 +571,11 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryInvalid(null, "let s : Set(Integer) = null in s->flatten()");
 		assertQueryInvalid(null, "let o : OrderedSet(Integer) = null in o->flatten()");
 		// pseudo collection
-// FIXME		assertQueryResults(null, "Set{1}", "1->flatten()");
-// FIXME		assertQueryResults(null, "Set{1}", "let s : Sequence(Integer) = null in 1->flatten()");
-// FIXME		assertQueryResults(null, "Set{1}", "let b : Bag(Integer) = null in 1->flatten()");
-// FIXME		assertQueryResults(null, "Set{1}", "let s : Set(Integer) = null in 1->flatten()");
-// FIXME		assertQueryResults(null, "Set{1}", "let o : OrderedSet(Integer) = null in 1->flatten()");
+		assertQueryResults(null, "Set{1}", "1->flatten()");
+		assertQueryResults(null, "Set{1}", "let s : Sequence(Integer) = null in 1->flatten()");
+		assertQueryResults(null, "Set{1}", "let b : Bag(Integer) = null in 1->flatten()");
+		assertQueryResults(null, "Set{1}", "let s : Set(Integer) = null in 1->flatten()");
+		assertQueryResults(null, "Set{1}", "let o : OrderedSet(Integer) = null in 1->flatten()");
 	}
 
 	public void testCollectionIncludes() {
@@ -725,7 +719,7 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 
 	public void testCollectionIncluding() {
 		/*
-		 * FIXME raise issue for adding OrderedSet::including ... especially
+		 * FIXME OMG-issue to add OrderedSet::including
 		 * since it's defined in oclstdlib.ecore. However the defined
 		 * "OrderedSet::including(T) : Set" should be
 		 * "OrderedSet::including(T) : OrderedSet"
@@ -772,10 +766,6 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryEquals(null, 1, "Sequence{null, 'a'}->indexOf(null)");
 		assertQueryEquals(null, 1, "OrderedSet{null, 'a'}->indexOf(null)");
 		// non-element
-		/*
-		 * FIXME raise issue for the result of this to be "0" or "-1" instead of
-		 * the invalid value
-		 */
 		assertQueryInvalid(null, "Sequence{'a'}->indexOf('b')");
 		assertQueryInvalid(null, "OrderedSet{'a'}->indexOf('b')");
 	}
@@ -841,22 +831,30 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		// "Bag{'a', 'b', 'a'}->intersection(Bag{'a', 'b', 'c'})" ==
 		// "Bag{'a', 'a', 'b'}"
 		assertQueryResults(null, "Bag{'a', 'b'}", "Bag{'a', 'b', 'a'}->intersection(Bag{'a', 'b'})");
+		assertQueryResults(null, "Bag{'a', 'b'}", "Bag{'a', 'b'}->intersection(Bag{'a', 'b', 'a'})");
 		assertQueryResults(null, "Bag{'a', 'b', 'b'}", "Bag{'a', 'b', 'a', 'b'}->intersection(Bag{'a', 'b', 'b'})");
+		assertQueryResults(null, "Bag{'a', 'b'}", "Bag{'a', 'b', 'a'}->intersection(Bag{'a', 'b', 'c'})");
+
+		assertQueryResults(null, "Bag{'a'}", "Bag{'a', 'a', 'a', 'a'}->intersection(Bag{'a', 'b', 'b'})");
+
+		
 		// empty collection
 		assertQueryEquals(null, emptySet, "Set{3, 4}->intersection(Set{})");
 		assertQueryEquals(null, emptySet, "Set{3, 4}->intersection(Bag{})");
 		assertQueryEquals(null, emptyBag, "Bag{3, 4}->intersection(Bag{})");
-		assertQueryEquals(null, emptyBag, "Bag{3, 4}->intersection(Set{})");
+		assertQueryEquals(null, emptySet, "Bag{3, 4}->intersection(Set{})");
 		// implicit collection
-// FIXME		assertQueryResults(null, "Set{1}", "1->intersection(Set{})");
-// FIXME		assertQueryResults(null, "Set{2}", "2->intersection(Bag{})");
-// FIXME		assertQueryResults(null, "Set{3}", "3->intersection(Bag{})");
-// FIXME		assertQueryResults(null, "Set{4}", "4->intersection(Set{})");
+		assertQueryEquals(null, emptySet, "1->intersection(Set{})");
+		assertQueryEquals(null, emptySet, "2->intersection(Bag{})");
 
-// FIXME		assertQueryEquals(null, emptySet, "Set{}->intersection(Set{3, 4})");
-// FIXME		assertQueryEquals(null, emptySet, "Set{}->intersection(Bag{3, 4})");
-// FIXME		assertQueryEquals(null, emptyBag, "Bag{}->intersection(Bag{3, 4})");
-// FIXME		assertQueryEquals(null, emptySet, "Bag{}->intersection(Set{3, 4})");
+//        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+//        	"Set{}->intersection(Set{3, 4})",
+//        	OCLMessages.OperationNotFound_ERROR_, "intersection(Set(Integer))", "Set(OclVoid)");	
+		
+		assertQueryEquals(null, emptySet, "Set{}->intersection(Set{3, 4})");
+		assertQueryEquals(null, emptySet, "Set{}->intersection(Bag{3, 4})");
+		assertQueryEquals(null, emptyBag, "Bag{}->intersection(Bag{3, 4})");
+		assertQueryEquals(null, emptySet, "Bag{}->intersection(Set{3, 4})");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->intersection(Set{4})");
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->intersection(Bag{4})");
@@ -947,18 +945,18 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryNull(null, "OrderedSet{null}->last()");
 	}
 
-/* FIXME	public void testCollectionMax() {
-		fail("TODO");
-	} */
+	public void testCollectionMax() {
+		// FIXME Test-not-implemented
+	}
 
-/* FIXME	public void testCollectionMin() {
-		fail("TODO");
-	} */
+	public void testCollectionMin() {
+		// FIXME Test-not-implemented
+	}
 
 	public void testCollectionMinus() {
 		assertQueryResults(null, "Set{'b'}", "Set{'a', 'b', 'c'} - Set{'c', 'a'}");
 		/*
-		 * FIXME this is no specified operation. If we define
+		 * FIXME OMG-issue generalise to UniqueCollection::-
 		 * "OrderedSet::-(Set) : Set", we also need "Set::-(OrderedSet) : Set"
 		 * and "OrderedSet::-(OrderedSet) : OrderedSet". That being said,
 		 * "OrderedSet::-(Set) : Set" should be
@@ -1046,27 +1044,23 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryFalse(null, "Sequence{4, 5, 'test'} <> Sequence{4, 5, 'test'}");
 		assertQueryFalse(null, "Sequence{4, 5, 'test', 5} <> Sequence{4, 5, 'test', 5}");
 		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} <> OrderedSet{4, 5, 'test'}");
-// FIXME		assertQueryFalse(null, "Sequence{4, 5, 'test'} <> OrderedSet{4, 5, 'test', 5}");
-// FIXME		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test'}");
+		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> OrderedSet{4, 5, 'test', 5}");
+		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test'}");
 
 		// distinct order, same quantities
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> Sequence{4, 'test', 5}");
 		assertQueryTrue(null, "Sequence{4, 5, 'test', 5} <> Sequence{5, 4, 'test', 5}");
 		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> OrderedSet{4, 'test', 5}");
-// FIXME		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> OrderedSet{5, 4, 'test', 5}");
-// FIXME		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> Sequence{5, 4, 'test'}");
+		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> OrderedSet{5, 4, 'test', 5}");
+		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> Sequence{5, 4, 'test'}");
 
 		// distinct quantities
 		assertQueryTrue(null, "Sequence{4, 5, 'test', 5} <> Sequence{4, 5, 'test'}");
-// FIXME		assertQueryTrue(null, "Sequence{4, 5, 'test', 5} <> OrderedSet{4, 5, 'test', 5}");
-// FIXME		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test', 5}");
+		assertQueryTrue(null, "Sequence{4, 5, 'test', 5} <> OrderedSet{4, 5, 'test', 5}");
+		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test', 5}");
 	}
 
-/* FIXME	public void testCollectionNotEqualOrderedXUnordered() {
-		/ *
-		 * FIXME <ordered collection> x <non ordered collection> Should return
-		 * true or false when containing the elements in the same quantities?
-		 * /
+public void testCollectionNotEqualOrderedXUnordered() {
 		// same quantities
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> Set{4, 'test', 5, 4}");
 		assertQueryTrue(null, "Sequence{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
@@ -1077,19 +1071,19 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryTrue(null, "Sequence{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> Bag{4, 'test', 5, 4}");
 		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
-	} */
+	}
 
 	public void testCollectionNotEqualUnorderedXUnordered() {
 		// same quantities
-// FIXME		assertQueryFalse(null, "Bag{4, 5, 'test'} <> Set{4, 'test', 5, 4}");
+		assertQueryTrue(null, "Bag{4, 5, 'test'} <> Set{4, 'test', 5, 4}");
 		assertQueryFalse(null, "Bag{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
 		assertQueryFalse(null, "Set{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
-// FIXME		assertQueryFalse(null, "Set{4, 5, 'test', 4} <> Bag{4, 'test', 5}");
+		assertQueryTrue(null, "Set{4, 5, 'test', 4} <> Bag{4, 'test', 5}");
 
 		// distinct quantities
-// FIXME		assertQueryTrue(null, "Bag{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
+		assertQueryTrue(null, "Bag{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
 		assertQueryTrue(null, "Bag{4, 5, 'test'} <> Bag{4, 'test', 5, 4}");
-// FIXME		assertQueryTrue(null, "Set{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
+		assertQueryTrue(null, "Set{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
 	}
 
 	public void testCollectionPrepend() {
@@ -1194,9 +1188,9 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryResults(null, "Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "OrderedSet{null, 4}->product(Sequence{3})");
 	}
 
-/* FIXME	public void testCollectionReverse() {
-		fail("TODO");
-	} */
+	public void testCollectionReverse() {
+		// FIXME Test-not-implemented
+	}
 
 	public void testCollectionSize() {
 		assertQueryEquals(null, 4, "Sequence{4, 4, 5, 'test'}->size()");
@@ -1318,11 +1312,11 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 		assertQueryResults(null, "Bag{3, 4}", "Bag{3, 4}->union(Set{})");
 		assertQueryResults(null, "Sequence{3, 4}", "Sequence{3, 4}->union(Sequence{})");
 
-// FIXME		assertQueryResults(null, "Set{3, 4}", "Set{}->union(Set{3, 4})");
-// FIXME		assertQueryResults(null, "Bag{3, 4}", "Set{}->union(Bag{3, 4})");
-// FIXME		assertQueryResults(null, "Bag{3, 4}", "Bag{}->union(Bag{3, 4})");
-// FIXME		assertQueryResults(null, "Bag{3, 4}", "Bag{}->union(Set{3, 4})");
-// FIXME		assertQueryResults(null, "Sequence{3, 4}", "Sequence{}->union(Sequence{3, 4})");
+		assertQueryResults(null, "Set{3, 4}", "Set{}->union(Set{3, 4})");
+		assertQueryResults(null, "Bag{3, 4}", "Set{}->union(Bag{3, 4})");
+		assertQueryResults(null, "Bag{3, 4}", "Bag{}->union(Bag{3, 4})");
+		assertQueryResults(null, "Bag{3, 4}", "Bag{}->union(Set{3, 4})");
+		assertQueryResults(null, "Sequence{3, 4}", "Sequence{}->union(Sequence{3, 4})");
 	}
 
 	public void testCollectionUnionInvalid() {
@@ -1349,7 +1343,8 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 
 	public void testCollectionUnionNoDuplicates() {
 		/*
-		 * FIXME the specification defines operations Set::union(Set),
+		 * FIXME OMG-issue generalise to Collection::union
+		 * the specification defines operations Set::union(Set),
 		 * Set::union(Bag), Bag::union(Set) and Bag::union(Bag) with the same
 		 * semantics "the union of self and bag" and operation
 		 * Sequence::union(Sequence) with the description

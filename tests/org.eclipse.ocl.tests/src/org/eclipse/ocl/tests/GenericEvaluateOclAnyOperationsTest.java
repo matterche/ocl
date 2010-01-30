@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.6 2010/01/30 07:48:58 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.7 2010/01/30 20:15:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -66,15 +66,6 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
     }
 
 	public void testEqualInvalid() {
-		/*
-		 * FIXME we're expecting here results as specified in 2.0 : (11.2.4) any
-		 * call on invalid results in invalid. Note that 2.1 didn't alter
-		 * this statement but added in 11.2.5 an override of '=' so that it
-		 * returns "true if object is invalid". Which should we respect in the
-		 * implementation? respecting 11.2.4 is better as far as error handling
-		 * is concerned ... but then we should probably respect 11.2.3 and have
-		 * '=' fail on 'null'.
-		 */
 		assertQueryFalse(null, "invalid = 3");
 		assertQueryFalse(null, "3 = invalid");
 		assertQueryFalse(null, "invalid = 3.0");
@@ -118,64 +109,62 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 	}
 	
 	public void testGreaterThanInvalid() {
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid > 0");
 		assertQueryInvalid(null, "0 > invalid");
 		assertQueryInvalid(null, "invalid > invalid");
 	}
 
 	public void testGreaterThanNull() {
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null > 0");
 		assertQueryInvalid(null, "0 > null");
 		assertQueryInvalid(null, "null > null");
 	}
 
 	public void testGreaterThanOrEqualInvalid() {
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid >= 0");
 		assertQueryInvalid(null, "0 >= invalid");
 		assertQueryInvalid(null, "invalid >= invalid");
 	}
 
 	public void testGreaterThanOrEqualNull() {
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null >= 0");
 		assertQueryInvalid(null, "0 >= null");
 		assertQueryInvalid(null, "null >= null");
 	}
 
 	public void testLessThanInvalid() {
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid < 0");
 		assertQueryInvalid(null, "0 < invalid");
 		assertQueryInvalid(null, "invalid < invalid");
 	}
 
 	public void testLessThanNull() {
-		// FIXME '=' is defined for null ... why not <? at least <= should be.
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null < 0");
 		assertQueryInvalid(null, "0 < null");
 		assertQueryInvalid(null, "null < null");
 	}
 
 	public void testLessThanOrEqualInvalid() {
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "invalid <= 0");
 		assertQueryInvalid(null, "0 <= invalid");
 		assertQueryInvalid(null, "invalid <= invalid");
 	}
 
 	public void testLessThanOrEqualNull() {
+		// FIXME Analyzer-extraOperation OclAny::< should not be defined
 		assertQueryInvalid(null, "null <= 0");
 		assertQueryInvalid(null, "0 <= null");
 		assertQueryInvalid(null, "null <= null");
 	}
 
 	public void testNotEqualInvalid() {
-		/*
-		 * FIXME we're expecting here results as specified in 2.0 : (11.2.4) any
-		 * call on invalid results in invalid. Note that 2.1 didn't alter
-		 * this statement but added in 11.2.5 an override of '=' so that it
-		 * returns "true if object is invalid". Which should we respect in the
-		 * implementation? respecting 11.2.4 is better as far as error handling
-		 * is concerned ... but then we should probably respect 11.2.3 and have
-		 * '=' fail on 'null'.
-		 */
 		assertQueryTrue(null, "invalid <> 3");
 		assertQueryTrue(null, "3 <> invalid");
 		assertQueryTrue(null, "invalid <> 3.0");
@@ -214,9 +203,10 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
 	}
 
-/* FIXME	public void testOclAsTypeLaxNullHandlingNull() {
+/* FIXME EvaluationOptions.LAX_NULL_HANDLING
+	public void testOclAsTypeLaxNullHandlingNull() {
 		/ *
-		 * FIXME EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
+		 * EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
 		 * "null" is the expected result whatever the given type. We should
 		 * either fix the evaluation or the javadoc.
 		 * /
@@ -245,7 +235,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
 	}
 
-/* FIXME	public void testOclAsTypeNoLaxNullHandlingNull() {
+/* FIXME EvaluationOptions.LAX_NULL_HANDLING
+	public void testOclAsTypeNoLaxNullHandlingNull() {
 		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
 			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
 		// If this assert ever fails, LAX_NULL_HANDLING's default changed
@@ -271,9 +262,10 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryFalse(null, "null.oclIsInvalid()");
 	}
 
-/* FIXME	public void testOclIsKindOfInvalidLaxNullHandling() {
+/* FIXME FIXME EvaluationOptions.LAX_NULL_HANDLING
+	public void testOclIsKindOfInvalidLaxNullHandling() {
 		/ *
-		 * FIXME why is the evaluation of oclIsKindOf altered for invalid
+		 * why is the evaluation of oclIsKindOf altered for invalid
 		 * with LAX_NULL_HANDLING off? That is no documented behavior.
 		 * /
 		assertQueryInvalid(null, "invalid.oclIsKindOf(String)");
@@ -282,7 +274,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryInvalid(null, "invalid.oclIsKindOf(OclInvalid)");
 	} */
 
-/* FIXME	public void testOclIsKindOfInvalidNoLaxHandling() {
+/* FIXME FIXME EvaluationOptions.LAX_NULL_HANDLING
+	public void testOclIsKindOfInvalidNoLaxHandling() {
 		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
 			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
 		// If this assert ever fails, LAX_NULL_HANDLING's default changed
@@ -302,7 +295,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 
 	public void testOclIsKindOfNullLaxNullHandling() {
 		/*
-		 * FIXME EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
+		 * FIXME EvaluationOptions.LAX_NULL_HANDLING
+		 * is on, its javadoc tells us
 		 * "true" is the expected result whatever the given type. We should
 		 * either fix the evaluation or the javadoc.
 		 */
@@ -313,7 +307,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryFalse(null, "null.oclIsKindOf(OclInvalid)");
 	}
 
-/* FIXME	public void testOclIsKindOfNullNoLaxHandling() {
+/* FIXME EvaluationOptions.LAX_NULL_HANDLING
+ 	public void testOclIsKindOfNullNoLaxHandling() {
 		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
 			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
 		// If this assert ever fails, LAX_NULL_HANDLING's default changed
@@ -333,7 +328,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 
 	public void testOclIsTypeOfInvalidLaxNullHandling() {
 		/*
-		 * FIXME why is the evaluation of oclIsTypeOf altered for invalid
+		 * FIXME EvaluationOptions.LAX_NULL_HANDLING
+		 * why is the evaluation of oclIsTypeOf altered for invalid
 		 * with LAX_NULL_HANDLING off? That is no documented behavior.
 		 */
 		assertQueryFalse(null, "invalid.oclIsTypeOf(String)");
@@ -342,7 +338,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryTrue(null, "invalid.oclIsTypeOf(OclInvalid)");
 	}
 
-/* FIXME	public void testOclIsTypeOfInvalidNoLaxNullHandling() {
+/* FIXME EvaluationOptions.LAX_NULL_HANDLING
+	public void testOclIsTypeOfInvalidNoLaxNullHandling() {
 		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
 			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
 		// If this assert ever fails, LAX_NULL_HANDLING's default changed
@@ -362,7 +359,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 
 	public void testOclIsTypeOfNullLaxNullHandling() {
 		/*
-		 * FIXME EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
+		 * FIXME EvaluationOptions.LAX_NULL_HANDLING
+		 * is on, its javadoc tells us
 		 * "true" is the expected result whatever the given type. We should
 		 * either fix the evaluation or the javadoc.
 		 */
@@ -373,7 +371,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryFalse(null, "null.oclIsTypeOf(OclInvalid)");
 	}
 
-/* FIXME	public void testOclIsTypeOfNullNoLaxNullHandling() {
+/* FIXME EvaluationOptions.LAX_NULL_HANDLING
+	public void testOclIsTypeOfNullNoLaxNullHandling() {
 		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
 			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
 		// If this assert ever fails, LAX_NULL_HANDLING's default changed
@@ -604,9 +603,9 @@ public abstract class GenericEvaluateOclAnyOperationsTest<E extends EObject, PK 
 		assertQueryEquals(pkg1, 1, "%Package.allInstances()->size()");
 		assertQueryInvalid(null, "Integer.allInstances()");
 		assertQueryInvalid(null, "String.allInstances()");
-// FIXME		assertQueryInvalid(null, "Set(Integer).allInstances()");
+		assertQueryInvalid(null, "Set(Integer).allInstances()");
 		assertQueryInvalid(null, "OclAny.allInstances()");
 		assertQueryInvalid(null, "OclInvalid.allInstances()");
-		// FIXME Enumeration
+		// FIXME Subtest-not-implemented Enumeration
 	}
 }
