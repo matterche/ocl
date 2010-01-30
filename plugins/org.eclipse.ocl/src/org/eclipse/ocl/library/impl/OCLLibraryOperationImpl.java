@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationImpl.java,v 1.1.2.5 2010/01/24 07:41:14 ewillink Exp $
+ * $Id: OCLLibraryOperationImpl.java,v 1.1.2.6 2010/01/30 07:49:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -167,7 +167,7 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" -> "); //$NON-NLS-1$
+		result.append(" => "); //$NON-NLS-1$
 		if (libraryOperationClass != null) {
 			result.append(libraryOperationClass.getSimpleName());
 		}
@@ -177,7 +177,7 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	private ILibraryOperation libraryOperation = null;
 
 	public ILibraryOperation getLibraryOperation() {
-		if (libraryOperation == null) {
+		if ((libraryOperation == null) && (libraryOperationClass != null)) {
 			OCLLibrary library = getLibrary();
 			libraryOperation = library.getLibraryOperation(libraryOperationClass);
 			if (libraryOperation == null) {

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.20.2.5 2010/01/24 12:26:03 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.20.2.6 2010/01/30 07:49:40 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.merged.AbstractMergedLibrary;
@@ -211,7 +212,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public C getContextClassifier() {
-		return getSelfVariable().getType();
+		Variable<C, PM> selfVariable = getSelfVariable();
+		return selfVariable != null ? selfVariable.getType() : null;
 	}
 	
     // implements the interface method
@@ -1200,42 +1202,42 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	/**
 	 * @since 3.0
 	 */
-	public OCLType getUnlimitedNatural() {
+	public OCLConcreteType getUnlimitedNatural() {
 		return getMergedLibrary().getUnlimitedNatural();
 	}
 
 	/**
 	 * @since 3.0
 	 */
-	public OCLType getString() {
+	public OCLConcreteType getString() {
 		return getMergedLibrary().getString();
 	}
 
 	/**
 	 * @since 3.0
 	 */
-	public OCLType getReal() {
+	public OCLConcreteType getReal() {
 		return getMergedLibrary().getReal();
 	}
 
 	/**
 	 * @since 3.0
 	 */
-	public OCLType getInteger() {
+	public OCLConcreteType getInteger() {
 		return getMergedLibrary().getInteger();
 	}
 
 	/**
 	 * @since 3.0
 	 */
-	public OCLType getBoolean() {
+	public OCLConcreteType getBoolean() {
 		return getMergedLibrary().getBoolean();
 	}
 
 	/**
 	 * @since 3.0
 	 */
-	public OCLType getOclAny() {
+	public OCLConcreteType getOclAny() {
 		return getMergedLibrary().getOclAny();
 	}
 
@@ -1333,7 +1335,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     protected P mergeProperty(C owner, String name, C type, CT constraint) {
     	MergedLibrary mergedLibrary = getMergedLibrary();
     	OCLType ownerType = mergedLibrary.getLibraryTypeOfType(owner);
-		OCLType valueType = mergedLibrary.getLibraryTypeOfType(type);
+    	OCLType valueType = mergedLibrary.getLibraryTypeOfType(type);
 		ExpressionInOCL<C, PM> specification = getUMLReflection().getSpecification(constraint);
 		String stereoType = getUMLReflection().getStereotype(constraint);
 		mergedLibrary.mergeProperty(ownerType, name, valueType, stereoType, specification);

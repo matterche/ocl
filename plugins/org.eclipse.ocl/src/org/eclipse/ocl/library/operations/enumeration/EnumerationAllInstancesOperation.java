@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.1 2010/01/24 07:41:03 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.2 2010/01/30 07:49:39 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.enumeration;
 
@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.OCLEnumeration;
-import org.eclipse.ocl.library.OCLEnumerationLiteral;
-import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.merged.OCLEnumeration;
+import org.eclipse.ocl.library.merged.OCLEnumerationLiteral;
 import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.util.CollectionUtil;
 
@@ -39,7 +39,7 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
 		MergedLibrary library = environment.getMergedLibrary();
-		OCLType sourceType = library.getLibraryTypeOfType(sourceVal);
+		OCLTypeValue sourceType = library.getLibraryTypeOfType(sourceVal);
 		Set<Object> result = CollectionUtil.createNewSet();
 		// the instances are the literals
 		for (OCLEnumerationLiteral oclLiteral : ((OCLEnumeration)sourceType).getLiterals()) {

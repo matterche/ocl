@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedTypeImpl.java,v 1.1.2.3 2010/01/24 14:02:18 ewillink Exp $
+ * $Id: MergedTypeImpl.java,v 1.1.2.4 2010/01/30 07:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -25,24 +25,25 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLProperty;
-import org.eclipse.ocl.library.OCLTemplateParameterType;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeParameter;
+import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.impl.OCLElementImpl;
 import org.eclipse.ocl.library.merged.MergedLibrary;
 import org.eclipse.ocl.library.merged.MergedLibraryOperation;
+import org.eclipse.ocl.library.merged.MergedLibraryProperty;
 import org.eclipse.ocl.library.merged.MergedMetaModelOperation;
 import org.eclipse.ocl.library.merged.MergedMetaModelProperty;
 import org.eclipse.ocl.library.merged.MergedOperation;
 import org.eclipse.ocl.library.merged.MergedProperty;
-import org.eclipse.ocl.library.merged.MergedLibraryProperty;
 import org.eclipse.ocl.library.merged.MergedType;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryFactory;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
@@ -314,6 +315,15 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<OCLTypeParameter> getTypeParameter() {
+		return type.getTypeParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -548,37 +558,96 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 		propertyMap.put(name, mergedProperty);
 	}
 	
-	public Set<MergedOperation> getConformingOperations(String name, OCLType[] oclArguments) {
+	public Set<MergedOperation> getConformingOperations(boolean isStatic, String name, int argumentCount) {
 		if (operationsMap == null) {
 			loadOperations();
 		}
 		Set<MergedOperation> conformingOperations = null;
 		List<MergedOperation> mergedOperations = operationsMap.get(name);
 		if (mergedOperations != null) {
-			int iMax = oclArguments != null ? oclArguments.length : 0;
+			for (MergedOperation mergedOperation : mergedOperations) {
+				if (mergedOperation.isStatic() == isStatic) {
+					List<OCLParameter> mergedParameters = mergedOperation.getParameter();
+					if (mergedParameters.size() == argumentCount) {
+						if (conformingOperations == null) {
+							conformingOperations = new HashSet<MergedOperation>();
+						}
+						conformingOperations.add(mergedOperation);
+					}
+				}
+			}
+			if (conformingOperations != null) {
+				return conformingOperations;
+			}
+		}
+		for (OCLType superType : getConforms()) {
+			MergedType superMergedType = mergedLibrary.getMergedType(superType);
+			conformingOperations = superMergedType.getConformingOperations(isStatic, name, argumentCount);
+			if (conformingOperations != null) {
+				return conformingOperations;
+			}
+		}
+		return null;
+	}
+	
+/*	public Set<MergedOperation> getConformingOperations(String name, OCLType[] staticArgumentTypes, OCLType dynamicSourceType) {
+		if (operationsMap == null) {
+			loadOperations();
+		}
+		Set<MergedOperation> conformingOperations = null;
+		List<MergedOperation> mergedOperations = operationsMap.get(name);
+		if (mergedOperations != null) {
+			int iMax = staticArgumentTypes != null ? staticArgumentTypes.length : 0;
 			for (MergedOperation mergedOperation : mergedOperations) {
 				List<OCLParameter> mergedParameters = mergedOperation.getParameter();
 				if (mergedParameters.size() == iMax) {
-					Map<OCLTemplateParameterType, OCLType> parameterBindings = null;
+					Map<OCLTypeParameter, OCLType> parameterBindings = null;
 					boolean allOpsOk = true;
 					for (int i = 0; i < iMax; i++) {
 						OCLParameter mergedParameter = mergedParameters.get(i);
-						OCLType parameterType = mergedParameter.getType();
-						OCLType argumentType = oclArguments[i];
-						if (!argumentType.conformsTo(parameterType)) {
-							if (!(parameterType instanceof OCLTemplateParameterType)) {
+						OCLType parameterType = mergedParameter.getResolvedType(dynamicSourceType);
+						OCLType staticArgumentType = staticArgumentTypes[i];
+						if (!staticArgumentType.conformsTo(parameterType) && !parameterType.conformsTo(staticArgumentType)) {
+//							List<OCLTypeBinding> typeBindings;
+//							List<OCLTypeBinding> typeTypeBindings = getTypeBinding();
+//							List<OCLTypeBinding> operationTypeBindings = mergedOperation.getTypeBinding();
+//							if (typeTypeBindings.isEmpty()) {
+//								typeBindings = operationTypeBindings;
+//							}
+//							else if (operationTypeBindings.isEmpty()) {
+//								typeBindings = typeTypeBindings;
+//							}
+//							else {
+//								typeBindings = new ArrayList<OCLTypeBinding>();
+//								typeBindings.addAll(typeTypeBindings);
+//								typeBindings.addAll(operationTypeBindings);
+//							}
+							List<OCLTypeParameter> typeParameters;
+							List<OCLTypeParameter> typeTypeParameters = getTypeParameter();
+							List<OCLTypeParameter> operationTypeParameters = mergedOperation.getTypeParameter();
+							if (typeTypeParameters.isEmpty()) {
+								typeParameters = operationTypeParameters;
+							}
+							else if (operationTypeParameters.isEmpty()) {
+								typeParameters = typeTypeParameters;
+							}
+							else {
+								typeParameters = new ArrayList<OCLTypeParameter>();
+								typeParameters.addAll(typeTypeParameters);
+								typeParameters.addAll(operationTypeParameters);
+							}
+							if (!(parameterType instanceof OCLTypeParameter)) {
 								allOpsOk = false;
 								break;
 							}
-							EList<OCLTemplateParameterType> templateParameters = type.getTemplateParameter();
-							if (templateParameters.isEmpty()) {
+							if (typeParameters.isEmpty()) {
 								allOpsOk = false;
 								break;
 							}
 							if (parameterBindings == null) {
-								parameterBindings = new HashMap<OCLTemplateParameterType, OCLType>();
-								for (OCLTemplateParameterType templateParameterType : templateParameters) {
-									OCLType boundType = type.getTemplateBinding(templateParameterType);
+								parameterBindings = new HashMap<OCLTypeParameter, OCLType>();
+								for (OCLTypeParameter templateParameterType : typeParameters) {
+									OCLConcreteType boundType = null; //type.getTemplateBinding(templateParameterType);
 									if (boundType != null) {
 										parameterBindings.put(templateParameterType, boundType);
 									}
@@ -586,9 +655,9 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 							}
 							OCLType binding = parameterBindings.get(parameterType);
 							if (binding == null) {
-								parameterBindings.put((OCLTemplateParameterType) parameterType, argumentType);
+								parameterBindings.put((OCLTypeParameter) parameterType, staticArgumentType);
 							}
-							else if (!argumentType.conformsTo(binding)) {
+							else if (!staticArgumentType.conformsTo(binding)) {
 								allOpsOk = false;
 								break;									
 							}
@@ -608,13 +677,13 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 		}
 		for (OCLType superType : getConforms()) {
 			MergedType superMergedType = mergedLibrary.getMergedType(superType);
-			conformingOperations = superMergedType.getConformingOperations(name, oclArguments);
+			conformingOperations = superMergedType.getConformingOperations(name, staticArgumentTypes, dynamicSourceType);
 			if (conformingOperations != null) {
 				return conformingOperations;
 			}
 		}
 		return null;
-	}
+	} */
 	
 	public MergedProperty getConformingProperty(String name) {
 		if (propertyMap == null) {
@@ -647,8 +716,8 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 					boolean allOpsOk = true;
 					for (int i = 0; i < iMax; i++) {
 						OCLParameter mergedParameter = mergedParameters.get(i);
-						OCLType parameterType = mergedParameter.getType();
-						OCLType argumentType = oclArguments[i];
+						OCLTypeValue parameterType = mergedParameter.getType();
+						OCLTypeValue argumentType = oclArguments[i];
 						if (argumentType != parameterType) {
 							allOpsOk = false;
 							break;

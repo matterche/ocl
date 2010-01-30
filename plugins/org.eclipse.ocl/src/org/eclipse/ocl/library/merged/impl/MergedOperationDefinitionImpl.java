@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedOperationDefinitionImpl.java,v 1.1.2.1 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: MergedOperationDefinitionImpl.java,v 1.1.2.2 2010/01/30 07:49:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -401,5 +401,10 @@ public class MergedOperationDefinitionImpl extends MergedOperationImpl implement
 			type.appendQualifiedName(s);
 		}
 		return s.toString();
+	}
+
+	@Override
+	public boolean isStatic() {
+		return false;
 	}
 } //MergedOperationDefinitionImpl

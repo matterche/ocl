@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLCache.java,v 1.1.2.1 2010/01/24 07:40:56 ewillink Exp $
+ * $Id: OCLCache.java,v 1.1.2.2 2010/01/30 07:49:20 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -24,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getCollection <em>Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getEnumeration <em>Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getInteger <em>Integer</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLCache#getJava <em>Java</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclAny <em>Ocl Any</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclInvalid <em>Ocl Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclMessage <em>Ocl Message</em>}</li>
@@ -35,9 +35,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getSet <em>Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getString <em>String</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLCache#getT <em>T</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLCache#getTList <em>TList</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLCache#getT2 <em>T2</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getUnlimitedNatural <em>Unlimited Natural</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getInvalid <em>Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getNull <em>Null</em>}</li>
@@ -63,7 +60,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLBagType getBag();
+	OCLConcreteType getBag();
 
 	/**
 	 * Returns the value of the '<em><b>Boolean</b></em>' reference.
@@ -78,7 +75,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getBoolean();
+	OCLConcreteType getBoolean();
 
 	/**
 	 * Returns the value of the '<em><b>Classifier</b></em>' reference.
@@ -93,7 +90,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getClassifier();
+	OCLConcreteType getClassifier();
 
 	/**
 	 * Returns the value of the '<em><b>Collection</b></em>' reference.
@@ -108,7 +105,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLCollectionType getCollection();
+	OCLConcreteType getCollection();
 
 	/**
 	 * Returns the value of the '<em><b>Enumeration</b></em>' reference.
@@ -123,7 +120,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getEnumeration();
+	OCLConcreteType getEnumeration();
 
 	/**
 	 * Returns the value of the '<em><b>Integer</b></em>' reference.
@@ -138,7 +135,22 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getInteger();
+	OCLConcreteType getInteger();
+
+	/**
+	 * Returns the value of the '<em><b>Java</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Java</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Java</em>' reference.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_Java()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	OCLJavaType getJava();
 
 	/**
 	 * Returns the value of the '<em><b>Ocl Any</b></em>' reference.
@@ -153,7 +165,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLAnyType getOclAny();
+	OCLConcreteType getOclAny();
 
 	/**
 	 * Returns the value of the '<em><b>Ocl Invalid</b></em>' reference.
@@ -168,7 +180,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLInvalidType getOclInvalid();
+	OCLConcreteType getOclInvalid();
 
 	/**
 	 * Returns the value of the '<em><b>Ocl Message</b></em>' reference.
@@ -183,7 +195,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getOclMessage();
+	OCLConcreteType getOclMessage();
 
 	/**
 	 * Returns the value of the '<em><b>Ocl Tuple</b></em>' reference.
@@ -198,7 +210,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLTupleType getOclTuple();
+	OCLConcreteType getOclTuple();
 
 	/**
 	 * Returns the value of the '<em><b>Ocl Type</b></em>' reference.
@@ -213,7 +225,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getOclType();
+	OCLConcreteType getOclType();
 
 	/**
 	 * Returns the value of the '<em><b>Ocl Void</b></em>' reference.
@@ -228,7 +240,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLVoidType getOclVoid();
+	OCLConcreteType getOclVoid();
 
 	/**
 	 * Returns the value of the '<em><b>Ordered Set</b></em>' reference.
@@ -243,7 +255,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLOrderedSetType getOrderedSet();
+	OCLConcreteType getOrderedSet();
 
 	/**
 	 * Returns the value of the '<em><b>Real</b></em>' reference.
@@ -258,7 +270,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getReal();
+	OCLConcreteType getReal();
 
 	/**
 	 * Returns the value of the '<em><b>Sequence</b></em>' reference.
@@ -273,7 +285,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLSequenceType getSequence();
+	OCLConcreteType getSequence();
 
 	/**
 	 * Returns the value of the '<em><b>Set</b></em>' reference.
@@ -288,7 +300,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLSetType getSet();
+	OCLConcreteType getSet();
 
 	/**
 	 * Returns the value of the '<em><b>String</b></em>' reference.
@@ -303,53 +315,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getString();
-
-	/**
-	 * Returns the value of the '<em><b>T</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>T</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>T</em>' reference.
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_T()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-	 * @generated
-	 */
-	OCLTemplateParameterType getT();
-
-	/**
-	 * Returns the value of the '<em><b>TList</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.library.OCLTemplateParameterType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>TList</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>TList</em>' reference list.
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_TList()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-	 * @generated
-	 */
-	EList<OCLTemplateParameterType> getTList();
-
-	/**
-	 * Returns the value of the '<em><b>T2</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>T2</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>T2</em>' reference.
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_T2()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-	 * @generated
-	 */
-	OCLTemplateParameterType getT2();
+	OCLConcreteType getString();
 
 	/**
 	 * Returns the value of the '<em><b>Unlimited Natural</b></em>' reference.
@@ -364,7 +330,7 @@ public interface OCLCache extends OCLElement {
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OCLType getUnlimitedNatural();
+	OCLConcreteType getUnlimitedNatural();
 
 	/**
 	 * Returns the value of the '<em><b>Invalid</b></em>' reference.
@@ -410,53 +376,5 @@ public interface OCLCache extends OCLElement {
 	 * @generated
 	 */
 	EObject getUnlimited();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	OCLBagType getBagType(OCLType elementType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	OCLType getLibraryTypeOfType(Object object);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	OCLType getLibraryTypeOfValue(Object value, Object staticType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	OCLOrderedSetType getOrderedSetType(OCLType elementType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	OCLSequenceType getSequenceType(OCLType elementType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	OCLSetType getSetType(OCLType elementType);
 
 } // LibraryCache

@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.6 2010/01/24 07:41:20 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.7 2010/01/30 07:49:39 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -1464,8 +1464,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		C type = env.getContextClassifier();
-		List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
-		constrainedElement.add((EObject) type);
+		if (type != null) {
+			List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
+			constrainedElement.add((EObject) type);
+		}
 
 		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
 		initASTMapping(env, astNode, invCS);
@@ -2668,8 +2670,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		// if we have a source, then this is a feature call
 		if ((classifier == null) && (source == null)) {
-			classifier = lookupClassifier(simpleNameCS, env, Collections
-				.singletonList(simpleName));
+			if (simpleNameCS instanceof CollectionTypeCS) {
+				classifier = collectionTypeCS((CollectionTypeCS)simpleNameCS, env);
+			}
+			else {			
+				classifier = lookupClassifier(simpleNameCS, env, Collections
+					.singletonList(simpleName));
+			}
 		}
 
 		if (classifier != null) {

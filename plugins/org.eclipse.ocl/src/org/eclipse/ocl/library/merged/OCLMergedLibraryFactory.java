@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryFactory.java,v 1.1.2.1 2010/01/24 07:41:02 ewillink Exp $
+ * $Id: OCLMergedLibraryFactory.java,v 1.1.2.2 2010/01/30 07:49:33 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -88,6 +88,15 @@ public interface OCLMergedLibraryFactory extends EFactory {
 	 * @generated
 	 */
 	MergedType createMergedType();
+
+	/**
+	 * Returns a new object of class '<em>OCL Bound Collection Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Bound Collection Type</em>'.
+	 * @generated
+	 */
+	OCLBoundCollectionType createOCLBoundCollectionType();
 
 	/**
 	 * Returns the package supported by this factory.

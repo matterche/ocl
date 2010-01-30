@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedOperation.java,v 1.1.2.1 2010/01/24 07:41:02 ewillink Exp $
+ * $Id: MergedOperation.java,v 1.1.2.2 2010/01/30 07:49:32 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -12,6 +12,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.OCLElement;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeParameter;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
@@ -88,6 +89,22 @@ public interface MergedOperation extends OCLElement {
 	 * @generated
 	 */
 	OCLType getType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<OCLTypeParameter> getTypeParameter();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isStatic();
 
 	/**
 	 * <!-- begin-user-doc -->

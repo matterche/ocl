@@ -2,23 +2,31 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryFactoryImpl.java,v 1.1.2.1 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: OCLMergedLibraryFactoryImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.ocl.library.merged.*;
+import org.eclipse.ocl.library.merged.MergedLibraryOperation;
+import org.eclipse.ocl.library.merged.MergedLibraryProperty;
+import org.eclipse.ocl.library.merged.MergedMetaModelOperation;
+import org.eclipse.ocl.library.merged.MergedMetaModelProperty;
+import org.eclipse.ocl.library.merged.MergedOperationDefinition;
+import org.eclipse.ocl.library.merged.MergedPropertyDefinition;
+import org.eclipse.ocl.library.merged.MergedType;
+import org.eclipse.ocl.library.merged.OCLBoundCollectionType;
+import org.eclipse.ocl.library.merged.OCLMergedLibraryFactory;
+import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
+ * @since 3.0
  * <!-- end-user-doc -->
  * @generated
  */
@@ -67,6 +75,7 @@ public class OCLMergedLibraryFactoryImpl extends EFactoryImpl implements OCLMerg
 			case OCLMergedLibraryPackage.MERGED_OPERATION_DEFINITION: return createMergedOperationDefinition();
 			case OCLMergedLibraryPackage.MERGED_PROPERTY_DEFINITION: return createMergedPropertyDefinition();
 			case OCLMergedLibraryPackage.MERGED_TYPE: return createMergedType();
+			case OCLMergedLibraryPackage.OCL_BOUND_COLLECTION_TYPE: return createOCLBoundCollectionType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -140,6 +149,16 @@ public class OCLMergedLibraryFactoryImpl extends EFactoryImpl implements OCLMerg
 	public MergedType createMergedType() {
 		MergedTypeImpl mergedType = new MergedTypeImpl();
 		return mergedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLBoundCollectionType createOCLBoundCollectionType() {
+		OCLBoundCollectionTypeImpl oclBoundCollectionType = new OCLBoundCollectionTypeImpl();
+		return oclBoundCollectionType;
 	}
 
 	/**

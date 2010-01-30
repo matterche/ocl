@@ -2,26 +2,30 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedMetaModelOperationImpl.java,v 1.1.2.1 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: MergedMetaModelOperationImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
-
+import org.eclipse.ocl.library.OCLTypeParameter;
 import org.eclipse.ocl.library.merged.MergedMetaModelOperation;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
@@ -279,7 +283,7 @@ public class MergedMetaModelOperationImpl extends MergedOperationImpl implements
 
 	@Override
 	public OCLType getType() {
-		return operation != null ? operation.getType() : null;
+		return operation != null ? operation.getResolvedType(null) : null;
 	}
 
 	/**
@@ -300,6 +304,43 @@ public class MergedMetaModelOperationImpl extends MergedOperationImpl implements
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(
 			EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> evaluationVisitor,
 			Object sourceVal, OperationCallExp<C, O> operationCall) {
-		throw new UnsupportedOperationException();
+		if (AbstractOperation.isUndefined(sourceVal)) {
+			return AbstractOperation.createInvalid(null, "Undefined source: " + this); //$NON-NLS-1$
+		}
+		@SuppressWarnings("unchecked")
+		ExpressionInOCL<C, PM> body = (ExpressionInOCL<C, PM>) getBody();
+		if (body == null) {
+			return AbstractOperation.createInvalid(null, "Undefined body: " + this); //$NON-NLS-1$
+		}
+		EList<OCLExpression<C>> args = operationCall.getArgument();
+		int iMax = args.size();
+		List<OCLParameter> parameters = getParameter();
+		if (iMax != parameters.size()) {
+			return AbstractOperation.createInvalid(null, "Mismatching parameters: " + this); //$NON-NLS-1$
+		}
+		Map<String, Object> envVals = new HashMap<String, Object>();
+		envVals.put(Environment.SELF_VARIABLE_NAME, sourceVal);
+		for (int i = 0; i < iMax; i++) {
+			OCLParameter param = parameters.get(i);
+			Object argVal = evaluationVisitor.visitArgument(operationCall, i);
+			envVals.put(param.getName(), argVal);
+		}
+		Object result = evaluationVisitor.visitBody(body.getBodyExpression(), envVals);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<OCLTypeParameter> getTypeParameter() {
+		return operation.getTypeParameter();
+	}
+
+	@Override
+	public boolean isStatic() {
+		return false;
 	}
 } //MergedMetaModelOperationImpl

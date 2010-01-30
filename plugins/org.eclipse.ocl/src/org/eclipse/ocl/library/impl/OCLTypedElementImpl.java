@@ -2,16 +2,26 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypedElementImpl.java,v 1.1.2.1 2010/01/24 07:41:16 ewillink Exp $
+ * $Id: OCLTypedElementImpl.java,v 1.1.2.2 2010/01/30 07:49:29 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLBoundType;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeBinding;
+import org.eclipse.ocl.library.OCLTypeParameter;
+import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.OCLTypedElement;
 
 /**
@@ -23,6 +33,7 @@ import org.eclipse.ocl.library.OCLTypedElement;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLTypedElementImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLTypedElementImpl#getBoundType <em>Bound Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,7 +48,17 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType type;
+	protected OCLTypeValue type;
+
+	/**
+	 * The cached value of the '{@link #getBoundType() <em>Bound Type</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBoundType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OCLBoundType> boundType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,10 +84,10 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLType getType() {
+	public OCLTypeValue getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
-			type = (OCLType)eResolveProxy(oldType);
+			type = (OCLTypeValue)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LibraryPackage.OCL_TYPED_ELEMENT__TYPE, oldType, type));
@@ -80,7 +101,7 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLType basicGetType() {
+	public OCLTypeValue basicGetType() {
 		return type;
 	}
 
@@ -89,11 +110,54 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(OCLType newType) {
-		OCLType oldType = type;
+	public void setType(OCLTypeValue newType) {
+		OCLTypeValue oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_TYPED_ELEMENT__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OCLBoundType> getBoundType() {
+		if (boundType == null) {
+			boundType = new EObjectContainmentEList<OCLBoundType>(OCLBoundType.class, this, LibraryPackage.OCL_TYPED_ELEMENT__BOUND_TYPE);
+		}
+		return boundType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLType getResolvedType(OCLType contextType) {
+		OCLTypeValue typeValue = type;
+		while (typeValue instanceof OCLTypeParameter) {
+			OCLTypeBinding typeBinding = contextType.getTypeBinding((OCLTypeParameter) typeValue);
+			typeValue = typeBinding != null ? typeBinding.getTypeValue() : null;;
+		}
+		if (typeValue instanceof OCLType) {
+			return (OCLType) typeValue;
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LibraryPackage.OCL_TYPED_ELEMENT__BOUND_TYPE:
+				return ((InternalEList<?>)getBoundType()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -107,6 +171,8 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 			case LibraryPackage.OCL_TYPED_ELEMENT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case LibraryPackage.OCL_TYPED_ELEMENT__BOUND_TYPE:
+				return getBoundType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,11 +182,16 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case LibraryPackage.OCL_TYPED_ELEMENT__TYPE:
-				setType((OCLType)newValue);
+				setType((OCLTypeValue)newValue);
+				return;
+			case LibraryPackage.OCL_TYPED_ELEMENT__BOUND_TYPE:
+				getBoundType().clear();
+				getBoundType().addAll((Collection<? extends OCLBoundType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,7 +206,10 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case LibraryPackage.OCL_TYPED_ELEMENT__TYPE:
-				setType((OCLType)null);
+				setType((OCLTypeValue)null);
+				return;
+			case LibraryPackage.OCL_TYPED_ELEMENT__BOUND_TYPE:
+				getBoundType().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,8 +225,36 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 		switch (featureID) {
 			case LibraryPackage.OCL_TYPED_ELEMENT__TYPE:
 				return type != null;
+			case LibraryPackage.OCL_TYPED_ELEMENT__BOUND_TYPE:
+				return boundType != null && !boundType.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void appendQualifiedSignature(StringBuffer s) {
+		super.appendQualifiedSignature(s);
+		appendTypeSignature(s);
+	}
+
+	@Override
+	public void appendSignature(StringBuffer s) {
+		super.appendSignature(s);
+		appendTypeSignature(s);
+	}
+
+	public void appendTypeSignature(StringBuffer s) {
+		s.append(" : "); //$NON-NLS-1$
+		appendSignature(s, type);
+	}
+
+	@Override
+	public String getNameSeparator() {
+		return "."; //$NON-NLS-1$
+	}
 } //OCLTypedElementImpl

@@ -2,43 +2,22 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLRootImpl.java,v 1.1.2.1 2010/01/24 07:41:15 ewillink Exp $
+ * $Id: OCLRootImpl.java,v 1.1.2.2 2010/01/30 07:49:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.InvalidLiteralExp;
-import org.eclipse.ocl.expressions.LiteralExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
-import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLAnyType;
-import org.eclipse.ocl.library.OCLBagType;
 import org.eclipse.ocl.library.OCLCache;
-import org.eclipse.ocl.library.OCLCollectionType;
-import org.eclipse.ocl.library.OCLInvalidType;
-import org.eclipse.ocl.library.OCLOrderedSetType;
+import org.eclipse.ocl.library.OCLConcreteType;
+import org.eclipse.ocl.library.OCLJavaType;
 import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLRoot;
-import org.eclipse.ocl.library.OCLSequenceType;
-import org.eclipse.ocl.library.OCLSetType;
-import org.eclipse.ocl.library.OCLTemplateParameterType;
-import org.eclipse.ocl.library.OCLTupleType;
-import org.eclipse.ocl.library.OCLType;
-import org.eclipse.ocl.library.OCLVoidType;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -51,8 +30,6 @@ import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
-import org.eclipse.ocl.util.Bag;
-import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,6 +45,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getCollection <em>Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getEnumeration <em>Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getInteger <em>Integer</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getJava <em>Java</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclAny <em>Ocl Any</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclInvalid <em>Ocl Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclMessage <em>Ocl Message</em>}</li>
@@ -79,9 +57,6 @@ import org.eclipse.ocl.utilities.PredefinedType;
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getSet <em>Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getString <em>String</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getT <em>T</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getTList <em>TList</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getT2 <em>T2</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getUnlimitedNatural <em>Unlimited Natural</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getInvalid <em>Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getNull <em>Null</em>}</li>
@@ -92,6 +67,8 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @generated
  */
 public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
+
+	public static final String JAVA = "Java"; //$NON-NLS-1$
 
 	public static final String CLASSIFIER_NAME = "Classifier"; //$NON-NLS-1$
 
@@ -111,7 +88,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLBagType bag;
+	protected OCLConcreteType bag;
 
 	/**
 	 * The cached value of the '{@link #getBoolean() <em>Boolean</em>}' reference.
@@ -121,7 +98,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType boolean_;
+	protected OCLConcreteType boolean_;
 
 	/**
 	 * The cached value of the '{@link #getClassifier() <em>Classifier</em>}' reference.
@@ -131,7 +108,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType classifier;
+	protected OCLConcreteType classifier;
 
 	/**
 	 * The cached value of the '{@link #getCollection() <em>Collection</em>}' reference.
@@ -141,7 +118,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLCollectionType collection;
+	protected OCLConcreteType collection;
 
 	/**
 	 * The cached value of the '{@link #getEnumeration() <em>Enumeration</em>}' reference.
@@ -151,7 +128,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType enumeration;
+	protected OCLConcreteType enumeration;
 
 	/**
 	 * The cached value of the '{@link #getInteger() <em>Integer</em>}' reference.
@@ -161,7 +138,17 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType integer;
+	protected OCLConcreteType integer;
+
+	/**
+	 * The cached value of the '{@link #getJava() <em>Java</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJava()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLJavaType java;
 
 	/**
 	 * The cached value of the '{@link #getOclAny() <em>Ocl Any</em>}' reference.
@@ -171,7 +158,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLAnyType oclAny;
+	protected OCLConcreteType oclAny;
 
 	/**
 	 * The cached value of the '{@link #getOclInvalid() <em>Ocl Invalid</em>}' reference.
@@ -181,7 +168,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLInvalidType oclInvalid;
+	protected OCLConcreteType oclInvalid;
 
 	/**
 	 * The cached value of the '{@link #getOclMessage() <em>Ocl Message</em>}' reference.
@@ -191,7 +178,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType oclMessage;
+	protected OCLConcreteType oclMessage;
 
 	/**
 	 * The cached value of the '{@link #getOclTuple() <em>Ocl Tuple</em>}' reference.
@@ -201,7 +188,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLTupleType oclTuple;
+	protected OCLConcreteType oclTuple;
 
 	/**
 	 * The cached value of the '{@link #getOclType() <em>Ocl Type</em>}' reference.
@@ -211,7 +198,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType oclType;
+	protected OCLConcreteType oclType;
 
 	/**
 	 * The cached value of the '{@link #getOclVoid() <em>Ocl Void</em>}' reference.
@@ -221,7 +208,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLVoidType oclVoid;
+	protected OCLConcreteType oclVoid;
 
 	/**
 	 * The cached value of the '{@link #getOrderedSet() <em>Ordered Set</em>}' reference.
@@ -231,7 +218,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLOrderedSetType orderedSet;
+	protected OCLConcreteType orderedSet;
 
 	/**
 	 * The cached value of the '{@link #getReal() <em>Real</em>}' reference.
@@ -241,7 +228,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType real;
+	protected OCLConcreteType real;
 
 	/**
 	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
@@ -251,7 +238,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLSequenceType sequence;
+	protected OCLConcreteType sequence;
 
 	/**
 	 * The cached value of the '{@link #getSet() <em>Set</em>}' reference.
@@ -261,7 +248,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLSetType set;
+	protected OCLConcreteType set;
 
 	/**
 	 * The cached value of the '{@link #getString() <em>String</em>}' reference.
@@ -271,37 +258,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType string;
-
-	/**
-	 * The cached value of the '{@link #getT() <em>T</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getT()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLTemplateParameterType t;
-
-	/**
-	 * The cached value of the '{@link #getTList() <em>TList</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTList()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OCLTemplateParameterType> tList;
-
-	/**
-	 * The cached value of the '{@link #getT2() <em>T2</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getT2()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLTemplateParameterType t2;
+	protected OCLConcreteType string;
 
 	/**
 	 * The cached value of the '{@link #getUnlimitedNatural() <em>Unlimited Natural</em>}' reference.
@@ -311,7 +268,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType unlimitedNatural;
+	protected OCLConcreteType unlimitedNatural;
 
 	/**
 	 * The cached value of the '{@link #getInvalid() <em>Invalid</em>}' reference.
@@ -321,7 +278,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected InvalidLiteralExp<OCLType> invalid;
+	protected InvalidLiteralExp<OCLConcreteType> invalid;
 
 	/**
 	 * The cached value of the '{@link #getNull() <em>Null</em>}' reference.
@@ -331,7 +288,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected NullLiteralExp<OCLType> null_;
+	protected NullLiteralExp<OCLConcreteType> null_;
 
 	/**
 	 * The cached value of the '{@link #getUnlimited() <em>Unlimited</em>}' reference.
@@ -341,7 +298,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected UnlimitedNaturalLiteralExp<OCLType> unlimited;
+	protected UnlimitedNaturalLiteralExp<OCLConcreteType> unlimited;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -367,9 +324,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLBagType getBag() {
+	public OCLConcreteType getBag() {
 		if (bag == null) {
-			bag = (OCLBagType) getStdlibType(BagType.SINGLETON_NAME);
+			bag = getStdlibType(BagType.SINGLETON_NAME);
 		}
 		return bag;
 	}
@@ -379,7 +336,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getBoolean() {
+	public OCLConcreteType getBoolean() {
 		if (boolean_ == null) {
 			boolean_ = getStdlibType(PrimitiveType.BOOLEAN_NAME);
 		}
@@ -391,7 +348,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getClassifier() {
+	public OCLConcreteType getClassifier() {
 		if (classifier == null) {
 			classifier = getStdlibType(CLASSIFIER_NAME);
 		}
@@ -403,9 +360,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLCollectionType getCollection() {
+	public OCLConcreteType getCollection() {
 		if (collection == null) {
-			collection = (OCLCollectionType) getStdlibType(CollectionType.SINGLETON_NAME);
+			collection = getStdlibType(CollectionType.SINGLETON_NAME);
 		}
 		return collection;
 	}
@@ -415,7 +372,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getEnumeration() {
+	public OCLConcreteType getEnumeration() {
 		if (enumeration == null) {
 			enumeration = getStdlibType(ENUMERATION_NAME);
 		}
@@ -427,7 +384,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getInteger() {
+	public OCLConcreteType getInteger() {
 		if (integer == null) {
 			integer = getStdlibType(PrimitiveType.INTEGER_NAME);
 		}
@@ -439,9 +396,21 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLAnyType getOclAny() {
+	public OCLJavaType getJava() {
+		if (java == null) {
+			java = (OCLJavaType) getStdlibType(JAVA);
+		}
+		return java;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLConcreteType getOclAny() {
 		if (oclAny == null) {
-			oclAny = (OCLAnyType) getStdlibType(AnyType.SINGLETON_NAME);
+			oclAny = getStdlibType(AnyType.SINGLETON_NAME);
 		}
 		return oclAny;
 	}
@@ -451,9 +420,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLInvalidType getOclInvalid() {
+	public OCLConcreteType getOclInvalid() {
 		if (oclInvalid == null) {
-			oclInvalid = (OCLInvalidType) getStdlibType(InvalidType.SINGLETON_NAME);
+			oclInvalid = getStdlibType(InvalidType.SINGLETON_NAME);
 		}
 		return oclInvalid;
 	}
@@ -463,7 +432,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getOclMessage() {
+	public OCLConcreteType getOclMessage() {
 		if (oclMessage == null) {
 			oclMessage = getStdlibType(MessageType.SINGLETON_NAME);
 		}
@@ -475,9 +444,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLTupleType getOclTuple() {
+	public OCLConcreteType getOclTuple() {
 		if (oclTuple == null) {
-			oclTuple = (OCLTupleType) getStdlibType(TupleType.SINGLETON_NAME);
+			oclTuple = getStdlibType(TupleType.SINGLETON_NAME);
 		}
 		return oclTuple;
 	}
@@ -487,7 +456,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getOclType() {
+	public OCLConcreteType getOclType() {
 		if (oclType == null) {
 			oclType = getStdlibType(TypeType.SINGLETON_NAME);
 		}
@@ -499,9 +468,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLVoidType getOclVoid() {
+	public OCLConcreteType getOclVoid() {
 		if (oclVoid == null) {
-			oclVoid = (OCLVoidType) getStdlibType(VoidType.SINGLETON_NAME);
+			oclVoid = getStdlibType(VoidType.SINGLETON_NAME);
 		}
 		return oclVoid;
 	}
@@ -511,9 +480,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLOrderedSetType getOrderedSet() {
+	public OCLConcreteType getOrderedSet() {
 		if (orderedSet == null) {
-			orderedSet = (OCLOrderedSetType) getStdlibType(OrderedSetType.SINGLETON_NAME);
+			orderedSet = getStdlibType(OrderedSetType.SINGLETON_NAME);
 		}
 		return orderedSet;
 	}
@@ -523,7 +492,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getReal() {
+	public OCLConcreteType getReal() {
 		if (real == null) {
 			real = getStdlibType(PrimitiveType.REAL_NAME);
 		}
@@ -535,9 +504,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLSequenceType getSequence() {
+	public OCLConcreteType getSequence() {
 		if (sequence == null) {
-			sequence = (OCLSequenceType) getStdlibType(SequenceType.SINGLETON_NAME);
+			sequence = getStdlibType(SequenceType.SINGLETON_NAME);
 		}
 		return sequence;
 	}
@@ -547,9 +516,9 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLSetType getSet() {
+	public OCLConcreteType getSet() {
 		if (set == null) {
-			set = (OCLSetType) getStdlibType(SetType.SINGLETON_NAME);
+			set = getStdlibType(SetType.SINGLETON_NAME);
 		}
 		return set;
 	}
@@ -559,7 +528,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getString() {
+	public OCLConcreteType getString() {
 		if (string == null) {
 			string = getStdlibType(PrimitiveType.STRING_NAME);
 		}
@@ -571,44 +540,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLTemplateParameterType getT() {
-		if (t == null) {
-			t = (OCLTemplateParameterType) getStdlibType(OCL_T);
-		}
-		return t;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<OCLTemplateParameterType> getTList() {
-		if (tList == null) {
-			tList = new EObjectEList<OCLTemplateParameterType>(OCLTemplateParameterType.class, this, LibraryPackage.OCL_ROOT__TLIST);
-			tList.add(getT());
-		}
-		return tList;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLTemplateParameterType getT2() {
-		if (t2 == null) {
-			t2 = (OCLTemplateParameterType) getStdlibType(OCL_T2);
-		}
-		return t2;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLType getUnlimitedNatural() {
+	public OCLConcreteType getUnlimitedNatural() {
 		if (unlimitedNatural == null) {
 			unlimitedNatural = getStdlibType(PrimitiveType.UNLIMITED_NATURAL_NAME);
 		}
@@ -658,236 +590,6 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	public OCLBagType getBagType(OCLType elementType) {
-		String collectionName = BagType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
-		OCLBagType collectionType = (OCLBagType) getType(collectionName);		
-		if (collectionType == null) {
-			collectionType = LibraryFactory.eINSTANCE.createOCLBagType();
-			collectionType.setName(collectionName);
-			collectionType.setElementType(elementType);
-			collectionType.getConforms().add(getBag());
-			getType().add(collectionType);
-		}
-		return collectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	public OCLCollectionType getCollectionType(OCLType elementType) {
-		String collectionName = CollectionType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
-		OCLCollectionType collectionType = (OCLCollectionType) getType(collectionName);		
-		if (collectionType == null) {
-			collectionType = LibraryFactory.eINSTANCE.createOCLCollectionType();
-			collectionType.setName(collectionName);
-			collectionType.setElementType(elementType);
-			collectionType.getConforms().add(getCollection());
-			getType().add(collectionType);
-		}
-		return collectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLType getLibraryTypeOfType(Object object) {
-		if (object instanceof PredefinedType<?>) {
-			if (object instanceof InvalidType<?>) {
-				return getOclInvalid();
-			}
-			else if (object instanceof VoidType<?>) {
-				return getOclVoid();
-			}
-			else if (object instanceof AnyType<?>) {
-				String name = ((AnyType<?>)object).getName();
-				if (OCL_T.equals(name)) {
-					return getT();
-				}
-				else if (OCL_T2.equals(name)) {
-					return getT2();
-				}
-				return getOclAny();
-			}
-			else if (object instanceof TypeType<?, ?>) {
-				return getOclType();
-			}
-			else if (object instanceof MessageType<?, ?, ?>) {
-				return getOclMessage();
-			}
-			else if (object instanceof PrimitiveType<?>) {
-				String name = ((PrimitiveType<?>)object).getName();
-				if (PrimitiveType.BOOLEAN_NAME.equals(name)) {
-					return getBoolean();
-				}
-				else if (PrimitiveType.INTEGER_NAME.equals(name)) {
-					return getInteger();
-				}
-				else if (PrimitiveType.REAL_NAME.equals(name)) {
-					return getReal();
-				}
-				else if (PrimitiveType.STRING_NAME.equals(name)) {
-					return getString();
-				}
-				else if (PrimitiveType.UNLIMITED_NATURAL_NAME.equals(name)) {
-					return getUnlimitedNatural();
-				}
-			}
-			else if (object instanceof CollectionType<?, ?>) {
-				Object elementType = ((CollectionType<?, ?>)object).getElementType();
-				OCLType oclElementType = getLibraryTypeOfType(elementType);
-				if (object instanceof BagType<?, ?>) {
-					return getBagType(oclElementType);
-				}
-				else if (object instanceof OrderedSetType<?, ?>) {
-					return getOrderedSetType(oclElementType);
-				}
-				else if (object instanceof SequenceType<?, ?>) {
-					return getSequenceType(oclElementType);
-				}
-				else if (object instanceof SetType<?, ?>) {
-					return getSetType(oclElementType);
-				}
-				else {
-					return getCollectionType(oclElementType);
-				}
-			}
-			else if (object instanceof TupleType<?, ?>) {
-				if (object instanceof OCLTupleType) {
-					return (OCLTupleType) object;
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLType getLibraryTypeOfValue(Object value, Object staticType) {
-		if (value instanceof Number) {
-			if (value instanceof BigInteger) {
-				return ((BigInteger)value).signum() >= 0 ? getUnlimitedNatural() : getInteger();
-			}
-			else if (value instanceof BigDecimal) {
-				return getReal();
-			}
-		}
-		else if (value instanceof Collection<?>) {
-			OCLType oclStaticType = getLibraryTypeOfType(staticType);
-			OCLType oclElementType = getOclAny();
-			if (oclStaticType instanceof OCLCollectionType) {
-				oclElementType = ((OCLCollectionType)oclStaticType).getElementType();
-			}
-			if (value instanceof LinkedHashSet<?>) {
-				return getOrderedSetType(oclElementType);
-			}
-			else if (value instanceof Set<?>) {
-				return getSetType(oclElementType);
-			}
-			else if (value instanceof List<?>) {
-				return getSequenceType(oclElementType);
-			}
-			else if (value instanceof Bag<?>) {
-				return getBagType(oclElementType);
-			}
-			else {
-				return getCollectionType(oclElementType);
-			}
-		}
-		else if (value instanceof Boolean) {
-			return getBoolean();
-		}
-		else if ((value instanceof String) || (value instanceof StringBuffer)) {
-			return getString();
-		}
-		else if (value instanceof TypeExp<?>) {
-			return getLibraryTypeOfType(((TypeExp<?>)value).getReferredType());
-		}		 
-		else if (value instanceof LiteralExp<?>) {
-			if (value instanceof InvalidLiteralExp<?>) {
-				return getOclInvalid();
-			}
-			else if (value instanceof NullLiteralExp<?>) {
-				return getOclVoid();
-			}
-			else if ((value instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)value).isUnlimited()) {			// FIXME This should not be needed
-				return getUnlimitedNatural();
-			}
-		}		 
-		return null;
-	}
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	public OCLOrderedSetType getOrderedSetType(OCLType elementType) {
-		String collectionName = OrderedSetType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
-		OCLOrderedSetType collectionType = (OCLOrderedSetType) getType(collectionName);		
-		if (collectionType == null) {
-			collectionType = LibraryFactory.eINSTANCE.createOCLOrderedSetType();
-			collectionType.setName(collectionName);
-			collectionType.setElementType(elementType);
-			collectionType.getConforms().add(getOrderedSet());
-			getType().add(collectionType);
-		}
-		return collectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	public OCLSequenceType getSequenceType(OCLType elementType) {
-		String collectionName = SequenceType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
-		OCLSequenceType collectionType = (OCLSequenceType) getType(collectionName);		
-		if (collectionType == null) {
-			collectionType = LibraryFactory.eINSTANCE.createOCLSequenceType();
-			collectionType.setName(collectionName);
-			collectionType.setElementType(elementType);
-			collectionType.getConforms().add(getSequence());
-			getType().add(collectionType);
-		}
-		return collectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("nls")
-	public OCLSetType getSetType(OCLType elementType) {
-		String collectionName = SetType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
-		OCLSetType collectionType = (OCLSetType) getType(collectionName);		
-		if (collectionType == null) {
-			collectionType = LibraryFactory.eINSTANCE.createOCLSetType();
-			collectionType.setName(collectionName);
-			collectionType.setElementType(elementType);
-			collectionType.getConforms().add(getSet());
-			getType().add(collectionType);
-		}
-		return collectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -905,6 +607,8 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return getEnumeration();
 			case LibraryPackage.OCL_ROOT__INTEGER:
 				return getInteger();
+			case LibraryPackage.OCL_ROOT__JAVA:
+				return getJava();
 			case LibraryPackage.OCL_ROOT__OCL_ANY:
 				return getOclAny();
 			case LibraryPackage.OCL_ROOT__OCL_INVALID:
@@ -927,12 +631,6 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return getSet();
 			case LibraryPackage.OCL_ROOT__STRING:
 				return getString();
-			case LibraryPackage.OCL_ROOT__T:
-				return getT();
-			case LibraryPackage.OCL_ROOT__TLIST:
-				return getTList();
-			case LibraryPackage.OCL_ROOT__T2:
-				return getT2();
 			case LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL:
 				return getUnlimitedNatural();
 			case LibraryPackage.OCL_ROOT__INVALID:
@@ -965,6 +663,8 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return enumeration != null;
 			case LibraryPackage.OCL_ROOT__INTEGER:
 				return integer != null;
+			case LibraryPackage.OCL_ROOT__JAVA:
+				return java != null;
 			case LibraryPackage.OCL_ROOT__OCL_ANY:
 				return oclAny != null;
 			case LibraryPackage.OCL_ROOT__OCL_INVALID:
@@ -987,12 +687,6 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return set != null;
 			case LibraryPackage.OCL_ROOT__STRING:
 				return string != null;
-			case LibraryPackage.OCL_ROOT__T:
-				return t != null;
-			case LibraryPackage.OCL_ROOT__TLIST:
-				return tList != null && !tList.isEmpty();
-			case LibraryPackage.OCL_ROOT__T2:
-				return t2 != null;
 			case LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL:
 				return unlimitedNatural != null;
 			case LibraryPackage.OCL_ROOT__INVALID:
@@ -1020,6 +714,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				case LibraryPackage.OCL_ROOT__COLLECTION: return LibraryPackage.OCL_CACHE__COLLECTION;
 				case LibraryPackage.OCL_ROOT__ENUMERATION: return LibraryPackage.OCL_CACHE__ENUMERATION;
 				case LibraryPackage.OCL_ROOT__INTEGER: return LibraryPackage.OCL_CACHE__INTEGER;
+				case LibraryPackage.OCL_ROOT__JAVA: return LibraryPackage.OCL_CACHE__JAVA;
 				case LibraryPackage.OCL_ROOT__OCL_ANY: return LibraryPackage.OCL_CACHE__OCL_ANY;
 				case LibraryPackage.OCL_ROOT__OCL_INVALID: return LibraryPackage.OCL_CACHE__OCL_INVALID;
 				case LibraryPackage.OCL_ROOT__OCL_MESSAGE: return LibraryPackage.OCL_CACHE__OCL_MESSAGE;
@@ -1031,9 +726,6 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				case LibraryPackage.OCL_ROOT__SEQUENCE: return LibraryPackage.OCL_CACHE__SEQUENCE;
 				case LibraryPackage.OCL_ROOT__SET: return LibraryPackage.OCL_CACHE__SET;
 				case LibraryPackage.OCL_ROOT__STRING: return LibraryPackage.OCL_CACHE__STRING;
-				case LibraryPackage.OCL_ROOT__T: return LibraryPackage.OCL_CACHE__T;
-				case LibraryPackage.OCL_ROOT__TLIST: return LibraryPackage.OCL_CACHE__TLIST;
-				case LibraryPackage.OCL_ROOT__T2: return LibraryPackage.OCL_CACHE__T2;
 				case LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL: return LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL;
 				case LibraryPackage.OCL_ROOT__INVALID: return LibraryPackage.OCL_CACHE__INVALID;
 				case LibraryPackage.OCL_ROOT__NULL: return LibraryPackage.OCL_CACHE__NULL;
@@ -1059,6 +751,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				case LibraryPackage.OCL_CACHE__COLLECTION: return LibraryPackage.OCL_ROOT__COLLECTION;
 				case LibraryPackage.OCL_CACHE__ENUMERATION: return LibraryPackage.OCL_ROOT__ENUMERATION;
 				case LibraryPackage.OCL_CACHE__INTEGER: return LibraryPackage.OCL_ROOT__INTEGER;
+				case LibraryPackage.OCL_CACHE__JAVA: return LibraryPackage.OCL_ROOT__JAVA;
 				case LibraryPackage.OCL_CACHE__OCL_ANY: return LibraryPackage.OCL_ROOT__OCL_ANY;
 				case LibraryPackage.OCL_CACHE__OCL_INVALID: return LibraryPackage.OCL_ROOT__OCL_INVALID;
 				case LibraryPackage.OCL_CACHE__OCL_MESSAGE: return LibraryPackage.OCL_ROOT__OCL_MESSAGE;
@@ -1070,9 +763,6 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				case LibraryPackage.OCL_CACHE__SEQUENCE: return LibraryPackage.OCL_ROOT__SEQUENCE;
 				case LibraryPackage.OCL_CACHE__SET: return LibraryPackage.OCL_ROOT__SET;
 				case LibraryPackage.OCL_CACHE__STRING: return LibraryPackage.OCL_ROOT__STRING;
-				case LibraryPackage.OCL_CACHE__T: return LibraryPackage.OCL_ROOT__T;
-				case LibraryPackage.OCL_CACHE__TLIST: return LibraryPackage.OCL_ROOT__TLIST;
-				case LibraryPackage.OCL_CACHE__T2: return LibraryPackage.OCL_ROOT__T2;
 				case LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL: return LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL;
 				case LibraryPackage.OCL_CACHE__INVALID: return LibraryPackage.OCL_ROOT__INVALID;
 				case LibraryPackage.OCL_CACHE__NULL: return LibraryPackage.OCL_ROOT__NULL;
@@ -1085,7 +775,7 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 
 	private OCLPackage stdlibPackage = null;
 	
-	private OCLType getStdlibType(String name) {
+	private OCLConcreteType getStdlibType(String name) {
 		if (stdlibPackage == null) {
 			stdlibPackage = getPackage(OCL);
 		}
@@ -1094,21 +784,4 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 		}
 		return null;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLType getType(String name) {
-		if (type != null) {
-			for (OCLType aType : type) {
-				if (name.equals(aType.getName())) {
-					return aType;
-				}
-			}
-		}
-		return null;
-	}
-
 } //LibraryRootImpl

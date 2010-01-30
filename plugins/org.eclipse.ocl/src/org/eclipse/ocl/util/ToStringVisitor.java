@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.10.6.2 2010/01/24 12:26:03 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.10.6.3 2010/01/30 07:49:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -121,25 +121,6 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	public static <C, O, P, EL, PM, S, COA, SSA, CT>
 	ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT> getInstance(
 			TypedElement<C> element) {
-		
-		return new ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>(
-				(Environment<?, C, O, P, EL, PM, S, COA, SSA, CT, ?, ?>)
-					Environment.Registry.INSTANCE.getEnvironmentFor(element));
-	}
-	
-	/**
-	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
-	 * expression or other typed element.
-	 * 
-	 * @param element an OCL expression or other typed element such as a variable
-	 * 
-	 * @return the corresponding instance
-	 * @since 3.0
-	 */
-	@SuppressWarnings("unchecked")
-	public static <C, O, P, EL, PM, S, COA, SSA, CT>
-	ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT> getInstance(
-			ExpressionInOCL<C, PM> element) {
 		
 		return new ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>(
 				(Environment<?, C, O, P, EL, PM, S, COA, SSA, CT, ?, ?>)

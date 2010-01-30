@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedType.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
+ * $Id: MergedType.java,v 1.1.2.3 2010/01/30 07:49:33 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.library.OCLElement;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeParameter;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
@@ -164,6 +165,14 @@ public interface MergedType extends OCLElement {
 	void setInv(ExpressionInOCL<?, ?> value);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<OCLTypeParameter> getTypeParameter();
+
+	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -220,7 +229,9 @@ public interface MergedType extends OCLElement {
 
 	void addProperty(MergedProperty mergedProperty);
 	
-	Set<MergedOperation> getConformingOperations(String name, OCLType[] oclArguments);
+	Set<MergedOperation> getConformingOperations(boolean isStatic, String name, int argumentCount);
+	
+//	Set<MergedOperation> getConformingOperations(String name, OCLType[] staticArgumentTypes, OCLType contextType);
 	
 	MergedProperty getConformingProperty(String name);
 

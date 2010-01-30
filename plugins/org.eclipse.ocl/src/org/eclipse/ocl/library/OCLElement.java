@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLElement.java,v 1.1.2.3 2010/01/24 07:40:54 ewillink Exp $
+ * $Id: OCLElement.java,v 1.1.2.4 2010/01/30 07:49:20 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -46,8 +46,26 @@ public interface OCLElement extends EObject {
 	 * @model kind="operation"
 	 * @generated
 	 */
+	String getQualifiedSignature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean isTypeParameter(OCLTypeParameter typeParameter);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
 	OCLLibrary getLibrary();
 	
 	void appendName(StringBuffer s);
 	void appendQualifiedName(StringBuffer s);
+	void appendQualifiedSignature(StringBuffer s);
+	void appendSignature(StringBuffer s);
 } // OCLElement

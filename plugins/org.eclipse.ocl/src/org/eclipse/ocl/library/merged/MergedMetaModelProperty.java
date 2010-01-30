@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedMetaModelProperty.java,v 1.1.2.1 2010/01/24 07:41:03 ewillink Exp $
+ * $Id: MergedMetaModelProperty.java,v 1.1.2.2 2010/01/30 07:49:34 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
-import org.eclipse.ocl.library.OCLMetaModelProperty;
 
 /**
  * <!-- begin-user-doc -->

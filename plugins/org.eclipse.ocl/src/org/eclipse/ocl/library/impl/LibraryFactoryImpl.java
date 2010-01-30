@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.9 2010/01/24 07:41:14 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.10 2010/01/30 07:49:31 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -12,28 +12,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.library.*;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLAnyType;
-import org.eclipse.ocl.library.OCLBagType;
-import org.eclipse.ocl.library.OCLCollectionType;
+import org.eclipse.ocl.library.OCLBoundType;
+import org.eclipse.ocl.library.OCLConcreteType;
+import org.eclipse.ocl.library.OCLDeprecatedType;
 import org.eclipse.ocl.library.OCLInvalidType;
+import org.eclipse.ocl.library.OCLIterator;
+import org.eclipse.ocl.library.OCLJavaType;
 import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
-import org.eclipse.ocl.library.OCLNonOrderedCollectionType;
-import org.eclipse.ocl.library.OCLNonUniqueCollectionType;
-import org.eclipse.ocl.library.OCLOrderedCollectionType;
-import org.eclipse.ocl.library.OCLOrderedSetType;
 import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLRoot;
-import org.eclipse.ocl.library.OCLSequenceType;
-import org.eclipse.ocl.library.OCLSetType;
-import org.eclipse.ocl.library.OCLTemplateParameterType;
-import org.eclipse.ocl.library.OCLTupleType;
-import org.eclipse.ocl.library.OCLType;
-import org.eclipse.ocl.library.OCLUniqueCollectionType;
+import org.eclipse.ocl.library.OCLTypeBinding;
+import org.eclipse.ocl.library.OCLTypeParameter;
 import org.eclipse.ocl.library.OCLVoidType;
 
 /**
@@ -81,26 +77,21 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LibraryPackage.OCL_LIBRARY: return createOCLLibrary();
 			case LibraryPackage.OCL_ANY_TYPE: return createOCLAnyType();
-			case LibraryPackage.OCL_BAG_TYPE: return createOCLBagType();
-			case LibraryPackage.OCL_COLLECTION_TYPE: return createOCLCollectionType();
+			case LibraryPackage.OCL_BOUND_TYPE: return createOCLBoundType();
+			case LibraryPackage.OCL_CONCRETE_TYPE: return createOCLConcreteType();
+			case LibraryPackage.OCL_DEPRECATED_TYPE: return createOCLDeprecatedType();
 			case LibraryPackage.OCL_INVALID_TYPE: return createOCLInvalidType();
+			case LibraryPackage.OCL_ITERATOR: return createOCLIterator();
+			case LibraryPackage.OCL_JAVA_TYPE: return createOCLJavaType();
+			case LibraryPackage.OCL_LIBRARY: return createOCLLibrary();
 			case LibraryPackage.OCL_LIBRARY_OPERATION: return createOCLLibraryOperation();
 			case LibraryPackage.OCL_LIBRARY_PROPERTY: return createOCLLibraryProperty();
-			case LibraryPackage.OCL_NON_ORDERED_COLLECTION_TYPE: return createOCLNonOrderedCollectionType();
-			case LibraryPackage.OCL_NON_UNIQUE_COLLECTION_TYPE: return createOCLNonUniqueCollectionType();
-			case LibraryPackage.OCL_ORDERED_COLLECTION_TYPE: return createOCLOrderedCollectionType();
-			case LibraryPackage.OCL_ORDERED_SET_TYPE: return createOCLOrderedSetType();
 			case LibraryPackage.OCL_PACKAGE: return createOCLPackage();
 			case LibraryPackage.OCL_PARAMETER: return createOCLParameter();
-			case LibraryPackage.OCL_TEMPLATE_PARAMETER_TYPE: return createOCLTemplateParameterType();
 			case LibraryPackage.OCL_ROOT: return createOCLRoot();
-			case LibraryPackage.OCL_SEQUENCE_TYPE: return createOCLSequenceType();
-			case LibraryPackage.OCL_SET_TYPE: return createOCLSetType();
-			case LibraryPackage.OCL_TUPLE_TYPE: return createOCLTupleType();
-			case LibraryPackage.OCL_TYPE: return createOCLType();
-			case LibraryPackage.OCL_UNIQUE_COLLECTION_TYPE: return createOCLUniqueCollectionType();
+			case LibraryPackage.OCL_TYPE_BINDING: return createOCLTypeBinding();
+			case LibraryPackage.OCL_TYPE_PARAMETER: return createOCLTypeParameter();
 			case LibraryPackage.OCL_VOID_TYPE: return createOCLVoidType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -138,16 +129,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLLibrary createOCLLibrary() {
-		OCLLibraryImpl oclLibrary = new OCLLibraryImpl();
-		return oclLibrary;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OCLAnyType createOCLAnyType() {
 		OCLAnyTypeImpl oclAnyType = new OCLAnyTypeImpl();
 		return oclAnyType;
@@ -158,9 +139,9 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLBagType createOCLBagType() {
-		OCLBagTypeImpl oclBagType = new OCLBagTypeImpl();
-		return oclBagType;
+	public OCLLibrary createOCLLibrary() {
+		OCLLibraryImpl oclLibrary = new OCLLibraryImpl();
+		return oclLibrary;
 	}
 
 	/**
@@ -168,9 +149,29 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLCollectionType createOCLCollectionType() {
-		OCLCollectionTypeImpl oclCollectionType = new OCLCollectionTypeImpl();
-		return oclCollectionType;
+	public OCLBoundType createOCLBoundType() {
+		OCLBoundTypeImpl oclBoundType = new OCLBoundTypeImpl();
+		return oclBoundType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLConcreteType createOCLConcreteType() {
+		OCLConcreteTypeImpl oclConcreteType = new OCLConcreteTypeImpl();
+		return oclConcreteType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLDeprecatedType createOCLDeprecatedType() {
+		OCLDeprecatedTypeImpl oclDeprecatedType = new OCLDeprecatedTypeImpl();
+		return oclDeprecatedType;
 	}
 
 	/**
@@ -181,6 +182,26 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public OCLInvalidType createOCLInvalidType() {
 		OCLInvalidTypeImpl oclInvalidType = new OCLInvalidTypeImpl();
 		return oclInvalidType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLIterator createOCLIterator() {
+		OCLIteratorImpl oclIterator = new OCLIteratorImpl();
+		return oclIterator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLJavaType createOCLJavaType() {
+		OCLJavaTypeImpl oclJavaType = new OCLJavaTypeImpl();
+		return oclJavaType;
 	}
 
 	/**
@@ -208,46 +229,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLNonOrderedCollectionType createOCLNonOrderedCollectionType() {
-		OCLNonOrderedCollectionTypeImpl oclNonOrderedCollectionType = new OCLNonOrderedCollectionTypeImpl();
-		return oclNonOrderedCollectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLNonUniqueCollectionType createOCLNonUniqueCollectionType() {
-		OCLNonUniqueCollectionTypeImpl oclNonUniqueCollectionType = new OCLNonUniqueCollectionTypeImpl();
-		return oclNonUniqueCollectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLOrderedCollectionType createOCLOrderedCollectionType() {
-		OCLOrderedCollectionTypeImpl oclOrderedCollectionType = new OCLOrderedCollectionTypeImpl();
-		return oclOrderedCollectionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLOrderedSetType createOCLOrderedSetType() {
-		OCLOrderedSetTypeImpl oclOrderedSetType = new OCLOrderedSetTypeImpl();
-		return oclOrderedSetType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OCLPackage createOCLPackage() {
 		OCLPackageImpl oclPackage = new OCLPackageImpl();
 		return oclPackage;
@@ -268,16 +249,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLTemplateParameterType createOCLTemplateParameterType() {
-		OCLTemplateParameterTypeImpl oclTemplateParameterType = new OCLTemplateParameterTypeImpl();
-		return oclTemplateParameterType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OCLRoot createOCLRoot() {
 		OCLRootImpl oclRoot = new OCLRootImpl();
 		return oclRoot;
@@ -288,9 +259,9 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLTupleType createOCLTupleType() {
-		OCLTupleTypeImpl oclTupleType = new OCLTupleTypeImpl();
-		return oclTupleType;
+	public OCLTypeBinding createOCLTypeBinding() {
+		OCLTypeBindingImpl oclTypeBinding = new OCLTypeBindingImpl();
+		return oclTypeBinding;
 	}
 
 	/**
@@ -298,19 +269,9 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLType createOCLType() {
-		OCLTypeImpl oclType = new OCLTypeImpl();
-		return oclType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLUniqueCollectionType createOCLUniqueCollectionType() {
-		OCLUniqueCollectionTypeImpl oclUniqueCollectionType = new OCLUniqueCollectionTypeImpl();
-		return oclUniqueCollectionType;
+	public OCLTypeParameter createOCLTypeParameter() {
+		OCLTypeParameterImpl oclTypeParameter = new OCLTypeParameterImpl();
+		return oclTypeParameter;
 	}
 
 	/**
@@ -330,26 +291,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 */
 	public LibraryPackage getLibraryPackage() {
 		return (LibraryPackage)getEPackage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLSequenceType createOCLSequenceType() {
-		OCLSequenceTypeImpl oclSequenceType = new OCLSequenceTypeImpl();
-		return oclSequenceType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLSetType createOCLSetType() {
-		OCLSetTypeImpl oclSetType = new OCLSetTypeImpl();
-		return oclSetType;
 	}
 
 	/**

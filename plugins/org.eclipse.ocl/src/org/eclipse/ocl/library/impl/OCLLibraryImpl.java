@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryImpl.java,v 1.1.2.1 2010/01/24 07:41:15 ewillink Exp $
+ * $Id: OCLLibraryImpl.java,v 1.1.2.2 2010/01/30 07:49:28 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.library.ILibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLLibrary;
-import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +57,7 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLType> type;
+	protected EList<OCLTypeValue> type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,9 +95,9 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OCLType> getType() {
+	public EList<OCLTypeValue> getType() {
 		if (type == null) {
-			type = new EObjectContainmentEList<OCLType>(OCLType.class, this, LibraryPackage.OCL_LIBRARY__TYPE);
+			type = new EObjectContainmentEList<OCLTypeValue>(OCLTypeValue.class, this, LibraryPackage.OCL_LIBRARY__TYPE);
 		}
 		return type;
 	}
@@ -118,6 +118,23 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 		}
 		return null;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLTypeValue getType(String name) {
+		if (type != null) {
+			for (OCLTypeValue aType : type) {
+				if (name.equals(aType.getName())) {
+					return aType;
+				}
+			}
+		}
+		return null;
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -197,7 +214,7 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 				return;
 			case LibraryPackage.OCL_LIBRARY__TYPE:
 				getType().clear();
-				getType().addAll((Collection<? extends OCLType>)newValue);
+				getType().addAll((Collection<? extends OCLTypeValue>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

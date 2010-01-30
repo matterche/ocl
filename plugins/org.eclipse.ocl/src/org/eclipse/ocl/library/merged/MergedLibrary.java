@@ -2,11 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedLibrary.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
+ * $Id: MergedLibrary.java,v 1.1.2.3 2010/01/30 07:49:35 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
-
-import java.util.Set;
 
 import org.eclipse.ocl.library.OCLCache;
 import org.eclipse.ocl.library.OCLNamedElement;
@@ -58,9 +56,53 @@ public interface MergedLibrary extends OCLNamedElement, OCLCache {
 	 */
 	void setBaseLibrary(OCLRoot value);
 
-	Set<MergedOperation> getConformingOperations(OCLType dynamicType, String name, OCLType[] oclArguments);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLBoundCollectionType getBagType(OCLType elementType);
 
-	MergedProperty getConformingProperty(OCLType sourceType, String name);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLType getLibraryTypeOfType(Object object);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLType getLibraryTypeOfValue(Object value, Object staticType);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLBoundCollectionType getOrderedSetType(OCLType elementType);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLBoundCollectionType getSequenceType(OCLType elementType);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLBoundCollectionType getSetType(OCLType elementType);
 	
 	MergedType getMergedType(OCLType superType);
 

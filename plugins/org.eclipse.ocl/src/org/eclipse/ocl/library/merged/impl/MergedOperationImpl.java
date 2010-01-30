@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedOperationImpl.java,v 1.1.2.1 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: MergedOperationImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -13,6 +13,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeBinding;
+import org.eclipse.ocl.library.OCLTypeParameter;
+import org.eclipse.ocl.library.impl.OCLConcreteTypeImpl;
 import org.eclipse.ocl.library.impl.OCLElementImpl;
 import org.eclipse.ocl.library.merged.MergedOperation;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
@@ -117,6 +120,31 @@ public abstract class MergedOperationImpl extends OCLElementImpl implements Merg
 	 * @generated NOT
 	 */
 	public abstract OCLType getType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<OCLTypeBinding> getTypeBinding() {
+		return OCLConcreteTypeImpl.noTypeBindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<OCLTypeParameter> getTypeParameter() {
+		return OCLConcreteTypeImpl.noTypeParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract boolean isStatic();
 
 	/**
 	 * <!-- begin-user-doc -->

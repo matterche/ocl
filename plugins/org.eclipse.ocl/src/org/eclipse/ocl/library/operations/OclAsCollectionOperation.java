@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAsCollectionOperation.java,v 1.1.2.2 2010/01/24 07:41:11 ewillink Exp $
+ * $Id: OclAsCollectionOperation.java,v 1.1.2.3 2010/01/30 07:49:39 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -35,7 +35,7 @@ public class OclAsCollectionOperation extends AbstractOperation
 			return null;
 		}
 		if (isNull(sourceVal)) {
-			return CollectionUtil.createNewBag();
+			return null;
 		}
 		if (sourceVal instanceof Collection<?>) {
 			return sourceVal;

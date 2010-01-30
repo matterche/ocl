@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedLibraryPropertyImpl.java,v 1.1.2.1 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: MergedLibraryPropertyImpl.java,v 1.1.2.2 2010/01/30 07:49:16 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -220,7 +220,7 @@ public class MergedLibraryPropertyImpl extends MergedPropertyImpl implements Mer
 
 	@Override
 	public OCLType getType() {
-		return property != null ? property.getType() : null;
+		return property != null ? property.getResolvedType(null) : null;
 	}
 
 } //MergedPropertyReferenceImpl

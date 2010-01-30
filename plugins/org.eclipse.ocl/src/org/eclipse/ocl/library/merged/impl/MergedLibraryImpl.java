@@ -2,33 +2,55 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedLibraryImpl.java,v 1.1.2.1 2010/01/24 07:41:12 ewillink Exp $
+ * $Id: MergedLibraryImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.LiteralExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
+import org.eclipse.ocl.expressions.TypeExp;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.library.CompatibilityOCLLibrary;
+import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLAnyType;
-import org.eclipse.ocl.library.OCLBagType;
 import org.eclipse.ocl.library.OCLCache;
-import org.eclipse.ocl.library.OCLCollectionType;
-import org.eclipse.ocl.library.OCLInvalidType;
-import org.eclipse.ocl.library.OCLOrderedSetType;
+import org.eclipse.ocl.library.OCLConcreteType;
+import org.eclipse.ocl.library.OCLJavaType;
 import org.eclipse.ocl.library.OCLRoot;
-import org.eclipse.ocl.library.OCLSequenceType;
-import org.eclipse.ocl.library.OCLSetType;
-import org.eclipse.ocl.library.OCLTemplateParameterType;
-import org.eclipse.ocl.library.OCLTupleType;
 import org.eclipse.ocl.library.OCLType;
-import org.eclipse.ocl.library.OCLVoidType;
+import org.eclipse.ocl.library.OCLTypeBinding;
 import org.eclipse.ocl.library.impl.OCLNamedElementImpl;
 import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.merged.OCLBoundCollectionType;
+import org.eclipse.ocl.library.merged.OCLMergedLibraryFactory;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
+import org.eclipse.ocl.types.AnyType;
+import org.eclipse.ocl.types.BagType;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.types.InvalidType;
+import org.eclipse.ocl.types.MessageType;
+import org.eclipse.ocl.types.OrderedSetType;
+import org.eclipse.ocl.types.PrimitiveType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.types.TypeType;
+import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.util.Bag;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,6 +66,7 @@ import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getCollection <em>Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getEnumeration <em>Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getInteger <em>Integer</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getJava <em>Java</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclAny <em>Ocl Any</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclInvalid <em>Ocl Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclMessage <em>Ocl Message</em>}</li>
@@ -55,9 +78,6 @@ import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getSet <em>Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getString <em>String</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getT <em>T</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getTList <em>TList</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getT2 <em>T2</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getUnlimitedNatural <em>Unlimited Natural</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getInvalid <em>Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getNull <em>Null</em>}</li>
@@ -77,7 +97,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLBagType bag;
+	protected OCLConcreteType bag;
 
 	/**
 	 * The cached value of the '{@link #getBoolean() <em>Boolean</em>}' reference.
@@ -87,7 +107,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType boolean_;
+	protected OCLConcreteType boolean_;
 
 	/**
 	 * The cached value of the '{@link #getClassifier() <em>Classifier</em>}' reference.
@@ -97,7 +117,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType classifier;
+	protected OCLConcreteType classifier;
 
 	/**
 	 * The cached value of the '{@link #getCollection() <em>Collection</em>}' reference.
@@ -107,7 +127,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLCollectionType collection;
+	protected OCLConcreteType collection;
 
 	/**
 	 * The cached value of the '{@link #getEnumeration() <em>Enumeration</em>}' reference.
@@ -117,7 +137,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType enumeration;
+	protected OCLConcreteType enumeration;
 
 	/**
 	 * The cached value of the '{@link #getInteger() <em>Integer</em>}' reference.
@@ -127,7 +147,17 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType integer;
+	protected OCLConcreteType integer;
+
+	/**
+	 * The cached value of the '{@link #getJava() <em>Java</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJava()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLJavaType java;
 
 	/**
 	 * The cached value of the '{@link #getOclAny() <em>Ocl Any</em>}' reference.
@@ -137,7 +167,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLAnyType oclAny;
+	protected OCLConcreteType oclAny;
 
 	/**
 	 * The cached value of the '{@link #getOclInvalid() <em>Ocl Invalid</em>}' reference.
@@ -147,7 +177,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLInvalidType oclInvalid;
+	protected OCLConcreteType oclInvalid;
 
 	/**
 	 * The cached value of the '{@link #getOclMessage() <em>Ocl Message</em>}' reference.
@@ -157,7 +187,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType oclMessage;
+	protected OCLConcreteType oclMessage;
 
 	/**
 	 * The cached value of the '{@link #getOclTuple() <em>Ocl Tuple</em>}' reference.
@@ -167,7 +197,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLTupleType oclTuple;
+	protected OCLConcreteType oclTuple;
 
 	/**
 	 * The cached value of the '{@link #getOclType() <em>Ocl Type</em>}' reference.
@@ -177,7 +207,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType oclType;
+	protected OCLConcreteType oclType;
 
 	/**
 	 * The cached value of the '{@link #getOclVoid() <em>Ocl Void</em>}' reference.
@@ -187,7 +217,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLVoidType oclVoid;
+	protected OCLConcreteType oclVoid;
 
 	/**
 	 * The cached value of the '{@link #getOrderedSet() <em>Ordered Set</em>}' reference.
@@ -197,7 +227,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLOrderedSetType orderedSet;
+	protected OCLConcreteType orderedSet;
 
 	/**
 	 * The cached value of the '{@link #getReal() <em>Real</em>}' reference.
@@ -207,7 +237,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType real;
+	protected OCLConcreteType real;
 
 	/**
 	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
@@ -217,7 +247,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLSequenceType sequence;
+	protected OCLConcreteType sequence;
 
 	/**
 	 * The cached value of the '{@link #getSet() <em>Set</em>}' reference.
@@ -227,7 +257,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLSetType set;
+	protected OCLConcreteType set;
 
 	/**
 	 * The cached value of the '{@link #getString() <em>String</em>}' reference.
@@ -237,37 +267,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType string;
-
-	/**
-	 * The cached value of the '{@link #getT() <em>T</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getT()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLTemplateParameterType t;
-
-	/**
-	 * The cached value of the '{@link #getTList() <em>TList</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTList()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OCLTemplateParameterType> tList;
-
-	/**
-	 * The cached value of the '{@link #getT2() <em>T2</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getT2()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLTemplateParameterType t2;
+	protected OCLConcreteType string;
 
 	/**
 	 * The cached value of the '{@link #getUnlimitedNatural() <em>Unlimited Natural</em>}' reference.
@@ -277,7 +277,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLType unlimitedNatural;
+	protected OCLConcreteType unlimitedNatural;
 
 	/**
 	 * The cached value of the '{@link #getInvalid() <em>Invalid</em>}' reference.
@@ -343,7 +343,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLBagType getBag() {
+	public OCLConcreteType getBag() {
 		if (bag == null) {
 			bag = baseLibrary.getBag();
 		}
@@ -355,7 +355,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getBoolean() {
+	public OCLConcreteType getBoolean() {
 		if (boolean_ == null) {
 			boolean_ = baseLibrary.getBoolean();
 		}
@@ -367,7 +367,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getClassifier() {
+	public OCLConcreteType getClassifier() {
 		if (classifier == null) {
 			classifier = baseLibrary.getClassifier();
 		}
@@ -379,7 +379,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLCollectionType getCollection() {
+	public OCLConcreteType getCollection() {
 		if (collection == null) {
 			collection = baseLibrary.getCollection();
 		}
@@ -391,7 +391,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getEnumeration() {
+	public OCLConcreteType getEnumeration() {
 		if (enumeration == null) {
 			enumeration = baseLibrary.getEnumeration();
 		}
@@ -403,7 +403,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getInteger() {
+	public OCLConcreteType getInteger() {
 		if (integer == null) {
 			integer = baseLibrary.getInteger();
 		}
@@ -415,7 +415,19 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLAnyType getOclAny() {
+	public OCLJavaType getJava() {
+		if (java == null) {
+			java = baseLibrary.getJava();
+		}
+		return java;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLConcreteType getOclAny() {
 		if (oclAny == null) {
 			oclAny = baseLibrary.getOclAny();
 		}
@@ -427,7 +439,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLInvalidType getOclInvalid() {
+	public OCLConcreteType getOclInvalid() {
 		if (oclInvalid == null) {
 			oclInvalid = baseLibrary.getOclInvalid();
 		}
@@ -439,7 +451,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getOclMessage() {
+	public OCLConcreteType getOclMessage() {
 		if (oclMessage == null) {
 			oclMessage = baseLibrary.getOclMessage();
 		}
@@ -451,7 +463,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLTupleType getOclTuple() {
+	public OCLConcreteType getOclTuple() {
 		if (oclTuple == null) {
 			oclTuple = baseLibrary.getOclTuple();
 		}
@@ -463,7 +475,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getOclType() {
+	public OCLConcreteType getOclType() {
 		if (oclType == null) {
 			oclType = baseLibrary.getOclType();
 		}
@@ -475,7 +487,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLVoidType getOclVoid() {
+	public OCLConcreteType getOclVoid() {
 		if (oclVoid == null) {
 			oclVoid = baseLibrary.getOclVoid();
 		}
@@ -487,7 +499,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLOrderedSetType getOrderedSet() {
+	public OCLConcreteType getOrderedSet() {
 		if (orderedSet == null) {
 			orderedSet = baseLibrary.getOrderedSet();
 		}
@@ -499,7 +511,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getReal() {
+	public OCLConcreteType getReal() {
 		if (real == null) {
 			real = baseLibrary.getReal();
 		}
@@ -511,7 +523,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLSequenceType getSequence() {
+	public OCLConcreteType getSequence() {
 		if (sequence == null) {
 			sequence = baseLibrary.getSequence();
 		}
@@ -523,7 +535,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLSetType getSet() {
+	public OCLConcreteType getSet() {
 		if (set == null) {
 			set = baseLibrary.getSet();
 		}
@@ -535,7 +547,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getString() {
+	public OCLConcreteType getString() {
 		if (string == null) {
 			string = baseLibrary.getString();
 		}
@@ -546,44 +558,44 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
-	 */
+	 *
 	public OCLTemplateParameterType getT() {
 		if (t == null) {
 			t = baseLibrary.getT();
 		}
 		return t;
-	}
+	} */
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
-	 */
+	 *
 	public EList<OCLTemplateParameterType> getTList() {
 		if (tList == null) {
 			tList = baseLibrary.getTList();
 		}
 		return tList;
-	}
+	} */
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
-	 */
+	 *
 	public OCLTemplateParameterType getT2() {
 		if (t2 == null) {
 			t2 = baseLibrary.getT2();
 		}
 		return t2;
-	}
+	} */
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getUnlimitedNatural() {
+	public OCLConcreteType getUnlimitedNatural() {
 		if (unlimitedNatural == null) {
 			unlimitedNatural = baseLibrary.getUnlimitedNatural();
 		}
@@ -667,60 +679,6 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLBagType getBagType(OCLType elementType) {
-		return baseLibrary.getBagType(elementType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLType getLibraryTypeOfType(Object object) {
-		return baseLibrary.getLibraryTypeOfType(object);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLType getLibraryTypeOfValue(Object value, Object staticType) {
-		return baseLibrary.getLibraryTypeOfValue(value, staticType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLOrderedSetType getOrderedSetType(OCLType elementType) {
-		return baseLibrary.getOrderedSetType(elementType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLSequenceType getSequenceType(OCLType elementType) {
-		return baseLibrary.getSequenceType(elementType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLSetType getSetType(OCLType elementType) {
-		return baseLibrary.getSetType(elementType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -738,6 +696,8 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return getEnumeration();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__INTEGER:
 				return getInteger();
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA:
+				return getJava();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY:
 				return getOclAny();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID:
@@ -760,12 +720,6 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return getSet();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__STRING:
 				return getString();
-			case OCLMergedLibraryPackage.MERGED_LIBRARY__T:
-				return getT();
-			case OCLMergedLibraryPackage.MERGED_LIBRARY__TLIST:
-				return getTList();
-			case OCLMergedLibraryPackage.MERGED_LIBRARY__T2:
-				return getT2();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL:
 				return getUnlimitedNatural();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID:
@@ -831,6 +785,8 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return enumeration != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__INTEGER:
 				return integer != null;
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA:
+				return java != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY:
 				return oclAny != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID:
@@ -853,12 +809,6 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return set != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__STRING:
 				return string != null;
-			case OCLMergedLibraryPackage.MERGED_LIBRARY__T:
-				return t != null;
-			case OCLMergedLibraryPackage.MERGED_LIBRARY__TLIST:
-				return tList != null && !tList.isEmpty();
-			case OCLMergedLibraryPackage.MERGED_LIBRARY__T2:
-				return t2 != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL:
 				return unlimitedNatural != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID:
@@ -888,6 +838,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__COLLECTION: return LibraryPackage.OCL_CACHE__COLLECTION;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__ENUMERATION: return LibraryPackage.OCL_CACHE__ENUMERATION;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__INTEGER: return LibraryPackage.OCL_CACHE__INTEGER;
+				case OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA: return LibraryPackage.OCL_CACHE__JAVA;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY: return LibraryPackage.OCL_CACHE__OCL_ANY;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID: return LibraryPackage.OCL_CACHE__OCL_INVALID;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_MESSAGE: return LibraryPackage.OCL_CACHE__OCL_MESSAGE;
@@ -899,9 +850,6 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__SEQUENCE: return LibraryPackage.OCL_CACHE__SEQUENCE;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__SET: return LibraryPackage.OCL_CACHE__SET;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__STRING: return LibraryPackage.OCL_CACHE__STRING;
-				case OCLMergedLibraryPackage.MERGED_LIBRARY__T: return LibraryPackage.OCL_CACHE__T;
-				case OCLMergedLibraryPackage.MERGED_LIBRARY__TLIST: return LibraryPackage.OCL_CACHE__TLIST;
-				case OCLMergedLibraryPackage.MERGED_LIBRARY__T2: return LibraryPackage.OCL_CACHE__T2;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL: return LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID: return LibraryPackage.OCL_CACHE__INVALID;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__NULL: return LibraryPackage.OCL_CACHE__NULL;
@@ -927,6 +875,7 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				case LibraryPackage.OCL_CACHE__COLLECTION: return OCLMergedLibraryPackage.MERGED_LIBRARY__COLLECTION;
 				case LibraryPackage.OCL_CACHE__ENUMERATION: return OCLMergedLibraryPackage.MERGED_LIBRARY__ENUMERATION;
 				case LibraryPackage.OCL_CACHE__INTEGER: return OCLMergedLibraryPackage.MERGED_LIBRARY__INTEGER;
+				case LibraryPackage.OCL_CACHE__JAVA: return OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA;
 				case LibraryPackage.OCL_CACHE__OCL_ANY: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY;
 				case LibraryPackage.OCL_CACHE__OCL_INVALID: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID;
 				case LibraryPackage.OCL_CACHE__OCL_MESSAGE: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_MESSAGE;
@@ -938,9 +887,6 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				case LibraryPackage.OCL_CACHE__SEQUENCE: return OCLMergedLibraryPackage.MERGED_LIBRARY__SEQUENCE;
 				case LibraryPackage.OCL_CACHE__SET: return OCLMergedLibraryPackage.MERGED_LIBRARY__SET;
 				case LibraryPackage.OCL_CACHE__STRING: return OCLMergedLibraryPackage.MERGED_LIBRARY__STRING;
-				case LibraryPackage.OCL_CACHE__T: return OCLMergedLibraryPackage.MERGED_LIBRARY__T;
-				case LibraryPackage.OCL_CACHE__TLIST: return OCLMergedLibraryPackage.MERGED_LIBRARY__TLIST;
-				case LibraryPackage.OCL_CACHE__T2: return OCLMergedLibraryPackage.MERGED_LIBRARY__T2;
 				case LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL: return OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL;
 				case LibraryPackage.OCL_CACHE__INVALID: return OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID;
 				case LibraryPackage.OCL_CACHE__NULL: return OCLMergedLibraryPackage.MERGED_LIBRARY__NULL;
@@ -949,6 +895,218 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	public OCLBoundCollectionType getBoundCollectionType(String collectionName, OCLType unboundType, OCLType elementType) {
+		OCLBoundCollectionType collectionType = (OCLBoundCollectionType) baseLibrary.getType(collectionName);		
+		if (collectionType == null) {
+			OCLTypeBinding typeBinding = LibraryFactory.eINSTANCE.createOCLTypeBinding();
+			typeBinding.setTypeParameter(unboundType.getTypeParameter().get(0));
+			typeBinding.setTypeValue(elementType);
+			collectionType = OCLMergedLibraryFactory.eINSTANCE.createOCLBoundCollectionType();
+			collectionType.setName(collectionName);
+			collectionType.setType(unboundType);
+			collectionType.getConforms().add(unboundType);
+			collectionType.getTypeBinding().add(typeBinding);
+			baseLibrary.getType().add(collectionType);
+		}
+		return collectionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	public OCLBoundCollectionType getBagType(OCLType elementType) {
+		String collectionName = BagType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
+		return getBoundCollectionType(collectionName, getBag(), elementType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	public OCLBoundCollectionType getCollectionType(OCLType elementType) {
+		String collectionName = CollectionType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
+		return getBoundCollectionType(collectionName, getCollection(), elementType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLType getLibraryTypeOfType(Object object) {
+		if (object instanceof PredefinedType<?>) {
+			if (object instanceof InvalidType<?>) {
+				return getOclInvalid();
+			}
+			else if (object instanceof VoidType<?>) {
+				return getOclVoid();
+			}
+			else if (object instanceof AnyType<?>) {
+//				String name = ((AnyType<?>)object).getName();
+//				if (OCL_T.equals(name)) {
+//					return getT();
+//				}
+//				else if (OCL_T2.equals(name)) {
+//					return getT2();
+//				}
+				return getOclAny();
+			}
+			else if (object instanceof TypeType<?, ?>) {
+				return getOclType();
+			}
+			else if (object instanceof MessageType<?, ?, ?>) {
+				return getOclMessage();
+			}
+			else if (object instanceof PrimitiveType<?>) {
+				String name = ((PrimitiveType<?>)object).getName();
+				if (PrimitiveType.BOOLEAN_NAME.equals(name)) {
+					return getBoolean();
+				}
+				else if (PrimitiveType.INTEGER_NAME.equals(name)) {
+					return getInteger();
+				}
+				else if (PrimitiveType.REAL_NAME.equals(name)) {
+					return getReal();
+				}
+				else if (PrimitiveType.STRING_NAME.equals(name)) {
+					return getString();
+				}
+				else if (PrimitiveType.UNLIMITED_NATURAL_NAME.equals(name)) {
+					return getUnlimitedNatural();
+				}
+			}
+			else if (object instanceof CollectionType<?, ?>) {
+				Object elementType = ((CollectionType<?, ?>)object).getElementType();
+				OCLType oclElementType = getLibraryTypeOfType(elementType);
+				if (object instanceof BagType<?, ?>) {
+					return getBagType(oclElementType);
+				}
+				else if (object instanceof OrderedSetType<?, ?>) {
+					return getOrderedSetType(oclElementType);
+				}
+				else if (object instanceof SequenceType<?, ?>) {
+					return getSequenceType(oclElementType);
+				}
+				else if (object instanceof SetType<?, ?>) {
+					return getSetType(oclElementType);
+				}
+				else {
+					return getCollectionType(oclElementType);
+				}
+			}
+			else if (object instanceof TupleType<?, ?>) {
+//				if (object instanceof OCLTupleType) {
+//					return (OCLTupleType) object;
+//				}
+			}
+		}
+		if (baseLibrary instanceof CompatibilityOCLLibrary<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+			return ((CompatibilityOCLLibrary<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) baseLibrary).getLibraryTypeOfType(this, object);
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLType getLibraryTypeOfValue(Object value, Object staticType) {
+		if (value instanceof Number) {
+			if (value instanceof BigInteger) {
+				return ((BigInteger)value).signum() >= 0 ? getUnlimitedNatural() : getInteger();
+			}
+			else if (value instanceof BigDecimal) {
+				return getReal();
+			}
+		}
+		else if (value instanceof Collection<?>) {
+			OCLType oclStaticType = getLibraryTypeOfType(staticType);
+			OCLType oclElementType = getOclAny();
+			if (oclStaticType instanceof OCLBoundCollectionType) {
+				oclElementType = ((OCLBoundCollectionType)oclStaticType).getElementType();
+			}
+			if (value instanceof LinkedHashSet<?>) {
+				return getOrderedSetType(oclElementType);
+			}
+			else if (value instanceof Set<?>) {
+				return getSetType(oclElementType);
+			}
+			else if (value instanceof List<?>) {
+				return getSequenceType(oclElementType);
+			}
+			else if (value instanceof Bag<?>) {
+				return getBagType(oclElementType);
+			}
+			else {
+				return getCollectionType(oclElementType);
+			}
+		}
+		else if (value instanceof Boolean) {
+			return getBoolean();
+		}
+		else if ((value instanceof String) || (value instanceof StringBuffer)) {
+			return getString();
+		}
+		else if (value instanceof TypeExp<?>) {
+			return getLibraryTypeOfType(((TypeExp<?>)value).getReferredType());
+		}		 
+		else if (value instanceof LiteralExp<?>) {
+			if (value instanceof InvalidLiteralExp<?>) {
+				return getOclInvalid();
+			}
+			else if (value instanceof NullLiteralExp<?>) {
+				return getOclVoid();
+			}
+			else if ((value instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)value).isUnlimited()) {			// FIXME This should not be needed
+				return getUnlimitedNatural();
+			}
+		}		 
+		if (baseLibrary instanceof CompatibilityOCLLibrary<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+			return ((CompatibilityOCLLibrary<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) baseLibrary).getLibraryTypeOfValue(this, value, staticType);
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	public OCLBoundCollectionType getOrderedSetType(OCLType elementType) {
+		String collectionName = OrderedSetType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
+		return getBoundCollectionType(collectionName, getOrderedSet(), elementType);
+	}
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	public OCLBoundCollectionType getSequenceType(OCLType elementType) {
+		String collectionName = SequenceType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
+		return getBoundCollectionType(collectionName, getSequence(), elementType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("nls")
+	public OCLBoundCollectionType getSetType(OCLType elementType) {
+		String collectionName = SetType.SINGLETON_NAME + "(" + elementType.getQualifiedName() + ")";
+		return getBoundCollectionType(collectionName, getSet(), elementType);
 	}
 
 } //MergedLibraryImpl

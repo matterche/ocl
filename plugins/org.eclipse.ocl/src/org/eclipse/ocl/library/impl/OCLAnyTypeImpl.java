@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLAnyTypeImpl.java,v 1.1.2.2 2010/01/24 07:41:16 ewillink Exp $
+ * $Id: OCLAnyTypeImpl.java,v 1.1.2.3 2010/01/30 07:49:30 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLAnyType;
 
@@ -20,7 +21,7 @@ import org.eclipse.ocl.library.OCLAnyType;
  *
  * @generated
  */
-public class OCLAnyTypeImpl extends OCLTypeImpl implements OCLAnyType {
+public class OCLAnyTypeImpl extends OCLConcreteTypeImpl implements OCLAnyType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

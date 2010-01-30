@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.8 2010/01/24 07:40:54 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.9 2010/01/30 07:49:22 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -27,15 +27,6 @@ public interface LibraryFactory extends EFactory {
 	LibraryFactory eINSTANCE = org.eclipse.ocl.library.impl.LibraryFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>OCL Library</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Library</em>'.
-	 * @generated
-	 */
-	OCLLibrary createOCLLibrary();
-
-	/**
 	 * Returns a new object of class '<em>OCL Any Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,22 +36,40 @@ public interface LibraryFactory extends EFactory {
 	OCLAnyType createOCLAnyType();
 
 	/**
-	 * Returns a new object of class '<em>OCL Bag Type</em>'.
+	 * Returns a new object of class '<em>OCL Library</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Bag Type</em>'.
+	 * @return a new object of class '<em>OCL Library</em>'.
 	 * @generated
 	 */
-	OCLBagType createOCLBagType();
+	OCLLibrary createOCLLibrary();
 
 	/**
-	 * Returns a new object of class '<em>OCL Collection Type</em>'.
+	 * Returns a new object of class '<em>OCL Bound Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Collection Type</em>'.
+	 * @return a new object of class '<em>OCL Bound Type</em>'.
 	 * @generated
 	 */
-	OCLCollectionType createOCLCollectionType();
+	OCLBoundType createOCLBoundType();
+
+	/**
+	 * Returns a new object of class '<em>OCL Concrete Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Concrete Type</em>'.
+	 * @generated
+	 */
+	OCLConcreteType createOCLConcreteType();
+
+	/**
+	 * Returns a new object of class '<em>OCL Deprecated Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Deprecated Type</em>'.
+	 * @generated
+	 */
+	OCLDeprecatedType createOCLDeprecatedType();
 
 	/**
 	 * Returns a new object of class '<em>OCL Invalid Type</em>'.
@@ -70,6 +79,24 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLInvalidType createOCLInvalidType();
+
+	/**
+	 * Returns a new object of class '<em>OCL Iterator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Iterator</em>'.
+	 * @generated
+	 */
+	OCLIterator createOCLIterator();
+
+	/**
+	 * Returns a new object of class '<em>OCL Java Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Java Type</em>'.
+	 * @generated
+	 */
+	OCLJavaType createOCLJavaType();
 
 	/**
 	 * Returns a new object of class '<em>OCL Library Operation</em>'.
@@ -90,42 +117,6 @@ public interface LibraryFactory extends EFactory {
 	OCLLibraryProperty createOCLLibraryProperty();
 
 	/**
-	 * Returns a new object of class '<em>OCL Non Ordered Collection Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Non Ordered Collection Type</em>'.
-	 * @generated
-	 */
-	OCLNonOrderedCollectionType createOCLNonOrderedCollectionType();
-
-	/**
-	 * Returns a new object of class '<em>OCL Non Unique Collection Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Non Unique Collection Type</em>'.
-	 * @generated
-	 */
-	OCLNonUniqueCollectionType createOCLNonUniqueCollectionType();
-
-	/**
-	 * Returns a new object of class '<em>OCL Ordered Collection Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Ordered Collection Type</em>'.
-	 * @generated
-	 */
-	OCLOrderedCollectionType createOCLOrderedCollectionType();
-
-	/**
-	 * Returns a new object of class '<em>OCL Ordered Set Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Ordered Set Type</em>'.
-	 * @generated
-	 */
-	OCLOrderedSetType createOCLOrderedSetType();
-
-	/**
 	 * Returns a new object of class '<em>OCL Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,15 +135,6 @@ public interface LibraryFactory extends EFactory {
 	OCLParameter createOCLParameter();
 
 	/**
-	 * Returns a new object of class '<em>OCL Template Parameter Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Template Parameter Type</em>'.
-	 * @generated
-	 */
-	OCLTemplateParameterType createOCLTemplateParameterType();
-
-	/**
 	 * Returns a new object of class '<em>OCL Root</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,31 +144,22 @@ public interface LibraryFactory extends EFactory {
 	OCLRoot createOCLRoot();
 
 	/**
-	 * Returns a new object of class '<em>OCL Tuple Type</em>'.
+	 * Returns a new object of class '<em>OCL Type Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Tuple Type</em>'.
+	 * @return a new object of class '<em>OCL Type Binding</em>'.
 	 * @generated
 	 */
-	OCLTupleType createOCLTupleType();
+	OCLTypeBinding createOCLTypeBinding();
 
 	/**
-	 * Returns a new object of class '<em>OCL Type</em>'.
+	 * Returns a new object of class '<em>OCL Type Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Type</em>'.
+	 * @return a new object of class '<em>OCL Type Parameter</em>'.
 	 * @generated
 	 */
-	OCLType createOCLType();
-
-	/**
-	 * Returns a new object of class '<em>OCL Unique Collection Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Unique Collection Type</em>'.
-	 * @generated
-	 */
-	OCLUniqueCollectionType createOCLUniqueCollectionType();
+	OCLTypeParameter createOCLTypeParameter();
 
 	/**
 	 * Returns a new object of class '<em>OCL Void Type</em>'.
@@ -205,23 +178,5 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	LibraryPackage getLibraryPackage();
-
-	/**
-	 * Returns a new object of class '<em>OCL Sequence Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Sequence Type</em>'.
-	 * @generated
-	 */
-	OCLSequenceType createOCLSequenceType();
-
-	/**
-	 * Returns a new object of class '<em>OCL Set Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Set Type</em>'.
-	 * @generated
-	 */
-	OCLSetType createOCLSetType();
 
 } //OCLLibraryFactory

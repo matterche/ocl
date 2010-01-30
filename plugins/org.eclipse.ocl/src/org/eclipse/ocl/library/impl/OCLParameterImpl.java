@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLParameterImpl.java,v 1.1.2.4 2010/01/24 07:41:15 ewillink Exp $
+ * $Id: OCLParameterImpl.java,v 1.1.2.5 2010/01/30 07:49:24 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -192,12 +192,4 @@ public class OCLParameterImpl extends OCLTypedElementImpl implements OCLParamete
 		}
 		return super.eIsSet(featureID);
 	}
-
-	@Override
-	public void appendQualifiedName(StringBuffer s) {
-		super.appendQualifiedName(s);
-		s.append(") : "); //$NON-NLS-1$
-		type.appendQualifiedName(s);
-	}
-
 } //OCLParameterImpl

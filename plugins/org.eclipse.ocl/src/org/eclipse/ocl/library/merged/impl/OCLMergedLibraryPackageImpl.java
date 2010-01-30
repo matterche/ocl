@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryPackageImpl.java,v 1.1.2.1 2010/01/24 07:41:12 ewillink Exp $
+ * $Id: OCLMergedLibraryPackageImpl.java,v 1.1.2.2 2010/01/30 07:49:13 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.library.LibraryPackage;
@@ -25,8 +27,16 @@ import org.eclipse.ocl.library.merged.MergedProperty;
 import org.eclipse.ocl.library.merged.MergedPropertyDefinition;
 import org.eclipse.ocl.library.merged.MergedLibraryProperty;
 import org.eclipse.ocl.library.merged.MergedType;
+import org.eclipse.ocl.library.merged.OCLBoundCollectionType;
+import org.eclipse.ocl.library.merged.OCLClassifier;
+import org.eclipse.ocl.library.merged.OCLDataType;
+import org.eclipse.ocl.library.merged.OCLEnumeration;
+import org.eclipse.ocl.library.merged.OCLEnumerationLiteral;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryFactory;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
+import org.eclipse.ocl.library.merged.util.OCLMergedLibraryValidator;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
@@ -109,6 +119,55 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	private EClass mergedTypeEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclBoundCollectionTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclClassifierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclDataTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclEnumerationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclEnumerationLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclMetaModelOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclMetaModelPropertyEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -164,6 +223,15 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 
 		// Initialize created meta-data
 		theOCLMergedLibraryPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theOCLMergedLibraryPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return OCLMergedLibraryValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theOCLMergedLibraryPackage.freeze();
@@ -458,6 +526,141 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOCLBoundCollectionType() {
+		return oclBoundCollectionTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLClassifier() {
+		return oclClassifierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLClassifier_MetaModelElement() {
+		return (EReference)oclClassifierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLDataType() {
+		return oclDataTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLDataType_MetaModelElement() {
+		return (EReference)oclDataTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLEnumeration() {
+		return oclEnumerationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumeration_MetaModelElement() {
+		return (EReference)oclEnumerationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumeration_Literals() {
+		return (EReference)oclEnumerationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLEnumerationLiteral() {
+		return oclEnumerationLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumerationLiteral_Container() {
+		return (EReference)oclEnumerationLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLEnumerationLiteral_MetaModelElement() {
+		return (EReference)oclEnumerationLiteralEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLMetaModelOperation() {
+		return oclMetaModelOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLMetaModelOperation_MetaModelElement() {
+		return (EReference)oclMetaModelOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLMetaModelProperty() {
+		return oclMetaModelPropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLMetaModelProperty_MetaModelElement() {
+		return (EReference)oclMetaModelPropertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMergedType_Type() {
 		return (EReference)mergedTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -531,6 +734,28 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		createEReference(mergedTypeEClass, MERGED_TYPE__OPERATION);
 		createEReference(mergedTypeEClass, MERGED_TYPE__PROPERTY);
 		createEReference(mergedTypeEClass, MERGED_TYPE__INV);
+
+		oclBoundCollectionTypeEClass = createEClass(OCL_BOUND_COLLECTION_TYPE);
+
+		oclClassifierEClass = createEClass(OCL_CLASSIFIER);
+		createEReference(oclClassifierEClass, OCL_CLASSIFIER__META_MODEL_ELEMENT);
+
+		oclDataTypeEClass = createEClass(OCL_DATA_TYPE);
+		createEReference(oclDataTypeEClass, OCL_DATA_TYPE__META_MODEL_ELEMENT);
+
+		oclEnumerationEClass = createEClass(OCL_ENUMERATION);
+		createEReference(oclEnumerationEClass, OCL_ENUMERATION__META_MODEL_ELEMENT);
+		createEReference(oclEnumerationEClass, OCL_ENUMERATION__LITERALS);
+
+		oclEnumerationLiteralEClass = createEClass(OCL_ENUMERATION_LITERAL);
+		createEReference(oclEnumerationLiteralEClass, OCL_ENUMERATION_LITERAL__CONTAINER);
+		createEReference(oclEnumerationLiteralEClass, OCL_ENUMERATION_LITERAL__META_MODEL_ELEMENT);
+
+		oclMetaModelOperationEClass = createEClass(OCL_META_MODEL_OPERATION);
+		createEReference(oclMetaModelOperationEClass, OCL_META_MODEL_OPERATION__META_MODEL_ELEMENT);
+
+		oclMetaModelPropertyEClass = createEClass(OCL_META_MODEL_PROPERTY);
+		createEReference(oclMetaModelPropertyEClass, OCL_META_MODEL_PROPERTY__META_MODEL_ELEMENT);
 	}
 
 	/**
@@ -559,6 +784,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		// Obtain other dependent packages
 		LibraryPackage theLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
 		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -576,10 +802,37 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		mergedPropertyEClass.getESuperTypes().add(theLibraryPackage.getOCLElement());
 		mergedPropertyDefinitionEClass.getESuperTypes().add(this.getMergedProperty());
 		mergedTypeEClass.getESuperTypes().add(theLibraryPackage.getOCLElement());
+		oclBoundCollectionTypeEClass.getESuperTypes().add(theLibraryPackage.getOCLBoundType());
+		oclBoundCollectionTypeEClass.getESuperTypes().add(theLibraryPackage.getOCLNamedElement());
+		oclClassifierEClass.getESuperTypes().add(theLibraryPackage.getOCLConcreteType());
+		oclDataTypeEClass.getESuperTypes().add(theLibraryPackage.getOCLConcreteType());
+		oclEnumerationEClass.getESuperTypes().add(theLibraryPackage.getOCLConcreteType());
+		oclEnumerationLiteralEClass.getESuperTypes().add(theLibraryPackage.getOCLNamedElement());
+		oclMetaModelOperationEClass.getESuperTypes().add(theLibraryPackage.getOCLOperation());
+		oclMetaModelPropertyEClass.getESuperTypes().add(theLibraryPackage.getOCLProperty());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(mergedLibraryEClass, MergedLibrary.class, "MergedLibrary", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMergedLibrary_BaseLibrary(), theLibraryPackage.getOCLRoot(), null, "baseLibrary", null, 0, 1, MergedLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		EOperation op = addEOperation(mergedLibraryEClass, this.getOCLBoundCollectionType(), "getBagType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theLibraryPackage.getOCLType(), "elementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(mergedLibraryEClass, theLibraryPackage.getOCLType(), "getLibraryTypeOfType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEJavaObject(), "object", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(mergedLibraryEClass, theLibraryPackage.getOCLType(), "getLibraryTypeOfValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEJavaObject(), "value", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEJavaObject(), "staticType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(mergedLibraryEClass, this.getOCLBoundCollectionType(), "getOrderedSetType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theLibraryPackage.getOCLType(), "elementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(mergedLibraryEClass, this.getOCLBoundCollectionType(), "getSequenceType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theLibraryPackage.getOCLType(), "elementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(mergedLibraryEClass, this.getOCLBoundCollectionType(), "getSetType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theLibraryPackage.getOCLType(), "elementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(mergedLibraryOperationEClass, MergedLibraryOperation.class, "MergedLibraryOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMergedLibraryOperation_Operation(), theLibraryPackage.getOCLLibraryOperation(), null, "operation", null, 1, 1, MergedLibraryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -588,7 +841,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		initEReference(getMergedLibraryProperty_Property(), theLibraryPackage.getOCLLibraryProperty(), null, "property", null, 1, 1, MergedLibraryProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(mergedMetaModelOperationEClass, MergedMetaModelOperation.class, "MergedMetaModelOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getMergedMetaModelOperation_Operation(), theLibraryPackage.getOCLMetaModelOperation(), null, "operation", null, 1, 1, MergedMetaModelOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMergedMetaModelOperation_Operation(), this.getOCLMetaModelOperation(), null, "operation", null, 1, 1, MergedMetaModelOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(theUtilitiesPackage.getExpressionInOCL());
 		EGenericType g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
@@ -597,7 +850,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		initEReference(getMergedMetaModelOperation_Body(), g1, null, "body", null, 0, 1, MergedMetaModelOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(mergedMetaModelPropertyEClass, MergedMetaModelProperty.class, "MergedMetaModelProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getMergedMetaModelProperty_Property(), theLibraryPackage.getOCLMetaModelProperty(), null, "property", null, 1, 1, MergedMetaModelProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMergedMetaModelProperty_Property(), this.getOCLMetaModelProperty(), null, "property", null, 1, 1, MergedMetaModelProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(mergedOperationEClass, MergedOperation.class, "MergedOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(theUtilitiesPackage.getExpressionInOCL());
@@ -613,7 +866,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		g1.getETypeArguments().add(g2);
 		initEReference(getMergedOperation_Pre(), g1, null, "pre", null, 0, -1, MergedOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(mergedOperationEClass, null, "getBody", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(mergedOperationEClass, null, "getBody", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(theUtilitiesPackage.getExpressionInOCL());
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
@@ -624,6 +877,10 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		addEOperation(mergedOperationEClass, theLibraryPackage.getOCLParameter(), "getParameter", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(mergedOperationEClass, theLibraryPackage.getOCLType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(mergedOperationEClass, theLibraryPackage.getOCLTypeParameter(), "getTypeParameter", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(mergedOperationEClass, theEcorePackage.getEBoolean(), "isStatic", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(mergedOperationEClass, null, "setBody", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(theUtilitiesPackage.getExpressionInOCL());
@@ -677,8 +934,54 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		g1.getETypeArguments().add(g2);
 		initEReference(getMergedType_Inv(), g1, null, "inv", null, 0, 1, MergedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		addEOperation(mergedTypeEClass, theLibraryPackage.getOCLTypeParameter(), "getTypeParameter", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclBoundCollectionTypeEClass, OCLBoundCollectionType.class, "OCLBoundCollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		addEOperation(oclBoundCollectionTypeEClass, theLibraryPackage.getOCLType(), "getElementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclClassifierEClass, OCLClassifier.class, "OCLClassifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLClassifier_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclDataTypeEClass, OCLDataType.class, "OCLDataType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLDataType_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclEnumerationEClass, OCLEnumeration.class, "OCLEnumeration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLEnumeration_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOCLEnumeration_Literals(), this.getOCLEnumerationLiteral(), this.getOCLEnumerationLiteral_Container(), "literals", null, 0, -1, OCLEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclEnumerationLiteralEClass, OCLEnumerationLiteral.class, "OCLEnumerationLiteral", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLEnumerationLiteral_Container(), this.getOCLEnumeration(), this.getOCLEnumeration_Literals(), "container", null, 0, 1, OCLEnumerationLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOCLEnumerationLiteral_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLEnumerationLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclMetaModelOperationEClass, OCLMetaModelOperation.class, "OCLMetaModelOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLMetaModelOperation_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLMetaModelOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(oclMetaModelPropertyEClass, OCLMetaModelProperty.class, "OCLMetaModelProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOCLMetaModelProperty_MetaModelElement(), ecorePackage.getEObject(), null, "metaModelElement", null, 0, 1, OCLMetaModelProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+		addAnnotation
+		  (oclBoundCollectionTypeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "NotMoreThanOneTypeParameter" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 } //OCLMergedLibraryPackageImpl

@@ -2,18 +2,42 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryAdapterFactory.java,v 1.1.2.8 2010/01/24 07:41:02 ewillink Exp $
+ * $Id: LibraryAdapterFactory.java,v 1.1.2.9 2010/01/30 07:49:37 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.ocl.library.*;
+import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLAnyType;
+import org.eclipse.ocl.library.OCLBoundType;
+import org.eclipse.ocl.library.OCLCache;
+import org.eclipse.ocl.library.OCLConcreteType;
+import org.eclipse.ocl.library.OCLDeprecatedType;
+import org.eclipse.ocl.library.OCLElement;
+import org.eclipse.ocl.library.OCLInvalidType;
+import org.eclipse.ocl.library.OCLIterator;
+import org.eclipse.ocl.library.OCLJavaType;
+import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLLibraryOperation;
+import org.eclipse.ocl.library.OCLLibraryProperty;
+import org.eclipse.ocl.library.OCLNamedElement;
+import org.eclipse.ocl.library.OCLOperation;
+import org.eclipse.ocl.library.OCLPackage;
+import org.eclipse.ocl.library.OCLPackageParent;
+import org.eclipse.ocl.library.OCLParameter;
+import org.eclipse.ocl.library.OCLProperty;
+import org.eclipse.ocl.library.OCLRoot;
+import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeBinding;
+import org.eclipse.ocl.library.OCLTypeParameter;
+import org.eclipse.ocl.library.OCLTypeParameterParent;
+import org.eclipse.ocl.library.OCLTypeValue;
+import org.eclipse.ocl.library.OCLTypedElement;
+import org.eclipse.ocl.library.OCLVoidType;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,48 +97,44 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	protected LibrarySwitch<Adapter> modelSwitch =
 		new LibrarySwitch<Adapter>() {
 			@Override
-			public Adapter caseOCLLibrary(OCLLibrary object) {
-				return createOCLLibraryAdapter();
-			}
-			@Override
 			public Adapter caseOCLAnyType(OCLAnyType object) {
 				return createOCLAnyTypeAdapter();
 			}
 			@Override
-			public Adapter caseOCLBagType(OCLBagType object) {
-				return createOCLBagTypeAdapter();
+			public Adapter caseOCLBoundType(OCLBoundType object) {
+				return createOCLBoundTypeAdapter();
 			}
 			@Override
 			public Adapter caseOCLCache(OCLCache object) {
 				return createOCLCacheAdapter();
 			}
 			@Override
-			public Adapter caseOCLClassifier(OCLClassifier object) {
-				return createOCLClassifierAdapter();
+			public Adapter caseOCLConcreteType(OCLConcreteType object) {
+				return createOCLConcreteTypeAdapter();
 			}
 			@Override
-			public Adapter caseOCLCollectionType(OCLCollectionType object) {
-				return createOCLCollectionTypeAdapter();
-			}
-			@Override
-			public Adapter caseOCLDataType(OCLDataType object) {
-				return createOCLDataTypeAdapter();
+			public Adapter caseOCLDeprecatedType(OCLDeprecatedType object) {
+				return createOCLDeprecatedTypeAdapter();
 			}
 			@Override
 			public Adapter caseOCLElement(OCLElement object) {
 				return createOCLElementAdapter();
 			}
 			@Override
-			public Adapter caseOCLEnumeration(OCLEnumeration object) {
-				return createOCLEnumerationAdapter();
-			}
-			@Override
-			public Adapter caseOCLEnumerationLiteral(OCLEnumerationLiteral object) {
-				return createOCLEnumerationLiteralAdapter();
-			}
-			@Override
 			public Adapter caseOCLInvalidType(OCLInvalidType object) {
 				return createOCLInvalidTypeAdapter();
+			}
+			@Override
+			public Adapter caseOCLIterator(OCLIterator object) {
+				return createOCLIteratorAdapter();
+			}
+			@Override
+			public Adapter caseOCLJavaType(OCLJavaType object) {
+				return createOCLJavaTypeAdapter();
+			}
+			@Override
+			public Adapter caseOCLLibrary(OCLLibrary object) {
+				return createOCLLibraryAdapter();
 			}
 			@Override
 			public Adapter caseOCLLibraryOperation(OCLLibraryOperation object) {
@@ -125,36 +145,12 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createOCLLibraryPropertyAdapter();
 			}
 			@Override
-			public Adapter caseOCLMetaModelOperation(OCLMetaModelOperation object) {
-				return createOCLMetaModelOperationAdapter();
-			}
-			@Override
-			public Adapter caseOCLMetaModelProperty(OCLMetaModelProperty object) {
-				return createOCLMetaModelPropertyAdapter();
-			}
-			@Override
 			public Adapter caseOCLNamedElement(OCLNamedElement object) {
 				return createOCLNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseOCLNonOrderedCollectionType(OCLNonOrderedCollectionType object) {
-				return createOCLNonOrderedCollectionTypeAdapter();
-			}
-			@Override
-			public Adapter caseOCLNonUniqueCollectionType(OCLNonUniqueCollectionType object) {
-				return createOCLNonUniqueCollectionTypeAdapter();
-			}
-			@Override
 			public Adapter caseOCLOperation(OCLOperation object) {
 				return createOCLOperationAdapter();
-			}
-			@Override
-			public Adapter caseOCLOrderedCollectionType(OCLOrderedCollectionType object) {
-				return createOCLOrderedCollectionTypeAdapter();
-			}
-			@Override
-			public Adapter caseOCLOrderedSetType(OCLOrderedSetType object) {
-				return createOCLOrderedSetTypeAdapter();
 			}
 			@Override
 			public Adapter caseOCLPackage(OCLPackage object) {
@@ -169,10 +165,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createOCLParameterAdapter();
 			}
 			@Override
-			public Adapter caseOCLTemplateParameterType(OCLTemplateParameterType object) {
-				return createOCLTemplateParameterTypeAdapter();
-			}
-			@Override
 			public Adapter caseOCLProperty(OCLProperty object) {
 				return createOCLPropertyAdapter();
 			}
@@ -181,28 +173,28 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createOCLRootAdapter();
 			}
 			@Override
-			public Adapter caseOCLSequenceType(OCLSequenceType object) {
-				return createOCLSequenceTypeAdapter();
-			}
-			@Override
-			public Adapter caseOCLSetType(OCLSetType object) {
-				return createOCLSetTypeAdapter();
-			}
-			@Override
-			public Adapter caseOCLTupleType(OCLTupleType object) {
-				return createOCLTupleTypeAdapter();
-			}
-			@Override
 			public Adapter caseOCLType(OCLType object) {
 				return createOCLTypeAdapter();
+			}
+			@Override
+			public Adapter caseOCLTypeBinding(OCLTypeBinding object) {
+				return createOCLTypeBindingAdapter();
+			}
+			@Override
+			public Adapter caseOCLTypeParameter(OCLTypeParameter object) {
+				return createOCLTypeParameterAdapter();
+			}
+			@Override
+			public Adapter caseOCLTypeParameterParent(OCLTypeParameterParent object) {
+				return createOCLTypeParameterParentAdapter();
 			}
 			@Override
 			public Adapter caseOCLTypedElement(OCLTypedElement object) {
 				return createOCLTypedElementAdapter();
 			}
 			@Override
-			public Adapter caseOCLUniqueCollectionType(OCLUniqueCollectionType object) {
-				return createOCLUniqueCollectionTypeAdapter();
+			public Adapter caseOCLTypeValue(OCLTypeValue object) {
+				return createOCLTypeValueAdapter();
 			}
 			@Override
 			public Adapter caseOCLVoidType(OCLVoidType object) {
@@ -229,20 +221,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLLibrary <em>OCL Library</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLLibrary
-	 * @generated
-	 */
-	public Adapter createOCLLibraryAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLAnyType <em>OCL Any Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -257,16 +235,30 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLBagType <em>OCL Bag Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLLibrary <em>OCL Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLBagType
+	 * @see org.eclipse.ocl.library.OCLLibrary
 	 * @generated
 	 */
-	public Adapter createOCLBagTypeAdapter() {
+	public Adapter createOCLLibraryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLBoundType <em>OCL Bound Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLBoundType
+	 * @generated
+	 */
+	public Adapter createOCLBoundTypeAdapter() {
 		return null;
 	}
 
@@ -285,44 +277,30 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLClassifier <em>OCL Classifier</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLConcreteType <em>OCL Concrete Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLClassifier
+	 * @see org.eclipse.ocl.library.OCLConcreteType
 	 * @generated
 	 */
-	public Adapter createOCLClassifierAdapter() {
+	public Adapter createOCLConcreteTypeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLCollectionType <em>OCL Collection Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLDeprecatedType <em>OCL Deprecated Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLCollectionType
+	 * @see org.eclipse.ocl.library.OCLDeprecatedType
 	 * @generated
 	 */
-	public Adapter createOCLCollectionTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLDataType <em>OCL Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLDataType
-	 * @generated
-	 */
-	public Adapter createOCLDataTypeAdapter() {
+	public Adapter createOCLDeprecatedTypeAdapter() {
 		return null;
 	}
 
@@ -341,34 +319,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLEnumeration <em>OCL Enumeration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLEnumeration
-	 * @generated
-	 */
-	public Adapter createOCLEnumerationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLEnumerationLiteral <em>OCL Enumeration Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLEnumerationLiteral
-	 * @generated
-	 */
-	public Adapter createOCLEnumerationLiteralAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLInvalidType <em>OCL Invalid Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -379,6 +329,34 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLInvalidTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLIterator <em>OCL Iterator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLIterator
+	 * @generated
+	 */
+	public Adapter createOCLIteratorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLJavaType <em>OCL Java Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLJavaType
+	 * @generated
+	 */
+	public Adapter createOCLJavaTypeAdapter() {
 		return null;
 	}
 
@@ -411,34 +389,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLMetaModelOperation <em>OCL Meta Model Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLMetaModelOperation
-	 * @generated
-	 */
-	public Adapter createOCLMetaModelOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLMetaModelProperty <em>OCL Meta Model Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLMetaModelProperty
-	 * @generated
-	 */
-	public Adapter createOCLMetaModelPropertyAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLNamedElement <em>OCL Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -453,34 +403,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLNonOrderedCollectionType <em>OCL Non Ordered Collection Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLNonOrderedCollectionType
-	 * @generated
-	 */
-	public Adapter createOCLNonOrderedCollectionTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLNonUniqueCollectionType <em>OCL Non Unique Collection Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLNonUniqueCollectionType
-	 * @generated
-	 */
-	public Adapter createOCLNonUniqueCollectionTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLOperation <em>OCL Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -491,34 +413,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLOrderedCollectionType <em>OCL Ordered Collection Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLOrderedCollectionType
-	 * @generated
-	 */
-	public Adapter createOCLOrderedCollectionTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLOrderedSetType <em>OCL Ordered Set Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLOrderedSetType
-	 * @generated
-	 */
-	public Adapter createOCLOrderedSetTypeAdapter() {
 		return null;
 	}
 
@@ -565,20 +459,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTemplateParameterType <em>OCL Template Parameter Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLTemplateParameterType
-	 * @generated
-	 */
-	public Adapter createOCLTemplateParameterTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLProperty <em>OCL Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -607,20 +487,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTupleType <em>OCL Tuple Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLTupleType
-	 * @generated
-	 */
-	public Adapter createOCLTupleTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLType <em>OCL Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -631,6 +497,48 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTypeBinding <em>OCL Type Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLTypeBinding
+	 * @generated
+	 */
+	public Adapter createOCLTypeBindingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTypeParameter <em>OCL Type Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLTypeParameter
+	 * @generated
+	 */
+	public Adapter createOCLTypeParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTypeParameterParent <em>OCL Type Parameter Parent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.OCLTypeParameterParent
+	 * @generated
+	 */
+	public Adapter createOCLTypeParameterParentAdapter() {
 		return null;
 	}
 
@@ -649,16 +557,16 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLUniqueCollectionType <em>OCL Unique Collection Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLTypeValue <em>OCL Type Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLUniqueCollectionType
+	 * @see org.eclipse.ocl.library.OCLTypeValue
 	 * @generated
 	 */
-	public Adapter createOCLUniqueCollectionTypeAdapter() {
+	public Adapter createOCLTypeValueAdapter() {
 		return null;
 	}
 
@@ -673,34 +581,6 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOCLVoidTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLSequenceType <em>OCL Sequence Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLSequenceType
-	 * @generated
-	 */
-	public Adapter createOCLSequenceTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.OCLSetType <em>OCL Set Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.library.OCLSetType
-	 * @generated
-	 */
-	public Adapter createOCLSetTypeAdapter() {
 		return null;
 	}
 

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLLibrary.java,v 1.1.2.6 2010/01/24 07:40:56 ewillink Exp $
+ * $Id: AbstractOCLLibrary.java,v 1.1.2.7 2010/01/30 07:49:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.impl.OCLRootImpl;
+import org.eclipse.ocl.library.merged.MergedLibrary;
 import org.eclipse.ocl.library.util.LibraryResource;
 
 /**
@@ -108,7 +109,7 @@ public abstract class AbstractOCLLibrary extends OCLRootImpl { //implements OCLL
 	}
 	
 
- 	public List<OCLOperation> getOperations(OCLType dynamicType, OperationCallExp<?, ?> operationCall) {
+ 	public List<OCLOperation> getOperations(MergedLibrary mergedLibrary, OCLConcreteType dynamicType, OperationCallExp<?, ?> operationCall) {
 		Object referredOperation = operationCall.getReferredOperation();
 		if (referredOperation instanceof OCLOperation) {
 			return Collections.singletonList((OCLOperation)referredOperation);

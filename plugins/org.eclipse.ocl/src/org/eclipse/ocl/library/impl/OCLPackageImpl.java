@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackageImpl.java,v 1.1.2.4 2010/01/24 07:41:15 ewillink Exp $
+ * $Id: OCLPackageImpl.java,v 1.1.2.5 2010/01/30 07:49:25 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLPackage;
 import org.eclipse.ocl.library.OCLPackageParent;
-import org.eclipse.ocl.library.OCLType;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class OCLPackageImpl extends OCLPackageParentImpl implements OCLPackage {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLType> type;
+	protected EList<OCLConcreteType> type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,9 +72,9 @@ public class OCLPackageImpl extends OCLPackageParentImpl implements OCLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OCLType> getType() {
+	public EList<OCLConcreteType> getType() {
 		if (type == null) {
-			type = new EObjectContainmentWithInverseEList<OCLType>(OCLType.class, this, LibraryPackage.OCL_PACKAGE__TYPE, LibraryPackage.OCL_TYPE__CONTAINER);
+			type = new EObjectContainmentWithInverseEList<OCLConcreteType>(OCLConcreteType.class, this, LibraryPackage.OCL_PACKAGE__TYPE, LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER);
 		}
 		return type;
 	}
@@ -125,9 +125,9 @@ public class OCLPackageImpl extends OCLPackageParentImpl implements OCLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getType(String name) {
+	public OCLConcreteType getType(String name) {
 		if (type != null) {
-			for (OCLType aType : type) {
+			for (OCLConcreteType aType : type) {
 				if (name.equals(aType.getName())) {
 					return aType;
 				}
@@ -212,7 +212,7 @@ public class OCLPackageImpl extends OCLPackageParentImpl implements OCLPackage {
 		switch (featureID) {
 			case LibraryPackage.OCL_PACKAGE__TYPE:
 				getType().clear();
-				getType().addAll((Collection<? extends OCLType>)newValue);
+				getType().addAll((Collection<? extends OCLConcreteType>)newValue);
 				return;
 			case LibraryPackage.OCL_PACKAGE__CONTAINER:
 				setContainer((OCLPackageParent)newValue);

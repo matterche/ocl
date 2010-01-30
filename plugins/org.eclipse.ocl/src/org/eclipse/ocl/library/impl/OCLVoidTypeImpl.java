@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLVoidTypeImpl.java,v 1.1.2.2 2010/01/24 07:41:14 ewillink Exp $
+ * $Id: OCLVoidTypeImpl.java,v 1.1.2.3 2010/01/30 07:49:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLInvalidType;
 import org.eclipse.ocl.library.OCLType;
@@ -22,7 +23,7 @@ import org.eclipse.ocl.library.OCLVoidType;
  *
  * @generated
  */
-public class OCLVoidTypeImpl extends OCLTypeImpl implements OCLVoidType {
+public class OCLVoidTypeImpl extends OCLConcreteTypeImpl implements OCLVoidType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -8,6 +8,25 @@
     <eSubpackages name="merged" nsURI="http://www.eclipse.org/ocl/3.0.0/OCL/MergedLibrary"
         nsPrefix="ocl.lib.merge">
       <eClassifiers xsi:type="ecore:EClass" name="MergedLibrary" abstract="true" eSuperTypes="OCLLibrary.ecore#//library/OCLNamedElement OCLLibrary.ecore#//library/OCLCache">
+        <eOperations name="getBagType" eType="#//library/merged/OCLBoundCollectionType">
+          <eParameters name="elementType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        </eOperations>
+        <eOperations name="getLibraryTypeOfType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType">
+          <eParameters name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eOperations>
+        <eOperations name="getLibraryTypeOfValue" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType">
+          <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eParameters name="staticType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eOperations>
+        <eOperations name="getOrderedSetType" eType="#//library/merged/OCLBoundCollectionType">
+          <eParameters name="elementType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        </eOperations>
+        <eOperations name="getSequenceType" eType="#//library/merged/OCLBoundCollectionType">
+          <eParameters name="elementType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        </eOperations>
+        <eOperations name="getSetType" eType="#//library/merged/OCLBoundCollectionType">
+          <eParameters name="elementType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="baseLibrary" eType="ecore:EClass OCLLibrary.ecore#//library/OCLRoot"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergedLibraryOperation" eSuperTypes="#//library/merged/MergedOperation">
@@ -20,8 +39,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergedMetaModelOperation" eSuperTypes="#//library/merged/MergedOperation">
         <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
-            eType="ecore:EClass OCLLibrary.ecore#//library/OCLMetaModelOperation"
-            unsettable="true"/>
+            eType="#//library/merged/OCLMetaModelOperation" unsettable="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="body">
           <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
             <eTypeArguments/>
@@ -31,7 +49,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergedMetaModelProperty" eSuperTypes="#//library/merged/MergedProperty">
         <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
-            eType="ecore:EClass OCLLibrary.ecore#//library/OCLMetaModelProperty" unsettable="true"/>
+            eType="#//library/merged/OCLMetaModelProperty" unsettable="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergedOperation" abstract="true"
           eSuperTypes="OCLLibrary.ecore#//library/OCLElement">
@@ -43,6 +61,8 @@
         </eOperations>
         <eOperations name="getParameter" upperBound="-1" eType="ecore:EClass OCLLibrary.ecore#//library/OCLParameter"/>
         <eOperations name="getType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        <eOperations name="getTypeParameter" upperBound="-1" eType="ecore:EClass OCLLibrary.ecore#//library/OCLTypeParameter"/>
+        <eOperations name="isStatic" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eOperations name="setBody">
           <eParameters name="body">
             <eGenericType eClassifier="ecore:EClass OCL.ecore#//utilities/ExpressionInOCL">
@@ -101,6 +121,7 @@
             eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergedType" eSuperTypes="OCLLibrary.ecore#//library/OCLElement">
+        <eOperations name="getTypeParameter" upperBound="-1" eType="ecore:EClass OCLLibrary.ecore#//library/OCLTypeParameter"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="mergedLibrary" lowerBound="1"
             eType="#//library/merged/MergedLibrary" unsettable="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
@@ -117,6 +138,38 @@
             <eTypeArguments/>
           </eGenericType>
         </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OCLBoundCollectionType" eSuperTypes="OCLLibrary.ecore#//library/OCLBoundType OCLLibrary.ecore#//library/OCLNamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="NotMoreThanOneTypeParameter"/>
+        </eAnnotations>
+        <eOperations name="getElementType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OCLClassifier" abstract="true" eSuperTypes="OCLLibrary.ecore#//library/OCLConcreteType">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OCLDataType" abstract="true" eSuperTypes="OCLLibrary.ecore#//library/OCLConcreteType">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OCLEnumeration" abstract="true"
+          eSuperTypes="OCLLibrary.ecore#//library/OCLConcreteType">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
+            eType="#//library/merged/OCLEnumerationLiteral" containment="true" eOpposite="#//library/merged/OCLEnumerationLiteral/container"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OCLEnumerationLiteral" abstract="true"
+          eSuperTypes="OCLLibrary.ecore#//library/OCLNamedElement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/merged/OCLEnumeration"
+            eOpposite="#//library/merged/OCLEnumeration/literals"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OCLMetaModelOperation" abstract="true"
+          eSuperTypes="OCLLibrary.ecore#//library/OCLOperation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OCLMetaModelProperty" abstract="true"
+          eSuperTypes="OCLLibrary.ecore#//library/OCLProperty">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>

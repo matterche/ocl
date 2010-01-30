@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedMetaModelPropertyImpl.java,v 1.1.2.1 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: MergedMetaModelPropertyImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.PropertyCallExp;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.merged.MergedMetaModelProperty;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
@@ -228,7 +228,7 @@ public class MergedMetaModelPropertyImpl extends MergedPropertyImpl implements M
 
 	@Override
 	public OCLType getType() {
-		return property != null ? property.getType() : null;
+		return property != null ? property.getResolvedType(null) : null;
 	}
 
 } //MergedMetaModelPropertyImpl

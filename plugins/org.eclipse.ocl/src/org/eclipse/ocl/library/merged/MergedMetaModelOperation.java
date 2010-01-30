@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedMetaModelOperation.java,v 1.1.2.1 2010/01/24 07:41:02 ewillink Exp $
+ * $Id: MergedMetaModelOperation.java,v 1.1.2.2 2010/01/30 07:49:36 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
-import org.eclipse.ocl.library.OCLMetaModelOperation;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**

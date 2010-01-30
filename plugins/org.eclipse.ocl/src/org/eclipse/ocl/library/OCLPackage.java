@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLPackage.java,v 1.1.2.4 2010/01/24 07:40:53 ewillink Exp $
+ * $Id: OCLPackage.java,v 1.1.2.5 2010/01/30 07:49:16 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -36,8 +36,8 @@ import org.eclipse.emf.common.util.EList;
 public interface OCLPackage extends OCLPackageParent {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.library.OCLType}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLType#getContainer <em>Container</em>}'.
+	 * The list contents are of type {@link org.eclipse.ocl.library.OCLConcreteType}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLConcreteType#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' containment reference list isn't clear,
@@ -46,11 +46,11 @@ public interface OCLPackage extends OCLPackageParent {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' containment reference list.
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLPackage_Type()
-	 * @see org.eclipse.ocl.library.OCLType#getContainer
+	 * @see org.eclipse.ocl.library.OCLConcreteType#getContainer
 	 * @model opposite="container" containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<OCLType> getType();
+	EList<OCLConcreteType> getType();
 
 	/**
 	 * Returns the value of the '<em><b>Container</b></em>' container reference.
@@ -86,6 +86,6 @@ public interface OCLPackage extends OCLPackageParent {
 	 * @model
 	 * @generated
 	 */
-	OCLType getType(String name);
+	OCLConcreteType getType(String name);
 
 } //OCLLibraryPackage

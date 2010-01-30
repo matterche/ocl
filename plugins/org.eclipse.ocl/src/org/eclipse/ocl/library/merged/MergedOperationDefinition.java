@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedOperationDefinition.java,v 1.1.2.1 2010/01/24 07:41:03 ewillink Exp $
+ * $Id: MergedOperationDefinition.java,v 1.1.2.2 2010/01/30 07:49:36 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.utilities.ExpressionInOCL;

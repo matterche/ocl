@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityOCLLibrary.java,v 1.1.2.8 2010/01/24 15:13:10 ewillink Exp $
+ * $Id: CompatibilityOCLLibrary.java,v 1.1.2.9 2010/01/30 07:49:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.library;
@@ -23,8 +23,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.merged.OCLClassifier;
+import org.eclipse.ocl.library.merged.OCLDataType;
+import org.eclipse.ocl.library.merged.OCLEnumeration;
+import org.eclipse.ocl.library.merged.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 
 /**
  * A CompatibilityOCLLibrary extends the {@link AbstractOCLLibrary} to provide backward compatibility
@@ -35,18 +43,18 @@ import org.eclipse.ocl.expressions.OperationCallExp;
  * 
  * @since 3.0
  */
-public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, TT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE, MT extends EObject> extends AbstractOCLLibrary
+public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE, PK extends NE, T extends NE, CT extends T, TT extends T, DT extends T, ET extends T, EL extends NE, OF extends NE, OP extends TE, PF extends TE> extends AbstractOCLLibrary
 {
-	private Map<OCLType, Map<OF, List<OCLOperation>>> operationMaps = new HashMap<OCLType, Map<OF, List<OCLOperation>>>();
+	private Map<OCLConcreteType, Map<OF, List<OCLOperation>>> operationMaps = new HashMap<OCLConcreteType, Map<OF, List<OCLOperation>>>();
 //	private Map<OCLType, Map<PF, OCLProperty>> propertyMaps = new HashMap<OCLType, Map<PF, OCLProperty>>();
-    private Map<EObject, OCLType> typeMap = new HashMap<EObject, OCLType>();
-    private Map<Integer, List<OCLTupleType>> tupleTypeMap = null;
+    private Map<Object, OCLConcreteType> typeMap = new HashMap<Object, OCLConcreteType>();
+    private Map<Integer, List<OCLConcreteType>> tupleTypeMap = null;
 
     public CompatibilityOCLLibrary(String libraryURI) {
 		super(libraryURI);
 	}
     
-    public void addType(T aType, OCLType oclType) {
+    public void addType(T aType, OCLConcreteType oclType) {
 		PK aPackage = getPackage(aType);
 		OCLPackage oclPackage = getLibraryPackage(aPackage);
     	typeMap.put(aType, oclType);
@@ -54,13 +62,13 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 //    	ownedTypes.put(type.getQualifiedName(), type);
     }
 
-	protected abstract MT asMetaType(Object object);
+	protected abstract Object asMetaType(Object object);
 
 	protected abstract T asType(Object object);
 
 	protected abstract OCLClassifier createOCLClassifier();
 
-	protected OCLClassifier createOCLClassifier(CT aClassifier, Map<EObject, OCLType> visited) {
+	protected OCLClassifier createOCLClassifier(MergedLibrary mergedLibrary, CT aClassifier, Map<Object, OCLConcreteType> visited) {
 		OCLClassifier oclClassifier = createOCLClassifier();
 		oclClassifier.setName(getName(aClassifier));
 		oclClassifier.setMetaModelElement(aClassifier);
@@ -73,14 +81,14 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 			oclClassifier.getOperation().add(oclOperation);
 			T returnType = getReturnType(anOperation);
 			if (returnType != null) {
-				oclOperation.setType(getLibraryTypeOfType(returnType));
+				oclOperation.setType(mergedLibrary.getLibraryTypeOfType(returnType));
 			}
 			for (OP aParameter : getParameters(anOperation)) {
 				OCLParameter oclParameter = LibraryFactory.eINSTANCE.createOCLParameter();
 				oclParameter.setName(getName(aParameter));
 //				oclParameter.setMetaModelElement(aParameter);
 				oclOperation.getParameter().add(oclParameter);
-				oclParameter.setType(getLibraryTypeOfTypedElement(aParameter));
+				oclParameter.setType(getLibraryTypeOfTypedElement(mergedLibrary, aParameter));
 			}
 		}
 		for (PF aProperty : getProperties(aClassifier)) {
@@ -88,13 +96,13 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 			oclProperty.setName(getName(aProperty));
 			oclProperty.setMetaModelElement(aProperty);
 			oclClassifier.getProperty().add(oclProperty);
-			oclProperty.setType(getLibraryTypeOfTypedElement(aProperty));
+			oclProperty.setType(getLibraryTypeOfTypedElement(mergedLibrary, aProperty));
 		}		
 		List<? extends T> eSuperTypes = getSuperTypes(aClassifier);
 		if ((eSuperTypes != null) && !eSuperTypes.isEmpty()) {
 	 		for (T superType : eSuperTypes) {
 				if (!visited.containsKey(superType)) {
-					OCLType superOCLType = getLibraryTypeOfType(superType);
+					OCLType superOCLType = mergedLibrary.getLibraryTypeOfType(superType);
 					oclClassifier.getConforms().add(superOCLType);
 				}
 			}
@@ -107,7 +115,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract OCLDataType createOCLDataType();
 	
-	protected OCLDataType createOCLDataType(DT aDataType, Map<EObject, OCLType> visited) {
+	protected OCLDataType createOCLDataType(MergedLibrary mergedLibrary, DT aDataType, Map<Object, OCLConcreteType> visited) {
 		OCLDataType oclDataType = createOCLDataType();
 		oclDataType.setName(getName(aDataType));
 		oclDataType.setMetaModelElement(aDataType);
@@ -118,7 +126,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract OCLEnumeration createOCLEnumeration();
 
-	protected OCLEnumeration createOCLEnumeration(ET anEnumeration, Map<EObject, OCLType> visited) {
+	protected OCLEnumeration createOCLEnumeration(MergedLibrary mergedLibrary, ET anEnumeration, Map<Object, OCLConcreteType> visited) {
 		OCLEnumeration oclEnumeration = createOCLEnumeration();
 		oclEnumeration.setName(getName(anEnumeration));
 		oclEnumeration.setMetaModelElement(anEnumeration);
@@ -135,45 +143,55 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 	}
 	
 	protected abstract OCLEnumerationLiteral createOCLEnumerationLiteral();
+	
+	protected OCLJavaType createOCLJavaType(Class<?> aJavaType, Map<Object, OCLConcreteType> visited) {
+		OCLJavaType oclJavaType = LibraryFactory.eINSTANCE.createOCLJavaType();
+		oclJavaType.setName(aJavaType.getName());
+		oclJavaType.setJavaClass(aJavaType);
+		oclJavaType.getConforms().add(getJava());
+    	typeMap.put(aJavaType, oclJavaType);
+//		addType(aJavaType, oclJavaType);
+		return oclJavaType;
+	}
 
 	protected abstract OCLMetaModelOperation createOCLMetaModelOperation();
 
 	protected abstract OCLMetaModelProperty createOCLMetaModelProperty();
 
-	protected OCLTupleType createOCLTupleType(TT aTupleType, Map<EObject, OCLType> visited) {
+	protected OCLConcreteType createOCLTupleType(MergedLibrary mergedLibrary, TT aTupleType, Map<Object, OCLConcreteType> visited) {
 	    if (tupleTypeMap == null) {
-	    	tupleTypeMap = new HashMap<Integer, List<OCLTupleType>>();
+	    	tupleTypeMap = new HashMap<Integer, List<OCLConcreteType>>();
 	    }
-		int typeHash = computeTupleTypeHash(aTupleType);
-		List<OCLTupleType> oclTupleTypes = tupleTypeMap.get(typeHash);
+		int typeHash = computeTupleTypeHash(mergedLibrary, aTupleType);
+		List<OCLConcreteType> oclTupleTypes = tupleTypeMap.get(typeHash);
 		if (oclTupleTypes != null) {
-			for (OCLTupleType oclTupleType : oclTupleTypes) {
-				if (compareTupleType(oclTupleType, aTupleType) == 0) {
+			for (OCLConcreteType oclTupleType : oclTupleTypes) {
+				if (compareTupleType(mergedLibrary, oclTupleType, aTupleType) == 0) {
 					return oclTupleType;
 				}
 			}
 		}
 		else {
-			oclTupleTypes = new ArrayList<OCLTupleType>();
+			oclTupleTypes = new ArrayList<OCLConcreteType>();
 			tupleTypeMap.put(typeHash, oclTupleTypes);
 		}
-		OCLTupleType oclTupleType = LibraryFactory.eINSTANCE.createOCLTupleType();
+		OCLConcreteType oclTupleType = LibraryFactory.eINSTANCE.createOCLConcreteType();
 		oclTupleType.setName(getName(aTupleType));
-		oclTupleType.setMetaModelElement(aTupleType);
+//		oclTupleType.setMetaModelElement(aTupleType);
 		addType(aTupleType, oclTupleType);
 		for (PF aProperty : getSortedTupleParts(aTupleType)) {
 			OCLMetaModelProperty oclProperty = createOCLMetaModelProperty();
 			oclProperty.setName(getName(aProperty));
 			oclProperty.setMetaModelElement(aProperty);
 			oclTupleType.getProperty().add(oclProperty);
-			oclProperty.setType(getLibraryTypeOfTypedElement(aProperty));
+			oclProperty.setType(getLibraryTypeOfTypedElement(mergedLibrary, aProperty));
 		}
 		oclTupleType.getConforms().add(getOclTuple());
 		oclTupleTypes.add(oclTupleType);
 		return oclTupleType;
 	}
 
-	protected int compareTupleType(OCLTupleType oclTupleType, TT aTupleType) {
+	protected int compareTupleType(MergedLibrary mergedLibrary, OCLConcreteType oclTupleType, TT aTupleType) {
 		List<OCLProperty> oclTupleParts = oclTupleType.getProperty();
 		List<? extends PF> someTupleParts = getSortedTupleParts(aTupleType);
 		int iMax = oclTupleParts.size();
@@ -188,8 +206,8 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 			if (delta != 0) {
 				return delta;
 			}
-			OCLType oclType = oclTuplePart.getType();
-			OCLType aType = getLibraryTypeOfTypedElement(aTuplePart);
+			OCLType oclType = oclTuplePart.getResolvedType(null);
+			OCLType aType = getLibraryTypeOfTypedElement(mergedLibrary, aTuplePart);
 			if (oclType != aType) {
 				delta = oclType.hashCode() - aType.hashCode();
 				if (delta != 0) {
@@ -201,57 +219,62 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 		return 0;
 	}
 
-	protected int computeTupleTypeHash(TT aTupleType) {
+	protected int computeTupleTypeHash(MergedLibrary mergedLibrary, TT aTupleType) {
 		int hash = 7777;
 		for (PF aProperty : getSortedTupleParts(aTupleType)) {
 			hash = hash * 10101;
-			OCLType type = getLibraryTypeOfTypedElement(aProperty);
+			OCLType type = getLibraryTypeOfTypedElement(mergedLibrary, aProperty);
 			hash += getName(aProperty).hashCode() + type.hashCode();
 		}
 		return hash;
 	}
 
-	protected abstract OCLType createOCLType(EObject aType, Map<EObject, OCLType> visited);
+	protected abstract OCLConcreteType createOCLType(MergedLibrary mergedLibrary, Object aType, Map<Object, OCLConcreteType> visited);
 
 	protected abstract List<EL> getLiterals(ET enumeration);
 
 	protected abstract String getName(NE namedElement);
 
-	@Override
-	public OCLType getLibraryTypeOfType(Object object) {
-		OCLType oclType = super.getLibraryTypeOfType(object);
-		if (oclType == null) {
-			oclType = typeMap.get(object);
-		}
+	public OCLType getLibraryTypeOfType(MergedLibrary mergedLibrary, Object object) {
+		OCLType oclType = typeMap.get(object);
 		if (oclType == null) {
 			T aType = asType(object);
 			if (aType != null) {
-				oclType = createOCLType(aType, new HashMap<EObject, OCLType>());
+				oclType = createOCLType(mergedLibrary, aType, new HashMap<Object, OCLConcreteType>());
 			}
 		}
 		return oclType;
 	}
 
-	@Override
-	public OCLType getLibraryTypeOfValue(Object value, Object staticType) {
-		OCLType type = super.getLibraryTypeOfValue(value, staticType);
-		if (type == null) {
-			MT aType = asMetaType(value);
+	public OCLType getLibraryTypeOfValue(MergedLibrary mergedLibrary, Object value, Object staticType) {
+		if (staticType instanceof EEnum) {
+			return getEnumeration();
+		}
+		OCLType type = null;
+		Object aType = asMetaType(value);
+		if (aType != null) {
+			type = typeMap.get(aType);
+			if (type == null) {
+				type = createOCLType(mergedLibrary, aType, new HashMap<Object, OCLConcreteType>());
+			}
+		}
+		else {
+			aType = value.getClass();
 			if (aType != null) {
 				type = typeMap.get(aType);
 				if (type == null) {
-					type = createOCLType(aType, new HashMap<EObject, OCLType>());
+					type = createOCLType(mergedLibrary, aType, new HashMap<Object, OCLConcreteType>());
 				}
 			}
 		}
 		return type;
 	}
 
-	protected abstract OCLType getLibraryTypeOfTypedElement(TE typedElement);
+	protected abstract OCLType getLibraryTypeOfTypedElement(MergedLibrary mergedLibrary, TE typedElement);
 	
 	@Override
-	public List<OCLOperation> getOperations(OCLType dynamicType, OperationCallExp<?, ?> operationCall) {
-		List<OCLOperation> oclOperations = super.getOperations(dynamicType, operationCall);
+	public List<OCLOperation> getOperations(MergedLibrary mergedLibrary, OCLConcreteType dynamicType, OperationCallExp<?, ?> operationCall) {
+		List<OCLOperation> oclOperations = super.getOperations(mergedLibrary, dynamicType, operationCall);
 		if (oclOperations != null) {
 			return oclOperations;
 		}
@@ -264,7 +287,7 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 		OF referredOperation = (OF) operationCall.getReferredOperation();
 		oclOperations = operationMap.get(referredOperation);
 		if ((oclOperations == null) && !operationMap.containsKey(referredOperation)) {
-			oclOperations = resolveOperations(dynamicType, referredOperation);
+			oclOperations = resolveOperations(mergedLibrary, dynamicType, referredOperation);
 			operationMap.put(referredOperation, oclOperations);
 		}
 		return oclOperations;
@@ -323,9 +346,9 @@ public abstract class CompatibilityOCLLibrary<NE extends EObject, TE extends NE,
 
 	protected abstract List<? extends T> getSuperTypes(CT classifier);
 	
-	public abstract void loadPackage(PK aPackage);
+	public abstract void loadPackage(MergedLibrary mergedLibrary, PK aPackage);
 
-	protected abstract List<OCLOperation> resolveOperations(OCLType dynamicType, OF anOperation);
+	protected abstract List<OCLOperation> resolveOperations(MergedLibrary mergedLibrary, OCLType dynamicType, OF anOperation);
 
-	protected abstract OCLProperty resolveProperty(OCLType dynamicType, PF aProperty);
+	protected abstract OCLProperty resolveProperty(MergedLibrary mergedLibrary, OCLType dynamicType, PF aProperty);
 }

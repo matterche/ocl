@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLAnyType.java,v 1.1.2.1 2010/01/20 09:09:33 ewillink Exp $
+ * $Id: OCLAnyType.java,v 1.1.2.2 2010/01/30 07:49:20 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -18,5 +18,5 @@ package org.eclipse.ocl.library;
  * @model
  * @generated
  */
-public interface OCLAnyType extends OCLType {
+public interface OCLAnyType extends OCLConcreteType {
 } // OCLAnyType

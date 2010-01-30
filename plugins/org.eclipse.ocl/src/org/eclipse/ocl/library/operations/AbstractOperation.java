@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.3 2010/01/30 07:49:39 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -71,7 +71,7 @@ public abstract class AbstractOperation implements ILibraryOperation
 			return null;
 		}
 		else if (isNull(object)) {
-			return CollectionUtil.createNewBag();
+			return null;
 		}
 		else if (object instanceof Collection<?>) {
 			return (Collection<?>)object;

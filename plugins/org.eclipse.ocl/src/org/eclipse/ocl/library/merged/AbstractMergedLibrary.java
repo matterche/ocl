@@ -13,14 +13,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractMergedLibrary.java,v 1.1.2.2 2010/01/24 12:26:03 ewillink Exp $
+ * $Id: AbstractMergedLibrary.java,v 1.1.2.3 2010/01/30 07:49:33 ewillink Exp $
  */
 
 package org.eclipse.ocl.library.merged;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.OCLLibrary;
@@ -42,11 +41,6 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
     
 	public AbstractMergedLibrary(OCLRoot baseLibrary) {
 		this.baseLibrary = baseLibrary;
-	}
-	
-	public Set<MergedOperation> getConformingOperations(OCLType dynamicType, String name, OCLType[] oclArguments) {
-		MergedType mergedType = getMergedType(dynamicType);
-		return mergedType.getConformingOperations(name, oclArguments);
 	}
 	
 	public MergedProperty getConformingProperty(OCLType dynamicType, String name) {
@@ -83,7 +77,7 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
 			}
 			mergedOperation = mergedOperationDefinition;
 		}
-		if (UMLReflection.DEFINITION.equals(stereotype)) {
+		if (UMLReflection.DEFINITION.equals(stereotype) || UMLReflection.BODY.equals(stereotype)) {
 			if (mergedOperation.getBody() != null) {
 				return AbstractOperation.createInvalid(null, "Duplicate body: " + mergedOperation); //$NON-NLS-1$
 			}
@@ -96,7 +90,7 @@ public class AbstractMergedLibrary extends MergedLibraryImpl
 			mergedOperation.getPre().add(specification);
 		}
 		else {
-			return AbstractOperation.createInvalid(null, "Unknown stereotype: " + mergedOperation); //$NON-NLS-1$			
+			return AbstractOperation.createInvalid(null, "Unknown stereotype: " + stereotype  + " for " + mergedOperation); //$NON-NLS-1$ //$NON-NLS-2$			
 		}
 		mergedType.addOperation(mergedOperation);
 		return mergedOperation;

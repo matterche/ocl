@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibrary.java,v 1.1.2.5 2010/01/24 07:40:57 ewillink Exp $
+ * $Id: OCLLibrary.java,v 1.1.2.6 2010/01/30 07:49:22 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -45,7 +45,7 @@ public interface OCLLibrary extends OCLPackageParent {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.library.OCLType}.
+	 * The list contents are of type {@link org.eclipse.ocl.library.OCLTypeValue}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' containment reference list isn't clear,
@@ -57,7 +57,7 @@ public interface OCLLibrary extends OCLPackageParent {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<OCLType> getType();
+	EList<OCLTypeValue> getType();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,6 +66,14 @@ public interface OCLLibrary extends OCLPackageParent {
 	 * @generated
 	 */
 	ILibraryOperation getLibraryOperation(Class<? extends ILibraryOperation> libraryOperationClass);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLTypeValue getType(String name);
 
 	/**
 	 * <!-- begin-user-doc -->

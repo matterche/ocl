@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.11.10.5 2010/01/24 07:41:13 ewillink Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.11.10.6 2010/01/30 07:49:39 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -1405,7 +1405,7 @@ public class ExpressionsPackageImpl
 			.getEPackage(UtilitiesPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 			.getEPackage(EcorePackage.eNS_URI);
-		LibraryPackage theOCLLibraryPackage = (LibraryPackage) EPackage.Registry.INSTANCE
+		LibraryPackage theLibraryPackage = (LibraryPackage) EPackage.Registry.INSTANCE
 			.getEPackage(LibraryPackage.eNS_URI);
 
 		// Create type parameters
@@ -2368,7 +2368,7 @@ public class ExpressionsPackageImpl
 			"operationCode", null, 0, 1, OperationCallExp.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(
 			getOperationCallExp_NewReferredOperation(),
-			theOCLLibraryPackage.getOCLType(),
+			theLibraryPackage.getOCLType(),
 			null,
 			"newReferredOperation", null, 0, 1, OperationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 

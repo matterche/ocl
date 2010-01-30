@@ -1,16 +1,42 @@
-Ecore tests: 35 failures
+Ecore tests: 26 failures
+	Basic Tests
+		test_laxNullHandling_null
+		test_laxNullHandling_OclInvalid
+		test_lax_null_handling_on_EcoreModel_253252
+	Comparison/Ordering Tests
+		test_lessThan -- Comparable
+		test_lessThanOrEqual -- Comparable
+		test_greaterThan -- Comparable
+		test_greaterThanOrEqual -- Comparable
+		test_javaImplementationsOfInfixOperators
+		test_comparisonOfBooleanOperations_137487
+		test_supportForELongAttributes_198451 -- asLong
+	Iterator Tests
+		test_collectNested
+		test_closure
+	Location Information Tests
+		test_propertyPositions_associationEndCall -- asCollectionLiteral
+	Collision with OCL Standard Operation
+		testEvaluation
+	Ecore Environment Tests
+		test_extensibility_156360 -- MyEvaluationEnvironment
+		test_extensibility_156360_with_backslash_escaping -- MyEvaluationEnvironment
+	Parsing Options Tests
+		test_implicitRootClass_option_operations -- ParsingOptions.implicitRootClass
+	Ecore Halted Evaluation Tests
+		testBasicEvaluationHalted -- InterruptibleEnv
+		testEvaluationHaltedOnError -- InterruptibleEnv
+		testEvaluationHaltedWithCustomDiagnostic -- InterruptibleEnv
+		testOCLCaughtExcConvertedToInvalid -- InterruptibleEnv
+		testHaltedQuery -- InterruptibleEnv
+		testEvaluateListHaltedQuery -- InterruptibleEnv
+		testSelectListHaltedQuery -- InterruptibleEnv
+		testRejectListHaltedQuery -- InterruptibleEnv
+		testVariablesCleanup -- InterruptibleEnv
 UML tests: 133 failures
 
 Meta-model
 ----------
-
-What do T and T2 really mean?
-
-Do they match the OCL specification?
-
-Are they meta-modelled usefully?
-
-Are they implemented usefully?
 
 Support library extension so that OCL.oclstdlib is extended by MDTOCL.oclstdlib.
 
@@ -37,6 +63,7 @@ Collection max/min/reverse tests
 Numerous FIXME tests
 any kind of property
 UML library asMetaClass
+Binding of loose template parameters
 
 Deep per-element normalisation of evaluate() input. ? should be in visitVariableExp() ??
 

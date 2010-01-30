@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperation.java,v 1.1.2.6 2010/01/24 07:40:53 ewillink Exp $
+ * $Id: OCLOperation.java,v 1.1.2.7 2010/01/30 07:49:17 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -17,9 +17,10 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.OCLOperation#isIterator <em>Is Iterator</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLOperation#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLOperation#isStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLOperation#getIterator <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLOperation#getParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,32 +28,24 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface OCLOperation extends OCLTypedElement {
+public interface OCLOperation extends OCLTypedElement, OCLTypeParameterParent {
 	/**
-	 * Returns the value of the '<em><b>Is Iterator</b></em>' attribute.
+	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.library.OCLIterator}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLIterator#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Iterator</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Iterator</em>' attribute.
-	 * @see #setIsIterator(boolean)
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_IsIterator()
-	 * @model
+	 * @return the value of the '<em>Iterator</em>' containment reference list.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_Iterator()
+	 * @see org.eclipse.ocl.library.OCLIterator#getContainer
+	 * @model opposite="container" containment="true"
 	 * @generated
 	 */
-	boolean isIterator();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLOperation#isIterator <em>Is Iterator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Iterator</em>' attribute.
-	 * @see #isIterator()
-	 * @generated
-	 */
-	void setIsIterator(boolean value);
+	EList<OCLIterator> getIterator();
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' containment reference list.
@@ -74,7 +67,7 @@ public interface OCLOperation extends OCLTypedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Container</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLType#getOperation <em>Operation</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLConcreteType#getOperation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Container</em>' container reference isn't clear,
@@ -82,13 +75,13 @@ public interface OCLOperation extends OCLTypedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Container</em>' container reference.
-	 * @see #setContainer(OCLType)
+	 * @see #setContainer(OCLConcreteType)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_Container()
-	 * @see org.eclipse.ocl.library.OCLType#getOperation
+	 * @see org.eclipse.ocl.library.OCLConcreteType#getOperation
 	 * @model opposite="operation" transient="false"
 	 * @generated
 	 */
-	OCLType getContainer();
+	OCLConcreteType getContainer();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLOperation#getContainer <em>Container</em>}' container reference.
@@ -98,14 +91,33 @@ public interface OCLOperation extends OCLTypedElement {
 	 * @see #getContainer()
 	 * @generated
 	 */
-	void setContainer(OCLType value);
+	void setContainer(OCLConcreteType value);
 
 	/**
+	 * Returns the value of the '<em><b>Is Static</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Static</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @return the value of the '<em>Is Static</em>' attribute.
+	 * @see #setIsStatic(boolean)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_IsStatic()
+	 * @model default="false"
 	 * @generated
 	 */
-	Object getOperationCode();
+	boolean isStatic();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLOperation#isStatic <em>Is Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Static</em>' attribute.
+	 * @see #isStatic()
+	 * @generated
+	 */
+	void setIsStatic(boolean value);
 
 } // OCLOperation

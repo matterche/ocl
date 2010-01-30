@@ -2,51 +2,42 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeImpl.java,v 1.1.2.7 2010/01/24 07:41:14 ewillink Exp $
+ * $Id: OCLTypeImpl.java,v 1.1.2.8 2010/01/30 07:49:28 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLOperation;
-import org.eclipse.ocl.library.OCLPackage;
-import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLProperty;
-import org.eclipse.ocl.library.OCLTemplateParameterType;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeBinding;
+import org.eclipse.ocl.library.OCLTypeParameter;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>OCL Type</b></em>'.
- * @since 3.0
+	 * @since 3.0
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLTypeImpl#getConforms <em>Conforms</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLTypeImpl#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLTypeImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLTypeImpl#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
-	private static EList<OCLTemplateParameterType> emptyList = new BasicEList<OCLTemplateParameterType>();
+public abstract class OCLTypeImpl extends OCLElementImpl implements OCLType {
+	public static final EList<OCLOperation> noOperations = new BasicEList.UnmodifiableEList<OCLOperation>(0, new Object[]{});
+	public static final EList<OCLProperty> noProperties = new BasicEList.UnmodifiableEList<OCLProperty>(0, new Object[]{});
+	public static final EList<OCLTypeBinding> noTypeBindings = new BasicEList.UnmodifiableEList<OCLTypeBinding>(0, new Object[]{});
+	public static final EList<OCLTypeParameter> noTypeParameters = new BasicEList.UnmodifiableEList<OCLTypeParameter>(0, new Object[]{});
 	/**
 	 * The cached value of the '{@link #getConforms() <em>Conforms</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -56,26 +47,6 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 	 * @ordered
 	 */
 	protected EList<OCLType> conforms;
-
-	/**
-	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OCLOperation> operation;
-
-	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OCLProperty> property;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,71 +82,6 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OCLOperation> getOperation() {
-		if (operation == null) {
-			operation = new EObjectContainmentWithInverseEList<OCLOperation>(OCLOperation.class, this, LibraryPackage.OCL_TYPE__OPERATION, LibraryPackage.OCL_OPERATION__CONTAINER);
-		}
-		return operation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OCLProperty> getProperty() {
-		if (property == null) {
-			property = new EObjectContainmentEList<OCLProperty>(OCLProperty.class, this, LibraryPackage.OCL_TYPE__PROPERTY);
-		}
-		return property;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLPackage getContainer() {
-		if (eContainerFeatureID() != LibraryPackage.OCL_TYPE__CONTAINER) return null;
-		return (OCLPackage)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainer(OCLPackage newContainer, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainer, LibraryPackage.OCL_TYPE__CONTAINER, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContainer(OCLPackage newContainer) {
-		if (newContainer != eInternalContainer() || (eContainerFeatureID() != LibraryPackage.OCL_TYPE__CONTAINER && newContainer != null)) {
-			if (EcoreUtil.isAncestor(this, newContainer))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainer != null)
-				msgs = ((InternalEObject)newContainer).eInverseAdd(this, LibraryPackage.OCL_PACKAGE__TYPE, OCLPackage.class, msgs);
-			msgs = basicSetContainer(newContainer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_TYPE__CONTAINER, newContainer, newContainer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean conformsTo(OCLType type) {
@@ -196,8 +102,19 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLType getNormalizedType() {
-		return this;
+	public EList<OCLOperation> getOperation() {
+		return noOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OCLOperation> getOperations(String name, EList<OCLType> parameterTypes, OCLType contextType) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -205,48 +122,7 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<OCLOperation> getOperations(String name, EList<OCLType> types) {
-		EList<OCLOperation> operations = null;
-		if (operation != null) {
-			int size = types.size();
-			for (OCLOperation anOperation : operation) {
-				if (name.equals(anOperation.getName())) {
-					EList<OCLParameter> parameters = anOperation.getParameter();
-					if (parameters.size() == size) {
-						int i = 0;
-						for (; i < size; i++) {
-							OCLType parameterType = parameters.get(i).getType();
-							OCLType opType = types.get(i);
-							if (!opType.conformsTo(parameterType) && !parameterType.conformsTo(opType)) {
-								break;
-							}
-						}
-						if (i >= size) {
-							operations = addOperation(operations, anOperation);
-						}
-					}
-				}
-			}
-		}
-		if (conforms != null) {
-			for (OCLType superType : conforms) {
-				EList<OCLOperation> superOperations = superType.getOperations(name, types);
-				if (superOperations != null) {
-					for (OCLOperation superOperation : superOperations) {
-						operations = addOperation(operations, superOperation);
-					}
-				}
-			}
-		}
-		return operations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLType getTemplateBinding(OCLTemplateParameterType templateParameter) {
+	public EList<OCLOperation> getOperations(String name, EList<OCLType> parameterTypes) {
 		return null;
 	}
 
@@ -255,24 +131,8 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<OCLTemplateParameterType> getTemplateParameter() {
-		if (emptyList == null) {
-			emptyList = new BasicEList<OCLTemplateParameterType>();
-		}
-		return emptyList;
-	}
-
-	private EList<OCLOperation> addOperation(EList<OCLOperation> operations, OCLOperation anOperation) {
-		if (operations == null) {
-			operations = new BasicEList<OCLOperation>();
-			operations.add(anOperation);
-		}
-		else {
-			if (false) { // test overload visibility
-				
-			}
-		}
-		return operations;
+	public EList<OCLProperty> getProperty() {
+		return noProperties;
 	}
 
 	/**
@@ -281,41 +141,7 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 	 * @generated NOT
 	 */
 	public OCLProperty getProperty(String name) {
-		if (property != null) {
-			for (OCLProperty anProperty : property) {
-				if (name.equals(anProperty.getName())) {
-					return anProperty;
-				}
-			}
-		}
-		if (conforms != null) {
-			for (OCLType superType : conforms) {
-				OCLProperty aProperty = superType.getProperty(name);
-				if (aProperty != null) {
-					return aProperty;
-				}
-			}
-		}
 		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case LibraryPackage.OCL_TYPE__OPERATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperation()).basicAdd(otherEnd, msgs);
-			case LibraryPackage.OCL_TYPE__CONTAINER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainer((OCLPackage)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -323,45 +149,26 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OCLOperation getOperation(String name) {
-		for (OCLOperation anOperation : operation) {
-			if (name.equals(anOperation.getName())) {
-				return anOperation;
-			}
-		}
+	public EList<OCLTypeBinding> getTypeBinding() {
+		return noTypeBindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLTypeBinding getTypeBinding(OCLTypeParameter typeParameter) {
 		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case LibraryPackage.OCL_TYPE__OPERATION:
-				return ((InternalEList<?>)getOperation()).basicRemove(otherEnd, msgs);
-			case LibraryPackage.OCL_TYPE__PROPERTY:
-				return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-			case LibraryPackage.OCL_TYPE__CONTAINER:
-				return basicSetContainer(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case LibraryPackage.OCL_TYPE__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, LibraryPackage.OCL_PACKAGE__TYPE, OCLPackage.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
+	public EList<OCLTypeParameter> getTypeParameter() {
+		return noTypeParameters;
 	}
 
 	/**
@@ -374,12 +181,6 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 		switch (featureID) {
 			case LibraryPackage.OCL_TYPE__CONFORMS:
 				return getConforms();
-			case LibraryPackage.OCL_TYPE__OPERATION:
-				return getOperation();
-			case LibraryPackage.OCL_TYPE__PROPERTY:
-				return getProperty();
-			case LibraryPackage.OCL_TYPE__CONTAINER:
-				return getContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -397,17 +198,6 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 				getConforms().clear();
 				getConforms().addAll((Collection<? extends OCLType>)newValue);
 				return;
-			case LibraryPackage.OCL_TYPE__OPERATION:
-				getOperation().clear();
-				getOperation().addAll((Collection<? extends OCLOperation>)newValue);
-				return;
-			case LibraryPackage.OCL_TYPE__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends OCLProperty>)newValue);
-				return;
-			case LibraryPackage.OCL_TYPE__CONTAINER:
-				setContainer((OCLPackage)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -423,15 +213,6 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 			case LibraryPackage.OCL_TYPE__CONFORMS:
 				getConforms().clear();
 				return;
-			case LibraryPackage.OCL_TYPE__OPERATION:
-				getOperation().clear();
-				return;
-			case LibraryPackage.OCL_TYPE__PROPERTY:
-				getProperty().clear();
-				return;
-			case LibraryPackage.OCL_TYPE__CONTAINER:
-				setContainer((OCLPackage)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -446,23 +227,24 @@ public class OCLTypeImpl extends OCLNamedElementImpl implements OCLType {
 		switch (featureID) {
 			case LibraryPackage.OCL_TYPE__CONFORMS:
 				return conforms != null && !conforms.isEmpty();
-			case LibraryPackage.OCL_TYPE__OPERATION:
-				return operation != null && !operation.isEmpty();
-			case LibraryPackage.OCL_TYPE__PROPERTY:
-				return property != null && !property.isEmpty();
-			case LibraryPackage.OCL_TYPE__CONTAINER:
-				return getContainer() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	@Override
-	public String toString() {
-		return super.toString();
+	public void appendQualifiedName(StringBuffer s) {
+		super.appendQualifiedName(s);
+		appendTypeParameterSignature(s, getTypeParameter());
+	}
+
+	@Override
+	public void appendSignature(StringBuffer s) {
+		super.appendSignature(s);
+		appendTypeParameterSignature(s, getTypeParameter());
+	}
+
+	@Override
+	public String getNameSeparator() {
+		return "."; //$NON-NLS-1$
 	}
 } //OCLTypeImpl

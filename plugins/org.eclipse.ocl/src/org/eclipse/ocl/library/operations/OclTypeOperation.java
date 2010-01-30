@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OclTypeOperation.java,v 1.1.2.2 2010/01/24 07:41:10 ewillink Exp $
+ * $Id: OclTypeOperation.java,v 1.1.2.3 2010/01/30 07:49:39 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.merged.MergedLibrary;
 
 /**
@@ -32,7 +32,7 @@ public class OclTypeOperation extends AbstractOperation
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = visitor.getEnvironment();
 		MergedLibrary library = environment.getMergedLibrary();
-		OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, operationCall.getSource().getType());
+		OCLTypeValue sourceType = library.getLibraryTypeOfValue(sourceVal, operationCall.getSource().getType());
 		return sourceType;
 	}
 }

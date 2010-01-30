@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibrarySwitch.java,v 1.1.2.1 2010/01/24 07:41:11 ewillink Exp $
+ * $Id: OCLMergedLibrarySwitch.java,v 1.1.2.2 2010/01/30 07:49:31 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.util;
 
@@ -10,9 +10,17 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.library.OCLBoundType;
 import org.eclipse.ocl.library.OCLCache;
+import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLElement;
 import org.eclipse.ocl.library.OCLNamedElement;
+import org.eclipse.ocl.library.OCLOperation;
+import org.eclipse.ocl.library.OCLProperty;
+import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeParameterParent;
+import org.eclipse.ocl.library.OCLTypeValue;
+import org.eclipse.ocl.library.OCLTypedElement;
 import org.eclipse.ocl.library.merged.*;
 import org.eclipse.ocl.library.merged.MergedLibrary;
 import org.eclipse.ocl.library.merged.MergedOperation;
@@ -177,6 +185,82 @@ public class OCLMergedLibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OCLMergedLibraryPackage.OCL_BOUND_COLLECTION_TYPE: {
+				OCLBoundCollectionType oclBoundCollectionType = (OCLBoundCollectionType)theEObject;
+				T result = caseOCLBoundCollectionType(oclBoundCollectionType);
+				if (result == null) result = caseOCLBoundType(oclBoundCollectionType);
+				if (result == null) result = caseOCLNamedElement(oclBoundCollectionType);
+				if (result == null) result = caseOCLType(oclBoundCollectionType);
+				if (result == null) result = caseOCLTypeValue(oclBoundCollectionType);
+				if (result == null) result = caseOCLElement(oclBoundCollectionType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLMergedLibraryPackage.OCL_CLASSIFIER: {
+				OCLClassifier oclClassifier = (OCLClassifier)theEObject;
+				T result = caseOCLClassifier(oclClassifier);
+				if (result == null) result = caseOCLConcreteType(oclClassifier);
+				if (result == null) result = caseOCLType(oclClassifier);
+				if (result == null) result = caseOCLTypeParameterParent(oclClassifier);
+				if (result == null) result = caseOCLTypeValue(oclClassifier);
+				if (result == null) result = caseOCLNamedElement(oclClassifier);
+				if (result == null) result = caseOCLElement(oclClassifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLMergedLibraryPackage.OCL_DATA_TYPE: {
+				OCLDataType oclDataType = (OCLDataType)theEObject;
+				T result = caseOCLDataType(oclDataType);
+				if (result == null) result = caseOCLConcreteType(oclDataType);
+				if (result == null) result = caseOCLType(oclDataType);
+				if (result == null) result = caseOCLTypeParameterParent(oclDataType);
+				if (result == null) result = caseOCLTypeValue(oclDataType);
+				if (result == null) result = caseOCLNamedElement(oclDataType);
+				if (result == null) result = caseOCLElement(oclDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLMergedLibraryPackage.OCL_ENUMERATION: {
+				OCLEnumeration oclEnumeration = (OCLEnumeration)theEObject;
+				T result = caseOCLEnumeration(oclEnumeration);
+				if (result == null) result = caseOCLConcreteType(oclEnumeration);
+				if (result == null) result = caseOCLType(oclEnumeration);
+				if (result == null) result = caseOCLTypeParameterParent(oclEnumeration);
+				if (result == null) result = caseOCLTypeValue(oclEnumeration);
+				if (result == null) result = caseOCLNamedElement(oclEnumeration);
+				if (result == null) result = caseOCLElement(oclEnumeration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLMergedLibraryPackage.OCL_ENUMERATION_LITERAL: {
+				OCLEnumerationLiteral oclEnumerationLiteral = (OCLEnumerationLiteral)theEObject;
+				T result = caseOCLEnumerationLiteral(oclEnumerationLiteral);
+				if (result == null) result = caseOCLNamedElement(oclEnumerationLiteral);
+				if (result == null) result = caseOCLElement(oclEnumerationLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION: {
+				OCLMetaModelOperation oclMetaModelOperation = (OCLMetaModelOperation)theEObject;
+				T result = caseOCLMetaModelOperation(oclMetaModelOperation);
+				if (result == null) result = caseOCLOperation(oclMetaModelOperation);
+				if (result == null) result = caseOCLTypedElement(oclMetaModelOperation);
+				if (result == null) result = caseOCLTypeParameterParent(oclMetaModelOperation);
+				if (result == null) result = caseOCLNamedElement(oclMetaModelOperation);
+				if (result == null) result = caseOCLElement(oclMetaModelOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY: {
+				OCLMetaModelProperty oclMetaModelProperty = (OCLMetaModelProperty)theEObject;
+				T result = caseOCLMetaModelProperty(oclMetaModelProperty);
+				if (result == null) result = caseOCLProperty(oclMetaModelProperty);
+				if (result == null) result = caseOCLTypedElement(oclMetaModelProperty);
+				if (result == null) result = caseOCLNamedElement(oclMetaModelProperty);
+				if (result == null) result = caseOCLElement(oclMetaModelProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -332,6 +416,111 @@ public class OCLMergedLibrarySwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Bound Collection Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Bound Collection Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLBoundCollectionType(OCLBoundCollectionType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Classifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLClassifier(OCLClassifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Data Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Data Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLDataType(OCLDataType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Enumeration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Enumeration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLEnumeration(OCLEnumeration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Enumeration Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Enumeration Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLEnumerationLiteral(OCLEnumerationLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Meta Model Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Meta Model Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLMetaModelOperation(OCLMetaModelOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Meta Model Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Meta Model Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLMetaModelProperty(OCLMetaModelProperty object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>OCL Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -373,6 +562,126 @@ public class OCLMergedLibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLCache(OCLCache object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Type Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Type Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLTypeValue(OCLTypeValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLType(OCLType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Bound Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Bound Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLBoundType(OCLBoundType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Type Parameter Parent</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Type Parameter Parent</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLTypeParameterParent(OCLTypeParameterParent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Concrete Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Concrete Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLConcreteType(OCLConcreteType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Typed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLTypedElement(OCLTypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLOperation(OCLOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLProperty(OCLProperty object) {
 		return null;
 	}
 

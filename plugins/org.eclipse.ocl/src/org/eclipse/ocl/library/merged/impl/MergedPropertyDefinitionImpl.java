@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedPropertyDefinitionImpl.java,v 1.1.2.1 2010/01/24 07:41:12 ewillink Exp $
+ * $Id: MergedPropertyDefinitionImpl.java,v 1.1.2.2 2010/01/30 07:49:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -10,17 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.library.OCLType;
-
 import org.eclipse.ocl.library.merged.MergedPropertyDefinition;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
 import org.eclipse.ocl.library.operations.AbstractOperation;

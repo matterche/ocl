@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.16 2010/01/24 15:13:10 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.17 2010/01/30 07:49:40 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -79,13 +79,10 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.library.OCLCollectionType;
-import org.eclipse.ocl.library.OCLOrderedSetType;
-import org.eclipse.ocl.library.OCLSequenceType;
-import org.eclipse.ocl.library.OCLSetType;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.merged.MergedOperation;
 import org.eclipse.ocl.library.merged.MergedProperty;
+import org.eclipse.ocl.library.merged.MergedType;
 import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -143,34 +140,25 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			OCLExpression<?> source = oc.getSource();
 			Object sourceVal = source.accept(this);
 			Object staticSourceType = source.getType();
+			O referredOperation = oc.getReferredOperation();
+			UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
 			OCLType sourceType;
+			boolean isStatic;
 			if (staticSourceType instanceof TypeType<?, ?>) {
 				sourceType = library.getLibraryTypeOfType(sourceVal);
+				isStatic = true;
 			}
 			else {
 				sourceType = library.getLibraryTypeOfValue(sourceVal, staticSourceType);
-				if (AbstractOperation.isNull(sourceVal)) {
-					sourceType = library.getLibraryTypeOfType(staticSourceType);
-					sourceVal = createNullCollection(sourceType);					
-				}
+				isStatic = false;
 			}
 			if (sourceType == null) {
 				return getInvalid("Undefined source type: " + oc); //$NON-NLS-1$
 			}
-			O referredOperation = oc.getReferredOperation();
-			UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> umlReflection = getUMLReflection();
 			String operationName = umlReflection.getName(referredOperation);
 			List<PM> arguments = umlReflection.getParameters(referredOperation);
-			int iMax = arguments.size();
-			OCLType[] oclArguments = null;
-			if (iMax > 0) {
-				oclArguments = new OCLType[iMax];
-				int i = 0;
-				for (PM anArgument : arguments) {
-					oclArguments[i++] = library.getLibraryTypeOfType(umlReflection.getOCLType(anArgument));
-				}		
-			}
-			Set<MergedOperation> oclOperations = library.getConformingOperations(sourceType, operationName, oclArguments);
+			MergedType mergedSourceType = library.getMergedType(sourceType);
+			Set<MergedOperation> oclOperations = mergedSourceType.getConformingOperations(isStatic, operationName, arguments.size());
 			if (oclOperations == null) {
 				return getInvalid("Undefined operation: " + oc); //$NON-NLS-1$
 			}
@@ -189,27 +177,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				"visitOperationCallExp", e.getLocalizedMessage()); //$NON-NLS-1$
 			OCLPlugin.log(Diagnostic.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING, message, e);
 			return getInvalid("Failed evaluation: " + oc); //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @since 3.0
-	 */
-	public Object createNullCollection(OCLType sourceType) {
-		if (sourceType instanceof OCLSetType) {
-			return CollectionUtil.createNewSet();
-		}
-		else if (sourceType instanceof OCLOrderedSetType) {
-			return CollectionUtil.createNewOrderedSet();
-		}
-		else if (sourceType instanceof OCLSequenceType) {
-			return CollectionUtil.createNewSequence();
-		}
-		else if (sourceType instanceof OCLCollectionType) {
-			return CollectionUtil.createNewBag();
-		}
-		else {
-			return getNull();
 		}
 	}
 
@@ -737,7 +704,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, source.getType());
 			P referredProperty = pc.getReferredProperty();
 			String propertyName = getUMLReflection().getName(referredProperty);
-			MergedProperty oclProperty = library.getConformingProperty(sourceType, propertyName);
+			MergedType mergedSourceType = library.getMergedType(sourceType);
+			MergedProperty oclProperty = mergedSourceType.getConformingProperty(propertyName);
 			if (oclProperty == null) {
 				result = getInvalid("Undefined Property: " + pc); //$NON-NLS-1$
 			}
@@ -1183,15 +1151,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		try {
 			List<OCLExpression<C>> args = operationCall.getArgument();
 			if ((args != null) && (0 <= argumentNumber) && (argumentNumber < args.size())) {
-				OCLExpression<?> arg = args.get(argumentNumber);
+				OCLExpression<C> arg = args.get(argumentNumber);
 				Object argVal = arg.accept(this);
-				if (AbstractOperation.isNull(argVal)) {
-					C argType = getUMLReflection().getOCLType(arg);
-					OCLType oclType = getEnvironment().getMergedLibrary().getLibraryTypeOfType(argType);
-					if (oclType instanceof OCLCollectionType) {
-						argVal = createNullCollection(oclType);
-					}
-				}
 				return argVal;
 			}
 		}

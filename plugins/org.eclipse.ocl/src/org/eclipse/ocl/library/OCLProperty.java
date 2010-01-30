@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLProperty.java,v 1.1.2.5 2010/01/24 07:40:57 ewillink Exp $
+ * $Id: OCLProperty.java,v 1.1.2.6 2010/01/30 07:49:23 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -16,6 +16,7 @@ package org.eclipse.ocl.library;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLProperty#isStatic <em>Is Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,12 +34,12 @@ public interface OCLProperty extends OCLTypedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Container</em>' reference.
-	 * @see #setContainer(OCLType)
+	 * @see #setContainer(OCLConcreteType)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLProperty_Container()
 	 * @model
 	 * @generated
 	 */
-	OCLType getContainer();
+	OCLConcreteType getContainer();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLProperty#getContainer <em>Container</em>}' reference.
@@ -48,5 +49,32 @@ public interface OCLProperty extends OCLTypedElement {
 	 * @see #getContainer()
 	 * @generated
 	 */
-	void setContainer(OCLType value);
+	void setContainer(OCLConcreteType value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Static</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Static</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Static</em>' attribute.
+	 * @see #setIsStatic(boolean)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLProperty_IsStatic()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isStatic();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLProperty#isStatic <em>Is Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Static</em>' attribute.
+	 * @see #isStatic()
+	 * @generated
+	 */
+	void setIsStatic(boolean value);
 } // OCLProperty
