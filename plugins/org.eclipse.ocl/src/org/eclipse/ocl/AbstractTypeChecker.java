@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.5.6.2 2010/01/30 20:15:36 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.5.6.3 2010/01/30 22:25:46 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -473,11 +473,8 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			return type1;
 		}
 
-		if (type1 == stdlib.getOclAny() && !(type2 instanceof CollectionType<?, ?>)) {
-			return type1;
-		}
-		if (type2 == stdlib.getOclAny() && !(type1 instanceof CollectionType<?, ?>)) {
-			return type2;
+		if (type1 == stdlib.getOclAny() || type2 == stdlib.getOclAny()) {
+			return stdlib.getOclAny();
 		}
 
 		if ((type1 == stdlib.getInteger() || type1 == stdlib
@@ -568,12 +565,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		// once exhausted the possibilities for pre-defined types,
-		// if one of them is a CollectionType they don't have common super type
+		// if one of them is a CollectionType their common super type is OclAny
 		if (type1 instanceof CollectionType<?, ?> || type2 instanceof CollectionType<?, ?>) {
-			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
-				getName(type1), getName(type2));
-			error(message, "commonSuperType", problemObject); //$NON-NLS-1$
-			return null;
+			return stdlib.getOclAny();
 		}
 
 		// remaining case is pure model element types. The environment must
@@ -704,6 +698,10 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 							iter.remove();
 						}
 					}
+				} else if ((source instanceof CollectionType<?, ?>)) {
+					// Collections conform to OclAny
+					C oclAny = stdlib.getOclAny();
+					result.addAll(getOperations(oclAny));
 				}
 			} else {
 				// it's a user type. Try to convert it to an OCL standard type
@@ -818,6 +816,13 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 				if (owner instanceof PredefinedType<?>) {
 					result = new java.util.ArrayList<P>(uml
 						.getAttributes(owner));
+					
+					if ((owner instanceof CollectionType<?, ?>)) {
+						// Collections conform to OclAny
+						C oclAny = stdlib.getOclAny();
+						result.addAll(getAttributes(oclAny));
+					}
+					
 				} else {
 					result = new ArrayList<P>();
 
@@ -1139,21 +1144,18 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		List<C> classifiers = new java.util.ArrayList<C>(redefinitions.keySet());
-
-		// remove all classifiers that are ancestors of another classifier
-		// in the map
-		outer : for (;;) {
-			for (C next : classifiers) {
-				if (classifiers.removeAll(uml.getAllSupertypes(next))) {
-					continue outer; // don't want a concurrent modification
-				}
-			}
-
-			break outer;
-		}
-
+		
 		// there will at least be one remaining
-		return redefinitions.get(classifiers.get(0));
+		C classifier = classifiers.get(0);
+		// compare it to other classifiers
+		// if there is a subtype of the classifier it is a better choice
+		for (int i = 1, n = classifiers.size(); i < n; i++) {
+			C candidateClassifier = classifiers.get(i);
+			if ((getRelationship(classifier, candidateClassifier) & UMLReflection.STRICT_SUPERTYPE) != 0) {
+				classifier = candidateClassifier;
+			}
+		}		
+		return redefinitions.get(classifier);
 	}
 
 	/**

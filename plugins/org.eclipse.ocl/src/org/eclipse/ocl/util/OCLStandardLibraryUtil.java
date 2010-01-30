@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.7 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.8 2010/01/30 22:25:47 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -658,13 +658,6 @@ public final class OCLStandardLibraryUtil {
 					argType = arg.getType();
 				}
 
-				if (sourceType instanceof CollectionType<?, ?>) {
-					String message = OCLMessages.bind(
-						OCLMessages.Noncomforming_ERROR_, uml
-							.getName(sourceType), getOperationName(opcode));
-					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
-					return null;
-				}
 				// we can require neither a common supertype nor that type2
 				// and type1 have any conformance relationship whatsoever
 				// because the run-time 'type' may conform to 'arg'
@@ -1169,10 +1162,8 @@ public final class OCLStandardLibraryUtil {
 				return getOrderedSetType(env, env.getOCLFactory(), collType.getElementType());
 		}
 
-		String message = OCLMessages.bind(OCLMessages.CollectionType_ERROR_,
-			collType.getName(), getOperationName(opcode));
-		error(env, message, "collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
-		return null;
+		return getAnyTypeResultTypeOf(problemObject, env, (C)collType, opcode,
+			args);
 	}
 
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> EList<Variable<C, PM>> createTupleParts(

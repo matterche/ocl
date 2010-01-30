@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.8 2010/01/30 20:15:36 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.9 2010/01/30 22:25:46 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -4029,10 +4029,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			OperationCallExpCS operationCallExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 
-		int operator = operationCallExpCS.getAccessor().getValue();
-		if (operator == DotOrArrowEnum.ARROW) {
-			return arrowOperationCallExpCS(operationCallExpCS, env);
-		}
 		OCLExpressionCS sourceCS = operationCallExpCS.getSource();
 		if ((sourceCS == null) && (operationCallExpCS.getPathNameCS() != null)) {
 			return staticOperationCallExpCS(operationCallExpCS, env);
@@ -4040,6 +4036,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		String operationName = operationCallExpCS.getSimpleNameCS().getValue();
 		if (PredefinedType.OCL_IS_IN_STATE_NAME.equals(operationName)) {
 			return oclIsInStateOperationCallExpCS(operationCallExpCS, env);
+		}
+		int operator = operationCallExpCS.getAccessor().getValue();
+		if (operator == DotOrArrowEnum.ARROW) {
+			return arrowOperationCallExpCS(operationCallExpCS, env);
 		}
 		if (ParsingOptions.getValue(env, ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE)) {
 			checkForXorOrAndPrecedenceHazard(operationCallExpCS);

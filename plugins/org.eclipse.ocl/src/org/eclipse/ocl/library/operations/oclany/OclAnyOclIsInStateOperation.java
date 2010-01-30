@@ -12,33 +12,22 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsSetOperation.java,v 1.1.2.2 2010/01/30 22:25:47 ewillink Exp $
+ * $Id: OclAnyOclIsInStateOperation.java,v 1.1.2.1 2010/01/30 22:25:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.oclany;
-
-import java.util.Set;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.operations.AbstractOperation;
-import org.eclipse.ocl.util.CollectionUtil;
 
 /**
- * OclAnyOclAsSetOperation realises the OclAny::oclAsSet() library operation.
+ * OclAnyOclIsInvalidOperation realises the OclAny::oclIsInvalid() library operation.
  * 
  * @since 3.0
  */
-public class OclAnyOclAsSetOperation extends AbstractOperation
+public class OclAnyOclIsInStateOperation extends AbstractOperation
 {
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		if (isInvalid(sourceVal)) {
-			return null;
-		}
-		if (isNull(sourceVal)) {
-			return null;
-		}
-		Set<Object> newSet = CollectionUtil.createNewSet();
-		newSet.add(sourceVal);
-		return newSet;
+		throw new UnsupportedOperationException();
 	}
 }
