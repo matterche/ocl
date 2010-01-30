@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.17.2.2 2010/01/20 17:58:07 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.17.2.3 2010/01/30 20:15:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -409,7 +409,7 @@ public class CollectionsTest
 			assertTrue(check(helper,
 				"",
 				"OrderedSet{Sequence{'a', 'b'}, Sequence{'b', 'c', 'd'}}->flatten()" +
-					" = Set{'b', 'c', 'a', 'd'}"));
+					" = OrderedSet{'a', 'b', 'c', 'd'}"));
 
 			assertTrue(check(helper,
 				"",
@@ -437,7 +437,7 @@ public class CollectionsTest
 
 			assertTrue(check(helper, "",
 				"OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
-					" = Set{'b', 'c', 'a', 'd'}"));
+					" = OrderedSet{'a', 'b', 'c', 'd'}"));
 
 			assertTrue(check(helper, "",
 				"Sequence{'a', 'b', 'd', 'b', 'c', 'd'}->flatten()" +
@@ -464,7 +464,7 @@ public class CollectionsTest
 
 			assertTrue(check(helper, "",
 				"OrderedSet{}->flatten()" +
-					" = Set{}"));
+					" = OrderedSet{}"));
 
 			assertTrue(check(helper, "",
 				"Sequence{}->flatten()" +
@@ -492,7 +492,7 @@ public class CollectionsTest
 
 			assertTrue(check(helper, "",
 				"OrderedSet{OrderedSet{}, OrderedSet{}}->flatten()" +
-					" = Set{}"));
+					" = OrderedSet{}"));
 
 			assertTrue(check(helper, "",
 				"Sequence{Sequence{}, Sequence{}}->flatten()" +
@@ -521,7 +521,7 @@ public class CollectionsTest
 			assertTrue(check(helper,
 				"",
 				"OrderedSet{Sequence{Set{'a'}, Set{'b'}}, Sequence{Set{'b', 'c'}, Set{'d'}}}->flatten()" +
-					" = Set{'b', 'c', 'a', 'd'}"));
+					" = OrderedSet{'a', 'b', 'c', 'd'}"));
 
 			assertTrue(check(helper,
 				"",
@@ -552,7 +552,7 @@ public class CollectionsTest
 			assertTrue(check(helper,
 				"",
 				"OrderedSet{OrderedSet{Sequence{}, Sequence{}}, OrderedSet{Sequence{}, Sequence{}}}->flatten()" +
-					" = Set{}"));
+					" = OrderedSet{}"));
 
 			assertTrue(check(helper,
 				"",
