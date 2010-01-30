@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreLibrarySwitch.java,v 1.1.2.2 2010/01/24 07:40:43 ewillink Exp $
+ * $Id: EcoreLibrarySwitch.java,v 1.1.2.3 2010/01/30 07:48:53 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.util;
 
@@ -10,25 +10,22 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.library.EcoreLibraryPackage;
-import org.eclipse.ocl.ecore.library.EcoreOCLClassifier;
-import org.eclipse.ocl.ecore.library.EcoreOCLDataType;
-import org.eclipse.ocl.ecore.library.EcoreOCLEnumeration;
-import org.eclipse.ocl.ecore.library.EcoreOCLEnumerationLiteral;
-import org.eclipse.ocl.ecore.library.EcoreOCLOperation;
-import org.eclipse.ocl.ecore.library.EcoreOCLProperty;
-import org.eclipse.ocl.library.OCLClassifier;
-import org.eclipse.ocl.library.OCLDataType;
+import org.eclipse.ocl.ecore.library.*;
+import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLElement;
-import org.eclipse.ocl.library.OCLEnumeration;
-import org.eclipse.ocl.library.OCLEnumerationLiteral;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
 import org.eclipse.ocl.library.OCLNamedElement;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLProperty;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.OCLTypeParameterParent;
+import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.OCLTypedElement;
+import org.eclipse.ocl.library.merged.OCLClassifier;
+import org.eclipse.ocl.library.merged.OCLDataType;
+import org.eclipse.ocl.library.merged.OCLEnumeration;
+import org.eclipse.ocl.library.merged.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,7 +105,10 @@ public class EcoreLibrarySwitch<T> {
 				EcoreOCLClassifier ecoreOCLClassifier = (EcoreOCLClassifier)theEObject;
 				T result = caseEcoreOCLClassifier(ecoreOCLClassifier);
 				if (result == null) result = caseOCLClassifier(ecoreOCLClassifier);
+				if (result == null) result = caseOCLConcreteType(ecoreOCLClassifier);
 				if (result == null) result = caseOCLType(ecoreOCLClassifier);
+				if (result == null) result = caseOCLTypeParameterParent(ecoreOCLClassifier);
+				if (result == null) result = caseOCLTypeValue(ecoreOCLClassifier);
 				if (result == null) result = caseOCLNamedElement(ecoreOCLClassifier);
 				if (result == null) result = caseOCLElement(ecoreOCLClassifier);
 				if (result == null) result = defaultCase(theEObject);
@@ -118,7 +118,10 @@ public class EcoreLibrarySwitch<T> {
 				EcoreOCLDataType ecoreOCLDataType = (EcoreOCLDataType)theEObject;
 				T result = caseEcoreOCLDataType(ecoreOCLDataType);
 				if (result == null) result = caseOCLDataType(ecoreOCLDataType);
+				if (result == null) result = caseOCLConcreteType(ecoreOCLDataType);
 				if (result == null) result = caseOCLType(ecoreOCLDataType);
+				if (result == null) result = caseOCLTypeParameterParent(ecoreOCLDataType);
+				if (result == null) result = caseOCLTypeValue(ecoreOCLDataType);
 				if (result == null) result = caseOCLNamedElement(ecoreOCLDataType);
 				if (result == null) result = caseOCLElement(ecoreOCLDataType);
 				if (result == null) result = defaultCase(theEObject);
@@ -128,7 +131,10 @@ public class EcoreLibrarySwitch<T> {
 				EcoreOCLEnumeration ecoreOCLEnumeration = (EcoreOCLEnumeration)theEObject;
 				T result = caseEcoreOCLEnumeration(ecoreOCLEnumeration);
 				if (result == null) result = caseOCLEnumeration(ecoreOCLEnumeration);
+				if (result == null) result = caseOCLConcreteType(ecoreOCLEnumeration);
 				if (result == null) result = caseOCLType(ecoreOCLEnumeration);
+				if (result == null) result = caseOCLTypeParameterParent(ecoreOCLEnumeration);
+				if (result == null) result = caseOCLTypeValue(ecoreOCLEnumeration);
 				if (result == null) result = caseOCLNamedElement(ecoreOCLEnumeration);
 				if (result == null) result = caseOCLElement(ecoreOCLEnumeration);
 				if (result == null) result = defaultCase(theEObject);
@@ -149,6 +155,7 @@ public class EcoreLibrarySwitch<T> {
 				if (result == null) result = caseOCLMetaModelOperation(ecoreOCLOperation);
 				if (result == null) result = caseOCLOperation(ecoreOCLOperation);
 				if (result == null) result = caseOCLTypedElement(ecoreOCLOperation);
+				if (result == null) result = caseOCLTypeParameterParent(ecoreOCLOperation);
 				if (result == null) result = caseOCLNamedElement(ecoreOCLOperation);
 				if (result == null) result = caseOCLElement(ecoreOCLOperation);
 				if (result == null) result = defaultCase(theEObject);
@@ -275,17 +282,17 @@ public class EcoreLibrarySwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>OCL Named Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Type Value</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>OCL Named Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Type Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOCLNamedElement(OCLNamedElement object) {
+	public T caseOCLTypeValue(OCLTypeValue object) {
 		return null;
 	}
 
@@ -301,6 +308,51 @@ public class EcoreLibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLType(OCLType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLNamedElement(OCLNamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Type Parameter Parent</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Type Parameter Parent</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLTypeParameterParent(OCLTypeParameterParent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Concrete Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Concrete Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLConcreteType(OCLConcreteType object) {
 		return null;
 	}
 

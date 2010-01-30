@@ -2,11 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreOCLProperty.java,v 1.1.2.2 2010/01/24 07:40:43 ewillink Exp $
+ * $Id: EcoreOCLProperty.java,v 1.1.2.3 2010/01/30 07:48:55 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library;
 
-import org.eclipse.ocl.library.OCLMetaModelProperty;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 
 /**
  * <!-- begin-user-doc -->

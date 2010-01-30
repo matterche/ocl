@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreOCLDataTypeImpl.java,v 1.1.2.3 2010/01/24 07:40:42 ewillink Exp $
+ * $Id: EcoreOCLDataTypeImpl.java,v 1.1.2.4 2010/01/30 07:48:52 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.impl;
 
@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.library.EcoreLibraryPackage;
 import org.eclipse.ocl.ecore.library.EcoreOCLDataType;
 import org.eclipse.ocl.library.OCLRoot;
-import org.eclipse.ocl.library.OCLType;
-import org.eclipse.ocl.library.impl.OCLDataTypeImpl;
+import org.eclipse.ocl.library.OCLConcreteType;
+import org.eclipse.ocl.library.merged.impl.OCLDataTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class EcoreOCLDataTypeImpl extends OCLDataTypeImpl implements EcoreOCLDat
 		return EcoreLibraryPackage.Literals.ECORE_OCL_DATA_TYPE;
 	}
 	
-	public OCLType getNormalizedType() {
+	public OCLConcreteType getNormalizedType() {
 		if (getMetaModelElement() == EcorePackage.Literals.ESTRING) {
 			return ((OCLRoot)getLibrary()).getString();
 		}

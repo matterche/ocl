@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreOCLEnumerationLiteralImpl.java,v 1.1.2.3 2010/01/24 07:40:42 ewillink Exp $
+ * $Id: EcoreOCLEnumerationLiteralImpl.java,v 1.1.2.4 2010/01/30 07:48:53 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.impl;
 
@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.library.EcoreLibraryPackage;
 import org.eclipse.ocl.ecore.library.EcoreOCLEnumerationLiteral;
 
-import org.eclipse.ocl.library.impl.OCLEnumerationLiteralImpl;
+import org.eclipse.ocl.library.merged.impl.OCLEnumerationLiteralImpl;
 
 /**
  * <!-- begin-user-doc -->

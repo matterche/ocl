@@ -6,12 +6,12 @@
   <eSubpackages name="ecore" nsURI="http://www.eclipse.org/ocl/3.0.0/Ecore" nsPrefix="ocl.ecore">
     <eSubpackages name="library" nsURI="http://www.eclipse.org/ocl/3.0.0/EcoreLibrary"
         nsPrefix="ocl.ecore.lib">
-      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLClassifier" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLClassifier"/>
-      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLDataType" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLDataType"/>
-      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLEnumeration" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLEnumeration"/>
-      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLEnumerationLiteral" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLEnumerationLiteral"/>
-      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLOperation" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLMetaModelOperation"/>
-      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLProperty" eSuperTypes="../../org.eclipse.ocl/model/OCLLibrary.ecore#//library/OCLMetaModelProperty"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLClassifier" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLClassifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLDataType" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLDataType"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLEnumeration" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLEnumeration"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLEnumerationLiteral" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLEnumerationLiteral"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLOperation" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLMetaModelOperation"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EcoreOCLProperty" eSuperTypes="../../org.eclipse.ocl/model/MergedLibrary.ecore#//library/merged/OCLMetaModelProperty"/>
     </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreOCLPropertyImpl.java,v 1.1.2.3 2010/01/24 07:40:42 ewillink Exp $
+ * $Id: EcoreOCLPropertyImpl.java,v 1.1.2.4 2010/01/30 07:48:53 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library.impl;
 
@@ -15,7 +15,7 @@ import org.eclipse.ocl.ecore.library.EcoreLibraryPackage;
 import org.eclipse.ocl.ecore.library.EcoreOCLProperty;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 
-import org.eclipse.ocl.library.impl.OCLMetaModelPropertyImpl;
+import org.eclipse.ocl.library.merged.impl.OCLMetaModelPropertyImpl;
 
 /**
  * <!-- begin-user-doc -->

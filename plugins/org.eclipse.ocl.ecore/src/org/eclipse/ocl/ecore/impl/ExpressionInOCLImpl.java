@@ -13,7 +13,7 @@
  *   
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.10.2.1 2010/01/24 14:02:15 ewillink Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.10.2.2 2010/01/30 07:48:55 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,28 +21,20 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
-
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
-
-import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -495,9 +487,7 @@ public class ExpressionInOCLImpl
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return bodyExpression != null ? bodyExpression.toString() : "<null>"; //$NON-NLS-1$
 	}
 
 } //ExpressionInOCLImpl

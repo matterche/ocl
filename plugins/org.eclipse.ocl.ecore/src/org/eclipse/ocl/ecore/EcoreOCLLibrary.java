@@ -26,17 +26,20 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.library.EcoreLibraryFactory;
 import org.eclipse.ocl.library.CompatibilityOCLLibrary;
-import org.eclipse.ocl.library.OCLClassifier;
-import org.eclipse.ocl.library.OCLDataType;
-import org.eclipse.ocl.library.OCLEnumeration;
-import org.eclipse.ocl.library.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLInvalidType;
-import org.eclipse.ocl.library.OCLMetaModelOperation;
-import org.eclipse.ocl.library.OCLMetaModelProperty;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLProperty;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.OCLVoidType;
+import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.merged.OCLClassifier;
+import org.eclipse.ocl.library.merged.OCLDataType;
+import org.eclipse.ocl.library.merged.OCLEnumeration;
+import org.eclipse.ocl.library.merged.OCLEnumerationLiteral;
+import org.eclipse.ocl.library.merged.OCLMetaModelOperation;
+import org.eclipse.ocl.library.merged.OCLMetaModelProperty;
 
 /**
  * The EcoreOCLLibrary provides an implementation of the {@linkplain OCLLibrary}
@@ -45,7 +48,7 @@ import org.eclipse.ocl.library.OCLVoidType;
  * 
  * @since 3.0
  */
-public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETypedElement, EPackage, EClassifier, EClass, TupleType, EDataType, EEnum, EEnumLiteral, EOperation, EParameter, EStructuralFeature, EClass>
+public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETypedElement, EPackage, EClassifier, EClass, TupleType, EDataType, EEnum, EEnumLiteral, EOperation, EParameter, EStructuralFeature>
 {
 	private static EcoreOCLLibrary DEFAULT = null;
 
@@ -100,12 +103,12 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 	}
 
 	@Override
-	protected OCLType createOCLType(EObject aType, Map<EObject, OCLType> visited) {
+	protected OCLConcreteType createOCLType(MergedLibrary mergedLibrary, Object aType, Map<Object, OCLConcreteType> visited) {
 		if (aType instanceof EEnum) {
-			return createOCLEnumeration((EEnum) aType, visited);
+			return createOCLEnumeration(mergedLibrary, (EEnum) aType, visited);
 		}
 		else if (aType instanceof TupleType) {
-			return createOCLTupleType((TupleType) aType, visited);
+			return createOCLTupleType(mergedLibrary, (TupleType) aType, visited);
 		}
 		else if (aType instanceof EDataType) {
 			if (aType == org.eclipse.emf.ecore.EcorePackage.Literals.EBOOLEAN) {
@@ -120,10 +123,13 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 			else if (aType == org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING) {
 				return getString();
 			}
-			return createOCLDataType((EDataType) aType, visited);
+			return createOCLDataType(mergedLibrary, (EDataType) aType, visited);
 		}
 		else if (aType instanceof EClass) {
-			return createOCLClassifier((EClass) aType, visited);
+			return createOCLClassifier(mergedLibrary, (EClass) aType, visited);
+		}
+		else if (aType instanceof java.lang.Class<?>) {
+			return createOCLJavaType((java.lang.Class<?>) aType, visited);
 		}
 		else {
 			return null;
@@ -131,26 +137,26 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 	}
 
 	@Override
-	protected OCLType getLibraryTypeOfTypedElement(ETypedElement typedElement) {
-		OCLType elementType = getLibraryTypeOfType(typedElement.getEType());
+	protected OCLType getLibraryTypeOfTypedElement(MergedLibrary mergedLibrary, ETypedElement typedElement) {
+		OCLType elementType = mergedLibrary.getLibraryTypeOfType(typedElement.getEType());
 		if (!typedElement.isMany()) {
 			return elementType;
 		}
 		else {
 			if (typedElement.isUnique()) {
 				if (typedElement.isOrdered()) {
-					return getOrderedSetType(elementType);
+					return mergedLibrary.getOrderedSetType(elementType);
 				}
 				else {
-					return getSetType(elementType);
+					return mergedLibrary.getSetType(elementType);
 				}
 			}
 			else {
 				if (typedElement.isOrdered()) {
-					return getSequenceType(elementType);
+					return mergedLibrary.getSequenceType(elementType);
 				}
 				else {
-					return getBagType(elementType);
+					return mergedLibrary.getBagType(elementType);
 				}
 			}
 		}
@@ -214,40 +220,40 @@ public class EcoreOCLLibrary extends CompatibilityOCLLibrary<ENamedElement, ETyp
 	}
 
 	@Override
-	public void loadPackage(EPackage aPackage) {
+	public void loadPackage(MergedLibrary mergedLibrary, EPackage aPackage) {
 		for (EClassifier ecoreClassifier : aPackage.getEClassifiers()) {
-			getLibraryTypeOfType(ecoreClassifier);
+			mergedLibrary.getLibraryTypeOfType(ecoreClassifier);
 		}
 		for (EPackage ecorePackage : aPackage.getESubpackages()) {
-			loadPackage(ecorePackage);
+			loadPackage(mergedLibrary, ecorePackage);
 		}
 	}
 
-	protected List<OCLOperation> resolveOperations(OCLType dynamicType, EOperation ecoreOperation) {
+	protected List<OCLOperation> resolveOperations(MergedLibrary mergedLibrary, OCLType dynamicType, EOperation ecoreOperation) {
 		EClass classifier = ecoreOperation.getEContainingClass();
 		EClassifier realClassifier = OCLStandardLibraryImpl.getRealClassifier(classifier);
 		if (realClassifier == null) {
 			realClassifier = classifier;
 		}
-		OCLType staticType = getLibraryTypeOfType(realClassifier);
+		OCLType staticType = mergedLibrary.getLibraryTypeOfType(realClassifier);
 		String operationName = ecoreOperation.getName();
 		EList<OCLType> parameterTypes = new BasicEList<OCLType>();
 		for (EParameter parameter : ecoreOperation.getEParameters()) {
-			parameterTypes.add(getLibraryTypeOfType(parameter.getEType()));
+			parameterTypes.add(mergedLibrary.getLibraryTypeOfType(parameter.getEType()));
 		}
 		if ((dynamicType instanceof OCLInvalidType) || (dynamicType instanceof OCLVoidType)) {
 			dynamicType = staticType;
 		}
-		return dynamicType.getOperations(operationName, parameterTypes);
+		return dynamicType.getOperations(operationName, parameterTypes, dynamicType);
 	}
 
-	protected OCLProperty resolveProperty(OCLType dynamicType, EStructuralFeature ecoreProperty) {
+	protected OCLProperty resolveProperty(MergedLibrary mergedLibrary, OCLType dynamicType, EStructuralFeature ecoreProperty) {
 		EClass classifier = ecoreProperty.getEContainingClass();
 		EClassifier realClassifier = OCLStandardLibraryImpl.getRealClassifier(classifier);
 		if (realClassifier == null) {
 			realClassifier = classifier;
 		}
-		OCLType thisType = getLibraryTypeOfType(realClassifier);
+		OCLType thisType = mergedLibrary.getLibraryTypeOfType(realClassifier);
 		String propertyName = ecoreProperty.getName();
 		return thisType.getProperty(propertyName);
 	}
