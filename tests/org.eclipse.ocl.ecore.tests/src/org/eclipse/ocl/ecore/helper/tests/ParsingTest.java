@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingTest.java,v 1.5 2009/11/28 17:37:01 ewillink Exp $
+ * $Id: ParsingTest.java,v 1.5.2.1 2010/01/30 07:49:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -130,13 +130,13 @@ public class ParsingTest
 		helper.setContext(ecore.getEString());
 		
 		try {
-			final String constraint = "self.toUpper() <> self.toLower()";
+			final String constraint = "self.toUpperCase() <> self.toLowerCase()";
 			
 			assertTrue(check(helper, "anything", constraint));
 			assertTrue(check(helper, "ANYTHING", constraint));
 			
 			assertEquals("ANYTHING",
-				evaluate(helper, "anything", "self.toUpper()"));
+				evaluate(helper, "anything", "self.toUpperCase()"));
 		} catch (Exception e) {
 			fail("Parse failed: " + e.getLocalizedMessage());
 		}
@@ -154,13 +154,13 @@ public class ParsingTest
         helper.setContext(env.getContextClassifier());
         
 		try {
-			final String constraint = "self.toUpper() <> self.toLower()";
+			final String constraint = "self.toUpperCase() <> self.toLowerCase()";
 			
 			assertTrue(check(helper, "anything", constraint));
 			assertTrue(check(helper, "ANYTHING", constraint));
 			
 			assertEquals("ANYTHING",
-				evaluate(helper, "anything", "self.toUpper()"));
+				evaluate(helper, "anything", "self.toUpperCase()"));
 		} catch (Exception e) {
 			fail("Parse failed: " + e.getLocalizedMessage());
 		}
