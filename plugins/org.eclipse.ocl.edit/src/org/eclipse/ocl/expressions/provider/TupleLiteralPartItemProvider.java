@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartItemProvider.java,v 1.2.2.6 2010/01/30 07:49:46 ewillink Exp $
+ * $Id: TupleLiteralPartItemProvider.java,v 1.2.2.7 2010/01/31 22:23:14 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -605,15 +605,15 @@ public class TupleLiteralPartItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				LibraryFactory.eINSTANCE.createOCLIterator()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				LibraryFactory.eINSTANCE.createOCLJavaType()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				LibraryFactory.eINSTANCE.createOCLLibrary()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				LibraryFactory.eINSTANCE.createOCLLibraryIteration()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,

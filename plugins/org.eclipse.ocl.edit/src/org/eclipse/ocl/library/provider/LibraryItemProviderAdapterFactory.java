@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.8 2010/01/30 07:49:44 ewillink Exp $
+ * $Id: LibraryItemProviderAdapterFactory.java,v 1.1.2.9 2010/01/31 22:23:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -120,6 +120,29 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLLibraryIteration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OCLLibraryIterationItemProvider oclLibraryIterationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLLibraryIteration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOCLLibraryIterationAdapter() {
+		if (oclLibraryIterationItemProvider == null) {
+			oclLibraryIterationItemProvider = new OCLLibraryIterationItemProvider(this);
+		}
+
+		return oclLibraryIterationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLBoundType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,29 +232,6 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 		}
 
 		return oclInvalidTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.library.OCLIterator} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OCLIteratorItemProvider oclIteratorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.library.OCLIterator}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOCLIteratorAdapter() {
-		if (oclIteratorItemProvider == null) {
-			oclIteratorItemProvider = new OCLIteratorItemProvider(this);
-		}
-
-		return oclIteratorItemProvider;
 	}
 
 	/**
@@ -545,9 +545,9 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 		if (oclConcreteTypeItemProvider != null) oclConcreteTypeItemProvider.dispose();
 		if (oclDeprecatedTypeItemProvider != null) oclDeprecatedTypeItemProvider.dispose();
 		if (oclInvalidTypeItemProvider != null) oclInvalidTypeItemProvider.dispose();
-		if (oclIteratorItemProvider != null) oclIteratorItemProvider.dispose();
 		if (oclJavaTypeItemProvider != null) oclJavaTypeItemProvider.dispose();
 		if (oclLibraryItemProvider != null) oclLibraryItemProvider.dispose();
+		if (oclLibraryIterationItemProvider != null) oclLibraryIterationItemProvider.dispose();
 		if (oclLibraryOperationItemProvider != null) oclLibraryOperationItemProvider.dispose();
 		if (oclLibraryPropertyItemProvider != null) oclLibraryPropertyItemProvider.dispose();
 		if (oclPackageItemProvider != null) oclPackageItemProvider.dispose();

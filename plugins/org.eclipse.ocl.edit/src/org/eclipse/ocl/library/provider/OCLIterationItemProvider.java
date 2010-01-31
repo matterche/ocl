@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLIteratorItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
+ * $Id: OCLIterationItemProvider.java,v 1.1.2.1 2010/01/31 22:23:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,21 +12,27 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.ocl.library.OCLIterator;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLIteration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLIterator} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLIteration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLIteratorItemProvider
+public class OCLIterationItemProvider
 	extends OCLTypedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -40,7 +46,7 @@ public class OCLIteratorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLIteratorItemProvider(AdapterFactory adapterFactory) {
+	public OCLIterationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,19 +61,31 @@ public class OCLIteratorItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIteratorsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns OCLIterator.gif.
+	 * This adds a property descriptor for the Iterators feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLIterator")); //$NON-NLS-1$
+	protected void addIteratorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLIteration_iterators_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLIteration_iterators_feature", "_UI_OCLIteration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_ITERATION__ITERATORS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -88,11 +106,7 @@ public class OCLIteratorItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		StringBuffer s = new StringBuffer();
-		appendName(s, (OCLIterator)object);
-		s.append(" : ");
-		appendSignature(s, ((OCLIterator)object).getType()); 
-		return s.toString();
+		return super.getText(object);
 	}
 
 	/**
@@ -105,6 +119,12 @@ public class OCLIteratorItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(OCLIteration.class)) {
+			case LibraryPackage.OCL_ITERATION__ITERATORS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

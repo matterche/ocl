@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryPropertyItemProvider.java,v 1.1.2.5 2010/01/24 07:40:30 ewillink Exp $
+ * $Id: OCLLibraryPropertyItemProvider.java,v 1.1.2.6 2010/01/31 22:23:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -59,26 +59,26 @@ public class OCLLibraryPropertyItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLibraryPropertyClassPropertyDescriptor(object);
+			addClassPropertyDescriptor(object);
 			addLibraryPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Library Property Class feature.
+	 * This adds a property descriptor for the Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLibraryPropertyClassPropertyDescriptor(Object object) {
+	protected void addClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLLibraryProperty_libraryPropertyClass_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryProperty_libraryPropertyClass_feature", "_UI_OCLLibraryProperty_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS,
+				 getString("_UI_OCLLibraryProperty_class_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryProperty_class_feature", "_UI_OCLLibraryProperty_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_LIBRARY_PROPERTY__CLASS,
 				 true,
 				 false,
 				 false,
@@ -153,7 +153,7 @@ public class OCLLibraryPropertyItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OCLLibraryProperty.class)) {
-			case LibraryPackage.OCL_LIBRARY_PROPERTY__LIBRARY_PROPERTY_CLASS:
+			case LibraryPackage.OCL_LIBRARY_PROPERTY__CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

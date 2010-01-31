@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLConcreteTypeItemProvider.java,v 1.1.2.1 2010/01/30 07:49:45 ewillink Exp $
+ * $Id: OCLConcreteTypeItemProvider.java,v 1.1.2.2 2010/01/31 22:23:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -101,6 +101,7 @@ public class OCLConcreteTypeItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER);
+			childrenFeatures.add(LibraryPackage.Literals.OCL_CONCRETE_TYPE__ITERATION);
 			childrenFeatures.add(LibraryPackage.Literals.OCL_CONCRETE_TYPE__OPERATION);
 			childrenFeatures.add(LibraryPackage.Literals.OCL_CONCRETE_TYPE__PROPERTY);
 			childrenFeatures.add(LibraryPackage.Literals.OCL_CONCRETE_TYPE__BOUND_TYPE);
@@ -169,6 +170,7 @@ public class OCLConcreteTypeItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case LibraryPackage.OCL_CONCRETE_TYPE__TYPE_PARAMETER:
+			case LibraryPackage.OCL_CONCRETE_TYPE__ITERATION:
 			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
 			case LibraryPackage.OCL_CONCRETE_TYPE__PROPERTY:
 			case LibraryPackage.OCL_CONCRETE_TYPE__BOUND_TYPE:
@@ -193,6 +195,11 @@ public class OCLConcreteTypeItemProvider
 			(createChildParameter
 				(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER,
 				 LibraryFactory.eINSTANCE.createOCLTypeParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LibraryPackage.Literals.OCL_CONCRETE_TYPE__ITERATION,
+				 LibraryFactory.eINSTANCE.createOCLLibraryIteration()));
 
 		newChildDescriptors.add
 			(createChildParameter

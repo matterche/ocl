@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.4 2010/01/24 07:40:29 ewillink Exp $
+ * $Id: OCLLibraryOperationItemProvider.java,v 1.1.2.5 2010/01/31 22:23:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -59,26 +59,26 @@ public class OCLLibraryOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLibraryOperationClassPropertyDescriptor(object);
+			addClassPropertyDescriptor(object);
 			addLibraryOperationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Library Operation Class feature.
+	 * This adds a property descriptor for the Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLibraryOperationClassPropertyDescriptor(Object object) {
+	protected void addClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLLibraryOperation_libraryOperationClass_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryOperation_libraryOperationClass_feature", "_UI_OCLLibraryOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS,
+				 getString("_UI_OCLLibraryOperation_class_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryOperation_class_feature", "_UI_OCLLibraryOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_LIBRARY_OPERATION__CLASS,
 				 true,
 				 false,
 				 false,
@@ -153,7 +153,7 @@ public class OCLLibraryOperationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OCLLibraryOperation.class)) {
-			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
+			case LibraryPackage.OCL_LIBRARY_OPERATION__CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

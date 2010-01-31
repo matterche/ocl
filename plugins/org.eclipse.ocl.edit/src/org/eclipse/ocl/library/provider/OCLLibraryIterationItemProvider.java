@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperationItemProvider.java,v 1.1.2.6 2010/01/31 22:23:14 ewillink Exp $
+ * $Id: OCLLibraryIterationItemProvider.java,v 1.1.2.1 2010/01/31 22:23:14 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,18 +22,18 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.ocl.library.LibraryFactory;
+
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLOperation;
+import org.eclipse.ocl.library.OCLLibraryIteration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.ocl.library.OCLLibraryIteration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLOperationItemProvider
-	extends OCLTypedElementItemProvider
+public class OCLLibraryIterationItemProvider
+	extends OCLIterationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +46,7 @@ public class OCLOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLOperationItemProvider(AdapterFactory adapterFactory) {
+	public OCLLibraryIterationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,62 +61,65 @@ public class OCLOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsStaticPropertyDescriptor(object);
+			addClassPropertyDescriptor(object);
+			addLibraryIterationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Static feature.
+	 * This adds a property descriptor for the Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsStaticPropertyDescriptor(Object object) {
+	protected void addClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OCLOperation_isStatic_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_OCLOperation_isStatic_feature", "_UI_OCLOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LibraryPackage.Literals.OCL_OPERATION__IS_STATIC,
+				 getString("_UI_OCLLibraryIteration_class_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryIteration_class_feature", "_UI_OCLLibraryIteration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_LIBRARY_ITERATION__CLASS,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Library Iteration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER);
-			childrenFeatures.add(LibraryPackage.Literals.OCL_OPERATION__PARAMETER);
-		}
-		return childrenFeatures;
+	protected void addLibraryIterationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLLibraryIteration_libraryIteration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLLibraryIteration_libraryIteration_feature", "_UI_OCLLibraryIteration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_LIBRARY_ITERATION__LIBRARY_ITERATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This returns OCLLibraryIteration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OCLLibraryIteration")); //$NON-NLS-1$
 	}
 
 	/**
@@ -151,13 +154,10 @@ public class OCLOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(OCLOperation.class)) {
-			case LibraryPackage.OCL_OPERATION__IS_STATIC:
+		switch (notification.getFeatureID(OCLLibraryIteration.class)) {
+			case LibraryPackage.OCL_LIBRARY_ITERATION__CLASS:
+			case LibraryPackage.OCL_LIBRARY_ITERATION__LIBRARY_ITERATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case LibraryPackage.OCL_OPERATION__TYPE_PARAMETER:
-			case LibraryPackage.OCL_OPERATION__PARAMETER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -173,16 +173,6 @@ public class OCLOperationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_TYPE_PARAMETER_PARENT__TYPE_PARAMETER,
-				 LibraryFactory.eINSTANCE.createOCLTypeParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(LibraryPackage.Literals.OCL_OPERATION__PARAMETER,
-				 LibraryFactory.eINSTANCE.createOCLParameter()));
 	}
 
 }
