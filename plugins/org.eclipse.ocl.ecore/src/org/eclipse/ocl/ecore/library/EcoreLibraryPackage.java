@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EcoreLibraryPackage.java,v 1.1.2.3 2010/01/30 07:48:54 ewillink Exp $
+ * $Id: EcoreLibraryPackage.java,v 1.1.2.4 2010/01/31 22:20:19 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.library;
 
@@ -106,6 +106,15 @@ public interface EcoreLibraryPackage extends EPackage {
 	int ECORE_OCL_CLASSIFIER__CONTAINER = OCLMergedLibraryPackage.OCL_CLASSIFIER__CONTAINER;
 
 	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECORE_OCL_CLASSIFIER__ITERATION = OCLMergedLibraryPackage.OCL_CLASSIFIER__ITERATION;
+
+	/**
 	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,6 +206,15 @@ public interface EcoreLibraryPackage extends EPackage {
 	int ECORE_OCL_DATA_TYPE__CONTAINER = OCLMergedLibraryPackage.OCL_DATA_TYPE__CONTAINER;
 
 	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECORE_OCL_DATA_TYPE__ITERATION = OCLMergedLibraryPackage.OCL_DATA_TYPE__ITERATION;
+
+	/**
 	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,6 +304,15 @@ public interface EcoreLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int ECORE_OCL_ENUMERATION__CONTAINER = OCLMergedLibraryPackage.OCL_ENUMERATION__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECORE_OCL_ENUMERATION__ITERATION = OCLMergedLibraryPackage.OCL_ENUMERATION__ITERATION;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
@@ -443,13 +470,13 @@ public interface EcoreLibraryPackage extends EPackage {
 	int ECORE_OCL_OPERATION__CONTAINER = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__CONTAINER;
 
 	/**
-	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECORE_OCL_OPERATION__ITERATOR = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__ITERATOR;
+	int ECORE_OCL_OPERATION__IS_STATIC = OCLMergedLibraryPackage.OCL_META_MODEL_OPERATION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
@@ -523,6 +550,15 @@ public interface EcoreLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int ECORE_OCL_PROPERTY__CONTAINER = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECORE_OCL_PROPERTY__IS_STATIC = OCLMergedLibraryPackage.OCL_META_MODEL_PROPERTY__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Element</b></em>' reference.

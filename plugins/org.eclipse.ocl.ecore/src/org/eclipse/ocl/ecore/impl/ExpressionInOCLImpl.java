@@ -13,7 +13,7 @@
  *   
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.10.2.2 2010/01/30 07:48:55 ewillink Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.10.2.3 2010/01/31 22:20:19 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -487,7 +487,9 @@ public class ExpressionInOCLImpl
 			return super.toString();
 		}
 
-		return bodyExpression != null ? bodyExpression.toString() : "<null>"; //$NON-NLS-1$
+		return bodyExpression != null
+			? bodyExpression.toString()
+			: "<null>"; //$NON-NLS-1$
 	}
 
 } //ExpressionInOCLImpl
