@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.7 2010/01/30 20:15:39 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.8 2010/01/31 08:43:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -21,7 +21,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.Bag;
 import org.eclipse.ocl.util.CollectionUtil;
 
@@ -946,11 +949,35 @@ public abstract class GenericEvaluateCollectionOperationsTest<E extends EObject,
 	}
 
 	public void testCollectionMax() {
-		// FIXME Test-not-implemented
+		assertQueryEquals(null, 2, "Sequence{1, 2}->max()");
+		assertQueryEquals(null, 5.0, "Set{5, 4.0, 3.0, 2, 1}->max()");
+		assertQueryEquals(null, 1, "Bag{1}->max()");
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{'hi', 'lo'}->max()",
+        	OCLMessages.MaxOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"Set{}->max()",
+        	OCLMessages.MaxOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{true, 1, 'bad'}->max()",
+        	OCLMessages.MaxOperator_ERROR_);		
+		// FIXME Bug 301351 Subtest-not-implemented user-defined max
 	}
 
 	public void testCollectionMin() {
-		// FIXME Test-not-implemented
+		assertQueryEquals(null, 1, "Sequence{1, 2}->min()");
+		assertQueryEquals(null, 1.0, "Set{5, 4.0, 3.0, 2, 1}->min()");
+		assertQueryEquals(null, 1, "Bag{1}->min()");
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{'hi', 'lo'}->min()",
+        	OCLMessages.MinOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"Set{}->min()",
+        	OCLMessages.MinOperator_ERROR_);
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"OrderedSet{true, 1, 'bad'}->min()",
+        	OCLMessages.MinOperator_ERROR_);		
+		// FIXME Bug 301351 Subtest-not-implemented user-defined min
 	}
 
 	public void testCollectionMinus() {
@@ -1258,7 +1285,7 @@ public void testCollectionNotEqualOrderedXUnordered() {
 
 		assertQueryEquals(null, 13.0, "Sequence{4.0, 4.0, 5.0}->sum()");
 		assertQueryEquals(null, 13, "Bag{4, 4, 5}->sum()");
-		assertQueryEquals(null, 9, "Set{4, 4, 5}->sum()");
+		assertQueryEquals(null, 9.0, "Set{4, 4.0, 5.0}->sum()");
 		assertQueryEquals(null, 9.0, "OrderedSet{4.0, 4.0, 5.0}->sum()");
 
 		assertQueryEquals(null, 4, "4->sum()");
@@ -1282,6 +1309,8 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		assertQueryInvalid(null, "Bag{4, null, 5}->sum()");
 		assertQueryInvalid(null, "Set{4, null, 5}->sum()");
 		assertQueryInvalid(null, "OrderedSet{4.0, null, 5.0}->sum()");
+
+		// FIXME Bug 301351 Subtest-not-implemented user-defined +
 	}
 
 	public void testCollectionSymmetricDifference() {
