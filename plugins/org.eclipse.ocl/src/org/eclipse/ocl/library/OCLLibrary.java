@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibrary.java,v 1.1.2.6 2010/01/30 07:49:22 ewillink Exp $
+ * $Id: OCLLibrary.java,v 1.1.2.7 2010/01/31 08:43:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -65,7 +65,7 @@ public interface OCLLibrary extends OCLPackageParent {
 	 * @model dataType="org.eclipse.ocl.library.ILibraryOperation"
 	 * @generated
 	 */
-	ILibraryOperation getLibraryOperation(Class<? extends ILibraryOperation> libraryOperationClass);
+	LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,6 +81,6 @@ public interface OCLLibrary extends OCLPackageParent {
 	 * @model libraryOperationDataType="org.eclipse.ocl.library.ILibraryOperation"
 	 * @generated
 	 */
-	void putLibraryOperation(Class<? extends ILibraryOperation> libraryOperationClass, ILibraryOperation libraryOperation);
+	void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation);
 
 } // Library

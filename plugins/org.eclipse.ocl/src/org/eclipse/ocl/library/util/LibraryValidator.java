@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryValidator.java,v 1.1.2.2 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: LibraryValidator.java,v 1.1.2.3 2010/01/31 08:43:27 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.library.ILibraryOperation;
-import org.eclipse.ocl.library.ILibraryProperty;
+import org.eclipse.ocl.library.LibraryOperation;
+import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLAnyType;
 import org.eclipse.ocl.library.OCLBoundType;
@@ -172,9 +172,9 @@ public class LibraryValidator extends EObjectValidator {
 			case LibraryPackage.OCL_VOID_TYPE:
 				return validateOCLVoidType((OCLVoidType)value, diagnostics, context);
 			case LibraryPackage.ILIBRARY_OPERATION:
-				return validateILibraryOperation((ILibraryOperation)value, diagnostics, context);
+				return validateILibraryOperation((LibraryOperation)value, diagnostics, context);
 			case LibraryPackage.ILIBRARY_PROPERTY:
-				return validateILibraryProperty((ILibraryProperty)value, diagnostics, context);
+				return validateILibraryProperty((LibraryProperty)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -677,7 +677,7 @@ public class LibraryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateILibraryOperation(ILibraryOperation iLibraryOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateILibraryOperation(LibraryOperation iLibraryOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -686,7 +686,7 @@ public class LibraryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateILibraryProperty(ILibraryProperty iLibraryProperty, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateILibraryProperty(LibraryProperty iLibraryProperty, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

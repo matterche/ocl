@@ -12,23 +12,21 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsUndefinedOperation.java,v 1.1.2.1 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: OclAnyOclIsUndefinedOperation.java,v 1.1.2.2 2010/01/31 08:43:27 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.oclany;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractUnaryOperation;
 
 /**
  * OclAnyOclIsUndefinedOperation realises the OclAny::oclIsUndefined() library operation.
  * 
  * @since 3.0
  */
-public class OclAnyOclIsUndefinedOperation extends AbstractOperation
+public class OclAnyOclIsUndefinedOperation extends AbstractUnaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		if (isUndefined(sourceVal)) {
+	public Object evaluate(Object argument) {
+		if (isUndefined(argument)) {
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;

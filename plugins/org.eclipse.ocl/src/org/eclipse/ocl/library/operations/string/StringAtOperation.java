@@ -12,27 +12,24 @@
  *
  * </copyright>
  *
- * $Id: StringAtOperation.java,v 1.1.2.1 2010/01/24 07:41:00 ewillink Exp $
+ * $Id: StringAtOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.string;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
 
 /**
  * StringAtOperation realises the String::at() library operation.
  * 
  * @since 3.0
  */
-public class StringAtOperation extends AbstractOperation
+public class StringAtOperation extends AbstractBinaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (isString(sourceVal) && isInteger(argVal)) {
-			String string = String.valueOf(sourceVal);
+	public Object evaluate(Object left, Object right) {
+		if (isString(left) && isInteger(right)) {
+			String string = String.valueOf(left);
 			int size = string.length();
-			int index = ((Number)argVal).intValue();
+			int index = ((Number)right).intValue();
 			if ((0 < index) && (index <= size))
 				return String.valueOf(string.charAt(index-1));
 		}			

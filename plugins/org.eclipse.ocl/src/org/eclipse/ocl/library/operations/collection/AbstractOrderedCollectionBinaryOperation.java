@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractOrderedCollectionBinaryOperation.java,v 1.1.2.1 2010/01/24 07:41:04 ewillink Exp $
+ * $Id: AbstractOrderedCollectionBinaryOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
 import java.util.Collection;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
 
 /**
  * AbstractOrderedCollectionBinaryOperation provides the standard null to Bag{}
@@ -28,18 +26,14 @@ import org.eclipse.ocl.library.operations.AbstractOperation;
  * 
  * @since 3.0
  */
-public abstract class AbstractOrderedCollectionBinaryOperation extends AbstractOperation
+public abstract class AbstractOrderedCollectionBinaryOperation extends AbstractBinaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		if (isInvalid(sourceVal)) {
-			return null;
-		}
-		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (isInvalid(argVal)) {
+	public Object evaluate(Object left, Object right) {
+		if (isInvalid(left) || isInvalid(right)) {
 			return null;
 		}		
-		if (isOrderedCollection(sourceVal)) {
-			return evaluateCollection((Collection<?>)sourceVal, argVal);
+		if (isOrderedCollection(left)) {
+			return evaluateCollection((Collection<?>)left, right);
 		}
 		else {
 			return null;

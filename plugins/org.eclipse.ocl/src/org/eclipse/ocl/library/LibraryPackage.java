@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackage.java,v 1.1.2.9 2010/01/30 07:49:21 ewillink Exp $
+ * $Id: LibraryPackage.java,v 1.1.2.10 2010/01/31 08:43:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -1953,7 +1953,7 @@ public interface LibraryPackage extends EPackage {
 	 * The meta object id for the '<em>ILibrary Operation</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.ILibraryOperation
+	 * @see org.eclipse.ocl.library.LibraryOperation
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getILibraryOperation()
 	 * @generated
 	 */
@@ -1963,7 +1963,7 @@ public interface LibraryPackage extends EPackage {
 	 * The meta object id for the '<em>ILibrary Property</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.library.ILibraryProperty
+	 * @see org.eclipse.ocl.library.LibraryProperty
 	 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getILibraryProperty()
 	 * @generated
 	 */
@@ -2836,22 +2836,22 @@ public interface LibraryPackage extends EPackage {
 	EClass getOCLVoidType();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.library.ILibraryOperation <em>ILibrary Operation</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.library.LibraryOperation <em>ILibrary Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>ILibrary Operation</em>'.
-	 * @see org.eclipse.ocl.library.ILibraryOperation
+	 * @see org.eclipse.ocl.library.LibraryOperation
 	 * @model instanceClass="org.eclipse.ocl.library.ILibraryOperation" serializeable="false"
 	 * @generated
 	 */
 	EDataType getILibraryOperation();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.library.ILibraryProperty <em>ILibrary Property</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.library.LibraryProperty <em>ILibrary Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>ILibrary Property</em>'.
-	 * @see org.eclipse.ocl.library.ILibraryProperty
+	 * @see org.eclipse.ocl.library.LibraryProperty
 	 * @model instanceClass="org.eclipse.ocl.library.ILibraryProperty" serializeable="false"
 	 * @generated
 	 */
@@ -3583,7 +3583,7 @@ public interface LibraryPackage extends EPackage {
 		 * The meta object literal for the '<em>ILibrary Operation</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.library.ILibraryOperation
+		 * @see org.eclipse.ocl.library.LibraryOperation
 		 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getILibraryOperation()
 		 * @generated
 		 */
@@ -3593,7 +3593,7 @@ public interface LibraryPackage extends EPackage {
 		 * The meta object literal for the '<em>ILibrary Property</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.library.ILibraryProperty
+		 * @see org.eclipse.ocl.library.LibraryProperty
 		 * @see org.eclipse.ocl.library.impl.LibraryPackageImpl#getILibraryProperty()
 		 * @generated
 		 */

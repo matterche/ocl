@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.1 2010/01/24 07:41:04 ewillink Exp $
+ * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractTernaryOperation;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
@@ -30,30 +28,22 @@ import org.eclipse.ocl.util.CollectionUtil;
  * 
  * @since 3.0
  */
-public abstract class AbstractCollectionTernaryOperation extends AbstractOperation
+public abstract class AbstractCollectionTernaryOperation extends AbstractTernaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		if (isInvalid(sourceVal)) {
-			return null;
-		}
-		Object argVal1 = visitor.visitArgument(operationCall, 0);
-		if (isInvalid(argVal1)) {
+	public Object evaluate(Object source, Object arg1, Object arg2) {
+		if (isInvalid(source) || isInvalid(arg1) || isInvalid(arg2)) {
 			return null;
 		}		
-		Object argVal2 = visitor.visitArgument(operationCall, 1);
-		if (isInvalid(argVal2)) {
-			return null;
-		}		
-		if (isNull(sourceVal)) {
-			return evaluateCollection(CollectionUtil.createNewBag(), argVal1, argVal2);
+		if (isNull(source)) {
+			return evaluateCollection(CollectionUtil.createNewBag(), arg1, arg2);
 		}
-		else if (sourceVal instanceof Collection<?>) {
-			return evaluateCollection((Collection<?>)sourceVal, argVal1, argVal2);
+		else if (source instanceof Collection<?>) {
+			return evaluateCollection((Collection<?>)source, arg1, arg2);
 		}
 		else {
 			Set<Object> sourceSet = CollectionUtil.createNewSet();
-			sourceSet.add(sourceVal);
-			return evaluateCollection(sourceSet, argVal1, argVal2);
+			sourceSet.add(source);
+			return evaluateCollection(sourceSet, arg1, arg2);
 		}
 	}
 	

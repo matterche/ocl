@@ -12,12 +12,9 @@
  *
  * </copyright>
  *
- * $Id: StringNotEqualOperation.java,v 1.1.2.1 2010/01/24 07:41:01 ewillink Exp $
+ * $Id: StringNotEqualOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.string;
-
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
  * StringNotEqualOperation realises the String::<>() library operation.
@@ -27,7 +24,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 public class StringNotEqualOperation extends StringEqualOperation
 {
 	@Override
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Boolean evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		return !super.evaluate(visitor, sourceVal, operationCall);
+	public Boolean evaluate(Object left, Object right) {
+		return !super.evaluate(left, right);
 	}
 }

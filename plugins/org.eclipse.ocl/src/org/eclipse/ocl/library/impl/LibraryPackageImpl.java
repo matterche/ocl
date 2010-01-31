@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackageImpl.java,v 1.1.2.10 2010/01/30 07:49:24 ewillink Exp $
+ * $Id: LibraryPackageImpl.java,v 1.1.2.11 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.ocl.library.ILibraryOperation;
-import org.eclipse.ocl.library.ILibraryProperty;
+import org.eclipse.ocl.library.LibraryOperation;
+import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLAnyType;
@@ -1452,8 +1452,8 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		initEClass(oclVoidTypeEClass, OCLVoidType.class, "OCLVoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Initialize data types
-		initEDataType(iLibraryOperationEDataType, ILibraryOperation.class, "ILibraryOperation", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEDataType(iLibraryPropertyEDataType, ILibraryProperty.class, "ILibraryProperty", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(iLibraryOperationEDataType, LibraryOperation.class, "ILibraryOperation", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(iLibraryPropertyEDataType, LibraryProperty.class, "ILibraryProperty", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

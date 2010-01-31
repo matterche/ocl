@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedLibraryOperationImpl.java,v 1.1.2.2 2010/01/30 07:49:14 ewillink Exp $
+ * $Id: MergedLibraryOperationImpl.java,v 1.1.2.3 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.ILibraryOperation;
+import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
@@ -229,7 +229,7 @@ public class MergedLibraryOperationImpl extends MergedOperationImpl implements M
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(
 			EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> evaluationVisitor,
 			Object sourceVal, OperationCallExp<C, O> operationCall) {
-		ILibraryOperation libraryOperation = operation.getLibraryOperation();
+		LibraryOperation libraryOperation = operation.getLibraryOperation();
 		return libraryOperation.evaluate(evaluationVisitor, sourceVal, operationCall);
 	}
 

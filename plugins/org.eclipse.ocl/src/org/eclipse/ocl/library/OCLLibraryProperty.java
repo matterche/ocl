@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryProperty.java,v 1.1.2.4 2010/01/24 07:40:54 ewillink Exp $
+ * $Id: OCLLibraryProperty.java,v 1.1.2.5 2010/01/31 08:43:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -42,7 +42,7 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * @model required="true"
 	 * @generated
 	 */
-	Class<? extends ILibraryProperty> getLibraryPropertyClass();
+	Class<? extends LibraryProperty> getLibraryPropertyClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryPropertyClass <em>Library Property Class</em>}' attribute.
@@ -52,7 +52,7 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * @see #getLibraryPropertyClass()
 	 * @generated
 	 */
-	void setLibraryPropertyClass(Class<? extends ILibraryProperty> value);
+	void setLibraryPropertyClass(Class<? extends LibraryProperty> value);
 
 	/**
 	 * Returns the value of the '<em><b>Library Property</b></em>' attribute.
@@ -63,12 +63,12 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Library Property</em>' attribute.
-	 * @see #setLibraryProperty(ILibraryProperty)
+	 * @see #setLibraryProperty(LibraryProperty)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryProperty_LibraryProperty()
 	 * @model dataType="org.eclipse.ocl.library.ILibraryProperty" transient="true"
 	 * @generated
 	 */
-	ILibraryProperty getLibraryProperty();
+	LibraryProperty getLibraryProperty();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryProperty <em>Library Property</em>}' attribute.
@@ -78,5 +78,5 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * @see #getLibraryProperty()
 	 * @generated
 	 */
-	void setLibraryProperty(ILibraryProperty value);
+	void setLibraryProperty(LibraryProperty value);
 } // OCLLibraryProperty

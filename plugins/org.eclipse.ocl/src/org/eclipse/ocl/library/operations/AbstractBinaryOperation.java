@@ -12,40 +12,24 @@
  *
  * </copyright>
  *
- * $Id: BooleanImpliesOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
+ * $Id: AbstractBinaryOperation.java,v 1.1.2.1 2010/01/31 08:43:27 ewillink Exp $
  */
-package org.eclipse.ocl.library.operations.logical;
+package org.eclipse.ocl.library.operations;
 
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
+import org.eclipse.ocl.library.LibraryBinaryOperation;
 
 /**
- * ImpliesOperation realises the implies() library operation.
+ * AbstractBinaryOperation dispatches a binary library operation to
+ * matching-type-specific call-backs.
  * 
  * @since 3.0
  */
-public class BooleanImpliesOperation extends AbstractBinaryOperation
+public abstract class AbstractBinaryOperation extends AbstractOperation implements LibraryBinaryOperation
 {
-	@Override
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		if (sourceVal == Boolean.FALSE) {
-			return Boolean.TRUE;
-		}
 		Object argVal = visitor.visitArgument(operationCall, 0);
 		return evaluate(sourceVal, argVal);
-	}
-
-	public Object evaluate(Object left, Object right) {
-		if (left == Boolean.FALSE) {
-			return Boolean.TRUE;
-		}
-		if (right == Boolean.TRUE) {
-			return Boolean.TRUE;
-		}
-		else if ((left == Boolean.TRUE) && (right == Boolean.FALSE)) {
-			return Boolean.FALSE;
-		}
-		return null;
 	}
 }

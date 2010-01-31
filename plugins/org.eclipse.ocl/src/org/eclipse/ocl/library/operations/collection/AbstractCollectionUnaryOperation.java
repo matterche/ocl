@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.1 2010/01/24 07:41:07 ewillink Exp $
+ * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractUnaryOperation;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
@@ -30,21 +28,21 @@ import org.eclipse.ocl.util.CollectionUtil;
  * 
  * @since 3.0
  */
-public abstract class AbstractCollectionUnaryOperation extends AbstractOperation
+public abstract class AbstractCollectionUnaryOperation extends AbstractUnaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		if (isInvalid(sourceVal)) {
+	public Object evaluate(Object argument) {
+		if (isInvalid(argument)) {
 			return null;
 		}
-		else if (isNull(sourceVal)) {
+		else if (isNull(argument)) {
 			return evaluateCollection(CollectionUtil.createNewBag());
 		}
-		else if (sourceVal instanceof Collection<?>) {
-			return evaluateCollection((Collection<?>)sourceVal);
+		else if (argument instanceof Collection<?>) {
+			return evaluateCollection((Collection<?>)argument);
 		}
 		else {
 			Set<Object> sourceSet = CollectionUtil.createNewSet();
-			sourceSet.add(sourceVal);
+			sourceSet.add(argument);
 			return evaluateCollection(sourceSet);
 		}
 	}

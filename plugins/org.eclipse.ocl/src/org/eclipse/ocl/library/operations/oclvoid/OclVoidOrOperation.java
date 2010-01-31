@@ -12,24 +12,21 @@
  *
  * </copyright>
  *
- * $Id: OclVoidOrOperation.java,v 1.1.2.1 2010/01/24 07:41:19 ewillink Exp $
+ * $Id: OclVoidOrOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.oclvoid;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
 
 /**
  * OclVoidOrOperation realises the OclVoid::or() library operation.
  * 
  * @since 3.0
  */
-public class OclVoidOrOperation extends AbstractOperation
+public class OclVoidOrOperation extends AbstractBinaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (argVal == Boolean.TRUE) {
+	public Object evaluate(Object left, Object right) {
+		if (right == Boolean.TRUE) {
 			return Boolean.TRUE;
 		}
 		return null;

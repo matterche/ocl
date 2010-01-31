@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.8.8.5 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.8.8.6 2010/01/31 08:43:27 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.library.LibraryBinaryOperation;
 import org.eclipse.ocl.types.CollectionType;
 
 /**
@@ -182,6 +183,7 @@ public class CollectionUtil {
         
         Iterator<?> it = self.iterator();
         Object object = it.next();
+        // FIXME Bug 301351 Use T::+(T)
 
         // two cases: Integer and Double
         if (object instanceof Integer) {
@@ -214,6 +216,26 @@ public class CollectionUtil {
             OCLPlugin.throwing(CollectionUtil.class, "sum", error);//$NON-NLS-1$
             throw error;
         }
+    }
+
+    /**
+     * Implementation of the OCL
+     * <tt>Collection::sum() : T</tt>
+     * operation.
+     * 
+     * @param self the source collection
+     * @param binaryOperation the pair-wise + operation
+     * @param zero the zero value to seed the summation
+     * @return the maximum or minimum of the collection's elements
+     * @since 3.0
+     */
+	public static Object sum(Collection<?> self, LibraryBinaryOperation binaryOperation, Object zero) {
+        Object result = zero;
+        for (Iterator<?> it = self.iterator(); (result != null) && it.hasNext(); ) {
+            Object next = it.next();
+        	result = binaryOperation.evaluate(result, next);
+        }
+        return result;
     }
 
     /**
@@ -1012,47 +1034,26 @@ public class CollectionUtil {
     /**
      * Implementation of the OCL
      * <tt>Collection::max() : T</tt>
+     * or
+     * <tt>Collection::min() : T</tt>
      * operation.
      * 
      * @param self the source collection
-     * @return the maximum of the collection's elements
+     * @param binaryOperation the pair-wise max or min operation
+     * @return the maximum or minimum of the collection's elements
      * @since 3.0
      */
-	public static Object max(Collection<?> self) {
-        Comparable<Object> maxVal = null;
-        for (Iterator<?> it = self.iterator(); it.hasNext();) {
-            @SuppressWarnings("unchecked")
-            Comparable<Object> element = (Comparable<Object>) it.next();
-        	if (maxVal == null) {
-        		maxVal = element;
-        	} else if (maxVal.compareTo(element) > 0) {
-        		maxVal = element;
-        	}
+	public static Object maxMin(Collection<?> self, LibraryBinaryOperation binaryOperation) {
+        Iterator<?> it = self.iterator();
+        if (!it.hasNext()) {
+        	return null;
         }
-        return maxVal;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>Collection::max() : T</tt>
-     * operation.
-     * 
-     * @param self the source collection
-     * @return the minimum of the collection's elements
-     * @since 3.0
-     */
-	public static Object min(Collection<?> self) {
-        Comparable<Object> minVal = null;
-        for (Iterator<?> it = self.iterator(); it.hasNext();) {
-            @SuppressWarnings("unchecked")
-            Comparable<Object> element = (Comparable<Object>) it.next();
-        	if (minVal == null) {
-        		minVal = element;
-        	} else if (minVal.compareTo(element) < 0) {
-        		minVal = element;
-        	}
+        Object result = it.next();
+        while ((result != null) && it.hasNext()) {
+            Object next = it.next();
+        	result = binaryOperation.evaluate(result, next);
         }
-        return minVal;
+        return result;
     }
 
     /**

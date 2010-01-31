@@ -12,36 +12,33 @@
  *
  * </copyright>
  *
- * $Id: BooleanXorOperation.java,v 1.1.2.1 2010/01/24 07:41:18 ewillink Exp $
+ * $Id: BooleanXorOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.logical;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
 
 /**
- * XorOperation realises the xor() library operation.
+ * BooleanXorOperation realises the Boolean::xor() library operation.
  * 
  * @since 3.0
  */
-public class BooleanXorOperation extends AbstractOperation
+public class BooleanXorOperation extends AbstractBinaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (sourceVal == Boolean.TRUE) {
-			if (argVal == Boolean.TRUE) {
+	public Object evaluate(Object left, Object right) {
+		if (left == Boolean.TRUE) {
+			if (right == Boolean.TRUE) {
 				return Boolean.FALSE;
 			}
-			else if (argVal == Boolean.FALSE) {
+			else if (right == Boolean.FALSE) {
 				return Boolean.TRUE;
 			}
 		}
-		else if (sourceVal == Boolean.FALSE) {
-			if (argVal == Boolean.TRUE) {
+		else if (left == Boolean.FALSE) {
+			if (right == Boolean.TRUE) {
 				return Boolean.TRUE;
 			}
-			else if (argVal == Boolean.FALSE) {
+			else if (right == Boolean.FALSE) {
 				return Boolean.FALSE;
 			}
 		}

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.12 2009/11/09 21:57:32 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.12.4.1 2010/01/31 08:43:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -163,6 +163,8 @@ public class OCLMessages {
 	public static String TypeMismatch_ERROR_;
 	public static String CastTypeMismatch_ERROR_;
 	public static String CollectionType_ERROR_;
+	public static String MaxOperator_ERROR_;
+	public static String MinOperator_ERROR_;
 	public static String SumOperator_ERROR_;
 	public static String TupleTypeMismatch_ERROR_;
 	public static String TupleFieldNotFound_ERROR_;

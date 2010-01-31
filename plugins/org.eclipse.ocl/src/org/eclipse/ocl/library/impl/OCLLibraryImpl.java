@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryImpl.java,v 1.1.2.2 2010/01/30 07:49:28 ewillink Exp $
+ * $Id: OCLLibraryImpl.java,v 1.1.2.3 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.library.ILibraryOperation;
+import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLTypeValue;
@@ -105,14 +105,14 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 	/**
 	 * Library operations created to support the serialised class references.
 	 */
-	private Map<Class<? extends ILibraryOperation>, ILibraryOperation> libraryOperationMap = null;
+	private Map<Class<? extends LibraryOperation>, LibraryOperation> libraryOperationMap = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public ILibraryOperation getLibraryOperation(Class<? extends ILibraryOperation> libraryOperationClass) {
+	public LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass) {
 		if (libraryOperationMap != null) {
 			return libraryOperationMap .get(libraryOperationClass);
 		}
@@ -141,9 +141,9 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void putLibraryOperation(Class<? extends ILibraryOperation> libraryOperationClass, ILibraryOperation libraryOperation) {
+	public void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation) {
 		if (libraryOperationMap == null) {
-			libraryOperationMap = new HashMap<Class<? extends ILibraryOperation>, ILibraryOperation>();
+			libraryOperationMap = new HashMap<Class<? extends LibraryOperation>, LibraryOperation>();
 		}
 		libraryOperationMap.put(libraryOperationClass, libraryOperation);
 	}

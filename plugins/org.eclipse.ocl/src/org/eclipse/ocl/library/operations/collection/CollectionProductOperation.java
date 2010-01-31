@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionProductOperation.java,v 1.1.2.1 2010/01/24 07:41:05 ewillink Exp $
+ * $Id: CollectionProductOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
@@ -32,14 +32,14 @@ import org.eclipse.ocl.util.CollectionUtil;
  * 
  * @since 3.0
  */
-public class CollectionProductOperation extends AbstractOperation
+public class CollectionProductOperation extends AbstractOperation // FIXME Make this an AbstractBinaryOperation
 {
 	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
 		if (isInvalid(sourceVal)) {
 			return null;
 		}
 		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (isInvalid(argVal)) {
+		if (isInvalid(sourceVal) ||isInvalid(argVal)) {
 			return null;
 		}		
 		if (!(argVal instanceof Collection<?>)) {

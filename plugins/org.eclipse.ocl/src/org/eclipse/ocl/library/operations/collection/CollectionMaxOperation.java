@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionMaxOperation.java,v 1.1.2.1 2010/01/24 07:41:03 ewillink Exp $
+ * $Id: CollectionMaxOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
 import java.util.Collection;
 
+import org.eclipse.ocl.library.operations.numeric.NumericMaxOperation;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
@@ -29,6 +30,7 @@ public class CollectionMaxOperation extends AbstractCollectionUnaryOperation
 {
 	@Override
 	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.max(sourceVal);
+		// FIXME Bug 301351 Look for user-defined max
+		return CollectionUtil.maxMin(sourceVal, new NumericMaxOperation());
 	}
 }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperation.java,v 1.1.2.5 2010/01/24 07:40:53 ewillink Exp $
+ * $Id: OCLLibraryOperation.java,v 1.1.2.6 2010/01/31 08:43:25 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -40,7 +40,7 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * @model required="true"
 	 * @generated
 	 */
-	Class<? extends ILibraryOperation> getLibraryOperationClass();
+	Class<? extends LibraryOperation> getLibraryOperationClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperationClass <em>Library Operation Class</em>}' attribute.
@@ -50,7 +50,7 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * @see #getLibraryOperationClass()
 	 * @generated
 	 */
-	void setLibraryOperationClass(Class<? extends ILibraryOperation> value);
+	void setLibraryOperationClass(Class<? extends LibraryOperation> value);
 
 	/**
 	 * Returns the value of the '<em><b>Library Operation</b></em>' attribute.
@@ -61,12 +61,12 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Library Operation</em>' attribute.
-	 * @see #setLibraryOperation(ILibraryOperation)
+	 * @see #setLibraryOperation(LibraryOperation)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryOperation_LibraryOperation()
 	 * @model dataType="org.eclipse.ocl.library.ILibraryOperation" transient="true"
 	 * @generated
 	 */
-	ILibraryOperation getLibraryOperation();
+	LibraryOperation getLibraryOperation();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryOperation#getLibraryOperation <em>Library Operation</em>}' attribute.
@@ -76,5 +76,5 @@ public interface OCLLibraryOperation extends OCLOperation {
 	 * @see #getLibraryOperation()
 	 * @generated
 	 */
-	void setLibraryOperation(ILibraryOperation value);
+	void setLibraryOperation(LibraryOperation value);
 } // OCLLibraryOperation

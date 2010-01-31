@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.3 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.4 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
 import java.util.Collection;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
 
 /**
  * AbstractCollectionPairedOperation provides the standard null to Bag{}
@@ -28,23 +26,22 @@ import org.eclipse.ocl.library.operations.AbstractOperation;
  * 
  * @since 3.0
  */
-public abstract class AbstractCollectionPairedOperation extends AbstractOperation
+public abstract class AbstractCollectionPairedOperation extends AbstractBinaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (isInvalid(sourceVal) || isInvalid(argVal)) {
-			return evaluateInvalid(sourceVal, argVal);
+	public Object evaluate(Object left, Object right) {
+		if (isInvalid(left) || isInvalid(right)) {
+			return evaluateInvalid(left, right);
 		}		
-		if (isNull(sourceVal) || isNull(argVal)) {
-			return evaluateNull(sourceVal, argVal);
+		if (isNull(left) || isNull(right)) {
+			return evaluateNull(left, right);
 		}		
 //		Collection<?> sourceColl = convertToCollection(sourceVal);
 //		Collection<?> argColl = convertToCollection(argVal);		// FIXME Pass target collection kind
-		if ((sourceVal instanceof Collection<?>) && (argVal instanceof Collection<?>)) {
-			return evaluateCollection((Collection<?>)sourceVal, (Collection<?>)argVal);
+		if ((left instanceof Collection<?>) && (right instanceof Collection<?>)) {
+			return evaluateCollection((Collection<?>)left, (Collection<?>)right);
 		}
 		else {
-			return evaluateNonCollection(sourceVal, argVal);
+			return evaluateNonCollection(left, right);
 		}
 	}
 	

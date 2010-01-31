@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14.6.8 2010/01/30 22:25:47 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14.6.9 2010/01/31 08:43:27 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -1117,8 +1117,31 @@ public final class OCLStandardLibraryUtil {
 			case EQUAL :
 			case NOT_EQUAL :
 				return stdlib.getBoolean();
-			case SUM :
+			case MAX : {
 				C type = collType.getElementType();
+				// FIXME Bug 301351 use T::max(T)
+				if (type != stdlib.getReal() && type != stdlib.getInteger()) {
+					String message = OCLMessages.MaxOperator_ERROR_;
+					error(env, message,
+						"collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
+				}
+				return type;
+			}
+			case MIN : {
+				C type = collType.getElementType();
+				// FIXME Bug 301351 use T::min(T)
+				if (type != stdlib.getReal() && type != stdlib.getInteger()) {
+					String message = OCLMessages.MinOperator_ERROR_;
+					error(env, message,
+						"collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
+				}
+				return type;
+			}
+			case SUM : {
+				C type = collType.getElementType();
+				// FIXME Bug 301351 use T::+(T)
 				if (type != stdlib.getReal() && type != stdlib.getInteger()) {
 					String message = OCLMessages.SumOperator_ERROR_;
 					error(env, message,
@@ -1126,6 +1149,7 @@ public final class OCLStandardLibraryUtil {
 					return null;
 				}
 				return type;
+			}
 			case PRODUCT :
 				/*
 				 * The result type is: Set(Tuple(first:T, second:T2) where T is
@@ -1636,6 +1660,8 @@ public final class OCLStandardLibraryUtil {
 			oclFactory, createTupleParts(env, stdlib.getT(), stdlib.getT2())));
 		result.add(createBinaryOperation(uml, resultType, PRODUCT_NAME,
 			getCollectionType(env, oclFactory, stdlib.getT2()), "c2"));//$NON-NLS-1$
+		result.add(createUnaryOperation(uml, stdlib.getReal(), MAX_NAME));
+		result.add(createUnaryOperation(uml, stdlib.getReal(), MIN_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getReal(), SUM_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getInteger(), SIZE_NAME));
 

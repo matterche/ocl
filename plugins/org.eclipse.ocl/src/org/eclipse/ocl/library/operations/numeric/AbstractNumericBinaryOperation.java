@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.2 2010/01/30 20:15:36 ewillink Exp $
+ * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.3 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.numeric;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
 
 /**
  * AbstractNumericBinaryOperation dispatches a binary library operation to
@@ -29,38 +27,37 @@ import org.eclipse.ocl.library.operations.AbstractOperation;
  * 
  * @since 3.0
  */
-public abstract class AbstractNumericBinaryOperation extends AbstractOperation
+public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (isInvalid(sourceVal) || isInvalid(argVal)) {
-			return evaluateInvalid(sourceVal, argVal);
+	public Object evaluate(Object left, Object right) {
+		if (isInvalid(left) || isInvalid(right)) {
+			return evaluateInvalid(left, right);
 		}
-		else if (isNull(sourceVal) || isNull(argVal)) {
-			return evaluateNull(sourceVal, argVal);
+		else if (isNull(left) || isNull(right)) {
+			return evaluateNull(left, right);
 		}
-		else if (isUnlimited(sourceVal) || isUnlimited(argVal)) {
-			return evaluateUnlimited(sourceVal, argVal);
+		else if (isUnlimited(left) || isUnlimited(right)) {
+			return evaluateUnlimited(left, right);
 		}
-		else if (sourceVal instanceof BigInteger) {
-			if (argVal instanceof BigInteger) {
-				return evaluateInteger((BigInteger)sourceVal, (BigInteger)argVal);
+		else if (left instanceof BigInteger) {
+			if (right instanceof BigInteger) {
+				return evaluateInteger((BigInteger)left, (BigInteger)right);
 			}
-			else if (argVal instanceof BigDecimal) {
-				sourceVal = new BigDecimal((BigInteger)sourceVal);
-				return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
-			}
-		}
-		else if (sourceVal instanceof BigDecimal) {
-			if (argVal instanceof BigDecimal) {
-				return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
-			}
-			else if (argVal instanceof BigInteger) {
-				argVal = new BigDecimal((BigInteger)argVal);
-				return evaluateReal((BigDecimal)sourceVal, (BigDecimal)argVal);
+			else if (right instanceof BigDecimal) {
+				left = new BigDecimal((BigInteger)left);
+				return evaluateReal((BigDecimal)left, (BigDecimal)right);
 			}
 		}
-		return evaluateNonNumeric(sourceVal, argVal);
+		else if (left instanceof BigDecimal) {
+			if (right instanceof BigDecimal) {
+				return evaluateReal((BigDecimal)left, (BigDecimal)right);
+			}
+			else if (right instanceof BigInteger) {
+				right = new BigDecimal((BigInteger)right);
+				return evaluateReal((BigDecimal)left, (BigDecimal)right);
+			}
+		}
+		return evaluateNonNumeric(left, right);
 	}
 	
 	/**

@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractOrderedCollectionUnaryOperation.java,v 1.1.2.1 2010/01/24 07:41:06 ewillink Exp $
+ * $Id: AbstractOrderedCollectionUnaryOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.collection;
 
 import java.util.Collection;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractUnaryOperation;
 
 /**
  * AbstractOrderedCollectionUnaryOperation provides the standard null to Bag{}
@@ -28,14 +26,14 @@ import org.eclipse.ocl.library.operations.AbstractOperation;
  * 
  * @since 3.0
  */
-public abstract class AbstractOrderedCollectionUnaryOperation extends AbstractOperation
+public abstract class AbstractOrderedCollectionUnaryOperation extends AbstractUnaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		if (isInvalid(sourceVal)) {
+	public Object evaluate(Object argument) {
+		if (isInvalid(argument)) {
 			return null;
 		}
-		if (isOrderedCollection(sourceVal)) {
-			return evaluateCollection((Collection<?>)sourceVal);
+		if (isOrderedCollection(argument)) {
+			return evaluateCollection((Collection<?>)argument);
 		}
 		else {
 			return null;

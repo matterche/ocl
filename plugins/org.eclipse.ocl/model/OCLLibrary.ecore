@@ -95,11 +95,11 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLLibrary" eSuperTypes="#//library/OCLPackageParent">
-      <eOperations name="getLibraryOperation" eType="#//library/ILibraryOperation">
+      <eOperations name="getLibraryOperation" eType="#//library/LibraryOperation">
         <eParameters name="libraryOperationClass">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
             <eTypeArguments>
-              <eUpperBound eClassifier="#//library/ILibraryOperation"/>
+              <eUpperBound eClassifier="#//library/LibraryOperation"/>
             </eTypeArguments>
           </eGenericType>
         </eParameters>
@@ -111,11 +111,11 @@
         <eParameters name="libraryOperationClass">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
             <eTypeArguments>
-              <eUpperBound eClassifier="#//library/ILibraryOperation"/>
+              <eUpperBound eClassifier="#//library/LibraryOperation"/>
             </eTypeArguments>
           </eGenericType>
         </eParameters>
-        <eParameters name="libraryOperation" eType="#//library/ILibraryOperation"/>
+        <eParameters name="libraryOperation" eType="#//library/LibraryOperation"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
           eType="#//library/OCLLibrary"/>
@@ -127,11 +127,11 @@
           lowerBound="1">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
           <eTypeArguments>
-            <eUpperBound eClassifier="#//library/ILibraryOperation"/>
+            <eUpperBound eClassifier="#//library/LibraryOperation"/>
           </eTypeArguments>
         </eGenericType>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryOperation" eType="#//library/ILibraryOperation"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryOperation" eType="#//library/LibraryOperation"
           transient="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryProperty" eSuperTypes="#//library/OCLProperty">
@@ -139,11 +139,11 @@
           lowerBound="1">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
           <eTypeArguments>
-            <eUpperBound eClassifier="#//library/ILibraryProperty"/>
+            <eUpperBound eClassifier="#//library/LibraryProperty"/>
           </eTypeArguments>
         </eGenericType>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryProperty" eType="#//library/ILibraryProperty"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryProperty" eType="#//library/LibraryProperty"
           transient="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLNamedElement" abstract="true" eSuperTypes="#//library/OCLElement">
@@ -248,9 +248,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="OCLTypeValue" abstract="true" interface="true"
         eSuperTypes="#//library/OCLElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="OCLVoidType" eSuperTypes="#//library/OCLConcreteType"/>
-    <eClassifiers xsi:type="ecore:EDataType" name="ILibraryOperation" instanceClassName="org.eclipse.ocl.library.ILibraryOperation"
+    <eClassifiers xsi:type="ecore:EDataType" name="LibraryOperation" instanceClassName="org.eclipse.ocl.library.LibraryOperation"
         serializable="false"/>
-    <eClassifiers xsi:type="ecore:EDataType" name="ILibraryProperty" instanceClassName="org.eclipse.ocl.library.ILibraryProperty"
+    <eClassifiers xsi:type="ecore:EDataType" name="LibraryProperty" instanceClassName="org.eclipse.ocl.library.LibraryProperty"
         serializable="false"/>
   </eSubpackages>
 </ecore:EPackage>

@@ -12,30 +12,27 @@
  *
  * </copyright>
  *
- * $Id: StringEqualOperation.java,v 1.1.2.1 2010/01/24 07:41:01 ewillink Exp $
+ * $Id: StringEqualOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.string;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractBinaryOperation;
 
 /**
  * StringEqualOperation realises the String::=() library operation.
  * 
  * @since 3.0
  */
-public class StringEqualOperation extends AbstractOperation
+public class StringEqualOperation extends AbstractBinaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Boolean evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
-		Object argVal = visitor.visitArgument(operationCall, 0);
-		if (isString(sourceVal) && isString(argVal)) {
-			return String.valueOf(sourceVal).equals(String.valueOf(argVal));
+	public Boolean evaluate(Object left, Object right) {
+		if (isString(left) && isString(right)) {
+			return String.valueOf(left).equals(String.valueOf(right));
 		}
-		if (isInvalid(sourceVal) && isInvalid(argVal)) {
+		if (isInvalid(left) && isInvalid(right)) {
 			return Boolean.TRUE;
 		}
-		if (isNull(sourceVal) && isNull(argVal)) {
+		if (isNull(left) && isNull(right)) {
 			return Boolean.TRUE;
 		}			
 		return Boolean.FALSE;

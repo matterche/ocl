@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.1 2010/01/24 07:40:58 ewillink Exp $
+ * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.2 2010/01/31 08:43:26 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations.numeric;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.ocl.EvaluationVisitor;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.library.operations.AbstractOperation;
+import org.eclipse.ocl.library.operations.AbstractUnaryOperation;
 
 /**
  * AbstractNumericUnaryOperation dispatches a unary library operation to
@@ -29,9 +27,9 @@ import org.eclipse.ocl.library.operations.AbstractOperation;
  * 
  * @since 3.0
  */
-public abstract class AbstractNumericUnaryOperation extends AbstractOperation
+public abstract class AbstractNumericUnaryOperation extends AbstractUnaryOperation
 {
-	public <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor, Object sourceVal, OperationCallExp<C, O> operationCall) {
+	public Object evaluate(Object sourceVal) {
 		if (isUnlimited(sourceVal)) {
 			return evaluateUnlimited(sourceVal);			
 		}

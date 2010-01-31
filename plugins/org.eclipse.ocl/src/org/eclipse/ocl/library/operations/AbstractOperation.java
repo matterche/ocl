@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.4 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.5 2010/01/31 08:43:27 ewillink Exp $
  */
 package org.eclipse.ocl.library.operations;
 
@@ -26,13 +26,13 @@ import org.eclipse.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.library.ILibraryOperation;
+import org.eclipse.ocl.library.LibraryOperation;
 
 
 /**
  * @since 3.0
  */
-public abstract class AbstractOperation implements ILibraryOperation
+public abstract class AbstractOperation implements LibraryOperation
 {
 	public static BigDecimal bigDecimalValueOf(Object val) {
 		if (val instanceof BigDecimal) {
@@ -101,7 +101,7 @@ public abstract class AbstractOperation implements ILibraryOperation
 	 * @return whether it is undefined
 	 */
 	public static boolean isInvalid(Object value) {
-		return (value == null) || 		// FIXME Deprecated
+		return (value == null) || 		// FIXME Deprecated null
 			(value instanceof InvalidLiteralExp<?>);
 	}
 
@@ -114,7 +114,7 @@ public abstract class AbstractOperation implements ILibraryOperation
 	 * @return whether it is undefined
 	 */
 	public static boolean isUndefined(Object value) {
-		return (value == null) || 		// FIXME Deprecated
+		return (value == null) || 		// FIXME Deprecated null
 		(value instanceof NullLiteralExp<?>) || 
 		(value instanceof InvalidLiteralExp<?>);
 	}
