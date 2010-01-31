@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOCLItemProvider.java,v 1.2.2.4 2010/01/30 07:49:50 ewillink Exp $
+ * $Id: ExpressionInOCLItemProvider.java,v 1.2.2.5 2010/01/31 22:20:21 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -801,15 +801,15 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				LibraryFactory.eINSTANCE.createOCLIterator()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				LibraryFactory.eINSTANCE.createOCLJavaType()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				LibraryFactory.eINSTANCE.createOCLLibrary()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				LibraryFactory.eINSTANCE.createOCLLibraryIteration()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,

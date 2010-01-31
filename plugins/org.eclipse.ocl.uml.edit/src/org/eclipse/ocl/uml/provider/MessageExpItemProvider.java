@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpItemProvider.java,v 1.2.2.4 2010/01/30 07:49:50 ewillink Exp $
+ * $Id: MessageExpItemProvider.java,v 1.2.2.5 2010/01/31 22:20:22 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -997,15 +997,15 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				LibraryFactory.eINSTANCE.createOCLIterator()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				LibraryFactory.eINSTANCE.createOCLJavaType()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				LibraryFactory.eINSTANCE.createOCLLibrary()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				LibraryFactory.eINSTANCE.createOCLLibraryIteration()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -2399,15 +2399,15 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				LibraryFactory.eINSTANCE.createOCLIterator()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				LibraryFactory.eINSTANCE.createOCLJavaType()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				LibraryFactory.eINSTANCE.createOCLLibrary()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				LibraryFactory.eINSTANCE.createOCLLibraryIteration()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
