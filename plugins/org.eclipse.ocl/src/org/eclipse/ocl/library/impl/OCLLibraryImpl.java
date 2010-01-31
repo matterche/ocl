@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryImpl.java,v 1.1.2.3 2010/01/31 08:43:26 ewillink Exp $
+ * $Id: OCLLibraryImpl.java,v 1.1.2.4 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.library.LibraryOperation;
+import org.eclipse.ocl.library.LibraryFeature;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLTypeValue;
@@ -101,23 +101,6 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 		}
 		return type;
 	}
-	
-	/**
-	 * Library operations created to support the serialised class references.
-	 */
-	private Map<Class<? extends LibraryOperation>, LibraryOperation> libraryOperationMap = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass) {
-		if (libraryOperationMap != null) {
-			return libraryOperationMap .get(libraryOperationClass);
-		}
-		return null;
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,19 +116,6 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 			}
 		}
 		return null;
-	}
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation) {
-		if (libraryOperationMap == null) {
-			libraryOperationMap = new HashMap<Class<? extends LibraryOperation>, LibraryOperation>();
-		}
-		libraryOperationMap.put(libraryOperationClass, libraryOperation);
 	}
 
 	/**
@@ -252,6 +222,36 @@ public class OCLLibraryImpl extends OCLPackageParentImpl implements OCLLibrary {
 				return type != null && !type.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * Library features created to support the serialised class references.
+	 */
+	private Map<Class<? extends LibraryFeature>, LibraryFeature> libraryFeatureMap = null;
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends LibraryFeature> T getLibraryFeature(Class<? extends T> libraryFeatureClass) {
+		if (libraryFeatureMap != null) {
+			return (T) libraryFeatureMap .get(libraryFeatureClass);
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public <T extends LibraryFeature> void putLibraryFeature(Class<? extends T> libraryIterationClass, T libraryIteration) {
+		if (libraryFeatureMap == null) {
+			libraryFeatureMap = new HashMap<Class<? extends LibraryFeature>, LibraryFeature>();
+		}
+		libraryFeatureMap.put(libraryIterationClass, libraryIteration);
 	}
 
 } //LibraryImpl

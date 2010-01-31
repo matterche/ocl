@@ -15,19 +15,15 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3.6.17 2010/01/30 07:49:40 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3.6.18 2010/01/31 22:23:50 ewillink Exp $
  */
 
 package org.eclipse.ocl;
 
 import java.math.BigInteger;
 import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -67,33 +63,16 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.evaluation.IterationTemplate;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateAny;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateClosure;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateCollect;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateCollectNested;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateExists;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateForAll;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateIsUnique;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateOne;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
-import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.features.AbstractOperation;
+import org.eclipse.ocl.library.merged.MergedIteration;
 import org.eclipse.ocl.library.merged.MergedOperation;
 import org.eclipse.ocl.library.merged.MergedProperty;
 import org.eclipse.ocl.library.merged.MergedType;
-import org.eclipse.ocl.library.operations.AbstractOperation;
-import org.eclipse.ocl.types.BagType;
-import org.eclipse.ocl.types.CollectionType;
-import org.eclipse.ocl.types.OrderedSetType;
-import org.eclipse.ocl.types.SequenceType;
-import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.util.CollectionUtil;
-import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
@@ -106,8 +85,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
-
-	private static int tempCounter = 0;
 
 	private EvaluationEnvironment.Enumerations<EL> enumerations;
 	
@@ -224,7 +201,35 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	@Override
     public Object visitIteratorExp(IteratorExp<C, PM> ie) {
-		C sourceType = ie.getSource().getType();
+		String operationName = ie.getName();
+		try {
+			OCLExpression<?> source = ie.getSource();
+			Object sourceVal = source.accept(this);
+			Object staticSourceType = source.getType();
+			OCLType sourceType = library.getLibraryTypeOfValue(sourceVal, staticSourceType);
+			if (sourceType == null) {
+				return getInvalid("Undefined source type: " + ie); //$NON-NLS-1$
+			}
+			MergedType mergedSourceType = library.getMergedType(sourceType);
+			MergedIteration oclIteration = mergedSourceType.getConformingIteration(operationName);;
+			if (oclIteration == null) {
+				return getInvalid("Undefined iteration: " + ie); //$NON-NLS-1$
+			}
+			Object result = oclIteration.evaluate(this, sourceVal, ie);
+			if (result == null) {
+				return getInvalid("Invalid result: " + ie); //$NON-NLS-1$
+			}
+			return result;							// Valid result
+	    } catch (EvaluationHaltedException e) {
+			// evaluation stopped on demand, propagate father	        
+	    	throw e;				
+	    } catch (Exception e) {
+			OCLPlugin.catching(getClass(), "visitIteratorExp", e);//$NON-NLS-1$
+			String message = OCLMessages.bind(OCLMessages.IteratorNotImpl_ERROR_, operationName);
+			OCLPlugin.log(Diagnostic.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING, message, e);
+			return getInvalid("Failed evaluation: " + ie); //$NON-NLS-1$
+	    }	
+/*		C sourceType = ie.getSource().getType();
 		
 		if (sourceType instanceof PredefinedType<?>) {
 			Object sourceValue = ie.getSource().accept(getVisitor());
@@ -268,393 +273,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		UnsupportedOperationException ex = new UnsupportedOperationException(
 			message);
 		OCLPlugin.throwing(getClass(), "visitIteratorExp", ex);//$NON-NLS-1$
-		throw ex;
-	}
-
-	private static synchronized String generateName() {
-		return "__result__" + tempCounter++;//$NON-NLS-1$
-	}
-
-	private Object evaluateExistsIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateExists.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, Boolean.FALSE);
-
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove the result variable from the environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateForAllIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		//		int numIters = iterators.size();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateForAll.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, Boolean.TRUE);
-
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from the environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateCollectNestedIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		//		int numIters = iterators.size();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get initial result value based on the source type
-		@SuppressWarnings("unchecked")
-		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
-		
-		Object initResultVal = null;
-		if (collType instanceof SetType<?, ?> || collType instanceof BagType<?, ?>) {
-            // collection on a Bag or a Set yields a Bag
-			initResultVal = CollectionUtil.createNewBag();
-        } else {
-            // Sequence or Ordered Set yields a Sequence
-			initResultVal = CollectionUtil.createNewSequence();
-        }
-		
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateCollectNested.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, initResultVal);
-
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {		
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateCollectIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		//		int numIters = iterators.size();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get initial result value based on the source type
-		@SuppressWarnings("unchecked")
-		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
-		
-		Object initResultVal = null;
-		if (collType instanceof SetType<?, ?> || collType instanceof BagType<?, ?>) {
-            // collection on a Bag or a Set yields a Bag
-			initResultVal = CollectionUtil.createNewBag();
-        } else {
-            // Sequence or Ordered Set yields a Sequence
-			initResultVal = CollectionUtil.createNewSequence();
-        }
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateCollect.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, initResultVal);
-
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateSelectIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		//		int numIters = iterators.size();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get initial result value based on the source type
-		@SuppressWarnings("unchecked")
-		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
-		
-		Object initResultVal = null;
-		if (collType instanceof SetType<?, ?>) {
-            // Set
-			initResultVal = CollectionUtil.createNewSet();
-        } else if (collType instanceof BagType<?, ?>) {
-            // Bag
-			initResultVal = CollectionUtil.createNewBag();
-        } else if (collType instanceof SequenceType<?, ?>) {
-            // Sequence
-			initResultVal = CollectionUtil.createNewSequence();
-        } else {
-            // OrderedSet
-			initResultVal = CollectionUtil.createNewOrderedSet();
-        }
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateSelect.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, initResultVal);
-		
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateRejectIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		//		int numIters = iterators.size();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get initial result value based on the source type
-		@SuppressWarnings("unchecked")
-		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
-		
-		Object initResultVal = null;
-		if (collType instanceof SetType<?, ?>) {
-            // Set
-			initResultVal = CollectionUtil.createNewSet();
-        } else if (collType instanceof BagType<?, ?>) {
-            // Bag
-			initResultVal = CollectionUtil.createNewBag();
-        } else if (collType instanceof SequenceType<?, ?>) {
-            // Sequence
-			initResultVal = CollectionUtil.createNewSequence();
-        } else {
-            // OrderedSet
-			initResultVal = CollectionUtil.createNewOrderedSet();
-        }
-
-		//	get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateReject.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, initResultVal);
-
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateOneIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		//		int numIters = iterators.size();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateOne.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, Boolean.FALSE);
-
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateAnyIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateAny.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, null);
-
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-	}
-
-	private Object evaluateSortedByIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		//		int numIters = iterators.size();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateSortedBy.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		
-		final Map<Object, Comparable<Object>> map =
-			new HashMap<Object, Comparable<Object>>();
-		getEvaluationEnvironment().add(resultName, map);
-		try {
-			// evaluate
-			// TODO: find an efficient way to do this.
-			Object evaluationResult = is.evaluate(coll, iterators, body, resultName);
-			
-			if (AbstractOperation.isInvalid(evaluationResult)) {
-				// handle the OclInvalid result
-				return evaluationResult;
-			}
-			
-			is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-		// sort the source collection based on the natural ordering of the
-		// body expression evaluations
-		List<Object> result = new ArrayList<Object>(coll);
-
-		Collections.sort(result, new Comparator<Object>() {
-
-			public int compare(Object o1, Object o2) {
-				Comparable<Object> b1 = map.get(o1);
-				Comparable<Object> b2 = map.get(o2);
-				return (b1.compareTo(b2));
-			}
-		});
-
-		// create result
-		// type is Sequence if source is a sequence or a Bag,
-		// SortedSet if source is a SortedSet or a Set
-		C collType = ie.getSource().getType();
-		if (collType instanceof SetType<?, ?> || collType instanceof OrderedSetType<?, ?>) {
-            return CollectionUtil.createNewOrderedSet(result);
-        } else {
-            return CollectionUtil.createNewSequence(result);
-        }
-	}
-
-	private Object evaluateIsUnique(IteratorExp<C, PM> ie, Collection<?> coll) {
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-		
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
-			IterationTemplateIsUnique.getInstance(getVisitor());
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, new HashSet<Object>());
-
-		try {
-			// evaluate
-			is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
-		
-		return is.isDone() ? Boolean.FALSE : Boolean.TRUE;
-	}
-
-	private Object evaluateClosure(IteratorExp<C, PM> ie, Collection<?> coll) {
-
-		// get the list of ocl iterators
-		List<Variable<C, PM>> iterators = ie.getIterator();
-
-		// get the body expression
-		OCLExpression<C> body = ie.getBody();
-		C type = ie.getType();
-		// create initial result value
-		Object initResultVal = type instanceof OrderedSetType<?,?> ? CollectionUtil.createNewOrderedSet() : CollectionUtil.createNewSet();
-
-		// get an iteration template to evaluate the iterator
-		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> template =
-			IterationTemplateClosure.getInstance(getVisitor(), body);
-
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		getEvaluationEnvironment().add(resultName, initResultVal);
-
-		try {
-			// evaluate
-			return template.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			getEvaluationEnvironment().remove(resultName);
-		}
+		throw ex; */
 	}
 
 	/**
@@ -668,7 +287,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
 		return (enumerations == null) ? el.getReferredEnumLiteral()
-			: enumerations.getValue(el.getReferredEnumLiteral());
+			: enumerations.getValue(el.getReferredEnumLiteral());  // FIXME BigInteger
 	}
 
 	/**
@@ -868,7 +487,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for an IntegerLiteralExp visit.
 	 * 
-	 * @return the value of the integer literal as a java.lang.Integer.
+	 * @return the value of the integer literal as a java.lang.BigInteger.
 	 */
 	@Override
     public Object visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
@@ -878,7 +497,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     /**
      * Callback for an UnlimitedNaturalLiteralExp visit.
      * 
-     * @return the value of the natural literal as a java.lang.Integer.
+     * @return the value of the natural literal as a java.lang.BigInteger.
      */
     @Override
     public Object visitUnlimitedNaturalLiteralExp(
@@ -889,7 +508,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for a RealLiteralExp visit.
 	 * 
-	 * @return the value of the real literal as a java.lang.Double.
+	 * @return the value of the real literal as a BigDecimal.
 	 */
 	@Override
     public Object visitRealLiteralExp(RealLiteralExp<C> rl) {

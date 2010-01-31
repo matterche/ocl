@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryAdapterFactory.java,v 1.1.2.2 2010/01/30 07:49:32 ewillink Exp $
+ * $Id: OCLMergedLibraryAdapterFactory.java,v 1.1.2.3 2010/01/31 22:23:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.util;
 
@@ -90,8 +90,16 @@ public class OCLMergedLibraryAdapterFactory extends AdapterFactoryImpl {
 	protected OCLMergedLibrarySwitch<Adapter> modelSwitch =
 		new OCLMergedLibrarySwitch<Adapter>() {
 			@Override
+			public Adapter caseMergedIteration(MergedIteration object) {
+				return createMergedIterationAdapter();
+			}
+			@Override
 			public Adapter caseMergedLibrary(MergedLibrary object) {
 				return createMergedLibraryAdapter();
+			}
+			@Override
+			public Adapter caseMergedLibraryIteration(MergedLibraryIteration object) {
+				return createMergedLibraryIterationAdapter();
 			}
 			@Override
 			public Adapter caseMergedLibraryOperation(MergedLibraryOperation object) {
@@ -222,6 +230,20 @@ public class OCLMergedLibraryAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.merged.MergedIteration <em>Merged Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.merged.MergedIteration
+	 * @generated
+	 */
+	public Adapter createMergedIterationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.merged.MergedLibrary <em>Merged Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -232,6 +254,20 @@ public class OCLMergedLibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMergedLibraryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.library.merged.MergedLibraryIteration <em>Merged Library Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.library.merged.MergedLibraryIteration
+	 * @generated
+	 */
+	public Adapter createMergedLibraryIterationAdapter() {
 		return null;
 	}
 

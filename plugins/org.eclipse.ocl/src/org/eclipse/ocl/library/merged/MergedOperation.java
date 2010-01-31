@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedOperation.java,v 1.1.2.2 2010/01/30 07:49:32 ewillink Exp $
+ * $Id: MergedOperation.java,v 1.1.2.3 2010/01/31 22:23:42 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -117,7 +117,6 @@ public interface MergedOperation extends OCLElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model exceptions="org.eclipse.ocl.library.Exception" evaluationVisitorDataType="org.eclipse.ocl.library.EvaluationVisitor" operationCallDataType="org.eclipse.ocl.library.OperationCallExp"
 	 * @generated NOT
 	 */
 	<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> Object evaluate(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> evaluationVisitor, Object sourceVal, OperationCallExp<C, O> operationCall);

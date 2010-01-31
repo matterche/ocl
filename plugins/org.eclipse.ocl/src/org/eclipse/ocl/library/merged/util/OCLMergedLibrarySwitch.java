@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibrarySwitch.java,v 1.1.2.2 2010/01/30 07:49:31 ewillink Exp $
+ * $Id: OCLMergedLibrarySwitch.java,v 1.1.2.3 2010/01/31 22:23:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.util;
 
@@ -107,12 +107,27 @@ public class OCLMergedLibrarySwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case OCLMergedLibraryPackage.MERGED_ITERATION: {
+				MergedIteration mergedIteration = (MergedIteration)theEObject;
+				T result = caseMergedIteration(mergedIteration);
+				if (result == null) result = caseOCLElement(mergedIteration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OCLMergedLibraryPackage.MERGED_LIBRARY: {
 				MergedLibrary mergedLibrary = (MergedLibrary)theEObject;
 				T result = caseMergedLibrary(mergedLibrary);
 				if (result == null) result = caseOCLNamedElement(mergedLibrary);
 				if (result == null) result = caseOCLCache(mergedLibrary);
 				if (result == null) result = caseOCLElement(mergedLibrary);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLMergedLibraryPackage.MERGED_LIBRARY_ITERATION: {
+				MergedLibraryIteration mergedLibraryIteration = (MergedLibraryIteration)theEObject;
+				T result = caseMergedLibraryIteration(mergedLibraryIteration);
+				if (result == null) result = caseMergedIteration(mergedLibraryIteration);
+				if (result == null) result = caseOCLElement(mergedLibraryIteration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -266,6 +281,21 @@ public class OCLMergedLibrarySwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Merged Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Merged Iteration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMergedIteration(MergedIteration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Merged Library</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -277,6 +307,21 @@ public class OCLMergedLibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseMergedLibrary(MergedLibrary object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Merged Library Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Merged Library Iteration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMergedLibraryIteration(MergedLibraryIteration object) {
 		return null;
 	}
 

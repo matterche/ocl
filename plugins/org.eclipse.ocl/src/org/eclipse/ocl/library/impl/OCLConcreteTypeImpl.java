@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLConcreteTypeImpl.java,v 1.1.2.1 2010/01/30 07:49:28 ewillink Exp $
+ * $Id: OCLConcreteTypeImpl.java,v 1.1.2.2 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLBoundType;
 import org.eclipse.ocl.library.OCLConcreteType;
+import org.eclipse.ocl.library.OCLIteration;
 import org.eclipse.ocl.library.OCLNamedElement;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLPackage;
@@ -43,6 +44,7 @@ import org.eclipse.ocl.library.OCLTypeParameterParent;
  *   <li>{@link org.eclipse.ocl.library.impl.OCLConcreteTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLConcreteTypeImpl#getTypeParameter <em>Type Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLConcreteTypeImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLConcreteTypeImpl#getIteration <em>Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLConcreteTypeImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLConcreteTypeImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLConcreteTypeImpl#getBoundType <em>Bound Type</em>}</li>
@@ -79,6 +81,15 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 	 * @ordered
 	 */
 	protected EList<OCLTypeParameter> typeParameter;
+	/**
+	 * The cached value of the '{@link #getIteration() <em>Iteration</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIteration()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OCLIteration> iteration;
 	/**
 	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -245,6 +256,19 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
+	public EList<OCLIteration> getIteration() {
+		if (iteration == null) {
+			iteration = new EObjectContainmentWithInverseEList<OCLIteration>(OCLIteration.class, this, LibraryPackage.OCL_CONCRETE_TYPE__ITERATION, LibraryPackage.OCL_ITERATION__CONTAINER);
+		}
+		return iteration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 //	public OCLConcreteType getNormalizedType() {
 //		return this;
 //	}
@@ -362,24 +386,12 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetContainer((OCLPackage)otherEnd, msgs);
+			case LibraryPackage.OCL_CONCRETE_TYPE__ITERATION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIteration()).basicAdd(otherEnd, msgs);
 			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperation()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLOperation getOperation(String name) {
-		for (OCLOperation anOperation : operation) {
-			if (name.equals(anOperation.getName())) {
-				return anOperation;
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -394,6 +406,8 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 				return ((InternalEList<?>)getTypeParameter()).basicRemove(otherEnd, msgs);
 			case LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER:
 				return basicSetContainer(null, msgs);
+			case LibraryPackage.OCL_CONCRETE_TYPE__ITERATION:
+				return ((InternalEList<?>)getIteration()).basicRemove(otherEnd, msgs);
 			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
 				return ((InternalEList<?>)getOperation()).basicRemove(otherEnd, msgs);
 			case LibraryPackage.OCL_CONCRETE_TYPE__PROPERTY:
@@ -432,6 +446,8 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 				return getTypeParameter();
 			case LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER:
 				return getContainer();
+			case LibraryPackage.OCL_CONCRETE_TYPE__ITERATION:
+				return getIteration();
 			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
 				return getOperation();
 			case LibraryPackage.OCL_CONCRETE_TYPE__PROPERTY:
@@ -460,6 +476,10 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 				return;
 			case LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER:
 				setContainer((OCLPackage)newValue);
+				return;
+			case LibraryPackage.OCL_CONCRETE_TYPE__ITERATION:
+				getIteration().clear();
+				getIteration().addAll((Collection<? extends OCLIteration>)newValue);
 				return;
 			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
 				getOperation().clear();
@@ -494,6 +514,9 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 			case LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER:
 				setContainer((OCLPackage)null);
 				return;
+			case LibraryPackage.OCL_CONCRETE_TYPE__ITERATION:
+				getIteration().clear();
+				return;
 			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
 				getOperation().clear();
 				return;
@@ -521,6 +544,8 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 				return typeParameter != null && !typeParameter.isEmpty();
 			case LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER:
 				return getContainer() != null;
+			case LibraryPackage.OCL_CONCRETE_TYPE__ITERATION:
+				return iteration != null && !iteration.isEmpty();
 			case LibraryPackage.OCL_CONCRETE_TYPE__OPERATION:
 				return operation != null && !operation.isEmpty();
 			case LibraryPackage.OCL_CONCRETE_TYPE__PROPERTY:
@@ -574,6 +599,35 @@ public class OCLConcreteTypeImpl extends OCLTypeImpl implements OCLConcreteType 
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public OCLIteration getIteration(String name) {
+		for (OCLIteration anIteration : iteration) {
+			if (name.equals(anIteration.getName())) {
+				return anIteration;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 *
+	public OCLOperation getOperation(String name) {
+		for (OCLOperation anOperation : operation) {
+			if (name.equals(anOperation.getName())) {
+				return anOperation;
+			}
+		}
+		return null;
+	} */
 
 	/**
 	 * <!-- begin-user-doc -->

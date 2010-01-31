@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypedElementImpl.java,v 1.1.2.2 2010/01/30 07:49:29 ewillink Exp $
+ * $Id: OCLTypedElementImpl.java,v 1.1.2.3 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -16,8 +16,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.library.LibraryFeature;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLBoundType;
+import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.OCLTypeBinding;
 import org.eclipse.ocl.library.OCLTypeParameter;
@@ -251,6 +253,23 @@ public abstract class OCLTypedElementImpl extends OCLNamedElementImpl implements
 	public void appendTypeSignature(StringBuffer s) {
 		s.append(" : "); //$NON-NLS-1$
 		appendSignature(s, type);
+	}
+
+	protected <T extends LibraryFeature> T createLibraryFeatureInstance(Class<? extends T> libraryFeatureClass) {
+		OCLLibrary library = getLibrary();
+		T libraryFeature = library.getLibraryFeature(libraryFeatureClass);
+		if (libraryFeature == null) {
+			try {
+				libraryFeature = libraryFeatureClass.newInstance();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (libraryFeature != null) {
+			library.putLibraryFeature(libraryFeatureClass, libraryFeature);
+		}
+		return libraryFeature;
 	}
 
 	@Override

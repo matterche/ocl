@@ -31,6 +31,12 @@
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="java" eType="#//library/OCLJavaType"
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nonOrderedCollection"
+          eType="#//library/OCLConcreteType" changeable="false" transient="true" derived="true"
+          resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nonUniqueCollection"
+          eType="#//library/OCLConcreteType" changeable="false" transient="true" derived="true"
+          resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="oclAny" eType="#//library/OCLConcreteType"
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="oclInvalid" eType="#//library/OCLConcreteType"
@@ -43,6 +49,8 @@
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="oclVoid" eType="#//library/OCLConcreteType"
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="orderedCollection" eType="#//library/OCLConcreteType"
+          changeable="false" transient="true" derived="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="orderedSet" eType="#//library/OCLConcreteType"
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="real" eType="#//library/OCLConcreteType"
@@ -52,6 +60,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="set" eType="#//library/OCLConcreteType"
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="string" eType="#//library/OCLConcreteType"
+          changeable="false" transient="true" derived="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="uniqueCollection" eType="#//library/OCLConcreteType"
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="unlimitedNatural" eType="#//library/OCLConcreteType"
           changeable="false" transient="true" derived="true" resolveProxies="false"/>
@@ -65,6 +75,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="OCLConcreteType" eSuperTypes="#//library/OCLType #//library/OCLTypeParameterParent">
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/OCLPackage"
           eOpposite="#//library/OCLPackage/type"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="iteration" ordered="false"
+          upperBound="-1" eType="#//library/OCLIteration" containment="true" eOpposite="#//library/OCLIteration/container"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
           upperBound="-1" eType="#//library/OCLOperation" containment="true" eOpposite="#//library/OCLOperation/container"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="property" upperBound="-1"
@@ -83,9 +95,11 @@
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLInvalidType" eSuperTypes="#//library/OCLConcreteType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="OCLIterator" eSuperTypes="#//library/OCLTypedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/OCLOperation"
-          eOpposite="#//library/OCLOperation/iterator"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLIteration" abstract="true" eSuperTypes="#//library/OCLTypedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//library/OCLConcreteType"
+          eOpposite="#//library/OCLConcreteType/iteration"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="iterators" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLJavaType" eSuperTypes="#//library/OCLConcreteType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaClass">
@@ -95,36 +109,27 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLLibrary" eSuperTypes="#//library/OCLPackageParent">
-      <eOperations name="getLibraryOperation" eType="#//library/LibraryOperation">
-        <eParameters name="libraryOperationClass">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-            <eTypeArguments>
-              <eUpperBound eClassifier="#//library/LibraryOperation"/>
-            </eTypeArguments>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
       <eOperations name="getType" eType="#//library/OCLTypeValue">
         <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eOperations>
-      <eOperations name="putLibraryOperation">
-        <eParameters name="libraryOperationClass">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-            <eTypeArguments>
-              <eUpperBound eClassifier="#//library/LibraryOperation"/>
-            </eTypeArguments>
-          </eGenericType>
-        </eParameters>
-        <eParameters name="libraryOperation" eType="#//library/LibraryOperation"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
           eType="#//library/OCLLibrary"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" upperBound="-1"
           eType="#//library/OCLTypeValue" containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryIteration" eSuperTypes="#//library/OCLIteration">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments>
+            <eUpperBound eClassifier="#//library/LibraryIteration"/>
+          </eTypeArguments>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryIteration" eType="#//library/LibraryIteration"
+          transient="true"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryOperation" eSuperTypes="#//library/OCLOperation">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryOperationClass"
-          lowerBound="1">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" lowerBound="1">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
           <eTypeArguments>
             <eUpperBound eClassifier="#//library/LibraryOperation"/>
@@ -135,8 +140,7 @@
           transient="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryProperty" eSuperTypes="#//library/OCLProperty">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryPropertyClass"
-          lowerBound="1">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" lowerBound="1">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
           <eTypeArguments>
             <eUpperBound eClassifier="#//library/LibraryProperty"/>
@@ -155,8 +159,6 @@
           eOpposite="#//library/OCLConcreteType/operation"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" upperBound="-1"
-          eType="#//library/OCLIterator" containment="true" eOpposite="#//library/OCLIterator/container"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
           eType="#//library/OCLParameter" containment="true" eOpposite="#//library/OCLParameter/container"/>
     </eClassifiers>
@@ -194,6 +196,10 @@
       <eOperations name="conformsTo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="type" eType="#//library/OCLType"/>
       </eOperations>
+      <eOperations name="getIteration" upperBound="-1" eType="#//library/OCLIteration"/>
+      <eOperations name="getIteration" eType="#//library/OCLIteration">
+        <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
       <eOperations name="getOperation" upperBound="-1" eType="#//library/OCLOperation"/>
       <eOperations name="getOperations" upperBound="-1" eType="#//library/OCLOperation">
         <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -209,6 +215,8 @@
         <eParameters name="typeParameter" eType="#//library/OCLTypeParameter"/>
       </eOperations>
       <eOperations name="getTypeParameter" upperBound="-1" eType="#//library/OCLTypeParameter"/>
+      <eOperations name="isOrdered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eOperations name="isUnique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="conforms" ordered="false"
           upperBound="-1" eType="#//library/OCLType"/>
     </eClassifiers>
@@ -248,6 +256,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="OCLTypeValue" abstract="true" interface="true"
         eSuperTypes="#//library/OCLElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="OCLVoidType" eSuperTypes="#//library/OCLConcreteType"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="LibraryIteration" instanceClassName="org.eclipse.ocl.library.LibraryIteration"
+        serializable="false"/>
     <eClassifiers xsi:type="ecore:EDataType" name="LibraryOperation" instanceClassName="org.eclipse.ocl.library.LibraryOperation"
         serializable="false"/>
     <eClassifiers xsi:type="ecore:EDataType" name="LibraryProperty" instanceClassName="org.eclipse.ocl.library.LibraryProperty"

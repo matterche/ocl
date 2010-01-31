@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryFactory.java,v 1.1.2.2 2010/01/30 07:49:33 ewillink Exp $
+ * $Id: OCLMergedLibraryFactory.java,v 1.1.2.3 2010/01/31 22:23:42 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -25,6 +25,15 @@ public interface OCLMergedLibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLMergedLibraryFactory eINSTANCE = org.eclipse.ocl.library.merged.impl.OCLMergedLibraryFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>Merged Library Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merged Library Iteration</em>'.
+	 * @generated
+	 */
+	MergedLibraryIteration createMergedLibraryIteration();
 
 	/**
 	 * Returns a new object of class '<em>Merged Library Operation</em>'.

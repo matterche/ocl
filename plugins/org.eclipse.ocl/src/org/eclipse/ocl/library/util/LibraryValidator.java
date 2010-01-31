@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryValidator.java,v 1.1.2.3 2010/01/31 08:43:27 ewillink Exp $
+ * $Id: LibraryValidator.java,v 1.1.2.4 2010/01/31 22:23:42 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -15,9 +15,10 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.library.LibraryIteration;
 import org.eclipse.ocl.library.LibraryOperation;
-import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.LibraryProperty;
 import org.eclipse.ocl.library.OCLAnyType;
 import org.eclipse.ocl.library.OCLBoundType;
 import org.eclipse.ocl.library.OCLCache;
@@ -25,9 +26,10 @@ import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLDeprecatedType;
 import org.eclipse.ocl.library.OCLElement;
 import org.eclipse.ocl.library.OCLInvalidType;
-import org.eclipse.ocl.library.OCLIterator;
+import org.eclipse.ocl.library.OCLIteration;
 import org.eclipse.ocl.library.OCLJavaType;
 import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLLibraryIteration;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
 import org.eclipse.ocl.library.OCLNamedElement;
@@ -133,12 +135,14 @@ public class LibraryValidator extends EObjectValidator {
 				return validateOCLElement((OCLElement)value, diagnostics, context);
 			case LibraryPackage.OCL_INVALID_TYPE:
 				return validateOCLInvalidType((OCLInvalidType)value, diagnostics, context);
-			case LibraryPackage.OCL_ITERATOR:
-				return validateOCLIterator((OCLIterator)value, diagnostics, context);
+			case LibraryPackage.OCL_ITERATION:
+				return validateOCLIteration((OCLIteration)value, diagnostics, context);
 			case LibraryPackage.OCL_JAVA_TYPE:
 				return validateOCLJavaType((OCLJavaType)value, diagnostics, context);
 			case LibraryPackage.OCL_LIBRARY:
 				return validateOCLLibrary((OCLLibrary)value, diagnostics, context);
+			case LibraryPackage.OCL_LIBRARY_ITERATION:
+				return validateOCLLibraryIteration((OCLLibraryIteration)value, diagnostics, context);
 			case LibraryPackage.OCL_LIBRARY_OPERATION:
 				return validateOCLLibraryOperation((OCLLibraryOperation)value, diagnostics, context);
 			case LibraryPackage.OCL_LIBRARY_PROPERTY:
@@ -171,10 +175,12 @@ public class LibraryValidator extends EObjectValidator {
 				return validateOCLTypeValue((OCLTypeValue)value, diagnostics, context);
 			case LibraryPackage.OCL_VOID_TYPE:
 				return validateOCLVoidType((OCLVoidType)value, diagnostics, context);
-			case LibraryPackage.ILIBRARY_OPERATION:
-				return validateILibraryOperation((LibraryOperation)value, diagnostics, context);
-			case LibraryPackage.ILIBRARY_PROPERTY:
-				return validateILibraryProperty((LibraryProperty)value, diagnostics, context);
+			case LibraryPackage.LIBRARY_ITERATION:
+				return validateLibraryIteration((LibraryIteration)value, diagnostics, context);
+			case LibraryPackage.LIBRARY_OPERATION:
+				return validateLibraryOperation((LibraryOperation)value, diagnostics, context);
+			case LibraryPackage.LIBRARY_PROPERTY:
+				return validateLibraryProperty((LibraryProperty)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -204,6 +210,23 @@ public class LibraryValidator extends EObjectValidator {
 	 */
 	public boolean validateOCLLibrary(OCLLibrary oclLibrary, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(oclLibrary, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOCLLibraryIteration(OCLLibraryIteration oclLibraryIteration, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = validate_EveryMultiplicityConforms(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validateOCLTypedElement_ReferencedTypeIsBound(oclLibraryIteration, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -339,15 +362,15 @@ public class LibraryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOCLIterator(OCLIterator oclIterator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		boolean result = validate_EveryMultiplicityConforms(oclIterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclIterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclIterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclIterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(oclIterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclIterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(oclIterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateOCLTypedElement_ReferencedTypeIsBound(oclIterator, diagnostics, context);
+	public boolean validateOCLIteration(OCLIteration oclIteration, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = validate_EveryMultiplicityConforms(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validateOCLTypedElement_ReferencedTypeIsBound(oclIteration, diagnostics, context);
 		return result;
 	}
 
@@ -677,7 +700,7 @@ public class LibraryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateILibraryOperation(LibraryOperation iLibraryOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLibraryIteration(LibraryIteration libraryIteration, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -686,7 +709,16 @@ public class LibraryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateILibraryProperty(LibraryProperty iLibraryProperty, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLibraryOperation(LibraryOperation libraryOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLibraryProperty(LibraryProperty libraryProperty, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

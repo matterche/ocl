@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryPackageImpl.java,v 1.1.2.2 2010/01/30 07:49:13 ewillink Exp $
+ * $Id: OCLMergedLibraryPackageImpl.java,v 1.1.2.3 2010/01/31 22:23:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -17,7 +17,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.merged.MergedIteration;
 import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.merged.MergedLibraryIteration;
 import org.eclipse.ocl.library.merged.MergedOperation;
 import org.eclipse.ocl.library.merged.MergedOperationDefinition;
 import org.eclipse.ocl.library.merged.MergedLibraryOperation;
@@ -53,7 +55,21 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass mergedIterationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass mergedLibraryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mergedLibraryIterationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -247,6 +263,15 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMergedIteration() {
+		return mergedIterationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMergedLibrary() {
 		return mergedLibraryEClass;
 	}
@@ -258,6 +283,24 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	 */
 	public EReference getMergedLibrary_BaseLibrary() {
 		return (EReference)mergedLibraryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMergedLibraryIteration() {
+		return mergedLibraryIterationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMergedLibraryIteration_Iteration() {
+		return (EReference)mergedLibraryIterationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -499,7 +542,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMergedType_Operation() {
+	public EReference getMergedType_Iteration() {
 		return (EReference)mergedTypeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -508,7 +551,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMergedType_Property() {
+	public EReference getMergedType_Operation() {
 		return (EReference)mergedTypeEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -517,8 +560,17 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMergedType_Inv() {
+	public EReference getMergedType_Property() {
 		return (EReference)mergedTypeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMergedType_Inv() {
+		return (EReference)mergedTypeEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -693,8 +745,13 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		isCreated = true;
 
 		// Create classes and their features
+		mergedIterationEClass = createEClass(MERGED_ITERATION);
+
 		mergedLibraryEClass = createEClass(MERGED_LIBRARY);
 		createEReference(mergedLibraryEClass, MERGED_LIBRARY__BASE_LIBRARY);
+
+		mergedLibraryIterationEClass = createEClass(MERGED_LIBRARY_ITERATION);
+		createEReference(mergedLibraryIterationEClass, MERGED_LIBRARY_ITERATION__ITERATION);
 
 		mergedLibraryOperationEClass = createEClass(MERGED_LIBRARY_OPERATION);
 		createEReference(mergedLibraryOperationEClass, MERGED_LIBRARY_OPERATION__OPERATION);
@@ -731,6 +788,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		createEReference(mergedTypeEClass, MERGED_TYPE__MERGED_LIBRARY);
 		createEReference(mergedTypeEClass, MERGED_TYPE__TYPE);
 		createEReference(mergedTypeEClass, MERGED_TYPE__CONFORMS);
+		createEReference(mergedTypeEClass, MERGED_TYPE__ITERATION);
 		createEReference(mergedTypeEClass, MERGED_TYPE__OPERATION);
 		createEReference(mergedTypeEClass, MERGED_TYPE__PROPERTY);
 		createEReference(mergedTypeEClass, MERGED_TYPE__INV);
@@ -791,8 +849,10 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		mergedIterationEClass.getESuperTypes().add(theLibraryPackage.getOCLElement());
 		mergedLibraryEClass.getESuperTypes().add(theLibraryPackage.getOCLNamedElement());
 		mergedLibraryEClass.getESuperTypes().add(theLibraryPackage.getOCLCache());
+		mergedLibraryIterationEClass.getESuperTypes().add(this.getMergedIteration());
 		mergedLibraryOperationEClass.getESuperTypes().add(this.getMergedOperation());
 		mergedLibraryPropertyEClass.getESuperTypes().add(this.getMergedProperty());
 		mergedMetaModelOperationEClass.getESuperTypes().add(this.getMergedOperation());
@@ -812,6 +872,10 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		oclMetaModelPropertyEClass.getESuperTypes().add(theLibraryPackage.getOCLProperty());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(mergedIterationEClass, MergedIteration.class, "MergedIteration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		addEOperation(mergedIterationEClass, theLibraryPackage.getOCLType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(mergedLibraryEClass, MergedLibrary.class, "MergedLibrary", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMergedLibrary_BaseLibrary(), theLibraryPackage.getOCLRoot(), null, "baseLibrary", null, 0, 1, MergedLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -833,6 +897,9 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 
 		op = addEOperation(mergedLibraryEClass, this.getOCLBoundCollectionType(), "getSetType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theLibraryPackage.getOCLType(), "elementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(mergedLibraryIterationEClass, MergedLibraryIteration.class, "MergedLibraryIteration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getMergedLibraryIteration_Iteration(), theLibraryPackage.getOCLLibraryIteration(), null, "iteration", null, 1, 1, MergedLibraryIteration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(mergedLibraryOperationEClass, MergedLibraryOperation.class, "MergedLibraryOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMergedLibraryOperation_Operation(), theLibraryPackage.getOCLLibraryOperation(), null, "operation", null, 1, 1, MergedLibraryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -925,6 +992,7 @@ public class OCLMergedLibraryPackageImpl extends EPackageImpl implements OCLMerg
 		initEReference(getMergedType_MergedLibrary(), this.getMergedLibrary(), null, "mergedLibrary", null, 1, 1, MergedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMergedType_Type(), theLibraryPackage.getOCLType(), null, "type", null, 1, 1, MergedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMergedType_Conforms(), theLibraryPackage.getOCLType(), null, "conforms", null, 0, -1, MergedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMergedType_Iteration(), this.getMergedIteration(), null, "iteration", null, 0, -1, MergedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMergedType_Operation(), this.getMergedOperation(), null, "operation", null, 0, -1, MergedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMergedType_Property(), this.getMergedProperty(), null, "property", null, 0, -1, MergedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(theUtilitiesPackage.getExpressionInOCL());

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedTypeImpl.java,v 1.1.2.4 2010/01/30 07:49:15 ewillink Exp $
+ * $Id: MergedTypeImpl.java,v 1.1.2.5 2010/01/31 22:23:46 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.library.OCLIteration;
+import org.eclipse.ocl.library.OCLLibraryIteration;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
 import org.eclipse.ocl.library.OCLOperation;
@@ -32,7 +34,9 @@ import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.OCLTypeParameter;
 import org.eclipse.ocl.library.OCLTypeValue;
 import org.eclipse.ocl.library.impl.OCLElementImpl;
+import org.eclipse.ocl.library.merged.MergedIteration;
 import org.eclipse.ocl.library.merged.MergedLibrary;
+import org.eclipse.ocl.library.merged.MergedLibraryIteration;
 import org.eclipse.ocl.library.merged.MergedLibraryOperation;
 import org.eclipse.ocl.library.merged.MergedLibraryProperty;
 import org.eclipse.ocl.library.merged.MergedMetaModelOperation;
@@ -57,6 +61,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedTypeImpl#getMergedLibrary <em>Merged Library</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedTypeImpl#getConforms <em>Conforms</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedTypeImpl#getIteration <em>Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedTypeImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedTypeImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedTypeImpl#getInv <em>Inv</em>}</li>
@@ -115,6 +120,16 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	protected EList<OCLType> conforms;
 
 	/**
+	 * The cached value of the '{@link #getIteration() <em>Iteration</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIteration()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MergedIteration> iteration;
+
+	/**
 	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -125,10 +140,16 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	protected EList<MergedOperation> operation;
 
 	/**
-	 * MergedOperation indexed by name.
+	 * MergedOperation without iterator indexed by name.
 	 * @generated NOT
 	 */
-	protected Map<String, List<MergedOperation>> operationsMap;
+	protected Map<String, List<MergedOperation>> operationsMap;	 // FIXME use signature rather than name
+
+	/**
+	 * MergedIteration with double iterator indexed by name.
+	 * @generated NOT
+	 */
+	protected Map<String, MergedIteration> iterationsMap;
 
 	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
@@ -255,6 +276,18 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<MergedIteration> getIteration() {
+		if (iteration == null) {
+			iteration = new EObjectContainmentEList<MergedIteration>(MergedIteration.class, this, OCLMergedLibraryPackage.MERGED_TYPE__ITERATION);
+		}
+		return iteration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<MergedOperation> getOperation() {
 		if (operation == null) {
 			operation = new EObjectContainmentEList<MergedOperation>(MergedOperation.class, this, OCLMergedLibraryPackage.MERGED_TYPE__OPERATION);
@@ -329,6 +362,8 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case OCLMergedLibraryPackage.MERGED_TYPE__ITERATION:
+				return ((InternalEList<?>)getIteration()).basicRemove(otherEnd, msgs);
 			case OCLMergedLibraryPackage.MERGED_TYPE__OPERATION:
 				return ((InternalEList<?>)getOperation()).basicRemove(otherEnd, msgs);
 			case OCLMergedLibraryPackage.MERGED_TYPE__PROPERTY:
@@ -416,6 +451,8 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 				return basicGetType();
 			case OCLMergedLibraryPackage.MERGED_TYPE__CONFORMS:
 				return getConforms();
+			case OCLMergedLibraryPackage.MERGED_TYPE__ITERATION:
+				return getIteration();
 			case OCLMergedLibraryPackage.MERGED_TYPE__OPERATION:
 				return getOperation();
 			case OCLMergedLibraryPackage.MERGED_TYPE__PROPERTY:
@@ -445,6 +482,10 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 			case OCLMergedLibraryPackage.MERGED_TYPE__CONFORMS:
 				getConforms().clear();
 				getConforms().addAll((Collection<? extends OCLType>)newValue);
+				return;
+			case OCLMergedLibraryPackage.MERGED_TYPE__ITERATION:
+				getIteration().clear();
+				getIteration().addAll((Collection<? extends MergedIteration>)newValue);
 				return;
 			case OCLMergedLibraryPackage.MERGED_TYPE__OPERATION:
 				getOperation().clear();
@@ -478,6 +519,9 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 			case OCLMergedLibraryPackage.MERGED_TYPE__CONFORMS:
 				getConforms().clear();
 				return;
+			case OCLMergedLibraryPackage.MERGED_TYPE__ITERATION:
+				getIteration().clear();
+				return;
 			case OCLMergedLibraryPackage.MERGED_TYPE__OPERATION:
 				getOperation().clear();
 				return;
@@ -505,6 +549,8 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 				return isSetType();
 			case OCLMergedLibraryPackage.MERGED_TYPE__CONFORMS:
 				return conforms != null && !conforms.isEmpty();
+			case OCLMergedLibraryPackage.MERGED_TYPE__ITERATION:
+				return iteration != null && !iteration.isEmpty();
 			case OCLMergedLibraryPackage.MERGED_TYPE__OPERATION:
 				return operation != null && !operation.isEmpty();
 			case OCLMergedLibraryPackage.MERGED_TYPE__PROPERTY:
@@ -533,6 +579,15 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 	@Override
 	public String getName() {
 		return type != null ? type.getName() : null;
+	}
+
+	public void addIteration(MergedIteration mergedIteration) {
+		getIteration().add(mergedIteration);
+		if (iterationsMap == null) {
+			loadIterations();
+		}
+		String name = mergedIteration.getName();
+		iterationsMap.put(name, mergedIteration);
 	}
 
 	public void addOperation(MergedOperation mergedOperation) {
@@ -703,6 +758,26 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 		return null;
 	}
 	
+	public MergedIteration getConformingIteration(String name) {
+		if (iterationsMap == null) {
+			iterationsMap = new HashMap<String, MergedIteration>();
+			loadIterations();
+		}
+		MergedIteration mergedIteration = iterationsMap.get(name);
+		if (mergedIteration != null) {
+			return mergedIteration;
+		}
+		MergedIteration conformingIterations = null;
+		for (OCLType superType : getConforms()) {
+			MergedType superMergedType = mergedLibrary.getMergedType(superType);
+			conformingIterations = superMergedType.getConformingIteration(name);
+			if (conformingIterations != null) {
+				return conformingIterations;
+			}
+		}
+		return null;
+	}
+	
 	public MergedOperation getExactOperation(String name, OCLType[] oclArguments) {
 		if (operationsMap == null) {
 			loadOperations();
@@ -740,6 +815,17 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 		return property;
 	}
 
+	private void loadIterations() {
+		iterationsMap = new HashMap<String, MergedIteration>();
+		for (OCLIteration iteration : getType().getIteration()) {
+			if (iteration instanceof OCLLibraryIteration) {
+				MergedLibraryIteration mergedIteration = OCLMergedLibraryFactory.eINSTANCE.createMergedLibraryIteration();
+				mergedIteration.setIteration((OCLLibraryIteration) iteration);
+				addIteration(mergedIteration);
+			}
+		}
+	}
+
 	private void loadOperations() {
 		operationsMap = new HashMap<String, List<MergedOperation>>();
 		for (OCLOperation operation : getType().getOperation()) {
@@ -771,4 +857,5 @@ public class MergedTypeImpl extends OCLElementImpl implements MergedType {
 			}
 		}
 	}
+
 } //OCLMergedTypeImpl

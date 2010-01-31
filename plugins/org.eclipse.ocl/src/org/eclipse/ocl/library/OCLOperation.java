@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperation.java,v 1.1.2.7 2010/01/30 07:49:17 ewillink Exp $
+ * $Id: OCLOperation.java,v 1.1.2.8 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#getContainer <em>Container</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#isStatic <em>Is Static</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.OCLOperation#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLOperation#getParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
@@ -29,24 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface OCLOperation extends OCLTypedElement, OCLTypeParameterParent {
-	/**
-	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.library.OCLIterator}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLIterator#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Iterator</em>' containment reference list.
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLOperation_Iterator()
-	 * @see org.eclipse.ocl.library.OCLIterator#getContainer
-	 * @model opposite="container" containment="true"
-	 * @generated
-	 */
-	EList<OCLIterator> getIterator();
-
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.library.OCLParameter}.

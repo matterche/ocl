@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.8.8.6 2010/01/31 08:43:27 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.8.8.7 2010/01/31 22:23:48 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -1132,7 +1134,25 @@ public class CollectionUtil {
     public static <E> Collection<E> createNewCollectionOfSameKind(Collection<?> c) {
     	Collection<E> result;
     	
-    	if (c instanceof Bag<?>) {
+		if (c instanceof EObjectEList<?>) {
+			EStructuralFeature eFeature = ((EObjectEList<?>)c).getEStructuralFeature();
+			if (eFeature.isOrdered()) {
+	    		if (eFeature.isUnique()) {
+	        		result = createNewOrderedSet();
+	    		}
+	    		else {
+	        		result = createNewSequence();
+	    		}
+			}
+			else {
+	    		if (eFeature.isUnique()) {
+	        		result = createNewSet();
+	    		}
+	    		else {
+	        		result = createNewBag();
+	    		}
+			}
+		} else if (c instanceof Bag<?>) {
     		result = createNewBag();
     	} else if (c instanceof LinkedHashSet<?>) {
     		result = createNewOrderedSet();
@@ -1167,6 +1187,33 @@ public class CollectionUtil {
     	
     	return result;
     }
+    
+	/**
+	 * Creates a new OCL <tt>Collection</tt> of the specified ordering and uniqueness.
+     * 
+	 * @param isOrdered the required collection ordering
+	 * @param isUnique the required collection uniqueness
+	 * @return the new collection
+	 * @since 3.0
+	 */
+	public static <E> Collection<E> createNewCollection(boolean isOrdered, boolean isUnique) {
+		if (isOrdered) {
+			if (isUnique) {
+				return createNewCollection(CollectionKind.ORDERED_SET_LITERAL);
+			}
+			else {
+				return createNewCollection(CollectionKind.SEQUENCE_LITERAL);
+			}
+		}
+		else {
+			if (isUnique) {
+				return createNewCollection(CollectionKind.SET_LITERAL);
+			}
+			else {
+				return createNewCollection(CollectionKind.BAG_LITERAL);
+			}
+		}
+	}
     
 	/**
 	 * Creates a new OCL <tt>Collection</tt> of the specified kind.

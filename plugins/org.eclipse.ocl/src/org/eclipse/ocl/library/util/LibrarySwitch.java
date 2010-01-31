@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibrarySwitch.java,v 1.1.2.10 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: LibrarySwitch.java,v 1.1.2.11 2010/01/31 22:23:42 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -18,9 +18,10 @@ import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLDeprecatedType;
 import org.eclipse.ocl.library.OCLElement;
 import org.eclipse.ocl.library.OCLInvalidType;
-import org.eclipse.ocl.library.OCLIterator;
+import org.eclipse.ocl.library.OCLIteration;
 import org.eclipse.ocl.library.OCLJavaType;
 import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLLibraryIteration;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
 import org.eclipse.ocl.library.OCLNamedElement;
@@ -182,12 +183,12 @@ public class LibrarySwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LibraryPackage.OCL_ITERATOR: {
-				OCLIterator oclIterator = (OCLIterator)theEObject;
-				T result = caseOCLIterator(oclIterator);
-				if (result == null) result = caseOCLTypedElement(oclIterator);
-				if (result == null) result = caseOCLNamedElement(oclIterator);
-				if (result == null) result = caseOCLElement(oclIterator);
+			case LibraryPackage.OCL_ITERATION: {
+				OCLIteration oclIteration = (OCLIteration)theEObject;
+				T result = caseOCLIteration(oclIteration);
+				if (result == null) result = caseOCLTypedElement(oclIteration);
+				if (result == null) result = caseOCLNamedElement(oclIteration);
+				if (result == null) result = caseOCLElement(oclIteration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -209,6 +210,16 @@ public class LibrarySwitch<T> {
 				if (result == null) result = caseOCLPackageParent(oclLibrary);
 				if (result == null) result = caseOCLNamedElement(oclLibrary);
 				if (result == null) result = caseOCLElement(oclLibrary);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.OCL_LIBRARY_ITERATION: {
+				OCLLibraryIteration oclLibraryIteration = (OCLLibraryIteration)theEObject;
+				T result = caseOCLLibraryIteration(oclLibraryIteration);
+				if (result == null) result = caseOCLIteration(oclLibraryIteration);
+				if (result == null) result = caseOCLTypedElement(oclLibraryIteration);
+				if (result == null) result = caseOCLNamedElement(oclLibraryIteration);
+				if (result == null) result = caseOCLElement(oclLibraryIteration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -390,6 +401,21 @@ public class LibrarySwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Library Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Library Iteration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLLibraryIteration(OCLLibraryIteration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>OCL Bound Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -480,17 +506,17 @@ public class LibrarySwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>OCL Iterator</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Iteration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>OCL Iterator</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Iteration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOCLIterator(OCLIterator object) {
+	public T caseOCLIteration(OCLIteration object) {
 		return null;
 	}
 

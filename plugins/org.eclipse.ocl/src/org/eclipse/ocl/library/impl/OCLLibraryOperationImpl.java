@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryOperationImpl.java,v 1.1.2.7 2010/01/31 08:43:26 ewillink Exp $
+ * $Id: OCLLibraryOperationImpl.java,v 1.1.2.8 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.library.LibraryOperation;
 import org.eclipse.ocl.library.LibraryPackage;
-import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 
 /**
@@ -22,7 +21,7 @@ import org.eclipse.ocl.library.OCLLibraryOperation;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLLibraryOperationImpl#getLibraryOperationClass <em>Library Operation Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLLibraryOperationImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLLibraryOperationImpl#getLibraryOperation <em>Library Operation</em>}</li>
  * </ul>
  * </p>
@@ -31,14 +30,14 @@ import org.eclipse.ocl.library.OCLLibraryOperation;
  */
 public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibraryOperation {
 	/**
-	 * The cached value of the '{@link #getLibraryOperationClass() <em>Library Operation Class</em>}' attribute.
+	 * The cached value of the '{@link #getClass_() <em>Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLibraryOperationClass()
+	 * @see #getClass_()
 	 * @generated
 	 * @ordered
 	 */
-	protected Class<? extends LibraryOperation> libraryOperationClass;
+	protected Class<? extends LibraryOperation> class_;
 	/**
 	 * The default value of the '{@link #getLibraryOperation() <em>Library Operation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,8 +71,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Class<? extends LibraryOperation> getLibraryOperationClass() {
-		return libraryOperationClass;
+	public Class<? extends LibraryOperation> getClass_() {
+		return class_;
 	}
 
 	/**
@@ -81,11 +80,11 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLibraryOperationClass(Class<? extends LibraryOperation> newLibraryOperationClass) {
-		Class<? extends LibraryOperation> oldLibraryOperationClass = libraryOperationClass;
-		libraryOperationClass = newLibraryOperationClass;
+	public void setClass_(Class<? extends LibraryOperation> newClass) {
+		Class<? extends LibraryOperation> oldClass = class_;
+		class_ = newClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS, oldLibraryOperationClass, libraryOperationClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.OCL_LIBRARY_OPERATION__CLASS, oldClass, class_));
 	}
 
 	/**
@@ -96,8 +95,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
-				return getLibraryOperationClass();
+			case LibraryPackage.OCL_LIBRARY_OPERATION__CLASS:
+				return getClass_();
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION:
 				return getLibraryOperation();
 		}
@@ -113,8 +112,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
-				setLibraryOperationClass((Class<? extends LibraryOperation>)newValue);
+			case LibraryPackage.OCL_LIBRARY_OPERATION__CLASS:
+				setClass_((Class<? extends LibraryOperation>)newValue);
 				return;
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION:
 				setLibraryOperation((LibraryOperation)newValue);
@@ -131,8 +130,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
-				setLibraryOperationClass((Class<? extends LibraryOperation>)null);
+			case LibraryPackage.OCL_LIBRARY_OPERATION__CLASS:
+				setClass_((Class<? extends LibraryOperation>)null);
 				return;
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION:
 				setLibraryOperation(LIBRARY_OPERATION_EDEFAULT);
@@ -149,8 +148,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION_CLASS:
-				return libraryOperationClass != null;
+			case LibraryPackage.OCL_LIBRARY_OPERATION__CLASS:
+				return class_ != null;
 			case LibraryPackage.OCL_LIBRARY_OPERATION__LIBRARY_OPERATION:
 				return LIBRARY_OPERATION_EDEFAULT == null ? libraryOperation != null : !LIBRARY_OPERATION_EDEFAULT.equals(libraryOperation);
 		}
@@ -168,8 +167,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" => "); //$NON-NLS-1$
-		if (libraryOperationClass != null) {
-			result.append(libraryOperationClass.getSimpleName());
+		if (class_ != null) {
+			result.append(class_.getSimpleName());
 		}
 		return result.toString();
 	}
@@ -177,20 +176,8 @@ public class OCLLibraryOperationImpl extends OCLOperationImpl implements OCLLibr
 	private LibraryOperation libraryOperation = null;
 
 	public LibraryOperation getLibraryOperation() {
-		if ((libraryOperation == null) && (libraryOperationClass != null)) {
-			OCLLibrary library = getLibrary();
-			libraryOperation = library.getLibraryOperation(libraryOperationClass);
-			if (libraryOperation == null) {
-				try {
-					libraryOperation = libraryOperationClass.newInstance();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if (libraryOperation != null) {
-				library.putLibraryOperation(libraryOperationClass, libraryOperation);
-			}
+		if ((libraryOperation == null) && (class_ != null)) {
+			libraryOperation = createLibraryFeatureInstance(class_);
 		}
 		return libraryOperation;
 	}

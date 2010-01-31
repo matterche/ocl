@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLTypeImpl.java,v 1.1.2.8 2010/01/30 07:49:28 ewillink Exp $
+ * $Id: OCLTypeImpl.java,v 1.1.2.9 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -13,8 +13,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.library.LibraryPackage;
+import org.eclipse.ocl.library.OCLIteration;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLProperty;
+import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.OCLType;
 import org.eclipse.ocl.library.OCLTypeBinding;
 import org.eclipse.ocl.library.OCLTypeParameter;
@@ -34,6 +36,7 @@ import org.eclipse.ocl.library.OCLTypeParameter;
  * @generated
  */
 public abstract class OCLTypeImpl extends OCLElementImpl implements OCLType {
+	public static final EList<OCLIteration> noIterations = new BasicEList.UnmodifiableEList<OCLIteration>(0, new Object[]{});
 	public static final EList<OCLOperation> noOperations = new BasicEList.UnmodifiableEList<OCLOperation>(0, new Object[]{});
 	public static final EList<OCLProperty> noProperties = new BasicEList.UnmodifiableEList<OCLProperty>(0, new Object[]{});
 	public static final EList<OCLTypeBinding> noTypeBindings = new BasicEList.UnmodifiableEList<OCLTypeBinding>(0, new Object[]{});
@@ -102,19 +105,8 @@ public abstract class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<OCLOperation> getOperation() {
-		return noOperations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OCLOperation> getOperations(String name, EList<OCLType> parameterTypes, OCLType contextType) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public EList<OCLIteration> getIteration() {
+		return noIterations;
 	}
 
 	/**
@@ -122,7 +114,25 @@ public abstract class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<OCLOperation> getOperations(String name, EList<OCLType> parameterTypes) {
+	public OCLIteration getIteration(String name) {
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<OCLOperation> getOperation() {
+		return noOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<OCLOperation> getOperations(String name, EList<OCLType> parameterTypes, OCLType contextType) {
 		return null;
 	}
 
@@ -169,6 +179,24 @@ public abstract class OCLTypeImpl extends OCLElementImpl implements OCLType {
 	 */
 	public EList<OCLTypeParameter> getTypeParameter() {
 		return noTypeParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isOrdered() {
+		return conformsTo(((OCLRoot) getLibrary()).getOrderedCollection()); // FIXME cast
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isUnique() {
+		return conformsTo(((OCLRoot) getLibrary()).getUniqueCollection()); // FIXME cast
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactory.java,v 1.1.2.9 2010/01/30 07:49:22 ewillink Exp $
+ * $Id: LibraryFactory.java,v 1.1.2.10 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -45,6 +45,15 @@ public interface LibraryFactory extends EFactory {
 	OCLLibrary createOCLLibrary();
 
 	/**
+	 * Returns a new object of class '<em>OCL Library Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Library Iteration</em>'.
+	 * @generated
+	 */
+	OCLLibraryIteration createOCLLibraryIteration();
+
+	/**
 	 * Returns a new object of class '<em>OCL Bound Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,15 +88,6 @@ public interface LibraryFactory extends EFactory {
 	 * @generated
 	 */
 	OCLInvalidType createOCLInvalidType();
-
-	/**
-	 * Returns a new object of class '<em>OCL Iterator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Iterator</em>'.
-	 * @generated
-	 */
-	OCLIterator createOCLIterator();
 
 	/**
 	 * Returns a new object of class '<em>OCL Java Type</em>'.

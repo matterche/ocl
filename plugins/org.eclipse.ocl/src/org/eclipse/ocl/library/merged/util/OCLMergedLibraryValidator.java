@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryValidator.java,v 1.1.2.2 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: OCLMergedLibraryValidator.java,v 1.1.2.3 2010/01/31 22:23:45 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.util;
 
@@ -102,8 +102,12 @@ public class OCLMergedLibraryValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
+			case OCLMergedLibraryPackage.MERGED_ITERATION:
+				return validateMergedIteration((MergedIteration)value, diagnostics, context);
 			case OCLMergedLibraryPackage.MERGED_LIBRARY:
 				return validateMergedLibrary((MergedLibrary)value, diagnostics, context);
+			case OCLMergedLibraryPackage.MERGED_LIBRARY_ITERATION:
+				return validateMergedLibraryIteration((MergedLibraryIteration)value, diagnostics, context);
 			case OCLMergedLibraryPackage.MERGED_LIBRARY_OPERATION:
 				return validateMergedLibraryOperation((MergedLibraryOperation)value, diagnostics, context);
 			case OCLMergedLibraryPackage.MERGED_LIBRARY_PROPERTY:
@@ -146,8 +150,26 @@ public class OCLMergedLibraryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateMergedIteration(MergedIteration mergedIteration, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mergedIteration, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMergedLibrary(MergedLibrary mergedLibrary, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mergedLibrary, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMergedLibraryIteration(MergedLibraryIteration mergedLibraryIteration, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mergedLibraryIteration, diagnostics, context);
 	}
 
 	/**

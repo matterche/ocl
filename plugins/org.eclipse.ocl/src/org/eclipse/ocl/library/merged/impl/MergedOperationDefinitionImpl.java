@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedOperationDefinitionImpl.java,v 1.1.2.2 2010/01/30 07:49:14 ewillink Exp $
+ * $Id: MergedOperationDefinitionImpl.java,v 1.1.2.3 2010/01/31 22:23:46 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -25,9 +25,9 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.features.AbstractOperation;
 import org.eclipse.ocl.library.merged.MergedOperationDefinition;
 import org.eclipse.ocl.library.merged.OCLMergedLibraryPackage;
-import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**

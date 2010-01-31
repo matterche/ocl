@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedOperationImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
+ * $Id: MergedOperationImpl.java,v 1.1.2.3 2010/01/31 22:23:46 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -223,5 +223,4 @@ public abstract class MergedOperationImpl extends OCLElementImpl implements Merg
 		}
 		return super.eIsSet(featureID);
 	}
-
 } //MergedOperationImpl

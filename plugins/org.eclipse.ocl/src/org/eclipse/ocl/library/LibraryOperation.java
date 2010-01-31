@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryOperation.java,v 1.1.2.4 2010/01/31 08:43:25 ewillink Exp $
+ * $Id: LibraryOperation.java,v 1.1.2.5 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -12,7 +12,7 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 /**
  * @since 3.0
  */
-public interface LibraryOperation {
+public interface LibraryOperation extends LibraryFeature {
 	/**
 	 * Return the result of evaluating operationCall upon sourceVal within the environment
 	 * provided by EvaluationVisitor. An invalid return may be indicated by throwing an exception

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibrary.java,v 1.1.2.7 2010/01/31 08:43:25 ewillink Exp $
+ * $Id: OCLLibrary.java,v 1.1.2.8 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -62,25 +62,13 @@ public interface OCLLibrary extends OCLPackageParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.ocl.library.ILibraryOperation"
-	 * @generated
-	 */
-	LibraryOperation getLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
 	OCLTypeValue getType(String name);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model libraryOperationDataType="org.eclipse.ocl.library.ILibraryOperation"
-	 * @generated
-	 */
-	void putLibraryOperation(Class<? extends LibraryOperation> libraryOperationClass, LibraryOperation libraryOperation);
+	<T extends LibraryFeature> void putLibraryFeature(Class<? extends T> libraryFeatureClass, T libraryFeature);
+
+	<T extends LibraryFeature> T getLibraryFeature(Class<? extends T> libraryFeatureClass);
 
 } // Library

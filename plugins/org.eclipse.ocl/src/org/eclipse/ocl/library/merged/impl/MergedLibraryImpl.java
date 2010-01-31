@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedLibraryImpl.java,v 1.1.2.2 2010/01/30 07:49:15 ewillink Exp $
+ * $Id: MergedLibraryImpl.java,v 1.1.2.3 2010/01/31 22:23:46 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -67,17 +67,21 @@ import org.eclipse.ocl.utilities.PredefinedType;
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getEnumeration <em>Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getInteger <em>Integer</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getJava <em>Java</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getNonOrderedCollection <em>Non Ordered Collection</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getNonUniqueCollection <em>Non Unique Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclAny <em>Ocl Any</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclInvalid <em>Ocl Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclMessage <em>Ocl Message</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclTuple <em>Ocl Tuple</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclType <em>Ocl Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOclVoid <em>Ocl Void</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOrderedCollection <em>Ordered Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getOrderedSet <em>Ordered Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getReal <em>Real</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getSet <em>Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getString <em>String</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getUniqueCollection <em>Unique Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getUnlimitedNatural <em>Unlimited Natural</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getInvalid <em>Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl#getNull <em>Null</em>}</li>
@@ -160,6 +164,26 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	protected OCLJavaType java;
 
 	/**
+	 * The cached value of the '{@link #getNonOrderedCollection() <em>Non Ordered Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNonOrderedCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType nonOrderedCollection;
+
+	/**
+	 * The cached value of the '{@link #getNonUniqueCollection() <em>Non Unique Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNonUniqueCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType nonUniqueCollection;
+
+	/**
 	 * The cached value of the '{@link #getOclAny() <em>Ocl Any</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,6 +244,16 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	protected OCLConcreteType oclVoid;
 
 	/**
+	 * The cached value of the '{@link #getOrderedCollection() <em>Ordered Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrderedCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType orderedCollection;
+
+	/**
 	 * The cached value of the '{@link #getOrderedSet() <em>Ordered Set</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,6 +302,16 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * @ordered
 	 */
 	protected OCLConcreteType string;
+
+	/**
+	 * The cached value of the '{@link #getUniqueCollection() <em>Unique Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType uniqueCollection;
 
 	/**
 	 * The cached value of the '{@link #getUnlimitedNatural() <em>Unlimited Natural</em>}' reference.
@@ -427,6 +471,30 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public OCLConcreteType getNonOrderedCollection() {
+		if (nonOrderedCollection == null) {
+			nonOrderedCollection = baseLibrary.getNonOrderedCollection();
+		}
+		return nonOrderedCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLConcreteType getNonUniqueCollection() {
+		if (nonUniqueCollection == null) {
+			nonUniqueCollection = baseLibrary.getNonUniqueCollection();
+		}
+		return nonUniqueCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public OCLConcreteType getOclAny() {
 		if (oclAny == null) {
 			oclAny = baseLibrary.getOclAny();
@@ -499,6 +567,18 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public OCLConcreteType getOrderedCollection() {
+		if (orderedCollection == null) {
+			orderedCollection = baseLibrary.getOrderedCollection();
+		}
+		return orderedCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public OCLConcreteType getOrderedSet() {
 		if (orderedSet == null) {
 			orderedSet = baseLibrary.getOrderedSet();
@@ -552,6 +632,18 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 			string = baseLibrary.getString();
 		}
 		return string;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLConcreteType getUniqueCollection() {
+		if (uniqueCollection == null) {
+			uniqueCollection = baseLibrary.getUniqueCollection();
+		}
+		return uniqueCollection;
 	}
 
 	/**
@@ -698,6 +790,10 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return getInteger();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA:
 				return getJava();
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__NON_ORDERED_COLLECTION:
+				return getNonOrderedCollection();
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__NON_UNIQUE_COLLECTION:
+				return getNonUniqueCollection();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY:
 				return getOclAny();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID:
@@ -710,6 +806,8 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return getOclType();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_VOID:
 				return getOclVoid();
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_COLLECTION:
+				return getOrderedCollection();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_SET:
 				return getOrderedSet();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__REAL:
@@ -720,6 +818,8 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return getSet();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__STRING:
 				return getString();
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__UNIQUE_COLLECTION:
+				return getUniqueCollection();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL:
 				return getUnlimitedNatural();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID:
@@ -787,6 +887,10 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return integer != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA:
 				return java != null;
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__NON_ORDERED_COLLECTION:
+				return nonOrderedCollection != null;
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__NON_UNIQUE_COLLECTION:
+				return nonUniqueCollection != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY:
 				return oclAny != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID:
@@ -799,6 +903,8 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return oclType != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_VOID:
 				return oclVoid != null;
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_COLLECTION:
+				return orderedCollection != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_SET:
 				return orderedSet != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__REAL:
@@ -809,6 +915,8 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				return set != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__STRING:
 				return string != null;
+			case OCLMergedLibraryPackage.MERGED_LIBRARY__UNIQUE_COLLECTION:
+				return uniqueCollection != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL:
 				return unlimitedNatural != null;
 			case OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID:
@@ -839,17 +947,21 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__ENUMERATION: return LibraryPackage.OCL_CACHE__ENUMERATION;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__INTEGER: return LibraryPackage.OCL_CACHE__INTEGER;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA: return LibraryPackage.OCL_CACHE__JAVA;
+				case OCLMergedLibraryPackage.MERGED_LIBRARY__NON_ORDERED_COLLECTION: return LibraryPackage.OCL_CACHE__NON_ORDERED_COLLECTION;
+				case OCLMergedLibraryPackage.MERGED_LIBRARY__NON_UNIQUE_COLLECTION: return LibraryPackage.OCL_CACHE__NON_UNIQUE_COLLECTION;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY: return LibraryPackage.OCL_CACHE__OCL_ANY;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID: return LibraryPackage.OCL_CACHE__OCL_INVALID;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_MESSAGE: return LibraryPackage.OCL_CACHE__OCL_MESSAGE;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_TUPLE: return LibraryPackage.OCL_CACHE__OCL_TUPLE;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_TYPE: return LibraryPackage.OCL_CACHE__OCL_TYPE;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_VOID: return LibraryPackage.OCL_CACHE__OCL_VOID;
+				case OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_COLLECTION: return LibraryPackage.OCL_CACHE__ORDERED_COLLECTION;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_SET: return LibraryPackage.OCL_CACHE__ORDERED_SET;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__REAL: return LibraryPackage.OCL_CACHE__REAL;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__SEQUENCE: return LibraryPackage.OCL_CACHE__SEQUENCE;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__SET: return LibraryPackage.OCL_CACHE__SET;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__STRING: return LibraryPackage.OCL_CACHE__STRING;
+				case OCLMergedLibraryPackage.MERGED_LIBRARY__UNIQUE_COLLECTION: return LibraryPackage.OCL_CACHE__UNIQUE_COLLECTION;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL: return LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID: return LibraryPackage.OCL_CACHE__INVALID;
 				case OCLMergedLibraryPackage.MERGED_LIBRARY__NULL: return LibraryPackage.OCL_CACHE__NULL;
@@ -876,17 +988,21 @@ public abstract class MergedLibraryImpl extends OCLNamedElementImpl implements M
 				case LibraryPackage.OCL_CACHE__ENUMERATION: return OCLMergedLibraryPackage.MERGED_LIBRARY__ENUMERATION;
 				case LibraryPackage.OCL_CACHE__INTEGER: return OCLMergedLibraryPackage.MERGED_LIBRARY__INTEGER;
 				case LibraryPackage.OCL_CACHE__JAVA: return OCLMergedLibraryPackage.MERGED_LIBRARY__JAVA;
+				case LibraryPackage.OCL_CACHE__NON_ORDERED_COLLECTION: return OCLMergedLibraryPackage.MERGED_LIBRARY__NON_ORDERED_COLLECTION;
+				case LibraryPackage.OCL_CACHE__NON_UNIQUE_COLLECTION: return OCLMergedLibraryPackage.MERGED_LIBRARY__NON_UNIQUE_COLLECTION;
 				case LibraryPackage.OCL_CACHE__OCL_ANY: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_ANY;
 				case LibraryPackage.OCL_CACHE__OCL_INVALID: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_INVALID;
 				case LibraryPackage.OCL_CACHE__OCL_MESSAGE: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_MESSAGE;
 				case LibraryPackage.OCL_CACHE__OCL_TUPLE: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_TUPLE;
 				case LibraryPackage.OCL_CACHE__OCL_TYPE: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_TYPE;
 				case LibraryPackage.OCL_CACHE__OCL_VOID: return OCLMergedLibraryPackage.MERGED_LIBRARY__OCL_VOID;
+				case LibraryPackage.OCL_CACHE__ORDERED_COLLECTION: return OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_COLLECTION;
 				case LibraryPackage.OCL_CACHE__ORDERED_SET: return OCLMergedLibraryPackage.MERGED_LIBRARY__ORDERED_SET;
 				case LibraryPackage.OCL_CACHE__REAL: return OCLMergedLibraryPackage.MERGED_LIBRARY__REAL;
 				case LibraryPackage.OCL_CACHE__SEQUENCE: return OCLMergedLibraryPackage.MERGED_LIBRARY__SEQUENCE;
 				case LibraryPackage.OCL_CACHE__SET: return OCLMergedLibraryPackage.MERGED_LIBRARY__SET;
 				case LibraryPackage.OCL_CACHE__STRING: return OCLMergedLibraryPackage.MERGED_LIBRARY__STRING;
+				case LibraryPackage.OCL_CACHE__UNIQUE_COLLECTION: return OCLMergedLibraryPackage.MERGED_LIBRARY__UNIQUE_COLLECTION;
 				case LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL: return OCLMergedLibraryPackage.MERGED_LIBRARY__UNLIMITED_NATURAL;
 				case LibraryPackage.OCL_CACHE__INVALID: return OCLMergedLibraryPackage.MERGED_LIBRARY__INVALID;
 				case LibraryPackage.OCL_CACHE__NULL: return OCLMergedLibraryPackage.MERGED_LIBRARY__NULL;

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryPackage.java,v 1.1.2.2 2010/01/30 07:49:35 ewillink Exp $
+ * $Id: OCLMergedLibraryPackage.java,v 1.1.2.3 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -62,6 +62,25 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	OCLMergedLibraryPackage eINSTANCE = org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.MergedIterationImpl <em>Merged Iteration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.merged.impl.MergedIterationImpl
+	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedIteration()
+	 * @generated
+	 */
+	int MERGED_ITERATION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Merged Iteration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_ITERATION_FEATURE_COUNT = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl <em>Merged Library</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,7 +88,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedLibrary()
 	 * @generated
 	 */
-	int MERGED_LIBRARY = 0;
+	int MERGED_LIBRARY = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -144,13 +163,31 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	int MERGED_LIBRARY__JAVA = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Non Ordered Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_LIBRARY__NON_ORDERED_COLLECTION = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Non Unique Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_LIBRARY__NON_UNIQUE_COLLECTION = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The feature id for the '<em><b>Ocl Any</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__OCL_ANY = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int MERGED_LIBRARY__OCL_ANY = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Ocl Invalid</b></em>' reference.
@@ -159,7 +196,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__OCL_INVALID = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int MERGED_LIBRARY__OCL_INVALID = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Ocl Message</b></em>' reference.
@@ -168,7 +205,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__OCL_MESSAGE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int MERGED_LIBRARY__OCL_MESSAGE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Ocl Tuple</b></em>' reference.
@@ -177,7 +214,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__OCL_TUPLE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int MERGED_LIBRARY__OCL_TUPLE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Ocl Type</b></em>' reference.
@@ -186,7 +223,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__OCL_TYPE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 11;
+	int MERGED_LIBRARY__OCL_TYPE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Ocl Void</b></em>' reference.
@@ -195,7 +232,16 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__OCL_VOID = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 12;
+	int MERGED_LIBRARY__OCL_VOID = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Ordered Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_LIBRARY__ORDERED_COLLECTION = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Ordered Set</b></em>' reference.
@@ -204,7 +250,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__ORDERED_SET = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 13;
+	int MERGED_LIBRARY__ORDERED_SET = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Real</b></em>' reference.
@@ -213,7 +259,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__REAL = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 14;
+	int MERGED_LIBRARY__REAL = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
@@ -222,7 +268,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__SEQUENCE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 15;
+	int MERGED_LIBRARY__SEQUENCE = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' reference.
@@ -231,7 +277,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__SET = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 16;
+	int MERGED_LIBRARY__SET = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>String</b></em>' reference.
@@ -240,7 +286,16 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__STRING = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 17;
+	int MERGED_LIBRARY__STRING = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 20;
+
+	/**
+	 * The feature id for the '<em><b>Unique Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_LIBRARY__UNIQUE_COLLECTION = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited Natural</b></em>' reference.
@@ -249,7 +304,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__UNLIMITED_NATURAL = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 18;
+	int MERGED_LIBRARY__UNLIMITED_NATURAL = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Invalid</b></em>' reference.
@@ -258,7 +313,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__INVALID = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 19;
+	int MERGED_LIBRARY__INVALID = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Null</b></em>' reference.
@@ -267,7 +322,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__NULL = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 20;
+	int MERGED_LIBRARY__NULL = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' reference.
@@ -276,7 +331,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__UNLIMITED = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 21;
+	int MERGED_LIBRARY__UNLIMITED = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Base Library</b></em>' reference.
@@ -285,7 +340,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY__BASE_LIBRARY = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 22;
+	int MERGED_LIBRARY__BASE_LIBRARY = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 26;
 
 	/**
 	 * The number of structural features of the '<em>Merged Library</em>' class.
@@ -294,7 +349,35 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_LIBRARY_FEATURE_COUNT = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 23;
+	int MERGED_LIBRARY_FEATURE_COUNT = LibraryPackage.OCL_NAMED_ELEMENT_FEATURE_COUNT + 27;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.MergedLibraryIterationImpl <em>Merged Library Iteration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.library.merged.impl.MergedLibraryIterationImpl
+	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedLibraryIteration()
+	 * @generated
+	 */
+	int MERGED_LIBRARY_ITERATION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_LIBRARY_ITERATION__ITERATION = MERGED_ITERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Merged Library Iteration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_LIBRARY_ITERATION_FEATURE_COUNT = MERGED_ITERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.MergedOperationImpl <em>Merged Operation</em>}' class.
@@ -304,7 +387,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedOperation()
 	 * @generated
 	 */
-	int MERGED_OPERATION = 5;
+	int MERGED_OPERATION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Post</b></em>' reference list.
@@ -341,7 +424,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedLibraryOperation()
 	 * @generated
 	 */
-	int MERGED_LIBRARY_OPERATION = 1;
+	int MERGED_LIBRARY_OPERATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Post</b></em>' reference list.
@@ -387,7 +470,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedMetaModelOperation()
 	 * @generated
 	 */
-	int MERGED_META_MODEL_OPERATION = 3;
+	int MERGED_META_MODEL_OPERATION = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.MergedMetaModelPropertyImpl <em>Merged Meta Model Property</em>}' class.
@@ -397,7 +480,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedMetaModelProperty()
 	 * @generated
 	 */
-	int MERGED_META_MODEL_PROPERTY = 4;
+	int MERGED_META_MODEL_PROPERTY = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.MergedOperationDefinitionImpl <em>Merged Operation Definition</em>}' class.
@@ -407,7 +490,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedOperationDefinition()
 	 * @generated
 	 */
-	int MERGED_OPERATION_DEFINITION = 6;
+	int MERGED_OPERATION_DEFINITION = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.MergedPropertyImpl <em>Merged Property</em>}' class.
@@ -417,7 +500,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedProperty()
 	 * @generated
 	 */
-	int MERGED_PROPERTY = 7;
+	int MERGED_PROPERTY = 9;
 
 	/**
 	 * The feature id for the '<em><b>Init</b></em>' reference.
@@ -454,7 +537,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedLibraryProperty()
 	 * @generated
 	 */
-	int MERGED_LIBRARY_PROPERTY = 2;
+	int MERGED_LIBRARY_PROPERTY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Init</b></em>' reference.
@@ -644,7 +727,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedPropertyDefinition()
 	 * @generated
 	 */
-	int MERGED_PROPERTY_DEFINITION = 8;
+	int MERGED_PROPERTY_DEFINITION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Init</b></em>' reference.
@@ -699,7 +782,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedType()
 	 * @generated
 	 */
-	int MERGED_TYPE = 9;
+	int MERGED_TYPE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Merged Library</b></em>' reference.
@@ -729,13 +812,22 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	int MERGED_TYPE__CONFORMS = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGED_TYPE__ITERATION = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_TYPE__OPERATION = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 3;
+	int MERGED_TYPE__OPERATION = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -744,7 +836,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_TYPE__PROPERTY = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 4;
+	int MERGED_TYPE__PROPERTY = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Inv</b></em>' reference.
@@ -753,7 +845,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_TYPE__INV = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 5;
+	int MERGED_TYPE__INV = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Merged Type</em>' class.
@@ -762,7 +854,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGED_TYPE_FEATURE_COUNT = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 6;
+	int MERGED_TYPE_FEATURE_COUNT = LibraryPackage.OCL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.library.merged.impl.OCLBoundCollectionTypeImpl <em>OCL Bound Collection Type</em>}' class.
@@ -772,7 +864,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getOCLBoundCollectionType()
 	 * @generated
 	 */
-	int OCL_BOUND_COLLECTION_TYPE = 10;
+	int OCL_BOUND_COLLECTION_TYPE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
@@ -827,7 +919,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getOCLClassifier()
 	 * @generated
 	 */
-	int OCL_CLASSIFIER = 11;
+	int OCL_CLASSIFIER = 13;
 
 	/**
 	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
@@ -864,6 +956,15 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_CLASSIFIER__CONTAINER = LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CLASSIFIER__ITERATION = LibraryPackage.OCL_CONCRETE_TYPE__ITERATION;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
@@ -918,7 +1019,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getOCLDataType()
 	 * @generated
 	 */
-	int OCL_DATA_TYPE = 12;
+	int OCL_DATA_TYPE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
@@ -955,6 +1056,15 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_DATA_TYPE__CONTAINER = LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_DATA_TYPE__ITERATION = LibraryPackage.OCL_CONCRETE_TYPE__ITERATION;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
@@ -1009,7 +1119,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getOCLEnumeration()
 	 * @generated
 	 */
-	int OCL_ENUMERATION = 13;
+	int OCL_ENUMERATION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Conforms</b></em>' reference list.
@@ -1046,6 +1156,15 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_ENUMERATION__CONTAINER = LibraryPackage.OCL_CONCRETE_TYPE__CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_ENUMERATION__ITERATION = LibraryPackage.OCL_CONCRETE_TYPE__ITERATION;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
@@ -1109,7 +1228,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getOCLEnumerationLiteral()
 	 * @generated
 	 */
-	int OCL_ENUMERATION_LITERAL = 14;
+	int OCL_ENUMERATION_LITERAL = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1155,7 +1274,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getOCLMetaModelOperation()
 	 * @generated
 	 */
-	int OCL_META_MODEL_OPERATION = 15;
+	int OCL_META_MODEL_OPERATION = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1212,15 +1331,6 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	int OCL_META_MODEL_OPERATION__IS_STATIC = LibraryPackage.OCL_OPERATION__IS_STATIC;
 
 	/**
-	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_META_MODEL_OPERATION__ITERATOR = LibraryPackage.OCL_OPERATION__ITERATOR;
-
-	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1255,7 +1365,7 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getOCLMetaModelProperty()
 	 * @generated
 	 */
-	int OCL_META_MODEL_PROPERTY = 16;
+	int OCL_META_MODEL_PROPERTY = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1321,6 +1431,16 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	int OCL_META_MODEL_PROPERTY_FEATURE_COUNT = LibraryPackage.OCL_PROPERTY_FEATURE_COUNT + 1;
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.library.merged.MergedIteration <em>Merged Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Merged Iteration</em>'.
+	 * @see org.eclipse.ocl.library.merged.MergedIteration
+	 * @generated
+	 */
+	EClass getMergedIteration();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.library.merged.MergedLibrary <em>Merged Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1340,6 +1460,27 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMergedLibrary_BaseLibrary();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.library.merged.MergedLibraryIteration <em>Merged Library Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Merged Library Iteration</em>'.
+	 * @see org.eclipse.ocl.library.merged.MergedLibraryIteration
+	 * @generated
+	 */
+	EClass getMergedLibraryIteration();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.library.merged.MergedLibraryIteration#getIteration <em>Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Iteration</em>'.
+	 * @see org.eclipse.ocl.library.merged.MergedLibraryIteration#getIteration()
+	 * @see #getMergedLibraryIteration()
+	 * @generated
+	 */
+	EReference getMergedLibraryIteration_Iteration();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.library.merged.MergedLibraryOperation <em>Merged Library Operation</em>}'.
@@ -1619,6 +1760,17 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	EReference getMergedType_Conforms();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.library.merged.MergedType#getIteration <em>Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Iteration</em>'.
+	 * @see org.eclipse.ocl.library.merged.MergedType#getIteration()
+	 * @see #getMergedType()
+	 * @generated
+	 */
+	EReference getMergedType_Iteration();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.library.merged.MergedType#getOperation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1843,6 +1995,16 @@ public interface OCLMergedLibraryPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.library.merged.impl.MergedIterationImpl <em>Merged Iteration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.library.merged.impl.MergedIterationImpl
+		 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedIteration()
+		 * @generated
+		 */
+		EClass MERGED_ITERATION = eINSTANCE.getMergedIteration();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.library.merged.impl.MergedLibraryImpl <em>Merged Library</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1859,6 +2021,24 @@ public interface OCLMergedLibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MERGED_LIBRARY__BASE_LIBRARY = eINSTANCE.getMergedLibrary_BaseLibrary();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.library.merged.impl.MergedLibraryIterationImpl <em>Merged Library Iteration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.library.merged.impl.MergedLibraryIterationImpl
+		 * @see org.eclipse.ocl.library.merged.impl.OCLMergedLibraryPackageImpl#getMergedLibraryIteration()
+		 * @generated
+		 */
+		EClass MERGED_LIBRARY_ITERATION = eINSTANCE.getMergedLibraryIteration();
+
+		/**
+		 * The meta object literal for the '<em><b>Iteration</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGED_LIBRARY_ITERATION__ITERATION = eINSTANCE.getMergedLibraryIteration_Iteration();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.library.merged.impl.MergedLibraryOperationImpl <em>Merged Library Operation</em>}' class.
@@ -2085,6 +2265,14 @@ public interface OCLMergedLibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MERGED_TYPE__CONFORMS = eINSTANCE.getMergedType_Conforms();
+
+		/**
+		 * The meta object literal for the '<em><b>Iteration</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGED_TYPE__ITERATION = eINSTANCE.getMergedType_Iteration();
 
 		/**
 		 * The meta object literal for the '<em><b>Operation</b></em>' containment reference list feature.

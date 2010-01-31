@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLOperationImpl.java,v 1.1.2.7 2010/01/30 07:49:30 ewillink Exp $
+ * $Id: OCLOperationImpl.java,v 1.1.2.8 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.library.LibraryPackage;
 import org.eclipse.ocl.library.OCLConcreteType;
-import org.eclipse.ocl.library.OCLIterator;
 import org.eclipse.ocl.library.OCLOperation;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLTypeParameter;
@@ -36,7 +35,6 @@ import org.eclipse.ocl.library.OCLTypeParameterParent;
  *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#getTypeParameter <em>Type Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#isStatic <em>Is Static</em>}</li>
- *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLOperationImpl#getParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
@@ -75,16 +73,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 	protected boolean isStatic = IS_STATIC_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIterator()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OCLIterator> iterator;
-
-	/**
 	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,18 +99,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 	@Override
 	protected EClass eStaticClass() {
 		return LibraryPackage.Literals.OCL_OPERATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OCLIterator> getIterator() {
-		if (iterator == null) {
-			iterator = new EObjectContainmentWithInverseEList<OCLIterator>(OCLIterator.class, this, LibraryPackage.OCL_OPERATION__ITERATOR, LibraryPackage.OCL_ITERATOR__CONTAINER);
-		}
-		return iterator;
 	}
 
 	/**
@@ -226,8 +202,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetContainer((OCLConcreteType)otherEnd, msgs);
-			case LibraryPackage.OCL_OPERATION__ITERATOR:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIterator()).basicAdd(otherEnd, msgs);
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameter()).basicAdd(otherEnd, msgs);
 		}
@@ -246,8 +220,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 				return ((InternalEList<?>)getTypeParameter()).basicRemove(otherEnd, msgs);
 			case LibraryPackage.OCL_OPERATION__CONTAINER:
 				return basicSetContainer(null, msgs);
-			case LibraryPackage.OCL_OPERATION__ITERATOR:
-				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				return ((InternalEList<?>)getParameter()).basicRemove(otherEnd, msgs);
 		}
@@ -282,8 +254,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 				return getContainer();
 			case LibraryPackage.OCL_OPERATION__IS_STATIC:
 				return isStatic();
-			case LibraryPackage.OCL_OPERATION__ITERATOR:
-				return getIterator();
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				return getParameter();
 		}
@@ -308,10 +278,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 				return;
 			case LibraryPackage.OCL_OPERATION__IS_STATIC:
 				setIsStatic((Boolean)newValue);
-				return;
-			case LibraryPackage.OCL_OPERATION__ITERATOR:
-				getIterator().clear();
-				getIterator().addAll((Collection<? extends OCLIterator>)newValue);
 				return;
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				getParameter().clear();
@@ -338,9 +304,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 			case LibraryPackage.OCL_OPERATION__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
-			case LibraryPackage.OCL_OPERATION__ITERATOR:
-				getIterator().clear();
-				return;
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				getParameter().clear();
 				return;
@@ -362,8 +325,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 				return getContainer() != null;
 			case LibraryPackage.OCL_OPERATION__IS_STATIC:
 				return isStatic != IS_STATIC_EDEFAULT;
-			case LibraryPackage.OCL_OPERATION__ITERATOR:
-				return iterator != null && !iterator.isEmpty();
 			case LibraryPackage.OCL_OPERATION__PARAMETER:
 				return parameter != null && !parameter.isEmpty();
 		}
@@ -407,19 +368,6 @@ public abstract class OCLOperationImpl extends OCLTypedElementImpl implements OC
 	public void appendTypeSignature(StringBuffer s) {
 		appendTypeParameterSignature(s, getTypeParameter());
 		s.append("(");
-		int iMax = iterator != null ? iterator.size() : 0;
-		for (int i = 0; i < iMax; i++) {
-			if (i > 0) {
-				s.append(", ");
-			}
-			OCLIterator oclIterator = iterator.get(i);
-			oclIterator.appendName(s);
-			s.append(" : ");
-			appendSignature(s, oclIterator.getType());
-		}
-		if (iMax > 0) {
-			s.append(" | ");
-		}
 		int pMax = parameter != null ? parameter.size() : 0;
 		for (int p = 0; p < pMax; p++) {
 			if (p > 0) {

@@ -7,6 +7,10 @@
       nsPrefix="ocl.lib">
     <eSubpackages name="merged" nsURI="http://www.eclipse.org/ocl/3.0.0/OCL/MergedLibrary"
         nsPrefix="ocl.lib.merge">
+      <eClassifiers xsi:type="ecore:EClass" name="MergedIteration" abstract="true"
+          eSuperTypes="OCLLibrary.ecore#//library/OCLElement">
+        <eOperations name="getType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergedLibrary" abstract="true" eSuperTypes="OCLLibrary.ecore#//library/OCLNamedElement OCLLibrary.ecore#//library/OCLCache">
         <eOperations name="getBagType" eType="#//library/merged/OCLBoundCollectionType">
           <eParameters name="elementType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
@@ -28,6 +32,10 @@
           <eParameters name="elementType" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="baseLibrary" eType="ecore:EClass OCLLibrary.ecore#//library/OCLRoot"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergedLibraryIteration" eSuperTypes="#//library/merged/MergedIteration">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="iteration" lowerBound="1"
+            eType="ecore:EClass OCLLibrary.ecore#//library/OCLLibraryIteration" unsettable="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergedLibraryOperation" eSuperTypes="#//library/merged/MergedOperation">
         <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
@@ -128,6 +136,8 @@
             eType="ecore:EClass OCLLibrary.ecore#//library/OCLType" unsettable="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="conforms" ordered="false"
             upperBound="-1" eType="ecore:EClass OCLLibrary.ecore#//library/OCLType"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="iteration" ordered="false"
+            upperBound="-1" eType="#//library/merged/MergedIteration" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
             upperBound="-1" eType="#//library/merged/MergedOperation" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="property" upperBound="-1"

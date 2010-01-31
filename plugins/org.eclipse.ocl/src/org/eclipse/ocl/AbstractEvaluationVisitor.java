@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11.6.6 2010/01/24 07:41:19 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11.6.7 2010/01/31 22:23:50 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -28,8 +28,8 @@ import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.library.features.AbstractOperation;
 import org.eclipse.ocl.library.merged.MergedLibrary;
-import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;

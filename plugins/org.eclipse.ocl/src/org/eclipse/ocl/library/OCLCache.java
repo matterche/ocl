@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLCache.java,v 1.1.2.2 2010/01/30 07:49:20 ewillink Exp $
+ * $Id: OCLCache.java,v 1.1.2.3 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -24,17 +24,21 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getEnumeration <em>Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getInteger <em>Integer</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getJava <em>Java</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLCache#getNonOrderedCollection <em>Non Ordered Collection</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLCache#getNonUniqueCollection <em>Non Unique Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclAny <em>Ocl Any</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclInvalid <em>Ocl Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclMessage <em>Ocl Message</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclTuple <em>Ocl Tuple</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclType <em>Ocl Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOclVoid <em>Ocl Void</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLCache#getOrderedCollection <em>Ordered Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getOrderedSet <em>Ordered Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getReal <em>Real</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getSet <em>Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getString <em>String</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLCache#getUniqueCollection <em>Unique Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getUnlimitedNatural <em>Unlimited Natural</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getInvalid <em>Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLCache#getNull <em>Null</em>}</li>
@@ -153,6 +157,36 @@ public interface OCLCache extends OCLElement {
 	OCLJavaType getJava();
 
 	/**
+	 * Returns the value of the '<em><b>Non Ordered Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Non Ordered Collection</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Non Ordered Collection</em>' reference.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_NonOrderedCollection()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	OCLConcreteType getNonOrderedCollection();
+
+	/**
+	 * Returns the value of the '<em><b>Non Unique Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Non Unique Collection</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Non Unique Collection</em>' reference.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_NonUniqueCollection()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	OCLConcreteType getNonUniqueCollection();
+
+	/**
 	 * Returns the value of the '<em><b>Ocl Any</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -243,6 +277,21 @@ public interface OCLCache extends OCLElement {
 	OCLConcreteType getOclVoid();
 
 	/**
+	 * Returns the value of the '<em><b>Ordered Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ordered Collection</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ordered Collection</em>' reference.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_OrderedCollection()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	OCLConcreteType getOrderedCollection();
+
+	/**
 	 * Returns the value of the '<em><b>Ordered Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -316,6 +365,21 @@ public interface OCLCache extends OCLElement {
 	 * @generated
 	 */
 	OCLConcreteType getString();
+
+	/**
+	 * Returns the value of the '<em><b>Unique Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unique Collection</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unique Collection</em>' reference.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLCache_UniqueCollection()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	OCLConcreteType getUniqueCollection();
 
 	/**
 	 * Returns the value of the '<em><b>Unlimited Natural</b></em>' reference.

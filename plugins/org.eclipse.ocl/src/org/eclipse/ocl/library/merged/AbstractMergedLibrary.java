@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractMergedLibrary.java,v 1.1.2.3 2010/01/30 07:49:33 ewillink Exp $
+ * $Id: AbstractMergedLibrary.java,v 1.1.2.4 2010/01/31 22:23:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.library.merged;
@@ -26,8 +26,8 @@ import org.eclipse.ocl.library.OCLLibrary;
 import org.eclipse.ocl.library.OCLParameter;
 import org.eclipse.ocl.library.OCLRoot;
 import org.eclipse.ocl.library.OCLType;
+import org.eclipse.ocl.library.features.AbstractOperation;
 import org.eclipse.ocl.library.merged.impl.MergedLibraryImpl;
-import org.eclipse.ocl.library.operations.AbstractOperation;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.UMLReflection;
 

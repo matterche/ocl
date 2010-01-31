@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLConcreteType.java,v 1.1.2.1 2010/01/30 07:49:18 ewillink Exp $
+ * $Id: OCLConcreteType.java,v 1.1.2.2 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.library.OCLConcreteType#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLConcreteType#getIteration <em>Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLConcreteType#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLConcreteType#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLConcreteType#getBoundType <em>Bound Type</em>}</li>
@@ -106,5 +107,23 @@ public interface OCLConcreteType extends OCLType, OCLTypeParameterParent {
 	 * @generated
 	 */
 	void setContainer(OCLPackage value);
+
+	/**
+	 * Returns the value of the '<em><b>Iteration</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.library.OCLIteration}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.library.OCLIteration#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iteration</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iteration</em>' containment reference list.
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLConcreteType_Iteration()
+	 * @see org.eclipse.ocl.library.OCLIteration#getContainer
+	 * @model opposite="container" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<OCLIteration> getIteration();
 
 } // OCLType

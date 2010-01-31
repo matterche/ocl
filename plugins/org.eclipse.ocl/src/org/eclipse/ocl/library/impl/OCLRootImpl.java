@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLRootImpl.java,v 1.1.2.2 2010/01/30 07:49:26 ewillink Exp $
+ * $Id: OCLRootImpl.java,v 1.1.2.3 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -46,17 +46,21 @@ import org.eclipse.ocl.types.VoidType;
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getEnumeration <em>Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getInteger <em>Integer</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getJava <em>Java</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getNonOrderedCollection <em>Non Ordered Collection</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getNonUniqueCollection <em>Non Unique Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclAny <em>Ocl Any</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclInvalid <em>Ocl Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclMessage <em>Ocl Message</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclTuple <em>Ocl Tuple</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclType <em>Ocl Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOclVoid <em>Ocl Void</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOrderedCollection <em>Ordered Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getOrderedSet <em>Ordered Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getReal <em>Real</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getSet <em>Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getString <em>String</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getUniqueCollection <em>Unique Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getUnlimitedNatural <em>Unlimited Natural</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getInvalid <em>Invalid</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.impl.OCLRootImpl#getNull <em>Null</em>}</li>
@@ -79,6 +83,14 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	public static final String OCL_T = "T"; //$NON-NLS-1$
 
 	public static final String OCL_T2 = "T2"; //$NON-NLS-1$
+
+	private static final String UNIQUE_COLLECTION = "UniqueCollection"; //$NON-NLS-1$
+
+	private static final String ORDERED_COLLECTION = "OrderedCollection"; //$NON-NLS-1$
+
+	private static final String NON_ORDERED_COLLECTION = "NonOrderedCollection"; //$NON-NLS-1$
+
+	private static final String NON_UNIQUE_COLLECTION = "NonUniqueCollection"; //$NON-NLS-1$
 
 	/**
 	 * The cached value of the '{@link #getBag() <em>Bag</em>}' reference.
@@ -151,6 +163,26 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	protected OCLJavaType java;
 
 	/**
+	 * The cached value of the '{@link #getNonOrderedCollection() <em>Non Ordered Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNonOrderedCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType nonOrderedCollection;
+
+	/**
+	 * The cached value of the '{@link #getNonUniqueCollection() <em>Non Unique Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNonUniqueCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType nonUniqueCollection;
+
+	/**
 	 * The cached value of the '{@link #getOclAny() <em>Ocl Any</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -211,6 +243,16 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	protected OCLConcreteType oclVoid;
 
 	/**
+	 * The cached value of the '{@link #getOrderedCollection() <em>Ordered Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrderedCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType orderedCollection;
+
+	/**
 	 * The cached value of the '{@link #getOrderedSet() <em>Ordered Set</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -259,6 +301,16 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * @ordered
 	 */
 	protected OCLConcreteType string;
+
+	/**
+	 * The cached value of the '{@link #getUniqueCollection() <em>Unique Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueCollection()
+	 * @generated
+	 * @ordered
+	 */
+	protected OCLConcreteType uniqueCollection;
 
 	/**
 	 * The cached value of the '{@link #getUnlimitedNatural() <em>Unlimited Natural</em>}' reference.
@@ -408,6 +460,30 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public OCLConcreteType getNonOrderedCollection() {
+		if (nonOrderedCollection == null) {
+			nonOrderedCollection = getStdlibType(NON_ORDERED_COLLECTION);
+		}
+		return nonOrderedCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLConcreteType getNonUniqueCollection() {
+		if (nonUniqueCollection == null) {
+			nonUniqueCollection = getStdlibType(NON_UNIQUE_COLLECTION);
+		}
+		return nonUniqueCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public OCLConcreteType getOclAny() {
 		if (oclAny == null) {
 			oclAny = getStdlibType(AnyType.SINGLETON_NAME);
@@ -480,6 +556,18 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public OCLConcreteType getOrderedCollection() {
+		if (orderedCollection == null) {
+			orderedCollection = getStdlibType(ORDERED_COLLECTION);
+		}
+		return orderedCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public OCLConcreteType getOrderedSet() {
 		if (orderedSet == null) {
 			orderedSet = getStdlibType(OrderedSetType.SINGLETON_NAME);
@@ -533,6 +621,18 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 			string = getStdlibType(PrimitiveType.STRING_NAME);
 		}
 		return string;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OCLConcreteType getUniqueCollection() {
+		if (uniqueCollection == null) {
+			uniqueCollection = getStdlibType(UNIQUE_COLLECTION);
+		}
+		return uniqueCollection;
 	}
 
 	/**
@@ -609,6 +709,10 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return getInteger();
 			case LibraryPackage.OCL_ROOT__JAVA:
 				return getJava();
+			case LibraryPackage.OCL_ROOT__NON_ORDERED_COLLECTION:
+				return getNonOrderedCollection();
+			case LibraryPackage.OCL_ROOT__NON_UNIQUE_COLLECTION:
+				return getNonUniqueCollection();
 			case LibraryPackage.OCL_ROOT__OCL_ANY:
 				return getOclAny();
 			case LibraryPackage.OCL_ROOT__OCL_INVALID:
@@ -621,6 +725,8 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return getOclType();
 			case LibraryPackage.OCL_ROOT__OCL_VOID:
 				return getOclVoid();
+			case LibraryPackage.OCL_ROOT__ORDERED_COLLECTION:
+				return getOrderedCollection();
 			case LibraryPackage.OCL_ROOT__ORDERED_SET:
 				return getOrderedSet();
 			case LibraryPackage.OCL_ROOT__REAL:
@@ -631,6 +737,8 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return getSet();
 			case LibraryPackage.OCL_ROOT__STRING:
 				return getString();
+			case LibraryPackage.OCL_ROOT__UNIQUE_COLLECTION:
+				return getUniqueCollection();
 			case LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL:
 				return getUnlimitedNatural();
 			case LibraryPackage.OCL_ROOT__INVALID:
@@ -665,6 +773,10 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return integer != null;
 			case LibraryPackage.OCL_ROOT__JAVA:
 				return java != null;
+			case LibraryPackage.OCL_ROOT__NON_ORDERED_COLLECTION:
+				return nonOrderedCollection != null;
+			case LibraryPackage.OCL_ROOT__NON_UNIQUE_COLLECTION:
+				return nonUniqueCollection != null;
 			case LibraryPackage.OCL_ROOT__OCL_ANY:
 				return oclAny != null;
 			case LibraryPackage.OCL_ROOT__OCL_INVALID:
@@ -677,6 +789,8 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return oclType != null;
 			case LibraryPackage.OCL_ROOT__OCL_VOID:
 				return oclVoid != null;
+			case LibraryPackage.OCL_ROOT__ORDERED_COLLECTION:
+				return orderedCollection != null;
 			case LibraryPackage.OCL_ROOT__ORDERED_SET:
 				return orderedSet != null;
 			case LibraryPackage.OCL_ROOT__REAL:
@@ -687,6 +801,8 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				return set != null;
 			case LibraryPackage.OCL_ROOT__STRING:
 				return string != null;
+			case LibraryPackage.OCL_ROOT__UNIQUE_COLLECTION:
+				return uniqueCollection != null;
 			case LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL:
 				return unlimitedNatural != null;
 			case LibraryPackage.OCL_ROOT__INVALID:
@@ -715,17 +831,21 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				case LibraryPackage.OCL_ROOT__ENUMERATION: return LibraryPackage.OCL_CACHE__ENUMERATION;
 				case LibraryPackage.OCL_ROOT__INTEGER: return LibraryPackage.OCL_CACHE__INTEGER;
 				case LibraryPackage.OCL_ROOT__JAVA: return LibraryPackage.OCL_CACHE__JAVA;
+				case LibraryPackage.OCL_ROOT__NON_ORDERED_COLLECTION: return LibraryPackage.OCL_CACHE__NON_ORDERED_COLLECTION;
+				case LibraryPackage.OCL_ROOT__NON_UNIQUE_COLLECTION: return LibraryPackage.OCL_CACHE__NON_UNIQUE_COLLECTION;
 				case LibraryPackage.OCL_ROOT__OCL_ANY: return LibraryPackage.OCL_CACHE__OCL_ANY;
 				case LibraryPackage.OCL_ROOT__OCL_INVALID: return LibraryPackage.OCL_CACHE__OCL_INVALID;
 				case LibraryPackage.OCL_ROOT__OCL_MESSAGE: return LibraryPackage.OCL_CACHE__OCL_MESSAGE;
 				case LibraryPackage.OCL_ROOT__OCL_TUPLE: return LibraryPackage.OCL_CACHE__OCL_TUPLE;
 				case LibraryPackage.OCL_ROOT__OCL_TYPE: return LibraryPackage.OCL_CACHE__OCL_TYPE;
 				case LibraryPackage.OCL_ROOT__OCL_VOID: return LibraryPackage.OCL_CACHE__OCL_VOID;
+				case LibraryPackage.OCL_ROOT__ORDERED_COLLECTION: return LibraryPackage.OCL_CACHE__ORDERED_COLLECTION;
 				case LibraryPackage.OCL_ROOT__ORDERED_SET: return LibraryPackage.OCL_CACHE__ORDERED_SET;
 				case LibraryPackage.OCL_ROOT__REAL: return LibraryPackage.OCL_CACHE__REAL;
 				case LibraryPackage.OCL_ROOT__SEQUENCE: return LibraryPackage.OCL_CACHE__SEQUENCE;
 				case LibraryPackage.OCL_ROOT__SET: return LibraryPackage.OCL_CACHE__SET;
 				case LibraryPackage.OCL_ROOT__STRING: return LibraryPackage.OCL_CACHE__STRING;
+				case LibraryPackage.OCL_ROOT__UNIQUE_COLLECTION: return LibraryPackage.OCL_CACHE__UNIQUE_COLLECTION;
 				case LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL: return LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL;
 				case LibraryPackage.OCL_ROOT__INVALID: return LibraryPackage.OCL_CACHE__INVALID;
 				case LibraryPackage.OCL_ROOT__NULL: return LibraryPackage.OCL_CACHE__NULL;
@@ -752,17 +872,21 @@ public class OCLRootImpl extends OCLLibraryImpl implements OCLRoot {
 				case LibraryPackage.OCL_CACHE__ENUMERATION: return LibraryPackage.OCL_ROOT__ENUMERATION;
 				case LibraryPackage.OCL_CACHE__INTEGER: return LibraryPackage.OCL_ROOT__INTEGER;
 				case LibraryPackage.OCL_CACHE__JAVA: return LibraryPackage.OCL_ROOT__JAVA;
+				case LibraryPackage.OCL_CACHE__NON_ORDERED_COLLECTION: return LibraryPackage.OCL_ROOT__NON_ORDERED_COLLECTION;
+				case LibraryPackage.OCL_CACHE__NON_UNIQUE_COLLECTION: return LibraryPackage.OCL_ROOT__NON_UNIQUE_COLLECTION;
 				case LibraryPackage.OCL_CACHE__OCL_ANY: return LibraryPackage.OCL_ROOT__OCL_ANY;
 				case LibraryPackage.OCL_CACHE__OCL_INVALID: return LibraryPackage.OCL_ROOT__OCL_INVALID;
 				case LibraryPackage.OCL_CACHE__OCL_MESSAGE: return LibraryPackage.OCL_ROOT__OCL_MESSAGE;
 				case LibraryPackage.OCL_CACHE__OCL_TUPLE: return LibraryPackage.OCL_ROOT__OCL_TUPLE;
 				case LibraryPackage.OCL_CACHE__OCL_TYPE: return LibraryPackage.OCL_ROOT__OCL_TYPE;
 				case LibraryPackage.OCL_CACHE__OCL_VOID: return LibraryPackage.OCL_ROOT__OCL_VOID;
+				case LibraryPackage.OCL_CACHE__ORDERED_COLLECTION: return LibraryPackage.OCL_ROOT__ORDERED_COLLECTION;
 				case LibraryPackage.OCL_CACHE__ORDERED_SET: return LibraryPackage.OCL_ROOT__ORDERED_SET;
 				case LibraryPackage.OCL_CACHE__REAL: return LibraryPackage.OCL_ROOT__REAL;
 				case LibraryPackage.OCL_CACHE__SEQUENCE: return LibraryPackage.OCL_ROOT__SEQUENCE;
 				case LibraryPackage.OCL_CACHE__SET: return LibraryPackage.OCL_ROOT__SET;
 				case LibraryPackage.OCL_CACHE__STRING: return LibraryPackage.OCL_ROOT__STRING;
+				case LibraryPackage.OCL_CACHE__UNIQUE_COLLECTION: return LibraryPackage.OCL_ROOT__UNIQUE_COLLECTION;
 				case LibraryPackage.OCL_CACHE__UNLIMITED_NATURAL: return LibraryPackage.OCL_ROOT__UNLIMITED_NATURAL;
 				case LibraryPackage.OCL_CACHE__INVALID: return LibraryPackage.OCL_ROOT__INVALID;
 				case LibraryPackage.OCL_CACHE__NULL: return LibraryPackage.OCL_ROOT__NULL;

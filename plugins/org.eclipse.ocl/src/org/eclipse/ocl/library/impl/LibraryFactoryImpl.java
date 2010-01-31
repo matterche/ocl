@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1.2.11 2010/01/30 20:15:35 ewillink Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.1.2.12 2010/01/31 22:23:47 ewillink Exp $
  */
 package org.eclipse.ocl.library.impl;
 
@@ -19,9 +19,9 @@ import org.eclipse.ocl.library.OCLBoundType;
 import org.eclipse.ocl.library.OCLConcreteType;
 import org.eclipse.ocl.library.OCLDeprecatedType;
 import org.eclipse.ocl.library.OCLInvalidType;
-import org.eclipse.ocl.library.OCLIterator;
 import org.eclipse.ocl.library.OCLJavaType;
 import org.eclipse.ocl.library.OCLLibrary;
+import org.eclipse.ocl.library.OCLLibraryIteration;
 import org.eclipse.ocl.library.OCLLibraryOperation;
 import org.eclipse.ocl.library.OCLLibraryProperty;
 import org.eclipse.ocl.library.OCLPackage;
@@ -81,9 +81,9 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 			case LibraryPackage.OCL_CONCRETE_TYPE: return createOCLConcreteType();
 			case LibraryPackage.OCL_DEPRECATED_TYPE: return createOCLDeprecatedType();
 			case LibraryPackage.OCL_INVALID_TYPE: return createOCLInvalidType();
-			case LibraryPackage.OCL_ITERATOR: return createOCLIterator();
 			case LibraryPackage.OCL_JAVA_TYPE: return createOCLJavaType();
 			case LibraryPackage.OCL_LIBRARY: return createOCLLibrary();
+			case LibraryPackage.OCL_LIBRARY_ITERATION: return createOCLLibraryIteration();
 			case LibraryPackage.OCL_LIBRARY_OPERATION: return createOCLLibraryOperation();
 			case LibraryPackage.OCL_LIBRARY_PROPERTY: return createOCLLibraryProperty();
 			case LibraryPackage.OCL_PACKAGE: return createOCLPackage();
@@ -148,6 +148,16 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OCLLibraryIteration createOCLLibraryIteration() {
+		OCLLibraryIterationImpl oclLibraryIteration = new OCLLibraryIterationImpl();
+		return oclLibraryIteration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OCLBoundType createOCLBoundType() {
 		OCLBoundTypeImpl oclBoundType = new OCLBoundTypeImpl();
 		return oclBoundType;
@@ -181,16 +191,6 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	public OCLInvalidType createOCLInvalidType() {
 		OCLInvalidTypeImpl oclInvalidType = new OCLInvalidTypeImpl();
 		return oclInvalidType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OCLIterator createOCLIterator() {
-		OCLIteratorImpl oclIterator = new OCLIteratorImpl();
-		return oclIterator;
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLMergedLibraryFactoryImpl.java,v 1.1.2.3 2010/01/30 20:15:36 ewillink Exp $
+ * $Id: OCLMergedLibraryFactoryImpl.java,v 1.1.2.4 2010/01/31 22:23:46 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged.impl;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.library.merged.*;
 import org.eclipse.ocl.library.merged.MergedLibraryOperation;
 import org.eclipse.ocl.library.merged.MergedLibraryProperty;
 import org.eclipse.ocl.library.merged.MergedMetaModelOperation;
@@ -67,6 +68,7 @@ public class OCLMergedLibraryFactoryImpl extends EFactoryImpl implements OCLMerg
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case OCLMergedLibraryPackage.MERGED_LIBRARY_ITERATION: return createMergedLibraryIteration();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY_OPERATION: return createMergedLibraryOperation();
 			case OCLMergedLibraryPackage.MERGED_LIBRARY_PROPERTY: return createMergedLibraryProperty();
 			case OCLMergedLibraryPackage.MERGED_META_MODEL_OPERATION: return createMergedMetaModelOperation();
@@ -78,6 +80,16 @@ public class OCLMergedLibraryFactoryImpl extends EFactoryImpl implements OCLMerg
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MergedLibraryIteration createMergedLibraryIteration() {
+		MergedLibraryIterationImpl mergedLibraryIteration = new MergedLibraryIterationImpl();
+		return mergedLibraryIteration;
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLLibraryProperty.java,v 1.1.2.5 2010/01/31 08:43:25 ewillink Exp $
+ * $Id: OCLLibraryProperty.java,v 1.1.2.6 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -17,7 +17,7 @@ package org.eclipse.ocl.library;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryPropertyClass <em>Library Property Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.OCLLibraryProperty#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryProperty <em>Library Property</em>}</li>
  * </ul>
  * </p>
@@ -29,30 +29,30 @@ package org.eclipse.ocl.library;
 public interface OCLLibraryProperty extends OCLProperty {
 
 	/**
-	 * Returns the value of the '<em><b>Library Property Class</b></em>' attribute.
+	 * Returns the value of the '<em><b>Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Library Property Class</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Class</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Library Property Class</em>' attribute.
-	 * @see #setLibraryPropertyClass(Class)
-	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryProperty_LibraryPropertyClass()
+	 * @return the value of the '<em>Class</em>' attribute.
+	 * @see #setClass_(Class)
+	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryProperty_Class()
 	 * @model required="true"
 	 * @generated
 	 */
-	Class<? extends LibraryProperty> getLibraryPropertyClass();
+	Class<? extends LibraryProperty> getClass_();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryProperty#getLibraryPropertyClass <em>Library Property Class</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.library.OCLLibraryProperty#getClass_ <em>Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Library Property Class</em>' attribute.
-	 * @see #getLibraryPropertyClass()
+	 * @param value the new value of the '<em>Class</em>' attribute.
+	 * @see #getClass_()
 	 * @generated
 	 */
-	void setLibraryPropertyClass(Class<? extends LibraryProperty> value);
+	void setClass_(Class<? extends LibraryProperty> value);
 
 	/**
 	 * Returns the value of the '<em><b>Library Property</b></em>' attribute.
@@ -65,7 +65,7 @@ public interface OCLLibraryProperty extends OCLProperty {
 	 * @return the value of the '<em>Library Property</em>' attribute.
 	 * @see #setLibraryProperty(LibraryProperty)
 	 * @see org.eclipse.ocl.library.LibraryPackage#getOCLLibraryProperty_LibraryProperty()
-	 * @model dataType="org.eclipse.ocl.library.ILibraryProperty" transient="true"
+	 * @model dataType="org.eclipse.ocl.library.LibraryProperty" transient="true"
 	 * @generated
 	 */
 	LibraryProperty getLibraryProperty();

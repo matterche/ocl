@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLType.java,v 1.1.2.6 2010/01/30 07:49:19 ewillink Exp $
+ * $Id: OCLType.java,v 1.1.2.7 2010/01/31 22:23:43 ewillink Exp $
  */
 package org.eclipse.ocl.library;
 
@@ -50,6 +50,22 @@ public interface OCLType extends OCLTypeValue {
 	 * @generated
 	 */
 	boolean conformsTo(OCLType type);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<OCLIteration> getIteration();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	OCLIteration getIteration(String name);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,5 +122,21 @@ public interface OCLType extends OCLTypeValue {
 	 * @generated
 	 */
 	EList<OCLTypeParameter> getTypeParameter();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isOrdered();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isUnique();
 
 } // OCLType

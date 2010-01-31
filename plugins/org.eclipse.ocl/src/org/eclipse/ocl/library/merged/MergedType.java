@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MergedType.java,v 1.1.2.3 2010/01/30 07:49:33 ewillink Exp $
+ * $Id: MergedType.java,v 1.1.2.4 2010/01/31 22:23:42 ewillink Exp $
  */
 package org.eclipse.ocl.library.merged;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  *   <li>{@link org.eclipse.ocl.library.merged.MergedType#getMergedLibrary <em>Merged Library</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.MergedType#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.MergedType#getConforms <em>Conforms</em>}</li>
+ *   <li>{@link org.eclipse.ocl.library.merged.MergedType#getIteration <em>Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.MergedType#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.MergedType#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.library.merged.MergedType#getInv <em>Inv</em>}</li>
@@ -105,6 +106,22 @@ public interface MergedType extends OCLElement {
 	 * @generated
 	 */
 	EList<OCLType> getConforms();
+
+	/**
+	 * Returns the value of the '<em><b>Iteration</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.library.merged.MergedIteration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iteration</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iteration</em>' containment reference list.
+	 * @see org.eclipse.ocl.library.merged.OCLMergedLibraryPackage#getMergedType_Iteration()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<MergedIteration> getIteration();
 
 	/**
 	 * Returns the value of the '<em><b>Operation</b></em>' containment reference list.
@@ -229,6 +246,8 @@ public interface MergedType extends OCLElement {
 
 	void addProperty(MergedProperty mergedProperty);
 	
+	MergedIteration getConformingIteration(String name);
+
 	Set<MergedOperation> getConformingOperations(boolean isStatic, String name, int argumentCount);
 	
 //	Set<MergedOperation> getConformingOperations(String name, OCLType[] staticArgumentTypes, OCLType contextType);
