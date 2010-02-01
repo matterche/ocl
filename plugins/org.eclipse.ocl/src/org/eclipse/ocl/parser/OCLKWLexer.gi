@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.gi,v 1.2.2.2 2010/01/15 07:42:26 ewillink Exp $
+-- * $Id: OCLKWLexer.gi,v 1.2.2.3 2010/02/01 11:44:37 ewillink Exp $
 -- */
 --
 -- The Complete OCL KeyWord Lexer
@@ -22,7 +22,7 @@
 %options fp=OCLKWLexer,prefix=Char_
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/KeywordTemplateD.gi
+%options template=../lpg/KeywordTemplateF.gi
 %options export_terminals=("OCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
@@ -45,6 +45,7 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Bug 292112
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 $copyright_contributions
  * </copyright>
  */

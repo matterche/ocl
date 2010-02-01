@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.10.8.1 2010/01/15 07:42:27 ewillink Exp $
+ * $Id: ValidationVisitor.java,v 1.10.8.2 2010/02/01 11:44:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;

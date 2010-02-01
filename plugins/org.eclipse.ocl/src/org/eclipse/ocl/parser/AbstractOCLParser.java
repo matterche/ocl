@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.11.4.2 2010/01/15 17:27:38 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.11.4.3 2010/02/01 11:44:39 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -25,10 +25,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import lpg.runtime.IToken;
-import lpg.runtime.NullExportedSymbolsException;
-import lpg.runtime.NullTerminalSymbolsException;
-import lpg.runtime.UndefinedEofSymbolException;
-import lpg.runtime.UnimplementedTerminalsException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
@@ -92,36 +88,13 @@ import org.eclipse.ocl.util.ObjectUtil;
 
 public abstract class AbstractOCLParser
 		extends AbstractParser {
-	
+
 	public AbstractOCLParser(BasicEnvironment environment) {
 		super(environment);
 	}
 
-	@SuppressWarnings("nls")
-	public AbstractOCLParser(AbstractLexer lexStream) {
-		super(lexStream);
-
-		try {
-			super.remapTerminalSymbols(orderedTerminalSymbols(),
-				OCLParserprs.EOFT_SYMBOL);
-		} catch (NullExportedSymbolsException e) {
-			throw new RuntimeException(e.getLocalizedMessage());
-		} catch (NullTerminalSymbolsException e) {
-			throw new RuntimeException(e.getLocalizedMessage());
-		} catch (UnimplementedTerminalsException e) {
-			java.util.ArrayList<?> unimplemented_symbols = e.getSymbols();
-			String error = "The Lexer will not scan the following token(s):";
-			for (int i = 0; i < unimplemented_symbols.size(); i++) {
-				Integer id = (Integer) unimplemented_symbols.get(i);
-				error += "\t"
-					+ OCLParsersym.orderedTerminalSymbols[id.intValue()];
-			}
-			throw new RuntimeException(error + "\n");
-		} catch (UndefinedEofSymbolException e) {
-			throw new RuntimeException(
-				"The Lexer does not implement the Eof symbol "
-					+ OCLParsersym.orderedTerminalSymbols[OCLParserprs.EOFT_SYMBOL]);
-		}
+	public AbstractOCLParser(AbstractLexer lexer) {
+		super(lexer);
 	}
 	
 	protected PackageDeclarationCS createPackageDeclarationCS(

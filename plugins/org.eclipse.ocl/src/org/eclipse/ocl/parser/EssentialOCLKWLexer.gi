@@ -12,22 +12,22 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLKWLexer.gi,v 1.1.2.2 2010/01/15 07:42:26 ewillink Exp $
+-- * $Id: EssentialOCLKWLexer.gi,v 1.1.2.3 2010/02/01 11:44:38 ewillink Exp $
 -- */
 --
 -- The Essential OCL KeyWord Lexer
 --
 
 %options slr
-%options fp=OCLKWLexer,prefix=Char_
+%options fp=EssentialOCLKWLexer,prefix=Char_
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/KeywordTemplateD.gi
+%options template=../lpg/KeywordTemplateF.gi
 %options export_terminals=("EssentialOCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
 %Import
-	KWLexerMap.gi
+	KWLexerMapF.gi
 %End
 
 %Define
@@ -57,6 +57,7 @@
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
  *   E.D.Willink - Bug 285633, 292112
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396) 
 $copyright_contributions
  * </copyright>
  *

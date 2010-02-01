@@ -14,10 +14,11 @@
 *   Borland - Bug 242880
 *   E.D.Willink - Bug 292112
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingLexerprs.java,v 1.11.4.1 2010/01/15 07:42:27 ewillink Exp $
+* $Id: OCLBacktrackingLexerprs.java,v 1.11.4.2 2010/02/01 11:45:22 ewillink Exp $
 */
 /**
 * Complete OCL Lexer
@@ -33,6 +34,7 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 292112, 292594
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 *
 * </copyright>
 */

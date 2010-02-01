@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractProblemHandler.java,v 1.1.12.1 2010/01/15 07:46:38 ewillink Exp $
+ * $Id: AbstractProblemHandler.java,v 1.1.12.2 2010/02/01 11:45:03 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -102,7 +102,7 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 	 */
 	public void handleProblem(Severity problemSeverity, Phase processingPhase,
 			String problemMessage, String processingContext, int startOffset, int endOffset) {
-		int lineNumber = parser.getTokenAtCharacter(startOffset).getLine();
+		int lineNumber = parser.getIPrsStream().getTokenAtCharacter(startOffset).getLine();
 		String message = OCLMessages.bind(
 				OCLMessages.ProblemMessage_ERROR_,
 				new Object[] {

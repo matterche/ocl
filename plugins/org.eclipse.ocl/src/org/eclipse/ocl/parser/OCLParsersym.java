@@ -14,11 +14,13 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
 *   Borland - Bug 242880
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
-*
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+*        - 242153: LPG v 2.0.17 adoption.
+*        - 299396: Introducing new LPG templates
+*        - 300534: Removing the use of deprecated macros.
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.16.4.1 2010/01/15 07:42:27 ewillink Exp $
+* $Id: OCLParsersym.java,v 1.16.4.2 2010/02/01 11:44:46 ewillink Exp $
 */
 /**
 * Complete OCL Grammar
@@ -33,7 +35,10 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 259818, 285633, 292112
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+*        - 242153: LPG v 2.0.17 adoption.
+*        - 299396: Introducing new LPG templates
+*        - 300534: Removing the use of deprecated macros.
 * </copyright>
 */
 

@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.gi,v 1.3.2.2 2010/01/15 07:42:26 ewillink Exp $
+-- * $Id: EssentialOCL.gi,v 1.3.2.3 2010/02/01 11:44:50 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -20,175 +20,50 @@
 
 
 %Define
-
-    -- Definition of macros used in the parser template
+    -- Redefinition of macros used in the parser template
     --
-    $prs_stream_class /.AbstractOCLParser./
-    $prs_parser_class /.DeterministicParser./
-    $prs_parser_exception /.NotDeterministicParseTableException./
-    $prs_parser_throw /.throw new RuntimeException("****Error: Regenerate $prs_type.java with -NOBACKTRACK option")./
-    $prs_parse_args /../
-    $prs_fuzzy_parse_call/.parse./
-    $prs_parse_call/.parse./
-    $lex_stream_class /.AbstractLexer./
-    $action_class /.$file_prefix./
+    $default_repair_count /.getDefaultRepairCount()./
+	$super_parser_class /.AbstractOCLParser./
+    $prs_stream_class /.DerivedPrsStream./
+
+	-- Definition of new macros used by the grammar file
+	-- which may be redefined by extended files.
     $copyright_contributions /.*./
 
-    -- package namespace of the LPG Runtime API
-    $lpg_ns /.lpg.runtime./
+	-- Definition of new macros used by the grammar file
+	-- which are not intended to be extended.
+	$lpg_ns /.lpg.runtime./ -- package namespace of the LPG Runtime API
+	
 
+	-- Some useful macros	
     $NewCase
     /. $Header
                 case $rule_number:./
 
-    -- From bt/dtParserTemplateD.g
-    ------------------------------------------------------
-    $Header
-    /.
-                //
-                // Rule $rule_number:  $rule_text
-                //./
 
-    $BeginAction
+	
+    $EmptyListAction -- Deprecated, code inline with correct generic parameter type
     /. $Header
-                case $rule_number: {./
-
-    $EndAction
-    /.        break;
-                }./
-
-    $BeginJava
-    /../
+                case $rule_number:
+                    setResult(new BasicEList<Object>());
+                    break;./
+                    
+    -- BeginJava and EndJava need to be reworked in order to be able to properly use $NewCase macro
     
-    $EndJava
-    /../
-
+    -- BeginJava does nothing
+	-- block-actions should call BeginCode, instead
+    $BeginJava /../
+    
+  	-- EndJava does nothing
+	-- block-actions should call EndCode, instead
+	$EndJava /../
+	
 	$BeginCode
 	/.$BeginAction
-                    $symbol_declarations./
+					$symbol_declarations./
 
 	$EndCode /.$EndAction./
 
-    $NoAction
-    /. $Header
-                case $rule_number:
-                    break;./
-
-    $NullAction
-    /. $Header
-                case $rule_number:
-                    $setResult(null);
-                    break;./
-
-	-- Deprecated, code inline with correct generic parameter type
-    $EmptyListAction
-    /. $Header
-                case $rule_number:
-                    $setResult(new BasicEList<Object>());
-                    break;./
-    
-    $BeginActions
-    /.
-        @SuppressWarnings("unchecked")
-        public void ruleAction(int ruleNumber)
-        {
-            switch (ruleNumber) {
-            ./
-
-    $EndActions
-    /.
-                default:
-                    break;
-            }
-            return;
-        }./
-
-    $additional_interfaces /../
-    $action_class /.$file_prefix./
-    $setSym1 /.dtParser.setSym1./
-    $setResult /.dtParser.setSym1./
-    $getSym /.dtParser.getSym./
-    $getToken /.dtParser.getToken./
-    $getIToken /.getIToken./
-    $getLeftSpan /.dtParser.getFirstToken./
-    $getRightSpan /.dtParser.getLastToken./
-    $prs_stream /.prsStream./
-    
-    -- modified to include throwing exceptions
-    $parserCore
-    /.
-    public class $action_class extends $prs_stream_class implements RuleAction$additional_interfaces
-    {
-        protected static ParseTable prs = new $prs_type();
-        private $prs_parser_class dtParser;
-
-        public $action_class($lex_stream_class lexer) {
-            super(lexer);
-        }
-
-        public int getEOFTokenKind() { return $prs_type.EOFT_SYMBOL; }
-    
-        public $environment_class getOCLEnvironment() {
-            return getLexer().getOCLEnvironment();
-        }
-        
-        @Override 
-        public $lex_stream_class getLexer() {
-            return ($lex_stream_class)super.getLexer();
-        }
-
-        public String getTokenKindName(int kind) { return $sym_type.orderedTerminalSymbols[kind]; }         
-
-        @Override
-        public String[] orderedTerminalSymbols() { return $sym_type.orderedTerminalSymbols; }
-            
-        @SuppressWarnings("nls")
-        @Override
-        public $ast_type parseTokensToCST(Monitor monitor, int error_repair_count) {
-            ParseTable prsTable = new $prs_type();
-
-            try {
-                dtParser = new $prs_parser_class(monitor, this, prsTable, this);
-            }
-            catch ($prs_parser_exception e) {
-                $prs_parser_throw;
-            }
-            catch (BadParseSymFileException e) {
-                throw new RuntimeException("****Error: Bad Parser Symbol File -- $sym_type.java. Regenerate $prs_type.java");
-            }
-
-            try {
-                if (error_repair_count > 0)                
-                	return ($ast_type) dtParser.$prs_fuzzy_parse_call($prs_parse_args);
-                else
-                    return ($ast_type) dtParser.$prs_parse_call($prs_parse_args);
-            }
-            catch (BadParseException e) {
-                reset(e.error_token); // point to error token
-
-                DiagnoseParser diagnoseParser = new DiagnoseParser(this, prsTable);
-                diagnoseParser.diagnose(e.error_token);
-            }
-
-            return null;
-        }
-    
-        /**
-         * Initializes a concrete-syntax node's start and end offsets from the
-         * current token in the parser stream.
-         * 
-         * @param cstNode a concrete-syntax node
-         * 
-         * @since 1.2
-         */
-        protected void setOffsets(CSTNode cstNode) {
-            IToken firstToken = getIToken($getToken(1));
-            cstNode.setStartToken(firstToken);
-            cstNode.setEndToken(firstToken);
-            cstNode.setStartOffset(firstToken.getStartOffset());
-            cstNode.setEndOffset(firstToken.getEndOffset()-1);
-        }
-    ./
 %End
 
 %Notice
@@ -208,58 +83,65 @@
  *   E.D.Willink - Remove unnecessary warning suppression
  *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
  *   Borland - Bug 242880
- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
-$copyright_contributions
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+ *        - 242153: LPG v 2.0.17 adoption.
+ *        - 299396: Introducing new LPG templates
+ *        - 300534: Removing the use of deprecated macros.
  * </copyright>
  *
- * $Id: EssentialOCL.gi,v 1.3.2.2 2010/01/15 07:42:26 ewillink Exp $
+ * $Id: EssentialOCL.gi,v 1.3.2.3 2010/02/01 11:44:50 ewillink Exp $
  */
     ./
 %End
 
 %Globals
     /.import org.eclipse.emf.common.util.BasicEList;
-    import org.eclipse.emf.common.util.EList;
-    import org.eclipse.ocl.cst.BooleanLiteralExpCS;
-    import org.eclipse.ocl.cst.CSTNode;
-    import org.eclipse.ocl.cst.CallExpCS;
-    import org.eclipse.ocl.cst.CollectionLiteralExpCS;
-    import org.eclipse.ocl.cst.CollectionLiteralPartCS;
-    import org.eclipse.ocl.cst.CollectionTypeCS;
-    import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
-    import org.eclipse.ocl.cst.FeatureCallExpCS;
-    import org.eclipse.ocl.cst.IfExpCS;
-    import org.eclipse.ocl.cst.IntegerLiteralExpCS;
-    import org.eclipse.ocl.cst.InvalidLiteralExpCS;
-    import org.eclipse.ocl.cst.IsMarkedPreCS;
-    import org.eclipse.ocl.cst.IterateExpCS;
-    import org.eclipse.ocl.cst.IteratorExpCS;
-    import org.eclipse.ocl.cst.LetExpCS;
-    import org.eclipse.ocl.cst.NullLiteralExpCS;
-    import org.eclipse.ocl.cst.OCLExpressionCS;
-    import org.eclipse.ocl.cst.OperationCallExpCS;
-    import org.eclipse.ocl.cst.PathNameCS;
-    import org.eclipse.ocl.cst.PrimitiveTypeCS;
-    import org.eclipse.ocl.cst.RealLiteralExpCS;
-    import org.eclipse.ocl.cst.SimpleNameCS;
-    import org.eclipse.ocl.cst.SimpleTypeEnum;
-    import org.eclipse.ocl.cst.StringLiteralExpCS;
-    import org.eclipse.ocl.cst.TupleLiteralExpCS;
-    import org.eclipse.ocl.cst.TupleTypeCS;
-    import org.eclipse.ocl.cst.TypeCS;
-    import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
-    import org.eclipse.ocl.cst.VariableCS;
-    import org.eclipse.ocl.cst.VariableExpCS;
-    
-    import $lpg_ns.BadParseException;
-    import $lpg_ns.BadParseSymFileException;
-    import $lpg_ns.$prs_parser_class;
-    import $lpg_ns.DiagnoseParser;
-    import $lpg_ns.IToken;
-    import $lpg_ns.Monitor;
-    import $lpg_ns.$prs_parser_exception;
-    import $lpg_ns.ParseTable;
-    import $lpg_ns.RuleAction;
+	import org.eclipse.emf.common.util.EList;
+	import org.eclipse.ocl.cst.BooleanLiteralExpCS;
+	import org.eclipse.ocl.cst.CSTNode;
+	import org.eclipse.ocl.cst.CallExpCS;
+	import org.eclipse.ocl.cst.CollectionLiteralExpCS;
+	import org.eclipse.ocl.cst.CollectionLiteralPartCS;
+	import org.eclipse.ocl.cst.CollectionTypeCS;
+	import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
+	import org.eclipse.ocl.cst.FeatureCallExpCS;
+	import org.eclipse.ocl.cst.IfExpCS;
+	import org.eclipse.ocl.cst.IntegerLiteralExpCS;
+	import org.eclipse.ocl.cst.InvalidLiteralExpCS;
+	import org.eclipse.ocl.cst.IsMarkedPreCS;
+	import org.eclipse.ocl.cst.IterateExpCS;
+	import org.eclipse.ocl.cst.IteratorExpCS;
+	import org.eclipse.ocl.cst.LetExpCS;
+	import org.eclipse.ocl.cst.NullLiteralExpCS;
+	import org.eclipse.ocl.cst.OCLExpressionCS;
+	import org.eclipse.ocl.cst.OperationCallExpCS;
+	import org.eclipse.ocl.cst.PathNameCS;
+	import org.eclipse.ocl.cst.PrimitiveTypeCS;
+	import org.eclipse.ocl.cst.RealLiteralExpCS;
+	import org.eclipse.ocl.cst.SimpleNameCS;
+	import org.eclipse.ocl.cst.SimpleTypeEnum;
+	import org.eclipse.ocl.cst.StringLiteralExpCS;
+	import org.eclipse.ocl.cst.TupleLiteralExpCS;
+	import org.eclipse.ocl.cst.TupleTypeCS;
+	import org.eclipse.ocl.cst.TypeCS;
+	import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
+	import org.eclipse.ocl.cst.VariableCS;
+	import org.eclipse.ocl.cst.VariableExpCS;	
+	import org.eclipse.ocl.lpg.DerivedPrsStream;
+	
+	import $lpg_ns.BadParseException;
+	import $lpg_ns.BadParseSymFileException;
+	import $lpg_ns.DiagnoseParser;
+	import $lpg_ns.ErrorToken;
+	import $lpg_ns.IToken;
+	import $lpg_ns.ILexStream;
+	import $lpg_ns.Monitor;
+	import $lpg_ns.NullExportedSymbolsException;
+	import $lpg_ns.NullTerminalSymbolsException;
+	import $lpg_ns.ParseTable;
+	import $lpg_ns.RuleAction;
+	import $lpg_ns.UndefinedEofSymbolException;
+	import $lpg_ns.UnimplementedTerminalsException;	
     ./
 %End
 
@@ -317,22 +199,79 @@ $copyright_contributions
     DOTDOT     ::= '..'
 %End
 
-%EOF
-    EOF_TOKEN
-%End
-
-%ERROR
-    ERROR_TOKEN
-%End
-
 %Headers
-	/.$parserCore
-
+	/.
+	
+	public $environment_class getOCLEnvironment() {
+		return getLexer().getOCLEnvironment();
+	}
+		
+	@Override
+	public $super_lexer_class getLexer() {
+		return ($super_lexer_class) super.getLexer();
+	}
+	
+	
+	
+	// Some methods for backwards compatibility 
+	/**
+	* <p>
+	* Before 3.0, this method was used with the now-deprecated  "dollar"getToken macro (which
+	* provided token index in the prsStream) to obtain an IToken f a rule given the index of the
+	* right hand side token in the said rule. In 3.0 a convenience method has been introduced
+	* in order to directly return the IToken, given the index of the right hand side token in the rule.
+	* </p> 
+	*
+	* <p>
+	* In an action-block of a rule, instead of doing <code>getIToken("dollar"getToken(i))</code> 
+	* you should do <code>getRhsTokenText(i)</code>
+	* </p>
+	* @param i the right hand side token index
+	* @return the correspondent IToken.
+	*
+	* @since 3.0	
+	* @deprecated
+	*/
+	protected IToken getIToken(int i) {
+		return prsStream.getIToken(i);
+	}
+	
+	/**
+	* <p>
+	* Before 3.0, this method was used with the now-deprecated "dollar"getToken macro (which
+	* provided token index in the prsStream) to obtain an IToken f a rule given the index of the
+	* right hand side token in the said rule. In 3.0 a convenience method has been introduced
+	* in order to directly return the IToken, given the index of the right hand side token in the rule.
+	* </p> 
+	* 
+	* <p>
+	* In an action-block of a rule, instead of doing <code>getTokenText("dollar"getToken(i))</code> 
+	* you should do <code>getRhsTokenText(i)</code>
+	* </p>
+	* @param i the right hand side token index
+	* @result the text of the correspondent right hand side IToken.
+	*
+	* @deprecated 
+	*/
+	protected String getTokenText(int i) {
+		return prsStream.getTokenText(i);
+	}
+	
+	/**
+	* A convenience method to obtain the text of a right hand side IToken.
+	*  
+	* @param i the right hand side token index
+	* @result the text of the correspondent right hand side IToken.
+	*
+	* @since 3.0
+	*/
+	protected String getRhsTokenText(int i) { 
+		return prsStream.getTokenText(getRhsTokenIndex(i));
+	}
 	./
 %End
 
 %Rules
-	/.$BeginActions./
 
 -----------------------------------------------------------------------
 --  Names
@@ -355,10 +294,10 @@ $copyright_contributions
     conceptualOperationName -> '/'
     conceptualOperationNameCS ::= conceptualOperationName
         /.$BeginCode
-                    IToken iToken = getIToken($getToken(1));
+                    IToken iToken = getRhsIToken(1);
                     SimpleNameCS result = createConceptualOperationNameCS(iToken);
                     setOffsets(result, iToken);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
     
@@ -378,13 +317,13 @@ $copyright_contributions
         /.$NewCase./
     reservedKeywordCS ::= reservedKeyword
         /.$BeginCode
-                    IToken iToken = getIToken($getToken(1));
+                    IToken iToken = getRhsIToken(1);
                     SimpleNameCS result = createSimpleNameCS(
                                 SimpleTypeEnum.KEYWORD_LITERAL,
                                 iToken
                             );
                     setOffsets(result, iToken);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
     restrictedKeywordCS -> CollectionTypeIdentifierCS
@@ -397,25 +336,25 @@ $copyright_contributions
         
     selfKeywordCS ::= self
         /.$BeginCode
-                    IToken iToken = getIToken($getToken(1));
+                    IToken iToken = getRhsIToken(1);
                     SimpleNameCS result = createSimpleNameCS(
                             SimpleTypeEnum.SELF_LITERAL,
                             iToken
                         );
                     setOffsets(result, iToken);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
         
     simpleNameCS ::= IDENTIFIER
         /.$BeginCode
-                    IToken iToken = getIToken($getToken(1));
+                    IToken iToken = getRhsIToken(1);
                     SimpleNameCS result = createSimpleNameCS(
                             SimpleTypeEnum.IDENTIFIER_LITERAL,
                             iToken
                         );
                     setOffsets(result, iToken);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
@@ -424,19 +363,19 @@ $copyright_contributions
 
     pathNameCS ::= simpleNameCS
         /.$BeginCode
-                    SimpleNameCS simpleName = (SimpleNameCS)$getSym(1);
+                    SimpleNameCS simpleName = (SimpleNameCS)getRhsSym(1);
                     PathNameCS result = createPathNameCS(simpleName);
                     setOffsets(result, simpleName);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
     pathNameCS ::= pathNameCS '::' unreservedSimpleNameCS
         /.$BeginCode
-                    PathNameCS result = (PathNameCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+                    PathNameCS result = (PathNameCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                     result = extendPathNameCS(result, simpleNameCS);
                     setOffsets(result, result, simpleNameCS);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
         
@@ -447,50 +386,50 @@ $copyright_contributions
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.BOOLEAN_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     primitiveTypeCS ::= Integer
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.INTEGER_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     primitiveTypeCS ::= Real
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.REAL_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     primitiveTypeCS ::= String
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.STRING_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     primitiveTypeCS ::= UnlimitedNatural
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.UNLIMITED_NATURAL_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
 
@@ -498,30 +437,30 @@ $copyright_contributions
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.OCL_ANY_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     primitiveTypeCS ::= OclInvalid
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.OCL_INVALID_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     primitiveTypeCS ::= OclVoid
         /.$BeginCode
                     PrimitiveTypeCS result = createPrimitiveTypeCS(
                             SimpleTypeEnum.OCL_VOID_LITERAL,
-                            getTokenText($getToken(1))
+                            getRhsTokenText(1)
                         );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
         
@@ -529,50 +468,50 @@ $copyright_contributions
         /.$BeginCode
                     SimpleNameCS result = createCollectionTypeCS(
                                 CollectionTypeIdentifierEnum.SET_LITERAL,
-                                getTokenText($getToken(1))
+                                getRhsTokenText(1)
                             );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     CollectionTypeIdentifierCS ::= Bag
         /.$BeginCode
                     SimpleNameCS result = createCollectionTypeCS(
                                 CollectionTypeIdentifierEnum.BAG_LITERAL,
-                                getTokenText($getToken(1))
+                                getRhsTokenText(1)
                             );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     CollectionTypeIdentifierCS ::= Sequence
         /.$BeginCode
                     SimpleNameCS result = createCollectionTypeCS(
                                 CollectionTypeIdentifierEnum.SEQUENCE_LITERAL,
-                                getTokenText($getToken(1))
+                                getRhsTokenText(1)
                             );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     CollectionTypeIdentifierCS ::= Collection
         /.$BeginCode
                     SimpleNameCS result = createCollectionTypeCS(
                                 CollectionTypeIdentifierEnum.COLLECTION_LITERAL,
-                                getTokenText($getToken(1))
+                                getRhsTokenText(1)
                             );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     CollectionTypeIdentifierCS ::= OrderedSet
         /.$BeginCode
                     SimpleNameCS result = createCollectionTypeCS(
                                 CollectionTypeIdentifierEnum.ORDERED_SET_LITERAL,
-                                getTokenText($getToken(1))
+                                getRhsTokenText(1)
                             );
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
 
@@ -583,24 +522,24 @@ $copyright_contributions
 
     collectionTypeCS ::= CollectionTypeIdentifierCS '(' typeCS ')'
         /.$BeginCode
-                    CollectionTypeCS result = (CollectionTypeCS)$getSym(1);
-                    result.setTypeCS((TypeCS)$getSym(3));
-                    setOffsets(result, result, getIToken($getToken(4)));
-                    $setResult(result);
+                    CollectionTypeCS result = (CollectionTypeCS)getRhsSym(1);
+                    result.setTypeCS((TypeCS)getRhsSym(3));
+                    setOffsets(result, result, getRhsIToken(4));
+                    setResult(result);
           $EndCode
         ./
 
     tupleTypeCS ::= Tuple '(' tupleTypePartsCSopt ')'
         /.$BeginCode
-                     TupleTypeCS result = createTupleTypeCS((EList<VariableCS>)$getSym(3));
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
-                    $setResult(result);
+                     TupleTypeCS result = createTupleTypeCS((EList<VariableCS>)getRhsSym(3));
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+                    setResult(result);
           $EndCode
         ./
 
     tupleTypePartsCSopt ::= %empty
         /.$BeginCode
-                    $setResult(new BasicEList<VariableCS>());
+                    setResult(new BasicEList<VariableCS>());
           $EndCode
         ./
     tupleTypePartsCSopt -> tupleTypePartsCS
@@ -608,15 +547,15 @@ $copyright_contributions
     tupleTypePartsCS ::= typedUninitializedVariableCS
         /.$BeginCode
                     EList<VariableCS> result = new BasicEList<VariableCS>();
-                    result.add((VariableCS)$getSym(1));
-                    $setResult(result);
+                    result.add((VariableCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     tupleTypePartsCS ::= tupleTypePartsCS ',' typedUninitializedVariableCS
         /.$BeginCode
-                    EList<VariableCS> result = (EList<VariableCS>)$getSym(1);
-                    result.add((VariableCS)$getSym(3));
-                    $setResult(result);
+                    EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+                    result.add((VariableCS)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
 
@@ -625,41 +564,41 @@ $copyright_contributions
 -----------------------------------------------------------------------     
     untypedUninitializedVariableCS ::= simpleNameCS
         /.$BeginCode
-                    SimpleNameCS name = (SimpleNameCS)$getSym(1);
+                    SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
                     VariableCS result = createVariableCS(name, null, null);
                     setOffsets(result, name);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
     typedUninitializedVariableCS ::= simpleNameCS ':' typeCS
         /.$BeginCode
-                    SimpleNameCS name = (SimpleNameCS)$getSym(1);
-                    TypeCS type = (TypeCS)$getSym(3);
+                    SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
+                    TypeCS type = (TypeCS)getRhsSym(3);
                     VariableCS result = createVariableCS(name, type, null);
                     setOffsets(result, name, type);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
         
     untypedInitializedVariableCS ::= simpleNameCS '=' OclExpressionCS
         /.$BeginCode
-                    SimpleNameCS name = (SimpleNameCS)$getSym(1);
-                    OCLExpressionCS initExpression = (OCLExpressionCS)$getSym(3);
+                    SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
+                    OCLExpressionCS initExpression = (OCLExpressionCS)getRhsSym(3);
                     VariableCS result = createVariableCS(name, null, initExpression);
                     setOffsets(result, name, initExpression);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
         
     typedInitializedVariableCS ::= simpleNameCS ':' typeCS '=' OclExpressionCS
         /.$BeginCode
-                    SimpleNameCS name = (SimpleNameCS)$getSym(1);
-                    TypeCS type = (TypeCS)$getSym(3);
-                    OCLExpressionCS initExpression = (OCLExpressionCS)$getSym(5);
+                    SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
+                    TypeCS type = (TypeCS)getRhsSym(3);
+                    OCLExpressionCS initExpression = (OCLExpressionCS)getRhsSym(5);
                     VariableCS result = createVariableCS(name, type, initExpression);
                     setOffsets(result, name, initExpression);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
@@ -687,30 +626,30 @@ $copyright_contributions
     CollectionLiteralExpCS ::= CollectionTypeIdentifierCS
        '{' CollectionLiteralPartsCSopt '}'
         /.$BeginCode
-                    CollectionTypeCS typeCS = (CollectionTypeCS)$getSym(1);
+                    CollectionTypeCS typeCS = (CollectionTypeCS)getRhsSym(1);
                     CollectionLiteralExpCS result = createCollectionLiteralExpCS(
                             typeCS,
-                            (EList<CollectionLiteralPartCS>)$getSym(3)
+                            (EList<CollectionLiteralPartCS>)getRhsSym(3)
                         );
-                    setOffsets(result, typeCS, getIToken($getToken(4)));
-                    $setResult(result);
+                    setOffsets(result, typeCS, getRhsIToken(4));
+                    setResult(result);
           $EndCode
         ./
     CollectionLiteralExpCS ::= collectionTypeCS '{' CollectionLiteralPartsCSopt '}'
         /.$BeginCode
-                    CollectionTypeCS typeCS = (CollectionTypeCS)$getSym(1);
+                    CollectionTypeCS typeCS = (CollectionTypeCS)getRhsSym(1);
                     CollectionLiteralExpCS result = createCollectionLiteralExpCS(
                             typeCS,
-                            (EList<CollectionLiteralPartCS>)$getSym(3)
+                            (EList<CollectionLiteralPartCS>)getRhsSym(3)
                         );
-                    setOffsets(result, typeCS, getIToken($getToken(4)));
-                    $setResult(result);
+                    setOffsets(result, typeCS, getRhsIToken(4));
+                    setResult(result);
           $EndCode
         ./
 
     CollectionLiteralPartsCSopt ::= %empty
         /.$BeginCode
-                    $setResult(new BasicEList<CollectionLiteralPartCS>());
+                    setResult(new BasicEList<CollectionLiteralPartCS>());
           $EndCode
         ./
     CollectionLiteralPartsCSopt -> CollectionLiteralPartsCS
@@ -718,15 +657,15 @@ $copyright_contributions
     CollectionLiteralPartsCS ::= CollectionLiteralPartCS
         /.$BeginCode
                     EList<CollectionLiteralPartCS> result = new BasicEList<CollectionLiteralPartCS>();
-                    result.add((CollectionLiteralPartCS)$getSym(1));
-                    $setResult(result);
+                    result.add((CollectionLiteralPartCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     CollectionLiteralPartsCS ::= CollectionLiteralPartsCS ',' CollectionLiteralPartCS
         /.$BeginCode
-                    EList<CollectionLiteralPartCS> result = (EList<CollectionLiteralPartCS>)$getSym(1);
-                    result.add((CollectionLiteralPartCS)$getSym(3));
-                    $setResult(result);
+                    EList<CollectionLiteralPartCS> result = (EList<CollectionLiteralPartCS>)getRhsSym(1);
+                    result.add((CollectionLiteralPartCS)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
 
@@ -734,21 +673,21 @@ $copyright_contributions
     CollectionLiteralPartCS ::= OclExpressionCS
         /.$BeginCode
                     CollectionLiteralPartCS result = createCollectionLiteralPartCS(
-                            (OCLExpressionCS)$getSym(1)
+                            (OCLExpressionCS)getRhsSym(1)
                         );
-                    setOffsets(result, (CSTNode)$getSym(1));
-                    $setResult(result);
+                    setOffsets(result, (CSTNode)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
 
     CollectionRangeCS ::= OclExpressionCS '..' OclExpressionCS
         /.$BeginCode
                     CollectionLiteralPartCS result = createCollectionRangeCS(
-                            (OCLExpressionCS)$getSym(1),
-                            (OCLExpressionCS)$getSym(3)
+                            (OCLExpressionCS)getRhsSym(1),
+                            (OCLExpressionCS)getRhsSym(3)
                         );
-                    setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-                    $setResult(result);
+                    setOffsets(result, (CSTNode)getRhsSym(1), (CSTNode)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
 
@@ -762,97 +701,97 @@ $copyright_contributions
 
     TupleLiteralExpCS ::= Tuple '{' TupleLiteralPartsCS '}'
         /.$BeginCode
-                    TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)$getSym(3));
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
-                    $setResult(result);
+                    TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)getRhsSym(3));
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+                    setResult(result);
           $EndCode
         ./
 
     TupleLiteralPartsCS ::= initializedVariableCS
         /.$BeginCode
                     EList<VariableCS> result = new BasicEList<VariableCS>();
-                    result.add((VariableCS)$getSym(1));
-                    $setResult(result);
+                    result.add((VariableCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     TupleLiteralPartsCS ::= TupleLiteralPartsCS ',' initializedVariableCS
         /.$BeginCode
-                    EList<VariableCS> result = (EList<VariableCS>)$getSym(1);
-                    result.add((VariableCS)$getSym(3));
-                    $setResult(result);
+                    EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+                    result.add((VariableCS)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
 
     IntegerLiteralExpCS ::= INTEGER_LITERAL
         /.$BeginCode
-                    IntegerLiteralExpCS result = createIntegerLiteralExpCS(getTokenText($getToken(1)));
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    IntegerLiteralExpCS result = createIntegerLiteralExpCS(getRhsTokenText(1));
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
 
     RealLiteralExpCS ::= REAL_LITERAL
         /.$BeginCode
-                    RealLiteralExpCS result = createRealLiteralExpCS(getTokenText($getToken(1)));
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    RealLiteralExpCS result = createRealLiteralExpCS(getRhsTokenText(1));
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
 
     StringLiteralExpCS ::= STRING_LITERAL
         /.$BeginCode
-                    IToken literalToken = getIToken($getToken(1));
+                    IToken literalToken = getRhsIToken(1);
                     StringLiteralExpCS result = createStringLiteralExpCS(literalToken);
                     setOffsets(result, literalToken);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
     StringLiteralExpCS ::= StringLiteralExpCS STRING_LITERAL
         /.$BeginCode
-                    StringLiteralExpCS string = (StringLiteralExpCS)$getSym(1);
-                    IToken literalToken = getIToken($getToken(2));
+                    StringLiteralExpCS string = (StringLiteralExpCS)getRhsSym(1);
+                    IToken literalToken = getRhsIToken(2);
                     StringLiteralExpCS result = extendStringLiteralExpCS(string, literalToken);
                     setOffsets(result, string, literalToken);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
     BooleanLiteralExpCS ::= true
         /.$BeginCode
-                    BooleanLiteralExpCS result = createBooleanLiteralExpCS(getTokenText($getToken(1)));
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    BooleanLiteralExpCS result = createBooleanLiteralExpCS(getRhsTokenText(1));
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
     BooleanLiteralExpCS ::= false
         /.$BeginCode
-                    BooleanLiteralExpCS result = createBooleanLiteralExpCS(getTokenText($getToken(1)));
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    BooleanLiteralExpCS result = createBooleanLiteralExpCS(getRhsTokenText(1));
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
 
     UnlimitedNaturalLiteralExpCS ::= '*'
         /.$BeginCode
-                    UnlimitedNaturalLiteralExpCS result = createUnlimitedNaturalLiteralExpCS(getTokenText($getToken(1)));
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    UnlimitedNaturalLiteralExpCS result = createUnlimitedNaturalLiteralExpCS(getRhsTokenText(1));
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
 
     InvalidLiteralExpCS ::= invalid
         /.$BeginCode
-                    InvalidLiteralExpCS result = createInvalidLiteralExpCS(getTokenText($getToken(1)));
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    InvalidLiteralExpCS result = createInvalidLiteralExpCS(getRhsTokenText(1));
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
 
     NullLiteralExpCS ::= null
         /.$BeginCode
-                    NullLiteralExpCS result = createNullLiteralExpCS(getTokenText($getToken(1)));
-                    setOffsets(result, getIToken($getToken(1)));
-                    $setResult(result);
+                    NullLiteralExpCS result = createNullLiteralExpCS(getRhsTokenText(1));
+                    setOffsets(result, getRhsIToken(1));
+                    setResult(result);
           $EndCode
         ./
         
@@ -864,14 +803,14 @@ $copyright_contributions
         /.$NewCase./
     TypeLiteralExpCS ::= tupleTypeCS
         /.$BeginCode
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                     VariableExpCS result = createVariableExpCS(
                             simpleNameCS,
                             new BasicEList<OCLExpressionCS>(),
                             null
                         );
                     setOffsets(result, simpleNameCS);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
@@ -889,54 +828,54 @@ $copyright_contributions
         primaryExpCS '->' simpleNameCS
         '(' uninitializedVariableCS '|' OclExpressionCS ')'
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                     IteratorExpCS result = createIteratorExpCS(
                             source,
                             simpleNameCS,
-                            (VariableCS)$getSym(5),
+                            (VariableCS)getRhsSym(5),
                             null,
-                            (OCLExpressionCS)$getSym(7)
+                            (OCLExpressionCS)getRhsSym(7)
                         );
-                    setOffsets(result, source, getIToken($getToken(8)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(8));
+                    setResult(result);
           $EndCode
         ./
     IteratorExpCS ::=                          -- [A.3.1]
         primaryExpCS '->' simpleNameCS
         '(' simpleNameCS ',' uninitializedVariableCS '|' OclExpressionCS ')'
         /.$BeginCode
-                    SimpleNameCS name = (SimpleNameCS)$getSym(5);
+                    SimpleNameCS name = (SimpleNameCS)getRhsSym(5);
                     VariableCS variableCS = createVariableCS(name, null, null);
                     setOffsets(variableCS, name);
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                     IteratorExpCS result = createIteratorExpCS(
                             source,
                             simpleNameCS,
                             variableCS,
-                            (VariableCS)$getSym(7),
-                            (OCLExpressionCS)$getSym(9)
+                            (VariableCS)getRhsSym(7),
+                            (OCLExpressionCS)getRhsSym(9)
                         );
-                    setOffsets(result, source, getIToken($getToken(10)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(10));
+                    setResult(result);
           $EndCode
         ./
     IteratorExpCS ::=                          -- [A.3.2]
         primaryExpCS '->' simpleNameCS '(' typedUninitializedVariableCS ','
         uninitializedVariableCS '|' OclExpressionCS ')'
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                     IteratorExpCS result = createIteratorExpCS(
                             source,
                             simpleNameCS,
-                            (VariableCS)$getSym(5),
-                            (VariableCS)$getSym(7),
-                            (OCLExpressionCS)$getSym(9)
+                            (VariableCS)getRhsSym(5),
+                            (VariableCS)getRhsSym(7),
+                            (OCLExpressionCS)getRhsSym(9)
                         );
-                    setOffsets(result, source, getIToken($getToken(10)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(10));
+                    setResult(result);
           $EndCode
         ./
 --  IteratorExpCS[B] is parsed as OperationCallExpCS[C]
@@ -947,33 +886,33 @@ $copyright_contributions
     IterateExpCS ::= primaryExpCS '->' simpleNameCS
         '(' typedInitializedVariableCS '|' OclExpressionCS ')'
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                     IterateExpCS result = createIterateExpCS(
                             source,
                             simpleNameCS,
-                            (VariableCS)$getSym(5),
+                            (VariableCS)getRhsSym(5),
                             null,
-                            (OCLExpressionCS)$getSym(7)
+                            (OCLExpressionCS)getRhsSym(7)
                         );
-                    setOffsets(result, source, getIToken($getToken(8)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(8));
+                    setResult(result);
           $EndCode
         ./
     IterateExpCS ::= primaryExpCS '->' simpleNameCS
         '(' uninitializedVariableCS ';' typedInitializedVariableCS '|' OclExpressionCS ')'
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                     IterateExpCS result = createIterateExpCS(
                             source,
                             simpleNameCS,
-                            (VariableCS)$getSym(5),
-                            (VariableCS)$getSym(7),
-                            (OCLExpressionCS)$getSym(9)
+                            (VariableCS)getRhsSym(5),
+                            (VariableCS)getRhsSym(7),
+                            (OCLExpressionCS)getRhsSym(9)
                         );
-                    setOffsets(result, source, getIToken($getToken(10)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(10));
+                    setResult(result);
           $EndCode
         ./
 
@@ -985,23 +924,23 @@ $copyright_contributions
     OperationCallExpCS ::= -- [B.1]
         primaryExpCS '->' simpleNameCS '(' ')'
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                     OperationCallExpCS result = createArrowOperationCallExpCS(
                             source,
-                            (SimpleNameCS)$getSym(3),
+                            (SimpleNameCS)getRhsSym(3),
                             null,
                             new BasicEList<OCLExpressionCS>()
                         );
-                    setOffsets(result, source, getIToken($getToken(5)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(5));
+                    setResult(result);
           $EndCode
         ./  
     OperationCallExpCS ::= -- [B.2],IteratorExpCS[A.1]
         primaryExpCS '->' simpleNameCS '(' OclExpressionCS ')'
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
-                    OCLExpressionCS arg = (OCLExpressionCS)$getSym(5);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                    OCLExpressionCS arg = (OCLExpressionCS)getRhsSym(5);
                     OCLExpressionCS result;
                     if (isIterator(simpleNameCS.getValue())) {
                         result = createIteratorExpCS(
@@ -1022,47 +961,47 @@ $copyright_contributions
                                 args
                             );
                     }
-                    setOffsets(result, source, getIToken($getToken(6)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(6));
+                    setResult(result);
           $EndCode
         ./  
     OperationCallExpCS ::= -- [B.3.1]
         primaryExpCS '->' simpleNameCS '(' notNameExpressionCS ',' argumentsCS ')'
         /.$BeginCode
-                    EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)$getSym(7);
-                    args.add(0, (OCLExpressionCS)$getSym(5));
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
+                    EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)getRhsSym(7);
+                    args.add(0, (OCLExpressionCS)getRhsSym(5));
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                     OperationCallExpCS result = createArrowOperationCallExpCS(
                             source,
-                            (SimpleNameCS)$getSym(3),
+                            (SimpleNameCS)getRhsSym(3),
                             null,
                             args
                         );
-                    setOffsets(result, source, getIToken($getToken(8)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(8));
+                    setResult(result);
           $EndCode
         ./  
     OperationCallExpCS ::= -- [B.3.2]
         primaryExpCS '->' simpleNameCS '(' simpleNameCS ',' argumentsCS ')'
         /.$BeginCode
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(5);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
                     OCLExpressionCS variableExpCS = createVariableExpCS(
                             simpleNameCS,
                             new BasicEList<OCLExpressionCS>(),
                             null
                         );
                     setOffsets(variableExpCS, simpleNameCS);
-                    EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)$getSym(7);
+                    EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)getRhsSym(7);
                     args.add(0, variableExpCS);
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                     OperationCallExpCS result = createArrowOperationCallExpCS(
                             source,
-                            (SimpleNameCS)$getSym(3),
+                            (SimpleNameCS)getRhsSym(3),
                             null,
                             args
                         );
-                    setOffsets(result, source, getIToken($getToken(8)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(8));
+                    setResult(result);
           $EndCode
         ./  
     OperationCallExpCS ::=
@@ -1071,17 +1010,17 @@ $copyright_contributions
     OperationCallExpCS ::= -- [C],[E],IteratorExpCS[B]
         primaryExpCS '.' simpleNameCS isMarkedPreCSopt '(' argumentsCSopt ')'
         /.$BeginCode
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                     CallExpCS result = createDotOperationCallExpCS(
                             source,
                             null,
                             simpleNameCS,
-                            (IsMarkedPreCS)$getSym(4),
-                            (EList<OCLExpressionCS>)$getSym(6)
+                            (IsMarkedPreCS)getRhsSym(4),
+                            (EList<OCLExpressionCS>)getRhsSym(6)
                         );
-                    setOffsets(result, source, getIToken($getToken(7)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(7));
+                    setResult(result);
           $EndCode
         ./  
     OperationCallExpCS ::= -- [D],[F],[G.1]
@@ -1090,28 +1029,28 @@ $copyright_contributions
                     OperationCallExpCS result = createDotOperationCallExpCS(
                             null,
                             null,
-                            (SimpleNameCS)$getSym(1),
-                            (IsMarkedPreCS)$getSym(2),
-                            (EList<OCLExpressionCS>)$getSym(4)
+                            (SimpleNameCS)getRhsSym(1),
+                            (IsMarkedPreCS)getRhsSym(2),
+                            (EList<OCLExpressionCS>)getRhsSym(4)
                         );
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(5));
+                    setResult(result);
           $EndCode
         ./
     OperationCallExpCS ::= -- [G.2]
         pathNameCS '::' unreservedSimpleNameCS '(' argumentsCSopt ')'
         /.$BeginCode
-                    PathNameCS pathNameCS = (PathNameCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+                    PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                     OperationCallExpCS result = createDotOperationCallExpCS(
                             null,
                             pathNameCS,
                             simpleNameCS,
                             null,
-                            (EList<OCLExpressionCS>)$getSym(5)
+                            (EList<OCLExpressionCS>)getRhsSym(5)
                         );
-                    setOffsets(result, pathNameCS, getIToken($getToken(6)));
-                    $setResult(result);
+                    setOffsets(result, pathNameCS, getRhsIToken(6));
+                    setResult(result);
           $EndCode
         ./
 --  OperationCallExpCS[H] is realized by the prefix OclExpressionCS productions
@@ -1119,18 +1058,18 @@ $copyright_contributions
         primaryExpCS '.' pathNameCS '::' unreservedSimpleNameCS isMarkedPreCSopt
         '(' argumentsCSopt ')'
         /.$BeginCode
-                    PathNameCS pathNameCS = (PathNameCS)$getSym(3);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(5);
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
+                    PathNameCS pathNameCS = (PathNameCS)getRhsSym(3);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                     CallExpCS result = createDotOperationCallExpCS(
                             source,
                             pathNameCS,
                             simpleNameCS,
-                            (IsMarkedPreCS)$getSym(6),
-                            (EList<OCLExpressionCS>)$getSym(8)
+                            (IsMarkedPreCS)getRhsSym(6),
+                            (EList<OCLExpressionCS>)getRhsSym(8)
                         );
-                    setOffsets(result, source, getIToken($getToken(9)));
-                    $setResult(result);
+                    setOffsets(result, source, getRhsIToken(9));
+                    setResult(result);
           $EndCode
         ./
             
@@ -1143,9 +1082,9 @@ $copyright_contributions
     PropertyCallExpCS ::= -- [C] excluding [B]
         pathNameCS '::' unreservedSimpleNameCS isMarkedPreCSopt
         /.$BeginCode
-                    PathNameCS pathNameCS = (PathNameCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
-                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(4);
+                    PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(4);
                     FeatureCallExpCS result = createFeatureCallExpCS(
                             null,
                             pathNameCS,
@@ -1158,16 +1097,16 @@ $copyright_contributions
                     } else {
                         setOffsets(result, pathNameCS, simpleNameCS);
                     }
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
     PropertyCallExpCS ::= -- [D]
         primaryExpCS '.' pathNameCS '::' unreservedSimpleNameCS isMarkedPreCSopt
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    PathNameCS pathNameCS = (PathNameCS)$getSym(3);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(5);
-                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(6);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    PathNameCS pathNameCS = (PathNameCS)getRhsSym(3);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
+                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(6);
                     FeatureCallExpCS result = createFeatureCallExpCS(
                             source,
                             pathNameCS,
@@ -1180,16 +1119,16 @@ $copyright_contributions
                     } else {
                         setOffsets(result, source, simpleNameCS);
                     }
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
     AssociationClassCallExpCS ::= -- [A.1],PropertyCallExpCS[A],IteratorExpCS[C,D,E]
         primaryExpCS '.' simpleNameCS isMarkedPreCSopt
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
-                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(4);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(4);
                     FeatureCallExpCS result = createFeatureCallExpCS(
                             source,
                             null,
@@ -1202,28 +1141,28 @@ $copyright_contributions
                     } else {
                         setOffsets(result, source, simpleNameCS);
                     }
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
     AssociationClassCallExpCS ::= -- [A.2],IteratorExpCS[D,E]
         primaryExpCS '.' simpleNameCS '[' argumentsCS ']' isMarkedPreCSopt
         /.$BeginCode
-                    OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
-                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(7);
+                    OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(7);
                     FeatureCallExpCS result = createFeatureCallExpCS(
                             source,
                             null,
                             simpleNameCS,
-                            (EList<OCLExpressionCS>)$getSym(5),
+                            (EList<OCLExpressionCS>)getRhsSym(5),
                             isMarkedPreCS
                         );
                     if (isMarkedPreCS != null) {
                         setOffsets(result, source, isMarkedPreCS);
                     } else {
-                        setOffsets(result, source, getIToken($getToken(6)));
+                        setOffsets(result, source, getRhsIToken(6));
                     }
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 --  AssociationClassCallExpCS[B.1.1] parsed as SimpleNameExpCS
@@ -1231,31 +1170,31 @@ $copyright_contributions
     AssociationClassCallExpCS ::=  -- [B.2]
         simpleNameCS '[' argumentsCS ']' isMarkedPreCSopt
         /.$BeginCode
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
-                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(5);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
+                    IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(5);
                     VariableExpCS result = createVariableExpCS(
                             simpleNameCS,
-                            (EList<OCLExpressionCS>)$getSym(3),
+                            (EList<OCLExpressionCS>)getRhsSym(3),
                             isMarkedPreCS
                         );
                     if (isMarkedPreCS != null) {
                         setOffsets(result, simpleNameCS, isMarkedPreCS);
                     } else {
-                        setOffsets(result, simpleNameCS, getIToken($getToken(4)));
+                        setOffsets(result, simpleNameCS, getRhsIToken(4));
                     }
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
     isMarkedPreCSopt ::= %empty
         /.$BeginCode
-                    $setResult(null);
+                    setResult(null);
           $EndCode
         ./
 
     argumentsCSopt ::= %empty
         /.$BeginCode
-                    $setResult(new BasicEList<OCLExpressionCS>());
+                    setResult(new BasicEList<OCLExpressionCS>());
           $EndCode
         ./
     argumentsCSopt -> argumentsCS
@@ -1263,15 +1202,15 @@ $copyright_contributions
     argumentsCS ::= OclExpressionCS
         /.$BeginCode
                     EList<OCLExpressionCS> result = new BasicEList<OCLExpressionCS>();
-                    result.add((OCLExpressionCS)$getSym(1));
-                    $setResult(result);
+                    result.add((OCLExpressionCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     argumentsCS ::= argumentsCS ',' OclExpressionCS
         /.$BeginCode
-                    EList<OCLExpressionCS> result = (EList<OCLExpressionCS>)$getSym(1);
-                    result.add((OCLExpressionCS)$getSym(3));
-                    $setResult(result);
+                    EList<OCLExpressionCS> result = (EList<OCLExpressionCS>)getRhsSym(1);
+                    result.add((OCLExpressionCS)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
 
@@ -1294,14 +1233,14 @@ $copyright_contributions
     VariableExpCS ::= -- [.2]
         selfKeywordCS
         /.$BeginCode
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                     VariableExpCS result = createVariableExpCS(
                             simpleNameCS,
                             new BasicEList<OCLExpressionCS>(),
                             null
                         );
                     setOffsets(result, simpleNameCS);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
         
@@ -1309,14 +1248,14 @@ $copyright_contributions
                         -- PropertyCallExpCS[B],VariableExpCS[.1]
         simpleNameCS
         /.$BeginCode
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                     VariableExpCS result = createVariableExpCS(
                             simpleNameCS,
                             new BasicEList<OCLExpressionCS>(),
                             null
                         );
                     setOffsets(result, simpleNameCS);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
@@ -1420,11 +1359,11 @@ $copyright_contributions
         /.$BeginCode
                     SimpleNameCS simpleNameCS = createSimpleNameCS(
                                 SimpleTypeEnum.KEYWORD_LITERAL,
-                                getIToken($getToken(2))
+                                getRhsIToken(2)
                             );
-                    setOffsets(simpleNameCS, getIToken($getToken(2)));
-                    OCLExpressionCS left = (OCLExpressionCS)$getSym(1);
-                    OCLExpressionCS right = (OCLExpressionCS)$getSym(3);
+                    setOffsets(simpleNameCS, getRhsIToken(2));
+                    OCLExpressionCS left = (OCLExpressionCS)getRhsSym(1);
+                    OCLExpressionCS right = (OCLExpressionCS)getRhsSym(3);
                     EList<OCLExpressionCS> args = new BasicEList<OCLExpressionCS>();
                     args.add(right);
                     OperationCallExpCS result = createOperationCallExpCS(
@@ -1433,7 +1372,7 @@ $copyright_contributions
                             args
                         );
                     setOffsets(result, left, right);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
     
@@ -1451,17 +1390,17 @@ $copyright_contributions
         /.$BeginCode
                     SimpleNameCS simpleNameCS = createSimpleNameCS(
                                 SimpleTypeEnum.KEYWORD_LITERAL,
-                                getIToken($getToken(1))
+                                getRhsIToken(1)
                             );
-                    setOffsets(simpleNameCS, getIToken($getToken(1)));
-                    OCLExpressionCS expr = (OCLExpressionCS)$getSym(2);
+                    setOffsets(simpleNameCS, getRhsIToken(1));
+                    OCLExpressionCS expr = (OCLExpressionCS)getRhsSym(2);
                     OperationCallExpCS result = createOperationCallExpCS(
                             expr,
                             simpleNameCS,
                             new BasicEList<OCLExpressionCS>()
                         );
                     setOffsets(result, simpleNameCS, expr);
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
@@ -1475,58 +1414,51 @@ $copyright_contributions
     primaryNotNameCS -> IfExpCS         -- OclExpressionCS[F]
     primaryNotNameCS ::= '(' OclExpressionCS ')'
         /.$BeginCode
-                    OCLExpressionCS result = (OCLExpressionCS)$getSym(2);
+                    OCLExpressionCS result = (OCLExpressionCS)getRhsSym(2);
                     if (result instanceof OperationCallExpCS) {
                         ((OperationCallExpCS)result).setIsAtomic(true);
                     }
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+                    setResult(result);
           $EndCode
         ./
 
     IfExpCS ::= if OclExpressionCS then OclExpressionCS else OclExpressionCS endif
         /.$BeginCode
                     IfExpCS result = createIfExpCS(
-                            (OCLExpressionCS)$getSym(2),
-                            (OCLExpressionCS)$getSym(4),
-                            (OCLExpressionCS)$getSym(6)
+                            (OCLExpressionCS)getRhsSym(2),
+                            (OCLExpressionCS)getRhsSym(4),
+                            (OCLExpressionCS)getRhsSym(6)
                         );
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(7)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(7));
+                    setResult(result);
           $EndCode
         ./
 
     LetExpCS ::= let letVariablesCS in OclExpressionCS
         /.$BeginCode
-                    OCLExpressionCS expr = (OCLExpressionCS)$getSym(4);
+                    OCLExpressionCS expr = (OCLExpressionCS)getRhsSym(4);
                     LetExpCS result = createLetExpCS(
-                            (EList<VariableCS>)$getSym(2),
+                            (EList<VariableCS>)getRhsSym(2),
                             expr
                         );
-                    setOffsets(result, getIToken($getToken(1)), expr);
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), expr);
+                    setResult(result);
           $EndCode
         ./
     
     letVariablesCS ::= typedInitializedVariableCS 
         /.$BeginCode
                     EList<VariableCS> result = new BasicEList<VariableCS>();
-                    result.add((VariableCS)$getSym(1));
-                    $setResult(result);
+                    result.add((VariableCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     letVariablesCS ::= letVariablesCS ',' typedInitializedVariableCS
         /.$BeginCode
-                    EList<VariableCS> result = (EList<VariableCS>)$getSym(1);
-                    result.add((VariableCS)$getSym(3));
-                    $setResult(result);
+                    EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+                    result.add((VariableCS)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
-%End
-
-%Trailers
-    /.
-        $EndActions
-    }
-    ./
 %End
