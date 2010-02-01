@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DebugTest.java,v 1.1.2.2 2010/01/30 07:49:41 ewillink Exp $
+ * $Id: DebugTest.java,v 1.1.2.3 2010/02/01 11:53:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -29,12 +29,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.tests.GenericDebugTest;
 
 /**
