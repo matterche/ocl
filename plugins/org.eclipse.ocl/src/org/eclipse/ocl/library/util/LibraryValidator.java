@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryValidator.java,v 1.1.2.4 2010/01/31 22:23:42 ewillink Exp $
+ * $Id: LibraryValidator.java,v 1.1.2.5 2010/07/09 10:21:44 ewillink Exp $
  */
 package org.eclipse.ocl.library.util;
 
@@ -192,9 +192,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLAnyType(OCLAnyType oclAnyType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclAnyType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclAnyType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclAnyType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclAnyType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclAnyType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclAnyType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclAnyType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclAnyType, diagnostics, context);
@@ -218,9 +220,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLLibraryIteration(OCLLibraryIteration oclLibraryIteration, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclLibraryIteration, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclLibraryIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclLibraryIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclLibraryIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclLibraryIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclLibraryIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclLibraryIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclLibraryIteration, diagnostics, context);
@@ -235,9 +239,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLBoundType(OCLBoundType oclBoundType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclBoundType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclBoundType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclBoundType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclBoundType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclBoundType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclBoundType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclBoundType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclBoundType, diagnostics, context);
@@ -303,9 +309,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLConcreteType(OCLConcreteType oclConcreteType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclConcreteType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclConcreteType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclConcreteType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclConcreteType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclConcreteType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclConcreteType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclConcreteType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclConcreteType, diagnostics, context);
@@ -320,9 +328,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLDeprecatedType(OCLDeprecatedType oclDeprecatedType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclDeprecatedType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclDeprecatedType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclDeprecatedType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclDeprecatedType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclDeprecatedType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclDeprecatedType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclDeprecatedType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclDeprecatedType, diagnostics, context);
@@ -346,9 +356,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLInvalidType(OCLInvalidType oclInvalidType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclInvalidType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclInvalidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclInvalidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclInvalidType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclInvalidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclInvalidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclInvalidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclInvalidType, diagnostics, context);
@@ -363,9 +375,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLIteration(OCLIteration oclIteration, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclIteration, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclIteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclIteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclIteration, diagnostics, context);
@@ -380,9 +394,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLJavaType(OCLJavaType oclJavaType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclJavaType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclJavaType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclJavaType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclJavaType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclJavaType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclJavaType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclJavaType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclJavaType, diagnostics, context);
@@ -397,9 +413,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLLibraryOperation(OCLLibraryOperation oclLibraryOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclLibraryOperation, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclLibraryOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclLibraryOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclLibraryOperation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclLibraryOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclLibraryOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclLibraryOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclLibraryOperation, diagnostics, context);
@@ -414,9 +432,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLLibraryProperty(OCLLibraryProperty oclLibraryProperty, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclLibraryProperty, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclLibraryProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclLibraryProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclLibraryProperty, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclLibraryProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclLibraryProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclLibraryProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclLibraryProperty, diagnostics, context);
@@ -440,9 +460,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLOperation(OCLOperation oclOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclOperation, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclOperation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclOperation, diagnostics, context);
@@ -475,9 +497,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLParameter(OCLParameter oclParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclParameter, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclParameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclParameter, diagnostics, context);
@@ -492,9 +516,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLProperty(OCLProperty oclProperty, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclProperty, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclProperty, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclProperty, diagnostics, context);
@@ -518,9 +544,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLType(OCLType oclType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclType, diagnostics, context);
@@ -557,9 +585,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLTypeBinding(OCLTypeBinding oclTypeBinding, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclTypeBinding, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclTypeBinding, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclTypeBinding, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclTypeBinding, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclTypeBinding, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclTypeBinding, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclTypeBinding, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclTypeBinding, diagnostics, context);
@@ -624,9 +654,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLTypedElement(OCLTypedElement oclTypedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclTypedElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclTypedElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclTypedElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclTypedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclTypedElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclTypedElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclTypedElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclTypedElement, diagnostics, context);
@@ -684,9 +716,11 @@ public class LibraryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOCLVoidType(OCLVoidType oclVoidType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclVoidType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(oclVoidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclVoidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclVoidType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclVoidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclVoidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(oclVoidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclVoidType, diagnostics, context);

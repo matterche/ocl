@@ -27,7 +27,8 @@
   </genAnnotations>
   <foreignModel>OCLLibrary.ecore</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
-      disposableProviderFactory="true" fileExtensions="oclstdlib" ecorePackage="OCLLibrary.ecore#/">
+      disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions="oclstdlib"
+      ecorePackage="OCLLibrary.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Library" basePackage="org.eclipse.ocl"
         disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl.library"
         fileExtensions="oclstdlib" ecorePackage="OCLLibrary.ecore#//library">
@@ -57,6 +58,10 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/java"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/nonOrderedCollection"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/nonUniqueCollection"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/oclAny"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/oclInvalid"/>
@@ -69,6 +74,8 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/oclVoid"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/orderedCollection"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/orderedSet"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/real"/>
@@ -78,6 +85,8 @@
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/set"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/string"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/uniqueCollection"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
             createChild="false" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLCache/unlimitedNatural"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
@@ -123,29 +132,8 @@
             propertySortChoices="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLLibrary/extends"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLLibrary.ecore#//library/OCLLibrary/type"/>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLLibrary/getLibraryIteration">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/getLibraryIteration/libraryIterationClass"/>
-        </genOperations>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLLibrary/getLibraryOperation">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/getLibraryOperation/libraryOperationClass"/>
-        </genOperations>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLLibrary/getLibraryProperty">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/getLibraryProperty/libraryPropertyClass"/>
-        </genOperations>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLLibrary/getType">
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/getType/name"/>
-        </genOperations>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLLibrary/putLibraryIteration">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/putLibraryIteration/libraryIterationClass"/>
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/putLibraryIteration/libraryIteration"/>
-        </genOperations>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLLibrary/putLibraryOperation">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/putLibraryOperation/libraryOperationClass"/>
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/putLibraryOperation/libraryOperation"/>
-        </genOperations>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLLibrary/putLibraryProperty">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/putLibraryProperty/libraryPropertyClass"/>
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLLibrary/putLibraryProperty/libraryProperty"/>
         </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLLibraryIteration">
@@ -223,6 +211,8 @@
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCLLibrary.ecore#//library/OCLType/getTypeBinding.1/typeParameter"/>
         </genOperations>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLType/getTypeParameter"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLType/isOrdered"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCLLibrary.ecore#//library/OCLType/isUnique"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLLibrary.ecore#//library/OCLTypeBinding">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
