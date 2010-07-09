@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericParserBacktrackingTest.java,v 1.1.2.3 2010/02/01 11:53:54 ewillink Exp $
+ * $Id: GenericParserBacktrackingTest.java,v 1.1.2.4 2010/07/09 14:18:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
