@@ -13,24 +13,19 @@
  * 
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.6 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.6.10.1 2010/07/09 13:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
-
 import org.eclipse.ocl.uml.CallExp;
 import org.eclipse.ocl.uml.UMLPackage;
-
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;

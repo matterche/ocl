@@ -13,16 +13,16 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.7.10.1 2010/07/09 13:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.ocl.types.operations.OrderedSetTypeOperations;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.types.operations.OrderedSetTypeOperations;
 import org.eclipse.ocl.uml.OrderedSetType;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.uml2.uml.Classifier;

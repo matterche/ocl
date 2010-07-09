@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.10 2008/11/24 00:24:57 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.10.10.1 2010/07/09 13:33:20 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -21,8 +21,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.uml.PrimitiveType;
 import org.eclipse.ocl.uml.UMLPackage;
-
-//import org.eclipse.ocl.uml.internal.operations.PrimitiveTypeOperations;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.uml2.uml.Operation;
 

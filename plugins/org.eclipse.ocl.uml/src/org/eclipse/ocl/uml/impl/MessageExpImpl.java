@@ -13,13 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.8 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.8.10.1 2010/07/09 13:33:20 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;

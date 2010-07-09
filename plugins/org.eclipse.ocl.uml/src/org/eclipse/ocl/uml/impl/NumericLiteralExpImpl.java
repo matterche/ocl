@@ -13,12 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: NumericLiteralExpImpl.java,v 1.4 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: NumericLiteralExpImpl.java,v 1.4.10.1 2010/07/09 13:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.uml.NumericLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 

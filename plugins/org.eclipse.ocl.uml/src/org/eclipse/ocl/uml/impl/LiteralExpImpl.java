@@ -13,12 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: LiteralExpImpl.java,v 1.4 2008/10/12 01:12:31 cdamus Exp $
+ * $Id: LiteralExpImpl.java,v 1.4.10.1 2010/07/09 13:33:20 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.uml.LiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 

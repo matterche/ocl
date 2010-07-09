@@ -13,11 +13,12 @@
  * 
  * </copyright>
  *
- * $Id: StringLiteralExpImpl.java,v 1.8 2009/01/23 17:16:11 cdamus Exp $
+ * $Id: StringLiteralExpImpl.java,v 1.8.10.1 2010/07/09 13:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;

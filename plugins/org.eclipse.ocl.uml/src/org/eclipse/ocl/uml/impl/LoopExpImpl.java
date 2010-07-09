@@ -13,13 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.5.10.1 2010/07/09 13:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;

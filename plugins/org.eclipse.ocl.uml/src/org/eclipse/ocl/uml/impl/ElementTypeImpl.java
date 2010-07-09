@@ -13,15 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: ElementTypeImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: ElementTypeImpl.java,v 1.7.10.1 2010/07/09 13:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.uml.ElementType;
 import org.eclipse.ocl.uml.UMLPackage;
-
 import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 
 /**

@@ -13,14 +13,14 @@
  * 
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.7 2009/01/23 17:16:11 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.7.10.1 2010/07/09 13:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.expressions.operations.IteratorExpOperations;
 import org.eclipse.ocl.uml.IteratorExp;
 import org.eclipse.ocl.uml.UMLPackage;

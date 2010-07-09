@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2010 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 252600, 248869
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 297666
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.10.6.3 2010/01/14 21:32:52 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.10.6.4 2010/07/09 13:33:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -270,7 +271,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
             OCL_EXPRESSION = (Classifier) stdlibPackage.getOwnedType("OclExpression"); //$NON-NLS-1$
             
             ((InstanceSpecification) INVALID).getClassifiers().add(OCL_INVALID);
-            ((InstanceSpecification) INVALID).setName("OclInvalid"); //$NON-NLS-1$
+            ((InstanceSpecification) INVALID).setName("invalid"); //$NON-NLS-1$
             
             addToPackageRegistry(stdlibPackage);
            
@@ -344,9 +345,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         OCL_EXPRESSION = UMLFactory.eINSTANCE.createElementType();
         OCL_EXPRESSION.setName("OclExpression"); //$NON-NLS-1$
         
-		InstanceSpecification oclInvalid = (InstanceSpecification) INVALID;
-		oclInvalid.getClassifiers().add(OCL_INVALID);
-		oclInvalid.setName("OclInvalid"); //$NON-NLS-1$
+		((InstanceSpecification) INVALID).getClassifiers().add(OCL_INVALID);
+		((InstanceSpecification) INVALID).setName("invalid"); //$NON-NLS-1$
 		
         register(OCL_ANY).addAll(
             OCLStandardLibraryUtil.createAnyTypeOperations(env));
@@ -407,8 +407,6 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         
         register(OCL_T);  // operations already defined by OclAny
         register(OCL_T2);  // operations already defined by OclAny
-        
-        ((InstanceSpecification) INVALID).getClassifiers().add(OCL_INVALID);
         
         addToPackageRegistry(stdlibPackage);
         

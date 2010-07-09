@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.16.2.3 2010/01/24 07:40:39 ewillink Exp $
+ * $Id: UMLEnvironment.java,v 1.16.2.4 2010/07/09 13:33:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -217,7 +217,7 @@ public class UMLEnvironment
      * other type in a {@link Profile}.  Finding the Ecore definition of a profile
      * type requires finding the actual applied version of the profile.
      * 
-     * @param umlClassifier a UML classifier
+     * @param type a UML classifier
      * @param element an element in the context of which the OCL evaluation
      *     is being performed
      * @return the corresponding Ecore classifier, or <code>null</code> if not
