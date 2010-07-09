@@ -12,17 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.7 2009/09/01 20:11:57 ewillink Exp $
+ * $Id: InvalidTypeImpl.java,v 1.7.6.1 2010/07/09 13:33:30 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.InvalidType;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;

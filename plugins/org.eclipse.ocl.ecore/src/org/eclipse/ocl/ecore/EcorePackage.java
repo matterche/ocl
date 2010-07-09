@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackage.java,v 1.11.2.3 2010/01/15 17:27:21 ewillink Exp $
+ * $Id: EcorePackage.java,v 1.11.2.4 2010/07/09 13:33:31 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -5767,6 +5767,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7369,6 +7371,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>New Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated

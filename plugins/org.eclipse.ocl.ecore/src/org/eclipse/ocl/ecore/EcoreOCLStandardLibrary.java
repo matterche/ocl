@@ -1,4 +1,6 @@
-/*******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2009 Open Canarias S.L. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +9,11 @@
  *
  * Contributors:
  *     A. Sanchez-Barbudo Herrera - initial API and implementation
- *******************************************************************************/
+ *
+ * </copyright>
+ *
+ * $Id: EcoreOCLStandardLibrary.java,v 1.2.6.3 2010/07/09 13:33:31 ewillink Exp $
+ */
 package org.eclipse.ocl.ecore;
 
 import org.eclipse.emf.ecore.EClassifier;

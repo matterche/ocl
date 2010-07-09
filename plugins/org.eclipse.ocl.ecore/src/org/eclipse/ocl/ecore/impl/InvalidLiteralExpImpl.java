@@ -13,13 +13,12 @@
  *   
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.6 2009/01/23 17:16:21 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.6.10.1 2010/07/09 13:33:30 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.InvalidLiteralExp;
 import org.eclipse.ocl.utilities.Visitor;

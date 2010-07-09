@@ -13,23 +13,19 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.8 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.8.10.1 2010/07/09 13:33:30 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.EcorePackage;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.utilities.Visitor;
 

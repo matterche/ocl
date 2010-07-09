@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.8.10.1 2010/01/15 17:27:21 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.8.10.2 2010/07/09 13:33:30 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,21 +21,13 @@ import java.math.BigInteger;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
-//import org.eclipse.emf.common.util.BasicDiagnostic;
-//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-//import org.eclipse.emf.ecore.plugin.EcorePlugin;
-//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-
-//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.UnlimitedNaturalLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 

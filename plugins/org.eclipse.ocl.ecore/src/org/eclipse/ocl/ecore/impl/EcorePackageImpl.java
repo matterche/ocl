@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.13.2.4 2010/01/20 09:09:39 ewillink Exp $
+ * $Id: EcorePackageImpl.java,v 1.13.2.5 2010/07/09 13:33:29 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -517,6 +517,7 @@ public class EcorePackageImpl
 		isInited = true;
 
 		// Initialize simple dependencies
+		org.eclipse.emf.ecore.EcorePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		UtilitiesPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();
@@ -1715,7 +1716,7 @@ public class EcorePackageImpl
 			"specification", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(
 			getConstraint_ConstrainedElements(),
-			theEcorePackage_1.getENamedElement(),
+			theEcorePackage_1.getEModelElement(),
 			null,
 			"constrainedElements", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(
