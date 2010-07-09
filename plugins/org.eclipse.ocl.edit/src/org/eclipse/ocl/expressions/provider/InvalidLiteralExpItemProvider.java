@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpItemProvider.java,v 1.1.4.2 2010/01/24 07:40:28 ewillink Exp $
+ * $Id: InvalidLiteralExpItemProvider.java,v 1.1.4.3 2010/07/09 13:32:54 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -21,12 +21,14 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.eclipse.ocl.expressions.InvalidLiteralExp;
 
 /**
@@ -71,8 +73,8 @@ public class InvalidLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/InvalidLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/InvalidLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**

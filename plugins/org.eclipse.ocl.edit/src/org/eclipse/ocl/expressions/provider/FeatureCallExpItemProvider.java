@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpItemProvider.java,v 1.1.4.2 2010/01/24 07:40:28 ewillink Exp $
+ * $Id: FeatureCallExpItemProvider.java,v 1.1.4.3 2010/07/09 13:32:54 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.FeatureCallExp;
 
@@ -123,8 +125,8 @@ public class FeatureCallExpItemProvider extends CallExpItemProvider implements
 
 		switch (notification.getFeatureID(FeatureCallExp.class)) {
 		case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidTypeItemProvider.java,v 1.1.4.1 2010/01/15 07:41:13 ewillink Exp $
+ * $Id: InvalidTypeItemProvider.java,v 1.1.4.2 2010/07/09 13:32:54 ewillink Exp $
  */
 package org.eclipse.ocl.types.provider;
 
@@ -76,8 +76,8 @@ public class InvalidTypeItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/InvalidType")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/InvalidType")); //$NON-NLS-1$
 	}
 
 	/**

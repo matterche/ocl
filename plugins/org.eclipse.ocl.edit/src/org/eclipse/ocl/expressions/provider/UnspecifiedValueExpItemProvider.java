@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpItemProvider.java,v 1.1.4.2 2010/01/24 07:40:27 ewillink Exp $
+ * $Id: UnspecifiedValueExpItemProvider.java,v 1.1.4.3 2010/07/09 13:32:54 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,8 +31,10 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
+
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
 /**
@@ -118,8 +121,8 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/UnspecifiedValueExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/UnspecifiedValueExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -158,8 +161,8 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 		switch (notification.getFeatureID(UnspecifiedValueExp.class)) {
 		case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 		case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

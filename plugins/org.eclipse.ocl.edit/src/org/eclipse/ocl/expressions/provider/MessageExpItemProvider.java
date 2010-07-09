@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpItemProvider.java,v 1.2.2.7 2010/01/31 22:23:14 ewillink Exp $
+ * $Id: MessageExpItemProvider.java,v 1.2.2.8 2010/07/09 13:32:54 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -21,7 +21,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -33,11 +35,14 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.MessageExp;
+
 import org.eclipse.ocl.library.LibraryFactory;
 import org.eclipse.ocl.types.TypesFactory;
+
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
 /**
@@ -162,8 +167,8 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MessageExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/MessageExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -202,15 +207,15 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		switch (notification.getFeatureID(MessageExp.class)) {
 		case ExpressionsPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
 		case ExpressionsPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case ExpressionsPackage.MESSAGE_EXP__TARGET:
 		case ExpressionsPackage.MESSAGE_EXP__ARGUMENT:
 		case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION:
 		case ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
