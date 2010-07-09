@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.21.2.4 2010/01/24 15:22:30 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.21.2.5 2010/07/09 14:18:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -144,7 +144,7 @@ public abstract class AbstractTestSuite
 	/**
 	 * Adds parser-style independent tests to the test suite.
 	 * 
-	 * @param the suite
+	 * @param result the suite
 	 */
 	public static void suite(CheckedTestSuite result) {
 		result.createTestSuite(DebugTest.class, "Special Debug Tests");
@@ -189,7 +189,7 @@ public abstract class AbstractTestSuite
 	/**
 	 * Adds backtracking tests to the test suite.
 	 * 
-	 * @param the suite
+	 * @param result the suite
 	 */
 	public static void suiteBacktracking(CheckedTestSuite result) {
 		result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests");
