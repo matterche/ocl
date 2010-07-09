@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.12.4.3 2010/01/15 17:27:38 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.12.4.4 2010/07/09 13:33:09 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -3570,6 +3570,8 @@ public interface CSTPackage
 	/**
 	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3667,6 +3669,8 @@ public interface CSTPackage
 	/**
 	 * The feature id for the '<em><b>Real Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.7.10.1 2010/01/24 07:41:11 ewillink Exp $
+ * $Id: TypeTypeImpl.java,v 1.7.10.2 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -110,8 +110,8 @@ public class TypeTypeImpl<C, O>
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			operations = new BasicEList<O>(OCLStandardLibraryUtil
-				.createTypeTypeOperations(env));
+			operations = new BasicEList<O>(
+				OCLStandardLibraryUtil.createTypeTypeOperations(env));
 		}
 
 		return operations;

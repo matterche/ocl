@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractProblemHandler.java,v 1.1.12.2 2010/02/01 11:45:03 ewillink Exp $
+ * $Id: AbstractProblemHandler.java,v 1.1.12.3 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

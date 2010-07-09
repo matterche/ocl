@@ -16,7 +16,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.8.4.2 2010/02/01 11:45:00 ewillink Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.8.4.3 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

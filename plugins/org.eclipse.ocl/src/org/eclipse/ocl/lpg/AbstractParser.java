@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,12 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLLPGParser
- *             - Bugs 243976, 259818
+ *             - Bugs 243976, 295166, 259818
  *   Zeligsoft - Bug 243976
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.6.4.3 2010/02/01 11:45:09 ewillink Exp $
+ * $Id: AbstractParser.java,v 1.6.4.4 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -112,9 +112,9 @@ public abstract class AbstractParser {
 	}
 
 	/**
-	 * @return
 	 * @deprecated clients should invoke {@link #parser()}
 	 */
+	@Deprecated
 	public CSTNode parseTokensToCST() {
 		return parser(null, defaultRepairCount);
 	}
@@ -123,6 +123,7 @@ public abstract class AbstractParser {
 	 * @param lexStream
      * @deprecated To set/reset the lex stream use {@link #reset(ILexStream)}
 	 */	
+	@Deprecated
 	public void resetLexStream(LexStream lexStream) {
 		getIPrsStream().resetLexStream(lexStream);
 	}
@@ -152,6 +153,7 @@ public abstract class AbstractParser {
 	 * @param lexer
      * @deprecated To set/reset the lex stream use {@link #reset(ILexStream)}
 	 */
+	@Deprecated
 	public void setLexStream(AbstractLexer lexer) {
 		this.lexer = lexer;
 		getIPrsStream().resetLexStream(lexer.getILexStream());
@@ -329,12 +331,12 @@ public abstract class AbstractParser {
 				if (benv != null) {
 					sev = benv
 						.getValue(ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE);
-				}
-				if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-					benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
-						.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
-						"unquote", //$NON-NLS-1$
-						null);
+					if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+						benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
+							.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
+							"unquote", //$NON-NLS-1$
+							null);
+					}
 				}
 			}
 		}
@@ -353,7 +355,9 @@ public abstract class AbstractParser {
 	 * @param token containing string to be decoded
 	 * @return string value of <code>token</code> with escapes replaced
 	 * @since 3.0
+	 * @deprecated double quotes form no part of the OCL specification
 	 */
+	@Deprecated
 	protected String unDoubleQuote(IToken token) {
 		if (token == null) {
 			return null;
@@ -372,22 +376,23 @@ public abstract class AbstractParser {
 		if (benv != null) {
 			sev = benv
 				.getValue(ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE);
-		}
-		if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-			benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
-				.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
-				"unquote", //$NON-NLS-1$
-				token);
+			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+				benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
+					.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
+					"unquote", //$NON-NLS-1$
+					token);
+			}
 		}
 		return decodeString(token, quoted.substring(1, quotedLength-1));
 	}
 	
 	/**
-	 * Removes any 's surrounding a quoted string and decodes any escape sequences
-	 * within it using {@link #decodeEscapeSequence}.
+	 * Removes any quotes surrounding the string value of a token
+	 * using {@link #unSingleQuote(String,int)} and optionally decode any
+	 * escape sequences within it using {@link #decodeEscapeSequence}.
 	 *<p>
-	 * For MDT/OCL 1.3.0 compatibility, escape sequences are only converted
-	 * if the {@link #ParsingOption.USE_BACKSLASH_ESCAPE_PROCESSING} is set.
+	 * For MDT/OCL 1.3.0 compatibility, escape sequences conversion can be disabled
+	 * by resetting {@link #ParsingOption.USE_BACKSLASH_ESCAPE_PROCESSING}.
 	 * 
 	 * @param token containing string to be decoded
 	 * @return string value of <code>token</code> with escapes replaced
@@ -401,11 +406,10 @@ public abstract class AbstractParser {
 		if (quoted == null) {
 			return null;
 		}
-		int quotedLength = quoted.length();
-		if ((quotedLength < 2) || (quoted.charAt(0) != '\'') || (quoted.charAt(quotedLength-1) != '\'')) {
+		String unquoted = unSingleQuote(quoted);
+		if (unquoted == null) {
 			return quoted;
 		}
-		String unquoted = quoted.substring(1, quotedLength-1);
 		Boolean backslashProcessingEnabled = null;
 		BasicEnvironment benv = getEnvironment();
 		if (benv != null) {
@@ -416,6 +420,29 @@ public abstract class AbstractParser {
 			return unquoted;
 		}
 		return decodeString(token, unquoted);
+	}
+
+	/**
+	 * Removes any quotes surrounding a quoted string.
+	 *<p>
+	 * The default implementation removes a leading/trailing single quote pair,
+	 * or an underscore-prefixed leading/trailing single quote pair.
+	 * 
+	 * @param quoted string to be decoded
+	 * @return string content
+	 * @since 3.0
+	 */
+	protected String unSingleQuote(String quoted) {
+		int quotedLength = quoted.length();
+		if ((quotedLength >= 2) && (quoted.charAt(0) == '\'') && (quoted.charAt(quotedLength-1) == '\'')) {
+			return quoted.substring(1, quotedLength-1);
+		}
+		else if ((quotedLength >= 3) && (quoted.charAt(0) == '_') && (quoted.charAt(1) == '\'') && (quoted.charAt(quotedLength-1) == '\'')) {
+			return quoted.substring(2, quotedLength-1);
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: IterateExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: IterateExpOperations.java,v 1.3.10.1 2010/07/09 13:33:10 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -87,8 +87,8 @@ public class IterateExpOperations
 			if (!TypeUtil.exactTypeMatch(env, type, vd.getType())) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.TypeConformanceIterateExp_ERROR_, iterateExp
-						.toString());
+					OCLMessages.TypeConformanceIterateExp_ERROR_,
+					iterateExp.toString());
 			}
 		}
 
@@ -167,8 +167,8 @@ public class IterateExpOperations
 		if ((vd != null) && (vd.getInitExpression() == null)) {
 			result = false;
 			message = OCLMessages
-				.bind(OCLMessages.MissingInitIterateExp_ERROR_, iterateExp
-					.toString());
+				.bind(OCLMessages.MissingInitIterateExp_ERROR_,
+					iterateExp.toString());
 		}
 
 		if (!result) {

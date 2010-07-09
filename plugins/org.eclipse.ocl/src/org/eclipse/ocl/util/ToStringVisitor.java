@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.10.6.3 2010/01/30 07:49:40 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.10.6.4 2010/07/09 13:33:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -642,7 +642,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     public String visitConstraint(CT constraint) {
         StringBuffer result = new StringBuffer();
         
-        List<EObject> constrained = getConstrainedElements(constraint);
+        List<? extends EObject> constrained = getConstrainedElements(constraint);
         
         if (!constrained.isEmpty()) {
             EObject elem = constrained.get(0);
@@ -692,7 +692,9 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
             }
             result.append(" = "); //$NON-NLS-1$
         } else {
-            result.append("inv: "); //$NON-NLS-1$
+            result.append("inv "); //$NON-NLS-1$
+            result.append(getName(constraint));
+            result.append(": "); //$NON-NLS-1$
         }
         
         result.append(visit(getSpecification(constraint)));
@@ -712,7 +714,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		return (uml == null)? null : uml.isProperty(element);
 	}
 	
-	protected List<EObject> getConstrainedElements(CT constraint) {
+	protected List<? extends EObject> getConstrainedElements(CT constraint) {
 		return (uml == null)? null : uml.getConstrainedElements(constraint);
 	}
 	

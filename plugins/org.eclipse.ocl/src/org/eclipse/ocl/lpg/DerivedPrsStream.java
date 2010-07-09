@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DerivedPrsStream.java,v 1.1.2.2 2010/02/01 11:44:57 ewillink Exp $
+ * $Id: DerivedPrsStream.java,v 1.1.2.3 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

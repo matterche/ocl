@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.11.2.3 2010/01/15 17:27:39 ewillink Exp $
+ * $Id: TypesPackageImpl.java,v 1.11.2.4 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -672,8 +672,8 @@ public class TypesPackageImpl
 			theExpressionsPackage.getCollectionKind(),
 			"kind", null, 1, 1, CollectionType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(collectionTypeEClass, ecorePackage
-			.getEBoolean(),
+		EOperation op = addEOperation(collectionTypeEClass,
+			ecorePackage.getEBoolean(),
 			"checkCollectionTypeName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

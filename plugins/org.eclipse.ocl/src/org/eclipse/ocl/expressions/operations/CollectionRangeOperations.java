@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionRangeOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: CollectionRangeOperations.java,v 1.3.10.1 2010/07/09 13:33:10 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -80,8 +80,8 @@ public class CollectionRangeOperations
 
 			if ((type != null) && (first.getType() != null)
 				&& (last.getType() != null)) {
-				C partsType = TypeUtil.commonSuperType(null, env, first
-					.getType(), last.getType());
+				C partsType = TypeUtil.commonSuperType(null, env,
+					first.getType(), last.getType());
 
 				result = (partsType != null)
 					&& TypeUtil.exactTypeMatch(env, partsType, type);

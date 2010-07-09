@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPartOperations.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: TupleLiteralPartOperations.java,v 1.4.8.1 2010/07/09 13:33:10 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -155,8 +155,8 @@ public class TupleLiteralPartOperations {
 								.toString();
 						}
 						message = OCLMessages.bind(
-							OCLMessages.TuplePartType_ERROR_, tupleLiteralPart
-								.getName(), tupleLiteral);
+							OCLMessages.TuplePartType_ERROR_,
+							tupleLiteralPart.getName(), tupleLiteral);
 					}
 				}
 			}

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: LoopExpOperations.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: LoopExpOperations.java,v 1.4.8.1 2010/07/09 13:33:11 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -120,8 +120,8 @@ public class LoopExpOperations
 			if (loopiter.getInitExpression() != null) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.IterateExpLoopVarInit_ERROR_, loopExp
-						.toString());
+					OCLMessages.IterateExpLoopVarInit_ERROR_,
+					loopExp.toString());
 				break;
 			}
 		}

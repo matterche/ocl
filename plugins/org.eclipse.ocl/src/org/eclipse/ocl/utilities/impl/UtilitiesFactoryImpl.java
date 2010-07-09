@@ -1,4 +1,6 @@
-/*******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,10 +9,8 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- * 
- * </copyright>
  *
- * $Id: UtilitiesFactoryImpl.java,v 1.6.10.2 2010/01/20 06:09:33 ewillink Exp $
+ * $Id: UtilitiesFactoryImpl.java,v 1.6.10.3 2010/07/09 13:33:11 ewillink Exp $
  * /
  *******************************************************************************/
 package org.eclipse.ocl.utilities.impl;

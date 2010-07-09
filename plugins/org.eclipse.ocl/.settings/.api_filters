@@ -5,14 +5,14 @@
             <message_arguments>
                 <message_argument value="1.3"/>
                 <message_argument value="3.0"/>
-                <message_argument value="getStartToken()"/>
+                <message_argument value="getEndToken()"/>
             </message_arguments>
         </filter>
         <filter id="1209008130">
             <message_arguments>
                 <message_argument value="1.3"/>
                 <message_argument value="3.0"/>
-                <message_argument value="getEndToken()"/>
+                <message_argument value="getStartToken()"/>
             </message_arguments>
         </filter>
         <filter id="1209008130">
@@ -33,7 +33,17 @@
     <resource path="src/org/eclipse/ocl/cst/CSTPackage.java" type="org.eclipse.ocl.cst.CSTPackage">
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="NULL_LITERAL_EXP_CS__VALUE"/>
+                <message_argument value="BOOLEAN_LITERAL_EXP_CS__TYPE"/>
+            </message_arguments>
+        </filter>
+        <filter id="1211105284">
+            <message_arguments>
+                <message_argument value="BOOLEAN_LITERAL_EXP_CS__VALUE"/>
+            </message_arguments>
+        </filter>
+        <filter id="1211105284">
+            <message_arguments>
+                <message_argument value="COLLECTION_TYPE_CS__TYPE"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
@@ -48,27 +58,17 @@
         </filter>
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="NULL_LITERAL_EXP_CS__TYPE"/>
-            </message_arguments>
-        </filter>
-        <filter id="1211105284">
-            <message_arguments>
                 <message_argument value="INVALID_LITERAL_EXP_CS__VALUE"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="COLLECTION_TYPE_CS__TYPE"/>
+                <message_argument value="NULL_LITERAL_EXP_CS__TYPE"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="BOOLEAN_LITERAL_EXP_CS__TYPE"/>
-            </message_arguments>
-        </filter>
-        <filter id="1211105284">
-            <message_arguments>
-                <message_argument value="BOOLEAN_LITERAL_EXP_CS__VALUE"/>
+                <message_argument value="NULL_LITERAL_EXP_CS__VALUE"/>
             </message_arguments>
         </filter>
     </resource>
@@ -86,20 +86,6 @@
             <message_arguments>
                 <message_argument value="1.3"/>
                 <message_argument value="3.0"/>
-                <message_argument value="setEndToken(IToken)"/>
-            </message_arguments>
-        </filter>
-        <filter id="1141899266">
-            <message_arguments>
-                <message_argument value="1.3"/>
-                <message_argument value="3.0"/>
-                <message_argument value="setStartToken(IToken)"/>
-            </message_arguments>
-        </filter>
-        <filter id="1141899266">
-            <message_arguments>
-                <message_argument value="1.3"/>
-                <message_argument value="3.0"/>
                 <message_argument value="getEndToken()"/>
             </message_arguments>
         </filter>
@@ -108,6 +94,20 @@
                 <message_argument value="1.3"/>
                 <message_argument value="3.0"/>
                 <message_argument value="getStartToken()"/>
+            </message_arguments>
+        </filter>
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="1.3"/>
+                <message_argument value="3.0"/>
+                <message_argument value="setEndToken(IToken)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="1.3"/>
+                <message_argument value="3.0"/>
+                <message_argument value="setStartToken(IToken)"/>
             </message_arguments>
         </filter>
     </resource>
@@ -121,7 +121,7 @@
     <resource path="src/org/eclipse/ocl/lpg/AbstractParser.java" type="org.eclipse.ocl.lpg.AbstractParser">
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="setOffsets(CSTNode, IToken, IToken)"/>
+                <message_argument value="resetLexStream(LexStream)"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -141,7 +141,7 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="resetLexStream(LexStream)"/>
+                <message_argument value="setOffsets(CSTNode, IToken, IToken)"/>
             </message_arguments>
         </filter>
     </resource>
@@ -157,12 +157,12 @@
     <resource path="src/org/eclipse/ocl/parser/OCLKWLexerprs.java" type="org.eclipse.ocl.parser.OCLKWLexerprs">
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="MAX_NAME_LENGTH"/>
+                <message_argument value="ERROR_SYMBOL"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="isNullable"/>
+                <message_argument value="MAX_NAME_LENGTH"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -172,17 +172,7 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="prosthesesIndex"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
                 <message_argument value="SCOPE_UBOUND"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="isNullable(int)"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -192,7 +182,17 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="ERROR_SYMBOL"/>
+                <message_argument value="isNullable"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="isNullable(int)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="prosthesesIndex"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -218,6 +218,11 @@
     <resource path="src/org/eclipse/ocl/parser/OCLKWLexersym.java" type="org.eclipse.ocl.parser.OCLKWLexersym">
         <filter id="1211105284">
             <message_arguments>
+                <message_argument value="Char_Percent"/>
+            </message_arguments>
+        </filter>
+        <filter id="1211105284">
+            <message_arguments>
                 <message_argument value="Char__"/>
             </message_arguments>
         </filter>
@@ -226,16 +231,11 @@
                 <message_argument value="numTokenKinds"/>
             </message_arguments>
         </filter>
-        <filter id="1211105284">
-            <message_arguments>
-                <message_argument value="Char_Percent"/>
-            </message_arguments>
-        </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/OCLLexerprs.java" type="org.eclipse.ocl.parser.OCLLexerprs">
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="SCOPE_UBOUND"/>
+                <message_argument value="ERROR_SYMBOL"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -245,7 +245,12 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="isNullable(int)"/>
+                <message_argument value="SCOPE_SIZE"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="SCOPE_UBOUND"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -260,12 +265,7 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="SCOPE_SIZE"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="prosthesesIndex(int)"/>
+                <message_argument value="isNullable(int)"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -275,7 +275,7 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="ERROR_SYMBOL"/>
+                <message_argument value="prosthesesIndex(int)"/>
             </message_arguments>
         </filter>
     </resource>
@@ -310,17 +310,7 @@
     <resource path="src/org/eclipse/ocl/parser/OCLParserprs.java" type="org.eclipse.ocl.parser.OCLParserprs">
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="prosthesesIndex(int)"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="prosthesesIndex"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="isNullable(int)"/>
+                <message_argument value="getIdentifier_SYMBOL()"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -330,7 +320,17 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="getIdentifier_SYMBOL()"/>
+                <message_argument value="isNullable(int)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="prosthesesIndex"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="prosthesesIndex(int)"/>
             </message_arguments>
         </filter>
     </resource>
@@ -351,12 +351,7 @@
     <resource path="src/org/eclipse/ocl/parser/OCLParsersym.java" type="org.eclipse.ocl.parser.OCLParsersym">
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="numTokenKinds"/>
-            </message_arguments>
-        </filter>
-        <filter id="1211105284">
-            <message_arguments>
-                <message_argument value="TK_static"/>
+                <message_argument value="TK_AT"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
@@ -366,7 +361,7 @@
         </filter>
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="TK_invalid"/>
+                <message_argument value="TK_QUOTED_IDENTIFIER"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
@@ -376,14 +371,24 @@
         </filter>
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="TK_AT"/>
+                <message_argument value="TK_invalid"/>
+            </message_arguments>
+        </filter>
+        <filter id="1211105284">
+            <message_arguments>
+                <message_argument value="TK_static"/>
+            </message_arguments>
+        </filter>
+        <filter id="1211105284">
+            <message_arguments>
+                <message_argument value="numTokenKinds"/>
             </message_arguments>
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingKWLexerprs.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexerprs">
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="prosthesesIndex"/>
+                <message_argument value="ERROR_SYMBOL"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -393,27 +398,7 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="isNullable"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="ERROR_SYMBOL"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="getIdentifier_SYMBOL()"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
                 <message_argument value="SCOPE_SIZE"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="prosthesesIndex(int)"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -423,7 +408,27 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
+                <message_argument value="getIdentifier_SYMBOL()"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="isNullable"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
                 <message_argument value="isNullable(int)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="prosthesesIndex"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="prosthesesIndex(int)"/>
             </message_arguments>
         </filter>
     </resource>
@@ -444,12 +449,12 @@
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingKWLexersym.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingKWLexersym">
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="Char__"/>
+                <message_argument value="Char_Percent"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="Char_Percent"/>
+                <message_argument value="Char__"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
@@ -459,6 +464,31 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingLexerprs.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexerprs">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="ERROR_SYMBOL"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="MAX_NAME_LENGTH"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="SCOPE_SIZE"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="SCOPE_UBOUND"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="getIdentifier_SYMBOL()"/>
+            </message_arguments>
+        </filter>
         <filter id="1143996420">
             <message_arguments>
                 <message_argument value="isNullable"/>
@@ -471,37 +501,12 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="getIdentifier_SYMBOL()"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="MAX_NAME_LENGTH"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="ERROR_SYMBOL"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
                 <message_argument value="prosthesesIndex"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="SCOPE_SIZE"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
                 <message_argument value="prosthesesIndex(int)"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="SCOPE_UBOUND"/>
             </message_arguments>
         </filter>
     </resource>
@@ -536,17 +541,12 @@
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingParserprs.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParserprs">
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="prosthesesIndex(int)"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
-                <message_argument value="prosthesesIndex"/>
-            </message_arguments>
-        </filter>
-        <filter id="1143996420">
-            <message_arguments>
                 <message_argument value="getIdentifier_SYMBOL()"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="isNullable"/>
             </message_arguments>
         </filter>
         <filter id="1143996420">
@@ -556,7 +556,12 @@
         </filter>
         <filter id="1143996420">
             <message_arguments>
-                <message_argument value="isNullable"/>
+                <message_argument value="prosthesesIndex"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="prosthesesIndex(int)"/>
             </message_arguments>
         </filter>
     </resource>
@@ -577,7 +582,7 @@
     <resource path="src/org/eclipse/ocl/parser/backtracking/OCLBacktrackingParsersym.java" type="org.eclipse.ocl.parser.backtracking.OCLBacktrackingParsersym">
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="TK_static"/>
+                <message_argument value="TK_AT"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
@@ -587,22 +592,27 @@
         </filter>
         <filter id="1211105284">
             <message_arguments>
+                <message_argument value="TK_QUOTED_IDENTIFIER"/>
+            </message_arguments>
+        </filter>
+        <filter id="1211105284">
+            <message_arguments>
                 <message_argument value="TK_SINGLE_LINE_COMMENT"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
             <message_arguments>
-                <message_argument value="TK_AT"/>
+                <message_argument value="TK_invalid"/>
+            </message_arguments>
+        </filter>
+        <filter id="1211105284">
+            <message_arguments>
+                <message_argument value="TK_static"/>
             </message_arguments>
         </filter>
         <filter id="1211105284">
             <message_arguments>
                 <message_argument value="numTokenKinds"/>
-            </message_arguments>
-        </filter>
-        <filter id="1211105284">
-            <message_arguments>
-                <message_argument value="TK_invalid"/>
             </message_arguments>
         </filter>
     </resource>

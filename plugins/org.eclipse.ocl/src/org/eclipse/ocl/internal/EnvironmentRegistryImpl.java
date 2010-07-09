@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.5.4.1 2010/01/15 07:46:12 ewillink Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.5.4.2 2010/07/09 13:33:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal;

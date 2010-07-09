@@ -1,4 +1,6 @@
-/*******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +12,13 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesAdapterFactory.java,v 1.8 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: UtilitiesAdapterFactory.java,v 1.8.10.1 2010/07/09 13:33:09 ewillink Exp $
  * /
- *******************************************************************************/
+ *
+ * </copyright>
+ *
+ * $Id: UtilitiesAdapterFactory.java,v 1.8.10.1 2010/07/09 13:33:09 ewillink Exp $
+ */
 package org.eclipse.ocl.utilities.util;
 
 import org.eclipse.emf.common.notify.Adapter;

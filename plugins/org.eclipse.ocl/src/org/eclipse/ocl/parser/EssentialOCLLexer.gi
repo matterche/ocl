@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLLexer.gi,v 1.1.2.3 2010/02/01 11:44:42 ewillink Exp $
+-- * $Id: EssentialOCLLexer.gi,v 1.1.2.4 2010/07/09 13:33:10 ewillink Exp $
 -- */
 --
 -- The Essential OCL Lexer
@@ -77,6 +77,7 @@
 	/**
 	 * @since 3.0
 	 */
+    @Override
     public void reset(Reader reader, String filename) throws java.io.IOException {
     	char[] input_chars = getInputChars(reader);
         reset(input_chars, filename, ECLIPSE_TAB_VALUE);
@@ -88,7 +89,7 @@
  * Essential OCL Lexer
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -98,13 +99,13 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
  *   Borland - Bug 242880
- *   E.D.Willink - Bug 292112
+ *   E.D.Willink - Bug 292112, 295166
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
  $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCLLexer.gi,v 1.1.2.3 2010/02/01 11:44:42 ewillink Exp $
+ * $Id: EssentialOCLLexer.gi,v 1.1.2.4 2010/07/09 13:33:10 ewillink Exp $
  */
 	./
 %End
@@ -124,6 +125,7 @@
 %Export
 
 	IDENTIFIER
+	QUOTED_IDENTIFIER
 	INTEGER_LITERAL
 	REAL_LITERAL
 	STRING_LITERAL
@@ -244,9 +246,16 @@
 		  $EndAction
 		./
 
+	-- Deprecated
 	Token ::= '"' SLNotDQ '"'
 		/.$BeginAction
 					makeToken($_IDENTIFIER);
+		  $EndAction
+		./
+
+	Token ::= '_' SingleQuote SLNotSQOpt SingleQuote
+		/.$BeginAction
+					makeToken($_QUOTED_IDENTIFIER);
 		  $EndAction
 		./
 
@@ -256,12 +265,14 @@
 		  $EndAction
 		./
 
+	-- Deprecated
 	Token ::= Acute SLNotSQOpt Acute
 		/.$BeginAction
 					makeToken($_STRING_LITERAL);
 		  $EndAction
 		./
 
+	-- Deprecated
 	Token ::= BackQuote SLNotSQOpt Acute
 		/.$BeginAction
 					makeToken($_STRING_LITERAL);

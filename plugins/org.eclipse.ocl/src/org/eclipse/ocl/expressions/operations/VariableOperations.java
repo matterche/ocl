@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: VariableOperations.java,v 1.3.10.1 2010/07/09 13:33:11 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -140,8 +140,8 @@ public class VariableOperations {
 				if (!TypeUtil.compatibleTypeMatch(env, init.getType(), type)) {
 					result = false;
 					message = OCLMessages.bind(
-						OCLMessages.TypeConformanceInit_ERROR_, variable
-							.getName());
+						OCLMessages.TypeConformanceInit_ERROR_,
+						variable.getName());
 				}
 			}
 		}

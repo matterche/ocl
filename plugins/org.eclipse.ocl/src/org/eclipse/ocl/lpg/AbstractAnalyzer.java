@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractAnalyzer.java,v 1.4.4.1 2010/02/01 11:45:08 ewillink Exp $
+ * $Id: AbstractAnalyzer.java,v 1.4.4.2 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -290,6 +290,7 @@ public abstract class AbstractAnalyzer {
 	 * 
 	 * @deprecated clients should invoke {@link #reset(char[], String)}
 	 */
+	@Deprecated
 	public void initialize(char[] buffer) {
 		reset(buffer, null);
 	}
@@ -304,6 +305,7 @@ public abstract class AbstractAnalyzer {
 	 * 
 	 * @deprecated clients should invoke {@link #reset(Reader, String)}
 	 */
+	@Deprecated
 	public void initialize(Reader reader)
 			throws IOException {
 		reset(reader, null);

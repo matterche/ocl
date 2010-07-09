@@ -10,7 +10,7 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *               - Bugs 184048, 237126, 245586, 213886, 242236, 259818, 259819, 297541
+ *               - Bugs 184048, 237126, 245586, 213886, 242236, 259818, 259819, 297541, 298128
  *   Adolfo Sanchez-Barbudo Herrera - Bug 237441
  *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
  *               255599, 251349, 242236, 259740
@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38.2.9 2010/01/30 22:25:46 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38.2.10 2010/07/09 13:33:09 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -1066,16 +1066,14 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				simpleNameCS.setAst(astNode);
 			}
 
-			List<EObject> constrainedElement = uml
-				.getConstrainedElements(astNode);
-			constrainedElement.add((EObject) operation);
+			uml.addConstrainedElement(astNode, (EObject) operation);
 
 			C owner = uml.getOwningClassifier(operation);
 			C selfVarType = selfVar.getType();
 			if (owner != selfVarType) {
 				// implicitly redefining the operation in a specializing
 				// classifier
-				constrainedElement.add((EObject) selfVarType);
+				uml.addConstrainedElement(astNode, (EObject) selfVarType);
 
 				if (operationContext != null) {
 					// check settings for using inherited feature context in
@@ -1290,13 +1288,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		CT astNode = createConstraint();
 		initASTMapping(env, astNode, initOrDerValueCS);
 
-		List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
-		constrainedElement.add((EObject) property);
+		uml.addConstrainedElement(astNode, (EObject) property);
 
 		C owner = uml.getOwningClassifier(property);
 		if (owner != env.getSelfVariable().getType()) {
 			// implicitly redefining the property in a specializing classifier
-			constrainedElement.add((EObject) env.getSelfVariable().getType());
+			uml.addConstrainedElement(astNode, (EObject) env.getSelfVariable().getType());
 
 			if (propertyContext != null) {
 				// check settings for using inherited feature context in
@@ -1464,10 +1461,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		C type = env.getContextClassifier();
-		if (type != null) {
-			List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
-			constrainedElement.add((EObject) type);
-		}
+		uml.addConstrainedElement(astNode, (EObject) type);
 
 		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
 		initASTMapping(env, astNode, invCS);
@@ -1516,8 +1510,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			uml.setConstraintName(astNode, simpleNameCS.getValue());
 		}
 
-		List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
-		constrainedElement.add((EObject) contextClassifier);
+		uml.addConstrainedElement(astNode, (EObject) contextClassifier);
 
 		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
 		initASTMapping(env, astNode, defCS);
@@ -1557,7 +1550,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 					if (getEnvironment().getValue(
 						ParsingOptions.DEFINITION_CONSTRAINS_FEATURE)) {
-						constrainedElement.add(feature);
+						uml.addConstrainedElement(astNode, feature);
 					}
 
 					expression = oclExpressionCS(defExpr.getExpressionCS(),
@@ -1597,7 +1590,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 						operCS.getPathNameCS().setAst(contextClassifier);
 					if (getEnvironment().getValue(
 						ParsingOptions.DEFINITION_CONSTRAINS_FEATURE)) {
-						constrainedElement.add(feature);
+						uml.addConstrainedElement(astNode, feature);
 					}
 
 					expression = oclExpressionCS(defExpr.getExpressionCS(),
@@ -4265,7 +4258,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * If the source type is a collection and operator is ".", then there is
 	 * an implicit COLLECT operator.
 	 */
-	C operationSourceType = source.getType();
+	C operationSourceType = source != null ? source.getType() : null;
 
 	// if the sourceType is a TypeType then this must be a static operation
 	boolean isStatic = operationSourceType instanceof TypeType<?, ?>;
@@ -4992,17 +4985,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Object fromAstNode, CSTNode cstNode, Object toAstNode) {
 		OCLUtil.getAdapter(env, BasicEnvironment2.class).initASTMapping(
 			fromAstNode, cstNode, toAstNode);
-	}
-
-	/**
-	 * @since 3.0
-	 */
-	@Deprecated  // Temporary compatibility with 3.0.0M1
-	public static EList<String> createSequenceOfNames(List<SimpleNameCS> simpleNames) {
-		EList<String> sequenceOfNames = new BasicEList<String>();
-		for (SimpleNameCS simpleName : simpleNames)
-			sequenceOfNames.add(simpleName.getValue());
-		return sequenceOfNames;
 	}
 
 	/**

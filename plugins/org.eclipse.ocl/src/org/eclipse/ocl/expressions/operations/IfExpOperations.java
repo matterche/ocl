@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: IfExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: IfExpOperations.java,v 1.3.10.1 2010/07/09 13:33:11 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -142,8 +142,8 @@ public class IfExpOperations
 						|| !TypeUtil.exactTypeMatch(env, type, thenelsetype)) {
 						result = false;
 						message = OCLMessages.bind(
-							OCLMessages.TypeConformanceIfExp_ERROR_, ifExp
-								.toString());
+							OCLMessages.TypeConformanceIfExp_ERROR_,
+							ifExp.toString());
 					}
 				}
 			}

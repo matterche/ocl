@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.6.10.1 2010/01/24 07:41:11 ewillink Exp $
+ * $Id: AnyTypeImpl.java,v 1.6.10.2 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -79,8 +79,8 @@ public class AnyTypeImpl<O>
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			operations = new BasicEList<O>(OCLStandardLibraryUtil
-				.createAnyTypeOperations(env));
+			operations = new BasicEList<O>(
+				OCLStandardLibraryUtil.createAnyTypeOperations(env));
 		}
 
 		return operations;

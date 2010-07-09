@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesFactoryImpl.java,v 1.6.2.2 2010/01/20 06:09:28 ewillink Exp $
+ * $Id: TypesFactoryImpl.java,v 1.6.2.3 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -349,8 +349,8 @@ public class TypesFactoryImpl
 			EList<P> properties = result.oclProperties();
 
 			for (TypedElement<C> part : parts) {
-				properties.add(uml.createProperty(part.getName(), part
-					.getType()));
+				properties.add(uml.createProperty(part.getName(),
+					part.getType()));
 			}
 		}
 

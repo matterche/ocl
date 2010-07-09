@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.4.10.1 2010/01/15 07:42:27 ewillink Exp $
+ * $Id: PrimitiveType.java,v 1.4.10.2 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.10.8.2 2010/02/01 11:44:48 ewillink Exp $
+ * $Id: ValidationVisitor.java,v 1.10.8.3 2010/07/09 13:33:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -268,17 +268,17 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			
 			if (benv != null) {
 				sev = benv.getValue(ProblemOption.STRING_CASE_CONVERSION);
+				if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+	                benv.problem(
+	                        sev,
+	                        ProblemHandler.Phase.VALIDATOR,
+	                        OCLMessages.bind(
+	                                OCLMessages.NonStd_Operation_,
+	                                (opcode == PredefinedType.TO_LOWER) ? "String::toLower()" //$NON-NLS-1$
+	                                    : "String::toUpper()"), "operationCallExp", //$NON-NLS-1$ //$NON-NLS-2$
+	                        oc);
+	            }
 			}
-			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-                benv.problem(
-                        sev,
-                        ProblemHandler.Phase.VALIDATOR,
-                        OCLMessages.bind(
-                                OCLMessages.NonStd_Operation_,
-                                (opcode == PredefinedType.TO_LOWER) ? "String::toLower()" //$NON-NLS-1$
-                                    : "String::toUpper()"), "operationCallExp", //$NON-NLS-1$ //$NON-NLS-2$
-                        oc);
-            }
 		}
 		
 		return Boolean.TRUE;
@@ -996,12 +996,12 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			
 			if (benv != null) {
 				sev = benv.getValue(ProblemOption.CLOSURE_ITERATOR);
+				if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+	                benv.problem(sev, ProblemHandler.Phase.VALIDATOR, OCLMessages
+	                    .bind(OCLMessages.NonStd_Iterator_,
+	                        PredefinedType.CLOSURE_NAME), "iteratorExp", ie); //$NON-NLS-1$
+	            }
 			}
-			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-                benv.problem(sev, ProblemHandler.Phase.VALIDATOR, OCLMessages
-                    .bind(OCLMessages.NonStd_Iterator_,
-                        PredefinedType.CLOSURE_NAME), "iteratorExp", ie); //$NON-NLS-1$
-            }
 			
 			if (!(type instanceof SetType<?, ?>) && !(type instanceof OrderedSetType<?, ?>)) {
 				String message = OCLMessages.bind(
@@ -1496,7 +1496,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     Boolean checkExpressionInOCL(ExpressionInOCL<C, PM> expression, CT constraint,
     		OCLExpression<C> body) {
     	String stereotype = uml.getStereotype(constraint);
-    	List<EObject> constrainedElement = uml.getConstrainedElements(constraint);
+    	List<? extends EObject> constrainedElement = uml.getConstrainedElements(constraint);
     	
     	C bodyType = body.getType();
     	C oclBoolean = getStandardLibrary().getBoolean();
@@ -1649,7 +1649,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
      * @return whether the context classifier is correct
      */
     private Boolean checkContextClassifier(ExpressionInOCL<C, PM> expression,
-    		C constrainedClassifier, List<EObject> constrainedElement) {
+    		C constrainedClassifier, List<? extends EObject> constrainedElement) {
     	
     	C contextualClassifier = getContextualClassifier(expression);
     	
@@ -1682,7 +1682,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
      * @return whether the context classifier is correct
      */
     private Boolean checkContextFeatureClassifier(ExpressionInOCL<C, PM> expression,
-    		Object constrainedFeature, List<EObject> constrainedElement) {
+    		Object constrainedFeature, List<? extends EObject> constrainedElement) {
     	
     	C contextualClassifier = getContextualClassifier(expression);
     	

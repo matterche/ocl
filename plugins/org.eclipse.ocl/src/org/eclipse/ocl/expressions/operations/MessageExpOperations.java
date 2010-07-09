@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageExpOperations.java,v 1.4.8.2 2010/01/15 07:45:23 ewillink Exp $
+ * $Id: MessageExpOperations.java,v 1.4.8.3 2010/07/09 13:33:10 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -110,8 +110,8 @@ public class MessageExpOperations
 			if (arguments.size() != parameters.size()) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.MessageArgumentCount_ERROR_, uml
-						.getName(messageExp.getType()));
+					OCLMessages.MessageArgumentCount_ERROR_,
+					uml.getName(messageExp.getType()));
 			} else {
 				// check type conformance against parameters
 				Iterator<?> paramsIter = parameters.iterator();
@@ -120,12 +120,12 @@ public class MessageExpOperations
 					Object param = paramsIter.next();
 					OCLExpression<C> arg = argsIter.next();
 
-					if (!TypeUtil.compatibleTypeMatch(env, arg.getType(), uml
-						.getOCLType(param))) {
+					if (!TypeUtil.compatibleTypeMatch(env, arg.getType(),
+						uml.getOCLType(param))) {
 						result = false;
 						message = OCLMessages.bind(
-							OCLMessages.MessageArgConformance_ERROR_, uml
-								.getName(param), arg.toString());
+							OCLMessages.MessageArgConformance_ERROR_,
+							uml.getName(param), arg.toString());
 						break;
 					}
 				}
@@ -185,8 +185,8 @@ public class MessageExpOperations
 			if (arguments.size() != attributes.size()) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.MessageArgumentCount_ERROR_, uml
-						.getName(messageExp.getType()));
+					OCLMessages.MessageArgumentCount_ERROR_,
+					uml.getName(messageExp.getType()));
 			} else {
 				// check type conformance against attributes
 				Iterator<?> attrsIter = attributes.iterator();
@@ -195,12 +195,12 @@ public class MessageExpOperations
 					Object attr = attrsIter.next();
 					OCLExpression<C> arg = argsIter.next();
 
-					if (!TypeUtil.compatibleTypeMatch(env, arg.getType(), uml
-						.getOCLType(attr))) {
+					if (!TypeUtil.compatibleTypeMatch(env, arg.getType(),
+						uml.getOCLType(attr))) {
 						result = false;
 						message = OCLMessages.bind(
-							OCLMessages.MessageArgConformance_ERROR_, uml
-								.getName(attr), arg.toString());
+							OCLMessages.MessageArgConformance_ERROR_,
+							uml.getName(attr), arg.toString());
 						break;
 					}
 				}

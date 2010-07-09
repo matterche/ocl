@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionType.java,v 1.7.10.1 2010/01/15 07:42:28 ewillink Exp $
+ * $Id: CollectionType.java,v 1.7.10.2 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 

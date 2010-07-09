@@ -15,7 +15,7 @@
 *
 * </copyright>
 *
-* $Id: AbstractLexer.java,v 1.2.10.2 2010/02/01 11:44:55 ewillink Exp $
+* $Id: AbstractLexer.java,v 1.2.10.3 2010/07/09 13:33:08 ewillink Exp $
 */
 
 package org.eclipse.ocl.lpg;
@@ -83,9 +83,10 @@ public abstract class AbstractLexer
 
     /**
 	 * Define the input text as a given array of characters.
-     * @param buffer the characters
+     * @param inputChars the characters
      * @deprecated clients should use {@link #reset(char[], String)}
      */
+	@Deprecated
 	public void initialize(char[] inputChars) {
 		reset(inputChars, null);
 	}
@@ -97,6 +98,7 @@ public abstract class AbstractLexer
      * 
      * @deprecated clients should invoke {@link #reset(Reader, String)}
      */
+	@Deprecated
 	public void initialize(Reader reader) throws IOException {
     	char[] buffer = getInputChars(reader);
     	reset(buffer, null);
@@ -106,6 +108,7 @@ public abstract class AbstractLexer
 	 * @param parser the {@link AbstractParser} instance
 	 * @deprecated clients should invoke {@link #lexer(DerivedPrsStream)}
 	 */
+	@Deprecated
 	public void lexToTokens(AbstractParser parser) {
 		lexToTokens(null, parser);
 	}
@@ -114,6 +117,7 @@ public abstract class AbstractLexer
 	 * @param parser the {@link AbstractParser} instance
 	 * @deprecated clients should invoke {@link #lexer(Monitor, DerivedPrsStream)}
 	 */
+	@Deprecated
 	public void lexToTokens(Monitor monitor, AbstractParser parser) {
         lexer(monitor, parser.getIPrsStream());
     }
@@ -151,7 +155,7 @@ public abstract class AbstractLexer
      * 
      * @param input_chars the new lexer's input
      * @param filename a file name used for logging when encountering errors/warnings
-     * @param lexer's tab length.
+     * @param tab lexer's tab length.
      *  
 	 * @since 3.0
      */

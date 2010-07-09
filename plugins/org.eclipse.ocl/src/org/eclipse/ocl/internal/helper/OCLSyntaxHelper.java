@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.16.4.2 2010/02/01 11:45:27 ewillink Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.16.4.3 2010/07/09 13:33:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;

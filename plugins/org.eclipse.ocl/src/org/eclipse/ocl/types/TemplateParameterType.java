@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterType.java,v 1.1.2.1 2010/01/15 07:42:27 ewillink Exp $
+ * $Id: TemplateParameterType.java,v 1.1.2.2 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 

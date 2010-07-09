@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,13 +10,13 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *             - Bugs 243976, 259818
+ *             - Bugs 243976, 295166, 259818
  *   Zeligsoft - Bugs 243976, 255599, 251349
  *   Borland - Bugs 242880, 266320
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.11.4.3 2010/02/01 11:44:39 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.11.4.4 2010/07/09 13:33:09 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -352,12 +352,12 @@ public abstract class AbstractOCLParser
 		BasicEnvironment benv = getEnvironment();
 		if (benv != null) {
 			sev = benv.getValue(ProblemOption.CONCEPTUAL_OPERATION_NAME);
-		}
-		if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-			benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
-				.bind(OCLMessages.Conceptual_Operation_Name_, conceptualName),
-				"unquote", //$NON-NLS-1$
-				token);
+			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+				benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
+					.bind(OCLMessages.Conceptual_Operation_Name_, conceptualName),
+					"unquote", //$NON-NLS-1$
+					token);
+			}
 		}
 		return result;
 	}
@@ -365,10 +365,21 @@ public abstract class AbstractOCLParser
 	/**
 	 * @since 3.0
 	 */
+	@SuppressWarnings("deprecation")
 	protected SimpleNameCS createSimpleNameCS(SimpleTypeEnum type, IToken token) {
 		SimpleNameCS result = CSTFactory.eINSTANCE.createSimpleNameCS();
 		result.setType(type);
 		result.setValue(unDoubleQuote(token));
+		return result;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	protected SimpleNameCS createQuotedSimpleNameCS(SimpleTypeEnum type, IToken token) {
+		SimpleNameCS result = CSTFactory.eINSTANCE.createSimpleNameCS();
+		result.setType(type);
+		result.setValue(unSingleQuote(token));
 		return result;
 	}
 
@@ -508,28 +519,21 @@ public abstract class AbstractOCLParser
 	/**
 	 * @since 3.0
 	 */
+	protected SimpleNameCS extendQuotedSimpleNameCS(SimpleNameCS simpleName, IToken token) {       
+        String oldString = simpleName.getValue();
+        String newString = unSingleQuote(token);
+    	String joinedString = oldString + newString;
+    	simpleName.setValue(joinedString);
+		return simpleName;
+	}
+
+	/**
+	 * @since 3.0
+	 */
 	protected StringLiteralExpCS extendStringLiteralExpCS(StringLiteralExpCS string, IToken token) {       
         String oldString = string.getUnescapedStringSymbol();
         String newString = unSingleQuote(token);
-        int oldFinish = string.getEndOffset();
-        int newStart = token.getStartOffset();
-    	String joinedString;
-        if (newStart - oldFinish > 1) {
-        	joinedString = oldString + newString;
-            }
-        else {
-        	joinedString = oldString + '\'' + newString;
-    		ProblemHandler.Severity sev = getEnvironment().getValue(
-    			ProblemOption.STRING_SINGLE_QUOTE_ESCAPE);
-    		if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-    			getEnvironment().problem(
-    				sev,
-    				ProblemHandler.Phase.PARSER,
-    				OCLMessages.bind(OCLMessages.NonStd_SQuote_Escape_,
-    					joinedString), "STRING_LITERAL", //$NON-NLS-1$
-    					joinedString);
-    		}
-        }
+    	String joinedString = oldString + newString;
 		string.setSymbol(joinedString);
     	string.setStringSymbol(joinedString);
     	string.setUnescapedStringSymbol(joinedString);

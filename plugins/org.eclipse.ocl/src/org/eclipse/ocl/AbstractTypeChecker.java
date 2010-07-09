@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.5.6.3 2010/01/30 22:25:46 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.5.6.4 2010/07/09 13:33:11 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -63,7 +63,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * </p>
  * <p>
  * This class is not intended to be extended by clients. They should extend
- * {@link AbstractTypeResolver} instead, so that {@link TypeChekcer} can be
+ * {@link AbstractTypeResolver} instead, so that {@link TypeChecker} can be
  * successfully adapted by {@link AbstractEnvironment}. However, if an already
  * implemented {@link TypeResolver} wants to exploit the type checking system
  * extensibility, it may extend this class.
@@ -174,9 +174,13 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		// and so does OclAny, also
 		if (type1 == stdlib.getOclAny()) {
-			return STRICT_SUPERTYPE;
+			return (type2 instanceof CollectionType<?, ?>)
+				? UNRELATED_TYPE
+				: STRICT_SUPERTYPE;
 		} else if (type2 == stdlib.getOclAny()) {
-			return STRICT_SUBTYPE;
+			return (type1 instanceof CollectionType<?, ?>)
+				? UNRELATED_TYPE
+				: STRICT_SUBTYPE;
 		}
 
 		// handle primitive types
@@ -746,15 +750,10 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	 * Finds the most specific (re)definition of an attribute in the specified
 	 * classifier.
 	 * 
-	 * @param env
-	 *            the OCL environment
 	 * @param owner
 	 *            the classifier to search
 	 * @param name
 	 *            the name of the operation
-	 * @param args
-	 *            a list of arguments to match against the operation signature,
-	 *            as either expressions or variables
 	 * 
 	 * @return the matching operation, or <code>null</code> if not found
 	 */
@@ -1007,6 +1006,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		int i = 0;
 		for (Object paramOrProperty : paramsOrProperties) {
+			@SuppressWarnings("null")
 			TypedElement<C> arg = args.get(i++);
 			C argType = arg.getType();
 			C popType = resolve(uml.getOCLType(paramOrProperty));

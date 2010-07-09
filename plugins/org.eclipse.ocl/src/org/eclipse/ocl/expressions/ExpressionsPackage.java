@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackage.java,v 1.10.10.4 2010/01/18 08:57:50 ewillink Exp $
+ * $Id: ExpressionsPackage.java,v 1.10.10.5 2010/07/09 13:33:08 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -87,6 +87,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.OCLExpressionImpl <em>OCL Expression</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.OCLExpressionImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOCLExpression()
@@ -97,6 +99,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -106,6 +110,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -115,6 +121,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>OCL Expression</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -124,6 +132,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CallExpImpl <em>Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.CallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCallExp()
@@ -134,6 +144,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -143,6 +155,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -152,6 +166,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -161,6 +177,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -170,6 +188,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -179,6 +199,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -188,6 +210,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.FeatureCallExpImpl <em>Feature Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.FeatureCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getFeatureCallExp()
@@ -198,6 +222,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -207,6 +233,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -216,6 +244,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -225,6 +255,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -234,6 +266,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -243,6 +277,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -252,6 +288,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Feature Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -261,6 +299,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.NavigationCallExpImpl <em>Navigation Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.NavigationCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNavigationCallExp()
@@ -271,6 +311,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -280,6 +322,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -289,6 +333,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -298,6 +344,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -307,6 +355,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -316,6 +366,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -325,6 +377,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -334,6 +388,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -343,6 +399,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Navigation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -352,6 +410,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.AssociationClassCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getAssociationClassCallExp()
@@ -362,6 +422,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -371,6 +433,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -380,6 +444,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -389,6 +455,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -398,6 +466,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -407,6 +477,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -416,6 +488,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -425,6 +499,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -434,6 +510,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Referred Association Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -443,6 +521,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -452,6 +532,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.LiteralExpImpl <em>Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.LiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLiteralExp()
@@ -462,6 +544,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -471,6 +555,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -480,6 +566,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -489,6 +577,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.PrimitiveLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getPrimitiveLiteralExp()
@@ -499,6 +589,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -508,6 +600,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -517,6 +611,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Primitive Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -526,6 +622,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.BooleanLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getBooleanLiteralExp()
@@ -536,6 +634,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -545,6 +645,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -554,6 +656,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Boolean Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -563,6 +667,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Boolean Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -572,6 +678,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CollectionLiteralPartImpl <em>Collection Literal Part</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.CollectionLiteralPartImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralPart()
@@ -582,6 +690,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Collection Literal Part</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -591,6 +701,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CollectionItemImpl <em>Collection Item</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.CollectionItemImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionItem()
@@ -601,6 +713,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Item</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -610,6 +724,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Collection Item</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -619,6 +735,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.CollectionLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralExp()
@@ -629,6 +747,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -638,6 +758,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -647,6 +769,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -656,6 +780,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -665,6 +791,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Simple Range</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -674,6 +802,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Collection Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -683,6 +813,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CollectionRangeImpl <em>Collection Range</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.CollectionRangeImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionRange()
@@ -693,6 +825,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>First</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -702,6 +836,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Last</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -711,6 +847,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Collection Range</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -720,6 +858,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.EnumLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getEnumLiteralExp()
@@ -730,6 +870,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -739,6 +881,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -748,6 +892,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Referred Enum Literal</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -757,6 +903,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Enum Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -766,6 +914,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.IfExpImpl <em>If Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.IfExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIfExp()
@@ -776,6 +926,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -785,6 +937,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -794,6 +948,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -803,6 +959,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Then Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -812,6 +970,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Else Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -821,6 +981,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>If Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -830,6 +992,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.NumericLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNumericLiteralExp()
@@ -840,6 +1004,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -849,6 +1015,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -858,6 +1026,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Numeric Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -867,6 +1037,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIntegerLiteralExp()
@@ -877,6 +1049,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -886,6 +1060,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -895,6 +1071,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -904,6 +1082,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Integer Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -913,6 +1093,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getUnlimitedNaturalLiteralExp()
@@ -923,6 +1105,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -932,6 +1116,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -941,6 +1127,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -951,6 +1139,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -960,6 +1150,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -969,6 +1161,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.InvalidLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getInvalidLiteralExp()
@@ -979,6 +1173,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -988,6 +1184,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -997,6 +1195,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1006,6 +1206,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.LoopExpImpl <em>Loop Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.LoopExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLoopExp()
@@ -1016,6 +1218,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1025,6 +1229,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1034,6 +1240,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1043,6 +1251,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1052,6 +1262,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1061,6 +1273,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1070,6 +1284,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1079,6 +1295,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Loop Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1088,6 +1306,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.IterateExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIterateExp()
@@ -1098,6 +1318,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1107,6 +1329,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1116,6 +1340,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1125,6 +1351,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1134,6 +1362,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1143,6 +1373,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1152,6 +1384,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1161,6 +1395,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1170,6 +1406,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Iterate Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1179,6 +1417,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.IteratorExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIteratorExp()
@@ -1189,6 +1429,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.LetExpImpl <em>Let Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.LetExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLetExp()
@@ -1199,6 +1441,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.MessageExpImpl <em>Message Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.MessageExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getMessageExp()
@@ -1209,6 +1453,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.NullLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNullLiteralExp()
@@ -1219,6 +1465,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.OperationCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOperationCallExp()
@@ -1229,6 +1477,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.PropertyCallExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getPropertyCallExp()
@@ -1239,6 +1489,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.RealLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getRealLiteralExp()
@@ -1249,6 +1501,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.StateExpImpl <em>State Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.StateExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStateExp()
@@ -1259,6 +1513,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.StringLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStringLiteralExp()
@@ -1269,6 +1525,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralExp()
@@ -1279,6 +1537,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralPart()
@@ -1289,6 +1549,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TypeExpImpl <em>Type Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.TypeExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTypeExp()
@@ -1299,6 +1561,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
@@ -1309,6 +1573,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.VariableImpl <em>Variable</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.VariableImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariable()
@@ -1319,6 +1585,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1328,6 +1596,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1337,6 +1607,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1346,6 +1618,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1355,6 +1629,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1364,6 +1640,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Represented Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1373,6 +1651,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Variable</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1382,6 +1662,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1391,6 +1673,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1400,6 +1684,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1409,6 +1695,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1418,6 +1706,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1427,6 +1717,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1436,6 +1728,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1445,6 +1739,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Iterator Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1454,6 +1750,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1463,6 +1761,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1472,6 +1772,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>In</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1481,6 +1783,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1490,6 +1794,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Let Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1499,6 +1805,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1508,6 +1816,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1517,6 +1827,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1526,6 +1838,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1535,6 +1849,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1544,6 +1860,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1553,6 +1871,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Called Operation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1562,6 +1882,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Sent Signal</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1571,6 +1893,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Message Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1580,6 +1904,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1589,6 +1915,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1598,6 +1926,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Null Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1607,6 +1937,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1616,6 +1948,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1625,6 +1959,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1634,6 +1970,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1643,6 +1981,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1652,6 +1992,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1661,6 +2003,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1670,6 +2014,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1679,6 +2025,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Operation Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1688,6 +2036,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>New Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1698,6 +2048,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1707,6 +2059,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1716,6 +2070,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1725,6 +2081,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1734,6 +2092,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1743,6 +2103,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1752,6 +2114,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1761,6 +2125,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1770,6 +2136,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1779,6 +2147,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1788,6 +2158,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Property Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1797,6 +2169,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1806,6 +2180,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1815,6 +2191,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Real Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1824,6 +2202,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Real Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1833,6 +2213,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1842,6 +2224,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1851,6 +2235,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Referred State</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1860,6 +2246,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>State Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1869,6 +2257,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1878,6 +2268,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1887,6 +2279,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>String Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1896,6 +2290,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>String Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1905,6 +2301,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1914,6 +2312,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1923,6 +2323,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1932,6 +2334,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1941,6 +2345,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1950,6 +2356,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1959,6 +2367,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1968,6 +2378,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1977,6 +2389,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1986,6 +2400,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1995,6 +2411,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2004,6 +2422,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2013,6 +2433,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2022,6 +2444,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2031,6 +2455,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Type Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2040,6 +2466,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2049,6 +2477,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2058,6 +2488,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2067,6 +2499,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2076,6 +2510,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Unspecified Value Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2085,6 +2521,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.VariableExpImpl <em>Variable Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.impl.VariableExpImpl
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariableExp()
@@ -2095,6 +2533,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2104,6 +2544,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2113,6 +2555,8 @@ public interface ExpressionsPackage
 	/**
 	 * The feature id for the '<em><b>Referred Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2122,6 +2566,8 @@ public interface ExpressionsPackage
 	/**
 	 * The number of structural features of the '<em>Variable Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2131,6 +2577,8 @@ public interface ExpressionsPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.expressions.CollectionKind
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionKind()

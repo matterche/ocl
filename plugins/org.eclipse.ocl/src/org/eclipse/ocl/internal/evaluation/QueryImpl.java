@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.6 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: QueryImpl.java,v 1.6.6.1 2010/07/09 13:33:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -46,8 +46,8 @@ import org.eclipse.ocl.util.ProblemAware;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.query.impl.QueryImpl#getExtentMap <em>Extent Map</em>}</li>
- *   <li>{@link org.eclipse.ocl.query.impl.QueryImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.internal.evaluation.QueryImpl#getExtentMap <em>Extent Map</em>}</li>
+ *   <li>{@link org.eclipse.ocl.internal.evaluation.QueryImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *

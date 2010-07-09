@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.11.10.6 2010/01/30 07:49:39 ewillink Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.11.10.7 2010/07/09 13:33:11 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -1739,8 +1739,9 @@ public class ExpressionsPackageImpl
 			ecorePackage.getEBooleanObject(),
 			"booleanSymbol", null, 0, 1, BooleanLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(booleanLiteralExpEClass, ecorePackage
-			.getEBoolean(), "checkBooleanType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = addEOperation(booleanLiteralExpEClass,
+			ecorePackage.getEBoolean(),
+			"checkBooleanType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -1810,8 +1811,8 @@ public class ExpressionsPackageImpl
 			ecorePackage.getEBoolean(),
 			"simpleRange", null, 0, 1, CollectionLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(collectionLiteralExpEClass, ecorePackage
-			.getEBoolean(),
+		op = addEOperation(collectionLiteralExpEClass,
+			ecorePackage.getEBoolean(),
 			"checkNoCollectionInstances", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1822,8 +1823,9 @@ public class ExpressionsPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(collectionLiteralExpEClass, ecorePackage
-			.getEBoolean(), "checkSetKind", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(collectionLiteralExpEClass,
+			ecorePackage.getEBoolean(),
+			"checkSetKind", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -1833,8 +1835,9 @@ public class ExpressionsPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(collectionLiteralExpEClass, ecorePackage
-			.getEBoolean(), "checkSequenceKind", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(collectionLiteralExpEClass,
+			ecorePackage.getEBoolean(),
+			"checkSequenceKind", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -1844,8 +1847,9 @@ public class ExpressionsPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(collectionLiteralExpEClass, ecorePackage
-			.getEBoolean(), "checkBagKind", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(collectionLiteralExpEClass,
+			ecorePackage.getEBoolean(),
+			"checkBagKind", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -1855,8 +1859,9 @@ public class ExpressionsPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(collectionLiteralExpEClass, ecorePackage
-			.getEBoolean(), "checkElementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(collectionLiteralExpEClass,
+			ecorePackage.getEBoolean(),
+			"checkElementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -2012,8 +2017,9 @@ public class ExpressionsPackageImpl
 			ecorePackage.getEBoolean(),
 			"unlimited", null, 1, 1, UnlimitedNaturalLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(unlimitedNaturalLiteralExpEClass, ecorePackage
-			.getEBoolean(), "checkNaturalType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(unlimitedNaturalLiteralExpEClass,
+			ecorePackage.getEBoolean(),
+			"checkNaturalType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());

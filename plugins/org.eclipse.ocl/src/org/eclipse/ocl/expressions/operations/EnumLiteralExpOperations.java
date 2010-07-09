@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EnumLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: EnumLiteralExpOperations.java,v 1.3.10.1 2010/07/09 13:33:10 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -88,8 +88,8 @@ public class EnumLiteralExpOperations
 				|| !TypeUtil.exactTypeMatch(env, uml.getEnumeration(l), type)) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.IllegalEnumLiteral_ERROR_, enumLiteralExp
-						.toString());
+					OCLMessages.IllegalEnumLiteral_ERROR_,
+					enumLiteralExp.toString());
 			}
 		}
 
