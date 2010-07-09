@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.17.2.3 2010/01/30 20:15:30 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.17.2.4 2010/07/09 14:18:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -42,6 +42,7 @@ import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.Tuple;
@@ -1065,8 +1066,11 @@ public class CollectionsTest
 	/**
 	 * Tests that evaluating an EEList-typed operation call does not result in a
 	 * scalar value.
-	 * FIXME Bug 297011 EObject::eContents() no longer supported by EMF
+	 */
 	public void test_valueOfOperationTypedByEEList_202611() {
+		ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions
+			.implicitRootClass(ocl.getEnvironment()),
+			EcorePackage.Literals.EOBJECT);
 		helper.setContext(EcorePackage.Literals.EPACKAGE);
 
 		try {
@@ -1088,7 +1092,7 @@ public class CollectionsTest
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
-	} */
+	}
 
 	/**
 	 * Tests that generic collection types (those whose element type is

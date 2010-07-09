@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2009 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
- *   Ed Willink - Bug 254919, 298634
+ *   E.D.Willink - Bugs 191689, 254919, 298634
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.24.2.6 2010/01/30 22:25:44 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.24.2.7 2010/07/09 14:18:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -103,7 +103,7 @@ public abstract class AbstractTestSuite
 	/**
 	 * Adds parser-style independent tests to the test suite.
 	 * 
-	 * @param the suite
+	 * @param result the suite
 	 */
 	public static void suite(CheckedTestSuite result) {
 		result.createTestSuite(DebugTest.class, "Special Debug Tests");
@@ -148,13 +148,14 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests");
 		result.createTestSuite(SerializationTest.class, "Serialization Tests");
 		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests");
+		result.createTestSuite(DelegatesTest.class, "Delegate Tests");
 		result.createTestSuite(CollectionsConformToOclAnyTest.class, "Collections Conformance to OclAny Tests");
 	}
 	
 	/**
 	 * Adds backtracking tests to the test suite.
 	 * 
-	 * @param the suite
+	 * @param result the suite
 	 */
 	public static void suiteBacktracking(CheckedTestSuite result) {
 		result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests");
