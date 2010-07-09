@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OCLRootItemProvider.java,v 1.1.2.2 2010/01/30 07:49:45 ewillink Exp $
+ * $Id: OCLRootItemProvider.java,v 1.1.2.3 2010/07/09 10:21:43 ewillink Exp $
  */
 package org.eclipse.ocl.library.provider;
 
@@ -63,17 +63,21 @@ public class OCLRootItemProvider
 			addEnumerationPropertyDescriptor(object);
 			addIntegerPropertyDescriptor(object);
 			addJavaPropertyDescriptor(object);
+			addNonOrderedCollectionPropertyDescriptor(object);
+			addNonUniqueCollectionPropertyDescriptor(object);
 			addOclAnyPropertyDescriptor(object);
 			addOclInvalidPropertyDescriptor(object);
 			addOclMessagePropertyDescriptor(object);
 			addOclTuplePropertyDescriptor(object);
 			addOclTypePropertyDescriptor(object);
 			addOclVoidPropertyDescriptor(object);
+			addOrderedCollectionPropertyDescriptor(object);
 			addOrderedSetPropertyDescriptor(object);
 			addRealPropertyDescriptor(object);
 			addSequencePropertyDescriptor(object);
 			addSetPropertyDescriptor(object);
 			addStringPropertyDescriptor(object);
+			addUniqueCollectionPropertyDescriptor(object);
 			addUnlimitedNaturalPropertyDescriptor(object);
 			addInvalidPropertyDescriptor(object);
 			addNullPropertyDescriptor(object);
@@ -237,6 +241,50 @@ public class OCLRootItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Non Ordered Collection feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNonOrderedCollectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLCache_nonOrderedCollection_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_nonOrderedCollection_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_CACHE__NON_ORDERED_COLLECTION,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Non Unique Collection feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNonUniqueCollectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLCache_nonUniqueCollection_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_nonUniqueCollection_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_CACHE__NON_UNIQUE_COLLECTION,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Ocl Any feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,6 +417,28 @@ public class OCLRootItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Ordered Collection feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOrderedCollectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLCache_orderedCollection_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_orderedCollection_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_CACHE__ORDERED_COLLECTION,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Ordered Set feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -470,6 +540,28 @@ public class OCLRootItemProvider
 				 getString("_UI_OCLCache_string_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_string_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LibraryPackage.Literals.OCL_CACHE__STRING,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Unique Collection feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUniqueCollectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OCLCache_uniqueCollection_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OCLCache_uniqueCollection_feature", "_UI_OCLCache_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LibraryPackage.Literals.OCL_CACHE__UNIQUE_COLLECTION,
 				 false,
 				 false,
 				 false,
