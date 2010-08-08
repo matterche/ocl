@@ -1,0 +1,56 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: GenerateXtextModels.mwe2,v 1.1.2.1 2010/08/08 11:15:12 ewillink Exp $
+ * 
+ * Run As->MWE2 Workflow to regenerate the Xtest CST models.
+ */
+module GenerateXtextModels
+
+import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.ecore.resource.impl.*
+
+/**
+ *	Generate the Concrete Syntax Models used by the Xtext editors.
+ */
+Workflow {
+	bean = ResourceSetImpl : resourceSet {}
+    bean = StandaloneSetup { resourceSet = resourceSet
+    	platformUri = ".."
+    	registerGeneratedEPackage = "org.eclipse.xtext.common.types.TypesPackage"
+    	uriMap = Mapping {
+    		from = "platform:/plugin/org.eclipse.xtext.common.types/"
+    		to = "../org.eclipse.xtext.common.types/"
+    	}
+    }
+    bean = GenModelSetup { resourceSet = resourceSet }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel" 	
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.genmodel"
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel"
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.genmodel"
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.genmodel"
+    }
+}
+
