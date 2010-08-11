@@ -17,6 +17,7 @@ version="3.0.1"
 # leave blank to use assumed values (which may be wrong!)
 projRelengRoot='-projRelengRoot :pserver:anonymous@dev.eclipse.org:/cvsroot/modeling'
 projRelengPath='-projRelengPath org.eclipse.mdt/org.eclipse.ocl/releng'
+projRelengBranch='-projRelengBranch R3_0_maintenance'
 
 # where should we look for pre-checked out project sources for org.eclipse.dash.common.releng and org.eclipse.releng.basebuilder ?
 cvsProjectBaseDir=/opt/public/cbi/build # build.eclipse.org
