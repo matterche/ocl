@@ -87,7 +87,7 @@ thirdPartyJarsDir="${writableBuildRoot}/3rdPartyJars"
 cd ${writableBuildRoot}/org.eclipse.dash.common.releng/tools/scripts
 ./start.sh -projectid ${projectid} -version ${version} -buildType ${buildType} -buildTimestamp ${buildTimestamp} \
   -writableBuildRoot ${writableBuildRoot} -thirdPartyJarsDir ${thirdPartyJarsDir} -downloadsDir ${downloadsDir} -buildDir ${buildDir} \
-  ${projRelengRoot} ${projRelengPath} ${EXTRAFLAGS} 2>&1
+  ${projRelengRoot} ${projRelengPath} ${projRelengBranch} ${EXTRAFLAGS} 2>&1
 
 # remove file so workspace navigation is one click simpler
 rm -f ${writableBuildRoot}/.cvspass
