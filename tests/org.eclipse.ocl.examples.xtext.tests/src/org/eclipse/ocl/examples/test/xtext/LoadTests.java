@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.8.6.2 2010/08/17 09:04:48 ewillink Exp $
+ * $Id: LoadTests.java,v 1.8.6.3 2010/08/17 16:49:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -62,6 +62,14 @@ public class LoadTests extends XtextTestCase
 		xmiResource.save(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 		assertNoResourceErrors("Save failed", xmiResource.getErrors());
+	}
+	
+	public void testLoad_Annotations_ecore() throws IOException, InterruptedException {
+		doLoad("Annotations", "ecore");
+	}
+
+	public void testLoad_Annotations_oclinecore() throws IOException, InterruptedException {
+		doLoad("Annotations", "oclinecore");
 	}
 	
 	public void testLoad_Bug321171_oclinecore() throws IOException, InterruptedException {
