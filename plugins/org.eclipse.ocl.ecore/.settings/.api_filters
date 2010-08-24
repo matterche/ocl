@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl.ecore" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter id="924844039">
+            <message_arguments>
+                <message_argument value="3.0.1.qualifier"/>
+                <message_argument value="3.0.0.v201005061704"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>
