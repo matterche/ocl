@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.9.6.1 2010/08/17 19:37:48 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.9.6.2 2010/10/01 14:48:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -29,7 +29,6 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -59,23 +58,35 @@ import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
@@ -83,22 +94,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeOrEnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreAttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassifierCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
 
 public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
@@ -111,7 +109,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 	 * 
 	 * @return the Xtext CST document
 	 */
-	public static OCLinEcoreDocumentCS importFromEcore(ResourceSet resourceSet, String alias, Resource ecoreResource) {
+	public static RootPackageCS importFromEcore(ResourceSet resourceSet, String alias, Resource ecoreResource) {
 		if (ecoreResource == null) {
 			return null;
 		}
@@ -120,7 +118,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 	}
 
 	public static Ecore2OCLinEcore importDocument(ResourceSet resourceSet, Resource ecoreResource) {
-		EList<Adapter> eAdapters = ecoreResource.eAdapters();
+		List<Adapter> eAdapters = ecoreResource.eAdapters();
 		Ecore2OCLinEcore conversion = (Ecore2OCLinEcore) EcoreUtil.getAdapter(eAdapters, Ecore2OCLinEcore.class);
 		if (conversion == null) {
 			conversion = new Ecore2OCLinEcore(resourceSet);
@@ -142,7 +140,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		}
 		Resource ecoreResource = eObject.eResource();
 		Ecore2OCLinEcore conversion = importDocument(resourceSet, ecoreResource);
-		OCLinEcoreDocumentCS documentCS = conversion.getDocument();
+		RootPackageCS documentCS = conversion.getDocument();
 		if (documentCS == null) {
 			return null;
 		}
@@ -177,7 +175,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 	
 	protected Resource ecoreResource;					// Set via eAdapters.add()
 	
-	protected OCLinEcoreDocumentCS documentCS = null;	// Set by importResource
+	protected RootPackageCS documentCS = null;	// Set by importResource
 	
 	public Ecore2OCLinEcore(ResourceSet resourceSet) {
 		super(resourceSet);
@@ -187,9 +185,9 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 	{
 		@Override
 		public AnnotationElementCS caseEAnnotation(EAnnotation eAnnotation) {
-			String source = eAnnotation.getSource();
-			if (source.equals(GEN_MODEL_PACKAGE_NS_URI)) {
-				DocumentationCS csDocumentation = OCLinEcoreCSTFactory.eINSTANCE.createDocumentationCS();
+			String name = eAnnotation.getSource();
+			if (name.equals(GEN_MODEL_PACKAGE_NS_URI)) {
+				DocumentationCS csDocumentation = BaseCSTFactory.eINSTANCE.createDocumentationCS();
 				copyDetails(csDocumentation, eAnnotation, Collections.singletonList("documentation"));
 				String documentation = eAnnotation.getDetails().get("documentation");
 				if (documentation != null) {
@@ -197,15 +195,10 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				}
 				return csDocumentation;
 			}
-			AnnotationCS csAnnotation = OCLinEcoreCSTFactory.eINSTANCE.createAnnotationCS();
+			AnnotationCS csAnnotation = BaseCSTFactory.eINSTANCE.createAnnotationCS();
 			copyDetails(csAnnotation, eAnnotation, null);
-			if (isId(source)) {
-				csAnnotation.setIdSource(source);
-			}
-			else {
-				csAnnotation.setStringSource(source);
-			}
-			doSwitchAll(csAnnotation.getContents(), eAnnotation.getContents());
+			csAnnotation.setName(name);
+			doSwitchAll(csAnnotation.getOwnedContent(), eAnnotation.getContents());
 			if (!eAnnotation.getReferences().isEmpty()) {
 				deferred.add(csAnnotation);
 			}
@@ -213,60 +206,60 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		}
 
 		@Override
-		public OCLinEcoreAttributeCS caseEAttribute(EAttribute eAttribute) {
-			OCLinEcoreAttributeCS csAttribute = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreAttributeCS();
+		public AttributeCS caseEAttribute(EAttribute eAttribute) {
+			AttributeCS csAttribute = BaseCSTFactory.eINSTANCE.createAttributeCS();
 			copyStructuralFeature(csAttribute, eAttribute, null);
-			EList<String> qualifiers = csAttribute.getQualifiers();
+			List<String> qualifiers = csAttribute.getQualifier();
 			setAttribute(qualifiers, "id", "!id", eAttribute, EcorePackage.Literals.EATTRIBUTE__ID);
 			return csAttribute;
 		}
 
 		@Override
-		public OCLinEcoreClassCS caseEClass(EClass eClass) {
-			OCLinEcoreClassCS csClass = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreClassCS();
+		public ClassCS caseEClass(EClass eClass) {
+			ClassCS csClass = BaseCSTFactory.eINSTANCE.createClassCS();
 			copyClassifier(csClass, eClass);
-			EList<String> qualifiers = csClass.getQualifiers();
+			List<String> qualifiers = csClass.getQualifier();
 			setAttribute(qualifiers, "abstract", "!abstract", eClass, EcorePackage.Literals.ECLASS__ABSTRACT);
 			setAttribute(qualifiers, "interface", "!interface", eClass, EcorePackage.Literals.ECLASS__INTERFACE);
-			doSwitchAll(csClass.getSuperTypes(), eClass.getEGenericSuperTypes());
-			doSwitchAll(csClass.getOperations(), eClass.getEOperations());
-			doSwitchAll(csClass.getStructuralFeatures(), eClass.getEStructuralFeatures());
+			doSwitchAll(csClass.getOwnedSuperType(), eClass.getEGenericSuperTypes());
+			doSwitchAll(csClass.getOwnedOperation(), eClass.getEOperations());
+			doSwitchAll(csClass.getOwnedProperty(), eClass.getEStructuralFeatures());
 			return csClass;
 		}
 
 		@Override
 		public DataTypeCS caseEDataType(EDataType eDataType) {
-			DataTypeCS csDataType = OCLinEcoreCSTFactory.eINSTANCE.createDataTypeCS();
+			DataTypeCS csDataType = BaseCSTFactory.eINSTANCE.createDataTypeCS();
 			copyDataTypeOrEnum(csDataType, eDataType);
 			return csDataType;
 		}
 
 		@Override
-		public EnumCS caseEEnum(EEnum eEnum) {
-			EnumCS csEnum = OCLinEcoreCSTFactory.eINSTANCE.createEnumCS();
+		public EnumerationCS caseEEnum(EEnum eEnum) {
+			EnumerationCS csEnum = BaseCSTFactory.eINSTANCE.createEnumerationCS();
 			copyDataTypeOrEnum(csEnum, eEnum);
-			doSwitchAll(csEnum.getLiterals(), eEnum.getELiterals());
+			doSwitchAll(csEnum.getOwnedLiterals(), eEnum.getELiterals());
 			return csEnum;
 		}
 
 		@Override
-		public EnumLiteralCS caseEEnumLiteral(EEnumLiteral eEnumLiteral) {
-			EnumLiteralCS csEnumLiteral = BaseCSTFactory.eINSTANCE.createEnumLiteralCS();
-			copyNamedElement(csEnumLiteral, eEnumLiteral);
-			copyAnnotatedElement(csEnumLiteral, eEnumLiteral, null);
-			csEnumLiteral.setValue(eEnumLiteral.getValue());
+		public EnumerationLiteralCS caseEEnumLiteral(EEnumLiteral eEnumLiteral) {
+			EnumerationLiteralCS csEnumerationLiteral = BaseCSTFactory.eINSTANCE.createEnumerationLiteralCS();
+			copyNamedElement(csEnumerationLiteral, eEnumLiteral);
+			copyAnnotatedElement(csEnumerationLiteral, eEnumLiteral, null);
+			csEnumerationLiteral.setValue(eEnumLiteral.getValue());
 			String literal = basicGet(eEnumLiteral, EcorePackage.Literals.EENUM_LITERAL__LITERAL, String.class);
 //			Enumerator instance = eEnumLiteral.getInstance();
 			if (literal != null) {
-				AnnotationCS csAnnotation = OCLinEcoreCSTFactory.eINSTANCE.createAnnotationCS();
-				csAnnotation.setIdSource(EcorePackage.eNS_URI);
+				AnnotationCS csAnnotation = BaseCSTFactory.eINSTANCE.createAnnotationCS();
+				csAnnotation.setName(EcorePackage.eNS_URI);
 				DetailCS csDetail = BaseCSTFactory.eINSTANCE.createDetailCS();
-				csDetail.setIdName("literal");
+				csDetail.setName("literal");
 				copyDetailLines(csDetail.getValue(), literal);
-				csAnnotation.getDetails().add(csDetail);
-				csEnumLiteral.getAnnotations().add(csAnnotation);
+				csAnnotation.getOwnedDetail().add(csDetail);
+				csEnumerationLiteral.getOwnedAnnotation().add(csAnnotation);
 			}
-			return csEnumLiteral;
+			return csEnumerationLiteral;
 		}
 
 		@Override
@@ -297,7 +290,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				TypedTypeRefCS csTypeRef = BaseCSTFactory.eINSTANCE.createTypedTypeRefCS();
 				setOriginalMapping(csTypeRef, eGenericType);
 				deferred.add(csTypeRef);		// defer eGenericType.getETypeParameter()
-				doSwitchAll(csTypeRef.getTypeArguments(), eGenericType.getETypeArguments());
+//				doSwitchAll(csTypeRef.getTypeArguments(), eGenericType.getETypeArguments());
 				return csTypeRef;
 			}
 			else {
@@ -319,16 +312,16 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		}
 
 		@Override
-		public OCLinEcoreOperationCS caseEOperation(EOperation eOperation) {
-			OCLinEcoreOperationCS csOperation = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreOperationCS();
+		public OperationCS caseEOperation(EOperation eOperation) {
+			OperationCS csOperation = BaseCSTFactory.eINSTANCE.createOperationCS();
 			List<EAnnotation> excludedAnnotations =  null;
 			EAnnotation oclAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			if (oclAnnotation != null) {
 				excludedAnnotations = new ArrayList<EAnnotation>();
 				excludedAnnotations.add(oclAnnotation);
-				List<ConstraintCS> csConstraints = csOperation.getConstraints();
+				List<ConstraintCS> csConstraints = csOperation.getOwnedConstraint();
 				for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
-					ConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createConstraintCS();
+					OCLinEcoreConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreConstraintCS();
 					String key = entry.getKey();
 					if (key.equals("body")) {
 						csConstraint.setStereotype("body");
@@ -363,15 +356,15 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				}				
 			}
 			copyTypedElement(csOperation, eOperation, excludedAnnotations);
-			doSwitchAll(csOperation.getParameters(), eOperation.getEParameters());
-			doSwitchAll(csOperation.getTypeParameters(), eOperation.getETypeParameters());
-			doSwitchAll(csOperation.getExceptions(), eOperation.getEGenericExceptions());
+			doSwitchAll(csOperation.getOwnedParameter(), eOperation.getEParameters());
+			copyTemplateSignature(csOperation, eOperation.getETypeParameters());
+			doSwitchAll(csOperation.getOwnedException(), eOperation.getEGenericExceptions());
 			return csOperation;
 		}
 
 		@Override
 		public PackageCS caseEPackage(EPackage ePackage) {
-			OCLinEcorePackageCS csPackage = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcorePackageCS();
+			PackageCS csPackage = BaseCSTFactory.eINSTANCE.createPackageCS();
 			EAnnotation eAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);
 			List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 			copyNamedElement(csPackage, ePackage);
@@ -379,11 +372,11 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			String prefix = basicGet(ePackage, EcorePackage.Literals.EPACKAGE__NS_PREFIX, String.class);
 			String uri = basicGet(ePackage, EcorePackage.Literals.EPACKAGE__NS_URI, String.class);
 			if ((prefix != null) && (uri != null)) {
-				csPackage.setPrefix(prefix);
-				csPackage.setUri(uri);
+				csPackage.setNsPrefix(prefix);
+				csPackage.setNsURI(uri);
 			}
-			doSwitchAll(csPackage.getSubpackages(), ePackage.getESubpackages());
-			doSwitchAll(csPackage.getClassifiers(), ePackage.getEClassifiers());
+			doSwitchAll(csPackage.getOwnedNestedPackage(), ePackage.getESubpackages());
+			doSwitchAll(csPackage.getOwnedType(), ePackage.getEClassifiers());
 			return csPackage;
 		}
 
@@ -395,15 +388,15 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		}
 
 		@Override
-		public OCLinEcoreReferenceCS caseEReference(EReference eReference) {
-			OCLinEcoreReferenceCS csReference = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreReferenceCS();
+		public ReferenceCS caseEReference(EReference eReference) {
+			ReferenceCS csReference = BaseCSTFactory.eINSTANCE.createReferenceCS();
 			EAnnotation oppositeRole = null; // FIXME eReference.getEAnnotation(EMOFExtendedMetaData.EMOF_PROPERTY_OPPOSITE_ROLE_NAME_ANNOTATION_SOURCE);
 			List<EAnnotation> excludedAnnotations = oppositeRole != null ? Collections.singletonList(oppositeRole) : null;
 			copyStructuralFeature(csReference, eReference, excludedAnnotations);
 			if ((eReference.getEOpposite() != null) || (excludedAnnotations != null) || !eReference.getEKeys().isEmpty()) {
 				deferred.add(csReference);	// Defer
 			}
-			EList<String> qualifiers = csReference.getQualifiers();
+			List<String> qualifiers = csReference.getQualifier();
 			setAttribute(qualifiers, "composes", "!composes", eReference, EcorePackage.Literals.EREFERENCE__CONTAINMENT);
 			setAttribute(qualifiers, "resolve", "!resolve", eReference, EcorePackage.Literals.EREFERENCE__RESOLVE_PROXIES);
 			return csReference;
@@ -415,21 +408,21 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			copyNamedElement(csTypeParameter, eTypeParameter);
 			copyAnnotatedElement(csTypeParameter, eTypeParameter, null);
 			// FIXME super/... Bounds
-			doSwitchAll(csTypeParameter.getExtends(), eTypeParameter.getEBounds());
+			doSwitchAll(csTypeParameter.getOwnedExtends(), eTypeParameter.getEBounds());
 			return csTypeParameter;
 		}
 
-		protected void copyClassifier(OCLinEcoreClassifierCS csClassifier, EClassifier eClassifier) {
+		protected void copyClassifier(ClassifierCS csClassifier, EClassifier eClassifier) {
 			List<EAnnotation> excludedAnnotations =  null;
 			EMap<String, String> oclAnnotationDetails = null;
 			EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			if (oclAnnotation != null) {
 				excludedAnnotations = new ArrayList<EAnnotation>();
 				excludedAnnotations.add(oclAnnotation);
-				List<ConstraintCS> csConstraints = csClassifier.getConstraints();
+				List<ConstraintCS> csConstraints = csClassifier.getOwnedConstraint();
 				oclAnnotationDetails = oclAnnotation.getDetails();
 				for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
-					ConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createConstraintCS();
+					OCLinEcoreConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreConstraintCS();
 					csConstraint.setStereotype("invariant");
 					csConstraint.setName(entry.getKey());
 					csConstraint.setExprString(entry.getValue());
@@ -444,11 +437,11 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				excludedAnnotations.add(ecoreAnnotation);
 				String constraintNameList = ecoreAnnotation.getDetails().get("constraints");
 				if (constraintNameList != null) {
-					List<ConstraintCS> csConstraints = csClassifier.getConstraints();
+					List<ConstraintCS> csConstraints = csClassifier.getOwnedConstraint();
 					String[] constraintNames = constraintNameList.split(" ");
 					for (String constraintName : constraintNames) {
 						if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
-							ConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createConstraintCS();
+							OCLinEcoreConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreConstraintCS();
 							csConstraint.setStereotype("invariant");
 							csConstraint.setName(constraintName);
 							csConstraints.add(csConstraint);
@@ -461,15 +454,14 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			String instanceClassName = basicGet(eClassifier, EcorePackage.Literals.ECLASSIFIER__INSTANCE_CLASS_NAME, String.class);
 			if (instanceClassName != null)
 				csClassifier.setInstanceClassName(instanceClassName);
-			doSwitchAll(csClassifier.getTypeParameters(), eClassifier.getETypeParameters());
+			copyTemplateSignature(csClassifier, eClassifier.getETypeParameters());
 		}
 
-		protected void copyDataTypeOrEnum(DataTypeOrEnumCS csDataType, EDataType eDataType) {
+		protected void copyDataTypeOrEnum(ClassifierCS csDataType, EDataType eDataType) {
 			copyClassifier(csDataType, eDataType);
-			EList<String> qualifiers = csDataType.getQualifiers();
+			List<String> qualifiers = csDataType.getQualifier();
 			setAttribute(qualifiers, "serializable", "!serializable", eDataType, EcorePackage.Literals.EDATA_TYPE__SERIALIZABLE);
 		}
-
 
 		public void copyDetailLines(List<String> lines, String value) {
 			String[] splitLines = value.split("\n");
@@ -489,14 +481,9 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				String name = eDetail.getKey();
 				if ((excludedKeys == null) || !excludedKeys.contains(name)) {
 					DetailCS csDetail = BaseCSTFactory.eINSTANCE.createDetailCS();
-					if (isId(name)) {
-						csDetail.setIdName(name);
-					}
-					else {
-						csDetail.setStringName(name);
-					}
+					csDetail.setName(name);
 					copyDetailLines(csDetail.getValue(), eDetail.getValue());
-					csAnnotation.getDetails().add(csDetail);
+					csAnnotation.getOwnedDetail().add(csDetail);
 				}
 			}
 		}
@@ -505,11 +492,19 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			setOriginalMapping(csModelElement, eModelElement);
 		}
 
+		protected void copyTemplateSignature(TemplateableElementCS csTemplateableElement, List<ETypeParameter> eTypeParameters) {
+			if (!eTypeParameters.isEmpty()) {
+				TemplateSignatureCS csTemplateSignature = BaseCSTFactory.eINSTANCE.createTemplateSignatureCS();
+				csTemplateableElement.setOwnedTemplateSignature(csTemplateSignature);
+				doSwitchAll(csTemplateSignature.getOwnedTemplateParameter(), eTypeParameters);
+			}
+		}
+
 		protected void copyAnnotatedElement(
 				ModelElementCS csModelElement,
 				EModelElement eModelElement,
 				List<EAnnotation> excludedAnnotations) {
-			List<AnnotationElementCS> csAnnotations = csModelElement.getAnnotations();
+			List<AnnotationElementCS> csAnnotations = csModelElement.getOwnedAnnotation();
 			for (EAnnotation eAnnotation : eModelElement.getEAnnotations()) {
 				if ((excludedAnnotations == null) || !excludedAnnotations.contains(eAnnotation)) {
 					AnnotationElementCS csAnnotation = (AnnotationElementCS) doSwitch(eAnnotation);
@@ -519,7 +514,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		}
 
 		public void setOriginalMapping(ModelElementCS csModelElement, EObject eModelElement) {
-			csModelElement.setOriginalObject(eModelElement);
+//			csModelElement.setPivot(eModelElement);
 			if (ecoreResource instanceof XMLResource) {
 				String xmiId = ((XMLResource)ecoreResource).getID(eModelElement);
 				if (xmiId != null) {
@@ -536,14 +531,14 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			allNames.add(name);
 		}
 
-		protected void copyStructuralFeature(OCLinEcoreStructuralFeatureCS csStructuralFeature, EStructuralFeature eStructuralFeature, List<EAnnotation> excludedAnnotations) {
+		protected void copyStructuralFeature(StructuralFeatureCS csStructuralFeature, EStructuralFeature eStructuralFeature, List<EAnnotation> excludedAnnotations) {
 			EAnnotation oclAnnotation = eStructuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			if (oclAnnotation != null) {
 				excludedAnnotations = new ArrayList<EAnnotation>();
 				excludedAnnotations.add(oclAnnotation);
-				List<ConstraintCS> csConstraints = csStructuralFeature.getConstraints();
+				List<ConstraintCS> csConstraints = csStructuralFeature.getOwnedConstraint();
 				for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
-					ConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createConstraintCS();
+					OCLinEcoreConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreConstraintCS();
 					String key = entry.getKey();
 					if (key.equals("derivation")) {
 						csConstraint.setStereotype("derivation");
@@ -563,7 +558,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				}				
 			}
 			copyTypedElement(csStructuralFeature, eStructuralFeature, excludedAnnotations);
-			EList<String> qualifiers = csStructuralFeature.getQualifiers();
+			List<String> qualifiers = csStructuralFeature.getQualifier();
 			setAttribute(qualifiers, "!readonly", "readonly", eStructuralFeature, EcorePackage.Literals.ESTRUCTURAL_FEATURE__CHANGEABLE);
 			setAttribute(qualifiers, "derived", "!derived", eStructuralFeature, EcorePackage.Literals.ESTRUCTURAL_FEATURE__DERIVED);
 			setAttribute(qualifiers, "transient", "!transient", eStructuralFeature, EcorePackage.Literals.ESTRUCTURAL_FEATURE__TRANSIENT);
@@ -571,7 +566,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			setAttribute(qualifiers, "volatile", "!volatile", eStructuralFeature, EcorePackage.Literals.ESTRUCTURAL_FEATURE__VOLATILE);
 			String defaultValueLiteral = basicGet(eStructuralFeature, EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL, String.class);
 			if (defaultValueLiteral != null) {
-				csStructuralFeature.setDefaultValueLiteral(defaultValueLiteral);
+				csStructuralFeature.setDefault(defaultValueLiteral);
 			}
 		}
 
@@ -585,7 +580,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 					allEClassifiers.add(eClassifier);
 				}
 				ModelElementCS csType = doSwitch(eGenericType);
-				csTypedElement.setType((TypedRefCS) csType);
+				csTypedElement.setOwnedType((TypedRefCS) csType);
 			}
 			int lower = eTypedElement.getLowerBound();
 			int upper = eTypedElement.getUpperBound();
@@ -612,7 +607,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 					csTypedElement.setUpper(upper);
 				}
 			}
-			EList<String> qualifiers = csTypedElement.getQualifiers();
+			List<String> qualifiers = csTypedElement.getQualifier();
 			setAttribute(qualifiers, "ordered", "!ordered", eTypedElement, EcorePackage.Literals.ETYPED_ELEMENT__ORDERED);
 			setAttribute(qualifiers, "unique", "!unique", eTypedElement, EcorePackage.Literals.ETYPED_ELEMENT__UNIQUE);
 		}
@@ -623,7 +618,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			return null;
 		}
 
-		public <T extends ModelElementCS> void doSwitchAll(List<T> csObjects, List<? extends EObject> eObjects) {
+		public <T extends ModelElementCS> void doSwitchAll(Collection<T> csObjects, List<? extends EObject> eObjects) {
 			for (EObject eObject : eObjects) {
 				@SuppressWarnings("unchecked")
 				T csObject = (T) doSwitch(eObject);
@@ -631,7 +626,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			}
 		}		
 
-		protected void setAttribute(EList<String> qualifiers, String trueName, String falseName,
+		protected void setAttribute(List<String> qualifiers, String trueName, String falseName,
 				EObject eObject, EAttribute eAttribute) {
 			if (eObject.eIsSet(eAttribute)) {
 				boolean isTrue = eObject.eGet(eAttribute) == Boolean.TRUE;
@@ -643,21 +638,59 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 	protected final OCLinEcoreCSTSwitch<Object> pass2 = new OCLinEcoreCSTSwitch<Object>()
 	{
 		protected final BaseCSTSwitch<EObject> emofPass2 = new BaseCSTSwitch<EObject>()
-		{				
+		{							
+			@Override
+			public EObject caseAnnotationCS(AnnotationCS csAnnotation) {
+				EAnnotation eAnnotation = (EAnnotation) csAnnotation.getPivot();
+				for (EObject eReference : eAnnotation.getReferences()) {
+					ModelElementCSRef objectRef = copyObjectRef(eReference);
+					if (objectRef != null) {
+						csAnnotation.getReference().add(objectRef);
+					}
+				}
+				return null;
+			}
+
+			@Override
+			public EObject caseReferenceCS(ReferenceCS csReference) {
+				EReference eReference = (EReference) csReference.getPivot();
+				EReference eOpposite = eReference.getEOpposite();
+				if (eOpposite == null) {
+					EAnnotation oppositeRole = eReference.getEAnnotation(EMOFExtendedMetaData.EMOF_PROPERTY_OPPOSITE_ROLE_NAME_ANNOTATION_SOURCE);
+					if (oppositeRole != null) {
+						String oppositeName = oppositeRole.getDetails().get(EMOFExtendedMetaData.EMOF_COMMENT_BODY);
+						EClass eReferenceType = eReference.getEReferenceType();
+						eOpposite = (EReference) eReferenceType.getEStructuralFeature(oppositeName);	// FIXME Always null
+					}
+				}
+				if (eOpposite != null) {
+					ReferenceCSRef referenceRef = copyReferenceRef(eOpposite);
+					if (referenceRef != null) {
+						csReference.setOpposite(referenceRef);
+					}
+				}
+				for (EAttribute eKey : eReference.getEKeys()) {
+					AttributeCSRef attributeRef = copyAttributeRef(eKey);
+					if (attributeRef != null) {
+						csReference.getKeys().add(attributeRef);
+					}
+				}
+				return null;
+			}
 			@Override
 			public EObject caseTypedTypeRefCS(TypedTypeRefCS csTypeRef) {
-				EGenericType eGenericType = (EGenericType) csTypeRef.getOriginalObject();
+				EGenericType eGenericType = (EGenericType) csTypeRef.getPivot();
 				EClassifier eClassifier = eGenericType.getEClassifier();
 				if (eClassifier != null) {
 					allEClassifiers.add(eClassifier);
 					ClassifierCS csClassifier = getCS(eClassifier, ClassifierCS.class);
-					csTypeRef.setType(csClassifier);
+//FIXME					csTypeRef.setType(csClassifier);
 				}
 				else {
 					ETypeParameter eTypeParameter = eGenericType.getETypeParameter();
 					if (eTypeParameter != null) {
 						TypeParameterCS csTypeParameter = (TypeParameterCS) createMap.get(eTypeParameter);
-						csTypeRef.setType(csTypeParameter);
+//FIXME						csTypeRef.setType(csTypeParameter);
 					}
 	//				else {
 	//					error("Unresolved " + eGenericType + " in pass2");
@@ -666,50 +699,11 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				return null;
 			}
 		};
-		
-		@Override
-		public Object caseAnnotationCS(AnnotationCS csAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation) csAnnotation.getOriginalObject();
-			for (EObject eReference : eAnnotation.getReferences()) {
-				ModelElementCSRef objectRef = copyObjectRef(eReference);
-				if (objectRef != null) {
-					csAnnotation.getReferences().add(objectRef);
-				}
-			}
-			return null;
-		}
-
-		@Override
-		public EObject caseOCLinEcoreReferenceCS(OCLinEcoreReferenceCS csReference) {
-			EReference eReference = (EReference) csReference.getOriginalObject();
-			EReference eOpposite = eReference.getEOpposite();
-			if (eOpposite == null) {
-				EAnnotation oppositeRole = eReference.getEAnnotation(EMOFExtendedMetaData.EMOF_PROPERTY_OPPOSITE_ROLE_NAME_ANNOTATION_SOURCE);
-				if (oppositeRole != null) {
-					String oppositeName = oppositeRole.getDetails().get(EMOFExtendedMetaData.EMOF_COMMENT_BODY);
-					EClass eReferenceType = eReference.getEReferenceType();
-					eOpposite = (EReference) eReferenceType.getEStructuralFeature(oppositeName);	// FIXME Always null
-				}
-			}
-			if (eOpposite != null) {
-				ReferenceCSRef referenceRef = copyReferenceRef(eOpposite);
-				if (referenceRef != null) {
-					csReference.setOpposite(referenceRef);
-				}
-			}
-			for (EAttribute eKey : eReference.getEKeys()) {
-				AttributeCSRef attributeRef = copyAttributeRef(eKey);
-				if (attributeRef != null) {
-					csReference.getKeys().add(attributeRef);
-				}
-			}
-			return null;
-		}
 
 		protected AttributeCSRef copyAttributeRef(EAttribute eKey) {
 			AttributeCSRef attributeRef = null;
 			ModelElementCS csObject = createMap.get(eKey);
-			if (csObject instanceof OCLinEcoreAttributeCS) {
+			if (csObject instanceof AttributeCS) {
 				AttributeCSRef AttributeCSRef = BaseCSTFactory.eINSTANCE.createAttributeCSRef();
 				AttributeCSRef.setRef((AttributeCS) csObject);
 				attributeRef = AttributeCSRef;
@@ -737,9 +731,9 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		protected ReferenceCSRef copyReferenceRef(EReference eOpposite) {
 			ReferenceCSRef referenceRef = null;
 			ModelElementCS csObject = createMap.get(eOpposite);
-			if (csObject instanceof OCLinEcoreReferenceCS) {
+			if (csObject instanceof ReferenceCS) {
 				ReferenceCSRef referenceCSRef = BaseCSTFactory.eINSTANCE.createReferenceCSRef();
-				referenceCSRef.setRef((ReferenceCS) csObject);
+// FIXME				referenceCSRef.setRef((ReferenceCS) csObject);
 				referenceRef = referenceCSRef;
 			}
 			else {
@@ -773,7 +767,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			Resource resource = eObject.eResource();
 			if (resource != null) {
 				Ecore2OCLinEcore conversion = importDocument(resourceSet, resource);
-				OCLinEcoreDocumentCS importResource = conversion.getDocument();
+				RootPackageCS importResource = conversion.getDocument();
 				allEClassifiers.addAll(conversion.allEClassifiers);
 				allNames.addAll(conversion.allNames);
 				for (Map.Entry<EObject, ModelElementCS> entry : conversion.createMap.entrySet()) {
@@ -810,7 +804,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		return ePackages;
 	}
 	
-	public OCLinEcoreDocumentCS getDocument() {
+	public RootPackageCS getDocument() {
 		if (documentCS == null) {
 			importResource();
 		}
@@ -820,18 +814,18 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 	protected void importResource() {
 		URI oclinecoreURI = ecoreResource.getURI().appendFileExtension("oclinecore");
 		Resource xtextResource = resourceSet.createResource(oclinecoreURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
-		documentCS = OCLinEcoreCSTFactory.eINSTANCE.createOCLinEcoreDocumentCS();
+		documentCS = BaseCSTFactory.eINSTANCE.createRootPackageCS();
 		xtextResource.getContents().add(documentCS);
-		List<OCLinEcorePackageCS> packages = documentCS.getPackages();
+		List<AbstractPackageCS> packages = documentCS.getOwnedNestedPackage();
 		for (EObject eObject : ecoreResource.getContents()) {
-			packages.add((OCLinEcorePackageCS) pass1.doSwitch(eObject));
+			packages.add((PackageCS) pass1.doSwitch(eObject));
 		}
 		for (ModelElementCS csModelElement : deferred) {
 			pass2.doSwitch(csModelElement);
 		}
 		List<EPackage> ePackages = new ArrayList<EPackage>(getReferencedEPackages());
 		// sort
-		List<ImportCS> imports = documentCS.getImports();
+		List<ImportCS> imports = documentCS.getOwnedImport();
 		for (EPackage ePackage : ePackages) {
 			ModelElementCS csElement = createMap.get(ePackage);
 			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
@@ -854,7 +848,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			URI deresolvedURI = fullURI.deresolve(oclinecoreURI);
 			importCS.setUri(deresolvedURI.toString());
 			PackageCS csPackage = getCS(ePackage, PackageCS.class);
-			importCS.setNamespace(csPackage);
+// FIXME			importCS.setNamespace(csPackage);
 			imports.add(importCS);
 		}
 		if (errors != null) {
