@@ -12,23 +12,17 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.7.6.2 2010/08/17 19:39:45 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.7.6.3 2010/10/01 15:33:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
 import org.eclipse.xtext.resource.XtextResource;
 
@@ -37,35 +31,29 @@ import org.eclipse.xtext.resource.XtextResource;
  */
 public class SerializeTests extends XtextTestCase
 {
-	public OCLinEcoreDocumentCS doSerialize(String stem) throws IOException {
+	public RootPackageCS doSerialize(String stem) throws IOException {
 		String inputName = stem + ".ecore";
 		String outputName = stem + ".serialized.oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		Resource ecoreResource = resourceSet.getResource(inputURI, true);
 //		List<String> conversionErrors = new ArrayList<String>();
-		OCLinEcoreDocumentCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
+		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
 		Resource eResource = documentCS.eResource();
-		assertNoResourceErrors("Conversion failed", eResource.getErrors());
+		assertNoResourceErrors("Conversion failed", eResource);
 //		Resource xtextResource = resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI);
 		xtextResource.getContents().add(documentCS);
-		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
-		assertNoDiagnosticErrors("Concrete Syntax valiation failed", diagnostics);
+		assertNoDiagnosticErrors("Concrete Syntax valiation failed", xtextResource);
 		xtextResource.save(null);
 		
 		resourceSet.getResources().clear();
 		XtextResource reloadedResource = (XtextResource) resourceSet.getResource(outputURI, true);
-		assertNoResourceErrors("Reload failed", reloadedResource.getErrors());
-		Map<EObject, Collection<Setting>> unresolved = UnresolvedProxyCrossReferencer.find(reloadedResource);
-		assertNoUnresolvedProxies("unresolved reload proxies", unresolved);
+		assertNoResourceErrors("Reload failed", reloadedResource);
+		assertNoUnresolvedProxies("unresolved reload proxies", reloadedResource);
 		
 		
 		return documentCS;
-	}
-	 
-	public void testAnnotationsSerialize() throws IOException, InterruptedException {
-		doSerialize("Annotations");
 	}
 	
 	public void testBug320689Serialize() throws IOException, InterruptedException {
@@ -73,6 +61,11 @@ public class SerializeTests extends XtextTestCase
 	}
 
 	public void testCompanySerialize() throws IOException, InterruptedException {
+//		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
+//		logger.setLevel(Level.TRACE);
+//		logger.addAppender(new ConsoleAppender(new SimpleLayout()));
+//		BaseScopeProvider.LOOKUP.setState(true);
+//		DocumentScopeAdapter.WORK.setState(true);
 		doSerialize("Company");
 	}
 
@@ -82,8 +75,8 @@ public class SerializeTests extends XtextTestCase
 	}
 
 	public void testImportsSerialize() throws IOException, InterruptedException {
-		OCLinEcoreDocumentCS documentCS = doSerialize("Imports");
-		List<ImportCS> imports = documentCS.getImports();
+		RootPackageCS documentCS = doSerialize("Imports");
+		List<ImportCS> imports = documentCS.getOwnedImport();
 		assertEquals("One import", 1, imports.size());
 	}
 
