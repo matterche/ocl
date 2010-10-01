@@ -7,7 +7,6 @@ Bundle-Version: 3.1.0.qualifier
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.essentialocl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.ocl.examples.xtext.oclstdlib.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.editors;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
@@ -21,6 +20,7 @@ Export-Package: org.eclipse.ocl.examples.xtext.essentialocl.ui,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.contentassist,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.internal,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling,
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.model,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.outline,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring
