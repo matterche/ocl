@@ -1,0 +1,312 @@
+[comment encoding = UTF-8 /]
+[module generateOCLstdlib('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[query public getSignature(elem : NamedElement) : String = 
+let parent : EObject = elem.eContainer() in
+if not parent.oclIsUndefined() then parent.oclAsType(NamedElement).getSignature() + '::' + elem.name
+else elem.name endif/]
+
+[query public getSignature(elem : Operation) : String = 
+let parent : EObject = elem.eContainer() in
+if not parent.oclIsUndefined() then parent.oclAsType(NamedElement).getSignature() + '::' + elem.name
+else elem.name endif + '()'/]
+
+[query public getSymbolName(elem : Element) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSymbolName(java.lang.Object)', Sequence{elem}) /]
+
+[query public getSymbolName(elem : EObject) : String = elem.oclAsType(Element).getSymbolName()/]
+
+[template public generate(pkg : Package, javaPackage : String, javaClass : String, sourceFile : String, uri : String) ? (pkg.eContainer() = null)]
+[comment @main /]
+[file (javaClass + '.java', false, 'UTF-8')]
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * This code is auto-generated
+ * from: [sourceFile/]
+ * by: org.eclipse.ocl.examples.build.acceleo.GenerateOCLstdlib
+ * defined by: org.eclipse.ocl.examples.build.acceleo.generateOCLstdlib.mtl
+ * invoked by: org.eclipse.ocl.examples.build.utilities.OCLstdlibCodeGenerator
+ * from: org.eclipse.ocl.examples.build.GenerateOCLstdlibModel.mwe2
+ *
+ * Do not edit it.
+ *
+ * ['$' + 'I' + 'd' + '$'/]
+ */
+package	[javaPackage/];
+
+import java.util.Collections;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.ocl.examples.pivot.*;
+import org.eclipse.ocl.examples.pivot.Class;
+import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+
+@SuppressWarnings("nls")
+public class [javaClass/] extends XMLResourceImpl
+{
+	/**
+	 *	The static package-of-packages-of-types pivot model of the OCL standard library.
+	 */
+	public static final [javaClass/] INSTANCE = new [javaClass/]();
+	
+	/**
+	 * The Loader shares the OCL standard library instance whenever this default library
+	 * is loaded from the registry of Standard Libraries populated by the standard_library 
+	 * extension point.
+	 */
+	public static class Loader implements StandardLibraryContribution
+	{
+		public StandardLibraryContribution getContribution() {
+			return this;
+		}
+		
+		public Resource getResource() {
+			return INSTANCE;
+		}
+	}
+	
+	private [javaClass/]() {
+		super(URI.createURI("[uri/]"));
+		getContents().add(create());
+		PivotAliasCreator.refreshPackageAliases(this);
+		PivotManager.setMonikerAsID(Collections.singletonList(this));
+	}
+
+	/**
+	 *	Create and return a package-of-packages-of-types pivot model of the OCL standard library.
+	 *  This static definition auto-generated from [sourceFile/]
+	 *  is used as the default when no overriding copy is registered. 
+	 */
+	public static Package create()
+	{
+		Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.moniker/]
+		[for (precedence : Precedence | pkg.ownedPrecedence)]
+		[declarePrecedence(precedence)/]
+		[/for]
+		[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+		[declarePackage(nestedPackage)/]
+		[/for]
+
+		[pkg.getSymbolName()/].setName("[pkg.name/]");
+		[for (precedence : Precedence | pkg.ownedPrecedence)]
+		[emitPrecedence(precedence)/]
+		[/for]
+	[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+		[emitPackage(nestedPackage)/]
+	[/for]
+		return [pkg.getSymbolName()/];
+	}
+}
+[/file]
+[/template]
+
+[template public declarePackage(pkg : Package)]
+Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.moniker/]
+[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+[declareType(ownedType)/]
+[/for]
+[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+[declarePackage(nestedPackage)/][/for]
+[/template]
+
+[template public declarePrecedence(precedence : Precedence)]
+Precedence [precedence.getSymbolName()/] = PivotFactory.eINSTANCE.createPrecedence(); // [precedence.name/]
+[/template]
+
+[template public declareTemplateParameter(templateParameter : TemplateParameter)]
+[/template]
+
+[template public declareTemplateParameter(templateParameter : TypeTemplateParameter)]
+TypeTemplateParameter [templateParameter.getSymbolName()/] = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+Class [templateParameter.ownedParameteredElement.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [templateParameter.ownedParameteredElement.moniker/]
+[/template]
+
+[template public declareTemplateSignature(templateSignature : TemplateSignature)]
+TemplateSignature [templateSignature.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateSignature(); // [templateSignature.moniker/]
+[for (templateParameter : TemplateParameter | templateSignature.ownedParameter)]
+[declareTemplateParameter(templateParameter)/]
+[/for]
+[/template]
+
+[template public declareType(type : Type)]
+{
+}
+[/template]
+
+[template public declareType(type : Class)]
+Class [type.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [type.moniker/]
+[if (type.ownedTemplateSignature->notEmpty())]
+[declareTemplateSignature(type.ownedTemplateSignature)/]
+[/if]
+[/template]
+
+[template public emitAccumulator(parameter : Parameter)]
+Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
+[parameter.getSymbolName()/].setName("[parameter.name/]");
+[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);
+[parameter.eContainer().getSymbolName()/].getOwnedAccumulators().add([parameter.getSymbolName()/]);
+[/template]
+
+[template public emitIterator(parameter : Parameter)]
+Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
+[parameter.getSymbolName()/].setName("[parameter.name/]");
+[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);
+[parameter.eContainer().getSymbolName()/].getOwnedIterators().add([parameter.getSymbolName()/]);
+[/template]
+
+[template public emitOperation(operation : Iterate)]
+Iterate [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createIterate();
+[if (operation.ownedTemplateSignature->notEmpty())]
+[declareTemplateSignature(operation.ownedTemplateSignature)/]
+[emitTemplateSignature(operation.ownedTemplateSignature)/]
+[operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[operation.getSymbolName()/].setName("[operation.name/]");
+[operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);
+[for (iterator : Parameter | operation.ownedIterator)]
+[emitIterator(iterator)/]
+[/for]
+[for (accumulator : Parameter | operation.ownedAccumulator)]
+[emitAccumulator(accumulator)/]
+[/for]
+[for (parameter : Parameter | operation.ownedParameter)]
+[emitParameter(parameter)/]
+[/for]
+[operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
+[operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
+[/template]
+
+[template public emitOperation(operation : Iterator)]
+Iterator [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createIterator();
+[if (operation.ownedTemplateSignature->notEmpty())]
+[declareTemplateSignature(operation.ownedTemplateSignature)/]
+[emitTemplateSignature(operation.ownedTemplateSignature)/]
+[operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[operation.getSymbolName()/].setName("[operation.name/]");
+[operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);
+[for (iterator : Parameter | operation.ownedIterator)]
+[emitIterator(iterator)/]
+[/for]
+[for (parameter : Parameter | operation.ownedParameter)]
+[emitParameter(parameter)/]
+[/for]
+[operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
+[operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
+[/template]
+
+[template public emitOperation(operation : Operation)]
+Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation();
+[if (operation.ownedTemplateSignature->notEmpty())]
+[declareTemplateSignature(operation.ownedTemplateSignature)/]
+[emitTemplateSignature(operation.ownedTemplateSignature)/]
+[operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[operation.getSymbolName()/].setName("[operation.name/]");
+[operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);
+[for (parameter : Parameter | operation.ownedParameter)]
+[emitParameter(parameter)/]
+[/for]
+[if (operation.precedence->notEmpty())]
+[operation.getSymbolName()/].setPrecedence([operation.precedence.getSymbolName()/]);
+[/if]
+[operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
+[operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
+[/template]
+
+[template public emitPackage(pkg : Package)]
+//
+// [pkg.getSignature()/]
+//
+[pkg.getSymbolName()/].setName("[pkg.name/]");
+[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+[emitType(ownedType)/]
+[/for]
+[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+[emitPackage(nestedPackage)/]
+[/for]
+[pkg.eContainer().getSymbolName()/].getNestedPackages().add([pkg.getSymbolName()/]);
+[/template]
+
+[template public emitParameter(parameter : Parameter)]
+Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
+[parameter.getSymbolName()/].setName("[parameter.name/]");
+[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);
+[parameter.eContainer().getSymbolName()/].getOwnedParameters().add([parameter.getSymbolName()/]);
+[/template]
+
+[template public emitPrecedence(precedence : Precedence)]
+[precedence.getSymbolName()/].setName("[precedence.name/]");
+[precedence.getSymbolName()/].setAssociativity(AssociativityKind.[precedence.associativity.toString().toUpper()/]);
+[precedence.eContainer().getSymbolName()/].getOwnedPrecedences().add([precedence.getSymbolName()/]);
+[/template]
+
+[template public emitProperty(property : Property)]
+Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
+[property.getSymbolName()/].setName("[property.name/]");
+[property.getSymbolName()/].setType([property.type.getSymbolName()/]);
+[property.getSymbolName()/].setImplementation([property.implementationClass/].INSTANCE);
+[property.eContainer().getSymbolName()/].getOwnedAttributes().add([property.getSymbolName()/]);
+[/template]
+
+[template public emitType(type : Type)]
+{
+}
+[/template]
+
+[template public emitTemplateParameter(templateParameter : TemplateParameter)]
+[/template]
+
+[template public emitTemplateParameter(templateParameter : TypeTemplateParameter)]
+[templateParameter.ownedParameteredElement.getSymbolName()/].setName("[templateParameter.ownedParameteredElement.oclAsType(NamedElement).name/]");
+[templateParameter.getSymbolName()/].setOwnedParameteredElement([templateParameter.ownedParameteredElement.getSymbolName()/]);
+[templateParameter.eContainer().getSymbolName()/].getOwnedParameters().add([templateParameter.getSymbolName()/]);
+[/template]
+
+[template public emitTemplateSignature(templateSignature : TemplateSignature)]
+[for (templateParameter : TemplateParameter | templateSignature.ownedParameter)]
+[emitTemplateParameter(templateParameter)/]
+[/for]
+[/template]
+
+[template public emitType(type : Class)]
+//
+// [type.getSignature()/]
+//
+[type.getSymbolName()/].setName("[type.name/]");
+[if (type.ownedTemplateSignature->notEmpty())]
+[emitTemplateSignature(type.ownedTemplateSignature)/]
+[type.getSymbolName()/].setOwnedTemplateSignature([type.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[for (superClass : Class | type.superClass)]
+[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]);
+[/for]
+[for (property : Property | type.ownedAttribute->sortedBy(name))]
+{ // [property.getSignature()/] [property.moniker/]
+	[emitProperty(property)/]
+}
+[/for]
+[for (operation : Operation | type.ownedOperation->sortedBy(name))]
+{	// [operation.getSignature()/] [operation.moniker/]
+	[emitOperation(operation)/]
+}
+[/for]
+[type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]);
+[/template]

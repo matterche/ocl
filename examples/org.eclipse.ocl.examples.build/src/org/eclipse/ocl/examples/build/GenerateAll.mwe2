@@ -12,9 +12,9 @@
  *
  * </copyright>
  *
- * $Id: GenerateAll.mwe2,v 1.1.2.1 2010/08/08 11:15:12 ewillink Exp $
+ * $Id: GenerateAll.mwe2,v 1.1.2.2 2010/10/01 14:00:04 ewillink Exp $
  * 
- * Run As->MWE2 Workflow to regenerate the all example editors and models.
+ * Run As->MWE2 Workflow to regenerate all example editors and models.
  */
 module GenerateAll
 
@@ -27,4 +27,5 @@ Workflow {
   component = @GeneratePivotModel {}
   component = @GenerateXtextModels {}
   component = @GenerateAllEditors {}
+  component = @GenerateOCLstdlibModel {}
 }
