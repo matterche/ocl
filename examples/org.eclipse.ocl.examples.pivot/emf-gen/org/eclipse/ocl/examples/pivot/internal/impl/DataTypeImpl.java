@@ -12,32 +12,32 @@
  *
  * </copyright>
  *
- * $Id: OclInvalidImpl.java,v 1.1.2.2 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: DataTypeImpl.java,v 1.1.2.1 2010/10/01 13:54:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.ocl.examples.pivot.OclInvalid;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ocl Invalid</b></em>'.
+ * An implementation of the model object '<em><b>Data Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class OclInvalidImpl extends OclVoidImpl implements OclInvalid
+public class DataTypeImpl extends ClassImpl implements DataType
 {
   /**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected OclInvalidImpl()
+  protected DataTypeImpl()
   {
 		super();
 	}
@@ -50,7 +50,7 @@ public class OclInvalidImpl extends OclVoidImpl implements OclInvalid
   @Override
   protected EClass eStaticClass()
   {
-		return PivotPackage.Literals.OCL_INVALID;
+		return PivotPackage.Literals.DATA_TYPE;
 	}
 
-} //OclInvalidImpl
+} //DataTypeImpl

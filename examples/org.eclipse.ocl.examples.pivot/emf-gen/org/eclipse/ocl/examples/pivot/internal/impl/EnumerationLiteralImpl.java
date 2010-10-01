@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationLiteralImpl.java,v 1.1.2.1 2010/10/01 13:49:58 ewillink Exp $
+ * $Id: EnumerationLiteralImpl.java,v 1.1.2.2 2010/10/01 13:54:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 

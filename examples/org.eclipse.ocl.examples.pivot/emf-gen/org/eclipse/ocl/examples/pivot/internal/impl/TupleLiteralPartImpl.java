@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.1.2.2 2010/10/01 13:54:09 ewillink Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,44 +30,44 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Call Exp</b></em>'.
+ * An implementation of the model object '<em><b>Tuple Literal Part</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
+public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiteralPart
 {
   /**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getSource()
+	 * @see #getAttribute()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression source;
+  protected Property attribute;
 
   /**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected CallExpImpl()
+  protected TupleLiteralPartImpl()
   {
 		super();
 	}
@@ -80,7 +80,7 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
   @Override
   protected EClass eStaticClass()
   {
-		return PivotPackage.Literals.CALL_EXP;
+		return PivotPackage.Literals.TUPLE_LITERAL_PART;
 	}
 
   /**
@@ -88,26 +88,26 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getSource()
+  public Property getAttribute()
   {
-		if (source != null && ((EObject)source).eIsProxy())
+		if (attribute != null && ((EObject)attribute).eIsProxy())
 		{
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (OclExpression)eResolveProxy(oldSource);
-			if (source != oldSource)
+			InternalEObject oldAttribute = (InternalEObject)attribute;
+			attribute = (Property)eResolveProxy(oldAttribute);
+			if (attribute != oldAttribute)
 			{
-				InternalEObject newSource = (InternalEObject)source;
-				NotificationChain msgs = oldSource.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CALL_EXP__SOURCE, null, null);
-				if (newSource.eInternalContainer() == null)
+				InternalEObject newAttribute = (InternalEObject)attribute;
+				NotificationChain msgs = oldAttribute.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, null);
+				if (newAttribute.eInternalContainer() == null)
 				{
-					msgs = newSource.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CALL_EXP__SOURCE, null, msgs);
+					msgs = newAttribute.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.CALL_EXP__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, attribute));
 			}
 		}
-		return source;
+		return attribute;
 	}
 
   /**
@@ -115,9 +115,9 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetSource()
+  public Property basicGetAttribute()
   {
-		return source;
+		return attribute;
 	}
 
   /**
@@ -125,13 +125,13 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetSource(OclExpression newSource, NotificationChain msgs)
+  public NotificationChain basicSetAttribute(Property newAttribute, NotificationChain msgs)
   {
-		OclExpression oldSource = source;
-		source = newSource;
+		Property oldAttribute = attribute;
+		attribute = newAttribute;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.CALL_EXP__SOURCE, oldSource, newSource);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, newAttribute);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -142,20 +142,20 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSource(OclExpression newSource)
+  public void setAttribute(Property newAttribute)
   {
-		if (newSource != source)
+		if (newAttribute != attribute)
 		{
 			NotificationChain msgs = null;
-			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CALL_EXP__SOURCE, null, msgs);
-			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CALL_EXP__SOURCE, null, msgs);
-			msgs = basicSetSource(newSource, msgs);
+			if (attribute != null)
+				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, msgs);
+			if (newAttribute != null)
+				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, msgs);
+			msgs = basicSetAttribute(newAttribute, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CALL_EXP__SOURCE, newSource, newSource));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, newAttribute, newAttribute));
 	}
 
   /**
@@ -163,24 +163,24 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createSource(EClass eClass)
+  public Property createAttribute(EClass eClass)
   {
-		OclExpression newSource = (OclExpression) create(eClass);
-		setSource(newSource);
-		return newSource;
+		Property newAttribute = (Property) create(eClass);
+		setAttribute(newAttribute);
+		return newAttribute;
 	}
 
   /**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createSource()
-	{
-		return createSource(PivotPackage.Literals.OCL_EXPRESSION);
+  public Property createAttribute()
+  {
+		return createAttribute(PivotPackage.Literals.PROPERTY);
 	}
 
-/**
+  /**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -190,14 +190,14 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
   {
 		switch (featureID)
 		{
-			case PivotPackage.CALL_EXP__OWNED_COMMENT:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CALL_EXP__OWNED_RULE:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CALL_EXP__OWNED_ANNOTATION:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
 				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CALL_EXP__SOURCE:
-				return basicSetSource(null, msgs);
+			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
+				return basicSetAttribute(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -212,22 +212,22 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
   {
 		switch (featureID)
 		{
-			case PivotPackage.CALL_EXP__OWNED_COMMENT:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.CALL_EXP__MONIKER:
+			case PivotPackage.TUPLE_LITERAL_PART__MONIKER:
 				return getMoniker();
-			case PivotPackage.CALL_EXP__NAME:
+			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return getName();
-			case PivotPackage.CALL_EXP__OWNED_RULE:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
 				return getOwnedRules();
-			case PivotPackage.CALL_EXP__OWNED_ANNOTATION:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
-			case PivotPackage.CALL_EXP__TYPE:
+			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.CALL_EXP__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
+				if (resolve) return getAttribute();
+				return basicGetAttribute();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -243,29 +243,29 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
   {
 		switch (featureID)
 		{
-			case PivotPackage.CALL_EXP__OWNED_COMMENT:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CALL_EXP__MONIKER:
+			case PivotPackage.TUPLE_LITERAL_PART__MONIKER:
 				setMoniker((String)newValue);
 				return;
-			case PivotPackage.CALL_EXP__NAME:
+			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.CALL_EXP__OWNED_RULE:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.CALL_EXP__OWNED_ANNOTATION:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
 				return;
-			case PivotPackage.CALL_EXP__TYPE:
+			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				setType((Type)newValue);
 				return;
-			case PivotPackage.CALL_EXP__SOURCE:
-				setSource((OclExpression)newValue);
+			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
+				setAttribute((Property)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -281,26 +281,26 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
   {
 		switch (featureID)
 		{
-			case PivotPackage.CALL_EXP__OWNED_COMMENT:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.CALL_EXP__MONIKER:
+			case PivotPackage.TUPLE_LITERAL_PART__MONIKER:
 				setMoniker(MONIKER_EDEFAULT);
 				return;
-			case PivotPackage.CALL_EXP__NAME:
+			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.CALL_EXP__OWNED_RULE:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
-			case PivotPackage.CALL_EXP__OWNED_ANNOTATION:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.CALL_EXP__TYPE:
+			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.CALL_EXP__SOURCE:
-				setSource((OclExpression)null);
+			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
+				setAttribute((Property)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -316,22 +316,22 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
   {
 		switch (featureID)
 		{
-			case PivotPackage.CALL_EXP__OWNED_COMMENT:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.CALL_EXP__MONIKER:
+			case PivotPackage.TUPLE_LITERAL_PART__MONIKER:
 				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
-			case PivotPackage.CALL_EXP__NAME:
+			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.CALL_EXP__OWNED_RULE:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
-			case PivotPackage.CALL_EXP__OWNED_ANNOTATION:
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.CALL_EXP__TYPE:
+			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				return type != null;
-			case PivotPackage.CALL_EXP__SOURCE:
-				return source != null;
+			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
+				return attribute != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
 
-} //CallExpImpl
+} //TupleLiteralPartImpl

@@ -12,32 +12,32 @@
  *
  * </copyright>
  *
- * $Id: OclInvalidImpl.java,v 1.1.2.2 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.ocl.examples.pivot.OclInvalid;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ocl Invalid</b></em>'.
+ * An implementation of the model object '<em><b>Collection Literal Part</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class OclInvalidImpl extends OclVoidImpl implements OclInvalid
+public abstract class CollectionLiteralPartImpl extends TypedElementImpl implements CollectionLiteralPart
 {
   /**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected OclInvalidImpl()
+  protected CollectionLiteralPartImpl()
   {
 		super();
 	}
@@ -50,7 +50,7 @@ public class OclInvalidImpl extends OclVoidImpl implements OclInvalid
   @Override
   protected EClass eStaticClass()
   {
-		return PivotPackage.Literals.OCL_INVALID;
+		return PivotPackage.Literals.COLLECTION_LITERAL_PART;
 	}
 
-} //OclInvalidImpl
+} //CollectionLiteralPartImpl
