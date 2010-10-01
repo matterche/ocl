@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.2 2010/08/17 20:54:28 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.3 2010/10/01 15:18:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -42,7 +42,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreResourceForEditorInputFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreUiPluginHelper;
@@ -159,7 +159,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 					}
 					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 				}
-				OCLinEcoreDocumentCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, "", ecoreResource);		
+				RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, "", ecoreResource);		
 				Resource xtextResource = documentCS.eResource();		
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {

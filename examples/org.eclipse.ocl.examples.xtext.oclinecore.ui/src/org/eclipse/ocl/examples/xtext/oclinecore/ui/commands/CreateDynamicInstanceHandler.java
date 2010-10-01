@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.2.6.1 2010/08/17 16:23:26 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.2.6.2 2010/10/01 15:18:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -39,8 +39,8 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.PlatformUI;
@@ -98,7 +98,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 	private EPackage findPackage(Resource resource, PackageCS csPackage) {
 		String name = csPackage.getName();
 		EObject eContainer = csPackage.eContainer();
-		if (eContainer instanceof DocumentCS) {
+		if (eContainer instanceof RootPackageCS) {
 			for (EObject eObject : resource.getContents()) {
 				if (eObject instanceof EPackage) {
 					EPackage ePackage = (EPackage)eObject;

@@ -12,33 +12,30 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLabelProvider.java,v 1.3.6.1 2010/08/17 19:39:43 ewillink Exp $
+ * $Id: OCLinEcoreLabelProvider.java,v 1.3.6.2 2010/10/01 15:18:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling;
 
-import java.util.List;
-
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling.EssentialOCLLabelProvider;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeOrEnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 
 import com.google.inject.Inject;
 
@@ -56,15 +53,15 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 
 	public String text(AnnotationCS ele) {
 		StringBuffer s = new StringBuffer();
-		String idName = ele.getIdSource();
-		if (idName != null) {
-			appendString(s, idName);			
-		}
-		else {
+//		String idName = ele.getIdSource();
+//		if (idName != null) {
+//			appendString(s, idName);			
+//		}
+//		else {
 			s.append("\"");
-			appendString(s, ele.getStringSource());			
+			appendString(s, ele.getName());			
 			s.append("\"");
-		}
+//		}
 		return s.toString();
 	}
 
@@ -82,7 +79,7 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EClass.gif";
 	}
 
-	protected String image(ConstraintCS ele) {
+	protected String image(OCLinEcoreConstraintCS ele) {
 		String stereotype = ele.getStereotype();
 		if ("body".equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DefinitionConstraint.gif";
@@ -105,7 +102,7 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif";
 	}
 
-	public String text(ConstraintCS ele) {
+	public String text(OCLinEcoreConstraintCS ele) {
 		StringBuffer s = new StringBuffer();
 		s.append("<");
 		appendString(s, ele.getStereotype());
@@ -118,44 +115,21 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EDataType.gif";
 	}
 
-	protected String text(DataTypeOrEnumCS ele) {
-		StringBuffer s = new StringBuffer();
-		appendName(s, ele);
-		List<TypeParameterCS> typeParameters = ele.getTypeParameters();
-		if (!typeParameters.isEmpty()) {
-			s.append("<");
-			String prefix = "";
-			for (TypeParameterCS typeParameter : typeParameters) {
-				s.append(prefix);
-				appendType(s, typeParameter);
-				prefix = ", ";
-			}
-			s.append(">");
-		}
-		String instance = ele.getInstanceClassName();
-		if (instance != null) {
-			s.append(" [");
-			s.append(instance);
-			s.append("]");
-		}
-		return s.toString();
-	}
-
 	protected String image(DetailCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EStringToStringMapEntry.gif";
 	}
 
 	public String text(DetailCS ele) {
 		StringBuffer s = new StringBuffer();
-		String idName = ele.getIdName();
-		if (idName != null) {
-			appendString(s, idName);			
-		}
-		else {
+//		String idName = ele.getIdName();
+//		if (idName != null) {
+//			appendString(s, idName);			
+//		}
+//		else {
 			s.append("\"");
-			appendString(s, ele.getStringName());			
+			appendString(s, ele.getName());			
 			s.append("\"");
-		}
+//		}
 		s.append(" : ");
 		appendString(s, ele.getValue().get(0));
 		return s.toString();
@@ -165,12 +139,12 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 		return "documentation";
 	}
 
-	protected String image(EnumCS ele) {
+	protected String image(EnumerationCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EEnum.gif";
 	}
 
 	@Override
-	protected String image(EnumLiteralCS ele) {
+	protected String image(EnumerationLiteralCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EEnumLiteral.gif";
 	}
 
@@ -197,6 +171,10 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EReference.gif";
 	}
 
+	public String text(RootPackageCS ele) {
+		return "OCL in Ecore document";
+	}
+
 	@Override
 	protected String image(TypeParameterCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/ETypeParameter.gif";
@@ -204,9 +182,5 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 
 	protected String image(TypeRefCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EGenericType.gif";
-	}
-
-	public String text(OCLinEcoreDocumentCS ele) {
-		return "OCL in Ecore document";
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5.6.2 2010/08/17 20:54:28 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5.6.3 2010/10/01 15:18:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
-import org.eclipse.ocl.examples.xtext.oclstdlib.ui.model.BaseDocument;
 
 /**
  * An OCLinEcoreDocument refines a document to support generation of an alternate (XMI) content
