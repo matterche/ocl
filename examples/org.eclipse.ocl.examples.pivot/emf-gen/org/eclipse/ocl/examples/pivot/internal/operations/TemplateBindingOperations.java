@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: TemplateBindingOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -39,20 +39,21 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class TemplateBindingOperations extends MonikeredElementOperations
-{
-  /**
+public class TemplateBindingOperations
+		extends MonikeredElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TemplateBindingOperations() {
+	protected TemplateBindingOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Each parameter substitution must refer to a formal template parameter of the target template signature.
 	 * parameterSubstitution->forAll(b | template.parameter->includes(b.formal))
@@ -62,8 +63,9 @@ public class TemplateBindingOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean validateParameterSubstitutionFormal(TemplateBinding templateBinding, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public static boolean validateParameterSubstitutionFormal(
+			TemplateBinding templateBinding, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -85,9 +87,9 @@ public class TemplateBindingOperations extends MonikeredElementOperations
 		return true;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A binding contains at most one parameter substitution for each formal template parameter of the target template signature.
 	 * template.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() <= 1)
@@ -97,8 +99,9 @@ public class TemplateBindingOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean validateOneParameterSubstitution(TemplateBinding templateBinding, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public static boolean validateOneParameterSubstitution(
+			TemplateBinding templateBinding, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message

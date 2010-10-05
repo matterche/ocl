@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.math.BigInteger;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -24,9 +26,17 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.AssociationClass;
+import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,13 +46,16 @@ import org.eclipse.ocl.examples.pivot.Property;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl#getCompleteEnvironment <em>Complete Environment</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CompletePropertyImpl extends PropertyImpl implements CompleteProperty
-{
+public class CompletePropertyImpl
+		extends PropertyImpl
+		implements CompleteProperty {
+
 	/**
 	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,12 +67,21 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 	protected Property model;
 
 	/**
+	 * The cached value of the '{@link #getCompleteEnvironment() <em>Complete Environment</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompleteEnvironment()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompleteEnvironment completeEnvironment;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompletePropertyImpl()
-	{
+	protected CompletePropertyImpl() {
 		super();
 	}
 
@@ -69,8 +91,7 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COMPLETE_PROPERTY;
 	}
 
@@ -79,8 +100,7 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getModel()
-	{
+	public Property getModel() {
 		if (model != null && ((EObject)model).eIsProxy())
 		{
 			InternalEObject oldModel = (InternalEObject)model;
@@ -99,8 +119,7 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetModel()
-	{
+	public Property basicGetModel() {
 		return model;
 	}
 
@@ -109,9 +128,61 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void setModel(Property newModel) {
+		Property oldModel = model;
+		model = newModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_PROPERTY__MODEL, oldModel, model));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteEnvironment getCompleteEnvironment() {
+		if (completeEnvironment != null && ((EObject)completeEnvironment).eIsProxy())
+		{
+			InternalEObject oldCompleteEnvironment = (InternalEObject)completeEnvironment;
+			completeEnvironment = (CompleteEnvironment)eResolveProxy(oldCompleteEnvironment);
+			if (completeEnvironment != oldCompleteEnvironment)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT, oldCompleteEnvironment, completeEnvironment));
+			}
+		}
+		return completeEnvironment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteEnvironment basicGetCompleteEnvironment() {
+		return completeEnvironment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCompleteEnvironment(
+			CompleteEnvironment newCompleteEnvironment) {
+		CompleteEnvironment oldCompleteEnvironment = completeEnvironment;
+		completeEnvironment = newCompleteEnvironment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT, oldCompleteEnvironment, completeEnvironment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.COMPLETE_PROPERTY__OWNED_COMMENT:
@@ -144,8 +215,7 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
-				if (resolve) return getImplementation();
-				return basicGetImplementation();
+				return getImplementation();
 			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
 				return isReadOnly();
 			case PivotPackage.COMPLETE_PROPERTY__DEFAULT:
@@ -166,6 +236,9 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 			case PivotPackage.COMPLETE_PROPERTY__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
+			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
+				if (resolve) return getCompleteEnvironment();
+				return basicGetCompleteEnvironment();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -175,9 +248,176 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_COMMENT:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__MONIKER:
+				setMoniker((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_ORDERED:
+				setIsOrdered((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_UNIQUE:
+				setIsUnique((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__LOWER:
+				setLower((BigInteger)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__UPPER:
+				setUpper((BigInteger)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
+				getOwnedRules().clear();
+				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TYPE:
+				setType((Type)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
+				setImplementationClass((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
+				setImplementation((CallableImplementation)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
+				setIsReadOnly((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__DEFAULT:
+				setDefault((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_COMPOSITE:
+				setIsComposite((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_DERIVED:
+				setIsDerived((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OPPOSITE:
+				setOpposite((Property)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
+				setAssociation((AssociationClass)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__MODEL:
+				setModel((Property)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
+				setCompleteEnvironment((CompleteEnvironment)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_COMMENT:
+				getOwnedComments().clear();
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__MONIKER:
+				setMoniker(MONIKER_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_ORDERED:
+				setIsOrdered(IS_ORDERED_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_UNIQUE:
+				setIsUnique(IS_UNIQUE_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__LOWER:
+				setLower(LOWER_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__UPPER:
+				setUpper(UPPER_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
+				getOwnedRules().clear();
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TYPE:
+				setType((Type)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
+				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
+				setImplementation((CallableImplementation)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
+				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__DEFAULT:
+				setDefault(DEFAULT_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_COMPOSITE:
+				setIsComposite(IS_COMPOSITE_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_DERIVED:
+				setIsDerived(IS_DERIVED_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OPPOSITE:
+				setOpposite((Property)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
+				setAssociation((AssociationClass)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__MODEL:
+				setModel((Property)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
+				setCompleteEnvironment((CompleteEnvironment)null);
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COMPLETE_PROPERTY__OWNED_COMMENT:
@@ -224,6 +464,8 @@ public class CompletePropertyImpl extends PropertyImpl implements CompleteProper
 				return basicGetClass_() != null;
 			case PivotPackage.COMPLETE_PROPERTY__MODEL:
 				return model != null;
+			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
+				return completeEnvironment != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

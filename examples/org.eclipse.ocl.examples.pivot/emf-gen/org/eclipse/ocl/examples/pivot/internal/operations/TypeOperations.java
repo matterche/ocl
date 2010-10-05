@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeOperations.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: TypeOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -32,20 +32,21 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class TypeOperations extends MonikeredElementOperations
-{
-  /**
+public class TypeOperations
+		extends MonikeredElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TypeOperations() {
+	protected TypeOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isTemplate() returns whether this templateable element is actually a template.
 	 * result = oclAsType(TemplatableElement).isTemplate() or general->exists(g | g.isTemplate())
@@ -53,8 +54,7 @@ public class TypeOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean isTemplate(Type type)
-  {
+	public static boolean isTemplate(Type type) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

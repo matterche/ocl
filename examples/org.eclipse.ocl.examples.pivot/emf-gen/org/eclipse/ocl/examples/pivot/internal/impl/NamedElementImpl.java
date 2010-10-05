@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElementImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: NamedElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -50,29 +50,31 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public abstract class NamedElementImpl extends MonikeredElementImpl implements NamedElement
-{
-  /**
+public abstract class NamedElementImpl
+		extends MonikeredElementImpl
+		implements NamedElement {
+
+	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-  protected String name = NAME_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedRules() <em>Owned Rule</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,7 +84,7 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 	 */
 	protected EList<Constraint> ownedRules;
 
-/**
+	/**
 	 * The cached value of the '{@link #getOwnedAnnotations() <em>Owned Annotation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,34 +94,31 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 	 */
 	protected EList<Annotation> ownedAnnotations;
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  protected NamedElementImpl()
-  {
-		super();
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass()
-  {
-		return PivotPackage.Literals.NAMED_ELEMENT;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Annotation> getOwnedAnnotations()
-	{
+	protected NamedElementImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.NAMED_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Annotation> getOwnedAnnotations() {
 		if (ownedAnnotations == null)
 		{
 			ownedAnnotations = new EObjectContainmentEList.Resolving<Annotation>(Annotation.class, this, PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION);
@@ -127,48 +126,44 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 		return ownedAnnotations;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Annotation createOwnedAnnotation()
-	{
+	public Annotation createOwnedAnnotation() {
 		Annotation newOwnedAnnotation = (Annotation) create(PivotPackage.Literals.ANNOTATION);
 		getOwnedAnnotations().add(newOwnedAnnotation);
 		return newOwnedAnnotation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getName()
-  {
+	public String getName() {
 		return name;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setName(String newName)
-  {
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.NAMED_ELEMENT__NAME, oldName, name));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Constraint> getOwnedRules()
-	{
+	public EList<Constraint> getOwnedRules() {
 		if (ownedRules == null)
 		{
 			ownedRules = new EObjectContainmentEList.Resolving<Constraint>(Constraint.class, this, PivotPackage.NAMED_ELEMENT__OWNED_RULE);
@@ -176,26 +171,25 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 		return ownedRules;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint createOwnedRule()
-	{
+	public Constraint createOwnedRule() {
 		Constraint newOwnedRule = (Constraint) create(PivotPackage.Literals.CONSTRAINT);
 		getOwnedRules().add(newOwnedRule);
 		return newOwnedRule;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
@@ -208,14 +202,13 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
@@ -232,15 +225,14 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
@@ -265,14 +257,13 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
@@ -294,14 +285,13 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
@@ -318,21 +308,14 @@ public abstract class NamedElementImpl extends MonikeredElementImpl implements N
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
-		result.append(name);
-		result.append(')');
-		return result.toString();
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 } //NamedElementImpl

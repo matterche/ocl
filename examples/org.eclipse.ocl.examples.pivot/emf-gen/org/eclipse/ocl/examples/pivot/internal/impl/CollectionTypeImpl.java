@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: CollectionTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -52,46 +52,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class CollectionTypeImpl extends DataTypeImpl implements CollectionType
-{
-  /**
+public class CollectionTypeImpl
+		extends DataTypeImpl
+		implements CollectionType {
+
+	/**
 	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getElementType()
 	 * @generated
 	 * @ordered
 	 */
-  protected Type elementType;
+	protected Type elementType;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected CollectionTypeImpl()
-  {
+	protected CollectionTypeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COLLECTION_TYPE;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Type getElementType()
-  {
+	public Type getElementType() {
 		if (elementType != null && ((EObject)elementType).eIsProxy())
 		{
 			InternalEObject oldElementType = (InternalEObject)elementType;
@@ -105,37 +104,34 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType
 		return elementType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Type basicGetElementType()
-  {
+	public Type basicGetElementType() {
 		return elementType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setElementType(Type newElementType)
-  {
+	public void setElementType(Type newElementType) {
 		Type oldElementType = elementType;
 		elementType = newElementType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:
@@ -181,15 +177,14 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:
@@ -255,14 +250,13 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:
@@ -320,14 +314,13 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:

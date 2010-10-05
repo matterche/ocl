@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableDeclarationImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: VariableDeclarationImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,15 +30,16 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
  *
  * @generated
  */
-public abstract class VariableDeclarationImpl extends TypedElementImpl implements VariableDeclaration
-{
+public abstract class VariableDeclarationImpl
+		extends TypedElementImpl
+		implements VariableDeclaration {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableDeclarationImpl()
-	{
+	protected VariableDeclarationImpl() {
 		super();
 	}
 
@@ -48,8 +49,7 @@ public abstract class VariableDeclarationImpl extends TypedElementImpl implement
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.VARIABLE_DECLARATION;
 	}
 

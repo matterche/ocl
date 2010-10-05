@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclInvalidImpl.java,v 1.1.2.2 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: OclInvalidImpl.java,v 1.1.2.3 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,26 +30,26 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class OclInvalidImpl extends OclVoidImpl implements OclInvalid
-{
-  /**
+public class OclInvalidImpl
+		extends OclVoidImpl
+		implements OclInvalid {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected OclInvalidImpl()
-  {
+	protected OclInvalidImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.OCL_INVALID;
 	}
 

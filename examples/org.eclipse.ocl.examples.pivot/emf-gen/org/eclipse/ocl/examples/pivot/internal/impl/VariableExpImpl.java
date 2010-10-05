@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: VariableExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,46 +45,45 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
  *
  * @generated
  */
-public class VariableExpImpl extends OclExpressionImpl implements VariableExp
-{
-  /**
+public class VariableExpImpl
+		extends OclExpressionImpl
+		implements VariableExp {
+
+	/**
 	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredVariable()
 	 * @generated
 	 * @ordered
 	 */
-  protected VariableDeclaration referredVariable;
+	protected VariableDeclaration referredVariable;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected VariableExpImpl()
-  {
+	protected VariableExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.VARIABLE_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public VariableDeclaration getReferredVariable()
-  {
+	public VariableDeclaration getReferredVariable() {
 		if (referredVariable != null && ((EObject)referredVariable).eIsProxy())
 		{
 			InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
@@ -98,37 +97,34 @@ public class VariableExpImpl extends OclExpressionImpl implements VariableExp
 		return referredVariable;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public VariableDeclaration basicGetReferredVariable()
-  {
-		return referredVariable;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferredVariable(VariableDeclaration newReferredVariable)
-	{
+	public VariableDeclaration basicGetReferredVariable() {
+		return referredVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferredVariable(VariableDeclaration newReferredVariable) {
 		VariableDeclaration oldReferredVariable = referredVariable;
 		referredVariable = newReferredVariable;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
@@ -151,15 +147,14 @@ public class VariableExpImpl extends OclExpressionImpl implements VariableExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
@@ -190,14 +185,13 @@ public class VariableExpImpl extends OclExpressionImpl implements VariableExp
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
@@ -225,14 +219,13 @@ public class VariableExpImpl extends OclExpressionImpl implements VariableExp
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
@@ -252,10 +245,10 @@ public class VariableExpImpl extends OclExpressionImpl implements VariableExp
 		}
 		return eDynamicIsSet(featureID);
 	}
-	
+
 	@Override
-	public Object evaluate(EvaluationContext context) {
-		return context.getValueOfVariable(getReferredVariable());
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitVariableExp(this);
 	}
 
 } //VariableExpImpl

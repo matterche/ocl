@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IPivotElementOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: IPivotElementOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.pivot.IPivotElement;
  *
  * @generated
  */
-public class IPivotElementOperations
-{
+public class IPivotElementOperations {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,8 +49,7 @@ public class IPivotElementOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  Element getPivot(IPivotElement iPivotElement)
-	{
+	public static Element getPivot(IPivotElement iPivotElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

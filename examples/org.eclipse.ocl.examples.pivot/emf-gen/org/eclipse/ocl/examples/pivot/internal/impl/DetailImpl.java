@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DetailImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: DetailImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -40,8 +40,10 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class DetailImpl extends NamedElementImpl implements Detail
-{
+public class DetailImpl
+		extends NamedElementImpl
+		implements Detail {
+
 	/**
 	 * The cached value of the '{@link #getValues() <em>Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -57,8 +59,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DetailImpl()
-	{
+	protected DetailImpl() {
 		super();
 	}
 
@@ -68,8 +69,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.DETAIL;
 	}
 
@@ -78,8 +78,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getValues()
-	{
+	public EList<String> getValues() {
 		if (values == null)
 		{
 			values = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.DETAIL__VALUE);
@@ -93,8 +92,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
@@ -120,8 +118,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
@@ -156,8 +153,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
@@ -188,8 +184,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
@@ -214,8 +209,7 @@ public class DetailImpl extends NamedElementImpl implements Detail
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

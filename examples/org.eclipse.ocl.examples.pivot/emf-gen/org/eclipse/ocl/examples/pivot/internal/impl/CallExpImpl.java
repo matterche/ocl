@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.1.2.2 2010/10/01 13:54:09 ewillink Exp $
+ * $Id: CallExpImpl.java,v 1.1.2.3 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -50,46 +50,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
-{
-  /**
+public abstract class CallExpImpl
+		extends OclExpressionImpl
+		implements CallExp {
+
+	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression source;
+	protected OclExpression source;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected CallExpImpl()
-  {
+	protected CallExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.CALL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getSource()
-  {
+	public OclExpression getSource() {
 		if (source != null && ((EObject)source).eIsProxy())
 		{
 			InternalEObject oldSource = (InternalEObject)source;
@@ -110,23 +109,22 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
 		return source;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetSource()
-  {
+	public OclExpression basicGetSource() {
 		return source;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetSource(OclExpression newSource, NotificationChain msgs)
-  {
+	public NotificationChain basicSetSource(OclExpression newSource,
+			NotificationChain msgs) {
 		OclExpression oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
@@ -137,13 +135,12 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSource(OclExpression newSource)
-  {
+	public void setSource(OclExpression newSource) {
 		if (newSource != source)
 		{
 			NotificationChain msgs = null;
@@ -158,36 +155,34 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CALL_EXP__SOURCE, newSource, newSource));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createSource(EClass eClass)
-  {
+	public OclExpression createSource(EClass eClass) {
 		OclExpression newSource = (OclExpression) create(eClass);
 		setSource(newSource);
 		return newSource;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createSource()
-	{
+	public OclExpression createSource() {
 		return createSource(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
@@ -202,14 +197,13 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
@@ -232,15 +226,14 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
@@ -271,14 +264,13 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
@@ -306,14 +298,13 @@ public abstract class CallExpImpl extends OclExpressionImpl implements CallExp
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:

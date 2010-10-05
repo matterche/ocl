@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: IterateImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Iterate;
@@ -38,6 +37,8 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,8 +53,10 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class IterateImpl extends IteratorImpl implements Iterate
-{
+public class IterateImpl
+		extends IteratorImpl
+		implements Iterate {
+
 	/**
 	 * The cached value of the '{@link #getOwnedAccumulators() <em>Owned Accumulator</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -69,8 +72,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IterateImpl()
-	{
+	protected IterateImpl() {
 		super();
 	}
 
@@ -80,8 +82,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ITERATE;
 	}
 
@@ -90,8 +91,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Parameter> getOwnedAccumulators()
-	{
+	public EList<Parameter> getOwnedAccumulators() {
 		if (ownedAccumulators == null)
 		{
 			ownedAccumulators = new EObjectContainmentEList.Resolving<Parameter>(Parameter.class, this, PivotPackage.ITERATE__OWNED_ACCUMULATOR);
@@ -104,8 +104,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parameter createOwnedAccumulator()
-	{
+	public Parameter createOwnedAccumulator() {
 		Parameter newOwnedAccumulator = (Parameter) create(PivotPackage.Literals.PARAMETER);
 		getOwnedAccumulators().add(newOwnedAccumulator);
 		return newOwnedAccumulator;
@@ -117,8 +116,8 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE__OWNED_COMMENT:
@@ -155,8 +154,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE__OWNED_COMMENT:
@@ -196,8 +194,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 			case PivotPackage.ITERATE__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.ITERATE__IMPLEMENTATION:
-				if (resolve) return getImplementation();
-				return basicGetImplementation();
+				return getImplementation();
 			case PivotPackage.ITERATE__RAISED_EXCEPTION:
 				return getRaisedExceptions();
 			case PivotPackage.ITERATE__OWNED_PARAMETER:
@@ -223,8 +220,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE__OWNED_COMMENT:
@@ -315,8 +311,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE__OWNED_COMMENT:
@@ -398,8 +393,7 @@ public class IterateImpl extends IteratorImpl implements Iterate
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE__OWNED_COMMENT:
@@ -450,6 +444,11 @@ public class IterateImpl extends IteratorImpl implements Iterate
 				return ownedAccumulators != null && !ownedAccumulators.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitIterate(this);
 	}
 
 } //IterateImpl

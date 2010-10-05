@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: OclAnyOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -34,48 +34,45 @@ import org.eclipse.ocl.examples.pivot.OclAny;
  *
  * @generated
  */
-public class OclAnyOperations extends VisitableOperations
-{
-  /**
+public class OclAnyOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected OclAnyOperations() {
+	protected OclAnyOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static  org.eclipse.ocl.examples.pivot.Class oclType(OclAny oclAny)
-  {
+	public static org.eclipse.ocl.examples.pivot.Class oclType(OclAny oclAny) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static  boolean oclIsInvalid(OclAny oclAny)
-  {
+	public static boolean oclIsInvalid(OclAny oclAny) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static  boolean oclIsUndefined(OclAny oclAny)
-  {
+	public static boolean oclIsUndefined(OclAny oclAny) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

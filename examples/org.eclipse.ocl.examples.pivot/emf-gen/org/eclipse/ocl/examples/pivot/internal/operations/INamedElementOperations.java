@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: INamedElementOperations.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: INamedElementOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -32,8 +32,8 @@ import org.eclipse.ocl.examples.pivot.INamedElement;
  *
  * @generated
  */
-public class INamedElementOperations
-{
+public class INamedElementOperations {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48,8 +48,7 @@ public class INamedElementOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  String getName(INamedElement iNamedElement)
-	{
+	public static String getName(INamedElement iNamedElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

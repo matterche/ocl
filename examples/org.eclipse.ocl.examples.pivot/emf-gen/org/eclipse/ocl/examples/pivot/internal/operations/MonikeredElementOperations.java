@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementOperations.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: MonikeredElementOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -32,8 +32,9 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
  *
  * @generated
  */
-public class MonikeredElementOperations extends OclAnyOperations
-{
+public class MonikeredElementOperations
+		extends OclAnyOperations {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48,8 +49,7 @@ public class MonikeredElementOperations extends OclAnyOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  boolean hasMoniker(MonikeredElement monikeredElement)
-	{
+	public static boolean hasMoniker(MonikeredElement monikeredElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

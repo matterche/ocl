@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,31 +30,31 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class InvalidLiteralExpImpl extends LiteralExpImpl implements InvalidLiteralExp
-{
-  /**
+public class InvalidLiteralExpImpl
+		extends LiteralExpImpl
+		implements InvalidLiteralExp {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected InvalidLiteralExpImpl()
-  {
+	protected InvalidLiteralExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.INVALID_LITERAL_EXP;
 	}
-	
+
 	@Override
-	public Object evaluate(EvaluationContext context) {
-		return this;
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitInvalidLiteralExp(this);
 	}
 } //InvalidLiteralExpImpl

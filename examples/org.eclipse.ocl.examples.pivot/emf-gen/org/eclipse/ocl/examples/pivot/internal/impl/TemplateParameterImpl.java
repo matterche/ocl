@@ -12,39 +12,30 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: TemplateParameterImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateParameterOperations;
 
 /**
@@ -64,76 +55,75 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateParameterOpera
  *
  * @generated
  */
-public class TemplateParameterImpl extends ElementImpl implements TemplateParameter
-{
-  /**
+public class TemplateParameterImpl
+		extends ElementImpl
+		implements TemplateParameter {
+
+	/**
 	 * The cached value of the '{@link #getParameteredElement() <em>Parametered Element</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getParameteredElement()
 	 * @generated
 	 * @ordered
 	 */
-  protected ParameterableElement parameteredElement;
+	protected ParameterableElement parameteredElement;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getDefault() <em>Default</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDefault()
 	 * @generated
 	 * @ordered
 	 */
-  protected ParameterableElement default_;
+	protected ParameterableElement default_;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedParameteredElement() <em>Owned Parametered Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedParameteredElement()
 	 * @generated
 	 * @ordered
 	 */
-  protected ParameterableElement ownedParameteredElement;
+	protected ParameterableElement ownedParameteredElement;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedDefault() <em>Owned Default</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedDefault()
 	 * @generated
 	 * @ordered
 	 */
-  protected ParameterableElement ownedDefault;
+	protected ParameterableElement ownedDefault;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TemplateParameterImpl()
-  {
+	protected TemplateParameterImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TEMPLATE_PARAMETER;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement getParameteredElement()
-  {
+	public ParameterableElement getParameteredElement() {
 		if (parameteredElement != null && ((EObject)parameteredElement).eIsProxy())
 		{
 			InternalEObject oldParameteredElement = (InternalEObject)parameteredElement;
@@ -147,23 +137,22 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return parameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement basicGetParameteredElement()
-  {
+	public ParameterableElement basicGetParameteredElement() {
 		return parameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetParameteredElement(ParameterableElement newParameteredElement, NotificationChain msgs)
-  {
+	public NotificationChain basicSetParameteredElement(
+			ParameterableElement newParameteredElement, NotificationChain msgs) {
 		ParameterableElement oldParameteredElement = parameteredElement;
 		parameteredElement = newParameteredElement;
 		if (eNotificationRequired())
@@ -181,13 +170,12 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setParameteredElement(ParameterableElement newParameteredElement)
-  {
+	public void setParameteredElement(ParameterableElement newParameteredElement) {
 		if (newParameteredElement != parameteredElement)
 		{
 			NotificationChain msgs = null;
@@ -202,13 +190,12 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, newParameteredElement, newParameteredElement));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement getDefault()
-  {
+	public ParameterableElement getDefault() {
 		if (default_ != null && ((EObject)default_).eIsProxy())
 		{
 			InternalEObject oldDefault = (InternalEObject)default_;
@@ -222,23 +209,21 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return default_;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement basicGetDefault()
-  {
+	public ParameterableElement basicGetDefault() {
 		return default_;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setDefault(ParameterableElement newDefault)
-  {
+	public void setDefault(ParameterableElement newDefault) {
 		ParameterableElement oldDefault = default_;
 		default_ = newDefault;
 		if (eNotificationRequired())
@@ -252,46 +237,43 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		}
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature getSignature()
-  {
+	public TemplateSignature getSignature() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER__SIGNATURE) return null;
 		return (TemplateSignature)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature basicGetSignature()
-  {
+	public TemplateSignature basicGetSignature() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER__SIGNATURE) return null;
 		return (TemplateSignature)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetSignature(TemplateSignature newSignature, NotificationChain msgs)
-  {
+	public NotificationChain basicSetSignature(TemplateSignature newSignature,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newSignature, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE, msgs);
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSignature(TemplateSignature newSignature)
-  {
+	public void setSignature(TemplateSignature newSignature) {
 		if (newSignature != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER__SIGNATURE && newSignature != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newSignature))
@@ -308,13 +290,12 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE, newSignature, newSignature));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement getOwnedParameteredElement()
-  {
+	public ParameterableElement getOwnedParameteredElement() {
 		if (ownedParameteredElement != null && ((EObject)ownedParameteredElement).eIsProxy())
 		{
 			InternalEObject oldOwnedParameteredElement = (InternalEObject)ownedParameteredElement;
@@ -335,23 +316,23 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return ownedParameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement basicGetOwnedParameteredElement()
-  {
+	public ParameterableElement basicGetOwnedParameteredElement() {
 		return ownedParameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetOwnedParameteredElement(ParameterableElement newOwnedParameteredElement, NotificationChain msgs)
-  {
+	public NotificationChain basicSetOwnedParameteredElement(
+			ParameterableElement newOwnedParameteredElement,
+			NotificationChain msgs) {
 		ParameterableElement oldOwnedParameteredElement = ownedParameteredElement;
 		ownedParameteredElement = newOwnedParameteredElement;
 		if (eNotificationRequired())
@@ -372,13 +353,13 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOwnedParameteredElement(ParameterableElement newOwnedParameteredElement)
-  {
+	public void setOwnedParameteredElement(
+			ParameterableElement newOwnedParameteredElement) {
 		if (newOwnedParameteredElement != ownedParameteredElement)
 		{
 			NotificationChain msgs = null;
@@ -393,25 +374,23 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, newOwnedParameteredElement, newOwnedParameteredElement));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement createOwnedParameteredElement(EClass eClass)
-  {
+	public ParameterableElement createOwnedParameteredElement(EClass eClass) {
 		ParameterableElement newOwnedParameteredElement = (ParameterableElement) create(eClass);
 		setOwnedParameteredElement(newOwnedParameteredElement);
 		return newOwnedParameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement getOwnedDefault()
-  {
+	public ParameterableElement getOwnedDefault() {
 		if (ownedDefault != null && ((EObject)ownedDefault).eIsProxy())
 		{
 			InternalEObject oldOwnedDefault = (InternalEObject)ownedDefault;
@@ -432,23 +411,22 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return ownedDefault;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement basicGetOwnedDefault()
-  {
+	public ParameterableElement basicGetOwnedDefault() {
 		return ownedDefault;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetOwnedDefault(ParameterableElement newOwnedDefault, NotificationChain msgs)
-  {
+	public NotificationChain basicSetOwnedDefault(
+			ParameterableElement newOwnedDefault, NotificationChain msgs) {
 		ParameterableElement oldOwnedDefault = ownedDefault;
 		ownedDefault = newOwnedDefault;
 		if (eNotificationRequired())
@@ -469,13 +447,12 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOwnedDefault(ParameterableElement newOwnedDefault)
-  {
+	public void setOwnedDefault(ParameterableElement newOwnedDefault) {
 		if (newOwnedDefault != ownedDefault)
 		{
 			NotificationChain msgs = null;
@@ -490,36 +467,35 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, newOwnedDefault, newOwnedDefault));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ParameterableElement createOwnedDefault(EClass eClass)
-  {
+	public ParameterableElement createOwnedDefault(EClass eClass) {
 		ParameterableElement newOwnedDefault = (ParameterableElement) create(eClass);
 		setOwnedDefault(newOwnedDefault);
 		return newOwnedDefault;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateMustBeCompatible(DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateMustBeCompatible(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return TemplateParameterOperations.validateMustBeCompatible(this, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
@@ -538,14 +514,14 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -562,14 +538,14 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
@@ -578,14 +554,13 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -609,15 +584,14 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -643,14 +617,13 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -675,14 +648,13 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -701,19 +673,17 @@ public class TemplateParameterImpl extends ElementImpl implements TemplateParame
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATE_PARAMETER___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.TEMPLATE_PARAMETER___OCL_TYPE:
 				return oclType();
 			case PivotPackage.TEMPLATE_PARAMETER___OCL_IS_INVALID:

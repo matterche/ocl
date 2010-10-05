@@ -12,39 +12,30 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignatureImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: TemplateSignatureImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateSignatureOperations;
-
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
 
@@ -63,56 +54,55 @@ import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
  *
  * @generated
  */
-public class TemplateSignatureImpl extends MonikeredElementImpl implements TemplateSignature
-{
-  /**
+public class TemplateSignatureImpl
+		extends MonikeredElementImpl
+		implements TemplateSignature {
+
+	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getParameters()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<TemplateParameter> parameters;
+	protected EList<TemplateParameter> parameters;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameter</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<TemplateParameter> ownedParameters;
+	protected EList<TemplateParameter> ownedParameters;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TemplateSignatureImpl()
-  {
+	protected TemplateSignatureImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TEMPLATE_SIGNATURE;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<TemplateParameter> getParameters()
-  {
+	public EList<TemplateParameter> getParameters() {
 		if (parameters == null)
 		{
 			parameters = new SubsetSupersetEObjectResolvingEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__PARAMETER, null, PARAMETER_ESUBSETS);
@@ -120,56 +110,53 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		return parameters;
 	}
 
-  /**
+	/**
 	 * The array of subset feature identifiers for the '{@link #getParameters() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getParameters()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int[] PARAMETER_ESUBSETS = new int[] {PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER};
+	protected static final int[] PARAMETER_ESUBSETS = new int[] {PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER};
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateableElement getTemplate()
-  {
+	public TemplateableElement getTemplate() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE) return null;
 		return (TemplateableElement)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateableElement basicGetTemplate()
-  {
+	public TemplateableElement basicGetTemplate() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE) return null;
 		return (TemplateableElement)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetTemplate(TemplateableElement newTemplate, NotificationChain msgs)
-  {
+	public NotificationChain basicSetTemplate(TemplateableElement newTemplate,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newTemplate, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, msgs);
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setTemplate(TemplateableElement newTemplate)
-  {
+	public void setTemplate(TemplateableElement newTemplate) {
 		if (newTemplate != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE && newTemplate != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newTemplate))
@@ -186,13 +173,12 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, newTemplate, newTemplate));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<TemplateParameter> getOwnedParameters()
-  {
+	public EList<TemplateParameter> getOwnedParameters() {
 		if (ownedParameters == null)
 		{
 			ownedParameters = new SubsetSupersetEObjectContainmentWithInverseEList.Resolving<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER, OWNED_PARAMETER_ESUPERSETS, null, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE);
@@ -200,57 +186,55 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		return ownedParameters;
 	}
 
-  /**
+	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedParameters() <em>Owned Parameter</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int[] OWNED_PARAMETER_ESUPERSETS = new int[] {PivotPackage.TEMPLATE_SIGNATURE__PARAMETER};
+	protected static final int[] OWNED_PARAMETER_ESUPERSETS = new int[] {PivotPackage.TEMPLATE_SIGNATURE__PARAMETER};
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter createOwnedParameter(EClass eClass)
-  {
+	public TemplateParameter createOwnedParameter(EClass eClass) {
 		TemplateParameter newOwnedParameter = (TemplateParameter) create(eClass);
 		getOwnedParameters().add(newOwnedParameter);
 		return newOwnedParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter createOwnedParameter()
-  {
+	public TemplateParameter createOwnedParameter() {
 		return createOwnedParameter(PivotPackage.Literals.TEMPLATE_PARAMETER);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOwnElements(DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOwnElements(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return TemplateSignatureOperations.validateOwnElements(this, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
@@ -263,14 +247,14 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
@@ -283,14 +267,14 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
@@ -299,14 +283,13 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
@@ -324,15 +307,14 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
@@ -357,14 +339,13 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
@@ -386,14 +367,13 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
@@ -410,19 +390,17 @@ public class TemplateSignatureImpl extends MonikeredElementImpl implements Templ
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATE_SIGNATURE___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.TEMPLATE_SIGNATURE___OCL_TYPE:
 				return oclType();
 			case PivotPackage.TEMPLATE_SIGNATURE___OCL_IS_INVALID:

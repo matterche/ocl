@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: PackageImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -41,8 +41,8 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,9 +65,11 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOpe
  *
  * @generated
  */
-public class PackageImpl extends NamedElementImpl implements org.eclipse.ocl.examples.pivot.Package
-{
-  /**
+public class PackageImpl
+		extends NamedElementImpl
+		implements org.eclipse.ocl.examples.pivot.Package {
+
+	/**
 	 * The cached value of the '{@link #getTemplateBindings() <em>Template Binding</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,24 +92,24 @@ public class PackageImpl extends NamedElementImpl implements org.eclipse.ocl.exa
 	/**
 	 * The cached value of the '{@link #getOwnedSpecializations() <em>Owned Specialization</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedSpecializations()
 	 * @generated
 	 * @ordered
 	 */
-		protected EList<TemplateableElement> ownedSpecializations;
+	protected EList<TemplateableElement> ownedSpecializations;
 
-/**
+	/**
 	 * The cached value of the '{@link #getNestedPackages() <em>Nested Package</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getNestedPackages()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<org.eclipse.ocl.examples.pivot.Package> nestedPackages;
+	protected EList<org.eclipse.ocl.examples.pivot.Package> nestedPackages;
 
-/**
+	/**
 	 * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,37 +119,37 @@ public class PackageImpl extends NamedElementImpl implements org.eclipse.ocl.exa
 	 */
 	protected static final String NS_PREFIX_EDEFAULT = null;
 
-/**
+	/**
 	 * The cached value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
 	 * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getNsPrefix()
 	 * @generated
 	 * @ordered
 	 */
-protected String nsPrefix = NS_PREFIX_EDEFAULT;
+	protected String nsPrefix = NS_PREFIX_EDEFAULT;
 
-/**
+	/**
 	 * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
 	 * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getNsURI()
 	 * @generated
 	 * @ordered
 	 */
-protected static final String NS_URI_EDEFAULT = null;
+	protected static final String NS_URI_EDEFAULT = null;
 
-/**
+	/**
 	 * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
 	 * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getNsURI()
 	 * @generated
 	 * @ordered
 	 */
-protected String nsURI = NS_URI_EDEFAULT;
+	protected String nsURI = NS_URI_EDEFAULT;
 
-/**
+	/**
 	 * The cached value of the '{@link #getOwnedPrecedences() <em>Owned Precedence</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,44 +159,41 @@ protected String nsURI = NS_URI_EDEFAULT;
 	 */
 	protected EList<Precedence> ownedPrecedences;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedTypes() <em>Owned Type</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedTypes()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Type> ownedTypes;
+	protected EList<Type> ownedTypes;
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  protected PackageImpl()
-  {
-		super();
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass()
-  {
-		return PivotPackage.Literals.PACKAGE;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TemplateableElement> getOwnedSpecializations()
-	{
+	protected PackageImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.PACKAGE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TemplateableElement> getOwnedSpecializations() {
 		if (ownedSpecializations == null)
 		{
 			ownedSpecializations = new EObjectContainmentEList.Resolving<TemplateableElement>(TemplateableElement.class, this, PivotPackage.PACKAGE__OWNED_SPECIALIZATION);
@@ -202,25 +201,23 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return ownedSpecializations;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement createOwnedSpecialization(EClass eClass)
-	{
+	public TemplateableElement createOwnedSpecialization(EClass eClass) {
 		TemplateableElement newOwnedSpecialization = (TemplateableElement) create(eClass);
 		getOwnedSpecializations().add(newOwnedSpecialization);
 		return newOwnedSpecialization;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TemplateBinding> getTemplateBindings()
-	{
+	public EList<TemplateBinding> getTemplateBindings() {
 		if (templateBindings == null)
 		{
 			templateBindings = new EObjectContainmentWithInverseEList.Resolving<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
@@ -228,25 +225,23 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return templateBindings;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateBinding createTemplateBinding()
-	{
+	public TemplateBinding createTemplateBinding() {
 		TemplateBinding newTemplateBinding = (TemplateBinding) create(PivotPackage.Literals.TEMPLATE_BINDING);
 		getTemplateBindings().add(newTemplateBinding);
 		return newTemplateBinding;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature getOwnedTemplateSignature()
-	{
+	public TemplateSignature getOwnedTemplateSignature() {
 		if (ownedTemplateSignature != null && ((EObject)ownedTemplateSignature).eIsProxy())
 		{
 			InternalEObject oldOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
@@ -267,23 +262,22 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return ownedTemplateSignature;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature basicGetOwnedTemplateSignature()
-	{
+	public TemplateSignature basicGetOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature, NotificationChain msgs)
-	{
+	public NotificationChain basicSetOwnedTemplateSignature(
+			TemplateSignature newOwnedTemplateSignature, NotificationChain msgs) {
 		TemplateSignature oldOwnedTemplateSignature = ownedTemplateSignature;
 		ownedTemplateSignature = newOwnedTemplateSignature;
 		if (eNotificationRequired())
@@ -294,13 +288,13 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return msgs;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature)
-	{
+	public void setOwnedTemplateSignature(
+			TemplateSignature newOwnedTemplateSignature) {
 		if (newOwnedTemplateSignature != ownedTemplateSignature)
 		{
 			NotificationChain msgs = null;
@@ -315,71 +309,65 @@ protected String nsURI = NS_URI_EDEFAULT;
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature createOwnedTemplateSignature()
-	{
+	public TemplateSignature createOwnedTemplateSignature() {
 		TemplateSignature newOwnedTemplateSignature = (TemplateSignature) create(PivotPackage.Literals.TEMPLATE_SIGNATURE);
 		setOwnedTemplateSignature(newOwnedTemplateSignature);
 		return newOwnedTemplateSignature;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getNsPrefix()
-	{
+	public String getNsPrefix() {
 		return nsPrefix;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNsPrefix(String newNsPrefix)
-	{
+	public void setNsPrefix(String newNsPrefix) {
 		String oldNsPrefix = nsPrefix;
 		nsPrefix = newNsPrefix;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__NS_PREFIX, oldNsPrefix, nsPrefix));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getNsURI()
-	{
+	public String getNsURI() {
 		return nsURI;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNsURI(String newNsURI)
-	{
+	public void setNsURI(String newNsURI) {
 		String oldNsURI = nsURI;
 		nsURI = newNsURI;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__NS_URI, oldNsURI, nsURI));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Precedence> getOwnedPrecedences()
-	{
+	public EList<Precedence> getOwnedPrecedences() {
 		if (ownedPrecedences == null)
 		{
 			ownedPrecedences = new EObjectContainmentEList.Resolving<Precedence>(Precedence.class, this, PivotPackage.PACKAGE__OWNED_PRECEDENCE);
@@ -387,25 +375,23 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return ownedPrecedences;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Precedence createOwnedPrecedence()
-	{
+	public Precedence createOwnedPrecedence() {
 		Precedence newOwnedPrecedence = (Precedence) create(PivotPackage.Literals.PRECEDENCE);
 		getOwnedPrecedences().add(newOwnedPrecedence);
 		return newOwnedPrecedence;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<org.eclipse.ocl.examples.pivot.Package> getNestedPackages()
-  {
+	public EList<org.eclipse.ocl.examples.pivot.Package> getNestedPackages() {
 		if (nestedPackages == null)
 		{
 			nestedPackages = new EObjectContainmentWithInverseEList.Resolving<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__NESTED_PACKAGE, PivotPackage.PACKAGE__NESTING_PACKAGE);
@@ -413,68 +399,66 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return nestedPackages;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Package createNestedPackage(EClass eClass)
-  {
+	public org.eclipse.ocl.examples.pivot.Package createNestedPackage(
+			EClass eClass) {
 		org.eclipse.ocl.examples.pivot.Package newNestedPackage = (org.eclipse.ocl.examples.pivot.Package) create(eClass);
 		getNestedPackages().add(newNestedPackage);
 		return newNestedPackage;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Package createNestedPackage()
-  {
+	public org.eclipse.ocl.examples.pivot.Package createNestedPackage() {
 		return createNestedPackage(PivotPackage.Literals.PACKAGE);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Package getNestingPackage()
-  {
+	public org.eclipse.ocl.examples.pivot.Package getNestingPackage() {
 		if (eContainerFeatureID() != PivotPackage.PACKAGE__NESTING_PACKAGE) return null;
 		return (org.eclipse.ocl.examples.pivot.Package)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Package basicGetNestingPackage()
-  {
+	public org.eclipse.ocl.examples.pivot.Package basicGetNestingPackage() {
 		if (eContainerFeatureID() != PivotPackage.PACKAGE__NESTING_PACKAGE) return null;
 		return (org.eclipse.ocl.examples.pivot.Package)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetNestingPackage(org.eclipse.ocl.examples.pivot.Package newNestingPackage, NotificationChain msgs)
-  {
+	public NotificationChain basicSetNestingPackage(
+			org.eclipse.ocl.examples.pivot.Package newNestingPackage,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newNestingPackage, PivotPackage.PACKAGE__NESTING_PACKAGE, msgs);
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setNestingPackage(org.eclipse.ocl.examples.pivot.Package newNestingPackage)
-  {
+	public void setNestingPackage(
+			org.eclipse.ocl.examples.pivot.Package newNestingPackage) {
 		if (newNestingPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PACKAGE__NESTING_PACKAGE && newNestingPackage != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newNestingPackage))
@@ -491,13 +475,12 @@ protected String nsURI = NS_URI_EDEFAULT;
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__NESTING_PACKAGE, newNestingPackage, newNestingPackage));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Type> getOwnedTypes()
-  {
+	public EList<Type> getOwnedTypes() {
 		if (ownedTypes == null)
 		{
 			ownedTypes = new EObjectContainmentWithInverseEList.Resolving<Type>(Type.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE);
@@ -505,47 +488,44 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return ownedTypes;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Type createOwnedType(EClass eClass)
-  {
+	public Type createOwnedType(EClass eClass) {
 		Type newOwnedType = (Type) create(eClass);
 		getOwnedTypes().add(newOwnedType);
 		return newOwnedType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParameterableElement> parameterableElements()
-	{
+	public EList<ParameterableElement> parameterableElements() {
 		return TemplateableElementOperations.parameterableElements(this);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isTemplate()
-	{
+	public boolean isTemplate() {
 		return TemplateableElementOperations.isTemplate(this);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
@@ -566,14 +546,14 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
@@ -600,14 +580,14 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.PACKAGE__NESTING_PACKAGE:
@@ -616,14 +596,13 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
@@ -660,15 +639,14 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
@@ -725,14 +703,13 @@ protected String nsURI = NS_URI_EDEFAULT;
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
@@ -781,14 +758,13 @@ protected String nsURI = NS_URI_EDEFAULT;
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
@@ -823,14 +799,13 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-  {
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Namespace.class)
 		{
 			switch (derivedFeatureID)
@@ -851,14 +826,13 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-  {
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Namespace.class)
 		{
 			switch (baseFeatureID)
@@ -879,14 +853,13 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
-	{
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Namespace.class)
 		{
 			switch (baseOperationID)
@@ -906,19 +879,16 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.PACKAGE___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.PACKAGE___OCL_TYPE:
 				return oclType();
 			case PivotPackage.PACKAGE___OCL_IS_INVALID:
@@ -937,23 +907,19 @@ protected String nsURI = NS_URI_EDEFAULT;
 		return eDynamicInvoke(operationID, arguments);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
+	public String toString() {
+		return super.toString();
+	}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (nsPrefix: "); //$NON-NLS-1$
-		result.append(nsPrefix);
-		result.append(", nsURI: "); //$NON-NLS-1$
-		result.append(nsURI);
-		result.append(')');
-		return result.toString();
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitPackage(this);
 	}
 
 } //PackageImpl

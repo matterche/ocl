@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationTemplateParameterImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: OperationTemplateParameterImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -42,37 +42,36 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class OperationTemplateParameterImpl extends TemplateParameterImpl implements OperationTemplateParameter
-{
-  /**
+public class OperationTemplateParameterImpl
+		extends TemplateParameterImpl
+		implements OperationTemplateParameter {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected OperationTemplateParameterImpl()
-  {
+	protected OperationTemplateParameterImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.OPERATION_TEMPLATE_PARAMETER;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public ParameterableElement getParameteredElement()
-  {
+	@Override
+	public ParameterableElement getParameteredElement() {
 		if (parameteredElement != null && ((EObject)parameteredElement).eIsProxy())
 		{
 			InternalEObject oldParameteredElement = (InternalEObject)parameteredElement;
@@ -86,25 +85,24 @@ public class OperationTemplateParameterImpl extends TemplateParameterImpl implem
 		return parameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public ParameterableElement basicGetParameteredElement()
-  {
+	@Override
+	public ParameterableElement basicGetParameteredElement() {
 		return parameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain basicSetParameteredElement(ParameterableElement newParameteredElement, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain basicSetParameteredElement(
+			ParameterableElement newParameteredElement, NotificationChain msgs) {
 		ParameterableElement oldParameteredElement = parameteredElement;
 		parameteredElement = newParameteredElement;
 		if (eNotificationRequired())
@@ -115,14 +113,13 @@ public class OperationTemplateParameterImpl extends TemplateParameterImpl implem
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void setParameteredElement(ParameterableElement newParameteredElement)
-  {
+	@Override
+	public void setParameteredElement(ParameterableElement newParameteredElement) {
 		if (newParameteredElement != parameteredElement)
 		{
 			NotificationChain msgs = null;
@@ -137,13 +134,12 @@ public class OperationTemplateParameterImpl extends TemplateParameterImpl implem
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION_TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, newParameteredElement, newParameteredElement));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isSetParameteredElement()
-  {
+	public boolean isSetParameteredElement() {
 		return parameteredElement != null;
 	}
 

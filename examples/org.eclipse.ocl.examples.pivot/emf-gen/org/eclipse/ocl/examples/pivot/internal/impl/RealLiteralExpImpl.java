@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,19 +43,21 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLiteralExp
-{
-  /**
+public class RealLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements RealLiteralExp {
+
+	/**
 	 * The default value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRealSymbol()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final BigDecimal REAL_SYMBOL_EDEFAULT = null;
+	protected static final BigDecimal REAL_SYMBOL_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,58 +67,53 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 */
 	protected BigDecimal realSymbol = REAL_SYMBOL_EDEFAULT;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected RealLiteralExpImpl()
-  {
+	protected RealLiteralExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.REAL_LITERAL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BigDecimal getRealSymbol()
-	{
+	public BigDecimal getRealSymbol() {
 		return realSymbol;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRealSymbol(BigDecimal newRealSymbol)
-	{
+	public void setRealSymbol(BigDecimal newRealSymbol) {
 		BigDecimal oldRealSymbol = realSymbol;
 		realSymbol = newRealSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol, realSymbol));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.REAL_LITERAL_EXP__OWNED_COMMENT:
@@ -138,15 +135,14 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.REAL_LITERAL_EXP__OWNED_COMMENT:
@@ -177,14 +173,13 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.REAL_LITERAL_EXP__OWNED_COMMENT:
@@ -212,14 +207,13 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.REAL_LITERAL_EXP__OWNED_COMMENT:
@@ -240,26 +234,18 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (realSymbol: "); //$NON-NLS-1$
-		result.append(realSymbol);
-		result.append(')');
-		return result.toString();
-	}
-	
 	@Override
-	public Object evaluate(EvaluationContext context) {
-		BigDecimal value = getRealSymbol();
-		return value != null ? context.getRealValue(value) : null;
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitRealLiteralExp(this);
 	}
 } //RealLiteralExpImpl

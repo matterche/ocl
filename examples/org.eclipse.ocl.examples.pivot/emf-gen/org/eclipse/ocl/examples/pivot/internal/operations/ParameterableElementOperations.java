@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterableElementOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: ParameterableElementOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -32,20 +32,21 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
  *
  * @generated
  */
-public class ParameterableElementOperations extends MonikeredElementOperations
-{
-  /**
+public class ParameterableElementOperations
+		extends MonikeredElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected ParameterableElementOperations() {
+	protected ParameterableElementOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.
 	 * result = templateParameter->notEmpty()
@@ -53,8 +54,8 @@ public class ParameterableElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean isTemplateParameter(ParameterableElement parameterableElement)
-  {
+	public static boolean isTemplateParameter(
+			ParameterableElement parameterableElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: AnnotationImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -51,8 +51,10 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class AnnotationImpl extends NamedElementImpl implements Annotation
-{
+public class AnnotationImpl
+		extends NamedElementImpl
+		implements Annotation {
+
 	/**
 	 * The cached value of the '{@link #getOwnedContents() <em>Owned Content</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -88,8 +90,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AnnotationImpl()
-	{
+	protected AnnotationImpl() {
 		super();
 	}
 
@@ -99,8 +100,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ANNOTATION;
 	}
 
@@ -109,8 +109,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> getOwnedContents()
-	{
+	public EList<Element> getOwnedContents() {
 		if (ownedContents == null)
 		{
 			ownedContents = new EObjectContainmentEList.Resolving<Element>(Element.class, this, PivotPackage.ANNOTATION__OWNED_CONTENT);
@@ -123,8 +122,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element createOwnedContent(EClass eClass)
-	{
+	public Element createOwnedContent(EClass eClass) {
 		Element newOwnedContent = (Element) create(eClass);
 		getOwnedContents().add(newOwnedContent);
 		return newOwnedContent;
@@ -135,18 +133,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element createOwnedContent()
-	{
-		return createOwnedContent(PivotPackage.Literals.ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getReferences()
-	{
+	public EList<Element> getReferences() {
 		if (references == null)
 		{
 			references = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.ANNOTATION__REFERENCE);
@@ -159,8 +146,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Detail> getOwnedDetails()
-	{
+	public EList<Detail> getOwnedDetails() {
 		if (ownedDetails == null)
 		{
 			ownedDetails = new EObjectContainmentEList.Resolving<Detail>(Detail.class, this, PivotPackage.ANNOTATION__OWNED_DETAIL);
@@ -173,8 +159,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Detail createOwnedDetail()
-	{
+	public Detail createOwnedDetail() {
 		Detail newOwnedDetail = (Detail) create(PivotPackage.Literals.DETAIL);
 		getOwnedDetails().add(newOwnedDetail);
 		return newOwnedDetail;
@@ -186,8 +171,8 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
@@ -210,8 +195,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
@@ -241,8 +225,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
@@ -285,8 +268,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
@@ -323,8 +305,7 @@ public class AnnotationImpl extends NamedElementImpl implements Annotation
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:

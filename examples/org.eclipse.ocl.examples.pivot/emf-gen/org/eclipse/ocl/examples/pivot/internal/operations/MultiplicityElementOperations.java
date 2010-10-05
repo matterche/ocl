@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MultiplicityElementOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: MultiplicityElementOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -45,20 +45,21 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class MultiplicityElementOperations extends MonikeredElementOperations
-{
-  /**
+public class MultiplicityElementOperations
+		extends MonikeredElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected MultiplicityElementOperations() {
+	protected MultiplicityElementOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The lower bound must be a non-negative integer literal.
 	 * lowerBound()->notEmpty() implies lowerBound() >= 0
@@ -68,8 +69,9 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean validateLowerGe0(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public static boolean validateLowerGe0(
+			MultiplicityElement multiplicityElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -91,9 +93,9 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 		return true;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The upper bound must be greater than or equal to the lower bound.
 	 * (upperBound()->notEmpty() and lowerBound()->notEmpty()) implies upperBound() >= lowerBound()
@@ -103,8 +105,9 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean validateUpperGeLower(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public static boolean validateUpperGeLower(
+			MultiplicityElement multiplicityElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -126,9 +129,9 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 		return true;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query lowerBound() returns the lower bound of the multiplicity as an integer.
 	 * result = if lower->notEmpty() then lower else 1 endif
@@ -136,16 +139,15 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  BigInteger lowerBound(MultiplicityElement multiplicityElement)
-  {
+	public static BigInteger lowerBound(MultiplicityElement multiplicityElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural.
 	 * result = if upper->notEmpty() then upper else 1 endif
@@ -153,16 +155,15 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  BigInteger upperBound(MultiplicityElement multiplicityElement)
-  {
+	public static BigInteger upperBound(MultiplicityElement multiplicityElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isMultivalued() checks whether this multiplicity has an upper bound greater than one.
 	 * upperBound()->notEmpty()
@@ -171,16 +172,15 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean isMultivalued(MultiplicityElement multiplicityElement)
-  {
+	public static boolean isMultivalued(MultiplicityElement multiplicityElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity.
 	 * upperBound()->notEmpty() and lowerBound()->notEmpty()
@@ -189,16 +189,16 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean includesCardinality(MultiplicityElement multiplicityElement, BigInteger C)
-  {
+	public static boolean includesCardinality(
+			MultiplicityElement multiplicityElement, BigInteger C) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity.
 	 * self.upperBound()->notEmpty() and self.lowerBound()->notEmpty() and M.upperBound()->notEmpty() and M.lowerBound()->notEmpty()
@@ -207,8 +207,8 @@ public class MultiplicityElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean includesMultiplicity(MultiplicityElement multiplicityElement, MultiplicityElement M)
-  {
+	public static boolean includesMultiplicity(
+			MultiplicityElement multiplicityElement, MultiplicityElement M) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

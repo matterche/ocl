@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: LetExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,24 +20,20 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,56 +49,55 @@ import org.eclipse.ocl.examples.pivot.Variable;
  *
  * @generated
  */
-public class LetExpImpl extends OclExpressionImpl implements LetExp
-{
-  /**
+public class LetExpImpl
+		extends OclExpressionImpl
+		implements LetExp {
+
+	/**
 	 * The cached value of the '{@link #getIn() <em>In</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getIn()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression in;
+	protected OclExpression in;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getVariable()
 	 * @generated
 	 * @ordered
 	 */
-  protected Variable variable;
+	protected Variable variable;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected LetExpImpl()
-  {
+	protected LetExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.LET_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getIn()
-  {
+	public OclExpression getIn() {
 		if (in != null && ((EObject)in).eIsProxy())
 		{
 			InternalEObject oldIn = (InternalEObject)in;
@@ -123,23 +118,22 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		return in;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetIn()
-  {
+	public OclExpression basicGetIn() {
 		return in;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetIn(OclExpression newIn, NotificationChain msgs)
-  {
+	public NotificationChain basicSetIn(OclExpression newIn,
+			NotificationChain msgs) {
 		OclExpression oldIn = in;
 		in = newIn;
 		if (eNotificationRequired())
@@ -150,13 +144,12 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIn(OclExpression newIn)
-  {
+	public void setIn(OclExpression newIn) {
 		if (newIn != in)
 		{
 			NotificationChain msgs = null;
@@ -171,35 +164,32 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__IN, newIn, newIn));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createIn(EClass eClass)
-  {
+	public OclExpression createIn(EClass eClass) {
 		OclExpression newIn = (OclExpression) create(eClass);
 		setIn(newIn);
 		return newIn;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createIn()
-	{
+	public OclExpression createIn() {
 		return createIn(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable getVariable()
-  {
+	public Variable getVariable() {
 		if (variable != null && ((EObject)variable).eIsProxy())
 		{
 			InternalEObject oldVariable = (InternalEObject)variable;
@@ -220,23 +210,22 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		return variable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable basicGetVariable()
-  {
+	public Variable basicGetVariable() {
 		return variable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetVariable(Variable newVariable, NotificationChain msgs)
-  {
+	public NotificationChain basicSetVariable(Variable newVariable,
+			NotificationChain msgs) {
 		Variable oldVariable = variable;
 		variable = newVariable;
 		if (eNotificationRequired())
@@ -247,13 +236,12 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setVariable(Variable newVariable)
-  {
+	public void setVariable(Variable newVariable) {
 		if (newVariable != variable)
 		{
 			NotificationChain msgs = null;
@@ -268,26 +256,25 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__VARIABLE, newVariable, newVariable));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable createVariable()
-  {
+	public Variable createVariable() {
 		Variable newVariable = (Variable) create(PivotPackage.Literals.VARIABLE);
 		setVariable(newVariable);
 		return newVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.LET_EXP__OWNED_COMMENT:
@@ -304,14 +291,13 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.LET_EXP__OWNED_COMMENT:
@@ -337,15 +323,14 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.LET_EXP__OWNED_COMMENT:
@@ -379,14 +364,13 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.LET_EXP__OWNED_COMMENT:
@@ -417,14 +401,13 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.LET_EXP__OWNED_COMMENT:
@@ -446,20 +429,9 @@ public class LetExpImpl extends OclExpressionImpl implements LetExp
 		}
 		return eDynamicIsSet(featureID);
 	}
-	
-	@Override
-	public Object evaluate(EvaluationContext context) {
-		OclExpression expression = getIn();
-		if (expression == null) {
-			return null;
-		}
-		Variable variable = getVariable();
-		if (variable == null) {
-			return null;
-		}
-		EvaluationContext nestedContext = context.createNestedContext();
-		nestedContext.addVariable(variable);
-		return expression.evaluate(nestedContext);
-	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitLetExp(this);
+	}
 } //LetExpImpl

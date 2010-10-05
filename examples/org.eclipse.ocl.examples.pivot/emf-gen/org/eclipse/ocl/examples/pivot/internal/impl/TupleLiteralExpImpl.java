@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,46 +46,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralExp
-{
-  /**
+public class TupleLiteralExpImpl
+		extends LiteralExpImpl
+		implements TupleLiteralExp {
+
+	/**
 	 * The cached value of the '{@link #getParts() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getParts()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<TupleLiteralPart> parts;
+	protected EList<TupleLiteralPart> parts;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TupleLiteralExpImpl()
-  {
+	protected TupleLiteralExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TUPLE_LITERAL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<TupleLiteralPart> getParts()
-  {
+	public EList<TupleLiteralPart> getParts() {
 		if (parts == null)
 		{
 			parts = new EObjectContainmentEList.Resolving<TupleLiteralPart>(TupleLiteralPart.class, this, PivotPackage.TUPLE_LITERAL_EXP__PART);
@@ -92,26 +92,25 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 		return parts;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TupleLiteralPart createPart()
-  {
+	public TupleLiteralPart createPart() {
 		TupleLiteralPart newPart = (TupleLiteralPart) create(PivotPackage.Literals.TUPLE_LITERAL_PART);
 		getParts().add(newPart);
 		return newPart;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
@@ -126,14 +125,13 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
@@ -155,15 +153,14 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
@@ -195,14 +192,13 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
@@ -230,14 +226,13 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
@@ -258,4 +253,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitTupleLiteralExp(this);
+	}
 } //TupleLiteralExpImpl

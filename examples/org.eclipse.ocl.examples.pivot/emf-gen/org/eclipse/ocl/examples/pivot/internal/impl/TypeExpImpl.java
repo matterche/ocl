@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: TypeExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,46 +47,45 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
  *
  * @generated
  */
-public class TypeExpImpl extends OclExpressionImpl implements TypeExp
-{
-  /**
+public class TypeExpImpl
+		extends OclExpressionImpl
+		implements TypeExp {
+
+	/**
 	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredType()
 	 * @generated
 	 * @ordered
 	 */
-  protected Type referredType;
+	protected Type referredType;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TypeExpImpl()
-  {
+	protected TypeExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TYPE_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Type getReferredType()
-  {
+	public Type getReferredType() {
 		if (referredType != null && ((EObject)referredType).eIsProxy())
 		{
 			InternalEObject oldReferredType = (InternalEObject)referredType;
@@ -99,37 +99,34 @@ public class TypeExpImpl extends OclExpressionImpl implements TypeExp
 		return referredType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Type basicGetReferredType()
-  {
+	public Type basicGetReferredType() {
 		return referredType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setReferredType(Type newReferredType)
-  {
+	public void setReferredType(Type newReferredType) {
 		Type oldReferredType = referredType;
 		referredType = newReferredType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
@@ -152,15 +149,14 @@ public class TypeExpImpl extends OclExpressionImpl implements TypeExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
@@ -191,14 +187,13 @@ public class TypeExpImpl extends OclExpressionImpl implements TypeExp
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
@@ -226,14 +221,13 @@ public class TypeExpImpl extends OclExpressionImpl implements TypeExp
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
@@ -252,6 +246,11 @@ public class TypeExpImpl extends OclExpressionImpl implements TypeExp
 				return referredType != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitTypeExp(this);
 	}
 
 } //TypeExpImpl

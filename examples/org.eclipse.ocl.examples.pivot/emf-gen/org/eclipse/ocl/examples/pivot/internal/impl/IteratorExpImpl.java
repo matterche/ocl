@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: IteratorExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.Iterator;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,9 +47,11 @@ import org.eclipse.ocl.examples.pivot.Variable;
  *
  * @generated
  */
-public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
-{
-  /**
+public class IteratorExpImpl
+		extends LoopExpImpl
+		implements IteratorExp {
+
+	/**
 	 * The cached value of the '{@link #getReferredIterator() <em>Referred Iterator</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,34 +61,31 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 */
 	protected Iterator referredIterator;
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  protected IteratorExpImpl()
-  {
-		super();
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass()
-  {
-		return PivotPackage.Literals.ITERATOR_EXP;
-	}
-
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Iterator getReferredIterator()
-	{
+	protected IteratorExpImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.ITERATOR_EXP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Iterator getReferredIterator() {
 		if (referredIterator != null && ((EObject)referredIterator).eIsProxy())
 		{
 			InternalEObject oldReferredIterator = (InternalEObject)referredIterator;
@@ -100,37 +99,34 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		return referredIterator;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Iterator basicGetReferredIterator()
-	{
+	public Iterator basicGetReferredIterator() {
 		return referredIterator;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferredIterator(Iterator newReferredIterator)
-	{
+	public void setReferredIterator(Iterator newReferredIterator) {
 		Iterator oldReferredIterator = referredIterator;
 		referredIterator = newReferredIterator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ITERATOR_EXP__REFERRED_ITERATOR, oldReferredIterator, referredIterator));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR_EXP__OWNED_COMMENT:
@@ -161,15 +157,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR_EXP__OWNED_COMMENT:
@@ -210,14 +205,13 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		eDynamicSet(featureID, newValue);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR_EXP__OWNED_COMMENT:
@@ -254,14 +248,13 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		eDynamicUnset(featureID);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR_EXP__OWNED_COMMENT:
@@ -287,11 +280,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		}
 		return eDynamicIsSet(featureID);
 	}
-	
-	@Override
-	public Object evaluate(EvaluationContext context) {
-		Iterator iterator = getReferredIterator();
-		return iterator != null ? iterator.evaluate(context, this) : null;
-	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitIteratorExp(this);
+	}
 } //IteratorExpImpl

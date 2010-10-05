@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationCallExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: NavigationCallExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -53,56 +53,55 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implements NavigationCallExp
-{
-  /**
+public abstract class NavigationCallExpImpl
+		extends FeatureCallExpImpl
+		implements NavigationCallExp {
+
+	/**
 	 * The cached value of the '{@link #getQualifiers() <em>Qualifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getQualifiers()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<OclExpression> qualifiers;
+	protected EList<OclExpression> qualifiers;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getNavigationSource() <em>Navigation Source</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getNavigationSource()
 	 * @generated
 	 * @ordered
 	 */
-  protected Property navigationSource;
+	protected Property navigationSource;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected NavigationCallExpImpl()
-  {
+	protected NavigationCallExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.NAVIGATION_CALL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<OclExpression> getQualifiers()
-  {
+	public EList<OclExpression> getQualifiers() {
 		if (qualifiers == null)
 		{
 			qualifiers = new EObjectResolvingEList<OclExpression>(OclExpression.class, this, PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER);
@@ -110,13 +109,12 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 		return qualifiers;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property getNavigationSource()
-  {
+	public Property getNavigationSource() {
 		if (navigationSource != null && ((EObject)navigationSource).eIsProxy())
 		{
 			InternalEObject oldNavigationSource = (InternalEObject)navigationSource;
@@ -130,37 +128,34 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 		return navigationSource;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property basicGetNavigationSource()
-  {
+	public Property basicGetNavigationSource() {
 		return navigationSource;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setNavigationSource(Property newNavigationSource)
-  {
+	public void setNavigationSource(Property newNavigationSource) {
 		Property oldNavigationSource = navigationSource;
 		navigationSource = newNavigationSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
@@ -179,6 +174,8 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
+				return isPre();
 			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
 				return getQualifiers();
 			case PivotPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
@@ -188,15 +185,14 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
@@ -223,6 +219,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
+				setIsPre((Boolean)newValue);
+				return;
 			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
 				getQualifiers().clear();
 				getQualifiers().addAll((Collection<? extends OclExpression>)newValue);
@@ -234,14 +233,13 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
@@ -265,6 +263,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
+				setIsPre(IS_PRE_EDEFAULT);
+				return;
 			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
 				getQualifiers().clear();
 				return;
@@ -275,14 +276,13 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
@@ -299,6 +299,8 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 				return type != null;
 			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
+				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
 				return qualifiers != null && !qualifiers.isEmpty();
 			case PivotPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:

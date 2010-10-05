@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedMultiplicityElementImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: TypedMultiplicityElementImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -60,8 +60,10 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
  *
  * @generated
  */
-public abstract class TypedMultiplicityElementImpl extends MultiplicityElementImpl implements TypedMultiplicityElement
-{
+public abstract class TypedMultiplicityElementImpl
+		extends MultiplicityElementImpl
+		implements TypedMultiplicityElement {
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,8 +119,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypedMultiplicityElementImpl()
-	{
+	protected TypedMultiplicityElementImpl() {
 		super();
 	}
 
@@ -128,8 +129,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TYPED_MULTIPLICITY_ELEMENT;
 	}
 
@@ -138,8 +138,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Annotation> getOwnedAnnotations()
-	{
+	public EList<Annotation> getOwnedAnnotations() {
 		if (ownedAnnotations == null)
 		{
 			ownedAnnotations = new EObjectContainmentEList.Resolving<Annotation>(Annotation.class, this, PivotPackage.TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION);
@@ -152,8 +151,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Annotation createOwnedAnnotation()
-	{
+	public Annotation createOwnedAnnotation() {
 		Annotation newOwnedAnnotation = (Annotation) create(PivotPackage.Literals.ANNOTATION);
 		getOwnedAnnotations().add(newOwnedAnnotation);
 		return newOwnedAnnotation;
@@ -164,8 +162,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -174,8 +171,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -187,8 +183,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Constraint> getOwnedRules()
-	{
+	public EList<Constraint> getOwnedRules() {
 		if (ownedRules == null)
 		{
 			ownedRules = new EObjectContainmentEList.Resolving<Constraint>(Constraint.class, this, PivotPackage.TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE);
@@ -201,8 +196,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint createOwnedRule()
-	{
+	public Constraint createOwnedRule() {
 		Constraint newOwnedRule = (Constraint) create(PivotPackage.Literals.CONSTRAINT);
 		getOwnedRules().add(newOwnedRule);
 		return newOwnedRule;
@@ -213,8 +207,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getType()
-	{
+	public Type getType() {
 		if (type != null && ((EObject)type).eIsProxy())
 		{
 			InternalEObject oldType = (InternalEObject)type;
@@ -233,8 +226,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType()
-	{
+	public Type basicGetType() {
 		return type;
 	}
 
@@ -243,8 +235,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(Type newType)
-	{
+	public void setType(Type newType) {
 		Type oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -257,8 +248,8 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -277,8 +268,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -313,8 +303,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -360,8 +349,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -404,8 +392,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -438,8 +425,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == INamedElement.class)
 		{
 			switch (derivedFeatureID)
@@ -474,8 +460,7 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == INamedElement.class)
 		{
 			switch (baseFeatureID)
@@ -507,18 +492,11 @@ public abstract class TypedMultiplicityElementImpl extends MultiplicityElementIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
-		result.append(name);
-		result.append(')');
-		return result.toString();
+	public String toString() {
+		return super.toString();
 	}
 
 } //TypedMultiplicityElementImpl

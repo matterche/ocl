@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyOperations.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: PropertyOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -38,20 +38,21 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class PropertyOperations extends MultiplicityElementOperations
-{
-  /**
+public class PropertyOperations
+		extends MultiplicityElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected PropertyOperations() {
+	protected PropertyOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A binding of a property template parameter representing an attribute must be to an attribute.
 	 * (isAttribute(self) and (templateParameterSubstitution->notEmpty())
@@ -62,8 +63,8 @@ public class PropertyOperations extends MultiplicityElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean validateBindingToAttribute(Property property, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public static boolean validateBindingToAttribute(Property property,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message

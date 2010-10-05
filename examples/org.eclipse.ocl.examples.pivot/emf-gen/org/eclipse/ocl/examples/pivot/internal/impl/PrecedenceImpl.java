@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: PrecedenceImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,8 +44,10 @@ import org.eclipse.ocl.examples.pivot.Precedence;
  *
  * @generated
  */
-public class PrecedenceImpl extends NamedElementImpl implements Precedence
-{
+public class PrecedenceImpl
+		extends NamedElementImpl
+		implements Precedence {
+
 	/**
 	 * The default value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,6 +57,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @ordered
 	 */
 	protected static final AssociativityKind ASSOCIATIVITY_EDEFAULT = AssociativityKind.LEFT;
+
 	/**
 	 * The offset of the flags representing the value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,6 +66,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @ordered
 	 */
 	protected static final int ASSOCIATIVITY_EFLAG_OFFSET = 8;
+
 	/**
 	 * The flags representing the default value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,6 +75,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @ordered
 	 */
 	protected static final int ASSOCIATIVITY_EFLAG_DEFAULT = ASSOCIATIVITY_EDEFAULT.ordinal() << ASSOCIATIVITY_EFLAG_OFFSET;
+
 	/**
 	 * The array of enumeration values for '{@link AssociativityKind Associativity Kind}'
 	 * <!-- begin-user-doc -->
@@ -78,6 +84,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @ordered
 	 */
 	private static final AssociativityKind[] ASSOCIATIVITY_EFLAG_VALUES = AssociativityKind.values();
+
 	/**
 	 * The flag representing the value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,6 +94,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @ordered
 	 */
 	protected static final int ASSOCIATIVITY_EFLAG = 1 << ASSOCIATIVITY_EFLAG_OFFSET;
+
 	/**
 	 * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -102,8 +110,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrecedenceImpl()
-	{
+	protected PrecedenceImpl() {
 		super();
 	}
 
@@ -113,8 +120,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PRECEDENCE;
 	}
 
@@ -123,8 +129,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociativityKind getAssociativity()
-	{
+	public AssociativityKind getAssociativity() {
 		return ASSOCIATIVITY_EFLAG_VALUES[(eFlags & ASSOCIATIVITY_EFLAG) >>> ASSOCIATIVITY_EFLAG_OFFSET];
 	}
 
@@ -133,8 +138,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAssociativity(AssociativityKind newAssociativity)
-	{
+	public void setAssociativity(AssociativityKind newAssociativity) {
 		AssociativityKind oldAssociativity = ASSOCIATIVITY_EFLAG_VALUES[(eFlags & ASSOCIATIVITY_EFLAG) >>> ASSOCIATIVITY_EFLAG_OFFSET];
 		if (newAssociativity == null) newAssociativity = ASSOCIATIVITY_EDEFAULT;
 		eFlags = eFlags & ~ASSOCIATIVITY_EFLAG | newAssociativity.ordinal() << ASSOCIATIVITY_EFLAG_OFFSET;
@@ -142,15 +146,14 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PRECEDENCE__ASSOCIATIVITY, oldAssociativity, newAssociativity));
 	}
 
-	private BigInteger order = BigInteger.ZERO;	// FIXME a) use int, b) get not volatile to work from UML.
+	private BigInteger order = BigInteger.ZERO; // FIXME a) use int, b) get not volatile to work from UML.
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public BigInteger getOrder()
-	{
+	public BigInteger getOrder() {
 		return order;
 	}
 
@@ -159,8 +162,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setOrder(BigInteger newOrder)
-	{
+	public void setOrder(BigInteger newOrder) {
 		this.order = newOrder;
 	}
 
@@ -170,8 +172,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
@@ -199,8 +200,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
@@ -237,8 +237,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
@@ -272,8 +271,7 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
@@ -297,18 +295,16 @@ public class PrecedenceImpl extends NamedElementImpl implements Precedence
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
+	public String toString() {
+		return super.toString();
+	}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (associativity: "); //$NON-NLS-1$
-		result.append(ASSOCIATIVITY_EFLAG_VALUES[(eFlags & ASSOCIATIVITY_EFLAG) >>> ASSOCIATIVITY_EFLAG_OFFSET]);
-		result.append(')');
-		return result.toString();
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitPrecedence(this);
 	}
 
 } //PrecedenceImpl

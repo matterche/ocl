@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueSpecificationOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: ValueSpecificationOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -39,18 +39,19 @@ import org.eclipse.ocl.examples.pivot.ValueSpecification;
  *
  * @generated
  */
-public class ValueSpecificationOperations extends MonikeredElementOperations
-{
-  /**
+public class ValueSpecificationOperations
+		extends MonikeredElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected ValueSpecificationOperations() {
+	protected ValueSpecificationOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -60,14 +61,13 @@ public class ValueSpecificationOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  boolean isComputable(ValueSpecification valueSpecification)
-	{
+	public static boolean isComputable(ValueSpecification valueSpecification) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -77,14 +77,13 @@ public class ValueSpecificationOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  BigInteger integerValue(ValueSpecification valueSpecification)
-	{
+	public static BigInteger integerValue(ValueSpecification valueSpecification) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -94,14 +93,13 @@ public class ValueSpecificationOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  boolean booleanValue(ValueSpecification valueSpecification)
-	{
+	public static boolean booleanValue(ValueSpecification valueSpecification) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -111,14 +109,13 @@ public class ValueSpecificationOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  String stringValue(ValueSpecification valueSpecification)
-	{
+	public static String stringValue(ValueSpecification valueSpecification) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -128,14 +125,14 @@ public class ValueSpecificationOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  BigInteger unlimitedValue(ValueSpecification valueSpecification)
-	{
+	public static BigInteger unlimitedValue(
+			ValueSpecification valueSpecification) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -145,8 +142,7 @@ public class ValueSpecificationOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  boolean isNull(ValueSpecification valueSpecification)
-	{
+	public static boolean isNull(ValueSpecification valueSpecification) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

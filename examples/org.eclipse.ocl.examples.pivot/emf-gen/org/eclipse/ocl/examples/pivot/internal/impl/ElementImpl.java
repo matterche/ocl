@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementImpl.java,v 1.1.2.2 2010/10/01 13:54:09 ewillink Exp $
+ * $Id: ElementImpl.java,v 1.1.2.3 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -45,46 +45,45 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class ElementImpl extends OclAnyImpl implements Element
-{
-  /**
+public abstract class ElementImpl
+		extends OclAnyImpl
+		implements Element {
+
+	/**
 	 * The cached value of the '{@link #getOwnedComments() <em>Owned Comment</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedComments()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Comment> ownedComments;
+	protected EList<Comment> ownedComments;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected ElementImpl()
-  {
+	protected ElementImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ELEMENT;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Comment> getOwnedComments()
-  {
+	public EList<Comment> getOwnedComments() {
 		if (ownedComments == null)
 		{
 			ownedComments = new EObjectContainmentEList.Resolving<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT);
@@ -92,26 +91,25 @@ public class ElementImpl extends OclAnyImpl implements Element
 		return ownedComments;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Comment createOwnedComment()
-  {
+	public Comment createOwnedComment() {
 		Comment newOwnedComment = (Comment) create(PivotPackage.Literals.COMMENT);
 		getOwnedComments().add(newOwnedComment);
 		return newOwnedComment;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
@@ -120,14 +118,13 @@ public class ElementImpl extends OclAnyImpl implements Element
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
@@ -136,15 +133,14 @@ public class ElementImpl extends OclAnyImpl implements Element
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
@@ -155,14 +151,13 @@ public class ElementImpl extends OclAnyImpl implements Element
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
@@ -172,14 +167,13 @@ public class ElementImpl extends OclAnyImpl implements Element
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:

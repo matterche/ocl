@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,26 +30,26 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
  *
  * @generated
  */
-public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType
-{
-  /**
+public class PrimitiveTypeImpl
+		extends DataTypeImpl
+		implements PrimitiveType {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected PrimitiveTypeImpl()
-  {
+	protected PrimitiveTypeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PRIMITIVE_TYPE;
 	}
 

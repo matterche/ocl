@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOclImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: ExpressionInOclImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,76 +59,75 @@ import org.eclipse.ocl.examples.pivot.Variable;
  *
  * @generated
  */
-public class ExpressionInOclImpl extends OpaqueExpressionImpl implements ExpressionInOcl
-{
-  /**
+public class ExpressionInOclImpl
+		extends OpaqueExpressionImpl
+		implements ExpressionInOcl {
+
+	/**
 	 * The cached value of the '{@link #getBodyExpression() <em>Body Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getBodyExpression()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression bodyExpression;
+	protected OclExpression bodyExpression;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getContextVariable() <em>Context Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getContextVariable()
 	 * @generated
 	 * @ordered
 	 */
-  protected Variable contextVariable;
+	protected Variable contextVariable;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getResultVariable() <em>Result Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getResultVariable()
 	 * @generated
 	 * @ordered
 	 */
-  protected Variable resultVariable;
+	protected Variable resultVariable;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getParameterVariables() <em>Parameter Variable</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getParameterVariables()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Variable> parameterVariables;
+	protected EList<Variable> parameterVariables;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected ExpressionInOclImpl()
-  {
+	protected ExpressionInOclImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.EXPRESSION_IN_OCL;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getBodyExpression()
-  {
+	public OclExpression getBodyExpression() {
 		if (bodyExpression != null && ((EObject)bodyExpression).eIsProxy())
 		{
 			InternalEObject oldBodyExpression = (InternalEObject)bodyExpression;
@@ -148,23 +148,22 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return bodyExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetBodyExpression()
-  {
+	public OclExpression basicGetBodyExpression() {
 		return bodyExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetBodyExpression(OclExpression newBodyExpression, NotificationChain msgs)
-  {
+	public NotificationChain basicSetBodyExpression(
+			OclExpression newBodyExpression, NotificationChain msgs) {
 		OclExpression oldBodyExpression = bodyExpression;
 		bodyExpression = newBodyExpression;
 		if (eNotificationRequired())
@@ -175,13 +174,12 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBodyExpression(OclExpression newBodyExpression)
-  {
+	public void setBodyExpression(OclExpression newBodyExpression) {
 		if (newBodyExpression != bodyExpression)
 		{
 			NotificationChain msgs = null;
@@ -196,35 +194,32 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, newBodyExpression, newBodyExpression));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createBodyExpression(EClass eClass)
-  {
+	public OclExpression createBodyExpression(EClass eClass) {
 		OclExpression newBodyExpression = (OclExpression) create(eClass);
 		setBodyExpression(newBodyExpression);
 		return newBodyExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createBodyExpression()
-	{
+	public OclExpression createBodyExpression() {
 		return createBodyExpression(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable getContextVariable()
-  {
+	public Variable getContextVariable() {
 		if (contextVariable != null && ((EObject)contextVariable).eIsProxy())
 		{
 			InternalEObject oldContextVariable = (InternalEObject)contextVariable;
@@ -245,23 +240,22 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return contextVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable basicGetContextVariable()
-  {
+	public Variable basicGetContextVariable() {
 		return contextVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetContextVariable(Variable newContextVariable, NotificationChain msgs)
-  {
+	public NotificationChain basicSetContextVariable(
+			Variable newContextVariable, NotificationChain msgs) {
 		Variable oldContextVariable = contextVariable;
 		contextVariable = newContextVariable;
 		if (eNotificationRequired())
@@ -272,13 +266,12 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setContextVariable(Variable newContextVariable)
-  {
+	public void setContextVariable(Variable newContextVariable) {
 		if (newContextVariable != contextVariable)
 		{
 			NotificationChain msgs = null;
@@ -293,25 +286,23 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, newContextVariable, newContextVariable));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable createContextVariable()
-  {
+	public Variable createContextVariable() {
 		Variable newContextVariable = (Variable) create(PivotPackage.Literals.VARIABLE);
 		setContextVariable(newContextVariable);
 		return newContextVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable getResultVariable()
-  {
+	public Variable getResultVariable() {
 		if (resultVariable != null && ((EObject)resultVariable).eIsProxy())
 		{
 			InternalEObject oldResultVariable = (InternalEObject)resultVariable;
@@ -332,23 +323,22 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return resultVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable basicGetResultVariable()
-  {
+	public Variable basicGetResultVariable() {
 		return resultVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetResultVariable(Variable newResultVariable, NotificationChain msgs)
-  {
+	public NotificationChain basicSetResultVariable(Variable newResultVariable,
+			NotificationChain msgs) {
 		Variable oldResultVariable = resultVariable;
 		resultVariable = newResultVariable;
 		if (eNotificationRequired())
@@ -359,13 +349,12 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setResultVariable(Variable newResultVariable)
-  {
+	public void setResultVariable(Variable newResultVariable) {
 		if (newResultVariable != resultVariable)
 		{
 			NotificationChain msgs = null;
@@ -380,25 +369,23 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, newResultVariable, newResultVariable));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable createResultVariable()
-  {
+	public Variable createResultVariable() {
 		Variable newResultVariable = (Variable) create(PivotPackage.Literals.VARIABLE);
 		setResultVariable(newResultVariable);
 		return newResultVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Variable> getParameterVariables()
-  {
+	public EList<Variable> getParameterVariables() {
 		if (parameterVariables == null)
 		{
 			parameterVariables = new EObjectContainmentEList.Resolving<Variable>(Variable.class, this, PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
@@ -406,26 +393,25 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return parameterVariables;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable createParameterVariable()
-  {
+	public Variable createParameterVariable() {
 		Variable newParameterVariable = (Variable) create(PivotPackage.Literals.VARIABLE);
 		getParameterVariables().add(newParameterVariable);
 		return newParameterVariable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
@@ -450,14 +436,13 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
@@ -498,15 +483,14 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
@@ -561,14 +545,13 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
@@ -617,14 +600,13 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
@@ -657,6 +639,11 @@ public class ExpressionInOclImpl extends OpaqueExpressionImpl implements Express
 				return parameterVariables != null && !parameterVariables.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitExpressionInOcl(this);
 	}
 
 } //ExpressionInOclImpl

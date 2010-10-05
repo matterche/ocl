@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,46 +51,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiteralPart
-{
-  /**
+public class TupleLiteralPartImpl
+		extends TypedElementImpl
+		implements TupleLiteralPart {
+
+	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getAttribute()
 	 * @generated
 	 * @ordered
 	 */
-  protected Property attribute;
+	protected Property attribute;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TupleLiteralPartImpl()
-  {
+	protected TupleLiteralPartImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TUPLE_LITERAL_PART;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property getAttribute()
-  {
+	public Property getAttribute() {
 		if (attribute != null && ((EObject)attribute).eIsProxy())
 		{
 			InternalEObject oldAttribute = (InternalEObject)attribute;
@@ -110,23 +110,22 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		return attribute;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property basicGetAttribute()
-  {
+	public Property basicGetAttribute() {
 		return attribute;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetAttribute(Property newAttribute, NotificationChain msgs)
-  {
+	public NotificationChain basicSetAttribute(Property newAttribute,
+			NotificationChain msgs) {
 		Property oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
@@ -137,13 +136,12 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setAttribute(Property newAttribute)
-  {
+	public void setAttribute(Property newAttribute) {
 		if (newAttribute != attribute)
 		{
 			NotificationChain msgs = null;
@@ -158,36 +156,34 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, newAttribute, newAttribute));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property createAttribute(EClass eClass)
-  {
+	public Property createAttribute(EClass eClass) {
 		Property newAttribute = (Property) create(eClass);
 		setAttribute(newAttribute);
 		return newAttribute;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property createAttribute()
-  {
+	public Property createAttribute() {
 		return createAttribute(PivotPackage.Literals.PROPERTY);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
@@ -202,14 +198,13 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
@@ -232,15 +227,14 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
@@ -271,14 +265,13 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
@@ -306,14 +299,13 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
@@ -334,4 +326,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitTupleLiteralPart(this);
+	}
 } //TupleLiteralPartImpl

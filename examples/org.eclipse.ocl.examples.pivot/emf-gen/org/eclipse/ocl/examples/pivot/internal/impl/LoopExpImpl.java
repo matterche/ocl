@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: LoopExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -55,56 +55,55 @@ import org.eclipse.ocl.examples.pivot.Variable;
  *
  * @generated
  */
-public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
-{
-  /**
+public abstract class LoopExpImpl
+		extends CallExpImpl
+		implements LoopExp {
+
+	/**
 	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getBody()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression body;
+	protected OclExpression body;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getIterators() <em>Iterator</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getIterators()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Variable> iterators;
+	protected EList<Variable> iterators;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected LoopExpImpl()
-  {
+	protected LoopExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.LOOP_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getBody()
-  {
+	public OclExpression getBody() {
 		if (body != null && ((EObject)body).eIsProxy())
 		{
 			InternalEObject oldBody = (InternalEObject)body;
@@ -125,23 +124,22 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 		return body;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetBody()
-  {
+	public OclExpression basicGetBody() {
 		return body;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetBody(OclExpression newBody, NotificationChain msgs)
-  {
+	public NotificationChain basicSetBody(OclExpression newBody,
+			NotificationChain msgs) {
 		OclExpression oldBody = body;
 		body = newBody;
 		if (eNotificationRequired())
@@ -152,13 +150,12 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBody(OclExpression newBody)
-  {
+	public void setBody(OclExpression newBody) {
 		if (newBody != body)
 		{
 			NotificationChain msgs = null;
@@ -173,35 +170,32 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LOOP_EXP__BODY, newBody, newBody));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createBody(EClass eClass)
-  {
+	public OclExpression createBody(EClass eClass) {
 		OclExpression newBody = (OclExpression) create(eClass);
 		setBody(newBody);
 		return newBody;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createBody()
-	{
+	public OclExpression createBody() {
 		return createBody(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Variable> getIterators()
-  {
+	public EList<Variable> getIterators() {
 		if (iterators == null)
 		{
 			iterators = new EObjectContainmentEList.Resolving<Variable>(Variable.class, this, PivotPackage.LOOP_EXP__ITERATOR);
@@ -209,26 +203,25 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 		return iterators;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable createIterator()
-  {
+	public Variable createIterator() {
 		Variable newIterator = (Variable) create(PivotPackage.Literals.VARIABLE);
 		getIterators().add(newIterator);
 		return newIterator;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
@@ -247,14 +240,13 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
@@ -282,15 +274,14 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
@@ -328,14 +319,13 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
@@ -369,14 +359,13 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.LOOP_EXP__OWNED_COMMENT:

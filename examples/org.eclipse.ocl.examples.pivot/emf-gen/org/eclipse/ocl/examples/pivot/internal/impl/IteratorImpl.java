@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: IteratorImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Iterator;
@@ -38,6 +37,8 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,46 +53,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class IteratorImpl extends OperationImpl implements Iterator
-{
-  /**
+public class IteratorImpl
+		extends OperationImpl
+		implements Iterator {
+
+	/**
 	 * The cached value of the '{@link #getOwnedIterators() <em>Owned Iterator</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedIterators()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Parameter> ownedIterators;
+	protected EList<Parameter> ownedIterators;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected IteratorImpl()
-  {
+	protected IteratorImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ITERATOR;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Parameter> getOwnedIterators()
-  {
+	public EList<Parameter> getOwnedIterators() {
 		if (ownedIterators == null)
 		{
 			ownedIterators = new EObjectContainmentEList.Resolving<Parameter>(Parameter.class, this, PivotPackage.ITERATOR__OWNED_ITERATOR);
@@ -99,26 +99,25 @@ public class IteratorImpl extends OperationImpl implements Iterator
 		return ownedIterators;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Parameter createOwnedIterator()
-  {
+	public Parameter createOwnedIterator() {
 		Parameter newOwnedIterator = (Parameter) create(PivotPackage.Literals.PARAMETER);
 		getOwnedIterators().add(newOwnedIterator);
 		return newOwnedIterator;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR__OWNED_COMMENT:
@@ -147,14 +146,13 @@ public class IteratorImpl extends OperationImpl implements Iterator
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR__OWNED_COMMENT:
@@ -194,8 +192,7 @@ public class IteratorImpl extends OperationImpl implements Iterator
 			case PivotPackage.ITERATOR__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.ITERATOR__IMPLEMENTATION:
-				if (resolve) return getImplementation();
-				return basicGetImplementation();
+				return getImplementation();
 			case PivotPackage.ITERATOR__RAISED_EXCEPTION:
 				return getRaisedExceptions();
 			case PivotPackage.ITERATOR__OWNED_PARAMETER:
@@ -212,15 +209,14 @@ public class IteratorImpl extends OperationImpl implements Iterator
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR__OWNED_COMMENT:
@@ -301,14 +297,13 @@ public class IteratorImpl extends OperationImpl implements Iterator
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR__OWNED_COMMENT:
@@ -381,14 +376,13 @@ public class IteratorImpl extends OperationImpl implements Iterator
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATOR__OWNED_COMMENT:
@@ -437,6 +431,11 @@ public class IteratorImpl extends OperationImpl implements Iterator
 				return ownedIterators != null && !ownedIterators.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitIterator(this);
 	}
 
 } //IterationImpl

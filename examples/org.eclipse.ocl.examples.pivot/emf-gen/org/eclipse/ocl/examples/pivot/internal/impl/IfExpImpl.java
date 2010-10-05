@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: IfExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,66 +49,65 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class IfExpImpl extends OclExpressionImpl implements IfExp
-{
-  /**
+public class IfExpImpl
+		extends OclExpressionImpl
+		implements IfExp {
+
+	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression condition;
+	protected OclExpression condition;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getThenExpression() <em>Then Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getThenExpression()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression thenExpression;
+	protected OclExpression thenExpression;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getElseExpression()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression elseExpression;
+	protected OclExpression elseExpression;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected IfExpImpl()
-  {
+	protected IfExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.IF_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getCondition()
-  {
+	public OclExpression getCondition() {
 		if (condition != null && ((EObject)condition).eIsProxy())
 		{
 			InternalEObject oldCondition = (InternalEObject)condition;
@@ -129,23 +128,22 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return condition;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetCondition()
-  {
+	public OclExpression basicGetCondition() {
 		return condition;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetCondition(OclExpression newCondition, NotificationChain msgs)
-  {
+	public NotificationChain basicSetCondition(OclExpression newCondition,
+			NotificationChain msgs) {
 		OclExpression oldCondition = condition;
 		condition = newCondition;
 		if (eNotificationRequired())
@@ -156,13 +154,12 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setCondition(OclExpression newCondition)
-  {
+	public void setCondition(OclExpression newCondition) {
 		if (newCondition != condition)
 		{
 			NotificationChain msgs = null;
@@ -177,35 +174,32 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__CONDITION, newCondition, newCondition));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createCondition(EClass eClass)
-  {
+	public OclExpression createCondition(EClass eClass) {
 		OclExpression newCondition = (OclExpression) create(eClass);
 		setCondition(newCondition);
 		return newCondition;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createCondition()
-	{
+	public OclExpression createCondition() {
 		return createCondition(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getThenExpression()
-  {
+	public OclExpression getThenExpression() {
 		if (thenExpression != null && ((EObject)thenExpression).eIsProxy())
 		{
 			InternalEObject oldThenExpression = (InternalEObject)thenExpression;
@@ -226,23 +220,22 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return thenExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetThenExpression()
-  {
+	public OclExpression basicGetThenExpression() {
 		return thenExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetThenExpression(OclExpression newThenExpression, NotificationChain msgs)
-  {
+	public NotificationChain basicSetThenExpression(
+			OclExpression newThenExpression, NotificationChain msgs) {
 		OclExpression oldThenExpression = thenExpression;
 		thenExpression = newThenExpression;
 		if (eNotificationRequired())
@@ -253,13 +246,12 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setThenExpression(OclExpression newThenExpression)
-  {
+	public void setThenExpression(OclExpression newThenExpression) {
 		if (newThenExpression != thenExpression)
 		{
 			NotificationChain msgs = null;
@@ -274,35 +266,32 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__THEN_EXPRESSION, newThenExpression, newThenExpression));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createThenExpression(EClass eClass)
-  {
+	public OclExpression createThenExpression(EClass eClass) {
 		OclExpression newThenExpression = (OclExpression) create(eClass);
 		setThenExpression(newThenExpression);
 		return newThenExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createThenExpression()
-	{
+	public OclExpression createThenExpression() {
 		return createThenExpression(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getElseExpression()
-  {
+	public OclExpression getElseExpression() {
 		if (elseExpression != null && ((EObject)elseExpression).eIsProxy())
 		{
 			InternalEObject oldElseExpression = (InternalEObject)elseExpression;
@@ -323,23 +312,22 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return elseExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetElseExpression()
-  {
+	public OclExpression basicGetElseExpression() {
 		return elseExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetElseExpression(OclExpression newElseExpression, NotificationChain msgs)
-  {
+	public NotificationChain basicSetElseExpression(
+			OclExpression newElseExpression, NotificationChain msgs) {
 		OclExpression oldElseExpression = elseExpression;
 		elseExpression = newElseExpression;
 		if (eNotificationRequired())
@@ -350,13 +338,12 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setElseExpression(OclExpression newElseExpression)
-  {
+	public void setElseExpression(OclExpression newElseExpression) {
 		if (newElseExpression != elseExpression)
 		{
 			NotificationChain msgs = null;
@@ -371,36 +358,34 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__ELSE_EXPRESSION, newElseExpression, newElseExpression));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createElseExpression(EClass eClass)
-  {
+	public OclExpression createElseExpression(EClass eClass) {
 		OclExpression newElseExpression = (OclExpression) create(eClass);
 		setElseExpression(newElseExpression);
 		return newElseExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createElseExpression()
-	{
+	public OclExpression createElseExpression() {
 		return createElseExpression(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.IF_EXP__OWNED_COMMENT:
@@ -419,14 +404,13 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.IF_EXP__OWNED_COMMENT:
@@ -455,15 +439,14 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.IF_EXP__OWNED_COMMENT:
@@ -500,14 +483,13 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.IF_EXP__OWNED_COMMENT:
@@ -541,14 +523,13 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.IF_EXP__OWNED_COMMENT:
@@ -572,24 +553,9 @@ public class IfExpImpl extends OclExpressionImpl implements IfExp
 		}
 		return eDynamicIsSet(featureID);
 	}
-	
+
 	@Override
-	public Object evaluate(EvaluationContext context) {
-		OclExpression condition = getCondition();
-		if (condition == null) {
-			return null;
-		}
-		OclExpression expression = null;
-		Object evaluatedCondition = condition.evaluate(context);
-		if (evaluatedCondition == Boolean.TRUE) {
-			expression = getThenExpression();
-		}
-		else if (evaluatedCondition == Boolean.FALSE) {
-			expression = getElseExpression();
-		}
-		if (expression == null) {
-			return null;
-		}
-		return expression.evaluate(context);
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitIfExp(this);
 	}
 } //IfExpImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElementOperations.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: TemplateableElementOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -35,20 +35,21 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
  *
  * @generated
  */
-public class TemplateableElementOperations extends MonikeredElementOperations
-{
-  /**
+public class TemplateableElementOperations
+		extends MonikeredElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TemplateableElementOperations() {
+	protected TemplateableElementOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.
 	 * result = allOwnedElements->select(oclIsKindOf(ParameterableElement))
@@ -56,16 +57,16 @@ public class TemplateableElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  EList<ParameterableElement> parameterableElements(TemplateableElement templateableElement)
-  {
+	public static EList<ParameterableElement> parameterableElements(
+			TemplateableElement templateableElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isTemplate() returns whether this templateable element is actually a template.
 	 * result = ownedTemplateSignature->notEmpty()
@@ -73,8 +74,7 @@ public class TemplateableElementOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean isTemplate(TemplateableElement templateableElement)
-  {
+	public static boolean isTemplate(TemplateableElement templateableElement) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

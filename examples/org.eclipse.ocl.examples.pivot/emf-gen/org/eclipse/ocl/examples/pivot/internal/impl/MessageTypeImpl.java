@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: MessageTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -52,56 +52,55 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
  *
  * @generated
  */
-public class MessageTypeImpl extends TypeImpl implements MessageType
-{
-  /**
+public class MessageTypeImpl
+		extends TypeImpl
+		implements MessageType {
+
+	/**
 	 * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredSignal()
 	 * @generated
 	 * @ordered
 	 */
-  protected Signal referredSignal;
+	protected Signal referredSignal;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredOperation()
 	 * @generated
 	 * @ordered
 	 */
-  protected Operation referredOperation;
+	protected Operation referredOperation;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected MessageTypeImpl()
-  {
+	protected MessageTypeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.MESSAGE_TYPE;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Signal getReferredSignal()
-  {
+	public Signal getReferredSignal() {
 		if (referredSignal != null && ((EObject)referredSignal).eIsProxy())
 		{
 			InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
@@ -115,36 +114,33 @@ public class MessageTypeImpl extends TypeImpl implements MessageType
 		return referredSignal;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Signal basicGetReferredSignal()
-  {
+	public Signal basicGetReferredSignal() {
 		return referredSignal;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setReferredSignal(Signal newReferredSignal)
-  {
+	public void setReferredSignal(Signal newReferredSignal) {
 		Signal oldReferredSignal = referredSignal;
 		referredSignal = newReferredSignal;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation getReferredOperation()
-  {
+	public Operation getReferredOperation() {
 		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
 		{
 			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
@@ -158,37 +154,34 @@ public class MessageTypeImpl extends TypeImpl implements MessageType
 		return referredOperation;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation basicGetReferredOperation()
-  {
+	public Operation basicGetReferredOperation() {
 		return referredOperation;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setReferredOperation(Operation newReferredOperation)
-  {
+	public void setReferredOperation(Operation newReferredOperation) {
 		Operation oldReferredOperation = referredOperation;
 		referredOperation = newReferredOperation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_TYPE__OWNED_COMMENT:
@@ -227,15 +220,14 @@ public class MessageTypeImpl extends TypeImpl implements MessageType
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_TYPE__OWNED_COMMENT:
@@ -286,14 +278,13 @@ public class MessageTypeImpl extends TypeImpl implements MessageType
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_TYPE__OWNED_COMMENT:
@@ -339,14 +330,13 @@ public class MessageTypeImpl extends TypeImpl implements MessageType
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_TYPE__OWNED_COMMENT:

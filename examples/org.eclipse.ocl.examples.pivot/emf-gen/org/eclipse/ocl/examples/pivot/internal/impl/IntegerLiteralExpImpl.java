@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,80 +43,77 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements IntegerLiteralExp
-{
-  /**
+public class IntegerLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements IntegerLiteralExp {
+
+	/**
 	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getIntegerSymbol()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final BigInteger INTEGER_SYMBOL_EDEFAULT = null;
+	protected static final BigInteger INTEGER_SYMBOL_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getIntegerSymbol()
 	 * @generated
 	 * @ordered
 	 */
-  protected BigInteger integerSymbol = INTEGER_SYMBOL_EDEFAULT;
+	protected BigInteger integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected IntegerLiteralExpImpl()
-  {
+	protected IntegerLiteralExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.INTEGER_LITERAL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigInteger getIntegerSymbol()
-  {
+	public BigInteger getIntegerSymbol() {
 		return integerSymbol;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIntegerSymbol(BigInteger newIntegerSymbol)
-  {
+	public void setIntegerSymbol(BigInteger newIntegerSymbol) {
 		BigInteger oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
@@ -138,15 +135,14 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
@@ -177,14 +173,13 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
@@ -212,14 +207,13 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
@@ -240,26 +234,18 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (integerSymbol: "); //$NON-NLS-1$
-		result.append(integerSymbol);
-		result.append(')');
-		return result.toString();
-	}
-	
 	@Override
-	public Object evaluate(EvaluationContext context) {
-		BigInteger value = getIntegerSymbol();
-		return value != null ? context.getIntegerValue(value) : null;
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitIntegerLiteralExp(this);
 	}
 } //IntegerLiteralExpImpl

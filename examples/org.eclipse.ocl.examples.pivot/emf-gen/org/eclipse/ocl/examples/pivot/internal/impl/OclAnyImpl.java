@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: OclAnyImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -22,11 +22,15 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.OclAny;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.OclAnyOperations;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,72 +41,66 @@ import org.eclipse.ocl.examples.pivot.internal.operations.OclAnyOperations;
  *
  * @generated
  */
-public class OclAnyImpl extends VisitableImpl implements OclAny
-{
-  /**
+public abstract class OclAnyImpl
+		extends PivotObjectImpl
+		implements OclAny {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected OclAnyImpl()
-  {
+	protected OclAnyImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.OCL_ANY;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Class oclType()
-  {
+	public org.eclipse.ocl.examples.pivot.Class oclType() {
 		return OclAnyOperations.oclType(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean oclIsInvalid()
-  {
+	public boolean oclIsInvalid() {
 		return OclAnyOperations.oclIsInvalid(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean oclIsUndefined()
-  {
+	public boolean oclIsUndefined() {
 		return OclAnyOperations.oclIsUndefined(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-@SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.OCL_ANY___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.OCL_ANY___OCL_TYPE:
 				return oclType();
 			case PivotPackage.OCL_ANY___OCL_IS_INVALID:
@@ -111,6 +109,33 @@ public class OclAnyImpl extends VisitableImpl implements OclAny
 				return oclIsUndefined();
 		}
 		return eDynamicInvoke(operationID, arguments);
+	}
+
+	/**
+	 * Creates a new instance of the specified Ecore class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the instance to create.
+	 * @return The new instance.
+	 * @generated
+	 */
+	protected EObject create(EClass eClass) {
+		return EcoreUtil.create(eClass);
+	}
+
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visit(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		ToStringVisitor visitor = new ToStringVisitor();
+		return accept(visitor);
 	}
 
 } //OclAnyImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: CollectionRangeImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,56 +52,55 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class CollectionRangeImpl extends CollectionLiteralPartImpl implements CollectionRange
-{
-  /**
+public class CollectionRangeImpl
+		extends CollectionLiteralPartImpl
+		implements CollectionRange {
+
+	/**
 	 * The cached value of the '{@link #getFirst() <em>First</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getFirst()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression first;
+	protected OclExpression first;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getLast() <em>Last</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getLast()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression last;
+	protected OclExpression last;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected CollectionRangeImpl()
-  {
+	protected CollectionRangeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COLLECTION_RANGE;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getFirst()
-  {
+	public OclExpression getFirst() {
 		if (first != null && ((EObject)first).eIsProxy())
 		{
 			InternalEObject oldFirst = (InternalEObject)first;
@@ -121,23 +121,22 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		return first;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetFirst()
-  {
+	public OclExpression basicGetFirst() {
 		return first;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetFirst(OclExpression newFirst, NotificationChain msgs)
-  {
+	public NotificationChain basicSetFirst(OclExpression newFirst,
+			NotificationChain msgs) {
 		OclExpression oldFirst = first;
 		first = newFirst;
 		if (eNotificationRequired())
@@ -148,13 +147,12 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setFirst(OclExpression newFirst)
-  {
+	public void setFirst(OclExpression newFirst) {
 		if (newFirst != first)
 		{
 			NotificationChain msgs = null;
@@ -169,35 +167,32 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_RANGE__FIRST, newFirst, newFirst));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createFirst(EClass eClass)
-  {
+	public OclExpression createFirst(EClass eClass) {
 		OclExpression newFirst = (OclExpression) create(eClass);
 		setFirst(newFirst);
 		return newFirst;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createFirst()
-	{
+	public OclExpression createFirst() {
 		return createFirst(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getLast()
-  {
+	public OclExpression getLast() {
 		if (last != null && ((EObject)last).eIsProxy())
 		{
 			InternalEObject oldLast = (InternalEObject)last;
@@ -218,23 +213,22 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		return last;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetLast()
-  {
+	public OclExpression basicGetLast() {
 		return last;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetLast(OclExpression newLast, NotificationChain msgs)
-  {
+	public NotificationChain basicSetLast(OclExpression newLast,
+			NotificationChain msgs) {
 		OclExpression oldLast = last;
 		last = newLast;
 		if (eNotificationRequired())
@@ -245,13 +239,12 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setLast(OclExpression newLast)
-  {
+	public void setLast(OclExpression newLast) {
 		if (newLast != last)
 		{
 			NotificationChain msgs = null;
@@ -266,36 +259,34 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_RANGE__LAST, newLast, newLast));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createLast(EClass eClass)
-  {
+	public OclExpression createLast(EClass eClass) {
 		OclExpression newLast = (OclExpression) create(eClass);
 		setLast(newLast);
 		return newLast;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createLast()
-	{
+	public OclExpression createLast() {
 		return createLast(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_RANGE__OWNED_COMMENT:
@@ -312,14 +303,13 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_RANGE__OWNED_COMMENT:
@@ -345,15 +335,14 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_RANGE__OWNED_COMMENT:
@@ -387,14 +376,13 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_RANGE__OWNED_COMMENT:
@@ -425,14 +413,13 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_RANGE__OWNED_COMMENT:
@@ -455,4 +442,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitCollectionRange(this);
+	}
 } //CollectionRangeImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: TemplateParameterOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -38,20 +38,21 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class TemplateParameterOperations extends OclAnyOperations
-{
-  /**
+public class TemplateParameterOperations
+		extends OclAnyOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TemplateParameterOperations() {
+	protected TemplateParameterOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The default must be compatible with the formal template parameter.
 	 * default->notEmpty() implies default->isCompatibleWith(parameteredElement)
@@ -61,8 +62,9 @@ public class TemplateParameterOperations extends OclAnyOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean validateMustBeCompatible(TemplateParameter templateParameter, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public static boolean validateMustBeCompatible(
+			TemplateParameter templateParameter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message

@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -48,7 +47,6 @@ import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -65,7 +63,6 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclAny;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OclInvalid;
 import org.eclipse.ocl.examples.pivot.OclVoid;
@@ -111,16 +108,17 @@ import org.eclipse.ocl.examples.pivot.VoidType;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
-{
-  /**
+public class PivotFactoryImpl
+		extends EFactoryImpl
+		implements PivotFactory {
+
+	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static PivotFactory init()
-  {
+	public static PivotFactory init() {
 		try
 		{
 			PivotFactory thePivotFactory = (PivotFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.1.0/Pivot"); //$NON-NLS-1$ 
@@ -136,25 +134,23 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 		return new PivotFactoryImpl();
 	}
 
-  /**
+	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PivotFactoryImpl()
-  {
+	public PivotFactoryImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public EObject create(EClass eClass)
-  {
+	@Override
+	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID())
 		{
 			case PivotPackage.ANNOTATION: return (EObject)createAnnotation();
@@ -178,7 +174,6 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 			case PivotPackage.CONSTRAINT: return (EObject)createConstraint();
 			case PivotPackage.DATA_TYPE: return (EObject)createDataType();
 			case PivotPackage.DETAIL: return (EObject)createDetail();
-			case PivotPackage.ELEMENT: return (EObject)createElement();
 			case PivotPackage.ENUM_LITERAL_EXP: return (EObject)createEnumLiteralExp();
 			case PivotPackage.ENUMERATION: return (EObject)createEnumeration();
 			case PivotPackage.ENUMERATION_LITERAL: return (EObject)createEnumerationLiteral();
@@ -195,7 +190,6 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
-			case PivotPackage.OCL_ANY: return (EObject)createOclAny();
 			case PivotPackage.OCL_EXPRESSION: return (EObject)createOclExpression();
 			case PivotPackage.OCL_INVALID: return (EObject)createOclInvalid();
 			case PivotPackage.OCL_VOID: return (EObject)createOclVoid();
@@ -238,14 +232,13 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 		}
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object createFromString(EDataType eDataType, String initialValue)
-  {
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID())
 		{
 			case PivotPackage.ASSOCIATIVITY_KIND:
@@ -271,14 +264,13 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 		}
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public String convertToString(EDataType eDataType, Object instanceValue)
-  {
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID())
 		{
 			case PivotPackage.ASSOCIATIVITY_KIND:
@@ -304,958 +296,846 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 		}
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Annotation createAnnotation()
-	{
+	public Annotation createAnnotation() {
 		AnnotationImpl annotation = new AnnotationImpl();
 		return annotation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AnyType createAnyType()
-  {
+	public AnyType createAnyType() {
 		AnyTypeImpl anyType = new AnyTypeImpl();
 		return anyType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclAny createOclAny()
-  {
-		OclAnyImpl oclAny = new OclAnyImpl();
-		return oclAny;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public org.eclipse.ocl.examples.pivot.Class createClass()
-  {
+	public org.eclipse.ocl.examples.pivot.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property createProperty()
-  {
+	public Property createProperty() {
 		PropertyImpl property = new PropertyImpl();
 		return property;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter createTemplateParameter()
-  {
+	public TemplateParameter createTemplateParameter() {
 		TemplateParameterImpl templateParameter = new TemplateParameterImpl();
 		return templateParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature createTemplateSignature()
-  {
+	public TemplateSignature createTemplateSignature() {
 		TemplateSignatureImpl templateSignature = new TemplateSignatureImpl();
 		return templateSignature;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateBinding createTemplateBinding()
-  {
+	public TemplateBinding createTemplateBinding() {
 		TemplateBindingImpl templateBinding = new TemplateBindingImpl();
 		return templateBinding;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameterSubstitution createTemplateParameterSubstitution()
-  {
+	public TemplateParameterSubstitution createTemplateParameterSubstitution() {
 		TemplateParameterSubstitutionImpl templateParameterSubstitution = new TemplateParameterSubstitutionImpl();
 		return templateParameterSubstitution;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AssociationClass createAssociationClass()
-  {
+	public AssociationClass createAssociationClass() {
 		AssociationClassImpl associationClass = new AssociationClassImpl();
 		return associationClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation createOperation()
-  {
+	public Operation createOperation() {
 		OperationImpl operation = new OperationImpl();
 		return operation;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Parameter createParameter()
-  {
+	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Precedence createPrecedence()
-	{
+	public Precedence createPrecedence() {
 		PrecedenceImpl precedence = new PrecedenceImpl();
 		return precedence;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OperationTemplateParameter createOperationTemplateParameter()
-  {
+	public OperationTemplateParameter createOperationTemplateParameter() {
 		OperationTemplateParameterImpl operationTemplateParameter = new OperationTemplateParameterImpl();
 		return operationTemplateParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Comment createComment()
-  {
+	public Comment createComment() {
 		CommentImpl comment = new CommentImpl();
 		return comment;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteClass createCompleteClass()
-	{
+	public CompleteClass createCompleteClass() {
 		CompleteClassImpl completeClass = new CompleteClassImpl();
 		return completeClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteEnvironment createCompleteEnvironment()
-	{
+	public CompleteEnvironment createCompleteEnvironment() {
 		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
 		return completeEnvironment;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteOperation createCompleteOperation()
-	{
+	public CompleteOperation createCompleteOperation() {
 		CompleteOperationImpl completeOperation = new CompleteOperationImpl();
 		return completeOperation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompletePackage createCompletePackage()
-	{
+	public CompletePackage createCompletePackage() {
 		CompletePackageImpl completePackage = new CompletePackageImpl();
 		return completePackage;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteProperty createCompleteProperty()
-	{
+	public CompleteProperty createCompleteProperty() {
 		CompletePropertyImpl completeProperty = new CompletePropertyImpl();
 		return completeProperty;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint createConstraint()
-	{
+	public Constraint createConstraint() {
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Package createPackage()
-  {
+	public org.eclipse.ocl.examples.pivot.Package createPackage() {
 		PackageImpl package_ = new PackageImpl();
 		return package_;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TypeTemplateParameter createTypeTemplateParameter()
-  {
+	public TypeTemplateParameter createTypeTemplateParameter() {
 		TypeTemplateParameterImpl typeTemplateParameter = new TypeTemplateParameterImpl();
 		return typeTemplateParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp()
-	{
+	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
 		UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
 		return unlimitedNaturalLiteralExp;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AssociationClassCallExp createAssociationClassCallExp()
-  {
+	public AssociationClassCallExp createAssociationClassCallExp() {
 		AssociationClassCallExpImpl associationClassCallExp = new AssociationClassCallExpImpl();
 		return associationClassCallExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BagType createBagType()
-  {
+	public BagType createBagType() {
 		BagTypeImpl bagType = new BagTypeImpl();
 		return bagType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollectionType createCollectionType()
-  {
+	public CollectionType createCollectionType() {
 		CollectionTypeImpl collectionType = new CollectionTypeImpl();
 		return collectionType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public DataType createDataType()
-  {
+	public DataType createDataType() {
 		DataTypeImpl dataType = new DataTypeImpl();
 		return dataType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Detail createDetail()
-	{
+	public Detail createDetail() {
 		DetailImpl detail = new DetailImpl();
 		return detail;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element createElement()
-	{
-		ElementImpl element = new ElementImpl();
-		return element;
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public BooleanLiteralExp createBooleanLiteralExp()
-  {
+	public BooleanLiteralExp createBooleanLiteralExp() {
 		BooleanLiteralExpImpl booleanLiteralExp = new BooleanLiteralExpImpl();
 		return booleanLiteralExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallOperationAction createCallOperationAction()
-	{
+	public CallOperationAction createCallOperationAction() {
 		CallOperationActionImpl callOperationAction = new CallOperationActionImpl();
 		return callOperationAction;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollectionItem createCollectionItem()
-  {
+	public CollectionItem createCollectionItem() {
 		CollectionItemImpl collectionItem = new CollectionItemImpl();
 		return collectionItem;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollectionLiteralExp createCollectionLiteralExp()
-  {
+	public CollectionLiteralExp createCollectionLiteralExp() {
 		CollectionLiteralExpImpl collectionLiteralExp = new CollectionLiteralExpImpl();
 		return collectionLiteralExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollectionRange createCollectionRange()
-  {
+	public CollectionRange createCollectionRange() {
 		CollectionRangeImpl collectionRange = new CollectionRangeImpl();
 		return collectionRange;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EnumLiteralExp createEnumLiteralExp()
-  {
+	public EnumLiteralExp createEnumLiteralExp() {
 		EnumLiteralExpImpl enumLiteralExp = new EnumLiteralExpImpl();
 		return enumLiteralExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EnumerationLiteral createEnumerationLiteral()
-  {
+	public EnumerationLiteral createEnumerationLiteral() {
 		EnumerationLiteralImpl enumerationLiteral = new EnumerationLiteralImpl();
 		return enumerationLiteral;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Enumeration createEnumeration()
-  {
+	public Enumeration createEnumeration() {
 		EnumerationImpl enumeration = new EnumerationImpl();
 		return enumeration;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ExpressionInOcl createExpressionInOcl()
-  {
+	public ExpressionInOcl createExpressionInOcl() {
 		ExpressionInOclImpl expressionInOcl = new ExpressionInOclImpl();
 		return expressionInOcl;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OpaqueExpression createOpaqueExpression()
-  {
+	public OpaqueExpression createOpaqueExpression() {
 		OpaqueExpressionImpl opaqueExpression = new OpaqueExpressionImpl();
 		return opaqueExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Variable createVariable()
-  {
+	public Variable createVariable() {
 		VariableImpl variable = new VariableImpl();
 		return variable;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public IfExp createIfExp()
-  {
+	public IfExp createIfExp() {
 		IfExpImpl ifExp = new IfExpImpl();
 		return ifExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public IntegerLiteralExp createIntegerLiteralExp()
-  {
+	public IntegerLiteralExp createIntegerLiteralExp() {
 		IntegerLiteralExpImpl integerLiteralExp = new IntegerLiteralExpImpl();
 		return integerLiteralExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InvalidLiteralExp createInvalidLiteralExp()
-  {
+	public InvalidLiteralExp createInvalidLiteralExp() {
 		InvalidLiteralExpImpl invalidLiteralExp = new InvalidLiteralExpImpl();
 		return invalidLiteralExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InvalidType createInvalidType()
-  {
+	public InvalidType createInvalidType() {
 		InvalidTypeImpl invalidType = new InvalidTypeImpl();
 		return invalidType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Iterate createIterate()
-	{
+	public Iterate createIterate() {
 		IterateImpl iterate = new IterateImpl();
 		return iterate;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public IterateExp createIterateExp()
-  {
+	public IterateExp createIterateExp() {
 		IterateExpImpl iterateExp = new IterateExpImpl();
 		return iterateExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Iterator createIterator()
-	{
+	public Iterator createIterator() {
 		IteratorImpl iterator = new IteratorImpl();
 		return iterator;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public IteratorExp createIteratorExp()
-  {
+	public IteratorExp createIteratorExp() {
 		IteratorExpImpl iteratorExp = new IteratorExpImpl();
 		return iteratorExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public LetExp createLetExp()
-  {
+	public LetExp createLetExp() {
 		LetExpImpl letExp = new LetExpImpl();
 		return letExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public MessageExp createMessageExp()
-  {
+	public MessageExp createMessageExp() {
 		MessageExpImpl messageExp = new MessageExpImpl();
 		return messageExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public MessageType createMessageType()
-  {
+	public MessageType createMessageType() {
 		MessageTypeImpl messageType = new MessageTypeImpl();
 		return messageType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Signal createSignal()
-  {
+	public Signal createSignal() {
 		SignalImpl signal = new SignalImpl();
 		return signal;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NullLiteralExp createNullLiteralExp()
-  {
+	public NullLiteralExp createNullLiteralExp() {
 		NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
 		return nullLiteralExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createOclExpression()
-	{
+	public OclExpression createOclExpression() {
 		OclExpressionImpl oclExpression = new OclExpressionImpl();
 		return oclExpression;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclInvalid createOclInvalid()
-  {
+	public OclInvalid createOclInvalid() {
 		OclInvalidImpl oclInvalid = new OclInvalidImpl();
 		return oclInvalid;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclVoid createOclVoid()
-  {
+	public OclVoid createOclVoid() {
 		OclVoidImpl oclVoid = new OclVoidImpl();
 		return oclVoid;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OperationCallExp createOperationCallExp()
-  {
+	public OperationCallExp createOperationCallExp() {
 		OperationCallExpImpl operationCallExp = new OperationCallExpImpl();
 		return operationCallExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OrderedSetType createOrderedSetType()
-  {
+	public OrderedSetType createOrderedSetType() {
 		OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
 		return orderedSetType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PrimitiveType createPrimitiveType()
-  {
+	public PrimitiveType createPrimitiveType() {
 		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
 		return primitiveType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PropertyCallExp createPropertyCallExp()
-  {
+	public PropertyCallExp createPropertyCallExp() {
 		PropertyCallExpImpl propertyCallExp = new PropertyCallExpImpl();
 		return propertyCallExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public RealLiteralExp createRealLiteralExp()
-  {
+	public RealLiteralExp createRealLiteralExp() {
 		RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
 		return realLiteralExp;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendSignalAction createSendSignalAction()
-	{
+	public SendSignalAction createSendSignalAction() {
 		SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
 		return sendSignalAction;
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public SequenceType createSequenceType()
-  {
-		SequenceTypeImpl sequenceType = new SequenceTypeImpl();
-		return sequenceType;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public SetType createSetType()
-  {
-		SetTypeImpl setType = new SetTypeImpl();
-		return setType;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public State createState()
-  {
-		StateImpl state = new StateImpl();
-		return state;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public StateExp createStateExp()
-  {
-		StateExpImpl stateExp = new StateExpImpl();
-		return stateExp;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public StringLiteralExp createStringLiteralExp()
-  {
-		StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
-		return stringLiteralExp;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public TemplateParameterType createTemplateParameterType()
-  {
-		TemplateParameterTypeImpl templateParameterType = new TemplateParameterTypeImpl();
-		return templateParameterType;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public TupleLiteralExp createTupleLiteralExp()
-  {
-		TupleLiteralExpImpl tupleLiteralExp = new TupleLiteralExpImpl();
-		return tupleLiteralExp;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public TupleLiteralPart createTupleLiteralPart()
-  {
-		TupleLiteralPartImpl tupleLiteralPart = new TupleLiteralPartImpl();
-		return tupleLiteralPart;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public TupleType createTupleType()
-  {
-		TupleTypeImpl tupleType = new TupleTypeImpl();
-		return tupleType;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public TypeExp createTypeExp()
-  {
-		TypeExpImpl typeExp = new TypeExpImpl();
-		return typeExp;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public UnspecifiedValueExp createUnspecifiedValueExp()
-  {
-		UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
-		return unspecifiedValueExp;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public VariableExp createVariableExp()
-  {
-		VariableExpImpl variableExp = new VariableExpImpl();
-		return variableExp;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public VoidType createVoidType()
-  {
-		VoidTypeImpl voidType = new VoidTypeImpl();
-		return voidType;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociativityKind createAssociativityKindFromString(EDataType eDataType, String initialValue)
-	{
+	public SequenceType createSequenceType() {
+		SequenceTypeImpl sequenceType = new SequenceTypeImpl();
+		return sequenceType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SetType createSetType() {
+		SetTypeImpl setType = new SetTypeImpl();
+		return setType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State createState() {
+		StateImpl state = new StateImpl();
+		return state;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateExp createStateExp() {
+		StateExpImpl stateExp = new StateExpImpl();
+		return stateExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StringLiteralExp createStringLiteralExp() {
+		StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
+		return stringLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateParameterType createTemplateParameterType() {
+		TemplateParameterTypeImpl templateParameterType = new TemplateParameterTypeImpl();
+		return templateParameterType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TupleLiteralExp createTupleLiteralExp() {
+		TupleLiteralExpImpl tupleLiteralExp = new TupleLiteralExpImpl();
+		return tupleLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TupleLiteralPart createTupleLiteralPart() {
+		TupleLiteralPartImpl tupleLiteralPart = new TupleLiteralPartImpl();
+		return tupleLiteralPart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TupleType createTupleType() {
+		TupleTypeImpl tupleType = new TupleTypeImpl();
+		return tupleType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeExp createTypeExp() {
+		TypeExpImpl typeExp = new TypeExpImpl();
+		return typeExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnspecifiedValueExp createUnspecifiedValueExp() {
+		UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
+		return unspecifiedValueExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VariableExp createVariableExp() {
+		VariableExpImpl variableExp = new VariableExpImpl();
+		return variableExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VoidType createVoidType() {
+		VoidTypeImpl voidType = new VoidTypeImpl();
+		return voidType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AssociativityKind createAssociativityKindFromString(
+			EDataType eDataType, String initialValue) {
 		AssociativityKind result = AssociativityKind.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertAssociativityKindToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertAssociativityKindToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollectionKind createCollectionKindFromString(EDataType eDataType, String initialValue)
-  {
+	public CollectionKind createCollectionKindFromString(EDataType eDataType,
+			String initialValue) {
 		CollectionKind result = CollectionKind.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String convertCollectionKindToString(EDataType eDataType, Object instanceValue)
-  {
+	public String convertCollectionKindToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean createBooleanFromString(EDataType eDataType, String initialValue)
-  {
+	public Boolean createBooleanFromString(EDataType eDataType,
+			String initialValue) {
 		return (Boolean)super.createFromString(eDataType, initialValue);
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public String convertBooleanToString(EDataType eDataType, Object instanceValue)
-  {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer createIntFromString(EDataType eDataType, String initialValue)
-	{
+	public String convertBooleanToString(EDataType eDataType,
+			Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Integer createIntFromString(EDataType eDataType, String initialValue) {
 		return (Integer)super.createFromString(eDataType, initialValue);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIntToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertIntToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigInteger createIntegerFromString(EDataType eDataType, String initialValue)
-  {
+	public BigInteger createIntegerFromString(EDataType eDataType,
+			String initialValue) {
 		return (BigInteger)super.createFromString(eDataType, initialValue);
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public String convertIntegerToString(EDataType eDataType, Object instanceValue)
-  {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public Class<?> createJavaClassFromString(EDataType eDataType, String initialValue)
-	{
-		try {
-			return Class.forName(initialValue);
-		} catch (ClassNotFoundException e) {
-			throw new WrappedException("Failed to load implementation class", e);
-		}
+	public String convertIntegerToString(EDataType eDataType,
+			Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**
@@ -1263,18 +1143,32 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String convertJavaClassToString(EDataType eDataType, Object instanceValue)
-	{
-		return ((Class<?>)instanceValue).getCanonicalName();
-	}
+//	public Class<?> createJavaClassFromString(EDataType eDataType,
+//			String initialValue) {
+//		try {
+//			return Class.forName(initialValue);
+//		} catch (ClassNotFoundException e) {
+//			throw new WrappedException("Failed to load implementation class", e);
+//		}
+//	}
 
-/**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+//	public String convertJavaClassToString(EDataType eDataType,
+//			Object instanceValue) {
+//		return ((Class<?>) instanceValue).getCanonicalName();
+//	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object createObjectFromString(EDataType eDataType, String initialValue)
-	{
+	public Object createObjectFromString(EDataType eDataType,
+			String initialValue) {
 		return super.createFromString(eDataType, initialValue);
 	}
 
@@ -1283,90 +1177,87 @@ public class PivotFactoryImpl extends EFactoryImpl implements PivotFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertObjectToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertObjectToString(EDataType eDataType,
+			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigDecimal createRealFromString(EDataType eDataType, String initialValue)
-  {
+	public BigDecimal createRealFromString(EDataType eDataType,
+			String initialValue) {
 		return (BigDecimal)super.createFromString(eDataType, initialValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String convertRealToString(EDataType eDataType, Object instanceValue)
-  {
+	public String convertRealToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String createStringFromString(EDataType eDataType, String initialValue)
-  {
+	public String createStringFromString(EDataType eDataType,
+			String initialValue) {
 		return (String)super.createFromString(eDataType, initialValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String convertStringToString(EDataType eDataType, Object instanceValue)
-  {
+	public String convertStringToString(EDataType eDataType,
+			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigInteger createUnlimitedNaturalFromString(EDataType eDataType, String initialValue)
-  {
+	public BigInteger createUnlimitedNaturalFromString(EDataType eDataType,
+			String initialValue) {
 		return (BigInteger)super.createFromString(eDataType, initialValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String convertUnlimitedNaturalToString(EDataType eDataType, Object instanceValue)
-  {
+	public String convertUnlimitedNaturalToString(EDataType eDataType,
+			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PivotPackage getPivotPackage()
-  {
+	public PivotPackage getPivotPackage() {
 		return (PivotPackage)getEPackage();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
-  @Deprecated
-  public static PivotPackage getPackage()
-  {
+	@Deprecated
+	public static PivotPackage getPackage() {
 		return PivotPackage.eINSTANCE;
 	}
 

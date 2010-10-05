@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterTypeImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: TemplateParameterTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -47,80 +47,77 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
  *
  * @generated
  */
-public class TemplateParameterTypeImpl extends TypeImpl implements TemplateParameterType
-{
-  /**
+public class TemplateParameterTypeImpl
+		extends TypeImpl
+		implements TemplateParameterType {
+
+	/**
 	 * The default value of the '{@link #getSpecification() <em>Specification</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSpecification()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String SPECIFICATION_EDEFAULT = null;
+	protected static final String SPECIFICATION_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getSpecification() <em>Specification</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSpecification()
 	 * @generated
 	 * @ordered
 	 */
-  protected String specification = SPECIFICATION_EDEFAULT;
+	protected String specification = SPECIFICATION_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TemplateParameterTypeImpl()
-  {
+	protected TemplateParameterTypeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TEMPLATE_PARAMETER_TYPE;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getSpecification()
-  {
+	public String getSpecification() {
 		return specification;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSpecification(String newSpecification)
-  {
+	public void setSpecification(String newSpecification) {
 		String oldSpecification = specification;
 		specification = newSpecification;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION, oldSpecification, specification));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
@@ -155,15 +152,14 @@ public class TemplateParameterTypeImpl extends TypeImpl implements TemplateParam
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
@@ -211,14 +207,13 @@ public class TemplateParameterTypeImpl extends TypeImpl implements TemplateParam
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
@@ -261,14 +256,13 @@ public class TemplateParameterTypeImpl extends TypeImpl implements TemplateParam
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
@@ -299,14 +293,13 @@ public class TemplateParameterTypeImpl extends TypeImpl implements TemplateParam
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public String toString()
-  {
+	@Override
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

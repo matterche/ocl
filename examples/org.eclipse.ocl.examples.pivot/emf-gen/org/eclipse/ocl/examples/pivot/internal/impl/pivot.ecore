@@ -56,13 +56,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
         lowerBound="1" eType="#//Operation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CallableImplementation" abstract="true"
-      interface="true">
-    <eOperations name="evaluate" ordered="false" lowerBound="1" eType="#//Object">
-      <eParameters name="context" ordered="false" lowerBound="1" eType="#//EvaluationContext"/>
-      <eParameters name="call" ordered="false" lowerBound="1" eType="#//OclExpression"/>
-    </eOperations>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CallableImplementation" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"
+      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//Namespace">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
@@ -103,12 +98,28 @@
         upperBound="-1" eType="#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteClass" eSuperTypes="#//Class">
+    <eOperations name="conformsTo" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="aClass" ordered="false" lowerBound="1" eType="#//CompleteClass"/>
+    </eOperations>
+    <eOperations name="getDynamicOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
+      <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation"/>
+    </eOperations>
+    <eOperations name="getCompleteOperations" ordered="false" upperBound="-1" eType="#//CompleteOperation">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Class" changeable="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
-        upperBound="-1" eType="#//Operation" changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" ordered="false"
-        upperBound="-1" eType="#//Property" changeable="false" volatile="true" derived="true"/>
+        lowerBound="1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeOperation" ordered="false"
+        upperBound="-1" eType="#//CompleteOperation" changeable="false" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeProperty" ordered="false"
+        upperBound="-1" eType="#//CompleteProperty" changeable="false" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeSuperClass" ordered="false"
+        upperBound="-1" eType="#//CompleteClass" changeable="false" volatile="true"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteEnvironment" eSuperTypes="#//Package">
     <eOperations name="getCompleteClass" ordered="false" lowerBound="1" eType="#//CompleteClass">
@@ -126,17 +137,29 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteOperation" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Operation" changeable="false"/>
+        lowerBound="1" eType="#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeParameter" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompletePackage" eSuperTypes="#//Package">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Package" changeable="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" upperBound="-1"
-        eType="#//Class" changeable="false" volatile="true" derived="true"/>
+        lowerBound="1" eType="#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeClass" ordered="false"
+        upperBound="-1" eType="#//CompleteClass" changeable="false" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completePackage" ordered="false"
+        upperBound="-1" eType="#//CompletePackage" changeable="false" volatile="true"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteProperty" eSuperTypes="#//Property">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Property" changeable="false"/>
+        lowerBound="1" eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//NamedElement">
     <eOperations name="not_apply_to_self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -171,7 +194,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element" eSuperTypes="#//OclAny">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="#//OclAny">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
         upperBound="-1" eType="#//Comment" containment="true"/>
   </eClassifiers>
@@ -187,7 +210,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="enumeration" ordered="false"
         eType="#//Enumeration" eOpposite="#//Enumeration/ownedLiteral"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EvaluationContext" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOcl" eSuperTypes="#//OpaqueExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" ordered="false"
         lowerBound="1" eType="#//OclExpression" containment="true"/>
@@ -198,7 +220,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
         eType="#//Variable" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="INamedElement" abstract="true">
     <eOperations name="getName" ordered="false" lowerBound="1" eType="#//String"/>
   </eClassifiers>
@@ -214,14 +239,10 @@
         lowerBound="1" eType="#//OclExpression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImplementableElement" abstract="true">
-    <eOperations name="evaluate" ordered="false" lowerBound="1" eType="#//Object">
-      <eParameters name="context" ordered="false" lowerBound="1" eType="#//EvaluationContext"/>
-      <eParameters name="call" ordered="false" lowerBound="1" eType="#//OclExpression"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" ordered="false"
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" ordered="false"
-        eType="#//CallableImplementation" transient="true"/>
+        eType="#//CallableImplementation" transient="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" ordered="false"
@@ -334,16 +355,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclAny" eSuperTypes="#//Visitable">
+  <eClassifiers xsi:type="ecore:EClass" name="OclAny" abstract="true" eSuperTypes="#//_">
     <eOperations name="oclType" ordered="false" lowerBound="1" eType="#//Class"/>
     <eOperations name="oclIsInvalid" ordered="false" lowerBound="1" eType="#//Boolean"/>
     <eOperations name="oclIsUndefined" ordered="false" lowerBound="1" eType="#//Boolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OclExpression" eSuperTypes="#//TypedElement">
-    <eOperations name="evaluate" ordered="false" lowerBound="1" eType="#//Object">
-      <eParameters name="context" ordered="false" lowerBound="1" eType="#//EvaluationContext"/>
-    </eOperations>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OclExpression" eSuperTypes="#//TypedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclInvalid" eSuperTypes="#//OclVoid"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclVoid" eSuperTypes="#//OclAny"/>
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
@@ -664,9 +681,6 @@
     <eOperations name="isNull" ordered="false" lowerBound="1" eType="#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//TypedElement #//VariableDeclaration">
-    <eOperations name="evaluate" ordered="false" lowerBound="1" eType="#//Object">
-      <eParameters name="context" ordered="false" lowerBound="1" eType="#//EvaluationContext"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" ordered="false"
         eType="#//OclExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representedParameter" ordered="false"
@@ -678,15 +692,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" ordered="false"
         eType="#//VariableDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Visitable" abstract="true">
-    <eOperations name="accept" ordered="false" lowerBound="1">
-      <eGenericType eTypeParameter="#//Visitable/accept/T"/>
-      <eTypeParameters name="T"/>
-      <eParameters name="visitor" ordered="false" lowerBound="1" eType="#//Visitor"/>
-    </eOperations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Visitor" abstract="true">
-    <eTypeParameters name="T"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="_" instanceClassName="org.eclipse.ocl.examples.pivot.utilities.Visitable"
+      abstract="true" interface="true"/>
 </ecore:EPackage>

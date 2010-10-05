@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VoidTypeImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: VoidTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,26 +30,26 @@ import org.eclipse.ocl.examples.pivot.VoidType;
  *
  * @generated
  */
-public class VoidTypeImpl extends TypeImpl implements VoidType
-{
-  /**
+public class VoidTypeImpl
+		extends TypeImpl
+		implements VoidType {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected VoidTypeImpl()
-  {
+	protected VoidTypeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.VOID_TYPE;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,46 +48,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
-{
-  /**
+public class EnumLiteralExpImpl
+		extends LiteralExpImpl
+		implements EnumLiteralExp {
+
+	/**
 	 * The cached value of the '{@link #getReferredEnumLiteral() <em>Referred Enum Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredEnumLiteral()
 	 * @generated
 	 * @ordered
 	 */
-  protected EnumerationLiteral referredEnumLiteral;
+	protected EnumerationLiteral referredEnumLiteral;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected EnumLiteralExpImpl()
-  {
+	protected EnumLiteralExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ENUM_LITERAL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EnumerationLiteral getReferredEnumLiteral()
-  {
+	public EnumerationLiteral getReferredEnumLiteral() {
 		if (referredEnumLiteral != null && ((EObject)referredEnumLiteral).eIsProxy())
 		{
 			InternalEObject oldReferredEnumLiteral = (InternalEObject)referredEnumLiteral;
@@ -100,37 +100,34 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 		return referredEnumLiteral;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EnumerationLiteral basicGetReferredEnumLiteral()
-  {
+	public EnumerationLiteral basicGetReferredEnumLiteral() {
 		return referredEnumLiteral;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setReferredEnumLiteral(EnumerationLiteral newReferredEnumLiteral)
-  {
+	public void setReferredEnumLiteral(EnumerationLiteral newReferredEnumLiteral) {
 		EnumerationLiteral oldReferredEnumLiteral = referredEnumLiteral;
 		referredEnumLiteral = newReferredEnumLiteral;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, oldReferredEnumLiteral, referredEnumLiteral));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
@@ -153,15 +150,14 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
@@ -192,14 +188,13 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
@@ -227,14 +222,13 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
@@ -255,4 +249,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitEnumLiteralExp(this);
+	}
 } //EnumLiteralExpImpl

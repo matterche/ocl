@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OpaqueExpressionOperations.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: OpaqueExpressionOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -38,8 +38,9 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class OpaqueExpressionOperations extends ValueSpecificationOperations
-{
+public class OpaqueExpressionOperations
+		extends ValueSpecificationOperations {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +62,9 @@ public class OpaqueExpressionOperations extends ValueSpecificationOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  boolean validateLanguageBodySize(OpaqueExpression opaqueExpression, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public static boolean validateLanguageBodySize(
+			OpaqueExpression opaqueExpression, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message

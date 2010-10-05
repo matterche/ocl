@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: SequenceTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,26 +30,26 @@ import org.eclipse.ocl.examples.pivot.SequenceType;
  *
  * @generated
  */
-public class SequenceTypeImpl extends CollectionTypeImpl implements SequenceType
-{
-  /**
+public class SequenceTypeImpl
+		extends CollectionTypeImpl
+		implements SequenceType {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected SequenceTypeImpl()
-  {
+	protected SequenceTypeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.SEQUENCE_TYPE;
 	}
 

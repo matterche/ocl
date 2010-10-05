@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentImpl.java,v 1.1.2.2 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: CompleteEnvironmentImpl.java,v 1.1.2.3 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
@@ -30,8 +28,6 @@ import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Visitor;
-
 import org.eclipse.ocl.examples.pivot.internal.operations.CompleteEnvironmentOperations;
 
 /**
@@ -43,15 +39,16 @@ import org.eclipse.ocl.examples.pivot.internal.operations.CompleteEnvironmentOpe
  *
  * @generated
  */
-public class CompleteEnvironmentImpl extends PackageImpl implements CompleteEnvironment
-{
+public class CompleteEnvironmentImpl
+		extends PackageImpl
+		implements CompleteEnvironment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompleteEnvironmentImpl()
-	{
+	protected CompleteEnvironmentImpl() {
 		super();
 	}
 
@@ -61,8 +58,7 @@ public class CompleteEnvironmentImpl extends PackageImpl implements CompleteEnvi
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COMPLETE_ENVIRONMENT;
 	}
 
@@ -71,8 +67,8 @@ public class CompleteEnvironmentImpl extends PackageImpl implements CompleteEnvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteClass getCompleteClass(org.eclipse.ocl.examples.pivot.Class model)
-	{
+	public CompleteClass getCompleteClass(
+			org.eclipse.ocl.examples.pivot.Class model) {
 		return CompleteEnvironmentOperations.getCompleteClass(this, model);
 	}
 
@@ -81,8 +77,7 @@ public class CompleteEnvironmentImpl extends PackageImpl implements CompleteEnvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteOperation getCompleteOperation(Operation model)
-	{
+	public CompleteOperation getCompleteOperation(Operation model) {
 		return CompleteEnvironmentOperations.getCompleteOperation(this, model);
 	}
 
@@ -91,8 +86,8 @@ public class CompleteEnvironmentImpl extends PackageImpl implements CompleteEnvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompletePackage getCompletePackage(org.eclipse.ocl.examples.pivot.Package model)
-	{
+	public CompletePackage getCompletePackage(
+			org.eclipse.ocl.examples.pivot.Package model) {
 		return CompleteEnvironmentOperations.getCompletePackage(this, model);
 	}
 
@@ -101,8 +96,7 @@ public class CompleteEnvironmentImpl extends PackageImpl implements CompleteEnvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteProperty getCompleteProperty(Property model)
-	{
+	public CompleteProperty getCompleteProperty(Property model) {
 		return CompleteEnvironmentOperations.getCompleteProperty(this, model);
 	}
 
@@ -112,13 +106,10 @@ public class CompleteEnvironmentImpl extends PackageImpl implements CompleteEnvi
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.COMPLETE_ENVIRONMENT___OCL_TYPE:
 				return oclType();
 			case PivotPackage.COMPLETE_ENVIRONMENT___OCL_IS_INVALID:

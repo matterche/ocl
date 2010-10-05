@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationLiteralImpl.java,v 1.1.2.2 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: EnumerationLiteralImpl.java,v 1.1.2.3 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -46,69 +46,66 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class EnumerationLiteralImpl extends NamedElementImpl implements EnumerationLiteral
-{
-  /**
+public class EnumerationLiteralImpl
+		extends NamedElementImpl
+		implements EnumerationLiteral {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected EnumerationLiteralImpl()
-  {
+	protected EnumerationLiteralImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ENUMERATION_LITERAL;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Enumeration getEnumeration()
-  {
+	public Enumeration getEnumeration() {
 		if (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION) return null;
 		return (Enumeration)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Enumeration basicGetEnumeration()
-  {
+	public Enumeration basicGetEnumeration() {
 		if (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION) return null;
 		return (Enumeration)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetEnumeration(Enumeration newEnumeration, NotificationChain msgs)
-  {
+	public NotificationChain basicSetEnumeration(Enumeration newEnumeration,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newEnumeration, PivotPackage.ENUMERATION_LITERAL__ENUMERATION, msgs);
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setEnumeration(Enumeration newEnumeration)
-  {
+	public void setEnumeration(Enumeration newEnumeration) {
 		if (newEnumeration != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newEnumeration))
@@ -125,14 +122,14 @@ public class EnumerationLiteralImpl extends NamedElementImpl implements Enumerat
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUMERATION_LITERAL__ENUMERATION, newEnumeration, newEnumeration));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
@@ -143,14 +140,14 @@ public class EnumerationLiteralImpl extends NamedElementImpl implements Enumerat
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
@@ -165,14 +162,14 @@ public class EnumerationLiteralImpl extends NamedElementImpl implements Enumerat
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
@@ -181,14 +178,13 @@ public class EnumerationLiteralImpl extends NamedElementImpl implements Enumerat
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
@@ -208,15 +204,14 @@ public class EnumerationLiteralImpl extends NamedElementImpl implements Enumerat
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
@@ -244,14 +239,13 @@ public class EnumerationLiteralImpl extends NamedElementImpl implements Enumerat
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
@@ -276,14 +270,13 @@ public class EnumerationLiteralImpl extends NamedElementImpl implements Enumerat
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: ClassImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,59 +56,61 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
  *
  * @generated
  */
-public class ClassImpl extends TypeImpl implements org.eclipse.ocl.examples.pivot.Class
-{
-  /**
+public class ClassImpl
+		extends TypeImpl
+		implements org.eclipse.ocl.examples.pivot.Class {
+
+	/**
 	 * The default value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
 
-  /**
+	/**
 	 * The flag representing the value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int IS_ABSTRACT_EFLAG = 1 << 8;
+	protected static final int IS_ABSTRACT_EFLAG = 1 << 8;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedAttributes() <em>Owned Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedAttributes()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Property> ownedAttributes;
+	protected EList<Property> ownedAttributes;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedOperations()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Operation> ownedOperations;
+	protected EList<Operation> ownedOperations;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getSuperClasses() <em>Super Class</em>}' reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSuperClasses()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<org.eclipse.ocl.examples.pivot.Class> superClasses;
+	protected EList<org.eclipse.ocl.examples.pivot.Class> superClasses;
 
-/**
+	/**
 	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,90 +120,85 @@ public class ClassImpl extends TypeImpl implements org.eclipse.ocl.examples.pivo
 	 */
 	protected static final String INSTANCE_CLASS_NAME_EDEFAULT = null;
 
-/**
+	/**
 	 * The cached value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getInstanceClassName()
 	 * @generated
 	 * @ordered
 	 */
-protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
+	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected ClassImpl()
-  {
+	protected ClassImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.CLASS;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getInstanceClassName()
+	public boolean isAbstract()
 	{
-		return instanceClassName;
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInstanceClassName(String newInstanceClassName)
-	{
-		String oldInstanceClassName = instanceClassName;
-		instanceClassName = newInstanceClassName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName));
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean isAbstract()
-  {
 		return (eFlags & IS_ABSTRACT_EFLAG) != 0;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIsAbstract(boolean newIsAbstract)
-  {
+	public void setIsAbstract(boolean newIsAbstract)
+	{
 		boolean oldIsAbstract = (eFlags & IS_ABSTRACT_EFLAG) != 0;
 		if (newIsAbstract) eFlags |= IS_ABSTRACT_EFLAG; else eFlags &= ~IS_ABSTRACT_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__IS_ABSTRACT, oldIsAbstract, newIsAbstract));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Property> getOwnedAttributes()
-  {
+	public String getInstanceClassName() {
+		return instanceClassName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstanceClassName(String newInstanceClassName) {
+		String oldInstanceClassName = instanceClassName;
+		instanceClassName = newInstanceClassName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Property> getOwnedAttributes() {
 		if (ownedAttributes == null)
 		{
 			ownedAttributes = new EObjectContainmentWithInverseEList.Resolving<Property>(Property.class, this, PivotPackage.CLASS__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__CLASS);
@@ -208,35 +206,32 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		return ownedAttributes;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property createOwnedAttribute(EClass eClass)
-  {
+	public Property createOwnedAttribute(EClass eClass) {
 		Property newOwnedAttribute = (Property) create(eClass);
 		getOwnedAttributes().add(newOwnedAttribute);
 		return newOwnedAttribute;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property createOwnedAttribute()
-  {
+	public Property createOwnedAttribute() {
 		return createOwnedAttribute(PivotPackage.Literals.PROPERTY);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Operation> getOwnedOperations()
-  {
+	public EList<Operation> getOwnedOperations() {
 		if (ownedOperations == null)
 		{
 			ownedOperations = new EObjectContainmentWithInverseEList.Resolving<Operation>(Operation.class, this, PivotPackage.CLASS__OWNED_OPERATION, PivotPackage.OPERATION__CLASS);
@@ -244,35 +239,32 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		return ownedOperations;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation createOwnedOperation(EClass eClass)
-  {
+	public Operation createOwnedOperation(EClass eClass) {
 		Operation newOwnedOperation = (Operation) create(eClass);
 		getOwnedOperations().add(newOwnedOperation);
 		return newOwnedOperation;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation createOwnedOperation()
-  {
+	public Operation createOwnedOperation() {
 		return createOwnedOperation(PivotPackage.Literals.OPERATION);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<org.eclipse.ocl.examples.pivot.Class> getSuperClasses()
-  {
+	public EList<org.eclipse.ocl.examples.pivot.Class> getSuperClasses() {
 		if (superClasses == null)
 		{
 			superClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASS);
@@ -280,15 +272,15 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		return superClasses;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
@@ -317,14 +309,14 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.CLASS__OWNED_COMMENT:
@@ -353,14 +345,13 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.CLASS__OWNED_COMMENT:
@@ -403,15 +394,14 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.CLASS__OWNED_COMMENT:
@@ -474,14 +464,13 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CLASS__OWNED_COMMENT:
@@ -536,14 +525,13 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CLASS__OWNED_COMMENT:
@@ -582,23 +570,18 @@ protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isAbstract: "); //$NON-NLS-1$
-		result.append((eFlags & IS_ABSTRACT_EFLAG) != 0);
-		result.append(", instanceClassName: "); //$NON-NLS-1$
-		result.append(instanceClassName);
-		result.append(')');
-		return result.toString();
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitClass(this);
+	}
 } //ClassImpl

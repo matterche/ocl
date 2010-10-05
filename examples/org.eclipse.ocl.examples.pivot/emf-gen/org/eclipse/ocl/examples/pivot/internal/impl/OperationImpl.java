@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,15 +36,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -55,11 +51,11 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Visitor;
-import org.eclipse.ocl.examples.pivot.internal.operations.ImplementableElementOperations;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.operations.OperationOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,29 +80,31 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOpe
  *
  * @generated
  */
-public class OperationImpl extends TypedMultiplicityElementImpl implements Operation
-{
-  /**
+public class OperationImpl
+		extends TypedMultiplicityElementImpl
+		implements Operation {
+
+	/**
 	 * The cached value of the '{@link #getTemplateBindings() <em>Template Binding</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getTemplateBindings()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<TemplateBinding> templateBindings;
+	protected EList<TemplateBinding> templateBindings;
 
-/**
+	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedTemplateSignature()
 	 * @generated
 	 * @ordered
 	 */
-  protected TemplateSignature ownedTemplateSignature;
+	protected TemplateSignature ownedTemplateSignature;
 
-/**
+	/**
 	 * The cached value of the '{@link #getOwnedSpecializations() <em>Owned Specialization</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,17 +114,17 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 	 */
 	protected EList<TemplateableElement> ownedSpecializations;
 
-/**
+	/**
 	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getTemplateParameter()
 	 * @generated
 	 * @ordered
 	 */
-  protected TemplateParameter templateParameter;
+	protected TemplateParameter templateParameter;
 
-  /**
+	/**
 	 * The default value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,7 +134,7 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 	 */
 	protected static final String IMPLEMENTATION_CLASS_EDEFAULT = null;
 
-/**
+	/**
 	 * The cached value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,7 +144,7 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 	 */
 	protected String implementationClass = IMPLEMENTATION_CLASS_EDEFAULT;
 
-/**
+	/**
 	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,27 +154,27 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 	 */
 	protected CallableImplementation implementation;
 
-/**
+	/**
 	 * The cached value of the '{@link #getRaisedExceptions() <em>Raised Exception</em>}' reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRaisedExceptions()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Type> raisedExceptions;
+	protected EList<Type> raisedExceptions;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameter</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Parameter> ownedParameters;
+	protected EList<Parameter> ownedParameters;
 
-/**
+	/**
 	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,34 +184,31 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 	 */
 	protected Precedence precedence;
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  protected OperationImpl()
-  {
-		super();
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass()
-  {
-		return PivotPackage.Literals.OPERATION;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TemplateableElement> getOwnedSpecializations()
-	{
+	protected OperationImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.OPERATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TemplateableElement> getOwnedSpecializations() {
 		if (ownedSpecializations == null)
 		{
 			ownedSpecializations = new EObjectContainmentEList.Resolving<TemplateableElement>(TemplateableElement.class, this, PivotPackage.OPERATION__OWNED_SPECIALIZATION);
@@ -221,25 +216,23 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return ownedSpecializations;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement createOwnedSpecialization(EClass eClass)
-	{
+	public TemplateableElement createOwnedSpecialization(EClass eClass) {
 		TemplateableElement newOwnedSpecialization = (TemplateableElement) create(eClass);
 		getOwnedSpecializations().add(newOwnedSpecialization);
 		return newOwnedSpecialization;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter getTemplateParameter()
-  {
+	public TemplateParameter getTemplateParameter() {
 		if (templateParameter != null && ((EObject)templateParameter).eIsProxy())
 		{
 			InternalEObject oldTemplateParameter = (InternalEObject)templateParameter;
@@ -253,23 +246,22 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return templateParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter basicGetTemplateParameter()
-  {
+	public TemplateParameter basicGetTemplateParameter() {
 		return templateParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs)
-  {
+	public NotificationChain basicSetTemplateParameter(
+			TemplateParameter newTemplateParameter, NotificationChain msgs) {
 		TemplateParameter oldTemplateParameter = templateParameter;
 		templateParameter = newTemplateParameter;
 		if (eNotificationRequired())
@@ -280,13 +272,12 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setTemplateParameter(TemplateParameter newTemplateParameter)
-  {
+	public void setTemplateParameter(TemplateParameter newTemplateParameter) {
 		if (newTemplateParameter != templateParameter)
 		{
 			NotificationChain msgs = null;
@@ -301,45 +292,42 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__TEMPLATE_PARAMETER, newTemplateParameter, newTemplateParameter));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isSetTemplateParameter()
-  {
+	public boolean isSetTemplateParameter() {
 		return templateParameter != null;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter getOwningTemplateParameter()
-  {
+	public TemplateParameter getOwningTemplateParameter() {
 		if (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER) return null;
 		return (TemplateParameter)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter basicGetOwningTemplateParameter()
-  {
+	public TemplateParameter basicGetOwningTemplateParameter() {
 		if (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER) return null;
 		return (TemplateParameter)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetOwningTemplateParameter(TemplateParameter newOwningTemplateParameter, NotificationChain msgs)
-  {
+	public NotificationChain basicSetOwningTemplateParameter(
+			TemplateParameter newOwningTemplateParameter, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateParameter, PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER, msgs);
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
@@ -354,13 +342,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOwningTemplateParameter(TemplateParameter newOwningTemplateParameter)
-  {
+	public void setOwningTemplateParameter(
+			TemplateParameter newOwningTemplateParameter) {
 		if (newOwningTemplateParameter != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER && newOwningTemplateParameter != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateParameter))
@@ -377,36 +365,33 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER, newOwningTemplateParameter, newOwningTemplateParameter));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImplementationClass()
-	{
+	public String getImplementationClass() {
 		return implementationClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementationClass(String newImplementationClass)
-	{
+	public void setImplementationClass(String newImplementationClass) {
 		String oldImplementationClass = implementationClass;
 		implementationClass = newImplementationClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__IMPLEMENTATION_CLASS, oldImplementationClass, implementationClass));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<TemplateBinding> getTemplateBindings()
-  {
+	public EList<TemplateBinding> getTemplateBindings() {
 		if (templateBindings == null)
 		{
 			templateBindings = new EObjectContainmentWithInverseEList.Resolving<TemplateBinding>(TemplateBinding.class, this, PivotPackage.OPERATION__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
@@ -414,25 +399,23 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return templateBindings;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateBinding createTemplateBinding()
-  {
+	public TemplateBinding createTemplateBinding() {
 		TemplateBinding newTemplateBinding = (TemplateBinding) create(PivotPackage.Literals.TEMPLATE_BINDING);
 		getTemplateBindings().add(newTemplateBinding);
 		return newTemplateBinding;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature getOwnedTemplateSignature()
-  {
+	public TemplateSignature getOwnedTemplateSignature() {
 		if (ownedTemplateSignature != null && ((EObject)ownedTemplateSignature).eIsProxy())
 		{
 			InternalEObject oldOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
@@ -453,23 +436,22 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return ownedTemplateSignature;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature basicGetOwnedTemplateSignature()
-  {
+	public TemplateSignature basicGetOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature, NotificationChain msgs)
-  {
+	public NotificationChain basicSetOwnedTemplateSignature(
+			TemplateSignature newOwnedTemplateSignature, NotificationChain msgs) {
 		TemplateSignature oldOwnedTemplateSignature = ownedTemplateSignature;
 		ownedTemplateSignature = newOwnedTemplateSignature;
 		if (eNotificationRequired())
@@ -480,13 +462,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature)
-  {
+	public void setOwnedTemplateSignature(
+			TemplateSignature newOwnedTemplateSignature) {
 		if (newOwnedTemplateSignature != ownedTemplateSignature)
 		{
 			NotificationChain msgs = null;
@@ -501,68 +483,44 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature createOwnedTemplateSignature()
-  {
+	public TemplateSignature createOwnedTemplateSignature() {
 		TemplateSignature newOwnedTemplateSignature = (TemplateSignature) create(PivotPackage.Literals.TEMPLATE_SIGNATURE);
 		setOwnedTemplateSignature(newOwnedTemplateSignature);
 		return newOwnedTemplateSignature;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation getImplementation()
-	{
-		if (implementation != null && ((EObject)implementation).eIsProxy())
-		{
-			InternalEObject oldImplementation = (InternalEObject)implementation;
-			implementation = (CallableImplementation)eResolveProxy(oldImplementation);
-			if (implementation != oldImplementation)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.OPERATION__IMPLEMENTATION, oldImplementation, implementation));
-			}
-		}
+	public CallableImplementation getImplementation() {
 		return implementation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation basicGetImplementation()
-	{
-		return implementation;
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImplementation(CallableImplementation newImplementation)
-	{
+	public void setImplementation(CallableImplementation newImplementation) {
 		CallableImplementation oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Precedence getPrecedence()
-	{
+	public Precedence getPrecedence() {
 		if (precedence != null && ((EObject)precedence).eIsProxy())
 		{
 			InternalEObject oldPrecedence = (InternalEObject)precedence;
@@ -576,36 +534,33 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return precedence;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Precedence basicGetPrecedence()
-	{
+	public Precedence basicGetPrecedence() {
 		return precedence;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPrecedence(Precedence newPrecedence)
-	{
+	public void setPrecedence(Precedence newPrecedence) {
 		Precedence oldPrecedence = precedence;
 		precedence = newPrecedence;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__PRECEDENCE, oldPrecedence, precedence));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Type> getRaisedExceptions()
-  {
+	public EList<Type> getRaisedExceptions() {
 		if (raisedExceptions == null)
 		{
 			raisedExceptions = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.OPERATION__RAISED_EXCEPTION);
@@ -613,13 +568,12 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return raisedExceptions;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Parameter> getOwnedParameters()
-  {
+	public EList<Parameter> getOwnedParameters() {
 		if (ownedParameters == null)
 		{
 			ownedParameters = new EObjectContainmentWithInverseEList.Resolving<Parameter>(Parameter.class, this, PivotPackage.OPERATION__OWNED_PARAMETER, PivotPackage.PARAMETER__OPERATION);
@@ -627,58 +581,55 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return ownedParameters;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Parameter createOwnedParameter()
-  {
+	public Parameter createOwnedParameter() {
 		Parameter newOwnedParameter = (Parameter) create(PivotPackage.Literals.PARAMETER);
 		getOwnedParameters().add(newOwnedParameter);
 		return newOwnedParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Class getClass_()
-  {
+	public org.eclipse.ocl.examples.pivot.Class getClass_() {
 		if (eContainerFeatureID() != PivotPackage.OPERATION__CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Class basicGetClass_()
-  {
+	public org.eclipse.ocl.examples.pivot.Class basicGetClass_() {
 		if (eContainerFeatureID() != PivotPackage.OPERATION__CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetClass_(org.eclipse.ocl.examples.pivot.Class newClass, NotificationChain msgs)
-  {
+	public NotificationChain basicSetClass_(
+			org.eclipse.ocl.examples.pivot.Class newClass,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newClass, PivotPackage.OPERATION__CLASS, msgs);
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setClass_(org.eclipse.ocl.examples.pivot.Class newClass)
-  {
+	public void setClass_(org.eclipse.ocl.examples.pivot.Class newClass) {
 		if (newClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__CLASS && newClass != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newClass))
@@ -695,82 +646,52 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__CLASS, newClass, newClass));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isTemplateParameter()
-  {
+	public boolean isTemplateParameter() {
 		return ParameterableElementOperations.isTemplateParameter(this);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object evaluate(EvaluationContext context, OclExpression call)
-	{
-		return ImplementableElementOperations.evaluate(this, context, call);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTestConstraint(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateTestConstraint(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return OperationOperations.validateTestConstraint(this, diagnostics, context);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Object evaluate(EvaluationContext context, CallExp call)
-	{
-		if (implementation != null) {
-			return implementation.evaluate(context, call);
-		}
-		implementation = context.loadImplementationClass(implementationClass);
-		if (implementation != null) {
-			return implementation.evaluate(context, call);
-		}
-		return null;
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<ParameterableElement> parameterableElements()
-  {
+	public EList<ParameterableElement> parameterableElements() {
 		return TemplateableElementOperations.parameterableElements(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isTemplate()
-  {
+	public boolean isTemplate() {
 		return TemplateableElementOperations.isTemplate(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION__TEMPLATE_BINDING:
@@ -797,14 +718,14 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION__OWNED_COMMENT:
@@ -831,14 +752,14 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
@@ -849,14 +770,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION__OWNED_COMMENT:
@@ -896,8 +816,7 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.OPERATION__IMPLEMENTATION:
-				if (resolve) return getImplementation();
-				return basicGetImplementation();
+				return getImplementation();
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
 				return getRaisedExceptions();
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
@@ -912,15 +831,14 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION__OWNED_COMMENT:
@@ -997,14 +915,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION__OWNED_COMMENT:
@@ -1074,14 +991,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION__OWNED_COMMENT:
@@ -1130,14 +1046,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-  {
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Namespace.class)
 		{
 			switch (derivedFeatureID)
@@ -1176,14 +1091,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-  {
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Namespace.class)
 		{
 			switch (baseFeatureID)
@@ -1222,14 +1136,13 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
-  {
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Namespace.class)
 		{
 			switch (baseOperationID)
@@ -1258,26 +1171,23 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 		{
 			switch (baseOperationID)
 			{
-				case PivotPackage.IMPLEMENTABLE_ELEMENT___EVALUATE__EVALUATIONCONTEXT_OCLEXPRESSION: return PivotPackage.OPERATION___EVALUATE__EVALUATIONCONTEXT_OCLEXPRESSION;
 				default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.OPERATION___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.OPERATION___OCL_TYPE:
 				return oclType();
 			case PivotPackage.OPERATION___OCL_IS_INVALID:
@@ -1308,29 +1218,24 @@ public class OperationImpl extends TypedMultiplicityElementImpl implements Opera
 				return isTemplate();
 			case PivotPackage.OPERATION___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.OPERATION___EVALUATE__EVALUATIONCONTEXT_OCLEXPRESSION:
-				return evaluate((EvaluationContext)arguments.get(0), (OclExpression)arguments.get(1));
 			case PivotPackage.OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP:
 				return validateTestConstraint((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (implementationClass: "); //$NON-NLS-1$
-		result.append(implementationClass);
-		result.append(')');
-		return result.toString();
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitOperation(this);
+	}
 } //OperationImpl

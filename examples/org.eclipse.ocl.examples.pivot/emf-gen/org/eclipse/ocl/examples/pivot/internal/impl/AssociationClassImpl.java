@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: AssociationClassImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -53,46 +53,45 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
  *
  * @generated
  */
-public class AssociationClassImpl extends ClassImpl implements AssociationClass
-{
-  /**
+public class AssociationClassImpl
+		extends ClassImpl
+		implements AssociationClass {
+
+	/**
 	 * The cached value of the '{@link #getUnownedAttributes() <em>Unowned Attribute</em>}' reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUnownedAttributes()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Property> unownedAttributes;
+	protected EList<Property> unownedAttributes;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected AssociationClassImpl()
-  {
+	protected AssociationClassImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ASSOCIATION_CLASS;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Property> getUnownedAttributes()
-  {
+	public EList<Property> getUnownedAttributes() {
 		if (unownedAttributes == null)
 		{
 			unownedAttributes = new EObjectWithInverseResolvingEList<Property>(Property.class, this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, PivotPackage.PROPERTY__ASSOCIATION);
@@ -100,15 +99,15 @@ public class AssociationClassImpl extends ClassImpl implements AssociationClass
 		return unownedAttributes;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
@@ -139,14 +138,14 @@ public class AssociationClassImpl extends ClassImpl implements AssociationClass
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
@@ -177,14 +176,13 @@ public class AssociationClassImpl extends ClassImpl implements AssociationClass
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
@@ -229,15 +227,14 @@ public class AssociationClassImpl extends ClassImpl implements AssociationClass
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
@@ -304,14 +301,13 @@ public class AssociationClassImpl extends ClassImpl implements AssociationClass
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
@@ -369,14 +365,13 @@ public class AssociationClassImpl extends ClassImpl implements AssociationClass
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:

@@ -12,25 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ImplementableElementImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: ImplementableElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.internal.operations.ImplementableElementOperations;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
 /**
@@ -47,8 +40,10 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
  *
  * @generated
  */
-public abstract class ImplementableElementImpl extends PivotObjectImpl implements ImplementableElement
-{
+public abstract class ImplementableElementImpl
+		extends PivotObjectImpl
+		implements ImplementableElement {
+
 	/**
 	 * The default value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -58,6 +53,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * @ordered
 	 */
 	protected static final String IMPLEMENTATION_CLASS_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,6 +63,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * @ordered
 	 */
 	protected String implementationClass = IMPLEMENTATION_CLASS_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -82,8 +79,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImplementableElementImpl()
-	{
+	protected ImplementableElementImpl() {
 		super();
 	}
 
@@ -93,8 +89,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.IMPLEMENTABLE_ELEMENT;
 	}
 
@@ -103,8 +98,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImplementationClass()
-	{
+	public String getImplementationClass() {
 		return implementationClass;
 	}
 
@@ -113,8 +107,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementationClass(String newImplementationClass)
-	{
+	public void setImplementationClass(String newImplementationClass) {
 		String oldImplementationClass = implementationClass;
 		implementationClass = newImplementationClass;
 		if (eNotificationRequired())
@@ -126,18 +119,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation getImplementation()
-	{
-		if (implementation != null && ((EObject)implementation).eIsProxy())
-		{
-			InternalEObject oldImplementation = (InternalEObject)implementation;
-			implementation = (CallableImplementation)eResolveProxy(oldImplementation);
-			if (implementation != oldImplementation)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION, oldImplementation, implementation));
-			}
-		}
+	public CallableImplementation getImplementation() {
 		return implementation;
 	}
 
@@ -146,18 +128,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation basicGetImplementation()
-	{
-		return implementation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImplementation(CallableImplementation newImplementation)
-	{
+	public void setImplementation(CallableImplementation newImplementation) {
 		CallableImplementation oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
@@ -169,26 +140,14 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object evaluate(EvaluationContext context, OclExpression call)
-	{
-		return ImplementableElementOperations.evaluate(this, context, call);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION:
-				if (resolve) return getImplementation();
-				return basicGetImplementation();
+				return getImplementation();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -198,10 +157,8 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
@@ -220,8 +177,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
@@ -240,8 +196,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
@@ -258,24 +213,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
-			case PivotPackage.IMPLEMENTABLE_ELEMENT___EVALUATE__EVALUATIONCONTEXT_OCLEXPRESSION:
-				return evaluate((EvaluationContext)arguments.get(0), (OclExpression)arguments.get(1));
-		}
-		return eDynamicInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -293,8 +231,7 @@ public abstract class ImplementableElementImpl extends PivotObjectImpl implement
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 

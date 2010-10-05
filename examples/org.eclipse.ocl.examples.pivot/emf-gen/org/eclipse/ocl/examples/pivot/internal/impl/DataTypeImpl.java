@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataTypeImpl.java,v 1.1.2.1 2010/10/01 13:54:09 ewillink Exp $
+ * $Id: DataTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,26 +30,26 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class DataTypeImpl extends ClassImpl implements DataType
-{
-  /**
+public class DataTypeImpl
+		extends ClassImpl
+		implements DataType {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected DataTypeImpl()
-  {
+	protected DataTypeImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.DATA_TYPE;
 	}
 

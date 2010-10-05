@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -34,23 +34,19 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Visitor;
-import org.eclipse.ocl.examples.pivot.internal.operations.ImplementableElementOperations;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.PropertyOperations;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,19 +71,21 @@ import org.eclipse.ocl.examples.pivot.internal.operations.PropertyOperations;
  *
  * @generated
  */
-public class PropertyImpl extends TypedMultiplicityElementImpl implements Property
-{
-  /**
+public class PropertyImpl
+		extends TypedMultiplicityElementImpl
+		implements Property {
+
+	/**
 	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getTemplateParameter()
 	 * @generated
 	 * @ordered
 	 */
-  protected TemplateParameter templateParameter;
+	protected TemplateParameter templateParameter;
 
-  /**
+	/**
 	 * The default value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,7 +95,7 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 	 */
 	protected static final String IMPLEMENTATION_CLASS_EDEFAULT = null;
 
-/**
+	/**
 	 * The cached value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,7 +105,7 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 	 */
 	protected String implementationClass = IMPLEMENTATION_CLASS_EDEFAULT;
 
-/**
+	/**
 	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,134 +115,131 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 	 */
 	protected CallableImplementation implementation;
 
-/**
+	/**
 	 * The default value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isReadOnly()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean IS_READ_ONLY_EDEFAULT = false;
+	protected static final boolean IS_READ_ONLY_EDEFAULT = false;
 
-  /**
+	/**
 	 * The flag representing the value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isReadOnly()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int IS_READ_ONLY_EFLAG = 1 << 10;
+	protected static final int IS_READ_ONLY_EFLAG = 1 << 10;
 
-  /**
+	/**
 	 * The default value of the '{@link #getDefault() <em>Default</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDefault()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String DEFAULT_EDEFAULT = null;
+	protected static final String DEFAULT_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getDefault() <em>Default</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDefault()
 	 * @generated
 	 * @ordered
 	 */
-  protected String default_ = DEFAULT_EDEFAULT;
+	protected String default_ = DEFAULT_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isComposite()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean IS_COMPOSITE_EDEFAULT = false;
+	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
 
-  /**
+	/**
 	 * The flag representing the value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isComposite()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int IS_COMPOSITE_EFLAG = 1 << 11;
+	protected static final int IS_COMPOSITE_EFLAG = 1 << 11;
 
-  /**
+	/**
 	 * The default value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isDerived()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean IS_DERIVED_EDEFAULT = false;
+	protected static final boolean IS_DERIVED_EDEFAULT = false;
 
-  /**
+	/**
 	 * The flag representing the value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isDerived()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int IS_DERIVED_EFLAG = 1 << 12;
+	protected static final int IS_DERIVED_EFLAG = 1 << 12;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOpposite() <em>Opposite</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOpposite()
 	 * @generated
 	 * @ordered
 	 */
-  protected Property opposite;
+	protected Property opposite;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getAssociation() <em>Association</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getAssociation()
 	 * @generated
 	 * @ordered
 	 */
-  protected AssociationClass association;
+	protected AssociationClass association;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected PropertyImpl()
-  {
+	protected PropertyImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PROPERTY;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter getTemplateParameter()
-  {
+	public TemplateParameter getTemplateParameter() {
 		if (templateParameter != null && ((EObject)templateParameter).eIsProxy())
 		{
 			InternalEObject oldTemplateParameter = (InternalEObject)templateParameter;
@@ -258,23 +253,22 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return templateParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter basicGetTemplateParameter()
-  {
+	public TemplateParameter basicGetTemplateParameter() {
 		return templateParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs)
-  {
+	public NotificationChain basicSetTemplateParameter(
+			TemplateParameter newTemplateParameter, NotificationChain msgs) {
 		TemplateParameter oldTemplateParameter = templateParameter;
 		templateParameter = newTemplateParameter;
 		if (eNotificationRequired())
@@ -293,13 +287,12 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setTemplateParameter(TemplateParameter newTemplateParameter)
-  {
+	public void setTemplateParameter(TemplateParameter newTemplateParameter) {
 		if (newTemplateParameter != templateParameter)
 		{
 			NotificationChain msgs = null;
@@ -314,35 +307,33 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__TEMPLATE_PARAMETER, newTemplateParameter, newTemplateParameter));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter getOwningTemplateParameter()
-  {
+	public TemplateParameter getOwningTemplateParameter() {
 		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER) return null;
 		return (TemplateParameter)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter basicGetOwningTemplateParameter()
-  {
+	public TemplateParameter basicGetOwningTemplateParameter() {
 		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER) return null;
 		return (TemplateParameter)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetOwningTemplateParameter(TemplateParameter newOwningTemplateParameter, NotificationChain msgs)
-  {
+	public NotificationChain basicSetOwningTemplateParameter(
+			TemplateParameter newOwningTemplateParameter, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateParameter, PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER, msgs);
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
@@ -357,13 +348,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOwningTemplateParameter(TemplateParameter newOwningTemplateParameter)
-  {
+	public void setOwningTemplateParameter(
+			TemplateParameter newOwningTemplateParameter) {
 		if (newOwningTemplateParameter != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER && newOwningTemplateParameter != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateParameter))
@@ -380,171 +371,144 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER, newOwningTemplateParameter, newOwningTemplateParameter));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImplementationClass()
-	{
+	public String getImplementationClass() {
 		return implementationClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementationClass(String newImplementationClass)
-	{
+	public void setImplementationClass(String newImplementationClass) {
 		String oldImplementationClass = implementationClass;
 		implementationClass = newImplementationClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IMPLEMENTATION_CLASS, oldImplementationClass, implementationClass));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation getImplementation()
-	{
-		if (implementation != null && ((EObject)implementation).eIsProxy())
-		{
-			InternalEObject oldImplementation = (InternalEObject)implementation;
-			implementation = (CallableImplementation)eResolveProxy(oldImplementation);
-			if (implementation != oldImplementation)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.PROPERTY__IMPLEMENTATION, oldImplementation, implementation));
-			}
-		}
+	public CallableImplementation getImplementation() {
 		return implementation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation basicGetImplementation()
-	{
-		return implementation;
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImplementation(CallableImplementation newImplementation)
-	{
+	public void setImplementation(CallableImplementation newImplementation) {
 		CallableImplementation oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isReadOnly()
-  {
+	public boolean isReadOnly()
+	{
 		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIsReadOnly(boolean newIsReadOnly)
-  {
+	public void setIsReadOnly(boolean newIsReadOnly)
+	{
 		boolean oldIsReadOnly = (eFlags & IS_READ_ONLY_EFLAG) != 0;
 		if (newIsReadOnly) eFlags |= IS_READ_ONLY_EFLAG; else eFlags &= ~IS_READ_ONLY_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_READ_ONLY, oldIsReadOnly, newIsReadOnly));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getDefault()
-  {
+	public String getDefault() {
 		return default_;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setDefault(String newDefault)
-  {
+	public void setDefault(String newDefault) {
 		String oldDefault = default_;
 		default_ = newDefault;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__DEFAULT, oldDefault, default_));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isComposite()
-  {
+	public boolean isComposite()
+	{
 		return (eFlags & IS_COMPOSITE_EFLAG) != 0;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIsComposite(boolean newIsComposite)
-  {
+	public void setIsComposite(boolean newIsComposite)
+	{
 		boolean oldIsComposite = (eFlags & IS_COMPOSITE_EFLAG) != 0;
 		if (newIsComposite) eFlags |= IS_COMPOSITE_EFLAG; else eFlags &= ~IS_COMPOSITE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_COMPOSITE, oldIsComposite, newIsComposite));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isDerived()
-  {
+	public boolean isDerived()
+	{
 		return (eFlags & IS_DERIVED_EFLAG) != 0;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIsDerived(boolean newIsDerived)
-  {
+	public void setIsDerived(boolean newIsDerived)
+	{
 		boolean oldIsDerived = (eFlags & IS_DERIVED_EFLAG) != 0;
 		if (newIsDerived) eFlags |= IS_DERIVED_EFLAG; else eFlags &= ~IS_DERIVED_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_DERIVED, oldIsDerived, newIsDerived));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property getOpposite()
-  {
+	public Property getOpposite() {
 		if (opposite != null && ((EObject)opposite).eIsProxy())
 		{
 			InternalEObject oldOpposite = (InternalEObject)opposite;
@@ -558,36 +522,33 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return opposite;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property basicGetOpposite()
-  {
+	public Property basicGetOpposite() {
 		return opposite;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOpposite(Property newOpposite)
-  {
+	public void setOpposite(Property newOpposite) {
 		Property oldOpposite = opposite;
 		opposite = newOpposite;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OPPOSITE, oldOpposite, opposite));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AssociationClass getAssociation()
-  {
+	public AssociationClass getAssociation() {
 		if (association != null && ((EObject)association).eIsProxy())
 		{
 			InternalEObject oldAssociation = (InternalEObject)association;
@@ -601,23 +562,22 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return association;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AssociationClass basicGetAssociation()
-  {
+	public AssociationClass basicGetAssociation() {
 		return association;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetAssociation(AssociationClass newAssociation, NotificationChain msgs)
-  {
+	public NotificationChain basicSetAssociation(
+			AssociationClass newAssociation, NotificationChain msgs) {
 		AssociationClass oldAssociation = association;
 		association = newAssociation;
 		if (eNotificationRequired())
@@ -628,13 +588,12 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setAssociation(AssociationClass newAssociation)
-  {
+	public void setAssociation(AssociationClass newAssociation) {
 		if (newAssociation != association)
 		{
 			NotificationChain msgs = null;
@@ -649,46 +608,44 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__ASSOCIATION, newAssociation, newAssociation));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Class getClass_()
-  {
+	public org.eclipse.ocl.examples.pivot.Class getClass_() {
 		if (eContainerFeatureID() != PivotPackage.PROPERTY__CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.ocl.examples.pivot.Class basicGetClass_()
-  {
+	public org.eclipse.ocl.examples.pivot.Class basicGetClass_() {
 		if (eContainerFeatureID() != PivotPackage.PROPERTY__CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetClass_(org.eclipse.ocl.examples.pivot.Class newClass, NotificationChain msgs)
-  {
+	public NotificationChain basicSetClass_(
+			org.eclipse.ocl.examples.pivot.Class newClass,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newClass, PivotPackage.PROPERTY__CLASS, msgs);
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setClass_(org.eclipse.ocl.examples.pivot.Class newClass)
-  {
+	public void setClass_(org.eclipse.ocl.examples.pivot.Class newClass) {
 		if (newClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__CLASS && newClass != null))
 		{
 			if (EcoreUtil.isAncestor(this, (EObject)newClass))
@@ -705,44 +662,33 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__CLASS, newClass, newClass));
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean isTemplateParameter()
-  {
-		return ParameterableElementOperations.isTemplateParameter(this);
-	}
-
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object evaluate(EvaluationContext context, OclExpression call)
-	{
-		return ImplementableElementOperations.evaluate(this, context, call);
+	public boolean isTemplateParameter() {
+		return ParameterableElementOperations.isTemplateParameter(this);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateBindingToAttribute(DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateBindingToAttribute(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return PropertyOperations.validateBindingToAttribute(this, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
@@ -765,14 +711,14 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
@@ -793,14 +739,14 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
@@ -811,14 +757,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
@@ -851,8 +796,7 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
-				if (resolve) return getImplementation();
-				return basicGetImplementation();
+				return getImplementation();
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				return isReadOnly();
 			case PivotPackage.PROPERTY__DEFAULT:
@@ -874,15 +818,14 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
@@ -955,14 +898,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
@@ -1032,14 +974,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
@@ -1088,14 +1029,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-  {
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (derivedFeatureID)
@@ -1117,14 +1057,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-  {
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (baseFeatureID)
@@ -1146,14 +1085,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
-  {
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (baseOperationID)
@@ -1166,26 +1104,23 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 		{
 			switch (baseOperationID)
 			{
-				case PivotPackage.IMPLEMENTABLE_ELEMENT___EVALUATE__EVALUATIONCONTEXT_OCLEXPRESSION: return PivotPackage.PROPERTY___EVALUATE__EVALUATIONCONTEXT_OCLEXPRESSION;
 				default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.PROPERTY___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.PROPERTY___OCL_TYPE:
 				return oclType();
 			case PivotPackage.PROPERTY___OCL_IS_INVALID:
@@ -1212,37 +1147,10 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 				return getName();
 			case PivotPackage.PROPERTY___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.PROPERTY___EVALUATE__EVALUATIONCONTEXT_OCLEXPRESSION:
-				return evaluate((EvaluationContext)arguments.get(0), (OclExpression)arguments.get(1));
 			case PivotPackage.PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
 				return validateBindingToAttribute((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (implementationClass: "); //$NON-NLS-1$
-		result.append(implementationClass);
-		result.append(", isReadOnly: "); //$NON-NLS-1$
-		result.append((eFlags & IS_READ_ONLY_EFLAG) != 0);
-		result.append(", default: "); //$NON-NLS-1$
-		result.append(default_);
-		result.append(", isComposite: "); //$NON-NLS-1$
-		result.append((eFlags & IS_COMPOSITE_EFLAG) != 0);
-		result.append(", isDerived: "); //$NON-NLS-1$
-		result.append((eFlags & IS_DERIVED_EFLAG) != 0);
-		result.append(')');
-		return result.toString();
 	}
 
 	/**
@@ -1250,16 +1158,13 @@ public class PropertyImpl extends TypedMultiplicityElementImpl implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Object evaluate(EvaluationContext context, CallExp call)
-	{
-		if (implementation != null) {
-			return implementation.evaluate(context, call);
-		}
-		implementation = context.loadImplementationClass(implementationClass);
-		if (implementation != null) {
-			return implementation.evaluate(context, call);
-		}
-		return null;
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitProperty(this);
+	}
 } //PropertyImpl

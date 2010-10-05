@@ -12,21 +12,34 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperationImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: CompleteOperationImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.math.BigInteger;
+import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,13 +49,17 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl#getCompleteEnvironment <em>Complete Environment</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl#getCompleteParameters <em>Complete Parameter</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CompleteOperationImpl extends OperationImpl implements CompleteOperation
-{
+public class CompleteOperationImpl
+		extends OperationImpl
+		implements CompleteOperation {
+
 	/**
 	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,12 +71,21 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 	protected Operation model;
 
 	/**
+	 * The cached value of the '{@link #getCompleteEnvironment() <em>Complete Environment</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompleteEnvironment()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompleteEnvironment completeEnvironment;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompleteOperationImpl()
-	{
+	protected CompleteOperationImpl() {
 		super();
 	}
 
@@ -69,8 +95,7 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COMPLETE_OPERATION;
 	}
 
@@ -79,8 +104,7 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getModel()
-	{
+	public Operation getModel() {
 		if (model != null && ((EObject)model).eIsProxy())
 		{
 			InternalEObject oldModel = (InternalEObject)model;
@@ -99,8 +123,7 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation basicGetModel()
-	{
+	public Operation basicGetModel() {
 		return model;
 	}
 
@@ -109,9 +132,71 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	public void setModel(Operation newModel) {
+		Operation oldModel = model;
+		model = newModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_OPERATION__MODEL, oldModel, model));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteEnvironment getCompleteEnvironment() {
+		if (completeEnvironment != null && ((EObject)completeEnvironment).eIsProxy())
+		{
+			InternalEObject oldCompleteEnvironment = (InternalEObject)completeEnvironment;
+			completeEnvironment = (CompleteEnvironment)eResolveProxy(oldCompleteEnvironment);
+			if (completeEnvironment != oldCompleteEnvironment)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT, oldCompleteEnvironment, completeEnvironment));
+			}
+		}
+		return completeEnvironment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteEnvironment basicGetCompleteEnvironment() {
+		return completeEnvironment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCompleteEnvironment(
+			CompleteEnvironment newCompleteEnvironment) {
+		CompleteEnvironment oldCompleteEnvironment = completeEnvironment;
+		completeEnvironment = newCompleteEnvironment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT, oldCompleteEnvironment, completeEnvironment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Parameter> getCompleteParameters()
 	{
+		return getModel().getOwnedParameters();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.COMPLETE_OPERATION__OWNED_COMMENT:
@@ -151,8 +236,7 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
-				if (resolve) return getImplementation();
-				return basicGetImplementation();
+				return getImplementation();
 			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
 				return getRaisedExceptions();
 			case PivotPackage.COMPLETE_OPERATION__OWNED_PARAMETER:
@@ -166,6 +250,11 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 			case PivotPackage.COMPLETE_OPERATION__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
+			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
+				if (resolve) return getCompleteEnvironment();
+				return basicGetCompleteEnvironment();
+			case PivotPackage.COMPLETE_OPERATION__COMPLETE_PARAMETER:
+				return getCompleteParameters();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -175,9 +264,180 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_OPERATION__OWNED_COMMENT:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__MONIKER:
+				setMoniker((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IS_ORDERED:
+				setIsOrdered((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IS_UNIQUE:
+				setIsUnique((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__LOWER:
+				setLower((BigInteger)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__UPPER:
+				setUpper((BigInteger)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
+				getOwnedRules().clear();
+				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TYPE:
+				setType((Type)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
+				getTemplateBindings().clear();
+				getTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_SPECIALIZATION:
+				getOwnedSpecializations().clear();
+				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
+				setImplementationClass((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
+				setImplementation((CallableImplementation)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
+				getRaisedExceptions().clear();
+				getRaisedExceptions().addAll((Collection<? extends Type>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_PARAMETER:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends Parameter>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__PRECEDENCE:
+				setPrecedence((Precedence)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__MODEL:
+				setModel((Operation)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
+				setCompleteEnvironment((CompleteEnvironment)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_OPERATION__OWNED_COMMENT:
+				getOwnedComments().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__MONIKER:
+				setMoniker(MONIKER_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IS_ORDERED:
+				setIsOrdered(IS_ORDERED_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IS_UNIQUE:
+				setIsUnique(IS_UNIQUE_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__LOWER:
+				setLower(LOWER_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__UPPER:
+				setUpper(UPPER_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
+				getOwnedRules().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TYPE:
+				setType((Type)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
+				getTemplateBindings().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_SPECIALIZATION:
+				getOwnedSpecializations().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
+				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
+				setImplementation((CallableImplementation)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
+				getRaisedExceptions().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_PARAMETER:
+				getOwnedParameters().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__PRECEDENCE:
+				setPrecedence((Precedence)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__MODEL:
+				setModel((Operation)null);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
+				setCompleteEnvironment((CompleteEnvironment)null);
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COMPLETE_OPERATION__OWNED_COMMENT:
@@ -224,6 +484,10 @@ public class CompleteOperationImpl extends OperationImpl implements CompleteOper
 				return basicGetClass_() != null;
 			case PivotPackage.COMPLETE_OPERATION__MODEL:
 				return model != null;
+			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
+				return completeEnvironment != null;
+			case PivotPackage.COMPLETE_OPERATION__COMPLETE_PARAMETER:
+				return !getCompleteParameters().isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

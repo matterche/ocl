@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: MessageExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,9 +54,11 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class MessageExpImpl extends OclExpressionImpl implements MessageExp
-{
-  /**
+public class MessageExpImpl
+		extends OclExpressionImpl
+		implements MessageExp {
+
+	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,6 +67,7 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 	 * @ordered
 	 */
 	protected OclExpression target;
+
 	/**
 	 * The cached value of the '{@link #getArguments() <em>Argument</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -73,6 +77,7 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 	 * @ordered
 	 */
 	protected EList<OclExpression> arguments;
+
 	/**
 	 * The cached value of the '{@link #getCalledOperation() <em>Called Operation</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -82,6 +87,7 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 	 * @ordered
 	 */
 	protected CallOperationAction calledOperation;
+
 	/**
 	 * The cached value of the '{@link #getSentSignal() <em>Sent Signal</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -92,35 +98,32 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 	 */
 	protected SendSignalAction sentSignal;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected MessageExpImpl()
-  {
+	protected MessageExpImpl() {
 		super();
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass()
-  {
-		return PivotPackage.Literals.MESSAGE_EXP;
-	}
-
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public OclExpression getTarget()
-	{
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.MESSAGE_EXP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OclExpression getTarget() {
 		if (target != null && ((EObject)target).eIsProxy())
 		{
 			InternalEObject oldTarget = (InternalEObject)target;
@@ -141,23 +144,22 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return target;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression basicGetTarget()
-	{
+	public OclExpression basicGetTarget() {
 		return target;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(OclExpression newTarget, NotificationChain msgs)
-	{
+	public NotificationChain basicSetTarget(OclExpression newTarget,
+			NotificationChain msgs) {
 		OclExpression oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
@@ -168,13 +170,12 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return msgs;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(OclExpression newTarget)
-	{
+	public void setTarget(OclExpression newTarget) {
 		if (newTarget != target)
 		{
 			NotificationChain msgs = null;
@@ -189,35 +190,32 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__TARGET, newTarget, newTarget));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createTarget(EClass eClass)
-	{
+	public OclExpression createTarget(EClass eClass) {
 		OclExpression newTarget = (OclExpression) create(eClass);
 		setTarget(newTarget);
 		return newTarget;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createTarget()
-	{
+	public OclExpression createTarget() {
 		return createTarget(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OclExpression> getArguments()
-	{
+	public EList<OclExpression> getArguments() {
 		if (arguments == null)
 		{
 			arguments = new EObjectContainmentEList.Resolving<OclExpression>(OclExpression.class, this, PivotPackage.MESSAGE_EXP__ARGUMENT);
@@ -225,35 +223,32 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return arguments;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createArgument(EClass eClass)
-	{
+	public OclExpression createArgument(EClass eClass) {
 		OclExpression newArgument = (OclExpression) create(eClass);
 		getArguments().add(newArgument);
 		return newArgument;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createArgument()
-	{
+	public OclExpression createArgument() {
 		return createArgument(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallOperationAction getCalledOperation()
-	{
+	public CallOperationAction getCalledOperation() {
 		if (calledOperation != null && ((EObject)calledOperation).eIsProxy())
 		{
 			InternalEObject oldCalledOperation = (InternalEObject)calledOperation;
@@ -274,23 +269,22 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return calledOperation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallOperationAction basicGetCalledOperation()
-	{
+	public CallOperationAction basicGetCalledOperation() {
 		return calledOperation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCalledOperation(CallOperationAction newCalledOperation, NotificationChain msgs)
-	{
+	public NotificationChain basicSetCalledOperation(
+			CallOperationAction newCalledOperation, NotificationChain msgs) {
 		CallOperationAction oldCalledOperation = calledOperation;
 		calledOperation = newCalledOperation;
 		if (eNotificationRequired())
@@ -301,13 +295,12 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return msgs;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCalledOperation(CallOperationAction newCalledOperation)
-	{
+	public void setCalledOperation(CallOperationAction newCalledOperation) {
 		if (newCalledOperation != calledOperation)
 		{
 			NotificationChain msgs = null;
@@ -322,25 +315,23 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__CALLED_OPERATION, newCalledOperation, newCalledOperation));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallOperationAction createCalledOperation()
-	{
+	public CallOperationAction createCalledOperation() {
 		CallOperationAction newCalledOperation = (CallOperationAction) create(PivotPackage.Literals.CALL_OPERATION_ACTION);
 		setCalledOperation(newCalledOperation);
 		return newCalledOperation;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendSignalAction getSentSignal()
-	{
+	public SendSignalAction getSentSignal() {
 		if (sentSignal != null && ((EObject)sentSignal).eIsProxy())
 		{
 			InternalEObject oldSentSignal = (InternalEObject)sentSignal;
@@ -361,23 +352,22 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return sentSignal;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendSignalAction basicGetSentSignal()
-	{
+	public SendSignalAction basicGetSentSignal() {
 		return sentSignal;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSentSignal(SendSignalAction newSentSignal, NotificationChain msgs)
-	{
+	public NotificationChain basicSetSentSignal(SendSignalAction newSentSignal,
+			NotificationChain msgs) {
 		SendSignalAction oldSentSignal = sentSignal;
 		sentSignal = newSentSignal;
 		if (eNotificationRequired())
@@ -388,13 +378,12 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return msgs;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSentSignal(SendSignalAction newSentSignal)
-	{
+	public void setSentSignal(SendSignalAction newSentSignal) {
 		if (newSentSignal != sentSignal)
 		{
 			NotificationChain msgs = null;
@@ -409,26 +398,25 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__SENT_SIGNAL, newSentSignal, newSentSignal));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendSignalAction createSentSignal()
-	{
+	public SendSignalAction createSentSignal() {
 		SendSignalAction newSentSignal = (SendSignalAction) create(PivotPackage.Literals.SEND_SIGNAL_ACTION);
 		setSentSignal(newSentSignal);
 		return newSentSignal;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
@@ -449,14 +437,13 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
@@ -487,15 +474,14 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
@@ -536,14 +522,13 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		eDynamicSet(featureID, newValue);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
@@ -580,14 +565,13 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		eDynamicUnset(featureID);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
@@ -614,4 +598,8 @@ public class MessageExpImpl extends OclExpressionImpl implements MessageExp
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitMessageExp(this);
+	}
 } //MessageExpImpl

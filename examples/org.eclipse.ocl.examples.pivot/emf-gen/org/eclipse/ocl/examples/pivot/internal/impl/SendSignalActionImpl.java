@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SendSignalActionImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: SendSignalActionImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -43,8 +43,10 @@ import org.eclipse.ocl.examples.pivot.Signal;
  *
  * @generated
  */
-public class SendSignalActionImpl extends NamedElementImpl implements SendSignalAction
-{
+public class SendSignalActionImpl
+		extends NamedElementImpl
+		implements SendSignalAction {
+
 	/**
 	 * The cached value of the '{@link #getSignal() <em>Signal</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -60,8 +62,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SendSignalActionImpl()
-	{
+	protected SendSignalActionImpl() {
 		super();
 	}
 
@@ -71,8 +72,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.SEND_SIGNAL_ACTION;
 	}
 
@@ -81,8 +81,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signal getSignal()
-	{
+	public Signal getSignal() {
 		if (signal != null && ((EObject)signal).eIsProxy())
 		{
 			InternalEObject oldSignal = (InternalEObject)signal;
@@ -101,8 +100,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signal basicGetSignal()
-	{
+	public Signal basicGetSignal() {
 		return signal;
 	}
 
@@ -111,8 +109,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSignal(Signal newSignal)
-	{
+	public void setSignal(Signal newSignal) {
 		Signal oldSignal = signal;
 		signal = newSignal;
 		if (eNotificationRequired())
@@ -125,8 +122,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:
@@ -153,8 +149,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:
@@ -188,8 +183,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:
@@ -220,8 +214,7 @@ public class SendSignalActionImpl extends NamedElementImpl implements SendSignal
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:

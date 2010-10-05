@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -50,800 +50,788 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PivotPackageImpl extends EPackageImpl implements PivotPackage
-{
-  /**
+public class PivotPackageImpl
+		extends EPackageImpl
+		implements PivotPackage {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected String packageFilename = "pivot.ecore"; //$NON-NLS-1$
+	protected String packageFilename = "pivot.ecore"; //$NON-NLS-1$
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass annotationEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass anyTypeEClass = null;
+	private EClass anyTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass typeEClass = null;
+	private EClass typeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass namedElementEClass = null;
+	private EClass namedElementEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass namespaceEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass elementEClass = null;
+	private EClass elementEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass oclAnyEClass = null;
+	private EClass oclAnyEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass classEClass = null;
+	private EClass classEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass propertyEClass = null;
+	private EClass propertyEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass implementableElementEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass typedElementEClass = null;
+	private EClass typedElementEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass typedMultiplicityElementEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass unlimitedNaturalLiteralExpEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass multiplicityElementEClass = null;
+	private EClass multiplicityElementEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass parameterableElementEClass = null;
+	private EClass parameterableElementEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass precedenceEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass templateParameterEClass = null;
+	private EClass templateParameterEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass templateSignatureEClass = null;
+	private EClass templateSignatureEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass templateableElementEClass = null;
+	private EClass templateableElementEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass templateBindingEClass = null;
+	private EClass templateBindingEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass templateParameterSubstitutionEClass = null;
+	private EClass templateParameterSubstitutionEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass associationClassEClass = null;
+	private EClass associationClassEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass operationEClass = null;
+	private EClass operationEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass parameterEClass = null;
+	private EClass parameterEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass operationTemplateParameterEClass = null;
+	private EClass operationTemplateParameterEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass commentEClass = null;
+	private EClass commentEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass completeClassEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass completeEnvironmentEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass completeOperationEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass completePackageEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass completePropertyEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass constraintEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass packageEClass = null;
+	private EClass packageEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass typeTemplateParameterEClass = null;
+	private EClass typeTemplateParameterEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass associationClassCallExpEClass = null;
+	private EClass associationClassCallExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass navigationCallExpEClass = null;
+	private EClass navigationCallExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass featureCallExpEClass = null;
+	private EClass featureCallExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iNamedElementEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iPivotElementEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass callExpEClass = null;
+	private EClass callExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass callOperationActionEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass callableImplementationEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass oclExpressionEClass = null;
+	private EClass oclExpressionEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass bagTypeEClass = null;
+	private EClass bagTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass collectionTypeEClass = null;
+	private EClass collectionTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass dataTypeEClass = null;
+	private EClass dataTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass detailEClass = null;
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass booleanLiteralExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass primitiveLiteralExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass literalExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass collectionItemEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass collectionLiteralPartEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass collectionLiteralExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass collectionRangeEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass enumLiteralExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass enumerationLiteralEClass = null;
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass evaluationContextEClass = null;
+	private EClass booleanLiteralExpEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass enumerationEClass = null;
+	private EClass primitiveLiteralExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass expressionInOclEClass = null;
+	private EClass literalExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass opaqueExpressionEClass = null;
+	private EClass collectionItemEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass variableEClass = null;
+	private EClass collectionLiteralPartEClass = null;
 
-  /**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass collectionLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass collectionRangeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enumLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enumerationLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enumerationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expressionInOclEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass opaqueExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableEClass = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass variableDeclarationEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass ifExpEClass = null;
+	private EClass ifExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass integerLiteralExpEClass = null;
+	private EClass integerLiteralExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass numericLiteralExpEClass = null;
+	private EClass numericLiteralExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass invalidLiteralExpEClass = null;
+	private EClass invalidLiteralExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass invalidTypeEClass = null;
+	private EClass invalidTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iterateEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass iterateExpEClass = null;
+	private EClass iterateExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iteratorEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass loopExpEClass = null;
+	private EClass loopExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass iteratorExpEClass = null;
+	private EClass iteratorExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass letExpEClass = null;
+	private EClass letExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass messageExpEClass = null;
+	private EClass messageExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass messageTypeEClass = null;
+	private EClass messageTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass monikeredElementEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass signalEClass = null;
+	private EClass signalEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass nullLiteralExpEClass = null;
+	private EClass nullLiteralExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass oclInvalidEClass = null;
+	private EClass oclInvalidEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass oclVoidEClass = null;
+	private EClass oclVoidEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass operationCallExpEClass = null;
+	private EClass operationCallExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass orderedSetTypeEClass = null;
+	private EClass orderedSetTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass packageableElementEClass = null;
+	private EClass packageableElementEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass primitiveTypeEClass = null;
+	private EClass primitiveTypeEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass propertyCallExpEClass = null;
+	private EClass propertyCallExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass realLiteralExpEClass = null;
+	private EClass realLiteralExpEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sendSignalActionEClass = null;
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass sequenceTypeEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass setTypeEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass stateEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass stateExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass stringLiteralExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass templateParameterTypeEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass tupleLiteralExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass tupleLiteralPartEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass tupleTypeEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass typeExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass unspecifiedValueExpEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass valueSpecificationEClass = null;
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  private EClass variableExpEClass = null;
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass visitableEClass = null;
+	private EClass sequenceTypeEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass visitorEClass = null;
+	private EClass setTypeEClass = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass voidTypeEClass = null;
+	private EClass stateEClass = null;
 
-  /**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass templateParameterTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleLiteralPartEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unspecifiedValueExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valueSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass voidTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass _EClass = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum associativityKindEEnum = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EEnum collectionKindEEnum = null;
+	private EEnum collectionKindEEnum = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EDataType booleanEDataType = null;
+	private EDataType booleanEDataType = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EDataType intEDataType = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EDataType integerEDataType = null;
+	private EDataType integerEDataType = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EDataType objectEDataType = null;
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EDataType realEDataType = null;
+	private EDataType realEDataType = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EDataType stringEDataType = null;
+	private EDataType stringEDataType = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EDataType unlimitedNaturalEDataType = null;
+	private EDataType unlimitedNaturalEDataType = null;
 
-  /**
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -852,36 +840,34 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-  private PivotPackageImpl()
-  {
+	private PivotPackageImpl() {
 		super(eNS_URI, PivotFactory.eINSTANCE);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private static boolean isInited = false;
+	private static boolean isInited = false;
 
-  /**
+	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
 	 * <p>This method is used to initialize {@link PivotPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @generated
 	 */
-  public static PivotPackage init()
-  {
+	public static PivotPackage init() {
 		if (isInited) return (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 
 		// Obtain or create and register package
@@ -915,13 +901,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return thePivotPackage;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAnnotation()
-	{
+	public EClass getAnnotation() {
 		if (annotationEClass == null)
 		{
 			annotationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(9);
@@ -929,43 +914,39 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return annotationEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnnotation_OwnedContent()
-	{
+	public EReference getAnnotation_OwnedContent() {
         return (EReference)getAnnotation().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnnotation_Reference()
-	{
+	public EReference getAnnotation_Reference() {
         return (EReference)getAnnotation().getEStructuralFeatures().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnnotation_OwnedDetail()
-	{
+	public EReference getAnnotation_OwnedDetail() {
         return (EReference)getAnnotation().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getAnyType()
-  {
+	public EClass getAnyType() {
 		if (anyTypeEClass == null)
 		{
 			anyTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(10);
@@ -973,95 +954,87 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return anyTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getType()
-  {
+	public EClass getType() {
 		if (typeEClass == null)
 		{
-			typeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(98);
+			typeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(97);
 		}
 		return typeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getType_Package()
-  {
+	public EReference getType_Package() {
         return (EReference)getType().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getNamedElement()
-  {
+	public EClass getNamedElement() {
 		if (namedElementEClass == null)
 		{
-			namedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(58);
+			namedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(57);
 		}
 		return namedElementEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElement_OwnedAnnotation()
-	{
+	public EReference getNamedElement_OwnedAnnotation() {
         return (EReference)getNamedElement().getEStructuralFeatures().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getNamedElement_Name()
-  {
+	public EAttribute getNamedElement_Name() {
         return (EAttribute)getNamedElement().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElement_OwnedRule()
-	{
+	public EReference getNamedElement_OwnedRule() {
         return (EReference)getNamedElement().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamespace()
-	{
+	public EClass getNamespace() {
 		if (namespaceEClass == null)
 		{
-			namespaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(59);
+			namespaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(58);
 		}
 		return namespaceEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getElement()
-  {
+	public EClass getElement() {
 		if (elementEClass == null)
 		{
 			elementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(33);
@@ -1069,67 +1042,61 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return elementEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getElement_OwnedComment()
-  {
+	public EReference getElement_OwnedComment() {
         return (EReference)getElement().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOclAny()
-  {
+	public EClass getOclAny() {
 		if (oclAnyEClass == null)
 		{
-			oclAnyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(63);
+			oclAnyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(62);
 		}
 		return oclAnyEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getOclAny__OclType()
-  {
+	public EOperation getOclAny__OclType() {
         return getOclAny().getEOperations().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getOclAny__OclIsInvalid()
-  {
+	public EOperation getOclAny__OclIsInvalid() {
         return getOclAny().getEOperations().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getOclAny__OclIsUndefined()
-  {
+	public EOperation getOclAny__OclIsUndefined() {
         return getOclAny().getEOperations().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getClass_()
-  {
+	public EClass getClass_() {
 		if (classEClass == null)
 		{
 			classEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(18);
@@ -1137,785 +1104,703 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return classEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClass_InstanceClassName()
-	{
+	public EAttribute getClass_InstanceClassName() {
         return (EAttribute)getClass_().getEStructuralFeatures().get(4);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getClass_IsAbstract()
-  {
+	public EAttribute getClass_IsAbstract() {
         return (EAttribute)getClass_().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getClass_OwnedAttribute()
-  {
+	public EReference getClass_OwnedAttribute() {
         return (EReference)getClass_().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getClass_OwnedOperation()
-  {
+	public EReference getClass_OwnedOperation() {
         return (EReference)getClass_().getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getClass_SuperClass()
-  {
+	public EReference getClass_SuperClass() {
         return (EReference)getClass_().getEStructuralFeatures().get(3);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getProperty()
-  {
+	public EClass getProperty() {
 		if (propertyEClass == null)
 		{
-			propertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(79);
+			propertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(78);
 		}
 		return propertyEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EAttribute getProperty_IsReadOnly()
-  {
-        return (EAttribute)getProperty().getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EAttribute getProperty_Default()
-  {
-        return (EAttribute)getProperty().getEStructuralFeatures().get(1);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EAttribute getProperty_IsComposite()
-  {
-        return (EAttribute)getProperty().getEStructuralFeatures().get(2);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EAttribute getProperty_IsDerived()
-  {
-        return (EAttribute)getProperty().getEStructuralFeatures().get(3);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getProperty_Opposite()
-  {
-        return (EReference)getProperty().getEStructuralFeatures().get(4);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getProperty_Association()
-  {
-        return (EReference)getProperty().getEStructuralFeatures().get(5);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getProperty_Class()
-  {
-        return (EReference)getProperty().getEStructuralFeatures().get(6);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EOperation getProperty__ValidateBindingToAttribute__DiagnosticChain_Map()
-  {
-        return getProperty().getEOperations().get(0);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getImplementableElement()
-	{
+	public EAttribute getProperty_IsReadOnly() {
+        return (EAttribute)getProperty().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProperty_Default() {
+        return (EAttribute)getProperty().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProperty_IsComposite() {
+        return (EAttribute)getProperty().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProperty_IsDerived() {
+        return (EAttribute)getProperty().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProperty_Opposite() {
+        return (EReference)getProperty().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProperty_Association() {
+        return (EReference)getProperty().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProperty_Class() {
+        return (EReference)getProperty().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getProperty__ValidateBindingToAttribute__DiagnosticChain_Map() {
+        return getProperty().getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getImplementableElement() {
 		if (implementableElementEClass == null)
 		{
-			implementableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(43);
+			implementableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(42);
 		}
 		return implementableElementEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImplementableElement_ImplementationClass()
-	{
+	public EAttribute getImplementableElement_ImplementationClass() {
         return (EAttribute)getImplementableElement().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getImplementableElement_Implementation()
-	{
+	public EReference getImplementableElement_Implementation() {
         return (EReference)getImplementableElement().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getImplementableElement__Evaluate__EvaluationContext_OclExpression()
-	{
-        return getImplementableElement().getEOperations().get(0);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EClass getTypedElement()
-  {
+	public EClass getTypedElement() {
 		if (typedElementEClass == null)
 		{
-			typedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(101);
+			typedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(100);
 		}
 		return typedElementEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTypedElement_Type()
-  {
-        return (EReference)getTypedElement().getEStructuralFeatures().get(0);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTypedMultiplicityElement()
-	{
+	public EReference getTypedElement_Type() {
+        return (EReference)getTypedElement().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTypedMultiplicityElement() {
 		if (typedMultiplicityElementEClass == null)
 		{
-			typedMultiplicityElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(102);
+			typedMultiplicityElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(101);
 		}
 		return typedMultiplicityElementEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUnlimitedNaturalLiteralExp()
-	{
+	public EClass getUnlimitedNaturalLiteralExp() {
 		if (unlimitedNaturalLiteralExpEClass == null)
 		{
-			unlimitedNaturalLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(103);
+			unlimitedNaturalLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(102);
 		}
 		return unlimitedNaturalLiteralExpEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUnlimitedNaturalLiteralExp_Symbol()
-	{
+	public EAttribute getUnlimitedNaturalLiteralExp_Symbol() {
         return (EAttribute)getUnlimitedNaturalLiteralExp().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getMultiplicityElement()
-  {
+	public EClass getMultiplicityElement() {
 		if (multiplicityElementEClass == null)
 		{
-			multiplicityElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(57);
+			multiplicityElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(56);
 		}
 		return multiplicityElementEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getMultiplicityElement_IsOrdered()
-  {
+	public EAttribute getMultiplicityElement_IsOrdered() {
         return (EAttribute)getMultiplicityElement().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getMultiplicityElement_IsUnique()
-  {
+	public EAttribute getMultiplicityElement_IsUnique() {
         return (EAttribute)getMultiplicityElement().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getMultiplicityElement_Lower()
-  {
+	public EAttribute getMultiplicityElement_Lower() {
         return (EAttribute)getMultiplicityElement().getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getMultiplicityElement_Upper()
-  {
+	public EAttribute getMultiplicityElement_Upper() {
         return (EAttribute)getMultiplicityElement().getEStructuralFeatures().get(3);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getMultiplicityElement__ValidateLowerGe0__DiagnosticChain_Map()
-  {
+	public EOperation getMultiplicityElement__ValidateLowerGe0__DiagnosticChain_Map() {
         return getMultiplicityElement().getEOperations().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getMultiplicityElement__ValidateUpperGeLower__DiagnosticChain_Map()
-  {
+	public EOperation getMultiplicityElement__ValidateUpperGeLower__DiagnosticChain_Map() {
         return getMultiplicityElement().getEOperations().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getMultiplicityElement__LowerBound()
-  {
+	public EOperation getMultiplicityElement__LowerBound() {
         return getMultiplicityElement().getEOperations().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getMultiplicityElement__UpperBound()
-  {
+	public EOperation getMultiplicityElement__UpperBound() {
         return getMultiplicityElement().getEOperations().get(3);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getMultiplicityElement__IsMultivalued()
-  {
+	public EOperation getMultiplicityElement__IsMultivalued() {
         return getMultiplicityElement().getEOperations().get(4);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getMultiplicityElement__IncludesCardinality__BigInteger()
-  {
+	public EOperation getMultiplicityElement__IncludesCardinality__BigInteger() {
         return getMultiplicityElement().getEOperations().get(5);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getMultiplicityElement__IncludesMultiplicity__MultiplicityElement()
-  {
+	public EOperation getMultiplicityElement__IncludesMultiplicity__MultiplicityElement() {
         return getMultiplicityElement().getEOperations().get(6);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getParameterableElement()
-  {
+	public EClass getParameterableElement() {
 		if (parameterableElementEClass == null)
 		{
-			parameterableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(75);
+			parameterableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(74);
 		}
 		return parameterableElementEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getParameterableElement_TemplateParameter()
-  {
-        return (EReference)getParameterableElement().getEStructuralFeatures().get(1);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getParameterableElement_OwningTemplateParameter()
-  {
-        return (EReference)getParameterableElement().getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EOperation getParameterableElement__IsTemplateParameter()
-  {
-        return getParameterableElement().getEOperations().get(0);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPrecedence()
-	{
+	public EReference getParameterableElement_TemplateParameter() {
+        return (EReference)getParameterableElement().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParameterableElement_OwningTemplateParameter() {
+        return (EReference)getParameterableElement().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getParameterableElement__IsTemplateParameter() {
+        return getParameterableElement().getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPrecedence() {
 		if (precedenceEClass == null)
 		{
-			precedenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(76);
+			precedenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(75);
 		}
 		return precedenceEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPrecedence_Associativity()
-	{
+	public EAttribute getPrecedence_Associativity() {
         return (EAttribute)getPrecedence().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPrecedence_Order()
-	{
+	public EAttribute getPrecedence_Order() {
         return (EAttribute)getPrecedence().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTemplateParameter()
-  {
+	public EClass getTemplateParameter() {
 		if (templateParameterEClass == null)
 		{
-			templateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(90);
+			templateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(89);
 		}
 		return templateParameterEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateParameter_Signature()
-  {
-        return (EReference)getTemplateParameter().getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateParameter_OwnedParameteredElement()
-  {
-        return (EReference)getTemplateParameter().getEStructuralFeatures().get(2);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateParameter_Default()
-  {
-        return (EReference)getTemplateParameter().getEStructuralFeatures().get(3);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateParameter_OwnedDefault()
-  {
-        return (EReference)getTemplateParameter().getEStructuralFeatures().get(4);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateParameter_ParameteredElement()
-  {
-        return (EReference)getTemplateParameter().getEStructuralFeatures().get(1);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EOperation getTemplateParameter__ValidateMustBeCompatible__DiagnosticChain_Map()
-  {
-        return getTemplateParameter().getEOperations().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EClass getTemplateSignature()
-  {
-		if (templateSignatureEClass == null)
-		{
-			templateSignatureEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(93);
-		}
-		return templateSignatureEClass;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateSignature_Parameter()
-  {
-        return (EReference)getTemplateSignature().getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateSignature_Template()
-  {
-        return (EReference)getTemplateSignature().getEStructuralFeatures().get(2);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getTemplateSignature_OwnedParameter()
-  {
-        return (EReference)getTemplateSignature().getEStructuralFeatures().get(1);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EOperation getTemplateSignature__ValidateOwnElements__DiagnosticChain_Map()
-  {
-        return getTemplateSignature().getEOperations().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EClass getTemplateableElement()
-  {
-		if (templateableElementEClass == null)
-		{
-			templateableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(94);
-		}
-		return templateableElementEClass;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateableElement_OwnedSpecialization()
-	{
+	public EReference getTemplateParameter_Signature() {
+        return (EReference)getTemplateParameter().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateParameter_OwnedParameteredElement() {
+        return (EReference)getTemplateParameter().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateParameter_Default() {
+        return (EReference)getTemplateParameter().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateParameter_OwnedDefault() {
+        return (EReference)getTemplateParameter().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateParameter_ParameteredElement() {
+        return (EReference)getTemplateParameter().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTemplateParameter__ValidateMustBeCompatible__DiagnosticChain_Map() {
+        return getTemplateParameter().getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTemplateSignature() {
+		if (templateSignatureEClass == null)
+		{
+			templateSignatureEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(92);
+		}
+		return templateSignatureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateSignature_Parameter() {
+        return (EReference)getTemplateSignature().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateSignature_Template() {
+        return (EReference)getTemplateSignature().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateSignature_OwnedParameter() {
+        return (EReference)getTemplateSignature().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTemplateSignature__ValidateOwnElements__DiagnosticChain_Map() {
+        return getTemplateSignature().getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTemplateableElement() {
+		if (templateableElementEClass == null)
+		{
+			templateableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(93);
+		}
+		return templateableElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateableElement_OwnedSpecialization() {
         return (EReference)getTemplateableElement().getEStructuralFeatures().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateableElement_TemplateBinding()
-  {
+	public EReference getTemplateableElement_TemplateBinding() {
         return (EReference)getTemplateableElement().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateableElement_OwnedTemplateSignature()
-  {
+	public EReference getTemplateableElement_OwnedTemplateSignature() {
         return (EReference)getTemplateableElement().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getTemplateableElement__ParameterableElements()
-  {
+	public EOperation getTemplateableElement__ParameterableElements() {
         return getTemplateableElement().getEOperations().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getTemplateableElement__IsTemplate()
-  {
+	public EOperation getTemplateableElement__IsTemplate() {
         return getTemplateableElement().getEOperations().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTemplateBinding()
-  {
+	public EClass getTemplateBinding() {
 		if (templateBindingEClass == null)
 		{
-			templateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(89);
+			templateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(88);
 		}
 		return templateBindingEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateBinding_Signature()
-  {
+	public EReference getTemplateBinding_Signature() {
         return (EReference)getTemplateBinding().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateBinding_ParameterSubstitution()
-  {
+	public EReference getTemplateBinding_ParameterSubstitution() {
         return (EReference)getTemplateBinding().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateBinding_BoundElement()
-  {
+	public EReference getTemplateBinding_BoundElement() {
         return (EReference)getTemplateBinding().getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map()
-  {
+	public EOperation getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map() {
         return getTemplateBinding().getEOperations().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getTemplateBinding__ValidateOneParameterSubstitution__DiagnosticChain_Map()
-  {
+	public EOperation getTemplateBinding__ValidateOneParameterSubstitution__DiagnosticChain_Map() {
         return getTemplateBinding().getEOperations().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTemplateParameterSubstitution()
-  {
+	public EClass getTemplateParameterSubstitution() {
 		if (templateParameterSubstitutionEClass == null)
 		{
-			templateParameterSubstitutionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(91);
+			templateParameterSubstitutionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(90);
 		}
 		return templateParameterSubstitutionEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateParameterSubstitution_Formal()
-  {
+	public EReference getTemplateParameterSubstitution_Formal() {
         return (EReference)getTemplateParameterSubstitution().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateParameterSubstitution_Actual()
-  {
+	public EReference getTemplateParameterSubstitution_Actual() {
         return (EReference)getTemplateParameterSubstitution().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateParameterSubstitution_OwnedActual()
-  {
+	public EReference getTemplateParameterSubstitution_OwnedActual() {
         return (EReference)getTemplateParameterSubstitution().getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTemplateParameterSubstitution_TemplateBinding()
-  {
+	public EReference getTemplateParameterSubstitution_TemplateBinding() {
         return (EReference)getTemplateParameterSubstitution().getEStructuralFeatures().get(3);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map()
-  {
+	public EOperation getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map() {
         return getTemplateParameterSubstitution().getEOperations().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getAssociationClass()
-  {
+	public EClass getAssociationClass() {
 		if (associationClassEClass == null)
 		{
 			associationClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(11);
@@ -1923,125 +1808,114 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return associationClassEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getAssociationClass_UnownedAttribute()
-  {
+	public EReference getAssociationClass_UnownedAttribute() {
         return (EReference)getAssociationClass().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOperation()
-  {
+	public EClass getOperation() {
 		if (operationEClass == null)
 		{
-			operationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(68);
+			operationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(67);
 		}
 		return operationEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_Precedence()
-	{
+	public EReference getOperation_Precedence() {
         return (EReference)getOperation().getEStructuralFeatures().get(2);
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getOperation_RaisedException()
-  {
-        return (EReference)getOperation().getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getOperation_OwnedParameter()
-  {
-        return (EReference)getOperation().getEStructuralFeatures().get(1);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getOperation_Class()
-  {
-        return (EReference)getOperation().getEStructuralFeatures().get(3);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperation__ValidateTestConstraint__DiagnosticChain_Map()
-	{
+	public EReference getOperation_RaisedException() {
+        return (EReference)getOperation().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperation_OwnedParameter() {
+        return (EReference)getOperation().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperation_Class() {
+        return (EReference)getOperation().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperation__ValidateTestConstraint__DiagnosticChain_Map() {
         return getOperation().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getParameter()
-  {
+	public EClass getParameter() {
 		if (parameterEClass == null)
 		{
-			parameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(74);
+			parameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(73);
 		}
 		return parameterEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getParameter_Operation()
-  {
+	public EReference getParameter_Operation() {
         return (EReference)getParameter().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOperationTemplateParameter()
-  {
+	public EClass getOperationTemplateParameter() {
 		if (operationTemplateParameterEClass == null)
 		{
-			operationTemplateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(70);
+			operationTemplateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(69);
 		}
 		return operationTemplateParameterEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getComment()
-  {
+	public EClass getComment() {
 		if (commentEClass == null)
 		{
 			commentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(24);
@@ -2049,33 +1923,30 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return commentEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EAttribute getComment_Body()
-  {
-        return (EAttribute)getComment().getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getComment_AnnotatedElement()
-  {
-        return (EReference)getComment().getEStructuralFeatures().get(1);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompleteClass()
-	{
+	public EAttribute getComment_Body() {
+        return (EAttribute)getComment().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComment_AnnotatedElement() {
+        return (EReference)getComment().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompleteClass() {
 		if (completeClassEClass == null)
 		{
 			completeClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(25);
@@ -2083,43 +1954,87 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return completeClassEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteClass_Model()
-	{
+	public EReference getCompleteClass_Model() {
         return (EReference)getCompleteClass().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteClass_Operation()
-	{
+	public EReference getCompleteClass_CompleteEnvironment() {
         return (EReference)getCompleteClass().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteClass_Property()
-	{
+	public EReference getCompleteClass_CompleteOperation() {
         return (EReference)getCompleteClass().getEStructuralFeatures().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompleteEnvironment()
+	public EReference getCompleteClass_CompleteProperty() {
+        return (EReference)getCompleteClass().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteClass_CompleteSuperClass() {
+        return (EReference)getCompleteClass().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCompleteClass__ConformsTo__CompleteClass()
 	{
+        return getCompleteClass().getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCompleteClass__GetDynamicOperation__CompleteOperation()
+	{
+        return getCompleteClass().getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCompleteClass__GetCompleteOperations__String()
+	{
+        return getCompleteClass().getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompleteEnvironment() {
 		if (completeEnvironmentEClass == null)
 		{
 			completeEnvironmentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(26);
@@ -2127,53 +2042,48 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return completeEnvironmentEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompleteClass__Class()
-	{
+	public EOperation getCompleteEnvironment__GetCompleteClass__Class() {
         return getCompleteEnvironment().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompleteOperation__Operation()
-	{
+	public EOperation getCompleteEnvironment__GetCompleteOperation__Operation() {
         return getCompleteEnvironment().getEOperations().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompletePackage__Package()
-	{
+	public EOperation getCompleteEnvironment__GetCompletePackage__Package() {
         return getCompleteEnvironment().getEOperations().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompleteProperty__Property()
-	{
+	public EOperation getCompleteEnvironment__GetCompleteProperty__Property() {
         return getCompleteEnvironment().getEOperations().get(3);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompleteOperation()
-	{
+	public EClass getCompleteOperation() {
 		if (completeOperationEClass == null)
 		{
 			completeOperationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(27);
@@ -2181,23 +2091,40 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return completeOperationEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteOperation_Model()
-	{
+	public EReference getCompleteOperation_Model() {
         return (EReference)getCompleteOperation().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompletePackage()
+	public EReference getCompleteOperation_CompleteEnvironment() {
+        return (EReference)getCompleteOperation().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteOperation_CompleteParameter()
 	{
+        return (EReference)getCompleteOperation().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompletePackage() {
 		if (completePackageEClass == null)
 		{
 			completePackageEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(28);
@@ -2205,33 +2132,48 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return completePackageEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompletePackage_Model()
-	{
+	public EReference getCompletePackage_Model() {
         return (EReference)getCompletePackage().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompletePackage_Type()
-	{
+	public EReference getCompletePackage_CompleteEnvironment() {
         return (EReference)getCompletePackage().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompleteProperty()
-	{
+	public EReference getCompletePackage_CompleteClass() {
+        return (EReference)getCompletePackage().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompletePackage_CompletePackage() {
+        return (EReference)getCompletePackage().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompleteProperty() {
 		if (completePropertyEClass == null)
 		{
 			completePropertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(29);
@@ -2239,23 +2181,30 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return completePropertyEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteProperty_Model()
-	{
+	public EReference getCompleteProperty_Model() {
         return (EReference)getCompleteProperty().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConstraint()
-	{
+	public EReference getCompleteProperty_CompleteEnvironment() {
+        return (EReference)getCompleteProperty().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConstraint() {
 		if (constraintEClass == null)
 		{
 			constraintEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(30);
@@ -2263,191 +2212,173 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return constraintEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_ConstrainedElement()
-	{
+	public EReference getConstraint_ConstrainedElement() {
         return (EReference)getConstraint().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_Specification()
-	{
+	public EReference getConstraint_Specification() {
         return (EReference)getConstraint().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_Context()
-	{
+	public EReference getConstraint_Context() {
         return (EReference)getConstraint().getEStructuralFeatures().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstraint_Stereotype()
-	{
+	public EAttribute getConstraint_Stereotype() {
         return (EAttribute)getConstraint().getEStructuralFeatures().get(3);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map()
-	{
+	public EOperation getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map() {
         return getConstraint().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConstraint__ValidateValueSpecificationBoolean__DiagnosticChain_Map()
-	{
+	public EOperation getConstraint__ValidateValueSpecificationBoolean__DiagnosticChain_Map() {
         return getConstraint().getEOperations().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getPackage()
-  {
+	public EClass getPackage() {
 		if (packageEClass == null)
 		{
-			packageEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(72);
+			packageEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(71);
 		}
 		return packageEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPackage_NsPrefix()
-	{
+	public EAttribute getPackage_NsPrefix() {
         return (EAttribute)getPackage().getEStructuralFeatures().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPackage_NsURI()
-	{
+	public EAttribute getPackage_NsURI() {
         return (EAttribute)getPackage().getEStructuralFeatures().get(3);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_OwnedPrecedence()
-	{
+	public EReference getPackage_OwnedPrecedence() {
         return (EReference)getPackage().getEStructuralFeatures().get(4);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPackage_NestedPackage()
-  {
+	public EReference getPackage_NestedPackage() {
         return (EReference)getPackage().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPackage_NestingPackage()
-  {
+	public EReference getPackage_NestingPackage() {
         return (EReference)getPackage().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPackage_OwnedType()
-  {
+	public EReference getPackage_OwnedType() {
         return (EReference)getPackage().getEStructuralFeatures().get(5);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTypeTemplateParameter()
-  {
+	public EClass getTypeTemplateParameter() {
 		if (typeTemplateParameterEClass == null)
 		{
-			typeTemplateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(100);
+			typeTemplateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(99);
 		}
 		return typeTemplateParameterEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getTypeTemplateParameter_AllowSubstitutable()
-  {
+	public EAttribute getTypeTemplateParameter_AllowSubstitutable() {
         return (EAttribute)getTypeTemplateParameter().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTypeTemplateParameter_ConstrainingType()
-  {
+	public EReference getTypeTemplateParameter_ConstrainingType() {
         return (EReference)getTypeTemplateParameter().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EOperation getTypeTemplateParameter__ValidateHasConstrainingType__DiagnosticChain_Map()
-  {
+	public EOperation getTypeTemplateParameter__ValidateHasConstrainingType__DiagnosticChain_Map() {
         return getTypeTemplateParameter().getEOperations().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getAssociationClassCallExp()
-  {
+	public EClass getAssociationClassCallExp() {
 		if (associationClassCallExpEClass == null)
 		{
 			associationClassCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(12);
@@ -2455,119 +2386,119 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return associationClassCallExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getAssociationClassCallExp_ReferredAssociationClass()
-  {
+	public EReference getAssociationClassCallExp_ReferredAssociationClass() {
         return (EReference)getAssociationClassCallExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getNavigationCallExp()
-  {
+	public EClass getNavigationCallExp() {
 		if (navigationCallExpEClass == null)
 		{
-			navigationCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(60);
+			navigationCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(59);
 		}
 		return navigationCallExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getNavigationCallExp_Qualifier()
-  {
+	public EReference getNavigationCallExp_Qualifier() {
         return (EReference)getNavigationCallExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getNavigationCallExp_NavigationSource()
-  {
+	public EReference getNavigationCallExp_NavigationSource() {
         return (EReference)getNavigationCallExp().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getFeatureCallExp()
-  {
+	public EClass getFeatureCallExp() {
 		if (featureCallExpEClass == null)
 		{
-			featureCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(39);
+			featureCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(38);
 		}
 		return featureCallExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getINamedElement()
+	public EAttribute getFeatureCallExp_IsPre()
 	{
+        return (EAttribute)getFeatureCallExp().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getINamedElement() {
 		if (iNamedElementEClass == null)
 		{
-			iNamedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(40);
+			iNamedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(39);
 		}
 		return iNamedElementEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getINamedElement__GetName()
-	{
+	public EOperation getINamedElement__GetName() {
         return getINamedElement().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIPivotElement()
-	{
+	public EClass getIPivotElement() {
 		if (iPivotElementEClass == null)
 		{
-			iPivotElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(41);
+			iPivotElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(40);
 		}
 		return iPivotElementEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getIPivotElement__GetPivot()
-	{
+	public EOperation getIPivotElement__GetPivot() {
         return getIPivotElement().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getCallExp()
-  {
+	public EClass getCallExp() {
 		if (callExpEClass == null)
 		{
 			callExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(15);
@@ -2575,23 +2506,21 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return callExpEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getCallExp_Source()
-  {
-        return (EReference)getCallExp().getEStructuralFeatures().get(0);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallOperationAction()
-	{
+	public EReference getCallExp_Source() {
+        return (EReference)getCallExp().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCallOperationAction() {
 		if (callOperationActionEClass == null)
 		{
 			callOperationActionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(16);
@@ -2599,23 +2528,21 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return callOperationActionEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCallOperationAction_Operation()
-	{
+	public EReference getCallOperationAction_Operation() {
         return (EReference)getCallOperationAction().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallableImplementation()
-	{
+	public EClass getCallableImplementation() {
 		if (callableImplementationEClass == null)
 		{
 			callableImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(17);
@@ -2623,47 +2550,25 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return callableImplementationEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCallableImplementation__Evaluate__EvaluationContext_OclExpression()
-	{
-        return getCallableImplementation().getEOperations().get(0);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EClass getOclExpression()
-  {
+	public EClass getOclExpression() {
 		if (oclExpressionEClass == null)
 		{
-			oclExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(64);
+			oclExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(63);
 		}
 		return oclExpressionEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOclExpression__Evaluate__EvaluationContext()
-	{
-        return getOclExpression().getEOperations().get(0);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EClass getBagType()
-  {
+	public EClass getBagType() {
 		if (bagTypeEClass == null)
 		{
 			bagTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(13);
@@ -2671,13 +2576,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return bagTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getCollectionType()
-  {
+	public EClass getCollectionType() {
 		if (collectionTypeEClass == null)
 		{
 			collectionTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(23);
@@ -2685,23 +2589,21 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return collectionTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getCollectionType_ElementType()
-  {
+	public EReference getCollectionType_ElementType() {
         return (EReference)getCollectionType().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getDataType()
-  {
+	public EClass getDataType() {
 		if (dataTypeEClass == null)
 		{
 			dataTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(31);
@@ -2709,13 +2611,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return dataTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDetail()
-	{
+	public EClass getDetail() {
 		if (detailEClass == null)
 		{
 			detailEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(32);
@@ -2723,23 +2624,21 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return detailEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDetail_Value()
-	{
+	public EAttribute getDetail_Value() {
         return (EAttribute)getDetail().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getBooleanLiteralExp()
-  {
+	public EClass getBooleanLiteralExp() {
 		if (booleanLiteralExpEClass == null)
 		{
 			booleanLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(14);
@@ -2747,51 +2646,47 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return booleanLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getBooleanLiteralExp_BooleanSymbol()
-  {
+	public EAttribute getBooleanLiteralExp_BooleanSymbol() {
         return (EAttribute)getBooleanLiteralExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getPrimitiveLiteralExp()
-  {
+	public EClass getPrimitiveLiteralExp() {
 		if (primitiveLiteralExpEClass == null)
 		{
-			primitiveLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(77);
+			primitiveLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(76);
 		}
 		return primitiveLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getLiteralExp()
-  {
+	public EClass getLiteralExp() {
 		if (literalExpEClass == null)
 		{
-			literalExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(52);
+			literalExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(51);
 		}
 		return literalExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getCollectionItem()
-  {
+	public EClass getCollectionItem() {
 		if (collectionItemEClass == null)
 		{
 			collectionItemEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(19);
@@ -2799,23 +2694,21 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return collectionItemEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getCollectionItem_Item()
-  {
+	public EReference getCollectionItem_Item() {
         return (EReference)getCollectionItem().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getCollectionLiteralPart()
-  {
+	public EClass getCollectionLiteralPart() {
 		if (collectionLiteralPartEClass == null)
 		{
 			collectionLiteralPartEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(21);
@@ -2823,13 +2716,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return collectionLiteralPartEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getCollectionLiteralExp()
-  {
+	public EClass getCollectionLiteralExp() {
 		if (collectionLiteralExpEClass == null)
 		{
 			collectionLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(20);
@@ -2837,33 +2729,30 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return collectionLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCollectionLiteralExp_Kind()
-  {
+	public EAttribute getCollectionLiteralExp_Kind() {
         return (EAttribute)getCollectionLiteralExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getCollectionLiteralExp_Part()
-  {
+	public EReference getCollectionLiteralExp_Part() {
         return (EReference)getCollectionLiteralExp().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getCollectionRange()
-  {
+	public EClass getCollectionRange() {
 		if (collectionRangeEClass == null)
 		{
 			collectionRangeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(22);
@@ -2871,33 +2760,30 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return collectionRangeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getCollectionRange_First()
-  {
+	public EReference getCollectionRange_First() {
         return (EReference)getCollectionRange().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getCollectionRange_Last()
-  {
+	public EReference getCollectionRange_Last() {
         return (EReference)getCollectionRange().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getEnumLiteralExp()
-  {
+	public EClass getEnumLiteralExp() {
 		if (enumLiteralExpEClass == null)
 		{
 			enumLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(34);
@@ -2905,23 +2791,21 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return enumLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getEnumLiteralExp_ReferredEnumLiteral()
-  {
+	public EReference getEnumLiteralExp_ReferredEnumLiteral() {
         return (EReference)getEnumLiteralExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getEnumerationLiteral()
-  {
+	public EClass getEnumerationLiteral() {
 		if (enumerationLiteralEClass == null)
 		{
 			enumerationLiteralEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(36);
@@ -2929,37 +2813,21 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return enumerationLiteralEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getEnumerationLiteral_Enumeration()
-  {
-        return (EReference)getEnumerationLiteral().getEStructuralFeatures().get(0);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEvaluationContext()
-	{
-		if (evaluationContextEClass == null)
-		{
-			evaluationContextEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(37);
-		}
-		return evaluationContextEClass;
+	public EReference getEnumerationLiteral_Enumeration() {
+        return (EReference)getEnumerationLiteral().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getEnumeration()
-  {
+	public EClass getEnumeration() {
 		if (enumerationEClass == null)
 		{
 			enumerationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(35);
@@ -2967,1153 +2835,1026 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return enumerationEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getEnumeration_OwnedLiteral()
-  {
+	public EReference getEnumeration_OwnedLiteral() {
         return (EReference)getEnumeration().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getExpressionInOcl()
-  {
+	public EClass getExpressionInOcl() {
 		if (expressionInOclEClass == null)
 		{
-			expressionInOclEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(38);
+			expressionInOclEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(37);
 		}
 		return expressionInOclEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpressionInOcl_BodyExpression()
-  {
+	public EReference getExpressionInOcl_BodyExpression() {
         return (EReference)getExpressionInOcl().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpressionInOcl_ContextVariable()
-  {
+	public EReference getExpressionInOcl_ContextVariable() {
         return (EReference)getExpressionInOcl().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpressionInOcl_ResultVariable()
-  {
+	public EReference getExpressionInOcl_ResultVariable() {
         return (EReference)getExpressionInOcl().getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpressionInOcl_ParameterVariable()
-  {
+	public EReference getExpressionInOcl_ParameterVariable() {
         return (EReference)getExpressionInOcl().getEStructuralFeatures().get(3);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOpaqueExpression()
-  {
+	public EClass getOpaqueExpression() {
 		if (opaqueExpressionEClass == null)
 		{
-			opaqueExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(67);
+			opaqueExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(66);
 		}
 		return opaqueExpressionEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOpaqueExpression_Body()
-	{
+	public EAttribute getOpaqueExpression_Body() {
         return (EAttribute)getOpaqueExpression().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOpaqueExpression_Language()
-	{
+	public EAttribute getOpaqueExpression_Language() {
         return (EAttribute)getOpaqueExpression().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOpaqueExpression__ValidateLanguageBodySize__DiagnosticChain_Map()
-	{
+	public EOperation getOpaqueExpression__ValidateLanguageBodySize__DiagnosticChain_Map() {
         return getOpaqueExpression().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getVariable()
-  {
+	public EClass getVariable() {
 		if (variableEClass == null)
 		{
-			variableEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(106);
+			variableEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(105);
 		}
 		return variableEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getVariable_InitExpression()
-  {
+	public EReference getVariable_InitExpression() {
         return (EReference)getVariable().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getVariable_RepresentedParameter()
-  {
+	public EReference getVariable_RepresentedParameter() {
         return (EReference)getVariable().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getVariable__Evaluate__EvaluationContext()
-	{
-        return getVariable().getEOperations().get(0);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVariableDeclaration()
-	{
+	public EClass getVariableDeclaration() {
 		if (variableDeclarationEClass == null)
 		{
-			variableDeclarationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(107);
+			variableDeclarationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(106);
 		}
 		return variableDeclarationEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getIfExp()
-  {
+	public EClass getIfExp() {
 		if (ifExpEClass == null)
 		{
-			ifExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(42);
+			ifExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(41);
 		}
 		return ifExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getIfExp_Condition()
-  {
+	public EReference getIfExp_Condition() {
         return (EReference)getIfExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getIfExp_ThenExpression()
-  {
+	public EReference getIfExp_ThenExpression() {
         return (EReference)getIfExp().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getIfExp_ElseExpression()
-  {
+	public EReference getIfExp_ElseExpression() {
         return (EReference)getIfExp().getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getIntegerLiteralExp()
-  {
+	public EClass getIntegerLiteralExp() {
 		if (integerLiteralExpEClass == null)
 		{
-			integerLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(44);
+			integerLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(43);
 		}
 		return integerLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getIntegerLiteralExp_IntegerSymbol()
-  {
+	public EAttribute getIntegerLiteralExp_IntegerSymbol() {
         return (EAttribute)getIntegerLiteralExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getNumericLiteralExp()
-  {
+	public EClass getNumericLiteralExp() {
 		if (numericLiteralExpEClass == null)
 		{
-			numericLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(62);
+			numericLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(61);
 		}
 		return numericLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getInvalidLiteralExp()
-  {
+	public EClass getInvalidLiteralExp() {
 		if (invalidLiteralExpEClass == null)
 		{
-			invalidLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(45);
+			invalidLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(44);
 		}
 		return invalidLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getInvalidType()
-  {
+	public EClass getInvalidType() {
 		if (invalidTypeEClass == null)
 		{
-			invalidTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(46);
+			invalidTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(45);
 		}
 		return invalidTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIterate()
-	{
+	public EClass getIterate() {
 		if (iterateEClass == null)
 		{
-			iterateEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(47);
+			iterateEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(46);
 		}
 		return iterateEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIterate_OwnedAccumulator()
-	{
+	public EReference getIterate_OwnedAccumulator() {
         return (EReference)getIterate().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getIterateExp()
-  {
+	public EClass getIterateExp() {
 		if (iterateExpEClass == null)
 		{
-			iterateExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(48);
+			iterateExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(47);
 		}
 		return iterateExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getIterateExp_Result()
-  {
+	public EReference getIterateExp_Result() {
         return (EReference)getIterateExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIterateExp_ReferredIterate()
-	{
+	public EReference getIterateExp_ReferredIterate() {
         return (EReference)getIterateExp().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIterator()
-	{
+	public EClass getIterator() {
 		if (iteratorEClass == null)
 		{
-			iteratorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(49);
+			iteratorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(48);
 		}
 		return iteratorEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIterator_OwnedIterator()
-	{
+	public EReference getIterator_OwnedIterator() {
         return (EReference)getIterator().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getLoopExp()
-  {
+	public EClass getLoopExp() {
 		if (loopExpEClass == null)
 		{
-			loopExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(53);
+			loopExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(52);
 		}
 		return loopExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getLoopExp_Body()
-  {
+	public EReference getLoopExp_Body() {
         return (EReference)getLoopExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getLoopExp_Iterator()
-  {
+	public EReference getLoopExp_Iterator() {
         return (EReference)getLoopExp().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getIteratorExp()
-  {
+	public EClass getIteratorExp() {
 		if (iteratorExpEClass == null)
 		{
-			iteratorExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(50);
+			iteratorExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(49);
 		}
 		return iteratorExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIteratorExp_ReferredIterator()
-	{
+	public EReference getIteratorExp_ReferredIterator() {
         return (EReference)getIteratorExp().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getLetExp()
-  {
+	public EClass getLetExp() {
 		if (letExpEClass == null)
 		{
-			letExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(51);
+			letExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(50);
 		}
 		return letExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getLetExp_In()
-  {
+	public EReference getLetExp_In() {
         return (EReference)getLetExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getLetExp_Variable()
-  {
+	public EReference getLetExp_Variable() {
         return (EReference)getLetExp().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getMessageExp()
-  {
+	public EClass getMessageExp() {
 		if (messageExpEClass == null)
 		{
-			messageExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(54);
+			messageExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(53);
 		}
 		return messageExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessageExp_Target()
-	{
+	public EReference getMessageExp_Target() {
         return (EReference)getMessageExp().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessageExp_Argument()
-	{
+	public EReference getMessageExp_Argument() {
         return (EReference)getMessageExp().getEStructuralFeatures().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessageExp_CalledOperation()
-	{
+	public EReference getMessageExp_CalledOperation() {
         return (EReference)getMessageExp().getEStructuralFeatures().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessageExp_SentSignal()
-	{
+	public EReference getMessageExp_SentSignal() {
         return (EReference)getMessageExp().getEStructuralFeatures().get(3);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getMessageType()
-  {
+	public EClass getMessageType() {
 		if (messageTypeEClass == null)
 		{
-			messageTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(55);
+			messageTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(54);
 		}
 		return messageTypeEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getMessageType_ReferredSignal()
-  {
-        return (EReference)getMessageType().getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EReference getMessageType_ReferredOperation()
-  {
-        return (EReference)getMessageType().getEStructuralFeatures().get(1);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMonikeredElement()
-	{
+	public EReference getMessageType_ReferredSignal() {
+        return (EReference)getMessageType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMessageType_ReferredOperation() {
+        return (EReference)getMessageType().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMonikeredElement() {
 		if (monikeredElementEClass == null)
 		{
-			monikeredElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(56);
+			monikeredElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(55);
 		}
 		return monikeredElementEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMonikeredElement_Moniker()
-	{
+	public EAttribute getMonikeredElement_Moniker() {
         return (EAttribute)getMonikeredElement().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMonikeredElement__HasMoniker()
-	{
+	public EOperation getMonikeredElement__HasMoniker() {
         return getMonikeredElement().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getSignal()
-  {
+	public EClass getSignal() {
 		if (signalEClass == null)
 		{
-			signalEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(85);
+			signalEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(84);
 		}
 		return signalEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getNullLiteralExp()
-  {
+	public EClass getNullLiteralExp() {
 		if (nullLiteralExpEClass == null)
 		{
-			nullLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(61);
+			nullLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(60);
 		}
 		return nullLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOclInvalid()
-  {
+	public EClass getOclInvalid() {
 		if (oclInvalidEClass == null)
 		{
-			oclInvalidEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(65);
+			oclInvalidEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(64);
 		}
 		return oclInvalidEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOclVoid()
-  {
+	public EClass getOclVoid() {
 		if (oclVoidEClass == null)
 		{
-			oclVoidEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(66);
+			oclVoidEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(65);
 		}
 		return oclVoidEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOperationCallExp()
-  {
+	public EClass getOperationCallExp() {
 		if (operationCallExpEClass == null)
 		{
-			operationCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(69);
+			operationCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(68);
 		}
 		return operationCallExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getOperationCallExp_Argument()
-  {
+	public EReference getOperationCallExp_Argument() {
         return (EReference)getOperationCallExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getOperationCallExp_ReferredOperation()
-  {
+	public EReference getOperationCallExp_ReferredOperation() {
         return (EReference)getOperationCallExp().getEStructuralFeatures().get(1);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getOrderedSetType()
-  {
+	public EClass getOrderedSetType() {
 		if (orderedSetTypeEClass == null)
 		{
-			orderedSetTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(71);
+			orderedSetTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(70);
 		}
 		return orderedSetTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getPackageableElement()
-  {
+	public EClass getPackageableElement() {
 		if (packageableElementEClass == null)
 		{
-			packageableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(73);
+			packageableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(72);
 		}
 		return packageableElementEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getPrimitiveType()
-  {
+	public EClass getPrimitiveType() {
 		if (primitiveTypeEClass == null)
 		{
-			primitiveTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(78);
+			primitiveTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(77);
 		}
 		return primitiveTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getPropertyCallExp()
-  {
+	public EClass getPropertyCallExp() {
 		if (propertyCallExpEClass == null)
 		{
-			propertyCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(80);
+			propertyCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(79);
 		}
 		return propertyCallExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPropertyCallExp_ReferredProperty()
-  {
+	public EReference getPropertyCallExp_ReferredProperty() {
         return (EReference)getPropertyCallExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getRealLiteralExp()
-  {
+	public EClass getRealLiteralExp() {
 		if (realLiteralExpEClass == null)
 		{
-			realLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(81);
+			realLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(80);
 		}
 		return realLiteralExpEClass;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EAttribute getRealLiteralExp_RealSymbol()
-  {
-        return (EAttribute)getRealLiteralExp().getEStructuralFeatures().get(0);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSendSignalAction()
-	{
+	public EAttribute getRealLiteralExp_RealSymbol() {
+        return (EAttribute)getRealLiteralExp().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSendSignalAction() {
 		if (sendSignalActionEClass == null)
 		{
-			sendSignalActionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(82);
+			sendSignalActionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(81);
 		}
 		return sendSignalActionEClass;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSendSignalAction_Signal()
-	{
+	public EReference getSendSignalAction_Signal() {
         return (EReference)getSendSignalAction().getEStructuralFeatures().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getSequenceType()
-  {
+	public EClass getSequenceType() {
 		if (sequenceTypeEClass == null)
 		{
-			sequenceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(83);
+			sequenceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(82);
 		}
 		return sequenceTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getSetType()
-  {
+	public EClass getSetType() {
 		if (setTypeEClass == null)
 		{
-			setTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(84);
+			setTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(83);
 		}
 		return setTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getState()
-  {
+	public EClass getState() {
 		if (stateEClass == null)
 		{
-			stateEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(86);
+			stateEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(85);
 		}
 		return stateEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getStateExp()
-  {
+	public EClass getStateExp() {
 		if (stateExpEClass == null)
 		{
-			stateExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(87);
+			stateExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(86);
 		}
 		return stateExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getStateExp_ReferredState()
-  {
+	public EReference getStateExp_ReferredState() {
         return (EReference)getStateExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getStringLiteralExp()
-  {
+	public EClass getStringLiteralExp() {
 		if (stringLiteralExpEClass == null)
 		{
-			stringLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(88);
+			stringLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(87);
 		}
 		return stringLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getStringLiteralExp_StringSymbol()
-  {
+	public EAttribute getStringLiteralExp_StringSymbol() {
         return (EAttribute)getStringLiteralExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTemplateParameterType()
-  {
+	public EClass getTemplateParameterType() {
 		if (templateParameterTypeEClass == null)
 		{
-			templateParameterTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(92);
+			templateParameterTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(91);
 		}
 		return templateParameterTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getTemplateParameterType_Specification()
-  {
+	public EAttribute getTemplateParameterType_Specification() {
         return (EAttribute)getTemplateParameterType().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTupleLiteralExp()
-  {
+	public EClass getTupleLiteralExp() {
 		if (tupleLiteralExpEClass == null)
 		{
-			tupleLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(95);
+			tupleLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(94);
 		}
 		return tupleLiteralExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTupleLiteralExp_Part()
-  {
+	public EReference getTupleLiteralExp_Part() {
         return (EReference)getTupleLiteralExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTupleLiteralPart()
-  {
+	public EClass getTupleLiteralPart() {
 		if (tupleLiteralPartEClass == null)
 		{
-			tupleLiteralPartEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(96);
+			tupleLiteralPartEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(95);
 		}
 		return tupleLiteralPartEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTupleLiteralPart_Attribute()
-  {
+	public EReference getTupleLiteralPart_Attribute() {
         return (EReference)getTupleLiteralPart().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTupleType()
-  {
+	public EClass getTupleType() {
 		if (tupleTypeEClass == null)
 		{
-			tupleTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(97);
+			tupleTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(96);
 		}
 		return tupleTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getTypeExp()
-  {
+	public EClass getTypeExp() {
 		if (typeExpEClass == null)
 		{
-			typeExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(99);
+			typeExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(98);
 		}
 		return typeExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getTypeExp_ReferredType()
-  {
+	public EReference getTypeExp_ReferredType() {
         return (EReference)getTypeExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getUnspecifiedValueExp()
-  {
+	public EClass getUnspecifiedValueExp() {
 		if (unspecifiedValueExpEClass == null)
 		{
-			unspecifiedValueExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(104);
+			unspecifiedValueExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(103);
 		}
 		return unspecifiedValueExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getValueSpecification()
-  {
+	public EClass getValueSpecification() {
 		if (valueSpecificationEClass == null)
 		{
-			valueSpecificationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(105);
+			valueSpecificationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(104);
 		}
 		return valueSpecificationEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValueSpecification__IsComputable()
-	{
+	public EOperation getValueSpecification__IsComputable() {
         return getValueSpecification().getEOperations().get(0);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValueSpecification__IntegerValue()
-	{
+	public EOperation getValueSpecification__IntegerValue() {
         return getValueSpecification().getEOperations().get(1);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValueSpecification__BooleanValue()
-	{
+	public EOperation getValueSpecification__BooleanValue() {
         return getValueSpecification().getEOperations().get(2);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValueSpecification__StringValue()
-	{
+	public EOperation getValueSpecification__StringValue() {
         return getValueSpecification().getEOperations().get(3);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValueSpecification__UnlimitedValue()
-	{
+	public EOperation getValueSpecification__UnlimitedValue() {
         return getValueSpecification().getEOperations().get(4);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValueSpecification__IsNull()
-	{
+	public EOperation getValueSpecification__IsNull() {
         return getValueSpecification().getEOperations().get(5);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getVariableExp()
-  {
+	public EClass getVariableExp() {
 		if (variableExpEClass == null)
 		{
-			variableExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(108);
+			variableExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(107);
 		}
 		return variableExpEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getVariableExp_ReferredVariable()
-  {
+	public EReference getVariableExp_ReferredVariable() {
         return (EReference)getVariableExp().getEStructuralFeatures().get(0);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVisitable()
-	{
-		if (visitableEClass == null)
-		{
-			visitableEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(109);
-		}
-		return visitableEClass;
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getVisitable__Accept__Visitor()
-	{
-        return getVisitable().getEOperations().get(0);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVisitor()
-	{
-		if (visitorEClass == null)
-		{
-			visitorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(110);
-		}
-		return visitorEClass;
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EClass getVoidType()
-  {
+	public EClass getVoidType() {
 		if (voidTypeEClass == null)
 		{
-			voidTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(111);
+			voidTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(108);
 		}
 		return voidTypeEClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getAssociativityKind()
+	public EClass get_()
 	{
+		if (_EClass == null)
+		{
+			_EClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(109);
+		}
+		return _EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAssociativityKind() {
 		if (associativityKindEEnum == null)
 		{
 			associativityKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(7);
@@ -4121,13 +3862,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return associativityKindEEnum;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EEnum getCollectionKind()
-  {
+	public EEnum getCollectionKind() {
 		if (collectionKindEEnum == null)
 		{
 			collectionKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(8);
@@ -4135,13 +3875,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return collectionKindEEnum;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EDataType getBoolean()
-  {
+	public EDataType getBoolean() {
 		if (booleanEDataType == null)
 		{
 			booleanEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(0);
@@ -4149,13 +3888,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return booleanEDataType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getInt()
-	{
+	public EDataType getInt() {
 		if (intEDataType == null)
 		{
 			intEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(1);
@@ -4163,13 +3901,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return intEDataType;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EDataType getInteger()
-  {
+	public EDataType getInteger() {
 		if (integerEDataType == null)
 		{
 			integerEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(2);
@@ -4177,13 +3914,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return integerEDataType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getObject()
-	{
+	public EDataType getObject() {
 		if (objectEDataType == null)
 		{
 			objectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(3);
@@ -4191,13 +3927,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return objectEDataType;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EDataType getReal()
-  {
+	public EDataType getReal() {
 		if (realEDataType == null)
 		{
 			realEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(4);
@@ -4205,13 +3940,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return realEDataType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EDataType getString()
-  {
+	public EDataType getString() {
 		if (stringEDataType == null)
 		{
 			stringEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(5);
@@ -4219,13 +3953,12 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return stringEDataType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EDataType getUnlimitedNatural()
-  {
+	public EDataType getUnlimitedNatural() {
 		if (unlimitedNaturalEDataType == null)
 		{
 			unlimitedNaturalEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(6);
@@ -4233,31 +3966,29 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		return unlimitedNaturalEDataType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PivotFactory getPivotFactory()
-  {
+	public PivotFactory getPivotFactory() {
 		return (PivotFactory)getEFactoryInstance();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private boolean isLoaded = false;
+	private boolean isLoaded = false;
 
-  /**
+	/**
 	 * Laods the package and any sub-packages from their serialized form.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void loadPackage()
-  {
+	public void loadPackage() {
 		if (isLoaded) return;
 		isLoaded = true;
 
@@ -4280,36 +4011,33 @@ public class PivotPackageImpl extends EPackageImpl implements PivotPackage
 		createResource(eNS_URI);
 	}
 
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private boolean isFixed = false;
+	private boolean isFixed = false;
 
-  /**
+	/**
 	 * Fixes up the loaded package, to make it appear as if it had been programmatically built.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void fixPackageContents()
-  {
+	public void fixPackageContents() {
 		if (isFixed) return;
 		isFixed = true;
 		fixEClassifiers();
 	}
 
-  /**
+	/**
 	 * Sets the instance class on the given classifier.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected void fixInstanceClass(EClassifier eClassifier)
-  {
+	@Override
+	protected void fixInstanceClass(EClassifier eClassifier) {
 		if (eClassifier.getInstanceClassName() == null)
 		{
 			eClassifier.setInstanceClassName("org.eclipse.ocl.examples.pivot." + eClassifier.getName()); //$NON-NLS-1$

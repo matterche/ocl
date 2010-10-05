@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallOperationActionImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: CallOperationActionImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -43,8 +43,10 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public class CallOperationActionImpl extends NamedElementImpl implements CallOperationAction
-{
+public class CallOperationActionImpl
+		extends NamedElementImpl
+		implements CallOperationAction {
+
 	/**
 	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -60,8 +62,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CallOperationActionImpl()
-	{
+	protected CallOperationActionImpl() {
 		super();
 	}
 
@@ -71,8 +72,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.CALL_OPERATION_ACTION;
 	}
 
@@ -81,8 +81,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getOperation()
-	{
+	public Operation getOperation() {
 		if (operation != null && ((EObject)operation).eIsProxy())
 		{
 			InternalEObject oldOperation = (InternalEObject)operation;
@@ -101,8 +100,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation basicGetOperation()
-	{
+	public Operation basicGetOperation() {
 		return operation;
 	}
 
@@ -111,8 +109,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperation(Operation newOperation)
-	{
+	public void setOperation(Operation newOperation) {
 		Operation oldOperation = operation;
 		operation = newOperation;
 		if (eNotificationRequired())
@@ -125,8 +122,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_COMMENT:
@@ -153,8 +149,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_COMMENT:
@@ -188,8 +183,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_COMMENT:
@@ -220,8 +214,7 @@ public class CallOperationActionImpl extends NamedElementImpl implements CallOpe
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_COMMENT:

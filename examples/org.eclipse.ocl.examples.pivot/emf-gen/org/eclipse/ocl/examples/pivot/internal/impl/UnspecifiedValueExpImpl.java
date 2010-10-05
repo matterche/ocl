@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,27 +31,31 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
  *
  * @generated
  */
-public class UnspecifiedValueExpImpl extends OclExpressionImpl implements UnspecifiedValueExp
-{
-  /**
+public class UnspecifiedValueExpImpl
+		extends OclExpressionImpl
+		implements UnspecifiedValueExp {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected UnspecifiedValueExpImpl()
-  {
+	protected UnspecifiedValueExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.UNSPECIFIED_VALUE_EXP;
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitUnspecifiedValueExp(this);
+	}
 } //UnspecifiedValueExpImpl

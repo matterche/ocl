@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: CompleteEnvironmentOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -41,8 +41,9 @@ import org.eclipse.ocl.examples.pivot.Property;
  *
  * @generated
  */
-public class CompleteEnvironmentOperations extends MonikeredElementOperations
-{
+public class CompleteEnvironmentOperations
+		extends MonikeredElementOperations {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,8 +58,9 @@ public class CompleteEnvironmentOperations extends MonikeredElementOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  CompleteClass getCompleteClass(CompleteEnvironment completeEnvironment, org.eclipse.ocl.examples.pivot.Class model)
-	{
+	public static CompleteClass getCompleteClass(
+			CompleteEnvironment completeEnvironment,
+			org.eclipse.ocl.examples.pivot.Class model) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -69,8 +71,8 @@ public class CompleteEnvironmentOperations extends MonikeredElementOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  CompleteOperation getCompleteOperation(CompleteEnvironment completeEnvironment, Operation model)
-	{
+	public static CompleteOperation getCompleteOperation(
+			CompleteEnvironment completeEnvironment, Operation model) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -81,8 +83,9 @@ public class CompleteEnvironmentOperations extends MonikeredElementOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  CompletePackage getCompletePackage(CompleteEnvironment completeEnvironment, org.eclipse.ocl.examples.pivot.Package model)
-	{
+	public static CompletePackage getCompletePackage(
+			CompleteEnvironment completeEnvironment,
+			org.eclipse.ocl.examples.pivot.Package model) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -93,8 +96,8 @@ public class CompleteEnvironmentOperations extends MonikeredElementOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  CompleteProperty getCompleteProperty(CompleteEnvironment completeEnvironment, Property model)
-	{
+	public static CompleteProperty getCompleteProperty(
+			CompleteEnvironment completeEnvironment, Property model) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

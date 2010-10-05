@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IPivotElementImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: IPivotElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -42,15 +42,16 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
  *
  * @generated
  */
-public abstract class IPivotElementImpl extends PivotObjectImpl implements IPivotElement
-{
+public abstract class IPivotElementImpl
+		extends PivotObjectImpl
+		implements IPivotElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IPivotElementImpl()
-	{
+	protected IPivotElementImpl() {
 		super();
 	}
 
@@ -60,8 +61,7 @@ public abstract class IPivotElementImpl extends PivotObjectImpl implements IPivo
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.IPIVOT_ELEMENT;
 	}
 
@@ -70,8 +70,7 @@ public abstract class IPivotElementImpl extends PivotObjectImpl implements IPivo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getPivot()
-	{
+	public Element getPivot() {
 		return IPivotElementOperations.getPivot(this);
 	}
 
@@ -81,8 +80,8 @@ public abstract class IPivotElementImpl extends PivotObjectImpl implements IPivo
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
 			case PivotPackage.IPIVOT_ELEMENT___GET_PIVOT:
@@ -99,8 +98,7 @@ public abstract class IPivotElementImpl extends PivotObjectImpl implements IPivo
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 

@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.1.2.2 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: IterateExpImpl.java,v 1.1.2.3 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
-
 
 import java.util.Collection;
 
@@ -29,13 +28,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.Iterate;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,8 +50,10 @@ import org.eclipse.ocl.examples.pivot.Variable;
  *
  * @generated
  */
-public class IterateExpImpl extends LoopExpImpl implements IterateExp
-{
+public class IterateExpImpl
+		extends LoopExpImpl
+		implements IterateExp {
+
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -78,8 +79,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IterateExpImpl()
-	{
+	protected IterateExpImpl() {
 		super();
 	}
 
@@ -89,8 +89,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ITERATE_EXP;
 	}
 
@@ -99,8 +98,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable getResult()
-	{
+	public Variable getResult() {
 		if (result != null && ((EObject)result).eIsProxy())
 		{
 			InternalEObject oldResult = (InternalEObject)result;
@@ -126,8 +124,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable basicGetResult()
-	{
+	public Variable basicGetResult() {
 		return result;
 	}
 
@@ -136,8 +133,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResult(Variable newResult, NotificationChain msgs)
-	{
+	public NotificationChain basicSetResult(Variable newResult,
+			NotificationChain msgs) {
 		Variable oldResult = result;
 		result = newResult;
 		if (eNotificationRequired())
@@ -153,8 +150,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResult(Variable newResult)
-	{
+	public void setResult(Variable newResult) {
 		if (newResult != result)
 		{
 			NotificationChain msgs = null;
@@ -174,8 +170,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable createResult()
-	{
+	public Variable createResult() {
 		Variable newResult = (Variable) create(PivotPackage.Literals.VARIABLE);
 		setResult(newResult);
 		return newResult;
@@ -186,8 +181,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Iterate getReferredIterate()
-	{
+	public Iterate getReferredIterate() {
 		if (referredIterate != null && ((EObject)referredIterate).eIsProxy())
 		{
 			InternalEObject oldReferredIterate = (InternalEObject)referredIterate;
@@ -206,8 +200,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Iterate basicGetReferredIterate()
-	{
+	public Iterate basicGetReferredIterate() {
 		return referredIterate;
 	}
 
@@ -216,8 +209,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferredIterate(Iterate newReferredIterate)
-	{
+	public void setReferredIterate(Iterate newReferredIterate) {
 		Iterate oldReferredIterate = referredIterate;
 		referredIterate = newReferredIterate;
 		if (eNotificationRequired())
@@ -230,8 +222,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE_EXP__OWNED_COMMENT:
@@ -258,8 +250,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE_EXP__OWNED_COMMENT:
@@ -300,8 +291,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE_EXP__OWNED_COMMENT:
@@ -351,8 +341,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE_EXP__OWNED_COMMENT:
@@ -398,8 +387,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ITERATE_EXP__OWNED_COMMENT:
@@ -427,11 +415,9 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		}
 		return eDynamicIsSet(featureID);
 	}
-	
-	@Override
-	public Object evaluate(EvaluationContext context) {
-		Iterate iterate = getReferredIterate();
-		return iterate != null ? iterate.evaluate(context, this) : null;
-	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitIterateExp(this);
+	}
 } //IterateExpImpl

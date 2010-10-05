@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,46 +50,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class AssociationClassCallExpImpl extends NavigationCallExpImpl implements AssociationClassCallExp
-{
-  /**
+public class AssociationClassCallExpImpl
+		extends NavigationCallExpImpl
+		implements AssociationClassCallExp {
+
+	/**
 	 * The cached value of the '{@link #getReferredAssociationClass() <em>Referred Association Class</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredAssociationClass()
 	 * @generated
 	 * @ordered
 	 */
-  protected AssociationClass referredAssociationClass;
+	protected AssociationClass referredAssociationClass;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected AssociationClassCallExpImpl()
-  {
+	protected AssociationClassCallExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.ASSOCIATION_CLASS_CALL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AssociationClass getReferredAssociationClass()
-  {
+	public AssociationClass getReferredAssociationClass() {
 		if (referredAssociationClass != null && ((EObject)referredAssociationClass).eIsProxy())
 		{
 			InternalEObject oldReferredAssociationClass = (InternalEObject)referredAssociationClass;
@@ -102,37 +102,35 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 		return referredAssociationClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AssociationClass basicGetReferredAssociationClass()
-  {
+	public AssociationClass basicGetReferredAssociationClass() {
 		return referredAssociationClass;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setReferredAssociationClass(AssociationClass newReferredAssociationClass)
-  {
+	public void setReferredAssociationClass(
+			AssociationClass newReferredAssociationClass) {
 		AssociationClass oldReferredAssociationClass = referredAssociationClass;
 		referredAssociationClass = newReferredAssociationClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
@@ -151,6 +149,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
+				return isPre();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
 				return getQualifiers();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE:
@@ -163,15 +163,14 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
@@ -198,6 +197,9 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
+				setIsPre((Boolean)newValue);
+				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
 				getQualifiers().clear();
 				getQualifiers().addAll((Collection<? extends OclExpression>)newValue);
@@ -212,14 +214,13 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
@@ -243,6 +244,9 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
+				setIsPre(IS_PRE_EDEFAULT);
+				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
 				getQualifiers().clear();
 				return;
@@ -256,14 +260,13 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
@@ -280,6 +283,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 				return type != null;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
+				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
 				return qualifiers != null && !qualifiers.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE:
@@ -290,4 +295,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitAssociationClassCallExp(this);
+	}
 } //AssociationClassCallExpImpl

@@ -12,37 +12,29 @@
  *
  * </copyright>
  *
- * $Id: TypeTemplateParameterImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: TypeTemplateParameterImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.TypeTemplateParameterOperations;
 
 /**
@@ -60,90 +52,89 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TypeTemplateParameterO
  *
  * @generated
  */
-public class TypeTemplateParameterImpl extends TemplateParameterImpl implements TypeTemplateParameter
-{
-  /**
+public class TypeTemplateParameterImpl
+		extends TemplateParameterImpl
+		implements TypeTemplateParameter {
+
+	/**
 	 * The default value of the '{@link #isAllowSubstitutable() <em>Allow Substitutable</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isAllowSubstitutable()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean ALLOW_SUBSTITUTABLE_EDEFAULT = true;
+	protected static final boolean ALLOW_SUBSTITUTABLE_EDEFAULT = true;
 
-  /**
+	/**
 	 * The flag representing the value of the '{@link #isAllowSubstitutable() <em>Allow Substitutable</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isAllowSubstitutable()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int ALLOW_SUBSTITUTABLE_EFLAG = 1 << 8;
+	protected static final int ALLOW_SUBSTITUTABLE_EFLAG = 1 << 8;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getConstrainingTypes() <em>Constraining Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getConstrainingTypes()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<Type> constrainingTypes;
+	protected EList<Type> constrainingTypes;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TypeTemplateParameterImpl()
-  {
+	protected TypeTemplateParameterImpl() {
 		super();
 		eFlags |= ALLOW_SUBSTITUTABLE_EFLAG;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isAllowSubstitutable()
-  {
+	public boolean isAllowSubstitutable()
+	{
 		return (eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setAllowSubstitutable(boolean newAllowSubstitutable)
-  {
+	public void setAllowSubstitutable(boolean newAllowSubstitutable)
+	{
 		boolean oldAllowSubstitutable = (eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0;
 		if (newAllowSubstitutable) eFlags |= ALLOW_SUBSTITUTABLE_EFLAG; else eFlags &= ~ALLOW_SUBSTITUTABLE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE, oldAllowSubstitutable, newAllowSubstitutable));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<Type> getConstrainingTypes()
-  {
+	public EList<Type> getConstrainingTypes() {
 		if (constrainingTypes == null)
 		{
 			constrainingTypes = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE);
@@ -151,14 +142,13 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		return constrainingTypes;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public ParameterableElement getParameteredElement()
-  {
+	@Override
+	public ParameterableElement getParameteredElement() {
 		if (parameteredElement != null && ((EObject)parameteredElement).eIsProxy())
 		{
 			InternalEObject oldParameteredElement = (InternalEObject)parameteredElement;
@@ -172,25 +162,24 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		return parameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public ParameterableElement basicGetParameteredElement()
-  {
+	@Override
+	public ParameterableElement basicGetParameteredElement() {
 		return parameteredElement;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain basicSetParameteredElement(ParameterableElement newParameteredElement, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain basicSetParameteredElement(
+			ParameterableElement newParameteredElement, NotificationChain msgs) {
 		ParameterableElement oldParameteredElement = parameteredElement;
 		parameteredElement = newParameteredElement;
 		if (eNotificationRequired())
@@ -201,14 +190,13 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void setParameteredElement(ParameterableElement newParameteredElement)
-  {
+	@Override
+	public void setParameteredElement(ParameterableElement newParameteredElement) {
 		if (newParameteredElement != parameteredElement)
 		{
 			NotificationChain msgs = null;
@@ -223,34 +211,32 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, newParameteredElement, newParameteredElement));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isSetParameteredElement()
-  {
+	public boolean isSetParameteredElement() {
 		return parameteredElement != null;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateHasConstrainingType(DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateHasConstrainingType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return TypeTemplateParameterOperations.validateHasConstrainingType(this, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -278,15 +264,14 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -319,14 +304,13 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -357,14 +341,13 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
@@ -387,19 +370,17 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER___OCL_TYPE:
 				return oclType();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER___OCL_IS_INVALID:
@@ -414,14 +395,13 @@ public class TypeTemplateParameterImpl extends TemplateParameterImpl implements 
 		return eDynamicInvoke(operationID, arguments);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public String toString()
-  {
+	@Override
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

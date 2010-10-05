@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OpaqueExpressionImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: OpaqueExpressionImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.OpaqueExpressionOperations;
 
 /**
@@ -49,9 +48,11 @@ import org.eclipse.ocl.examples.pivot.internal.operations.OpaqueExpressionOperat
  *
  * @generated
  */
-public class OpaqueExpressionImpl extends ValueSpecificationImpl implements OpaqueExpression
-{
-  /**
+public class OpaqueExpressionImpl
+		extends ValueSpecificationImpl
+		implements OpaqueExpression {
+
+	/**
 	 * The cached value of the '{@link #getBodies() <em>Body</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,6 +61,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * @ordered
 	 */
 	protected EList<String> bodies;
+
 	/**
 	 * The cached value of the '{@link #getLanguages() <em>Language</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -70,34 +72,31 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 */
 	protected EList<String> languages;
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  protected OpaqueExpressionImpl()
-  {
-		super();
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass()
-  {
-		return PivotPackage.Literals.OPAQUE_EXPRESSION;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getBodies()
-	{
+	protected OpaqueExpressionImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.OPAQUE_EXPRESSION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getBodies() {
 		if (bodies == null)
 		{
 			bodies = new EDataTypeEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__BODY);
@@ -105,13 +104,12 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		return bodies;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getLanguages()
-	{
+	public EList<String> getLanguages() {
 		if (languages == null)
 		{
 			languages = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__LANGUAGE);
@@ -119,24 +117,23 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		return languages;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLanguageBodySize(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateLanguageBodySize(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return OpaqueExpressionOperations.validateLanguageBodySize(this, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
@@ -166,15 +163,14 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
@@ -216,14 +212,13 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		eDynamicSet(featureID, newValue);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
@@ -260,14 +255,13 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		eDynamicUnset(featureID);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
@@ -294,19 +288,17 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		return eDynamicIsSet(featureID);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.OPAQUE_EXPRESSION___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.OPAQUE_EXPRESSION___OCL_TYPE:
 				return oclType();
 			case PivotPackage.OPAQUE_EXPRESSION___OCL_IS_INVALID:
@@ -337,23 +329,14 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		return eDynamicInvoke(operationID, arguments);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (body: "); //$NON-NLS-1$
-		result.append(bodies);
-		result.append(", language: "); //$NON-NLS-1$
-		result.append(languages);
-		result.append(')');
-		return result.toString();
+	public String toString() {
+		return super.toString();
 	}
 
 } //OpaqueExpressionImpl

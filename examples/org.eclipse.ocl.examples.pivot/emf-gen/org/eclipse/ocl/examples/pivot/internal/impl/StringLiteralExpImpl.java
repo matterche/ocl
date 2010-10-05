@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: StringLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -24,10 +24,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,80 +42,77 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements StringLiteralExp
-{
-  /**
+public class StringLiteralExpImpl
+		extends PrimitiveLiteralExpImpl
+		implements StringLiteralExp {
+
+	/**
 	 * The default value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getStringSymbol()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String STRING_SYMBOL_EDEFAULT = null;
+	protected static final String STRING_SYMBOL_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getStringSymbol()
 	 * @generated
 	 * @ordered
 	 */
-  protected String stringSymbol = STRING_SYMBOL_EDEFAULT;
+	protected String stringSymbol = STRING_SYMBOL_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected StringLiteralExpImpl()
-  {
+	protected StringLiteralExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.STRING_LITERAL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getStringSymbol()
-  {
+	public String getStringSymbol() {
 		return stringSymbol;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setStringSymbol(String newStringSymbol)
-  {
+	public void setStringSymbol(String newStringSymbol) {
 		String oldStringSymbol = stringSymbol;
 		stringSymbol = newStringSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STRING_LITERAL_EXP__STRING_SYMBOL, oldStringSymbol, stringSymbol));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.STRING_LITERAL_EXP__OWNED_COMMENT:
@@ -137,15 +134,14 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.STRING_LITERAL_EXP__OWNED_COMMENT:
@@ -176,14 +172,13 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.STRING_LITERAL_EXP__OWNED_COMMENT:
@@ -211,14 +206,13 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.STRING_LITERAL_EXP__OWNED_COMMENT:
@@ -239,26 +233,18 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (stringSymbol: "); //$NON-NLS-1$
-		result.append(stringSymbol);
-		result.append(')');
-		return result.toString();
-	}
-	
 	@Override
-	public Object evaluate(EvaluationContext context) {
-		String value = getStringSymbol();
-		return value != null ? context.getStringValue(value) : null;
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitStringLiteralExp(this);
 	}
 } //StringLiteralExpImpl

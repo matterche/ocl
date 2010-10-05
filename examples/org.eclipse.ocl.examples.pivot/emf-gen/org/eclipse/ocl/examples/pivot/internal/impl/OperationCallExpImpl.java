@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,56 +51,55 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class OperationCallExpImpl extends FeatureCallExpImpl implements OperationCallExp
-{
-  /**
+public class OperationCallExpImpl
+		extends FeatureCallExpImpl
+		implements OperationCallExp {
+
+	/**
 	 * The cached value of the '{@link #getArguments() <em>Argument</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getArguments()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<OclExpression> arguments;
+	protected EList<OclExpression> arguments;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredOperation()
 	 * @generated
 	 * @ordered
 	 */
-  protected Operation referredOperation;
+	protected Operation referredOperation;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected OperationCallExpImpl()
-  {
+	protected OperationCallExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.OPERATION_CALL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<OclExpression> getArguments()
-  {
+	public EList<OclExpression> getArguments() {
 		if (arguments == null)
 		{
 			arguments = new EObjectContainmentEList.Resolving<OclExpression>(OclExpression.class, this, PivotPackage.OPERATION_CALL_EXP__ARGUMENT);
@@ -108,35 +107,32 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		return arguments;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createArgument(EClass eClass)
-  {
+	public OclExpression createArgument(EClass eClass) {
 		OclExpression newArgument = (OclExpression) create(eClass);
 		getArguments().add(newArgument);
 		return newArgument;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createArgument()
-	{
+	public OclExpression createArgument() {
 		return createArgument(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation getReferredOperation()
-  {
+	public Operation getReferredOperation() {
 		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
 		{
 			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
@@ -150,37 +146,35 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		return referredOperation;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation basicGetReferredOperation()
-  {
+	public Operation basicGetReferredOperation() {
 		return referredOperation;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setReferredOperation(Operation newReferredOperation)
-  {
+	public void setReferredOperation(Operation newReferredOperation) {
 		Operation oldReferredOperation = referredOperation;
 		referredOperation = newReferredOperation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION, oldReferredOperation, referredOperation));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
@@ -197,14 +191,13 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
@@ -223,6 +216,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
+				return isPre();
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
 				return getArguments();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
@@ -232,15 +227,14 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
@@ -267,6 +261,9 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
+				setIsPre((Boolean)newValue);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends OclExpression>)newValue);
@@ -278,14 +275,13 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
@@ -309,6 +305,9 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
+				setIsPre(IS_PRE_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
 				getArguments().clear();
 				return;
@@ -319,14 +318,13 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
@@ -343,6 +341,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 				return type != null;
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
+				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
 				return arguments != null && !arguments.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
@@ -350,11 +350,9 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		}
 		return eDynamicIsSet(featureID);
 	}
-	
-	@Override
-	public Object evaluate(EvaluationContext context) {
-		Operation operation = getReferredOperation();
-		return operation != null ? operation.evaluate(context, this) : null;
-	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitOperationCallExp(this);
+	}
 } //OperationCallExpImpl

@@ -12,31 +12,23 @@
  *
  * </copyright>
  *
- * $Id: MultiplicityElementImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: MultiplicityElementImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.math.BigInteger;
-
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.MultiplicityElementOperations;
 
 /**
@@ -55,280 +47,270 @@ import org.eclipse.ocl.examples.pivot.internal.operations.MultiplicityElementOpe
  *
  * @generated
  */
-public abstract class MultiplicityElementImpl extends MonikeredElementImpl implements MultiplicityElement
-{
-  /**
+public abstract class MultiplicityElementImpl
+		extends MonikeredElementImpl
+		implements MultiplicityElement {
+
+	/**
 	 * The default value of the '{@link #isOrdered() <em>Is Ordered</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isOrdered()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean IS_ORDERED_EDEFAULT = false;
+	protected static final boolean IS_ORDERED_EDEFAULT = false;
 
-  /**
+	/**
 	 * The flag representing the value of the '{@link #isOrdered() <em>Is Ordered</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isOrdered()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int IS_ORDERED_EFLAG = 1 << 8;
+	protected static final int IS_ORDERED_EFLAG = 1 << 8;
 
-  /**
+	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isUnique()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean IS_UNIQUE_EDEFAULT = true;
+	protected static final boolean IS_UNIQUE_EDEFAULT = true;
 
-  /**
+	/**
 	 * The flag representing the value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isUnique()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int IS_UNIQUE_EFLAG = 1 << 9;
+	protected static final int IS_UNIQUE_EFLAG = 1 << 9;
 
-  /**
+	/**
 	 * The default value of the '{@link #getLower() <em>Lower</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getLower()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final BigInteger LOWER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
+	protected static final BigInteger LOWER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
 
-  /**
+	/**
 	 * The cached value of the '{@link #getLower() <em>Lower</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getLower()
 	 * @generated
 	 * @ordered
 	 */
-  protected BigInteger lower = LOWER_EDEFAULT;
+	protected BigInteger lower = LOWER_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getUpper() <em>Upper</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUpper()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final BigInteger UPPER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
+	protected static final BigInteger UPPER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
 
-  /**
+	/**
 	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUpper()
 	 * @generated
 	 * @ordered
 	 */
-  protected BigInteger upper = UPPER_EDEFAULT;
+	protected BigInteger upper = UPPER_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected MultiplicityElementImpl()
-  {
+	protected MultiplicityElementImpl() {
 		super();
 		eFlags |= IS_UNIQUE_EFLAG;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.MULTIPLICITY_ELEMENT;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isOrdered()
-  {
+	public boolean isOrdered()
+	{
 		return (eFlags & IS_ORDERED_EFLAG) != 0;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIsOrdered(boolean newIsOrdered)
-  {
+	public void setIsOrdered(boolean newIsOrdered)
+	{
 		boolean oldIsOrdered = (eFlags & IS_ORDERED_EFLAG) != 0;
 		if (newIsOrdered) eFlags |= IS_ORDERED_EFLAG; else eFlags &= ~IS_ORDERED_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED, oldIsOrdered, newIsOrdered));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isUnique()
-  {
+	public boolean isUnique()
+	{
 		return (eFlags & IS_UNIQUE_EFLAG) != 0;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIsUnique(boolean newIsUnique)
-  {
+	public void setIsUnique(boolean newIsUnique)
+	{
 		boolean oldIsUnique = (eFlags & IS_UNIQUE_EFLAG) != 0;
 		if (newIsUnique) eFlags |= IS_UNIQUE_EFLAG; else eFlags &= ~IS_UNIQUE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE, oldIsUnique, newIsUnique));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigInteger getLower()
-  {
+	public BigInteger getLower() {
 		return lower;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setLower(BigInteger newLower)
-  {
+	public void setLower(BigInteger newLower) {
 		BigInteger oldLower = lower;
 		lower = newLower;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MULTIPLICITY_ELEMENT__LOWER, oldLower, lower));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigInteger getUpper()
-  {
+	public BigInteger getUpper() {
 		return upper;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setUpper(BigInteger newUpper)
-  {
+	public void setUpper(BigInteger newUpper) {
 		BigInteger oldUpper = upper;
 		upper = newUpper;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MULTIPLICITY_ELEMENT__UPPER, oldUpper, upper));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateLowerGe0(DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateLowerGe0(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return MultiplicityElementOperations.validateLowerGe0(this, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateUpperGeLower(DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateUpperGeLower(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return MultiplicityElementOperations.validateUpperGeLower(this, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigInteger lowerBound()
-  {
+	public BigInteger lowerBound() {
 		return MultiplicityElementOperations.lowerBound(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BigInteger upperBound()
-  {
+	public BigInteger upperBound() {
 		return MultiplicityElementOperations.upperBound(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isMultivalued()
-  {
+	public boolean isMultivalued() {
 		return MultiplicityElementOperations.isMultivalued(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean includesCardinality(BigInteger C)
-  {
+	public boolean includesCardinality(BigInteger C) {
 		return MultiplicityElementOperations.includesCardinality(this, C);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean includesMultiplicity(MultiplicityElement M)
-  {
+	public boolean includesMultiplicity(MultiplicityElement M) {
 		return MultiplicityElementOperations.includesMultiplicity(this, M);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -347,15 +329,14 @@ public abstract class MultiplicityElementImpl extends MonikeredElementImpl imple
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -381,14 +362,13 @@ public abstract class MultiplicityElementImpl extends MonikeredElementImpl imple
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -413,14 +393,13 @@ public abstract class MultiplicityElementImpl extends MonikeredElementImpl imple
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -439,19 +418,17 @@ public abstract class MultiplicityElementImpl extends MonikeredElementImpl imple
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.MULTIPLICITY_ELEMENT___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.MULTIPLICITY_ELEMENT___OCL_TYPE:
 				return oclType();
 			case PivotPackage.MULTIPLICITY_ELEMENT___OCL_IS_INVALID:
@@ -478,27 +455,14 @@ public abstract class MultiplicityElementImpl extends MonikeredElementImpl imple
 		return eDynamicInvoke(operationID, arguments);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isOrdered: "); //$NON-NLS-1$
-		result.append((eFlags & IS_ORDERED_EFLAG) != 0);
-		result.append(", isUnique: "); //$NON-NLS-1$
-		result.append((eFlags & IS_UNIQUE_EFLAG) != 0);
-		result.append(", lower: "); //$NON-NLS-1$
-		result.append(lower);
-		result.append(", upper: "); //$NON-NLS-1$
-		result.append(upper);
-		result.append(')');
-		return result.toString();
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 } //MultiplicityElementImpl

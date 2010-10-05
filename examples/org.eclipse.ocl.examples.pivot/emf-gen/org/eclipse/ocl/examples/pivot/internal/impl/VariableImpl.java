@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: VariableImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -30,13 +28,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,56 +49,55 @@ import org.eclipse.ocl.examples.pivot.Visitor;
  *
  * @generated
  */
-public class VariableImpl extends TypedElementImpl implements Variable
-{
-  /**
+public class VariableImpl
+		extends TypedElementImpl
+		implements Variable {
+
+	/**
 	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getInitExpression()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression initExpression;
+	protected OclExpression initExpression;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getRepresentedParameter() <em>Represented Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRepresentedParameter()
 	 * @generated
 	 * @ordered
 	 */
-  protected Parameter representedParameter;
+	protected Parameter representedParameter;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected VariableImpl()
-  {
+	protected VariableImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.VARIABLE;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getInitExpression()
-  {
+	public OclExpression getInitExpression() {
 		if (initExpression != null && ((EObject)initExpression).eIsProxy())
 		{
 			InternalEObject oldInitExpression = (InternalEObject)initExpression;
@@ -122,23 +118,22 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		return initExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetInitExpression()
-  {
+	public OclExpression basicGetInitExpression() {
 		return initExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetInitExpression(OclExpression newInitExpression, NotificationChain msgs)
-  {
+	public NotificationChain basicSetInitExpression(
+			OclExpression newInitExpression, NotificationChain msgs) {
 		OclExpression oldInitExpression = initExpression;
 		initExpression = newInitExpression;
 		if (eNotificationRequired())
@@ -149,13 +144,12 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setInitExpression(OclExpression newInitExpression)
-  {
+	public void setInitExpression(OclExpression newInitExpression) {
 		if (newInitExpression != initExpression)
 		{
 			NotificationChain msgs = null;
@@ -170,35 +164,32 @@ public class VariableImpl extends TypedElementImpl implements Variable
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__INIT_EXPRESSION, newInitExpression, newInitExpression));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createInitExpression(EClass eClass)
-  {
+	public OclExpression createInitExpression(EClass eClass) {
 		OclExpression newInitExpression = (OclExpression) create(eClass);
 		setInitExpression(newInitExpression);
 		return newInitExpression;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createInitExpression()
-	{
+	public OclExpression createInitExpression() {
 		return createInitExpression(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Parameter getRepresentedParameter()
-  {
+	public Parameter getRepresentedParameter() {
 		if (representedParameter != null && ((EObject)representedParameter).eIsProxy())
 		{
 			InternalEObject oldRepresentedParameter = (InternalEObject)representedParameter;
@@ -212,37 +203,35 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		return representedParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Parameter basicGetRepresentedParameter()
-  {
+	public Parameter basicGetRepresentedParameter() {
 		return representedParameter;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setRepresentedParameter(Parameter newRepresentedParameter)
-  {
+	public void setRepresentedParameter(Parameter newRepresentedParameter) {
 		Parameter oldRepresentedParameter = representedParameter;
 		representedParameter = newRepresentedParameter;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__REPRESENTED_PARAMETER, oldRepresentedParameter, representedParameter));
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
@@ -257,14 +246,13 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
@@ -290,15 +278,14 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
@@ -332,14 +319,13 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
@@ -370,14 +356,13 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
@@ -400,38 +385,8 @@ public class VariableImpl extends TypedElementImpl implements Variable
 		return eDynamicIsSet(featureID);
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
-			case PivotPackage.VARIABLE___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
-			case PivotPackage.VARIABLE___OCL_TYPE:
-				return oclType();
-			case PivotPackage.VARIABLE___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.VARIABLE___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
-			case PivotPackage.VARIABLE___HAS_MONIKER:
-				return hasMoniker();
-			case PivotPackage.VARIABLE___GET_NAME:
-				return getName();
-			case PivotPackage.VARIABLE___EVALUATE__EVALUATIONCONTEXT:
-				return evaluate((EvaluationContext)arguments.get(0));
-		}
-		return eDynamicInvoke(operationID, arguments);
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitVariable(this);
 	}
-	
-	public Object evaluate(EvaluationContext context) {
-		OclExpression expression = getInitExpression();
-		return expression != null ? expression.evaluate(context) : null;
-	}
-
 } //VariableImpl

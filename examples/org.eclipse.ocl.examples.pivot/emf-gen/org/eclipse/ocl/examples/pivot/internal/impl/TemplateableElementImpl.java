@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElementImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: TemplateableElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
 
 /**
@@ -53,29 +52,31 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOpe
  *
  * @generated
  */
-public abstract class TemplateableElementImpl extends MonikeredElementImpl implements TemplateableElement
-{
-  /**
+public abstract class TemplateableElementImpl
+		extends MonikeredElementImpl
+		implements TemplateableElement {
+
+	/**
 	 * The cached value of the '{@link #getTemplateBindings() <em>Template Binding</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getTemplateBindings()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<TemplateBinding> templateBindings;
+	protected EList<TemplateBinding> templateBindings;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedTemplateSignature()
 	 * @generated
 	 * @ordered
 	 */
-  protected TemplateSignature ownedTemplateSignature;
+	protected TemplateSignature ownedTemplateSignature;
 
-/**
+	/**
 	 * The cached value of the '{@link #getOwnedSpecializations() <em>Owned Specialization</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,34 +86,31 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 	 */
 	protected EList<TemplateableElement> ownedSpecializations;
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  protected TemplateableElementImpl()
-  {
-		super();
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass()
-  {
-		return PivotPackage.Literals.TEMPLATEABLE_ELEMENT;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TemplateableElement> getOwnedSpecializations()
-	{
+	protected TemplateableElementImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.TEMPLATEABLE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TemplateableElement> getOwnedSpecializations() {
 		if (ownedSpecializations == null)
 		{
 			ownedSpecializations = new EObjectContainmentEList.Resolving<TemplateableElement>(TemplateableElement.class, this, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SPECIALIZATION);
@@ -120,25 +118,23 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return ownedSpecializations;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement createOwnedSpecialization(EClass eClass)
-	{
+	public TemplateableElement createOwnedSpecialization(EClass eClass) {
 		TemplateableElement newOwnedSpecialization = (TemplateableElement) create(eClass);
 		getOwnedSpecializations().add(newOwnedSpecialization);
 		return newOwnedSpecialization;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<TemplateBinding> getTemplateBindings()
-  {
+	public EList<TemplateBinding> getTemplateBindings() {
 		if (templateBindings == null)
 		{
 			templateBindings = new EObjectContainmentWithInverseEList.Resolving<TemplateBinding>(TemplateBinding.class, this, PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
@@ -146,25 +142,23 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return templateBindings;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateBinding createTemplateBinding()
-  {
+	public TemplateBinding createTemplateBinding() {
 		TemplateBinding newTemplateBinding = (TemplateBinding) create(PivotPackage.Literals.TEMPLATE_BINDING);
 		getTemplateBindings().add(newTemplateBinding);
 		return newTemplateBinding;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature getOwnedTemplateSignature()
-  {
+	public TemplateSignature getOwnedTemplateSignature() {
 		if (ownedTemplateSignature != null && ((EObject)ownedTemplateSignature).eIsProxy())
 		{
 			InternalEObject oldOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
@@ -185,23 +179,22 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return ownedTemplateSignature;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature basicGetOwnedTemplateSignature()
-  {
+	public TemplateSignature basicGetOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature, NotificationChain msgs)
-  {
+	public NotificationChain basicSetOwnedTemplateSignature(
+			TemplateSignature newOwnedTemplateSignature, NotificationChain msgs) {
 		TemplateSignature oldOwnedTemplateSignature = ownedTemplateSignature;
 		ownedTemplateSignature = newOwnedTemplateSignature;
 		if (eNotificationRequired())
@@ -212,13 +205,13 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature)
-  {
+	public void setOwnedTemplateSignature(
+			TemplateSignature newOwnedTemplateSignature) {
 		if (newOwnedTemplateSignature != ownedTemplateSignature)
 		{
 			NotificationChain msgs = null;
@@ -233,47 +226,44 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature createOwnedTemplateSignature()
-  {
+	public TemplateSignature createOwnedTemplateSignature() {
 		TemplateSignature newOwnedTemplateSignature = (TemplateSignature) create(PivotPackage.Literals.TEMPLATE_SIGNATURE);
 		setOwnedTemplateSignature(newOwnedTemplateSignature);
 		return newOwnedTemplateSignature;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<ParameterableElement> parameterableElements()
-  {
+	public EList<ParameterableElement> parameterableElements() {
 		return TemplateableElementOperations.parameterableElements(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isTemplate()
-  {
+	public boolean isTemplate() {
 		return TemplateableElementOperations.isTemplate(this);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
@@ -286,14 +276,14 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
@@ -308,14 +298,13 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
@@ -333,15 +322,14 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
@@ -366,14 +354,13 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
@@ -395,14 +382,13 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
@@ -419,19 +405,16 @@ public abstract class TemplateableElementImpl extends MonikeredElementImpl imple
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-@SuppressWarnings("unchecked")
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-  {
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATEABLE_ELEMENT___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.TEMPLATEABLE_ELEMENT___OCL_TYPE:
 				return oclType();
 			case PivotPackage.TEMPLATEABLE_ELEMENT___OCL_IS_INVALID:

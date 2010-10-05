@@ -12,30 +12,24 @@
  *
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: ConstraintImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -43,9 +37,8 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
-
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.internal.operations.ConstraintOperations;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,8 +56,10 @@ import org.eclipse.ocl.examples.pivot.internal.operations.ConstraintOperations;
  *
  * @generated
  */
-public class ConstraintImpl extends NamedElementImpl implements Constraint
-{
+public class ConstraintImpl
+		extends NamedElementImpl
+		implements Constraint {
+
 	/**
 	 * The cached value of the '{@link #getConstrainedElements() <em>Constrained Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -120,8 +115,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConstraintImpl()
-	{
+	protected ConstraintImpl() {
 		super();
 	}
 
@@ -131,8 +125,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.CONSTRAINT;
 	}
 
@@ -141,8 +134,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> getConstrainedElements()
-	{
+	public EList<Element> getConstrainedElements() {
 		if (constrainedElements == null)
 		{
 			constrainedElements = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT);
@@ -155,8 +147,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getSpecification()
-	{
+	public ValueSpecification getSpecification() {
 		if (specification != null && ((EObject)specification).eIsProxy())
 		{
 			InternalEObject oldSpecification = (InternalEObject)specification;
@@ -182,8 +173,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification basicGetSpecification()
-	{
+	public ValueSpecification basicGetSpecification() {
 		return specification;
 	}
 
@@ -192,8 +182,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(ValueSpecification newSpecification, NotificationChain msgs)
-	{
+	public NotificationChain basicSetSpecification(
+			ValueSpecification newSpecification, NotificationChain msgs) {
 		ValueSpecification oldSpecification = specification;
 		specification = newSpecification;
 		if (eNotificationRequired())
@@ -209,8 +199,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(ValueSpecification newSpecification)
-	{
+	public void setSpecification(ValueSpecification newSpecification) {
 		if (newSpecification != specification)
 		{
 			NotificationChain msgs = null;
@@ -230,8 +219,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification createSpecification(EClass eClass)
-	{
+	public ValueSpecification createSpecification(EClass eClass) {
 		ValueSpecification newSpecification = (ValueSpecification) create(eClass);
 		setSpecification(newSpecification);
 		return newSpecification;
@@ -242,8 +230,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement getContext()
-	{
+	public NamedElement getContext() {
 		if (context != null && ((EObject)context).eIsProxy())
 		{
 			InternalEObject oldContext = (InternalEObject)context;
@@ -262,8 +249,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement basicGetContext()
-	{
+	public NamedElement basicGetContext() {
 		return context;
 	}
 
@@ -272,8 +258,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContext(NamedElement newContext)
-	{
+	public void setContext(NamedElement newContext) {
 		NamedElement oldContext = context;
 		context = newContext;
 		if (eNotificationRequired())
@@ -285,8 +270,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getStereotype()
-	{
+	public String getStereotype() {
 		return stereotype;
 	}
 
@@ -295,8 +279,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStereotype(String newStereotype)
-	{
+	public void setStereotype(String newStereotype) {
 		String oldStereotype = stereotype;
 		stereotype = newStereotype;
 		if (eNotificationRequired())
@@ -308,8 +291,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNotApplyToSelf(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateNotApplyToSelf(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return ConstraintOperations.validateNotApplyToSelf(this, diagnostics, context);
 	}
 
@@ -318,8 +301,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateValueSpecificationBoolean(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateValueSpecificationBoolean(
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return ConstraintOperations.validateValueSpecificationBoolean(this, diagnostics, context);
 	}
 
@@ -329,8 +312,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
@@ -351,8 +334,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
@@ -386,8 +368,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
@@ -431,8 +412,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
@@ -472,8 +452,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
@@ -505,12 +484,10 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.CONSTRAINT___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.CONSTRAINT___OCL_TYPE:
 				return oclType();
 			case PivotPackage.CONSTRAINT___OCL_IS_INVALID:
@@ -535,8 +512,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -546,4 +522,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint
 		return result.toString();
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitConstraint(this);
+	}
 } //ConstraintImpl

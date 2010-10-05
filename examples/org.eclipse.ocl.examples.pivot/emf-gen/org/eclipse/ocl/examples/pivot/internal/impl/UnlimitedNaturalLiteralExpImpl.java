@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,8 +43,10 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
  *
  * @generated
  */
-public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implements UnlimitedNaturalLiteralExp
-{
+public class UnlimitedNaturalLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements UnlimitedNaturalLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,8 +72,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UnlimitedNaturalLiteralExpImpl()
-	{
+	protected UnlimitedNaturalLiteralExpImpl() {
 		super();
 	}
 
@@ -81,8 +82,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP;
 	}
 
@@ -91,8 +91,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BigInteger getSymbol()
-	{
+	public BigInteger getSymbol() {
 		return symbol;
 	}
 
@@ -101,8 +100,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSymbol(BigInteger newSymbol)
-	{
+	public void setSymbol(BigInteger newSymbol) {
 		BigInteger oldSymbol = symbol;
 		symbol = newSymbol;
 		if (eNotificationRequired())
@@ -115,8 +113,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_COMMENT:
@@ -145,8 +142,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_COMMENT:
@@ -183,8 +179,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_COMMENT:
@@ -218,8 +213,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_COMMENT:
@@ -243,23 +237,15 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (symbol: "); //$NON-NLS-1$
-		result.append(symbol);
-		result.append(')');
-		return result.toString();
+	public String toString() {
+		return super.toString();
 	}
-	
+
 	@Override
-	public Object evaluate(EvaluationContext context) {
-		BigInteger value = getSymbol();
-		return value != null ? context.getUnlimitedNaturalValue(value) : null;
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitUnlimitedNaturalLiteralExp(this);
 	}
 } //UnlimitedNaturalLiteralExpImpl

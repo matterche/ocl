@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignatureOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: TemplateSignatureOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -38,20 +38,21 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class TemplateSignatureOperations extends MonikeredElementOperations
-{
-  /**
+public class TemplateSignatureOperations
+		extends MonikeredElementOperations {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected TemplateSignatureOperations() {
+	protected TemplateSignatureOperations() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Parameters must own the elements they parameter or those elements must be owned by the element being templated.
 	 * templatedElement.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)
@@ -61,8 +62,9 @@ public class TemplateSignatureOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-  public static  boolean validateOwnElements(TemplateSignature templateSignature, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public static boolean validateOwnElements(
+			TemplateSignature templateSignature, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message

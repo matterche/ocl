@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItemImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: CollectionItemImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,46 +51,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class CollectionItemImpl extends CollectionLiteralPartImpl implements CollectionItem
-{
-  /**
+public class CollectionItemImpl
+		extends CollectionLiteralPartImpl
+		implements CollectionItem {
+
+	/**
 	 * The cached value of the '{@link #getItem() <em>Item</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getItem()
 	 * @generated
 	 * @ordered
 	 */
-  protected OclExpression item;
+	protected OclExpression item;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected CollectionItemImpl()
-  {
+	protected CollectionItemImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COLLECTION_ITEM;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression getItem()
-  {
+	public OclExpression getItem() {
 		if (item != null && ((EObject)item).eIsProxy())
 		{
 			InternalEObject oldItem = (InternalEObject)item;
@@ -110,23 +110,22 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		return item;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression basicGetItem()
-  {
+	public OclExpression basicGetItem() {
 		return item;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetItem(OclExpression newItem, NotificationChain msgs)
-  {
+	public NotificationChain basicSetItem(OclExpression newItem,
+			NotificationChain msgs) {
 		OclExpression oldItem = item;
 		item = newItem;
 		if (eNotificationRequired())
@@ -137,13 +136,12 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setItem(OclExpression newItem)
-  {
+	public void setItem(OclExpression newItem) {
 		if (newItem != item)
 		{
 			NotificationChain msgs = null;
@@ -158,36 +156,34 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_ITEM__ITEM, newItem, newItem));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OclExpression createItem(EClass eClass)
-  {
+	public OclExpression createItem(EClass eClass) {
 		OclExpression newItem = (OclExpression) create(eClass);
 		setItem(newItem);
 		return newItem;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createItem()
-	{
+	public OclExpression createItem() {
 		return createItem(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
@@ -202,14 +198,13 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
@@ -232,15 +227,14 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
@@ -271,14 +265,13 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
@@ -306,14 +299,13 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
@@ -334,4 +326,8 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitCollectionItem(this);
+	}
 } //CollectionItemImpl

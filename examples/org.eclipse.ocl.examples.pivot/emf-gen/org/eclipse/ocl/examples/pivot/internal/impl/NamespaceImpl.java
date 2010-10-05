@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamespaceImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: NamespaceImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -29,15 +29,16 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
  *
  * @generated
  */
-public abstract class NamespaceImpl extends NamedElementImpl implements Namespace
-{
+public abstract class NamespaceImpl
+		extends NamedElementImpl
+		implements Namespace {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NamespaceImpl()
-	{
+	protected NamespaceImpl() {
 		super();
 	}
 
@@ -47,8 +48,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.NAMESPACE;
 	}
 

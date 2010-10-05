@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintOperations.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: ConstraintOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -39,8 +39,9 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class ConstraintOperations extends MonikeredElementOperations
-{
+public class ConstraintOperations
+		extends MonikeredElementOperations {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +63,8 @@ public class ConstraintOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  boolean validateNotApplyToSelf(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public static boolean validateNotApplyToSelf(Constraint constraint,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -97,8 +98,9 @@ public class ConstraintOperations extends MonikeredElementOperations
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
-	public static  boolean validateValueSpecificationBoolean(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public static boolean validateValueSpecificationBoolean(
+			Constraint constraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message

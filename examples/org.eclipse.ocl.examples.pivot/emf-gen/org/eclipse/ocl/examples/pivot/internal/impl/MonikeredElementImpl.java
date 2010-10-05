@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementImpl.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: MonikeredElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 
 /**
@@ -40,8 +39,10 @@ import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
  *
  * @generated
  */
-public abstract class MonikeredElementImpl extends ElementImpl implements MonikeredElement
-{
+public abstract class MonikeredElementImpl
+		extends ElementImpl
+		implements MonikeredElement {
+
 	/**
 	 * The default value of the '{@link #getMoniker() <em>Moniker</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -57,8 +58,7 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MonikeredElementImpl()
-	{
+	protected MonikeredElementImpl() {
 		super();
 	}
 
@@ -68,12 +68,11 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.MONIKERED_ELEMENT;
 	}
 
-  	private String moniker = MONIKER_EDEFAULT;
+	private String moniker = MONIKER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,8 +91,7 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setMoniker(String newMoniker)
-	{
+	public void setMoniker(String newMoniker) {
 		moniker = newMoniker;
 	}
 
@@ -121,8 +119,7 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.MONIKERED_ELEMENT__OWNED_COMMENT:
@@ -140,8 +137,7 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.MONIKERED_ELEMENT__OWNED_COMMENT:
@@ -161,8 +157,7 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MONIKERED_ELEMENT__OWNED_COMMENT:
@@ -181,8 +176,7 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.MONIKERED_ELEMENT__OWNED_COMMENT:
@@ -199,13 +193,10 @@ public abstract class MonikeredElementImpl extends ElementImpl implements Monike
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.MONIKERED_ELEMENT___ACCEPT__VISITOR:
-				return accept((Visitor)arguments.get(0));
 			case PivotPackage.MONIKERED_ELEMENT___OCL_TYPE:
 				return oclType();
 			case PivotPackage.MONIKERED_ELEMENT___OCL_IS_INVALID:

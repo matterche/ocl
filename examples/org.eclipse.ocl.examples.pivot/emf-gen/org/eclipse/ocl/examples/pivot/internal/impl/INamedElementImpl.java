@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: INamedElementImpl.java,v 1.1.2.1 2010/10/01 13:49:57 ewillink Exp $
+ * $Id: INamedElementImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -41,15 +41,16 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
  *
  * @generated
  */
-public abstract class INamedElementImpl extends PivotObjectImpl implements INamedElement
-{
+public abstract class INamedElementImpl
+		extends PivotObjectImpl
+		implements INamedElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected INamedElementImpl()
-	{
+	protected INamedElementImpl() {
 		super();
 	}
 
@@ -59,8 +60,7 @@ public abstract class INamedElementImpl extends PivotObjectImpl implements IName
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.INAMED_ELEMENT;
 	}
 
@@ -69,8 +69,7 @@ public abstract class INamedElementImpl extends PivotObjectImpl implements IName
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return INamedElementOperations.getName(this);
 	}
 
@@ -80,8 +79,8 @@ public abstract class INamedElementImpl extends PivotObjectImpl implements IName
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
 			case PivotPackage.INAMED_ELEMENT___GET_NAME:
@@ -98,8 +97,7 @@ public abstract class INamedElementImpl extends PivotObjectImpl implements IName
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 

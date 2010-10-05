@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.1.2.1 2010/10/01 13:49:56 ewillink Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,103 +55,101 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class CollectionLiteralExpImpl extends LiteralExpImpl implements CollectionLiteralExp
-{
-  /**
+public class CollectionLiteralExpImpl
+		extends LiteralExpImpl
+		implements CollectionLiteralExp {
+
+	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final CollectionKind KIND_EDEFAULT = CollectionKind.COLLECTION;
+	protected static final CollectionKind KIND_EDEFAULT = CollectionKind.COLLECTION;
 
-  /**
+	/**
 	 * The offset of the flags representing the value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int KIND_EFLAG_OFFSET = 8;
+	protected static final int KIND_EFLAG_OFFSET = 8;
 
-  /**
+	/**
 	 * The flags representing the default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int KIND_EFLAG_DEFAULT = KIND_EDEFAULT.ordinal() << KIND_EFLAG_OFFSET;
+	protected static final int KIND_EFLAG_DEFAULT = KIND_EDEFAULT.ordinal() << KIND_EFLAG_OFFSET;
 
-  /**
+	/**
 	 * The array of enumeration values for '{@link CollectionKind Collection Kind}'
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  private static final CollectionKind[] KIND_EFLAG_VALUES = CollectionKind.values();
+	private static final CollectionKind[] KIND_EFLAG_VALUES = CollectionKind.values();
 
-  /**
+	/**
 	 * The flags representing the value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int KIND_EFLAG = 0x7 << KIND_EFLAG_OFFSET;
+	protected static final int KIND_EFLAG = 0x7 << KIND_EFLAG_OFFSET;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getParts() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getParts()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<CollectionLiteralPart> parts;
+	protected EList<CollectionLiteralPart> parts;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected CollectionLiteralExpImpl()
-  {
+	protected CollectionLiteralExpImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COLLECTION_LITERAL_EXP;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollectionKind getKind()
-  {
+	public CollectionKind getKind() {
 		return KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setKind(CollectionKind newKind)
-  {
+	public void setKind(CollectionKind newKind) {
 		CollectionKind oldKind = KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
 		if (newKind == null) newKind = KIND_EDEFAULT;
 		eFlags = eFlags & ~KIND_EFLAG | newKind.ordinal() << KIND_EFLAG_OFFSET;
@@ -158,13 +157,12 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, newKind));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<CollectionLiteralPart> getParts()
-  {
+	public EList<CollectionLiteralPart> getParts() {
 		if (parts == null)
 		{
 			parts = new EObjectContainmentEList.Resolving<CollectionLiteralPart>(CollectionLiteralPart.class, this, PivotPackage.COLLECTION_LITERAL_EXP__PART);
@@ -172,26 +170,25 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 		return parts;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollectionLiteralPart createPart(EClass eClass)
-  {
+	public CollectionLiteralPart createPart(EClass eClass) {
 		CollectionLiteralPart newPart = (CollectionLiteralPart) create(eClass);
 		getParts().add(newPart);
 		return newPart;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
@@ -206,14 +203,13 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
@@ -237,15 +233,14 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 		return eDynamicGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
@@ -280,14 +275,13 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 		eDynamicSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID)
-  {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
@@ -318,14 +312,13 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 		eDynamicUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
@@ -348,21 +341,18 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 		return eDynamicIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-  @Override
-  public String toString()
-  {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (kind: "); //$NON-NLS-1$
-		result.append(KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET]);
-		result.append(')');
-		return result.toString();
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
+	@Override
+	public <T> T accept(Visitor<T> visitor) {
+		return visitor.visitCollectionLiteralExp(this);
+	}
 } //CollectionLiteralExpImpl
