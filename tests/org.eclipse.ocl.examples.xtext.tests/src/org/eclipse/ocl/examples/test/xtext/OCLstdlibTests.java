@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.1.2.2 2010/10/05 18:16:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -28,13 +28,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
-import org.eclipse.ocl.examples.pivot.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;

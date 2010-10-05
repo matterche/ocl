@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.2 2010/10/05 18:16:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -54,16 +54,16 @@ import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OCLStandardLibrary;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.Visitable;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.helper.Choice;
@@ -337,11 +337,12 @@ public abstract class GenericTestSuite
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
 		String denormalized = denormalize(expression);
 		try {
+			Object expectedValue = pivotManager.getValueOfValue(expected);
 			Object value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, expected, value);
-			if (expected instanceof LinkedHashSet) {
+			assertEquals(denormalized, expectedValue, value);
+			if (expectedValue instanceof LinkedHashSet) {
 				assertTrue(denormalized, value instanceof LinkedHashSet);
-				Iterator<?> es = ((LinkedHashSet<?>)expected).iterator();
+				Iterator<?> es = ((LinkedHashSet<?>)expectedValue).iterator();
 				Iterator<?> vs = ((LinkedHashSet<?>)value).iterator();
 				while (es.hasNext()) {
 					Object e = es.next();
@@ -960,7 +961,7 @@ public abstract class GenericTestSuite
 		return environment.getPivotManager().getNullValue();
 	}
 	
-	protected OCLStandardLibrary getOCLStandardLibrary() {
+	protected StandardLibrary getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();
 	}
 
