@@ -99,6 +99,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");
 					put(grammarAccess.getEssentialOCLPrefixOperatorAccess().getAlternatives(), "rule__EssentialOCLPrefixOperator__Alternatives");
 					put(grammarAccess.getEssentialOCLInfixOperatorAccess().getAlternatives(), "rule__EssentialOCLInfixOperator__Alternatives");
+					put(grammarAccess.getEssentialOCLNavigationOperatorAccess().getAlternatives(), "rule__EssentialOCLNavigationOperator__Alternatives");
 					put(grammarAccess.getIdentifierAccess().getAlternatives(), "rule__Identifier__Alternatives");
 					put(grammarAccess.getPrimitiveTypeIdentifierAccess().getAlternatives(), "rule__PrimitiveTypeIdentifier__Alternatives");
 					put(grammarAccess.getCollectionTypeIdentifierAccess().getAlternatives(), "rule__CollectionTypeIdentifier__Alternatives");
@@ -107,6 +108,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeLiteralCSAccess().getAlternatives(), "rule__TypeLiteralCS__Alternatives");
 					put(grammarAccess.getTypeNameExpCSAccess().getAlternatives(), "rule__TypeNameExpCS__Alternatives");
 					put(grammarAccess.getTypeExpCSAccess().getAlternatives(), "rule__TypeExpCS__Alternatives");
+					put(grammarAccess.getBinaryOperatorCSAccess().getAlternatives(), "rule__BinaryOperatorCS__Alternatives");
 					put(grammarAccess.getPrefixedExpCSAccess().getAlternatives(), "rule__PrefixedExpCS__Alternatives");
 					put(grammarAccess.getPrimaryExpCSAccess().getAlternatives(), "rule__PrimaryExpCS__Alternatives");
 					put(grammarAccess.getNameExpCSAccess().getAlternatives(), "rule__NameExpCS__Alternatives");
@@ -470,7 +472,8 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeNameExpCSAccess().getElementAssignment_1(), "rule__TypeNameExpCS__ElementAssignment_1");
 					put(grammarAccess.getInfixedExpCSAccess().getOwnedOperatorAssignment_1_1_0(), "rule__InfixedExpCS__OwnedOperatorAssignment_1_1_0");
 					put(grammarAccess.getInfixedExpCSAccess().getOwnedExpressionAssignment_1_1_1(), "rule__InfixedExpCS__OwnedExpressionAssignment_1_1_1");
-					put(grammarAccess.getBinaryOperatorCSAccess().getNameAssignment(), "rule__BinaryOperatorCS__NameAssignment");
+					put(grammarAccess.getInfixOperatorCSAccess().getNameAssignment(), "rule__InfixOperatorCS__NameAssignment");
+					put(grammarAccess.getNavigationOperatorCSAccess().getNameAssignment(), "rule__NavigationOperatorCS__NameAssignment");
 					put(grammarAccess.getPrefixedExpCSAccess().getOwnedOperatorAssignment_1_1(), "rule__PrefixedExpCS__OwnedOperatorAssignment_1_1");
 					put(grammarAccess.getPrefixedExpCSAccess().getOwnedExpressionAssignment_1_2(), "rule__PrefixedExpCS__OwnedExpressionAssignment_1_2");
 					put(grammarAccess.getUnaryOperatorCSAccess().getNameAssignment(), "rule__UnaryOperatorCS__NameAssignment");
