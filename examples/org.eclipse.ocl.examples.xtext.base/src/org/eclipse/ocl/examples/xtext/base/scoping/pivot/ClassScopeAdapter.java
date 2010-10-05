@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -40,8 +40,8 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 			}
 		}
 		else {
-			Type anyType = getLibraryOclAnyType();
-			Type libType = getLibraryClassifierType();
+			Type anyType = getOclAnyType();
+			Type libType = getClassifierType();
 			if ((libType != target) && (anyType != target)){		// FIXME Is this the right place for the trap
 				addLibContents(environmentView, libType, scopeView);
 			}

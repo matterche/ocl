@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: EnumCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -36,7 +36,7 @@ public class EnumCSScopeAdapter extends BaseCSScopeAdapter<EnumerationCS, Enumer
 			environmentView.addNamedElements(PivotPackage.Literals.ENUMERATION_LITERAL, pivot.getOwnedLiterals());
 			environmentView.addElements(PivotPackage.Literals.TEMPLATE_PARAMETER, ElementUtil.getTemplateParameters(pivot));
 		}
-		addLibContents(environmentView, getLibraryOclAnyType(), scopeView);
+		addLibContents(environmentView, getOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}
 }

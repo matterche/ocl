@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAdapter.java,v 1.2.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: ScopeAdapter.java,v 1.2.6.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -67,7 +67,7 @@ public interface ScopeAdapter extends Adapter
 
 	RootScopeAdapter getRootScopeAdapter();
 
-	String getSignature();
+	String getMoniker();
 	
 	ScopeAdapter getSourceScope(EStructuralFeature containmentFeature);
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -41,7 +41,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 			}
 		}
 		else {
-			Type libType = getLibraryClassifierType();
+			Type libType = getClassifierType();
 			addLibContents(environmentView, libType, scopeView);
 		}
 	}

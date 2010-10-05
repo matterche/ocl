@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: AbstractPivotScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: AbstractPivotScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -33,7 +35,6 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 public abstract class AbstractPivotScopeAdapter<P extends Element> extends AbstractScopeAdapter<P>
 {	
 	protected final RootScopeAdapter document;
-//	protected long unresolveableModificationCount = -1;
 	
 	/**
 	 * Creates an instance.
@@ -54,8 +55,11 @@ public abstract class AbstractPivotScopeAdapter<P extends Element> extends Abstr
 //		assert (document != null) || (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) : "Null parent for a " + pivotElement.getClass().getName();
 	}
 
-	public RootScopeAdapter getRootScopeAdapter() {
-		return document;
+	public String getMoniker() {
+		if (target instanceof MonikeredElement) {
+			return Pivot2Moniker.toString((MonikeredElement)target);
+		}
+		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSignature for " + target.eClass().getName()); //$NON-NLS-1$
 	}
 
 	public PivotManager getPivotManager() {
@@ -67,23 +71,12 @@ public abstract class AbstractPivotScopeAdapter<P extends Element> extends Abstr
 		return pivotManager;
 	}
 
-	public String getSignature() {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSignature for " + target.eClass().getName()); //$NON-NLS-1$
-//		return null;
+	public RootScopeAdapter getRootScopeAdapter() {
+		return document;
 	}
-
-//	public boolean isUnresolvable() {
-//		return (document == null) || (unresolveableModificationCount >= document.getModificationCount());
-//	}
-
-//	public void setUnresolvable() {
-//		if (document != null) {
-//			unresolveableModificationCount = document.getModificationCount();
-//		}
-//	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(getSignature());
+		return String.valueOf(getMoniker());
 	}
 }

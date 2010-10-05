@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -77,7 +77,7 @@ public abstract class BaseCSScopeAdapter<CS extends ModelElementCS, P extends El
 			}
 		} */
 		else {
-			candidateType = getLibraryClassifierType();
+			candidateType = getClassifierType();
 			if (candidateType == requiredType) {
 				return true;
 			}
@@ -89,7 +89,7 @@ public abstract class BaseCSScopeAdapter<CS extends ModelElementCS, P extends El
 		List<TypedRefCS> superTypes = csClass.getOwnedSuperType();
 		int size = superTypes.size();
 		if (size == 0) {
-			Type libType = getLibraryClassifierType();
+			Type libType = getClassifierType();
 			return Collections.singletonList(libType);
 		} else if (size == 1) {
 			Type result = getLibraryType(superTypes.get(0));

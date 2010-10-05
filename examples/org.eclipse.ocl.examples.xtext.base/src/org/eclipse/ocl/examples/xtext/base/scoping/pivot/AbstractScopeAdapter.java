@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -81,7 +81,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		}
 		if (eObject instanceof ModelElementCS) {
 			Element pivotElement = ((ModelElementCS)eObject).getPivot();
-			if (pivotElement != null) {
+			if ((pivotElement != null) && (pivotElement.eResource() != null)) {
 				eObject = pivotElement;
 			}
 		}
@@ -146,6 +146,18 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		target.eAdapters().add(this);
 	}
 
+	protected void addLibContents(EnvironmentView environmentView, Type libType, ScopeView scopeView) {
+		if (libType == null) {
+			return;
+		}
+		environmentView.addElementsOfScope(libType, scopeView);
+		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
+				addLibContents(environmentView, superClass, scopeView);
+			}
+		}
+	}
+
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		return scopeView.getOuterScope();
 	}
@@ -159,71 +171,29 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return new BaseScopeView(this, null, targetReference);
 	}
 
-	protected void addLibContents(EnvironmentView environmentView, Type libType, ScopeView scopeView) {
-		if (libType == null) {
-			return;
-		}
-		environmentView.addElementsOfScope(libType, scopeView);
-		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
-				addLibContents(environmentView, superClass, scopeView);
-			}
-		}
+	public Type getBooleanType() {
+		PivotManager pivotManager = getPivotManager();
+		return pivotManager.getBooleanType();
 	}
 
-	public Type getLibraryClassifierType() {
+	public Type getClassifierType() {
 		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("Classifier", null); //$NON-NLS-1$
+		return pivotManager.getClassifierType();
 	}
 
-	public Type getLibraryBooleanType() {
+	public Type getCollectionType() {
 		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("Boolean", null); //$NON-NLS-1$
+		return pivotManager.getCollectionType();
 	}
 
-	public Type getLibraryCollectionType() {
+	public Type getIntegerType() {
 		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("Collection", null); //$NON-NLS-1$
+		return pivotManager.getIntegerType();
 	}
 
-	public Type getLibraryIntegerType() {
+	public Type getInvalidType() {
 		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("Integer", null); //$NON-NLS-1$
-	}
-
-	public Type getLibraryOclAnyType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("OclAny", null); //$NON-NLS-1$
-	}
-
-	public Type getLibraryOclInvalidType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("OclInvalid", null); //$NON-NLS-1$
-	}
-
-	public Type getLibraryOclVoidType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("OclVoid", null); //$NON-NLS-1$
-	}
-
-	public Type getLibraryRealType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("Real", null); //$NON-NLS-1$
-	}
-
-	public Type getLibrarySetType(TypeCS type) {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("Set", null);				// FIXME parameters //$NON-NLS-1$
-	}
-
-	public Type getLibraryStringType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("String", null); //$NON-NLS-1$
-	}
-
-	public Type getLibraryTupleType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("Tuple", null); //$NON-NLS-1$
+		return pivotManager.getInvalidType();
 	}
 
 	public Type getLibraryType(String collectionTypeName, Type elementType) {
@@ -231,9 +201,14 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return pivotManager.getLibraryType(collectionTypeName, Collections.singletonList(elementType));
 	}
 
-	public Type getLibraryUnlimitedNaturalType() {
+	public Type getNullType() {
 		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getLibraryType("UnlimitedNatural", null); //$NON-NLS-1$
+		return pivotManager.getNullType();
+	}
+
+	public Type getOclAnyType() {
+		PivotManager pivotManager = getPivotManager();
+		return pivotManager.getOclAnyType();
 	}
 
 	public ScopeView getOuterScopeView(EReference targetReference) {
@@ -244,10 +219,25 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	public ScopeAdapter getParent() {
 		return parent;
 	}
+
+	public Type getRealType() {
+		PivotManager pivotManager = getPivotManager();
+		return pivotManager.getRealType();
+	}
+
+	public Type getSetType(TypeCS type) {
+		PivotManager pivotManager = getPivotManager();
+		return pivotManager.getSetType();
+	}
 	
 	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
 		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSourceScope for " + target.eClass().getName()); //$NON-NLS-1$
 //		return null;
+	}
+
+	public Type getStringType() {
+		PivotManager pivotManager = getPivotManager();
+		return pivotManager.getStringType();
 	}
 
 	public Type getSynthesizedType() {
@@ -257,6 +247,16 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	public T getTarget() {
 		return target;
+	}
+
+	public Type getTupleType() {
+		PivotManager pivotManager = getPivotManager();
+		return pivotManager.getTupleType();
+	}
+
+	public Type getUnlimitedNaturalType() {
+		PivotManager pivotManager = getPivotManager();
+		return pivotManager.getUnlimitedNaturalType();
 	}
 	
 	public boolean isAdapterForType(Object type) {

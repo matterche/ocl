@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: BooleanLiteralExpScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -27,6 +27,6 @@ public class BooleanLiteralExpScopeAdapter extends ExpressionScopeAdapter<Boolea
 	
 	@Override
 	public Type getSynthesizedType() {
-		return getLibraryBooleanType();
+		return getBooleanType();
 	}
 }

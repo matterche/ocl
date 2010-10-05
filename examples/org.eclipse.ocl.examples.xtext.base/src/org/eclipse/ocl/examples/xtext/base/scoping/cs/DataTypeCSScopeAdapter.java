@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataTypeCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: DataTypeCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -29,7 +29,7 @@ public class DataTypeCSScopeAdapter extends BaseCSScopeAdapter<DataTypeCS, DataT
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		addLibContents(environmentView, getLibraryOclAnyType(), scopeView);
+		addLibContents(environmentView, getOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}
 }
