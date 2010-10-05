@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.2 2010/10/05 17:39:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.pivot.*;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
+import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,27 +36,28 @@ import org.eclipse.ocl.examples.pivot.*;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage
  * @generated
  */
-public class PivotValidator extends EObjectValidator
-{
-  /**
+public class PivotValidator
+		extends EObjectValidator {
+
+	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final PivotValidator INSTANCE = new PivotValidator();
+	public static final PivotValidator INSTANCE = new PivotValidator();
 
-  /**
+	/**
 	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.common.util.Diagnostic#getSource()
 	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
 	 * @generated
 	 */
-  public static final String DIAGNOSTIC_SOURCE = "org.eclipse.ocl.examples.pivot"; //$NON-NLS-1$
+	public static final String DIAGNOSTIC_SOURCE = "org.eclipse.ocl.examples.pivot"; //$NON-NLS-1$
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Not Apply To Self' of 'Constraint'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,7 @@ public class PivotValidator extends EObjectValidator
 	 */
 	public static final int CONSTRAINT__NOT_APPLY_TO_SELF = 1;
 
-/**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Value Specification Boolean' of 'Constraint'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,31 +73,31 @@ public class PivotValidator extends EObjectValidator
 	 */
 	public static final int CONSTRAINT__VALUE_SPECIFICATION_BOOLEAN = 2;
 
-/**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Binding To Attribute' of 'Property'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int PROPERTY__BINDING_TO_ATTRIBUTE = 7;
+	public static final int PROPERTY__BINDING_TO_ATTRIBUTE = 7;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Lower Ge0' of 'Multiplicity Element'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int MULTIPLICITY_ELEMENT__LOWER_GE0 = 3;
+	public static final int MULTIPLICITY_ELEMENT__LOWER_GE0 = 3;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Upper Ge Lower' of 'Multiplicity Element'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int MULTIPLICITY_ELEMENT__UPPER_GE_LOWER = 4;
+	public static final int MULTIPLICITY_ELEMENT__UPPER_GE_LOWER = 4;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Language Body Size' of 'Opaque Expression'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,47 +105,47 @@ public class PivotValidator extends EObjectValidator
 	 */
 	public static final int OPAQUE_EXPRESSION__LANGUAGE_BODY_SIZE = 5;
 
-/**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Must Be Compatible' of 'Template Parameter'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int TEMPLATE_PARAMETER__MUST_BE_COMPATIBLE = 10;
+	public static final int TEMPLATE_PARAMETER__MUST_BE_COMPATIBLE = 10;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Own Elements' of 'Template Signature'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int TEMPLATE_SIGNATURE__OWN_ELEMENTS = 12;
+	public static final int TEMPLATE_SIGNATURE__OWN_ELEMENTS = 12;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Parameter Substitution Formal' of 'Template Binding'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int TEMPLATE_BINDING__PARAMETER_SUBSTITUTION_FORMAL = 8;
+	public static final int TEMPLATE_BINDING__PARAMETER_SUBSTITUTION_FORMAL = 8;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate One Parameter Substitution' of 'Template Binding'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int TEMPLATE_BINDING__ONE_PARAMETER_SUBSTITUTION = 9;
+	public static final int TEMPLATE_BINDING__ONE_PARAMETER_SUBSTITUTION = 9;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Must Be Compatible' of 'Template Parameter Substitution'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int TEMPLATE_PARAMETER_SUBSTITUTION__MUST_BE_COMPATIBLE = 11;
+	public static final int TEMPLATE_PARAMETER_SUBSTITUTION__MUST_BE_COMPATIBLE = 11;
 
-  /**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Test Constraint' of 'Operation'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,63 +153,60 @@ public class PivotValidator extends EObjectValidator
 	 */
 	public static final int OPERATION__TEST_CONSTRAINT = 6;
 
-/**
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Has Constraining Type' of 'Type Template Parameter'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final int TYPE_TEMPLATE_PARAMETER__HAS_CONSTRAINING_TYPE = 13;
+	public static final int TYPE_TEMPLATE_PARAMETER__HAS_CONSTRAINING_TYPE = 13;
 
-  /**
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 13;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 13;
 
-  /**
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
+	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
-  /**
+	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PivotValidator()
-  {
+	public PivotValidator() {
 		super();
 	}
 
-  /**
+	/**
 	 * Returns the package of this validator switch.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EPackage getEPackage()
-  {
+	@Override
+	protected EPackage getEPackage() {
 	  return PivotPackage.eINSTANCE;
 	}
 
-  /**
+	/**
 	 * Calls <code>validateXXX</code> for the corresponding classifier of the model.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-@SuppressWarnings("unchecked")
-  protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	@Override
+	protected boolean validate(int classifierID, Object value,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID)
 		{
 			case PivotPackage.ANNOTATION:
@@ -265,8 +265,6 @@ public class PivotValidator extends EObjectValidator
 				return validateEnumeration((Enumeration)value, diagnostics, context);
 			case PivotPackage.ENUMERATION_LITERAL:
 				return validateEnumerationLiteral((EnumerationLiteral)value, diagnostics, context);
-			case PivotPackage.EVALUATION_CONTEXT:
-				return validateEvaluationContext((EvaluationContext)value, diagnostics, context);
 			case PivotPackage.EXPRESSION_IN_OCL:
 				return validateExpressionInOcl((ExpressionInOcl)value, diagnostics, context);
 			case PivotPackage.FEATURE_CALL_EXP:
@@ -409,12 +407,10 @@ public class PivotValidator extends EObjectValidator
 				return validateVariableDeclaration((VariableDeclaration)value, diagnostics, context);
 			case PivotPackage.VARIABLE_EXP:
 				return validateVariableExp((VariableExp)value, diagnostics, context);
-			case PivotPackage.VISITABLE:
-				return validateVisitable((Visitable)value, diagnostics, context);
-			case PivotPackage.VISITOR:
-				return validateVisitor((Visitor<?>)value, diagnostics, context);
 			case PivotPackage.VOID_TYPE:
 				return validateVoidType((VoidType)value, diagnostics, context);
+			case PivotPackage._PIVOT:
+				return validate_((Visitable)value, diagnostics, context);
 			case PivotPackage.ASSOCIATIVITY_KIND:
 				return validateAssociativityKind((AssociativityKind)value, diagnostics, context);
 			case PivotPackage.COLLECTION_KIND:
@@ -438,93 +434,93 @@ public class PivotValidator extends EObjectValidator
 		}
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAnnotation(Annotation annotation, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateAnnotation(Annotation annotation,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)annotation, diagnostics, context);
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateAnyType(AnyType anyType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)anyType, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateType(Type type, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)type, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateNamedElement(NamedElement namedElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)namedElement, diagnostics, context);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNamespace(Namespace namespace, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateAnyType(AnyType anyType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)anyType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateType(Type type, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)type, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNamedElement(NamedElement namedElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)namedElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNamespace(Namespace namespace,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)namespace, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateElement(Element element, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateElement(Element element,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)element, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOclAny(OclAny oclAny, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOclAny(OclAny oclAny, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)oclAny, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateClass(org.eclipse.ocl.examples.pivot.Class class_, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateClass(org.eclipse.ocl.examples.pivot.Class class_,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)class_, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateProperty(Property property, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateProperty(Property property,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)property, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)property, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)property, diagnostics, context);
@@ -540,44 +536,47 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateBindingToAttribute constraint of '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateProperty_validateBindingToAttribute(Property property, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateProperty_validateBindingToAttribute(
+			Property property, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return property.validateBindingToAttribute(diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateImplementableElement(ImplementableElement implementableElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateImplementableElement(
+			ImplementableElement implementableElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)implementableElement, diagnostics, context);
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateTypedElement(TypedElement typedElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)typedElement, diagnostics, context);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTypedMultiplicityElement(TypedMultiplicityElement typedMultiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateTypedElement(TypedElement typedElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)typedElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTypedMultiplicityElement(
+			TypedMultiplicityElement typedMultiplicityElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)typedMultiplicityElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)typedMultiplicityElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)typedMultiplicityElement, diagnostics, context);
@@ -592,23 +591,25 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateUnlimitedNaturalLiteralExp(
+			UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)unlimitedNaturalLiteralExp, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateMultiplicityElement(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateMultiplicityElement(
+			MultiplicityElement multiplicityElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)multiplicityElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)multiplicityElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)multiplicityElement, diagnostics, context);
@@ -623,55 +624,59 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateLowerGe0 constraint of '<em>Multiplicity Element</em>'.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateMultiplicityElement_validateLowerGe0(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return multiplicityElement.validateLowerGe0(diagnostics, context);
-	}
-
-  /**
-	 * Validates the validateUpperGeLower constraint of '<em>Multiplicity Element</em>'.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateMultiplicityElement_validateUpperGeLower(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return multiplicityElement.validateUpperGeLower(diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateParameterableElement(ParameterableElement parameterableElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)parameterableElement, diagnostics, context);
-	}
-
-  /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validatePrecedence(Precedence precedence, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateMultiplicityElement_validateLowerGe0(
+			MultiplicityElement multiplicityElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return multiplicityElement.validateLowerGe0(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateUpperGeLower constraint of '<em>Multiplicity Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMultiplicityElement_validateUpperGeLower(
+			MultiplicityElement multiplicityElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return multiplicityElement.validateUpperGeLower(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateParameterableElement(
+			ParameterableElement parameterableElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)parameterableElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePrecedence(Precedence precedence,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)precedence, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateParameter(TemplateParameter templateParameter, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateParameter(
+			TemplateParameter templateParameter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)templateParameter, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)templateParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)templateParameter, diagnostics, context);
@@ -685,24 +690,26 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateMustBeCompatible constraint of '<em>Template Parameter</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateParameter_validateMustBeCompatible(TemplateParameter templateParameter, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateParameter_validateMustBeCompatible(
+			TemplateParameter templateParameter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return templateParameter.validateMustBeCompatible(diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateSignature(TemplateSignature templateSignature, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateSignature(
+			TemplateSignature templateSignature, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)templateSignature, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)templateSignature, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)templateSignature, diagnostics, context);
@@ -716,34 +723,36 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateOwnElements constraint of '<em>Template Signature</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateSignature_validateOwnElements(TemplateSignature templateSignature, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateSignature_validateOwnElements(
+			TemplateSignature templateSignature, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return templateSignature.validateOwnElements(diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateableElement(TemplateableElement templateableElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateableElement(
+			TemplateableElement templateableElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)templateableElement, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateBinding(TemplateBinding templateBinding, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateBinding(TemplateBinding templateBinding,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)templateBinding, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)templateBinding, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)templateBinding, diagnostics, context);
@@ -758,35 +767,38 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateParameterSubstitutionFormal constraint of '<em>Template Binding</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateBinding_validateParameterSubstitutionFormal(TemplateBinding templateBinding, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateBinding_validateParameterSubstitutionFormal(
+			TemplateBinding templateBinding, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return templateBinding.validateParameterSubstitutionFormal(diagnostics, context);
 	}
 
-  /**
+	/**
 	 * Validates the validateOneParameterSubstitution constraint of '<em>Template Binding</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateBinding_validateOneParameterSubstitution(TemplateBinding templateBinding, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateBinding_validateOneParameterSubstitution(
+			TemplateBinding templateBinding, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return templateBinding.validateOneParameterSubstitution(diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateParameterSubstitution(TemplateParameterSubstitution templateParameterSubstitution, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateParameterSubstitution(
+			TemplateParameterSubstitution templateParameterSubstitution,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)templateParameterSubstitution, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)templateParameterSubstitution, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)templateParameterSubstitution, diagnostics, context);
@@ -800,34 +812,35 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateMustBeCompatible constraint of '<em>Template Parameter Substitution</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateParameterSubstitution_validateMustBeCompatible(TemplateParameterSubstitution templateParameterSubstitution, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateParameterSubstitution_validateMustBeCompatible(
+			TemplateParameterSubstitution templateParameterSubstitution,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return templateParameterSubstitution.validateMustBeCompatible(diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateAssociationClass(AssociationClass associationClass, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateAssociationClass(AssociationClass associationClass,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)associationClass, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOperation(Operation operation, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOperation(Operation operation,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)operation, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)operation, diagnostics, context);
@@ -843,24 +856,25 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateTestConstraint constraint of '<em>Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOperation_validateTestConstraint(Operation operation, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateOperation_validateTestConstraint(
+			Operation operation, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return operation.validateTestConstraint(diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateParameter(Parameter parameter,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)parameter, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)parameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)parameter, diagnostics, context);
@@ -875,13 +889,14 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOperationTemplateParameter(OperationTemplateParameter operationTemplateParameter, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOperationTemplateParameter(
+			OperationTemplateParameter operationTemplateParameter,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)operationTemplateParameter, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)operationTemplateParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)operationTemplateParameter, diagnostics, context);
@@ -895,43 +910,45 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateComment(Comment comment, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateComment(Comment comment,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)comment, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCompleteClass(CompleteClass completeClass, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCompleteClass(CompleteClass completeClass,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)completeClass, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCompleteEnvironment(CompleteEnvironment completeEnvironment, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCompleteEnvironment(
+			CompleteEnvironment completeEnvironment,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)completeEnvironment, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCompleteOperation(CompleteOperation completeOperation, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCompleteOperation(
+			CompleteOperation completeOperation, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)completeOperation, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)completeOperation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)completeOperation, diagnostics, context);
@@ -947,23 +964,23 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCompletePackage(CompletePackage completePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCompletePackage(CompletePackage completePackage,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)completePackage, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCompleteProperty(CompleteProperty completeProperty, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCompleteProperty(CompleteProperty completeProperty,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)completeProperty, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)completeProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)completeProperty, diagnostics, context);
@@ -979,13 +996,13 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConstraint(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateConstraint(Constraint constraint,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)constraint, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)constraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)constraint, diagnostics, context);
@@ -1000,45 +1017,49 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-/**
+	/**
 	 * Validates the validateNotApplyToSelf constraint of '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConstraint_validateNotApplyToSelf(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateConstraint_validateNotApplyToSelf(
+			Constraint constraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return constraint.validateNotApplyToSelf(diagnostics, context);
 	}
 
-/**
+	/**
 	 * Validates the validateValueSpecificationBoolean constraint of '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConstraint_validateValueSpecificationBoolean(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateConstraint_validateValueSpecificationBoolean(
+			Constraint constraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return constraint.validateValueSpecificationBoolean(diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validatePackage(org.eclipse.ocl.examples.pivot.Package package_, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validatePackage(
+			org.eclipse.ocl.examples.pivot.Package package_,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)package_, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTypeTemplateParameter(TypeTemplateParameter typeTemplateParameter, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTypeTemplateParameter(
+			TypeTemplateParameter typeTemplateParameter,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)typeTemplateParameter, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)typeTemplateParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)typeTemplateParameter, diagnostics, context);
@@ -1053,264 +1074,264 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateHasConstrainingType constraint of '<em>Type Template Parameter</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTypeTemplateParameter_validateHasConstrainingType(TypeTemplateParameter typeTemplateParameter, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTypeTemplateParameter_validateHasConstrainingType(
+			TypeTemplateParameter typeTemplateParameter,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return typeTemplateParameter.validateHasConstrainingType(diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateAssociationClassCallExp(AssociationClassCallExp associationClassCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateAssociationClassCallExp(
+			AssociationClassCallExp associationClassCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)associationClassCallExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateNavigationCallExp(NavigationCallExp navigationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateNavigationCallExp(
+			NavigationCallExp navigationCallExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)navigationCallExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateFeatureCallExp(FeatureCallExp featureCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateFeatureCallExp(FeatureCallExp featureCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)featureCallExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateINamedElement(INamedElement iNamedElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateINamedElement(INamedElement iNamedElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)iNamedElement, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIPivotElement(IPivotElement iPivotElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateIPivotElement(IPivotElement iPivotElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)iPivotElement, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateCallExp(CallExp callExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateCallExp(CallExp callExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)callExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCallOperationAction(CallOperationAction callOperationAction, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCallOperationAction(
+			CallOperationAction callOperationAction,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)callOperationAction, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCallableImplementation(CallableImplementation callableImplementation, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCallableImplementation(
+			CallableImplementation callableImplementation,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)callableImplementation, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOclExpression(OclExpression oclExpression, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOclExpression(OclExpression oclExpression,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)oclExpression, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateBagType(BagType bagType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateBagType(BagType bagType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)bagType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateCollectionType(CollectionType collectionType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateCollectionType(CollectionType collectionType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)collectionType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateDataType(DataType dataType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateDataType(DataType dataType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)dataType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDetail(Detail detail, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateDetail(Detail detail, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)detail, diagnostics, context);
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateBooleanLiteralExp(BooleanLiteralExp booleanLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)booleanLiteralExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validatePrimitiveLiteralExp(PrimitiveLiteralExp primitiveLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)primitiveLiteralExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateLiteralExp(LiteralExp literalExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)literalExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateCollectionItem(CollectionItem collectionItem, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)collectionItem, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateCollectionLiteralPart(CollectionLiteralPart collectionLiteralPart, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)collectionLiteralPart, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateCollectionLiteralExp(CollectionLiteralExp collectionLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)collectionLiteralExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateCollectionRange(CollectionRange collectionRange, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)collectionRange, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateEnumLiteralExp(EnumLiteralExp enumLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)enumLiteralExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateEnumerationLiteral(EnumerationLiteral enumerationLiteral, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)enumerationLiteral, diagnostics, context);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEvaluationContext(EvaluationContext evaluationContext, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint((EObject)evaluationContext, diagnostics, context);
+	public boolean validateBooleanLiteralExp(
+			BooleanLiteralExp booleanLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)booleanLiteralExp, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateEnumeration(Enumeration enumeration, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validatePrimitiveLiteralExp(
+			PrimitiveLiteralExp primitiveLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)primitiveLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLiteralExp(LiteralExp literalExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)literalExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCollectionItem(CollectionItem collectionItem,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)collectionItem, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCollectionLiteralPart(
+			CollectionLiteralPart collectionLiteralPart,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)collectionLiteralPart, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCollectionLiteralExp(
+			CollectionLiteralExp collectionLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)collectionLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCollectionRange(CollectionRange collectionRange,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)collectionRange, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEnumLiteralExp(EnumLiteralExp enumLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)enumLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEnumerationLiteral(
+			EnumerationLiteral enumerationLiteral, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)enumerationLiteral, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEnumeration(Enumeration enumeration,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)enumeration, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateExpressionInOcl(ExpressionInOcl expressionInOcl, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateExpressionInOcl(ExpressionInOcl expressionInOcl,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)expressionInOcl, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)expressionInOcl, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)expressionInOcl, diagnostics, context);
@@ -1324,13 +1345,13 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOpaqueExpression(OpaqueExpression opaqueExpression, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOpaqueExpression(OpaqueExpression opaqueExpression,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)opaqueExpression, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)opaqueExpression, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)opaqueExpression, diagnostics, context);
@@ -1344,94 +1365,99 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-  /**
+	/**
 	 * Validates the validateLanguageBodySize constraint of '<em>Opaque Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOpaqueExpression_validateLanguageBodySize(OpaqueExpression opaqueExpression, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateOpaqueExpression_validateLanguageBodySize(
+			OpaqueExpression opaqueExpression, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return opaqueExpression.validateLanguageBodySize(diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateVariable(Variable variable, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateVariable(Variable variable,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)variable, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVariableDeclaration(VariableDeclaration variableDeclaration, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateVariableDeclaration(
+			VariableDeclaration variableDeclaration,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)variableDeclaration, diagnostics, context);
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateIfExp(IfExp ifExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)ifExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateIntegerLiteralExp(IntegerLiteralExp integerLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)integerLiteralExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateNumericLiteralExp(NumericLiteralExp numericLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)numericLiteralExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateInvalidLiteralExp(InvalidLiteralExp invalidLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)invalidLiteralExp, diagnostics, context);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateInvalidType(InvalidType invalidType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)invalidType, diagnostics, context);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIterate(Iterate iterate, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateIfExp(IfExp ifExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)ifExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIntegerLiteralExp(
+			IntegerLiteralExp integerLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)integerLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNumericLiteralExp(
+			NumericLiteralExp numericLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)numericLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInvalidLiteralExp(
+			InvalidLiteralExp invalidLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)invalidLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInvalidType(InvalidType invalidType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)invalidType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIterate(Iterate iterate,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)iterate, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)iterate, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)iterate, diagnostics, context);
@@ -1447,23 +1473,23 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateIterateExp(IterateExp iterateExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return validate_EveryDefaultConstraint((EObject)iterateExp, diagnostics, context);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIterator(Iterator iterator, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateIterateExp(IterateExp iterateExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)iterateExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIterator(Iterator iterator,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)iterator, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms((EObject)iterator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)iterator, diagnostics, context);
@@ -1479,435 +1505,429 @@ public class PivotValidator extends EObjectValidator
 		return result;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateLoopExp(LoopExp loopExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateLoopExp(LoopExp loopExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)loopExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateIteratorExp(IteratorExp iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateIteratorExp(IteratorExp iteratorExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)iteratorExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateLetExp(LetExp letExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateLetExp(LetExp letExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)letExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateMessageExp(MessageExp messageExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateMessageExp(MessageExp messageExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)messageExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateMessageType(MessageType messageType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateMessageType(MessageType messageType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)messageType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMonikeredElement(MonikeredElement monikeredElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateMonikeredElement(MonikeredElement monikeredElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)monikeredElement, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateSignal(Signal signal, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateSignal(Signal signal, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)signal, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateNullLiteralExp(NullLiteralExp nullLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateNullLiteralExp(NullLiteralExp nullLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)nullLiteralExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOclInvalid(OclInvalid oclInvalid, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOclInvalid(OclInvalid oclInvalid,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)oclInvalid, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOclVoid(OclVoid oclVoid, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOclVoid(OclVoid oclVoid,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)oclVoid, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOperationCallExp(OperationCallExp operationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOperationCallExp(OperationCallExp operationCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)operationCallExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateOrderedSetType(OrderedSetType orderedSetType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateOrderedSetType(OrderedSetType orderedSetType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)orderedSetType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validatePackageableElement(PackageableElement packageableElement, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validatePackageableElement(
+			PackageableElement packageableElement, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)packageableElement, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validatePrimitiveType(PrimitiveType primitiveType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validatePrimitiveType(PrimitiveType primitiveType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)primitiveType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validatePropertyCallExp(PropertyCallExp propertyCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validatePropertyCallExp(PropertyCallExp propertyCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)propertyCallExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateRealLiteralExp(RealLiteralExp realLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateRealLiteralExp(RealLiteralExp realLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)realLiteralExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSendSignalAction(SendSignalAction sendSignalAction, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateSendSignalAction(SendSignalAction sendSignalAction,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)sendSignalAction, diagnostics, context);
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateSequenceType(SequenceType sequenceType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateSequenceType(SequenceType sequenceType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)sequenceType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateSetType(SetType setType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateSetType(SetType setType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)setType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateState(State state, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateState(State state, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)state, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateStateExp(StateExp stateExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateStateExp(StateExp stateExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)stateExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateStringLiteralExp(StringLiteralExp stringLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateStringLiteralExp(StringLiteralExp stringLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)stringLiteralExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTemplateParameterType(TemplateParameterType templateParameterType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTemplateParameterType(
+			TemplateParameterType templateParameterType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)templateParameterType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTupleLiteralExp(TupleLiteralExp tupleLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTupleLiteralExp(TupleLiteralExp tupleLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)tupleLiteralExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTupleLiteralPart(TupleLiteralPart tupleLiteralPart, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTupleLiteralPart(TupleLiteralPart tupleLiteralPart,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)tupleLiteralPart, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTupleType(TupleType tupleType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTupleType(TupleType tupleType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)tupleType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateTypeExp(TypeExp typeExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateTypeExp(TypeExp typeExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)typeExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateUnspecifiedValueExp(UnspecifiedValueExp unspecifiedValueExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateUnspecifiedValueExp(
+			UnspecifiedValueExp unspecifiedValueExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)unspecifiedValueExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateValueSpecification(ValueSpecification valueSpecification, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateValueSpecification(
+			ValueSpecification valueSpecification, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)valueSpecification, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateVariableExp(VariableExp variableExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateVariableExp(VariableExp variableExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)variableExp, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVisitable(Visitable visitable, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint((EObject)visitable, diagnostics, context);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateVisitor(Visitor<?> visitor, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint((EObject)visitor, diagnostics, context);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateVoidType(VoidType voidType, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateVoidType(VoidType voidType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)voidType, diagnostics, context);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAssociativityKind(AssociativityKind associativityKind, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validate_(Visitable _, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return true;
+		return validate_EveryDefaultConstraint((EObject)_, diagnostics, context);
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateCollectionKind(CollectionKind collectionKind, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return true;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateBoolean(boolean boolean_, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return true;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInt(int int_, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateAssociativityKind(
+			AssociativityKind associativityKind, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return true;
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public boolean validateInteger(BigInteger integer, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
-		return true;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateObject(Object object, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateCollectionKind(CollectionKind collectionKind,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBoolean(boolean boolean_, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return true;
 	}
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateReal(BigDecimal real, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateInt(int int_, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return true;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateString(String string, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateInteger(BigInteger integer,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean validateUnlimitedNatural(BigInteger unlimitedNatural, DiagnosticChain diagnostics, Map<Object, Object> context)
-  {
+	public boolean validateObject(Object object, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return true;
 	}
 
-  /**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReal(BigDecimal real, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateString(String string, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUnlimitedNatural(BigInteger unlimitedNatural,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
 	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public ResourceLocator getResourceLocator()
-  {
+	@Override
+	public ResourceLocator getResourceLocator() {
 		return PivotPlugin.INSTANCE;
 	}
 

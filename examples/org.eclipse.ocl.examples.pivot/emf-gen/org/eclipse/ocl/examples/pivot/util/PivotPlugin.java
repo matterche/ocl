@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPlugin.java,v 1.1.2.1 2010/10/01 13:54:10 ewillink Exp $
+ * $Id: PivotPlugin.java,v 1.1.2.2 2010/10/05 17:39:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -38,7 +38,8 @@ import org.osgi.framework.BundleContext;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class PivotPlugin extends EMFPlugin {
+public final class PivotPlugin
+		extends EMFPlugin {
 
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
@@ -55,7 +56,7 @@ public final class PivotPlugin extends EMFPlugin {
 	private static final String PREFIX_CATCHING = "CAUGHT "; //$NON-NLS-1$
 
 	public static final String STANDARD_LIBRARY_PPID = "standard_library";
-	
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -169,7 +170,9 @@ public final class PivotPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipsePlugin {
+	public static class Implementation
+			extends EclipsePlugin {
+
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
@@ -189,9 +192,9 @@ public final class PivotPlugin extends EMFPlugin {
 				throws Exception {
 			super.start(context);
 
-//			EnvironmentRegistryImpl envreg = ((EnvironmentRegistryImpl) Environment.Registry.INSTANCE);
-//			envreg.new RegistryReader(getInstance()).readRegistry();
-		    new StandardLibraryRegistryReader().readRegistry();
+			//			EnvironmentRegistryImpl envreg = ((EnvironmentRegistryImpl) Environment.Registry.INSTANCE);
+			//			envreg.new RegistryReader(getInstance()).readRegistry();
+			new StandardLibraryRegistryReader().readRegistry();
 		}
 	}
 
@@ -397,6 +400,5 @@ public final class PivotPlugin extends EMFPlugin {
 			catching(PivotPlugin.class, "log", iae);//$NON-NLS-1$
 		}
 	}
-
 
 }
