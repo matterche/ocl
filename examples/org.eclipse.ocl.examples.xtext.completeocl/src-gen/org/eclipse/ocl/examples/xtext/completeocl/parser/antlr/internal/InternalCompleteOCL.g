@@ -175,17 +175,17 @@ ruleCompleteOCLDocumentCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleInfixOperator
-entryRuleInfixOperator returns [String current=null] 
+// Entry rule entryRuleNavigationOperator
+entryRuleNavigationOperator returns [String current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getInfixOperatorRule(), currentNode); } 
-	 iv_ruleInfixOperator=ruleInfixOperator 
-	 { $current=$iv_ruleInfixOperator.current.getText(); }  
+	{ currentNode = createCompositeNode(grammarAccess.getNavigationOperatorRule(), currentNode); } 
+	 iv_ruleNavigationOperator=ruleNavigationOperator 
+	 { $current=$iv_ruleNavigationOperator.current.getText(); }  
 	 EOF 
 ;
 
-// Rule InfixOperator
-ruleInfixOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+// Rule NavigationOperator
+ruleNavigationOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { setCurrentLookahead(); resetLookahead(); 
     }
     @after { resetLookahead(); 
@@ -193,10 +193,10 @@ ruleInfixOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }:
 (
     { 
-        currentNode=createCompositeNode(grammarAccess.getInfixOperatorAccess().getEssentialOCLInfixOperatorParserRuleCall_0(), currentNode); 
+        currentNode=createCompositeNode(grammarAccess.getNavigationOperatorAccess().getEssentialOCLNavigationOperatorParserRuleCall_0(), currentNode); 
     }
-    this_EssentialOCLInfixOperator_0=ruleEssentialOCLInfixOperator    {
-		$current.merge(this_EssentialOCLInfixOperator_0);
+    this_EssentialOCLNavigationOperator_0=ruleEssentialOCLNavigationOperator    {
+		$current.merge(this_EssentialOCLNavigationOperator_0);
     }
 
     { 
@@ -207,14 +207,14 @@ ruleInfixOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 	kw='^' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getInfixOperatorAccess().getCircumflexAccentKeyword_1(), null); 
+        createLeafNode(grammarAccess.getNavigationOperatorAccess().getCircumflexAccentKeyword_1(), null); 
     }
 
     |
 	kw='^^' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getInfixOperatorAccess().getCircumflexAccentCircumflexAccentKeyword_2(), null); 
+        createLeafNode(grammarAccess.getNavigationOperatorAccess().getCircumflexAccentCircumflexAccentKeyword_2(), null); 
     }
 )
     ;
@@ -2946,19 +2946,41 @@ ruleEssentialOCLInfixOperator returns [AntlrDatatypeRuleToken current=new AntlrD
         $current.merge(kw);
         createLeafNode(grammarAccess.getEssentialOCLInfixOperatorAccess().getImpliesKeyword_13(), null); 
     }
+)
+    ;
 
-    |
+
+
+
+
+// Entry rule entryRuleEssentialOCLNavigationOperator
+entryRuleEssentialOCLNavigationOperator returns [String current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getEssentialOCLNavigationOperatorRule(), currentNode); } 
+	 iv_ruleEssentialOCLNavigationOperator=ruleEssentialOCLNavigationOperator 
+	 { $current=$iv_ruleEssentialOCLNavigationOperator.current.getText(); }  
+	 EOF 
+;
+
+// Rule EssentialOCLNavigationOperator
+ruleEssentialOCLNavigationOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+	    lastConsumedNode = currentNode;
+    }:
+(
 	kw='.' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getEssentialOCLInfixOperatorAccess().getFullStopKeyword_14(), null); 
+        createLeafNode(grammarAccess.getEssentialOCLNavigationOperatorAccess().getFullStopKeyword_0(), null); 
     }
 
     |
 	kw='->' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getEssentialOCLInfixOperatorAccess().getHyphenMinusGreaterThanSignKeyword_15(), null); 
+        createLeafNode(grammarAccess.getEssentialOCLNavigationOperatorAccess().getHyphenMinusGreaterThanSignKeyword_1(), null); 
     }
 )
     ;
@@ -3105,6 +3127,40 @@ rulePrefixOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     }
     this_EssentialOCLPrefixOperator_0=ruleEssentialOCLPrefixOperator    {
 		$current.merge(this_EssentialOCLPrefixOperator_0);
+    }
+
+    { 
+        currentNode = currentNode.getParent();
+    }
+
+    ;
+
+
+
+
+
+// Entry rule entryRuleInfixOperator
+entryRuleInfixOperator returns [String current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getInfixOperatorRule(), currentNode); } 
+	 iv_ruleInfixOperator=ruleInfixOperator 
+	 { $current=$iv_ruleInfixOperator.current.getText(); }  
+	 EOF 
+;
+
+// Rule InfixOperator
+ruleInfixOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+	    lastConsumedNode = currentNode;
+    }:
+
+    { 
+        currentNode=createCompositeNode(grammarAccess.getInfixOperatorAccess().getEssentialOCLInfixOperatorParserRuleCall(), currentNode); 
+    }
+    this_EssentialOCLInfixOperator_0=ruleEssentialOCLInfixOperator    {
+		$current.merge(this_EssentialOCLInfixOperator_0);
     }
 
     { 
@@ -4754,13 +4810,61 @@ ruleBinaryOperatorCS returns [EObject current=null]
     	lastConsumedNode = currentNode;
     }:
 (
+	{ 
+	  /* */ 
+	}
+    { 
+        currentNode=createCompositeNode(grammarAccess.getBinaryOperatorCSAccess().getInfixOperatorCSParserRuleCall_0(), currentNode); 
+    }
+    this_InfixOperatorCS_0=ruleInfixOperatorCS
+    { 
+        $current = $this_InfixOperatorCS_0.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+	{ 
+	  /* */ 
+	}
+    { 
+        currentNode=createCompositeNode(grammarAccess.getBinaryOperatorCSAccess().getNavigationOperatorCSParserRuleCall_1(), currentNode); 
+    }
+    this_NavigationOperatorCS_1=ruleNavigationOperatorCS
+    { 
+        $current = $this_NavigationOperatorCS_1.current; 
+        currentNode = currentNode.getParent();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleInfixOperatorCS
+entryRuleInfixOperatorCS returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getInfixOperatorCSRule(), currentNode); }
+	 iv_ruleInfixOperatorCS=ruleInfixOperatorCS 
+	 { $current=$iv_ruleInfixOperatorCS.current; } 
+	 EOF 
+;
+
+// Rule InfixOperatorCS
+ruleInfixOperatorCS returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getBinaryOperatorCSAccess().getNameInfixOperatorParserRuleCall_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getInfixOperatorCSAccess().getNameInfixOperatorParserRuleCall_0(), currentNode); 
 	    }
 		lv_name_0_0=ruleInfixOperator		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getBinaryOperatorCSRule().getType().getClassifier());
+	            $current = factory.create(grammarAccess.getInfixOperatorCSRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        try {
@@ -4769,6 +4873,53 @@ ruleBinaryOperatorCS returns [EObject current=null]
 	       			"name",
 	        		lv_name_0_0, 
 	        		"InfixOperator", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleNavigationOperatorCS
+entryRuleNavigationOperatorCS returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getNavigationOperatorCSRule(), currentNode); }
+	 iv_ruleNavigationOperatorCS=ruleNavigationOperatorCS 
+	 { $current=$iv_ruleNavigationOperatorCS.current; } 
+	 EOF 
+;
+
+// Rule NavigationOperatorCS
+ruleNavigationOperatorCS returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getNavigationOperatorCSAccess().getNameNavigationOperatorParserRuleCall_0(), currentNode); 
+	    }
+		lv_name_0_0=ruleNavigationOperator		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getNavigationOperatorCSRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"name",
+	        		lv_name_0_0, 
+	        		"NavigationOperator", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);

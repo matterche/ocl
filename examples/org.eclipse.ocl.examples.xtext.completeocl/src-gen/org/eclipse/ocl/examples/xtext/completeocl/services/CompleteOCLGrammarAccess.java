@@ -59,24 +59,24 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getContextsContextDeclCSParserRuleCall_1_1_0() { return cContextsContextDeclCSParserRuleCall_1_1_0; }
 	}
 
-	public class InfixOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InfixOperator");
+	public class NavigationOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigationOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cEssentialOCLInfixOperatorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cEssentialOCLNavigationOperatorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Keyword cCircumflexAccentKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cCircumflexAccentCircumflexAccentKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//// Intended to be overridden
 		//
-		//InfixOperator returns ecore::EString:
-		//	EssentialOCLInfixOperator | "^" | "^^";
+		//NavigationOperator returns ecore::EString:
+		//	EssentialOCLNavigationOperator | "^" | "^^";
 		public ParserRule getRule() { return rule; }
 
-		//EssentialOCLInfixOperator | "^" | "^^"
+		//EssentialOCLNavigationOperator | "^" | "^^"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//EssentialOCLInfixOperator
-		public RuleCall getEssentialOCLInfixOperatorParserRuleCall_0() { return cEssentialOCLInfixOperatorParserRuleCall_0; }
+		//EssentialOCLNavigationOperator
+		public RuleCall getEssentialOCLNavigationOperatorParserRuleCall_0() { return cEssentialOCLNavigationOperatorParserRuleCall_0; }
 
 		//"^"
 		public Keyword getCircumflexAccentKeyword_1() { return cCircumflexAccentKeyword_1; }
@@ -1303,7 +1303,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private CompleteOCLDocumentCSElements pCompleteOCLDocumentCS;
-	private InfixOperatorElements pInfixOperator;
+	private NavigationOperatorElements pNavigationOperator;
 	private UnrestrictedNameElements pUnrestrictedName;
 	private PrimitiveTypeIdentifierElements pPrimitiveTypeIdentifier;
 	private BodyCSElements pBodyCS;
@@ -1370,14 +1370,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Intended to be overridden
 	//
-	//InfixOperator returns ecore::EString:
-	//	EssentialOCLInfixOperator | "^" | "^^";
-	public InfixOperatorElements getInfixOperatorAccess() {
-		return (pInfixOperator != null) ? pInfixOperator : (pInfixOperator = new InfixOperatorElements());
+	//NavigationOperator returns ecore::EString:
+	//	EssentialOCLNavigationOperator | "^" | "^^";
+	public NavigationOperatorElements getNavigationOperatorAccess() {
+		return (pNavigationOperator != null) ? pNavigationOperator : (pNavigationOperator = new NavigationOperatorElements());
 	}
 	
-	public ParserRule getInfixOperatorRule() {
-		return getInfixOperatorAccess().getRule();
+	public ParserRule getNavigationOperatorRule() {
+		return getNavigationOperatorAccess().getRule();
 	}
 
 	////|	'package'
@@ -1800,13 +1800,23 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EssentialOCLInfixOperator returns ecore::EString:
-	//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies" | "." | "->";
+	//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies";
 	public EssentialOCLGrammarAccess.EssentialOCLInfixOperatorElements getEssentialOCLInfixOperatorAccess() {
 		return gaEssentialOCL.getEssentialOCLInfixOperatorAccess();
 	}
 	
 	public ParserRule getEssentialOCLInfixOperatorRule() {
 		return getEssentialOCLInfixOperatorAccess().getRule();
+	}
+
+	//EssentialOCLNavigationOperator returns ecore::EString:
+	//	"." | "->";
+	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorElements getEssentialOCLNavigationOperatorAccess() {
+		return gaEssentialOCL.getEssentialOCLNavigationOperatorAccess();
+	}
+	
+	public ParserRule getEssentialOCLNavigationOperatorRule() {
+		return getEssentialOCLNavigationOperatorAccess().getRule();
 	}
 
 	//Identifier returns ecore::EString:
@@ -1839,6 +1849,18 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrefixOperatorRule() {
 		return getPrefixOperatorAccess().getRule();
+	}
+
+	//// Intended to be overridden
+	//
+	//InfixOperator returns ecore::EString:
+	//	EssentialOCLInfixOperator;
+	public EssentialOCLGrammarAccess.InfixOperatorElements getInfixOperatorAccess() {
+		return gaEssentialOCL.getInfixOperatorAccess();
+	}
+	
+	public ParserRule getInfixOperatorRule() {
+		return getInfixOperatorAccess().getRule();
 	}
 
 	////---------------------------------------------------------------------
@@ -2127,13 +2149,33 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BinaryOperatorCS:
-	//	name=InfixOperator;
+	//	InfixOperatorCS | NavigationOperatorCS;
 	public EssentialOCLGrammarAccess.BinaryOperatorCSElements getBinaryOperatorCSAccess() {
 		return gaEssentialOCL.getBinaryOperatorCSAccess();
 	}
 	
 	public ParserRule getBinaryOperatorCSRule() {
 		return getBinaryOperatorCSAccess().getRule();
+	}
+
+	//InfixOperatorCS returns BinaryOperatorCS:
+	//	name=InfixOperator;
+	public EssentialOCLGrammarAccess.InfixOperatorCSElements getInfixOperatorCSAccess() {
+		return gaEssentialOCL.getInfixOperatorCSAccess();
+	}
+	
+	public ParserRule getInfixOperatorCSRule() {
+		return getInfixOperatorCSAccess().getRule();
+	}
+
+	//NavigationOperatorCS:
+	//	name=NavigationOperator;
+	public EssentialOCLGrammarAccess.NavigationOperatorCSElements getNavigationOperatorCSAccess() {
+		return gaEssentialOCL.getNavigationOperatorCSAccess();
+	}
+	
+	public ParserRule getNavigationOperatorCSRule() {
+		return getNavigationOperatorCSAccess().getRule();
 	}
 
 	//PrefixedExpCS returns ExpCS:

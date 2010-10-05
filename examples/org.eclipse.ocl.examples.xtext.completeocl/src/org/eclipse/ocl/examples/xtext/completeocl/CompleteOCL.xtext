@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.6.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.6.6.2 2010/10/05 18:12:43 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
 with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
@@ -28,8 +28,8 @@ CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
 	(ownedImport+=ImportCS)*
 	(packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*;
 
-InfixOperator:						// Intended to be overridden
-	EssentialOCLInfixOperator | '^' | '^^'
+NavigationOperator:						// Intended to be overridden
+	EssentialOCLNavigationOperator | '^' | '^^'
 ;
 
 UnrestrictedName returns ecore::EString:
