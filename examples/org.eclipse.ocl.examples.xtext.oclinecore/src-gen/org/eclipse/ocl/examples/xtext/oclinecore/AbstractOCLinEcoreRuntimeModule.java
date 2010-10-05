@@ -86,7 +86,7 @@ public abstract class AbstractOCLinEcoreRuntimeModule extends DefaultRuntimeModu
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
-		return org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreCSScopeProvider.class;
+		return org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreScopeProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
