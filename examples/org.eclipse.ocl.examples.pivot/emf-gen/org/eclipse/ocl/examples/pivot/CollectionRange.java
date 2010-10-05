@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRange.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: CollectionRange.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,46 +35,47 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface CollectionRange extends CollectionLiteralPart
-{
-  /**
+public interface CollectionRange
+		extends CollectionLiteralPart {
+
+	/**
 	 * Returns the value of the '<em><b>First</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>First</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>First</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>First</em>' containment reference.
 	 * @see #setFirst(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionRange_First()
 	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
 	 * @generated
 	 */
-  OclExpression getFirst();
+	OclExpression getFirst();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CollectionRange#getFirst <em>First</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>First</em>' containment reference.
 	 * @see #getFirst()
 	 * @generated
 	 */
-  void setFirst(OclExpression value);
+	void setFirst(OclExpression value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>First</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * @see #getFirst()
 	 * @generated
 	 */
-  OclExpression createFirst(EClass eClass);
+	OclExpression createFirst(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>First</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,44 +85,44 @@ public interface CollectionRange extends CollectionLiteralPart
 	 */
 	OclExpression createFirst();
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Last</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Last</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Last</em>' containment reference.
 	 * @see #setLast(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionRange_Last()
 	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
 	 * @generated
 	 */
-  OclExpression getLast();
+	OclExpression getLast();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CollectionRange#getLast <em>Last</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Last</em>' containment reference.
 	 * @see #getLast()
 	 * @generated
 	 */
-  void setLast(OclExpression value);
+	void setLast(OclExpression value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Last</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * @see #getLast()
 	 * @generated
 	 */
-  OclExpression createLast(EClass eClass);
+	OclExpression createLast(EClass eClass);
 
-/**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Last</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

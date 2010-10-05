@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: OclExpression.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: OclExpression.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -27,14 +26,6 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface OclExpression extends TypedElement
-{
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.ocl.examples.pivot.Object" required="true" ordered="false" contextRequired="true" contextOrdered="false"
-	 * @generated
-	 */
-	Object evaluate(EvaluationContext context);
+public interface OclExpression
+		extends TypedElement {
 } // OclExpression

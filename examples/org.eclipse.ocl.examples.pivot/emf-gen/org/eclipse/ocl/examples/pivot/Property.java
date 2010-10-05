@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Property.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: Property.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -47,13 +47,15 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @model
  * @generated
  */
-public interface Property extends TypedMultiplicityElement, MultiplicityElement, TypedElement, ParameterableElement, ImplementableElement
-{
-  /**
+public interface Property
+		extends TypedMultiplicityElement, MultiplicityElement, TypedElement,
+		ParameterableElement, ImplementableElement {
+
+	/**
 	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * If isReadOnly is true, the attribute may not be written to after initialization.
 	 * <!-- end-model-doc -->
@@ -63,22 +65,22 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean isReadOnly();
+	boolean isReadOnly();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isReadOnly <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Read Only</em>' attribute.
 	 * @see #isReadOnly()
 	 * @generated
 	 */
-  void setIsReadOnly(boolean value);
+	void setIsReadOnly(boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.
 	 * <!-- end-model-doc -->
@@ -88,23 +90,23 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
 	 * @generated
 	 */
-  String getDefault();
+	String getDefault();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getDefault <em>Default</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Default</em>' attribute.
 	 * @see #getDefault()
 	 * @generated
 	 */
-  void setDefault(String value);
+	void setDefault(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.
 	 * <!-- end-model-doc -->
@@ -114,23 +116,23 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean isComposite();
+	boolean isComposite();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isComposite <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Composite</em>' attribute.
 	 * @see #isComposite()
 	 * @generated
 	 */
-  void setIsComposite(boolean value);
+	void setIsComposite(boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Is Derived</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * If isDerived is true, the value of the attribute is derived from information elsewhere.
 	 * <!-- end-model-doc -->
@@ -140,22 +142,22 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean isDerived();
+	boolean isDerived();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isDerived <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Derived</em>' attribute.
 	 * @see #isDerived()
 	 * @generated
 	 */
-  void setIsDerived(boolean value);
+	void setIsDerived(boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Opposite</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1.
 	 * <!-- end-model-doc -->
@@ -165,27 +167,27 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model ordered="false"
 	 * @generated
 	 */
-  Property getOpposite();
+	Property getOpposite();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getOpposite <em>Opposite</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Opposite</em>' reference.
 	 * @see #getOpposite()
 	 * @generated
 	 */
-  void setOpposite(Property value);
+	void setOpposite(Property value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Association</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttributes <em>Unowned Attribute</em>}'.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Association</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Association</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Association</em>' reference.
 	 * @see #setAssociation(AssociationClass)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Association()
@@ -193,23 +195,23 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model opposite="unownedAttribute" ordered="false"
 	 * @generated
 	 */
-  AssociationClass getAssociation();
+	AssociationClass getAssociation();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Association</em>' reference.
 	 * @see #getAssociation()
 	 * @generated
 	 */
-  void setAssociation(AssociationClass value);
+	void setAssociation(AssociationClass value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Class</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedAttributes <em>Owned Attribute</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The class that owns the property, and of which the property is an attribute.
 	 * <!-- end-model-doc -->
@@ -220,21 +222,21 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model opposite="ownedAttribute" transient="false" ordered="false"
 	 * @generated
 	 */
-  org.eclipse.ocl.examples.pivot.Class getClass_();
+	org.eclipse.ocl.examples.pivot.Class getClass_();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Class</em>' container reference.
 	 * @see #getClass_()
 	 * @generated
 	 */
-  void setClass_(org.eclipse.ocl.examples.pivot.Class value);
+	void setClass_(org.eclipse.ocl.examples.pivot.Class value);
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A binding of a property template parameter representing an attribute must be to an attribute.
 	 * (isAttribute(self) and (templateParameterSubstitution->notEmpty())
@@ -245,6 +247,7 @@ public interface Property extends TypedMultiplicityElement, MultiplicityElement,
 	 * @model
 	 * @generated
 	 */
-  boolean validateBindingToAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateBindingToAttribute(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // Property

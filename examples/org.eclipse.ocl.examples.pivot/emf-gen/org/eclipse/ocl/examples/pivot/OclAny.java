@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OclAny.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: OclAny.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
+
+import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
+import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,33 +26,35 @@ package org.eclipse.ocl.examples.pivot;
  *
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOclAny()
- * @model
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.pivot._"
+ * @extends PivotObject
  * @generated
  */
-public interface OclAny extends Visitable
-{
-  /**
+public interface OclAny
+		extends PivotObject, Visitable {
+
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-  org.eclipse.ocl.examples.pivot.Class oclType();
+	org.eclipse.ocl.examples.pivot.Class oclType();
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean oclIsInvalid();
+	boolean oclIsInvalid();
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean oclIsUndefined();
+	boolean oclIsUndefined();
 
 } // OclAny

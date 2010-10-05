@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExp.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: UnspecifiedValueExp.java,v 1.1.2.2 2010/10/05 17:39:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +26,6 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface UnspecifiedValueExp extends OclExpression
-{
+public interface UnspecifiedValueExp
+		extends OclExpression {
 } // UnspecifiedValueExp

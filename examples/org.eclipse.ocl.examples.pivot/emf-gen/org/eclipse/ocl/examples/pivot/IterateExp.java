@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: IterateExp.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: IterateExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -34,45 +33,46 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface IterateExp extends LoopExp
-{
-  /**
+public interface IterateExp
+		extends LoopExp {
+
+	/**
 	 * Returns the value of the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Result</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Result</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result</em>' containment reference.
 	 * @see #setResult(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIterateExp_Result()
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  Variable getResult();
+	Variable getResult();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.IterateExp#getResult <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Result</em>' containment reference.
 	 * @see #getResult()
 	 * @generated
 	 */
-  void setResult(Variable value);
+	void setResult(Variable value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Variable} and sets the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Variable}.
 	 * @see #getResult()
 	 * @generated
 	 */
-  Variable createResult();
+	Variable createResult();
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Referred Iterate</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -88,7 +88,7 @@ public interface IterateExp extends LoopExp
 	 */
 	Iterate getReferredIterate();
 
-/**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.IterateExp#getReferredIterate <em>Referred Iterate</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

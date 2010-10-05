@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterType.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: TemplateParameterType.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,32 +32,33 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface TemplateParameterType extends Type
-{
-  /**
+public interface TemplateParameterType
+		extends Type {
+
+	/**
 	 * Returns the value of the '<em><b>Specification</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Specification</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Specification</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Specification</em>' attribute.
 	 * @see #setSpecification(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterType_Specification()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
 	 * @generated
 	 */
-  String getSpecification();
+	String getSpecification();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterType#getSpecification <em>Specification</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Specification</em>' attribute.
 	 * @see #getSpecification()
 	 * @generated
 	 */
-  void setSpecification(String value);
+	void setSpecification(String value);
 
 } // TemplateParameterType

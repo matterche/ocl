@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Comment.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Comment.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -39,12 +39,13 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Comment extends Element
-{
-  /**
+public interface Comment
+		extends Element {
+
+	/**
 	 * Returns the value of the '<em><b>Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Specifies a string that is the comment.
 	 * <!-- end-model-doc -->
@@ -54,23 +55,23 @@ public interface Comment extends Element
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
 	 * @generated
 	 */
-  String getBody();
+	String getBody();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Comment#getBody <em>Body</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Body</em>' attribute.
 	 * @see #getBody()
 	 * @generated
 	 */
-  void setBody(String value);
+	void setBody(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Annotated Element</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Element}.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * References the Element(s) being commented.
 	 * <!-- end-model-doc -->
@@ -79,6 +80,6 @@ public interface Comment extends Element
 	 * @model ordered="false"
 	 * @generated
 	 */
-  EList<Element> getAnnotatedElements();
+	EList<Element> getAnnotatedElements();
 
 } // Comment

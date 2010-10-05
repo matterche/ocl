@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Constraint.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: Constraint.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -46,8 +46,9 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface Constraint extends NamedElement
-{
+public interface Constraint
+		extends NamedElement {
+
 	/**
 	 * Returns the value of the '<em><b>Constrained Element</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Element}.
@@ -163,7 +164,8 @@ public interface Constraint extends NamedElement
 	 * @model
 	 * @generated
 	 */
-	boolean validateNotApplyToSelf(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateNotApplyToSelf(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,6 +179,7 @@ public interface Constraint extends NamedElement
 	 * @model
 	 * @generated
 	 */
-	boolean validateValueSpecificationBoolean(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateValueSpecificationBoolean(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // Constraint

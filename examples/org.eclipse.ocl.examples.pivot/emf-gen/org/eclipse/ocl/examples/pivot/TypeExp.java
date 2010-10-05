@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: TypeExp.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: TypeExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,32 +32,33 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface TypeExp extends OclExpression
-{
-  /**
+public interface TypeExp
+		extends OclExpression {
+
+	/**
 	 * Returns the value of the '<em><b>Referred Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Referred Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Type</em>' reference.
 	 * @see #setReferredType(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypeExp_ReferredType()
 	 * @model ordered="false"
 	 * @generated
 	 */
-  Type getReferredType();
+	Type getReferredType();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TypeExp#getReferredType <em>Referred Type</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referred Type</em>' reference.
 	 * @see #getReferredType()
 	 * @generated
 	 */
-  void setReferredType(Type value);
+	void setReferredType(Type value);
 
 } // TypeExp

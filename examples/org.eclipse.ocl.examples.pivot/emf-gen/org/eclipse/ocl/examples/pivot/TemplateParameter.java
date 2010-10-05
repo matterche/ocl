@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameter.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: TemplateParameter.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -46,13 +46,14 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface TemplateParameter extends Element
-{
-  /**
+public interface TemplateParameter
+		extends Element {
+
+	/**
 	 * Returns the value of the '<em><b>Signature</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameters <em>Owned Parameter</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The template signature that owns this template parameter.
 	 * <!-- end-model-doc -->
@@ -63,19 +64,19 @@ public interface TemplateParameter extends Element
 	 * @model opposite="ownedParameter" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
-  TemplateSignature getSignature();
+	TemplateSignature getSignature();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Signature</em>' container reference.
 	 * @see #getSignature()
 	 * @generated
 	 */
-  void setSignature(TemplateSignature value);
+	void setSignature(TemplateSignature value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Parametered Element</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#getOwningTemplateParameter <em>Owning Template Parameter</em>}'.
 	 * <p>
@@ -85,7 +86,7 @@ public interface TemplateParameter extends Element
 	 * </ul>
 	 * </p>
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that is owned by this template parameter.
 	 * <!-- end-model-doc -->
@@ -96,33 +97,33 @@ public interface TemplateParameter extends Element
 	 * @model opposite="owningTemplateParameter" containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  ParameterableElement getOwnedParameteredElement();
+	ParameterableElement getOwnedParameteredElement();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedParameteredElement <em>Owned Parametered Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Parametered Element</em>' containment reference.
 	 * @see #getOwnedParameteredElement()
 	 * @generated
 	 */
-  void setOwnedParameteredElement(ParameterableElement value);
+	void setOwnedParameteredElement(ParameterableElement value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.ParameterableElement} and sets the '<em><b>Owned Parametered Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.ParameterableElement} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.ParameterableElement}.
 	 * @see #getOwnedParameteredElement()
 	 * @generated
 	 */
-  ParameterableElement createOwnedParameteredElement(EClass eClass);
+	ParameterableElement createOwnedParameteredElement(EClass eClass);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Default</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that is the default for this formal template parameter.
 	 * <!-- end-model-doc -->
@@ -132,19 +133,19 @@ public interface TemplateParameter extends Element
 	 * @model ordered="false"
 	 * @generated
 	 */
-  ParameterableElement getDefault();
+	ParameterableElement getDefault();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getDefault <em>Default</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Default</em>' reference.
 	 * @see #getDefault()
 	 * @generated
 	 */
-  void setDefault(ParameterableElement value);
+	void setDefault(ParameterableElement value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Default</b></em>' containment reference.
 	 * <p>
 	 * This feature subsets the following features:
@@ -153,7 +154,7 @@ public interface TemplateParameter extends Element
 	 * </ul>
 	 * </p>
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that is owned by this template parameter for the purpose of providing a default.
 	 * <!-- end-model-doc -->
@@ -163,34 +164,34 @@ public interface TemplateParameter extends Element
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  ParameterableElement getOwnedDefault();
+	ParameterableElement getOwnedDefault();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedDefault <em>Owned Default</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Default</em>' containment reference.
 	 * @see #getOwnedDefault()
 	 * @generated
 	 */
-  void setOwnedDefault(ParameterableElement value);
+	void setOwnedDefault(ParameterableElement value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.ParameterableElement} and sets the '<em><b>Owned Default</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.ParameterableElement} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.ParameterableElement}.
 	 * @see #getOwnedDefault()
 	 * @generated
 	 */
-  ParameterableElement createOwnedDefault(EClass eClass);
+	ParameterableElement createOwnedDefault(EClass eClass);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Parametered Element</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#getTemplateParameter <em>Template Parameter</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element exposed by this template parameter.
 	 * <!-- end-model-doc -->
@@ -201,21 +202,21 @@ public interface TemplateParameter extends Element
 	 * @model opposite="templateParameter" required="true" ordered="false"
 	 * @generated
 	 */
-  ParameterableElement getParameteredElement();
+	ParameterableElement getParameteredElement();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getParameteredElement <em>Parametered Element</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parametered Element</em>' reference.
 	 * @see #getParameteredElement()
 	 * @generated
 	 */
-  void setParameteredElement(ParameterableElement value);
+	void setParameteredElement(ParameterableElement value);
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The default must be compatible with the formal template parameter.
 	 * default->notEmpty() implies default->isCompatibleWith(parameteredElement)
@@ -225,6 +226,7 @@ public interface TemplateParameter extends Element
 	 * @model
 	 * @generated
 	 */
-  boolean validateMustBeCompatible(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateMustBeCompatible(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // TemplateParameter

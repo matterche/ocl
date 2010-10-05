@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Operation.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: Operation.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -44,9 +44,12 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Operation extends TypedMultiplicityElement, MultiplicityElement, TypedElement, Namespace, TemplateableElement, ParameterableElement, ImplementableElement
-{
-  /**
+public interface Operation
+		extends TypedMultiplicityElement, MultiplicityElement, TypedElement,
+		Namespace, TemplateableElement, ParameterableElement,
+		ImplementableElement {
+
+	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -72,11 +75,11 @@ public interface Operation extends TypedMultiplicityElement, MultiplicityElement
 	 */
 	void setPrecedence(Precedence value);
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Raised Exception</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The exceptions that are declared as possible during an invocation of the operation.
 	 * <!-- end-model-doc -->
@@ -85,14 +88,14 @@ public interface Operation extends TypedMultiplicityElement, MultiplicityElement
 	 * @model ordered="false"
 	 * @generated
 	 */
-  EList<Type> getRaisedExceptions();
+	EList<Type> getRaisedExceptions();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Parameter}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Parameter#getOperation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The parameters to the operation.
 	 * <!-- end-model-doc -->
@@ -102,23 +105,23 @@ public interface Operation extends TypedMultiplicityElement, MultiplicityElement
 	 * @model opposite="operation" containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<Parameter> getOwnedParameters();
+	EList<Parameter> getOwnedParameters();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Parameter} and appends it to the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Parameter}.
 	 * @see #getOwnedParameters()
 	 * @generated
 	 */
-  Parameter createOwnedParameter();
+	Parameter createOwnedParameter();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Class</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operation</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The class that owns the operation.
 	 * <!-- end-model-doc -->
@@ -129,19 +132,19 @@ public interface Operation extends TypedMultiplicityElement, MultiplicityElement
 	 * @model opposite="ownedOperation" transient="false" ordered="false"
 	 * @generated
 	 */
-  org.eclipse.ocl.examples.pivot.Class getClass_();
+	org.eclipse.ocl.examples.pivot.Class getClass_();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#getClass_ <em>Class</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Class</em>' container reference.
 	 * @see #getClass_()
 	 * @generated
 	 */
-  void setClass_(org.eclipse.ocl.examples.pivot.Class value);
+	void setClass_(org.eclipse.ocl.examples.pivot.Class value);
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -152,6 +155,7 @@ public interface Operation extends TypedMultiplicityElement, MultiplicityElement
 	 * @model
 	 * @generated
 	 */
-	boolean validateTestConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateTestConstraint(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // Operation

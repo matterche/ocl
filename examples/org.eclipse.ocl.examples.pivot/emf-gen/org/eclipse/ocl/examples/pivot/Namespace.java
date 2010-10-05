@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Namespace.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: Namespace.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -26,6 +26,6 @@ package org.eclipse.ocl.examples.pivot;
  * @model abstract="true"
  * @generated
  */
-public interface Namespace extends NamedElement
-{
+public interface Namespace
+		extends NamedElement {
 } // Namespace

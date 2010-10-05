@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: RealLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.math.BigDecimal;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -35,9 +34,10 @@ import java.math.BigDecimal;
  * @model
  * @generated
  */
-public interface RealLiteralExp extends NumericLiteralExp
-{
-  /**
+public interface RealLiteralExp
+		extends NumericLiteralExp {
+
+	/**
 	 * Returns the value of the '<em><b>Real Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>

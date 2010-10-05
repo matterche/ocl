@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElement.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: NamedElement.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -40,9 +40,10 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface NamedElement extends MonikeredElement, Element, INamedElement
-{
-  /**
+public interface NamedElement
+		extends MonikeredElement, Element, INamedElement {
+
+	/**
 	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Annotation}.
 	 * <!-- begin-user-doc -->
@@ -71,7 +72,7 @@ public interface NamedElement extends MonikeredElement, Element, INamedElement
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The name of the NamedElement.
 	 * <!-- end-model-doc -->
@@ -81,19 +82,19 @@ public interface NamedElement extends MonikeredElement, Element, INamedElement
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
 	 * @generated
 	 */
-  String getName();
+	String getName();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.NamedElement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
-  void setName(String value);
+	void setName(String value);
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Owned Rule</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Constraint}.
 	 * <!-- begin-user-doc -->
@@ -109,7 +110,7 @@ public interface NamedElement extends MonikeredElement, Element, INamedElement
 	 */
 	EList<Constraint> getOwnedRules();
 
-/**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Constraint} and appends it to the '<em><b>Owned Rule</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

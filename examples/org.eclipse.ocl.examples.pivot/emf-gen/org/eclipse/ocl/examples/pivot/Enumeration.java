@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Enumeration.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: Enumeration.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -38,14 +38,15 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Enumeration extends DataType
-{
-  /**
+public interface Enumeration
+		extends DataType {
+
+	/**
 	 * Returns the value of the '<em><b>Owned Literal</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.EnumerationLiteral}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.EnumerationLiteral#getEnumeration <em>Enumeration</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The ordered set of literals for this Enumeration.
 	 * <!-- end-model-doc -->
@@ -55,16 +56,16 @@ public interface Enumeration extends DataType
 	 * @model opposite="enumeration" containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<EnumerationLiteral> getOwnedLiterals();
+	EList<EnumerationLiteral> getOwnedLiterals();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.EnumerationLiteral} and appends it to the '<em><b>Owned Literal</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.EnumerationLiteral}.
 	 * @see #getOwnedLiterals()
 	 * @generated
 	 */
-  EnumerationLiteral createOwnedLiteral();
+	EnumerationLiteral createOwnedLiteral();
 
 } // Enumeration

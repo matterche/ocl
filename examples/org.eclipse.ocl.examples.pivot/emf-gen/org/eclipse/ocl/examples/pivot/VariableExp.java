@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: VariableExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: VariableExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,25 +32,26 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface VariableExp extends OclExpression
-{
-  /**
+public interface VariableExp
+		extends OclExpression {
+
+	/**
 	 * Returns the value of the '<em><b>Referred Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Referred Variable</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Variable</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Variable</em>' reference.
 	 * @see #setReferredVariable(VariableDeclaration)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getVariableExp_ReferredVariable()
 	 * @model ordered="false"
 	 * @generated
 	 */
-  VariableDeclaration getReferredVariable();
+	VariableDeclaration getReferredVariable();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.VariableExp#getReferredVariable <em>Referred Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

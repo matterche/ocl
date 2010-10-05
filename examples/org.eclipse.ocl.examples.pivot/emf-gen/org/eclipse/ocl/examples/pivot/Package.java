@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Package.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Package.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -46,9 +46,10 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface Package extends NamedElement, Namespace, TemplateableElement
-{
-  /**
+public interface Package
+		extends NamedElement, Namespace, TemplateableElement {
+
+	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -100,7 +101,7 @@ public interface Package extends NamedElement, Namespace, TemplateableElement
 	 */
 	void setNsURI(String value);
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Owned Precedence</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Precedence}.
 	 * <!-- begin-user-doc -->
@@ -116,7 +117,7 @@ public interface Package extends NamedElement, Namespace, TemplateableElement
 	 */
 	EList<Precedence> getOwnedPrecedences();
 
-/**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Precedence} and appends it to the '<em><b>Owned Precedence</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,12 +127,12 @@ public interface Package extends NamedElement, Namespace, TemplateableElement
 	 */
 	Precedence createOwnedPrecedence();
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Nested Package</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Package}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The set of contained packages.
 	 * <!-- end-model-doc -->
@@ -141,34 +142,34 @@ public interface Package extends NamedElement, Namespace, TemplateableElement
 	 * @model opposite="nestingPackage" containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  EList<Package> getNestedPackages();
+	EList<Package> getNestedPackages();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Package} and appends it to the '<em><b>Nested Package</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Package} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Package}.
 	 * @see #getNestedPackages()
 	 * @generated
 	 */
-  Package createNestedPackage(EClass eClass);
+	Package createNestedPackage(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Package} and appends it to the '<em><b>Nested Package</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Package}.
 	 * @see #getNestedPackages()
 	 * @generated
 	 */
-  Package createNestedPackage();
+	Package createNestedPackage();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Nesting Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackages <em>Nested Package</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The containing package.
 	 * <!-- end-model-doc -->
@@ -179,24 +180,24 @@ public interface Package extends NamedElement, Namespace, TemplateableElement
 	 * @model opposite="nestedPackage" transient="false" ordered="false"
 	 * @generated
 	 */
-  Package getNestingPackage();
+	Package getNestingPackage();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Nesting Package</em>' container reference.
 	 * @see #getNestingPackage()
 	 * @generated
 	 */
-  void setNestingPackage(Package value);
+	void setNestingPackage(Package value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The set of contained types.
 	 * <!-- end-model-doc -->
@@ -206,17 +207,17 @@ public interface Package extends NamedElement, Namespace, TemplateableElement
 	 * @model opposite="package" containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  EList<Type> getOwnedTypes();
+	EList<Type> getOwnedTypes();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Type} and appends it to the '<em><b>Owned Type</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Type} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Type}.
 	 * @see #getOwnedTypes()
 	 * @generated
 	 */
-  Type createOwnedType(EClass eClass);
+	Type createOwnedType(EClass eClass);
 
 } // Package

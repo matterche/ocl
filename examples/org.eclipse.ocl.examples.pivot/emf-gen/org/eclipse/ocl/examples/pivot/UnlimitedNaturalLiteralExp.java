@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExp.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,8 +34,9 @@ import java.math.BigInteger;
  * @model
  * @generated
  */
-public interface UnlimitedNaturalLiteralExp extends NumericLiteralExp
-{
+public interface UnlimitedNaturalLiteralExp
+		extends NumericLiteralExp {
+
 	/**
 	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->

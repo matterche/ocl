@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterSubstitution.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: TemplateParameterSubstitution.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -45,12 +45,13 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface TemplateParameterSubstitution extends Element
-{
-  /**
+public interface TemplateParameterSubstitution
+		extends Element {
+
+	/**
 	 * Returns the value of the '<em><b>Formal</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The formal template parameter that is associated with this substitution.
 	 * <!-- end-model-doc -->
@@ -60,22 +61,22 @@ public interface TemplateParameterSubstitution extends Element
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-  TemplateParameter getFormal();
+	TemplateParameter getFormal();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getFormal <em>Formal</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Formal</em>' reference.
 	 * @see #getFormal()
 	 * @generated
 	 */
-  void setFormal(TemplateParameter value);
+	void setFormal(TemplateParameter value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Actual</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that is the actual parameter for this substitution.
 	 * <!-- end-model-doc -->
@@ -85,19 +86,19 @@ public interface TemplateParameterSubstitution extends Element
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-  ParameterableElement getActual();
+	ParameterableElement getActual();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Actual</em>' reference.
 	 * @see #getActual()
 	 * @generated
 	 */
-  void setActual(ParameterableElement value);
+	void setActual(ParameterableElement value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Actual</b></em>' containment reference.
 	 * <p>
 	 * This feature subsets the following features:
@@ -106,7 +107,7 @@ public interface TemplateParameterSubstitution extends Element
 	 * </ul>
 	 * </p>
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The actual parameter that is owned by this substitution.
 	 * <!-- end-model-doc -->
@@ -116,34 +117,34 @@ public interface TemplateParameterSubstitution extends Element
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  ParameterableElement getOwnedActual();
+	ParameterableElement getOwnedActual();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedActual <em>Owned Actual</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Actual</em>' containment reference.
 	 * @see #getOwnedActual()
 	 * @generated
 	 */
-  void setOwnedActual(ParameterableElement value);
+	void setOwnedActual(ParameterableElement value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.ParameterableElement} and sets the '<em><b>Owned Actual</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.ParameterableElement} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.ParameterableElement}.
 	 * @see #getOwnedActual()
 	 * @generated
 	 */
-  ParameterableElement createOwnedActual(EClass eClass);
+	ParameterableElement createOwnedActual(EClass eClass);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Template Binding</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitutions <em>Parameter Substitution</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The optional bindings from this element to templates.
 	 * <!-- end-model-doc -->
@@ -154,21 +155,21 @@ public interface TemplateParameterSubstitution extends Element
 	 * @model opposite="parameterSubstitution" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
-  TemplateBinding getTemplateBinding();
+	TemplateBinding getTemplateBinding();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding <em>Template Binding</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Template Binding</em>' container reference.
 	 * @see #getTemplateBinding()
 	 * @generated
 	 */
-  void setTemplateBinding(TemplateBinding value);
+	void setTemplateBinding(TemplateBinding value);
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The actual parameter must be compatible with the formal template parameter, e.g. the actual parameter for a class template parameter must be a class.
 	 * actual->forAll(a | a.isCompatibleWith(formal.parameteredElement))
@@ -178,6 +179,7 @@ public interface TemplateParameterSubstitution extends Element
 	 * @model
 	 * @generated
 	 */
-  boolean validateMustBeCompatible(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateMustBeCompatible(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // TemplateParameterSubstitution

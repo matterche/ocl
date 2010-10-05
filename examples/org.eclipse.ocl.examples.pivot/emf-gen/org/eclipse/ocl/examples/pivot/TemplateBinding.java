@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBinding.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: TemplateBinding.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -43,12 +43,13 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TemplateBinding extends MonikeredElement, Element
-{
-  /**
+public interface TemplateBinding
+		extends MonikeredElement, Element {
+
+	/**
 	 * Returns the value of the '<em><b>Signature</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The template signature for the template that is the target of the binding.
 	 * <!-- end-model-doc -->
@@ -58,24 +59,24 @@ public interface TemplateBinding extends MonikeredElement, Element
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-  TemplateSignature getSignature();
+	TemplateSignature getSignature();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature <em>Signature</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Signature</em>' reference.
 	 * @see #getSignature()
 	 * @generated
 	 */
-  void setSignature(TemplateSignature value);
+	void setSignature(TemplateSignature value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Parameter Substitution</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding <em>Template Binding</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The parameter substitutions owned by this template binding.
 	 * <!-- end-model-doc -->
@@ -85,23 +86,23 @@ public interface TemplateBinding extends MonikeredElement, Element
 	 * @model opposite="templateBinding" containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  EList<TemplateParameterSubstitution> getParameterSubstitutions();
+	EList<TemplateParameterSubstitution> getParameterSubstitutions();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution} and appends it to the '<em><b>Parameter Substitution</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution}.
 	 * @see #getParameterSubstitutions()
 	 * @generated
 	 */
-  TemplateParameterSubstitution createParameterSubstitution();
+	TemplateParameterSubstitution createParameterSubstitution();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Bound Element</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings <em>Template Binding</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that is bound by this binding.
 	 * <!-- end-model-doc -->
@@ -112,21 +113,21 @@ public interface TemplateBinding extends MonikeredElement, Element
 	 * @model opposite="templateBinding" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
-  TemplateableElement getBoundElement();
+	TemplateableElement getBoundElement();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bound Element</em>' container reference.
 	 * @see #getBoundElement()
 	 * @generated
 	 */
-  void setBoundElement(TemplateableElement value);
+	void setBoundElement(TemplateableElement value);
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Each parameter substitution must refer to a formal template parameter of the target template signature.
 	 * parameterSubstitution->forAll(b | template.parameter->includes(b.formal))
@@ -136,11 +137,12 @@ public interface TemplateBinding extends MonikeredElement, Element
 	 * @model
 	 * @generated
 	 */
-  boolean validateParameterSubstitutionFormal(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateParameterSubstitutionFormal(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A binding contains at most one parameter substitution for each formal template parameter of the target template signature.
 	 * template.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() <= 1)
@@ -150,6 +152,7 @@ public interface TemplateBinding extends MonikeredElement, Element
 	 * @model
 	 * @generated
 	 */
-  boolean validateOneParameterSubstitution(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateOneParameterSubstitution(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // TemplateBinding

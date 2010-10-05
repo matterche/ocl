@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: Type.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: Type.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -38,13 +37,14 @@ package org.eclipse.ocl.examples.pivot;
  * @model abstract="true"
  * @generated
  */
-public interface Type extends NamedElement, TemplateableElement, ParameterableElement
-{
-  /**
+public interface Type
+		extends NamedElement, TemplateableElement, ParameterableElement {
+
+	/**
 	 * Returns the value of the '<em><b>Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedTypes <em>Owned Type</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Specifies the owning package of this classifier, if any.
 	 * <!-- end-model-doc -->
@@ -55,16 +55,16 @@ public interface Type extends NamedElement, TemplateableElement, ParameterableEl
 	 * @model opposite="ownedType" transient="false" ordered="false"
 	 * @generated
 	 */
-  org.eclipse.ocl.examples.pivot.Package getPackage();
+	org.eclipse.ocl.examples.pivot.Package getPackage();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Package</em>' container reference.
 	 * @see #getPackage()
 	 * @generated
 	 */
-  void setPackage(org.eclipse.ocl.examples.pivot.Package value);
+	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 } // Type

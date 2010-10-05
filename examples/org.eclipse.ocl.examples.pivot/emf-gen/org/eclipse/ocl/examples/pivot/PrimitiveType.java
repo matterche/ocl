@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: PrimitiveType.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +30,6 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface PrimitiveType extends DataType
-{
+public interface PrimitiveType
+		extends DataType {
 } // PrimitiveType

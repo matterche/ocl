@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClass.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: AssociationClass.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,24 +34,25 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface AssociationClass extends org.eclipse.ocl.examples.pivot.Class
-{
-  /**
+public interface AssociationClass
+		extends org.eclipse.ocl.examples.pivot.Class {
+
+	/**
 	 * Returns the value of the '<em><b>Unowned Attribute</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}'.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Unowned Attribute</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unowned Attribute</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unowned Attribute</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAssociationClass_UnownedAttribute()
 	 * @see org.eclipse.ocl.examples.pivot.Property#getAssociation
 	 * @model opposite="association" ordered="false"
 	 * @generated
 	 */
-  EList<Property> getUnownedAttributes();
+	EList<Property> getUnownedAttributes();
 
 } // AssociationClass

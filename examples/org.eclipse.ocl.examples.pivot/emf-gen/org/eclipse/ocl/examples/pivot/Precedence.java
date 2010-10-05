@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Precedence.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: Precedence.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.math.BigInteger;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -36,8 +35,8 @@ import java.math.BigInteger;
  * @model
  * @generated
  */
-public interface Precedence extends NamedElement
-{
+public interface Precedence
+		extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Associativity</b></em>' attribute.

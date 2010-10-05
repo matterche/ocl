@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElement.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: MonikeredElement.java,v 1.1.2.2 2010/10/05 17:39:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,21 +32,22 @@ package org.eclipse.ocl.examples.pivot;
  * @model abstract="true"
  * @generated
  */
-public interface MonikeredElement extends Element
-{
-  /**
+public interface MonikeredElement
+		extends Element {
+
+	/**
 	 * Returns the value of the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Moniker</em>' attribute.
 	 * @see #setMoniker(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMonikeredElement_Moniker()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" required="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-  String getMoniker();
+	String getMoniker();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.MonikeredElement#getMoniker <em>Moniker</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,12 +57,12 @@ public interface MonikeredElement extends Element
 	 */
 	void setMoniker(String value);
 
-/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean hasMoniker();
+	boolean hasMoniker();
 
 } // NameableElement

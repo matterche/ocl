@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExp.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: CollectionLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -37,17 +37,18 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface CollectionLiteralExp extends LiteralExp
-{
-  /**
+public interface CollectionLiteralExp
+		extends LiteralExp {
+
+	/**
 	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.ocl.examples.pivot.CollectionKind}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Kind</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipse.ocl.examples.pivot.CollectionKind
 	 * @see #setKind(CollectionKind)
@@ -55,44 +56,44 @@ public interface CollectionLiteralExp extends LiteralExp
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-  CollectionKind getKind();
+	CollectionKind getKind();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getKind <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipse.ocl.examples.pivot.CollectionKind
 	 * @see #getKind()
 	 * @generated
 	 */
-  void setKind(CollectionKind value);
+	void setKind(CollectionKind value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CollectionLiteralPart}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionLiteralExp_Part()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<CollectionLiteralPart> getParts();
+	EList<CollectionLiteralPart> getParts();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.CollectionLiteralPart} and appends it to the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.CollectionLiteralPart} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.CollectionLiteralPart}.
 	 * @see #getParts()
 	 * @generated
 	 */
-  CollectionLiteralPart createPart(EClass eClass);
+	CollectionLiteralPart createPart(EClass eClass);
 
 } // CollectionLiteralExp

@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: PackageableElement.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: PackageableElement.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +30,6 @@ package org.eclipse.ocl.examples.pivot;
  * @model abstract="true"
  * @generated
  */
-public interface PackageableElement extends ParameterableElement
-{
+public interface PackageableElement
+		extends ParameterableElement {
 } // PackageableElement

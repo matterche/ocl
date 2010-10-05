@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: PropertyCallExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: PropertyCallExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,32 +32,33 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface PropertyCallExp extends NavigationCallExp
-{
-  /**
+public interface PropertyCallExp
+		extends NavigationCallExp {
+
+	/**
 	 * Returns the value of the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Referred Property</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Property</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Property</em>' reference.
 	 * @see #setReferredProperty(Property)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPropertyCallExp_ReferredProperty()
 	 * @model ordered="false"
 	 * @generated
 	 */
-  Property getReferredProperty();
+	Property getReferredProperty();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.PropertyCallExp#getReferredProperty <em>Referred Property</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referred Property</em>' reference.
 	 * @see #getReferredProperty()
 	 * @generated
 	 */
-  void setReferredProperty(Property value);
+	void setReferredProperty(Property value);
 
 } // PropertyCallExp

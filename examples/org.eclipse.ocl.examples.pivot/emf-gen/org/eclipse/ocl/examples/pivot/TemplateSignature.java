@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignature.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: TemplateSignature.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -45,13 +45,14 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface TemplateSignature extends MonikeredElement, Element
-{
-  /**
+public interface TemplateSignature
+		extends MonikeredElement, Element {
+
+	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The ordered set of all formal template parameters for this template signature.
 	 * <!-- end-model-doc -->
@@ -60,13 +61,13 @@ public interface TemplateSignature extends MonikeredElement, Element
 	 * @model required="true"
 	 * @generated
 	 */
-  EList<TemplateParameter> getParameters();
+	EList<TemplateParameter> getParameters();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Template</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that owns this template signature.
 	 * <!-- end-model-doc -->
@@ -77,19 +78,19 @@ public interface TemplateSignature extends MonikeredElement, Element
 	 * @model opposite="ownedTemplateSignature" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
-  TemplateableElement getTemplate();
+	TemplateableElement getTemplate();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Template</em>' container reference.
 	 * @see #getTemplate()
 	 * @generated
 	 */
-  void setTemplate(TemplateableElement value);
+	void setTemplate(TemplateableElement value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}'.
@@ -100,7 +101,7 @@ public interface TemplateSignature extends MonikeredElement, Element
 	 * </ul>
 	 * </p>
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The formal template parameters that are owned by this template signature.
 	 * <!-- end-model-doc -->
@@ -110,32 +111,32 @@ public interface TemplateSignature extends MonikeredElement, Element
 	 * @model opposite="signature" containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<TemplateParameter> getOwnedParameters();
+	EList<TemplateParameter> getOwnedParameters();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateParameter} and appends it to the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.TemplateParameter} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
 	 * @see #getOwnedParameters()
 	 * @generated
 	 */
-  TemplateParameter createOwnedParameter(EClass eClass);
+	TemplateParameter createOwnedParameter(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateParameter} and appends it to the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
 	 * @see #getOwnedParameters()
 	 * @generated
 	 */
-  TemplateParameter createOwnedParameter();
+	TemplateParameter createOwnedParameter();
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Parameters must own the elements they parameter or those elements must be owned by the element being templated.
 	 * templatedElement.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)
@@ -145,6 +146,7 @@ public interface TemplateSignature extends MonikeredElement, Element
 	 * @model
 	 * @generated
 	 */
-  boolean validateOwnElements(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateOwnElements(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // TemplateSignature

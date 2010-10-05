@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Iterate.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: Iterate.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,8 +34,9 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Iterate extends Iterator
-{
+public interface Iterate
+		extends Iterator {
+
 	/**
 	 * Returns the value of the '<em><b>Owned Accumulator</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Parameter}.

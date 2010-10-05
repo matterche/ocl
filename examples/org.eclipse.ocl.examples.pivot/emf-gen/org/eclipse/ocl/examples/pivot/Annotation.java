@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Annotation.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Annotation.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -38,8 +38,9 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface Annotation extends NamedElement
-{
+public interface Annotation
+		extends NamedElement {
+
 	/**
 	 * Returns the value of the '<em><b>Owned Content</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Element}.
@@ -66,16 +67,6 @@ public interface Annotation extends NamedElement
 	 * @generated
 	 */
 	Element createOwnedContent(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Element} and appends it to the '<em><b>Owned Content</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.Element}.
-	 * @see #getOwnedContents()
-	 * @generated
-	 */
-	Element createOwnedContent();
 
 	/**
 	 * Returns the value of the '<em><b>Reference</b></em>' reference list.

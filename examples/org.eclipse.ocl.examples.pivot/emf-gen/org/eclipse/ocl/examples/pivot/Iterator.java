@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Iterator.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Iterator.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,32 +34,33 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Iterator extends Operation
-{
-  /**
+public interface Iterator
+		extends Operation {
+
+	/**
 	 * Returns the value of the '<em><b>Owned Iterator</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Parameter}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Owned Iterator</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Iterator</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Iterator</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIterator_OwnedIterator()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<Parameter> getOwnedIterators();
+	EList<Parameter> getOwnedIterators();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Parameter} and appends it to the '<em><b>Owned Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Parameter}.
 	 * @see #getOwnedIterators()
 	 * @generated
 	 */
-  Parameter createOwnedIterator();
+	Parameter createOwnedIterator();
 
 } // Iteration

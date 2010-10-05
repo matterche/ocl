@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: MessageType.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: MessageType.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -34,58 +33,59 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface MessageType extends Type
-{
-  /**
+public interface MessageType
+		extends Type {
+
+	/**
 	 * Returns the value of the '<em><b>Referred Signal</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Referred Signal</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Signal</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Signal</em>' reference.
 	 * @see #setReferredSignal(Signal)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageType_ReferredSignal()
 	 * @model ordered="false"
 	 * @generated
 	 */
-  Signal getReferredSignal();
+	Signal getReferredSignal();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.MessageType#getReferredSignal <em>Referred Signal</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referred Signal</em>' reference.
 	 * @see #getReferredSignal()
 	 * @generated
 	 */
-  void setReferredSignal(Signal value);
+	void setReferredSignal(Signal value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Referred Operation</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Operation</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Operation</em>' reference.
 	 * @see #setReferredOperation(Operation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageType_ReferredOperation()
 	 * @model ordered="false"
 	 * @generated
 	 */
-  Operation getReferredOperation();
+	Operation getReferredOperation();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.MessageType#getReferredOperation <em>Referred Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referred Operation</em>' reference.
 	 * @see #getReferredOperation()
 	 * @generated
 	 */
-  void setReferredOperation(Operation value);
+	void setReferredOperation(Operation value);
 
 } // MessageType

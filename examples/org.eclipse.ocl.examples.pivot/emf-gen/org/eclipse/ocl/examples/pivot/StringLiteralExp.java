@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: StringLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,32 +32,33 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface StringLiteralExp extends PrimitiveLiteralExp
-{
-  /**
+public interface StringLiteralExp
+		extends PrimitiveLiteralExp {
+
+	/**
 	 * Returns the value of the '<em><b>String Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>String Symbol</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>String Symbol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>String Symbol</em>' attribute.
 	 * @see #setStringSymbol(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getStringLiteralExp_StringSymbol()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" required="true" ordered="false"
 	 * @generated
 	 */
-  String getStringSymbol();
+	String getStringSymbol();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.StringLiteralExp#getStringSymbol <em>String Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>String Symbol</em>' attribute.
 	 * @see #getStringSymbol()
 	 * @generated
 	 */
-  void setStringSymbol(String value);
+	void setStringSymbol(String value);
 
 } // StringLiteralExp

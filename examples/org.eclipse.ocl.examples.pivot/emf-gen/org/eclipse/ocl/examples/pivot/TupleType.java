@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: TupleType.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: TupleType.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +26,6 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface TupleType extends DataType
-{
+public interface TupleType
+		extends DataType {
 } // TupleType

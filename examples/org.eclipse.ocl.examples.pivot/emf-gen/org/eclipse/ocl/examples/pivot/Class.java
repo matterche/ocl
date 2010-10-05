@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Class.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: Class.java,v 1.1.2.2 2010/10/05 17:39:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -44,9 +44,36 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface Class extends Type, Namespace
-{
-  /**
+public interface Class
+		extends Type, Namespace {
+
+	/**
+	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * True when a class is abstract.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Abstract</em>' attribute.
+	 * @see #setIsAbstract(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_IsAbstract()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isAbstract();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#isAbstract <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Abstract</em>' attribute.
+	 * @see #isAbstract()
+	 * @generated
+	 */
+	void setIsAbstract(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -72,38 +99,12 @@ public interface Class extends Type, Namespace
 	 */
 	void setInstanceClassName(String value);
 
-/**
-	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * True when a class is abstract.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Abstract</em>' attribute.
-	 * @see #setIsAbstract(boolean)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_IsAbstract()
-	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-  boolean isAbstract();
-
-  /**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#isAbstract <em>Is Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Abstract</em>' attribute.
-	 * @see #isAbstract()
-	 * @generated
-	 */
-  void setIsAbstract(boolean value);
-
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Attribute</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property.
 	 * <!-- end-model-doc -->
@@ -113,35 +114,35 @@ public interface Class extends Type, Namespace
 	 * @model opposite="class" containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<Property> getOwnedAttributes();
+	EList<Property> getOwnedAttributes();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and appends it to the '<em><b>Owned Attribute</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Property} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * @see #getOwnedAttributes()
 	 * @generated
 	 */
-  Property createOwnedAttribute(EClass eClass);
+	Property createOwnedAttribute(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and appends it to the '<em><b>Owned Attribute</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * @see #getOwnedAttributes()
 	 * @generated
 	 */
-  Property createOwnedAttribute();
+	Property createOwnedAttribute();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Operation</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Operation}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The operations owned by a class. These do not include the inherited operations.
 	 * <!-- end-model-doc -->
@@ -151,34 +152,34 @@ public interface Class extends Type, Namespace
 	 * @model opposite="class" containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<Operation> getOwnedOperations();
+	EList<Operation> getOwnedOperations();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Operation} and appends it to the '<em><b>Owned Operation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Operation} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Operation}.
 	 * @see #getOwnedOperations()
 	 * @generated
 	 */
-  Operation createOwnedOperation(EClass eClass);
+	Operation createOwnedOperation(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Operation} and appends it to the '<em><b>Owned Operation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Operation}.
 	 * @see #getOwnedOperations()
 	 * @generated
 	 */
-  Operation createOwnedOperation();
+	Operation createOwnedOperation();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Super Class</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Class}.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The immediate superclasses of a class, from which the class inherits.
 	 * <!-- end-model-doc -->
@@ -187,6 +188,6 @@ public interface Class extends Type, Namespace
 	 * @model ordered="false"
 	 * @generated
 	 */
-  EList<Class> getSuperClasses();
+	EList<Class> getSuperClasses();
 
 } // Class

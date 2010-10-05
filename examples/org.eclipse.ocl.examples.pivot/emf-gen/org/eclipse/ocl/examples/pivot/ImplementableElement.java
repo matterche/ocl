@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ImplementableElement.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: ImplementableElement.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
 
 /**
@@ -36,8 +37,9 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
  * @extends PivotObject
  * @generated
  */
-public interface ImplementableElement extends PivotObject
-{
+public interface ImplementableElement
+		extends PivotObject {
+
 	/**
 	 * Returns the value of the '<em><b>Implementation Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -75,7 +77,7 @@ public interface ImplementableElement extends PivotObject
 	 * @return the value of the '<em>Implementation</em>' reference.
 	 * @see #setImplementation(CallableImplementation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getImplementableElement_Implementation()
-	 * @model transient="true" ordered="false"
+	 * @model type="org.eclipse.ocl.examples.pivot.CallableImplementation" resolveProxies="false" transient="true" ordered="false"
 	 * @generated
 	 */
 	CallableImplementation getImplementation();
@@ -89,13 +91,5 @@ public interface ImplementableElement extends PivotObject
 	 * @generated
 	 */
 	void setImplementation(CallableImplementation value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.ocl.examples.pivot.Object" required="true" ordered="false" contextRequired="true" contextOrdered="false" callRequired="true" callOrdered="false"
-	 * @generated
-	 */
-	Object evaluate(EvaluationContext context, OclExpression call);
 
 } // ImplementableElement

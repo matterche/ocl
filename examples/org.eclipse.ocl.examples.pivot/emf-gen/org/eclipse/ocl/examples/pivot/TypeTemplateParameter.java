@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeTemplateParameter.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: TypeTemplateParameter.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -42,13 +42,14 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TypeTemplateParameter extends TemplateParameter
-{
-  /**
+public interface TypeTemplateParameter
+		extends TemplateParameter {
+
+	/**
 	 * Returns the value of the '<em><b>Allow Substitutable</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.
 	 * <!-- end-model-doc -->
@@ -58,23 +59,23 @@ public interface TypeTemplateParameter extends TemplateParameter
 	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean isAllowSubstitutable();
+	boolean isAllowSubstitutable();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#isAllowSubstitutable <em>Allow Substitutable</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allow Substitutable</em>' attribute.
 	 * @see #isAllowSubstitutable()
 	 * @generated
 	 */
-  void setAllowSubstitutable(boolean value);
+	void setAllowSubstitutable(boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Constraining Type</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.
 	 * <!-- end-model-doc -->
@@ -83,11 +84,11 @@ public interface TypeTemplateParameter extends TemplateParameter
 	 * @model ordered="false"
 	 * @generated
 	 */
-  EList<Type> getConstrainingTypes();
+	EList<Type> getConstrainingTypes();
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * If "allowSubstitutable" is true, then there must be a constrainingClassifier.
 	 * allowSubstitutable implies constrainingClassifier->notEmpty()
@@ -97,6 +98,7 @@ public interface TypeTemplateParameter extends TemplateParameter
 	 * @model
 	 * @generated
 	 */
-  boolean validateHasConstrainingType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateHasConstrainingType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // TypeTemplateParameter

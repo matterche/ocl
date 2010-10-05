@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItem.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: CollectionItem.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,46 +34,47 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface CollectionItem extends CollectionLiteralPart
-{
-  /**
+public interface CollectionItem
+		extends CollectionLiteralPart {
+
+	/**
 	 * Returns the value of the '<em><b>Item</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Item</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Item</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Item</em>' containment reference.
 	 * @see #setItem(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionItem_Item()
 	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
 	 * @generated
 	 */
-  OclExpression getItem();
+	OclExpression getItem();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CollectionItem#getItem <em>Item</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Item</em>' containment reference.
 	 * @see #getItem()
 	 * @generated
 	 */
-  void setItem(OclExpression value);
+	void setItem(OclExpression value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Item</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * @see #getItem()
 	 * @generated
 	 */
-  OclExpression createItem(EClass eClass);
+	OclExpression createItem(EClass eClass);
 
-/**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Item</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

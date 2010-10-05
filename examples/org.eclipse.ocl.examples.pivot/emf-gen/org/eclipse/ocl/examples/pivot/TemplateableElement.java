@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElement.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: TemplateableElement.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -41,9 +41,10 @@ import org.eclipse.emf.ecore.EClass;
  * @model abstract="true"
  * @generated
  */
-public interface TemplateableElement extends MonikeredElement, Element
-{
-  /**
+public interface TemplateableElement
+		extends MonikeredElement, Element {
+
+	/**
 	 * Returns the value of the '<em><b>Owned Specialization</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateableElement}.
 	 * <!-- begin-user-doc -->
@@ -59,7 +60,7 @@ public interface TemplateableElement extends MonikeredElement, Element
 	 */
 	EList<TemplateableElement> getOwnedSpecializations();
 
-/**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateableElement} and appends it to the '<em><b>Owned Specialization</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,12 +71,12 @@ public interface TemplateableElement extends MonikeredElement, Element
 	 */
 	TemplateableElement createOwnedSpecialization(EClass eClass);
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Template Binding</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateBinding}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The optional bindings from this element to templates.
 	 * <!-- end-model-doc -->
@@ -85,23 +86,23 @@ public interface TemplateableElement extends MonikeredElement, Element
 	 * @model opposite="boundElement" containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  EList<TemplateBinding> getTemplateBindings();
+	EList<TemplateBinding> getTemplateBindings();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateBinding} and appends it to the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateBinding}.
 	 * @see #getTemplateBindings()
 	 * @generated
 	 */
-  TemplateBinding createTemplateBinding();
+	TemplateBinding createTemplateBinding();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The optional template signature specifying the formal template parameters.
 	 * <!-- end-model-doc -->
@@ -112,31 +113,31 @@ public interface TemplateableElement extends MonikeredElement, Element
 	 * @model opposite="template" containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  TemplateSignature getOwnedTemplateSignature();
+	TemplateSignature getOwnedTemplateSignature();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Template Signature</em>' containment reference.
 	 * @see #getOwnedTemplateSignature()
 	 * @generated
 	 */
-  void setOwnedTemplateSignature(TemplateSignature value);
+	void setOwnedTemplateSignature(TemplateSignature value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateSignature} and sets the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateSignature}.
 	 * @see #getOwnedTemplateSignature()
 	 * @generated
 	 */
-  TemplateSignature createOwnedTemplateSignature();
+	TemplateSignature createOwnedTemplateSignature();
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.
 	 * result = allOwnedElements->select(oclIsKindOf(ParameterableElement))
@@ -144,11 +145,11 @@ public interface TemplateableElement extends MonikeredElement, Element
 	 * @model ordered="false"
 	 * @generated
 	 */
-  EList<ParameterableElement> parameterableElements();
+	EList<ParameterableElement> parameterableElements();
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isTemplate() returns whether this templateable element is actually a template.
 	 * result = ownedTemplateSignature->notEmpty()
@@ -156,6 +157,6 @@ public interface TemplateableElement extends MonikeredElement, Element
 	 * @model kind="operation" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean isTemplate();
+	boolean isTemplate();
 
 } // TemplateableElement

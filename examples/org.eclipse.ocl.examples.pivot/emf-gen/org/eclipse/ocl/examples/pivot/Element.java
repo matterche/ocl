@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Element.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: Element.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,16 +35,17 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface Element extends OclAny
-{
-  /**
+public interface Element
+		extends OclAny {
+
+	/**
 	 * Returns the value of the '<em><b>Owned Comment</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Comment}.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The Comments owned by this element.
 	 * <!-- end-model-doc -->
@@ -53,16 +54,16 @@ public interface Element extends OclAny
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  EList<Comment> getOwnedComments();
+	EList<Comment> getOwnedComments();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Comment} and appends it to the '<em><b>Owned Comment</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Comment}.
 	 * @see #getOwnedComments()
 	 * @generated
 	 */
-  Comment createOwnedComment();
+	Comment createOwnedComment();
 
 } // Element

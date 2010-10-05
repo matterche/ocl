@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: CollectionType.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: CollectionType.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,32 +32,33 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface CollectionType extends DataType
-{
-  /**
+public interface CollectionType
+		extends DataType {
+
+	/**
 	 * Returns the value of the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Element Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Element Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Type</em>' reference.
 	 * @see #setElementType(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionType_ElementType()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-  Type getElementType();
+	Type getElementType();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CollectionType#getElementType <em>Element Type</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element Type</em>' reference.
 	 * @see #getElementType()
 	 * @generated
 	 */
-  void setElementType(Type value);
+	void setElementType(Type value);
 
 } // CollectionType

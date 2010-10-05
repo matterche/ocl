@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -26,17 +26,18 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage
  * @generated
  */
-public interface PivotFactory extends EFactory
-{
-  /**
+public interface PivotFactory
+		extends EFactory {
+
+	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  PivotFactory eINSTANCE = org.eclipse.ocl.examples.pivot.internal.impl.PivotFactoryImpl.init();
+	PivotFactory eINSTANCE = org.eclipse.ocl.examples.pivot.internal.impl.PivotFactoryImpl.init();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,106 +46,97 @@ public interface PivotFactory extends EFactory
 	 */
 	Annotation createAnnotation();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Any Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Any Type</em>'.
 	 * @generated
 	 */
-  AnyType createAnyType();
+	AnyType createAnyType();
 
-  /**
-	 * Returns a new object of class '<em>Ocl Any</em>'.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Any</em>'.
-	 * @generated
-	 */
-  OclAny createOclAny();
-
-  /**
+	/**
 	 * Returns a new object of class '<em>Class</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Class</em>'.
 	 * @generated
 	 */
-  Class createClass();
+	Class createClass();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Property</em>'.
 	 * @generated
 	 */
-  Property createProperty();
+	Property createProperty();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Template Parameter</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Template Parameter</em>'.
 	 * @generated
 	 */
-  TemplateParameter createTemplateParameter();
+	TemplateParameter createTemplateParameter();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Template Signature</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Template Signature</em>'.
 	 * @generated
 	 */
-  TemplateSignature createTemplateSignature();
+	TemplateSignature createTemplateSignature();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Template Binding</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Template Binding</em>'.
 	 * @generated
 	 */
-  TemplateBinding createTemplateBinding();
+	TemplateBinding createTemplateBinding();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Template Parameter Substitution</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Template Parameter Substitution</em>'.
 	 * @generated
 	 */
-  TemplateParameterSubstitution createTemplateParameterSubstitution();
+	TemplateParameterSubstitution createTemplateParameterSubstitution();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Association Class</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Association Class</em>'.
 	 * @generated
 	 */
-  AssociationClass createAssociationClass();
+	AssociationClass createAssociationClass();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Operation</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Operation</em>'.
 	 * @generated
 	 */
-  Operation createOperation();
+	Operation createOperation();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Parameter</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Parameter</em>'.
 	 * @generated
 	 */
-  Parameter createParameter();
+	Parameter createParameter();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Precedence</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,25 +145,25 @@ public interface PivotFactory extends EFactory
 	 */
 	Precedence createPrecedence();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Operation Template Parameter</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Operation Template Parameter</em>'.
 	 * @generated
 	 */
-  OperationTemplateParameter createOperationTemplateParameter();
+	OperationTemplateParameter createOperationTemplateParameter();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Comment</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Comment</em>'.
 	 * @generated
 	 */
-  Comment createComment();
+	Comment createComment();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Complete Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -180,7 +172,7 @@ public interface PivotFactory extends EFactory
 	 */
 	CompleteClass createCompleteClass();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Complete Environment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -189,7 +181,7 @@ public interface PivotFactory extends EFactory
 	 */
 	CompleteEnvironment createCompleteEnvironment();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Complete Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,7 +190,7 @@ public interface PivotFactory extends EFactory
 	 */
 	CompleteOperation createCompleteOperation();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Complete Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -207,7 +199,7 @@ public interface PivotFactory extends EFactory
 	 */
 	CompletePackage createCompletePackage();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Complete Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -216,7 +208,7 @@ public interface PivotFactory extends EFactory
 	 */
 	CompleteProperty createCompleteProperty();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -225,25 +217,25 @@ public interface PivotFactory extends EFactory
 	 */
 	Constraint createConstraint();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Package</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Package</em>'.
 	 * @generated
 	 */
-  Package createPackage();
+	Package createPackage();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Type Template Parameter</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Type Template Parameter</em>'.
 	 * @generated
 	 */
-  TypeTemplateParameter createTypeTemplateParameter();
+	TypeTemplateParameter createTypeTemplateParameter();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Unlimited Natural Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -252,43 +244,43 @@ public interface PivotFactory extends EFactory
 	 */
 	UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Association Class Call Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Association Class Call Exp</em>'.
 	 * @generated
 	 */
-  AssociationClassCallExp createAssociationClassCallExp();
+	AssociationClassCallExp createAssociationClassCallExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Bag Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Bag Type</em>'.
 	 * @generated
 	 */
-  BagType createBagType();
+	BagType createBagType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Collection Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Type</em>'.
 	 * @generated
 	 */
-  CollectionType createCollectionType();
+	CollectionType createCollectionType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Data Type</em>'.
 	 * @generated
 	 */
-  DataType createDataType();
+	DataType createDataType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Detail</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,25 +289,16 @@ public interface PivotFactory extends EFactory
 	 */
 	Detail createDetail();
 
-/**
-	 * Returns a new object of class '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element</em>'.
-	 * @generated
-	 */
-	Element createElement();
-
-/**
+	/**
 	 * Returns a new object of class '<em>Boolean Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Boolean Literal Exp</em>'.
 	 * @generated
 	 */
-  BooleanLiteralExp createBooleanLiteralExp();
+	BooleanLiteralExp createBooleanLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Call Operation Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,124 +307,124 @@ public interface PivotFactory extends EFactory
 	 */
 	CallOperationAction createCallOperationAction();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Collection Item</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Item</em>'.
 	 * @generated
 	 */
-  CollectionItem createCollectionItem();
+	CollectionItem createCollectionItem();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Collection Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Literal Exp</em>'.
 	 * @generated
 	 */
-  CollectionLiteralExp createCollectionLiteralExp();
+	CollectionLiteralExp createCollectionLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Collection Range</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Range</em>'.
 	 * @generated
 	 */
-  CollectionRange createCollectionRange();
+	CollectionRange createCollectionRange();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Enum Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Enum Literal Exp</em>'.
 	 * @generated
 	 */
-  EnumLiteralExp createEnumLiteralExp();
+	EnumLiteralExp createEnumLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Enumeration Literal</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Enumeration Literal</em>'.
 	 * @generated
 	 */
-  EnumerationLiteral createEnumerationLiteral();
+	EnumerationLiteral createEnumerationLiteral();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Enumeration</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Enumeration</em>'.
 	 * @generated
 	 */
-  Enumeration createEnumeration();
+	Enumeration createEnumeration();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Expression In Ocl</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Expression In Ocl</em>'.
 	 * @generated
 	 */
-  ExpressionInOcl createExpressionInOcl();
+	ExpressionInOcl createExpressionInOcl();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Opaque Expression</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Opaque Expression</em>'.
 	 * @generated
 	 */
-  OpaqueExpression createOpaqueExpression();
+	OpaqueExpression createOpaqueExpression();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Variable</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Variable</em>'.
 	 * @generated
 	 */
-  Variable createVariable();
+	Variable createVariable();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>If Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>If Exp</em>'.
 	 * @generated
 	 */
-  IfExp createIfExp();
+	IfExp createIfExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Integer Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Integer Literal Exp</em>'.
 	 * @generated
 	 */
-  IntegerLiteralExp createIntegerLiteralExp();
+	IntegerLiteralExp createIntegerLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Invalid Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Invalid Literal Exp</em>'.
 	 * @generated
 	 */
-  InvalidLiteralExp createInvalidLiteralExp();
+	InvalidLiteralExp createInvalidLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Invalid Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Invalid Type</em>'.
 	 * @generated
 	 */
-  InvalidType createInvalidType();
+	InvalidType createInvalidType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Iterate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -450,16 +433,16 @@ public interface PivotFactory extends EFactory
 	 */
 	Iterate createIterate();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Iterate Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Iterate Exp</em>'.
 	 * @generated
 	 */
-  IterateExp createIterateExp();
+	IterateExp createIterateExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Iterator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -468,61 +451,61 @@ public interface PivotFactory extends EFactory
 	 */
 	Iterator createIterator();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Iterator Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Iterator Exp</em>'.
 	 * @generated
 	 */
-  IteratorExp createIteratorExp();
+	IteratorExp createIteratorExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Let Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Let Exp</em>'.
 	 * @generated
 	 */
-  LetExp createLetExp();
+	LetExp createLetExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Message Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Message Exp</em>'.
 	 * @generated
 	 */
-  MessageExp createMessageExp();
+	MessageExp createMessageExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Message Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Message Type</em>'.
 	 * @generated
 	 */
-  MessageType createMessageType();
+	MessageType createMessageType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Signal</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Signal</em>'.
 	 * @generated
 	 */
-  Signal createSignal();
+	Signal createSignal();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Null Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Null Literal Exp</em>'.
 	 * @generated
 	 */
-  NullLiteralExp createNullLiteralExp();
+	NullLiteralExp createNullLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Ocl Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -531,70 +514,70 @@ public interface PivotFactory extends EFactory
 	 */
 	OclExpression createOclExpression();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Ocl Invalid</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Ocl Invalid</em>'.
 	 * @generated
 	 */
-  OclInvalid createOclInvalid();
+	OclInvalid createOclInvalid();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Ocl Void</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Ocl Void</em>'.
 	 * @generated
 	 */
-  OclVoid createOclVoid();
+	OclVoid createOclVoid();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Operation Call Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Operation Call Exp</em>'.
 	 * @generated
 	 */
-  OperationCallExp createOperationCallExp();
+	OperationCallExp createOperationCallExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Ordered Set Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Ordered Set Type</em>'.
 	 * @generated
 	 */
-  OrderedSetType createOrderedSetType();
+	OrderedSetType createOrderedSetType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Primitive Type</em>'.
 	 * @generated
 	 */
-  PrimitiveType createPrimitiveType();
+	PrimitiveType createPrimitiveType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Property Call Exp</em>'.
 	 * @generated
 	 */
-  PropertyCallExp createPropertyCallExp();
+	PropertyCallExp createPropertyCallExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Real Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Real Literal Exp</em>'.
 	 * @generated
 	 */
-  RealLiteralExp createRealLiteralExp();
+	RealLiteralExp createRealLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Send Signal Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -603,130 +586,130 @@ public interface PivotFactory extends EFactory
 	 */
 	SendSignalAction createSendSignalAction();
 
-/**
+	/**
 	 * Returns a new object of class '<em>Sequence Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Sequence Type</em>'.
 	 * @generated
 	 */
-  SequenceType createSequenceType();
+	SequenceType createSequenceType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Set Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Set Type</em>'.
 	 * @generated
 	 */
-  SetType createSetType();
+	SetType createSetType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>State</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>State</em>'.
 	 * @generated
 	 */
-  State createState();
+	State createState();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>State Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>State Exp</em>'.
 	 * @generated
 	 */
-  StateExp createStateExp();
+	StateExp createStateExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>String Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>String Literal Exp</em>'.
 	 * @generated
 	 */
-  StringLiteralExp createStringLiteralExp();
+	StringLiteralExp createStringLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Template Parameter Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Template Parameter Type</em>'.
 	 * @generated
 	 */
-  TemplateParameterType createTemplateParameterType();
+	TemplateParameterType createTemplateParameterType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Tuple Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Tuple Literal Exp</em>'.
 	 * @generated
 	 */
-  TupleLiteralExp createTupleLiteralExp();
+	TupleLiteralExp createTupleLiteralExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Tuple Literal Part</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Tuple Literal Part</em>'.
 	 * @generated
 	 */
-  TupleLiteralPart createTupleLiteralPart();
+	TupleLiteralPart createTupleLiteralPart();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Tuple Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Tuple Type</em>'.
 	 * @generated
 	 */
-  TupleType createTupleType();
+	TupleType createTupleType();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Type Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Type Exp</em>'.
 	 * @generated
 	 */
-  TypeExp createTypeExp();
+	TypeExp createTypeExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Unspecified Value Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Unspecified Value Exp</em>'.
 	 * @generated
 	 */
-  UnspecifiedValueExp createUnspecifiedValueExp();
+	UnspecifiedValueExp createUnspecifiedValueExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Variable Exp</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Variable Exp</em>'.
 	 * @generated
 	 */
-  VariableExp createVariableExp();
+	VariableExp createVariableExp();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Void Type</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Void Type</em>'.
 	 * @generated
 	 */
-  VoidType createVoidType();
+	VoidType createVoidType();
 
-  /**
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-  PivotPackage getPivotPackage();
+	PivotPackage getPivotPackage();
 
 } //PivotFactory

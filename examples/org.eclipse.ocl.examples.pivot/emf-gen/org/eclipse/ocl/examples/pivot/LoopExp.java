@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: LoopExp.java,v 1.1.2.2 2010/10/05 17:39:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -37,46 +37,47 @@ import org.eclipse.emf.ecore.EClass;
  * @model abstract="true"
  * @generated
  */
-public interface LoopExp extends CallExp
-{
-  /**
+public interface LoopExp
+		extends CallExp {
+
+	/**
 	 * Returns the value of the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Body</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Body</em>' containment reference.
 	 * @see #setBody(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_Body()
 	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
 	 * @generated
 	 */
-  OclExpression getBody();
+	OclExpression getBody();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.LoopExp#getBody <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Body</em>' containment reference.
 	 * @see #getBody()
 	 * @generated
 	 */
-  void setBody(OclExpression value);
+	void setBody(OclExpression value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * @see #getBody()
 	 * @generated
 	 */
-  OclExpression createBody(EClass eClass);
+	OclExpression createBody(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,30 +87,30 @@ public interface LoopExp extends CallExp
 	 */
 	OclExpression createBody();
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Variable}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Iterator</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_Iterator()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<Variable> getIterators();
+	EList<Variable> getIterators();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Variable} and appends it to the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Variable}.
 	 * @see #getIterators()
 	 * @generated
 	 */
-  Variable createIterator();
+	Variable createIterator();
 
 } // LoopExp

@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: TypedElement.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: TypedElement.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -37,12 +36,13 @@ package org.eclipse.ocl.examples.pivot;
  * @model abstract="true"
  * @generated
  */
-public interface TypedElement extends NamedElement
-{
-  /**
+public interface TypedElement
+		extends NamedElement {
+
+	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The type of the TypedElement.
 	 * <!-- end-model-doc -->
@@ -52,16 +52,16 @@ public interface TypedElement extends NamedElement
 	 * @model ordered="false"
 	 * @generated
 	 */
-  Type getType();
+	Type getType();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TypedElement#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
-  void setType(Type value);
+	void setType(Type value);
 
 } // TypedElement

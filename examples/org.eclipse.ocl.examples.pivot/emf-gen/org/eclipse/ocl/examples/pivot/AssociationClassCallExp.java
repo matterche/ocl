@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: AssociationClassCallExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,32 +32,33 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface AssociationClassCallExp extends NavigationCallExp
-{
-  /**
+public interface AssociationClassCallExp
+		extends NavigationCallExp {
+
+	/**
 	 * Returns the value of the '<em><b>Referred Association Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Referred Association Class</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Association Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Association Class</em>' reference.
 	 * @see #setReferredAssociationClass(AssociationClass)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAssociationClassCallExp_ReferredAssociationClass()
 	 * @model ordered="false"
 	 * @generated
 	 */
-  AssociationClass getReferredAssociationClass();
+	AssociationClass getReferredAssociationClass();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.AssociationClassCallExp#getReferredAssociationClass <em>Referred Association Class</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referred Association Class</em>' reference.
 	 * @see #getReferredAssociationClass()
 	 * @generated
 	 */
-  void setReferredAssociationClass(AssociationClass value);
+	void setReferredAssociationClass(AssociationClass value);
 
 } // AssociationClassCallExp

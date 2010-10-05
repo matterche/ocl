@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: LetExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,46 +35,47 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface LetExp extends OclExpression
-{
-  /**
+public interface LetExp
+		extends OclExpression {
+
+	/**
 	 * Returns the value of the '<em><b>In</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>In</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>In</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>In</em>' containment reference.
 	 * @see #setIn(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLetExp_In()
 	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
 	 * @generated
 	 */
-  OclExpression getIn();
+	OclExpression getIn();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.LetExp#getIn <em>In</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>In</em>' containment reference.
 	 * @see #getIn()
 	 * @generated
 	 */
-  void setIn(OclExpression value);
+	void setIn(OclExpression value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>In</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * @see #getIn()
 	 * @generated
 	 */
-  OclExpression createIn(EClass eClass);
+	OclExpression createIn(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>In</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,40 +85,40 @@ public interface LetExp extends OclExpression
 	 */
 	OclExpression createIn();
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Variable</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Variable</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable</em>' containment reference.
 	 * @see #setVariable(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLetExp_Variable()
 	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
 	 * @generated
 	 */
-  Variable getVariable();
+	Variable getVariable();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.LetExp#getVariable <em>Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Variable</em>' containment reference.
 	 * @see #getVariable()
 	 * @generated
 	 */
-  void setVariable(Variable value);
+	void setVariable(Variable value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Variable} and sets the '<em><b>Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Variable}.
 	 * @see #getVariable()
 	 * @generated
 	 */
-  Variable createVariable();
+	Variable createVariable();
 
 } // LetExp

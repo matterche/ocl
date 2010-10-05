@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExp.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: OperationCallExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -37,36 +37,37 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface OperationCallExp extends FeatureCallExp
-{
-  /**
+public interface OperationCallExp
+		extends FeatureCallExp {
+
+	/**
 	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Argument</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperationCallExp_Argument()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<OclExpression> getArguments();
+	EList<OclExpression> getArguments();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and appends it to the '<em><b>Argument</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * @see #getArguments()
 	 * @generated
 	 */
-  OclExpression createArgument(EClass eClass);
+	OclExpression createArgument(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and appends it to the '<em><b>Argument</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,30 +77,30 @@ public interface OperationCallExp extends FeatureCallExp
 	 */
 	OclExpression createArgument();
 
-/**
+	/**
 	 * Returns the value of the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Referred Operation</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Operation</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Operation</em>' reference.
 	 * @see #setReferredOperation(Operation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperationCallExp_ReferredOperation()
 	 * @model ordered="false"
 	 * @generated
 	 */
-  Operation getReferredOperation();
+	Operation getReferredOperation();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.OperationCallExp#getReferredOperation <em>Referred Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referred Operation</em>' reference.
 	 * @see #getReferredOperation()
 	 * @generated
 	 */
-  void setReferredOperation(Operation value);
+	void setReferredOperation(Operation value);
 
 } // OperationCallExp

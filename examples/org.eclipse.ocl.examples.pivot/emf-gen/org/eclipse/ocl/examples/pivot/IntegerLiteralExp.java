@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: IntegerLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,32 +34,33 @@ import java.math.BigInteger;
  * @model
  * @generated
  */
-public interface IntegerLiteralExp extends NumericLiteralExp
-{
-  /**
+public interface IntegerLiteralExp
+		extends NumericLiteralExp {
+
+	/**
 	 * Returns the value of the '<em><b>Integer Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Integer Symbol</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Integer Symbol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Integer Symbol</em>' attribute.
 	 * @see #setIntegerSymbol(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIntegerLiteralExp_IntegerSymbol()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Integer" required="true" ordered="false"
 	 * @generated
 	 */
-  BigInteger getIntegerSymbol();
+	BigInteger getIntegerSymbol();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.IntegerLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Integer Symbol</em>' attribute.
 	 * @see #getIntegerSymbol()
 	 * @generated
 	 */
-  void setIntegerSymbol(BigInteger value);
+	void setIntegerSymbol(BigInteger value);
 
 } // IntegerLiteralExp

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociativityKind.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: AssociativityKind.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -31,8 +31,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum AssociativityKind implements Enumerator
-{
+public enum AssociativityKind
+		implements Enumerator {
 	/**
 	 * The '<em><b>Left</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -89,8 +89,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AssociativityKind[] VALUES_ARRAY =
-		new AssociativityKind[]
+	private static final AssociativityKind[] VALUES_ARRAY = new AssociativityKind[]
 		{
 			LEFT,
 			RIGHT,
@@ -110,8 +109,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AssociativityKind get(String literal)
-	{
+	public static AssociativityKind get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i)
 		{
 			AssociativityKind result = VALUES_ARRAY[i];
@@ -129,8 +127,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AssociativityKind getByName(String name)
-	{
+	public static AssociativityKind getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i)
 		{
 			AssociativityKind result = VALUES_ARRAY[i];
@@ -148,8 +145,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AssociativityKind get(int value)
-	{
+	public static AssociativityKind get(int value) {
 		switch (value)
 		{
 			case LEFT_VALUE: return LEFT;
@@ -185,8 +181,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AssociativityKind(int value, String name, String literal)
-	{
+	private AssociativityKind(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -197,8 +192,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getValue()
-	{
+	public int getValue() {
 	  return value;
 	}
 
@@ -207,8 +201,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName()
-	{
+	public String getName() {
 	  return name;
 	}
 
@@ -217,8 +210,7 @@ public enum AssociativityKind implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLiteral()
-	{
+	public String getLiteral() {
 	  return literal;
 	}
 
@@ -229,9 +221,8 @@ public enum AssociativityKind implements Enumerator
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return literal;
 	}
-	
+
 } //AssociativityKind

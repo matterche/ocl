@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationCallExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: NavigationCallExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,48 +35,49 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface NavigationCallExp extends FeatureCallExp
-{
-  /**
+public interface NavigationCallExp
+		extends FeatureCallExp {
+
+	/**
 	 * Returns the value of the '<em><b>Qualifier</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Qualifier</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualifier</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Qualifier</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNavigationCallExp_Qualifier()
 	 * @model
 	 * @generated
 	 */
-  EList<OclExpression> getQualifiers();
+	EList<OclExpression> getQualifiers();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Navigation Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Navigation Source</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Navigation Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Navigation Source</em>' reference.
 	 * @see #setNavigationSource(Property)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNavigationCallExp_NavigationSource()
 	 * @model
 	 * @generated
 	 */
-  Property getNavigationSource();
+	Property getNavigationSource();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.NavigationCallExp#getNavigationSource <em>Navigation Source</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Navigation Source</em>' reference.
 	 * @see #getNavigationSource()
 	 * @generated
 	 */
-  void setNavigationSource(Property value);
+	void setNavigationSource(Property value);
 
 } // NavigationCallExp

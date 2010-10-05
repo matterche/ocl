@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: ParameterableElement.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: ParameterableElement.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -38,13 +37,14 @@ package org.eclipse.ocl.examples.pivot;
  * @model abstract="true"
  * @generated
  */
-public interface ParameterableElement extends MonikeredElement, Element
-{
-  /**
+public interface ParameterableElement
+		extends MonikeredElement, Element {
+
+	/**
 	 * Returns the value of the '<em><b>Template Parameter</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getParameteredElement <em>Parametered Element</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The template parameter that exposes this element as a formal parameter.
 	 * <!-- end-model-doc -->
@@ -55,19 +55,19 @@ public interface ParameterableElement extends MonikeredElement, Element
 	 * @model opposite="parameteredElement" ordered="false"
 	 * @generated
 	 */
-  TemplateParameter getTemplateParameter();
+	TemplateParameter getTemplateParameter();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#getTemplateParameter <em>Template Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Template Parameter</em>' reference.
 	 * @see #getTemplateParameter()
 	 * @generated
 	 */
-  void setTemplateParameter(TemplateParameter value);
+	void setTemplateParameter(TemplateParameter value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Owning Template Parameter</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedParameteredElement <em>Owned Parametered Element</em>}'.
 	 * <p>
@@ -77,7 +77,7 @@ public interface ParameterableElement extends MonikeredElement, Element
 	 * </ul>
 	 * </p>
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The formal template parameter that owns this element.
 	 * <!-- end-model-doc -->
@@ -88,21 +88,21 @@ public interface ParameterableElement extends MonikeredElement, Element
 	 * @model opposite="ownedParameteredElement" transient="false" ordered="false"
 	 * @generated
 	 */
-  TemplateParameter getOwningTemplateParameter();
+	TemplateParameter getOwningTemplateParameter();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#getOwningTemplateParameter <em>Owning Template Parameter</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owning Template Parameter</em>' container reference.
 	 * @see #getOwningTemplateParameter()
 	 * @generated
 	 */
-  void setOwningTemplateParameter(TemplateParameter value);
+	void setOwningTemplateParameter(TemplateParameter value);
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.
 	 * result = templateParameter->notEmpty()
@@ -110,6 +110,6 @@ public interface ParameterableElement extends MonikeredElement, Element
 	 * @model kind="operation" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-  boolean isTemplateParameter();
+	boolean isTemplateParameter();
 
 } // ParameterableElement

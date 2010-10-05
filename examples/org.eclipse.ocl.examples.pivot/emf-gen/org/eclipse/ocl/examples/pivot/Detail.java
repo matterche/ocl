@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Detail.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Detail.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -35,8 +34,9 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Detail extends NamedElement
-{
+public interface Detail
+		extends NamedElement {
+
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.

@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: CompleteProperty.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: CompleteProperty.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +25,7 @@ package org.eclipse.ocl.examples.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment <em>Complete Environment</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,8 +33,9 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface CompleteProperty extends Property
-{
+public interface CompleteProperty
+		extends Property {
+
 	/**
 	 * Returns the value of the '<em><b>Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -44,10 +45,47 @@ public interface CompleteProperty extends Property
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
+	 * @see #setModel(Property)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteProperty_Model()
-	 * @model required="true" changeable="false" ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	Property getModel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModel <em>Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model</em>' reference.
+	 * @see #getModel()
+	 * @generated
+	 */
+	void setModel(Property value);
+
+	/**
+	 * Returns the value of the '<em><b>Complete Environment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Complete Environment</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Complete Environment</em>' reference.
+	 * @see #setCompleteEnvironment(CompleteEnvironment)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteProperty_CompleteEnvironment()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	CompleteEnvironment getCompleteEnvironment();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment <em>Complete Environment</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Complete Environment</em>' reference.
+	 * @see #getCompleteEnvironment()
+	 * @generated
+	 */
+	void setCompleteEnvironment(CompleteEnvironment value);
 
 } // CompleteProperty

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExp.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: TupleLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,32 +34,33 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TupleLiteralExp extends LiteralExp
-{
-  /**
+public interface TupleLiteralExp
+		extends LiteralExp {
+
+	/**
 	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TupleLiteralPart}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTupleLiteralExp_Part()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-  EList<TupleLiteralPart> getParts();
+	EList<TupleLiteralPart> getParts();
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TupleLiteralPart} and appends it to the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TupleLiteralPart}.
 	 * @see #getParts()
 	 * @generated
 	 */
-  TupleLiteralPart createPart();
+	TupleLiteralPart createPart();
 
 } // TupleLiteralExp

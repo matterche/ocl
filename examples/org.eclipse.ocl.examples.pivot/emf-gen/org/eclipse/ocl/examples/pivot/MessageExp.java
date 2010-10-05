@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: MessageExp.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: MessageExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -39,8 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface MessageExp extends OclExpression
-{
+public interface MessageExp
+		extends OclExpression {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' containment reference.

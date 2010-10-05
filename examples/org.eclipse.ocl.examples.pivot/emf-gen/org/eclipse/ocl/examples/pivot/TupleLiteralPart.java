@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPart.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: TupleLiteralPart.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,53 +34,54 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface TupleLiteralPart extends TypedElement
-{
-  /**
+public interface TupleLiteralPart
+		extends TypedElement {
+
+	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Attribute</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attribute</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' containment reference.
 	 * @see #setAttribute(Property)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTupleLiteralPart_Attribute()
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-  Property getAttribute();
+	Property getAttribute();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TupleLiteralPart#getAttribute <em>Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute</em>' containment reference.
 	 * @see #getAttribute()
 	 * @generated
 	 */
-  void setAttribute(Property value);
+	void setAttribute(Property value);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and sets the '<em><b>Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Property} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * @see #getAttribute()
 	 * @generated
 	 */
-  Property createAttribute(EClass eClass);
+	Property createAttribute(EClass eClass);
 
-  /**
+	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and sets the '<em><b>Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * @see #getAttribute()
 	 * @generated
 	 */
-  Property createAttribute();
+	Property createAttribute();
 
 } // TupleLiteralPart

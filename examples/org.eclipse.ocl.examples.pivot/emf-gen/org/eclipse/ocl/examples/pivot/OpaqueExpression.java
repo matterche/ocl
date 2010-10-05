@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OpaqueExpression.java,v 1.1.2.1 2010/10/01 13:49:53 ewillink Exp $
+ * $Id: OpaqueExpression.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -41,8 +41,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface OpaqueExpression extends ValueSpecification
-{
+public interface OpaqueExpression
+		extends ValueSpecification {
 
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' attribute list.
@@ -86,5 +86,6 @@ public interface OpaqueExpression extends ValueSpecification
 	 * @model
 	 * @generated
 	 */
-	boolean validateLanguageBodySize(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateLanguageBodySize(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 } // OpaqueExpression

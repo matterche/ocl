@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: INamedElement.java,v 1.1.2.1 2010/10/01 13:49:54 ewillink Exp $
+ * $Id: INamedElement.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -29,8 +29,9 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
  * @extends PivotObject
  * @generated
  */
-public interface INamedElement extends PivotObject
-{
+public interface INamedElement
+		extends PivotObject {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

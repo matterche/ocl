@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: Parameter.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Parameter.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -37,13 +36,15 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface Parameter extends TypedMultiplicityElement, MultiplicityElement, TypedElement, VariableDeclaration
-{
-  /**
+public interface Parameter
+		extends TypedMultiplicityElement, MultiplicityElement, TypedElement,
+		VariableDeclaration {
+
+	/**
 	 * Returns the value of the '<em><b>Operation</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwnedParameters <em>Owned Parameter</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The operation that owns the parameter.
 	 * <!-- end-model-doc -->
@@ -54,16 +55,16 @@ public interface Parameter extends TypedMultiplicityElement, MultiplicityElement
 	 * @model opposite="ownedParameter" transient="false" ordered="false"
 	 * @generated
 	 */
-  Operation getOperation();
+	Operation getOperation();
 
-  /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Parameter#getOperation <em>Operation</em>}' container reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operation</em>' container reference.
 	 * @see #getOperation()
 	 * @generated
 	 */
-  void setOperation(Operation value);
+	void setOperation(Operation value);
 
 } // Parameter

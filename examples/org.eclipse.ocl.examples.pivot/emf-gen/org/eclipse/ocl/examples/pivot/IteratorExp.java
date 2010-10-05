@@ -12,10 +12,9 @@
  *
  * </copyright>
  *
- * $Id: IteratorExp.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: IteratorExp.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,8 +32,8 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface IteratorExp extends LoopExp
-{
+public interface IteratorExp
+		extends LoopExp {
 
 	/**
 	 * Returns the value of the '<em><b>Referred Iterator</b></em>' reference.
