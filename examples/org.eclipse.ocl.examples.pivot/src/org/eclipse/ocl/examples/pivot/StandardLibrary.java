@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibrary.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.1.2.1 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -31,7 +31,9 @@ import org.eclipse.ocl.Environment;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public interface OCLStandardLibrary {
+public interface StandardLibrary {
+
+	boolean conformsTo(Type firstType, Type secondType);
 	
     /**
      * Obtains the single instance of the {@link AnyType} metatype, named
@@ -216,4 +218,10 @@ public interface OCLStandardLibrary {
      */
 	@Deprecated
     Type getT2();
+
+	Type getTypeOfType(Object type);
+
+	Type getTypeOfValue(Object value, Type type);
+
+	Object getValueOfValue(Object value);
 }

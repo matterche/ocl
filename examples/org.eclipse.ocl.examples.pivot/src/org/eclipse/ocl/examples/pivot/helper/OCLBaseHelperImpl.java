@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBaseHelperImpl.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: OCLBaseHelperImpl.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLBase;
 import org.eclipse.ocl.examples.pivot.OCLFactory;
-import org.eclipse.ocl.examples.pivot.OCLStandardLibrary;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -360,7 +360,7 @@ abstract class OCLBaseHelperImpl implements OCLHelper {
 	private Constraint createNullCondition(Type type) {
 		OclExpression condition;
 		
-        OCLStandardLibrary stdlib = env.getOCLStandardLibrary();
+        StandardLibrary stdlib = env.getOCLStandardLibrary();
         
 		if (type == stdlib.getBooleanType()) {
 			BooleanLiteralExp literal =

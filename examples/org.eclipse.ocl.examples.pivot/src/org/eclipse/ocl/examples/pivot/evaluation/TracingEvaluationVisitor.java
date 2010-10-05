@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TracingEvaluationVisitor.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: TracingEvaluationVisitor.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -55,17 +54,21 @@ import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public class TracingEvaluationVisitor
-    extends EvaluationVisitorDecorator {
+public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 
     /**
      * Initializes me with the visitor whose evaluation I trace to the console.
      * 
      * @param decorated a real evaluation visitor
      */
-    public TracingEvaluationVisitor(EvaluationVisitor<?> decorated) {
+    public TracingEvaluationVisitor(EvaluationVisitor decorated) {
         super(decorated);
     }
+
+	@Override
+	public EvaluationVisitor createNestedVisitor() {
+		return new TracingEvaluationVisitor(super.createNestedVisitor());
+	}
 
     private boolean isInvalid(Object value) {
         return value == getEnvironment().getOCLStandardLibrary().getInvalidValue();
@@ -118,10 +121,10 @@ public class TracingEvaluationVisitor
         return trace(literalExp, getDelegate().visitEnumLiteralExp(literalExp));
     }
 
-    @Override
-    public Object visitExpression(OclExpression expression) {
-        return trace(expression, getDelegate().visitExpression(expression));
-    }
+//    @Override
+//    public Object visitExpression(OclExpression expression) {
+//        return trace(expression, getDelegate().visitExpression(expression));
+//    }
 
     @Override
     public Object visitExpressionInOcl(ExpressionInOcl expression) {

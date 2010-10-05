@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.Adaptable;
@@ -86,6 +87,7 @@ public interface EvaluationEnvironment {
      * @see #replace(String, Object)
      */
     void add(String name, Object value);
+    void addVariable(VariableDeclaration declaration, VariableDeclaration definition);
 
     /**
      * Removes the supplied name and binding from the environment (if it exists)
@@ -241,4 +243,6 @@ public interface EvaluationEnvironment {
 	 * @return the corresponding run-time instance
 	 */
 	Object getValue(EnumerationLiteral enumerationLiteral);
+
+	VariableDeclaration getVariable(VariableDeclaration variableDeclaration);
 }

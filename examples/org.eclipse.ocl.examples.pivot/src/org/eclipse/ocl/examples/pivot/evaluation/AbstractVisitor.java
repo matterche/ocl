@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: AbstractVisitor.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -33,13 +33,18 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.Iterate;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StateExp;
@@ -51,8 +56,8 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.Visitable;
-import org.eclipse.ocl.examples.pivot.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <p>
@@ -780,6 +785,38 @@ public abstract class AbstractVisitor<T> implements Visitor<T> {
      * @see #visitConstraint(Object)
      */
 	protected ExpressionInOcl getSpecification(Constraint constraint) {
+		return null;
+	}
+
+	public T visitClass(org.eclipse.ocl.examples.pivot.Class cls) {
+		return null;
+	}
+
+	public T visitIterate(Iterate iterate) {
+		return null;
+	}
+
+	public T visitIterator(org.eclipse.ocl.examples.pivot.Iterator iterator) {
+		return null;
+	}
+
+	public T visitOperation(Operation operation) {
+		return null;
+	}
+
+	public T visitPackage(org.eclipse.ocl.examples.pivot.Package pkg) {
+		return null;
+	}
+
+	public T visitParameter(Parameter parameter) {
+		return null;
+	}
+
+	public T visitPrecedence(Precedence precedence) {
+		return null;
+	}
+
+	public T visitProperty(Property property) {
 		return null;
 	}
 } //VisitorImpl

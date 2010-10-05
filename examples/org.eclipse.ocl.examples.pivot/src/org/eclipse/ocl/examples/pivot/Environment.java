@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: Environment.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -168,7 +168,7 @@ public interface Environment {
      * 
      * @return the OCL Standard Library implementation for this environment
      */
-	OCLStandardLibrary getOCLStandardLibrary();
+	StandardLibrary getOCLStandardLibrary();
 
 	PivotManager getPivotManager();
 	

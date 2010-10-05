@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerSwitch.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Pivot2MonikerSwitch.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -60,6 +60,7 @@ public class Pivot2MonikerSwitch extends PivotSwitch<Object> implements PivotCon
 			roleNames.put(PivotPackage.Literals.LOOP_EXP__BODY, "body");
 			roleNames.put(PivotPackage.Literals.LOOP_EXP__ITERATOR, "it");
 			roleNames.put(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, "arg");
+			roleNames.put(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, "init");
 		}
 		
 		public Pivot2Moniker.Switch create(Abstract2Moniker moniker) {

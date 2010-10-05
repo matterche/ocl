@@ -16,7 +16,7 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: TypeUtil.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -272,7 +272,7 @@ public class TypeUtil {
 			Type owner, Operation oper) {
 
 		UMLReflection uml = env.getUMLReflection();
-		OCLStandardLibrary stdlib = env.getOCLStandardLibrary();
+		StandardLibrary stdlib = env.getOCLStandardLibrary();
 		
 		List<Parameter> parameters = uml.getParameters(oper);
 		List<Variable> args = new ArrayList<Variable>(

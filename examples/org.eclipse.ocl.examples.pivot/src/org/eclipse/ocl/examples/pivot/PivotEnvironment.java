@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEnvironment.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: PivotEnvironment.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -631,7 +631,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 				&& UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
 	}
 
-	public OCLStandardLibrary getOCLStandardLibrary() {
+	public StandardLibrary getOCLStandardLibrary() {
 		return pivotManager;
 	}
 

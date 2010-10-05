@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2Moniker.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: Pivot2Moniker.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -124,14 +124,16 @@ public class Pivot2Moniker extends Abstract2Moniker
 	public void appendRole(Element object) {
 		EStructuralFeature eFeature = object.eContainmentFeature();
 		appendParent(object, SCOPE_SEPARATOR);
-		String roleName = roleNames.get(eFeature);
-		if (roleName == null) {
-			roleName = eFeature.getName();
-		}
-		append(roleName);
-		if (eFeature.isMany()) {
-			int index = ((List<?>)object.eContainer().eGet(object.eContainingFeature())).indexOf(object);
-			append(index);
+		if (eFeature != null) {
+			String roleName = roleNames.get(eFeature);
+			if (roleName == null) {
+				roleName = eFeature.getName();
+			}
+			append(roleName);
+			if (eFeature.isMany()) {
+				int index = ((List<?>)object.eContainer().eGet(object.eContainingFeature())).indexOf(object);
+				append(index);
+			}
 		}
 	}
 	

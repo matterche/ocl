@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentFactory.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: EnvironmentFactory.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -133,14 +133,14 @@ public interface EnvironmentFactory {
      * context classifier (as an OCL type or classifier) will be
      * inferred from the context instance according to the metamodel that the
      * environment factory supports, if possible.  If not possible, then the
-     * {@link OCLStandardLibrary#getOclAny() OclAny} type is assumed.
+     * {@link StandardLibrary#getOclAny() OclAny} type is assumed.
      * </p>
      * 
      * @param context the context object or value
      * @return the environment
      * 
      * @see #createClassifierContext(Environment, Object)
-     * @see OCLStandardLibrary#getOclAny()
+     * @see StandardLibrary#getOclAny()
      */
     Environment createInstanceContext(Environment parent, Object context);
     

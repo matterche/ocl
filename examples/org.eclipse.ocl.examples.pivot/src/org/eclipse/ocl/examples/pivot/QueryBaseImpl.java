@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -113,7 +113,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
 		myEnv.add(SELF_VARIABLE_NAME, obj);
 		
-		EvaluationVisitor<?> ev =
+		EvaluationVisitor ev =
 			environment.getFactory().createEvaluationVisitor(
 					environment, myEnv, getExtentMap());
 		
@@ -136,7 +136,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  There is no "self" context variable
-		EvaluationVisitor<?> ev =
+		EvaluationVisitor ev =
 			environment.getFactory().createEvaluationVisitor(
 					environment, getEvaluationEnvironment(), getExtentMap());
 		

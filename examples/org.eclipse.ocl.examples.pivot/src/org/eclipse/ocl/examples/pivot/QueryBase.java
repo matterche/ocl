@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBase.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: QueryBase.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -141,7 +141,7 @@ public interface QueryBase {
 	/**
 	 * Obtains the OCL result type of the query.  This may be a classifier
 	 * in the user model, or it may represent a pre-defined OCL data type
-	 * such as {@link OCLStandardLibrary#getBoolean() Boolean}.
+	 * such as {@link StandardLibrary#getBoolean() Boolean}.
 	 * 
 	 * @return the query's result type
 	 */

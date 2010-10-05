@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: OCLBase.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -441,18 +441,13 @@ public abstract class OCLBase {
 			extents = localEvalEnv.createExtentMap(context);
 		}
 
-		EvaluationVisitor<?> ev = environmentFactory
+		EvaluationVisitor ev = environmentFactory
 			.createEvaluationVisitor(rootEnvironment, localEvalEnv, extents);
 
 		Object result;
 
 		try {
-			if (ev instanceof EvaluationContext) {
-				result = expression.evaluate((EvaluationContext) ev);
-			}
-			else {
-				result = ev.visitExpression(expression);
-			}
+			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evaluationProblems = e.getDiagnostic();
 			result = null;
@@ -528,7 +523,7 @@ public abstract class OCLBase {
 	 *             if the constraint expression is not boolean-valued
 	 */
 	public boolean check(Object context, OclExpression constraint) {
-		OCLStandardLibrary stdlib = getEnvironment().getOCLStandardLibrary();
+		StandardLibrary stdlib = getEnvironment().getOCLStandardLibrary();
 		if (constraint.getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}

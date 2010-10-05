@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: UMLReflection.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -534,7 +534,7 @@ public interface UMLReflection {
      * @param callOperationAction an operation-call action
      * @return the called operation (should not be <code>null</code>)
      */
-//    Operation getOperation(COA callOperationAction);
+    Operation getOperation(CallOperationAction callOperationAction);
 
     /**
      * Creates a <tt>SendSignalAction</tt> referencing the specified
@@ -551,7 +551,7 @@ public interface UMLReflection {
      * @param sendSignalAction a signal-send action
      * @return the sent signal (should not be <code>null</code>)
      */
-//    Type getSignal(SSA sendSignalAction);
+    Signal getSignal(SendSignalAction sendSignalAction);
 
     /**
      * Creates a <tt>Constraint</tt>.

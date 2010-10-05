@@ -14,7 +14,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -190,10 +190,10 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	}
 	
     // implements the interface method
-	public EvaluationVisitor<?> createEvaluationVisitor(Environment env,
+	public EvaluationVisitor createEvaluationVisitor(Environment env,
 			EvaluationEnvironment evalEnv,
 			Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<? extends Object>> extentMap) {
-        EvaluationVisitor<?> result =
+        EvaluationVisitor result =
             new EvaluationVisitorImpl(env, evalEnv, extentMap);
         
         if (isEvaluationTracingEnabled()) {

@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -79,7 +79,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 
 	private final OCLFactory oclFactory;
 
-	private final OCLStandardLibrary stdlib;
+	private final StandardLibrary stdlib;
 
 	/**
 	 * Initializes me with my environment.
@@ -1062,7 +1062,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 
 		// special handling for null and invalid values, whose types conform
 		// to all others
-		OCLStandardLibrary lib = env.getOCLStandardLibrary();
+		StandardLibrary lib = env.getOCLStandardLibrary();
 		if ((owner == lib.getNullType()) || (owner == lib.getInvalidType())) {
 			return findOperationForVoidOrInvalid(owner, name, args);
 		}

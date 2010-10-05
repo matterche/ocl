@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -23,18 +23,13 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OCLStandardLibrary;
-import org.eclipse.ocl.examples.pivot.OCLStatusCodes;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -42,9 +37,8 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
-import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -61,19 +55,18 @@ import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEvaluationVisitor
-	extends AbstractVisitor<Object>
-	implements EvaluationVisitor<Object>, EvaluationContext {
+	extends AbstractVisitor<Object> implements EvaluationVisitor {
 
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;
 	
 	private EvaluationEnvironment evalEnv;
 	private Environment env;
-	private OCLStandardLibrary stdlib;
+	private StandardLibrary stdlib;
 	
 	private Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap;
 
-    private EvaluationVisitor<?> visitor;
+    private EvaluationVisitor undecoratedVisitor;
     
 	static {
 		BOOLEAN_CONSTRAINTS = new java.util.HashSet<String>();
@@ -99,7 +92,7 @@ public abstract class AbstractEvaluationVisitor
         stdlib = env.getOCLStandardLibrary();
         this.extentMap = extentMap;
         
-        this.visitor = this;  // assume I have no decorator
+        this.undecoratedVisitor = this;  // assume I have no decorator
     }
     
     /**
@@ -112,29 +105,22 @@ public abstract class AbstractEvaluationVisitor
      * @param args the arguments to the operation call
      */
     protected Object call(Operation operation, OclExpression body, Object target, Object[] args) {
-		Environment myEnv =
-			getEnvironment();
-
-		EnvironmentFactory factory =
-			myEnv.getFactory();
-
     	// create a nested evaluation environment for this operation call
-    	EvaluationEnvironment nested =
-    		factory.createEvaluationEnvironment(getEvaluationEnvironment());
+    	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
+    	EvaluationEnvironment nestedEvalEnv = nestedVisitor.getEvaluationEnvironment();
     	
     	// bind "self"
-    	nested.add(Environment.SELF_VARIABLE_NAME, target);
+    	nestedEvalEnv.add(Environment.SELF_VARIABLE_NAME, target);
     	
     	// add the parameter bindings to the local variables
     	if (args.length > 0) {
+    		UMLReflection umlReflection = getEnvironment().getUMLReflection();
     		int i = 0;
-    		for (Parameter param : myEnv.getUMLReflection().getParameters(operation)) {
-    			nested.add(myEnv.getUMLReflection().getName(param), args[i++]);
+ 			for (Parameter param : umlReflection.getParameters(operation)) {
+    			nestedEvalEnv.add(umlReflection.getName(param), args[i++]);
     		}
     	}
-    	
-    	return factory.createEvaluationVisitor(
-    			myEnv, nested, getExtentMap()).visitExpression(body);
+		return body.accept(nestedVisitor);
     }
     
     /**
@@ -178,6 +164,10 @@ public abstract class AbstractEvaluationVisitor
 		return value;
 	}
 	
+    public final Type getInvalidType() {
+        return getStandardLibrary().getInvalidType();
+    }
+	
     /**
      * Obtains my environment's implementation of the <tt>OclInvalid</tt> value.
      * 
@@ -197,6 +187,10 @@ public abstract class AbstractEvaluationVisitor
 	protected String getName(Object namedElement) {
 		return getEnvironment().getUMLReflection().getName(namedElement);
 	}
+	
+    public final Type getNullType() {
+        return getStandardLibrary().getNullType();
+    }
 
 	public Object getNullValue() {
 		return getStandardLibrary().getNullValue();
@@ -272,7 +266,7 @@ public abstract class AbstractEvaluationVisitor
      * 
      * @return the OCL standard library
      */
-	protected OCLStandardLibrary getStandardLibrary() {
+	public StandardLibrary getStandardLibrary() {
 		return stdlib;
 	}
     
@@ -315,8 +309,24 @@ public abstract class AbstractEvaluationVisitor
      * 
      * @return my delegate visitor, which may be my own self or some other
      */
-    protected final EvaluationVisitor<?> getVisitor() {
-        return visitor;
+    protected final EvaluationVisitor getUndecoratedVisitor() {
+        return undecoratedVisitor;
+    }
+    
+    /**
+     * Obtains the visitor on which I perform nested
+     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.  This
+     * handles the case in which I am decorated by another visitor that must
+     * intercept every <tt>visitXxx()</tt> method.  If I internally just
+     * recursively visit myself, then this decorator is cut out of the picture.
+     * 
+     * @return my delegate visitor, which may be my own self or some other
+     * 
+     * @deprecated use {@link #getUndecoratedVisitor}
+     */
+	@Deprecated
+    protected final EvaluationVisitor getVisitor() {
+        return undecoratedVisitor;
     }
 	
 	/**
@@ -368,21 +378,12 @@ public abstract class AbstractEvaluationVisitor
      * @return the property's value
      */
     protected Object navigate(Property property, OclExpression derivation, Object target) {
-		Environment myEnv =
-			getEnvironment();
-
-		EnvironmentFactory factory =
-			myEnv.getFactory();
-
     	// create a nested evaluation environment for this property call
-    	EvaluationEnvironment nested =
-    		factory.createEvaluationEnvironment(getEvaluationEnvironment());
-    	
+    	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
+    	EvaluationEnvironment nestedEvalEnv = nestedVisitor.getEvaluationEnvironment();    	
     	// bind "self"
-    	nested.add(Environment.SELF_VARIABLE_NAME, target);
-    	
-    	return factory.createEvaluationVisitor(
-    			myEnv, nested, getExtentMap()).visitExpression(derivation);
+    	nestedEvalEnv.add(Environment.SELF_VARIABLE_NAME, target);
+		return derivation.accept(nestedVisitor);
     }
 
 	/**
@@ -471,6 +472,19 @@ public abstract class AbstractEvaluationVisitor
 
 		this.evalEnv = evaluationEnvironment;
 	}
+
+
+    /**
+     * Sets the visitor on which I perform nested
+     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.
+     * 
+     * @param visitor my delegate visitor
+     * 
+     * @see #getUndecoratedVisitor()
+     */
+	public void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor) {
+        this.undecoratedVisitor = evaluationVisitor;
+	}
     
     /**
      * Sets the visitor on which I perform nested
@@ -479,9 +493,12 @@ public abstract class AbstractEvaluationVisitor
      * @param visitor my delegate visitor
      * 
      * @see #getVisitor()
+     * 
+     * @deprecated use {@link #setUndecoratedVisitor}
      */
-    void setVisitor(EvaluationVisitor<?> visitor) {
-        this.visitor = visitor;
+	@Deprecated
+    void setVisitor(EvaluationVisitor visitor) {
+		setUndecoratedVisitor(visitor);
     }
 	
 	@Override
@@ -492,7 +509,11 @@ public abstract class AbstractEvaluationVisitor
 		result.append(')');
 		return result.toString();
 	}
-	
+
+	public Object visit(Visitable visitable) {
+		throw new UnsupportedOperationException();
+	}
+
 	/**
 	 * This default implementation asserts that the <tt>constraint</tt> is
 	 * boolean-valued if it is an invariant, pre-condition, or post-condition
@@ -513,7 +534,7 @@ public abstract class AbstractEvaluationVisitor
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 		
-		Object result = getVisitor().visitExpression(body);
+		Object result = body.accept(getUndecoratedVisitor());
 		
 		return isBoolean? Boolean.TRUE.equals(result) : result;
 	}
@@ -526,10 +547,10 @@ public abstract class AbstractEvaluationVisitor
 	 * @param expression an OCL expression to evaluate
 	 * 
 	 * @return the result of the evaluation
-	 */
+	 *
 	public Object visitExpression(OclExpression expression) {
         try {
-            return expression.accept(getVisitor());
+            return expression.accept(getUndecoratedVisitor());
         } catch (EvaluationHaltedException e) {
         	// evaluation stopped on demand, propagate further
         	throw e;
@@ -544,5 +565,12 @@ public abstract class AbstractEvaluationVisitor
             // failure to evaluate results in invalid
             return getInvalidValue();
         }
+	} */
+
+	@Deprecated
+	public Object visitExpression(OclExpression expression) {
+		return visit(expression);
 	}
+
+
 } //EvaluationVisitorImpl

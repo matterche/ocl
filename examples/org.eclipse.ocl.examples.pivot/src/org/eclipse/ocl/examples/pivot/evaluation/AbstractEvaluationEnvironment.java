@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
-import java.lang.Class;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
@@ -26,6 +25,7 @@ import java.util.Map;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.Option;
@@ -52,6 +52,7 @@ public abstract class AbstractEvaluationEnvironment
 	
     private final EvaluationEnvironment parent;
     private final Map<String, Object> map = new HashMap<String, Object>();
+    private final Map<VariableDeclaration, VariableDeclaration> variables = new HashMap<VariableDeclaration, VariableDeclaration>();
 
     private final Map<Option<?>, Object> options = new HashMap<Option<?>, Object>();
     
@@ -87,6 +88,14 @@ public abstract class AbstractEvaluationEnvironment
 		return object;
     }
 
+	public VariableDeclaration getVariable(VariableDeclaration variableDeclaration) {
+		VariableDeclaration variable = variables.get(variableDeclaration);
+		if ((variable == null) && (parent != null)) {
+			variable = parent.getVariable(variableDeclaration);
+		}
+		return variable;
+	}
+
     /**
      * Replaces the current value of the supplied name with the supplied value.
      * 
@@ -116,6 +125,25 @@ public abstract class AbstractEvaluationEnvironment
             throw new IllegalArgumentException(message);
         }
         map.put(name, value);
+    }
+
+    /**
+     * Adds the supplied name and value binding to the environment
+     * 
+     * @param name
+     *            the name to add
+     * @param value
+     *            the associated binding
+     */
+    public void addVariable(VariableDeclaration declaration, VariableDeclaration definition) {
+        if (variables.containsKey(declaration)) {
+            String message = OCLMessages.bind(
+            		OCLMessages.BindingExist_ERROR_,
+            		declaration.getName(),
+            		variables.get(declaration));
+            throw new IllegalArgumentException(message);
+        }
+        variables.put(declaration, definition);
     }
 
     /**

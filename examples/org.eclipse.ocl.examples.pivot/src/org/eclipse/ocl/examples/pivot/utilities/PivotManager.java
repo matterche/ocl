@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,11 +39,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OCLStandardLibrary;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -65,14 +69,17 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
  * An PivotPrefix entry is maintained for each non-null EPackage.nsPrefix to facilitate
  * alias generation for monikers. 
  */
-public class PivotManager implements Adapter, OCLStandardLibrary
+public class PivotManager implements Adapter, StandardLibrary
 {
+	/**
+	 * 'Highest' precedence first
+	 */
 	public static class PrecedenceComparator implements Comparator<Precedence>
 	{
 		public static final PrecedenceComparator INSTANCE = new PrecedenceComparator();
 
 		public int compare(Precedence o1, Precedence o2) {
-			return o1.getOrder().compareTo(o2.getOrder());
+			return o2.getOrder().compareTo(o1.getOrder());	// NB least positive is hioghest precedence
 		}
 	}
 
@@ -161,6 +168,7 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 	protected String defaultStandardLibraryURI = DEFAULT_OCL_STDLIB_URI;
 
 	protected final ResourceSet pivotResourceSet;
+	protected final CompleteEnvironmentManager completeEnvironmentManager = new CompleteEnvironmentManager(this);
 
 	protected Map<URI,Resource> externalResources = null;
 	protected ResourceSet externalResourceSet = null;
@@ -179,10 +187,10 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 	private Map<String, List<Precedence>> nameToPrecedencesMap = null;
 
 	private Map<String, String> infixToPrecedenceNameMap = null;
-
 	private Map<String, String> prefixToPrecedenceNameMap = null;
-
+	
 	private Type booleanType = null;
+	private Type classifierType = null;
 	private Type integerType = null;
 	private Type invalidType = null;
 	private InvalidLiteralExp invalidValue = null;
@@ -190,6 +198,7 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 	private NullLiteralExp nullValue = null;
 	private Type realType = null;
 	private Type stringType = null;
+	private Type tupleType = null;
 	private Type unlimitedNaturalType = null;
 	private UnlimitedNaturalLiteralExp unlimitedValue = null;
 	
@@ -318,6 +327,11 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 		return rootPackages;
 	}
 
+
+	public boolean conformsTo(Type firstType, Type secondType) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	public Resource createResource(URI uri, String contentType) {
 		// FIXME Convert URI to absolute
@@ -337,9 +351,31 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 		}
 		return booleanType;
 	}
-
+	
+	public Type getClassifierType() {
+		if (classifierType == null) {
+			classifierType = getLibraryType("Classifier", null);
+			if (classifierType == null) {
+				logger.error("No Classifier type in OCL Standard Library");
+			}
+		}
+		return classifierType;
+	}
+	
 	public Type getCollectionType() {
 		return getLibraryType("Collection", null);
+	}
+
+	public CompleteClass getCompleteClass(org.eclipse.ocl.examples.pivot.Class type) {
+		return completeEnvironmentManager.getCompleteClass(type);
+	}
+
+	public CompleteEnvironmentManager getCompleteEnvironmentManager() {
+		return completeEnvironmentManager;
+	}
+
+	public CompletePackage getCompletePackage(org.eclipse.ocl.examples.pivot.Package type) {
+		return completeEnvironmentManager.getCompletePackage(type);
 	}
 
 	public ResourceSet getExternalResourceSet() {
@@ -395,6 +431,7 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 	public Object getInvalidValue() {
 		if (invalidValue  == null) {
 			invalidValue = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+			invalidValue.setType(getInvalidType());
 		}
 		return invalidValue;
 	}
@@ -439,6 +476,7 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 	public Object getNullValue() {
 		if (nullValue  == null) {
 			nullValue = PivotFactory.eINSTANCE.createNullLiteralExp();
+			nullValue.setType(getNullType());
 		}
 		return nullValue;
 	}
@@ -518,6 +556,40 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 		return pivotResourceSet;
 	}
 
+	public Type getTupleType() {
+		if (tupleType == null) {
+			tupleType = getLibraryType("Tuple", null);
+			if (tupleType == null) {
+				logger.error("No Tuple type in OCL Standard Library");
+			}
+		}
+		return tupleType;
+	}
+
+	public Type getTypeOfType(Object type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Type getTypeOfValue(Object value, Type type) {
+		if (value instanceof OclExpression) {
+			return ((OclExpression)value).getType();
+		}
+		if (value instanceof Boolean) {
+			return getBooleanType();
+		}
+		if (value instanceof String) {
+			return getStringType();
+		}
+		if (value instanceof BigDecimal) {
+			return getRealType();
+		}
+		if (value instanceof BigInteger) {
+			return ((BigInteger)value).signum() >= 0 ? getUnlimitedNaturalType() : getIntegerType();
+		}
+		return getInvalidType();
+	}
+
 	public Type getUnlimitedNaturalType() {
 		if (unlimitedNaturalType == null) {
 			unlimitedNaturalType = getLibraryType("UnlimitedNatural", null);
@@ -533,6 +605,16 @@ public class PivotManager implements Adapter, OCLStandardLibrary
 			unlimitedValue = PivotFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
 		}
 		return unlimitedValue;
+	}
+
+	public Object getValueOfValue(Object value) {
+		if ((value instanceof Integer) || (value instanceof Long) || (value instanceof Short)) {
+			return BigInteger.valueOf(((Number)value).longValue());
+		}
+		if ((value instanceof Float) || (value instanceof Double)) {
+			return new BigDecimal(((Number)value).doubleValue());
+		}
+		return value;
 	}
 	
 	public boolean isAdapterForType(Object type) {
