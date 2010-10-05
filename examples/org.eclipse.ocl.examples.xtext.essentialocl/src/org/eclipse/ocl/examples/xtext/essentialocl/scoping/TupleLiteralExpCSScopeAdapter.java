@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
@@ -33,10 +32,5 @@ public class TupleLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<TupleLitera
 //		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		environmentView.addNamedElements(getTarget().getOwnedParts());
 		return scopeView.getOuterScope();
-	}
-
-	@Override
-	public Type getSynthesizedType() {
-		return (Type) getTarget().getPivot();
 	}
 }

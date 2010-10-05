@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: ExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -38,5 +38,8 @@ public abstract class ExpCSScopeAdapter<CS extends ExpCS, P extends OclExpressio
 	}
 
 	@Override
-	public abstract Type getSynthesizedType();
+	public Type getSynthesizedType() {
+		P pivot = getPivot();
+		return pivot != null ? pivot.getType() : null;
+	}
 }

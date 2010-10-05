@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeProvider.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: EssentialOCLCSScopeProvider.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.DefaultScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
@@ -30,6 +31,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
@@ -62,6 +65,11 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 		extends EssentialOCLCSTSwitch<ScopeAdapter>
 		implements ScopeAdapter.Switch
 	{	
+		@Override
+		public ScopeAdapter caseBinaryOperatorCS(BinaryOperatorCS eObject) {
+			return new BinaryOperatorCSScopeAdapter(eObject);
+		}
+
 		@Override
 		public ScopeAdapter caseBooleanLiteralExpCS(BooleanLiteralExpCS eObject) {
 			return new BooleanLiteralExpCSScopeAdapter(eObject);
@@ -100,6 +108,16 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 		@Override
 		public ScopeAdapter caseNameExpCS(NameExpCS eObject) {
 			return new NameExpCSScopeAdapter(eObject);
+		}
+
+		@Override
+		public ScopeAdapter caseNavigatingExpCS(NavigatingExpCS eObject) {
+			return new NavigatingExpCSScopeAdapter(eObject);
+		}
+
+		@Override
+		public ScopeAdapter caseNavigationOperatorCS(NavigationOperatorCS eObject) {
+			return new NavigationOperatorCSScopeAdapter(eObject);
 		}
 
 		@Override

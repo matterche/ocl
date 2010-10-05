@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: BooleanLiteralExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -31,7 +31,7 @@ public class BooleanLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<BooleanLi
 	@Override
 	public Type getSynthesizedType() {
 		if (type == null) {
-			type = getLibraryBooleanType();
+			type = getBooleanType();
 		}
 		return type;
 	}

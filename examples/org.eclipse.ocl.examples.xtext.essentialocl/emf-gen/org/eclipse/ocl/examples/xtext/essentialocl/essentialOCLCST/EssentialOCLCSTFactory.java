@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactory.java,v 1.4.6.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: EssentialOCLCSTFactory.java,v 1.4.6.2 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -169,6 +169,15 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	NavigatingExpCS createNavigatingExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Navigation Operator CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Navigation Operator CS</em>'.
+	 * @generated
+	 */
+	NavigationOperatorCS createNavigationOperatorCS();
 
 	/**
 	 * Returns a new object of class '<em>Nested Exp CS</em>'.

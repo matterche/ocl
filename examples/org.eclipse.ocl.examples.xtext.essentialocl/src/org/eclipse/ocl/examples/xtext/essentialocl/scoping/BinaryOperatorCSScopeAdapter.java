@@ -12,21 +12,24 @@
  *
  * </copyright>
  *
- * $Id: InfixExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
+ * $Id: BinaryOperatorCSScopeAdapter.java,v 1.1.2.1 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 
-public class InfixExpCSScopeAdapter extends ExpCSScopeAdapter<InfixExpCS, OperationCallExp>
+public class BinaryOperatorCSScopeAdapter extends ExpCSScopeAdapter<BinaryOperatorCS, OperationCallExp>
 {
-	public InfixExpCSScopeAdapter(InfixExpCS csElement) {
-		super(csElement, OperationCallExp.class);
+	public BinaryOperatorCSScopeAdapter(BinaryOperatorCS eObject) {
+		super(eObject, OperationCallExp.class);
 	}
 
 //	@Override
 //	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-//		return getScopeAdapter(getPivot()).getOuterScopeView(null);
+//		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+//		BinaryOperatorCS target = getTarget();
+//		ExpCS parent = target.getParent();
+//		return getScopeAdapter(parent).getOuterScopeView(null);
 //	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTAdapterFactory.java,v 1.5.6.1 2010/10/01 14:30:28 ewillink Exp $
+ * $Id: EssentialOCLCSTAdapterFactory.java,v 1.5.6.2 2010/10/05 17:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -213,6 +213,11 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseNavigatingExpCS(NavigatingExpCS object)
 			{
 				return createNavigatingExpCSAdapter();
+			}
+			@Override
+			public Adapter caseNavigationOperatorCS(NavigationOperatorCS object)
+			{
+				return createNavigationOperatorCSAdapter();
 			}
 			@Override
 			public Adapter caseNestedExpCS(NestedExpCS object)
@@ -637,6 +642,21 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNavigatingExpCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS <em>Navigation Operator CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS
+	 * @generated
+	 */
+	public Adapter createNavigationOperatorCSAdapter()
 	{
 		return null;
 	}

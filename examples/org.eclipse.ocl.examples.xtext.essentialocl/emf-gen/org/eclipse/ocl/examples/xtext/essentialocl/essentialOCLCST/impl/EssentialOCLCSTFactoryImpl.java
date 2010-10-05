@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactoryImpl.java,v 1.5.6.1 2010/10/01 14:30:27 ewillink Exp $
+ * $Id: EssentialOCLCSTFactoryImpl.java,v 1.5.6.2 2010/10/05 17:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -118,6 +118,7 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.NAME_EXP_CS: return createNameExpCS();
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS: return createNavigatingArgCS();
 			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS: return createNavigatingExpCS();
+			case EssentialOCLCSTPackage.NAVIGATION_OPERATOR_CS: return createNavigationOperatorCS();
 			case EssentialOCLCSTPackage.NESTED_EXP_CS: return createNestedExpCS();
 			case EssentialOCLCSTPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
 			case EssentialOCLCSTPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
@@ -329,6 +330,17 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	{
 		NavigatingExpCSImpl navigatingExpCS = new NavigatingExpCSImpl();
 		return navigatingExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NavigationOperatorCS createNavigationOperatorCS()
+	{
+		NavigationOperatorCSImpl navigationOperatorCS = new NavigationOperatorCSImpl();
+		return navigationOperatorCS;
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2PivotSwitch.java,v 1.1.2.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLCS2PivotSwitch.java,v 1.1.2.2 2010/10/05 17:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -75,6 +76,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
@@ -252,12 +254,41 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 			//
 			//	Create the pivot expressions.
 			//
+//			OclExpression pivotElement = createCallTree(csOperator);
 			csOperator.setPivot(csElement.getPivot());		// Preserve any pre-created pivot
-			OperationCallExp pivotElement = converter.referenceElement(OperationCallExp.class, csOperator);
+//			converter.referenceElements(csElement.getOwnedExpression());
+//			OperationCallExp pivotElement = refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csOperator);
+//			F I X M E create all calls
+			CallExp pivotElement = converter.referenceElement(CallExp.class, csOperator);
 			converter.installPivotElement(csElement, pivotElement);
 			converter.queueResolver(csElement); 	// For referredOperation
 			return pivotElement;
 		}
+
+/*		private OclExpression createCallTree(ExpCS csOperator) {
+			if (csOperator instanceof BinaryOperatorCS) {
+				BinaryOperatorCS csBinary = (BinaryOperatorCS)csOperator;
+				OclExpression source = createCallTree(csBinary.getLeft());
+				OclExpression arg = createCallTree(csBinary.getRight());
+			}
+			else if (csOperator instanceof UnaryOperatorCS) {
+				UnaryOperatorCS csUnary = (UnaryOperatorCS)csOperator;
+				OclExpression child = createCallTree(csUnary.getChild());
+				OperationCallExp pivotUnary = refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csUnary);
+				pivotUnary.setName(pivotUnary.getName());
+				pivotUnary.setIsPre(pivotUnary.isPre());
+				pivotUnary.setSource(child);
+			}
+			else if (csOperator instanceof OclExpression) {
+				UnaryOperatorCS csUnary = (UnaryOperatorCS)csOperator;
+				OclExpression child = createCallTree(csUnary.getChild());
+				OperationCallExp pivotUnary = refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csUnary);
+				pivotUnary.setName(pivotUnary.getName());
+				pivotUnary.setIsPre(pivotUnary.isPre());
+				pivotUnary.setSource(child);
+			}
+			return null;
+		} */
 
 		@Override
 		public Element caseInvalidLiteralExpCS(InvalidLiteralExpCS csElement) {
@@ -317,6 +348,9 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 
 		@Override
 		public Element caseNavigatingExpCS(NavigatingExpCS csElement) {
+			InfixExpCS csInfix = (InfixExpCS) csElement.eContainer();
+			int index = csInfix.getOwnedExpression().indexOf(csElement);
+			NavigationOperatorCS csNavigationOperator = index > 0 ? (NavigationOperatorCS)csInfix.getOwnedOperator().get(index-1) : null;
 			int barIndex = -1;
 			int semiIndex = -1;
 			NamedExpCS namedExp = csElement.getName();
@@ -366,6 +400,8 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 			}
 			else if (isOperation) {
 				OperationCallExp operationExp = refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csElement);
+				converter.refreshName(operationExp, namedElement.getName());
+				operationExp.setSource((OclExpression) csNavigationOperator.getLeft().getPivot());
 //				converter.referenceElements(arguments);
 				return operationExp;
 			}
@@ -376,9 +412,17 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 		}
 
 		@Override
+		public Element caseNavigationOperatorCS(NavigationOperatorCS csOperator) {
+			OclExpression leftElement = converter.referenceElement(OclExpression.class, csOperator.getLeft());
+			OclExpression rightElement = converter.referenceElement(OclExpression.class, csOperator.getRight());
+			return rightElement;
+		}
+
+		@Override
 		public Element caseNestedExpCS(NestedExpCS csElement) {
-			// TODO Auto-generated method stub
-			return super.caseNestedExpCS(csElement);
+			OclExpression pivotElement = converter.referenceElement(OclExpression.class, csElement.getSource());
+			converter.installPivotElement(csElement, pivotElement);
+			return pivotElement;
 		}
 
 		@Override
@@ -484,9 +528,9 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 //					converter.refreshName(pivotElement, csOperator.getName());
 //					OperationCallExp pivotElement = PivotFactory.eINSTANCE.createOperationCallExp();
 //					pivotElement.setName(csOperator.getName());
-					OperatorCS csLeftRoot = csParents[i];
+					OperatorCS csLeftRoot = csParents[operatorIndex];
 					if (csLeftRoot == null) {
-						csParents[i] = csOperator;
+						csParents[operatorIndex] = csOperator;
 					}
 					else {
 						while (csLeftRoot.getParent() != null) {
@@ -496,9 +540,9 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 						csOperator.setLeft(csLeftRoot);
 //						pivotElement.setSource((OclExpression) csLeftRoot.getPivot());
 					}
-					OperatorCS csRightRoot = csParents[i+1];
+					OperatorCS csRightRoot = csParents[operatorIndex+1];
 					if (csRightRoot == null) {
-						csParents[i+1] = csOperator;
+						csParents[operatorIndex+1] = csOperator;
 					}
 					else {
 						while (csRightRoot.getParent() != null) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerSwitch.java,v 1.1.2.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerSwitch.java,v 1.1.2.2 2010/10/05 17:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -47,7 +47,7 @@ public class EssentialOCLCS2MonikerSwitch extends EssentialOCLCSTSwitch<Object> 
 			CS2Moniker.addFactory(this);
 //			roleNames.put(EssentialOCLCSTPackage.Literals.CALL_EXP__SOURCE, "src");
 //			roleNames.put(EssentialOCLCSTPackage.Literals.CONSTRAINT__SPECIFICATION, "spec");
-			roleNames.put(EssentialOCLCSTPackage.Literals.CONTEXT_CS__OWNED_EXPRESSION, "body");
+			roleNames.put(EssentialOCLCSTPackage.Literals.CONTEXT_CS__OWNED_EXPRESSION, "expr");
 			roleNames.put(EssentialOCLCSTPackage.Literals.IF_EXP_CS__CONDITION, "cond");
 			roleNames.put(EssentialOCLCSTPackage.Literals.IF_EXP_CS__THEN_EXPRESSION, "then");
 			roleNames.put(EssentialOCLCSTPackage.Literals.IF_EXP_CS__ELSE_EXPRESSION, "else");
@@ -55,9 +55,9 @@ public class EssentialOCLCS2MonikerSwitch extends EssentialOCLCSTSwitch<Object> 
 			roleNames.put(EssentialOCLCSTPackage.Literals.LET_EXP_CS__VARIABLE, "var");
 //			roleNames.put(EssentialOCLCSTPackage.Literals.LOOP_EXP__BODY, "body");
 //			roleNames.put(EssentialOCLCSTPackage.Literals.LOOP_EXP__ITERATOR, "it");
-			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_EXPRESSION, "arg");
+			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_EXPRESSION, "exp");
 			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_OPERATOR, "op");
-			roleNames.put(EssentialOCLCSTPackage.Literals.PREFIX_EXP_CS__OWNED_EXPRESSION, "arg");
+			roleNames.put(EssentialOCLCSTPackage.Literals.PREFIX_EXP_CS__OWNED_EXPRESSION, "expr");
 			roleNames.put(EssentialOCLCSTPackage.Literals.PREFIX_EXP_CS__OWNED_OPERATOR, "op");
 		}
 		

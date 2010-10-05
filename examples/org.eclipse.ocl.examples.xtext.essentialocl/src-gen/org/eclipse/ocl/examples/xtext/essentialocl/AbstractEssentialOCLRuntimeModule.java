@@ -51,7 +51,7 @@ public abstract class AbstractEssentialOCLRuntimeModule extends DefaultRuntimeMo
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeProvider.class;
+		return org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment

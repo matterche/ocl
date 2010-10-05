@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumberLiteralExpCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: NumberLiteralExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -33,13 +33,13 @@ public class NumberLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<NumberLite
 		if (type == null) {
 			String text = getText();
 			if (text.contains(".") || text.contains("E") || text.contains("e")) {
-				type = getLibraryRealType();
+				type = getRealType();
 			}
 			else if (text.contains("-")) {
-				type = getLibraryIntegerType();
+				type = getIntegerType();
 			}
 			else {
-				type = getLibraryUnlimitedNaturalType();
+				type = getUnlimitedNaturalType();
 			}
 		}
 		return type;

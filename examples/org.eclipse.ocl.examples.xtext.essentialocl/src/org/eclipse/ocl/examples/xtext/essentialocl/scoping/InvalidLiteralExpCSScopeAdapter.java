@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: InvalidLiteralExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -31,7 +31,7 @@ public class InvalidLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<InvalidLi
 	@Override
 	public Type getSynthesizedType() {
 		if (type == null) {
-			type = getLibraryOclInvalidType();
+			type = getInvalidType();
 		}
 		return type;
 	}

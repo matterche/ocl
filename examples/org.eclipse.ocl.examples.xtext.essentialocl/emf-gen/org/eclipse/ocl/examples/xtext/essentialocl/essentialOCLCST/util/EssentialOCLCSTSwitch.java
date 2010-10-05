@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTSwitch.java,v 1.5.6.1 2010/10/01 14:30:28 ewillink Exp $
+ * $Id: EssentialOCLCSTSwitch.java,v 1.5.6.2 2010/10/05 17:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -369,6 +369,22 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseModelElementCS(navigatingExpCS);
 				if (result == null) result = caseElementCS(navigatingExpCS);
 				if (result == null) result = caseIPivotElement(navigatingExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.NAVIGATION_OPERATOR_CS:
+			{
+				NavigationOperatorCS navigationOperatorCS = (NavigationOperatorCS)theEObject;
+				T result = caseNavigationOperatorCS(navigationOperatorCS);
+				if (result == null) result = caseBinaryOperatorCS(navigationOperatorCS);
+				if (result == null) result = caseOperatorCS(navigationOperatorCS);
+				if (result == null) result = caseNamedElementCS(navigationOperatorCS);
+				if (result == null) result = caseExpCS(navigationOperatorCS);
+				if (result == null) result = caseMonikeredElementCS(navigationOperatorCS);
+				if (result == null) result = caseINamedElement(navigationOperatorCS);
+				if (result == null) result = caseModelElementCS(navigationOperatorCS);
+				if (result == null) result = caseElementCS(navigationOperatorCS);
+				if (result == null) result = caseIPivotElement(navigationOperatorCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -893,6 +909,22 @@ public class EssentialOCLCSTSwitch<T>
 	 * @generated
 	 */
 	public T caseNavigatingExpCS(NavigatingExpCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigation Operator CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigation Operator CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigationOperatorCS(NavigationOperatorCS object)
 	{
 		return null;
 	}

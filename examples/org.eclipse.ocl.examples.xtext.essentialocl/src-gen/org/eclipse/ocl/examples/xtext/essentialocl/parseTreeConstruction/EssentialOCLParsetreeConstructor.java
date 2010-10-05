@@ -53,22 +53,24 @@ protected class ThisRootNode extends RootToken {
 			case 19: return new TypeExpCS_Alternatives(this, this, 19, inst);
 			case 20: return new ExpCS_InfixedExpCSParserRuleCall(this, this, 20, inst);
 			case 21: return new InfixedExpCS_Group(this, this, 21, inst);
-			case 22: return new BinaryOperatorCS_NameAssignment(this, this, 22, inst);
-			case 23: return new PrefixedExpCS_Alternatives(this, this, 23, inst);
-			case 24: return new UnaryOperatorCS_NameAssignment(this, this, 24, inst);
-			case 25: return new PrimaryExpCS_Alternatives(this, this, 25, inst);
-			case 26: return new NameExpCS_Alternatives(this, this, 26, inst);
-			case 27: return new IndexExpCS_Group(this, this, 27, inst);
-			case 28: return new NavigatingExpCS_Base_IndexExpCSParserRuleCall(this, this, 28, inst);
-			case 29: return new NavigatingExpCS_Group(this, this, 29, inst);
-			case 30: return new NavigatingArgCSfirst_Group(this, this, 30, inst);
-			case 31: return new NavigatingArgCSnext_Alternatives(this, this, 31, inst);
-			case 32: return new NavigatingArgExpCS_ExpCSParserRuleCall(this, this, 32, inst);
-			case 33: return new IfExpCS_Group(this, this, 33, inst);
-			case 34: return new LetExpCS_Group(this, this, 34, inst);
-			case 35: return new LetVariableCS_Group(this, this, 35, inst);
-			case 36: return new NestedExpCS_Group(this, this, 36, inst);
-			case 37: return new SelfExpCS_Group(this, this, 37, inst);
+			case 22: return new BinaryOperatorCS_Alternatives(this, this, 22, inst);
+			case 23: return new InfixOperatorCS_NameAssignment(this, this, 23, inst);
+			case 24: return new NavigationOperatorCS_NameAssignment(this, this, 24, inst);
+			case 25: return new PrefixedExpCS_Alternatives(this, this, 25, inst);
+			case 26: return new UnaryOperatorCS_NameAssignment(this, this, 26, inst);
+			case 27: return new PrimaryExpCS_Alternatives(this, this, 27, inst);
+			case 28: return new NameExpCS_Alternatives(this, this, 28, inst);
+			case 29: return new IndexExpCS_Group(this, this, 29, inst);
+			case 30: return new NavigatingExpCS_Base_IndexExpCSParserRuleCall(this, this, 30, inst);
+			case 31: return new NavigatingExpCS_Group(this, this, 31, inst);
+			case 32: return new NavigatingArgCSfirst_Group(this, this, 32, inst);
+			case 33: return new NavigatingArgCSnext_Alternatives(this, this, 33, inst);
+			case 34: return new NavigatingArgExpCS_ExpCSParserRuleCall(this, this, 34, inst);
+			case 35: return new IfExpCS_Group(this, this, 35, inst);
+			case 36: return new LetExpCS_Group(this, this, 36, inst);
+			case 37: return new LetVariableCS_Group(this, this, 37, inst);
+			case 38: return new NestedExpCS_Group(this, this, 38, inst);
+			case 39: return new SelfExpCS_Group(this, this, 39, inst);
 			default: return null;
 		}	
 	}	
@@ -263,6 +265,8 @@ protected class Model_SemicolonKeyword_3 extends KeywordToken  {
 
 
 /************ end Rule Model ****************/
+
+
 
 
 
@@ -3550,7 +3554,7 @@ protected class InfixedExpCS_OwnedOperatorAssignment_1_1_0 extends AssignmentTok
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new BinaryOperatorCS_NameAssignment(this, this, 0, inst);
+			case 0: return new BinaryOperatorCS_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3637,20 +3641,134 @@ protected class InfixedExpCS_OwnedExpressionAssignment_1_1_1 extends AssignmentT
 /************ begin Rule BinaryOperatorCS ****************
  *
  * BinaryOperatorCS:
+ * 	InfixOperatorCS | NavigationOperatorCS;
+ *
+ **/
+
+// InfixOperatorCS | NavigationOperatorCS
+protected class BinaryOperatorCS_Alternatives extends AlternativesToken {
+
+	public BinaryOperatorCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getBinaryOperatorCSAccess().getAlternatives();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new BinaryOperatorCS_InfixOperatorCSParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new BinaryOperatorCS_NavigationOperatorCSParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getInfixOperatorCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationOperatorCSRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// InfixOperatorCS
+protected class BinaryOperatorCS_InfixOperatorCSParserRuleCall_0 extends RuleCallToken {
+	
+	public BinaryOperatorCS_InfixOperatorCSParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getBinaryOperatorCSAccess().getInfixOperatorCSParserRuleCall_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new InfixOperatorCS_NameAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getInfixOperatorCSRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(InfixOperatorCS_NameAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// NavigationOperatorCS
+protected class BinaryOperatorCS_NavigationOperatorCSParserRuleCall_1 extends RuleCallToken {
+	
+	public BinaryOperatorCS_NavigationOperatorCSParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getBinaryOperatorCSAccess().getNavigationOperatorCSParserRuleCall_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new NavigationOperatorCS_NameAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getNavigationOperatorCSRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(NavigationOperatorCS_NameAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+
+/************ end Rule BinaryOperatorCS ****************/
+
+
+/************ begin Rule InfixOperatorCS ****************
+ *
+ * InfixOperatorCS returns BinaryOperatorCS:
  * 	name=InfixOperator;
  *
  **/
 
 // name=InfixOperator
-protected class BinaryOperatorCS_NameAssignment extends AssignmentToken  {
+protected class InfixOperatorCS_NameAssignment extends AssignmentToken  {
 	
-	public BinaryOperatorCS_NameAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InfixOperatorCS_NameAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getBinaryOperatorCSAccess().getNameAssignment();
+		return grammarAccess.getInfixOperatorCSAccess().getNameAssignment();
 	}
 
     @Override
@@ -3662,13 +3780,13 @@ protected class BinaryOperatorCS_NameAssignment extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getBinaryOperatorCSRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getInfixOperatorCSRule().getType().getClassifier())
 			return null;
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getBinaryOperatorCSAccess().getNameInfixOperatorParserRuleCall_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getInfixOperatorCSAccess().getNameInfixOperatorParserRuleCall_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getBinaryOperatorCSAccess().getNameInfixOperatorParserRuleCall_0();
+			element = grammarAccess.getInfixOperatorCSAccess().getNameInfixOperatorParserRuleCall_0();
 			return obj;
 		}
 		return null;
@@ -3676,7 +3794,52 @@ protected class BinaryOperatorCS_NameAssignment extends AssignmentToken  {
 
 }
 
-/************ end Rule BinaryOperatorCS ****************/
+/************ end Rule InfixOperatorCS ****************/
+
+
+/************ begin Rule NavigationOperatorCS ****************
+ *
+ * NavigationOperatorCS:
+ * 	name=NavigationOperator;
+ *
+ **/
+
+// name=NavigationOperator
+protected class NavigationOperatorCS_NameAssignment extends AssignmentToken  {
+	
+	public NavigationOperatorCS_NameAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getNavigationOperatorCSAccess().getNameAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getNavigationOperatorCSRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getNavigationOperatorCSAccess().getNameNavigationOperatorParserRuleCall_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getNavigationOperatorCSAccess().getNameNavigationOperatorParserRuleCall_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule NavigationOperatorCS ****************/
 
 
 /************ begin Rule PrefixedExpCS ****************

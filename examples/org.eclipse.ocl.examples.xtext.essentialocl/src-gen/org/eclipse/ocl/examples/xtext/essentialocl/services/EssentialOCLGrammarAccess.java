@@ -233,14 +233,12 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOrKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
 		private final Keyword cXorKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
 		private final Keyword cImpliesKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
-		private final Keyword cFullStopKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
 		
 		//EssentialOCLInfixOperator returns ecore::EString:
-		//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies" | "." | "->";
+		//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies";
 		public ParserRule getRule() { return rule; }
 
-		//"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies" | "." | "->"
+		//"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"*"
@@ -284,12 +282,26 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"implies"
 		public Keyword getImpliesKeyword_13() { return cImpliesKeyword_13; }
+	}
+
+	public class EssentialOCLNavigationOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EssentialOCLNavigationOperator");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cFullStopKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//EssentialOCLNavigationOperator returns ecore::EString:
+		//	"." | "->";
+		public ParserRule getRule() { return rule; }
+
+		//"." | "->"
+		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"."
-		public Keyword getFullStopKeyword_14() { return cFullStopKeyword_14; }
+		public Keyword getFullStopKeyword_0() { return cFullStopKeyword_0; }
 
 		//"->"
-		public Keyword getHyphenMinusGreaterThanSignKeyword_15() { return cHyphenMinusGreaterThanSignKeyword_15; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
 	}
 
 	public class IdentifierElements extends AbstractParserRuleElementFinder {
@@ -378,6 +390,20 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//EssentialOCLInfixOperator
 		public RuleCall getEssentialOCLInfixOperatorParserRuleCall() { return cEssentialOCLInfixOperatorParserRuleCall; }
+	}
+
+	public class NavigationOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigationOperator");
+		private final RuleCall cEssentialOCLNavigationOperatorParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//// Intended to be overridden
+		//
+		//NavigationOperator returns ecore::EString:
+		//	EssentialOCLNavigationOperator;
+		public ParserRule getRule() { return rule; }
+
+		//EssentialOCLNavigationOperator
+		public RuleCall getEssentialOCLNavigationOperatorParserRuleCall() { return cEssentialOCLNavigationOperatorParserRuleCall; }
 	}
 
 	public class EssentialOCLUnrestrictedNameElements extends AbstractParserRuleElementFinder {
@@ -1240,10 +1266,30 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class BinaryOperatorCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BinaryOperatorCS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cInfixOperatorCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cNavigationOperatorCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//BinaryOperatorCS:
+		//	InfixOperatorCS | NavigationOperatorCS;
+		public ParserRule getRule() { return rule; }
+
+		//InfixOperatorCS | NavigationOperatorCS
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//InfixOperatorCS
+		public RuleCall getInfixOperatorCSParserRuleCall_0() { return cInfixOperatorCSParserRuleCall_0; }
+
+		//NavigationOperatorCS
+		public RuleCall getNavigationOperatorCSParserRuleCall_1() { return cNavigationOperatorCSParserRuleCall_1; }
+	}
+
+	public class InfixOperatorCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InfixOperatorCS");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameInfixOperatorParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
-		//BinaryOperatorCS:
+		//InfixOperatorCS returns BinaryOperatorCS:
 		//	name=InfixOperator;
 		public ParserRule getRule() { return rule; }
 
@@ -1252,6 +1298,22 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//InfixOperator
 		public RuleCall getNameInfixOperatorParserRuleCall_0() { return cNameInfixOperatorParserRuleCall_0; }
+	}
+
+	public class NavigationOperatorCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigationOperatorCS");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameNavigationOperatorParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//NavigationOperatorCS:
+		//	name=NavigationOperator;
+		public ParserRule getRule() { return rule; }
+
+		//name=NavigationOperator
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//NavigationOperator
+		public RuleCall getNameNavigationOperatorParserRuleCall_0() { return cNameNavigationOperatorParserRuleCall_0; }
 	}
 
 	public class PrefixedExpCSElements extends AbstractParserRuleElementFinder {
@@ -1987,10 +2049,12 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private EssentialOCLReservedKeywordElements pEssentialOCLReservedKeyword;
 	private EssentialOCLPrefixOperatorElements pEssentialOCLPrefixOperator;
 	private EssentialOCLInfixOperatorElements pEssentialOCLInfixOperator;
+	private EssentialOCLNavigationOperatorElements pEssentialOCLNavigationOperator;
 	private IdentifierElements pIdentifier;
 	private StringLiteralElements pStringLiteral;
 	private PrefixOperatorElements pPrefixOperator;
 	private InfixOperatorElements pInfixOperator;
+	private NavigationOperatorElements pNavigationOperator;
 	private EssentialOCLUnrestrictedNameElements pEssentialOCLUnrestrictedName;
 	private UnrestrictedNameElements pUnrestrictedName;
 	private EssentialOCLUnreservedNameElements pEssentialOCLUnreservedName;
@@ -2019,6 +2083,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private ExpCSElements pExpCS;
 	private InfixedExpCSElements pInfixedExpCS;
 	private BinaryOperatorCSElements pBinaryOperatorCS;
+	private InfixOperatorCSElements pInfixOperatorCS;
+	private NavigationOperatorCSElements pNavigationOperatorCS;
 	private PrefixedExpCSElements pPrefixedExpCS;
 	private UnaryOperatorCSElements pUnaryOperatorCS;
 	private PrimaryExpCSElements pPrimaryExpCS;
@@ -2149,13 +2215,23 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EssentialOCLInfixOperator returns ecore::EString:
-	//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies" | "." | "->";
+	//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies";
 	public EssentialOCLInfixOperatorElements getEssentialOCLInfixOperatorAccess() {
 		return (pEssentialOCLInfixOperator != null) ? pEssentialOCLInfixOperator : (pEssentialOCLInfixOperator = new EssentialOCLInfixOperatorElements());
 	}
 	
 	public ParserRule getEssentialOCLInfixOperatorRule() {
 		return getEssentialOCLInfixOperatorAccess().getRule();
+	}
+
+	//EssentialOCLNavigationOperator returns ecore::EString:
+	//	"." | "->";
+	public EssentialOCLNavigationOperatorElements getEssentialOCLNavigationOperatorAccess() {
+		return (pEssentialOCLNavigationOperator != null) ? pEssentialOCLNavigationOperator : (pEssentialOCLNavigationOperator = new EssentialOCLNavigationOperatorElements());
+	}
+	
+	public ParserRule getEssentialOCLNavigationOperatorRule() {
+		return getEssentialOCLNavigationOperatorAccess().getRule();
 	}
 
 	//Identifier returns ecore::EString:
@@ -2200,6 +2276,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getInfixOperatorRule() {
 		return getInfixOperatorAccess().getRule();
+	}
+
+	//// Intended to be overridden
+	//
+	//NavigationOperator returns ecore::EString:
+	//	EssentialOCLNavigationOperator;
+	public NavigationOperatorElements getNavigationOperatorAccess() {
+		return (pNavigationOperator != null) ? pNavigationOperator : (pNavigationOperator = new NavigationOperatorElements());
+	}
+	
+	public ParserRule getNavigationOperatorRule() {
+		return getNavigationOperatorAccess().getRule();
 	}
 
 	////---------------------------------------------------------------------
@@ -2516,13 +2604,33 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BinaryOperatorCS:
-	//	name=InfixOperator;
+	//	InfixOperatorCS | NavigationOperatorCS;
 	public BinaryOperatorCSElements getBinaryOperatorCSAccess() {
 		return (pBinaryOperatorCS != null) ? pBinaryOperatorCS : (pBinaryOperatorCS = new BinaryOperatorCSElements());
 	}
 	
 	public ParserRule getBinaryOperatorCSRule() {
 		return getBinaryOperatorCSAccess().getRule();
+	}
+
+	//InfixOperatorCS returns BinaryOperatorCS:
+	//	name=InfixOperator;
+	public InfixOperatorCSElements getInfixOperatorCSAccess() {
+		return (pInfixOperatorCS != null) ? pInfixOperatorCS : (pInfixOperatorCS = new InfixOperatorCSElements());
+	}
+	
+	public ParserRule getInfixOperatorCSRule() {
+		return getInfixOperatorCSAccess().getRule();
+	}
+
+	//NavigationOperatorCS:
+	//	name=NavigationOperator;
+	public NavigationOperatorCSElements getNavigationOperatorCSAccess() {
+		return (pNavigationOperatorCS != null) ? pNavigationOperatorCS : (pNavigationOperatorCS = new NavigationOperatorCSElements());
+	}
+	
+	public ParserRule getNavigationOperatorCSRule() {
+		return getNavigationOperatorCSAccess().getRule();
 	}
 
 	//PrefixedExpCS returns ExpCS:
