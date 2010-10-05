@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * ClassifierAllInstancesOperation realises the Classifier::allInstances() library operation.
@@ -33,8 +33,8 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 {
 	public static final ClassifierAllInstancesOperation INSTANCE = new ClassifierAllInstancesOperation();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall) {
-		Map<?, ? extends Set<?>> extentMap = evaluationContext.getExtentMap();
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+		Map<?, ? extends Set<?>> extentMap = evaluationVisitor.getExtentMap();
 		Set<?> instances = extentMap.get(sourceVal);
 		return instances != null ? instances : Collections.EMPTY_SET;
 	}

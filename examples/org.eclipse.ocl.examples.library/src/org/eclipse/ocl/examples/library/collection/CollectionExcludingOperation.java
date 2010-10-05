@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionExcludingOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: CollectionExcludingOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import java.util.Collection;
 
-import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
  * CollectionExcludingOperation realises the Collection::excluding() library operation.

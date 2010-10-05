@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: BooleanAllInstancesOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: BooleanAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
  * BooleanAllInstancesOperation realises the Boolean::allInstances() library operation.
@@ -34,7 +34,7 @@ public class BooleanAllInstancesOperation extends AbstractOperation
 
 	private static Set<Boolean> allInstances = null;
 	
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
 		// Boolean has two instances: false, true
 		if (allInstances == null) {
 			allInstances = CollectionUtil.createNewSet();

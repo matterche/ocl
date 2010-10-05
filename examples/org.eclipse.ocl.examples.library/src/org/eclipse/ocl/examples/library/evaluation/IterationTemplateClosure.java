@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: IterationTemplateClosure.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -22,9 +22,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 
 /**
@@ -38,13 +38,13 @@ public class IterationTemplateClosure extends IterationTemplate
 	private OclExpression body;	
 	private int depth = 0;
 	
-	private IterationTemplateClosure(EvaluationContext evaluationContext, OclExpression body) {
-		super(evaluationContext);		
+	private IterationTemplateClosure(EvaluationVisitor evaluationVisitor, OclExpression body) {
+		super(evaluationVisitor);		
 		this.body = body;
 	}
 	
-	public static IterationTemplate getInstance(EvaluationContext evaluationContext, OclExpression body) {
-		return new IterationTemplateClosure(evaluationContext, body);
+	public static IterationTemplate getInstance(EvaluationVisitor evaluationVisitor, OclExpression body) {
+		return new IterationTemplateClosure(evaluationVisitor, body);
 	}
 	
 	/**

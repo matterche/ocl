@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractFeature.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: AbstractFeature.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -22,9 +22,9 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.eclipse.ocl.expressions.InvalidLiteralExp;
-import org.eclipse.ocl.expressions.NullLiteralExp;
-import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 
 /**
  * @since 3.1
@@ -47,9 +47,9 @@ public abstract class AbstractFeature implements LibraryFeature
 	}
 
 	public static BigInteger bigIntegerValueOf(Object val) {
-		if (val instanceof UnlimitedNaturalLiteralExp<?>) {
+		if (val instanceof UnlimitedNaturalLiteralExp) {
 //			val = ((UnlimitedNaturalLiteralExp<?>)val).getUnlimitedNaturalSymbol();
-			val = ((UnlimitedNaturalLiteralExp<?>)val).getIntegerSymbol();
+			val = ((UnlimitedNaturalLiteralExp)val).getSymbol();
 		}
 		if (val instanceof BigInteger) {
 			return (BigInteger) val;
@@ -100,7 +100,7 @@ public abstract class AbstractFeature implements LibraryFeature
 	 */
 	public static boolean isInvalid(Object value) {
 		return (value == null) || 		// FIXME Deprecated null
-			(value instanceof InvalidLiteralExp<?>);
+			(value instanceof InvalidLiteralExp);
 	}
 
 	/**
@@ -113,8 +113,8 @@ public abstract class AbstractFeature implements LibraryFeature
 	 */
 	public static boolean isUndefined(Object value) {
 		return (value == null) || 		// FIXME Deprecated null
-		(value instanceof NullLiteralExp<?>) || 
-		(value instanceof InvalidLiteralExp<?>);
+		(value instanceof NullLiteralExp) || 
+		(value instanceof InvalidLiteralExp);
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public abstract class AbstractFeature implements LibraryFeature
 	 * @return whether it is undefined
 	 */
 	public static boolean isNull(Object value) {
-		return value instanceof NullLiteralExp<?>;
+		return value instanceof NullLiteralExp;
 	}
 	
 	public static boolean isOrderedCollection(Object sourceVal) {
@@ -137,7 +137,7 @@ public abstract class AbstractFeature implements LibraryFeature
 	}
 	
 	public static boolean isUnlimited(Object value) {
-		return (value instanceof UnlimitedNaturalLiteralExp<?>) && ((UnlimitedNaturalLiteralExp<?>)value).isUnlimited();
+		return (value instanceof UnlimitedNaturalLiteralExp) && (((UnlimitedNaturalLiteralExp)value).getSymbol().signum() < 0);
 	}
 
 	public static boolean isUnlimited(BigInteger value) {

@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateForAll.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: IterationTemplateForAll.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 
 /**
@@ -28,12 +28,12 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
  */
 public final class IterationTemplateForAll extends IterationTemplate {
 	
-	private IterationTemplateForAll(EvaluationContext evaluationContext) {
-		super(evaluationContext);
+	private IterationTemplateForAll(EvaluationVisitor evaluationVisitor) {
+		super(evaluationVisitor);
 	}
 	
-	public static IterationTemplate getInstance(EvaluationContext evaluationContext) {
-		return new IterationTemplateForAll(evaluationContext);
+	public static IterationTemplate getInstance(EvaluationVisitor evaluationVisitor) {
+		return new IterationTemplateForAll(evaluationVisitor);
 	}
 	
 	@Override

@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: LibraryIteration.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: LibraryIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * @since 3.1
@@ -28,11 +28,11 @@ public interface LibraryIteration extends LibraryFeature {
 	 * provided by EvaluationVisitor. An invalid return may be indicated by throwing an exception
 	 * returning Java null or OCL invalid.
 	 *
-	 * @param evaluationContext the evaluation context
+	 * @param evaluationVisitor the evaluation context
 	 * @param sourceVal the source operand for the operation
 	 * @param iteratorExp the iteration and additional arguments
 	 * @return the evaluated value
 	 */
-	Object evaluate(EvaluationContext evaluationContext, Object sourceVal, IteratorExp iteratorExp);
+	Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp);
 
 }

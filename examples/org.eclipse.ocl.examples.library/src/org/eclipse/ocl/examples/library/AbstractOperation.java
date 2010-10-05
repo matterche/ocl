@@ -12,35 +12,33 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * @since 3.1
  */
 public abstract class AbstractOperation extends AbstractFeature implements LibraryOperation
 {
-	public Object evaluate(EvaluationContext evaluationContext, CallExp callExp) {
-		OclExpression source = callExp.getSource();
-		Object sourceVal = source != null ? source.evaluate(evaluationContext) : null;
-		return evaluate(evaluationContext, sourceVal, (OperationCallExp) callExp);
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceValue, CallExp callExp) {
+		return evaluate(evaluationVisitor, sourceValue, (OperationCallExp) callExp);
 	}
 	
-	protected Object evaluateArgument(EvaluationContext evaluationContext,
+	protected Object evaluateArgument(EvaluationVisitor evaluationVisitor,
 			OperationCallExp operationCall, int i) {
 		List<OclExpression> args = operationCall.getArguments();
 		if ((i < 0) || (args.size() <= i)) {
 			return null;
 		}
-		return args.get(i).evaluate(evaluationContext);
+		return args.get(i).accept(evaluationVisitor);
 	}
 
 	protected int getNumArguments(OperationCallExp operationCall) {

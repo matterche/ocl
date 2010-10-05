@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericOclAsTypeOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericOclAsTypeOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -20,8 +20,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * NumericOclAsTypeOperation realises the Real::oclIsTypeOf() library operation.
@@ -33,11 +34,12 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	public static final NumericOclAsTypeOperation INSTANCE = new NumericOclAsTypeOperation();
 
 	@Override
-	protected Object evaluateConforming(EvaluationContext evaluationContext, Object sourceVal, Type argType) {
-		if (isUnlimited(sourceVal) && ((argType == evaluationContext.getIntegerType()) || (argType == evaluationContext.getRealType()))) {
+	protected Object evaluateConforming(EvaluationVisitor evaluationVisitor, Object sourceVal, Type argType) {
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		if (isUnlimited(sourceVal) && ((argType == stdlib.getIntegerType()) || (argType == stdlib.getRealType()))) {
 			return null;
 		}
-		else if ((sourceVal instanceof BigInteger) && (argType == evaluationContext.getRealType())) {
+		else if ((sourceVal instanceof BigInteger) && (argType == stdlib.getRealType())) {
 			return new BigDecimal(((BigInteger)sourceVal));
 		}
 		else {
@@ -46,10 +48,11 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	}
 
 	@Override
-	protected Object evaluateNonConforming(EvaluationContext evaluationContext, Object sourceVal, Type argType) {
+	protected Object evaluateNonConforming(EvaluationVisitor evaluationVisitor, Object sourceVal, Type argType) {
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		if (sourceVal instanceof BigDecimal) {
 			BigDecimal source = (BigDecimal) sourceVal;
-			if (argType == evaluationContext.getUnlimitedNaturalType()) {
+			if (argType == stdlib.getUnlimitedNaturalType()) {
 				if (source.signum() < 0) {
 					return null;
 				}
@@ -60,7 +63,7 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 				}
 				return result;
 			}
-			else if (argType == evaluationContext.getIntegerType()) {
+			else if (argType == stdlib.getIntegerType()) {
 				BigInteger result = source.toBigInteger();
 				BigDecimal delta = source.subtract(new BigDecimal(result));
 				if (delta.signum() != 0) {
@@ -71,7 +74,7 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 		}
 		else if (sourceVal instanceof BigInteger) {
 			BigInteger source = (BigInteger) sourceVal;
-			if (argType == evaluationContext.getUnlimitedNaturalType()) {
+			if (argType == stdlib.getUnlimitedNaturalType()) {
 				if (source.signum() < 0) {
 					return null;
 				}

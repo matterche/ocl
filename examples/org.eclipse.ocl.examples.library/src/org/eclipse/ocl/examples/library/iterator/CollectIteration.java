@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectIteration.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: CollectIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,11 +23,12 @@ import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateCollect;
 import org.eclipse.ocl.examples.library.util.CollectionUtil2;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * CollectIteration realises the Collection::collect() library iteration.
@@ -38,25 +39,26 @@ public class CollectIteration extends AbstractIteration
 {
 	public static final CollectIteration INSTANCE = new CollectIteration();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, IteratorExp iteratorExp) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp) {
 		// get initial result value based on the source type
-		Type sourceType = evaluationContext.getTypeOfType(iteratorExp.getSource().getType());
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
 		boolean isOrdered = CollectionUtil2.isOrdered(sourceType);
 		Object initResultVal = CollectionUtil2.createNewCollection(isOrdered, false);
 		List<Variable> iterators = iteratorExp.getIterators();
 		OclExpression body = iteratorExp.getBody();		
 		Collection<?> coll = (Collection<?>) sourceVal;
 		// get an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplateCollect.getInstance(evaluationContext);
+		IterationTemplate is = IterationTemplateCollect.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationContext.getEvaluationEnvironment().add(resultName, initResultVal);		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, initResultVal);		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);
 		} finally {
 			// remove result name from environment
-			evaluationContext.getEvaluationEnvironment().remove(resultName);
+			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
 		}
 	}
 }

@@ -12,16 +12,15 @@
  *
  * </copyright>
  *
- * $Id: AbstractIteration.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: AbstractIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * AbstractIteration realises shared characteristics of library iterations.
@@ -32,10 +31,8 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 {
 	private static AtomicInteger tempCounter = new AtomicInteger();
 
-	public Object evaluate(EvaluationContext evaluationContext, CallExp callExp) {
-		OclExpression source = callExp.getSource();
-		Object sourceVal = source != null ? source.evaluate(evaluationContext) : null;
-		return evaluate(evaluationContext, sourceVal, (IteratorExp) callExp);
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceValue, CallExp callExp) {
+		return evaluate(evaluationVisitor, sourceValue, (IteratorExp) callExp);
 	}	
 
 	protected static synchronized String generateName() {

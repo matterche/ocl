@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateIsUnique.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: IterationTemplateIsUnique.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -20,8 +20,8 @@ package org.eclipse.ocl.examples.library.evaluation;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 
 /**
@@ -29,12 +29,12 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
  */
 public class IterationTemplateIsUnique extends IterationTemplate {
 	
-	private IterationTemplateIsUnique(EvaluationContext evaluationContext) {
-		super(evaluationContext);
+	private IterationTemplateIsUnique(EvaluationVisitor evaluationVisitor) {
+		super(evaluationVisitor);
 	}
 	
-	public static IterationTemplate getInstance(EvaluationContext evaluationContext) {
-		return new IterationTemplateIsUnique(evaluationContext);
+	public static IterationTemplate getInstance(EvaluationVisitor evaluationVisitor) {
+		return new IterationTemplateIsUnique(evaluationVisitor);
 	}
 	
 	@Override

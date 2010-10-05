@@ -12,14 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * OclAnyOclAsTypeOperation realises the OclAny::oclAsType() library operation.
@@ -30,26 +31,27 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 {
 	public static final OclAnyOclAsTypeOperation INSTANCE = new OclAnyOclAsTypeOperation();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall) {
-		Type sourceType = evaluationContext.getTypeOfValue(sourceVal, operationCall.getSource().getType());
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
 		if (sourceType == null) {
 			return null;
 		}
-		Object argVal = evaluateArgument(evaluationContext, operationCall, 0);
-		Type argType = evaluationContext.getTypeOfType(argVal);
-		if (evaluationContext.conformsTo(sourceType, argType)) {
-			return evaluateConforming(evaluationContext, sourceVal, argType);
+		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+		Type argType = stdlib.getTypeOfType(argVal);
+		if (stdlib.conformsTo(sourceType, argType)) {
+			return evaluateConforming(evaluationVisitor, sourceVal, argType);
 		}
 		else {
-			return evaluateNonConforming(evaluationContext, sourceVal, argType);
+			return evaluateNonConforming(evaluationVisitor, sourceVal, argType);
 		}
 	}
 
-	protected Object evaluateConforming(EvaluationContext evaluationContext, Object sourceVal, Type argType) {
+	protected Object evaluateConforming(EvaluationVisitor evaluationVisitor, Object sourceVal, Type argType) {
 		return sourceVal;
 	}
 
-	protected Object evaluateNonConforming(EvaluationContext evaluationContext, Object sourceVal, Type argType) {
+	protected Object evaluateNonConforming(EvaluationVisitor evaluationVisitor, Object sourceVal, Type argType) {
 		return null;
 	}
 }

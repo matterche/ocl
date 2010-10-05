@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -22,31 +22,31 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 public class IterationTemplate {
 	
-	private EvaluationContext evaluationContext;
+	private EvaluationVisitor evaluationVisitor;
 	private EvaluationEnvironment env;
 	private boolean done = false;
 	
 	// singleton
-	protected IterationTemplate(EvaluationContext evaluationContext) {		
-		this.evaluationContext = evaluationContext;
-		this.env = evaluationContext.getEvaluationEnvironment();
+	protected IterationTemplate(EvaluationVisitor evaluationVisitor) {		
+		this.evaluationVisitor = evaluationVisitor;
+		this.env = evaluationVisitor.getEvaluationEnvironment();
 	}
 	
-	public static IterationTemplate getInstance(EvaluationContext evaluationContext) {
-		return new IterationTemplate(evaluationContext);
+	public static IterationTemplate getInstance(EvaluationVisitor evaluationVisitor) {
+		return new IterationTemplate(evaluationVisitor);
 	}
 
-	public EvaluationContext getEvaluationContext() {
-		return evaluationContext;
+	public EvaluationVisitor getEvaluationVisitor() {
+		return evaluationVisitor;
 	}
 	
 	public EvaluationEnvironment getEvalEnvironment() {
@@ -78,7 +78,7 @@ public class IterationTemplate {
 			
 			while (true) {
 				// evaluate the body of the expression in this environment
-				Object bodyVal = body.evaluate(evaluationContext);
+				Object bodyVal = body.accept(evaluationVisitor);
 		
 				// get the new result value
 				Object resultVal = evaluateResult(iterators, resultName, bodyVal);
@@ -117,7 +117,7 @@ public class IterationTemplate {
 		for (int i = 0, n = javaIters.length; i < n; i++) {
 			javaIters[i] = c.iterator();
 			Variable iterDecl = iterators.get(i);
-			String iterName = iterDecl.evaluate(evaluationContext).toString(); // FIXME
+			String iterName = iterDecl.accept(evaluationVisitor).toString(); // FIXME
 			Object value = javaIters[i].next();
 			env.replace(iterName, value);
 		}
@@ -181,7 +181,7 @@ public class IterationTemplate {
 //	}
 	
 	protected Object getInvalid() {
-		return evaluationContext.getInvalidValue();
+		return evaluationVisitor.getStandardLibrary().getInvalidValue();
 	}
 
 	protected boolean isInvalid(Object bodyVal) {

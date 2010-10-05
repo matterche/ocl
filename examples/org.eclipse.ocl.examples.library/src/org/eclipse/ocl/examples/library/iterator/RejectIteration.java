@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RejectIteration.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: RejectIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,11 +23,12 @@ import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.examples.library.util.CollectionUtil2;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * RejectIteration realises the Collection::reject() library iteration.
@@ -38,8 +39,9 @@ public class RejectIteration extends AbstractIteration
 {
 	public static final RejectIteration INSTANCE = new RejectIteration();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, IteratorExp iteratorExp) {
-		Type sourceType = evaluationContext.getTypeOfType(iteratorExp.getSource().getType());
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp) {
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
 		boolean isOrdered = CollectionUtil2.isOrdered(sourceType);
 		boolean isUnique = CollectionUtil2.isUnique(sourceType);
 		Object initResultVal = CollectionUtil2.createNewCollection(isOrdered, isUnique);
@@ -47,16 +49,16 @@ public class RejectIteration extends AbstractIteration
 		OclExpression body = iteratorExp.getBody();		
 		Collection<?> coll = (Collection<?>) sourceVal;
 		// get an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplateReject.getInstance(evaluationContext);
+		IterationTemplate is = IterationTemplateReject.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationContext.getEvaluationEnvironment().add(resultName, initResultVal);		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, initResultVal);		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);
 		} finally {
 			// remove result name from environment
-			evaluationContext.getEvaluationEnvironment().remove(resultName);
+			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
 		}
 	}
 }

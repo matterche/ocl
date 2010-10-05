@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OneIteration.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: OneIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -22,10 +22,10 @@ import java.util.List;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateOne;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * OneIteration realises the Collection::one() library iteration.
@@ -36,21 +36,21 @@ public class OneIteration extends AbstractIteration
 {
 	public static final OneIteration INSTANCE = new OneIteration();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, IteratorExp iteratorExp) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp) {
 		List<Variable> iterators = iteratorExp.getIterators();
 		OclExpression body = iteratorExp.getBody();		
 		Collection<?> coll = (Collection<?>) sourceVal;
 		// get an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplateOne.getInstance(evaluationContext);
+		IterationTemplate is = IterationTemplateOne.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationContext.getEvaluationEnvironment().add(resultName, Boolean.FALSE);		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, Boolean.FALSE);		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);
 		} finally {
 			// remove result name from environment
-			evaluationContext.getEvaluationEnvironment().remove(resultName);
+			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
 		}
 	}
 }

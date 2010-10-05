@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclInvalidAllInstancesOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: OclInvalidAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclinvalid;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * OclInvalidAllInstancesOperation realises the OclInvalid::allInstances() library operation.
@@ -29,7 +29,7 @@ public class OclInvalidAllInstancesOperation extends AbstractOperation
 {
 	public static final OclInvalidAllInstancesOperation INSTANCE = new OclInvalidAllInstancesOperation();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
 		// OclInvalid has a single instance: invalid that cannot be returned in a collection
 		return null;
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
 
@@ -20,9 +20,10 @@ import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
@@ -34,8 +35,9 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 {
 	public static final EnumerationAllInstancesOperation INSTANCE = new EnumerationAllInstancesOperation();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall) {
-		Type sourceType = evaluationContext.getTypeOfType(sourceVal);
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		Type sourceType = stdlib.getTypeOfType(sourceVal);
 		Set<Object> result = CollectionUtil.createNewSet();
 		// the instances are the literals
 //		for (EnumerationLiteral oclLiteral : ((Enumeration)sourceType).getOwnedLiterals()) {

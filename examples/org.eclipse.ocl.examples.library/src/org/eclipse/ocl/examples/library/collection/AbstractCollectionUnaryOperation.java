@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
  * AbstractCollectionUnaryOperation provides the standard null to Bag{}

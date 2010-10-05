@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: LibraryOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: LibraryOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * @since 3.1
@@ -29,10 +29,10 @@ public interface LibraryOperation extends LibraryFeature
 	 * provided by EvaluationVisitor. An invalid return may be indicated by throwing an exception
 	 * returning Java null or OCL invalid.
 	 *
-	 * @param evaluationContext the evaluation context
+	 * @param evaluationVisitor the evaluation context
 	 * @param sourceVal the source operand for the operation
 	 * @param operationCall the operation and additional arguments
 	 * @return the evaluated value
 	 */
-	Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall);
+	Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall);
 }

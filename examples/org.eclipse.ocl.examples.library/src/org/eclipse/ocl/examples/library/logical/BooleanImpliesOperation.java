@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: BooleanImpliesOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: BooleanImpliesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * ImpliesOperation realises the implies() library operation.
@@ -30,11 +30,11 @@ public class BooleanImpliesOperation extends AbstractBinaryOperation
 	public static final BooleanImpliesOperation INSTANCE = new BooleanImpliesOperation();
 
 	@Override
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
 		if (sourceVal == Boolean.FALSE) {
 			return Boolean.TRUE;
 		}
-		Object argVal = evaluateArgument(evaluationContext, operationCall, 0);
+		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		return evaluate(sourceVal, argVal);
 	}
 

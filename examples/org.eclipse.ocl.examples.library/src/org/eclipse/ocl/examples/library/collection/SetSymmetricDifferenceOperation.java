@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
  * SetSymmetricDifferenceOperation realises the Set::symmetricDifference() library operation.

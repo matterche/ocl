@@ -12,14 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsKindOfOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: OclAnyOclIsKindOfOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * OclAnyOclIsKindOfOperation realises the OclAny::oclIsKindOf() library operation.
@@ -30,10 +31,11 @@ public class OclAnyOclIsKindOfOperation extends AbstractOperation
 {
 	public static final OclAnyOclIsKindOfOperation INSTANCE = new OclAnyOclIsKindOfOperation();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, OperationCallExp operationCall) {
-		Type sourceType = evaluationContext.getTypeOfValue(sourceVal, operationCall.getSource().getType());
-		Object argVal = evaluateArgument(evaluationContext, operationCall, 0);
-		Type argType = evaluationContext.getTypeOfType(argVal);
-		return evaluationContext.conformsTo(sourceType, argType);
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
+		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+		Type argType = stdlib.getTypeOfType(argVal);
+		return stdlib.conformsTo(sourceType, argType);
 	}
 }

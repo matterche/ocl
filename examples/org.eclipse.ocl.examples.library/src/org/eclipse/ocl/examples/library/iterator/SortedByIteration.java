@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -29,11 +29,12 @@ import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.examples.library.util.CollectionUtil2;
-import org.eclipse.ocl.examples.pivot.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * SelectIteration realises the Collection::select() library iteration.
@@ -44,7 +45,7 @@ public class SortedByIteration extends AbstractIteration
 {
 	public static final SortedByIteration INSTANCE = new SortedByIteration();
 
-	public Object evaluate(EvaluationContext evaluationContext, Object sourceVal, IteratorExp iteratorExp) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp) {
 //		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = evaluationVisitor.getEnvironment();
 //		MergedLibrary library = environment.getMergedLibrary();
 //		OCLType sourceType = library.getLibraryTypeOfType(iteratorExp.getSource().getType());
@@ -55,12 +56,12 @@ public class SortedByIteration extends AbstractIteration
 		OclExpression body = iteratorExp.getBody();
 		Collection<?> coll = (Collection<?>) sourceVal;
 		// get an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplateSortedBy.getInstance(evaluationContext);
+		IterationTemplate is = IterationTemplateSortedBy.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
 		final Map<Object, Comparable<Object>> map =
 			new HashMap<Object, Comparable<Object>>();
-		evaluationContext.getEvaluationEnvironment().add(resultName, map);		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, map);		
 		try {
 			// evaluate
 			// TODO: find an efficient way to do this.
@@ -74,7 +75,7 @@ public class SortedByIteration extends AbstractIteration
 			is.evaluate(coll, iterators, body, resultName);
 		} finally {
 			// remove result name from environment
-			evaluationContext.getEvaluationEnvironment().remove(resultName);
+			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
 		}
 		// sort the source collection based on the natural ordering of the
 		// body expression evaluations
@@ -92,7 +93,8 @@ public class SortedByIteration extends AbstractIteration
 		// create result
 		// type is Sequence if source is a sequence or a Bag,
 		// SortedSet if source is a SortedSet or a Set
-		Type sourceType = evaluationContext.getTypeOfType(iteratorExp.getSource().getType());
+		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
 //		boolean isOrdered = sourceType.isOrdered();
 		boolean isUnique = CollectionUtil2.isUnique(sourceType);
 		Collection<Object> initResultVal = CollectionUtil2.createNewCollection(true, isUnique);

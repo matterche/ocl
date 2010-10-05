@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil2.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: CollectionUtil2.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.util;
 
@@ -21,12 +21,12 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 
 import org.eclipse.ocl.examples.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.expressions.CollectionKind;
-import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 public class CollectionUtil2 {
 
@@ -42,18 +42,18 @@ public class CollectionUtil2 {
 	public static <E> Collection<E> createNewCollection(boolean isOrdered, boolean isUnique) {
 		if (isOrdered) {
 			if (isUnique) {
-				return CollectionUtil.createNewCollection(CollectionKind.ORDERED_SET_LITERAL);
+				return CollectionUtil.createNewCollection(CollectionKind.ORDERED_SET);
 			}
 			else {
-				return CollectionUtil.createNewCollection(CollectionKind.SEQUENCE_LITERAL);
+				return CollectionUtil.createNewCollection(CollectionKind.SEQUENCE);
 			}
 		}
 		else {
 			if (isUnique) {
-				return CollectionUtil.createNewCollection(CollectionKind.SET_LITERAL);
+				return CollectionUtil.createNewCollection(CollectionKind.SET);
 			}
 			else {
-				return CollectionUtil.createNewCollection(CollectionKind.BAG_LITERAL);
+				return CollectionUtil.createNewCollection(CollectionKind.BAG);
 			}
 		}
 	}
