@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.1.2.1 2010/10/01 14:13:00 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.1.2.2 2010/10/09 20:10:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -942,7 +942,7 @@ public class CS2Pivot extends AbstractConversion
 		}
 		int newMax = Math.min(csIMax, pivotIMax);
 		for (int i = 0; i < newMax; i++) {					// Invariant: lists are equal up to index i
-			TemplateParameterSubstitutionCS csTemplateParameterSubstitution = csTemplateParameterSubstitutions.get(i);
+//			TemplateParameterSubstitutionCS csTemplateParameterSubstitution = csTemplateParameterSubstitutions.get(i);
 			TemplateParameter templateParameter = templateParameters.get(i);
 			int oldMax = templateParameterSubstitutions.size();
 			TemplateParameterSubstitution templateParameterSubstitution = null;
@@ -1032,6 +1032,9 @@ public class CS2Pivot extends AbstractConversion
 	 * Sequence the update passes to make the pivot match the CS.
 	 */
 	public void update() {
+		new BasePivotDependencies();
+//		new PivotDependencies.Session(this, getCSResources());
+		
 		System.out.println("----------------------------------Declarers------------------------------");
 		updateDeclarers();
 		System.out.println("----------------------------------Definers------------------------------");
@@ -1132,7 +1135,7 @@ public class CS2Pivot extends AbstractConversion
 		for (TemplateBindingCS csTemplateBinding : queuedBindings) {
 //		specializeTemplates(specializations, specialization);
 			TemplateBindableElementCS specialization = csTemplateBinding.getOwningTemplateBindableElement();
-			String moniker = specialization.getMoniker();
+//			String moniker = specialization.getMoniker();
 //			logger.trace("Queuing Specialization " + moniker); //$NON-NLS-1$
 //			queuedSpecializations.put(moniker, csElement);
 			specializeTemplates(specializations, specialization);
