@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.2 2010/10/05 17:39:22 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -25,7 +25,104 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.examples.pivot.*;
+import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.AssociationClass;
+import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
+import org.eclipse.ocl.examples.pivot.AssociativityKind;
+import org.eclipse.ocl.examples.pivot.BagType;
+import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CallOperationAction;
+import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
+import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
+import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
+import org.eclipse.ocl.examples.pivot.Enumeration;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.FeatureCallExp;
+import org.eclipse.ocl.examples.pivot.INamedElement;
+import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.ImplementableElement;
+import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.Iterate;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iterator;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.LiteralExp;
+import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.MessageExp;
+import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.MultiplicityElement;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.NavigationCallExp;
+import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
+import org.eclipse.ocl.examples.pivot.OclAny;
+import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.PackageableElement;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SendSignalAction;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
+import org.eclipse.ocl.examples.pivot.Signal;
+import org.eclipse.ocl.examples.pivot.State;
+import org.eclipse.ocl.examples.pivot.StateExp;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateParameterType;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 
@@ -319,10 +416,6 @@ public class PivotValidator
 				return validateOclAny((OclAny)value, diagnostics, context);
 			case PivotPackage.OCL_EXPRESSION:
 				return validateOclExpression((OclExpression)value, diagnostics, context);
-			case PivotPackage.OCL_INVALID:
-				return validateOclInvalid((OclInvalid)value, diagnostics, context);
-			case PivotPackage.OCL_VOID:
-				return validateOclVoid((OclVoid)value, diagnostics, context);
 			case PivotPackage.OPAQUE_EXPRESSION:
 				return validateOpaqueExpression((OpaqueExpression)value, diagnostics, context);
 			case PivotPackage.OPERATION:
@@ -427,6 +520,8 @@ public class PivotValidator
 				return validateReal((BigDecimal)value, diagnostics, context);
 			case PivotPackage.STRING:
 				return validateString((String)value, diagnostics, context);
+			case PivotPackage.THROWABLE:
+				return validateThrowable((Throwable)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return validateUnlimitedNatural((BigInteger)value, diagnostics, context);
 			default:
@@ -1590,26 +1685,6 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOclInvalid(OclInvalid oclInvalid,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)oclInvalid, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOclVoid(OclVoid oclVoid,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)oclVoid, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateOperationCallExp(OperationCallExp operationCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)operationCallExp, diagnostics, context);
@@ -1907,6 +1982,16 @@ public class PivotValidator
 	 */
 	public boolean validateString(String string, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateThrowable(Throwable throwable, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
 		return true;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterSubstitutionOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: TemplateParameterSubstitutionOperations.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -38,8 +38,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class TemplateParameterSubstitutionOperations
-		extends OclAnyOperations {
+public class TemplateParameterSubstitutionOperations extends OclAnyOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

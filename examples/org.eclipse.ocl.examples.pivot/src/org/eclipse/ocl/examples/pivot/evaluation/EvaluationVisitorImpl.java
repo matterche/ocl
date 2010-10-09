@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -91,7 +91,7 @@ import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 {
 
-	private static int tempCounter = 0;
+//	private static int tempCounter = 0;
 	
 	/**
 	 * Constructor
@@ -109,9 +109,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 
 
-	private static synchronized String generateName() {
-		return "__result__" + tempCounter++;//$NON-NLS-1$
-	}
+//	private static synchronized String generateName() {
+//		return "__result__" + tempCounter++;//$NON-NLS-1$
+//	}
 
 	// private static inner class for lazy lists over an integer range
 	private static final class IntegerRangeList
@@ -208,13 +208,18 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	protected Object callImplementation(ImplementableElement implementableElement, Object sourceValue, CallExp callExp) {
 		if (implementableElement == null) {
-			return null;
+			return createInvalidValue(sourceValue, callExp, "No implementable element", null);
 		}
 		CallableImplementation implementation = implementableElement.getImplementation();
 		if (implementation == null) {
-			implementation = loadImplementationClass(implementableElement.getImplementationClass());
+			String implementationClassName = implementableElement.getImplementationClass();
+			try {
+				implementation = loadImplementationClass(implementationClassName);
+			} catch (Exception e) {
+				return createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", e);
+			}
 			if (implementation == null) {
-				return null;
+				return createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", null);
 			}
 		}
 		return implementation.evaluate(getUndecoratedVisitor(), sourceValue, callExp);
@@ -239,29 +244,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return value;
 	}
 
-	public CallableImplementation loadImplementationClass(String implementationClass) {
-		try {
-			Class<?> theClass = Class.forName(implementationClass);
-			Field field = theClass.getField("INSTANCE");
-			Object object = field.get(null);
-			return (CallableImplementation) object;
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception {
+		Class<?> theClass = Class.forName(implementationClass);
+		Field field = theClass.getField("INSTANCE");
+		Object object = field.get(null);
+		return (CallableImplementation) object;
 	}
 
 	/**
@@ -423,7 +410,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	@Override
     public Object visitInvalidLiteralExp(InvalidLiteralExp invalidLiteralExp) {
-		return getInvalidValue();
+		return invalidLiteralExp;
 	}
 
 	/**
@@ -671,10 +658,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// of the variable.
 //		String varName = variable.getName();
 		OclExpression initExp = variable.getInitExpression();
-		Object initVal = null;
-		if (initExp != null) {
-            initVal = initExp.accept(getUndecoratedVisitor());
-        }
+		if (initExp == null) {
+			return createInvalidValue(variable, null, "Uninitialized variable", null);
+		}
+		Object initVal = initExp.accept(getUndecoratedVisitor());
 // FIXME		getEvaluationEnvironment().setVariable(variable, initVal);
 		return initVal;
 	}
@@ -697,7 +684,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// evaluate the variable in the current environment
 //		Object variableValue = getEvaluationEnvironment().getValueOf(varName);
 //		return variableValue;
-		return variable != null ? variable.accept(getUndecoratedVisitor()) : null;
+		if (variable == null) {
+			return createInvalidValue(variable, variableExp, "Undefined variable", null);
+		}
+		return variable.accept(getUndecoratedVisitor());
 	}
 
 

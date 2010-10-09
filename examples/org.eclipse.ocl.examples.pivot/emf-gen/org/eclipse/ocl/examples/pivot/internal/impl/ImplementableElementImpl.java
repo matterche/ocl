@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImplementableElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: ImplementableElementImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -210,17 +210,12 @@ public abstract class ImplementableElementImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (implementationClass: "); //$NON-NLS-1$
-		result.append(implementationClass);
-		result.append(')');
-		return result.toString();
+	public String toString()
+	{
+		return super.toString();
 	}
 
 	/**

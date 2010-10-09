@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -376,7 +376,8 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImplementationClass() {
+	public String getImplementationClass()
+	{
 		return implementationClass;
 	}
 
@@ -385,7 +386,8 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementationClass(String newImplementationClass) {
+	public void setImplementationClass(String newImplementationClass)
+	{
 		String oldImplementationClass = implementationClass;
 		implementationClass = newImplementationClass;
 		if (eNotificationRequired())
@@ -397,7 +399,8 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation getImplementation() {
+	public CallableImplementation getImplementation()
+	{
 		return implementation;
 	}
 
@@ -406,7 +409,8 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementation(CallableImplementation newImplementation) {
+	public void setImplementation(CallableImplementation newImplementation)
+	{
 		CallableImplementation oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -122,7 +122,11 @@ public abstract class AbstractEvaluationVisitor
     	}
 		return body.accept(nestedVisitor);
     }
-    
+
+	public Object createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
+        return getStandardLibrary().createInvalidValue(object, expression, reason, throwable);
+	}
+   
     /**
      * Obtains my environment's implementation of the OCL <tt>Boolean</tt> type.
      * 
@@ -569,7 +573,7 @@ public abstract class AbstractEvaluationVisitor
 
 	@Deprecated
 	public Object visitExpression(OclExpression expression) {
-		return visit(expression);
+		return expression.accept(this);
 	}
 
 

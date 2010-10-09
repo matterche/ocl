@@ -14,6 +14,7 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="java.math.BigDecimal"/>
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Throwable" instanceClassName="java.lang.Throwable"/>
   <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="java.math.BigInteger"/>
   <eClassifiers xsi:type="ecore:EEnum" name="AssociativityKind">
     <eLiterals name="Left"/>
@@ -248,7 +249,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" ordered="false"
         lowerBound="1" eType="#//Integer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" ordered="false"
+        eType="#//Object"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
+        eType="#//OclExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" ordered="false"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="throwable" ordered="false"
+        eType="#//Throwable"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Iterate" eSuperTypes="#//Iterator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAccumulator" upperBound="-1"
@@ -361,8 +371,6 @@
     <eOperations name="oclIsUndefined" ordered="false" lowerBound="1" eType="#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclExpression" eSuperTypes="#//TypedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclInvalid" eSuperTypes="#//OclVoid"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclVoid" eSuperTypes="#//OclAny"/>
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
     <eOperations name="language_body_size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>

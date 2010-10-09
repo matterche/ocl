@@ -12,25 +12,20 @@
  *
  * </copyright>
  *
- * $Id: IPivotElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: IPivotElementImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.IPivotElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-
 import org.eclipse.ocl.examples.pivot.internal.operations.IPivotElementOperations;
-
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
 /**

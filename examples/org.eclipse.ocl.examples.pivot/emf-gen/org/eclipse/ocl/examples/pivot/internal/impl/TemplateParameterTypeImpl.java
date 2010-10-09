@@ -12,18 +12,15 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterTypeImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: TemplateParameterTypeImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -296,17 +293,12 @@ public class TemplateParameterTypeImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (specification: "); //$NON-NLS-1$
-		result.append(specification);
-		result.append(')');
-		return result.toString();
+	public String toString()
+	{
+		return super.toString();
 	}
 
 } //TemplateParameterTypeImpl

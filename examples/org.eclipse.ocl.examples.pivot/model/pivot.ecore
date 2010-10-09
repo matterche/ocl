@@ -26,6 +26,7 @@
       <details key="documentation" value="A string is a sequence of characters in some suitable character set used to display information about the model. Character sets may include non-Roman alphabets and characters."/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Throwable" instanceClassName="java.lang.Throwable"/>
   <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="java.math.BigInteger">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An unlimited natural is a primitive type representing unlimited natural values."/>
@@ -350,7 +351,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" ordered="false"
         lowerBound="1" eType="#//Integer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" ordered="false"
+        eType="#//Object"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
+        eType="#//OclExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" ordered="false"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="throwable" ordered="false"
+        eType="#//Throwable"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Iterate" eSuperTypes="#//Iterator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAccumulator" upperBound="-1"
@@ -527,8 +537,6 @@
     <eOperations name="oclIsUndefined" ordered="false" lowerBound="1" eType="#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclExpression" eSuperTypes="#//TypedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclInvalid" eSuperTypes="#//OclVoid"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclVoid" eSuperTypes="#//OclAny"/>
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>

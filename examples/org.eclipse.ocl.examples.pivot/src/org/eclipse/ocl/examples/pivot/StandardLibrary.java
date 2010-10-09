@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.1.2.1 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.1.2.2 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,6 +34,21 @@ import org.eclipse.ocl.Environment;
 public interface StandardLibrary {
 
 	boolean conformsTo(Type firstType, Type secondType);
+
+	/**
+	 * Create an explanatory invalid value arising for evaluation of an expression for an object,
+	 * typically the source value of an operation call.
+	 * Optionally a reason and a throwable provide further explanation of the cause of invalidity.
+	 * <p>
+	 * Unless explanatory invalid behaviour has been enabled, the context and
+	 * explanation are discarded and the singleton invalid value is returned instead.
+	 * @param object
+	 * @param expression
+	 * @param reason
+	 * @param throwable
+	 * @return
+	 */
+	Object createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable);
 	
     /**
      * Obtains the single instance of the {@link AnyType} metatype, named
@@ -224,4 +239,13 @@ public interface StandardLibrary {
 	Type getTypeOfValue(Object value, Type type);
 
 	Object getValueOfValue(Object value);
+	
+	/**
+	 * Configure creation of invalids to allow the context and explanation
+	 * to be captured. Note that this allows multiple invalid objects to exist
+	 * and so any tests for invalid should use instanceof InvalidLiteralExp
+	 * or compare the type to getInvalidType().
+	 * @param allowExplanatoryInvalids
+	 */
+	void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids);
 }

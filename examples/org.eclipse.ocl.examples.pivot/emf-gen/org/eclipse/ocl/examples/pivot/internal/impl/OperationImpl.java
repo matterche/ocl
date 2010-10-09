@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -370,7 +370,8 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImplementationClass() {
+	public String getImplementationClass()
+	{
 		return implementationClass;
 	}
 
@@ -379,11 +380,35 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementationClass(String newImplementationClass) {
+	public void setImplementationClass(String newImplementationClass)
+	{
 		String oldImplementationClass = implementationClass;
 		implementationClass = newImplementationClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__IMPLEMENTATION_CLASS, oldImplementationClass, implementationClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CallableImplementation getImplementation()
+	{
+		return implementation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImplementation(CallableImplementation newImplementation)
+	{
+		CallableImplementation oldImplementation = implementation;
+		implementation = newImplementation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
 	/**
@@ -492,27 +517,6 @@ public class OperationImpl
 		TemplateSignature newOwnedTemplateSignature = (TemplateSignature) create(PivotPackage.Literals.TEMPLATE_SIGNATURE);
 		setOwnedTemplateSignature(newOwnedTemplateSignature);
 		return newOwnedTemplateSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CallableImplementation getImplementation() {
-		return implementation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImplementation(CallableImplementation newImplementation) {
-		CallableImplementation oldImplementation = implementation;
-		implementation = newImplementation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
 	/**

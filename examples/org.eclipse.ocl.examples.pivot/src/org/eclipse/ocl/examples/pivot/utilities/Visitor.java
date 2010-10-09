@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Visitor.java,v 1.1.2.1 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: Visitor.java,v 1.1.2.2 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -54,7 +54,7 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
  */
 public interface Visitor<T> {
 	/**
-     * Return the result of visiting a visitable for which no more specifuc pivot type method
+     * Return the result of visiting a visitable for which no more specific pivot type method
      * is available.
      */
 	T visit(Visitable visitable);

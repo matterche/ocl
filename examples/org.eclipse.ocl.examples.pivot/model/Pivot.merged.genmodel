@@ -67,6 +67,9 @@
       <ecoreDataType href="pivot.ecore#//String"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
+      <ecoreDataType href="pivot.ecore#//Throwable"/>
+    </genDataTypes>
+    <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//UnlimitedNatural"/>
     </genDataTypes>
     <genClasses xsi:type="genmodel:GenClass">
@@ -833,6 +836,18 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//InvalidLiteralExp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//InvalidLiteralExp/object"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//InvalidLiteralExp/expression"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//InvalidLiteralExp/reason"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//InvalidLiteralExp/throwable"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//InvalidType"/>
@@ -917,12 +932,6 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//NullLiteralExp"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="pivot.ecore#//OclInvalid"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="pivot.ecore#//OclVoid"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//OperationCallExp"/>

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -189,6 +189,8 @@ public class PivotManager implements Adapter, StandardLibrary
 	private Map<String, String> infixToPrecedenceNameMap = null;
 	private Map<String, String> prefixToPrecedenceNameMap = null;
 	
+	private boolean allowExplanatoryInvalids = false;
+	
 	private Type booleanType = null;
 	private Type classifierType = null;
 	private Type integerType = null;
@@ -300,7 +302,7 @@ public class PivotManager implements Adapter, StandardLibrary
 					prevIndex = index;
 					list.add(precedence);
 				}
-				if ((list.size() == 1) && (prevIndex != orderedPrecedences.size()-1)) {
+				if ((list != null) && (list.size() == 1) && (prevIndex != orderedPrecedences.size()-1)) {
 					errors.add("Ambiguous precedence ordering for '" + name + "' at tail");
 				}
 			}
@@ -331,6 +333,19 @@ public class PivotManager implements Adapter, StandardLibrary
 	public boolean conformsTo(Type firstType, Type secondType) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public InvalidLiteralExp createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
+		if (!allowExplanatoryInvalids) {
+			return getInvalidValue();
+		}
+		InvalidLiteralExp invalidValue = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+		invalidValue.setType(getInvalidType());
+		invalidValue.setObject(object);
+		invalidValue.setExpression(expression);
+		invalidValue.setReason(reason);
+		invalidValue.setThrowable(throwable);
+		return invalidValue;
 	}
 	
 	public Resource createResource(URI uri, String contentType) {
@@ -428,8 +443,8 @@ public class PivotManager implements Adapter, StandardLibrary
 		return invalidType;
 	}
 
-	public Object getInvalidValue() {
-		if (invalidValue  == null) {
+	public InvalidLiteralExp getInvalidValue() {
+		if (invalidValue == null) {
 			invalidValue = PivotFactory.eINSTANCE.createInvalidLiteralExp();
 			invalidValue.setType(getInvalidType());
 		}
@@ -621,6 +636,10 @@ public class PivotManager implements Adapter, StandardLibrary
 		return type == PivotManager.class;
 	}
 
+	public boolean isAllowExplanatoryInvalids() {
+		return allowExplanatoryInvalids;
+	}
+
 	protected boolean loadDefaultLibrary(String uri) {
 		if (uri == null) {
 			return false;
@@ -765,5 +784,9 @@ public class PivotManager implements Adapter, StandardLibrary
 		} */
 		Collections.sort(precedences, new PrecedenceComparator());
 		return precedences;
+	}
+
+	public void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids) {
+		this.allowExplanatoryInvalids = allowExplanatoryInvalids;
 	}
 }

@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 

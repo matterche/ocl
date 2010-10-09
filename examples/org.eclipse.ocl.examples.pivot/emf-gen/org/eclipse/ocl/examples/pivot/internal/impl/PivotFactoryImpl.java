@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -64,8 +64,6 @@ import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.OclInvalid;
-import org.eclipse.ocl.examples.pivot.OclVoid;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -191,8 +189,6 @@ public class PivotFactoryImpl
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
 			case PivotPackage.OCL_EXPRESSION: return (EObject)createOclExpression();
-			case PivotPackage.OCL_INVALID: return (EObject)createOclInvalid();
-			case PivotPackage.OCL_VOID: return (EObject)createOclVoid();
 			case PivotPackage.OPAQUE_EXPRESSION: return (EObject)createOpaqueExpression();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
 			case PivotPackage.OPERATION_CALL_EXP: return (EObject)createOperationCallExp();
@@ -257,6 +253,8 @@ public class PivotFactoryImpl
 				return createRealFromString(eDataType, initialValue);
 			case PivotPackage.STRING:
 				return createStringFromString(eDataType, initialValue);
+			case PivotPackage.THROWABLE:
+				return createThrowableFromString(eDataType, initialValue);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return createUnlimitedNaturalFromString(eDataType, initialValue);
 			default:
@@ -289,6 +287,8 @@ public class PivotFactoryImpl
 				return convertRealToString(eDataType, instanceValue);
 			case PivotPackage.STRING:
 				return convertStringToString(eDataType, instanceValue);
+			case PivotPackage.THROWABLE:
+				return convertThrowableToString(eDataType, instanceValue);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return convertUnlimitedNaturalToString(eDataType, instanceValue);
 			default:
@@ -831,26 +831,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclInvalid createOclInvalid() {
-		OclInvalidImpl oclInvalid = new OclInvalidImpl();
-		return oclInvalid;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclVoid createOclVoid() {
-		OclVoidImpl oclVoid = new OclVoidImpl();
-		return oclVoid;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OperationCallExp createOperationCallExp() {
 		OperationCallExpImpl operationCallExp = new OperationCallExpImpl();
 		return operationCallExp;
@@ -1218,6 +1198,26 @@ public class PivotFactoryImpl
 	 */
 	public String convertStringToString(EDataType eDataType,
 			Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Throwable createThrowableFromString(EDataType eDataType, String initialValue)
+	{
+		return (Throwable)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertThrowableToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 

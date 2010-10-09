@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.1.2.2 2010/10/05 17:39:23 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -73,8 +73,6 @@ import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclAny;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.OclInvalid;
-import org.eclipse.ocl.examples.pivot.OclVoid;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -456,16 +454,6 @@ public class PivotAdapterFactory
 			public Adapter caseOclExpression(OclExpression object)
 			{
 				return createOclExpressionAdapter();
-			}
-			@Override
-			public Adapter caseOclInvalid(OclInvalid object)
-			{
-				return createOclInvalidAdapter();
-			}
-			@Override
-			public Adapter caseOclVoid(OclVoid object)
-			{
-				return createOclVoidAdapter();
 			}
 			@Override
 			public Adapter caseOpaqueExpression(OpaqueExpression object)
@@ -1782,34 +1770,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createNullLiteralExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.OclInvalid <em>Ocl Invalid</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.OclInvalid
-	 * @generated
-	 */
-	public Adapter createOclInvalidAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.OclVoid <em>Ocl Void</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.OclVoid
-	 * @generated
-	 */
-	public Adapter createOclVoidAdapter() {
 		return null;
 	}
 

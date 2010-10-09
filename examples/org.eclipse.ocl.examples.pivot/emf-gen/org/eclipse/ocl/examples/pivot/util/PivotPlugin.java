@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PivotPlugin.java,v 1.1.2.2 2010/10/05 17:39:23 ewillink Exp $
+ * $Id: PivotPlugin.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.URI;

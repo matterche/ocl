@@ -228,18 +228,18 @@
     <ownedMember xmi:type="cmof:Class" xmi:id="_TVwKEMoxEd-ZL8lMORCEkg" name="VariableDeclaration" isAbstract="true"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_rMVQYI9nEd-UToJjGuajxg" name="OCL_Library">
-    <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_uyL8wI9nEd-UToJjGuajxg" name="Operation"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_u6OecI9nEd-UToJjGuajxg" name="Iterator" superClass="_hKbfEIqwEd-VzsYvPRGeYg">
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_9hHPUI9nEd-UToJjGuajxg" name="ownedIterator" isOrdered="true" upper="*" lower="0" isComposite="true">
-        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Parameter"/>
-      </ownedAttribute>
-    </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_DkZvkMWvEd-RhKwpb_4gmA" name="Iterate" superClass="_u6OecI9nEd-UToJjGuajxg">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_DkZvksWvEd-RhKwpb_4gmA" name="ownedAccumulator" isOrdered="true" upper="*" lower="0" isComposite="true">
         <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Parameter"/>
       </ownedAttribute>
     </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_u6OecI9nEd-UToJjGuajxg" name="Iterator" superClass="_hKbfEIqwEd-VzsYvPRGeYg">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_9hHPUI9nEd-UToJjGuajxg" name="ownedIterator" isOrdered="true" upper="*" lower="0" isComposite="true">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Parameter"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_uyL8wI9nEd-UToJjGuajxg" name="Operation"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_tASF0IgKEd-aGOJuUCcZBA" name="OCL_PrimitiveTypes">
     <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_Hcolt4gHEd-aGOJuUCcZBA" name="Boolean"/>
@@ -263,8 +263,6 @@
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="_ENnR4Yd4Ed-N4tjuug6Vsw" type="_Hcolt4gHEd-aGOJuUCcZBA" direction="return"/>
         </ownedOperation>
       </ownedMember>
-      <ownedMember xmi:type="cmof:Class" xmi:id="Actions-CompleteActions-ReclassifyObjectAction" name="OclVoid" superClass="Actions-CompleteActions-ReadExtentAction"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="Actions-CompleteActions-ReadIsClassifiedObjectAction" name="OclInvalid" superClass="Actions-CompleteActions-ReclassifyObjectAction"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_uRGUEIdzEd-N4tjuug6Vsw" name="Element" isAbstract="true" superClass="Actions-CompleteActions-ReadExtentAction"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_v7rW4JL1Ed-tR9a-2UcrVA" name="Class"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_xU8P4JL1Ed-tR9a-2UcrVA" name="DataType" superClass="_v7rW4JL1Ed-tR9a-2UcrVA"/>
@@ -274,6 +272,9 @@
     <packageImport xmi:type="cmof:PackageImport" xmi:id="_GgusIIgJEd-aGOJuUCcZBA" importingNamespace="_HcoloIgHEd-aGOJuUCcZBA">
       <importedPackage xmi:type="cmof:Package" href="Infrastructure.cmof#Core-Basic"/>
     </packageImport>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcoltogHEd-aGOJuUCcZBA" name="AnyType">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+    </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcoloYgHEd-aGOJuUCcZBA" name="BagType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_Hcolo4gHEd-aGOJuUCcZBA" name="CollectionType">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcolpYgHEd-aGOJuUCcZBA" name="elementType">
@@ -281,25 +282,7 @@
       </ownedAttribute>
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
     </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolpogHEd-aGOJuUCcZBA" name="VoidType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
-    </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqIgHEd-aGOJuUCcZBA" name="TupleType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
-    </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqogHEd-aGOJuUCcZBA" name="SetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrIgHEd-aGOJuUCcZBA" name="SequenceType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrogHEd-aGOJuUCcZBA" name="OrderedSetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolsIgHEd-aGOJuUCcZBA" name="InvalidType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
-    </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolsogHEd-aGOJuUCcZBA" name="TemplateParameterType">
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcoltIgHEd-aGOJuUCcZBA" name="specification" lower="0">
-        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
-      </ownedAttribute>
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
-    </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_HcoltogHEd-aGOJuUCcZBA" name="AnyType">
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcoluIgHEd-aGOJuUCcZBA" name="MessageType">
@@ -309,11 +292,26 @@
       </ownedAttribute>
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
     </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrogHEd-aGOJuUCcZBA" name="OrderedSetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrIgHEd-aGOJuUCcZBA" name="SequenceType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqogHEd-aGOJuUCcZBA" name="SetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_ASveEIq1Ed-VzsYvPRGeYg" name="Signal">
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-NamedElement"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_gA7RoIq2Ed-VzsYvPRGeYg" name="State">
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-NamedElement"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolsogHEd-aGOJuUCcZBA" name="TemplateParameterType">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcoltIgHEd-aGOJuUCcZBA" name="specification" lower="0">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
+      </ownedAttribute>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqIgHEd-aGOJuUCcZBA" name="TupleType">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolpogHEd-aGOJuUCcZBA" name="VoidType">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
     </ownedMember>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_ad68EMowEd-ZL8lMORCEkg" name="OCL_Variables">

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -92,25 +92,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#get_()
 	 * @generated
 	 */
-	int _PIVOT = 100;
-
-	/**
-	 * The number of structural features of the '<em>Pivot</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int _PIVOT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Pivot</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int _PIVOT_OPERATION_COUNT = 0;
+	int _PIVOT = 98;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclAnyImpl <em>Ocl Any</em>}' class.
@@ -150,7 +132,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameterableElement()
 	 * @generated
 	 */
-	int PARAMETERABLE_ELEMENT = 65;
+	int PARAMETERABLE_ELEMENT = 63;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl <em>Type</em>}' class.
@@ -160,7 +142,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 88;
+	int TYPE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AnyTypeImpl <em>Any Type</em>}' class.
@@ -210,7 +192,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 69;
+	int PROPERTY = 67;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ImplementableElementImpl <em>Implementable Element</em>}' class.
@@ -230,7 +212,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 91;
+	int TYPED_ELEMENT = 89;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -240,7 +222,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 80;
+	int TEMPLATE_PARAMETER = 78;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -250,7 +232,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateSignature()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE = 83;
+	int TEMPLATE_SIGNATURE = 81;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl <em>Templateable Element</em>}' class.
@@ -260,7 +242,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateableElement()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT = 84;
+	int TEMPLATEABLE_ELEMENT = 82;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -270,7 +252,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 79;
+	int TEMPLATE_BINDING = 77;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -280,7 +262,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 81;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 79;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
@@ -310,7 +292,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 58;
+	int OPERATION = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -320,7 +302,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 64;
+	int PARAMETER = 62;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationTemplateParameterImpl <em>Operation Template Parameter</em>}' class.
@@ -330,7 +312,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperationTemplateParameter()
 	 * @generated
 	 */
-	int OPERATION_TEMPLATE_PARAMETER = 60;
+	int OPERATION_TEMPLATE_PARAMETER = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl <em>Comment</em>}' class.
@@ -350,7 +332,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPackage()
 	 * @generated
 	 */
-	int PACKAGE = 62;
+	int PACKAGE = 60;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl <em>Type Template Parameter</em>}' class.
@@ -360,7 +342,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeTemplateParameter()
 	 * @generated
 	 */
-	int TYPE_TEMPLATE_PARAMETER = 90;
+	int TYPE_TEMPLATE_PARAMETER = 88;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclExpressionImpl <em>Ocl Expression</em>}' class.
@@ -460,7 +442,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 67;
+	int PRIMITIVE_LITERAL_EXP = 65;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
@@ -570,7 +552,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOpaqueExpression()
 	 * @generated
 	 */
-	int OPAQUE_EXPRESSION = 57;
+	int OPAQUE_EXPRESSION = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl <em>Expression In Ocl</em>}' class.
@@ -590,7 +572,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 96;
+	int VARIABLE = 94;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -710,7 +692,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSignal()
 	 * @generated
 	 */
-	int SIGNAL = 75;
+	int SIGNAL = 73;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
@@ -723,26 +705,6 @@ public interface PivotPackage
 	int NULL_LITERAL_EXP = 51;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclVoidImpl <em>Ocl Void</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.OclVoidImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclVoid()
-	 * @generated
-	 */
-	int OCL_VOID = 56;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclInvalidImpl <em>Ocl Invalid</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.OclInvalidImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclInvalid()
-	 * @generated
-	 */
-	int OCL_INVALID = 55;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -750,7 +712,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 59;
+	int OPERATION_CALL_EXP = 57;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
@@ -760,7 +722,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOrderedSetType()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE = 61;
+	int ORDERED_SET_TYPE = 59;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageableElementImpl <em>Packageable Element</em>}' class.
@@ -770,7 +732,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPackageableElement()
 	 * @generated
 	 */
-	int PACKAGEABLE_ELEMENT = 63;
+	int PACKAGEABLE_ELEMENT = 61;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -780,7 +742,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 68;
+	int PRIMITIVE_TYPE = 66;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
@@ -790,7 +752,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 70;
+	int PROPERTY_CALL_EXP = 68;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
@@ -800,7 +762,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 71;
+	int REAL_LITERAL_EXP = 69;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -810,7 +772,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSequenceType()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE = 73;
+	int SEQUENCE_TYPE = 71;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SetTypeImpl <em>Set Type</em>}' class.
@@ -820,7 +782,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSetType()
 	 * @generated
 	 */
-	int SET_TYPE = 74;
+	int SET_TYPE = 72;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl <em>State</em>}' class.
@@ -830,7 +792,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 76;
+	int STATE = 74;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateExpImpl <em>State Exp</em>}' class.
@@ -840,7 +802,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 77;
+	int STATE_EXP = 75;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -850,7 +812,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 78;
+	int STRING_LITERAL_EXP = 76;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
@@ -860,7 +822,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterType()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_TYPE = 82;
+	int TEMPLATE_PARAMETER_TYPE = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -870,7 +832,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 85;
+	int TUPLE_LITERAL_EXP = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
@@ -880,7 +842,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 86;
+	int TUPLE_LITERAL_PART = 84;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -890,7 +852,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 87;
+	int TUPLE_TYPE = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -900,7 +862,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 89;
+	int TYPE_EXP = 87;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -910,7 +872,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 94;
+	int UNSPECIFIED_VALUE_EXP = 92;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
@@ -920,7 +882,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 95;
+	int VALUE_SPECIFICATION = 93;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NamespaceImpl <em>Namespace</em>}' class.
@@ -970,7 +932,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrecedence()
 	 * @generated
 	 */
-	int PRECEDENCE = 66;
+	int PRECEDENCE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -980,7 +942,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 93;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 91;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -990,7 +952,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 98;
+	int VARIABLE_EXP = 96;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CallOperationActionImpl <em>Call Operation Action</em>}' class.
@@ -1040,7 +1002,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedMultiplicityElement()
 	 * @generated
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT = 92;
+	int TYPED_MULTIPLICITY_ELEMENT = 90;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl <em>Complete Operation</em>}' class.
@@ -1090,7 +1052,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSendSignalAction()
 	 * @generated
 	 */
-	int SEND_SIGNAL_ACTION = 72;
+	int SEND_SIGNAL_ACTION = 70;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -1100,7 +1062,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 97;
+	int VARIABLE_DECLARATION = 95;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -1110,7 +1072,25 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 99;
+	int VOID_TYPE = 97;
+
+	/**
+	 * The number of structural features of the '<em>Pivot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int _PIVOT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Pivot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int _PIVOT_OPERATION_COUNT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Any</em>' class.
@@ -9771,13 +9751,49 @@ public interface PivotPackage
 	int INVALID_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__OBJECT = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__EXPRESSION = LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Reason</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__REASON = LITERAL_EXP_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Throwable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__THROWABLE = LITERAL_EXP_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
+	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Ocl Type</em>' operation.
@@ -11929,96 +11945,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP_OPERATION_COUNT = PRIMITIVE_LITERAL_EXP_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Ocl Void</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_VOID_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_VOID___OCL_TYPE = OCL_ANY___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_VOID___OCL_IS_INVALID = OCL_ANY___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_VOID___OCL_IS_UNDEFINED = OCL_ANY___OCL_IS_UNDEFINED;
-
-	/**
-	 * The number of operations of the '<em>Ocl Void</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_VOID_OPERATION_COUNT = OCL_ANY_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Ocl Invalid</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_INVALID_FEATURE_COUNT = OCL_VOID_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_INVALID___OCL_TYPE = OCL_VOID___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_INVALID___OCL_IS_INVALID = OCL_VOID___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_INVALID___OCL_IS_UNDEFINED = OCL_VOID___OCL_IS_UNDEFINED;
-
-	/**
-	 * The number of operations of the '<em>Ocl Invalid</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_INVALID_OPERATION_COUNT = OCL_VOID_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -16978,7 +16904,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 101;
+	int ASSOCIATIVITY_KIND = 99;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -16988,7 +16914,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 102;
+	int COLLECTION_KIND = 100;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -16997,7 +16923,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 103;
+	int BOOLEAN = 101;
 
 	/**
 	 * The meta object id for the '<em>Int</em>' data type.
@@ -17006,7 +16932,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInt()
 	 * @generated
 	 */
-	int INT = 104;
+	int INT = 102;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -17016,7 +16942,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 105;
+	int INTEGER = 103;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -17026,7 +16952,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 106;
+	int OBJECT = 104;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -17036,7 +16962,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 107;
+	int REAL = 105;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -17046,7 +16972,17 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 108;
+	int STRING = 106;
+
+	/**
+	 * The meta object id for the '<em>Throwable</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Throwable
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
+	 * @generated
+	 */
+	int THROWABLE = 107;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -17056,7 +16992,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 109;
+	int UNLIMITED_NATURAL = 108;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -19283,6 +19219,50 @@ public interface PivotPackage
 	EClass getInvalidLiteralExp();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Object</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getObject()
+	 * @see #getInvalidLiteralExp()
+	 * @generated
+	 */
+	EAttribute getInvalidLiteralExp_Object();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getExpression()
+	 * @see #getInvalidLiteralExp()
+	 * @generated
+	 */
+	EReference getInvalidLiteralExp_Expression();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getReason <em>Reason</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reason</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getReason()
+	 * @see #getInvalidLiteralExp()
+	 * @generated
+	 */
+	EAttribute getInvalidLiteralExp_Reason();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getThrowable <em>Throwable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Throwable</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getThrowable()
+	 * @see #getInvalidLiteralExp()
+	 * @generated
+	 */
+	EAttribute getInvalidLiteralExp_Throwable();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.InvalidType <em>Invalid Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19587,26 +19567,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getNullLiteralExp();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.OclInvalid <em>Ocl Invalid</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ocl Invalid</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.OclInvalid
-	 * @generated
-	 */
-	EClass getOclInvalid();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.OclVoid <em>Ocl Void</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ocl Void</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.OclVoid
-	 * @generated
-	 */
-	EClass getOclVoid();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.OperationCallExp <em>Operation Call Exp</em>}'.
@@ -20104,6 +20064,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EDataType getString();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.Throwable <em>Throwable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Throwable</em>'.
+	 * @see java.lang.Throwable
+	 * @model instanceClass="java.lang.Throwable"
+	 * @generated
+	 */
+	EDataType getThrowable();
 
 	/**
 	 * Returns the meta object for data type '{@link java.math.BigInteger <em>Unlimited Natural</em>}'.
@@ -21959,6 +21930,38 @@ public interface PivotPackage
 		EClass INVALID_LITERAL_EXP = eINSTANCE.getInvalidLiteralExp();
 
 		/**
+		 * The meta object literal for the '<em><b>Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INVALID_LITERAL_EXP__OBJECT = eINSTANCE.getInvalidLiteralExp_Object();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INVALID_LITERAL_EXP__EXPRESSION = eINSTANCE.getInvalidLiteralExp_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Reason</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INVALID_LITERAL_EXP__REASON = eINSTANCE.getInvalidLiteralExp_Reason();
+
+		/**
+		 * The meta object literal for the '<em><b>Throwable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INVALID_LITERAL_EXP__THROWABLE = eINSTANCE.getInvalidLiteralExp_Throwable();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -22213,26 +22216,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass NULL_LITERAL_EXP = eINSTANCE.getNullLiteralExp();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclInvalidImpl <em>Ocl Invalid</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.OclInvalidImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclInvalid()
-		 * @generated
-		 */
-		EClass OCL_INVALID = eINSTANCE.getOclInvalid();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclVoidImpl <em>Ocl Void</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.OclVoidImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclVoid()
-		 * @generated
-		 */
-		EClass OCL_VOID = eINSTANCE.getOclVoid();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
@@ -22675,6 +22658,16 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EDataType STRING = eINSTANCE.getString();
+
+		/**
+		 * The meta object literal for the '<em>Throwable</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Throwable
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
+		 * @generated
+		 */
+		EDataType THROWABLE = eINSTANCE.getThrowable();
 
 		/**
 		 * The meta object literal for the '<em>Unlimited Natural</em>' data type.

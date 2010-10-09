@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -513,24 +513,6 @@ public interface PivotFactory
 	 * @generated
 	 */
 	OclExpression createOclExpression();
-
-	/**
-	 * Returns a new object of class '<em>Ocl Invalid</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Invalid</em>'.
-	 * @generated
-	 */
-	OclInvalid createOclInvalid();
-
-	/**
-	 * Returns a new object of class '<em>Ocl Void</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Void</em>'.
-	 * @generated
-	 */
-	OclVoid createOclVoid();
 
 	/**
 	 * Returns a new object of class '<em>Operation Call Exp</em>'.

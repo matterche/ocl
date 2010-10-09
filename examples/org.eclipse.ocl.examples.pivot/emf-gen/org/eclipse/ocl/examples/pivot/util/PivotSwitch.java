@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.1.2.2 2010/10/05 17:39:23 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -73,8 +73,6 @@ import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclAny;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.OclInvalid;
-import org.eclipse.ocl.examples.pivot.OclVoid;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -1016,25 +1014,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseElement(oclExpression);
 				if (result == null) result = caseOclAny(oclExpression);
 				if (result == null) result = case_(oclExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.OCL_INVALID:
-			{
-				OclInvalid oclInvalid = (OclInvalid)theEObject;
-				T result = caseOclInvalid(oclInvalid);
-				if (result == null) result = caseOclVoid(oclInvalid);
-				if (result == null) result = caseOclAny(oclInvalid);
-				if (result == null) result = case_(oclInvalid);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.OCL_VOID:
-			{
-				OclVoid oclVoid = (OclVoid)theEObject;
-				T result = caseOclVoid(oclVoid);
-				if (result == null) result = caseOclAny(oclVoid);
-				if (result == null) result = case_(oclVoid);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2842,36 +2821,6 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseNullLiteralExp(NullLiteralExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ocl Invalid</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ocl Invalid</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOclInvalid(OclInvalid object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ocl Void</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ocl Void</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOclVoid(OclVoid object) {
 		return null;
 	}
 
