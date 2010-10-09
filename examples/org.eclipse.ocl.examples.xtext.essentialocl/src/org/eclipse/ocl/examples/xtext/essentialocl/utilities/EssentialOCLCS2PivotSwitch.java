@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2PivotSwitch.java,v 1.1.2.2 2010/10/05 17:52:13 ewillink Exp $
+ * $Id: EssentialOCLCS2PivotSwitch.java,v 1.1.2.3 2010/10/09 20:10:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -292,7 +292,9 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 
 		@Override
 		public Element caseInvalidLiteralExpCS(InvalidLiteralExpCS csElement) {
-			InvalidLiteralExp expression = refreshExpression(InvalidLiteralExp.class, PivotPackage.Literals.INVALID_LITERAL_EXP, csElement);
+//			InvalidLiteralExp expression = refreshExpression(InvalidLiteralExp.class, PivotPackage.Literals.INVALID_LITERAL_EXP, csElement);
+			InvalidLiteralExp expression = pivotManager.createInvalidValue(csElement, null, "invalid literal", null);
+			converter.installPivotElement(csElement, expression);
 			converter.queueResolver(csElement);
 			return expression;
 		}
@@ -413,6 +415,7 @@ public class EssentialOCLCS2PivotSwitch implements CS2Pivot.Switch
 
 		@Override
 		public Element caseNavigationOperatorCS(NavigationOperatorCS csOperator) {
+			@SuppressWarnings("unused")
 			OclExpression leftElement = converter.referenceElement(OclExpression.class, csOperator.getLeft());
 			OclExpression rightElement = converter.referenceElement(OclExpression.class, csOperator.getRight());
 			return rightElement;
