@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.6 2010/02/03 19:54:13 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.6.4.1 2010/11/19 06:20:31 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -2257,7 +2257,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				}
 
 				public boolean hasNext() {
-					return curr < last;
+					return (curr < last) || !initialized;
 				}
 
 				public void remove() {
