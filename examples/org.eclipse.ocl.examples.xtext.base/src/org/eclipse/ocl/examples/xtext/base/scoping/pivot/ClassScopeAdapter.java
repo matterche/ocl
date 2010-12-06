@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtils;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -51,12 +52,19 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Class pivot = getTarget();
-		environmentView.addNamedElements(PivotPackage.Literals.OPERATION, pivot.getOwnedOperations());
-		environmentView.addNamedElements(PivotPackage.Literals.PROPERTY, pivot.getOwnedAttributes());
-		environmentView.addElements(PivotPackage.Literals.TYPE, ElementUtil.getTypeTemplateParameterables(pivot));
+		org.eclipse.ocl.examples.pivot.Class unspecializedPivot;
+		if (pivot.getTemplateBindings().size() > 0) {
+			unspecializedPivot = PivotUtils.getTemplateableClass(pivot);
+		}
+		else {
+			unspecializedPivot = pivot;
+			environmentView.addElements(PivotPackage.Literals.TYPE, ElementUtil.getTypeTemplateParameterables(pivot));
+		}
+		environmentView.addNamedElements(PivotPackage.Literals.OPERATION, unspecializedPivot.getOwnedOperations());
+		environmentView.addNamedElements(PivotPackage.Literals.PROPERTY, unspecializedPivot.getOwnedAttributes());
 		if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
 //			if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
-			addInheritedContents(environmentView, pivot, scopeView);
+			addInheritedContents(environmentView, unspecializedPivot, scopeView);
 //			if ((environmentView.getSize() == 0) && (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS)) { // Avoid creating bindings for nested type parameters
 //				for (org.eclipse.ocl.examples.pivot.Class superClass : pivot.getSuperClasses()) {
 //					ScopeView nestedScopeView = scopeView;

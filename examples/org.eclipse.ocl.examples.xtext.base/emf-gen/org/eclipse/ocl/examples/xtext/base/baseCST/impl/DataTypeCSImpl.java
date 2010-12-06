@@ -12,25 +12,22 @@
  *
  * </copyright>
  *
- * $Id: DataTypeCSImpl.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: DataTypeCSImpl.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -176,4 +173,8 @@ public class DataTypeCSImpl extends ClassifierCSImpl implements DataTypeCS
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitDataTypeCS(this);
+	}
 } //DataTypeCSImpl

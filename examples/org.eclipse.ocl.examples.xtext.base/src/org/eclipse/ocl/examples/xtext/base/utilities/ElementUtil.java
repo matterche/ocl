@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1.2.1 2010/10/01 14:13:00 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.1.2.2 2010/12/06 17:53:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -32,7 +32,11 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
@@ -209,6 +213,37 @@ public class ElementUtil
 		}
 		return null;
 	} */
+
+	public static boolean isInOperation(ElementCS csElement) {
+		for (EObject eObject = csElement; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof OperationCS) {
+				return true;
+			}
+			else if (eObject instanceof ClassCS) {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	public static boolean isSpecialization(TemplateBindingCS csTemplateBinding) {
+		ParameterizedTypeRefCS csParameterizedTypeRef = csTemplateBinding.getOwningTemplateBindableElement();
+		Type type = csParameterizedTypeRef.getPivot();
+		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
+			ParameterableElementCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+			org.eclipse.ocl.examples.pivot.Class actualParameterClass = (org.eclipse.ocl.examples.pivot.Class) ownedActualParameter.getPivot();
+			TemplateParameter owningTemplateParameter = actualParameterClass.getOwningTemplateParameter();
+			if (owningTemplateParameter == null) {
+				return true;
+			}
+			TemplateSignature signature = owningTemplateParameter.getSignature();
+			TemplateableElement template = signature.getTemplate();
+			if (template != type) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public static boolean isValidIdentifier(String value) {
 		int iMax = value.length();

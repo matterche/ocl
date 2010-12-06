@@ -12,34 +12,26 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeProvider.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: PivotScopeProvider.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.PivotSwitch;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -73,11 +65,6 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 		implements ScopeAdapter.Switch
 	{
 		@Override
-		public ScopeAdapter caseBooleanLiteralExp(BooleanLiteralExp pivotElement) {
-			return new BooleanLiteralExpScopeAdapter(pivotElement);
-		}
-
-		@Override
 		public ScopeAdapter caseClass(org.eclipse.ocl.examples.pivot.Class pivotElement) {
 			return new ClassScopeAdapter(pivotElement);
 		}
@@ -98,23 +85,8 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 		}
 
 		@Override
-		public ScopeAdapter caseIntegerLiteralExp(IntegerLiteralExp pivotElement) {
-			return new IntegerLiteralExpScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseInvalidLiteralExp(InvalidLiteralExp pivotElement) {
-			return new InvalidLiteralExpScopeAdapter(pivotElement);
-		}
-
-		@Override
 		public ScopeAdapter caseLetExp(LetExp pivotElement) {
 			return new LetExpScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseNullLiteralExp(NullLiteralExp pivotElement) {
-			return new NullLiteralExpScopeAdapter(pivotElement);
 		}
 
 		@Override
@@ -143,16 +115,6 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 		}
 
 		@Override
-		public ScopeAdapter caseRealLiteralExp(RealLiteralExp pivotElement) {
-			return new RealLiteralExpScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseStringLiteralExp(StringLiteralExp pivotElement) {
-			return new StringLiteralExpScopeAdapter(pivotElement);
-		}
-
-		@Override
 		public ScopeAdapter caseTemplateSignature(TemplateSignature pivotElement) {
 			return new TemplateSignatureScopeAdapter(pivotElement);
 		}
@@ -160,11 +122,6 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 		@Override
 		public ScopeAdapter caseTypeTemplateParameter(TypeTemplateParameter pivotElement) {
 			return new TypeTemplateParameterScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp pivotElement) {
-			return new UnlimitedNaturalLiteralExpScopeAdapter(pivotElement);
 		}
 
 		@Override
@@ -179,7 +136,7 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 
 		@Override
 		public ScopeAdapter defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ModelElementCS) eObject);
+			return new DefaultScopeAdapter(eObject);
 		}
 
 		public ScopeAdapter doInPackageSwitch(EObject eObject) {

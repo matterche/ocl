@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationLiteralCSImpl.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: EnumerationLiteralCSImpl.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -168,4 +169,8 @@ public class EnumerationLiteralCSImpl extends NamedElementCSImpl implements Enum
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitEnumerationLiteralCS(this);
+	}
 } //EnumLiteralCSImpl

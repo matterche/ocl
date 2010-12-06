@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 
@@ -31,7 +32,7 @@ public class CS2PivotResourceAdapter implements Adapter
 		return (CS2PivotResourceAdapter) EcoreUtil.getAdapter(eAdapters, CS2PivotResourceAdapter.class);
 	}
 	
-	public static CS2PivotResourceAdapter getAdapter(Resource csResource, PivotManager pivotManager) {
+	public static CS2PivotResourceAdapter getAdapter(BaseCSResource csResource, PivotManager pivotManager) {
 		List<Adapter> eAdapters = csResource.eAdapters();
 		CS2PivotResourceAdapter adapter = (CS2PivotResourceAdapter) EcoreUtil.getAdapter(eAdapters, CS2PivotResourceAdapter.class);
 		if (adapter == null) {
@@ -44,7 +45,7 @@ public class CS2PivotResourceAdapter implements Adapter
 		return adapter;
 	}
 	
-	public static CS2PivotResourceAdapter refreshPivotMappings(Resource csResource, PivotManager pivotManager) {
+	public static CS2PivotResourceAdapter refreshPivotMappings(BaseCSResource csResource, PivotManager pivotManager) {
 		CSAliasCreator.refreshPackageAliases(csResource);
 		CS2PivotResourceAdapter adapter = getAdapter(csResource, pivotManager);
 		adapter.refreshPivotMappings();
@@ -55,12 +56,12 @@ public class CS2PivotResourceAdapter implements Adapter
 	private final PivotManager pivotManager;
 	private final CS2Pivot converter;
 	
-	public CS2PivotResourceAdapter(Resource csResource, PivotManager pivotManager) {
+	public CS2PivotResourceAdapter(BaseCSResource csResource, PivotManager pivotManager) {
 		this.csResource = csResource;
 		this.pivotManager = pivotManager;
 		Map<Resource, Resource> cs2pivotResourceMap = computeCS2PivotResourceMap(
 			csResource, pivotManager);
-		converter = new CS2Pivot(cs2pivotResourceMap, pivotManager);
+		converter = csResource.createCS2Pivot(cs2pivotResourceMap, pivotManager);
 	}
 
 	public Map<Resource, Resource> computeCS2PivotResourceMap(Resource csResource, PivotManager pivotManager) {

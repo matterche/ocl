@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleOperationRefCSImpl.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: SimpleOperationRefCSImpl.java,v 1.4.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -169,5 +170,10 @@ public class SimpleOperationRefCSImpl extends OperationRefCSImpl implements Simp
 				return operation != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitSimpleOperationRefCS(this);
 	}
 } //SimpleOperationRefCSImpl

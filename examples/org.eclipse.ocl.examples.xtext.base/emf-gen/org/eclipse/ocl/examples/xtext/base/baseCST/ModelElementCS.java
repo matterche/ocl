@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCS.java,v 1.1.6.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: ModelElementCS.java,v 1.1.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,10 +37,10 @@ import org.eclipse.ocl.examples.pivot.IPivotElement;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getModelElementCS()
- * @model abstract="true"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS org.eclipse.ocl.examples.pivot.Pivotable"
  * @generated
  */
-public interface ModelElementCS extends ElementCS, IPivotElement {
+public interface ModelElementCS extends ElementCS, Pivotable {
 	/**
 	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS}.
@@ -68,7 +68,7 @@ public interface ModelElementCS extends ElementCS, IPivotElement {
 	 * @return the value of the '<em>Pivot</em>' reference.
 	 * @see #setPivot(Element)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getModelElementCS_Pivot()
-	 * @model transient="true"
+	 * @model resolveProxies="false" transient="true"
 	 * @generated
 	 */
 	Element getPivot();
@@ -120,7 +120,7 @@ public interface ModelElementCS extends ElementCS, IPivotElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Error</em>' attribute list.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getModelElementCS_Error()
-	 * @model transient="true"
+	 * @model unique="false" transient="true"
 	 * @generated
 	 */
 	EList<String> getError();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationElementCSImpl.java,v 1.1.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: AnnotationElementCSImpl.java,v 1.1.6.2 2010/12/06 17:53:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -26,8 +26,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -164,4 +165,8 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitAnnotationElementCS(this);
+	}
 } //AnnotationElementCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootCS.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: RootCS.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -32,7 +32,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getRootCS()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TestConstraint'"
+ * @model interface="true" abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TestConstraint'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TestConstraint='true'"
  * @generated
  */

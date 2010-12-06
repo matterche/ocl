@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeRefCSImpl.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: CollectionTypeRefCSImpl.java,v 1.4.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -20,6 +20,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,5 +49,10 @@ public class CollectionTypeRefCSImpl extends TypedTypeRefCSImpl implements Colle
 	@Override
 	protected EClass eStaticClass() {
 		return BaseCSTPackage.Literals.COLLECTION_TYPE_REF_CS;
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitCollectionTypeRefCS(this);
 	}
 } //CollectionTypeRefCSImpl

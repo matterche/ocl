@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -49,6 +48,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
@@ -212,6 +213,16 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		}
 
 		@Override
+		public ScopeAdapter caseTuplePartCS(TuplePartCS eObject) {
+			return new EmptyCSScopeAdapter(eObject);
+		}
+
+		@Override
+		public ScopeAdapter caseTupleTypeCS(TupleTypeCS eObject) {
+			return new TupleTypeCSScopeAdapter(eObject);
+		}
+
+		@Override
 		public ScopeAdapter caseTypeParameterCS(TypeParameterCS eObject) {
 			return new EmptyCSScopeAdapter(eObject);
 		}
@@ -228,7 +239,7 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 
 		@Override
 		public ScopeAdapter defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ModelElementCS) eObject);
+			return new DefaultScopeAdapter(eObject);
 		}
 
 		public ScopeAdapter doInPackageSwitch(EObject eObject) {

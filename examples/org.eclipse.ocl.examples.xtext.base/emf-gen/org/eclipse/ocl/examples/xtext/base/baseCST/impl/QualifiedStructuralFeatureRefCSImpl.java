@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedStructuralFeatureRefCSImpl.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: QualifiedStructuralFeatureRefCSImpl.java,v 1.4.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 
 /**
@@ -299,5 +300,10 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 	@Override
 	public StructuralFeatureCS getFeature() {
 		return getElement().getFeature();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitQualifiedStructuralFeatureRefCS(this);
 	}
 } //QualifiedStructuralFeatureRefCSImpl

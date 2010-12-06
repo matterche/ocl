@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.3.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.3.6.2 2010/12/06 17:53:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -21,10 +21,73 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.*;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -111,10 +174,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseNamespaceCS(abstractPackageCS);
 				if (result == null) result = caseNamedElementCS(abstractPackageCS);
 				if (result == null) result = caseMonikeredElementCS(abstractPackageCS);
-				if (result == null) result = caseINamedElement(abstractPackageCS);
+				if (result == null) result = caseNameable(abstractPackageCS);
 				if (result == null) result = caseModelElementCS(abstractPackageCS);
 				if (result == null) result = caseElementCS(abstractPackageCS);
-				if (result == null) result = caseIPivotElement(abstractPackageCS);
+				if (result == null) result = casePivotable(abstractPackageCS);
+				if (result == null) result = caseVisitableCS(abstractPackageCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -125,10 +189,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseAnnotationElementCS(annotationCS);
 				if (result == null) result = caseNamedElementCS(annotationCS);
 				if (result == null) result = caseMonikeredElementCS(annotationCS);
-				if (result == null) result = caseINamedElement(annotationCS);
+				if (result == null) result = caseNameable(annotationCS);
 				if (result == null) result = caseModelElementCS(annotationCS);
 				if (result == null) result = caseElementCS(annotationCS);
-				if (result == null) result = caseIPivotElement(annotationCS);
+				if (result == null) result = casePivotable(annotationCS);
+				if (result == null) result = caseVisitableCS(annotationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,10 +203,11 @@ public class BaseCSTSwitch<T> {
 				T result = caseAnnotationElementCS(annotationElementCS);
 				if (result == null) result = caseNamedElementCS(annotationElementCS);
 				if (result == null) result = caseMonikeredElementCS(annotationElementCS);
-				if (result == null) result = caseINamedElement(annotationElementCS);
+				if (result == null) result = caseNameable(annotationElementCS);
 				if (result == null) result = caseModelElementCS(annotationElementCS);
 				if (result == null) result = caseElementCS(annotationElementCS);
-				if (result == null) result = caseIPivotElement(annotationElementCS);
+				if (result == null) result = casePivotable(annotationElementCS);
+				if (result == null) result = caseVisitableCS(annotationElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -154,10 +220,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypedElementCS(attributeCS);
 				if (result == null) result = caseNamedElementCS(attributeCS);
 				if (result == null) result = caseMonikeredElementCS(attributeCS);
-				if (result == null) result = caseINamedElement(attributeCS);
+				if (result == null) result = caseNameable(attributeCS);
 				if (result == null) result = caseModelElementCS(attributeCS);
 				if (result == null) result = caseElementCS(attributeCS);
-				if (result == null) result = caseIPivotElement(attributeCS);
+				if (result == null) result = casePivotable(attributeCS);
+				if (result == null) result = caseVisitableCS(attributeCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -166,6 +233,7 @@ public class BaseCSTSwitch<T> {
 				AttributeCSRef attributeCSRef = (AttributeCSRef)theEObject;
 				T result = caseAttributeCSRef(attributeCSRef);
 				if (result == null) result = caseElementCS(attributeCSRef);
+				if (result == null) result = caseVisitableCS(attributeCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -178,10 +246,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseNamespaceCS(boundDocumentCS);
 				if (result == null) result = caseNamedElementCS(boundDocumentCS);
 				if (result == null) result = caseMonikeredElementCS(boundDocumentCS);
-				if (result == null) result = caseINamedElement(boundDocumentCS);
+				if (result == null) result = caseNameable(boundDocumentCS);
 				if (result == null) result = caseModelElementCS(boundDocumentCS);
 				if (result == null) result = caseElementCS(boundDocumentCS);
-				if (result == null) result = caseIPivotElement(boundDocumentCS);
+				if (result == null) result = casePivotable(boundDocumentCS);
+				if (result == null) result = caseVisitableCS(boundDocumentCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -195,12 +264,12 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypeCS(classCS);
 				if (result == null) result = caseTemplateableElementCS(classCS);
 				if (result == null) result = caseParameterableElementCS(classCS);
-				if (result == null) result = caseINamedElement(classCS);
-				if (result == null) result = caseTemplateBindableElementCS(classCS);
 				if (result == null) result = caseMonikeredElementCS(classCS);
+				if (result == null) result = caseNameable(classCS);
 				if (result == null) result = caseModelElementCS(classCS);
 				if (result == null) result = caseElementCS(classCS);
-				if (result == null) result = caseIPivotElement(classCS);
+				if (result == null) result = casePivotable(classCS);
+				if (result == null) result = caseVisitableCS(classCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -209,6 +278,7 @@ public class BaseCSTSwitch<T> {
 				ClassCSRef classCSRef = (ClassCSRef)theEObject;
 				T result = caseClassCSRef(classCSRef);
 				if (result == null) result = caseElementCS(classCSRef);
+				if (result == null) result = caseVisitableCS(classCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -220,12 +290,12 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypeCS(classifierCS);
 				if (result == null) result = caseTemplateableElementCS(classifierCS);
 				if (result == null) result = caseParameterableElementCS(classifierCS);
-				if (result == null) result = caseINamedElement(classifierCS);
-				if (result == null) result = caseTemplateBindableElementCS(classifierCS);
 				if (result == null) result = caseMonikeredElementCS(classifierCS);
+				if (result == null) result = caseNameable(classifierCS);
 				if (result == null) result = caseModelElementCS(classifierCS);
 				if (result == null) result = caseElementCS(classifierCS);
-				if (result == null) result = caseIPivotElement(classifierCS);
+				if (result == null) result = casePivotable(classifierCS);
+				if (result == null) result = caseVisitableCS(classifierCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -235,7 +305,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseClassifierRefCS(classifierRefCS);
 				if (result == null) result = caseModelElementCS(classifierRefCS);
 				if (result == null) result = caseElementCS(classifierRefCS);
-				if (result == null) result = caseIPivotElement(classifierRefCS);
+				if (result == null) result = casePivotable(classifierRefCS);
+				if (result == null) result = caseVisitableCS(classifierRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -246,13 +317,13 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypedTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseParameterizedTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseTypedRefCS(collectionTypeRefCS);
-				if (result == null) result = caseTemplateBindableElementCS(collectionTypeRefCS);
 				if (result == null) result = caseTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(collectionTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(collectionTypeRefCS);
 				if (result == null) result = caseModelElementCS(collectionTypeRefCS);
 				if (result == null) result = caseElementCS(collectionTypeRefCS);
-				if (result == null) result = caseIPivotElement(collectionTypeRefCS);
+				if (result == null) result = casePivotable(collectionTypeRefCS);
+				if (result == null) result = caseVisitableCS(collectionTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -262,10 +333,11 @@ public class BaseCSTSwitch<T> {
 				T result = caseConstraintCS(constraintCS);
 				if (result == null) result = caseNamedElementCS(constraintCS);
 				if (result == null) result = caseMonikeredElementCS(constraintCS);
-				if (result == null) result = caseINamedElement(constraintCS);
+				if (result == null) result = caseNameable(constraintCS);
 				if (result == null) result = caseModelElementCS(constraintCS);
 				if (result == null) result = caseElementCS(constraintCS);
-				if (result == null) result = caseIPivotElement(constraintCS);
+				if (result == null) result = casePivotable(constraintCS);
+				if (result == null) result = caseVisitableCS(constraintCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -279,12 +351,12 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypeCS(dataTypeCS);
 				if (result == null) result = caseTemplateableElementCS(dataTypeCS);
 				if (result == null) result = caseParameterableElementCS(dataTypeCS);
-				if (result == null) result = caseINamedElement(dataTypeCS);
-				if (result == null) result = caseTemplateBindableElementCS(dataTypeCS);
 				if (result == null) result = caseMonikeredElementCS(dataTypeCS);
+				if (result == null) result = caseNameable(dataTypeCS);
 				if (result == null) result = caseModelElementCS(dataTypeCS);
 				if (result == null) result = caseElementCS(dataTypeCS);
-				if (result == null) result = caseIPivotElement(dataTypeCS);
+				if (result == null) result = casePivotable(dataTypeCS);
+				if (result == null) result = caseVisitableCS(dataTypeCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,10 +366,11 @@ public class BaseCSTSwitch<T> {
 				T result = caseDetailCS(detailCS);
 				if (result == null) result = caseNamedElementCS(detailCS);
 				if (result == null) result = caseMonikeredElementCS(detailCS);
-				if (result == null) result = caseINamedElement(detailCS);
+				if (result == null) result = caseNameable(detailCS);
 				if (result == null) result = caseModelElementCS(detailCS);
 				if (result == null) result = caseElementCS(detailCS);
-				if (result == null) result = caseIPivotElement(detailCS);
+				if (result == null) result = casePivotable(detailCS);
+				if (result == null) result = caseVisitableCS(detailCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,10 +381,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseAnnotationElementCS(documentationCS);
 				if (result == null) result = caseNamedElementCS(documentationCS);
 				if (result == null) result = caseMonikeredElementCS(documentationCS);
-				if (result == null) result = caseINamedElement(documentationCS);
+				if (result == null) result = caseNameable(documentationCS);
 				if (result == null) result = caseModelElementCS(documentationCS);
 				if (result == null) result = caseElementCS(documentationCS);
-				if (result == null) result = caseIPivotElement(documentationCS);
+				if (result == null) result = casePivotable(documentationCS);
+				if (result == null) result = caseVisitableCS(documentationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -319,6 +393,7 @@ public class BaseCSTSwitch<T> {
 			{
 				ElementCS elementCS = (ElementCS)theEObject;
 				T result = caseElementCS(elementCS);
+				if (result == null) result = caseVisitableCS(elementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -332,12 +407,12 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypeCS(enumerationCS);
 				if (result == null) result = caseTemplateableElementCS(enumerationCS);
 				if (result == null) result = caseParameterableElementCS(enumerationCS);
-				if (result == null) result = caseINamedElement(enumerationCS);
-				if (result == null) result = caseTemplateBindableElementCS(enumerationCS);
 				if (result == null) result = caseMonikeredElementCS(enumerationCS);
+				if (result == null) result = caseNameable(enumerationCS);
 				if (result == null) result = caseModelElementCS(enumerationCS);
 				if (result == null) result = caseElementCS(enumerationCS);
-				if (result == null) result = caseIPivotElement(enumerationCS);
+				if (result == null) result = casePivotable(enumerationCS);
+				if (result == null) result = caseVisitableCS(enumerationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -347,10 +422,11 @@ public class BaseCSTSwitch<T> {
 				T result = caseEnumerationLiteralCS(enumerationLiteralCS);
 				if (result == null) result = caseNamedElementCS(enumerationLiteralCS);
 				if (result == null) result = caseMonikeredElementCS(enumerationLiteralCS);
-				if (result == null) result = caseINamedElement(enumerationLiteralCS);
+				if (result == null) result = caseNameable(enumerationLiteralCS);
 				if (result == null) result = caseModelElementCS(enumerationLiteralCS);
 				if (result == null) result = caseElementCS(enumerationLiteralCS);
-				if (result == null) result = caseIPivotElement(enumerationLiteralCS);
+				if (result == null) result = casePivotable(enumerationLiteralCS);
+				if (result == null) result = caseVisitableCS(enumerationLiteralCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -361,10 +437,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypedElementCS(featureCS);
 				if (result == null) result = caseNamedElementCS(featureCS);
 				if (result == null) result = caseMonikeredElementCS(featureCS);
-				if (result == null) result = caseINamedElement(featureCS);
+				if (result == null) result = caseNameable(featureCS);
 				if (result == null) result = caseModelElementCS(featureCS);
 				if (result == null) result = caseElementCS(featureCS);
-				if (result == null) result = caseIPivotElement(featureCS);
+				if (result == null) result = casePivotable(featureCS);
+				if (result == null) result = caseVisitableCS(featureCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -375,10 +452,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseNamespaceCS(importCS);
 				if (result == null) result = caseNamedElementCS(importCS);
 				if (result == null) result = caseMonikeredElementCS(importCS);
-				if (result == null) result = caseINamedElement(importCS);
+				if (result == null) result = caseNameable(importCS);
 				if (result == null) result = caseModelElementCS(importCS);
 				if (result == null) result = caseElementCS(importCS);
-				if (result == null) result = caseIPivotElement(importCS);
+				if (result == null) result = casePivotable(importCS);
+				if (result == null) result = caseVisitableCS(importCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -389,10 +467,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseNamespaceCS(libraryCS);
 				if (result == null) result = caseNamedElementCS(libraryCS);
 				if (result == null) result = caseMonikeredElementCS(libraryCS);
-				if (result == null) result = caseINamedElement(libraryCS);
+				if (result == null) result = caseNameable(libraryCS);
 				if (result == null) result = caseModelElementCS(libraryCS);
 				if (result == null) result = caseElementCS(libraryCS);
-				if (result == null) result = caseIPivotElement(libraryCS);
+				if (result == null) result = casePivotable(libraryCS);
+				if (result == null) result = caseVisitableCS(libraryCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -401,7 +480,8 @@ public class BaseCSTSwitch<T> {
 				ModelElementCS modelElementCS = (ModelElementCS)theEObject;
 				T result = caseModelElementCS(modelElementCS);
 				if (result == null) result = caseElementCS(modelElementCS);
-				if (result == null) result = caseIPivotElement(modelElementCS);
+				if (result == null) result = casePivotable(modelElementCS);
+				if (result == null) result = caseVisitableCS(modelElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -410,6 +490,7 @@ public class BaseCSTSwitch<T> {
 				ModelElementCSRef modelElementCSRef = (ModelElementCSRef)theEObject;
 				T result = caseModelElementCSRef(modelElementCSRef);
 				if (result == null) result = caseElementCS(modelElementCSRef);
+				if (result == null) result = caseVisitableCS(modelElementCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -419,7 +500,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseMonikeredElementCS(monikeredElementCS);
 				if (result == null) result = caseModelElementCS(monikeredElementCS);
 				if (result == null) result = caseElementCS(monikeredElementCS);
-				if (result == null) result = caseIPivotElement(monikeredElementCS);
+				if (result == null) result = casePivotable(monikeredElementCS);
+				if (result == null) result = caseVisitableCS(monikeredElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -428,10 +510,11 @@ public class BaseCSTSwitch<T> {
 				NamedElementCS namedElementCS = (NamedElementCS)theEObject;
 				T result = caseNamedElementCS(namedElementCS);
 				if (result == null) result = caseMonikeredElementCS(namedElementCS);
-				if (result == null) result = caseINamedElement(namedElementCS);
+				if (result == null) result = caseNameable(namedElementCS);
 				if (result == null) result = caseModelElementCS(namedElementCS);
 				if (result == null) result = caseElementCS(namedElementCS);
-				if (result == null) result = caseIPivotElement(namedElementCS);
+				if (result == null) result = casePivotable(namedElementCS);
+				if (result == null) result = caseVisitableCS(namedElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -441,10 +524,11 @@ public class BaseCSTSwitch<T> {
 				T result = caseNamespaceCS(namespaceCS);
 				if (result == null) result = caseNamedElementCS(namespaceCS);
 				if (result == null) result = caseMonikeredElementCS(namespaceCS);
-				if (result == null) result = caseINamedElement(namespaceCS);
+				if (result == null) result = caseNameable(namespaceCS);
 				if (result == null) result = caseModelElementCS(namespaceCS);
 				if (result == null) result = caseElementCS(namespaceCS);
-				if (result == null) result = caseIPivotElement(namespaceCS);
+				if (result == null) result = casePivotable(namespaceCS);
+				if (result == null) result = caseVisitableCS(namespaceCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -455,13 +539,13 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseFeatureCS(operationCS);
 				if (result == null) result = caseTemplateableElementCS(operationCS);
 				if (result == null) result = caseTypedElementCS(operationCS);
-				if (result == null) result = caseTemplateBindableElementCS(operationCS);
 				if (result == null) result = caseNamedElementCS(operationCS);
 				if (result == null) result = caseMonikeredElementCS(operationCS);
-				if (result == null) result = caseINamedElement(operationCS);
+				if (result == null) result = caseNameable(operationCS);
 				if (result == null) result = caseModelElementCS(operationCS);
 				if (result == null) result = caseElementCS(operationCS);
-				if (result == null) result = caseIPivotElement(operationCS);
+				if (result == null) result = casePivotable(operationCS);
+				if (result == null) result = caseVisitableCS(operationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -471,7 +555,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseOperationRefCS(operationRefCS);
 				if (result == null) result = caseModelElementCS(operationRefCS);
 				if (result == null) result = caseElementCS(operationRefCS);
-				if (result == null) result = caseIPivotElement(operationRefCS);
+				if (result == null) result = casePivotable(operationRefCS);
+				if (result == null) result = caseVisitableCS(operationRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -483,10 +568,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseNamespaceCS(packageCS);
 				if (result == null) result = caseNamedElementCS(packageCS);
 				if (result == null) result = caseMonikeredElementCS(packageCS);
-				if (result == null) result = caseINamedElement(packageCS);
+				if (result == null) result = caseNameable(packageCS);
 				if (result == null) result = caseModelElementCS(packageCS);
 				if (result == null) result = caseElementCS(packageCS);
-				if (result == null) result = caseIPivotElement(packageCS);
+				if (result == null) result = casePivotable(packageCS);
+				if (result == null) result = caseVisitableCS(packageCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -497,7 +583,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(packageRefCS);
 				if (result == null) result = caseModelElementCS(packageRefCS);
 				if (result == null) result = caseElementCS(packageRefCS);
-				if (result == null) result = caseIPivotElement(packageRefCS);
+				if (result == null) result = casePivotable(packageRefCS);
+				if (result == null) result = caseVisitableCS(packageRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -508,10 +595,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypedElementCS(parameterCS);
 				if (result == null) result = caseNamedElementCS(parameterCS);
 				if (result == null) result = caseMonikeredElementCS(parameterCS);
-				if (result == null) result = caseINamedElement(parameterCS);
+				if (result == null) result = caseNameable(parameterCS);
 				if (result == null) result = caseModelElementCS(parameterCS);
 				if (result == null) result = caseElementCS(parameterCS);
-				if (result == null) result = caseIPivotElement(parameterCS);
+				if (result == null) result = casePivotable(parameterCS);
+				if (result == null) result = caseVisitableCS(parameterCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -522,7 +610,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(parameterableElementCS);
 				if (result == null) result = caseModelElementCS(parameterableElementCS);
 				if (result == null) result = caseElementCS(parameterableElementCS);
-				if (result == null) result = caseIPivotElement(parameterableElementCS);
+				if (result == null) result = casePivotable(parameterableElementCS);
+				if (result == null) result = caseVisitableCS(parameterableElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -531,13 +620,13 @@ public class BaseCSTSwitch<T> {
 				ParameterizedTypeRefCS parameterizedTypeRefCS = (ParameterizedTypeRefCS)theEObject;
 				T result = caseParameterizedTypeRefCS(parameterizedTypeRefCS);
 				if (result == null) result = caseTypedRefCS(parameterizedTypeRefCS);
-				if (result == null) result = caseTemplateBindableElementCS(parameterizedTypeRefCS);
 				if (result == null) result = caseTypeRefCS(parameterizedTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(parameterizedTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(parameterizedTypeRefCS);
 				if (result == null) result = caseModelElementCS(parameterizedTypeRefCS);
 				if (result == null) result = caseElementCS(parameterizedTypeRefCS);
-				if (result == null) result = caseIPivotElement(parameterizedTypeRefCS);
+				if (result == null) result = casePivotable(parameterizedTypeRefCS);
+				if (result == null) result = caseVisitableCS(parameterizedTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -548,12 +637,13 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypedRefCS(primitiveTypeRefCS);
 				if (result == null) result = caseNamedElementCS(primitiveTypeRefCS);
 				if (result == null) result = caseTypeRefCS(primitiveTypeRefCS);
-				if (result == null) result = caseINamedElement(primitiveTypeRefCS);
+				if (result == null) result = caseNameable(primitiveTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(primitiveTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(primitiveTypeRefCS);
 				if (result == null) result = caseModelElementCS(primitiveTypeRefCS);
 				if (result == null) result = caseElementCS(primitiveTypeRefCS);
-				if (result == null) result = caseIPivotElement(primitiveTypeRefCS);
+				if (result == null) result = casePivotable(primitiveTypeRefCS);
+				if (result == null) result = caseVisitableCS(primitiveTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -565,7 +655,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseQualifiedRefCS(qualifiedClassifierRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedClassifierRefCS);
 				if (result == null) result = caseElementCS(qualifiedClassifierRefCS);
-				if (result == null) result = caseIPivotElement(qualifiedClassifierRefCS);
+				if (result == null) result = casePivotable(qualifiedClassifierRefCS);
+				if (result == null) result = caseVisitableCS(qualifiedClassifierRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -577,7 +668,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseQualifiedRefCS(qualifiedOperationRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedOperationRefCS);
 				if (result == null) result = caseElementCS(qualifiedOperationRefCS);
-				if (result == null) result = caseIPivotElement(qualifiedOperationRefCS);
+				if (result == null) result = casePivotable(qualifiedOperationRefCS);
+				if (result == null) result = caseVisitableCS(qualifiedOperationRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -590,7 +682,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(qualifiedPackageRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedPackageRefCS);
 				if (result == null) result = caseElementCS(qualifiedPackageRefCS);
-				if (result == null) result = caseIPivotElement(qualifiedPackageRefCS);
+				if (result == null) result = casePivotable(qualifiedPackageRefCS);
+				if (result == null) result = caseVisitableCS(qualifiedPackageRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -600,7 +693,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseQualifiedRefCS(qualifiedRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedRefCS);
 				if (result == null) result = caseElementCS(qualifiedRefCS);
-				if (result == null) result = caseIPivotElement(qualifiedRefCS);
+				if (result == null) result = casePivotable(qualifiedRefCS);
+				if (result == null) result = caseVisitableCS(qualifiedRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -612,7 +706,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseQualifiedRefCS(qualifiedStructuralFeatureRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedStructuralFeatureRefCS);
 				if (result == null) result = caseElementCS(qualifiedStructuralFeatureRefCS);
-				if (result == null) result = caseIPivotElement(qualifiedStructuralFeatureRefCS);
+				if (result == null) result = casePivotable(qualifiedStructuralFeatureRefCS);
+				if (result == null) result = caseVisitableCS(qualifiedStructuralFeatureRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -623,13 +718,13 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseParameterizedTypeRefCS(qualifiedTypeRefCS);
 				if (result == null) result = caseQualifiedRefCS(qualifiedTypeRefCS);
 				if (result == null) result = caseTypedRefCS(qualifiedTypeRefCS);
-				if (result == null) result = caseTemplateBindableElementCS(qualifiedTypeRefCS);
 				if (result == null) result = caseTypeRefCS(qualifiedTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(qualifiedTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(qualifiedTypeRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedTypeRefCS);
 				if (result == null) result = caseElementCS(qualifiedTypeRefCS);
-				if (result == null) result = caseIPivotElement(qualifiedTypeRefCS);
+				if (result == null) result = casePivotable(qualifiedTypeRefCS);
+				if (result == null) result = caseVisitableCS(qualifiedTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -642,10 +737,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypedElementCS(referenceCS);
 				if (result == null) result = caseNamedElementCS(referenceCS);
 				if (result == null) result = caseMonikeredElementCS(referenceCS);
-				if (result == null) result = caseINamedElement(referenceCS);
+				if (result == null) result = caseNameable(referenceCS);
 				if (result == null) result = caseModelElementCS(referenceCS);
 				if (result == null) result = caseElementCS(referenceCS);
-				if (result == null) result = caseIPivotElement(referenceCS);
+				if (result == null) result = casePivotable(referenceCS);
+				if (result == null) result = caseVisitableCS(referenceCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -654,6 +750,7 @@ public class BaseCSTSwitch<T> {
 				ReferenceCSRef referenceCSRef = (ReferenceCSRef)theEObject;
 				T result = caseReferenceCSRef(referenceCSRef);
 				if (result == null) result = caseElementCS(referenceCSRef);
+				if (result == null) result = caseVisitableCS(referenceCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -663,7 +760,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseRootCS(rootCS);
 				if (result == null) result = caseModelElementCS(rootCS);
 				if (result == null) result = caseElementCS(rootCS);
-				if (result == null) result = caseIPivotElement(rootCS);
+				if (result == null) result = casePivotable(rootCS);
+				if (result == null) result = caseVisitableCS(rootCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -676,10 +774,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseNamespaceCS(rootPackageCS);
 				if (result == null) result = caseNamedElementCS(rootPackageCS);
 				if (result == null) result = caseMonikeredElementCS(rootPackageCS);
-				if (result == null) result = caseINamedElement(rootPackageCS);
+				if (result == null) result = caseNameable(rootPackageCS);
 				if (result == null) result = caseModelElementCS(rootPackageCS);
 				if (result == null) result = caseElementCS(rootPackageCS);
-				if (result == null) result = caseIPivotElement(rootPackageCS);
+				if (result == null) result = casePivotable(rootPackageCS);
+				if (result == null) result = caseVisitableCS(rootPackageCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -690,7 +789,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseClassifierRefCS(simpleClassifierRefCS);
 				if (result == null) result = caseModelElementCS(simpleClassifierRefCS);
 				if (result == null) result = caseElementCS(simpleClassifierRefCS);
-				if (result == null) result = caseIPivotElement(simpleClassifierRefCS);
+				if (result == null) result = casePivotable(simpleClassifierRefCS);
+				if (result == null) result = caseVisitableCS(simpleClassifierRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -701,7 +801,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseOperationRefCS(simpleOperationRefCS);
 				if (result == null) result = caseModelElementCS(simpleOperationRefCS);
 				if (result == null) result = caseElementCS(simpleOperationRefCS);
-				if (result == null) result = caseIPivotElement(simpleOperationRefCS);
+				if (result == null) result = casePivotable(simpleOperationRefCS);
+				if (result == null) result = caseVisitableCS(simpleOperationRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -713,7 +814,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(simplePackageRefCS);
 				if (result == null) result = caseModelElementCS(simplePackageRefCS);
 				if (result == null) result = caseElementCS(simplePackageRefCS);
-				if (result == null) result = caseIPivotElement(simplePackageRefCS);
+				if (result == null) result = casePivotable(simplePackageRefCS);
+				if (result == null) result = caseVisitableCS(simplePackageRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -724,7 +826,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseStructuralFeatureRefCS(simpleStructuralFeatureRefCS);
 				if (result == null) result = caseModelElementCS(simpleStructuralFeatureRefCS);
 				if (result == null) result = caseElementCS(simpleStructuralFeatureRefCS);
-				if (result == null) result = caseIPivotElement(simpleStructuralFeatureRefCS);
+				if (result == null) result = casePivotable(simpleStructuralFeatureRefCS);
+				if (result == null) result = caseVisitableCS(simpleStructuralFeatureRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -736,10 +839,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypedElementCS(structuralFeatureCS);
 				if (result == null) result = caseNamedElementCS(structuralFeatureCS);
 				if (result == null) result = caseMonikeredElementCS(structuralFeatureCS);
-				if (result == null) result = caseINamedElement(structuralFeatureCS);
+				if (result == null) result = caseNameable(structuralFeatureCS);
 				if (result == null) result = caseModelElementCS(structuralFeatureCS);
 				if (result == null) result = caseElementCS(structuralFeatureCS);
-				if (result == null) result = caseIPivotElement(structuralFeatureCS);
+				if (result == null) result = casePivotable(structuralFeatureCS);
+				if (result == null) result = caseVisitableCS(structuralFeatureCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -749,18 +853,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseStructuralFeatureRefCS(structuralFeatureRefCS);
 				if (result == null) result = caseModelElementCS(structuralFeatureRefCS);
 				if (result == null) result = caseElementCS(structuralFeatureRefCS);
-				if (result == null) result = caseIPivotElement(structuralFeatureRefCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS:
-			{
-				TemplateBindableElementCS templateBindableElementCS = (TemplateBindableElementCS)theEObject;
-				T result = caseTemplateBindableElementCS(templateBindableElementCS);
-				if (result == null) result = caseMonikeredElementCS(templateBindableElementCS);
-				if (result == null) result = caseModelElementCS(templateBindableElementCS);
-				if (result == null) result = caseElementCS(templateBindableElementCS);
-				if (result == null) result = caseIPivotElement(templateBindableElementCS);
+				if (result == null) result = casePivotable(structuralFeatureRefCS);
+				if (result == null) result = caseVisitableCS(structuralFeatureRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -770,7 +864,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseTemplateBindingCS(templateBindingCS);
 				if (result == null) result = caseModelElementCS(templateBindingCS);
 				if (result == null) result = caseElementCS(templateBindingCS);
-				if (result == null) result = caseIPivotElement(templateBindingCS);
+				if (result == null) result = casePivotable(templateBindingCS);
+				if (result == null) result = caseVisitableCS(templateBindingCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -780,10 +875,11 @@ public class BaseCSTSwitch<T> {
 				T result = caseTemplateParameterCS(templateParameterCS);
 				if (result == null) result = caseNamedElementCS(templateParameterCS);
 				if (result == null) result = caseMonikeredElementCS(templateParameterCS);
-				if (result == null) result = caseINamedElement(templateParameterCS);
+				if (result == null) result = caseNameable(templateParameterCS);
 				if (result == null) result = caseModelElementCS(templateParameterCS);
 				if (result == null) result = caseElementCS(templateParameterCS);
-				if (result == null) result = caseIPivotElement(templateParameterCS);
+				if (result == null) result = casePivotable(templateParameterCS);
+				if (result == null) result = caseVisitableCS(templateParameterCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -793,7 +889,8 @@ public class BaseCSTSwitch<T> {
 				T result = caseTemplateParameterSubstitutionCS(templateParameterSubstitutionCS);
 				if (result == null) result = caseModelElementCS(templateParameterSubstitutionCS);
 				if (result == null) result = caseElementCS(templateParameterSubstitutionCS);
-				if (result == null) result = caseIPivotElement(templateParameterSubstitutionCS);
+				if (result == null) result = casePivotable(templateParameterSubstitutionCS);
+				if (result == null) result = caseVisitableCS(templateParameterSubstitutionCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -804,7 +901,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(templateSignatureCS);
 				if (result == null) result = caseModelElementCS(templateSignatureCS);
 				if (result == null) result = caseElementCS(templateSignatureCS);
-				if (result == null) result = caseIPivotElement(templateSignatureCS);
+				if (result == null) result = casePivotable(templateSignatureCS);
+				if (result == null) result = caseVisitableCS(templateSignatureCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -812,11 +910,43 @@ public class BaseCSTSwitch<T> {
 			{
 				TemplateableElementCS templateableElementCS = (TemplateableElementCS)theEObject;
 				T result = caseTemplateableElementCS(templateableElementCS);
-				if (result == null) result = caseTemplateBindableElementCS(templateableElementCS);
 				if (result == null) result = caseMonikeredElementCS(templateableElementCS);
 				if (result == null) result = caseModelElementCS(templateableElementCS);
 				if (result == null) result = caseElementCS(templateableElementCS);
-				if (result == null) result = caseIPivotElement(templateableElementCS);
+				if (result == null) result = casePivotable(templateableElementCS);
+				if (result == null) result = caseVisitableCS(templateableElementCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.TUPLE_PART_CS:
+			{
+				TuplePartCS tuplePartCS = (TuplePartCS)theEObject;
+				T result = caseTuplePartCS(tuplePartCS);
+				if (result == null) result = caseTypedElementCS(tuplePartCS);
+				if (result == null) result = caseNamedElementCS(tuplePartCS);
+				if (result == null) result = caseMonikeredElementCS(tuplePartCS);
+				if (result == null) result = caseNameable(tuplePartCS);
+				if (result == null) result = caseModelElementCS(tuplePartCS);
+				if (result == null) result = caseElementCS(tuplePartCS);
+				if (result == null) result = casePivotable(tuplePartCS);
+				if (result == null) result = caseVisitableCS(tuplePartCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.TUPLE_TYPE_CS:
+			{
+				TupleTypeCS tupleTypeCS = (TupleTypeCS)theEObject;
+				T result = caseTupleTypeCS(tupleTypeCS);
+				if (result == null) result = caseNamedElementCS(tupleTypeCS);
+				if (result == null) result = caseTypedRefCS(tupleTypeCS);
+				if (result == null) result = caseNameable(tupleTypeCS);
+				if (result == null) result = caseTypeRefCS(tupleTypeCS);
+				if (result == null) result = caseModelElementCS(tupleTypeCS);
+				if (result == null) result = caseParameterableElementCS(tupleTypeCS);
+				if (result == null) result = caseMonikeredElementCS(tupleTypeCS);
+				if (result == null) result = caseElementCS(tupleTypeCS);
+				if (result == null) result = casePivotable(tupleTypeCS);
+				if (result == null) result = caseVisitableCS(tupleTypeCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -827,7 +957,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(typeCS);
 				if (result == null) result = caseModelElementCS(typeCS);
 				if (result == null) result = caseElementCS(typeCS);
-				if (result == null) result = caseIPivotElement(typeCS);
+				if (result == null) result = casePivotable(typeCS);
+				if (result == null) result = caseVisitableCS(typeCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -839,10 +970,11 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseTypeCS(typeParameterCS);
 				if (result == null) result = caseNamedElementCS(typeParameterCS);
 				if (result == null) result = caseMonikeredElementCS(typeParameterCS);
-				if (result == null) result = caseINamedElement(typeParameterCS);
+				if (result == null) result = caseNameable(typeParameterCS);
 				if (result == null) result = caseModelElementCS(typeParameterCS);
 				if (result == null) result = caseElementCS(typeParameterCS);
-				if (result == null) result = caseIPivotElement(typeParameterCS);
+				if (result == null) result = casePivotable(typeParameterCS);
+				if (result == null) result = caseVisitableCS(typeParameterCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -854,7 +986,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(typeRefCS);
 				if (result == null) result = caseModelElementCS(typeRefCS);
 				if (result == null) result = caseElementCS(typeRefCS);
-				if (result == null) result = caseIPivotElement(typeRefCS);
+				if (result == null) result = casePivotable(typeRefCS);
+				if (result == null) result = caseVisitableCS(typeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -864,10 +997,11 @@ public class BaseCSTSwitch<T> {
 				T result = caseTypedElementCS(typedElementCS);
 				if (result == null) result = caseNamedElementCS(typedElementCS);
 				if (result == null) result = caseMonikeredElementCS(typedElementCS);
-				if (result == null) result = caseINamedElement(typedElementCS);
+				if (result == null) result = caseNameable(typedElementCS);
 				if (result == null) result = caseModelElementCS(typedElementCS);
 				if (result == null) result = caseElementCS(typedElementCS);
-				if (result == null) result = caseIPivotElement(typedElementCS);
+				if (result == null) result = casePivotable(typedElementCS);
+				if (result == null) result = caseVisitableCS(typedElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -880,7 +1014,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(typedRefCS);
 				if (result == null) result = caseModelElementCS(typedRefCS);
 				if (result == null) result = caseElementCS(typedRefCS);
-				if (result == null) result = caseIPivotElement(typedRefCS);
+				if (result == null) result = casePivotable(typedRefCS);
+				if (result == null) result = caseVisitableCS(typedRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -890,13 +1025,13 @@ public class BaseCSTSwitch<T> {
 				T result = caseTypedTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseParameterizedTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseTypedRefCS(typedTypeRefCS);
-				if (result == null) result = caseTemplateBindableElementCS(typedTypeRefCS);
 				if (result == null) result = caseTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(typedTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(typedTypeRefCS);
 				if (result == null) result = caseModelElementCS(typedTypeRefCS);
 				if (result == null) result = caseElementCS(typedTypeRefCS);
-				if (result == null) result = caseIPivotElement(typedTypeRefCS);
+				if (result == null) result = casePivotable(typedTypeRefCS);
+				if (result == null) result = caseVisitableCS(typedTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -909,7 +1044,8 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = caseMonikeredElementCS(wildcardTypeRefCS);
 				if (result == null) result = caseModelElementCS(wildcardTypeRefCS);
 				if (result == null) result = caseElementCS(wildcardTypeRefCS);
-				if (result == null) result = caseIPivotElement(wildcardTypeRefCS);
+				if (result == null) result = casePivotable(wildcardTypeRefCS);
+				if (result == null) result = caseVisitableCS(wildcardTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1678,21 +1814,6 @@ public class BaseCSTSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Bindable Element CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Bindable Element CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTemplateBindableElementCS(TemplateBindableElementCS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Template Binding CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1764,6 +1885,38 @@ public class BaseCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseTemplateableElementCS(TemplateableElementCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tuple Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tuple Part CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTuplePartCS(TuplePartCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tuple Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tuple Type CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTupleTypeCS(TupleTypeCS object)
+	{
 		return null;
 	}
 
@@ -1858,6 +2011,22 @@ public class BaseCSTSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVisitableCS(VisitableCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Wildcard Type Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1873,33 +2042,33 @@ public class BaseCSTSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPivotElement(IPivotElement object)
+	public T casePivotable(Pivotable object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseINamedElement(INamedElement object)
+	public T caseNameable(Nameable object)
 	{
 		return null;
 	}

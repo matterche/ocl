@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImportScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: ImportScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ImportScopeAdapter extends ModelElementCSScopeAdapter<ImportCS, org.eclipse.ocl.examples.pivot.Package>
+public class ImportScopeAdapter extends MonikeredElementCSScopeAdapter<ImportCS, org.eclipse.ocl.examples.pivot.Package>
 {
 	private URI uri = null;
 	private EObject importedElement = null;

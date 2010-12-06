@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElementCS.java,v 1.1.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: TypedElementCS.java,v 1.1.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface TypedElementCS extends NamedElementCS {

@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: PackageRefCSImpl.java,v 1.2.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: PackageRefCSImpl.java,v 1.2.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,4 +59,8 @@ public abstract class PackageRefCSImpl extends MonikeredElementCSImpl implements
 	 */
 	public abstract PackageCS getPackage();
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitPackageRefCS(this);
+	}
 } //PackageRefCSImpl

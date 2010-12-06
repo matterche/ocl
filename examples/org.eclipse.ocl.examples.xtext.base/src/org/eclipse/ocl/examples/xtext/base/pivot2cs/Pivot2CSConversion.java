@@ -1,0 +1,448 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: Pivot2CSConversion.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ */
+package org.eclipse.ocl.examples.xtext.base.pivot2cs;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
+import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory;
+
+public class Pivot2CSConversion extends AbstractConversion implements PivotConstants
+{	
+	private static final Logger logger = Logger.getLogger(Pivot2CSConversion.class);
+
+	protected final Pivot2CS converter;
+	protected final PivotManager pivotManager;
+	protected final BaseDeclarationVisitor defaultDeclarationVisitor;
+	protected final BaseReferenceVisitor defaultReferenceVisitor;
+	
+	private org.eclipse.ocl.examples.pivot.Class scope = null;
+
+	private final Map<EClass, BaseDeclarationVisitor> declarationVisitorMap = new HashMap<EClass, BaseDeclarationVisitor>();
+	private final Map<EClass, BaseReferenceVisitor> referenceVisitorMap = new HashMap<EClass, BaseReferenceVisitor>();
+	private Set<org.eclipse.ocl.examples.pivot.Package> importedPackages = null;
+	/**
+	 * Set of all names during session.
+	 */
+	private Set<String> allNames = new HashSet<String>();
+
+	/**
+	 * Set of all aliases.
+	 */
+	private Map<String, org.eclipse.ocl.examples.pivot.Package> alias2package = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
+	private Map<org.eclipse.ocl.examples.pivot.Package, String> package2alias = new HashMap<org.eclipse.ocl.examples.pivot.Package, String>();
+	
+	public Pivot2CSConversion(Pivot2CS converter) {
+		this.converter = converter;
+		this.pivotManager = converter.getPivotManager();
+		this.defaultDeclarationVisitor = converter.createDefaultDeclarationVisitor(this);
+		this.defaultReferenceVisitor = converter.createDefaultReferenceVisitor(this);
+	}
+
+	protected void addBooleanQualifier(List<String> qualifiers, DetailCS csDetail, String csString) {
+		if ((csDetail.getValue().size() == 1) && Boolean.valueOf(csDetail.getValue().get(0))) {
+			qualifiers.add(csString);
+		}
+		else {
+			qualifiers.add("!" + csString);
+		}
+	}
+
+	protected void createImports(Resource csResource, Set<Package> importedPackages) {
+		URI oclinecoreURI = csResource.getURI(); //.appendFileExtension("oclinecore");
+		RootPackageCS documentCS = (RootPackageCS) csResource.getContents().get(0);
+		List<ImportCS> imports = documentCS.getOwnedImport();
+		for (org.eclipse.ocl.examples.pivot.Package importedPackage : importedPackages) {
+//			ModelElementCS csElement = createMap.get(importedPackage);
+//			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
+//				continue;		// Don't import defined packages
+//			}
+			ImportCS importCS = BaseCSTFactory.eINSTANCE.createImportCS();
+			String alias = package2alias.get(importedPackage);
+			if (alias == null) {
+				alias = importedPackage.getNsPrefix();
+				if (alias == null) {
+					alias = "_";
+				}
+				String suffixedAlias = alias;
+				for (int i = 0; alias2package.containsKey(suffixedAlias) || allNames.contains(suffixedAlias); i++) {
+					suffixedAlias = alias + "_" + i;
+				}
+				alias = suffixedAlias;
+				alias2package.put(alias, importedPackage);
+				package2alias.put(importedPackage, alias);
+			}
+			importCS.setName(alias);
+			importCS.setNamespace(importedPackage);
+			importCS.setPivot(importedPackage);
+//			String fullURI = importedPackage.getNsURI();
+			EObject eObject = ((PivotObjectImpl)importedPackage).getTarget();
+			URI fullURI = EcoreUtil.getURI(eObject != null ? eObject : importedPackage);
+			URI deresolvedURI = fullURI.deresolve(oclinecoreURI);
+			importCS.setUri(deresolvedURI.toString());
+//			importCS.setUri(fullURI);
+//			PackageCS csPackage = getCS(importedPackage, PackageCS.class);
+// FIXME			importCS.setNamespace(csPackage);
+			imports.add(importCS);
+		}
+	}
+
+	public BaseDeclarationVisitor getDeclarationVisitor(EClass eClass) {
+		BaseDeclarationVisitor declarationVisitor = declarationVisitorMap.get(eClass);
+		if ((declarationVisitor == null) && !declarationVisitorMap.containsKey(eClass)) {
+			Factory factory = converter.getFactory(eClass);
+			if (factory != null) {
+				declarationVisitor = factory.createDeclarationVisitor(this);
+				if (declarationVisitor == null) {
+					logger.error("No Visitor created for " + eClass.getName());
+				}
+			}
+			else {
+				declarationVisitor = defaultDeclarationVisitor;
+			}
+			declarationVisitorMap.put(eClass, declarationVisitor);
+		}
+		return declarationVisitor;
+	}
+	public PivotManager getPivotManager() {
+		return pivotManager;
+	}
+
+	public BaseReferenceVisitor getReferenceVisitor(EClass eClass) {
+		BaseReferenceVisitor referenceVisitor = referenceVisitorMap.get(eClass);
+		if ((referenceVisitor == null) && !referenceVisitorMap.containsKey(eClass)) {
+			Factory factory = converter.getFactory(eClass);
+			if (factory != null) {
+				referenceVisitor = factory.createReferenceVisitor(this);
+				if (referenceVisitor == null) {
+					logger.error("No Visitor created for " + eClass.getName());
+				}
+			}
+			else {
+				referenceVisitor = defaultReferenceVisitor;
+			}
+			referenceVisitorMap.put(eClass, referenceVisitor);
+		}
+		return referenceVisitor;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Class getScope() {
+		return scope;
+	}
+
+	protected List<TemplateBindingCS> getTemplateBindings(ElementCS csElement) {
+		List<TemplateBindingCS> csTemplateBindings;
+//		EObject container = csElement.eContainer();
+//		if (container instanceof ElementCS) {			
+//			csTemplateBindings = getTemplateBindings((ElementCS) container);
+//		}
+//		else {
+			csTemplateBindings = new ArrayList<TemplateBindingCS>();
+//		}
+		if (csElement instanceof ParameterizedTypeRefCS) {
+			ParameterizedTypeRefCS csTemplateableElement = (ParameterizedTypeRefCS)csElement;
+			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedTemplateBinding();
+			if (csTemplateBinding != null) {
+				csTemplateBindings.add(csTemplateBinding);
+			}
+		}
+		return csTemplateBindings;
+	}
+
+	public void importPackage(org.eclipse.ocl.examples.pivot.Package importPackage) {
+		assert importPackage != null;
+		importedPackages.add(importPackage);
+	}
+
+	protected <T extends ClassifierCS> T refreshClassifier(Class<T> csClass, EClass csEClass, Type object) {
+		T csElement = refreshNamedElement(csClass, csEClass, object);
+		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules()));
+		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
+		if (ownedTemplateSignature != null) {
+			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
+		}
+//		csElement.setInstanceClassName(object.getName());
+		List<AnnotationElementCS> csPivotAnnotations =  null;
+		List<AnnotationElementCS> csAnnotations = csElement.getOwnedAnnotation();
+		for (AnnotationElementCS csAnnotation : csAnnotations) {
+			if (PIVOT_URI.equals(csAnnotation.getName())) {
+				if (csPivotAnnotations == null) {
+					csPivotAnnotations = new ArrayList<AnnotationElementCS>();
+				}
+				csPivotAnnotations.add(csAnnotation);
+				for (DetailCS csDetail : csAnnotation.getOwnedDetail()) {
+/*					if (PIVOT_ECLASSIFIER__INSTANCE_CLASS_NAME(csDetail.getName())) {
+//						addBooleanQualifier(csElement, csDetail, "transient");
+					}
+					else*/ if (PIVOT_ECLASS__INTERFACE.equals(csDetail.getName())) {
+						addBooleanQualifier(csElement.getQualifier(), csDetail, "interface");
+					}
+					else if (PIVOT_EDATA_TYPE__SERIALIZABLE.equals(csDetail.getName())) {
+						addBooleanQualifier(csElement.getQualifier(), csDetail, "serializable");
+					}
+					else {
+						logger.warn("Unsupported pivot2cs for '" + csDetail.getName() + "' detail");
+					}
+				}
+			}
+		}
+		if (csPivotAnnotations != null) {
+			csAnnotations.removeAll(csPivotAnnotations);
+		}
+		return csElement;
+	}
+
+	public <T extends MonikeredElementCS> T refreshMonikeredElement(Class<T> csClass, EClass csEClass, MonikeredElement object) {
+		assert csClass == csEClass.getInstanceClass();
+		EFactory eFactoryInstance = csEClass.getEPackage().getEFactoryInstance();
+		MonikeredElementCS csElement = (MonikeredElementCS) eFactoryInstance.create(csEClass);
+		if (!csClass.isAssignableFrom(csElement.getClass())) {
+			throw new ClassCastException();
+		}
+		csElement.setPivot(object);
+		@SuppressWarnings("unchecked")
+		T castElement = (T) csElement;
+		return castElement;
+	}
+
+	public <T extends NamedElementCS> T refreshNamedElement(Class<T> csClass, EClass csEClass, NamedElement object) {
+		T csElement = refreshMonikeredElement(csClass, csEClass, object);
+		String name = object.getName();
+		csElement.setName(name);
+		allNames.add(name);
+		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations()));
+//		refreshList(csElement.getOwnedComment(), context.visitList(CommentCS.class, object.getOwnedComments()));
+		return csElement;
+	}
+
+	public <T extends StructuralFeatureCS> T refreshStructuralFeature(Class<T> csClass, EClass csEClass, Property object) {
+		T csElement = refreshTypedMultiplicityElement(csClass, csEClass, object);
+		List<AnnotationElementCS> csPivotAnnotations =  null;
+		List<AnnotationElementCS> csAnnotations = csElement.getOwnedAnnotation();
+		for (AnnotationElementCS csAnnotation : csAnnotations) {
+			if (PIVOT_URI.equals(csAnnotation.getName())) {
+				if (csPivotAnnotations == null) {
+					csPivotAnnotations = new ArrayList<AnnotationElementCS>();
+				}
+				csPivotAnnotations.add(csAnnotation);
+				for (DetailCS csDetail : csAnnotation.getOwnedDetail()) {
+					if (PIVOT_ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL.equals(csDetail.getName())) {
+						csElement.setDefault(csDetail.getValue().get(0));
+					}
+					else if (PIVOT_ESTRUCTURAL_FEATURE__TRANSIENT.equals(csDetail.getName())) {
+						addBooleanQualifier(csElement.getQualifier(), csDetail, "transient");
+					}
+					else if (PIVOT_ESTRUCTURAL_FEATURE__UNSETTABLE.equals(csDetail.getName())) {
+						addBooleanQualifier(csElement.getQualifier(), csDetail, "unsettable");
+					}
+					else if (PIVOT_ESTRUCTURAL_FEATURE__VOLATILE.equals(csDetail.getName())) {
+						addBooleanQualifier(csElement.getQualifier(), csDetail, "volatile");
+					}
+					else if (PIVOT_EREFERENCE__RESOLVE_PROXIES.equals(csDetail.getName())) {
+						addBooleanQualifier(csElement.getQualifier(), csDetail, "resolve");
+					}
+					else if (PIVOT_EATTRIBUTE__ID.equals(csDetail.getName())) {
+//						addBooleanQualifier(csElement.getQualifier(), csDetail, "resolve");
+					}
+					else {
+						logger.warn("Unsupported pivot2cs for '" + csDetail.getName() + "' detail");
+					}
+				}
+			}
+		}
+		if (csPivotAnnotations != null) {
+			csAnnotations.removeAll(csPivotAnnotations);
+		}
+		return csElement;
+	}
+	
+	public <T extends TypedElementCS> T refreshTypedElement(Class<T> csClass, EClass csEClass, TypedElement object) {
+		T csElement = refreshNamedElement(csClass, csEClass, object);
+		Type type = object.getType();
+		if (type != null) {
+			TypedRefCS typeRef = visitReference(TypedRefCS.class, type);
+			csElement.setOwnedType(typeRef);
+		}
+		return csElement;
+	}
+
+	public <T extends TypedElementCS> T refreshTypedMultiplicityElement(Class<T> csClass, EClass csEClass, TypedMultiplicityElement object) {
+		T csElement = refreshTypedElement(csClass, csEClass, object);
+		if (object.getType() != null) {
+			int lower = object.getLower().intValue();
+			int upper = object.getUpper().intValue();
+			if (lower == 0) {
+				if (upper == 1) {
+					csElement.setMultiplicity("?");
+				}
+				else if (upper == -1) {
+					csElement.setMultiplicity("*");				
+				}
+			}
+			else if (lower == 1) {
+				if (upper == -1) {
+					csElement.setMultiplicity("+");				
+				}
+			}
+			if (csElement.getMultiplicity() == null) {
+				csElement.setLower(lower);
+				csElement.setUpper(upper);
+			}
+			if (object.eIsSet(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_ORDERED)) {
+				csElement.getQualifier().add(object.isOrdered() ? "ordered" : "!ordered");
+			}
+			if (object.eIsSet(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_UNIQUE)) {
+				csElement.getQualifier().add(object.isUnique() ? "unique" : "!unique");
+			}
+		}
+		return csElement;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Class setScope(org.eclipse.ocl.examples.pivot.Class object) {
+		org.eclipse.ocl.examples.pivot.Class savedScope = scope;
+		this.scope = object;
+		return savedScope;
+	}
+
+	/**
+	 * Sequence the update passes to make the pivot match the CS.
+	 * @param csResources 
+	 */
+	public void update(Collection<? extends Resource> csResources) {
+		Map<Resource, Set<org.eclipse.ocl.examples.pivot.Package>> imports = new HashMap<Resource, Set<org.eclipse.ocl.examples.pivot.Package>>();
+		//
+		//	Perform the pre-order traversal.
+		//
+		for (Resource csResource : csResources) {
+			importedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
+			Resource pivotResource = converter.getPivotResource(csResource);
+			List<PackageCS> list = visitDeclarations(PackageCS.class, pivotResource.getContents());
+			refreshList(csResource.getContents(), list);
+			imports.put(csResource, importedPackages);
+			AliasAdapter adapter = AliasAdapter.getAdapter(pivotResource);
+			for (Map.Entry<EObject, String> aliasEntry : adapter.getAliasMap().entrySet()) {
+				EObject pivot = aliasEntry.getKey();
+				String alias = aliasEntry.getValue();
+				if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
+					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)pivot;
+					alias2package.put(alias, pivotPackage);
+					package2alias.put(pivotPackage, alias);
+				}
+			}
+		}
+		for (Resource csResource : csResources) {
+			createImports(csResource, imports.get(csResource));
+		}
+	}
+
+	protected <T extends ElementCS> T visitDeclaration(Class<T> csClass, EObject eObject) {
+		BaseDeclarationVisitor declarationVisitor = getDeclarationVisitor(eObject.eClass());
+		if ((declarationVisitor == null) || !(eObject instanceof Visitable)) {
+			logger.warn("Unsupported declaration " + eObject.eClass().getName());
+			return null;
+		}
+		ElementCS csElement = ((Visitable)eObject).accept(declarationVisitor);
+		@SuppressWarnings("unchecked")
+		T castElement = (T) csElement;
+		return castElement;
+	}
+
+	protected <T extends ElementCS> List<T> visitDeclarations(Class<T> csClass, List<? extends EObject> eObjects) {
+		List<T> csElements = new ArrayList<T>();
+		for (EObject eObject : eObjects) {
+			T csElement = visitDeclaration(csClass, eObject);
+			if (csElement != null) {
+				csElements.add(csElement);
+			}
+			else {
+				assert csElement != null;
+			}
+		}
+		return csElements;
+	}
+
+	protected <T extends ElementCS> T visitReference(Class<T> csClass, EObject eObject) {
+		BaseReferenceVisitor referenceVisitor = getReferenceVisitor(eObject.eClass());
+		if ((referenceVisitor == null) || !(eObject instanceof Visitable)) {
+			logger.warn("Unsupported reference " + eObject.eClass().getName());
+			return null;
+		}
+		ElementCS csElement = ((Visitable)eObject).accept(referenceVisitor);
+		@SuppressWarnings("unchecked")
+		T castElement = (T) csElement;
+		return castElement;
+	}
+
+	protected <T extends ElementCS> List<T> visitReferences(Class<T> csClass, List<? extends EObject> eObjects) {
+		List<T> csElements = new ArrayList<T>();
+		for (EObject eObject : eObjects) {
+			T csElement = visitReference(csClass, eObject);
+			if (csElement != null) {
+				csElements.add(csElement);
+			}
+			else {
+				assert csElement != null;
+			}
+		}
+		return csElements;
+	}
+}

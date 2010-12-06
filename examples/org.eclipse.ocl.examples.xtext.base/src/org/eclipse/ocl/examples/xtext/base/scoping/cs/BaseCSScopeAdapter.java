@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -22,13 +22,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
-public abstract class BaseCSScopeAdapter<CS extends ModelElementCS, P extends Element> extends ModelElementCSScopeAdapter<CS, P>
+public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends MonikeredElementCSScopeAdapter<CS, P>
 {	
 	protected BaseCSScopeAdapter(CS csElement, Class<P> pivotClass) {
 		super(csElement, pivotClass);
@@ -148,31 +148,31 @@ public abstract class BaseCSScopeAdapter<CS extends ModelElementCS, P extends El
 			PivotManager pivotManager = getPivotManager();
 			EObject eObject = ((ClassifierCS) csElement).getPivot();
 			if (eObject == EcorePackage.Literals.EBIG_DECIMAL) {
-				return pivotManager.getLibraryType("Real", null); //$NON-NLS-1$
+				return pivotManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EBIG_INTEGER) {
-				return pivotManager.getLibraryType("Integer", null); //$NON-NLS-1$
+				return pivotManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.EBOOLEAN) {
-				return pivotManager.getLibraryType("Boolean", null); //$NON-NLS-1$
+				return pivotManager.getBooleanType();
 			}
 			else if (eObject == EcorePackage.Literals.EBOOLEAN_OBJECT) {
-				return pivotManager.getLibraryType("Boolean", null); //$NON-NLS-1$
+				return pivotManager.getBooleanType();
 			}
 			else if (eObject == EcorePackage.Literals.EDOUBLE) {
-				return pivotManager.getLibraryType("Real", null); //$NON-NLS-1$
+				return pivotManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EDOUBLE_OBJECT) {
-				return pivotManager.getLibraryType("Real", null); //$NON-NLS-1$
+				return pivotManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EINT) {
-				return pivotManager.getLibraryType("Integer", null); //$NON-NLS-1$
+				return pivotManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.EINTEGER_OBJECT) {
-				return pivotManager.getLibraryType("Integer", null); //$NON-NLS-1$
+				return pivotManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.ESTRING) {
-				return pivotManager.getLibraryType("String", null); //$NON-NLS-1$
+				return pivotManager.getStringType();
 			}
 			return (Type) ((ClassifierCS) csElement).getPivot();
 		}

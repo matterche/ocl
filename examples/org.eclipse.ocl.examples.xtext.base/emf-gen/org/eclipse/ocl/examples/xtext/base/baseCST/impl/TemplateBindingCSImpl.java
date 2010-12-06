@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingCSImpl.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: TemplateBindingCSImpl.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -28,9 +28,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,9 +82,9 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateBindableElementCS getOwningTemplateBindableElement() {
+	public ParameterizedTypeRefCS getOwningTemplateBindableElement() {
 		if (eContainerFeatureID() != BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT) return null;
-		return (TemplateBindableElementCS)eContainer();
+		return (ParameterizedTypeRefCS)eContainer();
 	}
 
 	/**
@@ -91,7 +92,8 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningTemplateBindableElement(TemplateBindableElementCS newOwningTemplateBindableElement, NotificationChain msgs) {
+	public NotificationChain basicSetOwningTemplateBindableElement(ParameterizedTypeRefCS newOwningTemplateBindableElement, NotificationChain msgs)
+	{
 		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateBindableElement, BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT, msgs);
 		return msgs;
 	}
@@ -101,7 +103,8 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningTemplateBindableElement(TemplateBindableElementCS newOwningTemplateBindableElement) {
+	public void setOwningTemplateBindableElement(ParameterizedTypeRefCS newOwningTemplateBindableElement)
+	{
 		if (newOwningTemplateBindableElement != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT && newOwningTemplateBindableElement != null))
 		{
 			if (EcoreUtil.isAncestor(this, newOwningTemplateBindableElement))
@@ -110,7 +113,7 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningTemplateBindableElement != null)
-				msgs = ((InternalEObject)newOwningTemplateBindableElement).eInverseAdd(this, BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS__OWNED_TEMPLATE_BINDING, TemplateBindableElementCS.class, msgs);
+				msgs = ((InternalEObject)newOwningTemplateBindableElement).eInverseAdd(this, BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, ParameterizedTypeRefCS.class, msgs);
 			msgs = basicSetOwningTemplateBindableElement(newOwningTemplateBindableElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -144,7 +147,7 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 			case BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateBindableElement((TemplateBindableElementCS)otherEnd, msgs);
+				return basicSetOwningTemplateBindableElement((ParameterizedTypeRefCS)otherEnd, msgs);
 			case BaseCSTPackage.TEMPLATE_BINDING_CS__OWNED_PARAMETER_SUBSTITUTION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameterSubstitution()).basicAdd(otherEnd, msgs);
 		}
@@ -178,7 +181,7 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 		switch (eContainerFeatureID())
 		{
 			case BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS__OWNED_TEMPLATE_BINDING, TemplateBindableElementCS.class, msgs);
+				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, ParameterizedTypeRefCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -211,7 +214,7 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 		switch (featureID)
 		{
 			case BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT:
-				setOwningTemplateBindableElement((TemplateBindableElementCS)newValue);
+				setOwningTemplateBindableElement((ParameterizedTypeRefCS)newValue);
 				return;
 			case BaseCSTPackage.TEMPLATE_BINDING_CS__OWNED_PARAMETER_SUBSTITUTION:
 				getOwnedParameterSubstitution().clear();
@@ -231,7 +234,7 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 		switch (featureID)
 		{
 			case BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT:
-				setOwningTemplateBindableElement((TemplateBindableElementCS)null);
+				setOwningTemplateBindableElement((ParameterizedTypeRefCS)null);
 				return;
 			case BaseCSTPackage.TEMPLATE_BINDING_CS__OWNED_PARAMETER_SUBSTITUTION:
 				getOwnedParameterSubstitution().clear();
@@ -257,4 +260,8 @@ public class TemplateBindingCSImpl extends ModelElementCSImpl implements Templat
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitTemplateBindingCS(this);
+	}
 } //TemplateBindingCSImpl

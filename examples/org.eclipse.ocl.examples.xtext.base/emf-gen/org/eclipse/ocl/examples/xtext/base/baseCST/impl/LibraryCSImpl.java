@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibraryCSImpl.java,v 1.1.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: LibraryCSImpl.java,v 1.1.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -182,4 +183,8 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitLibraryCS(this);
+	}
 } //LibraryCSImpl

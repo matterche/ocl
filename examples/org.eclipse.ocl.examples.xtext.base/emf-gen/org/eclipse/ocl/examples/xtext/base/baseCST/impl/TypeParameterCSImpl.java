@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeParameterCSImpl.java,v 1.2.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: TypeParameterCSImpl.java,v 1.2.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -25,12 +25,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +38,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeParameterCSImpl#getOwningTemplateSignature <em>Owning Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeParameterCSImpl#getOwnedExtends <em>Owned Extends</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeParameterCSImpl#getOwnedSuper <em>Owned Super</em>}</li>
  * </ul>
@@ -47,7 +45,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  *
  * @generated
  */
-public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParameterCS {
+public class TypeParameterCSImpl extends TemplateParameterCSImpl implements TypeParameterCS {
 	/**
 	 * The cached value of the '{@link #getOwnedExtends() <em>Owned Extends</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -85,48 +83,6 @@ public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParam
 	@Override
 	protected EClass eStaticClass() {
 		return BaseCSTPackage.Literals.TYPE_PARAMETER_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignatureCS getOwningTemplateSignature() {
-		if (eContainerFeatureID() != BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE) return null;
-		return (TemplateSignatureCS)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningTemplateSignature(TemplateSignatureCS newOwningTemplateSignature, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateSignature, BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningTemplateSignature(TemplateSignatureCS newOwningTemplateSignature) {
-		if (newOwningTemplateSignature != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE && newOwningTemplateSignature != null))
-		{
-			if (EcoreUtil.isAncestor(this, newOwningTemplateSignature))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningTemplateSignature != null)
-				msgs = ((InternalEObject)newOwningTemplateSignature).eInverseAdd(this, BaseCSTPackage.TEMPLATE_SIGNATURE_CS__OWNED_TEMPLATE_PARAMETER, TemplateSignatureCS.class, msgs);
-			msgs = basicSetOwningTemplateSignature(newOwningTemplateSignature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE, newOwningTemplateSignature, newOwningTemplateSignature));
 	}
 
 	/**
@@ -193,28 +149,9 @@ public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParam
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
-			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateSignature((TemplateSignatureCS)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return basicSetOwningTemplateSignature(null, msgs);
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_EXTENDS:
 				return ((InternalEList<?>)getOwnedExtends()).basicRemove(otherEnd, msgs);
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_SUPER:
@@ -229,26 +166,9 @@ public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParam
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID())
-		{
-			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.TEMPLATE_SIGNATURE_CS__OWNED_TEMPLATE_PARAMETER, TemplateSignatureCS.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return getOwningTemplateSignature();
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_EXTENDS:
 				return getOwnedExtends();
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_SUPER:
@@ -267,9 +187,6 @@ public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParam
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				setOwningTemplateSignature((TemplateSignatureCS)newValue);
-				return;
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_EXTENDS:
 				getOwnedExtends().clear();
 				getOwnedExtends().addAll((Collection<? extends TypedRefCS>)newValue);
@@ -290,9 +207,6 @@ public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParam
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				setOwningTemplateSignature((TemplateSignatureCS)null);
-				return;
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_EXTENDS:
 				getOwnedExtends().clear();
 				return;
@@ -312,13 +226,16 @@ public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParam
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return getOwningTemplateSignature() != null;
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_EXTENDS:
 				return ownedExtends != null && !ownedExtends.isEmpty();
 			case BaseCSTPackage.TYPE_PARAMETER_CS__OWNED_SUPER:
 				return ownedSuper != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitTypeParameterCS(this);
 	}
 } //TypeParameterCSImpl

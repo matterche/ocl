@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimplePackageRefCSImpl.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: SimplePackageRefCSImpl.java,v 1.4.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -170,5 +171,10 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 				return package_ != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitSimplePackageRefCS(this);
 	}
 } //SimplePackageRefCSImpl

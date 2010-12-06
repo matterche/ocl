@@ -12,16 +12,18 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactoryImpl.java,v 1.3.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: BaseCSTFactoryImpl.java,v 1.3.6.2 2010/12/06 17:53:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
@@ -38,6 +40,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
@@ -51,7 +54,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRef
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
@@ -139,7 +141,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS: return createQualifiedTypeRefCS();
 			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.REFERENCE_CS_REF: return createReferenceCSRef();
-			case BaseCSTPackage.ROOT_CS: return createRootCS();
 			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
 			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS: return createSimpleClassifierRefCS();
 			case BaseCSTPackage.SIMPLE_OPERATION_REF_CS: return createSimpleOperationRefCS();
@@ -148,11 +149,47 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.TEMPLATE_BINDING_CS: return createTemplateBindingCS();
 			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS: return createTemplateParameterSubstitutionCS();
 			case BaseCSTPackage.TEMPLATE_SIGNATURE_CS: return createTemplateSignatureCS();
+			case BaseCSTPackage.TUPLE_PART_CS: return createTuplePartCS();
+			case BaseCSTPackage.TUPLE_TYPE_CS: return createTupleTypeCS();
 			case BaseCSTPackage.TYPE_PARAMETER_CS: return createTypeParameterCS();
 			case BaseCSTPackage.TYPED_TYPE_REF_CS: return createTypedTypeRefCS();
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS: return createWildcardTypeRefCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case BaseCSTPackage.ITERATOR_KIND:
+				return createIteratorKindFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case BaseCSTPackage.ITERATOR_KIND:
+				return convertIteratorKindToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -440,17 +477,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RootCS createRootCS()
-	{
-		RootCSImpl rootCS = new RootCSImpl();
-		return rootCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public RootPackageCS createRootPackageCS()
 	{
 		RootPackageCSImpl rootPackageCS = new RootPackageCSImpl();
@@ -532,6 +558,28 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TuplePartCS createTuplePartCS()
+	{
+		TuplePartCSImpl tuplePartCS = new TuplePartCSImpl();
+		return tuplePartCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TupleTypeCS createTupleTypeCS()
+	{
+		TupleTypeCSImpl tupleTypeCS = new TupleTypeCSImpl();
+		return tupleTypeCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TypeParameterCS createTypeParameterCS() {
 		TypeParameterCSImpl typeParameterCS = new TypeParameterCSImpl();
 		return typeParameterCS;
@@ -555,6 +603,28 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public WildcardTypeRefCS createWildcardTypeRefCS() {
 		WildcardTypeRefCSImpl wildcardTypeRefCS = new WildcardTypeRefCSImpl();
 		return wildcardTypeRefCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IteratorKind createIteratorKindFromString(EDataType eDataType, String initialValue)
+	{
+		IteratorKind result = IteratorKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIteratorKindToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

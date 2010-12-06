@@ -12,21 +12,44 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, Constraint>
 {
 	public ConstraintCSScopeAdapter(ConstraintCS csElement) {
 		super(csElement, Constraint.class);
+	}
+
+	@Override
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		Constraint pivot = getPivot();
+		if (pivot != null) {
+			ValueSpecification specification = pivot.getSpecification();
+			if (specification instanceof ExpressionInOcl) {
+				Variable contextVariable = ((ExpressionInOcl)specification).getContextVariable();
+				if (contextVariable != null) {
+					environmentView.addElement("self", contextVariable);
+					Type type = contextVariable.getType();
+					environmentView.addElementsOfScope(type, scopeView);
+				}
+			}
+		}
+		return scopeView.getOuterScope();
 	}
 
 	@Override

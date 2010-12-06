@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.3.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.3.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -280,15 +280,6 @@ public interface BaseCSTFactory extends EFactory {
 	ReferenceCSRef createReferenceCSRef();
 
 	/**
-	 * Returns a new object of class '<em>Root CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Root CS</em>'.
-	 * @generated
-	 */
-	RootCS createRootCS();
-
-	/**
 	 * Returns a new object of class '<em>Root Package CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -359,6 +350,24 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	TemplateSignatureCS createTemplateSignatureCS();
+
+	/**
+	 * Returns a new object of class '<em>Tuple Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Part CS</em>'.
+	 * @generated
+	 */
+	TuplePartCS createTuplePartCS();
+
+	/**
+	 * Returns a new object of class '<em>Tuple Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Type CS</em>'.
+	 * @generated
+	 */
+	TupleTypeCS createTupleTypeCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Parameter CS</em>'.

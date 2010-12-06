@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterCS.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: TemplateParameterCS.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -30,7 +30,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTemplateParameterCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface TemplateParameterCS extends NamedElementCS {

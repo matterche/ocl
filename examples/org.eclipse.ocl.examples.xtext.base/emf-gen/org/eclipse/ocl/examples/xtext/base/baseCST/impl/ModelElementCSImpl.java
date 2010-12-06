@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSImpl.java,v 1.1.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: ModelElementCSImpl.java,v 1.1.6.2 2010/12/06 17:53:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -23,16 +23,16 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,26 +140,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	 * @generated
 	 */
 	public Element getPivot() {
-		if (pivot != null && ((EObject)pivot).eIsProxy())
-		{
-			InternalEObject oldPivot = (InternalEObject)pivot;
-			pivot = (Element)eResolveProxy(oldPivot);
-			if (pivot != oldPivot)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT, oldPivot, pivot));
-			}
-		}
-		return pivot;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element basicGetPivot()
-	{
 		return pivot;
 	}
 
@@ -206,7 +186,7 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	{
 		if (error == null)
 		{
-			error = new EDataTypeUniqueEList<String>(String.class, this, BaseCSTPackage.MODEL_ELEMENT_CS__ERROR);
+			error = new EDataTypeEList<String>(String.class, this, BaseCSTPackage.MODEL_ELEMENT_CS__ERROR);
 		}
 		return error;
 	}
@@ -238,8 +218,7 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 			case BaseCSTPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
 				return getOwnedAnnotation();
 			case BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT:
-				if (resolve) return getPivot();
-				return basicGetPivot();
+				return getPivot();
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return getOriginalXmiId();
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ERROR:
@@ -330,5 +309,10 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitModelElementCS(this);
 	}
 } //ModelElementCSImpl

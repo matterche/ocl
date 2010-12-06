@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCS.java,v 1.3.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: OperationCS.java,v 1.3.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -28,8 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedIterator <em>Owned Iterator</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedAccumulator <em>Owned Accumulator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedParameter <em>Owned Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedException <em>Owned Exception</em>}</li>
  * </ul>
@@ -40,38 +38,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface OperationCS extends FeatureCS, TemplateableElementCS {
-	/**
-	 * Returns the value of the '<em><b>Owned Iterator</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Iterator</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Iterator</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_OwnedIterator()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ParameterCS> getOwnedIterator();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Accumulator</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Accumulator</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Accumulator</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_OwnedAccumulator()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ParameterCS> getOwnedAccumulator();
-
 	/**
 	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterizedTypeRefCS.java,v 1.2.6.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: ParameterizedTypeRefCS.java,v 1.2.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -24,18 +24,45 @@ import org.eclipse.ocl.examples.pivot.Type;
  * A representation of the model object '<em><b>Parameterized Type Ref CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getParameterizedTypeRefCS()
  * @model abstract="true"
  * @generated
  */
-public interface ParameterizedTypeRefCS extends TypedRefCS, TemplateBindableElementCS {
+public interface ParameterizedTypeRefCS extends TypedRefCS {
 	/**
+	 * Returns the value of the '<em><b>Owned Template Binding</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS#getOwningTemplateBindableElement <em>Owning Template Bindable Element</em>}'.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Template Binding</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @return the value of the '<em>Owned Template Binding</em>' containment reference.
+	 * @see #setOwnedTemplateBinding(TemplateBindingCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getParameterizedTypeRefCS_OwnedTemplateBinding()
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS#getOwningTemplateBindableElement
+	 * @model opposite="owningTemplateBindableElement" containment="true"
 	 * @generated
 	 */
-	Type getType();
+	TemplateBindingCS getOwnedTemplateBinding();
 
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Template Binding</em>' containment reference.
+	 * @see #getOwnedTemplateBinding()
+	 * @generated
+	 */
+	void setOwnedTemplateBinding(TemplateBindingCS value);
+	
+	Type getPivot();
 } // ParameterizedTypeRefCS

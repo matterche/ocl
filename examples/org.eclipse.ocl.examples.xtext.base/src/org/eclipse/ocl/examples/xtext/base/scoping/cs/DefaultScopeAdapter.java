@@ -12,19 +12,33 @@
  *
  * </copyright>
  *
- * $Id: DefaultScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: DefaultScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 
 /**
  * Scopes that are accidentally empty; a debugging aid.
  */
-public class DefaultScopeAdapter extends ModelElementCSScopeAdapter<ModelElementCS, Element>
+public class DefaultScopeAdapter extends AbstractScopeAdapter<EObject>
 {
-	public DefaultScopeAdapter(ModelElementCS csElement) {
-		super(csElement, Element.class);
+	private static final Logger logger = Logger.getLogger(DefaultScopeAdapter.class);
+
+	public DefaultScopeAdapter(EObject eObject) {
+		super(null, eObject);
+		logger.warn("Using DefaultScopeAdapter for '" + eObject.eClass().getName() + "'");
+	}
+
+	public PivotManager getPivotManager() {
+		return null;
+	}
+
+	public RootScopeAdapter getRootScopeAdapter() {
+		return null;
 	}
 }

@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeRefCSImpl.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: PrimitiveTypeRefCSImpl.java,v 1.4.6.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.pivot.INamedElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -167,7 +168,7 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == INamedElement.class)
+		if (baseClass == Nameable.class)
 		{
 			switch (derivedFeatureID)
 			{
@@ -192,7 +193,7 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == INamedElement.class)
+		if (baseClass == Nameable.class)
 		{
 			switch (baseFeatureID)
 			{
@@ -218,5 +219,10 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitPrimitiveTypeRefCS(this);
 	}
 } //PrimitiveTypeRefCSImpl

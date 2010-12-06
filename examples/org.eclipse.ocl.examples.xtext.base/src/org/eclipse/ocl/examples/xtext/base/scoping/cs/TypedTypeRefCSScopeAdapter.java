@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: TypedTypeRefCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -31,8 +31,9 @@ public class TypedTypeRefCSScopeAdapter extends ModelElementCSScopeAdapter<Typed
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+//		toString();
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == BaseCSTPackage.Literals.TEMPLATE_BINDABLE_ELEMENT_CS__OWNED_TEMPLATE_BINDING) {
+		if (containmentFeature == BaseCSTPackage.Literals.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING) {
 			return scopeView.getUnqualifiedOuterScope();
 		}
 		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) {

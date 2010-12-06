@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: IfExpScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: IfExpScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeUtil;
 
 public class IfExpScopeAdapter extends ExpressionScopeAdapter<IfExp>
 {
@@ -30,6 +29,6 @@ public class IfExpScopeAdapter extends ExpressionScopeAdapter<IfExp>
 	public Type getSynthesizedType() {
 		Type thenType = target.getThenExpression().getType();
 		Type elseType = target.getElseExpression().getType();
-		return TypeUtil.getCommonSuperType(thenType, elseType);
+		return getPivotManager().getCommonSuperType(thenType, elseType);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSImpl.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: RootPackageCSImpl.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -252,4 +253,8 @@ public class RootPackageCSImpl extends AbstractPackageCSImpl implements RootPack
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitRootPackageCS(this);
+	}
 } //RootPackageCSImpl

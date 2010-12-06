@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterizedTypeRefCSImpl.java,v 1.2.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: ParameterizedTypeRefCSImpl.java,v 1.2.6.2 2010/12/06 17:53:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,33 +114,6 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, newOwnedTemplateBinding, newOwnedTemplateBinding));
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public abstract Type getType();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 *
-	public TemplateSignature getTemplateSignature() {
-		Type type = getType();
-		return type.getOwnedTemplateSignature();
-	} */
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 *
-	public TemplateableElement getTemplateableElement()
-	{
-		return getType();
-	} */
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,39 +209,13 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == TemplateBindableElementCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING: return BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS__OWNED_TEMPLATE_BINDING;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitParameterizedTypeRefCS(this);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == TemplateBindableElementCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				case BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS__OWNED_TEMPLATE_BINDING: return BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	public Type getPivot() {
+		return (Type) pivot;
 	}
 } //ParameterizedTypeRefCSImpl

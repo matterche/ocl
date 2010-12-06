@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DetailCSImpl.java,v 1.3.6.2 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: DetailCSImpl.java,v 1.3.6.3 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -153,5 +154,10 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitDetailCS(this);
 	}
 } //DetailCSImpl

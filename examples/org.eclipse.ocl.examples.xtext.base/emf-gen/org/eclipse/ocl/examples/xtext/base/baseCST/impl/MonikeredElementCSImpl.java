@@ -12,15 +12,17 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementCSImpl.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: MonikeredElementCSImpl.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.xtext.parsetree.CompositeNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -153,6 +155,15 @@ public abstract class MonikeredElementCSImpl extends ModelElementCSImpl implemen
 	 */
 	@Override
 	public String toString() {
-		return super.toString();
+		CompositeNode parserNode = ElementUtil.getParserNode(this);
+		if (parserNode != null) {
+			return parserNode.serialize().trim();
+		}
+		return CS2Moniker.toString(this);
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitMonikeredElementCS(this);
 	}
 } //NameableElementCSImpl

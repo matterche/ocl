@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -37,8 +37,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
-import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -61,10 +61,10 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 			switchMap.put(ePackage, iSwitch);
 		}
 	}
-	public static RootCSScopeAdapter getDocumentScopeAdapter(EObject context) {
+	public static RootScopeAdapter getDocumentScopeAdapter(EObject context) {
 		for (ScopeAdapter scopeAdapter = getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
-			if (scopeAdapter instanceof RootCSScopeAdapter) {
-				return (RootCSScopeAdapter) scopeAdapter;
+			if (scopeAdapter instanceof RootScopeAdapter) {
+				return (RootScopeAdapter) scopeAdapter;
 			}
 		}
 		return null;

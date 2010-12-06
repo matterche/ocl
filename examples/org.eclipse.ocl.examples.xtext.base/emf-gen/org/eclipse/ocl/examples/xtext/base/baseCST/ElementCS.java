@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ElementCS.java,v 1.3.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: ElementCS.java,v 1.3.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,10 +27,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getElementCS()
- * @model abstract="true"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.VisitableCS"
  * @generated
  */
-public interface ElementCS extends EObject {
+public interface ElementCS extends EObject, VisitableCS {
 
 	/**
 	 * <!-- begin-user-doc -->

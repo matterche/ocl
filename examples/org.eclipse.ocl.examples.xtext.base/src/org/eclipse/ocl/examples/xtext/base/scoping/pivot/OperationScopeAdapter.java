@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: OperationScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -35,8 +35,6 @@ public class OperationScopeAdapter extends AbstractPivotScopeAdapter<Operation>
 //		TypeBindingsCS bindings = scopeView.getBindings();
 //		Operation target = getTarget();
 		if (containmentFeature == PivotPackage.Literals.OPERATION__OWNED_PARAMETER) {
-		}
-		else if (containmentFeature == PivotPackage.Literals.ITERATOR__OWNED_ITERATOR) {
 		}
 		else {
 			environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, target.getOwnedParameters());

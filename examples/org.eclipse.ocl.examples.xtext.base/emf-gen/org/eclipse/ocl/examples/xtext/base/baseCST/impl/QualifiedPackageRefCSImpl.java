@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedPackageRefCSImpl.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: QualifiedPackageRefCSImpl.java,v 1.4.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 
 /**
@@ -300,5 +301,10 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 	@Override
 	public PackageCS getPackage() {
 		return getElement().getPackage();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitQualifiedPackageRefCS(this);
 	}
 } //QualifiedPackageRefCSImpl

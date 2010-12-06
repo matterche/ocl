@@ -15,9 +15,9 @@ public class CS2PivotLinker extends LazyLinker
 	@Override
 	protected void afterModelLinked(EObject model, IDiagnosticConsumer diagnosticsConsumer) {
 		Resource eResource = model.eResource();		// FIXME Try to do a narrower refresh
-		if ((eResource != null) && eResource.getErrors().isEmpty()) {
+		if ((eResource instanceof BaseCSResource) && eResource.getErrors().isEmpty()) {
 			CS2PivotResourceSetAdapter resourceSetAdapter = CS2PivotResourceSetAdapter.getAdapter(eResource.getResourceSet(), null);
-			CS2PivotResourceAdapter.refreshPivotMappings(eResource, resourceSetAdapter.getPivotManager());
+			CS2PivotResourceAdapter.refreshPivotMappings((BaseCSResource) eResource, resourceSetAdapter.getPivotManager());
 		}
 	}
 }

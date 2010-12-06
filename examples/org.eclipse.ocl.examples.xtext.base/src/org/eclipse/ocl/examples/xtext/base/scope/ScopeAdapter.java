@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAdapter.java,v 1.2.6.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: ScopeAdapter.java,v 1.2.6.3 2010/12/06 17:53:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -66,8 +66,6 @@ public interface ScopeAdapter extends Adapter
 	PivotManager getPivotManager();
 
 	RootScopeAdapter getRootScopeAdapter();
-
-	String getMoniker();
 	
 	ScopeAdapter getSourceScope(EStructuralFeature containmentFeature);
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCS.java,v 1.2.6.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: ClassCS.java,v 1.2.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOwnedSuperType <em>Owned Super Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOwnedOperation <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOwnedProperty <em>Owned Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOwnedMetaType <em>Owned Meta Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,5 +113,31 @@ public interface ClassCS extends ClassifierCS, NamespaceCS {
 	 * @generated
 	 */
 	EList<StructuralFeatureCS> getOwnedProperty();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Meta Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Meta Type</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Meta Type</em>' containment reference.
+	 * @see #setOwnedMetaType(TypedRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getClassCS_OwnedMetaType()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TypedRefCS getOwnedMetaType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOwnedMetaType <em>Owned Meta Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Meta Type</em>' containment reference.
+	 * @see #getOwnedMetaType()
+	 * @generated
+	 */
+	void setOwnedMetaType(TypedRefCS value);
 
 } // ClassCS

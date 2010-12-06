@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElementCS.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: TemplateableElementCS.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -34,7 +34,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface TemplateableElementCS extends TemplateBindableElementCS {
+public interface TemplateableElementCS extends MonikeredElementCS {
 	/**
 	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS#getOwningTemplateElement <em>Owning Template Element</em>}'.

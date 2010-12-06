@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.2.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.2.6.2 2010/12/06 17:53:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -60,10 +60,10 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 			return null;
 		}
 		else if (size == 1) {
-			return environmentView.getContent();
+			return environmentView.getDescription();
 		}
 		else {
-			List<IEObjectDescription> contents = environmentView.getContents();
+			List<IEObjectDescription> contents = environmentView.getDescriptions();
 			// FIXME error for ambiguous
 			return contents.get(0);
 		}
@@ -82,7 +82,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	public Iterable<IEObjectDescription> getAllContents() {
 		EnvironmentView environmentView = new EnvironmentView(targetReference, null);
 		computeLookupWithParents(environmentView);
-		return environmentView.getContents();
+		return environmentView.getDescriptions();
 	}
 
 	public EStructuralFeature getContainmentFeature() {
@@ -133,7 +133,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	protected final Iterable<IEObjectDescription> internalGetContents() {
 		EnvironmentView environmentView = new EnvironmentView(targetReference, null);
 		scopeAdapter.computeLookup(environmentView, this);
-		return environmentView.getContents();
+		return environmentView.getDescriptions();
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCSImpl.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: AnnotationCSImpl.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -211,5 +212,10 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitAnnotationCS(this);
 	}
 } //AnnotationCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSImpl.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: ConstraintCSImpl.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -224,20 +224,12 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (stereotype: "); //$NON-NLS-1$
-		result.append(stereotype);
-		result.append(", exprString: "); //$NON-NLS-1$
-		result.append(exprString);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //ConstraintCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.5.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.5.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,7 +74,6 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Type getType() {
 		if (type != null && ((EObject)type).eIsProxy())
 		{
@@ -171,5 +171,10 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 				return type != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitTypedTypeRefCS(this);
 	}
 } //TypedTypeRefCSImpl

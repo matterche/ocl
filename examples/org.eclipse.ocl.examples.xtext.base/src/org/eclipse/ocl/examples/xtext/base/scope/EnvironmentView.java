@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.2 2010/12/06 17:53:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.INamedElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -100,8 +100,8 @@ public class EnvironmentView
 		int additions = 0;
 		if ((elements != null) && accepts(eClass)) {
 			for (EObject element : elements) {
-				if ((element instanceof INamedElement) && eClass.isSuperTypeOf(element.eClass())) {
-					INamedElement namedElement = (INamedElement)element;
+				if ((element instanceof Nameable) && eClass.isSuperTypeOf(element.eClass())) {
+					Nameable namedElement = (Nameable)element;
 					if (requiredAlternatives != null) {
 						for (EClass requiredAlternative : requiredAlternatives) {
 							if (requiredAlternative.isSuperTypeOf(element.eClass())) {
@@ -125,14 +125,14 @@ public class EnvironmentView
 		}
 	}
 
-	public int addNamedElement(INamedElement namedElement) {
+	public int addNamedElement(Nameable namedElement) {
 		if (namedElement != null) {
 			return addElement(namedElement.getName(), namedElement);
 		}
 		return 0;
 	}
 
-	public int addNamedElement(EClass eClass, INamedElement namedElement) {
+	public int addNamedElement(EClass eClass, Nameable namedElement) {
 		if ((namedElement != null) && accepts(eClass)) {
 			if (eClass.isSuperTypeOf(namedElement.eClass())) {
 				if (requiredAlternatives != null) {
@@ -150,18 +150,18 @@ public class EnvironmentView
 		return 0;
 	}
 
-	public int addNamedElements(List<? extends INamedElement> namedElements) {
+	public int addNamedElements(List<? extends Nameable> namedElements) {
 		int additions = 0;
-		for (INamedElement namedElement : namedElements) {
+		for (Nameable namedElement : namedElements) {
 			additions += addElement(namedElement.getName(), namedElement);
 		}
 		return additions;
 	}
 
-	public int addNamedElements(EClass eClass, Collection<? extends INamedElement> namedElements) {
+	public int addNamedElements(EClass eClass, Collection<? extends Nameable> namedElements) {
 		int additions = 0;
 		if ((namedElements != null) && accepts(eClass)) {
-			for (INamedElement namedElement : namedElements) {
+			for (Nameable namedElement : namedElements) {
 				if (eClass.isSuperTypeOf(namedElement.eClass())) {
 					if (requiredAlternatives != null) {
 						for (EClass requiredAlternative : requiredAlternatives) {
@@ -179,7 +179,22 @@ public class EnvironmentView
 		return additions;
 	}
 
-	public IEObjectDescription getContent() {
+	public EObject getContent() {
+		assert contentsByName.size() == 1;
+		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
+			Object value = entry.getValue();
+			if (value instanceof List<?>) {
+				List<?> values = (List<?>)value;
+				value = values.get(values.size()-1);
+			}
+			if (value instanceof EObject) {
+				return (EObject) value;
+			}
+		}
+		return null;
+	}
+
+	public IEObjectDescription getDescription() {
 		assert contentsByName.size() == 1;
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object value = entry.getValue();
@@ -194,7 +209,7 @@ public class EnvironmentView
 		return null;
 	}
 
-	public List<IEObjectDescription> getContents() {
+	public List<IEObjectDescription> getDescriptions() {
 		List<IEObjectDescription> contents = new ArrayList<IEObjectDescription>();
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object values = entry.getValue();

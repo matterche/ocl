@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ParameterCS.java,v 1.2.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: ParameterCS.java,v 1.2.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
+
+import org.eclipse.ocl.examples.pivot.IteratorKind;
 
 
 
@@ -27,6 +29,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getIteratorKind <em>Iterator Kind</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,4 +66,21 @@ public interface ParameterCS extends TypedElementCS {
 	 * @generated
 	 */
 	void setOwner(OperationCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Iterator Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.examples.pivot.IteratorKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterator Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iterator Kind</em>' attribute.
+	 * @see org.eclipse.ocl.examples.pivot.IteratorKind
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getParameterCS_IteratorKind()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	IteratorKind getIteratorKind();
 } // ParameterCS

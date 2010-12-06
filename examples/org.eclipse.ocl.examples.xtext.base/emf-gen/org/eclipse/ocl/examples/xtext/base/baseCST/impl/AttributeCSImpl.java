@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AttributeCSImpl.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: AttributeCSImpl.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,4 +53,8 @@ public class AttributeCSImpl extends StructuralFeatureCSImpl implements Attribut
 		return BaseCSTPackage.Literals.ATTRIBUTE_CS;
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitAttributeCS(this);
+	}
 } //AttributeCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElementCSImpl.java,v 1.5.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: NamedElementCSImpl.java,v 1.5.6.2 2010/12/06 17:53:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -167,5 +168,10 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitNamedElementCS(this);
 	}
 } //NamedElementCSImpl

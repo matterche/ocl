@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePlugin.java,v 1.1.2.1 2010/10/01 14:13:00 ewillink Exp $
+ * $Id: BasePlugin.java,v 1.1.2.2 2010/12/06 17:53:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -100,7 +100,7 @@ public final class BasePlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			BaseCS2MonikerSwitch.FACTORY.getClass();
+//			BaseCS2MonikerSwitch.FACTORY.getClass();
 			super.start(context);
 		}
 	}

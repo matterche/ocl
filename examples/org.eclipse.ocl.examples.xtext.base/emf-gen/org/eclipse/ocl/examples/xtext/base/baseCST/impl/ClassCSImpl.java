@@ -12,16 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ClassCSImpl.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: ClassCSImpl.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -30,6 +32,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +44,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassCSImpl#getOwnedSuperType <em>Owned Super Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassCSImpl#getOwnedOperation <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassCSImpl#getOwnedProperty <em>Owned Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassCSImpl#getOwnedMetaType <em>Owned Meta Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +80,16 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	 * @ordered
 	 */
 	protected EList<StructuralFeatureCS> ownedProperty;
+
+	/**
+	 * The cached value of the '{@link #getOwnedMetaType() <em>Owned Meta Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMetaType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypedRefCS ownedMetaType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,6 +172,54 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TypedRefCS getOwnedMetaType()
+	{
+		return ownedMetaType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedMetaType(TypedRefCS newOwnedMetaType, NotificationChain msgs)
+	{
+		TypedRefCS oldOwnedMetaType = ownedMetaType;
+		ownedMetaType = newOwnedMetaType;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CLASS_CS__OWNED_META_TYPE, oldOwnedMetaType, newOwnedMetaType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMetaType(TypedRefCS newOwnedMetaType)
+	{
+		if (newOwnedMetaType != ownedMetaType)
+		{
+			NotificationChain msgs = null;
+			if (ownedMetaType != null)
+				msgs = ((InternalEObject)ownedMetaType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CLASS_CS__OWNED_META_TYPE, null, msgs);
+			if (newOwnedMetaType != null)
+				msgs = ((InternalEObject)newOwnedMetaType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CLASS_CS__OWNED_META_TYPE, null, msgs);
+			msgs = basicSetOwnedMetaType(newOwnedMetaType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CLASS_CS__OWNED_META_TYPE, newOwnedMetaType, newOwnedMetaType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -186,6 +248,8 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
 			case BaseCSTPackage.CLASS_CS__OWNED_PROPERTY:
 				return ((InternalEList<?>)getOwnedProperty()).basicRemove(otherEnd, msgs);
+			case BaseCSTPackage.CLASS_CS__OWNED_META_TYPE:
+				return basicSetOwnedMetaType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -205,6 +269,8 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 				return getOwnedOperation();
 			case BaseCSTPackage.CLASS_CS__OWNED_PROPERTY:
 				return getOwnedProperty();
+			case BaseCSTPackage.CLASS_CS__OWNED_META_TYPE:
+				return getOwnedMetaType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,6 +297,9 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 				getOwnedProperty().clear();
 				getOwnedProperty().addAll((Collection<? extends StructuralFeatureCS>)newValue);
 				return;
+			case BaseCSTPackage.CLASS_CS__OWNED_META_TYPE:
+				setOwnedMetaType((TypedRefCS)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -253,6 +322,9 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 			case BaseCSTPackage.CLASS_CS__OWNED_PROPERTY:
 				getOwnedProperty().clear();
 				return;
+			case BaseCSTPackage.CLASS_CS__OWNED_META_TYPE:
+				setOwnedMetaType((TypedRefCS)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -272,8 +344,14 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case BaseCSTPackage.CLASS_CS__OWNED_PROPERTY:
 				return ownedProperty != null && !ownedProperty.isEmpty();
+			case BaseCSTPackage.CLASS_CS__OWNED_META_TYPE:
+				return ownedMetaType != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitClassCS(this);
+	}
 } //ClassCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.1.2.2 2010/12/06 17:53:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -21,8 +21,10 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
@@ -44,6 +46,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
@@ -74,7 +77,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -87,6 +89,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -265,8 +268,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateStructuralFeatureCS((StructuralFeatureCS)value, diagnostics, context);
 			case BaseCSTPackage.STRUCTURAL_FEATURE_REF_CS:
 				return validateStructuralFeatureRefCS((StructuralFeatureRefCS)value, diagnostics, context);
-			case BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS:
-				return validateTemplateBindableElementCS((TemplateBindableElementCS)value, diagnostics, context);
 			case BaseCSTPackage.TEMPLATE_BINDING_CS:
 				return validateTemplateBindingCS((TemplateBindingCS)value, diagnostics, context);
 			case BaseCSTPackage.TEMPLATE_PARAMETER_CS:
@@ -277,6 +278,10 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateTemplateSignatureCS((TemplateSignatureCS)value, diagnostics, context);
 			case BaseCSTPackage.TEMPLATEABLE_ELEMENT_CS:
 				return validateTemplateableElementCS((TemplateableElementCS)value, diagnostics, context);
+			case BaseCSTPackage.TUPLE_PART_CS:
+				return validateTuplePartCS((TuplePartCS)value, diagnostics, context);
+			case BaseCSTPackage.TUPLE_TYPE_CS:
+				return validateTupleTypeCS((TupleTypeCS)value, diagnostics, context);
 			case BaseCSTPackage.TYPE_CS:
 				return validateTypeCS((TypeCS)value, diagnostics, context);
 			case BaseCSTPackage.TYPE_PARAMETER_CS:
@@ -289,8 +294,12 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateTypedRefCS((TypedRefCS)value, diagnostics, context);
 			case BaseCSTPackage.TYPED_TYPE_REF_CS:
 				return validateTypedTypeRefCS((TypedTypeRefCS)value, diagnostics, context);
+			case BaseCSTPackage.VISITABLE_CS:
+				return validateVisitableCS((VisitableCS)value, diagnostics, context);
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS:
 				return validateWildcardTypeRefCS((WildcardTypeRefCS)value, diagnostics, context);
+			case BaseCSTPackage.ITERATOR_KIND:
+				return validateIteratorKind((IteratorKind)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -891,16 +900,6 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTemplateBindableElementCS(TemplateBindableElementCS templateBindableElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(templateBindableElementCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateTemplateBindingCS(TemplateBindingCS templateBindingCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(templateBindingCS, diagnostics, context);
@@ -944,6 +943,26 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateTemplateableElementCS(TemplateableElementCS templateableElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(templateableElementCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTuplePartCS(TuplePartCS tuplePartCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(tuplePartCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTupleTypeCS(TupleTypeCS tupleTypeCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(tupleTypeCS, diagnostics, context);
 	}
 
 	/**
@@ -1011,9 +1030,29 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateVisitableCS(VisitableCS visitableCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)visitableCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateWildcardTypeRefCS(WildcardTypeRefCS wildcardTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(wildcardTypeRefCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIteratorKind(IteratorKind iteratorKind, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return true;
 	}
 
 	/**

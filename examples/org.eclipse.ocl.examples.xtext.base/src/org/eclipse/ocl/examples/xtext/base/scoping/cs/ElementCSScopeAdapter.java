@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -23,7 +23,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
@@ -96,9 +95,9 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 		return pivotManager;
 	}
 
-	public final String getMoniker() {
-		return CS2Moniker.toString(target);
-	}
+//	public final String getMoniker() {
+//		return CS2Moniker.toString(target);
+//	}
 
 	/**
 	 * Return the source text of the target node.
@@ -118,8 +117,8 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 		}
 	}
 
-	@Override
-	public String toString() {
-		return String.valueOf(getMoniker());
-	}
+//	@Override
+//	public String toString() {
+//		return String.valueOf(getMoniker());
+//	}
 }

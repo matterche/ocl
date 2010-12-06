@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedClassifierRefCSImpl.java,v 1.4.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: QualifiedClassifierRefCSImpl.java,v 1.4.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -298,5 +299,10 @@ public class QualifiedClassifierRefCSImpl extends ClassifierRefCSImpl implements
 	@Override
 	public ClassifierCS getClassifier() {
 		return getElement().getClassifier();
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitQualifiedClassifierRefCS(this);
 	}
 } //QualifiedClassifierRefCSImpl

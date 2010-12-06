@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ClassifierCSImpl.java,v 1.3.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: ClassifierCSImpl.java,v 1.3.6.2 2010/12/06 17:53:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -33,11 +34,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +46,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
@@ -58,15 +57,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
  * @generated
  */
 public abstract class ClassifierCSImpl extends NamedElementCSImpl implements ClassifierCS {
-	/**
-	 * The cached value of the '{@link #getOwnedTemplateBinding() <em>Owned Template Binding</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateBinding()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateBindingCS ownedTemplateBinding;
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -182,51 +172,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateBindingCS getOwnedTemplateBinding() {
-		return ownedTemplateBinding;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedTemplateBinding(TemplateBindingCS newOwnedTemplateBinding, NotificationChain msgs) {
-		TemplateBindingCS oldOwnedTemplateBinding = ownedTemplateBinding;
-		ownedTemplateBinding = newOwnedTemplateBinding;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING, oldOwnedTemplateBinding, newOwnedTemplateBinding);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedTemplateBinding(TemplateBindingCS newOwnedTemplateBinding) {
-		if (newOwnedTemplateBinding != ownedTemplateBinding)
-		{
-			NotificationChain msgs = null;
-			if (ownedTemplateBinding != null)
-				msgs = ((InternalEObject)ownedTemplateBinding).eInverseRemove(this, BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT, TemplateBindingCS.class, msgs);
-			if (newOwnedTemplateBinding != null)
-				msgs = ((InternalEObject)newOwnedTemplateBinding).eInverseAdd(this, BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT, TemplateBindingCS.class, msgs);
-			msgs = basicSetOwnedTemplateBinding(newOwnedTemplateBinding, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING, newOwnedTemplateBinding, newOwnedTemplateBinding));
 	}
 
 	/**
@@ -367,10 +312,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING:
-				if (ownedTemplateBinding != null)
-					msgs = ((InternalEObject)ownedTemplateBinding).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING, null, msgs);
-				return basicSetOwnedTemplateBinding((TemplateBindingCS)otherEnd, msgs);
 			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -392,8 +333,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING:
-				return basicSetOwnedTemplateBinding(null, msgs);
 			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
@@ -428,8 +367,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING:
-				return getOwnedTemplateBinding();
 			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
@@ -454,9 +391,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING:
-				setOwnedTemplateBinding((TemplateBindingCS)newValue);
-				return;
 			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignatureCS)newValue);
 				return;
@@ -487,9 +421,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING:
-				setOwnedTemplateBinding((TemplateBindingCS)null);
-				return;
 			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignatureCS)null);
 				return;
@@ -518,8 +449,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING:
-				return ownedTemplateBinding != null;
 			case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
@@ -545,14 +474,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 		{
 			switch (derivedFeatureID)
 			{
-				default: return -1;
-			}
-		}
-		if (baseClass == TemplateBindableElementCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING: return BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS__OWNED_TEMPLATE_BINDING;
 				default: return -1;
 			}
 		}
@@ -588,14 +509,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 				default: return -1;
 			}
 		}
-		if (baseClass == TemplateBindableElementCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				case BaseCSTPackage.TEMPLATE_BINDABLE_ELEMENT_CS__OWNED_TEMPLATE_BINDING: return BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_BINDING;
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElementCS.class)
 		{
 			switch (baseFeatureID)
@@ -617,19 +530,16 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy()) return super.toString();
+		return super.toString();
+	}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (instanceClassName: "); //$NON-NLS-1$
-		if (instanceClassNameESet) result.append(instanceClassName); else result.append("<unset>"); //$NON-NLS-1$
-		result.append(", qualifier: "); //$NON-NLS-1$
-		result.append(qualifier);
-		result.append(')');
-		return result.toString();
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitClassifierCS(this);
 	}
 } //ClassifierCSImpl
