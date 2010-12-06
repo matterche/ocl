@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectIteration.java,v 1.1.2.3 2010/12/06 17:13:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateCollect;
 import org.eclipse.ocl.examples.library.util.CollectionUtil2;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -39,14 +39,14 @@ public class CollectIteration extends AbstractIteration
 {
 	public static final CollectIteration INSTANCE = new CollectIteration();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp iteratorExp) {
 		// get initial result value based on the source type
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
 		boolean isOrdered = CollectionUtil2.isOrdered(sourceType);
 		Object initResultVal = CollectionUtil2.createNewCollection(isOrdered, false);
-		List<Variable> iterators = iteratorExp.getIterators();
-		OclExpression body = iteratorExp.getBody();		
+		List<Variable> iterators = getIterators(iteratorExp);
+		OclExpression body = getBody(iteratorExp);		
 		Collection<?> coll = (Collection<?>) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateCollect.getInstance(evaluationVisitor);

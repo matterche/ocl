@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.3 2010/12/06 17:13:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.examples.library.util.CollectionUtil2;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -45,15 +45,15 @@ public class SortedByIteration extends AbstractIteration
 {
 	public static final SortedByIteration INSTANCE = new SortedByIteration();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp) {
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp iteratorExp) {
 //		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = evaluationVisitor.getEnvironment();
 //		MergedLibrary library = environment.getMergedLibrary();
 //		OCLType sourceType = library.getLibraryTypeOfType(iteratorExp.getSource().getType());
 //		boolean isOrdered = sourceType.isOrdered();
 //		boolean isUnique = sourceType.isUnique();
 //		Object initResultVal = CollectionUtil.createNewCollection(isOrdered, isUnique);
-		List<Variable> iterators = iteratorExp.getIterators();
-		OclExpression body = iteratorExp.getBody();
+		List<Variable> iterators = getIterators(iteratorExp);
+		OclExpression body = getBody(iteratorExp);		
 		Collection<?> coll = (Collection<?>) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateSortedBy.getInstance(evaluationVisitor);

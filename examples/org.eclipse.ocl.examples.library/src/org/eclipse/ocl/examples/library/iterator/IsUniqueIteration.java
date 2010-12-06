@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IsUniqueIteration.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IsUniqueIteration.java,v 1.1.2.3 2010/12/06 17:13:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,8 +23,8 @@ import java.util.List;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateIsUnique;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
@@ -37,9 +37,9 @@ public class IsUniqueIteration extends AbstractIteration
 {
 	public static final IsUniqueIteration INSTANCE = new IsUniqueIteration();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, IteratorExp iteratorExp) {
-		List<Variable> iterators = iteratorExp.getIterators();
-		OclExpression body = iteratorExp.getBody();		
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp iteratorExp) {
+		List<Variable> iterators = getIterators(iteratorExp);
+		OclExpression body = getBody(iteratorExp);		
 		Collection<?> coll = (Collection<?>) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateIsUnique.getInstance(evaluationVisitor);
