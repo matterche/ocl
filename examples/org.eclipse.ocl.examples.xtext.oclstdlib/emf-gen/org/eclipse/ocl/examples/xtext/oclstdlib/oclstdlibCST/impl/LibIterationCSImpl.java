@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibIterationCSImpl.java,v 1.3.6.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: LibIterationCSImpl.java,v 1.3.6.2 2010/12/06 18:14:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -22,9 +22,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 import org.eclipse.xtext.common.types.JvmType;
 
 /**
@@ -222,4 +224,10 @@ public class LibIterationCSImpl
 		return super.toString();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(OCLstdlibCSVisitor.class)
+			.visitLibIterationCS(this);
+	}
 } //LibIterationCSImpl

@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: LibOperationScopeAdapter.java,v 1.5.6.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: LibOperationScopeAdapter.java,v 1.5.6.2 2010/12/06 18:14:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.INamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -44,8 +44,6 @@ public class LibOperationScopeAdapter extends BaseCSScopeAdapter<OperationCS, Op
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}
-			else if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_ITERATOR) {
-			}
 			else {
 				environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, pivot.getOwnedParameters());
 			}
@@ -58,7 +56,7 @@ public class LibOperationScopeAdapter extends BaseCSScopeAdapter<OperationCS, Op
 				for (TemplateParameterCS csTemplateParameter : csTemplateSignature.getOwnedTemplateParameter()) {
 					TemplateParameter templateParameter = (TemplateParameter) csTemplateParameter.getPivot();
 					if (templateParameter != null) {
-						environmentView.addNamedElement(PivotPackage.Literals.TYPE, (INamedElement) templateParameter.getParameteredElement());
+						environmentView.addNamedElement(PivotPackage.Literals.TYPE, (Nameable) templateParameter.getParameteredElement());
 					}
 					else {
 //						environmentView.addNamedElement(BaseCSTPackage.Literals.TYPE, (INamedElement) csTemplateParameter.getParameteredElement());

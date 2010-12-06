@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactoryImpl.java,v 1.2.6.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: OCLstdlibCSTFactoryImpl.java,v 1.2.6.2 2010/12/06 18:14:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -22,12 +22,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,8 +84,10 @@ public class OCLstdlibCSTFactoryImpl
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID())
 		{
+			case OCLstdlibCSTPackage.LIB_ACCUMULATOR_CS: return createLibAccumulatorCS();
 			case OCLstdlibCSTPackage.LIB_CONSTRAINT_CS: return createLibConstraintCS();
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS: return createLibIterationCS();
+			case OCLstdlibCSTPackage.LIB_ITERATOR_CS: return createLibIteratorCS();
 			case OCLstdlibCSTPackage.LIB_OPERATION_CS: return createLibOperationCS();
 			case OCLstdlibCSTPackage.LIB_PROPERTY_CS: return createLibPropertyCS();
 			case OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS: return createLibRootPackageCS();
@@ -96,8 +102,17 @@ public class OCLstdlibCSTFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibConstraintCS createLibConstraintCS()
-	{
+	public LibAccumulatorCS createLibAccumulatorCS() {
+		LibAccumulatorCSImpl libAccumulatorCS = new LibAccumulatorCSImpl();
+		return libAccumulatorCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LibConstraintCS createLibConstraintCS() {
 		LibConstraintCSImpl libConstraintCS = new LibConstraintCSImpl();
 		return libConstraintCS;
 	}
@@ -110,6 +125,16 @@ public class OCLstdlibCSTFactoryImpl
 	public LibIterationCS createLibIterationCS() {
 		LibIterationCSImpl libIterationCS = new LibIterationCSImpl();
 		return libIterationCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LibIteratorCS createLibIteratorCS() {
+		LibIteratorCSImpl libIteratorCS = new LibIteratorCSImpl();
+		return libIteratorCS;
 	}
 
 	/**
@@ -137,8 +162,7 @@ public class OCLstdlibCSTFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibRootPackageCS createLibRootPackageCS()
-	{
+	public LibRootPackageCS createLibRootPackageCS() {
 		LibRootPackageCSImpl libRootPackageCS = new LibRootPackageCSImpl();
 		return libRootPackageCS;
 	}
@@ -148,8 +172,7 @@ public class OCLstdlibCSTFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrecedenceCS createPrecedenceCS()
-	{
+	public PrecedenceCS createPrecedenceCS() {
 		PrecedenceCSImpl precedenceCS = new PrecedenceCSImpl();
 		return precedenceCS;
 	}

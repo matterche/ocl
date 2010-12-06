@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceCS.java,v 1.1.2.1 2010/10/01 14:34:05 ewillink Exp $
+ * $Id: PrecedenceCS.java,v 1.1.2.2 2010/12/06 18:14:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
@@ -34,8 +34,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
  * @model
  * @generated
  */
-public interface PrecedenceCS extends NamedElementCS
-{
+public interface PrecedenceCS
+		extends NamedElementCS {
+
 	/**
 	 * Returns the value of the '<em><b>Right Associative</b></em>' attribute.
 	 * The default value is <code>"false"</code>.

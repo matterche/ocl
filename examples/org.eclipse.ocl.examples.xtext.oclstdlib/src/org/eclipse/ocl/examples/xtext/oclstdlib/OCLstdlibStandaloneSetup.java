@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibStandaloneSetup.java,v 1.1.6.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: OCLstdlibStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:14:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
-import org.eclipse.ocl.examples.xtext.base.utilities.Pivot2BaseCSSwitch;
+import org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot.OCLstdlibCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
-import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCS2MonikerSwitch;
-import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCS2PivotSwitch;
+import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.MonikerOCLstdlibCSVisitor;
 
 /**
  * Initialization support for running Xtext languages 
@@ -35,9 +34,9 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated{
 
 	public static void init() {
 		OCLstdlibScopeProvider.FACTORY.getClass();
-		OCLstdlibCS2MonikerSwitch.FACTORY.getClass();
-		OCLstdlibCS2PivotSwitch.FACTORY.getClass();
-		Pivot2BaseCSSwitch.FACTORY.getClass();
+		MonikerOCLstdlibCSVisitor.FACTORY.getClass();
+		OCLstdlibCS2Pivot.FACTORY.getClass();
+//		Pivot2BaseCSSwitch.FACTORY.getClass();
 	}
 }
 

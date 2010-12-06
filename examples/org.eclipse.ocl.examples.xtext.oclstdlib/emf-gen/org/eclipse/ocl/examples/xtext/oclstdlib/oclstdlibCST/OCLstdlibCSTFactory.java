@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactory.java,v 1.2.6.1 2010/10/01 14:34:05 ewillink Exp $
+ * $Id: OCLstdlibCSTFactory.java,v 1.2.6.2 2010/12/06 18:14:18 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -39,6 +39,15 @@ public interface OCLstdlibCSTFactory
 	OCLstdlibCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Lib Accumulator CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lib Accumulator CS</em>'.
+	 * @generated
+	 */
+	LibAccumulatorCS createLibAccumulatorCS();
+
+	/**
 	 * Returns a new object of class '<em>Lib Constraint CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,6 +64,15 @@ public interface OCLstdlibCSTFactory
 	 * @generated
 	 */
 	LibIterationCS createLibIterationCS();
+
+	/**
+	 * Returns a new object of class '<em>Lib Iterator CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lib Iterator CS</em>'.
+	 * @generated
+	 */
+	LibIteratorCS createLibIteratorCS();
 
 	/**
 	 * Returns a new object of class '<em>Lib Operation CS</em>'.

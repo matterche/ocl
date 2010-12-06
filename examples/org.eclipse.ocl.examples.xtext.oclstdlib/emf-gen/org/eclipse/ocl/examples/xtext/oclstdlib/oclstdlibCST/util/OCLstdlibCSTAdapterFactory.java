@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTAdapterFactory.java,v 1.2.6.1 2010/10/01 14:34:05 ewillink Exp $
+ * $Id: OCLstdlibCSTAdapterFactory.java,v 1.2.6.2 2010/12/06 18:14:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -21,8 +21,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
@@ -33,18 +33,24 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,6 +114,16 @@ public class OCLstdlibCSTAdapterFactory
 	protected OCLstdlibCSTSwitch<Adapter> modelSwitch = new OCLstdlibCSTSwitch<Adapter>()
 		{
 			@Override
+			public Adapter caseJavaImplementationCS(JavaImplementationCS object)
+			{
+				return createJavaImplementationCSAdapter();
+			}
+			@Override
+			public Adapter caseLibAccumulatorCS(LibAccumulatorCS object)
+			{
+				return createLibAccumulatorCSAdapter();
+			}
+			@Override
 			public Adapter caseLibConstraintCS(LibConstraintCS object)
 			{
 				return createLibConstraintCSAdapter();
@@ -116,6 +132,11 @@ public class OCLstdlibCSTAdapterFactory
 			public Adapter caseLibIterationCS(LibIterationCS object)
 			{
 				return createLibIterationCSAdapter();
+			}
+			@Override
+			public Adapter caseLibIteratorCS(LibIteratorCS object)
+			{
+				return createLibIteratorCSAdapter();
 			}
 			@Override
 			public Adapter caseLibOperationCS(LibOperationCS object)
@@ -133,14 +154,14 @@ public class OCLstdlibCSTAdapterFactory
 				return createLibRootPackageCSAdapter();
 			}
 			@Override
-			public Adapter caseJavaImplementationCS(JavaImplementationCS object)
-			{
-				return createJavaImplementationCSAdapter();
-			}
-			@Override
 			public Adapter casePrecedenceCS(PrecedenceCS object)
 			{
 				return createPrecedenceCSAdapter();
+			}
+			@Override
+			public Adapter caseVisitableCS(VisitableCS object)
+			{
+				return createVisitableCSAdapter();
 			}
 			@Override
 			public Adapter caseElementCS(ElementCS object)
@@ -148,9 +169,9 @@ public class OCLstdlibCSTAdapterFactory
 				return createElementCSAdapter();
 			}
 			@Override
-			public Adapter caseIPivotElement(IPivotElement object)
+			public Adapter casePivotable(Pivotable object)
 			{
-				return createIPivotElementAdapter();
+				return createPivotableAdapter();
 			}
 			@Override
 			public Adapter caseModelElementCS(ModelElementCS object)
@@ -163,9 +184,9 @@ public class OCLstdlibCSTAdapterFactory
 				return createMonikeredElementCSAdapter();
 			}
 			@Override
-			public Adapter caseINamedElement(INamedElement object)
+			public Adapter caseNameable(Nameable object)
 			{
-				return createINamedElementAdapter();
+				return createNameableAdapter();
 			}
 			@Override
 			public Adapter caseNamedElementCS(NamedElementCS object)
@@ -173,24 +194,29 @@ public class OCLstdlibCSTAdapterFactory
 				return createNamedElementCSAdapter();
 			}
 			@Override
-			public Adapter caseConstraintCS(ConstraintCS object)
-			{
-				return createConstraintCSAdapter();
-			}
-			@Override
 			public Adapter caseTypedElementCS(TypedElementCS object)
 			{
 				return createTypedElementCSAdapter();
 			}
 			@Override
+			public Adapter caseParameterCS(ParameterCS object)
+			{
+				return createParameterCSAdapter();
+			}
+			@Override
+			public Adapter caseConstraintCS(ConstraintCS object)
+			{
+				return createConstraintCSAdapter();
+			}
+			@Override
+			public Adapter caseExpConstraintCS(ExpConstraintCS object)
+			{
+				return createExpConstraintCSAdapter();
+			}
+			@Override
 			public Adapter caseFeatureCS(FeatureCS object)
 			{
 				return createFeatureCSAdapter();
-			}
-			@Override
-			public Adapter caseTemplateBindableElementCS(TemplateBindableElementCS object)
-			{
-				return createTemplateBindableElementCSAdapter();
 			}
 			@Override
 			public Adapter caseTemplateableElementCS(TemplateableElementCS object)
@@ -253,6 +279,20 @@ public class OCLstdlibCSTAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS <em>Lib Accumulator CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS
+	 * @generated
+	 */
+	public Adapter createLibAccumulatorCSAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS <em>Lib Constraint CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -262,8 +302,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS
 	 * @generated
 	 */
-	public Adapter createLibConstraintCSAdapter()
-	{
+	public Adapter createLibConstraintCSAdapter() {
 		return null;
 	}
 
@@ -278,6 +317,20 @@ public class OCLstdlibCSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLibIterationCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS <em>Lib Iterator CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS
+	 * @generated
+	 */
+	public Adapter createLibIteratorCSAdapter() {
 		return null;
 	}
 
@@ -319,8 +372,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS
 	 * @generated
 	 */
-	public Adapter createLibRootPackageCSAdapter()
-	{
+	public Adapter createLibRootPackageCSAdapter() {
 		return null;
 	}
 
@@ -348,8 +400,21 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS
 	 * @generated
 	 */
-	public Adapter createPrecedenceCSAdapter()
-	{
+	public Adapter createPrecedenceCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.util.VisitableCS <em>Visitable CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.util.VisitableCS
+	 * @generated
+	 */
+	public Adapter createVisitableCSAdapter() {
 		return null;
 	}
 
@@ -368,17 +433,16 @@ public class OCLstdlibCSTAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.IPivotElement <em>IPivot Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.IPivotElement
+	 * @see org.eclipse.ocl.examples.pivot.util.Pivotable
 	 * @generated
 	 */
-	public Adapter createIPivotElementAdapter()
-	{
+	public Adapter createPivotableAdapter() {
 		return null;
 	}
 
@@ -406,23 +470,21 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS
 	 * @generated
 	 */
-	public Adapter createMonikeredElementCSAdapter()
-	{
+	public Adapter createMonikeredElementCSAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.INamedElement <em>INamed Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.Nameable <em>Nameable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.INamedElement
+	 * @see org.eclipse.ocl.examples.pivot.util.Nameable
 	 * @generated
 	 */
-	public Adapter createINamedElementAdapter()
-	{
+	public Adapter createNameableAdapter() {
 		return null;
 	}
 
@@ -437,20 +499,6 @@ public class OCLstdlibCSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createNamedElementCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindableElementCS <em>Template Bindable Element CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindableElementCS
-	 * @generated
-	 */
-	public Adapter createTemplateBindableElementCSAdapter() {
 		return null;
 	}
 
@@ -479,6 +527,20 @@ public class OCLstdlibCSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypedElementCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS <em>Parameter CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS
+	 * @generated
+	 */
+	public Adapter createParameterCSAdapter() {
 		return null;
 	}
 
@@ -548,8 +610,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS
 	 * @generated
 	 */
-	public Adapter createNamespaceCSAdapter()
-	{
+	public Adapter createNamespaceCSAdapter() {
 		return null;
 	}
 
@@ -563,8 +624,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS
 	 * @generated
 	 */
-	public Adapter createAbstractPackageCSAdapter()
-	{
+	public Adapter createAbstractPackageCSAdapter() {
 		return null;
 	}
 
@@ -578,8 +638,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RootCS
 	 * @generated
 	 */
-	public Adapter createRootCSAdapter()
-	{
+	public Adapter createRootCSAdapter() {
 		return null;
 	}
 
@@ -593,8 +652,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS
 	 * @generated
 	 */
-	public Adapter createRootPackageCSAdapter()
-	{
+	public Adapter createRootPackageCSAdapter() {
 		return null;
 	}
 
@@ -608,7 +666,21 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS
 	 * @generated
 	 */
-	public Adapter createConstraintCSAdapter()
+	public Adapter createConstraintCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS <em>Exp Constraint CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS
+	 * @generated
+	 */
+	public Adapter createExpConstraintCSAdapter()
 	{
 		return null;
 	}

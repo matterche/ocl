@@ -12,20 +12,18 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceCSImpl.java,v 1.1.2.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: PrecedenceCSImpl.java,v 1.1.2.2 2010/12/06 18:14:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
-
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,8 +38,10 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
  *
  * @generated
  */
-public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
-{
+public class PrecedenceCSImpl
+		extends NamedElementCSImpl
+		implements PrecedenceCS {
+
 	/**
 	 * The default value of the '{@link #isRightAssociative() <em>Right Associative</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,8 +67,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrecedenceCSImpl()
-	{
+	protected PrecedenceCSImpl() {
 		super();
 	}
 
@@ -78,8 +77,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return OCLstdlibCSTPackage.Literals.PRECEDENCE_CS;
 	}
 
@@ -88,8 +86,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRightAssociative()
-	{
+	public boolean isRightAssociative() {
 		return rightAssociative;
 	}
 
@@ -98,8 +95,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRightAssociative(boolean newRightAssociative)
-	{
+	public void setRightAssociative(boolean newRightAssociative) {
 		boolean oldRightAssociative = rightAssociative;
 		rightAssociative = newRightAssociative;
 		if (eNotificationRequired())
@@ -112,8 +108,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
@@ -128,8 +123,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
@@ -145,8 +139,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
@@ -162,8 +155,7 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
@@ -175,18 +167,17 @@ public class PrecedenceCSImpl extends NamedElementCSImpl implements PrecedenceCS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (rightAssociative: ");
-		result.append(rightAssociative);
-		result.append(')');
-		return result.toString();
+	public String toString() {
+		return super.toString();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(OCLstdlibCSVisitor.class)
+			.visitPrecedenceCS(this);
+	}
 } //PrecedenceCSImpl

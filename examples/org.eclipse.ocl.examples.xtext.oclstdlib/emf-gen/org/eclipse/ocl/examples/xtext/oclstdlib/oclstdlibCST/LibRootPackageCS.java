@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibRootPackageCS.java,v 1.1.2.1 2010/10/01 14:34:05 ewillink Exp $
+ * $Id: LibRootPackageCS.java,v 1.1.2.2 2010/12/06 18:14:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
@@ -36,8 +36,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
  * @model
  * @generated
  */
-public interface LibRootPackageCS extends RootPackageCS
-{
+public interface LibRootPackageCS
+		extends RootPackageCS {
+
 	/**
 	 * Returns the value of the '<em><b>Owned Precedence</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS}.

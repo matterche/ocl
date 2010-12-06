@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibPropertyCSImpl.java,v 1.2.6.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: LibPropertyCSImpl.java,v 1.2.6.2 2010/12/06 18:14:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -22,9 +22,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.AttributeCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 import org.eclipse.xtext.common.types.JvmType;
 
 /**
@@ -35,6 +37,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibPropertyCSImpl#getImplementation <em>Implementation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibPropertyCSImpl#isStatic <em>Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,6 +56,26 @@ public class LibPropertyCSImpl
 	 * @ordered
 	 */
 	protected JvmType implementation;
+
+	/**
+	 * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean STATIC_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean static_ = STATIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,6 +141,27 @@ public class LibPropertyCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isStatic() {
+		return static_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatic(boolean newStatic) {
+		boolean oldStatic = static_;
+		static_ = newStatic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC, oldStatic, static_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
@@ -125,6 +169,8 @@ public class LibPropertyCSImpl
 			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				if (resolve) return getImplementation();
 				return basicGetImplementation();
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				return isStatic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -140,6 +186,9 @@ public class LibPropertyCSImpl
 		{
 			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				setImplementation((JvmType)newValue);
+				return;
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				setStatic((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -157,6 +206,9 @@ public class LibPropertyCSImpl
 			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				setImplementation((JvmType)null);
 				return;
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				setStatic(STATIC_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -172,6 +224,8 @@ public class LibPropertyCSImpl
 		{
 			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				return implementation != null;
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				return static_ != STATIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -222,4 +276,10 @@ public class LibPropertyCSImpl
 		return super.toString();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(OCLstdlibCSVisitor.class)
+			.visitLibPropertyCS(this);
+	}
 } //LibPropertyCSImpl

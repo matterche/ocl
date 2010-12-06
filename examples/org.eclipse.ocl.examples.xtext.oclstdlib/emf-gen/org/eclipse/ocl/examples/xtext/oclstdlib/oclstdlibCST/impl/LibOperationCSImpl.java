@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibOperationCSImpl.java,v 1.2.6.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: LibOperationCSImpl.java,v 1.2.6.2 2010/12/06 18:14:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -24,9 +24,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 import org.eclipse.xtext.common.types.JvmType;
 
 /**
@@ -38,6 +40,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibOperationCSImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibOperationCSImpl#getPrecedence <em>Precedence</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibOperationCSImpl#isStatic <em>Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +69,27 @@ public class LibOperationCSImpl
 	 * @ordered
 	 */
 	protected Precedence precedence;
+
+	/**
+	 * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean STATIC_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean static_ = STATIC_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,8 +154,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Precedence getPrecedence()
-	{
+	public Precedence getPrecedence() {
 		if (precedence != null && ((EObject)precedence).eIsProxy())
 		{
 			InternalEObject oldPrecedence = (InternalEObject)precedence;
@@ -150,8 +173,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Precedence basicGetPrecedence()
-	{
+	public Precedence basicGetPrecedence() {
 		return precedence;
 	}
 
@@ -160,12 +182,32 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPrecedence(Precedence newPrecedence)
-	{
+	public void setPrecedence(Precedence newPrecedence) {
 		Precedence oldPrecedence = precedence;
 		precedence = newPrecedence;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSTPackage.LIB_OPERATION_CS__PRECEDENCE, oldPrecedence, precedence));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStatic() {
+		return static_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatic(boolean newStatic) {
+		boolean oldStatic = static_;
+		static_ = newStatic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSTPackage.LIB_OPERATION_CS__STATIC, oldStatic, static_));
 	}
 
 	/**
@@ -183,6 +225,8 @@ public class LibOperationCSImpl
 			case OCLstdlibCSTPackage.LIB_OPERATION_CS__PRECEDENCE:
 				if (resolve) return getPrecedence();
 				return basicGetPrecedence();
+			case OCLstdlibCSTPackage.LIB_OPERATION_CS__STATIC:
+				return isStatic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -201,6 +245,9 @@ public class LibOperationCSImpl
 				return;
 			case OCLstdlibCSTPackage.LIB_OPERATION_CS__PRECEDENCE:
 				setPrecedence((Precedence)newValue);
+				return;
+			case OCLstdlibCSTPackage.LIB_OPERATION_CS__STATIC:
+				setStatic((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -221,6 +268,9 @@ public class LibOperationCSImpl
 			case OCLstdlibCSTPackage.LIB_OPERATION_CS__PRECEDENCE:
 				setPrecedence((Precedence)null);
 				return;
+			case OCLstdlibCSTPackage.LIB_OPERATION_CS__STATIC:
+				setStatic(STATIC_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -238,6 +288,8 @@ public class LibOperationCSImpl
 				return implementation != null;
 			case OCLstdlibCSTPackage.LIB_OPERATION_CS__PRECEDENCE:
 				return precedence != null;
+			case OCLstdlibCSTPackage.LIB_OPERATION_CS__STATIC:
+				return static_ != STATIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -288,4 +340,10 @@ public class LibOperationCSImpl
 		return super.toString();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(OCLstdlibCSVisitor.class)
+			.visitLibOperationCS(this);
+	}
 } //LibOperationCSImpl

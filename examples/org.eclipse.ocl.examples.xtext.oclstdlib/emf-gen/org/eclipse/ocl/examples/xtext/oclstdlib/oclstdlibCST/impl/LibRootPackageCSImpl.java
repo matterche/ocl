@@ -12,27 +12,24 @@
  *
  * </copyright>
  *
- * $Id: LibRootPackageCSImpl.java,v 1.1.2.1 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: LibRootPackageCSImpl.java,v 1.1.2.2 2010/12/06 18:14:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.RootPackageCSImpl;
-
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,8 +44,10 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
  *
  * @generated
  */
-public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPackageCS
-{
+public class LibRootPackageCSImpl
+		extends RootPackageCSImpl
+		implements LibRootPackageCS {
+
 	/**
 	 * The cached value of the '{@link #getOwnedPrecedence() <em>Owned Precedence</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -58,13 +57,13 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 * @ordered
 	 */
 	protected EList<PrecedenceCS> ownedPrecedence;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibRootPackageCSImpl()
-	{
+	protected LibRootPackageCSImpl() {
 		super();
 	}
 
@@ -74,8 +73,7 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return OCLstdlibCSTPackage.Literals.LIB_ROOT_PACKAGE_CS;
 	}
 
@@ -84,8 +82,7 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PrecedenceCS> getOwnedPrecedence()
-	{
+	public EList<PrecedenceCS> getOwnedPrecedence() {
 		if (ownedPrecedence == null)
 		{
 			ownedPrecedence = new EObjectContainmentEList<PrecedenceCS>(PrecedenceCS.class, this, OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS__OWNED_PRECEDENCE);
@@ -99,8 +96,8 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS__OWNED_PRECEDENCE:
@@ -115,8 +112,7 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS__OWNED_PRECEDENCE:
@@ -132,8 +128,7 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS__OWNED_PRECEDENCE:
@@ -150,8 +145,7 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS__OWNED_PRECEDENCE:
@@ -167,8 +161,7 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS__OWNED_PRECEDENCE:
@@ -177,4 +170,10 @@ public class LibRootPackageCSImpl extends RootPackageCSImpl implements LibRootPa
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(OCLstdlibCSVisitor.class)
+			.visitLibRootPackageCS(this);
+	}
 } //LibRootPackageCSImpl

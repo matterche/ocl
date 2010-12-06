@@ -12,7 +12,7 @@
  *
  * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.5.6.2 2010/10/01 14:34:04 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.5.6.3 2010/12/06 18:14:19 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -57,6 +57,7 @@ RestrictedKeywords:
 |	'documentation'
 |	'extends'
 |	'import'
+|	'inv'
 |	'iteration'
 |	'left'
 |	'library'
@@ -65,10 +66,13 @@ RestrictedKeywords:
 |	'post'
 |	'pre'
 |	'precedence'
+|	'primitive'
 |	'property'
 |	'right'
+|	'static'
 |	'super'
 |	'type'
+|	'Tuple'
 ;
 
 Name:
@@ -76,7 +80,10 @@ Name:
 |	DOUBLE_QUOTED_STRING
 |	EssentialOCLReservedKeyword
 |	RestrictedKeywords
-|	'Tuple'
+;
+
+AccumulatorCS returns LibAccumulatorCS:
+	name=Identifier ':' ownedType=TypedRefCS
 ;
 
 AnnotationCS returns base::AnnotationCS:
@@ -92,11 +99,13 @@ AnnotationElementCS returns base::AnnotationElementCS:
 ;
 
 ClassCS returns base::ClassCS:
-	'type' name=Name
+	(qualifier+='primitive')? 'type' name=Name
 	(ownedTemplateSignature=TemplateSignatureCS)?
+	(':' ownedMetaType=TypedRefCS)?
 	('conformsTo' ownedSuperType+=TypedRefCS (',' ownedSuperType+=TypedRefCS)*)?
 	'{' (ownedOperation+=OperationCS
 	   | ownedProperty+=LibPropertyCS
+	   | ownedConstraint+=InvCS
 	   | ownedAnnotation+=AnnotationElementCS)* '}'
 ;
 
@@ -118,15 +127,19 @@ ImportCS returns base::ImportCS :
 	'import' (name=Identifier ':')? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING]
 ;
 
-LibIterationCS returns LibIterationCS:
+InvCS returns LibConstraintCS:
+	stereotype='inv' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
+;
+
+LibIterationCS returns LibOperationCS:
 	'iteration' name=Name
 	(ownedTemplateSignature=TemplateSignatureCS)?
-	'(' ownedIterator+=ParameterCS (',' ownedIterator+=ParameterCS)*
-	(';' ownedAccumulator+=ParameterCS (',' ownedAccumulator+=ParameterCS)*)?
+	'(' ownedParameter+=IteratorCS (',' ownedParameter+=IteratorCS)*
+	(';' ownedParameter+=AccumulatorCS (',' ownedParameter+=AccumulatorCS)*)?
 	('|' ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)?
 	')'
 	':' ownedType=TypedRefCS
-	'=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING]
+	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotation+=AnnotationElementCS
 	     | ownedConstraint+=PostCS
 	     | ownedConstraint+=PreCS)* '}')
@@ -134,17 +147,21 @@ LibIterationCS returns LibIterationCS:
 	)
 ;
 
+IteratorCS returns LibIteratorCS:
+	name=Identifier ':' ownedType=TypedRefCS
+;
+
 OperationCS returns base::OperationCS:
 	LibIterationCS|LibOperationCS
 ;
 
 LibOperationCS returns LibOperationCS:
-	'operation' name=Name
+	(static?='static')? 'operation' name=Name
 	(ownedTemplateSignature=TemplateSignatureCS)?
 	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
 	':' ownedType=TypedRefCS
 	('precedence' '=' precedence=[pivot::Precedence|Name])?
-	'=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING]
+	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotation+=AnnotationElementCS
 	     | ownedConstraint+=PostCS
 	     | ownedConstraint+=PreCS)* '}')
@@ -168,9 +185,9 @@ ParameterCS returns base::ParameterCS:
 ;
 
 LibPropertyCS returns LibPropertyCS:
-	'property' name=Name
+	(static?='static')? 'property' name=Name
 	':' ownedType=TypedRefCS
-	'=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING]
+	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
 	(	('{' (ownedAnnotation+=AnnotationElementCS)* '}')
 	|	';'
 	)
@@ -206,6 +223,14 @@ TemplateSignatureCS returns base::TemplateSignatureCS:
 	'<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>'
 ;
 
+LibTupleCS returns base::TupleTypeCS:
+	{base::TupleTypeCS} name='Tuple' '<' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? '>'
+;
+
+LibTuplePartCS returns base::TuplePartCS:
+	name=Identifier ':' ownedType=TypedRefCS
+;
+
 TypeParameterCS returns base::TypeParameterCS:
 	name=Identifier
 	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
@@ -218,7 +243,7 @@ TypeRefCS returns base::TypeRefCS:
 ;
 
 TypedRefCS returns base::TypedRefCS:
-	QualifiedTypeRefCS | TypedTypeRefCS
+	LibTupleCS | QualifiedTypeRefCS | TypedTypeRefCS
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:

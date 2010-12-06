@@ -4,14 +4,18 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ConstraintCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.DefaultScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.RootPackageCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeProvider;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util.OCLstdlibCSTSwitch;
@@ -38,29 +42,43 @@ public class OCLstdlibScopeProvider extends EssentialOCLCSScopeProvider
 		extends OCLstdlibCSTSwitch<ScopeAdapter>
 		implements ScopeAdapter.Switch
 	{
-
 		@Override
-		public ScopeAdapter caseLibIterationCS(LibIterationCS eObject) {
-			return new LibOperationScopeAdapter(eObject);
+		public ScopeAdapter caseLibConstraintCS(LibConstraintCS csObject) {
+			return new ConstraintCSScopeAdapter(csObject);
 		}
 
 		@Override
-		public ScopeAdapter caseLibOperationCS(LibOperationCS eObject) {
-			return new LibOperationScopeAdapter(eObject);
+		public ScopeAdapter caseLibIterationCS(LibIterationCS csObject) {
+			return new LibOperationScopeAdapter(csObject);
 		}
 
 		@Override
-		public ScopeAdapter caseLibRootPackageCS(LibRootPackageCS eObject) {
-			return new RootPackageCSScopeAdapter(eObject);
+		public ScopeAdapter caseLibOperationCS(LibOperationCS csObject) {
+			return new LibOperationScopeAdapter(csObject);
 		}
 
 		@Override
-		public ScopeAdapter defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ModelElementCS) eObject);
+		public ScopeAdapter caseLibPropertyCS(LibPropertyCS csObject) {
+			return new EmptyCSScopeAdapter(csObject);
 		}
 
-		public ScopeAdapter doInPackageSwitch(EObject eObject) {
-			return doSwitch(eObject.eClass(), eObject);
+		@Override
+		public ScopeAdapter caseLibRootPackageCS(LibRootPackageCS csObject) {
+			return new RootPackageCSScopeAdapter(csObject);
+		}
+
+		@Override
+		public ScopeAdapter caseParameterCS(ParameterCS csObject) {
+			return new EmptyCSScopeAdapter(csObject);
+		}
+
+		@Override
+		public ScopeAdapter defaultCase(EObject csObject) {
+			return new DefaultScopeAdapter(csObject);
+		}
+
+		public ScopeAdapter doInPackageSwitch(EObject csObject) {
+			return doSwitch(csObject.eClass(), csObject);
 		}
 	}
 

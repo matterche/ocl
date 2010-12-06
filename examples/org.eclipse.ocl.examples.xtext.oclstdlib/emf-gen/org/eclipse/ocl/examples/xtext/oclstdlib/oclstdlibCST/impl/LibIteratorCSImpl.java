@@ -2,46 +2,47 @@
  * <copyright>
  *
  * Copyright (c) 2010 E.D.Willink and others.
- * All rights reserved.   This program and the accompanying materials
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   E.D.Willink - Initial API and implementation
+ *     E.D.Willink - initial API and implementation
  *
  * </copyright>
  *
- * $Id: LibConstraintCSImpl.java,v 1.1.2.2 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: LibIteratorCSImpl.java,v 1.1.2.1 2010/12/06 18:14:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.pivot.IteratorKind;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Lib Constraint CS</b></em>'.
+ * An implementation of the model object '<em><b>Lib Iterator CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class LibConstraintCSImpl
-		extends ExpConstraintCSImpl
-		implements LibConstraintCS {
+public class LibIteratorCSImpl
+		extends ParameterCSImpl
+		implements LibIteratorCS {
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibConstraintCSImpl() {
+	protected LibIteratorCSImpl() {
 		super();
 	}
 
@@ -52,13 +53,23 @@ public class LibConstraintCSImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCLstdlibCSTPackage.Literals.LIB_CONSTRAINT_CS;
+		return OCLstdlibCSTPackage.Literals.LIB_ITERATOR_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public IteratorKind getIteratorKind() {
+		return IteratorKind.ITERATOR;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(OCLstdlibCSVisitor.class)
-			.visitLibConstraintCS(this);
+			.visitLibIteratorCS(this);
 	}
-} //LibConstraintCSImpl
+} //LibIteratorCSImpl
