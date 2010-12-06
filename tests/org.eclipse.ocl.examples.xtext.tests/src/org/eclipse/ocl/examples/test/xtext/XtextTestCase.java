@@ -53,8 +53,30 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.StandardDocumentScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 import org.eclipse.xtext.resource.XtextResource;
@@ -78,6 +100,34 @@ public class XtextTestCase extends TestCase
 			}
 //			super.append(event);
 		}
+	}
+
+	public static void assertNoCSErrors(String message, Resource resource) {		
+		StringBuffer s = gatherCSErrors(null, resource.getContents());
+		if (s != null) {
+			fail(message + s.toString());
+		}
+	}
+
+	private static StringBuffer gatherCSErrors(StringBuffer s, List<? extends EObject> eObjects) {
+		for (EObject eObject : eObjects) {
+			if (eObject instanceof ModelElementCS) {
+				List<String> errors = ((ModelElementCS)eObject).getError();
+				if (errors.size() > 0) {
+					if (s == null) {
+						s = new StringBuffer();
+					}
+					for (String e : errors) {
+						s.append("\n");
+						s.append(eObject.eClass().getName());
+						s.append(": ");
+						s.append(e);
+					}
+				}
+			}
+			s = gatherCSErrors(s, eObject.eContents());
+		}
+		return s;
 	}
 
 	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {
@@ -186,6 +236,102 @@ public class XtextTestCase extends TestCase
 			fail(s.toString());
 		}
 	}
+
+	protected static boolean hasCorrespondingCS(MonikeredElement pivotElement) {
+		if (!isValidPivot(pivotElement)) {
+			return false;
+		}
+		if (pivotElement instanceof ExpressionInOcl) {
+			return false;
+		}
+		if ((pivotElement instanceof Variable) && (pivotElement.eContainer() instanceof ExpressionInOcl)) {
+			return false;
+		}
+//		if (pivotElement instanceof TemplateBinding) {
+//			return false;
+//		}
+//		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBindings().size() > 0)) {
+//			return false;
+//		}
+		return true;
+	}
+
+	protected static boolean hasCorrespondingPivot(MonikeredElementCS csElement) {
+		if (csElement instanceof TupleTypeCS) {
+			return true;
+		}
+		if (csElement instanceof TuplePartCS) {		// FIXME orphanage ambiguity
+			return false;
+		}
+//		if (csElement instanceof TypeRefCS) {
+//			return false;
+//		}
+		if (csElement instanceof InfixExpCS) {
+			return false;
+		}
+		if (csElement instanceof NestedExpCS) {
+			return false;
+		}
+		if (csElement instanceof PrefixExpCS) {
+			return false;
+		}
+		if (csElement instanceof NavigatingExpCS) {
+			return false;
+		}
+		if (csElement instanceof NavigationOperatorCS) {
+			return false;
+		}
+		if (csElement instanceof CollectionTypeCS) {
+			return false;
+		}
+		return true;
+	}
+
+	protected static boolean hasUniqueMoniker(MonikeredElementCS csElement) {
+		if (csElement instanceof TupleTypeCS) {
+			return false;
+		}
+		if (csElement instanceof TypeRefCS) {
+			return false;
+		}
+		if (csElement instanceof InfixExpCS) {
+			return false;
+		}
+		if (csElement instanceof NestedExpCS) {
+			return false;
+		}
+		if (csElement instanceof PrefixExpCS) {
+			return false;
+		}
+		if (csElement instanceof NavigatingExpCS) {
+			return false;
+		}
+		if (csElement instanceof NavigationOperatorCS) {
+			return false;
+		}
+		if (csElement instanceof CollectionTypeCS) {
+			return false;
+		}
+		return true;
+	}
+	
+	protected static boolean isValidPivot(Element pivotElement) {
+		if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
+			if ((pivotElement.eContainer() == null) && PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())) {
+				return false;
+			}
+		}
+		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBindings().size() > 0)) {
+			return false;
+		}
+		if (pivotElement instanceof TupleType) {
+			return false;
+		}
+		if ((pivotElement instanceof Property) && (pivotElement.eContainer() instanceof TupleType)) {
+			return false;
+		}
+		return true;
+	}
 	
 	protected ResourceSet resourceSet;
 
@@ -234,10 +380,11 @@ public class XtextTestCase extends TestCase
 		for (Map.Entry<URI,URI> entry : uriMap.entrySet()) {
 			System.out.println(entry.getKey() + " => " + entry.getValue());
 		}
-		URI platformOCLstdlibURI = URI.createURI(StandardDocumentScopeAdapter.OCLSTDLIB_URI);
-		URI projectURI = getProjectFileURI("dummy");
-		URI projectOCLstdlibURI = URI.createURI("oclstdlib.oclstdlib").resolve(projectURI);
-		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
+//		URI platformOCLstdlibURI = URI.createURI(StandardDocumentScopeAdapter.OCLSTDLIB_URI);
+//		URI projectURI = getProjectFileURI("dummy");
+//		URI projectOCLstdlibURI = URI.createURI("oclstdlib.oclstdlib").resolve(projectURI);
+//		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
+		StandardLibraryContribution.REGISTRY.put(PivotManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
 
         String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
         EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestReflection.java,v 1.1.2.1 2010/10/01 15:33:23 ewillink Exp $
+ * $Id: PivotTestReflection.java,v 1.1.2.2 2010/12/06 18:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.ecore;
 
@@ -442,7 +442,7 @@ TestReflection.Static
 	}
 
 	public Type getMetaclass(String name) {
-		return pivotManager.getLibraryType(name, null);
+		return pivotManager.getRequiredLibraryType(name);
 	}
 
 	public Type getUMLBoolean() {

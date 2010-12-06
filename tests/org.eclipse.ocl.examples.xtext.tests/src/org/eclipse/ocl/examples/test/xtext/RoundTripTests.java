@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.3.6.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.3.6.2 2010/12/06 18:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -21,8 +21,6 @@ import java.io.IOException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
-import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
 
 /**
  * Test that an Ecore file can be loaded as OCLinEcore than saved back as Ecore.
@@ -37,7 +35,7 @@ public class RoundTripTests extends XtextTestCase
 		URI middleURI = getProjectFileURI(middleName);
 		URI outputURI = getProjectFileURI(outputName);
 		Resource leftResource = resourceSet.getResource(inputURI, true);
-		RootPackageCS csDocument = Ecore2OCLinEcore.importFromEcore(resourceSet, null, leftResource);
+		RootPackageCS csDocument = null; // FIXME Ecore2OCLinEcore.importFromEcore(resourceSet, null, leftResource);
 		assertNoResourceErrors("From Ecore errors", csDocument.eResource());
 //		List<PackageCS> csObjects = new ArrayList<PackageCS>();
 //		csObjects.addAll(csDocument.getPackages());
@@ -45,12 +43,12 @@ public class RoundTripTests extends XtextTestCase
 //		middleResource.getContents().addAll(csObjects);
 		middleResource.getContents().add(csDocument);
 		middleResource.save(null);
-		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, middleResource, outputURI);
-		Resource rightResource = cs2e.exportToEcore();
-		assertNoResourceErrors("To Ecore errors", rightResource);
-		rightResource.save(null);
-		resourceSet.getResources().add(rightResource);
-    	assertSameModel(leftResource, rightResource);
+//		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, middleResource, outputURI);
+//		Resource rightResource = cs2e.exportToEcore();
+//		assertNoResourceErrors("To Ecore errors", rightResource);
+//		rightResource.save(null);
+//		resourceSet.getResources().add(rightResource);
+//    	assertSameModel(leftResource, rightResource);
 	}
 
 	public void doRoundTripFromOclInEcore(String stem) throws IOException, InterruptedException {
@@ -64,23 +62,23 @@ public class RoundTripTests extends XtextTestCase
 		URI output2URI = getProjectFileURI(output2Name);
 		Resource leftResource = resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Load failed", leftResource);
-		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, leftResource, middleURI);
-		Resource middleResource = cs2e.exportToEcore();
-		assertEquals("To Ecore errors", 0, middleResource.getErrors().size());
-		middleResource.save(null);
-		resourceSet.getResources().add(middleResource);
-		RootPackageCS csDocument = Ecore2OCLinEcore.importFromEcore(resourceSet, null, middleResource);
+//		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, leftResource, middleURI);
+//		Resource middleResource = cs2e.exportToEcore();
+//		assertEquals("To Ecore errors", 0, middleResource.getErrors().size());
+//		middleResource.save(null);
+//		resourceSet.getResources().add(middleResource);
+		RootPackageCS csDocument = null; // FIXME Ecore2OCLinEcore.importFromEcore(resourceSet, null, middleResource);
 		assertNoResourceErrors("From Ecore errors", csDocument.eResource());
 		Resource rightResource = resourceSet.createResource(outputURI);
 //		middleResource.getContents().addAll(csObjects);
 		rightResource.getContents().add(csDocument);
 		rightResource.save(null);
-		OCLinEcore2Ecore cs2e2 = new OCLinEcore2Ecore(resourceSet, rightResource, output2URI);
-		Resource right2Resource = cs2e2.exportToEcore();
+//		OCLinEcore2Ecore cs2e2 = new OCLinEcore2Ecore(resourceSet, rightResource, output2URI);
+//		Resource right2Resource = cs2e2.exportToEcore();
 		assertNoResourceErrors("To Ecore errors", rightResource);
-		right2Resource.save(null);
-		resourceSet.getResources().add(right2Resource);
-    	assertSameModel(middleResource, right2Resource);
+//		right2Resource.save(null);
+//		resourceSet.getResources().add(right2Resource);
+//    	assertSameModel(middleResource, right2Resource);
 	}
 
 	public void testCompanyRoundTrip() throws IOException, InterruptedException {

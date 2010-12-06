@@ -13,13 +13,11 @@
  *
  * </copyright>
  *
- * $Id: GenericParserBacktrackingTest.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericParserBacktrackingTest.java,v 1.1.2.2 2010/12/06 18:47:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
 
-import org.eclipse.ocl.lpg.AbstractParser;
-import org.eclipse.ocl.lpg.AbstractProblemHandler;
 
 /**
  * Tests for error reports from the backtracking parser.
@@ -28,7 +26,7 @@ import org.eclipse.ocl.lpg.AbstractProblemHandler;
 public abstract class GenericParserBacktrackingTest
 extends GenericTestSuite {
 
-	private final class MyProblemHandler extends AbstractProblemHandler
+/*	private final class MyProblemHandler extends AbstractProblemHandler
 	{
 		protected final String source;
 		protected final String failure;
@@ -53,7 +51,7 @@ extends GenericTestSuite {
 				fail("Repeated failure '" + problemMessage + "' in '" + source + "'");
 			errors++;
 		}
-	}
+	} */
 
 	public void test_reservedKeywordAsIdentifier() {
 		checkDocumentWithParseFailure(

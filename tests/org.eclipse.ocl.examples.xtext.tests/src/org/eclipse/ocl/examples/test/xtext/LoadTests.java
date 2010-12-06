@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.8.6.4 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: LoadTests.java,v 1.8.6.5 2010/12/06 18:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 
 /**
@@ -124,7 +125,7 @@ public class LoadTests extends XtextTestCase
 			pivotManager = new PivotManager();
 		}
 		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
-		Resource xtextResource = resourceSet.getResource(inputURI, true);
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, pivotManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
@@ -139,7 +140,6 @@ public class LoadTests extends XtextTestCase
 		saveAsXMI(xtextResource, cstURI);
 		pivotResource.setURI(pivotURI);
 		assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
-		PivotManager.setMonikerAsID(Collections.singletonList(pivotResource));
 		pivotResource.save(null);
 		return pivotResource;
 	}

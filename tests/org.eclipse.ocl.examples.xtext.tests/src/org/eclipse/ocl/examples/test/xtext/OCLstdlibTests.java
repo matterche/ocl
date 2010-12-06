@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.1.2.2 2010/10/05 18:16:31 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.1.2.3 2010/12/06 18:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 
 /**
@@ -64,7 +65,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Load oclstdlib.oclstdlib as a file.
 		//
 		URI libraryURI = getProjectFileURI("oclstdlib.oclstdlib");
-		Resource xtextResource = resourceSet.getResource(libraryURI, true);
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextResource, null);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
@@ -82,11 +83,11 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Check similar content
 		//
-		Map<String,MonikeredElement> fileMoniker2PivotMap = PivotManager.computeMoniker2PivotMap(Collections.singletonList(fileResource));
+		Map<String,MonikeredElement> fileMoniker2PivotMap = new PivotManager().computeMoniker2PivotMap(Collections.singletonList(fileResource));
 		for (String moniker : fileMoniker2PivotMap.keySet()) {
 			System.out.println("File : " + moniker);
 		}
-		Map<String,MonikeredElement> javaMoniker2PivotMap = PivotManager.computeMoniker2PivotMap(Collections.singletonList(javaResource));
+		Map<String,MonikeredElement> javaMoniker2PivotMap = new PivotManager().computeMoniker2PivotMap(Collections.singletonList(javaResource));
 		for (String moniker : javaMoniker2PivotMap.keySet()) {
 			System.out.println("Java : " + moniker);
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.1.2.2 2010/12/06 18:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -28,15 +28,17 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
 import org.eclipse.ocl.examples.pivot.ecore.EcoreAliasCreator;
+import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 
 /**
@@ -51,25 +53,27 @@ public class MonikerTests extends XtextTestCase
 	public Map<String, MonikeredElementCS> checkCSMonikers(Resource csResource) {
 		Map<String, MonikeredElementCS> monikerMap = new HashMap<String, MonikeredElementCS>();
 		for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if ((eObject instanceof NamedElementCS) || (eObject instanceof TemplateSignatureCS)) {
-				MonikeredElementCS csElement = (MonikeredElementCS) eObject;
-				String moniker = csElement.getMoniker();
-				ElementCS oldElement = monikerMap.get(moniker);
-				if (oldElement != null) {
-					fail("Duplicate moniker " + moniker + " for " + csElement.eClass().getName());
+			ElementCS csElement = (ElementCS) tit.next();
+			if (csElement instanceof MonikeredElementCS) {
+				MonikeredElementCS csMonikeredElement = (MonikeredElementCS) csElement;
+				if (hasUniqueMoniker(csMonikeredElement)) {
+					String moniker = csMonikeredElement.getMoniker();
+					ElementCS oldElement = monikerMap.get(moniker);
+					if (oldElement != null) {
+						fail("Duplicate moniker " + moniker + " for " + csElement.eClass().getName());
+					}
+					monikerMap.put(moniker, csMonikeredElement);
+					System.out.println(csMonikeredElement.eClass().getName() + " : " + moniker);
+//					String signature = Ecore2Moniker.toSignature(eElement);
+//					System.out.println(eObject.eClass().getName() + " : " + signature);
 				}
-				monikerMap.put(moniker, csElement);
-				System.out.println(eObject.eClass().getName() + " : " + moniker);
-//				String signature = Ecore2Moniker.toSignature(eElement);
-//				System.out.println(eObject.eClass().getName() + " : " + signature);
 			}
 		}
 		return monikerMap;
 	}
 
 	/**
-	 * Check that ever monikered CS element references the same pivoty element as
+	 * Check that ever monikered CS element references the same pivot element as
 	 * the CS element that defines the moniker.
 	 */
 	public void checkCShasPivots(Resource csResource, Map<String, MonikeredElementCS> csMonikerMap) {
@@ -77,11 +81,15 @@ public class MonikerTests extends XtextTestCase
 			EObject eObject = tit.next();
 			if (eObject instanceof MonikeredElementCS) {
 				MonikeredElementCS csElement = (MonikeredElementCS) eObject;
-				String moniker = csElement.getMoniker();
-				MonikeredElementCS oldElement = csMonikerMap.get(moniker);
-				Element oldPivot = oldElement != null ? oldElement.getPivot() : null;
-				Element newPivot = csElement.getPivot();
-				assertEquals("Inconsistent pivot for " + moniker, newPivot, oldPivot);
+				if (hasCorrespondingPivot(csElement)) {
+					String moniker = csElement.getMoniker();
+					MonikeredElementCS oldElement = csMonikerMap.get(moniker);
+					Element oldPivot = oldElement != null ? oldElement.getPivot() : null;
+					Element newPivot = csElement.getPivot();
+					if (isValidPivot(oldPivot) && isValidPivot(newPivot)) {
+						assertEquals("Inconsistent pivot for " + moniker, newPivot, oldPivot);
+					}
+				}
 			}
 		}
 	}
@@ -94,32 +102,41 @@ public class MonikerTests extends XtextTestCase
 		List<String> csMonikers = new ArrayList<String>(csMonikerMap.keySet());
 		Collections.sort(csMonikers);
 		for (String csMoniker : csMonikers) {
-			MonikeredElementCS elementCS = csMonikerMap.get(csMoniker);
-			System.out.println(elementCS.eClass().getName() + " : " + csMoniker);
-			MonikeredElement pivot = (MonikeredElement) elementCS.getPivot();
-			String pivotMoniker = pivot.getMoniker();
-			assertEquals(csMoniker, pivotMoniker);
+			MonikeredElementCS csElement = csMonikerMap.get(csMoniker);
+			if (hasCorrespondingPivot(csElement)) {
+				System.out.println(csElement.eClass().getName() + " : " + csMoniker);
+				MonikeredElement pivot = (MonikeredElement) csElement.getPivot();
+				String pivotMoniker = pivot.getMoniker();
+				assertEquals("Pivot moniker for CS:", csMoniker, pivotMoniker);
+			}
+			else {
+				System.out.println("[" + csElement.eClass().getName() + "] : " + csMoniker);				
+			}
 		}
 	}
 	/**
 	 * Check that all pivot elements that should have monikers do, and that
 	 * there are no duplicates. Return a map of moniker to pivot.
 	 */
-	public Map<String, MonikeredElement> checkPivotMonikers(Resource pivotResource) {
+	public Map<String, MonikeredElement> checkPivotMonikers(ResourceSet pivotResourceSet) {
 		Map<String, MonikeredElement> monikerMap = new HashMap<String, MonikeredElement>();
-		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if (eObject instanceof MonikeredElement) {
-				MonikeredElement pivotElement = (MonikeredElement) eObject;
-				String moniker = pivotElement.getMoniker();
-				MonikeredElement oldElement = monikerMap.get(moniker);
-				if (oldElement != null) {
-					fail("Duplicate moniker " + moniker + " for " + pivotElement.eClass().getName());
+		for (Resource pivotResource : pivotResourceSet.getResources()) {
+			for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
+				EObject eObject = tit.next();
+				if (eObject instanceof MonikeredElement) {
+					MonikeredElement pivotElement = (MonikeredElement) eObject;
+					if (hasCorrespondingCS(pivotElement)) {
+						String moniker = pivotElement.getMoniker();
+						MonikeredElement oldElement = monikerMap.get(moniker);
+						if (oldElement != null) {
+							fail("Duplicate moniker " + moniker + " for " + pivotElement.eClass().getName());
+						}
+						monikerMap.put(moniker, pivotElement);
+						System.out.println(eObject.eClass().getName() + " : " + moniker);
+		//				String signature = Ecore2Moniker.toSignature(eElement);
+		//				System.out.println(eObject.eClass().getName() + " : " + signature);
+					}
 				}
-				monikerMap.put(moniker, pivotElement);
-				System.out.println(eObject.eClass().getName() + " : " + moniker);
-//				String signature = Ecore2Moniker.toSignature(eElement);
-//				System.out.println(eObject.eClass().getName() + " : " + signature);
 			}
 		}
 		return monikerMap;
@@ -161,8 +178,12 @@ public class MonikerTests extends XtextTestCase
 		//	Load the CS resource and check for load failures
 		//
 		String inputName = stem + ".oclstdlib";
+		String pivotName = stem + ".pivot";
 		URI inputURI = getProjectFileURI(inputName);
-		Resource csResource = resourceSet.getResource(inputURI, true);
+		URI pivotURI = getProjectFileURI(pivotName);
+		PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
+		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+		BaseCSResource csResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Load failed", csResource);
 		assertNoUnresolvedProxies("Unresolved proxies", csResource);
 		assertNoValidationErrors("CS validation problems", csResource);
@@ -172,14 +193,50 @@ public class MonikerTests extends XtextTestCase
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
 		Resource pivotResource = adapter.getPivotResource(csResource);		
 		assertNoValidationErrors("Pivot validation problems", pivotResource);
+		pivotResource.setURI(pivotURI);
+		pivotResource.save(null);
 		//
 		//	Check CS-Pivot moniker consistency
 		//
 		Map<String, MonikeredElementCS> csMonikerMap = checkCSMonikers(csResource);
 		checkCShasPivots(csResource, csMonikerMap);
 		checkCSandPivotMonikers(csMonikerMap);
-		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(pivotResource);
-		assertEquals(csMonikerMap.size(), pivotMonikerMap.size());
+		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(pivotManager.getPivotResourceSet());
+		{
+			StringBuffer s = null;
+			for (String m : csMonikerMap.keySet()) {
+				if (!pivotMonikerMap.containsKey(m)) {
+					MonikeredElementCS csElement = csMonikerMap.get(m);
+					if (hasCorrespondingPivot(csElement)) {
+						if (s == null) {
+							s = new StringBuffer();
+						}
+						s.append("\n    " + m);
+					}
+				}
+			}
+			if (s != null) {
+				fail("Extra CS monikers" + s.toString());
+			}
+		}
+		{
+			StringBuffer s = null;
+			for (String m : pivotMonikerMap.keySet()) {
+				if (!csMonikerMap.containsKey(m)) {
+					MonikeredElement pivotElement = pivotMonikerMap.get(m);
+					if (hasCorrespondingCS(pivotElement)) {
+						if (s == null) {
+							s = new StringBuffer();
+						}
+						s.append("\n    " + pivotElement.eClass().getName() + " : " + m);
+					}
+				}
+			}
+			if (s != null) {
+				fail("Extra Pivot monikers" + s.toString());
+			}
+		}
+//		assertEquals(csMonikerMap.size(), pivotMonikerMap.size());
 	}
 
 	public void testMoniker_Ecore_ecore() throws IOException, InterruptedException {
@@ -208,4 +265,9 @@ public class MonikerTests extends XtextTestCase
 		BaseScopeProvider.LOOKUP.setState(true);
 		doMonikerTestOCLstdlib("oclstdlib");
 	}
+
+//	public void testMoniker_OCL_2_3_oclstdlib() throws IOException, InterruptedException {
+//		BaseScopeProvider.LOOKUP.setState(true);
+//		doMonikerTestOCLstdlib("OCL-2.3x");
+//	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: PivotTests.java,v 1.1.2.2 2010/12/06 18:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -24,30 +24,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.Pivot2CS;
+import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 
 /**
  * Tests.
  */
 public class PivotTests extends XtextTestCase
 {
-	private static final Logger logger = Logger.getLogger(PivotTests.class);
+
+//	private static final Logger logger = Logger.getLogger(PivotTests.class);
 
 	public static class Checker extends CS2Pivot
 	{
@@ -63,47 +66,55 @@ public class PivotTests extends XtextTestCase
 			for (String moniker : moniker2PivotMap.keySet()) {
 				MonikeredElement oldPivotElement = getPivotElement(moniker);
 				MonikeredElement newPivotElement = updater.getPivotElement(moniker);
-				assertEquals("Preserved pivot", oldPivotElement, newPivotElement);
+				if (isValidPivot(oldPivotElement) && isValidPivot(newPivotElement)) {
+					assertEquals("Preserved pivot", oldPivotElement, newPivotElement);
+				}
 			}
 		}
 
 		public void assertSameContents() {
 			Collection<? extends Resource> csResources = cs2pivotResourceMap.keySet();
-			Collection<? extends Resource> pivotResources = cs2pivotResourceMap.values();
 			for (Resource csResource : csResources) {
 				for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
 					ElementCS csElement = (ElementCS) tit.next();
 					if (csElement instanceof MonikeredElementCS) { //&& !(csElement instanceof TemplateBindingCS) && !(csElement instanceof TemplateParameterSubstitutionCS)) {
-						MonikeredElementCS csNameableElement = (MonikeredElementCS)csElement;
-						String csMoniker = csNameableElement.getMoniker();
-						MonikeredElement pivotNameableElement = (MonikeredElement) csNameableElement.getPivot();
-						if (pivotNameableElement == null) {
-							@SuppressWarnings("unused")
-							MonikeredElement pivotElement = getPivotElement(csMoniker);
-							fail("Missing pivot for '" + csMoniker + "'");
-						}
-						else {
-							assertEquals("Moniker mismatch", csMoniker, pivotNameableElement.getMoniker());
-							assertEquals("Element mismatch", moniker2PivotMap.get(csMoniker), pivotNameableElement);
+						MonikeredElementCS csMonikeredElement = (MonikeredElementCS)csElement;
+						if (hasCorrespondingPivot(csMonikeredElement)) {
+							String csMoniker = csMonikeredElement.getMoniker();
+							MonikeredElement actualPivotElement = (MonikeredElement) csMonikeredElement.getPivot();
+							if (actualPivotElement == null) {
+								@SuppressWarnings("unused")
+								MonikeredElement pivotElement = getPivotElement(csMoniker);
+								fail("Missing pivot for '" + csMoniker + "'");
+							}
+							else {
+								String actualPivotMoniker = actualPivotElement.getMoniker();
+								assertEquals("Moniker mismatch", csMoniker, actualPivotMoniker);
+								MonikeredElement expectedPivotElement = moniker2PivotMap.get(csMoniker);
+								assertEquals("Element mismatch", expectedPivotElement, actualPivotElement);
+							}
 						}
 					}
 				}
 			}
+			Collection<? extends Resource> pivotResources = cs2pivotResourceMap.values();
 			Map<String, MonikeredElementCS> moniker2CSMap = computeMoniker2CSMap(csResources);
 			for (Resource pivotResource : pivotResources) {
 				for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 					Element pivotElement = (Element) tit.next();
 					if (pivotElement instanceof MonikeredElement) { //&& !(pivotElement instanceof TemplateSignature) && !(pivotElement instanceof TemplateParameterSubstitution) && !(pivotElement instanceof TemplateParameter)) {
 						MonikeredElement pivotNameableElement = (MonikeredElement)pivotElement;
-						String pivotMoniker = pivotNameableElement.getMoniker();
-						MonikeredElementCS csNameableElement = moniker2CSMap.get(pivotMoniker);
-						MonikeredElement pivotCSElement = (MonikeredElement) csNameableElement.getPivot();
-						if (pivotCSElement == null) {
-							fail("Missing pivot for '" + pivotElement + "'");
-						}
-						else {
-							assertEquals("Moniker mismatch", pivotMoniker, csNameableElement.getMoniker());
-							assertEquals("Element mismatch", pivotElement, pivotCSElement);
+						if (hasCorrespondingCS(pivotNameableElement)) {
+							String pivotMoniker = pivotNameableElement.getMoniker();
+							MonikeredElementCS csNameableElement = moniker2CSMap.get(pivotMoniker);
+							MonikeredElement pivotCSElement = (MonikeredElement) csNameableElement.getPivot();
+							if (pivotCSElement == null) {
+								fail("Missing pivot for '" + pivotElement + "'");
+							}
+							else {
+								assertEquals("Moniker mismatch", pivotMoniker, csNameableElement.getMoniker());
+								assertEquals("Element mismatch", pivotElement, pivotCSElement);
+							}
 						}
 					}
 				}
@@ -202,7 +213,10 @@ public class PivotTests extends XtextTestCase
 		return converter;
 	} */
 
-	public Resource doLoad(String stem, String extension) throws IOException {
+	public Resource doLoadOCLstdlib(String stem, String extension) throws IOException {
+		resourceSet = new ResourceSetImpl();
+		PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
+		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
@@ -215,6 +229,7 @@ public class PivotTests extends XtextTestCase
 		Resource xtextResource = resourceSet.getResource(inputURI, true);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 		assertNoResourceErrors("Load failed", xtextResource);
+		assertNoCSErrors("Load failed", xtextResource);
 //		CSAliasCreator.refreshPackageAliases(xtextResource);
 //		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource);
 //		Resource pivotResource = adapter.getPivotResource(xtextResource);
@@ -238,10 +253,10 @@ public class PivotTests extends XtextTestCase
 		return xtextResource;
 	}
 
-	protected void doPivotTest(String stem, String extension) throws IOException {
+	protected void doPivotTestOCLstdlib(String stem) throws IOException {
 		String pivotName = stem + ".pivot";
 		URI pivotURI = getProjectFileURI(pivotName);
-		Resource csResource = doLoad(stem, extension);
+		Resource csResource = doLoadOCLstdlib(stem, "oclstdlib");
 		//
 		//	Create Pivot model from CS
 		//
@@ -255,7 +270,6 @@ public class PivotTests extends XtextTestCase
 		//
 		//	Save Pivot Model for manual inspection
 		//
-		PivotManager.setMonikerAsID(creator.getPivotResources());
 		assertNoValidationErrors("Pivot validation problems", pivotResource);
 		URI savedPivotURI = pivotResource.getURI();
 		pivotResource.setURI(pivotURI);
@@ -283,17 +297,15 @@ public class PivotTests extends XtextTestCase
 	}
 	
 	public void doPivotTestEcore(String stem) throws IOException {
-		ResourceSetImpl pivotResourceSet = new ResourceSetImpl();
-		pivotResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("pivot", new EcoreResourceFactoryImpl());
-		pivotResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
-		PivotManager pivotManager = new PivotManager(pivotResourceSet);
+		PivotManager pivotManager = new PivotManager();
+		ResourceSet pivotResourceSet = pivotManager.getPivotResourceSet();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 //		String libraryName = "oclstdlib.pivot";
-		String libraryName = "oclstdlib.oclstdlib";
-		URI libraryURI = getProjectFileURI(libraryName);
-		Resource xtextLibraryResource = resourceSet.getResource(libraryURI, true);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextLibraryResource, null);
+//		String libraryName = "oclstdlib.oclstdlib";
+//		URI libraryURI = getProjectFileURI(libraryName);
+//		BaseCSResource xtextLibraryResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
+//		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextLibraryResource, null);
 //		Resource pivotResource = adapter.getPivotResource(xtextLibraryResource);
 //		pivotResourceSet.getResource(libraryURI, true);
 		String inputName = stem + ".ecore";
@@ -321,7 +333,6 @@ public class PivotTests extends XtextTestCase
 //		assertNoResourceErrors("Save failed", xtextResource.getErrors());
 		Resource pivotResource = pivotRoot.eResource();
 //		CS2PivotAliasCreator.createPackageAliases(pivotResource);
-		PivotManager.setMonikerAsID(pivotResourceSet.getResources());
 //		Resource pivotResource = resourceSet.createResource(outputURI);
 //		pivotResource.getContents().add(pivotRoot);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
@@ -338,10 +349,10 @@ public class PivotTests extends XtextTestCase
 		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
 		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 		Resource csResource = csResourceSet.createResource(csURI);
-		Map<Resource, Resource> pivot2csResourceMap = new HashMap<Resource, Resource>();
-		pivot2csResourceMap.put(pivotResource, csResource);
-		Pivot2CS pivot2cs = new Pivot2CS(pivot2csResourceMap);
-		pivot2cs.updateCS();
+		Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
+		cs2PivotResourceMap.put(csResource, pivotResource);
+		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, pivotManager);
+		pivot2cs.update();
 		csResource.save(null);
 	
 	}
@@ -360,16 +371,24 @@ public class PivotTests extends XtextTestCase
 	}
 
 	public void testPivot_mini_oclstdlib() throws IOException, InterruptedException {
-		doPivotTest("mini", "oclstdlib");
+		doPivotTestOCLstdlib("mini");
 	}
 
 	public void testPivot_midi_oclstdlib() throws IOException, InterruptedException {
-		doPivotTest("midi", "oclstdlib");
+		doPivotTestOCLstdlib("midi");
 	}
 
 	public void testPivot_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		doPivotTest("oclstdlib", "oclstdlib");
+		doPivotTestOCLstdlib("oclstdlib");
 	}
+
+//	public void testPivot_temp_oclstdlib() throws IOException, InterruptedException {
+//		doPivotTestOCLstdlib("temp");
+//	}
+
+//	public void testPivot_temp2_oclstdlib() throws IOException, InterruptedException {
+//		doPivotTestOCLstdlib("temp2");
+//	}
 
 	public void testPivot_Ecore_ecore() throws IOException, InterruptedException {
 		doPivotTestEcore("Ecore");

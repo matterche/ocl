@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.2 2010/10/05 18:16:31 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.3 2010/12/06 18:47:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -36,6 +36,12 @@ import java.util.Set;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.SimpleLayout;
+import org.apache.log4j.spi.LoggingEvent;
+import org.apache.log4j.spi.ThrowableInformation;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -63,7 +69,7 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.helper.Choice;
@@ -96,6 +102,24 @@ public abstract class GenericTestSuite
 
 		public void addTestSuite(CheckedTestSuite suite) {
 	        addTest(suite);
+		}
+	}
+	private static final class TestCaseAppender extends ConsoleAppender {
+
+		public TestCaseAppender() {
+			super(new SimpleLayout(), SYSTEM_OUT); 
+			setName("TestHarness");
+		}
+		
+		@Override
+		public void append(LoggingEvent event) {
+			if (event.getLevel().isGreaterOrEqual(Level.INFO)) {
+				String renderedMessage = event.getRenderedMessage();
+				ThrowableInformation throwableInformation = event.getThrowableInformation();
+				Throwable throwable = throwableInformation != null ? throwableInformation.getThrowable() : null;
+				throw new Error(renderedMessage, throwable);
+			}
+//			super.append(event);
 		}
 	}
     
@@ -1141,6 +1165,10 @@ public abstract class GenericTestSuite
 	
 	@Override
     protected void setUp() {
+		Logger rootLogger = Logger.getRootLogger();
+//		rootLogger.setLevel(Level.TRACE);
+		rootLogger.addAppender(new TestCaseAppender());
+//		rootLogger.removeAppender("default");
 		EssentialOCLStandaloneSetup.doSetup();
 		pivotManager = new PivotManager();
 		pivotManager.loadLibrary(OCLstdlib.INSTANCE);
@@ -1272,7 +1300,6 @@ public abstract class GenericTestSuite
 			if ((eContainer != null)
 					&& reflection.getConstraintClass().isAssignableFrom(eContainer.eContainer().getClass())) {
 				// start validation from the constraint, for good measure
-				@SuppressWarnings("unchecked")
 				Constraint eContainerContainer = (Constraint) eContainer.eContainer();
 				validate(eContainerContainer);
 			} else {
