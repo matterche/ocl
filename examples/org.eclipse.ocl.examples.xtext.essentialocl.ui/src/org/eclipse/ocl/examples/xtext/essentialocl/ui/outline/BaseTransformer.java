@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseTransformer.java,v 1.1.2.1 2010/10/01 15:04:04 ewillink Exp $
+ * $Id: BaseTransformer.java,v 1.1.2.2 2010/12/06 18:08:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
@@ -21,16 +21,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
 
@@ -48,62 +44,64 @@ public class BaseTransformer extends AbstractDeclarativeSemanticModelTransformer
 	protected void addContents(List<EObject> contents, Collection<? extends EObject> csElements) {
 		contents.addAll(csElements);
 	}
+
+	protected List<EObject> appendContents(List<EObject> contents, NamedElement pivotElement) {
+		addContents(contents, pivotElement.getOwnedRules());
+		addContents(contents, pivotElement.getOwnedAnnotations());
+//		addContents(contents, pivotElement.getOwnedComments());
+		return contents;
+	}
+
+	@Override
+	protected List<EObject> getChildNodes(EObject semanticNode) {
+		if (semanticNode instanceof ModelElementCS) {
+			EObject pivotElement = ((ModelElementCS)semanticNode).getPivot();
+			if (pivotElement != null) {
+				return super.getChildNodes(pivotElement);
+			}
+		}
+		return super.getChildNodes(semanticNode);
+	}
 	
-	public List<EObject> getChildren(ClassCS csElement) {
-		org.eclipse.ocl.examples.pivot.Class pivotElement = (org.eclipse.ocl.examples.pivot.Class) csElement.getPivot();
+	public List<EObject> getChildren(org.eclipse.ocl.examples.pivot.Class pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
 		addContents(contents, ElementUtil.getTemplateParameters(pivotElement));
-		addContents(contents, pivotElement.getSuperClasses());
+//		addContents(contents, pivotElement.getSuperClasses());
 		addContents(contents, pivotElement.getOwnedOperations());
 		addContents(contents, pivotElement.getOwnedAttributes());
-		addContents(contents, pivotElement.getOwnedRules());
-		addContents(contents, pivotElement.getOwnedAnnotations());
-		return contents;
+		return appendContents(contents, pivotElement);
 	}
 
-	public List<EObject> getChildren(ClassifierCS csElement) {
-		Type pivotElement = (Type) csElement.getPivot();
+	public List<EObject> getChildren(Type pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
 		addContents(contents, ElementUtil.getTemplateParameters(pivotElement));
-		addContents(contents, pivotElement.getOwnedRules());
-		addContents(contents, pivotElement.getOwnedAnnotations());
-		return contents;
+		return appendContents(contents, pivotElement);
 	}
 
-	public List<EObject> getChildren(OperationCS csElement) {
-		Operation pivotElement = (Operation) csElement.getPivot();
+	public List<EObject> getChildren(Operation pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
 		addContents(contents, ElementUtil.getTemplateParameters(pivotElement));
 		addContents(contents, pivotElement.getOwnedParameters());
-		addContents(contents, pivotElement.getOwnedRules());
-		addContents(contents, pivotElement.getOwnedAnnotations());
-		return contents;
+		return appendContents(contents, pivotElement);
 	}
 
-	public List<EObject> getChildren(ParameterCS csElement) {
-		Parameter pivotElement = (Parameter) csElement.getPivot();
-		List<EObject> contents = new ArrayList<EObject>();
-		addContents(contents, pivotElement.getOwnedAnnotations());
-		return contents;
-	}
 	
-	public List<EObject> getChildren(RootPackageCS csElement) {
-		org.eclipse.ocl.examples.pivot.Package pivotElement = (org.eclipse.ocl.examples.pivot.Package) csElement.getPivot();
+	public List<EObject> getChildren(org.eclipse.ocl.examples.pivot.Package pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
-		if (pivotElement != null) {
-//			addContents(contents, pivotElement.getOwnedImport());
-//			addContents(contents, pivotElement.getOwnedLibrary());
-			addContents(contents, pivotElement.getNestedPackages());
-//			addContents(contents, pivotElement.getAnnotations());
-		}
-		return contents;
+//		addContents(contents, pivotElement.getOwnedImport());
+//		addContents(contents, pivotElement.getOwnedLibrary());
+		addContents(contents, pivotElement.getNestedPackages());
+		addContents(contents, pivotElement.getOwnedTypes());
+		return appendContents(contents, pivotElement);
 	}
 
-	public List<EObject> getChildren(StructuralFeatureCS csElement) {
-		Property pivotElement = (Property) csElement.getPivot();
+	public List<EObject> getChildren(Parameter pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
-		addContents(contents, pivotElement.getOwnedRules());
-		addContents(contents, pivotElement.getOwnedAnnotations());
-		return contents;
+		return appendContents(contents, pivotElement);
+	}
+
+	public List<EObject> getChildren(Property pivotElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		return appendContents(contents, pivotElement);
 	}
 }

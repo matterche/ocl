@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLabelProvider.java,v 1.3.6.1 2010/10/01 15:04:04 ewillink Exp $
+ * $Id: EssentialOCLLabelProvider.java,v 1.3.6.2 2010/12/06 18:08:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -20,13 +20,16 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
@@ -39,8 +42,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TuplePartCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 import com.google.inject.Inject;
@@ -62,7 +63,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 	}
 
 	@Override
-	protected void appendType(StringBuffer s, TypeCS type) {
+	protected void appendType(StringBuffer s, Type type) {
 		if (type instanceof CollectionTypeCS) {
 			appendName(s, (CollectionTypeCS)type);
 			s.append("<");
@@ -118,6 +119,10 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 
 	protected String image(CollectionTypeCS ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionType.gif";
+	}
+
+	protected String text(ExpConstraintCS ele) {
+		return "";
 	}
 
 	protected String image(IfExpCS ele) {
@@ -255,10 +260,6 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 
 	protected String text(TupleLiteralExpCS ele) {
 		return "Tuple";
-	}
-
-	protected String image(TupleTypeCS ele) {
-		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleType.gif";
 	}
 
 	protected String image(VariableCS ele) {
