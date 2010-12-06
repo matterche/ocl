@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCodeGenerator.java,v 1.1.2.2 2010/12/06 17:12:02 ewillink Exp $
+ * $Id: XtextVisitorCodeGenerator.java,v 1.1.2.1 2010/12/06 17:12:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -32,39 +32,39 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
-import org.eclipse.ocl.examples.build.acceleo.GenerateOCLstdlib;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotSaver;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.build.acceleo.GenerateXtextVisitors;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
 /**
- * Generates the javaFolder/'javaPackageName'/javaClassName.java file providing
+ * Generates the javaFolder/'javaPackageName'/visitorClassName.java file providing
  * a static Java-creation of the libraryFile OCL standard library definition.
  */
-public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
+public class XtextVisitorCodeGenerator extends AbstractWorkflowComponent
 {
 	private Logger log = Logger.getLogger(getClass());	
 	private ResourceSet resourceSet = null;	
-	protected String uri;
-	protected String javaClassName;
+	protected String visitorBaseClassName;
+	protected String visitorBasePackageName;
+	protected String visitorClassName;
 	protected String javaFolder;
 	protected String javaPackageName;
-	protected String libraryFile;
+	protected String modelPackageName;
+	protected String ecoreFile;
 
 	public void checkConfiguration(Issues issues) {
-		if (uri == null) {
-			issues.addError(this, "uri not specified.");
+		if (visitorBaseClassName == null) {
+			issues.addError(this, "visitorBaseClassName not specified.");
 		}
-		if (javaClassName == null) {
-			issues.addError(this, "javaClassName not specified.");
+		if (visitorClassName == null) {
+			issues.addError(this, "visitorClassName not specified.");
 		}
 		if (javaPackageName == null) {
 			issues.addError(this, "javaPackageName not specified.");
 		}
-		if (libraryFile == null) {
+		if (modelPackageName == null) {
+			issues.addError(this, "modelPackageName not specified.");
+		}
+		if (ecoreFile == null) {
 			issues.addError(this, "libraryFile not specified.");
 		}
 	}
@@ -78,42 +78,43 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 	}
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues issues) {
-		URI fileURI = URI.createPlatformResourceURI(libraryFile, true);
+		URI fileURI = URI.createPlatformResourceURI(ecoreFile, true);
 		String rootPath = StandaloneSetup.getPlatformRootPath();
-		File folder = new File(rootPath + javaFolder + '/' + javaPackageName.replace('.', '/'));
-		log.info("Loading OCL library '" + fileURI);
+		File folder = new File(rootPath + javaFolder + '/' + javaPackageName.replace('.', '/') + "/util");
+		log.info("Loading Ecore Model '" + fileURI);
 		try {
 			ResourceSet resourceSet = getResourceSet();
-			PivotManager pivotManager = new PivotManager.NoDefaultLibrary();
-			CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
-			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(fileURI, true);
-			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextResource, pivotManager);
-			Resource pivotResource = adapter.getPivotResource(xtextResource);
+			Resource ecoreResource = resourceSet.getResource(fileURI, true);
 			List<Object> arguments = new ArrayList<Object>();
 			arguments.add(javaPackageName);
-			arguments.add(javaClassName);
-			arguments.add(libraryFile);
-			arguments.add(uri);
-			EObject pivotModel = pivotResource.getContents().get(0);
-			PivotSaver saver = new PivotSaver(pivotResource);
-			org.eclipse.ocl.examples.pivot.Package orphanage = saver.localizeSpecializations();
-			if ((orphanage != null) && (pivotModel instanceof org.eclipse.ocl.examples.pivot.Package)) {
-				((org.eclipse.ocl.examples.pivot.Package)pivotModel).getNestedPackages().add(orphanage);
-			}
-			GenerateOCLstdlib acceleo = new GenerateOCLstdlib(pivotModel, folder, arguments);
+			arguments.add(modelPackageName);
+			arguments.add(visitorClassName);
+			arguments.add(visitorBasePackageName);
+			arguments.add(visitorBaseClassName);
+			arguments.add(ecoreFile);
+			EObject ecoreModel = ecoreResource.getContents().get(0);
+			GenerateXtextVisitors acceleo = new GenerateXtextVisitors(ecoreModel, folder, arguments);
 			log.info("Generating to ' " + folder + "'");
 			acceleo.generate(null);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			throw e;
 		} catch (IOException e) {
-			issues.addError(this, "libraryFile not specified.", null, e, null);
+			issues.addError(this, "ecore File not specified.", null, e, null);
 			e.printStackTrace();
 		}
 	}
 
-	public void setJavaClassName(String javaClassName) {
-		this.javaClassName = javaClassName;
+	public void setVisitorBaseClassName(String visitorBaseClassName) {
+		this.visitorBaseClassName = visitorBaseClassName;
+	}
+
+	public void setVisitorBasePackageName(String visitorBasePackageName) {
+		this.visitorBasePackageName = visitorBasePackageName;
+	}
+
+	public void setVisitorClassName(String visitorClassName) {
+		this.visitorClassName = visitorClassName;
 	}
 
 	public void setJavaFolder(String javaFolder) {
@@ -124,15 +125,15 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 		this.javaPackageName = javaPackageName;
 	}
 
-	public void setLibraryFile(String libraryFile) {
-		this.libraryFile = libraryFile;
+	public void setModelPackageName(String modelPackageName) {
+		this.modelPackageName = modelPackageName;
+	}
+
+	public void setEcoreFile(String ecoreFile) {
+		this.ecoreFile = ecoreFile;
 	}
 	
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
-	}
-	
-	public void setUri(String uri) {
-		this.uri = uri;
 	}
 }

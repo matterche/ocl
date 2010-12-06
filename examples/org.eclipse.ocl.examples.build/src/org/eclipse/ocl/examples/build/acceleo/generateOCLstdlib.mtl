@@ -30,7 +30,7 @@ invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSymbolName(java
  *
  * Contributors:
  *     E.D.Willink - initial API and implementation
- *
+ *xx
  * </copyright>
  *
  * This code is auto-generated
@@ -58,16 +58,43 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 
+/**
+ * This is the [uri/] Standard Library
+ * auto-generated from [sourceFile/].
+ * It facilitates efficient library loading without the overheads of model reading.
+ * <p>
+ * This Standard Library may be registered as the definition of a Standard Library for
+ * the OCL evaluation framework by invoking {@link #install}.
+ * <p>
+ * The Standard Library is normally activated when the PivotManager attempts
+ * to locate a library type when its default Standard Library URI is the same
+ * as this Standard Library.
+ */
 @SuppressWarnings("nls")
 public class [javaClass/] extends XMLResourceImpl
 {
 	/**
-	 *	The static package-of-packages-of-types pivot model of the OCL standard library.
+	 *	The static package-of-packages-of-types pivot model of the Standard Library.
 	 */
 	public static final [javaClass/] INSTANCE = new [javaClass/]();
 	
 	/**
-	 * The Loader shares the OCL standard library instance whenever this default library
+	 *	The URI of this Standard Library.
+	 */
+	public static final String STDLIB_URI = "[uri/]";
+
+	/**
+	 * Install this library in the {@link StandardLibraryContribution#REGISTRY}.
+	 * This method may be invoked by standalone applications to replicate
+	 * the registration that should appear as a standard_library plugin
+	 * extension when running within Eclipse. 
+	 */
+	public static void install() {
+		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new Loader());
+	}
+	
+	/**
+	 * The Loader shares the Standard Library instance whenever this default library
 	 * is loaded from the registry of Standard Libraries populated by the standard_library 
 	 * extension point.
 	 */
@@ -83,7 +110,7 @@ public class [javaClass/] extends XMLResourceImpl
 	}
 	
 	private [javaClass/]() {
-		super(URI.createURI("[uri/]"));
+		super(URI.createURI(STDLIB_URI));
 		getContents().add(create());
 		PivotAliasCreator.refreshPackageAliases(this);
 		PivotManager.setMonikerAsID(Collections.singletonList(this));
@@ -105,6 +132,12 @@ public class [javaClass/] extends XMLResourceImpl
 		[/for]
 
 		[pkg.getSymbolName()/].setName("[pkg.name/]");
+		[if (pkg.nsPrefix <> null)]
+		[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
+		[/if]
+		[if (pkg.nsURI <> null)]
+		[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
+		[/if]
 		[for (precedence : Precedence | pkg.ownedPrecedence)]
 		[emitPrecedence(precedence)/]
 		[/for]
@@ -155,6 +188,11 @@ Class [type.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [type.m
 [if (type.ownedTemplateSignature->notEmpty())]
 [declareTemplateSignature(type.ownedTemplateSignature)/]
 [/if]
+[for (operation : Operation | type.ownedOperation->sortedBy(name))]
+[if (operation.ownedTemplateSignature->notEmpty())]
+[declareTemplateSignature(operation.ownedTemplateSignature)/]
+[/if]
+[/for]
 [/template]
 
 [template public emitAccumulator(parameter : Parameter)]
@@ -171,51 +209,9 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 [parameter.eContainer().getSymbolName()/].getOwnedIterators().add([parameter.getSymbolName()/]);
 [/template]
 
-[template public emitOperation(operation : Iterate)]
-Iterate [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createIterate();
-[if (operation.ownedTemplateSignature->notEmpty())]
-[declareTemplateSignature(operation.ownedTemplateSignature)/]
-[emitTemplateSignature(operation.ownedTemplateSignature)/]
-[operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
-[/if]
-[operation.getSymbolName()/].setName("[operation.name/]");
-[operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);
-[for (iterator : Parameter | operation.ownedIterator)]
-[emitIterator(iterator)/]
-[/for]
-[for (accumulator : Parameter | operation.ownedAccumulator)]
-[emitAccumulator(accumulator)/]
-[/for]
-[for (parameter : Parameter | operation.ownedParameter)]
-[emitParameter(parameter)/]
-[/for]
-[operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
-[operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
-[/template]
-
-[template public emitOperation(operation : Iterator)]
-Iterator [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createIterator();
-[if (operation.ownedTemplateSignature->notEmpty())]
-[declareTemplateSignature(operation.ownedTemplateSignature)/]
-[emitTemplateSignature(operation.ownedTemplateSignature)/]
-[operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
-[/if]
-[operation.getSymbolName()/].setName("[operation.name/]");
-[operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);
-[for (iterator : Parameter | operation.ownedIterator)]
-[emitIterator(iterator)/]
-[/for]
-[for (parameter : Parameter | operation.ownedParameter)]
-[emitParameter(parameter)/]
-[/for]
-[operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
-[operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
-[/template]
-
 [template public emitOperation(operation : Operation)]
 Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation();
 [if (operation.ownedTemplateSignature->notEmpty())]
-[declareTemplateSignature(operation.ownedTemplateSignature)/]
 [emitTemplateSignature(operation.ownedTemplateSignature)/]
 [operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
 [/if]
@@ -236,6 +232,12 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 // [pkg.getSignature()/]
 //
 [pkg.getSymbolName()/].setName("[pkg.name/]");
+[if (pkg.nsPrefix <> null)]
+[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
+[/if]
+[if (pkg.nsURI <> null)]
+[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
+[/if]
 [for (ownedType : Type | pkg.ownedType->sortedBy(name))]
 [emitType(ownedType)/]
 [/for]
@@ -249,6 +251,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
 [parameter.getSymbolName()/].setName("[parameter.name/]");
 [parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);
+[parameter.getSymbolName()/].setIteratorKind(IteratorKind.[parameter.iteratorKind.toString().toUpper()/]);
 [parameter.eContainer().getSymbolName()/].getOwnedParameters().add([parameter.getSymbolName()/]);
 [/template]
 
@@ -266,9 +269,16 @@ Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
 [property.eContainer().getSymbolName()/].getOwnedAttributes().add([property.getSymbolName()/]);
 [/template]
 
-[template public emitType(type : Type)]
+[template public emitTemplateBinding(templateBinding : TemplateBinding)]
+TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateBinding();
+[templateBinding.getSymbolName()/].setSignature([templateBinding.signature.getSymbolName()/]);
+[for (templateParameterSubstitution : TemplateParameterSubstitution | templateBinding.parameterSubstitution)]
 {
-}
+	TemplateParameterSubstitution [templateParameterSubstitution.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+	[templateParameterSubstitution.getSymbolName()/].setFormal([templateParameterSubstitution.formal.getSymbolName()/]);	
+	[templateParameterSubstitution.getSymbolName()/].setActual([templateParameterSubstitution.actual.getSymbolName()/]);	
+	[templateBinding.getSymbolName()/].getParameterSubstitutions().add([templateParameterSubstitution.getSymbolName()/]);
+}[/for]
 [/template]
 
 [template public emitTemplateParameter(templateParameter : TemplateParameter)]
@@ -286,14 +296,30 @@ Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
 [/for]
 [/template]
 
+[template public emitType(type : Type)]
+{
+}
+[/template]
+
 [template public emitType(type : Class)]
 //
-// [type.getSignature()/]
+// [type.getSignature()/] [type.moniker/]
 //
 [type.getSymbolName()/].setName("[type.name/]");
+[if (type.primitive)]
+[type.getSymbolName()/].setPrimitive(Boolean.TRUE);
+[/if]
 [if (type.ownedTemplateSignature->notEmpty())]
 [emitTemplateSignature(type.ownedTemplateSignature)/]
 [type.getSymbolName()/].setOwnedTemplateSignature([type.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[if (type.templateBinding->notEmpty())]
+{
+[for (templateBinding : TemplateBinding | type.templateBinding)]
+	[emitTemplateBinding(templateBinding)/]
+	[type.getSymbolName()/].getTemplateBindings().add([templateBinding.getSymbolName()/]);
+[/for]
+}
 [/if]
 [for (superClass : Class | type.superClass)]
 [type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]);

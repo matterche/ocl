@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: GenerateXtextModels.mwe2,v 1.1.2.3 2010/12/06 17:12:02 ewillink Exp $
+ * $Id: GenerateXtextVisitors.mwe2,v 1.1.2.1 2010/12/06 17:12:02 ewillink Exp $
  * 
- * Run As->MWE2 Workflow to regenerate the Xtest CST models.
+ * Run As->MWE2 Workflow to regenerate the pivot model.
  */
-module GenerateXtextModels
+module GenerateXtextVisitors
 
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.emf.mwe.utils.*
@@ -24,34 +24,12 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
 /**
- *	Generate the Concrete Syntax Models used by the Xtext editors.
+ *	Generate the Pivot Visitors to suit pivot.ecore.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
     	platformUri = ".."
-    	registerGeneratedEPackage = "org.eclipse.xtext.common.types.TypesPackage"
-    	uriMap = Mapping {
-    		from = "platform:/plugin/org.eclipse.xtext.common.types/"
-    		to = "../org.eclipse.xtext.common.types/"
-    	}
-    }
-    bean = GenModelSetup { resourceSet = resourceSet }
-    bean = UMLGenModelSetup { resourceSet = resourceSet }
-    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-    	genModel = "/org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel" 	
-    }
-    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-    	genModel = "/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel"
-    }
-    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-    	genModel = "/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.genmodel"
-    }
-    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-    	genModel = "/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.genmodel"
-    }
-    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-    	genModel = "/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.genmodel"
     }
     component = XtextVisitorCodeGenerator { resourceSet = resourceSet
     	ecoreFile = "/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore"

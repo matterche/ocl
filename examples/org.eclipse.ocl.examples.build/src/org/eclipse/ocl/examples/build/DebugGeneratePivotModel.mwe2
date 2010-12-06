@@ -12,33 +12,37 @@
  *
  * </copyright>
  *
- * $Id: GenerateOCLstdlibModel.mwe2,v 1.1.2.2 2010/12/06 17:12:02 ewillink Exp $
+ * $Id: DebugGeneratePivotModel.mwe2,v 1.1.2.1 2010/12/06 17:12:02 ewillink Exp $
  * 
  * Run As->MWE2 Workflow to regenerate the pivot model.
  */
-module GenerateOCLstdlibModel
+module DebugGeneratePivotModel
 
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-var projectName = "org.eclipse.ocl.examples.library"
+//var pivotSlot = "pivot"
+var projectName = "org.eclipse.ocl.examples.pivot"
 
 /**
- *	Generate the OCLstdlib Model, by converting oclstdlib.oclstdlib to OCLstdlib.java.
+ *	Generate the Pivot Model, by performing the merge to create the flattened package
+ *  with additional MDT/OCL content, alphabeticsing the classes, reloading the genmodel
+ *  and finally generating the model code.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
     	platformUri = ".."
     }
-    component = OCLstdlibCodeGenerator { resourceSet = resourceSet
-    	uri = "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"
-    	libraryFile = "/${projectName}/model/OCL-2.4.oclstdlib"
-    	javaFolder = "/${projectName}/gen-src"
-    	javaPackageName = "${projectName}.oclstdlib"
-    	javaClassName = "OCLstdlib"
+    bean = UMLStandaloneSetup { resourceSet = resourceSet
+    	umlResourcesUri = "../org.eclipse.uml2.uml.resources"
+    	umlUri = "../org.eclipse.uml2.uml"
+    }
+    bean = UMLGenModelSetup { resourceSet = resourceSet }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/${projectName}/model/Pivot.merged.genmodel"
     }
 }
 

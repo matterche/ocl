@@ -12,33 +12,32 @@
  *
  * </copyright>
  *
- * $Id: GenerateOCLstdlibModel.mwe2,v 1.1.2.2 2010/12/06 17:12:02 ewillink Exp $
+ * $Id: GeneratePivotVisitors.mwe2,v 1.1.2.1 2010/12/06 17:12:02 ewillink Exp $
  * 
  * Run As->MWE2 Workflow to regenerate the pivot model.
  */
-module GenerateOCLstdlibModel
+module GeneratePivotVisitors
 
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-var projectName = "org.eclipse.ocl.examples.library"
+var projectName = "org.eclipse.ocl.examples.pivot"
 
 /**
- *	Generate the OCLstdlib Model, by converting oclstdlib.oclstdlib to OCLstdlib.java.
+ *	Generate the Pivot Visitors to suit pivot.ecore.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
     	platformUri = ".."
     }
-    component = OCLstdlibCodeGenerator { resourceSet = resourceSet
-    	uri = "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"
-    	libraryFile = "/${projectName}/model/OCL-2.4.oclstdlib"
-    	javaFolder = "/${projectName}/gen-src"
-    	javaPackageName = "${projectName}.oclstdlib"
-    	javaClassName = "OCLstdlib"
+    component = PivotVisitorCodeGenerator { resourceSet = resourceSet
+    	ecoreFile = "/${projectName}/model/pivot.ecore"
+    	javaFolder = "/${projectName}/emf-gen"
+    	javaPackageName = "${projectName}"
+    	javaClassName = "Visitor"
     }
 }
 
