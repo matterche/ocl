@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreStandaloneSetup.java,v 1.1.6.1 2010/10/01 14:48:53 ewillink Exp $
+ * $Id: OCLinEcoreStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:28:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
-import org.eclipse.ocl.examples.xtext.base.utilities.Pivot2BaseCSSwitch;
+import org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot.OCLinEcoreCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreCSScopeProvider;
-import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcore2MonikerSwitch;
-import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCS2PivotSwitch;
+import org.eclipse.ocl.examples.xtext.oclinecore.utilities.MonikerOCLinEcoreCSVisitor;
 
 /**
  * Initialization support for running Xtext languages 
@@ -35,9 +34,9 @@ public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerate
 
 	public static void init() {
 		OCLinEcoreCSScopeProvider.FACTORY.getClass();
-		OCLinEcore2MonikerSwitch.FACTORY.getClass();
-		OCLinEcoreCS2PivotSwitch.FACTORY.getClass();
-		Pivot2BaseCSSwitch.FACTORY.getClass();
+		MonikerOCLinEcoreCSVisitor.FACTORY.getClass();
+		OCLinEcoreCS2Pivot.FACTORY.getClass();
+//		Pivot2BaseCSSwitch.FACTORY.getClass();
 	}
 }
 

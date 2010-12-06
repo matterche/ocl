@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.1 2010/10/01 14:48:53 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.2 2010/12/06 18:28:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
@@ -23,11 +23,13 @@ import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreGlobalScopePr
 import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreCSScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
+import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
@@ -72,5 +74,10 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	@Override
 	public Class<? extends IScopeProvider> bindIScopeProvider() {
 		return OCLinEcoreCSScopeProvider.class;
+	}
+	
+	@Override
+	public Class<? extends XtextResource> bindXtextResource() {
+		return OCLinEcoreCSResource.class;
 	}
 }

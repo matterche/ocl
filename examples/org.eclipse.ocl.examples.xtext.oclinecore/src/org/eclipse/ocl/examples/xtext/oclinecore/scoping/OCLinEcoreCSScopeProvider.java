@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSScopeProvider.java,v 1.1.2.1 2010/10/01 14:48:52 ewillink Exp $
+ * $Id: OCLinEcoreCSScopeProvider.java,v 1.1.2.2 2010/12/06 18:28:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.DefaultScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
@@ -59,7 +58,7 @@ public class OCLinEcoreCSScopeProvider extends EssentialOCLCSScopeProvider
 
 		@Override
 		public ScopeAdapter defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ModelElementCS) eObject);
+			return new DefaultScopeAdapter(eObject);
 		}
 
 		public ScopeAdapter doInPackageSwitch(EObject eObject) {

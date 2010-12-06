@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackage.java,v 1.6.6.1 2010/10/01 14:48:52 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackage.java,v 1.6.6.2 2010/12/06 18:28:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,7 +93,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATION = BaseCSTPackage.CONSTRAINT_CS__OWNED_ANNOTATION;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS <em>OC Lin Ecore Constraint CS</em>}'.
@@ -107,35 +106,13 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	EClass getOCLinEcoreConstraintCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS#getOwnedExpression <em>Owned Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS#getOwnedExpression()
-	 * @see #getOCLinEcoreConstraintCS()
-	 * @generated
-	 */
-	EReference getOCLinEcoreConstraintCS_OwnedExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS#getOwnedReason <em>Owned Reason</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Reason</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS#getOwnedReason()
-	 * @see #getOCLinEcoreConstraintCS()
-	 * @generated
-	 */
-	EReference getOCLinEcoreConstraintCS_OwnedReason();
-
-	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__PIVOT = BaseCSTPackage.CONSTRAINT_CS__PIVOT;
+	int OC_LIN_ECORE_CONSTRAINT_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -144,7 +121,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int OC_LIN_ECORE_CONSTRAINT_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -153,7 +130,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__ERROR = BaseCSTPackage.CONSTRAINT_CS__ERROR;
+	int OC_LIN_ECORE_CONSTRAINT_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -162,7 +139,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
+	int OC_LIN_ECORE_CONSTRAINT_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -171,7 +148,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__NAME = BaseCSTPackage.CONSTRAINT_CS__NAME;
+	int OC_LIN_ECORE_CONSTRAINT_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -180,7 +157,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__STEREOTYPE = BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE;
+	int OC_LIN_ECORE_CONSTRAINT_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -189,7 +166,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__EXPR_STRING = BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING;
+	int OC_LIN_ECORE_CONSTRAINT_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -198,7 +175,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_EXPRESSION = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -207,7 +184,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_REASON = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 1;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The number of structural features of the '<em>OC Lin Ecore Constraint CS</em>' class.
@@ -216,7 +193,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS_FEATURE_COUNT = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 2;
+	int OC_LIN_ECORE_CONSTRAINT_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -249,22 +226,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OC_LIN_ECORE_CONSTRAINT_CS = eINSTANCE.getOCLinEcoreConstraintCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OC_LIN_ECORE_CONSTRAINT_CS__OWNED_EXPRESSION = eINSTANCE.getOCLinEcoreConstraintCS_OwnedExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Reason</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OC_LIN_ECORE_CONSTRAINT_CS__OWNED_REASON = eINSTANCE.getOCLinEcoreConstraintCS_OwnedReason();
 
 	}
 

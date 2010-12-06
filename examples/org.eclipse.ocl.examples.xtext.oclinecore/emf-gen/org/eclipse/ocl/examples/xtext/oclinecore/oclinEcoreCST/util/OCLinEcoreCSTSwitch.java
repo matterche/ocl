@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTSwitch.java,v 1.4.6.1 2010/10/01 14:48:53 ewillink Exp $
+ * $Id: OCLinEcoreCSTSwitch.java,v 1.4.6.2 2010/12/06 18:28:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util;
 
@@ -20,13 +20,15 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 
@@ -117,13 +119,15 @@ public class OCLinEcoreCSTSwitch<T>
 			{
 				OCLinEcoreConstraintCS ocLinEcoreConstraintCS = (OCLinEcoreConstraintCS)theEObject;
 				T result = caseOCLinEcoreConstraintCS(ocLinEcoreConstraintCS);
+				if (result == null) result = caseExpConstraintCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseConstraintCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseNamedElementCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseMonikeredElementCS(ocLinEcoreConstraintCS);
-				if (result == null) result = caseINamedElement(ocLinEcoreConstraintCS);
+				if (result == null) result = caseNameable(ocLinEcoreConstraintCS);
 				if (result == null) result = caseModelElementCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseElementCS(ocLinEcoreConstraintCS);
-				if (result == null) result = caseIPivotElement(ocLinEcoreConstraintCS);
+				if (result == null) result = casePivotable(ocLinEcoreConstraintCS);
+				if (result == null) result = caseVisitableCS(ocLinEcoreConstraintCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -148,6 +152,22 @@ public class OCLinEcoreCSTSwitch<T>
 	}
 
 /**
+	 * Returns the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVisitableCS(VisitableCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -164,17 +184,17 @@ public class OCLinEcoreCSTSwitch<T>
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPivotElement(IPivotElement object)
+	public T casePivotable(Pivotable object)
 	{
 		return null;
 	}
@@ -212,17 +232,17 @@ public class OCLinEcoreCSTSwitch<T>
 	}
 
 /**
-	 * Returns the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseINamedElement(INamedElement object)
+	public T caseNameable(Nameable object)
 	{
 		return null;
 	}
@@ -255,6 +275,22 @@ public class OCLinEcoreCSTSwitch<T>
 	 * @generated
 	 */
 	public T caseConstraintCS(ConstraintCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpConstraintCS(ExpConstraintCS object)
 	{
 		return null;
 	}

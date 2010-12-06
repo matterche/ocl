@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreFormatter.java,v 1.4.6.1 2010/10/01 14:48:50 ewillink Exp $
+ * $Id: OCLinEcoreFormatter.java,v 1.4.6.2 2010/12/06 18:28:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.formatting;
 
@@ -70,6 +70,8 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 
+	    c.setLinewrap(1).after(f.getRootPackageCSAccess().getNameAssignment_0_1());
+
 	    c.setLinewrap(2).between(f.getImportCSRule(), f.getPackageCSRule());
 	    c.setLinewrap(2).between(f.getClassCSRule(), f.getClassCSRule());
 	    c.setLinewrap(2).between(f.getClassCSRule(), f.getDataTypeCSRule());
@@ -83,12 +85,13 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 
 	    {	// AnnotationCS
 			AnnotationCSElements a = f.getAnnotationCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_2_0());
-			c.setNoSpace().before(a.getCommaKeyword_2_2_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_2_3());
+			setBraces(c, a.getLeftParenthesisKeyword_2_0(), a.getRightParenthesisKeyword_2_3());
+//			setNoSpaceLineWrap(c, a.getLeftParenthesisKeyword_2_0());
+			setNoSpaceLineWrap(c, a.getCommaKeyword_2_2_0());
+//			c.setNoSpace().before(a.getRightParenthesisKeyword_2_3());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_3_0_0(), a.getRightCurlyBracketKeyword_3_0_2());
-		    c.setIndentation(a.getLeftParenthesisKeyword_2_0(), a.getRightParenthesisKeyword_2_3());
+//		    c.setIndentation(a.getLeftParenthesisKeyword_2_0(), a.getRightParenthesisKeyword_2_3());
 	    }		
 	    {	// AttributeCS
 			AttributeCSElements a = f.getAttributeCSAccess();

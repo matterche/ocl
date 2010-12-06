@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore.xtext,v 1.5.6.2 2010/10/01 14:48:53 ewillink Exp $
+ * $Id: OCLinEcore.xtext,v 1.5.6.3 2010/12/06 18:28:15 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -67,6 +67,7 @@ UnrestrictedName returns ecore::EString:
 |	'interface'
 |	'invariant'
 |	'library'
+|	'module'
 |	'operation'
 |	'ordered'
 |	'package'
@@ -232,7 +233,7 @@ OperationCS returns base::OperationCS:
 	'operation' name=UnrestrictedName
 	(ownedTemplateSignature=TemplateSignatureCS)?
 	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
-	(':' ownedType=TypedRefCS?
+	(':' ownedType=TypedRefCS
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
 	('throws' ownedException+=TypedRefCS (',' ownedException+=TypedRefCS)*)?
 	('{'((qualifier+='derived' | qualifier+='!derived' |

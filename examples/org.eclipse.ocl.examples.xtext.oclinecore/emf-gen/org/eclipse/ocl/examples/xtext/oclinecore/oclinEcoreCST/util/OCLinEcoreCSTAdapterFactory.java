@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTAdapterFactory.java,v 1.4.6.1 2010/10/01 14:48:53 ewillink Exp $
+ * $Id: OCLinEcoreCSTAdapterFactory.java,v 1.4.6.2 2010/12/06 18:28:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util;
 
@@ -20,13 +20,15 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 
@@ -99,14 +101,19 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl
 				return createOCLinEcoreConstraintCSAdapter();
 			}
 			@Override
+			public Adapter caseVisitableCS(VisitableCS object)
+			{
+				return createVisitableCSAdapter();
+			}
+			@Override
 			public Adapter caseElementCS(ElementCS object)
 			{
 				return createElementCSAdapter();
 			}
 			@Override
-			public Adapter caseIPivotElement(IPivotElement object)
+			public Adapter casePivotable(Pivotable object)
 			{
-				return createIPivotElementAdapter();
+				return createPivotableAdapter();
 			}
 			@Override
 			public Adapter caseModelElementCS(ModelElementCS object)
@@ -119,9 +126,9 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl
 				return createMonikeredElementCSAdapter();
 			}
 			@Override
-			public Adapter caseINamedElement(INamedElement object)
+			public Adapter caseNameable(Nameable object)
 			{
-				return createINamedElementAdapter();
+				return createNameableAdapter();
 			}
 			@Override
 			public Adapter caseNamedElementCS(NamedElementCS object)
@@ -132,6 +139,11 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseConstraintCS(ConstraintCS object)
 			{
 				return createConstraintCSAdapter();
+			}
+			@Override
+			public Adapter caseExpConstraintCS(ExpConstraintCS object)
+			{
+				return createExpConstraintCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -171,6 +183,21 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
 /**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.util.VisitableCS <em>Visitable CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.util.VisitableCS
+	 * @generated
+	 */
+	public Adapter createVisitableCSAdapter()
+	{
+		return null;
+	}
+
+/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS <em>Element CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -186,16 +213,16 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.IPivotElement <em>IPivot Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.IPivotElement
+	 * @see org.eclipse.ocl.examples.pivot.util.Pivotable
 	 * @generated
 	 */
-	public Adapter createIPivotElementAdapter()
+	public Adapter createPivotableAdapter()
 	{
 		return null;
 	}
@@ -231,16 +258,16 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
 /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.INamedElement <em>INamed Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.Nameable <em>Nameable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.INamedElement
+	 * @see org.eclipse.ocl.examples.pivot.util.Nameable
 	 * @generated
 	 */
-	public Adapter createINamedElementAdapter()
+	public Adapter createNameableAdapter()
 	{
 		return null;
 	}
@@ -271,6 +298,21 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConstraintCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS <em>Exp Constraint CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS
+	 * @generated
+	 */
+	public Adapter createExpConstraintCSAdapter()
 	{
 		return null;
 	}

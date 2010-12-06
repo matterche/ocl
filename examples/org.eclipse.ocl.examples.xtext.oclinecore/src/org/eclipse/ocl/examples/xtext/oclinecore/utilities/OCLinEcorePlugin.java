@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcorePlugin.java,v 1.1.2.1 2010/10/01 14:48:52 ewillink Exp $
+ * $Id: OCLinEcorePlugin.java,v 1.1.2.2 2010/12/06 18:28:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.utilities;
 
@@ -99,7 +99,7 @@ public final class OCLinEcorePlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			OCLinEcore2MonikerSwitch.FACTORY.getClass();
+//			OCLinEcore2MonikerSwitch.FACTORY.getClass();
 			super.start(context);
 		}
 	}

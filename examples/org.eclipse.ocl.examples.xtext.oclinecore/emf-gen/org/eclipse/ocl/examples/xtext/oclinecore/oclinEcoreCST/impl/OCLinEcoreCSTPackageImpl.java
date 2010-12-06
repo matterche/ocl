@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackageImpl.java,v 1.4.6.1 2010/10/01 14:48:50 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackageImpl.java,v 1.4.6.2 2010/12/06 18:28:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
@@ -119,26 +117,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOCLinEcoreConstraintCS_OwnedExpression()
-	{
-		return (EReference)ocLinEcoreConstraintCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getOCLinEcoreConstraintCS_OwnedReason()
-	{
-		return (EReference)ocLinEcoreConstraintCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OCLinEcoreCSTFactory getOCLinEcoreCSTFactory() {
 		return (OCLinEcoreCSTFactory)getEFactoryInstance();
 	}
@@ -163,8 +141,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 
 		// Create classes and their features
 		ocLinEcoreConstraintCSEClass = createEClass(OC_LIN_ECORE_CONSTRAINT_CS);
-		createEReference(ocLinEcoreConstraintCSEClass, OC_LIN_ECORE_CONSTRAINT_CS__OWNED_EXPRESSION);
-		createEReference(ocLinEcoreConstraintCSEClass, OC_LIN_ECORE_CONSTRAINT_CS__OWNED_REASON);
 	}
 
 	/**
@@ -191,7 +167,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		BaseCSTPackage theBaseCSTPackage = (BaseCSTPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSTPackage.eNS_URI);
 		EssentialOCLCSTPackage theEssentialOCLCSTPackage = (EssentialOCLCSTPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSTPackage.eNS_URI);
 
 		// Create type parameters
@@ -199,12 +174,10 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		ocLinEcoreConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
+		ocLinEcoreConstraintCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpConstraintCS());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(ocLinEcoreConstraintCSEClass, OCLinEcoreConstraintCS.class, "OCLinEcoreConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOCLinEcoreConstraintCS_OwnedExpression(), theEssentialOCLCSTPackage.getExpCS(), null, "ownedExpression", null, 0, 1, OCLinEcoreConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOCLinEcoreConstraintCS_OwnedReason(), theEssentialOCLCSTPackage.getExpCS(), null, "ownedReason", null, 0, 1, OCLinEcoreConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
