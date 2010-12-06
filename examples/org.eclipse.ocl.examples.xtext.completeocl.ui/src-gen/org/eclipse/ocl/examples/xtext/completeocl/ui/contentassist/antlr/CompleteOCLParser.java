@@ -54,6 +54,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_0(), "rule__NUMBER_LITERAL__Alternatives_2_0");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_1(), "rule__NUMBER_LITERAL__Alternatives_2_1");
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");
+					put(grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getAlternatives(), "rule__EssentialOCLUnrestrictedIdentifier__Alternatives");
 					put(grammarAccess.getEssentialOCLPrefixOperatorAccess().getAlternatives(), "rule__EssentialOCLPrefixOperator__Alternatives");
 					put(grammarAccess.getEssentialOCLInfixOperatorAccess().getAlternatives(), "rule__EssentialOCLInfixOperator__Alternatives");
 					put(grammarAccess.getEssentialOCLNavigationOperatorAccess().getAlternatives(), "rule__EssentialOCLNavigationOperator__Alternatives");
@@ -153,6 +154,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLetExpCSAccess().getGroup(), "rule__LetExpCS__Group__0");
 					put(grammarAccess.getLetExpCSAccess().getGroup_2(), "rule__LetExpCS__Group_2__0");
 					put(grammarAccess.getLetVariableCSAccess().getGroup(), "rule__LetVariableCS__Group__0");
+					put(grammarAccess.getLetVariableCSAccess().getGroup_1(), "rule__LetVariableCS__Group_1__0");
 					put(grammarAccess.getNestedExpCSAccess().getGroup(), "rule__NestedExpCS__Group__0");
 					put(grammarAccess.getSelfExpCSAccess().getGroup(), "rule__SelfExpCS__Group__0");
 					put(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedImportAssignment_0(), "rule__CompleteOCLDocumentCS__OwnedImportAssignment_0");
@@ -280,8 +282,8 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLetExpCSAccess().getVariableAssignment_2_1(), "rule__LetExpCS__VariableAssignment_2_1");
 					put(grammarAccess.getLetExpCSAccess().getInAssignment_4(), "rule__LetExpCS__InAssignment_4");
 					put(grammarAccess.getLetVariableCSAccess().getNameAssignment_0(), "rule__LetVariableCS__NameAssignment_0");
-					put(grammarAccess.getLetVariableCSAccess().getOwnedTypeAssignment_2(), "rule__LetVariableCS__OwnedTypeAssignment_2");
-					put(grammarAccess.getLetVariableCSAccess().getInitExpressionAssignment_4(), "rule__LetVariableCS__InitExpressionAssignment_4");
+					put(grammarAccess.getLetVariableCSAccess().getOwnedTypeAssignment_1_1(), "rule__LetVariableCS__OwnedTypeAssignment_1_1");
+					put(grammarAccess.getLetVariableCSAccess().getInitExpressionAssignment_3(), "rule__LetVariableCS__InitExpressionAssignment_3");
 					put(grammarAccess.getNestedExpCSAccess().getSourceAssignment_1(), "rule__NestedExpCS__SourceAssignment_1");
 				}
 			};
@@ -302,7 +304,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 	
 	@Override
 	protected String[] getInitialHiddenTokens() {
-		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
+		return new String[] { "RULE_WS", "RULE_DOCUMENTATION", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
 	
 	public CompleteOCLGrammarAccess getGrammarAccess() {

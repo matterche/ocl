@@ -53,7 +53,7 @@ public class InternalCompleteOCLLexer extends Lexer {
     public static final int T62=62;
     public static final int T44=44;
     public static final int T55=55;
-    public static final int RULE_ML_COMMENT=9;
+    public static final int RULE_ML_COMMENT=10;
     public static final int RULE_ID=5;
     public static final int T84=84;
     public static final int T73=73;
@@ -68,11 +68,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public static final int T42=42;
     public static final int T66=66;
     public static final int T40=40;
+    public static final int T88=88;
     public static final int T71=71;
     public static final int T63=63;
     public static final int T57=57;
     public static final int T72=72;
-    public static final int T13=13;
     public static final int T65=65;
     public static final int T56=56;
     public static final int T87=87;
@@ -80,21 +80,22 @@ public class InternalCompleteOCLLexer extends Lexer {
     public static final int T80=80;
     public static final int T75=75;
     public static final int T59=59;
-    public static final int RULE_WS=11;
+    public static final int RULE_WS=12;
     public static final int T48=48;
     public static final int T15=15;
     public static final int T54=54;
     public static final int EOF=-1;
     public static final int T67=67;
     public static final int T47=47;
-    public static final int Tokens=88;
+    public static final int Tokens=89;
     public static final int T53=53;
+    public static final int RULE_DOCUMENTATION=9;
     public static final int T60=60;
-    public static final int RULE_ANY_OTHER=12;
+    public static final int RULE_ANY_OTHER=13;
     public static final int T31=31;
     public static final int T82=82;
     public static final int T49=49;
-    public static final int RULE_SL_COMMENT=10;
+    public static final int RULE_SL_COMMENT=11;
     public static final int T27=27;
     public static final int T52=52;
     public static final int T30=30;
@@ -104,33 +105,14 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g"; }
 
-    // $ANTLR start T13
-    public final void mT13() throws RecognitionException {
-        try {
-            int _type = T13;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:10:5: ( '^' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:10:7: '^'
-            {
-            match('^'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T13
-
     // $ANTLR start T14
     public final void mT14() throws RecognitionException {
         try {
             int _type = T14;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:11:5: ( '^^' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:11:7: '^^'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:10:5: ( '^' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:10:7: '^'
             {
-            match("^^"); 
-
+            match('^'); 
 
             }
 
@@ -145,10 +127,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT15() throws RecognitionException {
         try {
             int _type = T15;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:12:5: ( 'body' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:12:7: 'body'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:11:5: ( '^^' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:11:7: '^^'
             {
-            match("body"); 
+            match("^^"); 
 
 
             }
@@ -164,10 +146,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT16() throws RecognitionException {
         try {
             int _type = T16;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13:5: ( 'context' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13:7: 'context'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:12:5: ( 'body' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:12:7: 'body'
             {
-            match("context"); 
+            match("body"); 
 
 
             }
@@ -183,10 +165,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT17() throws RecognitionException {
         try {
             int _type = T17;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:14:5: ( 'def' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:14:7: 'def'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13:5: ( 'context' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13:7: 'context'
             {
-            match("def"); 
+            match("context"); 
 
 
             }
@@ -202,10 +184,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT18() throws RecognitionException {
         try {
             int _type = T18;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:15:5: ( 'derive' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:15:7: 'derive'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:14:5: ( 'def' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:14:7: 'def'
             {
-            match("derive"); 
+            match("def"); 
 
 
             }
@@ -221,10 +203,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT19() throws RecognitionException {
         try {
             int _type = T19;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:16:5: ( 'import' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:16:7: 'import'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:15:5: ( 'derive' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:15:7: 'derive'
             {
-            match("import"); 
+            match("derive"); 
 
 
             }
@@ -240,10 +222,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT20() throws RecognitionException {
         try {
             int _type = T20;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:17:5: ( 'init' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:17:7: 'init'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:16:5: ( 'import' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:16:7: 'import'
             {
-            match("init"); 
+            match("import"); 
 
 
             }
@@ -259,10 +241,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT21() throws RecognitionException {
         try {
             int _type = T21;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:18:5: ( 'inv' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:18:7: 'inv'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:17:5: ( 'init' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:17:7: 'init'
             {
-            match("inv"); 
+            match("init"); 
 
 
             }
@@ -278,10 +260,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT22() throws RecognitionException {
         try {
             int _type = T22;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:19:5: ( 'Boolean' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:19:7: 'Boolean'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:18:5: ( 'inv' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:18:7: 'inv'
             {
-            match("Boolean"); 
+            match("inv"); 
 
 
             }
@@ -297,10 +279,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT23() throws RecognitionException {
         try {
             int _type = T23;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:20:5: ( 'Integer' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:20:7: 'Integer'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:19:5: ( 'Boolean' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:19:7: 'Boolean'
             {
-            match("Integer"); 
+            match("Boolean"); 
 
 
             }
@@ -316,10 +298,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:21:5: ( 'Real' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:21:7: 'Real'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:20:5: ( 'Integer' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:20:7: 'Integer'
             {
-            match("Real"); 
+            match("Integer"); 
 
 
             }
@@ -335,10 +317,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:22:5: ( 'String' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:22:7: 'String'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:21:5: ( 'Real' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:21:7: 'Real'
             {
-            match("String"); 
+            match("Real"); 
 
 
             }
@@ -354,10 +336,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT26() throws RecognitionException {
         try {
             int _type = T26;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:23:5: ( 'UnlimitedNatural' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:23:7: 'UnlimitedNatural'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:22:5: ( 'String' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:22:7: 'String'
             {
-            match("UnlimitedNatural"); 
+            match("String"); 
 
 
             }
@@ -373,10 +355,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT27() throws RecognitionException {
         try {
             int _type = T27;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:24:5: ( 'OclAny' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:24:7: 'OclAny'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:23:5: ( 'UnlimitedNatural' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:23:7: 'UnlimitedNatural'
             {
-            match("OclAny"); 
+            match("UnlimitedNatural"); 
 
 
             }
@@ -392,10 +374,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT28() throws RecognitionException {
         try {
             int _type = T28;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:25:5: ( 'OclInvalid' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:25:7: 'OclInvalid'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:24:5: ( 'OclAny' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:24:7: 'OclAny'
             {
-            match("OclInvalid"); 
+            match("OclAny"); 
 
 
             }
@@ -411,10 +393,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT29() throws RecognitionException {
         try {
             int _type = T29;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:26:5: ( 'OclMessage' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:26:7: 'OclMessage'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:25:5: ( 'OclInvalid' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:25:7: 'OclInvalid'
             {
-            match("OclMessage"); 
+            match("OclInvalid"); 
 
 
             }
@@ -430,10 +412,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT30() throws RecognitionException {
         try {
             int _type = T30;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:27:5: ( 'OclState' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:27:7: 'OclState'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:26:5: ( 'OclMessage' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:26:7: 'OclMessage'
             {
-            match("OclState"); 
+            match("OclMessage"); 
 
 
             }
@@ -449,10 +431,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT31() throws RecognitionException {
         try {
             int _type = T31;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:28:5: ( 'OclVoid' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:28:7: 'OclVoid'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:27:5: ( 'OclState' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:27:7: 'OclState'
             {
-            match("OclVoid"); 
+            match("OclState"); 
 
 
             }
@@ -468,10 +450,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT32() throws RecognitionException {
         try {
             int _type = T32;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:29:5: ( 'e' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:29:7: 'e'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:28:5: ( 'OclVoid' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:28:7: 'OclVoid'
             {
-            match('e'); 
+            match("OclVoid"); 
+
 
             }
 
@@ -486,10 +469,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT33() throws RecognitionException {
         try {
             int _type = T33;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:30:5: ( 'E' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:30:7: 'E'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:29:5: ( 'e' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:29:7: 'e'
             {
-            match('E'); 
+            match('e'); 
 
             }
 
@@ -504,10 +487,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT34() throws RecognitionException {
         try {
             int _type = T34;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:31:5: ( '+' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:31:7: '+'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:30:5: ( 'E' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:30:7: 'E'
             {
-            match('+'); 
+            match('E'); 
 
             }
 
@@ -522,10 +505,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT35() throws RecognitionException {
         try {
             int _type = T35;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:32:5: ( '-' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:32:7: '-'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:31:5: ( '+' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:31:7: '+'
             {
-            match('-'); 
+            match('+'); 
 
             }
 
@@ -540,11 +523,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:33:5: ( 'not' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:33:7: 'not'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:32:5: ( '-' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:32:7: '-'
             {
-            match("not"); 
-
+            match('-'); 
 
             }
 
@@ -559,10 +541,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:34:5: ( '*' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:34:7: '*'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:33:5: ( 'der' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:33:7: 'der'
             {
-            match('*'); 
+            match("der"); 
+
 
             }
 
@@ -577,10 +560,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:35:5: ( '/' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:35:7: '/'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:34:5: ( 'post' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:34:7: 'post'
             {
-            match('/'); 
+            match("post"); 
+
 
             }
 
@@ -595,10 +579,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:36:5: ( '>' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:36:7: '>'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:35:5: ( 'pre' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:35:7: 'pre'
             {
-            match('>'); 
+            match("pre"); 
+
 
             }
 
@@ -613,10 +598,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:37:5: ( '<' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:37:7: '<'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:36:5: ( 'not' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:36:7: 'not'
             {
-            match('<'); 
+            match("not"); 
+
 
             }
 
@@ -631,11 +617,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:38:5: ( '>=' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:38:7: '>='
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:37:5: ( '*' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:37:7: '*'
             {
-            match(">="); 
-
+            match('*'); 
 
             }
 
@@ -650,11 +635,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT42() throws RecognitionException {
         try {
             int _type = T42;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:39:5: ( '<=' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:39:7: '<='
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:38:5: ( '/' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:38:7: '/'
             {
-            match("<="); 
-
+            match('/'); 
 
             }
 
@@ -669,10 +653,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT43() throws RecognitionException {
         try {
             int _type = T43;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:40:5: ( '=' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:40:7: '='
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:39:5: ( '>' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:39:7: '>'
             {
-            match('='); 
+            match('>'); 
 
             }
 
@@ -687,11 +671,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:41:5: ( '<>' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:41:7: '<>'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:40:5: ( '<' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:40:7: '<'
             {
-            match("<>"); 
-
+            match('<'); 
 
             }
 
@@ -706,10 +689,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:42:5: ( 'and' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:42:7: 'and'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:41:5: ( '>=' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:41:7: '>='
             {
-            match("and"); 
+            match(">="); 
 
 
             }
@@ -725,10 +708,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:43:5: ( 'or' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:43:7: 'or'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:42:5: ( '<=' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:42:7: '<='
             {
-            match("or"); 
+            match("<="); 
 
 
             }
@@ -744,11 +727,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:44:5: ( 'xor' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:44:7: 'xor'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:43:5: ( '=' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:43:7: '='
             {
-            match("xor"); 
-
+            match('='); 
 
             }
 
@@ -763,10 +745,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:45:5: ( 'implies' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:45:7: 'implies'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:44:5: ( '<>' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:44:7: '<>'
             {
-            match("implies"); 
+            match("<>"); 
 
 
             }
@@ -782,10 +764,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:46:5: ( '.' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:46:7: '.'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:45:5: ( 'and' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:45:7: 'and'
             {
-            match('.'); 
+            match("and"); 
+
 
             }
 
@@ -800,10 +783,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:47:5: ( '->' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:47:7: '->'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:46:5: ( 'or' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:46:7: 'or'
             {
-            match("->"); 
+            match("or"); 
 
 
             }
@@ -819,10 +802,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:48:5: ( 'der' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:48:7: 'der'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:47:5: ( 'xor' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:47:7: 'xor'
             {
-            match("der"); 
+            match("xor"); 
 
 
             }
@@ -838,10 +821,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT52() throws RecognitionException {
         try {
             int _type = T52;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:49:5: ( 'post' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:49:7: 'post'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:48:5: ( 'implies' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:48:7: 'implies'
             {
-            match("post"); 
+            match("implies"); 
 
 
             }
@@ -857,11 +840,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:50:5: ( 'pre' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:50:7: 'pre'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:49:5: ( '.' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:49:7: '.'
             {
-            match("pre"); 
-
+            match('.'); 
 
             }
 
@@ -876,10 +858,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:51:5: ( 'Set' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:51:7: 'Set'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:50:5: ( '->' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:50:7: '->'
             {
-            match("Set"); 
+            match("->"); 
 
 
             }
@@ -895,10 +877,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:52:5: ( 'Bag' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:52:7: 'Bag'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:51:5: ( 'Set' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:51:7: 'Set'
             {
-            match("Bag"); 
+            match("Set"); 
 
 
             }
@@ -914,10 +896,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:53:5: ( 'Sequence' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:53:7: 'Sequence'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:52:5: ( 'Bag' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:52:7: 'Bag'
             {
-            match("Sequence"); 
+            match("Bag"); 
 
 
             }
@@ -933,10 +915,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:54:5: ( 'Collection' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:54:7: 'Collection'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:53:5: ( 'Sequence' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:53:7: 'Sequence'
             {
-            match("Collection"); 
+            match("Sequence"); 
 
 
             }
@@ -952,10 +934,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:55:5: ( 'OrderedSet' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:55:7: 'OrderedSet'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:54:5: ( 'Collection' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:54:7: 'Collection'
             {
-            match("OrderedSet"); 
+            match("Collection"); 
 
 
             }
@@ -971,10 +953,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:56:5: ( ':' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:56:7: ':'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:55:5: ( 'OrderedSet' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:55:7: 'OrderedSet'
             {
-            match(':'); 
+            match("OrderedSet"); 
+
 
             }
 
@@ -989,10 +972,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:57:5: ( '(' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:57:7: '('
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:56:5: ( ':' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:56:7: ':'
             {
-            match('('); 
+            match(':'); 
 
             }
 
@@ -1007,10 +990,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:58:5: ( ')' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:58:7: ')'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:57:5: ( '(' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:57:7: '('
             {
-            match(')'); 
+            match('('); 
 
             }
 
@@ -1025,10 +1008,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:59:5: ( ',' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:59:7: ','
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:58:5: ( ')' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:58:7: ')'
             {
-            match(','); 
+            match(')'); 
 
             }
 
@@ -1043,11 +1026,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:60:5: ( 'package' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:60:7: 'package'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:59:5: ( ',' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:59:7: ','
             {
-            match("package"); 
-
+            match(','); 
 
             }
 
@@ -1062,10 +1044,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:61:5: ( 'endpackage' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:61:7: 'endpackage'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:60:5: ( 'package' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:60:7: 'package'
             {
-            match("endpackage"); 
+            match("package"); 
 
 
             }
@@ -1081,10 +1063,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:62:5: ( '::' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:62:7: '::'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:61:5: ( 'endpackage' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:61:7: 'endpackage'
             {
-            match("::"); 
+            match("endpackage"); 
 
 
             }
@@ -1100,10 +1082,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:63:5: ( '@' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:63:7: '@'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:62:5: ( '::' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:62:7: '::'
             {
-            match('@'); 
+            match("::"); 
+
 
             }
 
@@ -1118,10 +1101,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT67() throws RecognitionException {
         try {
             int _type = T67;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:64:5: ( '?' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:64:7: '?'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:63:5: ( '@' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:63:7: '@'
             {
-            match('?'); 
+            match('@'); 
 
             }
 
@@ -1136,10 +1119,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:65:5: ( '{' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:65:7: '{'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:64:5: ( '?' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:64:7: '?'
             {
-            match('{'); 
+            match('?'); 
 
             }
 
@@ -1154,10 +1137,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:5: ( '}' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:7: '}'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:65:5: ( '{' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:65:7: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -1172,11 +1155,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:5: ( '..' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:7: '..'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:5: ( '}' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:7: '}'
             {
-            match(".."); 
-
+            match('}'); 
 
             }
 
@@ -1191,10 +1173,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:68:5: ( 'Tuple' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:68:7: 'Tuple'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:5: ( '..' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:7: '..'
             {
-            match("Tuple"); 
+            match(".."); 
 
 
             }
@@ -1210,10 +1192,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:69:5: ( 'invalid' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:69:7: 'invalid'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:68:5: ( 'Tuple' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:68:7: 'Tuple'
             {
-            match("invalid"); 
+            match("Tuple"); 
 
 
             }
@@ -1229,10 +1211,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:70:5: ( 'null' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:70:7: 'null'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:69:5: ( 'invalid' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:69:7: 'invalid'
             {
-            match("null"); 
+            match("invalid"); 
 
 
             }
@@ -1248,10 +1230,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:71:5: ( '[' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:71:7: '['
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:70:5: ( 'null' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:70:7: 'null'
             {
-            match('['); 
+            match("null"); 
+
 
             }
 
@@ -1266,10 +1249,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:72:5: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:72:7: ']'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:71:5: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:71:7: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -1284,11 +1267,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:73:5: ( 'if' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:73:7: 'if'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:72:5: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:72:7: ']'
             {
-            match("if"); 
-
+            match(']'); 
 
             }
 
@@ -1303,10 +1285,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:74:5: ( 'then' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:74:7: 'then'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:73:5: ( 'if' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:73:7: 'if'
             {
-            match("then"); 
+            match("if"); 
 
 
             }
@@ -1322,10 +1304,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:75:5: ( 'else' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:75:7: 'else'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:74:5: ( 'then' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:74:7: 'then'
             {
-            match("else"); 
+            match("then"); 
 
 
             }
@@ -1341,10 +1323,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:76:5: ( 'endif' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:76:7: 'endif'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:75:5: ( 'else' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:75:7: 'else'
             {
-            match("endif"); 
+            match("else"); 
 
 
             }
@@ -1360,10 +1342,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:77:5: ( 'let' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:77:7: 'let'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:76:5: ( 'endif' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:76:7: 'endif'
             {
-            match("let"); 
+            match("endif"); 
 
 
             }
@@ -1379,10 +1361,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:78:5: ( 'in' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:78:7: 'in'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:77:5: ( 'let' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:77:7: 'let'
             {
-            match("in"); 
+            match("let"); 
 
 
             }
@@ -1398,10 +1380,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:79:5: ( 'self' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:79:7: 'self'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:78:5: ( 'in' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:78:7: 'in'
             {
-            match("self"); 
+            match("in"); 
 
 
             }
@@ -1417,10 +1399,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT83() throws RecognitionException {
         try {
             int _type = T83;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:80:5: ( 'static' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:80:7: 'static'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:79:5: ( 'self' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:79:7: 'self'
             {
-            match("static"); 
+            match("self"); 
 
 
             }
@@ -1436,10 +1418,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT84() throws RecognitionException {
         try {
             int _type = T84;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:81:5: ( 'true' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:81:7: 'true'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:80:5: ( 'static' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:80:7: 'static'
             {
-            match("true"); 
+            match("static"); 
 
 
             }
@@ -1455,10 +1437,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT85() throws RecognitionException {
         try {
             int _type = T85;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:82:5: ( 'false' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:82:7: 'false'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:81:5: ( 'true' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:81:7: 'true'
             {
-            match("false"); 
+            match("true"); 
 
 
             }
@@ -1474,10 +1456,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT86() throws RecognitionException {
         try {
             int _type = T86;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:83:5: ( '|' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:83:7: '|'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:82:5: ( 'false' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:82:7: 'false'
             {
-            match('|'); 
+            match("false"); 
+
 
             }
 
@@ -1492,6 +1475,24 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mT87() throws RecognitionException {
         try {
             int _type = T87;
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:83:5: ( '|' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:83:7: '|'
+            {
+            match('|'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T87
+
+    // $ANTLR start T88
+    public final void mT88() throws RecognitionException {
+        try {
+            int _type = T88;
             // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:84:5: ( ';' )
             // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:84:7: ';'
             {
@@ -1504,17 +1505,17 @@ public class InternalCompleteOCLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T87
+    // $ANTLR end T88
 
     // $ANTLR start RULE_DOUBLE_QUOTED_STRING
     public final void mRULE_DOUBLE_QUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_DOUBLE_QUOTED_STRING;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13322:27: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13322:29: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13396:27: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13396:29: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13322:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13396:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop1:
             do {
                 int alt1=3;
@@ -1530,7 +1531,7 @@ public class InternalCompleteOCLLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13322:34: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13396:34: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -1547,7 +1548,7 @@ public class InternalCompleteOCLLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13322:79: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13396:79: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1583,11 +1584,11 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mRULE_SINGLE_QUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_SINGLE_QUOTED_STRING;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13324:27: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13324:29: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13398:27: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13398:29: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13324:34: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13398:34: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop2:
             do {
                 int alt2=3;
@@ -1603,7 +1604,7 @@ public class InternalCompleteOCLLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13324:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13398:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -1620,7 +1621,7 @@ public class InternalCompleteOCLLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13324:80: ~ ( ( '\\\\' | '\\'' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13398:80: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1656,12 +1657,12 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mRULE_ML_SINGLE_QUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_ML_SINGLE_QUOTED_STRING;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13326:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13326:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13400:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13400:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
             {
             match("/\'"); 
 
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13326:38: ( options {greedy=false; } : . )*
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13400:38: ( options {greedy=false; } : . )*
             loop3:
             do {
                 int alt3=2;
@@ -1686,7 +1687,7 @@ public class InternalCompleteOCLLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13326:66: .
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13400:66: .
             	    {
             	    matchAny(); 
 
@@ -1714,10 +1715,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13328:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13328:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13402:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13402:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13328:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13402:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1735,13 +1736,13 @@ public class InternalCompleteOCLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("13328:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )", 5, 0, input);
+                    new NoViableAltException("13402:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13328:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13402:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     {
                     if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                         input.consume();
@@ -1753,7 +1754,7 @@ public class InternalCompleteOCLLexer extends Lexer {
                         recover(mse);    throw mse;
                     }
 
-                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13328:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13402:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     loop4:
                     do {
                         int alt4=2;
@@ -1791,7 +1792,7 @@ public class InternalCompleteOCLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13328:70: '_' RULE_SINGLE_QUOTED_STRING
+                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13402:70: '_' RULE_SINGLE_QUOTED_STRING
                     {
                     match('_'); 
                     mRULE_SINGLE_QUOTED_STRING(); 
@@ -1815,10 +1816,10 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13330:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13330:12: ( '0' .. '9' )+
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13404:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13404:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13330:12: ( '0' .. '9' )+
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13404:12: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -1832,7 +1833,7 @@ public class InternalCompleteOCLLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13330:13: '0' .. '9'
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13404:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1858,16 +1859,16 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
     // $ANTLR end RULE_INT
 
-    // $ANTLR start RULE_ML_COMMENT
-    public final void mRULE_ML_COMMENT() throws RecognitionException {
+    // $ANTLR start RULE_DOCUMENTATION
+    public final void mRULE_DOCUMENTATION() throws RecognitionException {
         try {
-            int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13332:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13332:19: '/*' ( options {greedy=false; } : . )* '*/'
+            int _type = RULE_DOCUMENTATION;
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13406:20: ( '/**' ( options {greedy=false; } : . )* '**/' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13406:22: '/**' ( options {greedy=false; } : . )* '**/'
             {
-            match("/*"); 
+            match("/**"); 
 
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13332:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13406:28: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1876,10 +1877,19 @@ public class InternalCompleteOCLLexer extends Lexer {
                 if ( (LA7_0=='*') ) {
                     int LA7_1 = input.LA(2);
 
-                    if ( (LA7_1=='/') ) {
-                        alt7=2;
+                    if ( (LA7_1=='*') ) {
+                        int LA7_3 = input.LA(3);
+
+                        if ( (LA7_3=='/') ) {
+                            alt7=2;
+                        }
+                        else if ( ((LA7_3>='\u0000' && LA7_3<='.')||(LA7_3>='0' && LA7_3<='\uFFFE')) ) {
+                            alt7=1;
+                        }
+
+
                     }
-                    else if ( ((LA7_1>='\u0000' && LA7_1<='.')||(LA7_1>='0' && LA7_1<='\uFFFE')) ) {
+                    else if ( ((LA7_1>='\u0000' && LA7_1<=')')||(LA7_1>='+' && LA7_1<='\uFFFE')) ) {
                         alt7=1;
                     }
 
@@ -1892,7 +1902,7 @@ public class InternalCompleteOCLLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13332:52: .
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13406:56: .
             	    {
             	    matchAny(); 
 
@@ -1901,6 +1911,74 @@ public class InternalCompleteOCLLexer extends Lexer {
 
             	default :
             	    break loop7;
+                }
+            } while (true);
+
+            match("**/"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end RULE_DOCUMENTATION
+
+    // $ANTLR start RULE_ML_COMMENT
+    public final void mRULE_ML_COMMENT() throws RecognitionException {
+        try {
+            int _type = RULE_ML_COMMENT;
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13408:17: ( '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13408:19: '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/'
+            {
+            match("/*"); 
+
+            if ( (input.LA(1)>='\u0000' && input.LA(1)<=')')||(input.LA(1)>='+' && input.LA(1)<='\uFFFE') ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse =
+                    new MismatchedSetException(null,input);
+                recover(mse);    throw mse;
+            }
+
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13408:31: ( options {greedy=false; } : . )*
+            loop8:
+            do {
+                int alt8=2;
+                int LA8_0 = input.LA(1);
+
+                if ( (LA8_0=='*') ) {
+                    int LA8_1 = input.LA(2);
+
+                    if ( (LA8_1=='/') ) {
+                        alt8=2;
+                    }
+                    else if ( ((LA8_1>='\u0000' && LA8_1<='.')||(LA8_1>='0' && LA8_1<='\uFFFE')) ) {
+                        alt8=1;
+                    }
+
+
+                }
+                else if ( ((LA8_0>='\u0000' && LA8_0<=')')||(LA8_0>='+' && LA8_0<='\uFFFE')) ) {
+                    alt8=1;
+                }
+
+
+                switch (alt8) {
+            	case 1 :
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13408:59: .
+            	    {
+            	    matchAny(); 
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop8;
                 }
             } while (true);
 
@@ -1920,25 +1998,25 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("--"); 
 
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:24: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop8:
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            loop9:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                if ( ((LA8_0>='\u0000' && LA8_0<='\t')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\uFFFE')) ) {
-                    alt8=1;
+                if ( ((LA9_0>='\u0000' && LA9_0<='\t')||(LA9_0>='\u000B' && LA9_0<='\f')||(LA9_0>='\u000E' && LA9_0<='\uFFFE')) ) {
+                    alt9=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1955,31 +2033,31 @@ public class InternalCompleteOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop9;
                 }
             } while (true);
 
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:40: ( ( '\\r' )? '\\n' )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:40: ( ( '\\r' )? '\\n' )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA10_0=='\n'||LA10_0=='\r') ) {
-                alt10=1;
+            if ( (LA11_0=='\n'||LA11_0=='\r') ) {
+                alt11=1;
             }
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:41: ( '\\r' )?
-                    int alt9=2;
-                    int LA9_0 = input.LA(1);
+                    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:41: ( '\\r' )?
+                    int alt10=2;
+                    int LA10_0 = input.LA(1);
 
-                    if ( (LA9_0=='\r') ) {
-                        alt9=1;
+                    if ( (LA10_0=='\r') ) {
+                        alt10=1;
                     }
-                    switch (alt9) {
+                    switch (alt10) {
                         case 1 :
-                            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13334:41: '\\r'
+                            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13410:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2009,22 +2087,22 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13336:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13336:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13412:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13412:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13336:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt11=0;
-            loop11:
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13412:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            int cnt12=0;
+            loop12:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {
-                    alt11=1;
+                if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {
+                    alt12=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt12) {
             	case 1 :
             	    // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:
             	    {
@@ -2043,12 +2121,12 @@ public class InternalCompleteOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt11 >= 1 ) break loop11;
+            	    if ( cnt12 >= 1 ) break loop12;
                         EarlyExitException eee =
-                            new EarlyExitException(11, input);
+                            new EarlyExitException(12, input);
                         throw eee;
                 }
-                cnt11++;
+                cnt12++;
             } while (true);
 
 
@@ -2065,8 +2143,8 @@ public class InternalCompleteOCLLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13338:16: ( . )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13338:18: .
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13414:16: ( . )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:13414:18: .
             {
             matchAny(); 
 
@@ -2080,689 +2158,689 @@ public class InternalCompleteOCLLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:8: ( T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=84;
-        int LA12_0 = input.LA(1);
+        // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:8: ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_DOCUMENTATION | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt13=85;
+        int LA13_0 = input.LA(1);
 
-        if ( (LA12_0=='^') ) {
-            alt12 = mTokensHelper001();
+        if ( (LA13_0=='^') ) {
+            alt13 = mTokensHelper001();
         }
-        else if ( (LA12_0=='b') ) {
-            alt12 = mTokensHelper002();
+        else if ( (LA13_0=='b') ) {
+            alt13 = mTokensHelper002();
         }
-        else if ( (LA12_0=='c') ) {
-            alt12 = mTokensHelper003();
+        else if ( (LA13_0=='c') ) {
+            alt13 = mTokensHelper003();
         }
-        else if ( (LA12_0=='d') ) {
-            alt12 = mTokensHelper004();
+        else if ( (LA13_0=='d') ) {
+            alt13 = mTokensHelper004();
         }
-        else if ( (LA12_0=='i') ) {
-            alt12 = mTokensHelper005();
+        else if ( (LA13_0=='i') ) {
+            alt13 = mTokensHelper005();
         }
-        else if ( (LA12_0=='B') ) {
-            alt12 = mTokensHelper006();
+        else if ( (LA13_0=='B') ) {
+            alt13 = mTokensHelper006();
         }
-        else if ( (LA12_0=='I') ) {
-            alt12 = mTokensHelper007();
+        else if ( (LA13_0=='I') ) {
+            alt13 = mTokensHelper007();
         }
-        else if ( (LA12_0=='R') ) {
-            alt12 = mTokensHelper008();
+        else if ( (LA13_0=='R') ) {
+            alt13 = mTokensHelper008();
         }
-        else if ( (LA12_0=='S') ) {
-            alt12 = mTokensHelper009();
+        else if ( (LA13_0=='S') ) {
+            alt13 = mTokensHelper009();
         }
-        else if ( (LA12_0=='U') ) {
-            alt12 = mTokensHelper010();
+        else if ( (LA13_0=='U') ) {
+            alt13 = mTokensHelper010();
         }
-        else if ( (LA12_0=='O') ) {
-            alt12 = mTokensHelper011();
+        else if ( (LA13_0=='O') ) {
+            alt13 = mTokensHelper011();
         }
-        else if ( (LA12_0=='e') ) {
-            alt12 = mTokensHelper012();
+        else if ( (LA13_0=='e') ) {
+            alt13 = mTokensHelper012();
         }
-        else if ( (LA12_0=='E') ) {
-            alt12 = mTokensHelper013();
+        else if ( (LA13_0=='E') ) {
+            alt13 = mTokensHelper013();
         }
-        else if ( (LA12_0=='+') ) {
-            alt12 = mTokensHelper014();
+        else if ( (LA13_0=='+') ) {
+            alt13 = mTokensHelper014();
         }
-        else if ( (LA12_0=='-') ) {
-            alt12 = mTokensHelper015();
+        else if ( (LA13_0=='-') ) {
+            alt13 = mTokensHelper015();
         }
-        else if ( (LA12_0=='n') ) {
-            alt12 = mTokensHelper016();
+        else if ( (LA13_0=='p') ) {
+            alt13 = mTokensHelper016();
         }
-        else if ( (LA12_0=='*') ) {
-            alt12 = mTokensHelper017();
+        else if ( (LA13_0=='n') ) {
+            alt13 = mTokensHelper017();
         }
-        else if ( (LA12_0=='/') ) {
-            alt12 = mTokensHelper018();
+        else if ( (LA13_0=='*') ) {
+            alt13 = mTokensHelper018();
         }
-        else if ( (LA12_0=='>') ) {
-            alt12 = mTokensHelper019();
+        else if ( (LA13_0=='/') ) {
+            alt13 = mTokensHelper019();
         }
-        else if ( (LA12_0=='<') ) {
-            alt12 = mTokensHelper020();
+        else if ( (LA13_0=='>') ) {
+            alt13 = mTokensHelper020();
         }
-        else if ( (LA12_0=='=') ) {
-            alt12 = mTokensHelper021();
+        else if ( (LA13_0=='<') ) {
+            alt13 = mTokensHelper021();
         }
-        else if ( (LA12_0=='a') ) {
-            alt12 = mTokensHelper022();
+        else if ( (LA13_0=='=') ) {
+            alt13 = mTokensHelper022();
         }
-        else if ( (LA12_0=='o') ) {
-            alt12 = mTokensHelper023();
+        else if ( (LA13_0=='a') ) {
+            alt13 = mTokensHelper023();
         }
-        else if ( (LA12_0=='x') ) {
-            alt12 = mTokensHelper024();
+        else if ( (LA13_0=='o') ) {
+            alt13 = mTokensHelper024();
         }
-        else if ( (LA12_0=='.') ) {
-            alt12 = mTokensHelper025();
+        else if ( (LA13_0=='x') ) {
+            alt13 = mTokensHelper025();
         }
-        else if ( (LA12_0=='p') ) {
-            alt12 = mTokensHelper026();
+        else if ( (LA13_0=='.') ) {
+            alt13 = mTokensHelper026();
         }
-        else if ( (LA12_0=='C') ) {
-            alt12 = mTokensHelper027();
+        else if ( (LA13_0=='C') ) {
+            alt13 = mTokensHelper027();
         }
-        else if ( (LA12_0==':') ) {
-            alt12 = mTokensHelper028();
+        else if ( (LA13_0==':') ) {
+            alt13 = mTokensHelper028();
         }
-        else if ( (LA12_0=='(') ) {
-            alt12 = mTokensHelper029();
+        else if ( (LA13_0=='(') ) {
+            alt13 = mTokensHelper029();
         }
-        else if ( (LA12_0==')') ) {
-            alt12 = mTokensHelper030();
+        else if ( (LA13_0==')') ) {
+            alt13 = mTokensHelper030();
         }
-        else if ( (LA12_0==',') ) {
-            alt12 = mTokensHelper031();
+        else if ( (LA13_0==',') ) {
+            alt13 = mTokensHelper031();
         }
-        else if ( (LA12_0=='@') ) {
-            alt12 = mTokensHelper032();
+        else if ( (LA13_0=='@') ) {
+            alt13 = mTokensHelper032();
         }
-        else if ( (LA12_0=='?') ) {
-            alt12 = mTokensHelper033();
+        else if ( (LA13_0=='?') ) {
+            alt13 = mTokensHelper033();
         }
-        else if ( (LA12_0=='{') ) {
-            alt12 = mTokensHelper034();
+        else if ( (LA13_0=='{') ) {
+            alt13 = mTokensHelper034();
         }
-        else if ( (LA12_0=='}') ) {
-            alt12 = mTokensHelper035();
+        else if ( (LA13_0=='}') ) {
+            alt13 = mTokensHelper035();
         }
-        else if ( (LA12_0=='T') ) {
-            alt12 = mTokensHelper036();
+        else if ( (LA13_0=='T') ) {
+            alt13 = mTokensHelper036();
         }
-        else if ( (LA12_0=='[') ) {
-            alt12 = mTokensHelper037();
+        else if ( (LA13_0=='[') ) {
+            alt13 = mTokensHelper037();
         }
-        else if ( (LA12_0==']') ) {
-            alt12 = mTokensHelper038();
+        else if ( (LA13_0==']') ) {
+            alt13 = mTokensHelper038();
         }
-        else if ( (LA12_0=='t') ) {
-            alt12 = mTokensHelper039();
+        else if ( (LA13_0=='t') ) {
+            alt13 = mTokensHelper039();
         }
-        else if ( (LA12_0=='l') ) {
-            alt12 = mTokensHelper040();
+        else if ( (LA13_0=='l') ) {
+            alt13 = mTokensHelper040();
         }
-        else if ( (LA12_0=='s') ) {
-            alt12 = mTokensHelper041();
+        else if ( (LA13_0=='s') ) {
+            alt13 = mTokensHelper041();
         }
-        else if ( (LA12_0=='f') ) {
-            alt12 = mTokensHelper042();
+        else if ( (LA13_0=='f') ) {
+            alt13 = mTokensHelper042();
         }
-        else if ( (LA12_0=='|') ) {
-            alt12 = mTokensHelper043();
+        else if ( (LA13_0=='|') ) {
+            alt13 = mTokensHelper043();
         }
-        else if ( (LA12_0==';') ) {
-            alt12 = mTokensHelper044();
+        else if ( (LA13_0==';') ) {
+            alt13 = mTokensHelper044();
         }
-        else if ( (LA12_0=='\"') ) {
-            alt12 = mTokensHelper045();
+        else if ( (LA13_0=='\"') ) {
+            alt13 = mTokensHelper045();
         }
-        else if ( (LA12_0=='\'') ) {
-            alt12 = mTokensHelper046();
+        else if ( (LA13_0=='\'') ) {
+            alt13 = mTokensHelper046();
         }
-        else if ( (LA12_0=='_') ) {
-            alt12 = mTokensHelper047();
+        else if ( (LA13_0=='_') ) {
+            alt13 = mTokensHelper047();
         }
-        else if ( (LA12_0=='A'||LA12_0=='D'||(LA12_0>='F' && LA12_0<='H')||(LA12_0>='J' && LA12_0<='N')||(LA12_0>='P' && LA12_0<='Q')||(LA12_0>='V' && LA12_0<='Z')||(LA12_0>='g' && LA12_0<='h')||(LA12_0>='j' && LA12_0<='k')||LA12_0=='m'||(LA12_0>='q' && LA12_0<='r')||(LA12_0>='u' && LA12_0<='w')||(LA12_0>='y' && LA12_0<='z')) ) {
-            alt12 = mTokensHelper048();
+        else if ( (LA13_0=='A'||LA13_0=='D'||(LA13_0>='F' && LA13_0<='H')||(LA13_0>='J' && LA13_0<='N')||(LA13_0>='P' && LA13_0<='Q')||(LA13_0>='V' && LA13_0<='Z')||(LA13_0>='g' && LA13_0<='h')||(LA13_0>='j' && LA13_0<='k')||LA13_0=='m'||(LA13_0>='q' && LA13_0<='r')||(LA13_0>='u' && LA13_0<='w')||(LA13_0>='y' && LA13_0<='z')) ) {
+            alt13 = mTokensHelper048();
         }
-        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {
-            alt12 = mTokensHelper049();
+        else if ( ((LA13_0>='0' && LA13_0<='9')) ) {
+            alt13 = mTokensHelper049();
         }
-        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {
-            alt12 = mTokensHelper050();
+        else if ( ((LA13_0>='\t' && LA13_0<='\n')||LA13_0=='\r'||LA13_0==' ') ) {
+            alt13 = mTokensHelper050();
         }
-        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFE')) ) {
-            alt12 = mTokensHelper051();
+        else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='!'||(LA13_0>='#' && LA13_0<='&')||LA13_0=='\\'||LA13_0=='`'||(LA13_0>='~' && LA13_0<='\uFFFE')) ) {
+            alt13 = mTokensHelper051();
         }
         else {
-            alt12 = mTokensHelper052();
+            alt13 = mTokensHelper052();
         }
-        switch (alt12) {
+        switch (alt13) {
             case 1 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:10: T13
-                {
-                mT13(); 
-
-                }
-                break;
-            case 2 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:14: T14
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:10: T14
                 {
                 mT14(); 
 
                 }
                 break;
-            case 3 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:18: T15
+            case 2 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:14: T15
                 {
                 mT15(); 
 
                 }
                 break;
-            case 4 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:22: T16
+            case 3 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:18: T16
                 {
                 mT16(); 
 
                 }
                 break;
-            case 5 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:26: T17
+            case 4 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:22: T17
                 {
                 mT17(); 
 
                 }
                 break;
-            case 6 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:30: T18
+            case 5 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:26: T18
                 {
                 mT18(); 
 
                 }
                 break;
-            case 7 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:34: T19
+            case 6 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:30: T19
                 {
                 mT19(); 
 
                 }
                 break;
-            case 8 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:38: T20
+            case 7 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:34: T20
                 {
                 mT20(); 
 
                 }
                 break;
-            case 9 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:42: T21
+            case 8 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:38: T21
                 {
                 mT21(); 
 
                 }
                 break;
-            case 10 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:46: T22
+            case 9 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:42: T22
                 {
                 mT22(); 
 
                 }
                 break;
-            case 11 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:50: T23
+            case 10 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:46: T23
                 {
                 mT23(); 
 
                 }
                 break;
-            case 12 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:54: T24
+            case 11 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:50: T24
                 {
                 mT24(); 
 
                 }
                 break;
-            case 13 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:58: T25
+            case 12 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:54: T25
                 {
                 mT25(); 
 
                 }
                 break;
-            case 14 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:62: T26
+            case 13 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:58: T26
                 {
                 mT26(); 
 
                 }
                 break;
-            case 15 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:66: T27
+            case 14 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:62: T27
                 {
                 mT27(); 
 
                 }
                 break;
-            case 16 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:70: T28
+            case 15 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:66: T28
                 {
                 mT28(); 
 
                 }
                 break;
-            case 17 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:74: T29
+            case 16 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:70: T29
                 {
                 mT29(); 
 
                 }
                 break;
-            case 18 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:78: T30
+            case 17 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:74: T30
                 {
                 mT30(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:82: T31
+            case 18 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:78: T31
                 {
                 mT31(); 
 
                 }
                 break;
-            case 20 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:86: T32
+            case 19 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:82: T32
                 {
                 mT32(); 
 
                 }
                 break;
-            case 21 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:90: T33
+            case 20 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:86: T33
                 {
                 mT33(); 
 
                 }
                 break;
-            case 22 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:94: T34
+            case 21 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:90: T34
                 {
                 mT34(); 
 
                 }
                 break;
-            case 23 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:98: T35
+            case 22 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:94: T35
                 {
                 mT35(); 
 
                 }
                 break;
-            case 24 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:102: T36
+            case 23 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:98: T36
                 {
                 mT36(); 
 
                 }
                 break;
-            case 25 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:106: T37
+            case 24 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:102: T37
                 {
                 mT37(); 
 
                 }
                 break;
-            case 26 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:110: T38
+            case 25 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:106: T38
                 {
                 mT38(); 
 
                 }
                 break;
-            case 27 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:114: T39
+            case 26 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:110: T39
                 {
                 mT39(); 
 
                 }
                 break;
-            case 28 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:118: T40
+            case 27 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:114: T40
                 {
                 mT40(); 
 
                 }
                 break;
-            case 29 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:122: T41
+            case 28 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:118: T41
                 {
                 mT41(); 
 
                 }
                 break;
-            case 30 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:126: T42
+            case 29 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:122: T42
                 {
                 mT42(); 
 
                 }
                 break;
-            case 31 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:130: T43
+            case 30 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:126: T43
                 {
                 mT43(); 
 
                 }
                 break;
-            case 32 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:134: T44
+            case 31 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:130: T44
                 {
                 mT44(); 
 
                 }
                 break;
-            case 33 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:138: T45
+            case 32 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:134: T45
                 {
                 mT45(); 
 
                 }
                 break;
-            case 34 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:142: T46
+            case 33 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:138: T46
                 {
                 mT46(); 
 
                 }
                 break;
-            case 35 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:146: T47
+            case 34 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:142: T47
                 {
                 mT47(); 
 
                 }
                 break;
-            case 36 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:150: T48
+            case 35 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:146: T48
                 {
                 mT48(); 
 
                 }
                 break;
-            case 37 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:154: T49
+            case 36 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:150: T49
                 {
                 mT49(); 
 
                 }
                 break;
-            case 38 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:158: T50
+            case 37 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:154: T50
                 {
                 mT50(); 
 
                 }
                 break;
-            case 39 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:162: T51
+            case 38 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:158: T51
                 {
                 mT51(); 
 
                 }
                 break;
-            case 40 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:166: T52
+            case 39 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:162: T52
                 {
                 mT52(); 
 
                 }
                 break;
-            case 41 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:170: T53
+            case 40 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:166: T53
                 {
                 mT53(); 
 
                 }
                 break;
-            case 42 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:174: T54
+            case 41 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:170: T54
                 {
                 mT54(); 
 
                 }
                 break;
-            case 43 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:178: T55
+            case 42 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:174: T55
                 {
                 mT55(); 
 
                 }
                 break;
-            case 44 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:182: T56
+            case 43 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:178: T56
                 {
                 mT56(); 
 
                 }
                 break;
-            case 45 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:186: T57
+            case 44 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:182: T57
                 {
                 mT57(); 
 
                 }
                 break;
-            case 46 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:190: T58
+            case 45 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:186: T58
                 {
                 mT58(); 
 
                 }
                 break;
-            case 47 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:194: T59
+            case 46 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:190: T59
                 {
                 mT59(); 
 
                 }
                 break;
-            case 48 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:198: T60
+            case 47 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:194: T60
                 {
                 mT60(); 
 
                 }
                 break;
-            case 49 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:202: T61
+            case 48 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:198: T61
                 {
                 mT61(); 
 
                 }
                 break;
-            case 50 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:206: T62
+            case 49 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:202: T62
                 {
                 mT62(); 
 
                 }
                 break;
-            case 51 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:210: T63
+            case 50 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:206: T63
                 {
                 mT63(); 
 
                 }
                 break;
-            case 52 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:214: T64
+            case 51 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:210: T64
                 {
                 mT64(); 
 
                 }
                 break;
-            case 53 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:218: T65
+            case 52 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:214: T65
                 {
                 mT65(); 
 
                 }
                 break;
-            case 54 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:222: T66
+            case 53 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:218: T66
                 {
                 mT66(); 
 
                 }
                 break;
-            case 55 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:226: T67
+            case 54 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:222: T67
                 {
                 mT67(); 
 
                 }
                 break;
-            case 56 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:230: T68
+            case 55 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:226: T68
                 {
                 mT68(); 
 
                 }
                 break;
-            case 57 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:234: T69
+            case 56 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:230: T69
                 {
                 mT69(); 
 
                 }
                 break;
-            case 58 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:238: T70
+            case 57 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:234: T70
                 {
                 mT70(); 
 
                 }
                 break;
-            case 59 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:242: T71
+            case 58 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:238: T71
                 {
                 mT71(); 
 
                 }
                 break;
-            case 60 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:246: T72
+            case 59 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:242: T72
                 {
                 mT72(); 
 
                 }
                 break;
-            case 61 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:250: T73
+            case 60 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:246: T73
                 {
                 mT73(); 
 
                 }
                 break;
-            case 62 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:254: T74
+            case 61 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:250: T74
                 {
                 mT74(); 
 
                 }
                 break;
-            case 63 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:258: T75
+            case 62 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:254: T75
                 {
                 mT75(); 
 
                 }
                 break;
-            case 64 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:262: T76
+            case 63 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:258: T76
                 {
                 mT76(); 
 
                 }
                 break;
-            case 65 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:266: T77
+            case 64 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:262: T77
                 {
                 mT77(); 
 
                 }
                 break;
-            case 66 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:270: T78
+            case 65 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:266: T78
                 {
                 mT78(); 
 
                 }
                 break;
-            case 67 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:274: T79
+            case 66 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:270: T79
                 {
                 mT79(); 
 
                 }
                 break;
-            case 68 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:278: T80
+            case 67 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:274: T80
                 {
                 mT80(); 
 
                 }
                 break;
-            case 69 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:282: T81
+            case 68 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:278: T81
                 {
                 mT81(); 
 
                 }
                 break;
-            case 70 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:286: T82
+            case 69 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:282: T82
                 {
                 mT82(); 
 
                 }
                 break;
-            case 71 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:290: T83
+            case 70 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:286: T83
                 {
                 mT83(); 
 
                 }
                 break;
-            case 72 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:294: T84
+            case 71 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:290: T84
                 {
                 mT84(); 
 
                 }
                 break;
-            case 73 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:298: T85
+            case 72 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:294: T85
                 {
                 mT85(); 
 
                 }
                 break;
-            case 74 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:302: T86
+            case 73 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:298: T86
                 {
                 mT86(); 
 
                 }
                 break;
-            case 75 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:306: T87
+            case 74 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:302: T87
                 {
                 mT87(); 
+
+                }
+                break;
+            case 75 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:306: T88
+                {
+                mT88(); 
 
                 }
                 break;
@@ -2802,28 +2880,35 @@ public class InternalCompleteOCLLexer extends Lexer {
                 }
                 break;
             case 81 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:408: RULE_ML_COMMENT
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:408: RULE_DOCUMENTATION
+                {
+                mRULE_DOCUMENTATION(); 
+
+                }
+                break;
+            case 82 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:427: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 82 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:424: RULE_SL_COMMENT
+            case 83 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:443: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 83 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:440: RULE_WS
+            case 84 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:459: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 84 :
-                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:448: RULE_ANY_OTHER
+            case 85 :
+                // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:1:467: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -2834,9 +2919,9 @@ public class InternalCompleteOCLLexer extends Lexer {
 
     }
     private int mTokensHelper001() throws RecognitionException {
-        int LA12_1 = input.LA(2);
+        int LA13_1 = input.LA(2);
 
-        if ( (LA12_1=='^') ) {
+        if ( (LA13_1=='^') ) {
             return 2;
         }
         else {
@@ -2844,18 +2929,18 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper002() throws RecognitionException {
-        int LA12_2 = input.LA(2);
+        int LA13_2 = input.LA(2);
 
-        if ( (LA12_2=='o') ) {
-            int LA12_54 = input.LA(3);
+        if ( (LA13_2=='o') ) {
+            int LA13_54 = input.LA(3);
 
-            if ( (LA12_54=='d') ) {
-                int LA12_123 = input.LA(4);
+            if ( (LA13_54=='d') ) {
+                int LA13_123 = input.LA(4);
 
-                if ( (LA12_123=='y') ) {
-                    int LA12_160 = input.LA(5);
+                if ( (LA13_123=='y') ) {
+                    int LA13_162 = input.LA(5);
 
-                    if ( ((LA12_160>='0' && LA12_160<='9')||(LA12_160>='A' && LA12_160<='Z')||LA12_160=='_'||(LA12_160>='a' && LA12_160<='z')) ) {
+                    if ( ((LA13_162>='0' && LA13_162<='9')||(LA13_162>='A' && LA13_162<='Z')||LA13_162=='_'||(LA13_162>='a' && LA13_162<='z')) ) {
                         return 79;
                     }
                     else {
@@ -2872,27 +2957,27 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper003() throws RecognitionException {
-        int LA12_3 = input.LA(2);
+        int LA13_3 = input.LA(2);
 
-        if ( (LA12_3=='o') ) {
-            int LA12_56 = input.LA(3);
+        if ( (LA13_3=='o') ) {
+            int LA13_56 = input.LA(3);
 
-            if ( (LA12_56=='n') ) {
-                int LA12_124 = input.LA(4);
+            if ( (LA13_56=='n') ) {
+                int LA13_124 = input.LA(4);
 
-                if ( (LA12_124=='t') ) {
-                    int LA12_161 = input.LA(5);
+                if ( (LA13_124=='t') ) {
+                    int LA13_163 = input.LA(5);
 
-                    if ( (LA12_161=='e') ) {
-                        int LA12_203 = input.LA(6);
+                    if ( (LA13_163=='e') ) {
+                        int LA13_205 = input.LA(6);
 
-                        if ( (LA12_203=='x') ) {
-                            int LA12_234 = input.LA(7);
+                        if ( (LA13_205=='x') ) {
+                            int LA13_236 = input.LA(7);
 
-                            if ( (LA12_234=='t') ) {
-                                int LA12_257 = input.LA(8);
+                            if ( (LA13_236=='t') ) {
+                                int LA13_259 = input.LA(8);
 
-                                if ( ((LA12_257>='0' && LA12_257<='9')||(LA12_257>='A' && LA12_257<='Z')||LA12_257=='_'||(LA12_257>='a' && LA12_257<='z')) ) {
+                                if ( ((LA13_259>='0' && LA13_259<='9')||(LA13_259>='A' && LA13_259<='Z')||LA13_259=='_'||(LA13_259>='a' && LA13_259<='z')) ) {
                                     return 79;
                                 }
                                 else {
@@ -2918,24 +3003,24 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper004() throws RecognitionException {
-        int LA12_4 = input.LA(2);
+        int LA13_4 = input.LA(2);
 
-        if ( (LA12_4=='e') ) {
+        if ( (LA13_4=='e') ) {
             switch ( input.LA(3) ) {
             case 'r':
                 {
                 switch ( input.LA(4) ) {
                 case 'i':
                     {
-                    int LA12_162 = input.LA(5);
+                    int LA13_164 = input.LA(5);
 
-                    if ( (LA12_162=='v') ) {
-                        int LA12_204 = input.LA(6);
+                    if ( (LA13_164=='v') ) {
+                        int LA13_206 = input.LA(6);
 
-                        if ( (LA12_204=='e') ) {
-                            int LA12_235 = input.LA(7);
+                        if ( (LA13_206=='e') ) {
+                            int LA13_237 = input.LA(7);
 
-                            if ( ((LA12_235>='0' && LA12_235<='9')||(LA12_235>='A' && LA12_235<='Z')||LA12_235=='_'||(LA12_235>='a' && LA12_235<='z')) ) {
+                            if ( ((LA13_237>='0' && LA13_237<='9')||(LA13_237>='A' && LA13_237<='Z')||LA13_237=='_'||(LA13_237>='a' && LA13_237<='z')) ) {
                                 return 79;
                             }
                             else {
@@ -3013,14 +3098,14 @@ public class InternalCompleteOCLLexer extends Lexer {
                     return 79;
                     }
                 default:
-                    return 39;}
+                    return 24;}
 
                 }
             case 'f':
                 {
-                int LA12_126 = input.LA(4);
+                int LA13_126 = input.LA(4);
 
-                if ( ((LA12_126>='0' && LA12_126<='9')||(LA12_126>='A' && LA12_126<='Z')||LA12_126=='_'||(LA12_126>='a' && LA12_126<='z')) ) {
+                if ( ((LA13_126>='0' && LA13_126<='9')||(LA13_126>='A' && LA13_126<='Z')||LA13_126=='_'||(LA13_126>='a' && LA13_126<='z')) ) {
                     return 79;
                 }
                 else {
@@ -3039,39 +3124,23 @@ public class InternalCompleteOCLLexer extends Lexer {
         case 'n':
             {
             switch ( input.LA(3) ) {
-            case 'i':
-                {
-                int LA12_127 = input.LA(4);
-
-                if ( (LA12_127=='t') ) {
-                    int LA12_165 = input.LA(5);
-
-                    if ( ((LA12_165>='0' && LA12_165<='9')||(LA12_165>='A' && LA12_165<='Z')||LA12_165=='_'||(LA12_165>='a' && LA12_165<='z')) ) {
-                        return 79;
-                    }
-                    else {
-                        return 8;}
-                }
-                else {
-                    return 79;}
-                }
             case 'v':
                 {
                 switch ( input.LA(4) ) {
                 case 'a':
                     {
-                    int LA12_166 = input.LA(5);
+                    int LA13_167 = input.LA(5);
 
-                    if ( (LA12_166=='l') ) {
-                        int LA12_206 = input.LA(6);
+                    if ( (LA13_167=='l') ) {
+                        int LA13_207 = input.LA(6);
 
-                        if ( (LA12_206=='i') ) {
-                            int LA12_236 = input.LA(7);
+                        if ( (LA13_207=='i') ) {
+                            int LA13_238 = input.LA(7);
 
-                            if ( (LA12_236=='d') ) {
-                                int LA12_259 = input.LA(8);
+                            if ( (LA13_238=='d') ) {
+                                int LA13_261 = input.LA(8);
 
-                                if ( ((LA12_259>='0' && LA12_259<='9')||(LA12_259>='A' && LA12_259<='Z')||LA12_259=='_'||(LA12_259>='a' && LA12_259<='z')) ) {
+                                if ( ((LA13_261>='0' && LA13_261<='9')||(LA13_261>='A' && LA13_261<='Z')||LA13_261=='_'||(LA13_261>='a' && LA13_261<='z')) ) {
                                     return 79;
                                 }
                                 else {
@@ -3155,6 +3224,22 @@ public class InternalCompleteOCLLexer extends Lexer {
                     return 9;}
 
                 }
+            case 'i':
+                {
+                int LA13_128 = input.LA(4);
+
+                if ( (LA13_128=='t') ) {
+                    int LA13_169 = input.LA(5);
+
+                    if ( ((LA13_169>='0' && LA13_169<='9')||(LA13_169>='A' && LA13_169<='Z')||LA13_169=='_'||(LA13_169>='a' && LA13_169<='z')) ) {
+                        return 79;
+                    }
+                    else {
+                        return 8;}
+                }
+                else {
+                    return 79;}
+                }
             case '0':
             case '1':
             case '2':
@@ -3223,30 +3308,40 @@ public class InternalCompleteOCLLexer extends Lexer {
                 return 69;}
 
             }
+        case 'f':
+            {
+            int LA13_59 = input.LA(3);
+
+            if ( ((LA13_59>='0' && LA13_59<='9')||(LA13_59>='A' && LA13_59<='Z')||LA13_59=='_'||(LA13_59>='a' && LA13_59<='z')) ) {
+                return 79;
+            }
+            else {
+                return 64;}
+            }
         case 'm':
             {
-            int LA12_59 = input.LA(3);
+            int LA13_60 = input.LA(3);
 
-            if ( (LA12_59=='p') ) {
+            if ( (LA13_60=='p') ) {
                 switch ( input.LA(4) ) {
                 case 'l':
                     {
-                    int LA12_168 = input.LA(5);
+                    int LA13_170 = input.LA(5);
 
-                    if ( (LA12_168=='i') ) {
-                        int LA12_207 = input.LA(6);
+                    if ( (LA13_170=='i') ) {
+                        int LA13_209 = input.LA(6);
 
-                        if ( (LA12_207=='e') ) {
-                            int LA12_237 = input.LA(7);
+                        if ( (LA13_209=='e') ) {
+                            int LA13_239 = input.LA(7);
 
-                            if ( (LA12_237=='s') ) {
-                                int LA12_260 = input.LA(8);
+                            if ( (LA13_239=='s') ) {
+                                int LA13_262 = input.LA(8);
 
-                                if ( ((LA12_260>='0' && LA12_260<='9')||(LA12_260>='A' && LA12_260<='Z')||LA12_260=='_'||(LA12_260>='a' && LA12_260<='z')) ) {
+                                if ( ((LA13_262>='0' && LA13_262<='9')||(LA13_262>='A' && LA13_262<='Z')||LA13_262=='_'||(LA13_262>='a' && LA13_262<='z')) ) {
                                     return 79;
                                 }
                                 else {
-                                    return 36;}
+                                    return 39;}
                             }
                             else {
                                 return 79;}
@@ -3259,15 +3354,15 @@ public class InternalCompleteOCLLexer extends Lexer {
                     }
                 case 'o':
                     {
-                    int LA12_169 = input.LA(5);
+                    int LA13_171 = input.LA(5);
 
-                    if ( (LA12_169=='r') ) {
-                        int LA12_208 = input.LA(6);
+                    if ( (LA13_171=='r') ) {
+                        int LA13_210 = input.LA(6);
 
-                        if ( (LA12_208=='t') ) {
-                            int LA12_238 = input.LA(7);
+                        if ( (LA13_210=='t') ) {
+                            int LA13_240 = input.LA(7);
 
-                            if ( ((LA12_238>='0' && LA12_238<='9')||(LA12_238>='A' && LA12_238<='Z')||LA12_238=='_'||(LA12_238>='a' && LA12_238<='z')) ) {
+                            if ( ((LA13_240>='0' && LA13_240<='9')||(LA13_240>='A' && LA13_240<='Z')||LA13_240=='_'||(LA13_240>='a' && LA13_240<='z')) ) {
                                 return 79;
                             }
                             else {
@@ -3286,16 +3381,6 @@ public class InternalCompleteOCLLexer extends Lexer {
             else {
                 return 79;}
             }
-        case 'f':
-            {
-            int LA12_60 = input.LA(3);
-
-            if ( ((LA12_60>='0' && LA12_60<='9')||(LA12_60>='A' && LA12_60<='Z')||LA12_60=='_'||(LA12_60>='a' && LA12_60<='z')) ) {
-                return 79;
-            }
-            else {
-                return 64;}
-            }
         default:
             return 79;}
 
@@ -3303,26 +3388,42 @@ public class InternalCompleteOCLLexer extends Lexer {
 
     private int mTokensHelper006() throws RecognitionException {
         switch ( input.LA(2) ) {
+        case 'a':
+            {
+            int LA13_61 = input.LA(3);
+
+            if ( (LA13_61=='g') ) {
+                int LA13_132 = input.LA(4);
+
+                if ( ((LA13_132>='0' && LA13_132<='9')||(LA13_132>='A' && LA13_132<='Z')||LA13_132=='_'||(LA13_132>='a' && LA13_132<='z')) ) {
+                    return 79;
+                }
+                else {
+                    return 43;}
+            }
+            else {
+                return 79;}
+            }
         case 'o':
             {
-            int LA12_61 = input.LA(3);
+            int LA13_62 = input.LA(3);
 
-            if ( (LA12_61=='o') ) {
-                int LA12_132 = input.LA(4);
+            if ( (LA13_62=='o') ) {
+                int LA13_133 = input.LA(4);
 
-                if ( (LA12_132=='l') ) {
-                    int LA12_170 = input.LA(5);
+                if ( (LA13_133=='l') ) {
+                    int LA13_173 = input.LA(5);
 
-                    if ( (LA12_170=='e') ) {
-                        int LA12_209 = input.LA(6);
+                    if ( (LA13_173=='e') ) {
+                        int LA13_211 = input.LA(6);
 
-                        if ( (LA12_209=='a') ) {
-                            int LA12_239 = input.LA(7);
+                        if ( (LA13_211=='a') ) {
+                            int LA13_241 = input.LA(7);
 
-                            if ( (LA12_239=='n') ) {
-                                int LA12_262 = input.LA(8);
+                            if ( (LA13_241=='n') ) {
+                                int LA13_264 = input.LA(8);
 
-                                if ( ((LA12_262>='0' && LA12_262<='9')||(LA12_262>='A' && LA12_262<='Z')||LA12_262=='_'||(LA12_262>='a' && LA12_262<='z')) ) {
+                                if ( ((LA13_264>='0' && LA13_264<='9')||(LA13_264>='A' && LA13_264<='Z')||LA13_264=='_'||(LA13_264>='a' && LA13_264<='z')) ) {
                                     return 79;
                                 }
                                 else {
@@ -3343,49 +3444,33 @@ public class InternalCompleteOCLLexer extends Lexer {
             else {
                 return 79;}
             }
-        case 'a':
-            {
-            int LA12_62 = input.LA(3);
-
-            if ( (LA12_62=='g') ) {
-                int LA12_133 = input.LA(4);
-
-                if ( ((LA12_133>='0' && LA12_133<='9')||(LA12_133>='A' && LA12_133<='Z')||LA12_133=='_'||(LA12_133>='a' && LA12_133<='z')) ) {
-                    return 79;
-                }
-                else {
-                    return 43;}
-            }
-            else {
-                return 79;}
-            }
         default:
             return 79;}
 
     }
 
     private int mTokensHelper007() throws RecognitionException {
-        int LA12_7 = input.LA(2);
+        int LA13_7 = input.LA(2);
 
-        if ( (LA12_7=='n') ) {
-            int LA12_63 = input.LA(3);
+        if ( (LA13_7=='n') ) {
+            int LA13_63 = input.LA(3);
 
-            if ( (LA12_63=='t') ) {
-                int LA12_134 = input.LA(4);
+            if ( (LA13_63=='t') ) {
+                int LA13_134 = input.LA(4);
 
-                if ( (LA12_134=='e') ) {
-                    int LA12_172 = input.LA(5);
+                if ( (LA13_134=='e') ) {
+                    int LA13_174 = input.LA(5);
 
-                    if ( (LA12_172=='g') ) {
-                        int LA12_210 = input.LA(6);
+                    if ( (LA13_174=='g') ) {
+                        int LA13_212 = input.LA(6);
 
-                        if ( (LA12_210=='e') ) {
-                            int LA12_240 = input.LA(7);
+                        if ( (LA13_212=='e') ) {
+                            int LA13_242 = input.LA(7);
 
-                            if ( (LA12_240=='r') ) {
-                                int LA12_263 = input.LA(8);
+                            if ( (LA13_242=='r') ) {
+                                int LA13_265 = input.LA(8);
 
-                                if ( ((LA12_263>='0' && LA12_263<='9')||(LA12_263>='A' && LA12_263<='Z')||LA12_263=='_'||(LA12_263>='a' && LA12_263<='z')) ) {
+                                if ( ((LA13_265>='0' && LA13_265<='9')||(LA13_265>='A' && LA13_265<='Z')||LA13_265=='_'||(LA13_265>='a' && LA13_265<='z')) ) {
                                     return 79;
                                 }
                                 else {
@@ -3411,18 +3496,18 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper008() throws RecognitionException {
-        int LA12_8 = input.LA(2);
+        int LA13_8 = input.LA(2);
 
-        if ( (LA12_8=='e') ) {
-            int LA12_64 = input.LA(3);
+        if ( (LA13_8=='e') ) {
+            int LA13_64 = input.LA(3);
 
-            if ( (LA12_64=='a') ) {
-                int LA12_135 = input.LA(4);
+            if ( (LA13_64=='a') ) {
+                int LA13_135 = input.LA(4);
 
-                if ( (LA12_135=='l') ) {
-                    int LA12_173 = input.LA(5);
+                if ( (LA13_135=='l') ) {
+                    int LA13_175 = input.LA(5);
 
-                    if ( ((LA12_173>='0' && LA12_173<='9')||(LA12_173>='A' && LA12_173<='Z')||LA12_173=='_'||(LA12_173>='a' && LA12_173<='z')) ) {
+                    if ( ((LA13_175>='0' && LA13_175<='9')||(LA13_175>='A' && LA13_175<='Z')||LA13_175=='_'||(LA13_175>='a' && LA13_175<='z')) ) {
                         return 79;
                     }
                     else {
@@ -3440,73 +3525,29 @@ public class InternalCompleteOCLLexer extends Lexer {
 
     private int mTokensHelper009() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case 't':
-            {
-            int LA12_65 = input.LA(3);
-
-            if ( (LA12_65=='r') ) {
-                int LA12_136 = input.LA(4);
-
-                if ( (LA12_136=='i') ) {
-                    int LA12_174 = input.LA(5);
-
-                    if ( (LA12_174=='n') ) {
-                        int LA12_212 = input.LA(6);
-
-                        if ( (LA12_212=='g') ) {
-                            int LA12_241 = input.LA(7);
-
-                            if ( ((LA12_241>='0' && LA12_241<='9')||(LA12_241>='A' && LA12_241<='Z')||LA12_241=='_'||(LA12_241>='a' && LA12_241<='z')) ) {
-                                return 79;
-                            }
-                            else {
-                                return 13;}
-                        }
-                        else {
-                            return 79;}
-                    }
-                    else {
-                        return 79;}
-                }
-                else {
-                    return 79;}
-            }
-            else {
-                return 79;}
-            }
         case 'e':
             {
             switch ( input.LA(3) ) {
-            case 't':
-                {
-                int LA12_137 = input.LA(4);
-
-                if ( ((LA12_137>='0' && LA12_137<='9')||(LA12_137>='A' && LA12_137<='Z')||LA12_137=='_'||(LA12_137>='a' && LA12_137<='z')) ) {
-                    return 79;
-                }
-                else {
-                    return 42;}
-                }
             case 'q':
                 {
-                int LA12_138 = input.LA(4);
+                int LA13_136 = input.LA(4);
 
-                if ( (LA12_138=='u') ) {
-                    int LA12_176 = input.LA(5);
+                if ( (LA13_136=='u') ) {
+                    int LA13_176 = input.LA(5);
 
-                    if ( (LA12_176=='e') ) {
-                        int LA12_213 = input.LA(6);
+                    if ( (LA13_176=='e') ) {
+                        int LA13_214 = input.LA(6);
 
-                        if ( (LA12_213=='n') ) {
-                            int LA12_242 = input.LA(7);
+                        if ( (LA13_214=='n') ) {
+                            int LA13_243 = input.LA(7);
 
-                            if ( (LA12_242=='c') ) {
-                                int LA12_265 = input.LA(8);
+                            if ( (LA13_243=='c') ) {
+                                int LA13_266 = input.LA(8);
 
-                                if ( (LA12_265=='e') ) {
-                                    int LA12_282 = input.LA(9);
+                                if ( (LA13_266=='e') ) {
+                                    int LA13_284 = input.LA(9);
 
-                                    if ( ((LA12_282>='0' && LA12_282<='9')||(LA12_282>='A' && LA12_282<='Z')||LA12_282=='_'||(LA12_282>='a' && LA12_282<='z')) ) {
+                                    if ( ((LA13_284>='0' && LA13_284<='9')||(LA13_284>='A' && LA13_284<='Z')||LA13_284=='_'||(LA13_284>='a' && LA13_284<='z')) ) {
                                         return 79;
                                     }
                                     else {
@@ -3527,9 +3568,53 @@ public class InternalCompleteOCLLexer extends Lexer {
                 else {
                     return 79;}
                 }
+            case 't':
+                {
+                int LA13_137 = input.LA(4);
+
+                if ( ((LA13_137>='0' && LA13_137<='9')||(LA13_137>='A' && LA13_137<='Z')||LA13_137=='_'||(LA13_137>='a' && LA13_137<='z')) ) {
+                    return 79;
+                }
+                else {
+                    return 42;}
+                }
             default:
                 return 79;}
 
+            }
+        case 't':
+            {
+            int LA13_66 = input.LA(3);
+
+            if ( (LA13_66=='r') ) {
+                int LA13_138 = input.LA(4);
+
+                if ( (LA13_138=='i') ) {
+                    int LA13_178 = input.LA(5);
+
+                    if ( (LA13_178=='n') ) {
+                        int LA13_215 = input.LA(6);
+
+                        if ( (LA13_215=='g') ) {
+                            int LA13_244 = input.LA(7);
+
+                            if ( ((LA13_244>='0' && LA13_244<='9')||(LA13_244>='A' && LA13_244<='Z')||LA13_244=='_'||(LA13_244>='a' && LA13_244<='z')) ) {
+                                return 79;
+                            }
+                            else {
+                                return 13;}
+                        }
+                        else {
+                            return 79;}
+                    }
+                    else {
+                        return 79;}
+                }
+                else {
+                    return 79;}
+            }
+            else {
+                return 79;}
             }
         default:
             return 79;}
@@ -3537,54 +3622,54 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper010() throws RecognitionException {
-        int LA12_10 = input.LA(2);
+        int LA13_10 = input.LA(2);
 
-        if ( (LA12_10=='n') ) {
-            int LA12_67 = input.LA(3);
+        if ( (LA13_10=='n') ) {
+            int LA13_67 = input.LA(3);
 
-            if ( (LA12_67=='l') ) {
-                int LA12_139 = input.LA(4);
+            if ( (LA13_67=='l') ) {
+                int LA13_139 = input.LA(4);
 
-                if ( (LA12_139=='i') ) {
-                    int LA12_177 = input.LA(5);
+                if ( (LA13_139=='i') ) {
+                    int LA13_179 = input.LA(5);
 
-                    if ( (LA12_177=='m') ) {
-                        int LA12_214 = input.LA(6);
+                    if ( (LA13_179=='m') ) {
+                        int LA13_216 = input.LA(6);
 
-                        if ( (LA12_214=='i') ) {
-                            int LA12_243 = input.LA(7);
+                        if ( (LA13_216=='i') ) {
+                            int LA13_245 = input.LA(7);
 
-                            if ( (LA12_243=='t') ) {
-                                int LA12_266 = input.LA(8);
+                            if ( (LA13_245=='t') ) {
+                                int LA13_268 = input.LA(8);
 
-                                if ( (LA12_266=='e') ) {
-                                    int LA12_283 = input.LA(9);
+                                if ( (LA13_268=='e') ) {
+                                    int LA13_285 = input.LA(9);
 
-                                    if ( (LA12_283=='d') ) {
-                                        int LA12_293 = input.LA(10);
+                                    if ( (LA13_285=='d') ) {
+                                        int LA13_295 = input.LA(10);
 
-                                        if ( (LA12_293=='N') ) {
-                                            int LA12_300 = input.LA(11);
+                                        if ( (LA13_295=='N') ) {
+                                            int LA13_302 = input.LA(11);
 
-                                            if ( (LA12_300=='a') ) {
-                                                int LA12_306 = input.LA(12);
+                                            if ( (LA13_302=='a') ) {
+                                                int LA13_308 = input.LA(12);
 
-                                                if ( (LA12_306=='t') ) {
-                                                    int LA12_312 = input.LA(13);
+                                                if ( (LA13_308=='t') ) {
+                                                    int LA13_314 = input.LA(13);
 
-                                                    if ( (LA12_312=='u') ) {
-                                                        int LA12_313 = input.LA(14);
+                                                    if ( (LA13_314=='u') ) {
+                                                        int LA13_315 = input.LA(14);
 
-                                                        if ( (LA12_313=='r') ) {
-                                                            int LA12_314 = input.LA(15);
+                                                        if ( (LA13_315=='r') ) {
+                                                            int LA13_316 = input.LA(15);
 
-                                                            if ( (LA12_314=='a') ) {
-                                                                int LA12_315 = input.LA(16);
+                                                            if ( (LA13_316=='a') ) {
+                                                                int LA13_317 = input.LA(16);
 
-                                                                if ( (LA12_315=='l') ) {
-                                                                    int LA12_316 = input.LA(17);
+                                                                if ( (LA13_317=='l') ) {
+                                                                    int LA13_318 = input.LA(17);
 
-                                                                    if ( ((LA12_316>='0' && LA12_316<='9')||(LA12_316>='A' && LA12_316<='Z')||LA12_316=='_'||(LA12_316>='a' && LA12_316<='z')) ) {
+                                                                    if ( ((LA13_318>='0' && LA13_318<='9')||(LA13_318>='A' && LA13_318<='Z')||LA13_318=='_'||(LA13_318>='a' && LA13_318<='z')) ) {
                                                                         return 79;
                                                                     }
                                                                     else {
@@ -3640,65 +3725,25 @@ public class InternalCompleteOCLLexer extends Lexer {
         switch ( input.LA(2) ) {
         case 'c':
             {
-            int LA12_68 = input.LA(3);
+            int LA13_68 = input.LA(3);
 
-            if ( (LA12_68=='l') ) {
+            if ( (LA13_68=='l') ) {
                 switch ( input.LA(4) ) {
-                case 'S':
+                case 'A':
                     {
-                    int LA12_178 = input.LA(5);
+                    int LA13_180 = input.LA(5);
 
-                    if ( (LA12_178=='t') ) {
-                        int LA12_215 = input.LA(6);
+                    if ( (LA13_180=='n') ) {
+                        int LA13_217 = input.LA(6);
 
-                        if ( (LA12_215=='a') ) {
-                            int LA12_244 = input.LA(7);
+                        if ( (LA13_217=='y') ) {
+                            int LA13_246 = input.LA(7);
 
-                            if ( (LA12_244=='t') ) {
-                                int LA12_267 = input.LA(8);
-
-                                if ( (LA12_267=='e') ) {
-                                    int LA12_284 = input.LA(9);
-
-                                    if ( ((LA12_284>='0' && LA12_284<='9')||(LA12_284>='A' && LA12_284<='Z')||LA12_284=='_'||(LA12_284>='a' && LA12_284<='z')) ) {
-                                        return 79;
-                                    }
-                                    else {
-                                        return 18;}
-                                }
-                                else {
-                                    return 79;}
+                            if ( ((LA13_246>='0' && LA13_246<='9')||(LA13_246>='A' && LA13_246<='Z')||LA13_246=='_'||(LA13_246>='a' && LA13_246<='z')) ) {
+                                return 79;
                             }
                             else {
-                                return 79;}
-                        }
-                        else {
-                            return 79;}
-                    }
-                    else {
-                        return 79;}
-                    }
-                case 'V':
-                    {
-                    int LA12_179 = input.LA(5);
-
-                    if ( (LA12_179=='o') ) {
-                        int LA12_216 = input.LA(6);
-
-                        if ( (LA12_216=='i') ) {
-                            int LA12_245 = input.LA(7);
-
-                            if ( (LA12_245=='d') ) {
-                                int LA12_268 = input.LA(8);
-
-                                if ( ((LA12_268>='0' && LA12_268<='9')||(LA12_268>='A' && LA12_268<='Z')||LA12_268=='_'||(LA12_268>='a' && LA12_268<='z')) ) {
-                                    return 79;
-                                }
-                                else {
-                                    return 19;}
-                            }
-                            else {
-                                return 79;}
+                                return 15;}
                         }
                         else {
                             return 79;}
@@ -3708,27 +3753,27 @@ public class InternalCompleteOCLLexer extends Lexer {
                     }
                 case 'I':
                     {
-                    int LA12_180 = input.LA(5);
+                    int LA13_181 = input.LA(5);
 
-                    if ( (LA12_180=='n') ) {
-                        int LA12_217 = input.LA(6);
+                    if ( (LA13_181=='n') ) {
+                        int LA13_218 = input.LA(6);
 
-                        if ( (LA12_217=='v') ) {
-                            int LA12_246 = input.LA(7);
+                        if ( (LA13_218=='v') ) {
+                            int LA13_247 = input.LA(7);
 
-                            if ( (LA12_246=='a') ) {
-                                int LA12_269 = input.LA(8);
+                            if ( (LA13_247=='a') ) {
+                                int LA13_270 = input.LA(8);
 
-                                if ( (LA12_269=='l') ) {
-                                    int LA12_286 = input.LA(9);
+                                if ( (LA13_270=='l') ) {
+                                    int LA13_286 = input.LA(9);
 
-                                    if ( (LA12_286=='i') ) {
-                                        int LA12_295 = input.LA(10);
+                                    if ( (LA13_286=='i') ) {
+                                        int LA13_296 = input.LA(10);
 
-                                        if ( (LA12_295=='d') ) {
-                                            int LA12_301 = input.LA(11);
+                                        if ( (LA13_296=='d') ) {
+                                            int LA13_303 = input.LA(11);
 
-                                            if ( ((LA12_301>='0' && LA12_301<='9')||(LA12_301>='A' && LA12_301<='Z')||LA12_301=='_'||(LA12_301>='a' && LA12_301<='z')) ) {
+                                            if ( ((LA13_303>='0' && LA13_303<='9')||(LA13_303>='A' && LA13_303<='Z')||LA13_303=='_'||(LA13_303>='a' && LA13_303<='z')) ) {
                                                 return 79;
                                             }
                                             else {
@@ -3752,21 +3797,27 @@ public class InternalCompleteOCLLexer extends Lexer {
                     else {
                         return 79;}
                     }
-                case 'A':
+                case 'V':
                     {
-                    int LA12_181 = input.LA(5);
+                    int LA13_182 = input.LA(5);
 
-                    if ( (LA12_181=='n') ) {
-                        int LA12_218 = input.LA(6);
+                    if ( (LA13_182=='o') ) {
+                        int LA13_219 = input.LA(6);
 
-                        if ( (LA12_218=='y') ) {
-                            int LA12_247 = input.LA(7);
+                        if ( (LA13_219=='i') ) {
+                            int LA13_248 = input.LA(7);
 
-                            if ( ((LA12_247>='0' && LA12_247<='9')||(LA12_247>='A' && LA12_247<='Z')||LA12_247=='_'||(LA12_247>='a' && LA12_247<='z')) ) {
-                                return 79;
+                            if ( (LA13_248=='d') ) {
+                                int LA13_271 = input.LA(8);
+
+                                if ( ((LA13_271>='0' && LA13_271<='9')||(LA13_271>='A' && LA13_271<='Z')||LA13_271=='_'||(LA13_271>='a' && LA13_271<='z')) ) {
+                                    return 79;
+                                }
+                                else {
+                                    return 19;}
                             }
                             else {
-                                return 15;}
+                                return 79;}
                         }
                         else {
                             return 79;}
@@ -3776,27 +3827,27 @@ public class InternalCompleteOCLLexer extends Lexer {
                     }
                 case 'M':
                     {
-                    int LA12_182 = input.LA(5);
+                    int LA13_183 = input.LA(5);
 
-                    if ( (LA12_182=='e') ) {
-                        int LA12_219 = input.LA(6);
+                    if ( (LA13_183=='e') ) {
+                        int LA13_220 = input.LA(6);
 
-                        if ( (LA12_219=='s') ) {
-                            int LA12_248 = input.LA(7);
+                        if ( (LA13_220=='s') ) {
+                            int LA13_249 = input.LA(7);
 
-                            if ( (LA12_248=='s') ) {
-                                int LA12_271 = input.LA(8);
+                            if ( (LA13_249=='s') ) {
+                                int LA13_272 = input.LA(8);
 
-                                if ( (LA12_271=='a') ) {
-                                    int LA12_287 = input.LA(9);
+                                if ( (LA13_272=='a') ) {
+                                    int LA13_288 = input.LA(9);
 
-                                    if ( (LA12_287=='g') ) {
-                                        int LA12_296 = input.LA(10);
+                                    if ( (LA13_288=='g') ) {
+                                        int LA13_297 = input.LA(10);
 
-                                        if ( (LA12_296=='e') ) {
-                                            int LA12_302 = input.LA(11);
+                                        if ( (LA13_297=='e') ) {
+                                            int LA13_304 = input.LA(11);
 
-                                            if ( ((LA12_302>='0' && LA12_302<='9')||(LA12_302>='A' && LA12_302<='Z')||LA12_302=='_'||(LA12_302>='a' && LA12_302<='z')) ) {
+                                            if ( ((LA13_304>='0' && LA13_304<='9')||(LA13_304>='A' && LA13_304<='Z')||LA13_304=='_'||(LA13_304>='a' && LA13_304<='z')) ) {
                                                 return 79;
                                             }
                                             else {
@@ -3820,6 +3871,40 @@ public class InternalCompleteOCLLexer extends Lexer {
                     else {
                         return 79;}
                     }
+                case 'S':
+                    {
+                    int LA13_184 = input.LA(5);
+
+                    if ( (LA13_184=='t') ) {
+                        int LA13_221 = input.LA(6);
+
+                        if ( (LA13_221=='a') ) {
+                            int LA13_250 = input.LA(7);
+
+                            if ( (LA13_250=='t') ) {
+                                int LA13_273 = input.LA(8);
+
+                                if ( (LA13_273=='e') ) {
+                                    int LA13_289 = input.LA(9);
+
+                                    if ( ((LA13_289>='0' && LA13_289<='9')||(LA13_289>='A' && LA13_289<='Z')||LA13_289=='_'||(LA13_289>='a' && LA13_289<='z')) ) {
+                                        return 79;
+                                    }
+                                    else {
+                                        return 18;}
+                                }
+                                else {
+                                    return 79;}
+                            }
+                            else {
+                                return 79;}
+                        }
+                        else {
+                            return 79;}
+                    }
+                    else {
+                        return 79;}
+                    }
                 default:
                     return 79;}
 
@@ -3829,33 +3914,33 @@ public class InternalCompleteOCLLexer extends Lexer {
             }
         case 'r':
             {
-            int LA12_69 = input.LA(3);
+            int LA13_69 = input.LA(3);
 
-            if ( (LA12_69=='d') ) {
-                int LA12_141 = input.LA(4);
+            if ( (LA13_69=='d') ) {
+                int LA13_141 = input.LA(4);
 
-                if ( (LA12_141=='e') ) {
-                    int LA12_183 = input.LA(5);
+                if ( (LA13_141=='e') ) {
+                    int LA13_185 = input.LA(5);
 
-                    if ( (LA12_183=='r') ) {
-                        int LA12_220 = input.LA(6);
+                    if ( (LA13_185=='r') ) {
+                        int LA13_222 = input.LA(6);
 
-                        if ( (LA12_220=='e') ) {
-                            int LA12_249 = input.LA(7);
+                        if ( (LA13_222=='e') ) {
+                            int LA13_251 = input.LA(7);
 
-                            if ( (LA12_249=='d') ) {
-                                int LA12_272 = input.LA(8);
+                            if ( (LA13_251=='d') ) {
+                                int LA13_274 = input.LA(8);
 
-                                if ( (LA12_272=='S') ) {
-                                    int LA12_288 = input.LA(9);
+                                if ( (LA13_274=='S') ) {
+                                    int LA13_290 = input.LA(9);
 
-                                    if ( (LA12_288=='e') ) {
-                                        int LA12_297 = input.LA(10);
+                                    if ( (LA13_290=='e') ) {
+                                        int LA13_299 = input.LA(10);
 
-                                        if ( (LA12_297=='t') ) {
-                                            int LA12_303 = input.LA(11);
+                                        if ( (LA13_299=='t') ) {
+                                            int LA13_305 = input.LA(11);
 
-                                            if ( ((LA12_303>='0' && LA12_303<='9')||(LA12_303>='A' && LA12_303<='Z')||LA12_303=='_'||(LA12_303>='a' && LA12_303<='z')) ) {
+                                            if ( ((LA13_305>='0' && LA13_305<='9')||(LA13_305>='A' && LA13_305<='Z')||LA13_305=='_'||(LA13_305>='a' && LA13_305<='z')) ) {
                                                 return 79;
                                             }
                                             else {
@@ -3894,18 +3979,18 @@ public class InternalCompleteOCLLexer extends Lexer {
         switch ( input.LA(2) ) {
         case 'n':
             {
-            int LA12_70 = input.LA(3);
+            int LA13_70 = input.LA(3);
 
-            if ( (LA12_70=='d') ) {
+            if ( (LA13_70=='d') ) {
                 switch ( input.LA(4) ) {
                 case 'i':
                     {
-                    int LA12_184 = input.LA(5);
+                    int LA13_186 = input.LA(5);
 
-                    if ( (LA12_184=='f') ) {
-                        int LA12_221 = input.LA(6);
+                    if ( (LA13_186=='f') ) {
+                        int LA13_223 = input.LA(6);
 
-                        if ( ((LA12_221>='0' && LA12_221<='9')||(LA12_221>='A' && LA12_221<='Z')||LA12_221=='_'||(LA12_221>='a' && LA12_221<='z')) ) {
+                        if ( ((LA13_223>='0' && LA13_223<='9')||(LA13_223>='A' && LA13_223<='Z')||LA13_223=='_'||(LA13_223>='a' && LA13_223<='z')) ) {
                             return 79;
                         }
                         else {
@@ -3916,27 +4001,27 @@ public class InternalCompleteOCLLexer extends Lexer {
                     }
                 case 'p':
                     {
-                    int LA12_185 = input.LA(5);
+                    int LA13_187 = input.LA(5);
 
-                    if ( (LA12_185=='a') ) {
-                        int LA12_222 = input.LA(6);
+                    if ( (LA13_187=='a') ) {
+                        int LA13_224 = input.LA(6);
 
-                        if ( (LA12_222=='c') ) {
-                            int LA12_251 = input.LA(7);
+                        if ( (LA13_224=='c') ) {
+                            int LA13_253 = input.LA(7);
 
-                            if ( (LA12_251=='k') ) {
-                                int LA12_273 = input.LA(8);
+                            if ( (LA13_253=='k') ) {
+                                int LA13_275 = input.LA(8);
 
-                                if ( (LA12_273=='a') ) {
-                                    int LA12_289 = input.LA(9);
+                                if ( (LA13_275=='a') ) {
+                                    int LA13_291 = input.LA(9);
 
-                                    if ( (LA12_289=='g') ) {
-                                        int LA12_298 = input.LA(10);
+                                    if ( (LA13_291=='g') ) {
+                                        int LA13_300 = input.LA(10);
 
-                                        if ( (LA12_298=='e') ) {
-                                            int LA12_304 = input.LA(11);
+                                        if ( (LA13_300=='e') ) {
+                                            int LA13_306 = input.LA(11);
 
-                                            if ( ((LA12_304>='0' && LA12_304<='9')||(LA12_304>='A' && LA12_304<='Z')||LA12_304=='_'||(LA12_304>='a' && LA12_304<='z')) ) {
+                                            if ( ((LA13_306>='0' && LA13_306<='9')||(LA13_306>='A' && LA13_306<='Z')||LA13_306=='_'||(LA13_306>='a' && LA13_306<='z')) ) {
                                                 return 79;
                                             }
                                             else {
@@ -3969,15 +4054,15 @@ public class InternalCompleteOCLLexer extends Lexer {
             }
         case 'l':
             {
-            int LA12_71 = input.LA(3);
+            int LA13_71 = input.LA(3);
 
-            if ( (LA12_71=='s') ) {
-                int LA12_143 = input.LA(4);
+            if ( (LA13_71=='s') ) {
+                int LA13_143 = input.LA(4);
 
-                if ( (LA12_143=='e') ) {
-                    int LA12_186 = input.LA(5);
+                if ( (LA13_143=='e') ) {
+                    int LA13_188 = input.LA(5);
 
-                    if ( ((LA12_186>='0' && LA12_186<='9')||(LA12_186>='A' && LA12_186<='Z')||LA12_186=='_'||(LA12_186>='a' && LA12_186<='z')) ) {
+                    if ( ((LA13_188>='0' && LA13_188<='9')||(LA13_188>='A' && LA13_188<='Z')||LA13_188=='_'||(LA13_188>='a' && LA13_188<='z')) ) {
                         return 79;
                     }
                     else {
@@ -4059,9 +4144,9 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper013() throws RecognitionException {
-        int LA12_13 = input.LA(2);
+        int LA13_13 = input.LA(2);
 
-        if ( ((LA12_13>='0' && LA12_13<='9')||(LA12_13>='A' && LA12_13<='Z')||LA12_13=='_'||(LA12_13>='a' && LA12_13<='z')) ) {
+        if ( ((LA13_13>='0' && LA13_13<='9')||(LA13_13>='A' && LA13_13<='Z')||LA13_13=='_'||(LA13_13>='a' && LA13_13<='z')) ) {
             return 79;
         }
         else {
@@ -4076,11 +4161,11 @@ public class InternalCompleteOCLLexer extends Lexer {
         switch ( input.LA(2) ) {
         case '>':
             {
-            return 38;
+            return 41;
             }
         case '-':
             {
-            return 82;
+            return 83;
             }
         default:
             return 23;}
@@ -4089,227 +4174,42 @@ public class InternalCompleteOCLLexer extends Lexer {
 
     private int mTokensHelper016() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case 'u':
-            {
-            int LA12_78 = input.LA(3);
-
-            if ( (LA12_78=='l') ) {
-                int LA12_144 = input.LA(4);
-
-                if ( (LA12_144=='l') ) {
-                    int LA12_187 = input.LA(5);
-
-                    if ( ((LA12_187>='0' && LA12_187<='9')||(LA12_187>='A' && LA12_187<='Z')||LA12_187=='_'||(LA12_187>='a' && LA12_187<='z')) ) {
-                        return 79;
-                    }
-                    else {
-                        return 61;}
-                }
-                else {
-                    return 79;}
-            }
-            else {
-                return 79;}
-            }
-        case 'o':
-            {
-            int LA12_79 = input.LA(3);
-
-            if ( (LA12_79=='t') ) {
-                int LA12_145 = input.LA(4);
-
-                if ( ((LA12_145>='0' && LA12_145<='9')||(LA12_145>='A' && LA12_145<='Z')||LA12_145=='_'||(LA12_145>='a' && LA12_145<='z')) ) {
-                    return 79;
-                }
-                else {
-                    return 24;}
-            }
-            else {
-                return 79;}
-            }
-        default:
-            return 79;}
-
-    }
-
-    private int mTokensHelper017() throws RecognitionException {
-        return 25;
-    }
-
-    private int mTokensHelper018() throws RecognitionException {
-        switch ( input.LA(2) ) {
-        case '\'':
-            {
-            return 78;
-            }
-        case '*':
-            {
-            return 81;
-            }
-        default:
-            return 26;}
-
-    }
-
-    private int mTokensHelper019() throws RecognitionException {
-        int LA12_19 = input.LA(2);
-
-        if ( (LA12_19=='=') ) {
-            return 29;
-        }
-        else {
-            return 27;}
-    }
-
-    private int mTokensHelper020() throws RecognitionException {
-        switch ( input.LA(2) ) {
-        case '=':
-            {
-            return 30;
-            }
-        case '>':
-            {
-            return 32;
-            }
-        default:
-            return 28;}
-
-    }
-
-    private int mTokensHelper021() throws RecognitionException {
-        return 31;
-    }
-
-    private int mTokensHelper022() throws RecognitionException {
-        int LA12_22 = input.LA(2);
-
-        if ( (LA12_22=='n') ) {
-            int LA12_90 = input.LA(3);
-
-            if ( (LA12_90=='d') ) {
-                int LA12_146 = input.LA(4);
-
-                if ( ((LA12_146>='0' && LA12_146<='9')||(LA12_146>='A' && LA12_146<='Z')||LA12_146=='_'||(LA12_146>='a' && LA12_146<='z')) ) {
-                    return 79;
-                }
-                else {
-                    return 33;}
-            }
-            else {
-                return 79;}
-        }
-        else {
-            return 79;}
-    }
-
-    private int mTokensHelper023() throws RecognitionException {
-        int LA12_23 = input.LA(2);
-
-        if ( (LA12_23=='r') ) {
-            int LA12_91 = input.LA(3);
-
-            if ( ((LA12_91>='0' && LA12_91<='9')||(LA12_91>='A' && LA12_91<='Z')||LA12_91=='_'||(LA12_91>='a' && LA12_91<='z')) ) {
-                return 79;
-            }
-            else {
-                return 34;}
-        }
-        else {
-            return 79;}
-    }
-
-    private int mTokensHelper024() throws RecognitionException {
-        int LA12_24 = input.LA(2);
-
-        if ( (LA12_24=='o') ) {
-            int LA12_92 = input.LA(3);
-
-            if ( (LA12_92=='r') ) {
-                int LA12_148 = input.LA(4);
-
-                if ( ((LA12_148>='0' && LA12_148<='9')||(LA12_148>='A' && LA12_148<='Z')||LA12_148=='_'||(LA12_148>='a' && LA12_148<='z')) ) {
-                    return 79;
-                }
-                else {
-                    return 35;}
-            }
-            else {
-                return 79;}
-        }
-        else {
-            return 79;}
-    }
-
-    private int mTokensHelper025() throws RecognitionException {
-        int LA12_25 = input.LA(2);
-
-        if ( (LA12_25=='.') ) {
-            return 58;
-        }
-        else {
-            return 37;}
-    }
-
-    private int mTokensHelper026() throws RecognitionException {
-        switch ( input.LA(2) ) {
         case 'r':
             {
-            int LA12_95 = input.LA(3);
+            int LA13_78 = input.LA(3);
 
-            if ( (LA12_95=='e') ) {
-                int LA12_149 = input.LA(4);
+            if ( (LA13_78=='e') ) {
+                int LA13_144 = input.LA(4);
 
-                if ( ((LA12_149>='0' && LA12_149<='9')||(LA12_149>='A' && LA12_149<='Z')||LA12_149=='_'||(LA12_149>='a' && LA12_149<='z')) ) {
+                if ( ((LA13_144>='0' && LA13_144<='9')||(LA13_144>='A' && LA13_144<='Z')||LA13_144=='_'||(LA13_144>='a' && LA13_144<='z')) ) {
                     return 79;
                 }
                 else {
-                    return 41;}
-            }
-            else {
-                return 79;}
-            }
-        case 'o':
-            {
-            int LA12_96 = input.LA(3);
-
-            if ( (LA12_96=='s') ) {
-                int LA12_150 = input.LA(4);
-
-                if ( (LA12_150=='t') ) {
-                    int LA12_192 = input.LA(5);
-
-                    if ( ((LA12_192>='0' && LA12_192<='9')||(LA12_192>='A' && LA12_192<='Z')||LA12_192=='_'||(LA12_192>='a' && LA12_192<='z')) ) {
-                        return 79;
-                    }
-                    else {
-                        return 40;}
-                }
-                else {
-                    return 79;}
+                    return 26;}
             }
             else {
                 return 79;}
             }
         case 'a':
             {
-            int LA12_97 = input.LA(3);
+            int LA13_79 = input.LA(3);
 
-            if ( (LA12_97=='c') ) {
-                int LA12_151 = input.LA(4);
+            if ( (LA13_79=='c') ) {
+                int LA13_145 = input.LA(4);
 
-                if ( (LA12_151=='k') ) {
-                    int LA12_193 = input.LA(5);
+                if ( (LA13_145=='k') ) {
+                    int LA13_190 = input.LA(5);
 
-                    if ( (LA12_193=='a') ) {
-                        int LA12_226 = input.LA(6);
+                    if ( (LA13_190=='a') ) {
+                        int LA13_226 = input.LA(6);
 
-                        if ( (LA12_226=='g') ) {
-                            int LA12_252 = input.LA(7);
+                        if ( (LA13_226=='g') ) {
+                            int LA13_254 = input.LA(7);
 
-                            if ( (LA12_252=='e') ) {
-                                int LA12_274 = input.LA(8);
+                            if ( (LA13_254=='e') ) {
+                                int LA13_276 = input.LA(8);
 
-                                if ( ((LA12_274>='0' && LA12_274<='9')||(LA12_274>='A' && LA12_274<='Z')||LA12_274=='_'||(LA12_274>='a' && LA12_274<='z')) ) {
+                                if ( ((LA13_276>='0' && LA13_276<='9')||(LA13_276>='A' && LA13_276<='Z')||LA13_276=='_'||(LA13_276>='a' && LA13_276<='z')) ) {
                                     return 79;
                                 }
                                 else {
@@ -4330,42 +4230,240 @@ public class InternalCompleteOCLLexer extends Lexer {
             else {
                 return 79;}
             }
+        case 'o':
+            {
+            int LA13_80 = input.LA(3);
+
+            if ( (LA13_80=='s') ) {
+                int LA13_146 = input.LA(4);
+
+                if ( (LA13_146=='t') ) {
+                    int LA13_191 = input.LA(5);
+
+                    if ( ((LA13_191>='0' && LA13_191<='9')||(LA13_191>='A' && LA13_191<='Z')||LA13_191=='_'||(LA13_191>='a' && LA13_191<='z')) ) {
+                        return 79;
+                    }
+                    else {
+                        return 25;}
+                }
+                else {
+                    return 79;}
+            }
+            else {
+                return 79;}
+            }
         default:
             return 79;}
 
     }
 
+    private int mTokensHelper017() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'o':
+            {
+            int LA13_81 = input.LA(3);
+
+            if ( (LA13_81=='t') ) {
+                int LA13_147 = input.LA(4);
+
+                if ( ((LA13_147>='0' && LA13_147<='9')||(LA13_147>='A' && LA13_147<='Z')||LA13_147=='_'||(LA13_147>='a' && LA13_147<='z')) ) {
+                    return 79;
+                }
+                else {
+                    return 27;}
+            }
+            else {
+                return 79;}
+            }
+        case 'u':
+            {
+            int LA13_82 = input.LA(3);
+
+            if ( (LA13_82=='l') ) {
+                int LA13_148 = input.LA(4);
+
+                if ( (LA13_148=='l') ) {
+                    int LA13_193 = input.LA(5);
+
+                    if ( ((LA13_193>='0' && LA13_193<='9')||(LA13_193>='A' && LA13_193<='Z')||LA13_193=='_'||(LA13_193>='a' && LA13_193<='z')) ) {
+                        return 79;
+                    }
+                    else {
+                        return 61;}
+                }
+                else {
+                    return 79;}
+            }
+            else {
+                return 79;}
+            }
+        default:
+            return 79;}
+
+    }
+
+    private int mTokensHelper018() throws RecognitionException {
+        return 28;
+    }
+
+    private int mTokensHelper019() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case '\'':
+            {
+            return 78;
+            }
+        case '*':
+            {
+            int LA13_85 = input.LA(3);
+
+            if ( ((LA13_85>='\u0000' && LA13_85<=')')||(LA13_85>='+' && LA13_85<='\uFFFE')) ) {
+                return 82;
+            }
+            else if ( (LA13_85=='*') ) {
+                return 81;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("1:1: Tokens : ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_DOCUMENTATION | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 13, 85, input);
+
+                throw nvae;
+            }
+            }
+        default:
+            return 29;}
+
+    }
+
+    private int mTokensHelper020() throws RecognitionException {
+        int LA13_20 = input.LA(2);
+
+        if ( (LA13_20=='=') ) {
+            return 32;
+        }
+        else {
+            return 30;}
+    }
+
+    private int mTokensHelper021() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case '=':
+            {
+            return 33;
+            }
+        case '>':
+            {
+            return 35;
+            }
+        default:
+            return 31;}
+
+    }
+
+    private int mTokensHelper022() throws RecognitionException {
+        return 34;
+    }
+
+    private int mTokensHelper023() throws RecognitionException {
+        int LA13_23 = input.LA(2);
+
+        if ( (LA13_23=='n') ) {
+            int LA13_93 = input.LA(3);
+
+            if ( (LA13_93=='d') ) {
+                int LA13_151 = input.LA(4);
+
+                if ( ((LA13_151>='0' && LA13_151<='9')||(LA13_151>='A' && LA13_151<='Z')||LA13_151=='_'||(LA13_151>='a' && LA13_151<='z')) ) {
+                    return 79;
+                }
+                else {
+                    return 36;}
+            }
+            else {
+                return 79;}
+        }
+        else {
+            return 79;}
+    }
+
+    private int mTokensHelper024() throws RecognitionException {
+        int LA13_24 = input.LA(2);
+
+        if ( (LA13_24=='r') ) {
+            int LA13_94 = input.LA(3);
+
+            if ( ((LA13_94>='0' && LA13_94<='9')||(LA13_94>='A' && LA13_94<='Z')||LA13_94=='_'||(LA13_94>='a' && LA13_94<='z')) ) {
+                return 79;
+            }
+            else {
+                return 37;}
+        }
+        else {
+            return 79;}
+    }
+
+    private int mTokensHelper025() throws RecognitionException {
+        int LA13_25 = input.LA(2);
+
+        if ( (LA13_25=='o') ) {
+            int LA13_95 = input.LA(3);
+
+            if ( (LA13_95=='r') ) {
+                int LA13_153 = input.LA(4);
+
+                if ( ((LA13_153>='0' && LA13_153<='9')||(LA13_153>='A' && LA13_153<='Z')||LA13_153=='_'||(LA13_153>='a' && LA13_153<='z')) ) {
+                    return 79;
+                }
+                else {
+                    return 38;}
+            }
+            else {
+                return 79;}
+        }
+        else {
+            return 79;}
+    }
+
+    private int mTokensHelper026() throws RecognitionException {
+        int LA13_26 = input.LA(2);
+
+        if ( (LA13_26=='.') ) {
+            return 58;
+        }
+        else {
+            return 40;}
+    }
+
     private int mTokensHelper027() throws RecognitionException {
-        int LA12_27 = input.LA(2);
+        int LA13_27 = input.LA(2);
 
-        if ( (LA12_27=='o') ) {
-            int LA12_98 = input.LA(3);
+        if ( (LA13_27=='o') ) {
+            int LA13_98 = input.LA(3);
 
-            if ( (LA12_98=='l') ) {
-                int LA12_152 = input.LA(4);
+            if ( (LA13_98=='l') ) {
+                int LA13_154 = input.LA(4);
 
-                if ( (LA12_152=='l') ) {
-                    int LA12_194 = input.LA(5);
+                if ( (LA13_154=='l') ) {
+                    int LA13_196 = input.LA(5);
 
-                    if ( (LA12_194=='e') ) {
-                        int LA12_227 = input.LA(6);
+                    if ( (LA13_196=='e') ) {
+                        int LA13_229 = input.LA(6);
 
-                        if ( (LA12_227=='c') ) {
-                            int LA12_253 = input.LA(7);
+                        if ( (LA13_229=='c') ) {
+                            int LA13_255 = input.LA(7);
 
-                            if ( (LA12_253=='t') ) {
-                                int LA12_275 = input.LA(8);
+                            if ( (LA13_255=='t') ) {
+                                int LA13_277 = input.LA(8);
 
-                                if ( (LA12_275=='i') ) {
-                                    int LA12_291 = input.LA(9);
+                                if ( (LA13_277=='i') ) {
+                                    int LA13_293 = input.LA(9);
 
-                                    if ( (LA12_291=='o') ) {
-                                        int LA12_299 = input.LA(10);
+                                    if ( (LA13_293=='o') ) {
+                                        int LA13_301 = input.LA(10);
 
-                                        if ( (LA12_299=='n') ) {
-                                            int LA12_305 = input.LA(11);
+                                        if ( (LA13_301=='n') ) {
+                                            int LA13_307 = input.LA(11);
 
-                                            if ( ((LA12_305>='0' && LA12_305<='9')||(LA12_305>='A' && LA12_305<='Z')||LA12_305=='_'||(LA12_305>='a' && LA12_305<='z')) ) {
+                                            if ( ((LA13_307>='0' && LA13_307<='9')||(LA13_307>='A' && LA13_307<='Z')||LA13_307=='_'||(LA13_307>='a' && LA13_307<='z')) ) {
                                                 return 79;
                                             }
                                             else {
@@ -4400,9 +4498,9 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper028() throws RecognitionException {
-        int LA12_28 = input.LA(2);
+        int LA13_28 = input.LA(2);
 
-        if ( (LA12_28==':') ) {
+        if ( (LA13_28==':') ) {
             return 53;
         }
         else {
@@ -4438,21 +4536,21 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper036() throws RecognitionException {
-        int LA12_36 = input.LA(2);
+        int LA13_36 = input.LA(2);
 
-        if ( (LA12_36=='u') ) {
-            int LA12_108 = input.LA(3);
+        if ( (LA13_36=='u') ) {
+            int LA13_108 = input.LA(3);
 
-            if ( (LA12_108=='p') ) {
-                int LA12_153 = input.LA(4);
+            if ( (LA13_108=='p') ) {
+                int LA13_155 = input.LA(4);
 
-                if ( (LA12_153=='l') ) {
-                    int LA12_195 = input.LA(5);
+                if ( (LA13_155=='l') ) {
+                    int LA13_197 = input.LA(5);
 
-                    if ( (LA12_195=='e') ) {
-                        int LA12_228 = input.LA(6);
+                    if ( (LA13_197=='e') ) {
+                        int LA13_230 = input.LA(6);
 
-                        if ( ((LA12_228>='0' && LA12_228<='9')||(LA12_228>='A' && LA12_228<='Z')||LA12_228=='_'||(LA12_228>='a' && LA12_228<='z')) ) {
+                        if ( ((LA13_230>='0' && LA13_230<='9')||(LA13_230>='A' && LA13_230<='Z')||LA13_230=='_'||(LA13_230>='a' && LA13_230<='z')) ) {
                             return 79;
                         }
                         else {
@@ -4483,15 +4581,15 @@ public class InternalCompleteOCLLexer extends Lexer {
         switch ( input.LA(2) ) {
         case 'r':
             {
-            int LA12_111 = input.LA(3);
+            int LA13_111 = input.LA(3);
 
-            if ( (LA12_111=='u') ) {
-                int LA12_154 = input.LA(4);
+            if ( (LA13_111=='u') ) {
+                int LA13_156 = input.LA(4);
 
-                if ( (LA12_154=='e') ) {
-                    int LA12_196 = input.LA(5);
+                if ( (LA13_156=='e') ) {
+                    int LA13_198 = input.LA(5);
 
-                    if ( ((LA12_196>='0' && LA12_196<='9')||(LA12_196>='A' && LA12_196<='Z')||LA12_196=='_'||(LA12_196>='a' && LA12_196<='z')) ) {
+                    if ( ((LA13_198>='0' && LA13_198<='9')||(LA13_198>='A' && LA13_198<='Z')||LA13_198=='_'||(LA13_198>='a' && LA13_198<='z')) ) {
                         return 79;
                     }
                     else {
@@ -4505,15 +4603,15 @@ public class InternalCompleteOCLLexer extends Lexer {
             }
         case 'h':
             {
-            int LA12_112 = input.LA(3);
+            int LA13_112 = input.LA(3);
 
-            if ( (LA12_112=='e') ) {
-                int LA12_155 = input.LA(4);
+            if ( (LA13_112=='e') ) {
+                int LA13_157 = input.LA(4);
 
-                if ( (LA12_155=='n') ) {
-                    int LA12_197 = input.LA(5);
+                if ( (LA13_157=='n') ) {
+                    int LA13_199 = input.LA(5);
 
-                    if ( ((LA12_197>='0' && LA12_197<='9')||(LA12_197>='A' && LA12_197<='Z')||LA12_197=='_'||(LA12_197>='a' && LA12_197<='z')) ) {
+                    if ( ((LA13_199>='0' && LA13_199<='9')||(LA13_199>='A' && LA13_199<='Z')||LA13_199=='_'||(LA13_199>='a' && LA13_199<='z')) ) {
                         return 79;
                     }
                     else {
@@ -4531,15 +4629,15 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper040() throws RecognitionException {
-        int LA12_40 = input.LA(2);
+        int LA13_40 = input.LA(2);
 
-        if ( (LA12_40=='e') ) {
-            int LA12_113 = input.LA(3);
+        if ( (LA13_40=='e') ) {
+            int LA13_113 = input.LA(3);
 
-            if ( (LA12_113=='t') ) {
-                int LA12_156 = input.LA(4);
+            if ( (LA13_113=='t') ) {
+                int LA13_158 = input.LA(4);
 
-                if ( ((LA12_156>='0' && LA12_156<='9')||(LA12_156>='A' && LA12_156<='Z')||LA12_156=='_'||(LA12_156>='a' && LA12_156<='z')) ) {
+                if ( ((LA13_158>='0' && LA13_158<='9')||(LA13_158>='A' && LA13_158<='Z')||LA13_158=='_'||(LA13_158>='a' && LA13_158<='z')) ) {
                     return 79;
                 }
                 else {
@@ -4556,15 +4654,15 @@ public class InternalCompleteOCLLexer extends Lexer {
         switch ( input.LA(2) ) {
         case 'e':
             {
-            int LA12_114 = input.LA(3);
+            int LA13_114 = input.LA(3);
 
-            if ( (LA12_114=='l') ) {
-                int LA12_157 = input.LA(4);
+            if ( (LA13_114=='l') ) {
+                int LA13_159 = input.LA(4);
 
-                if ( (LA12_157=='f') ) {
-                    int LA12_199 = input.LA(5);
+                if ( (LA13_159=='f') ) {
+                    int LA13_201 = input.LA(5);
 
-                    if ( ((LA12_199>='0' && LA12_199<='9')||(LA12_199>='A' && LA12_199<='Z')||LA12_199=='_'||(LA12_199>='a' && LA12_199<='z')) ) {
+                    if ( ((LA13_201>='0' && LA13_201<='9')||(LA13_201>='A' && LA13_201<='Z')||LA13_201=='_'||(LA13_201>='a' && LA13_201<='z')) ) {
                         return 79;
                     }
                     else {
@@ -4578,21 +4676,21 @@ public class InternalCompleteOCLLexer extends Lexer {
             }
         case 't':
             {
-            int LA12_115 = input.LA(3);
+            int LA13_115 = input.LA(3);
 
-            if ( (LA12_115=='a') ) {
-                int LA12_158 = input.LA(4);
+            if ( (LA13_115=='a') ) {
+                int LA13_160 = input.LA(4);
 
-                if ( (LA12_158=='t') ) {
-                    int LA12_200 = input.LA(5);
+                if ( (LA13_160=='t') ) {
+                    int LA13_202 = input.LA(5);
 
-                    if ( (LA12_200=='i') ) {
-                        int LA12_232 = input.LA(6);
+                    if ( (LA13_202=='i') ) {
+                        int LA13_234 = input.LA(6);
 
-                        if ( (LA12_232=='c') ) {
-                            int LA12_255 = input.LA(7);
+                        if ( (LA13_234=='c') ) {
+                            int LA13_257 = input.LA(7);
 
-                            if ( ((LA12_255>='0' && LA12_255<='9')||(LA12_255>='A' && LA12_255<='Z')||LA12_255=='_'||(LA12_255>='a' && LA12_255<='z')) ) {
+                            if ( ((LA13_257>='0' && LA13_257<='9')||(LA13_257>='A' && LA13_257<='Z')||LA13_257=='_'||(LA13_257>='a' && LA13_257<='z')) ) {
                                 return 79;
                             }
                             else {
@@ -4616,21 +4714,21 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper042() throws RecognitionException {
-        int LA12_42 = input.LA(2);
+        int LA13_42 = input.LA(2);
 
-        if ( (LA12_42=='a') ) {
-            int LA12_116 = input.LA(3);
+        if ( (LA13_42=='a') ) {
+            int LA13_116 = input.LA(3);
 
-            if ( (LA12_116=='l') ) {
-                int LA12_159 = input.LA(4);
+            if ( (LA13_116=='l') ) {
+                int LA13_161 = input.LA(4);
 
-                if ( (LA12_159=='s') ) {
-                    int LA12_201 = input.LA(5);
+                if ( (LA13_161=='s') ) {
+                    int LA13_203 = input.LA(5);
 
-                    if ( (LA12_201=='e') ) {
-                        int LA12_233 = input.LA(6);
+                    if ( (LA13_203=='e') ) {
+                        int LA13_235 = input.LA(6);
 
-                        if ( ((LA12_233>='0' && LA12_233<='9')||(LA12_233>='A' && LA12_233<='Z')||LA12_233=='_'||(LA12_233>='a' && LA12_233<='z')) ) {
+                        if ( ((LA13_235>='0' && LA13_235<='9')||(LA13_235>='A' && LA13_235<='Z')||LA13_235=='_'||(LA13_235>='a' && LA13_235<='z')) ) {
                             return 79;
                         }
                         else {
@@ -4658,23 +4756,23 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper045() throws RecognitionException {
-        int LA12_45 = input.LA(2);
+        int LA13_45 = input.LA(2);
 
-        if ( ((LA12_45>='\u0000' && LA12_45<='\uFFFE')) ) {
+        if ( ((LA13_45>='\u0000' && LA13_45<='\uFFFE')) ) {
             return 76;
         }
         else {
-            return 84;}
+            return 85;}
     }
 
     private int mTokensHelper046() throws RecognitionException {
-        int LA12_46 = input.LA(2);
+        int LA13_46 = input.LA(2);
 
-        if ( ((LA12_46>='\u0000' && LA12_46<='\uFFFE')) ) {
+        if ( ((LA13_46>='\u0000' && LA13_46<='\uFFFE')) ) {
             return 77;
         }
         else {
-            return 84;}
+            return 85;}
     }
 
     private int mTokensHelper047() throws RecognitionException {
@@ -4690,16 +4788,16 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
     private int mTokensHelper050() throws RecognitionException {
-        return 83;
+        return 84;
     }
 
     private int mTokensHelper051() throws RecognitionException {
-        return 84;
+        return 85;
     }
 
     private int mTokensHelper052() throws RecognitionException {
         NoViableAltException nvae =
-            new NoViableAltException("1:1: Tokens : ( T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 12, 0, input);
+            new NoViableAltException("1:1: Tokens : ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_DOCUMENTATION | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 13, 0, input);
 
         throw nvae;
     }

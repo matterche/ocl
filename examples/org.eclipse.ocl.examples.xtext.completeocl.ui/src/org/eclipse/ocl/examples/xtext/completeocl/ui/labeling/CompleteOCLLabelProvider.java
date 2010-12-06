@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLabelProvider.java,v 1.6.6.1 2010/10/01 15:21:59 ewillink Exp $
+ * $Id: CompleteOCLLabelProvider.java,v 1.6.6.2 2010/12/06 18:40:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierConte
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
@@ -108,10 +107,6 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 
 	protected String text(DerCS ele) {
 		return "derive";
-	}
-
-	protected String text(ExpConstraintCS ele) {
-		return "";
 	}
 
 	protected String image(InitCS ele) {
