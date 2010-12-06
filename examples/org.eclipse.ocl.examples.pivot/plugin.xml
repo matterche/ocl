@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1.2.1 2010/10/01 13:52:59 ewillink Exp $
+ $Id: plugin.xml,v 1.1.2.2 2010/12/06 17:29:25 ewillink Exp $
 -->
 
 <plugin>
@@ -21,7 +21,7 @@
    <extension point="org.eclipse.emf.ecore.content_parser">
       <parser
             contentTypeIdentifier="org.eclipse.ocl.examples.pivot"
-            class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"/>
+            class="org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.core.contenttype.contentTypes">
