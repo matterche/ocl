@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreOutlineNodeAdapterFactory.java,v 1.3.6.1 2010/10/01 15:18:58 ewillink Exp $
+ * $Id: OCLinEcoreOutlineNodeAdapterFactory.java,v 1.3.6.2 2010/12/06 18:32:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.outline;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.xtext.ui.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
 
+@SuppressWarnings("deprecation")
 public class OCLinEcoreOutlineNodeAdapterFactory extends DefaultContentOutlineNodeAdapterFactory {
 
 	private static final Class<?>[] types = { 

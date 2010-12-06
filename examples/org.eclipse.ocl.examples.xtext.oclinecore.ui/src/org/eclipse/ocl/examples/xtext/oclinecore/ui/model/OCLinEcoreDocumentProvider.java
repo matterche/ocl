@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.3 2010/10/01 15:18:58 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.4 2010/12/06 18:32:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -42,8 +43,12 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreResourceForEditorInputFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreUiPluginHelper;
 import org.eclipse.ui.IEditorInput;
@@ -58,9 +63,16 @@ import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
  */
 public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 {
-	private Map<IDocument,Boolean> loadedAsEcoreMap = new HashMap<IDocument,Boolean>();
+	private static final Logger log = Logger.getLogger(OCLinEcoreDocumentProvider.class);
 	
-	private Map<IDocument,Boolean> saveAsEcoreMap = new HashMap<IDocument,Boolean>();
+	public static final String PERSIST_AS_ECORE = "ecore";
+	public static final String PERSIST_AS_PIVOT = "pivot";
+	public static final String PERSIST_AS_OCLINECORE = "oclinecore";
+	public static final String PERSIST_AS_UML = "uml";
+
+	private Map<IDocument,String> loadedAsMap = new HashMap<IDocument,String>();
+	
+	private Map<IDocument,String> saveAsMap = new HashMap<IDocument,String>();
 
 	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 
@@ -76,16 +88,30 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 
 	@Override
 	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
-		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument) && (saveAsEcoreMap.get(document) == Boolean.TRUE)) {
-			StringWriter ecoreWriter = new StringWriter();
+		String saveAs = saveAsMap.get(document);
+		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument) && !PERSIST_AS_OCLINECORE.equals(saveAs)) {
+			StringWriter xmlWriter = new StringWriter();
 			try {
 				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
-				ResourceSet resourceSet = getResourceSet();
-				((OCLinEcoreDocument) document).saveAsEcore(resourceSet, uri, ecoreWriter);
+				if (PERSIST_AS_ECORE.equals(saveAs)) {
+					ResourceSet resourceSet = getResourceSet();
+					((OCLinEcoreDocument) document).saveAsEcore(resourceSet, uri, xmlWriter);
+				}
+				else if (PERSIST_AS_PIVOT.equals(saveAs)) {
+					ResourceSet resourceSet = getResourceSet();
+					((OCLinEcoreDocument) document).saveAsPivot(resourceSet, uri, xmlWriter);
+				}
+//				else if (PERSIST_AS_UML.equals(saveAs)) {
+//					ResourceSet resourceSet = getResourceSet();
+//					((OCLinEcoreDocument) document).saveAsUML(resourceSet, uri, xmlWriter);
+//				}
+				else {
+					log.warn("Unknown saveAs '" + saveAs + "'");
+				}
 				IDocument saveDocument = new Document();
-				saveDocument.set(ecoreWriter.toString());
+				saveDocument.set(xmlWriter.toString());
 				super.doSaveDocument(monitor, element, saveDocument, overwrite);
-				loadedAsEcoreMap.put(document, Boolean.TRUE);
+				loadedAsMap.put(document, saveAs);
 			} catch (Exception e) {
 				OCLinEcoreUiPluginHelper helper = OCLinEcoreUiPluginHelper.INSTANCE;
 				String title = helper.getString("_UI_SaveFailure_title", true);
@@ -105,9 +131,9 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 	@Override
 	public boolean isDeleted(Object element) {
 		IDocument document = getDocument(element);
-		Boolean loadIsEcore = loadedAsEcoreMap.get(document);
-		Boolean saveIsEcore = saveAsEcoreMap.get(document);
-		if (loadIsEcore != saveIsEcore) {
+		String loadIsEcore = loadedAsMap.get(document);
+		String saveIsEcore = saveAsMap.get(document);
+		if (!loadIsEcore.equals(saveIsEcore)) {
 			return true;		// Causes Save to do SaveAs
 		}
 		return super.isDeleted(element);
@@ -133,10 +159,11 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 			if (!inputStream.markSupported()) {
 				inputStream = createResettableInputStream(inputStream);
 			}
-			boolean asEcore = isXML(inputStream);
-			loadedAsEcoreMap.put(document, asEcore);
-			saveAsEcoreMap.put(document, asEcore);
-			if (asEcore) {
+			boolean isXML = isXML(inputStream);		
+			String persistAs = isXML ? PERSIST_AS_ECORE : PERSIST_AS_OCLINECORE;
+			loadedAsMap.put(document, persistAs);
+			saveAsMap.put(document, persistAs);
+			if (isXML) {
 				ResourceSet resourceSet = getResourceSet();
 				URI uri = uriMap.get(document);
 				Resource ecoreResource = resourceSet.createResource(uri, EcorePackage.eCONTENT_TYPE);
@@ -159,8 +186,28 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 					}
 					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 				}
-				RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, "", ecoreResource);		
-				Resource xtextResource = documentCS.eResource();		
+//				RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, "", ecoreResource);		
+
+				PivotManager pivotManager = new PivotManager();
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, pivotManager);
+				org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
+				Resource pivotResource = pivotRoot.eResource();
+//				
+				ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
+//				csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
+				csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+//				Resource csResource = csResourceSet.createResource(uri);
+				URI oclinecoreURI = ecoreResource.getURI().appendFileExtension("oclinecore");
+				Resource csResource = resourceSet.createResource(oclinecoreURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
+				Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
+				cs2PivotResourceMap.put(csResource, pivotResource);
+				Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, pivotManager);
+				pivot2cs.update();
+//				csResource.save(null);
+				Resource xtextResource = csResource;		
+				
+				
+//				Resource xtextResource = documentCS.eResource();		
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {
 					xtextResource.save(outputStream, null);
@@ -190,8 +237,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		super.setDocumentContent(document, inputStream, encoding);
 	}
 
-	public void setPersistAsEcore(Object element, Boolean asEcore) {
-		saveAsEcoreMap.put(getDocument(element), asEcore);
+	public void setPersistAs(Object element, String persistAs) {
+		saveAsMap.put(getDocument(element), persistAs);
 		setCanSaveDocument(element);
 	}
 }

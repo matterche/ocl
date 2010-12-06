@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5.6.3 2010/10/01 15:18:58 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5.6.4 2010/12/06 18:32:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.util.List;
 
@@ -28,8 +29,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
-import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
 
 /**
  * An OCLinEcoreDocument refines a document to support generation of an alternate (XMI) content
@@ -37,13 +38,8 @@ import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
  */
 public class OCLinEcoreDocument extends BaseDocument
 {
-	/**
-	 * Fill outputStream with the XMI representation of the Ecore to be saved.
-	 */
-	public void saveAsEcore(ResourceSet resourceSet, URI ecoreURI, Writer writer) throws IOException, CoreException {
-		OCLinEcore2Ecore copier = new OCLinEcore2Ecore(resourceSet, resource2, ecoreURI);
-		XMLResource ecoreResource = copier.exportToEcore();
-		List<Resource.Diagnostic> errors = ecoreResource.getErrors();
+	protected void checkForErrors(Resource resource) throws CoreException {
+		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
 			StringBuffer s = new StringBuffer();
 			for (Resource.Diagnostic diagnostic : errors) {
@@ -52,6 +48,22 @@ public class OCLinEcoreDocument extends BaseDocument
 			}
 			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 		}
-		ecoreResource.save(writer, null);
+	}
+
+	/**
+	 * Fill outputStream with the XMI representation of the Ecore to be saved.
+	 */
+	public void saveAsEcore(ResourceSet resourceSet, URI ecoreURI, Writer writer) throws IOException, CoreException {
+/*		OCLinEcore2Ecore copier = new OCLinEcore2Ecore(resourceSet, resource2, ecoreURI);
+		XMLResource ecoreResource = copier.exportToEcore();
+		checkForErrors(ecoreResource);
+		ecoreResource.save(writer, null); */
+	}
+
+	public void saveAsPivot(ResourceSet resourceSet, URI uri, StringWriter writer) throws CoreException, IOException {
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
+		XMLResource pivotResource = (XMLResource) adapter.getPivotResource(resource2);
+		checkForErrors(pivotResource);
+		pivotResource.save(writer, null);
 	}
 }

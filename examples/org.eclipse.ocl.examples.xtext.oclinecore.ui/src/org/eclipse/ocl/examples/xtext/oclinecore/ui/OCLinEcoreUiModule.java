@@ -12,22 +12,26 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiModule.java,v 1.5.6.1 2010/08/17 20:54:28 ewillink Exp $
+ * $Id: OCLinEcoreUiModule.java,v 1.5.6.2 2010/12/06 18:32:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -60,6 +64,14 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 
 	public Class<? extends XtextDocumentProvider> bindXtextDocumentProvider() {
 		return OCLinEcoreDocumentProvider.class;
+	}
+
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return BaseAntlrTokenToAttributeIdMapper.class;
+	}
+	
+	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
+		return BaseLocationInFileProvider.class;
 	}
 
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
