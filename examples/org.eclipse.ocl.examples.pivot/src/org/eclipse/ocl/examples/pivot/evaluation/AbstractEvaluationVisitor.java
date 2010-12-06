@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.4 2010/12/06 17:29:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -38,7 +38,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -55,7 +56,7 @@ import org.eclipse.ocl.examples.pivot.utilities.Visitable;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEvaluationVisitor
-	extends AbstractVisitor<Object> implements EvaluationVisitor {
+	extends AbstractVisitor2<Object> implements EvaluationVisitor {
 
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;
@@ -86,7 +87,7 @@ public abstract class AbstractEvaluationVisitor
 			Environment env,
 			EvaluationEnvironment evalEnv,
 			Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap) {
-        
+        super(null);
         this.evalEnv = evalEnv;
         this.env = env;
         stdlib = env.getOCLStandardLibrary();
@@ -136,9 +137,9 @@ public abstract class AbstractEvaluationVisitor
         return getStandardLibrary().getBooleanType();
     }
 
-	public Object getBooleanValue(boolean value) {
-		return value;
-	}
+//	public Object getBooleanValue(boolean value) {
+//		return value;
+//	}
 
     // implements the interface method
 	public Environment getEnvironment() {
@@ -514,10 +515,6 @@ public abstract class AbstractEvaluationVisitor
 		return result.toString();
 	}
 
-	public Object visit(Visitable visitable) {
-		throw new UnsupportedOperationException();
-	}
-
 	/**
 	 * This default implementation asserts that the <tt>constraint</tt> is
 	 * boolean-valued if it is an invariant, pre-condition, or post-condition
@@ -576,5 +573,8 @@ public abstract class AbstractEvaluationVisitor
 		return expression.accept(this);
 	}
 
+	public Object visiting(Visitable visitable) {
+		throw new UnsupportedOperationException();
+	}
 
 } //EvaluationVisitorImpl

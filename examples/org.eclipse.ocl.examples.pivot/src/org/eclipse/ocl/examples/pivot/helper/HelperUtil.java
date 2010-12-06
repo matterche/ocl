@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: HelperUtil.java,v 1.1.2.2 2010/12/06 17:29:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -21,18 +21,12 @@ package org.eclipse.ocl.examples.pivot.helper;
 import java.io.LineNumberReader;
 import java.io.StringReader;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.lpg.ProblemHandler;
-import org.eclipse.ocl.utilities.ASTNode;
 
 /**
  * Utility class in support of the implementation of the {@link OCLHelper}
@@ -409,65 +403,6 @@ public class HelperUtil {
 		
 		return result;
 	} */
-
-	/**
-	 * Completes an environment's parsing session.
-	 * 
-	 * @param helper the helper implementation
-	 */
-	private static
-	void finishAnalyzing(OCLBaseHelperImpl helper)
-	throws ParserException {
-		
-		ProblemHandler ph = OCLUtil.getAdapter(helper.getEnvironment(),
-			ProblemHandler.class);
-		if (ph != null) {
-			ph.endParse();
-		}
-		
-		checkForErrors(helper);
-	}
-	
-	private static
-	void validate(
-			Environment env,
-			OclExpression expression) throws ParserException {
-		
-//		expression.accept(ValidationVisitor.getInstance(env));
-	}
-	
-	private static
-	void validate(
-			Environment env,
-			Constraint constraint) throws ParserException {
-		
-//		ValidationVisitor.getInstance(env).visitConstraint(constraint);
-	}
-	
-	private static
-	void persist(
-	        OCLHelperImpl helper,
-			Constraint constraint) {
-		
-		EObject constraintEObject = (EObject) constraint;
-		
-		if (constraintEObject.eResource() == null) {
-			helper.getEnvironment().getTypeResolver().getResource().getContents().add(
-			    constraintEObject);
-		}
-		
-		helper.getOCL().getConstraints().add(constraint);
-	}
-	
-	private static
-	void persist(
-			Environment env,
-			ASTNode astNode) {
-		
-		if (astNode.eResource() == null) {
-			env.getTypeResolver().getResource().getContents().add(astNode);
-		}
-	}
 	
 	public static
 	Object getConstraintContext(
@@ -498,16 +433,5 @@ public class HelperUtil {
 		}
 		
 		return result;
-	}
-	
-	private static void checkForErrors(OCLBaseHelperImpl helper)
-		throws ParserException {
-		
-		try {
-			helper.setProblems(OCLUtil.checkForErrors(helper.getEnvironment()));
-		} catch (ParserException e) {
-			helper.setProblems(e.getDiagnostic());
-			throw e;
-		}
 	}
 }

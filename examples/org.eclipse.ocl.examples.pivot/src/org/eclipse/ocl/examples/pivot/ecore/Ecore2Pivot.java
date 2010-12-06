@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.1.2.2 2010/12/06 17:29:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -68,6 +68,7 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -84,24 +85,13 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.PivotSwitch;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
-public class Ecore2Pivot extends AbstractConversion implements Adapter
+public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotConstants
 {
 	private static final Logger logger = Logger.getLogger(Ecore2Pivot.class);
-
-	public static final String PIVOT_URI = "http://www.org.eclipse/ocl/pivot"; //$NON-NLS-1$
-	public static final String PIVOT_EATTRIBUTE__ID = "EATTRIBUTE__ID"; //$NON-NLS-1$
-	public static final String PIVOT_ECLASS__INTERFACE = "ECLASS__INTERFACE"; //$NON-NLS-1$
-	public static final String PIVOT_ECLASSIFIER__INSTANCE_CLASS_NAME = "ECLASSIFIER__INSTANCE_CLASS_NAME"; //$NON-NLS-1$
-	public static final String PIVOT_EDATA_TYPE__SERIALIZABLE = "EDATA_TYPE__SERIALIZABLE"; //$NON-NLS-1$
-	public static final String PIVOT_EPACKAGE__NS_PREFIX = "EPACKAGE__NS_PREFIX"; //$NON-NLS-1$
-	public static final String PIVOT_EPACKAGE__NS_URI = "EPACKAGE__NS_URI"; //$NON-NLS-1$
-	public static final String PIVOT_EREFERENCE__RESOLVE_PROXIES = "EREFERENCE__RESOLVE_PROXIES"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL = "ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__TRANSIENT = "ESTRUCTURAL_FEATURE__TRANSIENT"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__UNSETTABLE = "ESTRUCTURAL_FEATURE__UNSETTABLE"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__VOLATILE = "ESTRUCTURAL_FEATURE__VOLATILE"; //$NON-NLS-1$
 
 	public static Ecore2Pivot getAdapter(Resource resource, PivotManager pivotManager) {
 		if (resource == null) {
@@ -212,39 +202,43 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			if (oclAnnotation != null) {
 				excludedAnnotations = new ArrayList<EAnnotation>();
 				excludedAnnotations.add(oclAnnotation);
-				List<Constraint> csConstraints = pivotElement.getOwnedRules();
+				List<Constraint> constraints = pivotElement.getOwnedRules();
 				for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
-					Constraint csConstraint = PivotFactory.eINSTANCE.createConstraint();
+					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 					String key = entry.getKey();
 					if (key.equals("body")) {
-						csConstraint.setStereotype("body");
+						constraint.setStereotype("body");
 					}
 					else if (key.startsWith("body_")) {
-						csConstraint.setStereotype("body");
-						csConstraint.setName(key.substring(5));
+						constraint.setStereotype("body");
+						constraint.setName(key.substring(5));
 					}
 					else if (key.equals("pre")) {
-						csConstraint.setStereotype("precondition");
+						constraint.setStereotype("precondition");
 					}
 					else if (key.startsWith("pre_")) {
-						csConstraint.setStereotype("precondition");
-						csConstraint.setName(key.substring(4));
+						constraint.setStereotype("precondition");
+						constraint.setName(key.substring(4));
 					}
 					else if (key.equals("post")) {
-						csConstraint.setStereotype("postcondition");
+						constraint.setStereotype("postcondition");
 					}
 					else if (key.startsWith("post_")) {
-						csConstraint.setStereotype("postcondition");
-						csConstraint.setName(key.substring(5));
+						constraint.setStereotype("postcondition");
+						constraint.setName(key.substring(5));
 					}
 					else
 					{
 						error("Unsupported operation constraint " + key);
-						csConstraint = null;
+						constraint = null;
 					}
-					if (csConstraint != null) {
-//						csConstraint.setExprString(entry.getValue());
-						csConstraints.add(csConstraint);
+					if (constraint != null) {
+						String value = entry.getValue();
+						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
+						specification.getBodies().add(value);
+						constraint.setSpecification(specification);
+//						constraint.setExprString(entry.getValue());
+						constraints.add(constraint);
 					}
 				}				
 			}
@@ -264,10 +258,12 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			copyNamedElement(pivotElement, eObject);
 			copyAnnotatedElement(pivotElement, eObject, exclusions);
 			if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_PREFIX)) {
-				refreshAnnotation(pivotElement, PIVOT_EPACKAGE__NS_PREFIX, eObject.getNsPrefix());			
+				pivotElement.setNsPrefix(eObject.getNsPrefix());
+//				refreshAnnotation(pivotElement, PIVOT_EPACKAGE__NS_PREFIX, eObject.getNsPrefix());			
 			}
 			if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_URI)) {
-				refreshAnnotation(pivotElement, PIVOT_EPACKAGE__NS_URI, eObject.getNsURI());			
+				pivotElement.setNsURI(eObject.getNsURI());
+//				refreshAnnotation(pivotElement, PIVOT_EPACKAGE__NS_URI, eObject.getNsURI());			
 			}
 			doSwitchAll(pivotElement.getNestedPackages(), eObject.getESubpackages());
 			doSwitchAll(pivotElement.getOwnedTypes(), eObject.getEClassifiers());
@@ -304,7 +300,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject);
 			String name = eObject.getName();
 			pivotElement.setName(name);
-			allNames.add(name);
+//			allNames.add(name);
 			TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.eContainer();
 			if (typeTemplateParameter == null) {
 				typeTemplateParameter = PivotFactory.eINSTANCE.createTypeTemplateParameter();
@@ -321,14 +317,17 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			if (oclAnnotation != null) {
 				excludedAnnotations = new ArrayList<EAnnotation>();
 				excludedAnnotations.add(oclAnnotation);
-				List<Constraint> csConstraints = pivotElement.getOwnedRules();
+				List<Constraint> constraints = pivotElement.getOwnedRules();
 				oclAnnotationDetails = oclAnnotation.getDetails();
 				for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
-					Constraint csConstraint = PivotFactory.eINSTANCE.createConstraint();
-					csConstraint.setStereotype("invariant");
-					csConstraint.setName(entry.getKey());
-//					csConstraint.setExprString(entry.getValue());
-					csConstraints.add(csConstraint);
+					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+					constraint.setStereotype("invariant");
+					constraint.setName(entry.getKey());
+					String value = entry.getValue();
+					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
+					specification.getBodies().add(value);
+					constraint.setSpecification(specification);
+					constraints.add(constraint);
 				}				
 			}
 			EAnnotation ecoreAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
@@ -339,14 +338,16 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 				excludedAnnotations.add(ecoreAnnotation);
 				String constraintNameList = ecoreAnnotation.getDetails().get("constraints");
 				if (constraintNameList != null) {
-					List<Constraint> csConstraints = pivotElement.getOwnedRules();
+					List<Constraint> constraints = pivotElement.getOwnedRules();
 					String[] constraintNames = constraintNameList.split(" ");
 					for (String constraintName : constraintNames) {
 						if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
-							Constraint csConstraint = PivotFactory.eINSTANCE.createConstraint();
-							csConstraint.setStereotype("invariant");
-							csConstraint.setName(constraintName);
-							csConstraints.add(csConstraint);
+							Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+							constraint.setStereotype("invariant");
+							constraint.setName(constraintName);
+							OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
+							constraint.setSpecification(specification);
+							constraints.add(constraint);
 						}
 					}
 				}
@@ -401,7 +402,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			copyModelElement(pivotElement, eNamedElement);
 			String name = eNamedElement.getName();
 			pivotElement.setName(name);
-			allNames.add(name);
+//			allNames.add(name);
 		}
 
 		protected void copyStructuralFeature(Property pivotElement, EStructuralFeature eObject, List<EAnnotation> excludedAnnotations) {
@@ -409,24 +410,28 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			if (oclAnnotation != null) {
 				excludedAnnotations = new ArrayList<EAnnotation>();
 				excludedAnnotations.add(oclAnnotation);
-				List<Constraint> csConstraints = pivotElement.getOwnedRules();
+				List<Constraint> constraints = pivotElement.getOwnedRules();
 				for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
-					Constraint csConstraint = PivotFactory.eINSTANCE.createConstraint();
+					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 					String key = entry.getKey();
 					if (key.equals("derivation")) {
-						csConstraint.setStereotype("derivation");
+						constraint.setStereotype("derivation");
 					}
 					else if (key.equals("initial")) {
-						csConstraint.setStereotype("initial");
+						constraint.setStereotype("initial");
 					}
 					else
 					{
 						error("Unsupported feature constraint " + key);
-						csConstraint = null;
+						constraint = null;
 					}
-					if (csConstraint != null) {
-//						csConstraint.setExprString(entry.getValue());
-						csConstraints.add(csConstraint);
+					if (constraint != null) {
+						String value = entry.getValue();
+						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
+						specification.getBodies().add(value);
+						constraint.setSpecification(specification);
+//						constraint.setExprString(entry.getValue());
+						constraints.add(constraint);
 					}
 				}				
 			}
@@ -504,6 +509,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 		}
 
 		protected void setOriginalMapping(Element pivotElement, EObject eObject) {
+			((PivotObjectImpl)pivotElement).setTarget(eObject);
 /*			csModelElement.setOriginalObject(eModelElement);
 			if (ecoreResource instanceof XMLResource) {
 				String xmiId = ((XMLResource)ecoreResource).getID(eModelElement);
@@ -644,12 +650,12 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 	/**
 	 * Set of all targets for EClassifierRef during session.
 	 */
-	private Set<EClassifier> allEClassifiers = new HashSet<EClassifier>();
+//	private Set<EClassifier> allEClassifiers = new HashSet<EClassifier>();
 	
 	/**
 	 * Set of all names during session.
 	 */
-	private Set<String> allNames = new HashSet<String>();
+//	private Set<String> allNames = new HashSet<String>();
 	
 	/**
 	 * List of all generic types.
@@ -676,7 +682,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 	protected final EcorePass1 ecorePass1 = new EcorePass1();	
 	protected final Pass2 pass2 = new Pass2();
 	
-	private Map<String, MonikeredElement> moniker2PivotMap = null;
+//	private Map<String, MonikeredElement> moniker2PivotMap = null;
 	
 	public Ecore2Pivot(Resource ecoreResource, PivotManager pivotManager) {
 		this.ecoreResource = ecoreResource;
@@ -709,7 +715,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 		errors.add(new XMIException(message));
 	}
 
-	public MonikeredElement getMoniker(String moniker) {
+/*	public MonikeredElement getMoniker(String moniker) {
 		if (moniker2PivotMap == null) {
 			moniker2PivotMap = computeMoniker2PivotMap();
 		}
@@ -721,7 +727,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			moniker2PivotMap = computeMoniker2PivotMap();
 		}
 		return moniker2PivotMap;
-	}
+	} */
 	
 	public <T extends Element> T getPivot(EObject eObject, Class<T> pivotClass) {
 		Element pivotElement = createMap.get(eObject);
@@ -731,15 +737,15 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 				Ecore2Pivot converter = getAdapter(resource, pivotManager);
 				if (allConverters.add(converter)) {
 					converter.getPivotRoot();
-					allEClassifiers.addAll(converter.allEClassifiers);
-					allNames.addAll(converter.allNames);
+//					allEClassifiers.addAll(converter.allEClassifiers);
+//					allNames.addAll(converter.allNames);
 					for (Map.Entry<EObject, Element> entry : converter.createMap.entrySet()) {
 						createMap.put(entry.getKey(), entry.getValue());
 					}
 				}
 			}
+			pivotElement = createMap.get(eObject);
 		}
-		pivotElement = createMap.get(eObject);
 		if (pivotElement == null) {
 			error("Unresolved " + eObject);
 		}
@@ -754,7 +760,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 		return null;
 	}
 	
-	public Collection<EPackage> getReferencedEPackages() {
+/*	public Collection<EPackage> getReferencedEPackages() {
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		for (EClassifier eClassifier : allEClassifiers) {
 			EPackage ePackage = eClassifier.getEPackage();
@@ -762,7 +768,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 				ePackages.add(ePackage);
 		}
 		return ePackages;
-	}
+	} */
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {
@@ -789,8 +795,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 
 	protected Resource importResource() {
 		URI ecoreURI = ecoreResource.getURI();
-		URI pivotURI = ecoreURI.appendFileExtension("pivot");
-		Resource pivotResource = pivotManager.createResource(pivotURI, PivotPackage.eCONTENT_TYPE);
+		Resource pivotResource = pivotManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
 		pivotRoot = PivotFactory.eINSTANCE.createPackage();
 		pivotRoot.setName(ecoreURI.lastSegment());
 		pivotResource.getContents().add(pivotRoot);
@@ -809,42 +814,14 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 			Type pivotType = resolveType(resolvedSpecializations, eGenericType);
 			createMap.put(eGenericType, pivotType);
 		}
-		for (TemplateableElement pivotElement : specializations.keySet()) {
-			List<TemplateableElement> pivotElements = pivotElement.getOwnedSpecializations();
-			List<TemplateableElement> newPivotElements = specializations.get(pivotElement);
-			refreshSet(pivotElements, newPivotElements);
+		for (List<TemplateableElement> pivotElements : specializations.values()) {
+			for (TemplateableElement pivotElement : pivotElements) {
+				pivotManager.addOrphanType((Type)pivotElement);
+			}
 		}
 		for (Element pivotElement : referencers.keySet()) {
 			pass2.doInPackageSwitch(pivotElement);
 		}
-		List<EPackage> ePackages = new ArrayList<EPackage>(getReferencedEPackages());
-		// sort
-/*		List<ImportCS> imports = documentCS.getOwnedImport();
-		for (EPackage ePackage : ePackages) {
-			ModelElementCS csElement = createMap.get(ePackage);
-			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
-				continue;		// Don't import defined packages
-			}
-			ImportCS importCS = PivotFactory.eINSTANCE.createImportCS();
-			String alias = ePackage2alias.get(ePackage);
-			if (alias == null) {
-				alias = ePackage.getNsPrefix();
-				String suffixedAlias = alias;
-				for (int i = 0; alias2ePackage.containsKey(suffixedAlias) || allNames.contains(suffixedAlias); i++) {
-					suffixedAlias = alias + "_" + i;
-				}
-				alias = suffixedAlias;
-				alias2ePackage.put(alias, ePackage);
-				ePackage2alias.put(ePackage, alias);
-			}
-			importCS.setName(alias);
-			URI fullURI = EcoreUtil.getURI(ePackage);
-			URI deresolvedURI = fullURI.deresolve(oclinecoreURI);
-			importCS.setUri(deresolvedURI.toString());
-			PackageCS csPackage = getCS(ePackage, PackageCS.class);
-			importCS.setNamespace(csPackage);
-			imports.add(importCS);
-		} */
 		if (errors != null) {
 			pivotResource.getErrors().addAll(errors);
 		}
@@ -927,6 +904,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter
 		assert eTypeParameters.size() == eTypeArguments.size();
 		Type unspecializedPivotType = getPivot(eClassifier, Type.class);
 		org.eclipse.ocl.examples.pivot.Class specializedPivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, null);
+		specializedPivotElement.setName(unspecializedPivotType.getName());
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		TemplateSignature templateSignature = unspecializedPivotType.getOwnedTemplateSignature();
 		templateBinding.setSignature(templateSignature);

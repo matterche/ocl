@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TracingEvaluationVisitor.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: TracingEvaluationVisitor.java,v 1.1.2.3 2010/12/06 17:29:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -28,8 +28,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
@@ -144,16 +142,6 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
     @Override
     public Object visitInvalidLiteralExp(InvalidLiteralExp literalExp) {
         return trace(literalExp, getDelegate().visitInvalidLiteralExp(literalExp));
-    }
-
-    @Override
-    public Object visitIterateExp(IterateExp callExp) {
-        return trace(callExp, getDelegate().visitIterateExp(callExp));
-    }
-
-    @Override
-    public Object visitIteratorExp(IteratorExp callExp) {
-        return trace(callExp, getDelegate().visitIteratorExp(callExp));
     }
 
     @Override

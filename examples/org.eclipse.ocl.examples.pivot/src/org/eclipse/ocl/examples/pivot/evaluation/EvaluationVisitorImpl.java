@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.4 2010/12/06 17:29:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -50,10 +50,6 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.Iterate;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.Iterator;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
@@ -76,8 +72,8 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
@@ -280,8 +276,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitBooleanLiteralExp(BooleanLiteralExp booleanLiteralExp) {
-		boolean value = booleanLiteralExp.isBooleanSymbol();
-		return getBooleanValue(value);
+    	boolean value = booleanLiteralExp.isBooleanSymbol();
+		return Boolean.valueOf(value);
 	}
 
 	/**
@@ -415,25 +411,25 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	/**
 	 * Callback for an IterateExp visit.
-	 */
+	 *
 	@Override
     public Object visitIterateExp(IterateExp iterateExp) {
 		OclExpression source = iterateExp.getSource();	// FIXME self
 		Object sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
 		Iterate iterate = iterateExp.getReferredIterate();
 		return callImplementation(iterate, sourceValue, iterateExp);
-	}
+	} */
 
 	/**
 	 * Callback for an IteratorExp visit.
-	 */
+	 *
 	@Override
     public Object visitIteratorExp(IteratorExp iteratorExp) {
 		OclExpression source = iteratorExp.getSource();	// FIXME self
 		Object sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
 		Iterator iterator = iteratorExp.getReferredIterator();
 		return callImplementation(iterator, sourceValue, iteratorExp);
-	}
+	} */
 
 	/**
 	 * Callback for LetExp visit.

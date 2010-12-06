@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.1.2.4 2010/12/06 17:29:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -23,8 +23,7 @@ import java.util.Set;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * A specialized visitor that is used for evaluation an
@@ -37,7 +36,7 @@ import org.eclipse.ocl.examples.pivot.utilities.Visitor;
  * @author Tim Klinger (tklinger)
  * @author Christian W. Damus (cdamus)
  */
-public interface EvaluationVisitor extends Visitor<Object> {
+public interface EvaluationVisitor extends Visitor<Object, Object> {
 
 	EvaluationVisitor createNestedVisitor();
 	

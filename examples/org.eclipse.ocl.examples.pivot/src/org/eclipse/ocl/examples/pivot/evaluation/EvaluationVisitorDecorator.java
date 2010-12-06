@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.1.2.4 2010/12/06 17:29:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -32,8 +32,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
@@ -51,7 +49,8 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
  * A visitor that decorates another {@link EvaluationVisitor}, to intercept
@@ -68,11 +67,12 @@ import org.eclipse.ocl.examples.pivot.utilities.Visitable;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public abstract class EvaluationVisitorDecorator extends AbstractVisitor<Object> implements EvaluationVisitor {
+public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Object> implements EvaluationVisitor {
 
     private final EvaluationVisitor delegate;
     
     protected EvaluationVisitorDecorator(EvaluationVisitor decorated) {
+        super(null);
         assert decorated != null : "cannot decorate a null visitor"; //$NON-NLS-1$
         
         this.delegate = decorated;
@@ -144,13 +144,6 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor<Object>
      */
 	public void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor) {
         getDelegate().setUndecoratedVisitor(evaluationVisitor);
-	}
-
-    /**
-     * Delegates to my decorated visitor.
-     */
-	public Object visit(Visitable visitable) {
-        return getDelegate().visit(visitable);
 	}
 
     /**
@@ -257,22 +250,6 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor<Object>
     @Override
 	public Object visitInvalidLiteralExp(InvalidLiteralExp literalExp) {
         return getDelegate().visitInvalidLiteralExp(literalExp);
-    }
-
-    /**
-     * Delegates to my decorated visitor.
-     */
-    @Override
-	public Object visitIterateExp(IterateExp callExp) {
-        return getDelegate().visitIterateExp(callExp);
-    }
-
-    /**
-     * Delegates to my decorated visitor.
-     */
-    @Override
-	public Object visitIteratorExp(IteratorExp callExp) {
-        return getDelegate().visitIteratorExp(callExp);
     }
 
     /**
@@ -395,4 +372,11 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor<Object>
 	public Object visitVariableExp(VariableExp variableExp) {
         return getDelegate().visitVariableExp(variableExp);
     }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+	public Object visiting(Visitable visitable) {
+        return getDelegate().visiting(visitable);
+	}
 }

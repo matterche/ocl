@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Moniker.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: Ecore2Moniker.java,v 1.1.2.2 2010/12/06 17:29:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -168,7 +168,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	protected void appendTypeArguments(List<EGenericType> eTypeArguments, List<ETypeParameter> eTypeParameters) {
 		assert eTypeArguments.size() == eTypeParameters.size();
 		if (!eTypeArguments.isEmpty()) {
-			s.append(TEMPLATE_PREFIX);
+			s.append(TEMPLATE_BINDING_PREFIX);
 			String prefix = ""; //$NON-NLS-1$
 			for (int i = 0; i < eTypeArguments.size(); i++) {
 				s.append(prefix);
@@ -177,9 +177,9 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 					s.append(":");
 					appendTypeParameter(eTypeParameters.get(i));
 				}
-				prefix = TEMPLATE_SEPARATOR;
+				prefix = TEMPLATE_BINDING_SEPARATOR;
 			}
-			s.append(TEMPLATE_SUFFIX);
+			s.append(TEMPLATE_BINDING_SUFFIX);
 		}
 	}
 
@@ -196,14 +196,14 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 
 	protected void appendTypeParameters(List<ETypeParameter> eTypeParameters) {
 		if (!eTypeParameters.isEmpty()) {
-			s.append(TEMPLATE_PREFIX);
+			s.append(TEMPLATE_SIGNATURE_PREFIX);
 			String prefix = ""; //$NON-NLS-1$
 			for (ETypeParameter eTypeParameter : eTypeParameters) {
 				s.append(prefix);
 				appendTypeParameter(eTypeParameter);
-				prefix = TEMPLATE_SEPARATOR;
+				prefix = TEMPLATE_SIGNATURE_SEPARATOR;
 			}
-			s.append(TEMPLATE_SUFFIX);
+			s.append(TEMPLATE_SIGNATURE_SUFFIX);
 		}
 	}
 
@@ -212,7 +212,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 		for (EGenericType eType : eTypes) {
 			s.append(prefix);
 			appendType(eType);
-			prefix = TEMPLATE_SEPARATOR;
+			prefix = TEMPLATE_SIGNATURE_SEPARATOR;
 		}
 	}
 
@@ -267,7 +267,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	@Override
 	public Object caseETypeParameter(ETypeParameter eElement) {
 		if (!hasEmitted(eElement)) {
-			if (toString().length() < 100) {
+			if (toString().length() < MONIKER_OVERFLOW_LIMIT) {
 				appendParent(eElement, SCOPE_SEPARATOR);
 			}
 			else {
