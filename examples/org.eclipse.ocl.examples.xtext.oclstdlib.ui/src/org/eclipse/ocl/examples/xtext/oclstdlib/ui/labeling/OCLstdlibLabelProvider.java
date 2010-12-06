@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLabelProvider.java,v 1.3.6.1 2010/10/01 15:08:23 ewillink Exp $
+ * $Id: OCLstdlibLabelProvider.java,v 1.3.6.2 2010/12/06 18:19:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling.BaseLabelProvider;
 
 import com.google.inject.Inject;
@@ -34,8 +33,8 @@ public class OCLstdlibLabelProvider extends BaseLabelProvider {
 		super(delegate);
 	}
 
-	@Override
-	protected void appendMultiplicity(StringBuffer s, TypedElementCS ele) {}	
+//	@Override
+//	protected void appendMultiplicity(StringBuffer s, TypedElementCS ele) {}	
 
 /*	protected String text(LibClassCS ele) {
 		StringBuffer s = new StringBuffer();
