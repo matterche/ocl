@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -208,6 +208,8 @@ public class OperationCallExpImpl
 				return getName();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
@@ -250,6 +252,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -296,6 +301,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -335,6 +343,8 @@ public class OperationCallExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
@@ -352,7 +362,7 @@ public class OperationCallExpImpl
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitOperationCallExp(this);
 	}
 } //OperationCallExpImpl

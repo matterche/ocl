@@ -1,18 +1,8 @@
 /**
  * <copyright>
- *
- * Copyright (c) 2010 E.D.Willink and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   E.D.Willink - Initial API and implementation
- *
  * </copyright>
  *
- * $Id: ImplementableElementImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: ImplementableElementImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -40,10 +30,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
  *
  * @generated
  */
-public abstract class ImplementableElementImpl
-		extends PivotObjectImpl
-		implements ImplementableElement {
-
+public abstract class ImplementableElementImpl extends PivotObjectImpl implements ImplementableElement
+{
 	/**
 	 * The default value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,7 +67,8 @@ public abstract class ImplementableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImplementableElementImpl() {
+	protected ImplementableElementImpl()
+	{
 		super();
 	}
 
@@ -89,7 +78,8 @@ public abstract class ImplementableElementImpl
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return PivotPackage.Literals.IMPLEMENTABLE_ELEMENT;
 	}
 
@@ -98,7 +88,8 @@ public abstract class ImplementableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImplementationClass() {
+	public String getImplementationClass()
+	{
 		return implementationClass;
 	}
 
@@ -107,7 +98,8 @@ public abstract class ImplementableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementationClass(String newImplementationClass) {
+	public void setImplementationClass(String newImplementationClass)
+	{
 		String oldImplementationClass = implementationClass;
 		implementationClass = newImplementationClass;
 		if (eNotificationRequired())
@@ -119,7 +111,8 @@ public abstract class ImplementableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation getImplementation() {
+	public CallableImplementation getImplementation()
+	{
 		return implementation;
 	}
 
@@ -128,7 +121,8 @@ public abstract class ImplementableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementation(CallableImplementation newImplementation) {
+	public void setImplementation(CallableImplementation newImplementation)
+	{
 		CallableImplementation oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
@@ -141,7 +135,8 @@ public abstract class ImplementableElementImpl
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
@@ -158,7 +153,8 @@ public abstract class ImplementableElementImpl
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
+	public void eSet(int featureID, Object newValue)
+	{
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
@@ -177,7 +173,8 @@ public abstract class ImplementableElementImpl
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
+	public void eUnset(int featureID)
+	{
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
@@ -196,7 +193,8 @@ public abstract class ImplementableElementImpl
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
+	public boolean eIsSet(int featureID)
+	{
 		switch (featureID)
 		{
 			case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS:
@@ -210,12 +208,18 @@ public abstract class ImplementableElementImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String toString()
 	{
-		return super.toString();
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (implementationClass: "); //$NON-NLS-1$
+		result.append(implementationClass);
+		result.append(')');
+		return result.toString();
 	}
 
 	/**
@@ -226,7 +230,8 @@ public abstract class ImplementableElementImpl
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass) {
+	protected EObject create(EClass eClass)
+	{
 		return EcoreUtil.create(eClass);
 	}
 

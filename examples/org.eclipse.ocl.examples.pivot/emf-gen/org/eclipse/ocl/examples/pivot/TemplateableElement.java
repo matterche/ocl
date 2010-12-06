@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElement.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: TemplateableElement.java,v 1.1.2.3 2010/12/06 17:20:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +32,6 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedSpecializations <em>Owned Specialization</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,34 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface TemplateableElement
-		extends MonikeredElement, Element {
-
-	/**
-	 * Returns the value of the '<em><b>Owned Specialization</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateableElement}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Specializations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Specialization</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_OwnedSpecialization()
-	 * @model containment="true" resolveProxies="true" ordered="false"
-	 * @generated
-	 */
-	EList<TemplateableElement> getOwnedSpecializations();
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateableElement} and appends it to the '<em><b>Owned Specialization</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.TemplateableElement} to create.
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateableElement}.
-	 * @see #getOwnedSpecializations()
-	 * @generated
-	 */
-	TemplateableElement createOwnedSpecialization(EClass eClass);
+		extends MonikeredElement {
 
 	/**
 	 * Returns the value of the '<em><b>Template Binding</b></em>' containment reference list.

@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NullLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: NullLiteralExpImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class NullLiteralExpImpl
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitNullLiteralExp(this);
 	}
 } //NullLiteralExpImpl

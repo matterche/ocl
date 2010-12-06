@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteClassImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: CompleteClassImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -216,8 +215,7 @@ public class CompleteClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean conformsTo(CompleteClass aClass)
-	{
+	public boolean conformsTo(CompleteClass aClass) {
 		if (this == aClass) {
 			return true;
 		}
@@ -230,26 +228,31 @@ public class CompleteClassImpl
 	}
 
 	private Map<CompleteOperation, CompleteOperation> dynamicOperationMap = null;
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public CompleteOperation getDynamicOperation(CompleteOperation staticOperation)
-	{
+	public CompleteOperation getDynamicOperation(
+			CompleteOperation staticOperation) {
 		if (dynamicOperationMap == null) {
 			dynamicOperationMap = new HashMap<CompleteOperation, CompleteOperation>();
 		}
-		CompleteOperation dynamicOperation = dynamicOperationMap.get(staticOperation);
-		if ((dynamicOperation == null) && !dynamicOperationMap.containsKey(staticOperation)) {
+		CompleteOperation dynamicOperation = dynamicOperationMap
+			.get(staticOperation);
+		if ((dynamicOperation == null)
+			&& !dynamicOperationMap.containsKey(staticOperation)) {
 			List<CompleteClass> staticClasses = new ArrayList<CompleteClass>();
-			for (Parameter staticParameter : staticOperation.getCompleteParameters()) {
+			for (Parameter staticParameter : staticOperation
+				.getCompleteParameters()) {
 				Type staticType = staticParameter.getType();
-				CompleteClass staticClass = completeEnvironment.getCompleteClass((org.eclipse.ocl.examples.pivot.Class) staticType);
+				CompleteClass staticClass = completeEnvironment
+					.getCompleteClass((org.eclipse.ocl.examples.pivot.Class) staticType);
 				staticClasses.add(staticClass);
 			}
-			List<CompleteOperation> dynamicOperations = findOperationsOrNull(this, staticOperation.getName(), staticClasses);
+			List<CompleteOperation> dynamicOperations = findOperationsOrNull(
+				this, staticOperation.getName(), staticClasses);
 			if ((dynamicOperations != null) && (dynamicOperations.size() == 1)) {
 				dynamicOperation = dynamicOperations.get(0);
 			}
@@ -258,18 +261,23 @@ public class CompleteClassImpl
 		return dynamicOperation;
 	}
 
-	private List<CompleteOperation> findOperationsOrNull(CompleteClass completeClass, String staticName, List<CompleteClass> staticClasses) {
+	private List<CompleteOperation> findOperationsOrNull(
+			CompleteClass completeClass, String staticName,
+			List<CompleteClass> staticClasses) {
 		int staticSize = staticClasses.size();
 		List<CompleteOperation> list = null;
-		for (CompleteOperation dynamicOperation : completeClass.getCompleteOperations(staticName)) {
-			List<Parameter> dynamicParameters = dynamicOperation.getCompleteParameters();
+		for (CompleteOperation dynamicOperation : completeClass
+			.getCompleteOperations(staticName)) {
+			List<Parameter> dynamicParameters = dynamicOperation
+				.getCompleteParameters();
 			if (staticSize == dynamicParameters.size()) {
 				boolean gotIt = true;
 				for (int i = 0; i < staticSize; i++) {
 					CompleteClass staticClass = staticClasses.get(i);
 					Parameter dynamicParameter = dynamicParameters.get(i);
 					Type dynamicType = dynamicParameter.getType();
-					CompleteClass dynamicClass = completeEnvironment.getCompleteClass((org.eclipse.ocl.examples.pivot.Class) dynamicType);
+					CompleteClass dynamicClass = completeEnvironment
+						.getCompleteClass((org.eclipse.ocl.examples.pivot.Class) dynamicType);
 					if (!dynamicClass.conformsTo(staticClass)) {
 						gotIt = false;
 					}
@@ -283,13 +291,14 @@ public class CompleteClassImpl
 			}
 		}
 		if (list == null) {
-			for (CompleteClass completeSuperClass : completeClass.getCompleteSuperClasses()) {
-				List<CompleteOperation> superOperations = findOperationsOrNull(completeSuperClass, staticName, staticClasses);
+			for (CompleteClass completeSuperClass : completeClass
+				.getCompleteSuperClasses()) {
+				List<CompleteOperation> superOperations = findOperationsOrNull(
+					completeSuperClass, staticName, staticClasses);
 				if (superOperations != null) {
 					if (list == null) {
 						list = superOperations;
-					}
-					else {
+					} else {
 						list.addAll(superOperations);
 					}
 				}
@@ -297,7 +306,6 @@ public class CompleteClassImpl
 		}
 		return list;
 	}
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -308,12 +316,14 @@ public class CompleteClassImpl
 		EList<CompleteOperation> completeOperations = new BasicEList<CompleteOperation>();
 		for (Operation operation : getOwnedOperations()) {
 			if (name.equals(operation.getName())) {
-				completeOperations.add(completeEnvironment.getCompleteOperation(operation));
+				completeOperations.add(completeEnvironment
+					.getCompleteOperation(operation));
 			}
 		}
 		for (Operation operation : model.getOwnedOperations()) {
 			if (name.equals(operation.getName())) {
-				CompleteOperation completeOperation = completeEnvironment.getCompleteOperation(operation);
+				CompleteOperation completeOperation = completeEnvironment
+					.getCompleteOperation(operation);
 				if (!completeOperations.contains(completeOperation)) {
 					completeOperations.add(completeOperation);
 				}
@@ -361,21 +371,21 @@ public class CompleteClassImpl
 				return getName();
 			case PivotPackage.COMPLETE_CLASS__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.COMPLETE_CLASS__IS_STATIC:
+				return isStatic();
 			case PivotPackage.COMPLETE_CLASS__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
-			case PivotPackage.COMPLETE_CLASS__TEMPLATE_BINDING:
-				return getTemplateBindings();
-			case PivotPackage.COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
-			case PivotPackage.COMPLETE_CLASS__OWNED_SPECIALIZATION:
-				return getOwnedSpecializations();
 			case PivotPackage.COMPLETE_CLASS__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
 			case PivotPackage.COMPLETE_CLASS__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.COMPLETE_CLASS__TEMPLATE_BINDING:
+				return getTemplateBindings();
+			case PivotPackage.COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE:
+				if (resolve) return getOwnedTemplateSignature();
+				return basicGetOwnedTemplateSignature();
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -389,6 +399,10 @@ public class CompleteClassImpl
 				return getSuperClasses();
 			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
+			case PivotPackage.COMPLETE_CLASS__PRIMITIVE:
+				return isPrimitive();
+			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
+				return getSubClasses();
 			case PivotPackage.COMPLETE_CLASS__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
@@ -429,9 +443,18 @@ public class CompleteClassImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.COMPLETE_CLASS__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.COMPLETE_CLASS__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.COMPLETE_CLASS__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.COMPLETE_CLASS__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.COMPLETE_CLASS__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
@@ -439,16 +462,6 @@ public class CompleteClassImpl
 				return;
 			case PivotPackage.COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.COMPLETE_CLASS__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
-				return;
-			case PivotPackage.COMPLETE_CLASS__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.COMPLETE_CLASS__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -470,6 +483,13 @@ public class CompleteClassImpl
 				return;
 			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_CLASS__PRIMITIVE:
+				setPrimitive((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
+				getSubClasses().clear();
+				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.COMPLETE_CLASS__MODEL:
 				setModel((org.eclipse.ocl.examples.pivot.Class)newValue);
@@ -502,23 +522,23 @@ public class CompleteClassImpl
 			case PivotPackage.COMPLETE_CLASS__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.COMPLETE_CLASS__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.COMPLETE_CLASS__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.COMPLETE_CLASS__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
-				return;
-			case PivotPackage.COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.COMPLETE_CLASS__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
 				return;
 			case PivotPackage.COMPLETE_CLASS__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.COMPLETE_CLASS__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.COMPLETE_CLASS__TEMPLATE_BINDING:
+				getTemplateBindings().clear();
+				return;
+			case PivotPackage.COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -537,6 +557,12 @@ public class CompleteClassImpl
 				return;
 			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_CLASS__PRIMITIVE:
+				setPrimitive(PRIMITIVE_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
+				getSubClasses().clear();
 				return;
 			case PivotPackage.COMPLETE_CLASS__MODEL:
 				setModel((org.eclipse.ocl.examples.pivot.Class)null);
@@ -565,18 +591,18 @@ public class CompleteClassImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COMPLETE_CLASS__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.COMPLETE_CLASS__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.COMPLETE_CLASS__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.COMPLETE_CLASS__TEMPLATE_BINDING:
-				return templateBindings != null && !templateBindings.isEmpty();
-			case PivotPackage.COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.COMPLETE_CLASS__OWNED_SPECIALIZATION:
-				return ownedSpecializations != null && !ownedSpecializations.isEmpty();
 			case PivotPackage.COMPLETE_CLASS__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.COMPLETE_CLASS__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
+			case PivotPackage.COMPLETE_CLASS__TEMPLATE_BINDING:
+				return templateBindings != null && !templateBindings.isEmpty();
+			case PivotPackage.COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE:
+				return ownedTemplateSignature != null;
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				return basicGetPackage() != null;
 			case PivotPackage.COMPLETE_CLASS__IS_ABSTRACT:
@@ -589,6 +615,10 @@ public class CompleteClassImpl
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.COMPLETE_CLASS__PRIMITIVE:
+				return ((eFlags & PRIMITIVE_EFLAG) != 0) != PRIMITIVE_EDEFAULT;
+			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
+				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.COMPLETE_CLASS__MODEL:
 				return model != null;
 			case PivotPackage.COMPLETE_CLASS__COMPLETE_ENVIRONMENT:
@@ -609,8 +639,8 @@ public class CompleteClassImpl
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
 		switch (operationID)
 		{
 			case PivotPackage.COMPLETE_CLASS___OCL_TYPE:
@@ -621,14 +651,12 @@ public class CompleteClassImpl
 				return oclIsUndefined();
 			case PivotPackage.COMPLETE_CLASS___HAS_MONIKER:
 				return hasMoniker();
-			case PivotPackage.COMPLETE_CLASS___GET_NAME:
-				return getName();
+			case PivotPackage.COMPLETE_CLASS___IS_TEMPLATE_PARAMETER:
+				return isTemplateParameter();
 			case PivotPackage.COMPLETE_CLASS___PARAMETERABLE_ELEMENTS:
 				return parameterableElements();
 			case PivotPackage.COMPLETE_CLASS___IS_TEMPLATE:
 				return isTemplate();
-			case PivotPackage.COMPLETE_CLASS___IS_TEMPLATE_PARAMETER:
-				return isTemplateParameter();
 			case PivotPackage.COMPLETE_CLASS___CONFORMS_TO__COMPLETECLASS:
 				return conformsTo((CompleteClass)arguments.get(0));
 			case PivotPackage.COMPLETE_CLASS___GET_DYNAMIC_OPERATION__COMPLETEOPERATION:

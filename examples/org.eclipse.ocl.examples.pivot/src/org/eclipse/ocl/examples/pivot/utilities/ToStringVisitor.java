@@ -14,19 +14,19 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1.2.1 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.math.BigInteger;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
-import org.eclipse.ocl.examples.pivot.CallOperationAction;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
@@ -41,9 +41,6 @@ import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.Iterate;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -56,15 +53,17 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.SendSignalAction;
-import org.eclipse.ocl.examples.pivot.Signal;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
-import org.eclipse.ocl.examples.pivot.TypeUtil;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
@@ -73,7 +72,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.evaluation.AbstractVisitor;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
  * Converts an OCL expression to a string for debugging.  This is not intended
@@ -83,12 +82,8 @@ import org.eclipse.ocl.examples.pivot.evaluation.AbstractVisitor;
  * @author Christian W. Damus (cdamus)
  * @author Edward Willink (ewillink)
  */
-public class ToStringVisitor extends AbstractVisitor<String> {
-
-    private final Environment env;
-    private final UMLReflection uml;
-
-	
+public class ToStringVisitor extends AbstractVisitor2<String>
+{
 	/**
 	 * Indicates where a required element in the AST was <code>null</code>, so
 	 * that it is evident in the debugger that something was missing.  We don't
@@ -97,23 +92,13 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 	 */
 	protected static String NULL_PLACEHOLDER = "\"<null>\""; //$NON-NLS-1$
 
-	/**
-	 * Initializes me with my environment.
-	 * 
-	 * @param env my environment
-	 */
-	public ToStringVisitor() {
-	    this(null);
-	}
+	protected StringBuffer result = new StringBuffer();
 
 	/**
-	 * Initializes me with my environment.
-	 * 
-	 * @param env my environment
+	 * Initializes me.
 	 */
-	protected ToStringVisitor(Environment env) {
-	    this.env = env;
-		this.uml = (env == null)? null : env.getUMLReflection();
+	public ToStringVisitor() {
+		super(null);
 	}
 	
 	/**
@@ -124,11 +109,9 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 	 * 
 	 * @return the corresponding instance
 	 */
-	public static 
-	ToStringVisitor getInstance(
-			Environment env) {
-		
-		return new ToStringVisitor(env);
+	@Deprecated
+	public static ToStringVisitor getInstance(Environment env) {	
+		return new ToStringVisitor();
 	}
 	
 	/**
@@ -139,12 +122,10 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 	 * 
 	 * @return the corresponding instance
 	 */
+	@Deprecated
 	public static 
-	ToStringVisitor getInstance(TypedElement element) {
-		
-		return new ToStringVisitor(
-				(Environment)
-					Environment.Registry.INSTANCE.getEnvironmentFor(element));
+	ToStringVisitor getInstance(TypedElement element) {	
+		return new ToStringVisitor();
 	}
 	
 	/**
@@ -182,8 +163,30 @@ public class ToStringVisitor extends AbstractVisitor<String> {
      *    or its name be <code>null</code>.  i.e., <code>null</code> is never
      *    returned
      */
-    protected String getQualifiedName(Object named) {
-        return (uml == null)? NULL_PLACEHOLDER : uml.getQualifiedName(named);
+    protected String getQualifiedName(NamedElement named) {
+        StringBuffer result = new StringBuffer();       
+        getQualifiedName(result, named);        
+        return result.toString();
+     }
+    
+    /**
+     * Helper for the {@link #getQualifiedName(Object)}.
+     */
+    private void getQualifiedName(StringBuffer buf, NamedElement namedElement) {
+        EObject container = namedElement.eContainer();
+        if (container instanceof NamedElement) {
+            getQualifiedName(buf, (NamedElement) container);         
+            buf.append("::"); //$NON-NLS-1$
+        }       
+        buf.append(namedElement.getName());
+        if (namedElement instanceof TemplateableElement) {
+        	TemplateableElement templateableElement = (TemplateableElement)namedElement;
+			appendTemplateBindings(buf, templateableElement.getTemplateBindings());
+    		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
+    		if (templateSignature != null) {
+            	appendTemplateSignature(buf, templateSignature);
+    		}
+        }
     }
 
 	/**
@@ -201,8 +204,8 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 		Type sourceType = source != null ? source.getType() : null;
 		Operation oper = oc.getReferredOperation();
 		
-		StringBuffer result = new StringBuffer();
 		result.append(sourceResult);
+		// FIXME conformsTo Collection
 		result.append(sourceType instanceof CollectionType ? "->" : "."); //$NON-NLS-1$ //$NON-NLS-2$
 		result.append(getName(oper != null ? oper : oc));
 		
@@ -214,8 +217,8 @@ public class ToStringVisitor extends AbstractVisitor<String> {
             }
 		}
 		result.append(')');
-        
-		return maybeAtPre(oc, result.toString());
+        maybeAtPre(oc);
+        return null;
 	}
 
 	/**
@@ -262,8 +265,8 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 			return getName(property);
 		}
 		
-		StringBuffer result = new StringBuffer(
-			maybeAtPre(pc, sourceResult + "." + getName(property)));//$NON-NLS-1$
+		result.append(sourceResult + "." + getName(property));	//$NON-NLS-1$
+		maybeAtPre(pc);
 		
 		if (!qualifierResults.isEmpty()) {
 			result.append('[');
@@ -278,8 +281,7 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 			
 			result.append(']');
 		}
-		
-		return result.toString();
+		return null;
 	}
 
 	/**
@@ -295,14 +297,13 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 		Type ref = ac.getReferredAssociationClass();
 		String name = initialLower(getName(ref));
 		
-		StringBuffer result = new StringBuffer(
-			maybeAtPre(ac, sourceResult + "." + name));//$NON-NLS-1$
+		result.append(sourceResult + "." + name);	//$NON-NLS-1$
+		maybeAtPre(ac);
 		
 		if (!qualifierResults.isEmpty()) {
 			result.append('[').append(qualifierResults.get(0)).append(']');
 		}
-		
-		return result.toString();
+		return null;
 	}
 	
 	protected String initialLower(String name) {
@@ -472,7 +473,7 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 	 *  Callback for an IterateExp visit.
 	 * @param callExp an iterate expression
      * @return the string representation
-	 */
+	 *
     @Override
     protected String handleIterateExp(IterateExp callExp,
             String sourceResult, List<String> variableResults,
@@ -494,13 +495,13 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 		result.append(bodyResult).append(')');
 
 		return result.toString();
-	}
+	} */
 
 	/**
 	 * Callback for an IteratorExp visit.
 	 * @param callExp an iterator expression
      * @return the string representation
-	 */
+	 *
     @Override
     protected String handleIteratorExp(IteratorExp callExp,
             String sourceResult, List<String> variableResults, String bodyResult) {
@@ -520,7 +521,7 @@ public class ToStringVisitor extends AbstractVisitor<String> {
         result.append(" | ").append(bodyResult).append(')');//$NON-NLS-1$
 
         return result.toString();
-	}
+	} */
 
 	/**
 	 * Callback for a CollectionLiteralExp visit.
@@ -639,9 +640,9 @@ public class ToStringVisitor extends AbstractVisitor<String> {
             "^^" : "^");  //$NON-NLS-1$//$NON-NLS-2$
 	
 		if (messageExp.getCalledOperation() != null) {
-			result.append(getName(getOperation(messageExp.getCalledOperation())));
+			result.append(getName(messageExp.getCalledOperation().getOperation()));
 		} else if (messageExp.getSentSignal() != null) {
-			result.append(getName(getSignal(messageExp.getSentSignal())));
+			result.append(getName(messageExp.getSentSignal().getSignal()));
 		}
 		
 		result.append('(');
@@ -658,21 +659,13 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 		
 		return result.toString();
 	}
-	
-	protected Operation getOperation(CallOperationAction callOperationAction) {
-		return (uml == null)? null : uml.getOperation(callOperationAction);
-	}
-	
-	protected Signal getSignal(SendSignalAction sendSignalAction) {
-		return (uml == null)? null : uml.getSignal(sendSignalAction);
-	}
 
 	/**
      * Renders an ExpressionInOcl with its context variables and body.
 	 */
 	@Override
     public String visitExpressionInOcl(ExpressionInOcl expression) {
-		return expression.getBodyExpression().accept(this);
+		return safeVisit(expression.getBodyExpression());
 	}
 
     /**
@@ -681,19 +674,18 @@ public class ToStringVisitor extends AbstractVisitor<String> {
     @Override
     public String visitConstraint(Constraint constraint) {
         StringBuffer result = new StringBuffer();
-        
-        List<? extends EObject> constrained = getConstrainedElements(constraint);
+        List<? extends EObject> constrained = constraint.getConstrainedElements();
         
         if (!constrained.isEmpty()) {
             EObject elem = constrained.get(0);
             
             result.append("context "); //$NON-NLS-1$
-            if (isClassifier(elem)) {
+            if (elem instanceof Type) {
                 result.append(getName((NamedElement) elem));
-            } else if (isOperation(elem)) {
+            } else if (elem instanceof Operation) {
                 Operation oper = (Operation) elem;
                 appendOperationSignature(result, oper);
-            } else if (isProperty(elem)) {
+            } else if (elem instanceof Property) {
                 Property prop = (Property) elem;
                 appendPropertySignature(result, prop);
             }
@@ -701,7 +693,7 @@ public class ToStringVisitor extends AbstractVisitor<String> {
             result.append(' ');
         }
         
-        String stereo = getStereotype(constraint);
+        String stereo = constraint.getStereotype();
         if (UMLReflection.PRECONDITION.equals(stereo)) {
             result.append("pre: "); //$NON-NLS-1$
         } else if (UMLReflection.POSTCONDITION.equals(stereo)) {
@@ -717,10 +709,10 @@ public class ToStringVisitor extends AbstractVisitor<String> {
             
             EObject elem = constrained.get(1);
             
-            if (isOperation(elem)) {
+            if (elem instanceof Operation) {
                 Operation oper = (Operation) elem;
                 appendOperationSignature(result, oper);
-            } else if (isProperty(elem)) {
+            } else if (elem instanceof Property) {
                 Property prop = (Property) elem;
                 appendPropertySignature(result, prop);
             }
@@ -728,29 +720,25 @@ public class ToStringVisitor extends AbstractVisitor<String> {
             result.append(" = "); //$NON-NLS-1$
         } else {
             result.append("inv "); //$NON-NLS-1$
-            result.append(getName(constraint));
+            String name = getName(constraint);
+			if (name != null) {
+				result.append(name);
+			}
             result.append(": "); //$NON-NLS-1$
         }
         
-        result.append(visit(getSpecification(constraint)));
+        result.append(safeVisit(constraint.getSpecification()));
         
         return result.toString();
     }
-	
-	protected boolean isClassifier(Object element) {
-		return (uml == null)? null : uml.isClassifier(element);
-	}
-	
-	protected boolean isOperation(Object element) {
-		return (uml == null)? null : uml.isOperation(element);
-	}
-	
-	protected boolean isProperty(Object element) {
-		return (uml == null)? null : uml.isProperty(element);
-	}
-	
-	protected List<? extends EObject> getConstrainedElements(Constraint constraint) {
-		return (uml == null)? null : uml.getConstrainedElements(constraint);
+
+/*	protected List<? extends EObject> getConstrainedElements(Constraint constraint) {
+		if (uml == null) {
+			return Collections.emptyList();
+		}
+		else {
+			return uml.getConstrainedElements(constraint);
+		}
 	}
 	
 	protected String getStereotype(Constraint constraint) {
@@ -760,13 +748,13 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 	@Override
     protected ExpressionInOcl getSpecification(Constraint constraint) {
 		return (uml == null)? null : uml.getSpecification(constraint);
-	}
+	} */
 	
 	private void appendOperationSignature(StringBuffer buf, Operation operation) {
 		buf.append(getName(operation)).append('(');
 		
 		boolean comma = false;
-		for (java.util.Iterator<Parameter> iter = getParameters(operation).iterator(); iter.hasNext();) {
+		for (java.util.Iterator<Parameter> iter = operation.getOwnedParameters().iterator(); iter.hasNext();) {
 			Parameter parm = iter.next();
 			
 			if (comma) {
@@ -777,56 +765,92 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 			
 			buf.append(getName(parm)).append(" : "); //$NON-NLS-1$
 			
-			if (getType(parm) != null) {
-				buf.append(getName(getType(parm)));
+			if (parm.getType() != null) {
+				buf.append(getName(parm.getType()));
 			} else {
 				buf.append("OclVoid"); //$NON-NLS-1$
 			}
 		}
 		
 		buf.append(") :"); //$NON-NLS-1$
-		if (getType(operation) != null) {
-			buf.append(' ').append(getName(getType(operation)));
+		if (operation.getType() != null) {
+			buf.append(' ').append(getName(operation.getType()));
 		}
 	}
 	
-	protected Type getType(Object typedElement) {
+/*	protected Type getType(Object typedElement) {
 		return (uml == null)? null : TypeUtil.resolveType(env, uml.getOCLType(typedElement));
 	}
 	
 	protected List<Parameter> getParameters(Operation operation) {
 		return (uml == null)? null : uml.getParameters(operation);
-	}
+	} */
 
 	private void appendPropertySignature(StringBuffer buf, Property property) {
 		buf.append(getName(property));
-		if (getType(property) != null) {
-			buf.append(" : ").append(getName(getType(property))); //$NON-NLS-1$
+		if (property.getType() != null) {
+			buf.append(" : ").append(getName(property.getType())); //$NON-NLS-1$
 		}
 	}
 
-	private String maybeAtPre(FeatureCallExp mpc, String base) {
-		return mpc.isPre() ? base + "@pre" : base; //$NON-NLS-1$
+	private void appendTemplateBindings(StringBuffer buf, List<TemplateBinding> templateBindings) {
+		if (templateBindings.size() > 0) {
+			buf.append("(");
+			String prefix = ""; //$NON-NLS-1$
+			for (TemplateBinding templateBinding : templateBindings) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+					buf.append(prefix);
+					buf.append(getName((NamedElement) templateParameterSubstitution.getActual()));
+					prefix = ",";
+				}
+			}
+			buf.append(")");
+		}
+	}
+
+	private void appendTemplateSignature(StringBuffer buf, TemplateSignature templateSignature) {
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+		if (!templateParameters.isEmpty()) {
+			buf.append("<");
+			String prefix = ""; //$NON-NLS-1$
+			for (TemplateParameter templateParameter : templateParameters) {
+				buf.append(prefix);
+				buf.append(getName((NamedElement) templateParameter.getParameteredElement()));
+				prefix = ",";
+			}
+			buf.append(">");
+		}
+	}
+
+	private void maybeAtPre(FeatureCallExp mpc) {
+		if (mpc.isPre()) {
+			result.append("@pre"); //$NON-NLS-1$
+		}
 	}
 
 	@Override
-	public String visitClass(org.eclipse.ocl.examples.pivot.Class cls) {
-		return getName(cls.eContainer(), "::", cls);
+	public String visitClass(org.eclipse.ocl.examples.pivot.Class cls) {		
+		EObject eContainer = cls.eContainer();
+		if (cls.getOwningTemplateParameter() != null) {
+			result.append(getName(eContainer, "::", cls));
+		}
+		else {
+			result.append(getName(eContainer, "::", cls));
+			List<TemplateBinding> templateBindings = cls.getTemplateBindings();
+			if (templateBindings.size() > 0) {
+				appendTemplateBindings(result, templateBindings);
+			}
+    		TemplateSignature templateSignature = cls.getOwnedTemplateSignature();
+    		if (templateSignature != null) {
+            	appendTemplateSignature(result, templateSignature);
+    		}
+		}
+		return null;
 	}
 
 	@Override
     public String visitInvalidLiteralExp(InvalidLiteralExp il) {
 		return "invalid"; //$NON-NLS-1$
-	}
-
-	@Override
-	public String visitIterate(Iterate iterate) {
-		return getName(iterate.eContainer(), ".", iterate);
-	}
-
-	@Override
-	public String visitIterator(org.eclipse.ocl.examples.pivot.Iterator iterator) {
-		return getName(iterator.eContainer(), ".", iterator);
 	}
 
 	@Override
@@ -836,20 +860,27 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 
 	@Override
 	public String visitOperation(Operation operation) {
-		StringBuffer s = new StringBuffer();
-		s.append(getName(operation.eContainer(), ".", operation));
-		s.append('(');
+		result.append(getName(operation.eContainer(), ".", operation));
+		List<TemplateBinding> templateBindings = operation.getTemplateBindings();
+		if (templateBindings.size() > 0) {
+			appendTemplateBindings(result, templateBindings);
+		}
+		TemplateSignature templateSignature = operation.getOwnedTemplateSignature();
+		if (templateSignature != null) {
+        	appendTemplateSignature(result, templateSignature);
+		}
+		result.append('(');
 		boolean isFirst = true;
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			if (!isFirst) {
-				s.append(',');
+				result.append(',');
 			}
 			Type type = parameter.getType();
-			s.append(getName(type));
+			result.append(getName(type));
 			isFirst = false;
 		}
-		s.append(')');
-		return s.toString();
+		result.append(')');
+		return null;
 	}
 
 	@Override
@@ -872,7 +903,39 @@ public class ToStringVisitor extends AbstractVisitor<String> {
 		return getName(property.eContainer(), ".", property);
 	}
 	
-	public String visit(Visitable visitable) {
+	@Override
+	public String visitTemplateBinding(TemplateBinding object) {
+//		s.append(getQualifiedName(object.getFormal(), "/", (NamedElement) object.getActual()));
+		appendTemplateBindings(result, Collections.singletonList(object));
+		return null;
+	}
+
+	@Override
+	public String visitTemplateParameter(TemplateParameter object) {
+		return getName(object.getSignature().getTemplate(), ".", (NamedElement) object.getParameteredElement());
+	}
+
+	@Override
+	public String visitTemplateParameterSubstitution(TemplateParameterSubstitution object) {
+		result.append(getName((NamedElement) object.getFormal().getParameteredElement()));
+		result.append("/");
+		result.append((NamedElement) object.getActual());
+		return null;
+	}
+
+	@Override
+	public String visitTemplateSignature(TemplateSignature object) {
+//		s.append(getQualifiedName(object.getFormal(), "/", (NamedElement) object.getActual()));
+		appendTemplateSignature(result, object);
+		return null;
+	}
+
+	public String visiting(Visitable visitable) {
 		return (visitable == null)? NULL_PLACEHOLDER : visitable.getClass().getName();
+	}
+
+	@Override
+	public String toString() {
+		return result.toString();
 	}
 } // ToStringVisitorImpl

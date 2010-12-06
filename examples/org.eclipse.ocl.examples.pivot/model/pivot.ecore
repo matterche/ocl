@@ -43,6 +43,12 @@
     <eLiterals name="Bag" value="3"/>
     <eLiterals name="Sequence" value="4"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IteratorKind">
+    <eLiterals name="Parameter"/>
+    <eLiterals name="Iterator" value="1"/>
+    <eLiterals name="Accumulator" value="2"/>
+    <eLiterals name="Result" value="3"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" ordered="false"
         upperBound="-1" eType="#//Element" containment="true"/>
@@ -63,7 +69,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="BagType" eSuperTypes="#//CollectionType"/>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanSymbol" ordered="false"
-        lowerBound="1" eType="#//Boolean"/>
+        lowerBound="1" eType="#//Boolean" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CallExp" abstract="true" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
@@ -105,6 +111,10 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
         eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitive" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subClass" ordered="false"
+        upperBound="-1" eType="#//Class" transient="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionItem" eSuperTypes="#//CollectionLiteralPart">
     <eStructuralFeatures xsi:type="ecore:EReference" name="item" ordered="false" lowerBound="1"
@@ -267,7 +277,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" ordered="false"
         eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class #//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="DataType is an abstract class that acts as a common superclass for different kinds of data types."/>
     </eAnnotations>
@@ -323,15 +333,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
         eType="#//Variable" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//NamedElement">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EAttribute" name="isStatic" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//NamedElement/isStatic"/>
+      </contents>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="INamedElement" abstract="true">
-    <eOperations name="getName" ordered="false" lowerBound="1" eType="#//String"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IPivotElement" abstract="true">
-    <eOperations name="getPivot" ordered="false" lowerBound="1" eType="#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" ordered="false"
@@ -341,7 +353,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseExpression" ordered="false"
         lowerBound="1" eType="#//OclExpression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImplementableElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementableElement" abstract="true"
+      interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" ordered="false"
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" ordered="false"
@@ -362,24 +375,6 @@
         eType="#//Throwable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Iterate" eSuperTypes="#//Iterator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAccumulator" upperBound="-1"
-        eType="#//Parameter" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IterateExp" eSuperTypes="#//LoopExp">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="result" ordered="false"
-        eType="#//Variable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredIterate" ordered="false"
-        eType="#//Iterate"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Iterator" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedIterator" upperBound="-1"
-        eType="#//Parameter" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//LoopExp">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredIterator" ordered="false"
-        eType="#//Iterator"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" ordered="false" lowerBound="1"
         eType="#//OclExpression" containment="true"/>
@@ -412,10 +407,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="MonikeredElement" abstract="true" eSuperTypes="#//Element">
     <eOperations name="hasMoniker" ordered="false" lowerBound="1" eType="#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="moniker" ordered="false"
-        lowerBound="1" eType="#//String" volatile="true" derived="true"/>
+        lowerBound="1" eType="#//String" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicityElement" abstract="true"
-      eSuperTypes="#//MonikeredElement #//Element">
+      eSuperTypes="#//MonikeredElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A multiplicity is a definition of an inclusive interval of non-negative integers beginning with a lower bound and ending with a (possibly infinite) upper bound. A multiplicity element embeds this information to specify the allowable cardinalities for an instantiation of this element."/>
     </eAnnotations>
@@ -509,7 +504,9 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//MonikeredElement #//Element #//INamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Nameable"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//MonikeredElement #//Nameable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A named element represents an element with a name."/>
     </eAnnotations>
@@ -520,6 +517,8 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRule" ordered="false"
         upperBound="-1" eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
+        lowerBound="1" eType="#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" ordered="false"
         upperBound="-1" eType="#//Annotation" containment="true"/>
   </eClassifiers>
@@ -531,7 +530,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclAny" abstract="true" eSuperTypes="#//_">
+  <eClassifiers xsi:type="ecore:EClass" name="OclAny" abstract="true" eSuperTypes="#//Visitable">
     <eOperations name="oclType" ordered="false" lowerBound="1" eType="#//Class"/>
     <eOperations name="oclIsInvalid" ordered="false" lowerBound="1" eType="#//Boolean"/>
     <eOperations name="oclIsUndefined" ordered="false" lowerBound="1" eType="#//Boolean"/>
@@ -573,7 +572,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedMultiplicityElement #//MultiplicityElement #//TypedElement #//Namespace #//TemplateableElement #//ParameterableElement #//ImplementableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedMultiplicityElement #//Feature #//Namespace #//ParameterableElement #//TemplateableElement #//ImplementableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xD;&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -647,7 +646,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedSetType" eSuperTypes="#//CollectionType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//NamedElement #//Namespace #//TemplateableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Namespace #//TemplateableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A package is a container for types and other packages.&#xD;&#xA;Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter."/>
     </eAnnotations>
@@ -682,10 +681,12 @@
       <details key="documentation" value="Packageable elements are able to serve as a template parameter."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//TypedMultiplicityElement #//MultiplicityElement #//TypedElement #//VariableDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//TypedMultiplicityElement #//VariableDeclaration">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A parameter is a typed element that represents a parameter of an operation."/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteratorKind" ordered="false"
+        lowerBound="1" eType="#//IteratorKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
         eType="#//Operation" eOpposite="#//Operation/ownedParameter">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -694,7 +695,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterableElement" abstract="true"
-      eSuperTypes="#//MonikeredElement #//Element">
+      eSuperTypes="#//MonikeredElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -717,6 +718,8 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable"
+      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Precedence" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associativity" ordered="false"
         eType="#//AssociativityKind" defaultValueLiteral="Left"/>
@@ -730,7 +733,7 @@
       <details key="documentation" value="A primitive type is a data type implemented by the underlying infrastructure and made available for modeling."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//TypedMultiplicityElement #//MultiplicityElement #//TypedElement #//ParameterableElement #//ImplementableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//TypedMultiplicityElement #//Feature #//ParameterableElement #//ImplementableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A property is a typed element that represents an attribute of a class.&#xD;&#xA;Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -816,7 +819,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringSymbol" ordered="false"
         lowerBound="1" eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateBinding" eSuperTypes="#//MonikeredElement #//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateBinding" eSuperTypes="#//Element">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template."/>
     </eAnnotations>
@@ -987,7 +990,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" ordered="false"
         eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateSignature" eSuperTypes="#//MonikeredElement #//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateSignature" eSuperTypes="#//MonikeredElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A template signature bundles the set of formal template parameters for a templated element."/>
     </eAnnotations>
@@ -1031,7 +1034,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateableElement" abstract="true"
-      eSuperTypes="#//MonikeredElement #//Element">
+      eSuperTypes="#//MonikeredElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A templateable element is an element that can optionally be defined as a template and bound to other templates."/>
     </eAnnotations>
@@ -1057,8 +1060,6 @@
         <details key="documentation" value="The optional template signature specifying the formal template parameters."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSpecialization" ordered="false"
-        upperBound="-1" eType="#//TemplateableElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExp" eSuperTypes="#//LiteralExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//TupleLiteralPart"
@@ -1069,7 +1070,7 @@
         eType="#//Property" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleType" eSuperTypes="#//DataType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement #//TemplateableElement #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement #//ParameterableElement #//TemplateableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xD;&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
     </eAnnotations>
@@ -1156,7 +1157,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedMultiplicityElement" abstract="true"
-      eSuperTypes="#//MultiplicityElement #//TypedElement"/>
+      eSuperTypes="#//TypedElement #//MultiplicityElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"
         lowerBound="1" eType="#//UnlimitedNatural"/>
@@ -1198,7 +1199,7 @@
       </eAnnotations>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//TypedElement #//VariableDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//VariableDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" ordered="false"
         eType="#//OclExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representedParameter" ordered="false"
@@ -1210,7 +1211,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" ordered="false"
         eType="#//VariableDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="_" instanceClassName="org.eclipse.ocl.examples.pivot.utilities.Visitable"
+  <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable"
       abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Visitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"
+      abstract="true" interface="true">
+    <eTypeParameters name="R"/>
+    <eTypeParameters name="C"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Type"/>
 </ecore:EPackage>

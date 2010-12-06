@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -55,10 +55,7 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.Iterate;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.Iterator;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.IteratorKind;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
@@ -180,10 +177,6 @@ public class PivotFactoryImpl
 			case PivotPackage.INTEGER_LITERAL_EXP: return (EObject)createIntegerLiteralExp();
 			case PivotPackage.INVALID_LITERAL_EXP: return (EObject)createInvalidLiteralExp();
 			case PivotPackage.INVALID_TYPE: return (EObject)createInvalidType();
-			case PivotPackage.ITERATE: return (EObject)createIterate();
-			case PivotPackage.ITERATE_EXP: return (EObject)createIterateExp();
-			case PivotPackage.ITERATOR: return (EObject)createIterator();
-			case PivotPackage.ITERATOR_EXP: return (EObject)createIteratorExp();
 			case PivotPackage.LET_EXP: return (EObject)createLetExp();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
@@ -241,6 +234,8 @@ public class PivotFactoryImpl
 				return createAssociativityKindFromString(eDataType, initialValue);
 			case PivotPackage.COLLECTION_KIND:
 				return createCollectionKindFromString(eDataType, initialValue);
+			case PivotPackage.ITERATOR_KIND:
+				return createIteratorKindFromString(eDataType, initialValue);
 			case PivotPackage.BOOLEAN:
 				return createBooleanFromString(eDataType, initialValue);
 			case PivotPackage.INT:
@@ -275,6 +270,8 @@ public class PivotFactoryImpl
 				return convertAssociativityKindToString(eDataType, instanceValue);
 			case PivotPackage.COLLECTION_KIND:
 				return convertCollectionKindToString(eDataType, instanceValue);
+			case PivotPackage.ITERATOR_KIND:
+				return convertIteratorKindToString(eDataType, instanceValue);
 			case PivotPackage.BOOLEAN:
 				return convertBooleanToString(eDataType, instanceValue);
 			case PivotPackage.INT:
@@ -311,49 +308,9 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnyType createAnyType() {
-		AnyTypeImpl anyType = new AnyTypeImpl();
-		return anyType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public org.eclipse.ocl.examples.pivot.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Property createProperty() {
-		PropertyImpl property = new PropertyImpl();
-		return property;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter createTemplateParameter() {
-		TemplateParameterImpl templateParameter = new TemplateParameterImpl();
-		return templateParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature createTemplateSignature() {
-		TemplateSignatureImpl templateSignature = new TemplateSignatureImpl();
-		return templateSignature;
 	}
 
 	/**
@@ -371,9 +328,69 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TemplateSignature createTemplateSignature() {
+		TemplateSignatureImpl templateSignature = new TemplateSignatureImpl();
+		return templateSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateParameter createTemplateParameter() {
+		TemplateParameterImpl templateParameter = new TemplateParameterImpl();
+		return templateParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TemplateParameterSubstitution createTemplateParameterSubstitution() {
 		TemplateParameterSubstitutionImpl templateParameterSubstitution = new TemplateParameterSubstitutionImpl();
 		return templateParameterSubstitution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.eclipse.ocl.examples.pivot.Package createPackage() {
+		PackageImpl package_ = new PackageImpl();
+		return package_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Precedence createPrecedence() {
+		PrecedenceImpl precedence = new PrecedenceImpl();
+		return precedence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeTemplateParameter createTypeTemplateParameter() {
+		TypeTemplateParameterImpl typeTemplateParameter = new TypeTemplateParameterImpl();
+		return typeTemplateParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Property createProperty() {
+		PropertyImpl property = new PropertyImpl();
+		return property;
 	}
 
 	/**
@@ -411,16 +428,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Precedence createPrecedence() {
-		PrecedenceImpl precedence = new PrecedenceImpl();
-		return precedence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OperationTemplateParameter createOperationTemplateParameter() {
 		OperationTemplateParameterImpl operationTemplateParameter = new OperationTemplateParameterImpl();
 		return operationTemplateParameter;
@@ -441,56 +448,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteClass createCompleteClass() {
-		CompleteClassImpl completeClass = new CompleteClassImpl();
-		return completeClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteEnvironment createCompleteEnvironment() {
-		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
-		return completeEnvironment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteOperation createCompleteOperation() {
-		CompleteOperationImpl completeOperation = new CompleteOperationImpl();
-		return completeOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompletePackage createCompletePackage() {
-		CompletePackageImpl completePackage = new CompletePackageImpl();
-		return completePackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteProperty createCompleteProperty() {
-		CompletePropertyImpl completeProperty = new CompletePropertyImpl();
-		return completeProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Constraint createConstraint() {
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
@@ -501,9 +458,9 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Package createPackage() {
-		PackageImpl package_ = new PackageImpl();
-		return package_;
+	public Detail createDetail() {
+		DetailImpl detail = new DetailImpl();
+		return detail;
 	}
 
 	/**
@@ -511,19 +468,9 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeTemplateParameter createTypeTemplateParameter() {
-		TypeTemplateParameterImpl typeTemplateParameter = new TypeTemplateParameterImpl();
-		return typeTemplateParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
-		UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
-		return unlimitedNaturalLiteralExp;
+	public AnyType createAnyType() {
+		AnyTypeImpl anyType = new AnyTypeImpl();
+		return anyType;
 	}
 
 	/**
@@ -534,6 +481,16 @@ public class PivotFactoryImpl
 	public AssociationClassCallExp createAssociationClassCallExp() {
 		AssociationClassCallExpImpl associationClassCallExp = new AssociationClassCallExpImpl();
 		return associationClassCallExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OclExpression createOclExpression() {
+		OclExpressionImpl oclExpression = new OclExpressionImpl();
+		return oclExpression;
 	}
 
 	/**
@@ -564,16 +521,6 @@ public class PivotFactoryImpl
 	public DataType createDataType() {
 		DataTypeImpl dataType = new DataTypeImpl();
 		return dataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Detail createDetail() {
-		DetailImpl detail = new DetailImpl();
-		return detail;
 	}
 
 	/**
@@ -624,6 +571,56 @@ public class PivotFactoryImpl
 	public CollectionRange createCollectionRange() {
 		CollectionRangeImpl collectionRange = new CollectionRangeImpl();
 		return collectionRange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteClass createCompleteClass() {
+		CompleteClassImpl completeClass = new CompleteClassImpl();
+		return completeClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteEnvironment createCompleteEnvironment() {
+		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
+		return completeEnvironment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteOperation createCompleteOperation() {
+		CompleteOperationImpl completeOperation = new CompleteOperationImpl();
+		return completeOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompletePackage createCompletePackage() {
+		CompletePackageImpl completePackage = new CompletePackageImpl();
+		return completePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteProperty createCompleteProperty() {
+		CompletePropertyImpl completeProperty = new CompletePropertyImpl();
+		return completeProperty;
 	}
 
 	/**
@@ -731,46 +728,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Iterate createIterate() {
-		IterateImpl iterate = new IterateImpl();
-		return iterate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IterateExp createIterateExp() {
-		IterateExpImpl iterateExp = new IterateExpImpl();
-		return iterateExp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Iterator createIterator() {
-		IteratorImpl iterator = new IteratorImpl();
-		return iterator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IteratorExp createIteratorExp() {
-		IteratorExpImpl iteratorExp = new IteratorExpImpl();
-		return iteratorExp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LetExp createLetExp() {
 		LetExpImpl letExp = new LetExpImpl();
 		return letExp;
@@ -791,9 +748,9 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MessageType createMessageType() {
-		MessageTypeImpl messageType = new MessageTypeImpl();
-		return messageType;
+	public SendSignalAction createSendSignalAction() {
+		SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
+		return sendSignalAction;
 	}
 
 	/**
@@ -811,9 +768,9 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NullLiteralExp createNullLiteralExp() {
-		NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
-		return nullLiteralExp;
+	public MessageType createMessageType() {
+		MessageTypeImpl messageType = new MessageTypeImpl();
+		return messageType;
 	}
 
 	/**
@@ -821,9 +778,9 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createOclExpression() {
-		OclExpressionImpl oclExpression = new OclExpressionImpl();
-		return oclExpression;
+	public NullLiteralExp createNullLiteralExp() {
+		NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
+		return nullLiteralExp;
 	}
 
 	/**
@@ -874,16 +831,6 @@ public class PivotFactoryImpl
 	public RealLiteralExp createRealLiteralExp() {
 		RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
 		return realLiteralExp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SendSignalAction createSendSignalAction() {
-		SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
-		return sendSignalAction;
 	}
 
 	/**
@@ -991,6 +938,16 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
+		UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
+		return unlimitedNaturalLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UnspecifiedValueExp createUnspecifiedValueExp() {
 		UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
 		return unspecifiedValueExp;
@@ -1065,6 +1022,28 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IteratorKind createIteratorKindFromString(EDataType eDataType,
+			String initialValue) {
+		IteratorKind result = IteratorKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIteratorKindToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Boolean createBooleanFromString(EDataType eDataType,
 			String initialValue) {
 		return (Boolean)super.createFromString(eDataType, initialValue);
@@ -1117,30 +1096,6 @@ public class PivotFactoryImpl
 			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-//	public Class<?> createJavaClassFromString(EDataType eDataType,
-//			String initialValue) {
-//		try {
-//			return Class.forName(initialValue);
-//		} catch (ClassNotFoundException e) {
-//			throw new WrappedException("Failed to load implementation class", e);
-//		}
-//	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-//	public String convertJavaClassToString(EDataType eDataType,
-//			Object instanceValue) {
-//		return ((Class<?>) instanceValue).getCanonicalName();
-//	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1206,8 +1161,8 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Throwable createThrowableFromString(EDataType eDataType, String initialValue)
-	{
+	public Throwable createThrowableFromString(EDataType eDataType,
+			String initialValue) {
 		return (Throwable)super.createFromString(eDataType, initialValue);
 	}
 
@@ -1216,8 +1171,8 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertThrowableToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertThrowableToString(EDataType eDataType,
+			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

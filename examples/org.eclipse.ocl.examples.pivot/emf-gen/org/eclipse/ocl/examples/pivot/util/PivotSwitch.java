@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -47,18 +47,13 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.FeatureCallExp;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.Iterate;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.Iterator;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
@@ -117,7 +112,6 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -204,10 +198,10 @@ public class PivotSwitch<T> {
 				T result = caseAnnotation(annotation);
 				if (result == null) result = caseNamedElement(annotation);
 				if (result == null) result = caseMonikeredElement(annotation);
-				if (result == null) result = caseINamedElement(annotation);
+				if (result == null) result = caseNameable(annotation);
 				if (result == null) result = caseElement(annotation);
 				if (result == null) result = caseOclAny(annotation);
-				if (result == null) result = case_(annotation);
+				if (result == null) result = caseVisitable(annotation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -217,13 +211,13 @@ public class PivotSwitch<T> {
 				T result = caseAnyType(anyType);
 				if (result == null) result = caseType(anyType);
 				if (result == null) result = caseNamedElement(anyType);
-				if (result == null) result = caseTemplateableElement(anyType);
 				if (result == null) result = caseParameterableElement(anyType);
+				if (result == null) result = caseTemplateableElement(anyType);
 				if (result == null) result = caseMonikeredElement(anyType);
-				if (result == null) result = caseINamedElement(anyType);
+				if (result == null) result = caseNameable(anyType);
 				if (result == null) result = caseElement(anyType);
 				if (result == null) result = caseOclAny(anyType);
-				if (result == null) result = case_(anyType);
+				if (result == null) result = caseVisitable(anyType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -235,13 +229,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(associationClass);
 				if (result == null) result = caseNamespace(associationClass);
 				if (result == null) result = caseNamedElement(associationClass);
-				if (result == null) result = caseTemplateableElement(associationClass);
 				if (result == null) result = caseParameterableElement(associationClass);
+				if (result == null) result = caseTemplateableElement(associationClass);
 				if (result == null) result = caseMonikeredElement(associationClass);
-				if (result == null) result = caseINamedElement(associationClass);
+				if (result == null) result = caseNameable(associationClass);
 				if (result == null) result = caseElement(associationClass);
 				if (result == null) result = caseOclAny(associationClass);
-				if (result == null) result = case_(associationClass);
+				if (result == null) result = caseVisitable(associationClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -256,10 +250,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(associationClassCallExp);
 				if (result == null) result = caseNamedElement(associationClassCallExp);
 				if (result == null) result = caseMonikeredElement(associationClassCallExp);
-				if (result == null) result = caseINamedElement(associationClassCallExp);
+				if (result == null) result = caseNameable(associationClassCallExp);
 				if (result == null) result = caseElement(associationClassCallExp);
 				if (result == null) result = caseOclAny(associationClassCallExp);
-				if (result == null) result = case_(associationClassCallExp);
+				if (result == null) result = caseVisitable(associationClassCallExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -273,13 +267,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(bagType);
 				if (result == null) result = caseNamespace(bagType);
 				if (result == null) result = caseNamedElement(bagType);
-				if (result == null) result = caseTemplateableElement(bagType);
 				if (result == null) result = caseParameterableElement(bagType);
+				if (result == null) result = caseTemplateableElement(bagType);
 				if (result == null) result = caseMonikeredElement(bagType);
-				if (result == null) result = caseINamedElement(bagType);
+				if (result == null) result = caseNameable(bagType);
 				if (result == null) result = caseElement(bagType);
 				if (result == null) result = caseOclAny(bagType);
-				if (result == null) result = case_(bagType);
+				if (result == null) result = caseVisitable(bagType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -293,10 +287,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(booleanLiteralExp);
 				if (result == null) result = caseNamedElement(booleanLiteralExp);
 				if (result == null) result = caseMonikeredElement(booleanLiteralExp);
-				if (result == null) result = caseINamedElement(booleanLiteralExp);
+				if (result == null) result = caseNameable(booleanLiteralExp);
 				if (result == null) result = caseElement(booleanLiteralExp);
 				if (result == null) result = caseOclAny(booleanLiteralExp);
-				if (result == null) result = case_(booleanLiteralExp);
+				if (result == null) result = caseVisitable(booleanLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,10 +302,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(callExp);
 				if (result == null) result = caseNamedElement(callExp);
 				if (result == null) result = caseMonikeredElement(callExp);
-				if (result == null) result = caseINamedElement(callExp);
+				if (result == null) result = caseNameable(callExp);
 				if (result == null) result = caseElement(callExp);
 				if (result == null) result = caseOclAny(callExp);
-				if (result == null) result = case_(callExp);
+				if (result == null) result = caseVisitable(callExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -321,10 +315,10 @@ public class PivotSwitch<T> {
 				T result = caseCallOperationAction(callOperationAction);
 				if (result == null) result = caseNamedElement(callOperationAction);
 				if (result == null) result = caseMonikeredElement(callOperationAction);
-				if (result == null) result = caseINamedElement(callOperationAction);
+				if (result == null) result = caseNameable(callOperationAction);
 				if (result == null) result = caseElement(callOperationAction);
 				if (result == null) result = caseOclAny(callOperationAction);
-				if (result == null) result = case_(callOperationAction);
+				if (result == null) result = caseVisitable(callOperationAction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -335,13 +329,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(class_);
 				if (result == null) result = caseNamespace(class_);
 				if (result == null) result = caseNamedElement(class_);
-				if (result == null) result = caseTemplateableElement(class_);
 				if (result == null) result = caseParameterableElement(class_);
+				if (result == null) result = caseTemplateableElement(class_);
 				if (result == null) result = caseMonikeredElement(class_);
-				if (result == null) result = caseINamedElement(class_);
+				if (result == null) result = caseNameable(class_);
 				if (result == null) result = caseElement(class_);
 				if (result == null) result = caseOclAny(class_);
-				if (result == null) result = case_(class_);
+				if (result == null) result = caseVisitable(class_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -353,10 +347,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(collectionItem);
 				if (result == null) result = caseNamedElement(collectionItem);
 				if (result == null) result = caseMonikeredElement(collectionItem);
-				if (result == null) result = caseINamedElement(collectionItem);
+				if (result == null) result = caseNameable(collectionItem);
 				if (result == null) result = caseElement(collectionItem);
 				if (result == null) result = caseOclAny(collectionItem);
-				if (result == null) result = case_(collectionItem);
+				if (result == null) result = caseVisitable(collectionItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -369,10 +363,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(collectionLiteralExp);
 				if (result == null) result = caseNamedElement(collectionLiteralExp);
 				if (result == null) result = caseMonikeredElement(collectionLiteralExp);
-				if (result == null) result = caseINamedElement(collectionLiteralExp);
+				if (result == null) result = caseNameable(collectionLiteralExp);
 				if (result == null) result = caseElement(collectionLiteralExp);
 				if (result == null) result = caseOclAny(collectionLiteralExp);
-				if (result == null) result = case_(collectionLiteralExp);
+				if (result == null) result = caseVisitable(collectionLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -383,10 +377,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(collectionLiteralPart);
 				if (result == null) result = caseNamedElement(collectionLiteralPart);
 				if (result == null) result = caseMonikeredElement(collectionLiteralPart);
-				if (result == null) result = caseINamedElement(collectionLiteralPart);
+				if (result == null) result = caseNameable(collectionLiteralPart);
 				if (result == null) result = caseElement(collectionLiteralPart);
 				if (result == null) result = caseOclAny(collectionLiteralPart);
-				if (result == null) result = case_(collectionLiteralPart);
+				if (result == null) result = caseVisitable(collectionLiteralPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -398,10 +392,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(collectionRange);
 				if (result == null) result = caseNamedElement(collectionRange);
 				if (result == null) result = caseMonikeredElement(collectionRange);
-				if (result == null) result = caseINamedElement(collectionRange);
+				if (result == null) result = caseNameable(collectionRange);
 				if (result == null) result = caseElement(collectionRange);
 				if (result == null) result = caseOclAny(collectionRange);
-				if (result == null) result = case_(collectionRange);
+				if (result == null) result = caseVisitable(collectionRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -414,13 +408,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(collectionType);
 				if (result == null) result = caseNamespace(collectionType);
 				if (result == null) result = caseNamedElement(collectionType);
-				if (result == null) result = caseTemplateableElement(collectionType);
 				if (result == null) result = caseParameterableElement(collectionType);
+				if (result == null) result = caseTemplateableElement(collectionType);
 				if (result == null) result = caseMonikeredElement(collectionType);
-				if (result == null) result = caseINamedElement(collectionType);
+				if (result == null) result = caseNameable(collectionType);
 				if (result == null) result = caseElement(collectionType);
 				if (result == null) result = caseOclAny(collectionType);
-				if (result == null) result = case_(collectionType);
+				if (result == null) result = caseVisitable(collectionType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -430,7 +424,7 @@ public class PivotSwitch<T> {
 				T result = caseComment(comment);
 				if (result == null) result = caseElement(comment);
 				if (result == null) result = caseOclAny(comment);
-				if (result == null) result = case_(comment);
+				if (result == null) result = caseVisitable(comment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -442,13 +436,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(completeClass);
 				if (result == null) result = caseNamespace(completeClass);
 				if (result == null) result = caseNamedElement(completeClass);
-				if (result == null) result = caseTemplateableElement(completeClass);
 				if (result == null) result = caseParameterableElement(completeClass);
+				if (result == null) result = caseTemplateableElement(completeClass);
 				if (result == null) result = caseMonikeredElement(completeClass);
-				if (result == null) result = caseINamedElement(completeClass);
+				if (result == null) result = caseNameable(completeClass);
 				if (result == null) result = caseElement(completeClass);
 				if (result == null) result = caseOclAny(completeClass);
-				if (result == null) result = case_(completeClass);
+				if (result == null) result = caseVisitable(completeClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -461,10 +455,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTemplateableElement(completeEnvironment);
 				if (result == null) result = caseNamedElement(completeEnvironment);
 				if (result == null) result = caseMonikeredElement(completeEnvironment);
-				if (result == null) result = caseINamedElement(completeEnvironment);
+				if (result == null) result = caseNameable(completeEnvironment);
 				if (result == null) result = caseElement(completeEnvironment);
 				if (result == null) result = caseOclAny(completeEnvironment);
-				if (result == null) result = case_(completeEnvironment);
+				if (result == null) result = caseVisitable(completeEnvironment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -474,18 +468,19 @@ public class PivotSwitch<T> {
 				T result = caseCompleteOperation(completeOperation);
 				if (result == null) result = caseOperation(completeOperation);
 				if (result == null) result = caseTypedMultiplicityElement(completeOperation);
+				if (result == null) result = caseFeature(completeOperation);
 				if (result == null) result = caseNamespace(completeOperation);
-				if (result == null) result = caseTemplateableElement(completeOperation);
 				if (result == null) result = caseParameterableElement(completeOperation);
+				if (result == null) result = caseTemplateableElement(completeOperation);
 				if (result == null) result = caseImplementableElement(completeOperation);
-				if (result == null) result = caseMultiplicityElement(completeOperation);
 				if (result == null) result = caseTypedElement(completeOperation);
+				if (result == null) result = caseMultiplicityElement(completeOperation);
 				if (result == null) result = caseNamedElement(completeOperation);
 				if (result == null) result = caseMonikeredElement(completeOperation);
+				if (result == null) result = caseNameable(completeOperation);
 				if (result == null) result = caseElement(completeOperation);
-				if (result == null) result = caseINamedElement(completeOperation);
 				if (result == null) result = caseOclAny(completeOperation);
-				if (result == null) result = case_(completeOperation);
+				if (result == null) result = caseVisitable(completeOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -498,10 +493,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTemplateableElement(completePackage);
 				if (result == null) result = caseNamedElement(completePackage);
 				if (result == null) result = caseMonikeredElement(completePackage);
-				if (result == null) result = caseINamedElement(completePackage);
+				if (result == null) result = caseNameable(completePackage);
 				if (result == null) result = caseElement(completePackage);
 				if (result == null) result = caseOclAny(completePackage);
-				if (result == null) result = case_(completePackage);
+				if (result == null) result = caseVisitable(completePackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -511,16 +506,17 @@ public class PivotSwitch<T> {
 				T result = caseCompleteProperty(completeProperty);
 				if (result == null) result = caseProperty(completeProperty);
 				if (result == null) result = caseTypedMultiplicityElement(completeProperty);
+				if (result == null) result = caseFeature(completeProperty);
 				if (result == null) result = caseParameterableElement(completeProperty);
 				if (result == null) result = caseImplementableElement(completeProperty);
-				if (result == null) result = caseMultiplicityElement(completeProperty);
 				if (result == null) result = caseTypedElement(completeProperty);
+				if (result == null) result = caseMultiplicityElement(completeProperty);
 				if (result == null) result = caseNamedElement(completeProperty);
 				if (result == null) result = caseMonikeredElement(completeProperty);
+				if (result == null) result = caseNameable(completeProperty);
 				if (result == null) result = caseElement(completeProperty);
-				if (result == null) result = caseINamedElement(completeProperty);
 				if (result == null) result = caseOclAny(completeProperty);
-				if (result == null) result = case_(completeProperty);
+				if (result == null) result = caseVisitable(completeProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -530,10 +526,10 @@ public class PivotSwitch<T> {
 				T result = caseConstraint(constraint);
 				if (result == null) result = caseNamedElement(constraint);
 				if (result == null) result = caseMonikeredElement(constraint);
-				if (result == null) result = caseINamedElement(constraint);
+				if (result == null) result = caseNameable(constraint);
 				if (result == null) result = caseElement(constraint);
 				if (result == null) result = caseOclAny(constraint);
-				if (result == null) result = case_(constraint);
+				if (result == null) result = caseVisitable(constraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -545,13 +541,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(dataType);
 				if (result == null) result = caseNamespace(dataType);
 				if (result == null) result = caseNamedElement(dataType);
-				if (result == null) result = caseTemplateableElement(dataType);
 				if (result == null) result = caseParameterableElement(dataType);
+				if (result == null) result = caseTemplateableElement(dataType);
 				if (result == null) result = caseMonikeredElement(dataType);
-				if (result == null) result = caseINamedElement(dataType);
+				if (result == null) result = caseNameable(dataType);
 				if (result == null) result = caseElement(dataType);
 				if (result == null) result = caseOclAny(dataType);
-				if (result == null) result = case_(dataType);
+				if (result == null) result = caseVisitable(dataType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -561,10 +557,10 @@ public class PivotSwitch<T> {
 				T result = caseDetail(detail);
 				if (result == null) result = caseNamedElement(detail);
 				if (result == null) result = caseMonikeredElement(detail);
-				if (result == null) result = caseINamedElement(detail);
+				if (result == null) result = caseNameable(detail);
 				if (result == null) result = caseElement(detail);
 				if (result == null) result = caseOclAny(detail);
-				if (result == null) result = case_(detail);
+				if (result == null) result = caseVisitable(detail);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -573,7 +569,7 @@ public class PivotSwitch<T> {
 				Element element = (Element)theEObject;
 				T result = caseElement(element);
 				if (result == null) result = caseOclAny(element);
-				if (result == null) result = case_(element);
+				if (result == null) result = caseVisitable(element);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -586,10 +582,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(enumLiteralExp);
 				if (result == null) result = caseNamedElement(enumLiteralExp);
 				if (result == null) result = caseMonikeredElement(enumLiteralExp);
-				if (result == null) result = caseINamedElement(enumLiteralExp);
+				if (result == null) result = caseNameable(enumLiteralExp);
 				if (result == null) result = caseElement(enumLiteralExp);
 				if (result == null) result = caseOclAny(enumLiteralExp);
-				if (result == null) result = case_(enumLiteralExp);
+				if (result == null) result = caseVisitable(enumLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -602,13 +598,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(enumeration);
 				if (result == null) result = caseNamespace(enumeration);
 				if (result == null) result = caseNamedElement(enumeration);
-				if (result == null) result = caseTemplateableElement(enumeration);
 				if (result == null) result = caseParameterableElement(enumeration);
+				if (result == null) result = caseTemplateableElement(enumeration);
 				if (result == null) result = caseMonikeredElement(enumeration);
-				if (result == null) result = caseINamedElement(enumeration);
+				if (result == null) result = caseNameable(enumeration);
 				if (result == null) result = caseElement(enumeration);
 				if (result == null) result = caseOclAny(enumeration);
-				if (result == null) result = case_(enumeration);
+				if (result == null) result = caseVisitable(enumeration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -618,10 +614,10 @@ public class PivotSwitch<T> {
 				T result = caseEnumerationLiteral(enumerationLiteral);
 				if (result == null) result = caseNamedElement(enumerationLiteral);
 				if (result == null) result = caseMonikeredElement(enumerationLiteral);
-				if (result == null) result = caseINamedElement(enumerationLiteral);
+				if (result == null) result = caseNameable(enumerationLiteral);
 				if (result == null) result = caseElement(enumerationLiteral);
 				if (result == null) result = caseOclAny(enumerationLiteral);
-				if (result == null) result = case_(enumerationLiteral);
+				if (result == null) result = caseVisitable(enumerationLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -635,10 +631,23 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseParameterableElement(expressionInOcl);
 				if (result == null) result = caseNamedElement(expressionInOcl);
 				if (result == null) result = caseMonikeredElement(expressionInOcl);
-				if (result == null) result = caseINamedElement(expressionInOcl);
+				if (result == null) result = caseNameable(expressionInOcl);
 				if (result == null) result = caseElement(expressionInOcl);
 				if (result == null) result = caseOclAny(expressionInOcl);
-				if (result == null) result = case_(expressionInOcl);
+				if (result == null) result = caseVisitable(expressionInOcl);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.FEATURE:
+			{
+				Feature feature = (Feature)theEObject;
+				T result = caseFeature(feature);
+				if (result == null) result = caseNamedElement(feature);
+				if (result == null) result = caseMonikeredElement(feature);
+				if (result == null) result = caseNameable(feature);
+				if (result == null) result = caseElement(feature);
+				if (result == null) result = caseOclAny(feature);
+				if (result == null) result = caseVisitable(feature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -651,24 +660,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(featureCallExp);
 				if (result == null) result = caseNamedElement(featureCallExp);
 				if (result == null) result = caseMonikeredElement(featureCallExp);
-				if (result == null) result = caseINamedElement(featureCallExp);
+				if (result == null) result = caseNameable(featureCallExp);
 				if (result == null) result = caseElement(featureCallExp);
 				if (result == null) result = caseOclAny(featureCallExp);
-				if (result == null) result = case_(featureCallExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.INAMED_ELEMENT:
-			{
-				INamedElement iNamedElement = (INamedElement)theEObject;
-				T result = caseINamedElement(iNamedElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.IPIVOT_ELEMENT:
-			{
-				IPivotElement iPivotElement = (IPivotElement)theEObject;
-				T result = caseIPivotElement(iPivotElement);
+				if (result == null) result = caseVisitable(featureCallExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -680,10 +675,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(ifExp);
 				if (result == null) result = caseNamedElement(ifExp);
 				if (result == null) result = caseMonikeredElement(ifExp);
-				if (result == null) result = caseINamedElement(ifExp);
+				if (result == null) result = caseNameable(ifExp);
 				if (result == null) result = caseElement(ifExp);
 				if (result == null) result = caseOclAny(ifExp);
-				if (result == null) result = case_(ifExp);
+				if (result == null) result = caseVisitable(ifExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -705,10 +700,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(integerLiteralExp);
 				if (result == null) result = caseNamedElement(integerLiteralExp);
 				if (result == null) result = caseMonikeredElement(integerLiteralExp);
-				if (result == null) result = caseINamedElement(integerLiteralExp);
+				if (result == null) result = caseNameable(integerLiteralExp);
 				if (result == null) result = caseElement(integerLiteralExp);
 				if (result == null) result = caseOclAny(integerLiteralExp);
-				if (result == null) result = case_(integerLiteralExp);
+				if (result == null) result = caseVisitable(integerLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -721,10 +716,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(invalidLiteralExp);
 				if (result == null) result = caseNamedElement(invalidLiteralExp);
 				if (result == null) result = caseMonikeredElement(invalidLiteralExp);
-				if (result == null) result = caseINamedElement(invalidLiteralExp);
+				if (result == null) result = caseNameable(invalidLiteralExp);
 				if (result == null) result = caseElement(invalidLiteralExp);
 				if (result == null) result = caseOclAny(invalidLiteralExp);
-				if (result == null) result = case_(invalidLiteralExp);
+				if (result == null) result = caseVisitable(invalidLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -734,90 +729,13 @@ public class PivotSwitch<T> {
 				T result = caseInvalidType(invalidType);
 				if (result == null) result = caseType(invalidType);
 				if (result == null) result = caseNamedElement(invalidType);
-				if (result == null) result = caseTemplateableElement(invalidType);
 				if (result == null) result = caseParameterableElement(invalidType);
+				if (result == null) result = caseTemplateableElement(invalidType);
 				if (result == null) result = caseMonikeredElement(invalidType);
-				if (result == null) result = caseINamedElement(invalidType);
+				if (result == null) result = caseNameable(invalidType);
 				if (result == null) result = caseElement(invalidType);
 				if (result == null) result = caseOclAny(invalidType);
-				if (result == null) result = case_(invalidType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.ITERATE:
-			{
-				Iterate iterate = (Iterate)theEObject;
-				T result = caseIterate(iterate);
-				if (result == null) result = caseIterator(iterate);
-				if (result == null) result = caseOperation(iterate);
-				if (result == null) result = caseTypedMultiplicityElement(iterate);
-				if (result == null) result = caseNamespace(iterate);
-				if (result == null) result = caseTemplateableElement(iterate);
-				if (result == null) result = caseParameterableElement(iterate);
-				if (result == null) result = caseImplementableElement(iterate);
-				if (result == null) result = caseMultiplicityElement(iterate);
-				if (result == null) result = caseTypedElement(iterate);
-				if (result == null) result = caseNamedElement(iterate);
-				if (result == null) result = caseMonikeredElement(iterate);
-				if (result == null) result = caseElement(iterate);
-				if (result == null) result = caseINamedElement(iterate);
-				if (result == null) result = caseOclAny(iterate);
-				if (result == null) result = case_(iterate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.ITERATE_EXP:
-			{
-				IterateExp iterateExp = (IterateExp)theEObject;
-				T result = caseIterateExp(iterateExp);
-				if (result == null) result = caseLoopExp(iterateExp);
-				if (result == null) result = caseCallExp(iterateExp);
-				if (result == null) result = caseOclExpression(iterateExp);
-				if (result == null) result = caseTypedElement(iterateExp);
-				if (result == null) result = caseNamedElement(iterateExp);
-				if (result == null) result = caseMonikeredElement(iterateExp);
-				if (result == null) result = caseINamedElement(iterateExp);
-				if (result == null) result = caseElement(iterateExp);
-				if (result == null) result = caseOclAny(iterateExp);
-				if (result == null) result = case_(iterateExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.ITERATOR:
-			{
-				Iterator iterator = (Iterator)theEObject;
-				T result = caseIterator(iterator);
-				if (result == null) result = caseOperation(iterator);
-				if (result == null) result = caseTypedMultiplicityElement(iterator);
-				if (result == null) result = caseNamespace(iterator);
-				if (result == null) result = caseTemplateableElement(iterator);
-				if (result == null) result = caseParameterableElement(iterator);
-				if (result == null) result = caseImplementableElement(iterator);
-				if (result == null) result = caseMultiplicityElement(iterator);
-				if (result == null) result = caseTypedElement(iterator);
-				if (result == null) result = caseNamedElement(iterator);
-				if (result == null) result = caseMonikeredElement(iterator);
-				if (result == null) result = caseElement(iterator);
-				if (result == null) result = caseINamedElement(iterator);
-				if (result == null) result = caseOclAny(iterator);
-				if (result == null) result = case_(iterator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.ITERATOR_EXP:
-			{
-				IteratorExp iteratorExp = (IteratorExp)theEObject;
-				T result = caseIteratorExp(iteratorExp);
-				if (result == null) result = caseLoopExp(iteratorExp);
-				if (result == null) result = caseCallExp(iteratorExp);
-				if (result == null) result = caseOclExpression(iteratorExp);
-				if (result == null) result = caseTypedElement(iteratorExp);
-				if (result == null) result = caseNamedElement(iteratorExp);
-				if (result == null) result = caseMonikeredElement(iteratorExp);
-				if (result == null) result = caseINamedElement(iteratorExp);
-				if (result == null) result = caseElement(iteratorExp);
-				if (result == null) result = caseOclAny(iteratorExp);
-				if (result == null) result = case_(iteratorExp);
+				if (result == null) result = caseVisitable(invalidType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -829,10 +747,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(letExp);
 				if (result == null) result = caseNamedElement(letExp);
 				if (result == null) result = caseMonikeredElement(letExp);
-				if (result == null) result = caseINamedElement(letExp);
+				if (result == null) result = caseNameable(letExp);
 				if (result == null) result = caseElement(letExp);
 				if (result == null) result = caseOclAny(letExp);
-				if (result == null) result = case_(letExp);
+				if (result == null) result = caseVisitable(letExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -844,10 +762,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(literalExp);
 				if (result == null) result = caseNamedElement(literalExp);
 				if (result == null) result = caseMonikeredElement(literalExp);
-				if (result == null) result = caseINamedElement(literalExp);
+				if (result == null) result = caseNameable(literalExp);
 				if (result == null) result = caseElement(literalExp);
 				if (result == null) result = caseOclAny(literalExp);
-				if (result == null) result = case_(literalExp);
+				if (result == null) result = caseVisitable(literalExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -860,10 +778,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(loopExp);
 				if (result == null) result = caseNamedElement(loopExp);
 				if (result == null) result = caseMonikeredElement(loopExp);
-				if (result == null) result = caseINamedElement(loopExp);
+				if (result == null) result = caseNameable(loopExp);
 				if (result == null) result = caseElement(loopExp);
 				if (result == null) result = caseOclAny(loopExp);
-				if (result == null) result = case_(loopExp);
+				if (result == null) result = caseVisitable(loopExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -875,10 +793,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(messageExp);
 				if (result == null) result = caseNamedElement(messageExp);
 				if (result == null) result = caseMonikeredElement(messageExp);
-				if (result == null) result = caseINamedElement(messageExp);
+				if (result == null) result = caseNameable(messageExp);
 				if (result == null) result = caseElement(messageExp);
 				if (result == null) result = caseOclAny(messageExp);
-				if (result == null) result = case_(messageExp);
+				if (result == null) result = caseVisitable(messageExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -888,13 +806,13 @@ public class PivotSwitch<T> {
 				T result = caseMessageType(messageType);
 				if (result == null) result = caseType(messageType);
 				if (result == null) result = caseNamedElement(messageType);
-				if (result == null) result = caseTemplateableElement(messageType);
 				if (result == null) result = caseParameterableElement(messageType);
+				if (result == null) result = caseTemplateableElement(messageType);
 				if (result == null) result = caseMonikeredElement(messageType);
-				if (result == null) result = caseINamedElement(messageType);
+				if (result == null) result = caseNameable(messageType);
 				if (result == null) result = caseElement(messageType);
 				if (result == null) result = caseOclAny(messageType);
-				if (result == null) result = case_(messageType);
+				if (result == null) result = caseVisitable(messageType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -904,7 +822,7 @@ public class PivotSwitch<T> {
 				T result = caseMonikeredElement(monikeredElement);
 				if (result == null) result = caseElement(monikeredElement);
 				if (result == null) result = caseOclAny(monikeredElement);
-				if (result == null) result = case_(monikeredElement);
+				if (result == null) result = caseVisitable(monikeredElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -915,7 +833,7 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseMonikeredElement(multiplicityElement);
 				if (result == null) result = caseElement(multiplicityElement);
 				if (result == null) result = caseOclAny(multiplicityElement);
-				if (result == null) result = case_(multiplicityElement);
+				if (result == null) result = caseVisitable(multiplicityElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -924,10 +842,10 @@ public class PivotSwitch<T> {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
 				if (result == null) result = caseMonikeredElement(namedElement);
-				if (result == null) result = caseINamedElement(namedElement);
+				if (result == null) result = caseNameable(namedElement);
 				if (result == null) result = caseElement(namedElement);
 				if (result == null) result = caseOclAny(namedElement);
-				if (result == null) result = case_(namedElement);
+				if (result == null) result = caseVisitable(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -937,10 +855,10 @@ public class PivotSwitch<T> {
 				T result = caseNamespace(namespace);
 				if (result == null) result = caseNamedElement(namespace);
 				if (result == null) result = caseMonikeredElement(namespace);
-				if (result == null) result = caseINamedElement(namespace);
+				if (result == null) result = caseNameable(namespace);
 				if (result == null) result = caseElement(namespace);
 				if (result == null) result = caseOclAny(namespace);
-				if (result == null) result = case_(namespace);
+				if (result == null) result = caseVisitable(namespace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -954,10 +872,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(navigationCallExp);
 				if (result == null) result = caseNamedElement(navigationCallExp);
 				if (result == null) result = caseMonikeredElement(navigationCallExp);
-				if (result == null) result = caseINamedElement(navigationCallExp);
+				if (result == null) result = caseNameable(navigationCallExp);
 				if (result == null) result = caseElement(navigationCallExp);
 				if (result == null) result = caseOclAny(navigationCallExp);
-				if (result == null) result = case_(navigationCallExp);
+				if (result == null) result = caseVisitable(navigationCallExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -971,10 +889,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(nullLiteralExp);
 				if (result == null) result = caseNamedElement(nullLiteralExp);
 				if (result == null) result = caseMonikeredElement(nullLiteralExp);
-				if (result == null) result = caseINamedElement(nullLiteralExp);
+				if (result == null) result = caseNameable(nullLiteralExp);
 				if (result == null) result = caseElement(nullLiteralExp);
 				if (result == null) result = caseOclAny(nullLiteralExp);
-				if (result == null) result = case_(nullLiteralExp);
+				if (result == null) result = caseVisitable(nullLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -988,10 +906,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(numericLiteralExp);
 				if (result == null) result = caseNamedElement(numericLiteralExp);
 				if (result == null) result = caseMonikeredElement(numericLiteralExp);
-				if (result == null) result = caseINamedElement(numericLiteralExp);
+				if (result == null) result = caseNameable(numericLiteralExp);
 				if (result == null) result = caseElement(numericLiteralExp);
 				if (result == null) result = caseOclAny(numericLiteralExp);
-				if (result == null) result = case_(numericLiteralExp);
+				if (result == null) result = caseVisitable(numericLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -999,7 +917,7 @@ public class PivotSwitch<T> {
 			{
 				OclAny oclAny = (OclAny)theEObject;
 				T result = caseOclAny(oclAny);
-				if (result == null) result = case_(oclAny);
+				if (result == null) result = caseVisitable(oclAny);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1010,10 +928,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(oclExpression);
 				if (result == null) result = caseNamedElement(oclExpression);
 				if (result == null) result = caseMonikeredElement(oclExpression);
-				if (result == null) result = caseINamedElement(oclExpression);
+				if (result == null) result = caseNameable(oclExpression);
 				if (result == null) result = caseElement(oclExpression);
 				if (result == null) result = caseOclAny(oclExpression);
-				if (result == null) result = case_(oclExpression);
+				if (result == null) result = caseVisitable(oclExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1026,10 +944,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseParameterableElement(opaqueExpression);
 				if (result == null) result = caseNamedElement(opaqueExpression);
 				if (result == null) result = caseMonikeredElement(opaqueExpression);
-				if (result == null) result = caseINamedElement(opaqueExpression);
+				if (result == null) result = caseNameable(opaqueExpression);
 				if (result == null) result = caseElement(opaqueExpression);
 				if (result == null) result = caseOclAny(opaqueExpression);
-				if (result == null) result = case_(opaqueExpression);
+				if (result == null) result = caseVisitable(opaqueExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1038,18 +956,19 @@ public class PivotSwitch<T> {
 				Operation operation = (Operation)theEObject;
 				T result = caseOperation(operation);
 				if (result == null) result = caseTypedMultiplicityElement(operation);
+				if (result == null) result = caseFeature(operation);
 				if (result == null) result = caseNamespace(operation);
-				if (result == null) result = caseTemplateableElement(operation);
 				if (result == null) result = caseParameterableElement(operation);
+				if (result == null) result = caseTemplateableElement(operation);
 				if (result == null) result = caseImplementableElement(operation);
-				if (result == null) result = caseMultiplicityElement(operation);
 				if (result == null) result = caseTypedElement(operation);
+				if (result == null) result = caseMultiplicityElement(operation);
 				if (result == null) result = caseNamedElement(operation);
 				if (result == null) result = caseMonikeredElement(operation);
+				if (result == null) result = caseNameable(operation);
 				if (result == null) result = caseElement(operation);
-				if (result == null) result = caseINamedElement(operation);
 				if (result == null) result = caseOclAny(operation);
-				if (result == null) result = case_(operation);
+				if (result == null) result = caseVisitable(operation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1063,10 +982,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(operationCallExp);
 				if (result == null) result = caseNamedElement(operationCallExp);
 				if (result == null) result = caseMonikeredElement(operationCallExp);
-				if (result == null) result = caseINamedElement(operationCallExp);
+				if (result == null) result = caseNameable(operationCallExp);
 				if (result == null) result = caseElement(operationCallExp);
 				if (result == null) result = caseOclAny(operationCallExp);
-				if (result == null) result = case_(operationCallExp);
+				if (result == null) result = caseVisitable(operationCallExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1077,7 +996,7 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTemplateParameter(operationTemplateParameter);
 				if (result == null) result = caseElement(operationTemplateParameter);
 				if (result == null) result = caseOclAny(operationTemplateParameter);
-				if (result == null) result = case_(operationTemplateParameter);
+				if (result == null) result = caseVisitable(operationTemplateParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1091,13 +1010,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(orderedSetType);
 				if (result == null) result = caseNamespace(orderedSetType);
 				if (result == null) result = caseNamedElement(orderedSetType);
-				if (result == null) result = caseTemplateableElement(orderedSetType);
 				if (result == null) result = caseParameterableElement(orderedSetType);
+				if (result == null) result = caseTemplateableElement(orderedSetType);
 				if (result == null) result = caseMonikeredElement(orderedSetType);
-				if (result == null) result = caseINamedElement(orderedSetType);
+				if (result == null) result = caseNameable(orderedSetType);
 				if (result == null) result = caseElement(orderedSetType);
 				if (result == null) result = caseOclAny(orderedSetType);
-				if (result == null) result = case_(orderedSetType);
+				if (result == null) result = caseVisitable(orderedSetType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1109,10 +1028,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTemplateableElement(package_);
 				if (result == null) result = caseNamedElement(package_);
 				if (result == null) result = caseMonikeredElement(package_);
-				if (result == null) result = caseINamedElement(package_);
+				if (result == null) result = caseNameable(package_);
 				if (result == null) result = caseElement(package_);
 				if (result == null) result = caseOclAny(package_);
-				if (result == null) result = case_(package_);
+				if (result == null) result = caseVisitable(package_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1124,7 +1043,7 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseMonikeredElement(packageableElement);
 				if (result == null) result = caseElement(packageableElement);
 				if (result == null) result = caseOclAny(packageableElement);
-				if (result == null) result = case_(packageableElement);
+				if (result == null) result = caseVisitable(packageableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1134,14 +1053,14 @@ public class PivotSwitch<T> {
 				T result = caseParameter(parameter);
 				if (result == null) result = caseTypedMultiplicityElement(parameter);
 				if (result == null) result = caseVariableDeclaration(parameter);
-				if (result == null) result = caseMultiplicityElement(parameter);
 				if (result == null) result = caseTypedElement(parameter);
+				if (result == null) result = caseMultiplicityElement(parameter);
 				if (result == null) result = caseNamedElement(parameter);
 				if (result == null) result = caseMonikeredElement(parameter);
+				if (result == null) result = caseNameable(parameter);
 				if (result == null) result = caseElement(parameter);
-				if (result == null) result = caseINamedElement(parameter);
 				if (result == null) result = caseOclAny(parameter);
-				if (result == null) result = case_(parameter);
+				if (result == null) result = caseVisitable(parameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1152,7 +1071,7 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseMonikeredElement(parameterableElement);
 				if (result == null) result = caseElement(parameterableElement);
 				if (result == null) result = caseOclAny(parameterableElement);
-				if (result == null) result = case_(parameterableElement);
+				if (result == null) result = caseVisitable(parameterableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1162,10 +1081,10 @@ public class PivotSwitch<T> {
 				T result = casePrecedence(precedence);
 				if (result == null) result = caseNamedElement(precedence);
 				if (result == null) result = caseMonikeredElement(precedence);
-				if (result == null) result = caseINamedElement(precedence);
+				if (result == null) result = caseNameable(precedence);
 				if (result == null) result = caseElement(precedence);
 				if (result == null) result = caseOclAny(precedence);
-				if (result == null) result = case_(precedence);
+				if (result == null) result = caseVisitable(precedence);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1178,10 +1097,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(primitiveLiteralExp);
 				if (result == null) result = caseNamedElement(primitiveLiteralExp);
 				if (result == null) result = caseMonikeredElement(primitiveLiteralExp);
-				if (result == null) result = caseINamedElement(primitiveLiteralExp);
+				if (result == null) result = caseNameable(primitiveLiteralExp);
 				if (result == null) result = caseElement(primitiveLiteralExp);
 				if (result == null) result = caseOclAny(primitiveLiteralExp);
-				if (result == null) result = case_(primitiveLiteralExp);
+				if (result == null) result = caseVisitable(primitiveLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1194,13 +1113,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(primitiveType);
 				if (result == null) result = caseNamespace(primitiveType);
 				if (result == null) result = caseNamedElement(primitiveType);
-				if (result == null) result = caseTemplateableElement(primitiveType);
 				if (result == null) result = caseParameterableElement(primitiveType);
+				if (result == null) result = caseTemplateableElement(primitiveType);
 				if (result == null) result = caseMonikeredElement(primitiveType);
-				if (result == null) result = caseINamedElement(primitiveType);
+				if (result == null) result = caseNameable(primitiveType);
 				if (result == null) result = caseElement(primitiveType);
 				if (result == null) result = caseOclAny(primitiveType);
-				if (result == null) result = case_(primitiveType);
+				if (result == null) result = caseVisitable(primitiveType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1209,16 +1128,17 @@ public class PivotSwitch<T> {
 				Property property = (Property)theEObject;
 				T result = caseProperty(property);
 				if (result == null) result = caseTypedMultiplicityElement(property);
+				if (result == null) result = caseFeature(property);
 				if (result == null) result = caseParameterableElement(property);
 				if (result == null) result = caseImplementableElement(property);
-				if (result == null) result = caseMultiplicityElement(property);
 				if (result == null) result = caseTypedElement(property);
+				if (result == null) result = caseMultiplicityElement(property);
 				if (result == null) result = caseNamedElement(property);
 				if (result == null) result = caseMonikeredElement(property);
+				if (result == null) result = caseNameable(property);
 				if (result == null) result = caseElement(property);
-				if (result == null) result = caseINamedElement(property);
 				if (result == null) result = caseOclAny(property);
-				if (result == null) result = case_(property);
+				if (result == null) result = caseVisitable(property);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1233,10 +1153,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(propertyCallExp);
 				if (result == null) result = caseNamedElement(propertyCallExp);
 				if (result == null) result = caseMonikeredElement(propertyCallExp);
-				if (result == null) result = caseINamedElement(propertyCallExp);
+				if (result == null) result = caseNameable(propertyCallExp);
 				if (result == null) result = caseElement(propertyCallExp);
 				if (result == null) result = caseOclAny(propertyCallExp);
-				if (result == null) result = case_(propertyCallExp);
+				if (result == null) result = caseVisitable(propertyCallExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1251,10 +1171,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(realLiteralExp);
 				if (result == null) result = caseNamedElement(realLiteralExp);
 				if (result == null) result = caseMonikeredElement(realLiteralExp);
-				if (result == null) result = caseINamedElement(realLiteralExp);
+				if (result == null) result = caseNameable(realLiteralExp);
 				if (result == null) result = caseElement(realLiteralExp);
 				if (result == null) result = caseOclAny(realLiteralExp);
-				if (result == null) result = case_(realLiteralExp);
+				if (result == null) result = caseVisitable(realLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1264,10 +1184,10 @@ public class PivotSwitch<T> {
 				T result = caseSendSignalAction(sendSignalAction);
 				if (result == null) result = caseNamedElement(sendSignalAction);
 				if (result == null) result = caseMonikeredElement(sendSignalAction);
-				if (result == null) result = caseINamedElement(sendSignalAction);
+				if (result == null) result = caseNameable(sendSignalAction);
 				if (result == null) result = caseElement(sendSignalAction);
 				if (result == null) result = caseOclAny(sendSignalAction);
-				if (result == null) result = case_(sendSignalAction);
+				if (result == null) result = caseVisitable(sendSignalAction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1281,13 +1201,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(sequenceType);
 				if (result == null) result = caseNamespace(sequenceType);
 				if (result == null) result = caseNamedElement(sequenceType);
-				if (result == null) result = caseTemplateableElement(sequenceType);
 				if (result == null) result = caseParameterableElement(sequenceType);
+				if (result == null) result = caseTemplateableElement(sequenceType);
 				if (result == null) result = caseMonikeredElement(sequenceType);
-				if (result == null) result = caseINamedElement(sequenceType);
+				if (result == null) result = caseNameable(sequenceType);
 				if (result == null) result = caseElement(sequenceType);
 				if (result == null) result = caseOclAny(sequenceType);
-				if (result == null) result = case_(sequenceType);
+				if (result == null) result = caseVisitable(sequenceType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1301,13 +1221,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(setType);
 				if (result == null) result = caseNamespace(setType);
 				if (result == null) result = caseNamedElement(setType);
-				if (result == null) result = caseTemplateableElement(setType);
 				if (result == null) result = caseParameterableElement(setType);
+				if (result == null) result = caseTemplateableElement(setType);
 				if (result == null) result = caseMonikeredElement(setType);
-				if (result == null) result = caseINamedElement(setType);
+				if (result == null) result = caseNameable(setType);
 				if (result == null) result = caseElement(setType);
 				if (result == null) result = caseOclAny(setType);
-				if (result == null) result = case_(setType);
+				if (result == null) result = caseVisitable(setType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1317,10 +1237,10 @@ public class PivotSwitch<T> {
 				T result = caseSignal(signal);
 				if (result == null) result = caseNamedElement(signal);
 				if (result == null) result = caseMonikeredElement(signal);
-				if (result == null) result = caseINamedElement(signal);
+				if (result == null) result = caseNameable(signal);
 				if (result == null) result = caseElement(signal);
 				if (result == null) result = caseOclAny(signal);
-				if (result == null) result = case_(signal);
+				if (result == null) result = caseVisitable(signal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1330,10 +1250,10 @@ public class PivotSwitch<T> {
 				T result = caseState(state);
 				if (result == null) result = caseNamedElement(state);
 				if (result == null) result = caseMonikeredElement(state);
-				if (result == null) result = caseINamedElement(state);
+				if (result == null) result = caseNameable(state);
 				if (result == null) result = caseElement(state);
 				if (result == null) result = caseOclAny(state);
-				if (result == null) result = case_(state);
+				if (result == null) result = caseVisitable(state);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1345,10 +1265,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(stateExp);
 				if (result == null) result = caseNamedElement(stateExp);
 				if (result == null) result = caseMonikeredElement(stateExp);
-				if (result == null) result = caseINamedElement(stateExp);
+				if (result == null) result = caseNameable(stateExp);
 				if (result == null) result = caseElement(stateExp);
 				if (result == null) result = caseOclAny(stateExp);
-				if (result == null) result = case_(stateExp);
+				if (result == null) result = caseVisitable(stateExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1362,10 +1282,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(stringLiteralExp);
 				if (result == null) result = caseNamedElement(stringLiteralExp);
 				if (result == null) result = caseMonikeredElement(stringLiteralExp);
-				if (result == null) result = caseINamedElement(stringLiteralExp);
+				if (result == null) result = caseNameable(stringLiteralExp);
 				if (result == null) result = caseElement(stringLiteralExp);
 				if (result == null) result = caseOclAny(stringLiteralExp);
-				if (result == null) result = case_(stringLiteralExp);
+				if (result == null) result = caseVisitable(stringLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1373,10 +1293,9 @@ public class PivotSwitch<T> {
 			{
 				TemplateBinding templateBinding = (TemplateBinding)theEObject;
 				T result = caseTemplateBinding(templateBinding);
-				if (result == null) result = caseMonikeredElement(templateBinding);
 				if (result == null) result = caseElement(templateBinding);
 				if (result == null) result = caseOclAny(templateBinding);
-				if (result == null) result = case_(templateBinding);
+				if (result == null) result = caseVisitable(templateBinding);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1386,7 +1305,7 @@ public class PivotSwitch<T> {
 				T result = caseTemplateParameter(templateParameter);
 				if (result == null) result = caseElement(templateParameter);
 				if (result == null) result = caseOclAny(templateParameter);
-				if (result == null) result = case_(templateParameter);
+				if (result == null) result = caseVisitable(templateParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1396,7 +1315,7 @@ public class PivotSwitch<T> {
 				T result = caseTemplateParameterSubstitution(templateParameterSubstitution);
 				if (result == null) result = caseElement(templateParameterSubstitution);
 				if (result == null) result = caseOclAny(templateParameterSubstitution);
-				if (result == null) result = case_(templateParameterSubstitution);
+				if (result == null) result = caseVisitable(templateParameterSubstitution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1406,13 +1325,13 @@ public class PivotSwitch<T> {
 				T result = caseTemplateParameterType(templateParameterType);
 				if (result == null) result = caseType(templateParameterType);
 				if (result == null) result = caseNamedElement(templateParameterType);
-				if (result == null) result = caseTemplateableElement(templateParameterType);
 				if (result == null) result = caseParameterableElement(templateParameterType);
+				if (result == null) result = caseTemplateableElement(templateParameterType);
 				if (result == null) result = caseMonikeredElement(templateParameterType);
-				if (result == null) result = caseINamedElement(templateParameterType);
+				if (result == null) result = caseNameable(templateParameterType);
 				if (result == null) result = caseElement(templateParameterType);
 				if (result == null) result = caseOclAny(templateParameterType);
-				if (result == null) result = case_(templateParameterType);
+				if (result == null) result = caseVisitable(templateParameterType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1423,7 +1342,7 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseMonikeredElement(templateSignature);
 				if (result == null) result = caseElement(templateSignature);
 				if (result == null) result = caseOclAny(templateSignature);
-				if (result == null) result = case_(templateSignature);
+				if (result == null) result = caseVisitable(templateSignature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1434,7 +1353,7 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseMonikeredElement(templateableElement);
 				if (result == null) result = caseElement(templateableElement);
 				if (result == null) result = caseOclAny(templateableElement);
-				if (result == null) result = case_(templateableElement);
+				if (result == null) result = caseVisitable(templateableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1447,10 +1366,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(tupleLiteralExp);
 				if (result == null) result = caseNamedElement(tupleLiteralExp);
 				if (result == null) result = caseMonikeredElement(tupleLiteralExp);
-				if (result == null) result = caseINamedElement(tupleLiteralExp);
+				if (result == null) result = caseNameable(tupleLiteralExp);
 				if (result == null) result = caseElement(tupleLiteralExp);
 				if (result == null) result = caseOclAny(tupleLiteralExp);
-				if (result == null) result = case_(tupleLiteralExp);
+				if (result == null) result = caseVisitable(tupleLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1461,10 +1380,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(tupleLiteralPart);
 				if (result == null) result = caseNamedElement(tupleLiteralPart);
 				if (result == null) result = caseMonikeredElement(tupleLiteralPart);
-				if (result == null) result = caseINamedElement(tupleLiteralPart);
+				if (result == null) result = caseNameable(tupleLiteralPart);
 				if (result == null) result = caseElement(tupleLiteralPart);
 				if (result == null) result = caseOclAny(tupleLiteralPart);
-				if (result == null) result = case_(tupleLiteralPart);
+				if (result == null) result = caseVisitable(tupleLiteralPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1477,13 +1396,13 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseType(tupleType);
 				if (result == null) result = caseNamespace(tupleType);
 				if (result == null) result = caseNamedElement(tupleType);
-				if (result == null) result = caseTemplateableElement(tupleType);
 				if (result == null) result = caseParameterableElement(tupleType);
+				if (result == null) result = caseTemplateableElement(tupleType);
 				if (result == null) result = caseMonikeredElement(tupleType);
-				if (result == null) result = caseINamedElement(tupleType);
+				if (result == null) result = caseNameable(tupleType);
 				if (result == null) result = caseElement(tupleType);
 				if (result == null) result = caseOclAny(tupleType);
-				if (result == null) result = case_(tupleType);
+				if (result == null) result = caseVisitable(tupleType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1492,13 +1411,13 @@ public class PivotSwitch<T> {
 				Type type = (Type)theEObject;
 				T result = caseType(type);
 				if (result == null) result = caseNamedElement(type);
-				if (result == null) result = caseTemplateableElement(type);
 				if (result == null) result = caseParameterableElement(type);
+				if (result == null) result = caseTemplateableElement(type);
 				if (result == null) result = caseMonikeredElement(type);
-				if (result == null) result = caseINamedElement(type);
+				if (result == null) result = caseNameable(type);
 				if (result == null) result = caseElement(type);
 				if (result == null) result = caseOclAny(type);
-				if (result == null) result = case_(type);
+				if (result == null) result = caseVisitable(type);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1510,10 +1429,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(typeExp);
 				if (result == null) result = caseNamedElement(typeExp);
 				if (result == null) result = caseMonikeredElement(typeExp);
-				if (result == null) result = caseINamedElement(typeExp);
+				if (result == null) result = caseNameable(typeExp);
 				if (result == null) result = caseElement(typeExp);
 				if (result == null) result = caseOclAny(typeExp);
-				if (result == null) result = case_(typeExp);
+				if (result == null) result = caseVisitable(typeExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1524,7 +1443,7 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTemplateParameter(typeTemplateParameter);
 				if (result == null) result = caseElement(typeTemplateParameter);
 				if (result == null) result = caseOclAny(typeTemplateParameter);
-				if (result == null) result = case_(typeTemplateParameter);
+				if (result == null) result = caseVisitable(typeTemplateParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1534,10 +1453,10 @@ public class PivotSwitch<T> {
 				T result = caseTypedElement(typedElement);
 				if (result == null) result = caseNamedElement(typedElement);
 				if (result == null) result = caseMonikeredElement(typedElement);
-				if (result == null) result = caseINamedElement(typedElement);
+				if (result == null) result = caseNameable(typedElement);
 				if (result == null) result = caseElement(typedElement);
 				if (result == null) result = caseOclAny(typedElement);
-				if (result == null) result = case_(typedElement);
+				if (result == null) result = caseVisitable(typedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1545,14 +1464,14 @@ public class PivotSwitch<T> {
 			{
 				TypedMultiplicityElement typedMultiplicityElement = (TypedMultiplicityElement)theEObject;
 				T result = caseTypedMultiplicityElement(typedMultiplicityElement);
-				if (result == null) result = caseMultiplicityElement(typedMultiplicityElement);
 				if (result == null) result = caseTypedElement(typedMultiplicityElement);
+				if (result == null) result = caseMultiplicityElement(typedMultiplicityElement);
 				if (result == null) result = caseNamedElement(typedMultiplicityElement);
 				if (result == null) result = caseMonikeredElement(typedMultiplicityElement);
+				if (result == null) result = caseNameable(typedMultiplicityElement);
 				if (result == null) result = caseElement(typedMultiplicityElement);
-				if (result == null) result = caseINamedElement(typedMultiplicityElement);
 				if (result == null) result = caseOclAny(typedMultiplicityElement);
-				if (result == null) result = case_(typedMultiplicityElement);
+				if (result == null) result = caseVisitable(typedMultiplicityElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1567,10 +1486,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseNamedElement(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseMonikeredElement(unlimitedNaturalLiteralExp);
-				if (result == null) result = caseINamedElement(unlimitedNaturalLiteralExp);
+				if (result == null) result = caseNameable(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseElement(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseOclAny(unlimitedNaturalLiteralExp);
-				if (result == null) result = case_(unlimitedNaturalLiteralExp);
+				if (result == null) result = caseVisitable(unlimitedNaturalLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1582,10 +1501,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(unspecifiedValueExp);
 				if (result == null) result = caseNamedElement(unspecifiedValueExp);
 				if (result == null) result = caseMonikeredElement(unspecifiedValueExp);
-				if (result == null) result = caseINamedElement(unspecifiedValueExp);
+				if (result == null) result = caseNameable(unspecifiedValueExp);
 				if (result == null) result = caseElement(unspecifiedValueExp);
 				if (result == null) result = caseOclAny(unspecifiedValueExp);
-				if (result == null) result = case_(unspecifiedValueExp);
+				if (result == null) result = caseVisitable(unspecifiedValueExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1597,10 +1516,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseParameterableElement(valueSpecification);
 				if (result == null) result = caseNamedElement(valueSpecification);
 				if (result == null) result = caseMonikeredElement(valueSpecification);
-				if (result == null) result = caseINamedElement(valueSpecification);
+				if (result == null) result = caseNameable(valueSpecification);
 				if (result == null) result = caseElement(valueSpecification);
 				if (result == null) result = caseOclAny(valueSpecification);
-				if (result == null) result = case_(valueSpecification);
+				if (result == null) result = caseVisitable(valueSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1612,10 +1531,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(variable);
 				if (result == null) result = caseNamedElement(variable);
 				if (result == null) result = caseMonikeredElement(variable);
-				if (result == null) result = caseINamedElement(variable);
+				if (result == null) result = caseNameable(variable);
 				if (result == null) result = caseElement(variable);
 				if (result == null) result = caseOclAny(variable);
-				if (result == null) result = case_(variable);
+				if (result == null) result = caseVisitable(variable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1626,10 +1545,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(variableDeclaration);
 				if (result == null) result = caseNamedElement(variableDeclaration);
 				if (result == null) result = caseMonikeredElement(variableDeclaration);
-				if (result == null) result = caseINamedElement(variableDeclaration);
+				if (result == null) result = caseNameable(variableDeclaration);
 				if (result == null) result = caseElement(variableDeclaration);
 				if (result == null) result = caseOclAny(variableDeclaration);
-				if (result == null) result = case_(variableDeclaration);
+				if (result == null) result = caseVisitable(variableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1641,10 +1560,10 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseTypedElement(variableExp);
 				if (result == null) result = caseNamedElement(variableExp);
 				if (result == null) result = caseMonikeredElement(variableExp);
-				if (result == null) result = caseINamedElement(variableExp);
+				if (result == null) result = caseNameable(variableExp);
 				if (result == null) result = caseElement(variableExp);
 				if (result == null) result = caseOclAny(variableExp);
-				if (result == null) result = case_(variableExp);
+				if (result == null) result = caseVisitable(variableExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1654,13 +1573,13 @@ public class PivotSwitch<T> {
 				T result = caseVoidType(voidType);
 				if (result == null) result = caseType(voidType);
 				if (result == null) result = caseNamedElement(voidType);
-				if (result == null) result = caseTemplateableElement(voidType);
 				if (result == null) result = caseParameterableElement(voidType);
+				if (result == null) result = caseTemplateableElement(voidType);
 				if (result == null) result = caseMonikeredElement(voidType);
-				if (result == null) result = caseINamedElement(voidType);
+				if (result == null) result = caseNameable(voidType);
 				if (result == null) result = caseElement(voidType);
 				if (result == null) result = caseOclAny(voidType);
-				if (result == null) result = case_(voidType);
+				if (result == null) result = caseVisitable(voidType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1684,36 +1603,6 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Any Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Any Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAnyType(AnyType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseType(Type object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1725,21 +1614,6 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Namespace</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Namespace</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNamespace(Namespace object) {
 		return null;
 	}
 
@@ -1774,288 +1648,182 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClass(org.eclipse.ocl.examples.pivot.Class object) {
+	public T caseOclExpression(OclExpression object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Bag Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Bag Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProperty(Property object) {
+	public T caseBagType(BagType object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Implementable Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Collection Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Implementable Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Collection Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImplementableElement(ImplementableElement object) {
+	public T caseCollectionType(CollectionType object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypedElement(TypedElement object) {
+	public T caseDataType(DataType object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Multiplicity Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Boolean Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Multiplicity Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Boolean Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypedMultiplicityElement(TypedMultiplicityElement object) {
+	public T caseBooleanLiteralExp(BooleanLiteralExp object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unlimited Natural Literal Exp</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Primitive Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unlimited Natural Literal Exp</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Primitive Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp object) {
+	public T casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multiplicity Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multiplicity Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultiplicityElement(MultiplicityElement object) {
+	public T caseLiteralExp(LiteralExp object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Call Operation Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Call Operation Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseParameterableElement(ParameterableElement object) {
+	public T caseCallOperationAction(CallOperationAction object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Precedence</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Collection Item</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Precedence</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Collection Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePrecedence(Precedence object) {
+	public T caseCollectionItem(CollectionItem object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Collection Literal Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Parameter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTemplateParameter(TemplateParameter object) {
+	public T caseCollectionLiteralPart(CollectionLiteralPart object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Signature</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Signature</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTemplateSignature(TemplateSignature object) {
+	public T caseCollectionLiteralExp(CollectionLiteralExp object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Templateable Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Collection Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Templateable Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Collection Range</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTemplateableElement(TemplateableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Binding</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Binding</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTemplateBinding(TemplateBinding object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Parameter Substitution</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTemplateParameterSubstitution(
-			TemplateParameterSubstitution object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Association Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Association Class</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAssociationClass(AssociationClass object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOperation(Operation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParameter(Parameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operation Template Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operation Template Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOperationTemplateParameter(OperationTemplateParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Comment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Comment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComment(Comment object) {
+	public T caseCollectionRange(CollectionRange object) {
 		return null;
 	}
 
@@ -2135,351 +1903,6 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstraint(Constraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Package</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePackage(org.eclipse.ocl.examples.pivot.Package object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Template Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Template Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeTemplateParameter(TypeTemplateParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Association Class Call Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Association Class Call Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAssociationClassCallExp(AssociationClassCallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Navigation Call Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Navigation Call Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNavigationCallExp(NavigationCallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature Call Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature Call Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFeatureCallExp(FeatureCallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>INamed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>INamed Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseINamedElement(INamedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIPivotElement(IPivotElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Call Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Call Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCallExp(CallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Call Operation Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Call Operation Action</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCallOperationAction(CallOperationAction object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Callable Implementation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Callable Implementation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCallableImplementation(CallableImplementation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ocl Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ocl Expression</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOclExpression(OclExpression object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bag Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bag Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBagType(BagType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Collection Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Collection Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCollectionType(CollectionType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDataType(DataType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Detail</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Detail</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDetail(Detail object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Boolean Literal Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Boolean Literal Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBooleanLiteralExp(BooleanLiteralExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Primitive Literal Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Primitive Literal Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Literal Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Literal Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLiteralExp(LiteralExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Collection Item</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Collection Item</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCollectionItem(CollectionItem object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Collection Literal Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCollectionLiteralPart(CollectionLiteralPart object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCollectionLiteralExp(CollectionLiteralExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Collection Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Collection Range</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCollectionRange(CollectionRange object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Enum Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2540,6 +1963,21 @@ public class PivotSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeature(Feature object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Opaque Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2566,21 +2004,6 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseVariable(Variable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariableDeclaration(VariableDeclaration object) {
 		return null;
 	}
 
@@ -2660,47 +2083,17 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Iterate</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Let Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Iterate</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Let Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIterate(Iterate object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIterateExp(IterateExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Iterator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Iterator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIterator(Iterator object) {
+	public T caseLetExp(LetExp object) {
 		return null;
 	}
 
@@ -2720,36 +2113,6 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Iterator Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Iterator Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIteratorExp(IteratorExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Let Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Let Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLetExp(LetExp object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Message Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2765,32 +2128,17 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Message Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Send Signal Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Message Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Send Signal Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMessageType(MessageType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Monikered Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Monikered Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMonikeredElement(MonikeredElement object) {
+	public T caseSendSignalAction(SendSignalAction object) {
 		return null;
 	}
 
@@ -2806,6 +2154,21 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseSignal(Signal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Message Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Message Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMessageType(MessageType object) {
 		return null;
 	}
 
@@ -2911,21 +2274,6 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseRealLiteralExp(RealLiteralExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Send Signal Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Send Signal Action</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSendSignalAction(SendSignalAction object) {
 		return null;
 	}
 
@@ -3080,6 +2428,21 @@ public class PivotSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unlimited Natural Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unlimited Natural Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unspecified Value Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -3091,21 +2454,6 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseUnspecifiedValueExp(UnspecifiedValueExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueSpecification(ValueSpecification object) {
 		return null;
 	}
 
@@ -3140,18 +2488,558 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pivot</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pivot</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T case_(Visitable object)
-	{
+	public T casePivotable(Pivotable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Visitable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visitable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVisitable(Visitable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClass(org.eclipse.ocl.examples.pivot.Class object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseType(Type object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Templateable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Templateable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplateableElement(TemplateableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Monikered Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Monikered Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMonikeredElement(MonikeredElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Binding</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplateBinding(TemplateBinding object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Signature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Signature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplateSignature(TemplateSignature object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplateParameter(TemplateParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterableElement(ParameterableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Substitution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Parameter Substitution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplateParameterSubstitution(
+			TemplateParameterSubstitution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Package</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackage(org.eclipse.ocl.examples.pivot.Package object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Namespace</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Namespace</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamespace(Namespace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Precedence</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Precedence</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrecedence(Precedence object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Template Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Template Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeTemplateParameter(TypeTemplateParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProperty(Property object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiplicity Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiplicity Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiplicityElement(MultiplicityElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Multiplicity Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Multiplicity Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedMultiplicityElement(TypedMultiplicityElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociationClass(AssociationClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Implementable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Implementable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImplementableElement(ImplementableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Callable Implementation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Callable Implementation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCallableImplementation(CallableImplementation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperation(Operation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameter(Parameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariableDeclaration(VariableDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Template Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Template Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationTemplateParameter(OperationTemplateParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Comment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComment(Comment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstraint(Constraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueSpecification(ValueSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Nameable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNameable(Nameable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Detail</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Detail</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDetail(Detail object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Any Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Any Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnyType(AnyType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association Class Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association Class Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociationClassCallExp(AssociationClassCallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigation Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigation Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigationCallExp(NavigationCallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureCallExp(FeatureCallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCallExp(CallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Visitor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visitor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <R, C> T caseVisitor(Visitor<R, C> object) {
 		return null;
 	}
 

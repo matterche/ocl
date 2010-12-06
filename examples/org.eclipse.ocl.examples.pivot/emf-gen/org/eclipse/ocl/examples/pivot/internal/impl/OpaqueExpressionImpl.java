@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OpaqueExpressionImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: OpaqueExpressionImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -144,6 +144,8 @@ public class OpaqueExpressionImpl
 				return getName();
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
+				return isStatic();
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.OPAQUE_EXPRESSION__TYPE:
@@ -186,6 +188,9 @@ public class OpaqueExpressionImpl
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -233,6 +238,9 @@ public class OpaqueExpressionImpl
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -272,6 +280,8 @@ public class OpaqueExpressionImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.OPAQUE_EXPRESSION__TYPE:
@@ -307,8 +317,6 @@ public class OpaqueExpressionImpl
 				return oclIsUndefined();
 			case PivotPackage.OPAQUE_EXPRESSION___HAS_MONIKER:
 				return hasMoniker();
-			case PivotPackage.OPAQUE_EXPRESSION___GET_NAME:
-				return getName();
 			case PivotPackage.OPAQUE_EXPRESSION___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 			case PivotPackage.OPAQUE_EXPRESSION___IS_COMPUTABLE:

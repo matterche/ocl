@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Variable.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: Variable.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Variable
-		extends TypedElement, VariableDeclaration {
+		extends VariableDeclaration {
 
 	/**
 	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.

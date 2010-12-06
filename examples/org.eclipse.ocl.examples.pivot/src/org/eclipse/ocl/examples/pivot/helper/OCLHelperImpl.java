@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.1.2.2 2010/12/06 17:20:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -30,9 +30,9 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.xtext.resource.XtextResource;
@@ -82,8 +82,8 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 			logger.warn("Extra returns ignored");
 		}
 		EObject csObject = contents.get(0);
-		if (csObject instanceof IPivotElement) {
-			Element pivotElement = ((IPivotElement)csObject).getPivot();
+		if (csObject instanceof Pivotable) {
+			Element pivotElement = ((Pivotable)csObject).getPivot();
 			if (pivotElement instanceof ExpressionInOcl) {
 				return ((ExpressionInOcl) pivotElement).getBodyExpression();
 			}

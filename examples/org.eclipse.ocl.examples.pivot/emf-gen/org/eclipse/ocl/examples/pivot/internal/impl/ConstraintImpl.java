@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: ConstraintImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.internal.operations.ConstraintOperations;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -345,6 +345,8 @@ public class ConstraintImpl
 				return getName();
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.CONSTRAINT__IS_STATIC:
+				return isStatic();
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
@@ -384,6 +386,9 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.CONSTRAINT__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -427,6 +432,9 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.CONSTRAINT__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -463,6 +471,8 @@ public class ConstraintImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.CONSTRAINT__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
@@ -496,8 +506,6 @@ public class ConstraintImpl
 				return oclIsUndefined();
 			case PivotPackage.CONSTRAINT___HAS_MONIKER:
 				return hasMoniker();
-			case PivotPackage.CONSTRAINT___GET_NAME:
-				return getName();
 			case PivotPackage.CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP:
 				return validateNotApplyToSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.CONSTRAINT___VALIDATE_VALUE_SPECIFICATION_BOOLEAN__DIAGNOSTICCHAIN_MAP:
@@ -512,13 +520,12 @@ public class ConstraintImpl
 	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return super.toString();
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitConstraint(this);
 	}
 } //ConstraintImpl

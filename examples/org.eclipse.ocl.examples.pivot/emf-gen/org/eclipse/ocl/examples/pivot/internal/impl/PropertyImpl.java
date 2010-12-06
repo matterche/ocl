@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -46,7 +47,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.PropertyOperations;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,6 +56,7 @@ import org.eclipse.ocl.examples.pivot.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getImplementationClass <em>Implementation Class</em>}</li>
@@ -133,7 +135,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_READ_ONLY_EFLAG = 1 << 10;
+	protected static final int IS_READ_ONLY_EFLAG = 1 << 11;
 
 	/**
 	 * The default value of the '{@link #getDefault() <em>Default</em>}' attribute.
@@ -173,7 +175,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_COMPOSITE_EFLAG = 1 << 11;
+	protected static final int IS_COMPOSITE_EFLAG = 1 << 12;
 
 	/**
 	 * The default value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
@@ -193,7 +195,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_DERIVED_EFLAG = 1 << 12;
+	protected static final int IS_DERIVED_EFLAG = 1 << 13;
 
 	/**
 	 * The cached value of the '{@link #getOpposite() <em>Opposite</em>}' reference.
@@ -232,6 +234,29 @@ public class PropertyImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PROPERTY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isStatic() {
+		return (eFlags & IS_STATIC_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsStatic(boolean newIsStatic) {
+		boolean oldIsStatic = (eFlags & IS_STATIC_EFLAG) != 0;
+		if (newIsStatic) eFlags |= IS_STATIC_EFLAG; else eFlags &= ~IS_STATIC_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_STATIC, oldIsStatic, newIsStatic));
 	}
 
 	/**
@@ -376,8 +401,16 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImplementationClass()
-	{
+	public boolean isSetIsStatic() {
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getImplementationClass() {
 		return implementationClass;
 	}
 
@@ -386,8 +419,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementationClass(String newImplementationClass)
-	{
+	public void setImplementationClass(String newImplementationClass) {
 		String oldImplementationClass = implementationClass;
 		implementationClass = newImplementationClass;
 		if (eNotificationRequired())
@@ -399,8 +431,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation getImplementation()
-	{
+	public CallableImplementation getImplementation() {
 		return implementation;
 	}
 
@@ -409,8 +440,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementation(CallableImplementation newImplementation)
-	{
+	public void setImplementation(CallableImplementation newImplementation) {
 		CallableImplementation oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
@@ -422,8 +452,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReadOnly()
-	{
+	public boolean isReadOnly() {
 		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
 	}
 
@@ -432,8 +461,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsReadOnly(boolean newIsReadOnly)
-	{
+	public void setIsReadOnly(boolean newIsReadOnly) {
 		boolean oldIsReadOnly = (eFlags & IS_READ_ONLY_EFLAG) != 0;
 		if (newIsReadOnly) eFlags |= IS_READ_ONLY_EFLAG; else eFlags &= ~IS_READ_ONLY_EFLAG;
 		if (eNotificationRequired())
@@ -466,8 +494,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isComposite()
-	{
+	public boolean isComposite() {
 		return (eFlags & IS_COMPOSITE_EFLAG) != 0;
 	}
 
@@ -476,8 +503,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsComposite(boolean newIsComposite)
-	{
+	public void setIsComposite(boolean newIsComposite) {
 		boolean oldIsComposite = (eFlags & IS_COMPOSITE_EFLAG) != 0;
 		if (newIsComposite) eFlags |= IS_COMPOSITE_EFLAG; else eFlags &= ~IS_COMPOSITE_EFLAG;
 		if (eNotificationRequired())
@@ -489,8 +515,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDerived()
-	{
+	public boolean isDerived() {
 		return (eFlags & IS_DERIVED_EFLAG) != 0;
 	}
 
@@ -499,8 +524,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsDerived(boolean newIsDerived)
-	{
+	public void setIsDerived(boolean newIsDerived) {
 		boolean oldIsDerived = (eFlags & IS_DERIVED_EFLAG) != 0;
 		if (newIsDerived) eFlags |= IS_DERIVED_EFLAG; else eFlags &= ~IS_DERIVED_EFLAG;
 		if (eNotificationRequired())
@@ -774,6 +798,17 @@ public class PropertyImpl
 				return getOwnedComments();
 			case PivotPackage.PROPERTY__MONIKER:
 				return getMoniker();
+			case PivotPackage.PROPERTY__NAME:
+				return getName();
+			case PivotPackage.PROPERTY__OWNED_RULE:
+				return getOwnedRules();
+			case PivotPackage.PROPERTY__IS_STATIC:
+				return isStatic();
+			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
+				return getOwnedAnnotations();
+			case PivotPackage.PROPERTY__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 			case PivotPackage.PROPERTY__IS_ORDERED:
 				return isOrdered();
 			case PivotPackage.PROPERTY__IS_UNIQUE:
@@ -782,15 +817,6 @@ public class PropertyImpl
 				return getLower();
 			case PivotPackage.PROPERTY__UPPER:
 				return getUpper();
-			case PivotPackage.PROPERTY__NAME:
-				return getName();
-			case PivotPackage.PROPERTY__OWNED_RULE:
-				return getOwnedRules();
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
-			case PivotPackage.PROPERTY__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -839,6 +865,23 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__MONIKER:
 				setMoniker((String)newValue);
 				return;
+			case PivotPackage.PROPERTY__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.PROPERTY__OWNED_RULE:
+				getOwnedRules().clear();
+				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.PROPERTY__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
+			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.PROPERTY__TYPE:
+				setType((Type)newValue);
+				return;
 			case PivotPackage.PROPERTY__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
 				return;
@@ -850,20 +893,6 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__UPPER:
 				setUpper((BigInteger)newValue);
-				return;
-			case PivotPackage.PROPERTY__NAME:
-				setName((String)newValue);
-				return;
-			case PivotPackage.PROPERTY__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
-				return;
-			case PivotPackage.PROPERTY__TYPE:
-				setType((Type)newValue);
 				return;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
@@ -917,6 +946,21 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__MONIKER:
 				setMoniker(MONIKER_EDEFAULT);
 				return;
+			case PivotPackage.PROPERTY__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__OWNED_RULE:
+				getOwnedRules().clear();
+				return;
+			case PivotPackage.PROPERTY__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.PROPERTY__TYPE:
+				setType((Type)null);
+				return;
 			case PivotPackage.PROPERTY__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
@@ -928,18 +972,6 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__UPPER:
 				setUpper(UPPER_EDEFAULT);
-				return;
-			case PivotPackage.PROPERTY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case PivotPackage.PROPERTY__OWNED_RULE:
-				getOwnedRules().clear();
-				return;
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.PROPERTY__TYPE:
-				setType((Type)null);
 				return;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
@@ -991,6 +1023,16 @@ public class PropertyImpl
 				return ownedComments != null && !ownedComments.isEmpty();
 			case PivotPackage.PROPERTY__MONIKER:
 				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
+			case PivotPackage.PROPERTY__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.PROPERTY__OWNED_RULE:
+				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.PROPERTY__IS_STATIC:
+				return isSetIsStatic();
+			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.PROPERTY__TYPE:
+				return type != null;
 			case PivotPackage.PROPERTY__IS_ORDERED:
 				return ((eFlags & IS_ORDERED_EFLAG) != 0) != IS_ORDERED_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_UNIQUE:
@@ -999,14 +1041,6 @@ public class PropertyImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.PROPERTY__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
-			case PivotPackage.PROPERTY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.PROPERTY__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.PROPERTY__TYPE:
-				return type != null;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
@@ -1040,6 +1074,13 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Feature.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (derivedFeatureID)
@@ -1068,6 +1109,13 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Feature.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (baseFeatureID)
@@ -1096,6 +1144,13 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Feature.class)
+		{
+			switch (baseOperationID)
+			{
+				default: return -1;
+			}
+		}
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (baseOperationID)
@@ -1147,8 +1202,6 @@ public class PropertyImpl
 				return includesCardinality((BigInteger)arguments.get(0));
 			case PivotPackage.PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT:
 				return includesMultiplicity((MultiplicityElement)arguments.get(0));
-			case PivotPackage.PROPERTY___GET_NAME:
-				return getName();
 			case PivotPackage.PROPERTY___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 			case PivotPackage.PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
@@ -1168,7 +1221,7 @@ public class PropertyImpl
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitProperty(this);
 	}
 } //PropertyImpl

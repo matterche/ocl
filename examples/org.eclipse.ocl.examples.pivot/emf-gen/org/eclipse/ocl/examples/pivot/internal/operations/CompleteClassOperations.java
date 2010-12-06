@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompleteClassOperations.java,v 1.1.2.1 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: CompleteClassOperations.java,v 1.1.2.2 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -26,8 +26,9 @@ import org.eclipse.ocl.examples.pivot.CompleteOperation;
  *
  * @generated
  */
-public class CompleteClassOperations extends TypeOperations
-{
+public class CompleteClassOperations
+		extends TypeOperations {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42,8 +43,8 @@ public class CompleteClassOperations extends TypeOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  boolean conformsTo(CompleteClass completeClass, CompleteClass aClass)
-	{
+	public static boolean conformsTo(CompleteClass completeClass,
+			CompleteClass aClass) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -54,8 +55,8 @@ public class CompleteClassOperations extends TypeOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  CompleteOperation getDynamicOperation(CompleteClass completeClass, CompleteOperation staticOperation)
-	{
+	public static CompleteOperation getDynamicOperation(
+			CompleteClass completeClass, CompleteOperation staticOperation) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -66,8 +67,8 @@ public class CompleteClassOperations extends TypeOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  EList<CompleteOperation> getCompleteOperations(CompleteClass completeClass, String name)
-	{
+	public static EList<CompleteOperation> getCompleteOperations(
+			CompleteClass completeClass, String name) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractConversion.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: AbstractConversion.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -27,8 +26,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public abstract class AbstractConversion extends EcoreUtil
 {	// extends EcoreUtil solely to gain access to protected GEN_MODEL_PACKAGE_NS_URI
-	private static final Logger logger = Logger.getLogger(AbstractConversion.class);
-
 	protected static <T> T basicGet(EObject eObject, EAttribute eFeature, Class<T> resultClass) {
 		if (!eObject.eIsSet(eFeature)) {
 			return null;
@@ -59,7 +56,7 @@ public abstract class AbstractConversion extends EcoreUtil
 		return true;
 	}
 
-	protected <T> void refreshList(List<? super T> elements, List<? extends T> newElements) {
+	public <T> void refreshList(List<? super T> elements, List<? extends T> newElements) {
 		int newMax = newElements.size();
 		for (int i = 0; i < newMax; i++) {					// Invariant: lists are equal up to index i
 			T newElement = newElements.get(i);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePackageImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: CompletePackageImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -216,6 +215,8 @@ public class CompletePackageImpl
 				return getName();
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.COMPLETE_PACKAGE__IS_STATIC:
+				return isStatic();
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.COMPLETE_PACKAGE__TEMPLATE_BINDING:
@@ -223,8 +224,6 @@ public class CompletePackageImpl
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				if (resolve) return getOwnedTemplateSignature();
 				return basicGetOwnedTemplateSignature();
-			case PivotPackage.COMPLETE_PACKAGE__OWNED_SPECIALIZATION:
-				return getOwnedSpecializations();
 			case PivotPackage.COMPLETE_PACKAGE__NESTED_PACKAGE:
 				return getNestedPackages();
 			case PivotPackage.COMPLETE_PACKAGE__NESTING_PACKAGE:
@@ -276,6 +275,9 @@ public class CompletePackageImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.COMPLETE_PACKAGE__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
@@ -286,10 +288,6 @@ public class CompletePackageImpl
 				return;
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.COMPLETE_PACKAGE__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
 				return;
 			case PivotPackage.COMPLETE_PACKAGE__NESTED_PACKAGE:
 				getNestedPackages().clear();
@@ -343,6 +341,9 @@ public class CompletePackageImpl
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.COMPLETE_PACKAGE__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -351,9 +352,6 @@ public class CompletePackageImpl
 				return;
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.COMPLETE_PACKAGE__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
 				return;
 			case PivotPackage.COMPLETE_PACKAGE__NESTED_PACKAGE:
 				getNestedPackages().clear();
@@ -400,14 +398,14 @@ public class CompletePackageImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.COMPLETE_PACKAGE__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__TEMPLATE_BINDING:
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.COMPLETE_PACKAGE__OWNED_SPECIALIZATION:
-				return ownedSpecializations != null && !ownedSpecializations.isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__NESTED_PACKAGE:
 				return nestedPackages != null && !nestedPackages.isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__NESTING_PACKAGE:

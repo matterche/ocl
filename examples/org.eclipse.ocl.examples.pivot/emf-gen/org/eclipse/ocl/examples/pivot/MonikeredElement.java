@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElement.java,v 1.1.2.2 2010/10/05 17:39:53 ewillink Exp $
+ * $Id: MonikeredElement.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -42,7 +42,7 @@ public interface MonikeredElement
 	 * @return the value of the '<em>Moniker</em>' attribute.
 	 * @see #setMoniker(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMonikeredElement_Moniker()
-	 * @model dataType="org.eclipse.ocl.examples.pivot.String" required="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.eclipse.ocl.examples.pivot.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	String getMoniker();

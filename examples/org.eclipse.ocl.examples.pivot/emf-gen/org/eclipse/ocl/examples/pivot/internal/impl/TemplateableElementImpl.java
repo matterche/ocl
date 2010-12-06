@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: TemplateableElementImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -46,7 +45,6 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOpe
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getTemplateBindings <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getOwnedSpecializations <em>Owned Specialization</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,16 +75,6 @@ public abstract class TemplateableElementImpl
 	protected TemplateSignature ownedTemplateSignature;
 
 	/**
-	 * The cached value of the '{@link #getOwnedSpecializations() <em>Owned Specialization</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedSpecializations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TemplateableElement> ownedSpecializations;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -103,30 +91,6 @@ public abstract class TemplateableElementImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TEMPLATEABLE_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<TemplateableElement> getOwnedSpecializations() {
-		if (ownedSpecializations == null)
-		{
-			ownedSpecializations = new EObjectContainmentEList.Resolving<TemplateableElement>(TemplateableElement.class, this, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SPECIALIZATION);
-		}
-		return ownedSpecializations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateableElement createOwnedSpecialization(EClass eClass) {
-		TemplateableElement newOwnedSpecialization = (TemplateableElement) create(eClass);
-		getOwnedSpecializations().add(newOwnedSpecialization);
-		return newOwnedSpecialization;
 	}
 
 	/**
@@ -292,8 +256,6 @@ public abstract class TemplateableElementImpl
 				return ((InternalEList<?>)getTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SPECIALIZATION:
-				return ((InternalEList<?>)getOwnedSpecializations()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -316,8 +278,6 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				if (resolve) return getOwnedTemplateSignature();
 				return basicGetOwnedTemplateSignature();
-			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SPECIALIZATION:
-				return getOwnedSpecializations();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -346,10 +306,6 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
-				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -375,9 +331,6 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -399,8 +352,6 @@ public abstract class TemplateableElementImpl
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SPECIALIZATION:
-				return ownedSpecializations != null && !ownedSpecializations.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

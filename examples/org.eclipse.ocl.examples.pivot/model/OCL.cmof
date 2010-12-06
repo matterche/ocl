@@ -141,7 +141,6 @@
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0RIgHEd-aGOJuUCcZBA" name="body" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0RYgHEd-aGOJuUCcZBA" name="iterator" type="_IPg0MIgHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
     </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0SIgHEd-aGOJuUCcZBA" name="IteratorExp" superClass="_IPg0QogHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0SogHEd-aGOJuUCcZBA" name="StringLiteralExp" superClass="_IPg0YIgHEd-aGOJuUCcZBA">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0TIgHEd-aGOJuUCcZBA" name="stringSymbol">
         <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
@@ -162,9 +161,6 @@
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0WYgHEd-aGOJuUCcZBA" name="realSymbol" type="_-CEyEIqrEd-VzsYvPRGeYg"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0WogHEd-aGOJuUCcZBA" name="LiteralExp" isAbstract="true" superClass="_IPg0HogHEd-aGOJuUCcZBA"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0XIgHEd-aGOJuUCcZBA" name="IterateExp" superClass="_IPg0QogHEd-aGOJuUCcZBA">
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0XogHEd-aGOJuUCcZBA" name="result" type="_IPg0MIgHEd-aGOJuUCcZBA" lower="0" isComposite="true"/>
-    </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0YIgHEd-aGOJuUCcZBA" name="PrimitiveLiteralExp" isAbstract="true" superClass="_IPg0WogHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0YogHEd-aGOJuUCcZBA" name="NumericLiteralExp" isAbstract="true" superClass="_IPg0YIgHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0ZIgHEd-aGOJuUCcZBA" name="CollectionLiteralExp" superClass="_IPg0WogHEd-aGOJuUCcZBA">
@@ -228,18 +224,15 @@
     <ownedMember xmi:type="cmof:Class" xmi:id="_TVwKEMoxEd-ZL8lMORCEkg" name="VariableDeclaration" isAbstract="true"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_rMVQYI9nEd-UToJjGuajxg" name="OCL_Library">
-    <ownedMember xmi:type="cmof:Class" xmi:id="_DkZvkMWvEd-RhKwpb_4gmA" name="Iterate" superClass="_u6OecI9nEd-UToJjGuajxg">
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_DkZvksWvEd-RhKwpb_4gmA" name="ownedAccumulator" isOrdered="true" upper="*" lower="0" isComposite="true">
-        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Parameter"/>
-      </ownedAttribute>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_An4VUNYcEd-OVqg2QIeiMw" name="iteratorKind" type="_zvYY4NYbEd-OVqg2QIeiMw"/>
     </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_u6OecI9nEd-UToJjGuajxg" name="Iterator" superClass="_hKbfEIqwEd-VzsYvPRGeYg">
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_9hHPUI9nEd-UToJjGuajxg" name="ownedIterator" isOrdered="true" upper="*" lower="0" isComposite="true">
-        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Parameter"/>
-      </ownedAttribute>
+    <ownedMember xmi:type="cmof:Enumeration" xmi:id="_zvYY4NYbEd-OVqg2QIeiMw" name="IteratorKind">
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_3ff0gNYbEd-OVqg2QIeiMw" name="Parameter" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_9OhM0NYbEd-OVqg2QIeiMw" name="Iterator" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_9beDsNYbEd-OVqg2QIeiMw" name="Accumulator" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_xBZTMNYcEd-OVqg2QIeiMw" name="Result" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
     </ownedMember>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_uyL8wI9nEd-UToJjGuajxg" name="Operation"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_tASF0IgKEd-aGOJuUCcZBA" name="OCL_PrimitiveTypes">
     <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_Hcolt4gHEd-aGOJuUCcZBA" name="Boolean"/>

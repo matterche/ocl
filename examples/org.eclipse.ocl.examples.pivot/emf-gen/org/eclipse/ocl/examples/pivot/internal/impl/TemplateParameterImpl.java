@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: TemplateParameterImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateParameterOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -696,4 +697,8 @@ public class TemplateParameterImpl
 		return eDynamicInvoke(operationID, arguments);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitTemplateParameter(this);
+	}
 } //TemplateParameterImpl

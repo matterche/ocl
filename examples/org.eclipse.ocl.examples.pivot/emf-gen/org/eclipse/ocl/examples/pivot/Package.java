@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Package.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: Package.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -47,7 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Package
-		extends NamedElement, Namespace, TemplateableElement {
+		extends Namespace, TemplateableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -54,18 +54,14 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.FeatureCallExp;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.Iterate;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.Iterator;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.IteratorKind;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
@@ -124,7 +120,6 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -364,12 +359,10 @@ public class PivotValidator
 				return validateEnumerationLiteral((EnumerationLiteral)value, diagnostics, context);
 			case PivotPackage.EXPRESSION_IN_OCL:
 				return validateExpressionInOcl((ExpressionInOcl)value, diagnostics, context);
+			case PivotPackage.FEATURE:
+				return validateFeature((Feature)value, diagnostics, context);
 			case PivotPackage.FEATURE_CALL_EXP:
 				return validateFeatureCallExp((FeatureCallExp)value, diagnostics, context);
-			case PivotPackage.INAMED_ELEMENT:
-				return validateINamedElement((INamedElement)value, diagnostics, context);
-			case PivotPackage.IPIVOT_ELEMENT:
-				return validateIPivotElement((IPivotElement)value, diagnostics, context);
 			case PivotPackage.IF_EXP:
 				return validateIfExp((IfExp)value, diagnostics, context);
 			case PivotPackage.IMPLEMENTABLE_ELEMENT:
@@ -380,14 +373,6 @@ public class PivotValidator
 				return validateInvalidLiteralExp((InvalidLiteralExp)value, diagnostics, context);
 			case PivotPackage.INVALID_TYPE:
 				return validateInvalidType((InvalidType)value, diagnostics, context);
-			case PivotPackage.ITERATE:
-				return validateIterate((Iterate)value, diagnostics, context);
-			case PivotPackage.ITERATE_EXP:
-				return validateIterateExp((IterateExp)value, diagnostics, context);
-			case PivotPackage.ITERATOR:
-				return validateIterator((Iterator)value, diagnostics, context);
-			case PivotPackage.ITERATOR_EXP:
-				return validateIteratorExp((IteratorExp)value, diagnostics, context);
 			case PivotPackage.LET_EXP:
 				return validateLetExp((LetExp)value, diagnostics, context);
 			case PivotPackage.LITERAL_EXP:
@@ -402,6 +387,8 @@ public class PivotValidator
 				return validateMonikeredElement((MonikeredElement)value, diagnostics, context);
 			case PivotPackage.MULTIPLICITY_ELEMENT:
 				return validateMultiplicityElement((MultiplicityElement)value, diagnostics, context);
+			case PivotPackage.NAMEABLE:
+				return validateNameable((Nameable)value, diagnostics, context);
 			case PivotPackage.NAMED_ELEMENT:
 				return validateNamedElement((NamedElement)value, diagnostics, context);
 			case PivotPackage.NAMESPACE:
@@ -434,6 +421,8 @@ public class PivotValidator
 				return validateParameter((Parameter)value, diagnostics, context);
 			case PivotPackage.PARAMETERABLE_ELEMENT:
 				return validateParameterableElement((ParameterableElement)value, diagnostics, context);
+			case PivotPackage.PIVOTABLE:
+				return validatePivotable((Pivotable)value, diagnostics, context);
 			case PivotPackage.PRECEDENCE:
 				return validatePrecedence((Precedence)value, diagnostics, context);
 			case PivotPackage.PRIMITIVE_LITERAL_EXP:
@@ -500,14 +489,18 @@ public class PivotValidator
 				return validateVariableDeclaration((VariableDeclaration)value, diagnostics, context);
 			case PivotPackage.VARIABLE_EXP:
 				return validateVariableExp((VariableExp)value, diagnostics, context);
+			case PivotPackage.VISITABLE:
+				return validateVisitable((Visitable)value, diagnostics, context);
+			case PivotPackage.VISITOR:
+				return validateVisitor((Visitor<?, ?>)value, diagnostics, context);
 			case PivotPackage.VOID_TYPE:
 				return validateVoidType((VoidType)value, diagnostics, context);
-			case PivotPackage._PIVOT:
-				return validate_((Visitable)value, diagnostics, context);
 			case PivotPackage.ASSOCIATIVITY_KIND:
 				return validateAssociativityKind((AssociativityKind)value, diagnostics, context);
 			case PivotPackage.COLLECTION_KIND:
 				return validateCollectionKind((CollectionKind)value, diagnostics, context);
+			case PivotPackage.ITERATOR_KIND:
+				return validateIteratorKind((IteratorKind)value, diagnostics, context);
 			case PivotPackage.BOOLEAN:
 				return validateBoolean((Boolean)value, diagnostics, context);
 			case PivotPackage.INT:
@@ -748,10 +741,30 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateNameable(Nameable nameable,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)nameable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateParameterableElement(
 			ParameterableElement parameterableElement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)parameterableElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePivotable(Pivotable pivotable,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)pivotable, diagnostics, context);
 	}
 
 	/**
@@ -1218,26 +1231,6 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateINamedElement(INamedElement iNamedElement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)iNamedElement, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIPivotElement(IPivotElement iPivotElement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)iPivotElement, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateCallExp(CallExp callExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)callExp, diagnostics, context);
@@ -1445,6 +1438,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateFeature(Feature feature,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)feature, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateOpaqueExpression(OpaqueExpression opaqueExpression,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)opaqueExpression, diagnostics, context)) return false;
@@ -1551,73 +1554,9 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIterate(Iterate iterate,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment((EObject)iterate, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(iterate, diagnostics, context);
-		if (result || diagnostics != null) result &= validateOperation_validateTestConstraint(iterate, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIterateExp(IterateExp iterateExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)iterateExp, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIterator(Iterator iterator,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment((EObject)iterator, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(iterator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateOperation_validateTestConstraint(iterator, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateLoopExp(LoopExp loopExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)loopExp, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIteratorExp(IteratorExp iteratorExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)iteratorExp, diagnostics, context);
 	}
 
 	/**
@@ -1889,9 +1828,9 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVoidType(VoidType voidType,
+	public boolean validateVisitable(Visitable visitable,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)voidType, diagnostics, context);
+		return validate_EveryDefaultConstraint((EObject)visitable, diagnostics, context);
 	}
 
 	/**
@@ -1899,9 +1838,19 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validate_(Visitable _, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint((EObject)_, diagnostics, context);
+	public boolean validateVisitor(Visitor<?, ?> visitor,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)visitor, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVoidType(VoidType voidType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)voidType, diagnostics, context);
 	}
 
 	/**
@@ -1930,8 +1879,18 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBoolean(boolean boolean_, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateIteratorKind(IteratorKind iteratorKind,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBoolean(boolean boolean_,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1990,8 +1949,8 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateThrowable(Throwable throwable, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateThrowable(Throwable throwable,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

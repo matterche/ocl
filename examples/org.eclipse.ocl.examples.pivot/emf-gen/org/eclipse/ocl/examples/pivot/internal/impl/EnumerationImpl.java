@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: EnumerationImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,12 +117,6 @@ public class EnumerationImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -132,6 +125,12 @@ public class EnumerationImpl
 				if (templateParameter != null)
 					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
+				if (ownedTemplateSignature != null)
+					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE, null, msgs);
+				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.ENUMERATION__PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -162,16 +161,14 @@ public class EnumerationImpl
 				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_ANNOTATION:
 				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.ENUMERATION__OWNED_SPECIALIZATION:
-				return ((InternalEList<?>)getOwnedSpecializations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
+				return ((InternalEList<?>)getTemplateBindings()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
+				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.ENUMERATION__PACKAGE:
 				return basicSetPackage(null, msgs);
 			case PivotPackage.ENUMERATION__OWNED_ATTRIBUTE:
@@ -201,21 +198,21 @@ public class EnumerationImpl
 				return getName();
 			case PivotPackage.ENUMERATION__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.ENUMERATION__IS_STATIC:
+				return isStatic();
 			case PivotPackage.ENUMERATION__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
-			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
-				return getTemplateBindings();
-			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
-			case PivotPackage.ENUMERATION__OWNED_SPECIALIZATION:
-				return getOwnedSpecializations();
 			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
 			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
+				return getTemplateBindings();
+			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
+				if (resolve) return getOwnedTemplateSignature();
+				return basicGetOwnedTemplateSignature();
 			case PivotPackage.ENUMERATION__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -229,6 +226,10 @@ public class EnumerationImpl
 				return getSuperClasses();
 			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
+			case PivotPackage.ENUMERATION__PRIMITIVE:
+				return isPrimitive();
+			case PivotPackage.ENUMERATION__SUB_CLASS:
+				return getSubClasses();
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return getOwnedLiterals();
 		}
@@ -259,9 +260,18 @@ public class EnumerationImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.ENUMERATION__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.ENUMERATION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
@@ -269,16 +279,6 @@ public class EnumerationImpl
 				return;
 			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.ENUMERATION__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
-				return;
-			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.ENUMERATION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -300,6 +300,13 @@ public class EnumerationImpl
 				return;
 			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.ENUMERATION__PRIMITIVE:
+				setPrimitive((Boolean)newValue);
+				return;
+			case PivotPackage.ENUMERATION__SUB_CLASS:
+				getSubClasses().clear();
+				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiterals().clear();
@@ -330,23 +337,23 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.ENUMERATION__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.ENUMERATION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
-				return;
-			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.ENUMERATION__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
 				return;
 			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
+				getTemplateBindings().clear();
+				return;
+			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.ENUMERATION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -365,6 +372,12 @@ public class EnumerationImpl
 				return;
 			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.ENUMERATION__PRIMITIVE:
+				setPrimitive(PRIMITIVE_EDEFAULT);
+				return;
+			case PivotPackage.ENUMERATION__SUB_CLASS:
+				getSubClasses().clear();
 				return;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiterals().clear();
@@ -390,18 +403,18 @@ public class EnumerationImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUMERATION__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.ENUMERATION__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.ENUMERATION__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
-				return templateBindings != null && !templateBindings.isEmpty();
-			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.ENUMERATION__OWNED_SPECIALIZATION:
-				return ownedSpecializations != null && !ownedSpecializations.isEmpty();
 			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
+			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
+				return templateBindings != null && !templateBindings.isEmpty();
+			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
+				return ownedTemplateSignature != null;
 			case PivotPackage.ENUMERATION__PACKAGE:
 				return basicGetPackage() != null;
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
@@ -414,6 +427,10 @@ public class EnumerationImpl
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.ENUMERATION__PRIMITIVE:
+				return ((eFlags & PRIMITIVE_EFLAG) != 0) != PRIMITIVE_EDEFAULT;
+			case PivotPackage.ENUMERATION__SUB_CLASS:
+				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return ownedLiterals != null && !ownedLiterals.isEmpty();
 		}

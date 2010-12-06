@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,7 +71,7 @@ public class CollectionLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int KIND_EFLAG_OFFSET = 8;
+	protected static final int KIND_EFLAG_OFFSET = 9;
 
 	/**
 	 * The flags representing the default value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -215,6 +215,8 @@ public class CollectionLiteralExpImpl
 				return getName();
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
@@ -251,6 +253,9 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -291,6 +296,9 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -324,6 +332,8 @@ public class CollectionLiteralExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
@@ -347,7 +357,7 @@ public class CollectionLiteralExpImpl
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitCollectionLiteralExp(this);
 	}
 } //CollectionLiteralExpImpl

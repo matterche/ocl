@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PivotAliasCreator.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: PivotAliasCreator.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.Package;
 
 public class PivotAliasCreator extends AliasAdapter.AbstractCreator
 {
@@ -29,7 +30,9 @@ public class PivotAliasCreator extends AliasAdapter.AbstractCreator
 
 	public String getAlias(EObject eObject) {
 		if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-			return ((org.eclipse.ocl.examples.pivot.Package)eObject).getName();		// FIXME NsPrefix
+			Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
+			String nsPrefix = pivotPackage.getNsPrefix();
+			return nsPrefix != null ? nsPrefix : pivotPackage.getName();		// FIXME NsPrefix
 		}
 		return null;
 	}

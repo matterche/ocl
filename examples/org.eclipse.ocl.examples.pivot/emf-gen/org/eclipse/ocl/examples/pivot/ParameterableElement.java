@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterableElement.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: ParameterableElement.java,v 1.1.2.3 2010/12/06 17:20:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -38,7 +38,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface ParameterableElement
-		extends MonikeredElement, Element {
+		extends MonikeredElement {
 
 	/**
 	 * Returns the value of the '<em><b>Template Parameter</b></em>' reference.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,6 +124,8 @@ public class UnlimitedNaturalLiteralExpImpl
 				return getName();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
@@ -158,6 +160,9 @@ public class UnlimitedNaturalLiteralExpImpl
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -194,6 +199,9 @@ public class UnlimitedNaturalLiteralExpImpl
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -224,6 +232,8 @@ public class UnlimitedNaturalLiteralExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
@@ -245,7 +255,7 @@ public class UnlimitedNaturalLiteralExpImpl
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitUnlimitedNaturalLiteralExp(this);
 	}
 } //UnlimitedNaturalLiteralExpImpl

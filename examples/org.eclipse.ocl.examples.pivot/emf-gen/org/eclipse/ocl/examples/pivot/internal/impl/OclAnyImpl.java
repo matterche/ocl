@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: OclAnyImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.OclAny;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.internal.operations.OclAnyOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,8 +120,8 @@ public abstract class OclAnyImpl
 		return EcoreUtil.create(eClass);
 	}
 
-	public <T> T accept(Visitor<T> visitor) {
-		return visitor.visit(this);
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visiting(this);
 	}
 
 	/**
@@ -131,8 +131,11 @@ public abstract class OclAnyImpl
 	 */
 	@Override
 	public String toString() {
-		ToStringVisitor visitor = new ToStringVisitor();
-		return accept(visitor);
+		ToStringVisitor v = new ToStringVisitor();
+		String s = accept(v);
+		return s != null
+			? s
+			: v.toString();
 	}
 
 } //OclAnyImpl

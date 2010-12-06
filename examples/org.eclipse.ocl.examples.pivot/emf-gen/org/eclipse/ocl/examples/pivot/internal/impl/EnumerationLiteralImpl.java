@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationLiteralImpl.java,v 1.1.2.3 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: EnumerationLiteralImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -195,6 +196,8 @@ public class EnumerationLiteralImpl
 				return getName();
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.ENUMERATION_LITERAL__IS_STATIC:
+				return isStatic();
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
@@ -228,6 +231,9 @@ public class EnumerationLiteralImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
@@ -260,6 +266,9 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -287,6 +296,8 @@ public class EnumerationLiteralImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
@@ -295,4 +306,8 @@ public class EnumerationLiteralImpl
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitEnumerationLiteral(this);
+	}
 } //EnumerationLiteralImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Parameter.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: Parameter.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -28,6 +28,7 @@ package org.eclipse.ocl.examples.pivot;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Parameter#getIteratorKind <em>Iterator Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Parameter#getOperation <em>Operation</em>}</li>
  * </ul>
  * </p>
@@ -37,8 +38,36 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface Parameter
-		extends TypedMultiplicityElement, MultiplicityElement, TypedElement,
-		VariableDeclaration {
+		extends TypedMultiplicityElement, VariableDeclaration {
+
+	/**
+	 * Returns the value of the '<em><b>Iterator Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.examples.pivot.IteratorKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterator Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iterator Kind</em>' attribute.
+	 * @see org.eclipse.ocl.examples.pivot.IteratorKind
+	 * @see #setIteratorKind(IteratorKind)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getParameter_IteratorKind()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	IteratorKind getIteratorKind();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Parameter#getIteratorKind <em>Iterator Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Iterator Kind</em>' attribute.
+	 * @see org.eclipse.ocl.examples.pivot.IteratorKind
+	 * @see #getIteratorKind()
+	 * @generated
+	 */
+	void setIteratorKind(IteratorKind value);
 
 	/**
 	 * Returns the value of the '<em><b>Operation</b></em>' container reference.

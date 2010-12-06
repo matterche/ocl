@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Operation.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: Operation.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -45,9 +46,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Operation
-		extends TypedMultiplicityElement, MultiplicityElement, TypedElement,
-		Namespace, TemplateableElement, ParameterableElement,
-		ImplementableElement {
+		extends TypedMultiplicityElement, Feature, Namespace, ParameterableElement, TemplateableElement, ImplementableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.

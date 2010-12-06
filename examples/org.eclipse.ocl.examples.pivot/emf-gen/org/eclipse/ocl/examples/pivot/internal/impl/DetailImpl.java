@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DetailImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: DetailImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,6 +104,8 @@ public class DetailImpl
 				return getName();
 			case PivotPackage.DETAIL__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.DETAIL__IS_STATIC:
+				return isStatic();
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.DETAIL__VALUE:
@@ -134,6 +137,9 @@ public class DetailImpl
 			case PivotPackage.DETAIL__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.DETAIL__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -168,6 +174,9 @@ public class DetailImpl
 			case PivotPackage.DETAIL__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.DETAIL__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -195,6 +204,8 @@ public class DetailImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.DETAIL__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.DETAIL__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.DETAIL__VALUE:
@@ -209,9 +220,13 @@ public class DetailImpl
 	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitDetail(this);
 	}
 
 } //DetailImpl

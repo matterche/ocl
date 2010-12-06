@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: PropertyOperations.java,v 1.1.2.3 2010/12/06 17:20:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  * @generated
  */
 public class PropertyOperations
-		extends MultiplicityElementOperations {
+		extends MonikeredElementOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

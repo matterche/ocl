@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeTemplateParameterImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: TypeTemplateParameterImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.internal.operations.TypeTemplateParameterOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -111,8 +112,7 @@ public class TypeTemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAllowSubstitutable()
-	{
+	public boolean isAllowSubstitutable() {
 		return (eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0;
 	}
 
@@ -121,8 +121,7 @@ public class TypeTemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAllowSubstitutable(boolean newAllowSubstitutable)
-	{
+	public void setAllowSubstitutable(boolean newAllowSubstitutable) {
 		boolean oldAllowSubstitutable = (eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0;
 		if (newAllowSubstitutable) eFlags |= ALLOW_SUBSTITUTABLE_EFLAG; else eFlags &= ~ALLOW_SUBSTITUTABLE_EFLAG;
 		if (eNotificationRequired())
@@ -401,9 +400,12 @@ public class TypeTemplateParameterImpl
 	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitTypeTemplateParameter(this);
+	}
 } //TypeTemplateParameterImpl

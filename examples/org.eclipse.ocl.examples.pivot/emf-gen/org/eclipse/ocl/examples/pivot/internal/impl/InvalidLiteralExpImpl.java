@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +61,7 @@ public class InvalidLiteralExpImpl
 	 * @ordered
 	 */
 	protected static final Object OBJECT_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getObject() <em>Object</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,6 +71,7 @@ public class InvalidLiteralExpImpl
 	 * @ordered
 	 */
 	protected Object object = OBJECT_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -79,6 +81,7 @@ public class InvalidLiteralExpImpl
 	 * @ordered
 	 */
 	protected OclExpression expression;
+
 	/**
 	 * The default value of the '{@link #getReason() <em>Reason</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,6 +91,7 @@ public class InvalidLiteralExpImpl
 	 * @ordered
 	 */
 	protected static final String REASON_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getReason() <em>Reason</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,6 +101,7 @@ public class InvalidLiteralExpImpl
 	 * @ordered
 	 */
 	protected String reason = REASON_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getThrowable() <em>Throwable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -106,6 +111,7 @@ public class InvalidLiteralExpImpl
 	 * @ordered
 	 */
 	protected static final Throwable THROWABLE_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getThrowable() <em>Throwable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -140,8 +146,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getObject()
-	{
+	public Object getObject() {
 		return object;
 	}
 
@@ -150,8 +155,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setObject(Object newObject)
-	{
+	public void setObject(Object newObject) {
 		Object oldObject = object;
 		object = newObject;
 		if (eNotificationRequired())
@@ -163,8 +167,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression getExpression()
-	{
+	public OclExpression getExpression() {
 		if (expression != null && ((EObject)expression).eIsProxy())
 		{
 			InternalEObject oldExpression = (InternalEObject)expression;
@@ -183,8 +186,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression basicGetExpression()
-	{
+	public OclExpression basicGetExpression() {
 		return expression;
 	}
 
@@ -193,8 +195,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExpression(OclExpression newExpression)
-	{
+	public void setExpression(OclExpression newExpression) {
 		OclExpression oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
@@ -206,8 +207,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getReason()
-	{
+	public String getReason() {
 		return reason;
 	}
 
@@ -216,8 +216,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReason(String newReason)
-	{
+	public void setReason(String newReason) {
 		String oldReason = reason;
 		reason = newReason;
 		if (eNotificationRequired())
@@ -229,8 +228,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Throwable getThrowable()
-	{
+	public Throwable getThrowable() {
 		return throwable;
 	}
 
@@ -239,8 +237,7 @@ public class InvalidLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThrowable(Throwable newThrowable)
-	{
+	public void setThrowable(Throwable newThrowable) {
 		Throwable oldThrowable = throwable;
 		throwable = newThrowable;
 		if (eNotificationRequired())
@@ -253,8 +250,7 @@ public class InvalidLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_COMMENT:
@@ -265,6 +261,8 @@ public class InvalidLiteralExpImpl
 				return getName();
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.INVALID_LITERAL_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.INVALID_LITERAL_EXP__TYPE:
@@ -290,8 +288,7 @@ public class InvalidLiteralExpImpl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_COMMENT:
@@ -307,6 +304,9 @@ public class InvalidLiteralExpImpl
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.INVALID_LITERAL_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -337,8 +337,7 @@ public class InvalidLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_COMMENT:
@@ -352,6 +351,9 @@ public class InvalidLiteralExpImpl
 				return;
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
+				return;
+			case PivotPackage.INVALID_LITERAL_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -381,8 +383,7 @@ public class InvalidLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_COMMENT:
@@ -393,6 +394,8 @@ public class InvalidLiteralExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.INVALID_LITERAL_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.INVALID_LITERAL_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.INVALID_LITERAL_EXP__TYPE:
@@ -415,13 +418,12 @@ public class InvalidLiteralExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return super.toString();
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitInvalidLiteralExp(this);
 	}
 } //InvalidLiteralExpImpl

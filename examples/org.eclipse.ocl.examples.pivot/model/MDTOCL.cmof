@@ -18,9 +18,9 @@
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_A11esMerEd-sJIf4tYBt-g" name="MDT_OCL_Evaluation">
       <ownedMember xmi:type="cmof:Interface" xmi:id="_P4LKcMk1Ed-bx742yyafXQ" name="CallableImplementation" isAbstract="true"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_6Ud78Mk1Ed-bx742yyafXQ" name="ImplementableElement" isAbstract="true">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_-csVkMk1Ed-bx742yyafXQ" name="implementationClass" type="_7Yq00Mk-Ed-bx742yyafXQ" lower="0"/>
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_mCkwEMk1Ed-bx742yyafXQ" name="implementation" type="_P4LKcMk1Ed-bx742yyafXQ" lower="0"/>
+      <ownedMember xmi:type="cmof:Interface" xmi:id="_0LL3cN9YEd-5RuvZBdnt0A" name="ImplementableElement" isAbstract="true">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_3M8_UN9YEd-5RuvZBdnt0A" name="implementationClass" type="_7Yq00Mk-Ed-bx742yyafXQ" lower="0"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_ZQ3woN9ZEd-5RuvZBdnt0A" name="implementation" type="_P4LKcMk1Ed-bx742yyafXQ" lower="0"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_W35jUNPCEd-Vct1SlsNNwg" name="InvalidLiteralExp">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_zx5NcNPCEd-Vct1SlsNNwg" name="object" type="_jtMXsMhyEd-sJIf4tYBt-g" lower="0"/>
@@ -28,42 +28,40 @@
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_c-u-sNPCEd-Vct1SlsNNwg" name="reason" type="_7Yq00Mk-Ed-bx742yyafXQ" lower="0"/>
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_l_qzsNPCEd-Vct1SlsNNwg" name="throwable" type="_ijfAsNPCEd-Vct1SlsNNwg" lower="0"/>
       </ownedMember>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_4F71EMgHEd-sJIf4tYBt-g" name="Iterate"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_a20PgMgHEd-sJIf4tYBt-g" name="IterateExp">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_fMuf0MgHEd-sJIf4tYBt-g" name="referredIterate" type="_4F71EMgHEd-sJIf4tYBt-g" lower="0"/>
-      </ownedMember>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_9RQDYMgHEd-sJIf4tYBt-g" name="Iterator"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_AbSWcMgIEd-sJIf4tYBt-g" name="IteratorExp">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_EMTJ8MgIEd-sJIf4tYBt-g" name="referredIterator" type="_9RQDYMgHEd-sJIf4tYBt-g" lower="0"/>
-      </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_DZixkMerEd-sJIf4tYBt-g" name="OclExpression"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_dIPu8MesEd-sJIf4tYBt-g" name="Operation" superClass="_6Ud78Mk1Ed-bx742yyafXQ"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_rtwm0MesEd-sJIf4tYBt-g" name="Property" superClass="_6Ud78Mk1Ed-bx742yyafXQ"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_dIPu8MesEd-sJIf4tYBt-g" name="Operation" clientDependency="#_EYbiIN9ZEd-5RuvZBdnt0A">
+        <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+          <interfaceRealization xmi:type="cmof:InterfaceRealization" xmi:id="_EYbiIN9ZEd-5RuvZBdnt0A" name="" supplier="_0LL3cN9YEd-5RuvZBdnt0A" client="_dIPu8MesEd-sJIf4tYBt-g" contract="_0LL3cN9YEd-5RuvZBdnt0A" implementingClassifier="_dIPu8MesEd-sJIf4tYBt-g"/>
+        </xmi:Extension>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_rtwm0MesEd-sJIf4tYBt-g" name="Property" clientDependency="#_HnYxcN9ZEd-5RuvZBdnt0A">
+        <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+          <interfaceRealization xmi:type="cmof:InterfaceRealization" xmi:id="_HnYxcN9ZEd-5RuvZBdnt0A" supplier="_0LL3cN9YEd-5RuvZBdnt0A" client="_rtwm0MesEd-sJIf4tYBt-g" contract="_0LL3cN9YEd-5RuvZBdnt0A" implementingClassifier="_rtwm0MesEd-sJIf4tYBt-g"/>
+        </xmi:Extension>
+      </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_3cMNIMgKEd-sJIf4tYBt-g" name="Variable"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_jtMXsMhyEd-sJIf4tYBt-g" name="Object"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_7Yq00Mk-Ed-bx742yyafXQ" name="String"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_ijfAsNPCEd-Vct1SlsNNwg" name="Throwable"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_431tkMpAEd-ZL8lMORCEkg" name="MDT_OCL_Framework">
+      <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_zVCV0PlzEd-EJPIg-mDVJA" name="Boolean"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_V3s5sMpCEd-ZL8lMORCEkg" name="Class">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_Y4z6QMpCEd-ZL8lMORCEkg" name="instanceClassName" type="_-0G3sMpAEd-ZL8lMORCEkg" lower="0"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_2J8GYPlzEd-EJPIg-mDVJA" name="primitive" type="_zVCV0PlzEd-EJPIg-mDVJA" lower="0" default="false"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_OD6CsMpBEd-ZL8lMORCEkg" name="Element" isAbstract="true"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_QAIe0MpBEd-ZL8lMORCEkg" name="INamedElement" isAbstract="true">
-        <ownedOperation xmi:type="cmof:Operation" xmi:id="_hE3yMMpBEd-ZL8lMORCEkg" name="getName" class="_QAIe0MpBEd-ZL8lMORCEkg">
-          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_k-z4MMpBEd-ZL8lMORCEkg" type="_-0G3sMpAEd-ZL8lMORCEkg" direction="return"/>
-        </ownedOperation>
+      <ownedMember xmi:type="cmof:Interface" xmi:id="_gp2QsN9WEd-5RuvZBdnt0A" name="Nameable" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_P4PuIMpBEd-ZL8lMORCEkg" name="NamedElement" clientDependency="#_yvKQQN9WEd-5RuvZBdnt0A" isAbstract="true">
+        <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+          <interfaceRealization xmi:type="cmof:InterfaceRealization" xmi:id="_yvKQQN9WEd-5RuvZBdnt0A" name="" supplier="_gp2QsN9WEd-5RuvZBdnt0A" client="_P4PuIMpBEd-ZL8lMORCEkg" contract="_gp2QsN9WEd-5RuvZBdnt0A" implementingClassifier="_P4PuIMpBEd-ZL8lMORCEkg"/>
+        </xmi:Extension>
       </ownedMember>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_QH3egMpBEd-ZL8lMORCEkg" name="IPivotElement" isAbstract="true">
-        <ownedOperation xmi:type="cmof:Operation" xmi:id="_nWtjsMpBEd-ZL8lMORCEkg" name="getPivot" class="_QH3egMpBEd-ZL8lMORCEkg">
-          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_nWtjscpBEd-ZL8lMORCEkg" type="_OD6CsMpBEd-ZL8lMORCEkg" direction="return"/>
-        </ownedOperation>
-      </ownedMember>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_P4PuIMpBEd-ZL8lMORCEkg" name="NamedElement" isAbstract="true" superClass="_QAIe0MpBEd-ZL8lMORCEkg"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_7uYc4MpAEd-ZL8lMORCEkg" name="Package">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_AzTvUMpBEd-ZL8lMORCEkg" name="nsPrefix" type="_-0G3sMpAEd-ZL8lMORCEkg" lower="0"/>
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_HIkBMMpBEd-ZL8lMORCEkg" name="nsURI" type="_-0G3sMpAEd-ZL8lMORCEkg" lower="0"/>
       </ownedMember>
+      <ownedMember xmi:type="cmof:Interface" xmi:id="_h0T4sN9WEd-5RuvZBdnt0A" name="Pivotable" isAbstract="true"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_-0G3sMpAEd-ZL8lMORCEkg" name="String"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_ReAs0MimEd-sJIf4tYBt-g" name="MDT_OCL_Monikers">
@@ -79,7 +77,6 @@
       <ownedMember xmi:type="cmof:Class" xmi:id="_mXNT0MinEd-sJIf4tYBt-g" name="MultiplicityElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_d5WMIMimEd-sJIf4tYBt-g" name="NamedElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_eKLoAMinEd-sJIf4tYBt-g" name="ParameterableElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_YeuhEMinEd-sJIf4tYBt-g" name="TemplateBinding" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_J9DAUMinEd-sJIf4tYBt-g" name="TemplateSignature" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_UZfKAMinEd-sJIf4tYBt-g" name="TemplateableElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
     </ownedMember>
@@ -110,12 +107,8 @@
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_Sl0PAMo-Ed-ZL8lMORCEkg" name="String"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_6nvD4NPCEd-Vct1SlsNNwg" name="Throwable"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_StQTwMo-Ed-ZL8lMORCEkg" name="UnlimitedNatural"/>
-    </ownedMember>
-    <ownedMember xmi:type="cmof:Package" xmi:id="_0qcDkMpBEd-ZL8lMORCEkg" name="MDT_OCL_Templates">
-      <ownedMember xmi:type="cmof:Class" xmi:id="_4y9YIMpBEd-ZL8lMORCEkg" name="Element" isAbstract="true"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_6eXxEMpBEd-ZL8lMORCEkg" name="TemplateParameter" superClass="_4y9YIMpBEd-ZL8lMORCEkg"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_fMb0cMpCEd-ZL8lMORCEkg" name="TemplateableElement" isAbstract="true">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_hjvDAMpCEd-ZL8lMORCEkg" name="ownedSpecialization" type="_fMb0cMpCEd-ZL8lMORCEkg" upper="*" lower="0" isComposite="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_mmFxgPPiEd-7P5P8zTFtow" name="BooleanLiteralExp">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_ttCmEPPiEd-7P5P8zTFtow" name="booleanSymbol" type="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
       </ownedMember>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_zNR5QMilEd-sJIf4tYBt-g" name="MDT_OCL_TypedMultiplicity">
@@ -124,7 +117,7 @@
       <ownedMember xmi:type="cmof:Class" xmi:id="_4Yv4kMilEd-sJIf4tYBt-g" name="Parameter" superClass="_9HMksMilEd-sJIf4tYBt-g"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_4hEuIMilEd-sJIf4tYBt-g" name="Property" superClass="_9HMksMilEd-sJIf4tYBt-g"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_4oqj4MilEd-sJIf4tYBt-g" name="TypedElement" isAbstract="true"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_9HMksMilEd-sJIf4tYBt-g" name="TypedMultiplicityElement" isAbstract="true" superClass="_1tWpUMilEd-sJIf4tYBt-g _4oqj4MilEd-sJIf4tYBt-g"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_9HMksMilEd-sJIf4tYBt-g" name="TypedMultiplicityElement" isAbstract="true" superClass="_4oqj4MilEd-sJIf4tYBt-g _1tWpUMilEd-sJIf4tYBt-g"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_tG-HYMeqEd-sJIf4tYBt-g" name="MDT_OCL_Visiting">
       <ownedMember xmi:type="cmof:Class" xmi:id="_xBkUsMeqEd-sJIf4tYBt-g" name="OclAny" clientDependency="#_lMyWQM-FEd-OX-Zde0V6vA" isAbstract="true">
@@ -133,6 +126,23 @@
         </xmi:Extension>
       </ownedMember>
       <ownedMember xmi:type="cmof:Interface" xmi:id="_T5siAM9-Ed-OX-Zde0V6vA" name="Visitable" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Interface" xmi:id="_GklkEOfSEd-IXbTaV_5Nsg" name="Visitor" isAbstract="true">
+        <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+          <ownedTemplateSignature xmi:type="cmof:RedefinableTemplateSignature" xmi:id="_YfCXcOfSEd-IXbTaV_5Nsg" parameter="_aP87cOfSEd-IXbTaV_5Nsg _gPMhEOfSEd-IXbTaV_5Nsg" template="_GklkEOfSEd-IXbTaV_5Nsg">
+            <ownedParameter xmi:type="cmof:ClassifierTemplateParameter" xmi:id="_aP87cOfSEd-IXbTaV_5Nsg" signature="_YfCXcOfSEd-IXbTaV_5Nsg" parameteredElement="_dUCXgOfSEd-IXbTaV_5Nsg">
+              <ownedParameteredElement xmi:type="cmof:Class" xmi:id="_dUCXgOfSEd-IXbTaV_5Nsg" name="R" owningTemplateParameter="_aP87cOfSEd-IXbTaV_5Nsg" templateParameter="#_aP87cOfSEd-IXbTaV_5Nsg"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="cmof:ClassifierTemplateParameter" xmi:id="_gPMhEOfSEd-IXbTaV_5Nsg" signature="_YfCXcOfSEd-IXbTaV_5Nsg" parameteredElement="_hFyx4OfSEd-IXbTaV_5Nsg">
+              <ownedParameteredElement xmi:type="cmof:Class" xmi:id="_hFyx4OfSEd-IXbTaV_5Nsg" name="C" owningTemplateParameter="_gPMhEOfSEd-IXbTaV_5Nsg" templateParameter="#_gPMhEOfSEd-IXbTaV_5Nsg"/>
+            </ownedParameter>
+          </ownedTemplateSignature>
+        </xmi:Extension>
+      </ownedMember>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Package" xmi:id="_-P7ogO5vEd-sIMHRp27srQ" name="MDT_OCL_SubClasses">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_-P7ogu5vEd-sIMHRp27srQ" name="Class">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_OQds4O5wEd-sIMHRp27srQ" name="subClass" type="_-P7ogu5vEd-sIMHRp27srQ" upper="*" lower="0"/>
+      </ownedMember>
     </ownedMember>
     <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
       <profileApplication xmi:type="cmof:ProfileApplication" xmi:id="_0zzhIMezEd-sJIf4tYBt-g" applyingPackage="_0">
@@ -149,7 +159,7 @@
     <Ecore:EGenericType xmi:id="_2l8NIMezEd-sJIf4tYBt-g"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EAttribute xmi:id="_FjatoMinEd-sJIf4tYBt-g" base_Property="_6GtZwMimEd-sJIf4tYBt-g"/>
+    <Ecore:EAttribute xmi:id="_FjatoMinEd-sJIf4tYBt-g" isTransient="true" base_Property="_6GtZwMimEd-sJIf4tYBt-g"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EAttribute xmi:id="_eid-MMlBEd-bx742yyafXQ" base_Property="_TUMH4MlBEd-bx742yyafXQ"/>
@@ -173,13 +183,13 @@
     <Ecore:EDataType xmi:id="_rOgcAMo-Ed-ZL8lMORCEkg" instanceClassName="int" base_PrimitiveType="_nOUkEMo-Ed-ZL8lMORCEkg"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EClass xmi:id="_eCpH8M9-Ed-OX-Zde0V6vA" instanceClassName="org.eclipse.ocl.examples.pivot.utilities.Visitable" base_Interface="_T5siAM9-Ed-OX-Zde0V6vA" className=""/>
+    <Ecore:EClass xmi:id="_eCpH8M9-Ed-OX-Zde0V6vA" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="_T5siAM9-Ed-OX-Zde0V6vA" className="Visitable"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EClass xmi:id="_f4FaEM-TEd-OX-Zde0V6vA" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation" base_Interface="_P4LKcMk1Ed-bx742yyafXQ"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EReference xmi:id="_Oh3O8M-wEd-OX-Zde0V6vA" isTransient="true" base_Property="_mCkwEMk1Ed-bx742yyafXQ" isResolveProxies="false"/>
+    <Ecore:EReference xmi:id="_Oh3O8M-wEd-OX-Zde0V6vA" isTransient="true" isResolveProxies="false"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EDataType xmi:id="_CuPkAM-9Ed-OX-Zde0V6vA" instanceClassName="boolean"/>
@@ -190,8 +200,30 @@
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EDataType xmi:id="_9eufINPCEd-Vct1SlsNNwg" instanceClassName="java.lang.Throwable" base_PrimitiveType="_6nvD4NPCEd-Vct1SlsNNwg"/>
   </xmi:Extension>
-  <cmof:Tag xmi:id="_16" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>
-  <cmof:Tag xmi:id="_17" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_XXNRYMlBEd-bx742yyafXQ"/>
-  <cmof:Tag xmi:id="_18" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
-  <cmof:Tag xmi:id="_19" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_SUQk8Mo-Ed-ZL8lMORCEkg"/>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.pivot.util.Nameable" base_Interface="_gp2QsN9WEd-5RuvZBdnt0A" className="Nameable"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" base_Interface="_h0T4sN9WEd-5RuvZBdnt0A" className="Pivotable"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EReference xmi:id="_i31D0N9ZEd-5RuvZBdnt0A" isTransient="true" base_Property="_ZQ3woN9ZEd-5RuvZBdnt0A" isResolveProxies="false"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="_GklkEOfSEd-IXbTaV_5Nsg"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EReference xmi:id="_zmnm0O53Ed-sIMHRp27srQ" isTransient="true" base_Property="_OQds4O5wEd-sIMHRp27srQ" isResolveProxies="false"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EDataType xmi:id="_W_mzkPPcEd-7P5P8zTFtow" instanceClassName="" dataTypeName="boolean"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EAttribute xmi:id="_1hNtAPPiEd-7P5P8zTFtow" isUnsettable="true" base_Property="_ttCmEPPiEd-7P5P8zTFtow"/>
+  </xmi:Extension>
+  <cmof:Tag xmi:id="_23" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
+  <cmof:Tag xmi:id="_24" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>
+  <cmof:Tag xmi:id="_25" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_XXNRYMlBEd-bx742yyafXQ"/>
+  <cmof:Tag xmi:id="_26" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
+  <cmof:Tag xmi:id="_27" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_SUQk8Mo-Ed-ZL8lMORCEkg"/>
 </xmi:XMI>

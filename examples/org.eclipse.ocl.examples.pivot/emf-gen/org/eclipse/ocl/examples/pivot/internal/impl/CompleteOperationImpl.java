@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperationImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: CompleteOperationImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 
@@ -185,8 +184,7 @@ public class CompleteOperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<Parameter> getCompleteParameters()
-	{
+	public EList<Parameter> getCompleteParameters() {
 		return getModel().getOwnedParameters();
 	}
 
@@ -203,6 +201,17 @@ public class CompleteOperationImpl
 				return getOwnedComments();
 			case PivotPackage.COMPLETE_OPERATION__MONIKER:
 				return getMoniker();
+			case PivotPackage.COMPLETE_OPERATION__NAME:
+				return getName();
+			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
+				return getOwnedRules();
+			case PivotPackage.COMPLETE_OPERATION__IS_STATIC:
+				return isStatic();
+			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
+				return getOwnedAnnotations();
+			case PivotPackage.COMPLETE_OPERATION__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 			case PivotPackage.COMPLETE_OPERATION__IS_ORDERED:
 				return isOrdered();
 			case PivotPackage.COMPLETE_OPERATION__IS_UNIQUE:
@@ -211,28 +220,17 @@ public class CompleteOperationImpl
 				return getLower();
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				return getUpper();
-			case PivotPackage.COMPLETE_OPERATION__NAME:
-				return getName();
-			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
-				return getOwnedRules();
-			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
-			case PivotPackage.COMPLETE_OPERATION__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
-				return getTemplateBindings();
-			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
-			case PivotPackage.COMPLETE_OPERATION__OWNED_SPECIALIZATION:
-				return getOwnedSpecializations();
 			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
 			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
+				return getTemplateBindings();
+			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
+				if (resolve) return getOwnedTemplateSignature();
+				return basicGetOwnedTemplateSignature();
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
@@ -276,6 +274,23 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__MONIKER:
 				setMoniker((String)newValue);
 				return;
+			case PivotPackage.COMPLETE_OPERATION__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
+				getOwnedRules().clear();
+				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TYPE:
+				setType((Type)newValue);
+				return;
 			case PivotPackage.COMPLETE_OPERATION__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
 				return;
@@ -288,19 +303,11 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				setUpper((BigInteger)newValue);
 				return;
-			case PivotPackage.COMPLETE_OPERATION__NAME:
-				setName((String)newValue);
+			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
 				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__TYPE:
-				setType((Type)newValue);
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
@@ -308,16 +315,6 @@ public class CompleteOperationImpl
 				return;
 			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
 				setImplementationClass((String)newValue);
@@ -364,6 +361,21 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__MONIKER:
 				setMoniker(MONIKER_EDEFAULT);
 				return;
+			case PivotPackage.COMPLETE_OPERATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
+				getOwnedRules().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.COMPLETE_OPERATION__TYPE:
+				setType((Type)null);
+				return;
 			case PivotPackage.COMPLETE_OPERATION__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
@@ -376,32 +388,17 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
-			case PivotPackage.COMPLETE_OPERATION__NAME:
-				setName(NAME_EDEFAULT);
+			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
 				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
-				getOwnedRules().clear();
-				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.COMPLETE_OPERATION__TYPE:
-				setType((Type)null);
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
 				return;
 			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				return;
-			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
@@ -444,6 +441,16 @@ public class CompleteOperationImpl
 				return ownedComments != null && !ownedComments.isEmpty();
 			case PivotPackage.COMPLETE_OPERATION__MONIKER:
 				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
+			case PivotPackage.COMPLETE_OPERATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
+				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.COMPLETE_OPERATION__IS_STATIC:
+				return isSetIsStatic();
+			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.COMPLETE_OPERATION__TYPE:
+				return type != null;
 			case PivotPackage.COMPLETE_OPERATION__IS_ORDERED:
 				return ((eFlags & IS_ORDERED_EFLAG) != 0) != IS_ORDERED_EDEFAULT;
 			case PivotPackage.COMPLETE_OPERATION__IS_UNIQUE:
@@ -452,24 +459,14 @@ public class CompleteOperationImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
-			case PivotPackage.COMPLETE_OPERATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.COMPLETE_OPERATION__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
-			case PivotPackage.COMPLETE_OPERATION__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.COMPLETE_OPERATION__TYPE:
-				return type != null;
-			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
-				return templateBindings != null && !templateBindings.isEmpty();
-			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.COMPLETE_OPERATION__OWNED_SPECIALIZATION:
-				return ownedSpecializations != null && !ownedSpecializations.isEmpty();
 			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
+			case PivotPackage.COMPLETE_OPERATION__TEMPLATE_BINDING:
+				return templateBindings != null && !templateBindings.isEmpty();
+			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
+				return ownedTemplateSignature != null;
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:

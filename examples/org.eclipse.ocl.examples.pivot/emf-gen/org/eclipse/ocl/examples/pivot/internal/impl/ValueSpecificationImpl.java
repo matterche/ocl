@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueSpecificationImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: ValueSpecificationImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -367,6 +367,8 @@ public abstract class ValueSpecificationImpl
 				return getName();
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.VALUE_SPECIFICATION__IS_STATIC:
+				return isStatic();
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.VALUE_SPECIFICATION__TYPE:
@@ -406,6 +408,9 @@ public abstract class ValueSpecificationImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.VALUE_SPECIFICATION__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
@@ -444,6 +449,9 @@ public abstract class ValueSpecificationImpl
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.VALUE_SPECIFICATION__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -477,6 +485,8 @@ public abstract class ValueSpecificationImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.VALUE_SPECIFICATION__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.VALUE_SPECIFICATION__TYPE:
@@ -563,8 +573,6 @@ public abstract class ValueSpecificationImpl
 				return oclIsUndefined();
 			case PivotPackage.VALUE_SPECIFICATION___HAS_MONIKER:
 				return hasMoniker();
-			case PivotPackage.VALUE_SPECIFICATION___GET_NAME:
-				return getName();
 			case PivotPackage.VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 			case PivotPackage.VALUE_SPECIFICATION___IS_COMPUTABLE:

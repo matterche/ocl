@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataType.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: DataType.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -31,5 +31,5 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface DataType
-		extends org.eclipse.ocl.examples.pivot.Class, Type {
+		extends org.eclipse.ocl.examples.pivot.Class {
 } // DataType

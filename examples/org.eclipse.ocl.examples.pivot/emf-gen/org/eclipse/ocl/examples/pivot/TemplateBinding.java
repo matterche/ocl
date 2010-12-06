@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBinding.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: TemplateBinding.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -44,7 +44,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface TemplateBinding
-		extends MonikeredElement, Element {
+		extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Signature</b></em>' reference.

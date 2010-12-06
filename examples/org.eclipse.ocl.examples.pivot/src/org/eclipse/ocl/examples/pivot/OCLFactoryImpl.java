@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLFactoryImpl.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: OCLFactoryImpl.java,v 1.1.2.2 2010/12/06 17:20:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -137,14 +137,6 @@ public class OCLFactoryImpl implements OCLFactory {
 
     public InvalidLiteralExp createInvalidLiteralExp() {
         return PivotFactory.eINSTANCE.createInvalidLiteralExp();
-    }
-
-    public IterateExp createIterateExp() {
-        return PivotFactory.eINSTANCE.createIterateExp();
-    }
-
-    public IteratorExp createIteratorExp() {
-        return PivotFactory.eINSTANCE.createIteratorExp();
     }
 
     public LetExp createLetExp() {

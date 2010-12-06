@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AliasAdapter.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: AliasAdapter.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -52,7 +52,7 @@ public class AliasAdapter extends AdapterImpl
 	{
 		public Map<EObject, String> computeAliasMap(Resource resource) {
 			Map<EObject, String> aliasMap = null;
-			for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+			for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) { // FIXME just packages
 				EObject eObject = tit.next();
 				String newAlias = getAlias(eObject);
 				if (newAlias != null) {

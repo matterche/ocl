@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: TemplateBindingImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateBindingOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +56,7 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateBindingOperati
  * @generated
  */
 public class TemplateBindingImpl
-		extends MonikeredElementImpl
+		extends ElementImpl
 		implements TemplateBinding {
 
 	/**
@@ -302,8 +303,6 @@ public class TemplateBindingImpl
 		{
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.TEMPLATE_BINDING__MONIKER:
-				return getMoniker();
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				if (resolve) return getSignature();
 				return basicGetSignature();
@@ -329,9 +328,6 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.TEMPLATE_BINDING__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				setSignature((TemplateSignature)newValue);
@@ -359,9 +355,6 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.TEMPLATE_BINDING__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				setSignature((TemplateSignature)null);
 				return;
@@ -386,8 +379,6 @@ public class TemplateBindingImpl
 		{
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.TEMPLATE_BINDING__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				return signature != null;
 			case PivotPackage.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION:
@@ -415,8 +406,6 @@ public class TemplateBindingImpl
 				return oclIsInvalid();
 			case PivotPackage.TEMPLATE_BINDING___OCL_IS_UNDEFINED:
 				return oclIsUndefined();
-			case PivotPackage.TEMPLATE_BINDING___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.TEMPLATE_BINDING___VALIDATE_PARAMETER_SUBSTITUTION_FORMAL__DIAGNOSTICCHAIN_MAP:
 				return validateParameterSubstitutionFormal((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.TEMPLATE_BINDING___VALIDATE_ONE_PARAMETER_SUBSTITUTION__DIAGNOSTICCHAIN_MAP:
@@ -425,4 +414,8 @@ public class TemplateBindingImpl
 		return eDynamicInvoke(operationID, arguments);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitTemplateBinding(this);
+	}
 } //TemplateBindingImpl

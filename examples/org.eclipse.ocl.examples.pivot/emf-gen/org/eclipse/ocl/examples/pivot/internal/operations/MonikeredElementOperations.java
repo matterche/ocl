@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementOperations.java,v 1.1.2.3 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: MonikeredElementOperations.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -32,7 +32,8 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
  *
  * @generated
  */
-public class MonikeredElementOperations extends OclAnyOperations {
+public class MonikeredElementOperations
+		extends OclAnyOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

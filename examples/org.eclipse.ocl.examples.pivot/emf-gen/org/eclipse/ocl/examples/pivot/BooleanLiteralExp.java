@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: BooleanLiteralExp.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -44,9 +44,11 @@ public interface BooleanLiteralExp
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Boolean Symbol</em>' attribute.
+	 * @see #isSetBooleanSymbol()
+	 * @see #unsetBooleanSymbol()
 	 * @see #setBooleanSymbol(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getBooleanLiteralExp_BooleanSymbol()
-	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @model unsettable="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isBooleanSymbol();
@@ -56,9 +58,34 @@ public interface BooleanLiteralExp
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Boolean Symbol</em>' attribute.
+	 * @see #isSetBooleanSymbol()
+	 * @see #unsetBooleanSymbol()
 	 * @see #isBooleanSymbol()
 	 * @generated
 	 */
 	void setBooleanSymbol(boolean value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.ocl.examples.pivot.BooleanLiteralExp#isBooleanSymbol <em>Boolean Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBooleanSymbol()
+	 * @see #isBooleanSymbol()
+	 * @see #setBooleanSymbol(boolean)
+	 * @generated
+	 */
+	void unsetBooleanSymbol();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.ocl.examples.pivot.BooleanLiteralExp#isBooleanSymbol <em>Boolean Symbol</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Boolean Symbol</em>' attribute is set.
+	 * @see #unsetBooleanSymbol()
+	 * @see #isBooleanSymbol()
+	 * @see #setBooleanSymbol(boolean)
+	 * @generated
+	 */
+	boolean isSetBooleanSymbol();
 
 } // BooleanLiteralExp

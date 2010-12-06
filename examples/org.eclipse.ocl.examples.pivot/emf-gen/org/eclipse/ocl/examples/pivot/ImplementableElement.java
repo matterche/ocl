@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImplementableElement.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: ImplementableElement.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
  * </p>
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getImplementableElement()
- * @model abstract="true"
+ * @model interface="true" abstract="true"
  * @extends PivotObject
  * @generated
  */

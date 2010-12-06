@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: LoopExpImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -252,6 +252,8 @@ public abstract class LoopExpImpl
 				return getName();
 			case PivotPackage.LOOP_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.LOOP_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.LOOP_EXP__TYPE:
@@ -292,6 +294,9 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.LOOP_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -335,6 +340,9 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.LOOP_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -371,6 +379,8 @@ public abstract class LoopExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.LOOP_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.LOOP_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.LOOP_EXP__TYPE:

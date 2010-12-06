@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: BooleanLiteralExpImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,7 +64,16 @@ public class BooleanLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int BOOLEAN_SYMBOL_EFLAG = 1 << 8;
+	protected static final int BOOLEAN_SYMBOL_EFLAG = 1 << 9;
+
+	/**
+	 * The flag representing whether the Boolean Symbol attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int BOOLEAN_SYMBOL_ESETFLAG = 1 << 10;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,8 +99,7 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isBooleanSymbol()
-	{
+	public boolean isBooleanSymbol() {
 		return (eFlags & BOOLEAN_SYMBOL_EFLAG) != 0;
 	}
 
@@ -100,12 +108,36 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBooleanSymbol(boolean newBooleanSymbol)
-	{
+	public void setBooleanSymbol(boolean newBooleanSymbol) {
 		boolean oldBooleanSymbol = (eFlags & BOOLEAN_SYMBOL_EFLAG) != 0;
 		if (newBooleanSymbol) eFlags |= BOOLEAN_SYMBOL_EFLAG; else eFlags &= ~BOOLEAN_SYMBOL_EFLAG;
+		boolean oldBooleanSymbolESet = (eFlags & BOOLEAN_SYMBOL_ESETFLAG) != 0;
+		eFlags |= BOOLEAN_SYMBOL_ESETFLAG;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, oldBooleanSymbol, newBooleanSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, oldBooleanSymbol, newBooleanSymbol, !oldBooleanSymbolESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetBooleanSymbol() {
+		boolean oldBooleanSymbol = (eFlags & BOOLEAN_SYMBOL_EFLAG) != 0;
+		boolean oldBooleanSymbolESet = (eFlags & BOOLEAN_SYMBOL_ESETFLAG) != 0;
+		if (BOOLEAN_SYMBOL_EDEFAULT) eFlags |= BOOLEAN_SYMBOL_EFLAG; else eFlags &= ~BOOLEAN_SYMBOL_EFLAG;
+		eFlags &= ~BOOLEAN_SYMBOL_ESETFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, oldBooleanSymbol, BOOLEAN_SYMBOL_EDEFAULT, oldBooleanSymbolESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBooleanSymbol() {
+		return (eFlags & BOOLEAN_SYMBOL_ESETFLAG) != 0;
 	}
 
 	/**
@@ -125,6 +157,8 @@ public class BooleanLiteralExpImpl
 				return getName();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:
@@ -159,6 +193,9 @@ public class BooleanLiteralExpImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -195,6 +232,9 @@ public class BooleanLiteralExpImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -202,7 +242,7 @@ public class BooleanLiteralExpImpl
 				setType((Type)null);
 				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-				setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
+				unsetBooleanSymbol();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -225,12 +265,14 @@ public class BooleanLiteralExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:
 				return type != null;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-				return ((eFlags & BOOLEAN_SYMBOL_EFLAG) != 0) != BOOLEAN_SYMBOL_EDEFAULT;
+				return isSetBooleanSymbol();
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -246,7 +288,7 @@ public class BooleanLiteralExpImpl
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitBooleanLiteralExp(this);
 	}
 } //BooleanLiteralExpImpl

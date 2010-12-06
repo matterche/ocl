@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MultiplicityElementImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: MultiplicityElementImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -156,8 +156,7 @@ public abstract class MultiplicityElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isOrdered()
-	{
+	public boolean isOrdered() {
 		return (eFlags & IS_ORDERED_EFLAG) != 0;
 	}
 
@@ -166,8 +165,7 @@ public abstract class MultiplicityElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsOrdered(boolean newIsOrdered)
-	{
+	public void setIsOrdered(boolean newIsOrdered) {
 		boolean oldIsOrdered = (eFlags & IS_ORDERED_EFLAG) != 0;
 		if (newIsOrdered) eFlags |= IS_ORDERED_EFLAG; else eFlags &= ~IS_ORDERED_EFLAG;
 		if (eNotificationRequired())
@@ -179,8 +177,7 @@ public abstract class MultiplicityElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUnique()
-	{
+	public boolean isUnique() {
 		return (eFlags & IS_UNIQUE_EFLAG) != 0;
 	}
 
@@ -189,8 +186,7 @@ public abstract class MultiplicityElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsUnique(boolean newIsUnique)
-	{
+	public void setIsUnique(boolean newIsUnique) {
 		boolean oldIsUnique = (eFlags & IS_UNIQUE_EFLAG) != 0;
 		if (newIsUnique) eFlags |= IS_UNIQUE_EFLAG; else eFlags &= ~IS_UNIQUE_EFLAG;
 		if (eNotificationRequired())

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterTypeImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: TemplateParameterTypeImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -125,21 +124,21 @@ public class TemplateParameterTypeImpl
 				return getName();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
+				return isStatic();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
-				return getTemplateBindings();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_SPECIALIZATION:
-				return getOwnedSpecializations();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
+				return getTemplateBindings();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				if (resolve) return getOwnedTemplateSignature();
+				return basicGetOwnedTemplateSignature();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -173,9 +172,18 @@ public class TemplateParameterTypeImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
@@ -183,16 +191,6 @@ public class TemplateParameterTypeImpl
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -225,23 +223,23 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
+				getTemplateBindings().clear();
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -270,18 +268,18 @@ public class TemplateParameterTypeImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
-				return templateBindings != null && !templateBindings.isEmpty();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_SPECIALIZATION:
-				return ownedSpecializations != null && !ownedSpecializations.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
+				return templateBindings != null && !templateBindings.isEmpty();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				return ownedTemplateSignature != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				return basicGetPackage() != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
@@ -296,8 +294,7 @@ public class TemplateParameterTypeImpl
 	 * @generated NOT
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return super.toString();
 	}
 

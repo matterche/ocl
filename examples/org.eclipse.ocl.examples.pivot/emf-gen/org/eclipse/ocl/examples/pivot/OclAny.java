@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OclAny.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: OclAny.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
-import org.eclipse.ocl.examples.pivot.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.utilities.Visitable;
  *
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOclAny()
- * @model abstract="true" superTypes="org.eclipse.ocl.examples.pivot._"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.pivot.Visitable"
  * @extends PivotObject
  * @generated
  */

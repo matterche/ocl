@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: CollectionTypeImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -139,21 +138,21 @@ public class CollectionTypeImpl
 				return getName();
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.COLLECTION_TYPE__IS_STATIC:
+				return isStatic();
 			case PivotPackage.COLLECTION_TYPE__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
-			case PivotPackage.COLLECTION_TYPE__TEMPLATE_BINDING:
-				return getTemplateBindings();
-			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
-			case PivotPackage.COLLECTION_TYPE__OWNED_SPECIALIZATION:
-				return getOwnedSpecializations();
 			case PivotPackage.COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.COLLECTION_TYPE__TEMPLATE_BINDING:
+				return getTemplateBindings();
+			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				if (resolve) return getOwnedTemplateSignature();
+				return basicGetOwnedTemplateSignature();
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -167,6 +166,10 @@ public class CollectionTypeImpl
 				return getSuperClasses();
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
+			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
+				return isPrimitive();
+			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
+				return getSubClasses();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				if (resolve) return getElementType();
 				return basicGetElementType();
@@ -198,9 +201,18 @@ public class CollectionTypeImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.COLLECTION_TYPE__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.COLLECTION_TYPE__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
@@ -208,16 +220,6 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.COLLECTION_TYPE__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
-				getOwnedSpecializations().addAll((Collection<? extends TemplateableElement>)newValue);
-				return;
-			case PivotPackage.COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -239,6 +241,13 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
+				setPrimitive((Boolean)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
+				getSubClasses().clear();
+				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)newValue);
@@ -268,23 +277,23 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.COLLECTION_TYPE__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.COLLECTION_TYPE__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.COLLECTION_TYPE__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
-				return;
-			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.COLLECTION_TYPE__OWNED_SPECIALIZATION:
-				getOwnedSpecializations().clear();
 				return;
 			case PivotPackage.COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.COLLECTION_TYPE__TEMPLATE_BINDING:
+				getTemplateBindings().clear();
+				return;
+			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -303,6 +312,12 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
+				setPrimitive(PRIMITIVE_EDEFAULT);
+				return;
+			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
+				getSubClasses().clear();
 				return;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)null);
@@ -328,18 +343,18 @@ public class CollectionTypeImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.COLLECTION_TYPE__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__TEMPLATE_BINDING:
-				return templateBindings != null && !templateBindings.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.COLLECTION_TYPE__OWNED_SPECIALIZATION:
-				return ownedSpecializations != null && !ownedSpecializations.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
+			case PivotPackage.COLLECTION_TYPE__TEMPLATE_BINDING:
+				return templateBindings != null && !templateBindings.isEmpty();
+			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				return ownedTemplateSignature != null;
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				return basicGetPackage() != null;
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
@@ -352,6 +367,10 @@ public class CollectionTypeImpl
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
+				return ((eFlags & PRIMITIVE_EFLAG) != 0) != PRIMITIVE_EDEFAULT;
+			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
+				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				return elementType != null;
 		}

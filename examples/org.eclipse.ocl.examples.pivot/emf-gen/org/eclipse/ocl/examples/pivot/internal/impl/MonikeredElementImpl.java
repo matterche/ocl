@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementImpl.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: MonikeredElementImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 
 /**
@@ -209,4 +210,8 @@ public abstract class MonikeredElementImpl
 		return eDynamicInvoke(operationID, arguments);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitMonikeredElement(this);
+	}
 } //MonikeredElementImpl

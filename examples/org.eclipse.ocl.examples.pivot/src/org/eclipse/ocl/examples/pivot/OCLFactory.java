@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLFactory.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: OCLFactory.java,v 1.1.2.2 2010/12/06 17:20:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -210,24 +210,6 @@ public interface OCLFactory {
 	 * @generated
 	 */
 	InvalidLiteralExp createInvalidLiteralExp();
-
-	/**
-	 * Returns a new object of class '<em>Iterate Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Iterate Exp</em>'.
-	 * @generated
-	 */
-	IterateExp createIterateExp();
-
-	/**
-	 * Returns a new object of class '<em>Iterator Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Iterator Exp</em>'.
-	 * @generated
-	 */
-	IteratorExp createIteratorExp();
 
 	/**
 	 * Returns a new object of class '<em>Let Exp</em>'.

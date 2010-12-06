@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElementImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: TypedElementImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,6 +134,8 @@ public abstract class TypedElementImpl
 				return getName();
 			case PivotPackage.TYPED_ELEMENT__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
+				return isStatic();
 			case PivotPackage.TYPED_ELEMENT__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.TYPED_ELEMENT__TYPE:
@@ -166,6 +169,9 @@ public abstract class TypedElementImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.TYPED_ELEMENT__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
@@ -198,6 +204,9 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.TYPED_ELEMENT__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -225,6 +234,8 @@ public abstract class TypedElementImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPED_ELEMENT__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.TYPED_ELEMENT__TYPE:
@@ -233,4 +244,8 @@ public abstract class TypedElementImpl
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitTypedElement(this);
+	}
 } //TypedElementImpl

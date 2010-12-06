@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameter.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: TemplateParameter.java,v 1.1.2.3 2010/12/06 17:20:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

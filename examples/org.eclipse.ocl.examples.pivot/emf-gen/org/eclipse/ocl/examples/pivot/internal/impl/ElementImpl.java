@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementImpl.java,v 1.1.2.4 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: ElementImpl.java,v 1.1.2.5 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -178,4 +179,8 @@ public abstract class ElementImpl
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitElement(this);
+	}
 } //ElementImpl

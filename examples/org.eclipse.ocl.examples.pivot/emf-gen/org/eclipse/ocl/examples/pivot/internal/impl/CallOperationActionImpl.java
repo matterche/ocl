@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallOperationActionImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: CallOperationActionImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -133,6 +133,8 @@ public class CallOperationActionImpl
 				return getName();
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.CALL_OPERATION_ACTION__IS_STATIC:
+				return isStatic();
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.CALL_OPERATION_ACTION__OPERATION:
@@ -166,6 +168,9 @@ public class CallOperationActionImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.CALL_OPERATION_ACTION__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
@@ -198,6 +203,9 @@ public class CallOperationActionImpl
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.CALL_OPERATION_ACTION__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -225,6 +233,8 @@ public class CallOperationActionImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.CALL_OPERATION_ACTION__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.CALL_OPERATION_ACTION__OPERATION:

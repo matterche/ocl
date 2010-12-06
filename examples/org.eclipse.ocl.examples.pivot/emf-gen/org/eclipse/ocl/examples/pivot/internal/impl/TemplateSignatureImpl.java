@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignatureImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: TemplateSignatureImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateSignatureOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
 
@@ -415,4 +416,8 @@ public class TemplateSignatureImpl
 		return eDynamicInvoke(operationID, arguments);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitTemplateSignature(this);
+	}
 } //TemplateSignatureImpl

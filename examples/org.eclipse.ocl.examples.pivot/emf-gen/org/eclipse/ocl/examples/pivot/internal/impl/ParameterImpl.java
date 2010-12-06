@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterImpl.java,v 1.1.2.3 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: ParameterImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,11 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.IteratorKind;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl#getIteratorKind <em>Iterator Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl#getOperation <em>Operation</em>}</li>
  * </ul>
  * </p>
@@ -52,6 +54,53 @@ import org.eclipse.ocl.examples.pivot.utilities.Visitor;
 public class ParameterImpl
 		extends TypedMultiplicityElementImpl
 		implements Parameter {
+
+	/**
+	 * The default value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIteratorKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final IteratorKind ITERATOR_KIND_EDEFAULT = IteratorKind.PARAMETER;
+
+	/**
+	 * The offset of the flags representing the value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ITERATOR_KIND_EFLAG_OFFSET = 11;
+
+	/**
+	 * The flags representing the default value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ITERATOR_KIND_EFLAG_DEFAULT = ITERATOR_KIND_EDEFAULT.ordinal() << ITERATOR_KIND_EFLAG_OFFSET;
+
+	/**
+	 * The array of enumeration values for '{@link IteratorKind Iterator Kind}'
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	private static final IteratorKind[] ITERATOR_KIND_EFLAG_VALUES = IteratorKind.values();
+
+	/**
+	 * The flags representing the value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIteratorKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ITERATOR_KIND_EFLAG = 0x3 << ITERATOR_KIND_EFLAG_OFFSET;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,6 +119,28 @@ public class ParameterImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PARAMETER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IteratorKind getIteratorKind() {
+		return ITERATOR_KIND_EFLAG_VALUES[(eFlags & ITERATOR_KIND_EFLAG) >>> ITERATOR_KIND_EFLAG_OFFSET];
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIteratorKind(IteratorKind newIteratorKind) {
+		IteratorKind oldIteratorKind = ITERATOR_KIND_EFLAG_VALUES[(eFlags & ITERATOR_KIND_EFLAG) >>> ITERATOR_KIND_EFLAG_OFFSET];
+		if (newIteratorKind == null) newIteratorKind = ITERATOR_KIND_EDEFAULT;
+		eFlags = eFlags & ~ITERATOR_KIND_EFLAG | newIteratorKind.ordinal() << ITERATOR_KIND_EFLAG_OFFSET;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PARAMETER__ITERATOR_KIND, oldIteratorKind, newIteratorKind));
 	}
 
 	/**
@@ -194,6 +265,17 @@ public class ParameterImpl
 				return getOwnedComments();
 			case PivotPackage.PARAMETER__MONIKER:
 				return getMoniker();
+			case PivotPackage.PARAMETER__NAME:
+				return getName();
+			case PivotPackage.PARAMETER__OWNED_RULE:
+				return getOwnedRules();
+			case PivotPackage.PARAMETER__IS_STATIC:
+				return isStatic();
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				return getOwnedAnnotations();
+			case PivotPackage.PARAMETER__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 			case PivotPackage.PARAMETER__IS_ORDERED:
 				return isOrdered();
 			case PivotPackage.PARAMETER__IS_UNIQUE:
@@ -202,15 +284,8 @@ public class ParameterImpl
 				return getLower();
 			case PivotPackage.PARAMETER__UPPER:
 				return getUpper();
-			case PivotPackage.PARAMETER__NAME:
-				return getName();
-			case PivotPackage.PARAMETER__OWNED_RULE:
-				return getOwnedRules();
-			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
-			case PivotPackage.PARAMETER__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+			case PivotPackage.PARAMETER__ITERATOR_KIND:
+				return getIteratorKind();
 			case PivotPackage.PARAMETER__OPERATION:
 				if (resolve) return getOperation();
 				return basicGetOperation();
@@ -235,6 +310,23 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__MONIKER:
 				setMoniker((String)newValue);
 				return;
+			case PivotPackage.PARAMETER__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.PARAMETER__OWNED_RULE:
+				getOwnedRules().clear();
+				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.PARAMETER__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.PARAMETER__TYPE:
+				setType((Type)newValue);
+				return;
 			case PivotPackage.PARAMETER__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
 				return;
@@ -247,19 +339,8 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__UPPER:
 				setUpper((BigInteger)newValue);
 				return;
-			case PivotPackage.PARAMETER__NAME:
-				setName((String)newValue);
-				return;
-			case PivotPackage.PARAMETER__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
-				return;
-			case PivotPackage.PARAMETER__TYPE:
-				setType((Type)newValue);
+			case PivotPackage.PARAMETER__ITERATOR_KIND:
+				setIteratorKind((IteratorKind)newValue);
 				return;
 			case PivotPackage.PARAMETER__OPERATION:
 				setOperation((Operation)newValue);
@@ -283,6 +364,21 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__MONIKER:
 				setMoniker(MONIKER_EDEFAULT);
 				return;
+			case PivotPackage.PARAMETER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.PARAMETER__OWNED_RULE:
+				getOwnedRules().clear();
+				return;
+			case PivotPackage.PARAMETER__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.PARAMETER__TYPE:
+				setType((Type)null);
+				return;
 			case PivotPackage.PARAMETER__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
@@ -295,17 +391,8 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
-			case PivotPackage.PARAMETER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case PivotPackage.PARAMETER__OWNED_RULE:
-				getOwnedRules().clear();
-				return;
-			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.PARAMETER__TYPE:
-				setType((Type)null);
+			case PivotPackage.PARAMETER__ITERATOR_KIND:
+				setIteratorKind(ITERATOR_KIND_EDEFAULT);
 				return;
 			case PivotPackage.PARAMETER__OPERATION:
 				setOperation((Operation)null);
@@ -327,6 +414,16 @@ public class ParameterImpl
 				return ownedComments != null && !ownedComments.isEmpty();
 			case PivotPackage.PARAMETER__MONIKER:
 				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
+			case PivotPackage.PARAMETER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.PARAMETER__OWNED_RULE:
+				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.PARAMETER__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.PARAMETER__TYPE:
+				return type != null;
 			case PivotPackage.PARAMETER__IS_ORDERED:
 				return ((eFlags & IS_ORDERED_EFLAG) != 0) != IS_ORDERED_EDEFAULT;
 			case PivotPackage.PARAMETER__IS_UNIQUE:
@@ -335,22 +432,26 @@ public class ParameterImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.PARAMETER__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
-			case PivotPackage.PARAMETER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.PARAMETER__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
-			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.PARAMETER__TYPE:
-				return type != null;
+			case PivotPackage.PARAMETER__ITERATOR_KIND:
+				return (eFlags & ITERATOR_KIND_EFLAG) != ITERATOR_KIND_EFLAG_DEFAULT;
 			case PivotPackage.PARAMETER__OPERATION:
 				return basicGetOperation() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitParameter(this);
 	}
 

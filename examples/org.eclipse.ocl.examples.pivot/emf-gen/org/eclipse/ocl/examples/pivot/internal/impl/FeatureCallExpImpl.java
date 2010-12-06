@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -55,6 +55,7 @@ public abstract class FeatureCallExpImpl
 	 * @ordered
 	 */
 	protected static final boolean IS_PRE_EDEFAULT = false;
+
 	/**
 	 * The flag representing the value of the '{@link #isPre() <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,7 +64,7 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_PRE_EFLAG = 1 << 8;
+	protected static final int IS_PRE_EFLAG = 1 << 9;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,8 +90,7 @@ public abstract class FeatureCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isPre()
-	{
+	public boolean isPre() {
 		return (eFlags & IS_PRE_EFLAG) != 0;
 	}
 
@@ -99,8 +99,7 @@ public abstract class FeatureCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsPre(boolean newIsPre)
-	{
+	public void setIsPre(boolean newIsPre) {
 		boolean oldIsPre = (eFlags & IS_PRE_EFLAG) != 0;
 		if (newIsPre) eFlags |= IS_PRE_EFLAG; else eFlags &= ~IS_PRE_EFLAG;
 		if (eNotificationRequired())
@@ -113,8 +112,7 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_COMMENT:
@@ -125,6 +123,8 @@ public abstract class FeatureCallExpImpl
 				return getName();
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.FEATURE_CALL_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.FEATURE_CALL_EXP__TYPE:
@@ -146,8 +146,7 @@ public abstract class FeatureCallExpImpl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_COMMENT:
@@ -163,6 +162,9 @@ public abstract class FeatureCallExpImpl
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.FEATURE_CALL_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -187,8 +189,7 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_COMMENT:
@@ -202,6 +203,9 @@ public abstract class FeatureCallExpImpl
 				return;
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_RULE:
 				getOwnedRules().clear();
+				return;
+			case PivotPackage.FEATURE_CALL_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
@@ -225,8 +229,7 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_COMMENT:
@@ -237,6 +240,8 @@ public abstract class FeatureCallExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.FEATURE_CALL_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.FEATURE_CALL_EXP__TYPE:

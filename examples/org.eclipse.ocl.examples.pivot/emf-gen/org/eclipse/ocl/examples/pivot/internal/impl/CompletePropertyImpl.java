@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -187,6 +187,17 @@ public class CompletePropertyImpl
 				return getOwnedComments();
 			case PivotPackage.COMPLETE_PROPERTY__MONIKER:
 				return getMoniker();
+			case PivotPackage.COMPLETE_PROPERTY__NAME:
+				return getName();
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
+				return getOwnedRules();
+			case PivotPackage.COMPLETE_PROPERTY__IS_STATIC:
+				return isStatic();
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
+				return getOwnedAnnotations();
+			case PivotPackage.COMPLETE_PROPERTY__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 			case PivotPackage.COMPLETE_PROPERTY__IS_ORDERED:
 				return isOrdered();
 			case PivotPackage.COMPLETE_PROPERTY__IS_UNIQUE:
@@ -195,15 +206,6 @@ public class CompletePropertyImpl
 				return getLower();
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				return getUpper();
-			case PivotPackage.COMPLETE_PROPERTY__NAME:
-				return getName();
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
-				return getOwnedRules();
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
-			case PivotPackage.COMPLETE_PROPERTY__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -258,6 +260,23 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__MONIKER:
 				setMoniker((String)newValue);
 				return;
+			case PivotPackage.COMPLETE_PROPERTY__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
+				getOwnedRules().clear();
+				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TYPE:
+				setType((Type)newValue);
+				return;
 			case PivotPackage.COMPLETE_PROPERTY__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
 				return;
@@ -269,20 +288,6 @@ public class CompletePropertyImpl
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				setUpper((BigInteger)newValue);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__NAME:
-				setName((String)newValue);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__TYPE:
-				setType((Type)newValue);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
@@ -342,6 +347,21 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__MONIKER:
 				setMoniker(MONIKER_EDEFAULT);
 				return;
+			case PivotPackage.COMPLETE_PROPERTY__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
+				getOwnedRules().clear();
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TYPE:
+				setType((Type)null);
+				return;
 			case PivotPackage.COMPLETE_PROPERTY__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
@@ -353,18 +373,6 @@ public class CompletePropertyImpl
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				setUpper(UPPER_EDEFAULT);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
-				getOwnedRules().clear();
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__TYPE:
-				setType((Type)null);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
@@ -422,6 +430,16 @@ public class CompletePropertyImpl
 				return ownedComments != null && !ownedComments.isEmpty();
 			case PivotPackage.COMPLETE_PROPERTY__MONIKER:
 				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
+			case PivotPackage.COMPLETE_PROPERTY__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
+				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.COMPLETE_PROPERTY__IS_STATIC:
+				return isSetIsStatic();
+			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.COMPLETE_PROPERTY__TYPE:
+				return type != null;
 			case PivotPackage.COMPLETE_PROPERTY__IS_ORDERED:
 				return ((eFlags & IS_ORDERED_EFLAG) != 0) != IS_ORDERED_EDEFAULT;
 			case PivotPackage.COMPLETE_PROPERTY__IS_UNIQUE:
@@ -430,14 +448,6 @@ public class CompletePropertyImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
-			case PivotPackage.COMPLETE_PROPERTY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
-			case PivotPackage.COMPLETE_PROPERTY__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.COMPLETE_PROPERTY__TYPE:
-				return type != null;
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:

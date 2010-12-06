@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.1.2.2 2010/10/05 17:39:53 ewillink Exp $
+ * $Id: LoopExp.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

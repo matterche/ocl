@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: StateExpImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.Visitor;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -135,6 +135,8 @@ public class StateExpImpl
 				return getName();
 			case PivotPackage.STATE_EXP__OWNED_RULE:
 				return getOwnedRules();
+			case PivotPackage.STATE_EXP__IS_STATIC:
+				return isStatic();
 			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.STATE_EXP__TYPE:
@@ -171,6 +173,9 @@ public class StateExpImpl
 				getOwnedRules().clear();
 				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.STATE_EXP__IS_STATIC:
+				setIsStatic((Boolean)newValue);
+				return;
 			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
@@ -206,6 +211,9 @@ public class StateExpImpl
 			case PivotPackage.STATE_EXP__OWNED_RULE:
 				getOwnedRules().clear();
 				return;
+			case PivotPackage.STATE_EXP__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
 			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
@@ -236,6 +244,8 @@ public class StateExpImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.STATE_EXP__OWNED_RULE:
 				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.STATE_EXP__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.STATE_EXP__TYPE:
@@ -247,7 +257,7 @@ public class StateExpImpl
 	}
 
 	@Override
-	public <T> T accept(Visitor<T> visitor) {
+	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitStateExp(this);
 	}
 } //StateExpImpl
