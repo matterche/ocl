@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPlugin.java,v 1.1.2.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: CompleteOCLPlugin.java,v 1.1.2.2 2010/12/06 18:36:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -99,7 +99,7 @@ public final class CompleteOCLPlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			CompleteOCL2MonikerSwitch.FACTORY.getClass();
+//			CompleteOCL2MonikerSwitch.FACTORY.getClass();
 			super.start(context);
 		}
 	}

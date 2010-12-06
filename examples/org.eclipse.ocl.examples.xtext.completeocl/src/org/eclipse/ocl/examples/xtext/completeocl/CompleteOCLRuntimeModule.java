@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.4.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.4.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
@@ -22,11 +22,13 @@ import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingSer
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
 /**
@@ -61,5 +63,10 @@ public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.com
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 	  return EssentialOCLValueConverterService.class;
+	}
+	
+	@Override
+	public Class<? extends XtextResource> bindXtextResource() {
+		return EssentialOCLCSResource.class;
 	}
 }

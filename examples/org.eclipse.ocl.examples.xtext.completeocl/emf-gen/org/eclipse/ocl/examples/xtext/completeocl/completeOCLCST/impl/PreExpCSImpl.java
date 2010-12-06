@@ -12,51 +12,28 @@
  *
  * </copyright>
  *
- * $Id: PreExpCSImpl.java,v 1.1.2.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: PreExpCSImpl.java,v 1.1.2.2 2010/12/06 18:36:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpCSImpl;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DecoratedNamedExpCSImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Pre Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreExpCSImpl#getName <em>Name</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
-public class PreExpCSImpl extends ExpCSImpl implements PreExpCS
+public class PreExpCSImpl extends DecoratedNamedExpCSImpl implements PreExpCS
 {
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected NamedExpCS name;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,144 +55,9 @@ public class PreExpCSImpl extends ExpCSImpl implements PreExpCS
 		return CompleteOCLCSTPackage.Literals.PRE_EXP_CS;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NamedExpCS getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetName(NamedExpCS newName, NotificationChain msgs)
-	{
-		NamedExpCS oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PRE_EXP_CS__NAME, oldName, newName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(NamedExpCS newName)
-	{
-		if (newName != name)
-		{
-			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PRE_EXP_CS__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PRE_EXP_CS__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PRE_EXP_CS__NAME, newName, newName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public NamedElement getNamedElement()
-	{
-		return getName().getNamedElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case CompleteOCLCSTPackage.PRE_EXP_CS__NAME:
-				return basicSetName(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPreExpCS(this);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
-			case CompleteOCLCSTPackage.PRE_EXP_CS__NAME:
-				return getName();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
-			case CompleteOCLCSTPackage.PRE_EXP_CS__NAME:
-				setName((NamedExpCS)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
-			case CompleteOCLCSTPackage.PRE_EXP_CS__NAME:
-				setName((NamedExpCS)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
-			case CompleteOCLCSTPackage.PRE_EXP_CS__NAME:
-				return name != null;
-		}
-		return super.eIsSet(featureID);
-	}
-
 } //PreExpCSImpl

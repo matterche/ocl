@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextScopeAdapter.java,v 1.5.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: ClassifierContextScopeAdapter.java,v 1.5.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -26,12 +26,12 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
-public class ClassifierContextScopeAdapter extends EssentialOCLCSScopeAdapter<ClassifierContextDeclCS, Type>
+public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<ClassifierContextDeclCS, Type>
 {
 	public ClassifierContextScopeAdapter(ClassifierContextDeclCS csElement) {
 		super(csElement, Type.class);

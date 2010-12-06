@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTAdapterFactory.java,v 1.3.6.1 2010/10/01 15:03:02 ewillink Exp $
+ * $Id: CompleteOCLCSTAdapterFactory.java,v 1.3.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -20,8 +20,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -38,7 +39,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocu
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
@@ -49,7 +49,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 
 /**
@@ -146,11 +148,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createDerCSAdapter();
 			}
 			@Override
-			public Adapter caseExpConstraintCS(ExpConstraintCS object)
-			{
-				return createExpConstraintCSAdapter();
-			}
-			@Override
 			public Adapter caseFeatureContextDeclCS(FeatureContextDeclCS object)
 			{
 				return createFeatureContextDeclCSAdapter();
@@ -201,14 +198,19 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createPropertyContextDeclCSAdapter();
 			}
 			@Override
+			public Adapter caseVisitableCS(VisitableCS object)
+			{
+				return createVisitableCSAdapter();
+			}
+			@Override
 			public Adapter caseElementCS(ElementCS object)
 			{
 				return createElementCSAdapter();
 			}
 			@Override
-			public Adapter caseIPivotElement(IPivotElement object)
+			public Adapter casePivotable(Pivotable object)
 			{
-				return createIPivotElementAdapter();
+				return createPivotableAdapter();
 			}
 			@Override
 			public Adapter caseModelElementCS(ModelElementCS object)
@@ -221,9 +223,9 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createMonikeredElementCSAdapter();
 			}
 			@Override
-			public Adapter caseINamedElement(INamedElement object)
+			public Adapter caseNameable(Nameable object)
 			{
-				return createINamedElementAdapter();
+				return createNameableAdapter();
 			}
 			@Override
 			public Adapter caseNamedElementCS(NamedElementCS object)
@@ -234,6 +236,11 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseConstraintCS(ConstraintCS object)
 			{
 				return createConstraintCSAdapter();
+			}
+			@Override
+			public Adapter caseExpConstraintCS(ExpConstraintCS object)
+			{
+				return createExpConstraintCSAdapter();
 			}
 			@Override
 			public Adapter caseNamespaceCS(NamespaceCS object)
@@ -264,6 +271,11 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseNamedExpCS(NamedExpCS object)
 			{
 				return createNamedExpCSAdapter();
+			}
+			@Override
+			public Adapter caseDecoratedNamedExpCS(DecoratedNamedExpCS object)
+			{
+				return createDecoratedNamedExpCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -333,13 +345,13 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS <em>Exp Constraint CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS <em>Exp Constraint CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS
 	 * @generated
 	 */
 	public Adapter createExpConstraintCSAdapter()
@@ -558,6 +570,21 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.util.VisitableCS <em>Visitable CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.util.VisitableCS
+	 * @generated
+	 */
+	public Adapter createVisitableCSAdapter()
+	{
+		return null;
+	}
+
+/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS <em>Element CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -573,16 +600,16 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.IPivotElement <em>IPivot Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.IPivotElement
+	 * @see org.eclipse.ocl.examples.pivot.util.Pivotable
 	 * @generated
 	 */
-	public Adapter createIPivotElementAdapter()
+	public Adapter createPivotableAdapter()
 	{
 		return null;
 	}
@@ -618,16 +645,16 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
 /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.INamedElement <em>INamed Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.Nameable <em>Nameable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.INamedElement
+	 * @see org.eclipse.ocl.examples.pivot.util.Nameable
 	 * @generated
 	 */
-	public Adapter createINamedElementAdapter()
+	public Adapter createNameableAdapter()
 	{
 		return null;
 	}
@@ -733,6 +760,21 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNamedExpCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS <em>Decorated Named Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS
+	 * @generated
+	 */
+	public Adapter createDecoratedNamedExpCSAdapter()
 	{
 		return null;
 	}

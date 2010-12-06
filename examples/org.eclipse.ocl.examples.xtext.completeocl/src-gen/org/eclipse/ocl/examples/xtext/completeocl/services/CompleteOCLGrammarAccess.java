@@ -1240,7 +1240,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cIndexExpCSParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cPreExpCSNameAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Action cPreExpCSNamedExpAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cCommercialAtKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Keyword cPreKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
@@ -1251,20 +1251,20 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		////---------------------------------------------------------------------------------
 		//
 		//NavigatingExpCS_Base returns essentialocl::NamedExpCS:
-		//	IndexExpCS ({PreExpCS.name=current} "@" "pre")?;
+		//	IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?;
 		public ParserRule getRule() { return rule; }
 
-		//IndexExpCS ({PreExpCS.name=current} "@" "pre")?
+		//IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?
 		public Group getGroup() { return cGroup; }
 
 		//IndexExpCS
 		public RuleCall getIndexExpCSParserRuleCall_0() { return cIndexExpCSParserRuleCall_0; }
 
-		//({PreExpCS.name=current} "@" "pre")?
+		//({PreExpCS.namedExp=current} "@" "pre")?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//{PreExpCS.name=current}
-		public Action getPreExpCSNameAction_1_0() { return cPreExpCSNameAction_1_0; }
+		//{PreExpCS.namedExp=current}
+		public Action getPreExpCSNamedExpAction_1_0() { return cPreExpCSNamedExpAction_1_0; }
 
 		//"@"
 		public Keyword getCommercialAtKeyword_1_1() { return cCommercialAtKeyword_1_1; }
@@ -1680,7 +1680,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////---------------------------------------------------------------------------------
 	//
 	//NavigatingExpCS_Base returns essentialocl::NamedExpCS:
-	//	IndexExpCS ({PreExpCS.name=current} "@" "pre")?;
+	//	IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?;
 	public NavigatingExpCS_BaseElements getNavigatingExpCS_BaseAccess() {
 		return (pNavigatingExpCS_Base != null) ? pNavigatingExpCS_Base : (pNavigatingExpCS_Base = new NavigatingExpCS_BaseElements());
 	}
@@ -1755,8 +1755,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNUMBER_LITERALAccess().getRule();
 	}
 
+	//terminal DOCUMENTATION:
+	//	"/ **"->"** /";
+	public TerminalRule getDOCUMENTATIONRule() {
+		return gaEssentialOCL.getDOCUMENTATIONRule();
+	} 
+
 	//terminal ML_COMMENT:
-	//	"/ *"->"* /";
+	//	"/ *" !"*"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaEssentialOCL.getML_COMMENTRule();
 	} 
@@ -1787,6 +1793,16 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEssentialOCLReservedKeywordRule() {
 		return getEssentialOCLReservedKeywordAccess().getRule();
+	}
+
+	//EssentialOCLUnrestrictedIdentifier returns ecore::EString:
+	//	"e" | "E" | "body" | "der" | "init" | "inv" | "post" | "pre";
+	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedIdentifierElements getEssentialOCLUnrestrictedIdentifierAccess() {
+		return gaEssentialOCL.getEssentialOCLUnrestrictedIdentifierAccess();
+	}
+	
+	public ParserRule getEssentialOCLUnrestrictedIdentifierRule() {
+		return getEssentialOCLUnrestrictedIdentifierAccess().getRule();
 	}
 
 	//EssentialOCLPrefixOperator returns ecore::EString:
@@ -1820,7 +1836,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Identifier returns ecore::EString:
-	//	ID | "e" | "E" | "body" | "der" | "init" | "inv" | "post" | "pre";
+	//	ID | EssentialOCLUnrestrictedIdentifier;
 	public EssentialOCLGrammarAccess.IdentifierElements getIdentifierAccess() {
 		return gaEssentialOCL.getIdentifierAccess();
 	}
@@ -1931,7 +1947,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionTypeCSAccess().getRule();
 	}
 
-	//TupleTypeCS:
+	//TupleTypeCS returns base::TupleTypeCS:
 	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
 	public EssentialOCLGrammarAccess.TupleTypeCSElements getTupleTypeCSAccess() {
 		return gaEssentialOCL.getTupleTypeCSAccess();
@@ -1941,7 +1957,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTupleTypeCSAccess().getRule();
 	}
 
-	//tuplePartCS returns TuplePartCS:
+	//tuplePartCS returns base::TuplePartCS:
 	//	name=UnrestrictedName ":" ownedType=TypeExpCS;
 	public EssentialOCLGrammarAccess.TuplePartCSElements getTuplePartCSAccess() {
 		return gaEssentialOCL.getTuplePartCSAccess();
@@ -2221,8 +2237,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IndexExpCS returns NamedExpCS:
-	//	NameExpCS ({IndexExpCS.name=current} "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("[" secondIndexes+=ExpCS
-	//	("," secondIndexes+=ExpCS)* "]")?)?;
+	//	NameExpCS ({IndexExpCS.namedExp=current} "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("["
+	//	secondIndexes+=ExpCS ("," secondIndexes+=ExpCS)* "]")?)?;
 	public EssentialOCLGrammarAccess.IndexExpCSElements getIndexExpCSAccess() {
 		return gaEssentialOCL.getIndexExpCSAccess();
 	}
@@ -2236,7 +2252,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////  keep it as simple as possible and avoid backtracking.
 	//
 	//NavigatingExpCS returns NamedExpCS:
-	//	NavigatingExpCS_Base ({NavigatingExpCS.name=current} "(" (arguments+=NavigatingArgCSfirst
+	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (arguments+=NavigatingArgCSfirst
 	//	arguments+=NavigatingArgCSnext*)? ")")?;
 	public EssentialOCLGrammarAccess.NavigatingExpCSElements getNavigatingExpCSAccess() {
 		return gaEssentialOCL.getNavigatingExpCSAccess();
@@ -2288,7 +2304,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LetVariableCS:
-	//	name=UnrestrictedName ":" ownedType=TypeExpCS "=" initExpression=ExpCS;
+	//	name=UnrestrictedName (":" ownedType=TypeExpCS)? "=" initExpression=ExpCS;
 	public EssentialOCLGrammarAccess.LetVariableCSElements getLetVariableCSAccess() {
 		return gaEssentialOCL.getLetVariableCSAccess();
 	}

@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLStandaloneSetup.java,v 1.1.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: CompleteOCLStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.completeocl;
 
+import org.eclipse.ocl.examples.xtext.completeocl.cs2pivot.CompleteOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
-import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCL2MonikerSwitch;
+import org.eclipse.ocl.examples.xtext.completeocl.utilities.MonikerCompleteOCLCSVisitor;
 
 /**
  * Initialization support for running Xtext languages 
@@ -28,7 +29,9 @@ public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenera
 
 	public static void doSetup() {
 		CompleteOCLScopeProvider.FACTORY.getClass();
-		CompleteOCL2MonikerSwitch.FACTORY.getClass();
+		MonikerCompleteOCLCSVisitor.FACTORY.getClass();
+		CompleteOCLCS2Pivot.FACTORY.getClass();
+//		CompleteOCL2MonikerSwitch.FACTORY.getClass();
 		new CompleteOCLStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PostScopeAdapter.java,v 1.4.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: PostScopeAdapter.java,v 1.4.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
 public class PostScopeAdapter extends EssentialOCLCSScopeAdapter<PostCS, Constraint>
@@ -34,7 +34,7 @@ public class PostScopeAdapter extends EssentialOCLCSScopeAdapter<PostCS, Constra
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == CompleteOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION) {
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION) {
 			PostCS csPost = getTarget();
 			OperationContextDeclCS csOperation = (OperationContextDeclCS) csPost.eContainer();
 			environmentView.addNamedElement(csOperation.getResult());		

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextDeclCSImpl.java,v 1.5.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: PropertyContextDeclCSImpl.java,v 1.5.6.2 2010/12/06 18:36:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -22,10 +22,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -326,5 +328,11 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 				return der != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPropertyContextDeclCS(this);
 	}
 } //PropertyContextDeclCSImpl

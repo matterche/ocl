@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.5.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.5.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -25,11 +25,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
-public class PropertyContextScopeAdapter extends EssentialOCLCSScopeAdapter<PropertyContextDeclCS, Property>
+public class PropertyContextScopeAdapter extends ModelElementCSScopeAdapter<PropertyContextDeclCS, Property>
 {
 	public PropertyContextScopeAdapter(PropertyContextDeclCS csElement) {
 		super(csElement, Property.class);

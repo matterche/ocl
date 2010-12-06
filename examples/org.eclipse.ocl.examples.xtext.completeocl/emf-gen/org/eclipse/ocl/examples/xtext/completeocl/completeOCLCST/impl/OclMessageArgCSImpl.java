@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclMessageArgCSImpl.java,v 1.2.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: OclMessageArgCSImpl.java,v 1.2.6.2 2010/12/06 18:36:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -22,8 +22,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpCSImpl;
 
 /**
@@ -191,4 +193,9 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitOclMessageArgCS(this);
+	}
 } //OclMessageArgCSImpl

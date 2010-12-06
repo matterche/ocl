@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactory.java,v 1.3.6.1 2010/10/01 15:03:00 ewillink Exp $
+ * $Id: CompleteOCLCSTFactory.java,v 1.3.6.2 2010/12/06 18:36:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -88,15 +88,6 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	CompleteOCLDocumentCS createCompleteOCLDocumentCS();
-
-	/**
-	 * Returns a new object of class '<em>Exp Constraint CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Exp Constraint CS</em>'.
-	 * @generated
-	 */
-	ExpConstraintCS createExpConstraintCS();
 
 	/**
 	 * Returns a new object of class '<em>Inv CS</em>'.

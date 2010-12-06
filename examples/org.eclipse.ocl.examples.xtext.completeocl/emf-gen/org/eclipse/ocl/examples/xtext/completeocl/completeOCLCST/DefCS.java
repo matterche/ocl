@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: DefCS.java,v 1.2.6.1 2010/10/01 15:03:00 ewillink Exp $
+ * $Id: DefCS.java,v 1.2.6.2 2010/12/06 18:36:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**

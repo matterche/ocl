@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactoryImpl.java,v 1.4.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: CompleteOCLCSTFactoryImpl.java,v 1.4.6.2 2010/12/06 18:36:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
@@ -92,7 +91,6 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS: return createCompleteOCLDocumentCS();
 			case CompleteOCLCSTPackage.DEF_CS: return createDefCS();
 			case CompleteOCLCSTPackage.DER_CS: return createDerCS();
-			case CompleteOCLCSTPackage.EXP_CONSTRAINT_CS: return createExpConstraintCS();
 			case CompleteOCLCSTPackage.INIT_CS: return createInitCS();
 			case CompleteOCLCSTPackage.INV_CS: return createInvCS();
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS: return createOclMessageArgCS();
@@ -165,17 +163,6 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	public CompleteOCLDocumentCS createCompleteOCLDocumentCS() {
 		CompleteOCLDocumentCSImpl completeOCLDocumentCS = new CompleteOCLDocumentCSImpl();
 		return completeOCLDocumentCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpConstraintCS createExpConstraintCS()
-	{
-		ExpConstraintCSImpl expConstraintCS = new ExpConstraintCSImpl();
-		return expConstraintCS;
 	}
 
 	/**

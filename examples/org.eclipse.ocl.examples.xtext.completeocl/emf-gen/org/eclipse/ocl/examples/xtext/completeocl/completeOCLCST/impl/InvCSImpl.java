@@ -12,13 +12,16 @@
  *
  * </copyright>
  *
- * $Id: InvCSImpl.java,v 1.2.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: InvCSImpl.java,v 1.2.6.2 2010/12/06 18:36:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,4 +52,9 @@ public class InvCSImpl extends ExpConstraintCSImpl implements InvCS {
 		return CompleteOCLCSTPackage.Literals.INV_CS;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitInvCS(this);
+	}
 } //InvCSImpl

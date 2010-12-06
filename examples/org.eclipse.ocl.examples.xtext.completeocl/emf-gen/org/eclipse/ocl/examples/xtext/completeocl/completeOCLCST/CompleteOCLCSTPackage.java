@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.6.6.1 2010/10/01 15:03:00 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.6.6.2 2010/12/06 18:36:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -72,115 +72,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	CompleteOCLCSTPackage eINSTANCE = org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ExpConstraintCSImpl <em>Exp Constraint CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ExpConstraintCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getExpConstraintCS()
-	 * @generated
-	 */
-	int EXP_CONSTRAINT_CS = 6;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__OWNED_ANNOTATION = BaseCSTPackage.CONSTRAINT_CS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__PIVOT = BaseCSTPackage.CONSTRAINT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__ERROR = BaseCSTPackage.CONSTRAINT_CS__ERROR;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__NAME = BaseCSTPackage.CONSTRAINT_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__STEREOTYPE = BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE;
-
-	/**
-	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__EXPR_STRING = BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__OWNED_EXPRESSION = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__OWNED_REASON = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Exp Constraint CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS_FEATURE_COUNT = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl <em>Package Declaration CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -188,7 +79,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPackageDeclarationCS()
 	 * @generated
 	 */
-	int PACKAGE_DECLARATION_CS = 12;
+	int PACKAGE_DECLARATION_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
@@ -208,7 +99,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPropertyContextDeclCS()
 	 * @generated
 	 */
-	int PROPERTY_CONTEXT_DECL_CS = 16;
+	int PROPERTY_CONTEXT_DECL_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.InitCSImpl <em>Init CS</em>}' class.
@@ -218,7 +109,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getInitCS()
 	 * @generated
 	 */
-	int INIT_CS = 8;
+	int INIT_CS = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DerCSImpl <em>Der CS</em>}' class.
@@ -248,7 +139,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getInvCS()
 	 * @generated
 	 */
-	int INV_CS = 9;
+	int INV_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl <em>Def CS</em>}' class.
@@ -268,7 +159,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOperationContextDeclCS()
 	 * @generated
 	 */
-	int OPERATION_CONTEXT_DECL_CS = 11;
+	int OPERATION_CONTEXT_DECL_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreCSImpl <em>Pre CS</em>}' class.
@@ -278,7 +169,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPreCS()
 	 * @generated
 	 */
-	int PRE_CS = 14;
+	int PRE_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PostCSImpl <em>Post CS</em>}' class.
@@ -288,7 +179,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPostCS()
 	 * @generated
 	 */
-	int POST_CS = 13;
+	int POST_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.BodyCSImpl <em>Body CS</em>}' class.
@@ -307,7 +198,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__OWNED_ANNOTATION = EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int BODY_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -316,7 +207,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__PIVOT = EXP_CONSTRAINT_CS__PIVOT;
+	int BODY_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -325,7 +216,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__ORIGINAL_XMI_ID = EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int BODY_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -334,7 +225,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__ERROR = EXP_CONSTRAINT_CS__ERROR;
+	int BODY_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -343,7 +234,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__MONIKER = EXP_CONSTRAINT_CS__MONIKER;
+	int BODY_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -352,7 +243,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__NAME = EXP_CONSTRAINT_CS__NAME;
+	int BODY_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -361,7 +252,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__STEREOTYPE = EXP_CONSTRAINT_CS__STEREOTYPE;
+	int BODY_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -370,7 +261,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__EXPR_STRING = EXP_CONSTRAINT_CS__EXPR_STRING;
+	int BODY_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -379,7 +270,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__OWNED_EXPRESSION = EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
+	int BODY_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -388,7 +279,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__OWNED_REASON = EXP_CONSTRAINT_CS__OWNED_REASON;
+	int BODY_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The number of structural features of the '<em>Body CS</em>' class.
@@ -397,7 +288,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS_FEATURE_COUNT = EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int BODY_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -668,7 +559,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OWNED_ANNOTATION = EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int DEF_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -677,7 +568,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__PIVOT = EXP_CONSTRAINT_CS__PIVOT;
+	int DEF_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -686,7 +577,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__ORIGINAL_XMI_ID = EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int DEF_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -695,7 +586,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__ERROR = EXP_CONSTRAINT_CS__ERROR;
+	int DEF_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -704,7 +595,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__MONIKER = EXP_CONSTRAINT_CS__MONIKER;
+	int DEF_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -713,7 +604,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__NAME = EXP_CONSTRAINT_CS__NAME;
+	int DEF_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -722,7 +613,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__STEREOTYPE = EXP_CONSTRAINT_CS__STEREOTYPE;
+	int DEF_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -731,7 +622,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__EXPR_STRING = EXP_CONSTRAINT_CS__EXPR_STRING;
+	int DEF_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -740,7 +631,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OWNED_EXPRESSION = EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
+	int DEF_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -749,7 +640,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OWNED_REASON = EXP_CONSTRAINT_CS__OWNED_REASON;
+	int DEF_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
@@ -758,7 +649,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__STATIC = EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int DEF_CS__STATIC = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Constrained Name</b></em>' attribute.
@@ -767,7 +658,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__CONSTRAINED_NAME = EXP_CONSTRAINT_CS_FEATURE_COUNT + 1;
+	int DEF_CS__CONSTRAINED_NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -776,7 +667,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__PARAMETERS = EXP_CONSTRAINT_CS_FEATURE_COUNT + 2;
+	int DEF_CS__PARAMETERS = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -785,7 +676,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OWNED_TYPE = EXP_CONSTRAINT_CS_FEATURE_COUNT + 3;
+	int DEF_CS__OWNED_TYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Def CS</em>' class.
@@ -794,7 +685,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS_FEATURE_COUNT = EXP_CONSTRAINT_CS_FEATURE_COUNT + 4;
+	int DEF_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -803,7 +694,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__OWNED_ANNOTATION = EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int DER_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -812,7 +703,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__PIVOT = EXP_CONSTRAINT_CS__PIVOT;
+	int DER_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -821,7 +712,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__ORIGINAL_XMI_ID = EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int DER_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -830,7 +721,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__ERROR = EXP_CONSTRAINT_CS__ERROR;
+	int DER_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -839,7 +730,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__MONIKER = EXP_CONSTRAINT_CS__MONIKER;
+	int DER_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -848,7 +739,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__NAME = EXP_CONSTRAINT_CS__NAME;
+	int DER_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -857,7 +748,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__STEREOTYPE = EXP_CONSTRAINT_CS__STEREOTYPE;
+	int DER_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -866,7 +757,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__EXPR_STRING = EXP_CONSTRAINT_CS__EXPR_STRING;
+	int DER_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -875,7 +766,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__OWNED_EXPRESSION = EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
+	int DER_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -884,7 +775,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__OWNED_REASON = EXP_CONSTRAINT_CS__OWNED_REASON;
+	int DER_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The number of structural features of the '<em>Der CS</em>' class.
@@ -893,7 +784,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS_FEATURE_COUNT = EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int DER_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.FeatureContextDeclCSImpl <em>Feature Context Decl CS</em>}' class.
@@ -903,7 +794,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getFeatureContextDeclCS()
 	 * @generated
 	 */
-	int FEATURE_CONTEXT_DECL_CS = 7;
+	int FEATURE_CONTEXT_DECL_CS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -975,7 +866,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__OWNED_ANNOTATION = EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int INIT_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -984,7 +875,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__PIVOT = EXP_CONSTRAINT_CS__PIVOT;
+	int INIT_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -993,7 +884,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__ORIGINAL_XMI_ID = EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int INIT_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -1002,7 +893,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__ERROR = EXP_CONSTRAINT_CS__ERROR;
+	int INIT_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1011,7 +902,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__MONIKER = EXP_CONSTRAINT_CS__MONIKER;
+	int INIT_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1020,7 +911,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__NAME = EXP_CONSTRAINT_CS__NAME;
+	int INIT_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -1029,7 +920,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__STEREOTYPE = EXP_CONSTRAINT_CS__STEREOTYPE;
+	int INIT_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -1038,7 +929,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__EXPR_STRING = EXP_CONSTRAINT_CS__EXPR_STRING;
+	int INIT_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -1047,7 +938,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__OWNED_EXPRESSION = EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
+	int INIT_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -1056,7 +947,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__OWNED_REASON = EXP_CONSTRAINT_CS__OWNED_REASON;
+	int INIT_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The number of structural features of the '<em>Init CS</em>' class.
@@ -1065,7 +956,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS_FEATURE_COUNT = EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int INIT_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1074,7 +965,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__OWNED_ANNOTATION = EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int INV_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1083,7 +974,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__PIVOT = EXP_CONSTRAINT_CS__PIVOT;
+	int INV_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1092,7 +983,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__ORIGINAL_XMI_ID = EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int INV_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -1101,7 +992,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__ERROR = EXP_CONSTRAINT_CS__ERROR;
+	int INV_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1110,7 +1001,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__MONIKER = EXP_CONSTRAINT_CS__MONIKER;
+	int INV_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1119,7 +1010,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__NAME = EXP_CONSTRAINT_CS__NAME;
+	int INV_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -1128,7 +1019,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__STEREOTYPE = EXP_CONSTRAINT_CS__STEREOTYPE;
+	int INV_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -1137,7 +1028,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__EXPR_STRING = EXP_CONSTRAINT_CS__EXPR_STRING;
+	int INV_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -1146,7 +1037,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__OWNED_EXPRESSION = EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
+	int INV_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -1155,7 +1046,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__OWNED_REASON = EXP_CONSTRAINT_CS__OWNED_REASON;
+	int INV_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The number of structural features of the '<em>Inv CS</em>' class.
@@ -1164,7 +1055,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS_FEATURE_COUNT = EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int INV_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OclMessageArgCSImpl <em>Ocl Message Arg CS</em>}' class.
@@ -1174,7 +1065,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOclMessageArgCS()
 	 * @generated
 	 */
-	int OCL_MESSAGE_ARG_CS = 10;
+	int OCL_MESSAGE_ARG_CS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1220,6 +1111,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_MESSAGE_ARG_CS__MONIKER = EssentialOCLCSTPackage.EXP_CS__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__PARENT = EssentialOCLCSTPackage.EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1435,7 +1335,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__OWNED_ANNOTATION = EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int POST_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1444,7 +1344,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__PIVOT = EXP_CONSTRAINT_CS__PIVOT;
+	int POST_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1453,7 +1353,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__ORIGINAL_XMI_ID = EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int POST_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -1462,7 +1362,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__ERROR = EXP_CONSTRAINT_CS__ERROR;
+	int POST_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1471,7 +1371,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__MONIKER = EXP_CONSTRAINT_CS__MONIKER;
+	int POST_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1480,7 +1380,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__NAME = EXP_CONSTRAINT_CS__NAME;
+	int POST_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -1489,7 +1389,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__STEREOTYPE = EXP_CONSTRAINT_CS__STEREOTYPE;
+	int POST_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -1498,7 +1398,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__EXPR_STRING = EXP_CONSTRAINT_CS__EXPR_STRING;
+	int POST_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -1507,7 +1407,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__OWNED_EXPRESSION = EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
+	int POST_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -1516,7 +1416,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__OWNED_REASON = EXP_CONSTRAINT_CS__OWNED_REASON;
+	int POST_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The number of structural features of the '<em>Post CS</em>' class.
@@ -1525,7 +1425,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS_FEATURE_COUNT = EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int POST_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1534,7 +1434,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__OWNED_ANNOTATION = EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int PRE_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1543,7 +1443,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__PIVOT = EXP_CONSTRAINT_CS__PIVOT;
+	int PRE_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1552,7 +1452,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__ORIGINAL_XMI_ID = EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int PRE_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -1561,7 +1461,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__ERROR = EXP_CONSTRAINT_CS__ERROR;
+	int PRE_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1570,7 +1470,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__MONIKER = EXP_CONSTRAINT_CS__MONIKER;
+	int PRE_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1579,7 +1479,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__NAME = EXP_CONSTRAINT_CS__NAME;
+	int PRE_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -1588,7 +1488,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__STEREOTYPE = EXP_CONSTRAINT_CS__STEREOTYPE;
+	int PRE_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -1597,7 +1497,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__EXPR_STRING = EXP_CONSTRAINT_CS__EXPR_STRING;
+	int PRE_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -1606,7 +1506,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__OWNED_EXPRESSION = EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
+	int PRE_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
@@ -1615,7 +1515,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__OWNED_REASON = EXP_CONSTRAINT_CS__OWNED_REASON;
+	int PRE_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
 
 	/**
 	 * The number of structural features of the '<em>Pre CS</em>' class.
@@ -1624,7 +1524,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS_FEATURE_COUNT = EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int PRE_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreExpCSImpl <em>Pre Exp CS</em>}' class.
@@ -1634,7 +1534,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPreExpCS()
 	 * @generated
 	 */
-	int PRE_EXP_CS = 15;
+	int PRE_EXP_CS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1643,7 +1543,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.NAMED_EXP_CS__OWNED_ANNOTATION;
+	int PRE_EXP_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1652,7 +1552,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS__PIVOT = EssentialOCLCSTPackage.NAMED_EXP_CS__PIVOT;
+	int PRE_EXP_CS__PIVOT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1661,7 +1561,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.NAMED_EXP_CS__ORIGINAL_XMI_ID;
+	int PRE_EXP_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -1670,7 +1570,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS__ERROR = EssentialOCLCSTPackage.NAMED_EXP_CS__ERROR;
+	int PRE_EXP_CS__ERROR = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1679,16 +1579,25 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS__MONIKER = EssentialOCLCSTPackage.NAMED_EXP_CS__MONIKER;
+	int PRE_EXP_CS__MONIKER = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__MONIKER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS__NAME = EssentialOCLCSTPackage.NAMED_EXP_CS_FEATURE_COUNT + 0;
+	int PRE_EXP_CS__PARENT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Named Exp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRE_EXP_CS__NAMED_EXP = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__NAMED_EXP;
 
 	/**
 	 * The number of structural features of the '<em>Pre Exp CS</em>' class.
@@ -1697,7 +1606,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS_FEATURE_COUNT = EssentialOCLCSTPackage.NAMED_EXP_CS_FEATURE_COUNT + 1;
+	int PRE_EXP_CS_FEATURE_COUNT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2014,38 +1923,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	EReference getCompleteOCLDocumentCS_Contexts();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS <em>Exp Constraint CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Exp Constraint CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS
-	 * @generated
-	 */
-	EClass getExpConstraintCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS#getOwnedExpression <em>Owned Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS#getOwnedExpression()
-	 * @see #getExpConstraintCS()
-	 * @generated
-	 */
-	EReference getExpConstraintCS_OwnedExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS#getOwnedReason <em>Owned Reason</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Reason</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS#getOwnedReason()
-	 * @see #getExpConstraintCS()
-	 * @generated
-	 */
-	EReference getExpConstraintCS_OwnedReason();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS <em>Inv CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2204,17 +2081,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPreExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS#getName()
-	 * @see #getPreExpCS()
-	 * @generated
-	 */
-	EReference getPreExpCS_Name();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS <em>Post CS</em>}'.
@@ -2464,32 +2330,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		EReference COMPLETE_OCL_DOCUMENT_CS__CONTEXTS = eINSTANCE.getCompleteOCLDocumentCS_Contexts();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ExpConstraintCSImpl <em>Exp Constraint CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ExpConstraintCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getExpConstraintCS()
-		 * @generated
-		 */
-		EClass EXP_CONSTRAINT_CS = eINSTANCE.getExpConstraintCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXP_CONSTRAINT_CS__OWNED_EXPRESSION = eINSTANCE.getExpConstraintCS_OwnedExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Reason</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXP_CONSTRAINT_CS__OWNED_REASON = eINSTANCE.getExpConstraintCS_OwnedReason();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.InvCSImpl <em>Inv CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2618,14 +2458,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRE_EXP_CS = eINSTANCE.getPreExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PRE_EXP_CS__NAME = eINSTANCE.getPreExpCS_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PostCSImpl <em>Post CS</em>}' class.

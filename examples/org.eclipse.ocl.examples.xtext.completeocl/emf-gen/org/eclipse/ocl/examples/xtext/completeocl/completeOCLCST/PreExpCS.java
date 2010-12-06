@@ -12,54 +12,23 @@
  *
  * </copyright>
  *
- * $Id: PreExpCS.java,v 1.1.2.1 2010/10/01 15:03:00 ewillink Exp $
+ * $Id: PreExpCS.java,v 1.1.2.2 2010/12/06 18:36:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Pre Exp CS</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS#getName <em>Name</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPreExpCS()
  * @model
  * @generated
  */
-public interface PreExpCS extends NamedExpCS
+public interface PreExpCS extends DecoratedNamedExpCS
 {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' containment reference.
-	 * @see #setName(NamedExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPreExpCS_Name()
-	 * @model containment="true"
-	 * @generated
-	 */
-	NamedExpCS getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS#getName <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' containment reference.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(NamedExpCS value);
 
 } // PreExpCS

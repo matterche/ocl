@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTSwitch.java,v 1.3.6.1 2010/10/01 15:03:02 ewillink Exp $
+ * $Id: CompleteOCLCSTSwitch.java,v 1.3.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -20,8 +20,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -38,7 +39,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocu
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
@@ -49,7 +49,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 
 /**
@@ -143,10 +145,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseConstraintCS(bodyCS);
 				if (result == null) result = caseNamedElementCS(bodyCS);
 				if (result == null) result = caseMonikeredElementCS(bodyCS);
-				if (result == null) result = caseINamedElement(bodyCS);
+				if (result == null) result = caseNameable(bodyCS);
 				if (result == null) result = caseModelElementCS(bodyCS);
 				if (result == null) result = caseElementCS(bodyCS);
-				if (result == null) result = caseIPivotElement(bodyCS);
+				if (result == null) result = casePivotable(bodyCS);
+				if (result == null) result = caseVisitableCS(bodyCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,7 +160,8 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseContextDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseModelElementCS(classifierContextDeclCS);
 				if (result == null) result = caseElementCS(classifierContextDeclCS);
-				if (result == null) result = caseIPivotElement(classifierContextDeclCS);
+				if (result == null) result = casePivotable(classifierContextDeclCS);
+				if (result == null) result = caseVisitableCS(classifierContextDeclCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -171,10 +175,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseNamespaceCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamedElementCS(completeOCLDocumentCS);
 				if (result == null) result = caseMonikeredElementCS(completeOCLDocumentCS);
-				if (result == null) result = caseINamedElement(completeOCLDocumentCS);
+				if (result == null) result = caseNameable(completeOCLDocumentCS);
 				if (result == null) result = caseModelElementCS(completeOCLDocumentCS);
 				if (result == null) result = caseElementCS(completeOCLDocumentCS);
-				if (result == null) result = caseIPivotElement(completeOCLDocumentCS);
+				if (result == null) result = casePivotable(completeOCLDocumentCS);
+				if (result == null) result = caseVisitableCS(completeOCLDocumentCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -184,7 +189,8 @@ public class CompleteOCLCSTSwitch<T>
 				T result = caseContextDeclCS(contextDeclCS);
 				if (result == null) result = caseModelElementCS(contextDeclCS);
 				if (result == null) result = caseElementCS(contextDeclCS);
-				if (result == null) result = caseIPivotElement(contextDeclCS);
+				if (result == null) result = casePivotable(contextDeclCS);
+				if (result == null) result = caseVisitableCS(contextDeclCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -196,10 +202,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseConstraintCS(defCS);
 				if (result == null) result = caseNamedElementCS(defCS);
 				if (result == null) result = caseMonikeredElementCS(defCS);
-				if (result == null) result = caseINamedElement(defCS);
+				if (result == null) result = caseNameable(defCS);
 				if (result == null) result = caseModelElementCS(defCS);
 				if (result == null) result = caseElementCS(defCS);
-				if (result == null) result = caseIPivotElement(defCS);
+				if (result == null) result = casePivotable(defCS);
+				if (result == null) result = caseVisitableCS(defCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -211,24 +218,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseConstraintCS(derCS);
 				if (result == null) result = caseNamedElementCS(derCS);
 				if (result == null) result = caseMonikeredElementCS(derCS);
-				if (result == null) result = caseINamedElement(derCS);
+				if (result == null) result = caseNameable(derCS);
 				if (result == null) result = caseModelElementCS(derCS);
 				if (result == null) result = caseElementCS(derCS);
-				if (result == null) result = caseIPivotElement(derCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CompleteOCLCSTPackage.EXP_CONSTRAINT_CS:
-			{
-				ExpConstraintCS expConstraintCS = (ExpConstraintCS)theEObject;
-				T result = caseExpConstraintCS(expConstraintCS);
-				if (result == null) result = caseConstraintCS(expConstraintCS);
-				if (result == null) result = caseNamedElementCS(expConstraintCS);
-				if (result == null) result = caseMonikeredElementCS(expConstraintCS);
-				if (result == null) result = caseINamedElement(expConstraintCS);
-				if (result == null) result = caseModelElementCS(expConstraintCS);
-				if (result == null) result = caseElementCS(expConstraintCS);
-				if (result == null) result = caseIPivotElement(expConstraintCS);
+				if (result == null) result = casePivotable(derCS);
+				if (result == null) result = caseVisitableCS(derCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -239,7 +233,8 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseContextDeclCS(featureContextDeclCS);
 				if (result == null) result = caseModelElementCS(featureContextDeclCS);
 				if (result == null) result = caseElementCS(featureContextDeclCS);
-				if (result == null) result = caseIPivotElement(featureContextDeclCS);
+				if (result == null) result = casePivotable(featureContextDeclCS);
+				if (result == null) result = caseVisitableCS(featureContextDeclCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -251,10 +246,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseConstraintCS(initCS);
 				if (result == null) result = caseNamedElementCS(initCS);
 				if (result == null) result = caseMonikeredElementCS(initCS);
-				if (result == null) result = caseINamedElement(initCS);
+				if (result == null) result = caseNameable(initCS);
 				if (result == null) result = caseModelElementCS(initCS);
 				if (result == null) result = caseElementCS(initCS);
-				if (result == null) result = caseIPivotElement(initCS);
+				if (result == null) result = casePivotable(initCS);
+				if (result == null) result = caseVisitableCS(initCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -266,10 +262,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseConstraintCS(invCS);
 				if (result == null) result = caseNamedElementCS(invCS);
 				if (result == null) result = caseMonikeredElementCS(invCS);
-				if (result == null) result = caseINamedElement(invCS);
+				if (result == null) result = caseNameable(invCS);
 				if (result == null) result = caseModelElementCS(invCS);
 				if (result == null) result = caseElementCS(invCS);
-				if (result == null) result = caseIPivotElement(invCS);
+				if (result == null) result = casePivotable(invCS);
+				if (result == null) result = caseVisitableCS(invCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -281,7 +278,8 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(oclMessageArgCS);
 				if (result == null) result = caseModelElementCS(oclMessageArgCS);
 				if (result == null) result = caseElementCS(oclMessageArgCS);
-				if (result == null) result = caseIPivotElement(oclMessageArgCS);
+				if (result == null) result = casePivotable(oclMessageArgCS);
+				if (result == null) result = caseVisitableCS(oclMessageArgCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -293,7 +291,8 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseModelElementCS(operationContextDeclCS);
 				if (result == null) result = caseElementCS(operationContextDeclCS);
-				if (result == null) result = caseIPivotElement(operationContextDeclCS);
+				if (result == null) result = casePivotable(operationContextDeclCS);
+				if (result == null) result = caseVisitableCS(operationContextDeclCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -304,7 +303,8 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(packageDeclarationCS);
 				if (result == null) result = caseModelElementCS(packageDeclarationCS);
 				if (result == null) result = caseElementCS(packageDeclarationCS);
-				if (result == null) result = caseIPivotElement(packageDeclarationCS);
+				if (result == null) result = casePivotable(packageDeclarationCS);
+				if (result == null) result = caseVisitableCS(packageDeclarationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -316,10 +316,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseConstraintCS(postCS);
 				if (result == null) result = caseNamedElementCS(postCS);
 				if (result == null) result = caseMonikeredElementCS(postCS);
-				if (result == null) result = caseINamedElement(postCS);
+				if (result == null) result = caseNameable(postCS);
 				if (result == null) result = caseModelElementCS(postCS);
 				if (result == null) result = caseElementCS(postCS);
-				if (result == null) result = caseIPivotElement(postCS);
+				if (result == null) result = casePivotable(postCS);
+				if (result == null) result = caseVisitableCS(postCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -331,10 +332,11 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseConstraintCS(preCS);
 				if (result == null) result = caseNamedElementCS(preCS);
 				if (result == null) result = caseMonikeredElementCS(preCS);
-				if (result == null) result = caseINamedElement(preCS);
+				if (result == null) result = caseNameable(preCS);
 				if (result == null) result = caseModelElementCS(preCS);
 				if (result == null) result = caseElementCS(preCS);
-				if (result == null) result = caseIPivotElement(preCS);
+				if (result == null) result = casePivotable(preCS);
+				if (result == null) result = caseVisitableCS(preCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -342,12 +344,14 @@ public class CompleteOCLCSTSwitch<T>
 			{
 				PreExpCS preExpCS = (PreExpCS)theEObject;
 				T result = casePreExpCS(preExpCS);
+				if (result == null) result = caseDecoratedNamedExpCS(preExpCS);
 				if (result == null) result = caseNamedExpCS(preExpCS);
 				if (result == null) result = caseExpCS(preExpCS);
 				if (result == null) result = caseMonikeredElementCS(preExpCS);
 				if (result == null) result = caseModelElementCS(preExpCS);
 				if (result == null) result = caseElementCS(preExpCS);
-				if (result == null) result = caseIPivotElement(preExpCS);
+				if (result == null) result = casePivotable(preExpCS);
+				if (result == null) result = caseVisitableCS(preExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -359,7 +363,8 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseContextDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseModelElementCS(propertyContextDeclCS);
 				if (result == null) result = caseElementCS(propertyContextDeclCS);
-				if (result == null) result = caseIPivotElement(propertyContextDeclCS);
+				if (result == null) result = casePivotable(propertyContextDeclCS);
+				if (result == null) result = caseVisitableCS(propertyContextDeclCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -656,6 +661,22 @@ public class CompleteOCLCSTSwitch<T>
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVisitableCS(VisitableCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -672,17 +693,17 @@ public class CompleteOCLCSTSwitch<T>
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPivotElement(IPivotElement object)
+	public T casePivotable(Pivotable object)
 	{
 		return null;
 	}
@@ -720,17 +741,17 @@ public class CompleteOCLCSTSwitch<T>
 	}
 
 /**
-	 * Returns the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseINamedElement(INamedElement object)
+	public T caseNameable(Nameable object)
 	{
 		return null;
 	}
@@ -843,6 +864,22 @@ public class CompleteOCLCSTSwitch<T>
 	 * @generated
 	 */
 	public T caseNamedExpCS(NamedExpCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDecoratedNamedExpCS(DecoratedNamedExpCS object)
 	{
 		return null;
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.6.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: OperationContextScopeAdapter.java,v 1.6.6.2 2010/12/06 18:36:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -25,11 +25,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
-public class OperationContextScopeAdapter extends EssentialOCLCSScopeAdapter<OperationContextDeclCS, Operation>
+public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<OperationContextDeclCS, Operation>
 {
 	public OperationContextScopeAdapter(OperationContextDeclCS csElement) {
 		super(csElement, Operation.class);

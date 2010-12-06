@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureContextDeclCSImpl.java,v 1.1.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: FeatureContextDeclCSImpl.java,v 1.1.6.2 2010/12/06 18:36:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
@@ -24,8 +24,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -258,4 +260,9 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitFeatureContextDeclCS(this);
+	}
 } //FeatureContextDeclCSImpl
