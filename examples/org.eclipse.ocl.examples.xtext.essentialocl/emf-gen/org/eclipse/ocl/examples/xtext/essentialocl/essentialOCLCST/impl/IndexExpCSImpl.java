@@ -12,30 +12,23 @@
  *
  * </copyright>
  *
- * $Id: IndexExpCSImpl.java,v 1.2.2.2 2010/10/01 14:30:27 ewillink Exp $
+ * $Id: IndexExpCSImpl.java,v 1.2.2.3 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,7 +37,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl#getFirstIndexes <em>First Indexes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl#getSecondIndexes <em>Second Indexes</em>}</li>
  * </ul>
@@ -52,18 +44,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
  *
  * @generated
  */
-public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
+public class IndexExpCSImpl extends DecoratedNamedExpCSImpl implements IndexExpCS
 {
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected NamedExpCS name;
-
 	/**
 	 * The cached value of the '{@link #getFirstIndexes() <em>First Indexes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -110,54 +92,6 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedExpCS getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetName(NamedExpCS newName, NotificationChain msgs)
-	{
-		NamedExpCS oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.INDEX_EXP_CS__NAME, oldName, newName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(NamedExpCS newName)
-	{
-		if (newName != name)
-		{
-			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.INDEX_EXP_CS__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.INDEX_EXP_CS__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.INDEX_EXP_CS__NAME, newName, newName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ExpCS> getFirstIndexes()
 	{
 		if (firstIndexes == null)
@@ -184,16 +118,6 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public NamedElement getNamedElement()
-	{
-		return getName().getNamedElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -201,8 +125,6 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.INDEX_EXP_CS__NAME:
-				return basicSetName(null, msgs);
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__FIRST_INDEXES:
 				return ((InternalEList<?>)getFirstIndexes()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__SECOND_INDEXES:
@@ -221,8 +143,6 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.INDEX_EXP_CS__NAME:
-				return getName();
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__FIRST_INDEXES:
 				return getFirstIndexes();
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__SECOND_INDEXES:
@@ -242,9 +162,6 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.INDEX_EXP_CS__NAME:
-				setName((NamedExpCS)newValue);
-				return;
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__FIRST_INDEXES:
 				getFirstIndexes().clear();
 				getFirstIndexes().addAll((Collection<? extends ExpCS>)newValue);
@@ -267,9 +184,6 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.INDEX_EXP_CS__NAME:
-				setName((NamedExpCS)null);
-				return;
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__FIRST_INDEXES:
 				getFirstIndexes().clear();
 				return;
@@ -290,8 +204,6 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.INDEX_EXP_CS__NAME:
-				return name != null;
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__FIRST_INDEXES:
 				return firstIndexes != null && !firstIndexes.isEmpty();
 			case EssentialOCLCSTPackage.INDEX_EXP_CS__SECOND_INDEXES:
@@ -300,4 +212,9 @@ public class IndexExpCSImpl extends ExpCSImpl implements IndexExpCS
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitIndexExpCS(this);
+	}
 } //IndexExpCSImpl

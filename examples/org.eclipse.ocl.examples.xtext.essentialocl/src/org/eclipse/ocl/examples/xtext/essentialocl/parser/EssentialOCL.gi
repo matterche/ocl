@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.gi,v 1.1.2.1 2010/10/01 14:30:28 ewillink Exp $
+-- * $Id: EssentialOCL.gi,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -89,7 +89,7 @@
  *        - 300534: Removing the use of deprecated macros.
  * </copyright>
  *
- * $Id: EssentialOCL.gi,v 1.1.2.1 2010/10/01 14:30:28 ewillink Exp $
+ * $Id: EssentialOCL.gi,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
  */
     ./
 %End
@@ -422,6 +422,8 @@
     TypeLiteralExpCS ::= TupleTypeCS
 
     TypeNameExpCS -> SimpleName
+    TypeNameExpCS ::= SimpleName '(' ')'
+    TypeNameExpCS ::= SimpleName '(' UntypedExpressionCSlist ')'
     TypeNameExpCS ::= TypeNameExpCS '::' unreservedSimpleNameCS
 
     TypeExpCS -> TypeNameExpCS
@@ -493,6 +495,7 @@
     LetVariableCSlist ::= LetVariableCS 
     LetVariableCSlist ::= LetVariableCSlist ',' LetVariableCS
 
+    LetVariableCS ::= SimpleName '=' OclExpressionCS 
     LetVariableCS ::= SimpleName ':' TypeExpCS '=' OclExpressionCS 
 
 	NestedExpCS  ::= '(' OclExpressionCS ')'

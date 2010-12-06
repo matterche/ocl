@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedExpCS.java,v 1.2.6.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: NamedExpCS.java,v 1.2.6.2 2010/12/06 18:03:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
@@ -39,5 +39,13 @@ public interface NamedExpCS extends ExpCS {
 	 * @generated
 	 */
 	NamedElement getNamedElement();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	SimpleNamedExpCS getSimpleNamedExp();
 
 } // NamedExpCS

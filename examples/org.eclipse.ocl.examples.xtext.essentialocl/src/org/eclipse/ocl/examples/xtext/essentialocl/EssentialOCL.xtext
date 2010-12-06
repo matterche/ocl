@@ -12,9 +12,9 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCL.xtext,v 1.5.6.3 2010/10/05 17:52:13 ewillink Exp $
+ * $Id: EssentialOCL.xtext,v 1.5.6.4 2010/12/06 18:03:07 ewillink Exp $
  */
-grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
+grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, DOCUMENTATION, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore" as pivot
@@ -49,7 +49,8 @@ NUMBER_LITERAL returns BigNumber:					// Not terminal to allow parser backtracki
 	INT ('.' INT)? (('e'|'E') ('+'|'-')? INT)?
 ;
 
-terminal ML_COMMENT	: '/*' -> '*/';
+terminal DOCUMENTATION : '/**' -> '**/';
+terminal ML_COMMENT	: '/*' !('*') -> '*/';
 terminal SL_COMMENT : '--' !('\n'|'\r')* ('\r'? '\n')?;
 terminal WS			: (' '|'\t'|'\r'|'\n')+;
 
@@ -69,6 +70,16 @@ EssentialOCLReservedKeyword:
 |	'xor'
 ;
 
+EssentialOCLUnrestrictedIdentifier:
+	'e'
+|	'E'
+|	'body'
+|	'der'
+|	'init'
+|	'inv'
+|	'post'
+|	'pre'
+;
 EssentialOCLPrefixOperator:
 	'-'|'not'
 ;
@@ -83,14 +94,7 @@ EssentialOCLNavigationOperator:
 
 Identifier:
 	ID
-|	'e'
-|	'E'
-|	'body'
-|	'der'
-|	'init'
-|	'inv'
-|	'post'
-|	'pre'
+|	EssentialOCLUnrestrictedIdentifier
 ;
 
 StringLiteral:
@@ -159,11 +163,11 @@ CollectionTypeCS returns CollectionTypeCS:
 	name=CollectionTypeIdentifier ('(' ownedType=TypeExpCS ')')?
 ;
 
-TupleTypeCS returns TupleTypeCS:
+TupleTypeCS returns base::TupleTypeCS:
 	name='Tuple' ('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?
 ;
         
-tuplePartCS returns TuplePartCS:
+tuplePartCS returns base::TuplePartCS:
 	name=UnrestrictedName ':' ownedType=TypeExpCS
 ;
 
@@ -303,7 +307,7 @@ NameExpCS returns NameExpCS:
 
 IndexExpCS returns NamedExpCS:
 	NameExpCS
-	({IndexExpCS.name=current}
+	({IndexExpCS.namedExp=current}
 	  '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
 		('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?)?
 ;
@@ -317,7 +321,7 @@ NavigatingExpCS_Base returns NamedExpCS:
 //  keep it as simple as possible and avoid backtracking.
 NavigatingExpCS returns NamedExpCS:
 	NavigatingExpCS_Base
-	({NavigatingExpCS.name=current}
+	({NavigatingExpCS.namedExp=current}
 		'(' (arguments+=NavigatingArgCSfirst (arguments+=NavigatingArgCSnext)*)? ')'
 	)?
 ;
@@ -350,7 +354,7 @@ LetExpCS returns LetExpCS:
 ;
 
 LetVariableCS returns LetVariableCS:
-	name=UnrestrictedName ':' ownedType=TypeExpCS '=' initExpression=ExpCS
+	name=UnrestrictedName (':' ownedType=TypeExpCS)? '=' initExpression=ExpCS
 ;
 
 NestedExpCS returns NestedExpCS:

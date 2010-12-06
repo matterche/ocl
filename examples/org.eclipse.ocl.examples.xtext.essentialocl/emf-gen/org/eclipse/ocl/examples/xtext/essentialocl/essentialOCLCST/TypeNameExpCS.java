@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeNameExpCS.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: TypeNameExpCS.java,v 1.1.2.2 2010/12/06 18:03:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * @model
  * @generated
  */
-public interface TypeNameExpCS extends TypedRefCS, NamedExpCS
+public interface TypeNameExpCS extends TypedRefCS, SimpleNamedExpCS
 {
 	/**
 	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.

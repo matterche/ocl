@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
+ * $Id: ExpCSScopeAdapter.java,v 1.1.2.3 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
-public abstract class ExpCSScopeAdapter<CS extends ExpCS, P extends OclExpression> extends EssentialOCLCSScopeAdapter<CS, P>
+public class ExpCSScopeAdapter<CS extends ExpCS, P extends OclExpression> extends EssentialOCLCSScopeAdapter<CS, P>
 {
 	public ExpCSScopeAdapter(CS csElement, Class<P> pivotClass) {
 		super(csElement, pivotClass);

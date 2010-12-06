@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCS.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: NavigatingExpCS.java,v 1.1.2.2 2010/12/06 18:03:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
@@ -35,34 +34,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface NavigatingExpCS extends NamedExpCS
+public interface NavigatingExpCS extends DecoratedNamedExpCS
 {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' containment reference.
-	 * @see #setName(NamedExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingExpCS_Name()
-	 * @model containment="true"
-	 * @generated
-	 */
-	NamedExpCS getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getName <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' containment reference.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(NamedExpCS value);
-
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS}.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactory.java,v 1.4.6.2 2010/10/05 17:52:12 ewillink Exp $
+ * $Id: EssentialOCLCSTFactory.java,v 1.4.6.3 2010/12/06 18:03:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -81,13 +81,13 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	ExpCS createExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Tuple Type CS</em>'.
+	 * Returns a new object of class '<em>Exp Constraint CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Tuple Type CS</em>'.
+	 * @return a new object of class '<em>Exp Constraint CS</em>'.
 	 * @generated
 	 */
-	TupleTypeCS createTupleTypeCS();
+	ExpConstraintCS createExpConstraintCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Literal Exp CS</em>'.
@@ -241,15 +241,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	TupleLiteralPartCS createTupleLiteralPartCS();
-
-	/**
-	 * Returns a new object of class '<em>Tuple Part CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Tuple Part CS</em>'.
-	 * @generated
-	 */
-	TuplePartCS createTuplePartCS();
 
 	/**
 	 * Returns a new object of class '<em>String Literal Exp CS</em>'.

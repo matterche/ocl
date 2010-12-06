@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSImpl.java,v 1.2.6.1 2010/10/01 14:30:27 ewillink Exp $
+ * $Id: NameExpCSImpl.java,v 1.2.6.2 2010/12/06 18:03:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
@@ -28,8 +28,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -154,6 +157,16 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public SimpleNamedExpCS getSimpleNamedExp()
+	{
+		return this;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -228,5 +241,11 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 				return element != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitNameExpCS(this);
 	}
 } //NamedElementRefCSImpl

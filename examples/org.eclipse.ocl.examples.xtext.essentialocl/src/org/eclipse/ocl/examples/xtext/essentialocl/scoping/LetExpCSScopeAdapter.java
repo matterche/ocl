@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: LetExpCSScopeAdapter.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.INamedElement;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -39,7 +39,7 @@ public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
 			for (VariableCS csVariable : target.getVariable()) {
-				environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (INamedElement) csVariable.getPivot());
+				environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Nameable) csVariable.getPivot());
 			}
 		}
 		return scopeView.getOuterScope();

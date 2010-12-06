@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.2 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
@@ -22,11 +22,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossRef
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
 /**
@@ -41,6 +43,11 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 	@Override
 	public Class<? extends ILinker> bindILinker() {
 		return CS2PivotLinker.class;
+	}
+	
+	@Override
+	public Class<? extends XtextResource> bindXtextResource() {
+		return EssentialOCLCSResource.class;
 	}
 
 	// External reference loading and resolution.

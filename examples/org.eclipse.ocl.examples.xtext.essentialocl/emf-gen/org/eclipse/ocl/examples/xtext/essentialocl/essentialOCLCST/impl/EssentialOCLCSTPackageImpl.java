@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackageImpl.java,v 1.6.6.2 2010/10/05 17:52:13 ewillink Exp $
+ * $Id: EssentialOCLCSTPackageImpl.java,v 1.6.6.3 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -30,14 +30,17 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLit
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
@@ -51,17 +54,15 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TuplePartCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,6 +104,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass decoratedNamedExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass expCSEClass = null;
 
 	/**
@@ -110,7 +118,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass tupleTypeCSEClass = null;
+	private EClass expConstraintCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,6 +237,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass simpleNamedExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass tupleLiteralExpCSEClass = null;
 
 	/**
@@ -237,13 +252,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * @generated
 	 */
 	private EClass tupleLiteralPartCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass tuplePartCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -496,6 +504,26 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDecoratedNamedExpCS()
+	{
+		return decoratedNamedExpCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDecoratedNamedExpCS_NamedExp()
+	{
+		return (EReference)decoratedNamedExpCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExpCS() {
 		return expCSEClass;
 	}
@@ -505,8 +533,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTupleTypeCS() {
-		return tupleTypeCSEClass;
+	public EReference getExpCS_Parent()
+	{
+		return (EReference)expCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -514,9 +543,29 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTupleTypeCS_OwnedParts()
+	public EClass getExpConstraintCS()
 	{
-		return (EReference)tupleTypeCSEClass.getEStructuralFeatures().get(0);
+		return expConstraintCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpConstraintCS_OwnedExpression()
+	{
+		return (EReference)expConstraintCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpConstraintCS_OwnedReason()
+	{
+		return (EReference)expConstraintCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -741,19 +790,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNavigatingExpCS_Name()
-	{
-		return (EReference)navigatingExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getNavigatingExpCS_Arguments()
 	{
-		return (EReference)navigatingExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)navigatingExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -873,6 +912,16 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSimpleNamedExpCS()
+	{
+		return simpleNamedExpCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTupleLiteralExpCS() {
 		return tupleLiteralExpCSEClass;
 	}
@@ -895,16 +944,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	public EClass getTupleLiteralPartCS()
 	{
 		return tupleLiteralPartCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTuplePartCS()
-	{
-		return tuplePartCSEClass;
 	}
 
 	/**
@@ -994,16 +1033,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperatorCS_Parent()
-	{
-		return (EReference)operatorCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EDataType getBigNumber() {
 		return bigNumberEDataType;
 	}
@@ -1059,7 +1088,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIndexExpCS_Name()
+	public EReference getIndexExpCS_FirstIndexes()
 	{
 		return (EReference)indexExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1069,19 +1098,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIndexExpCS_FirstIndexes()
-	{
-		return (EReference)indexExpCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIndexExpCS_SecondIndexes()
 	{
-		return (EReference)indexExpCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)indexExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1155,6 +1174,16 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLetVariableCS_LetExpression()
+	{
+		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EssentialOCLCSTFactory getEssentialOCLCSTFactory() {
 		return (EssentialOCLCSTFactory)getEFactoryInstance();
 	}
@@ -1199,7 +1228,15 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		contextCSEClass = createEClass(CONTEXT_CS);
 		createEReference(contextCSEClass, CONTEXT_CS__OWNED_EXPRESSION);
 
+		decoratedNamedExpCSEClass = createEClass(DECORATED_NAMED_EXP_CS);
+		createEReference(decoratedNamedExpCSEClass, DECORATED_NAMED_EXP_CS__NAMED_EXP);
+
 		expCSEClass = createEClass(EXP_CS);
+		createEReference(expCSEClass, EXP_CS__PARENT);
+
+		expConstraintCSEClass = createEClass(EXP_CONSTRAINT_CS);
+		createEReference(expConstraintCSEClass, EXP_CONSTRAINT_CS__OWNED_EXPRESSION);
+		createEReference(expConstraintCSEClass, EXP_CONSTRAINT_CS__OWNED_REASON);
 
 		ifExpCSEClass = createEClass(IF_EXP_CS);
 		createEReference(ifExpCSEClass, IF_EXP_CS__CONDITION);
@@ -1207,7 +1244,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEReference(ifExpCSEClass, IF_EXP_CS__ELSE_EXPRESSION);
 
 		indexExpCSEClass = createEClass(INDEX_EXP_CS);
-		createEReference(indexExpCSEClass, INDEX_EXP_CS__NAME);
 		createEReference(indexExpCSEClass, INDEX_EXP_CS__FIRST_INDEXES);
 		createEReference(indexExpCSEClass, INDEX_EXP_CS__SECOND_INDEXES);
 
@@ -1222,6 +1258,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEReference(letExpCSEClass, LET_EXP_CS__IN);
 
 		letVariableCSEClass = createEClass(LET_VARIABLE_CS);
+		createEReference(letVariableCSEClass, LET_VARIABLE_CS__LET_EXPRESSION);
 
 		literalExpCSEClass = createEClass(LITERAL_EXP_CS);
 
@@ -1238,7 +1275,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__INIT);
 
 		navigatingExpCSEClass = createEClass(NAVIGATING_EXP_CS);
-		createEReference(navigatingExpCSEClass, NAVIGATING_EXP_CS__NAME);
 		createEReference(navigatingExpCSEClass, NAVIGATING_EXP_CS__ARGUMENTS);
 
 		navigationOperatorCSEClass = createEClass(NAVIGATION_OPERATOR_CS);
@@ -1252,7 +1288,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEAttribute(numberLiteralExpCSEClass, NUMBER_LITERAL_EXP_CS__NAME);
 
 		operatorCSEClass = createEClass(OPERATOR_CS);
-		createEReference(operatorCSEClass, OPERATOR_CS__PARENT);
 
 		prefixExpCSEClass = createEClass(PREFIX_EXP_CS);
 		createEReference(prefixExpCSEClass, PREFIX_EXP_CS__OWNED_OPERATOR);
@@ -1263,6 +1298,8 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		selfExpCSEClass = createEClass(SELF_EXP_CS);
 		createEAttribute(selfExpCSEClass, SELF_EXP_CS__NAME);
 
+		simpleNamedExpCSEClass = createEClass(SIMPLE_NAMED_EXP_CS);
+
 		stringLiteralExpCSEClass = createEClass(STRING_LITERAL_EXP_CS);
 		createEAttribute(stringLiteralExpCSEClass, STRING_LITERAL_EXP_CS__NAME);
 
@@ -1270,11 +1307,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEReference(tupleLiteralExpCSEClass, TUPLE_LITERAL_EXP_CS__OWNED_PARTS);
 
 		tupleLiteralPartCSEClass = createEClass(TUPLE_LITERAL_PART_CS);
-
-		tuplePartCSEClass = createEClass(TUPLE_PART_CS);
-
-		tupleTypeCSEClass = createEClass(TUPLE_TYPE_CS);
-		createEReference(tupleTypeCSEClass, TUPLE_TYPE_CS__OWNED_PARTS);
 
 		typeLiteralExpCSEClass = createEClass(TYPE_LITERAL_EXP_CS);
 		createEReference(typeLiteralExpCSEClass, TYPE_LITERAL_EXP_CS__OWNED_TYPE);
@@ -1331,23 +1363,26 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		binaryOperatorCSEClass.getESuperTypes().add(this.getOperatorCS());
 		booleanLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		collectionLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
-		collectionLiteralPartCSEClass.getESuperTypes().add(theBaseCSTPackage.getElementCS());
+		collectionLiteralPartCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
 		collectionTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
 		collectionTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getTypedRefCS());
 		contextCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
 		contextCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootCS());
+		decoratedNamedExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
 		expCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
+		expConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
 		ifExpCSEClass.getESuperTypes().add(this.getExpCS());
-		indexExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
+		indexExpCSEClass.getESuperTypes().add(this.getDecoratedNamedExpCS());
 		infixExpCSEClass.getESuperTypes().add(this.getExpCS());
 		invalidLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		letExpCSEClass.getESuperTypes().add(this.getExpCS());
 		letVariableCSEClass.getESuperTypes().add(this.getVariableCS());
+		letVariableCSEClass.getESuperTypes().add(this.getExpCS());
 		literalExpCSEClass.getESuperTypes().add(this.getExpCS());
-		nameExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
+		nameExpCSEClass.getESuperTypes().add(this.getSimpleNamedExpCS());
 		namedExpCSEClass.getESuperTypes().add(this.getExpCS());
 		navigatingArgCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
-		navigatingExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
+		navigatingExpCSEClass.getESuperTypes().add(this.getDecoratedNamedExpCS());
 		navigationOperatorCSEClass.getESuperTypes().add(this.getBinaryOperatorCS());
 		nestedExpCSEClass.getESuperTypes().add(this.getExpCS());
 		nullLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
@@ -1357,15 +1392,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		prefixExpCSEClass.getESuperTypes().add(this.getExpCS());
 		primitiveLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		selfExpCSEClass.getESuperTypes().add(this.getExpCS());
+		simpleNamedExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
 		stringLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		tupleLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		tupleLiteralPartCSEClass.getESuperTypes().add(this.getVariableCS());
-		tuplePartCSEClass.getESuperTypes().add(this.getVariableCS());
-		tupleTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
-		tupleTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getTypedRefCS());
 		typeLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		typeNameExpCSEClass.getESuperTypes().add(theBaseCSTPackage.getTypedRefCS());
-		typeNameExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
+		typeNameExpCSEClass.getESuperTypes().add(this.getSimpleNamedExpCS());
 		unaryOperatorCSEClass.getESuperTypes().add(this.getOperatorCS());
 		unlimitedNaturalLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		variableCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
@@ -1392,7 +1425,15 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(contextCSEClass, ContextCS.class, "ContextCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getContextCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(decoratedNamedExpCSEClass, DecoratedNamedExpCS.class, "DecoratedNamedExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getDecoratedNamedExpCS_NamedExp(), this.getNamedExpCS(), null, "namedExp", null, 0, 1, DecoratedNamedExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(expCSEClass, ExpCS.class, "ExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getExpCS_Parent(), this.getOperatorCS(), null, "parent", null, 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(expConstraintCSEClass, ExpConstraintCS.class, "ExpConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getExpConstraintCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ExpConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpConstraintCS_OwnedReason(), this.getExpCS(), null, "ownedReason", null, 0, 1, ExpConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ifExpCSEClass, IfExpCS.class, "IfExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getIfExpCS_Condition(), this.getExpCS(), null, "condition", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1400,7 +1441,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEReference(getIfExpCS_ElseExpression(), this.getExpCS(), null, "elseExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(indexExpCSEClass, IndexExpCS.class, "IndexExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIndexExpCS_Name(), this.getNamedExpCS(), null, "name", null, 0, 1, IndexExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIndexExpCS_FirstIndexes(), this.getExpCS(), null, "firstIndexes", null, 1, -1, IndexExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIndexExpCS_SecondIndexes(), this.getExpCS(), null, "secondIndexes", null, 0, -1, IndexExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -1411,10 +1451,11 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(invalidLiteralExpCSEClass, InvalidLiteralExpCS.class, "InvalidLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(letExpCSEClass, LetExpCS.class, "LetExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLetExpCS_Variable(), this.getLetVariableCS(), null, "variable", null, 0, -1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getLetExpCS_Variable(), this.getLetVariableCS(), this.getLetVariableCS_LetExpression(), "variable", null, 0, -1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLetExpCS_In(), this.getExpCS(), null, "in", null, 0, 1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(letVariableCSEClass, LetVariableCS.class, "LetVariableCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getLetVariableCS_LetExpression(), this.getLetExpCS(), this.getLetExpCS_Variable(), "letExpression", null, 0, 1, LetVariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(literalExpCSEClass, LiteralExpCS.class, "LiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1426,6 +1467,8 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		addEOperation(namedExpCSEClass, thePivotPackage.getNamedElement(), "getNamedElement", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
+		addEOperation(namedExpCSEClass, this.getSimpleNamedExpCS(), "getSimpleNamedExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(navigatingArgCSEClass, NavigatingArgCS.class, "NavigatingArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getNavigatingArgCS_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_Name(), this.getExpCS(), null, "name", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1433,7 +1476,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEReference(getNavigatingArgCS_Init(), this.getExpCS(), null, "init", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(navigatingExpCSEClass, NavigatingExpCS.class, "NavigatingExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNavigatingExpCS_Name(), this.getNamedExpCS(), null, "name", null, 0, 1, NavigatingExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingExpCS_Arguments(), this.getNavigatingArgCS(), null, "arguments", null, 0, -1, NavigatingExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(navigationOperatorCSEClass, NavigationOperatorCS.class, "NavigationOperatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1447,7 +1489,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEAttribute(getNumberLiteralExpCS_Name(), this.getBigNumber(), "name", null, 0, 1, NumberLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(operatorCSEClass, OperatorCS.class, "OperatorCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getOperatorCS_Parent(), this.getOperatorCS(), null, "parent", null, 0, 1, OperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(prefixExpCSEClass, PrefixExpCS.class, "PrefixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPrefixExpCS_OwnedOperator(), this.getUnaryOperatorCS(), null, "ownedOperator", null, 0, -1, PrefixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1458,6 +1499,8 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(selfExpCSEClass, SelfExpCS.class, "SelfExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSelfExpCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, SelfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(simpleNamedExpCSEClass, SimpleNamedExpCS.class, "SimpleNamedExpCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
 		initEClass(stringLiteralExpCSEClass, StringLiteralExpCS.class, "StringLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringLiteralExpCS_Name(), ecorePackage.getEString(), "name", null, 0, -1, StringLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -1465,11 +1508,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEReference(getTupleLiteralExpCS_OwnedParts(), this.getTupleLiteralPartCS(), null, "ownedParts", null, 0, -1, TupleLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(tupleLiteralPartCSEClass, TupleLiteralPartCS.class, "TupleLiteralPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(tuplePartCSEClass, TuplePartCS.class, "TuplePartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(tupleTypeCSEClass, TupleTypeCS.class, "TupleTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTupleTypeCS_OwnedParts(), this.getTuplePartCS(), null, "ownedParts", null, 0, -1, TupleTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typeLiteralExpCSEClass, TypeLiteralExpCS.class, "TypeLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypeLiteralExpCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 1, 1, TypeLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

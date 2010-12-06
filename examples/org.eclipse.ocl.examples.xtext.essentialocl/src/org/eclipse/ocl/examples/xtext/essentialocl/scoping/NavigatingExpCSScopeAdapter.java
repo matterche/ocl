@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.1 2010/10/05 17:52:12 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -50,7 +50,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 				}
 				if (index-1 >= 0) {
 					BinaryOperatorCS csOperatorAsArgument = csInfixParent.getOwnedOperator().get(index-1);
-					if (csTarget == csOperatorAsArgument.getRight()) {
+					if (csTarget.getNamedExp() == csOperatorAsArgument.getRight()) {
 						ScopeAdapter scopeAdapter = getScopeAdapter(csOperatorAsArgument);
 						return new BaseScopeView(scopeAdapter, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 					}

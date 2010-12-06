@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactoryImpl.java,v 1.5.6.2 2010/10/05 17:52:13 ewillink Exp $
+ * $Id: EssentialOCLCSTFactoryImpl.java,v 1.5.6.3 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -23,10 +23,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
@@ -35,10 +37,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
@@ -47,11 +51,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveLite
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,6 +113,7 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
 			case EssentialOCLCSTPackage.CONTEXT_CS: return createContextCS();
 			case EssentialOCLCSTPackage.EXP_CS: return createExpCS();
+			case EssentialOCLCSTPackage.EXP_CONSTRAINT_CS: return createExpConstraintCS();
 			case EssentialOCLCSTPackage.IF_EXP_CS: return createIfExpCS();
 			case EssentialOCLCSTPackage.INDEX_EXP_CS: return createIndexExpCS();
 			case EssentialOCLCSTPackage.INFIX_EXP_CS: return createInfixExpCS();
@@ -128,8 +134,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS: return createStringLiteralExpCS();
 			case EssentialOCLCSTPackage.TUPLE_LITERAL_EXP_CS: return createTupleLiteralExpCS();
 			case EssentialOCLCSTPackage.TUPLE_LITERAL_PART_CS: return createTupleLiteralPartCS();
-			case EssentialOCLCSTPackage.TUPLE_PART_CS: return createTuplePartCS();
-			case EssentialOCLCSTPackage.TUPLE_TYPE_CS: return createTupleTypeCS();
 			case EssentialOCLCSTPackage.TYPE_LITERAL_EXP_CS: return createTypeLiteralExpCS();
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS: return createTypeNameExpCS();
 			case EssentialOCLCSTPackage.UNARY_OPERATOR_CS: return createUnaryOperatorCS();
@@ -229,9 +233,10 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TupleTypeCS createTupleTypeCS() {
-		TupleTypeCSImpl tupleTypeCS = new TupleTypeCSImpl();
-		return tupleTypeCS;
+	public ExpConstraintCS createExpConstraintCS()
+	{
+		ExpConstraintCSImpl expConstraintCS = new ExpConstraintCSImpl();
+		return expConstraintCS;
 	}
 
 	/**
@@ -412,17 +417,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	{
 		TupleLiteralPartCSImpl tupleLiteralPartCS = new TupleLiteralPartCSImpl();
 		return tupleLiteralPartCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TuplePartCS createTuplePartCS()
-	{
-		TuplePartCSImpl tuplePartCS = new TuplePartCSImpl();
-		return tuplePartCS;
 	}
 
 	/**

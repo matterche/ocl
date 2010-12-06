@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpCSImpl.java,v 1.2.6.1 2010/10/01 14:30:27 ewillink Exp $
+ * $Id: IfExpCSImpl.java,v 1.2.6.2 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -21,9 +21,11 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -326,4 +328,9 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitIfExpCS(this);
+	}
 } //IfExpCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.1.2.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
@@ -93,8 +93,8 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 			if (eObjectDescription != null) {
 				EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
 				if (traceLookup) {
-					if (eObjectOrProxy instanceof ElementCS) {
-						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + CS2Moniker.toString((ElementCS)eObjectOrProxy));
+					if (eObjectOrProxy instanceof MonikeredElementCS) {
+						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + CS2Moniker.toString((MonikeredElementCS)eObjectOrProxy));
 					}
 					else {
 						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + eObjectOrProxy);									

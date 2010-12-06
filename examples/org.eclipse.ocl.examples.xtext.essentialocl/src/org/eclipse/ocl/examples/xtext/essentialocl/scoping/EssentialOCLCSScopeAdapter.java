@@ -12,22 +12,22 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:27 ewillink Exp $
+ * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 
-public abstract class EssentialOCLCSScopeAdapter<CS extends ModelElementCS, P extends Element> extends BaseCSScopeAdapter<CS, P>
+public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends BaseCSScopeAdapter<CS, P>
 {	
 	protected EssentialOCLCSScopeAdapter(CS csElement, Class<P> pivotClass) {
 		super(csElement, pivotClass);

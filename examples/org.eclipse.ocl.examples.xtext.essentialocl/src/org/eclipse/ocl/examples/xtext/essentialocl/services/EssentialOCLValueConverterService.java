@@ -12,16 +12,21 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.7.6.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.7.6.2 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
+
+import static org.eclipse.xtext.EcoreUtil2.getAllContentsOfType;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
@@ -53,11 +58,32 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		};
 	}
 
+//	private static Set<String> getKeywords(Grammar grammar, String containedString) {
+//		Set<String> results = new HashSet<String>();
+//		gatherKeywords(results, grammar, containedString);
+//		return results;
+//	}
+
+	protected static void gatherKeywords(Set<String> results, Grammar grammar, String containedString) {
+		for (Grammar usedGrammar : grammar.getUsedGrammars()) {
+			gatherKeywords(results, usedGrammar, containedString);
+		}
+		for (AbstractRule rule : grammar.getRules()) {
+			String ruleName = rule.getName();
+			if (ruleName.contains(containedString)) {
+				for (Keyword keyword : getAllContentsOfType(rule, Keyword.class)) {
+					results.add(keyword.getValue());
+				}
+			}
+		}
+	}
+
 	@ValueConverter(rule = "ID")
 	public IValueConverter<String> ID() {
 		return new AbstractNullSafeConverter<String>() {
-			
+					
 			private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
+//			private Set<String> unrestrictedKeywords = ImmutableSet.copyOf(getKeywords(getGrammar(), "Unrestricted"));
 			
 			@Override
 			protected String internalToValue(String string, AbstractNode node) {

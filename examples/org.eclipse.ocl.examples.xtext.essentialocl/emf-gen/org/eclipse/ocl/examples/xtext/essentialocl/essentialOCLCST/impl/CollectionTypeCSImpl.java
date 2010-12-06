@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.5.6.1 2010/10/01 14:30:27 ewillink Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.5.6.2 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -23,8 +23,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -191,5 +193,11 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 				return ownedType != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitCollectionTypeCS(this);
 	}
 } //CollectionTypeCSImpl

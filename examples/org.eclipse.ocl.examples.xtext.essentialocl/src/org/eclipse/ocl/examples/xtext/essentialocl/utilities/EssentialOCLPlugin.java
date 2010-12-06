@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPlugin.java,v 1.1.2.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLPlugin.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -99,7 +99,7 @@ public final class EssentialOCLPlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			EssentialOCLCS2MonikerSwitch.FACTORY.getClass();
+			MonikerEssentialOCLCSVisitor.FACTORY.getClass();
 			super.start(context);
 		}
 	}

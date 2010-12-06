@@ -12,25 +12,23 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSImpl.java,v 1.1.2.1 2010/10/01 14:30:27 ewillink Exp $
+ * $Id: NavigatingExpCSImpl.java,v 1.1.2.2 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,25 +37,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExp
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
+public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements NavigatingExpCS
 {
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected NamedExpCS name;
-
 	/**
 	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -94,54 +81,6 @@ public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedExpCS getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetName(NamedExpCS newName, NotificationChain msgs)
-	{
-		NamedExpCS oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME, oldName, newName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(NamedExpCS newName)
-	{
-		if (newName != name)
-		{
-			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME, newName, newName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<NavigatingArgCS> getArguments()
 	{
 		if (arguments == null)
@@ -154,16 +93,6 @@ public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public NamedElement getNamedElement()
-	{
-		return getName().getNamedElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -171,8 +100,6 @@ public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME:
-				return basicSetName(null, msgs);
 			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
 				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 		}
@@ -189,8 +116,6 @@ public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME:
-				return getName();
 			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
 				return getArguments();
 		}
@@ -208,9 +133,6 @@ public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME:
-				setName((NamedExpCS)newValue);
-				return;
 			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends NavigatingArgCS>)newValue);
@@ -229,9 +151,6 @@ public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME:
-				setName((NamedExpCS)null);
-				return;
 			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
 				getArguments().clear();
 				return;
@@ -249,12 +168,15 @@ public class NavigatingExpCSImpl extends ExpCSImpl implements NavigatingExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__NAME:
-				return name != null;
 			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitNavigatingExpCS(this);
+	}
 } //NavigatingExpCSImpl

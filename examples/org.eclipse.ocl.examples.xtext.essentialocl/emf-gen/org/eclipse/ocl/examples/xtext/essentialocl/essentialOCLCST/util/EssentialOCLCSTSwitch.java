@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTSwitch.java,v 1.5.6.2 2010/10/05 17:52:13 ewillink Exp $
+ * $Id: EssentialOCLCSTSwitch.java,v 1.5.6.3 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -20,8 +20,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.INamedElement;
-import org.eclipse.ocl.examples.pivot.IPivotElement;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -30,11 +31,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
@@ -42,24 +46,28 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -152,10 +160,11 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseNamedElementCS(binaryOperatorCS);
 				if (result == null) result = caseExpCS(binaryOperatorCS);
 				if (result == null) result = caseMonikeredElementCS(binaryOperatorCS);
-				if (result == null) result = caseINamedElement(binaryOperatorCS);
+				if (result == null) result = caseNameable(binaryOperatorCS);
 				if (result == null) result = caseModelElementCS(binaryOperatorCS);
 				if (result == null) result = caseElementCS(binaryOperatorCS);
-				if (result == null) result = caseIPivotElement(binaryOperatorCS);
+				if (result == null) result = casePivotable(binaryOperatorCS);
+				if (result == null) result = caseVisitableCS(binaryOperatorCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -169,7 +178,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(booleanLiteralExpCS);
 				if (result == null) result = caseModelElementCS(booleanLiteralExpCS);
 				if (result == null) result = caseElementCS(booleanLiteralExpCS);
-				if (result == null) result = caseIPivotElement(booleanLiteralExpCS);
+				if (result == null) result = casePivotable(booleanLiteralExpCS);
+				if (result == null) result = caseVisitableCS(booleanLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,7 +192,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(collectionLiteralExpCS);
 				if (result == null) result = caseModelElementCS(collectionLiteralExpCS);
 				if (result == null) result = caseElementCS(collectionLiteralExpCS);
-				if (result == null) result = caseIPivotElement(collectionLiteralExpCS);
+				if (result == null) result = casePivotable(collectionLiteralExpCS);
+				if (result == null) result = caseVisitableCS(collectionLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -190,7 +201,11 @@ public class EssentialOCLCSTSwitch<T>
 			{
 				CollectionLiteralPartCS collectionLiteralPartCS = (CollectionLiteralPartCS)theEObject;
 				T result = caseCollectionLiteralPartCS(collectionLiteralPartCS);
+				if (result == null) result = caseMonikeredElementCS(collectionLiteralPartCS);
+				if (result == null) result = caseModelElementCS(collectionLiteralPartCS);
 				if (result == null) result = caseElementCS(collectionLiteralPartCS);
+				if (result == null) result = casePivotable(collectionLiteralPartCS);
+				if (result == null) result = caseVisitableCS(collectionLiteralPartCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,13 +215,14 @@ public class EssentialOCLCSTSwitch<T>
 				T result = caseCollectionTypeCS(collectionTypeCS);
 				if (result == null) result = caseNamedElementCS(collectionTypeCS);
 				if (result == null) result = caseTypedRefCS(collectionTypeCS);
-				if (result == null) result = caseINamedElement(collectionTypeCS);
+				if (result == null) result = caseNameable(collectionTypeCS);
 				if (result == null) result = caseTypeRefCS(collectionTypeCS);
 				if (result == null) result = caseModelElementCS(collectionTypeCS);
 				if (result == null) result = caseParameterableElementCS(collectionTypeCS);
 				if (result == null) result = caseMonikeredElementCS(collectionTypeCS);
 				if (result == null) result = caseElementCS(collectionTypeCS);
-				if (result == null) result = caseIPivotElement(collectionTypeCS);
+				if (result == null) result = casePivotable(collectionTypeCS);
+				if (result == null) result = caseVisitableCS(collectionTypeCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -217,10 +233,25 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseNamedElementCS(contextCS);
 				if (result == null) result = caseRootCS(contextCS);
 				if (result == null) result = caseMonikeredElementCS(contextCS);
-				if (result == null) result = caseINamedElement(contextCS);
+				if (result == null) result = caseNameable(contextCS);
 				if (result == null) result = caseModelElementCS(contextCS);
 				if (result == null) result = caseElementCS(contextCS);
-				if (result == null) result = caseIPivotElement(contextCS);
+				if (result == null) result = casePivotable(contextCS);
+				if (result == null) result = caseVisitableCS(contextCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS:
+			{
+				DecoratedNamedExpCS decoratedNamedExpCS = (DecoratedNamedExpCS)theEObject;
+				T result = caseDecoratedNamedExpCS(decoratedNamedExpCS);
+				if (result == null) result = caseNamedExpCS(decoratedNamedExpCS);
+				if (result == null) result = caseExpCS(decoratedNamedExpCS);
+				if (result == null) result = caseMonikeredElementCS(decoratedNamedExpCS);
+				if (result == null) result = caseModelElementCS(decoratedNamedExpCS);
+				if (result == null) result = caseElementCS(decoratedNamedExpCS);
+				if (result == null) result = casePivotable(decoratedNamedExpCS);
+				if (result == null) result = caseVisitableCS(decoratedNamedExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -231,7 +262,23 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(expCS);
 				if (result == null) result = caseModelElementCS(expCS);
 				if (result == null) result = caseElementCS(expCS);
-				if (result == null) result = caseIPivotElement(expCS);
+				if (result == null) result = casePivotable(expCS);
+				if (result == null) result = caseVisitableCS(expCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.EXP_CONSTRAINT_CS:
+			{
+				ExpConstraintCS expConstraintCS = (ExpConstraintCS)theEObject;
+				T result = caseExpConstraintCS(expConstraintCS);
+				if (result == null) result = caseConstraintCS(expConstraintCS);
+				if (result == null) result = caseNamedElementCS(expConstraintCS);
+				if (result == null) result = caseMonikeredElementCS(expConstraintCS);
+				if (result == null) result = caseNameable(expConstraintCS);
+				if (result == null) result = caseModelElementCS(expConstraintCS);
+				if (result == null) result = caseElementCS(expConstraintCS);
+				if (result == null) result = casePivotable(expConstraintCS);
+				if (result == null) result = caseVisitableCS(expConstraintCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -243,7 +290,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(ifExpCS);
 				if (result == null) result = caseModelElementCS(ifExpCS);
 				if (result == null) result = caseElementCS(ifExpCS);
-				if (result == null) result = caseIPivotElement(ifExpCS);
+				if (result == null) result = casePivotable(ifExpCS);
+				if (result == null) result = caseVisitableCS(ifExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -251,12 +299,14 @@ public class EssentialOCLCSTSwitch<T>
 			{
 				IndexExpCS indexExpCS = (IndexExpCS)theEObject;
 				T result = caseIndexExpCS(indexExpCS);
+				if (result == null) result = caseDecoratedNamedExpCS(indexExpCS);
 				if (result == null) result = caseNamedExpCS(indexExpCS);
 				if (result == null) result = caseExpCS(indexExpCS);
 				if (result == null) result = caseMonikeredElementCS(indexExpCS);
 				if (result == null) result = caseModelElementCS(indexExpCS);
 				if (result == null) result = caseElementCS(indexExpCS);
-				if (result == null) result = caseIPivotElement(indexExpCS);
+				if (result == null) result = casePivotable(indexExpCS);
+				if (result == null) result = caseVisitableCS(indexExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -268,7 +318,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(infixExpCS);
 				if (result == null) result = caseModelElementCS(infixExpCS);
 				if (result == null) result = caseElementCS(infixExpCS);
-				if (result == null) result = caseIPivotElement(infixExpCS);
+				if (result == null) result = casePivotable(infixExpCS);
+				if (result == null) result = caseVisitableCS(infixExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -282,7 +333,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(invalidLiteralExpCS);
 				if (result == null) result = caseModelElementCS(invalidLiteralExpCS);
 				if (result == null) result = caseElementCS(invalidLiteralExpCS);
-				if (result == null) result = caseIPivotElement(invalidLiteralExpCS);
+				if (result == null) result = casePivotable(invalidLiteralExpCS);
+				if (result == null) result = caseVisitableCS(invalidLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,7 +346,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(letExpCS);
 				if (result == null) result = caseModelElementCS(letExpCS);
 				if (result == null) result = caseElementCS(letExpCS);
-				if (result == null) result = caseIPivotElement(letExpCS);
+				if (result == null) result = casePivotable(letExpCS);
+				if (result == null) result = caseVisitableCS(letExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -303,12 +356,14 @@ public class EssentialOCLCSTSwitch<T>
 				LetVariableCS letVariableCS = (LetVariableCS)theEObject;
 				T result = caseLetVariableCS(letVariableCS);
 				if (result == null) result = caseVariableCS(letVariableCS);
+				if (result == null) result = caseExpCS(letVariableCS);
 				if (result == null) result = caseNamedElementCS(letVariableCS);
 				if (result == null) result = caseMonikeredElementCS(letVariableCS);
-				if (result == null) result = caseINamedElement(letVariableCS);
+				if (result == null) result = caseNameable(letVariableCS);
 				if (result == null) result = caseModelElementCS(letVariableCS);
 				if (result == null) result = caseElementCS(letVariableCS);
-				if (result == null) result = caseIPivotElement(letVariableCS);
+				if (result == null) result = casePivotable(letVariableCS);
+				if (result == null) result = caseVisitableCS(letVariableCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -320,7 +375,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(literalExpCS);
 				if (result == null) result = caseModelElementCS(literalExpCS);
 				if (result == null) result = caseElementCS(literalExpCS);
-				if (result == null) result = caseIPivotElement(literalExpCS);
+				if (result == null) result = casePivotable(literalExpCS);
+				if (result == null) result = caseVisitableCS(literalExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -328,12 +384,14 @@ public class EssentialOCLCSTSwitch<T>
 			{
 				NameExpCS nameExpCS = (NameExpCS)theEObject;
 				T result = caseNameExpCS(nameExpCS);
+				if (result == null) result = caseSimpleNamedExpCS(nameExpCS);
 				if (result == null) result = caseNamedExpCS(nameExpCS);
 				if (result == null) result = caseExpCS(nameExpCS);
 				if (result == null) result = caseMonikeredElementCS(nameExpCS);
 				if (result == null) result = caseModelElementCS(nameExpCS);
 				if (result == null) result = caseElementCS(nameExpCS);
-				if (result == null) result = caseIPivotElement(nameExpCS);
+				if (result == null) result = casePivotable(nameExpCS);
+				if (result == null) result = caseVisitableCS(nameExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -345,7 +403,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(namedExpCS);
 				if (result == null) result = caseModelElementCS(namedExpCS);
 				if (result == null) result = caseElementCS(namedExpCS);
-				if (result == null) result = caseIPivotElement(namedExpCS);
+				if (result == null) result = casePivotable(namedExpCS);
+				if (result == null) result = caseVisitableCS(namedExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -355,7 +414,8 @@ public class EssentialOCLCSTSwitch<T>
 				T result = caseNavigatingArgCS(navigatingArgCS);
 				if (result == null) result = caseModelElementCS(navigatingArgCS);
 				if (result == null) result = caseElementCS(navigatingArgCS);
-				if (result == null) result = caseIPivotElement(navigatingArgCS);
+				if (result == null) result = casePivotable(navigatingArgCS);
+				if (result == null) result = caseVisitableCS(navigatingArgCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -363,12 +423,14 @@ public class EssentialOCLCSTSwitch<T>
 			{
 				NavigatingExpCS navigatingExpCS = (NavigatingExpCS)theEObject;
 				T result = caseNavigatingExpCS(navigatingExpCS);
+				if (result == null) result = caseDecoratedNamedExpCS(navigatingExpCS);
 				if (result == null) result = caseNamedExpCS(navigatingExpCS);
 				if (result == null) result = caseExpCS(navigatingExpCS);
 				if (result == null) result = caseMonikeredElementCS(navigatingExpCS);
 				if (result == null) result = caseModelElementCS(navigatingExpCS);
 				if (result == null) result = caseElementCS(navigatingExpCS);
-				if (result == null) result = caseIPivotElement(navigatingExpCS);
+				if (result == null) result = casePivotable(navigatingExpCS);
+				if (result == null) result = caseVisitableCS(navigatingExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -381,10 +443,11 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseNamedElementCS(navigationOperatorCS);
 				if (result == null) result = caseExpCS(navigationOperatorCS);
 				if (result == null) result = caseMonikeredElementCS(navigationOperatorCS);
-				if (result == null) result = caseINamedElement(navigationOperatorCS);
+				if (result == null) result = caseNameable(navigationOperatorCS);
 				if (result == null) result = caseModelElementCS(navigationOperatorCS);
 				if (result == null) result = caseElementCS(navigationOperatorCS);
-				if (result == null) result = caseIPivotElement(navigationOperatorCS);
+				if (result == null) result = casePivotable(navigationOperatorCS);
+				if (result == null) result = caseVisitableCS(navigationOperatorCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -396,7 +459,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(nestedExpCS);
 				if (result == null) result = caseModelElementCS(nestedExpCS);
 				if (result == null) result = caseElementCS(nestedExpCS);
-				if (result == null) result = caseIPivotElement(nestedExpCS);
+				if (result == null) result = casePivotable(nestedExpCS);
+				if (result == null) result = caseVisitableCS(nestedExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -410,7 +474,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(nullLiteralExpCS);
 				if (result == null) result = caseModelElementCS(nullLiteralExpCS);
 				if (result == null) result = caseElementCS(nullLiteralExpCS);
-				if (result == null) result = caseIPivotElement(nullLiteralExpCS);
+				if (result == null) result = casePivotable(nullLiteralExpCS);
+				if (result == null) result = caseVisitableCS(nullLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -424,7 +489,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(numberLiteralExpCS);
 				if (result == null) result = caseModelElementCS(numberLiteralExpCS);
 				if (result == null) result = caseElementCS(numberLiteralExpCS);
-				if (result == null) result = caseIPivotElement(numberLiteralExpCS);
+				if (result == null) result = casePivotable(numberLiteralExpCS);
+				if (result == null) result = caseVisitableCS(numberLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -435,10 +501,11 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseNamedElementCS(operatorCS);
 				if (result == null) result = caseExpCS(operatorCS);
 				if (result == null) result = caseMonikeredElementCS(operatorCS);
-				if (result == null) result = caseINamedElement(operatorCS);
+				if (result == null) result = caseNameable(operatorCS);
 				if (result == null) result = caseModelElementCS(operatorCS);
 				if (result == null) result = caseElementCS(operatorCS);
-				if (result == null) result = caseIPivotElement(operatorCS);
+				if (result == null) result = casePivotable(operatorCS);
+				if (result == null) result = caseVisitableCS(operatorCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -450,7 +517,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(prefixExpCS);
 				if (result == null) result = caseModelElementCS(prefixExpCS);
 				if (result == null) result = caseElementCS(prefixExpCS);
-				if (result == null) result = caseIPivotElement(prefixExpCS);
+				if (result == null) result = casePivotable(prefixExpCS);
+				if (result == null) result = caseVisitableCS(prefixExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -463,7 +531,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(primitiveLiteralExpCS);
 				if (result == null) result = caseModelElementCS(primitiveLiteralExpCS);
 				if (result == null) result = caseElementCS(primitiveLiteralExpCS);
-				if (result == null) result = caseIPivotElement(primitiveLiteralExpCS);
+				if (result == null) result = casePivotable(primitiveLiteralExpCS);
+				if (result == null) result = caseVisitableCS(primitiveLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -475,7 +544,22 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(selfExpCS);
 				if (result == null) result = caseModelElementCS(selfExpCS);
 				if (result == null) result = caseElementCS(selfExpCS);
-				if (result == null) result = caseIPivotElement(selfExpCS);
+				if (result == null) result = casePivotable(selfExpCS);
+				if (result == null) result = caseVisitableCS(selfExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.SIMPLE_NAMED_EXP_CS:
+			{
+				SimpleNamedExpCS simpleNamedExpCS = (SimpleNamedExpCS)theEObject;
+				T result = caseSimpleNamedExpCS(simpleNamedExpCS);
+				if (result == null) result = caseNamedExpCS(simpleNamedExpCS);
+				if (result == null) result = caseExpCS(simpleNamedExpCS);
+				if (result == null) result = caseMonikeredElementCS(simpleNamedExpCS);
+				if (result == null) result = caseModelElementCS(simpleNamedExpCS);
+				if (result == null) result = caseElementCS(simpleNamedExpCS);
+				if (result == null) result = casePivotable(simpleNamedExpCS);
+				if (result == null) result = caseVisitableCS(simpleNamedExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -489,7 +573,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(stringLiteralExpCS);
 				if (result == null) result = caseModelElementCS(stringLiteralExpCS);
 				if (result == null) result = caseElementCS(stringLiteralExpCS);
-				if (result == null) result = caseIPivotElement(stringLiteralExpCS);
+				if (result == null) result = casePivotable(stringLiteralExpCS);
+				if (result == null) result = caseVisitableCS(stringLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -502,7 +587,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(tupleLiteralExpCS);
 				if (result == null) result = caseModelElementCS(tupleLiteralExpCS);
 				if (result == null) result = caseElementCS(tupleLiteralExpCS);
-				if (result == null) result = caseIPivotElement(tupleLiteralExpCS);
+				if (result == null) result = casePivotable(tupleLiteralExpCS);
+				if (result == null) result = caseVisitableCS(tupleLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -513,40 +599,11 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseVariableCS(tupleLiteralPartCS);
 				if (result == null) result = caseNamedElementCS(tupleLiteralPartCS);
 				if (result == null) result = caseMonikeredElementCS(tupleLiteralPartCS);
-				if (result == null) result = caseINamedElement(tupleLiteralPartCS);
+				if (result == null) result = caseNameable(tupleLiteralPartCS);
 				if (result == null) result = caseModelElementCS(tupleLiteralPartCS);
 				if (result == null) result = caseElementCS(tupleLiteralPartCS);
-				if (result == null) result = caseIPivotElement(tupleLiteralPartCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSTPackage.TUPLE_PART_CS:
-			{
-				TuplePartCS tuplePartCS = (TuplePartCS)theEObject;
-				T result = caseTuplePartCS(tuplePartCS);
-				if (result == null) result = caseVariableCS(tuplePartCS);
-				if (result == null) result = caseNamedElementCS(tuplePartCS);
-				if (result == null) result = caseMonikeredElementCS(tuplePartCS);
-				if (result == null) result = caseINamedElement(tuplePartCS);
-				if (result == null) result = caseModelElementCS(tuplePartCS);
-				if (result == null) result = caseElementCS(tuplePartCS);
-				if (result == null) result = caseIPivotElement(tuplePartCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSTPackage.TUPLE_TYPE_CS:
-			{
-				TupleTypeCS tupleTypeCS = (TupleTypeCS)theEObject;
-				T result = caseTupleTypeCS(tupleTypeCS);
-				if (result == null) result = caseNamedElementCS(tupleTypeCS);
-				if (result == null) result = caseTypedRefCS(tupleTypeCS);
-				if (result == null) result = caseINamedElement(tupleTypeCS);
-				if (result == null) result = caseTypeRefCS(tupleTypeCS);
-				if (result == null) result = caseModelElementCS(tupleTypeCS);
-				if (result == null) result = caseParameterableElementCS(tupleTypeCS);
-				if (result == null) result = caseMonikeredElementCS(tupleTypeCS);
-				if (result == null) result = caseElementCS(tupleTypeCS);
-				if (result == null) result = caseIPivotElement(tupleTypeCS);
+				if (result == null) result = casePivotable(tupleLiteralPartCS);
+				if (result == null) result = caseVisitableCS(tupleLiteralPartCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -559,7 +616,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(typeLiteralExpCS);
 				if (result == null) result = caseModelElementCS(typeLiteralExpCS);
 				if (result == null) result = caseElementCS(typeLiteralExpCS);
-				if (result == null) result = caseIPivotElement(typeLiteralExpCS);
+				if (result == null) result = casePivotable(typeLiteralExpCS);
+				if (result == null) result = caseVisitableCS(typeLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -568,14 +626,16 @@ public class EssentialOCLCSTSwitch<T>
 				TypeNameExpCS typeNameExpCS = (TypeNameExpCS)theEObject;
 				T result = caseTypeNameExpCS(typeNameExpCS);
 				if (result == null) result = caseTypedRefCS(typeNameExpCS);
-				if (result == null) result = caseNamedExpCS(typeNameExpCS);
+				if (result == null) result = caseSimpleNamedExpCS(typeNameExpCS);
 				if (result == null) result = caseTypeRefCS(typeNameExpCS);
-				if (result == null) result = caseExpCS(typeNameExpCS);
+				if (result == null) result = caseNamedExpCS(typeNameExpCS);
 				if (result == null) result = caseParameterableElementCS(typeNameExpCS);
+				if (result == null) result = caseExpCS(typeNameExpCS);
 				if (result == null) result = caseMonikeredElementCS(typeNameExpCS);
 				if (result == null) result = caseModelElementCS(typeNameExpCS);
 				if (result == null) result = caseElementCS(typeNameExpCS);
-				if (result == null) result = caseIPivotElement(typeNameExpCS);
+				if (result == null) result = casePivotable(typeNameExpCS);
+				if (result == null) result = caseVisitableCS(typeNameExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -587,10 +647,11 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseNamedElementCS(unaryOperatorCS);
 				if (result == null) result = caseExpCS(unaryOperatorCS);
 				if (result == null) result = caseMonikeredElementCS(unaryOperatorCS);
-				if (result == null) result = caseINamedElement(unaryOperatorCS);
+				if (result == null) result = caseNameable(unaryOperatorCS);
 				if (result == null) result = caseModelElementCS(unaryOperatorCS);
 				if (result == null) result = caseElementCS(unaryOperatorCS);
-				if (result == null) result = caseIPivotElement(unaryOperatorCS);
+				if (result == null) result = casePivotable(unaryOperatorCS);
+				if (result == null) result = caseVisitableCS(unaryOperatorCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -604,7 +665,8 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseMonikeredElementCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = caseModelElementCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = caseElementCS(unlimitedNaturalLiteralExpCS);
-				if (result == null) result = caseIPivotElement(unlimitedNaturalLiteralExpCS);
+				if (result == null) result = casePivotable(unlimitedNaturalLiteralExpCS);
+				if (result == null) result = caseVisitableCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -614,10 +676,11 @@ public class EssentialOCLCSTSwitch<T>
 				T result = caseVariableCS(variableCS);
 				if (result == null) result = caseNamedElementCS(variableCS);
 				if (result == null) result = caseMonikeredElementCS(variableCS);
-				if (result == null) result = caseINamedElement(variableCS);
+				if (result == null) result = caseNameable(variableCS);
 				if (result == null) result = caseModelElementCS(variableCS);
 				if (result == null) result = caseElementCS(variableCS);
-				if (result == null) result = caseIPivotElement(variableCS);
+				if (result == null) result = casePivotable(variableCS);
+				if (result == null) result = caseVisitableCS(variableCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -722,6 +785,22 @@ public class EssentialOCLCSTSwitch<T>
 	}
 
 /**
+	 * Returns the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDecoratedNamedExpCS(DecoratedNamedExpCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Exp CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -738,6 +817,22 @@ public class EssentialOCLCSTSwitch<T>
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpConstraintCS(ExpConstraintCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>If Exp CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1042,6 +1137,22 @@ public class EssentialOCLCSTSwitch<T>
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Named Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Named Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleNamedExpCS(SimpleNamedExpCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>String Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1090,38 +1201,6 @@ public class EssentialOCLCSTSwitch<T>
 	}
 
 /**
-	 * Returns the result of interpreting the object as an instance of '<em>Tuple Part CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Tuple Part CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTuplePartCS(TuplePartCS object)
-	{
-		return null;
-	}
-
-/**
-	 * Returns the result of interpreting the object as an instance of '<em>Tuple Type CS</em>'.
-	 * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Tuple Type CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-  public T caseTupleTypeCS(TupleTypeCS object)
-  {
-		return null;
-	}
-
-  /**
 	 * Returns the result of interpreting the object as an instance of '<em>Type Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1202,6 +1281,22 @@ public class EssentialOCLCSTSwitch<T>
 	}
 
 /**
+	 * Returns the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visitable CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVisitableCS(VisitableCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1218,17 +1313,17 @@ public class EssentialOCLCSTSwitch<T>
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPivot Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPivotElement(IPivotElement object)
+	public T casePivotable(Pivotable object)
 	{
 		return null;
 	}
@@ -1266,17 +1361,17 @@ public class EssentialOCLCSTSwitch<T>
 	}
 
 /**
-	 * Returns the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseINamedElement(INamedElement object)
+	public T caseNameable(Nameable object)
 	{
 		return null;
 	}
@@ -1357,6 +1452,22 @@ public class EssentialOCLCSTSwitch<T>
 	 * @generated
 	 */
 	public T caseRootCS(RootCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstraintCS(ConstraintCS object)
 	{
 		return null;
 	}

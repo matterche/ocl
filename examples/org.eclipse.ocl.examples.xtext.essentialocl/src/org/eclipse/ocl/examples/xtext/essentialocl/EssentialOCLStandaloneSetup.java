@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLStandaloneSetup.java,v 1.1.6.1 2010/10/01 14:30:28 ewillink Exp $
+ * $Id: EssentialOCLStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:03:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
-import org.eclipse.ocl.examples.xtext.base.utilities.Pivot2BaseCSSwitch;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerSwitch;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2PivotSwitch;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.MonikerEssentialOCLCSVisitor;
 
 /**
  * Initialization support for running Xtext languages 
@@ -35,9 +33,9 @@ public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGene
 
 	public static void init() {
 		EssentialOCLCSScopeProvider.FACTORY.getClass();
-		EssentialOCLCS2MonikerSwitch.FACTORY.getClass();
-		EssentialOCLCS2PivotSwitch.FACTORY.getClass();
-		Pivot2BaseCSSwitch.FACTORY.getClass();
+		MonikerEssentialOCLCSVisitor.FACTORY.getClass();
+//		EssentialOCLCS2PivotSwitch.FACTORY.getClass();
+//		Pivot2BaseCSSwitch.FACTORY.getClass();
 	}
 }
 

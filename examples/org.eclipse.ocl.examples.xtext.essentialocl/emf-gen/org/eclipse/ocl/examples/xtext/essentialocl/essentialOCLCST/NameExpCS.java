@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NameExpCS.java,v 1.2.6.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: NameExpCS.java,v 1.2.6.2 2010/12/06 18:03:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  * @model
  * @generated
  */
-public interface NameExpCS extends NamedExpCS {
+public interface NameExpCS extends SimpleNamedExpCS {
 
 	/**
 	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.

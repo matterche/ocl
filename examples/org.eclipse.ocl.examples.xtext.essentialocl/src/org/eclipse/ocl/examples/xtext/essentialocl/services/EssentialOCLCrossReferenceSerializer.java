@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -22,16 +22,20 @@ import java.util.List;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
@@ -55,6 +59,11 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			this.name = name;
 			this.element = element;
 		}
+		
+		@Override
+		public String toString() {
+			return name;
+		}
 	}
 	
 	@Inject
@@ -72,9 +81,18 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 
 	protected String getConvertedLinkText(EObject object, EReference reference, EObject context) {
 		if ((reference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (context instanceof TypedTypeRefCS)) {
-			RootCSScopeAdapter documentScopeAdapter = ModelElementCSScopeAdapter.getDocumentScopeAdapter(context);
-			List<PathElement> contextPath = getPath(documentScopeAdapter, context);
-			List<PathElement> objectPath = getPath(documentScopeAdapter, object);
+			if ((object instanceof org.eclipse.ocl.examples.pivot.Class) && ((org.eclipse.ocl.examples.pivot.Class)object).isPrimitive()) {
+				return ((org.eclipse.ocl.examples.pivot.Class)object).getName();
+			}
+			TypeRefCS csRef = (TypedTypeRefCS) context;
+			while (csRef.eContainer() instanceof TypeRefCS) {
+				csRef = (TypeRefCS) csRef.eContainer();
+			}
+			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
+			Element pivot = csContext.getPivot();
+			RootScopeAdapter documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(context);
+			List<PathElement> contextPath = getPath(documentScopeAdapter, pivot);
+			List<PathElement> objectPath = getPath(documentScopeAdapter, (Element)object);
 			return getDivergentPath(objectPath, contextPath);
 		}
 		else {
@@ -104,9 +122,12 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		return s.toString();
 	}
 
-	private List<PathElement> getPath(RootCSScopeAdapter documentScopeAdapter, EObject eObject) {
-		if (eObject instanceof PackageCS) {
-			String alias = documentScopeAdapter.getAlias((PackageCS)eObject);
+	private List<PathElement> getPath(RootScopeAdapter documentScopeAdapter, Element eObject) {
+//		if (eObject instanceof Pivotable) {
+//			eObject = ((Pivotable)eObject).getPivot();
+//		}
+		if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+			String alias = AliasAdapter.getAlias(eObject);
 			if (alias != null) {
 				List<PathElement> result = new ArrayList<PathElement>();
 				result.add(new PathElement(alias, eObject));
@@ -117,8 +138,11 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		if (eContainer == null) {
 			return new ArrayList<PathElement>();
 		}
-		List<PathElement> result = getPath(documentScopeAdapter, eContainer);
-		if (eObject instanceof ENamedElement) {
+		List<PathElement> result = getPath(documentScopeAdapter, (Element) eContainer);
+		if (eObject instanceof NamedElement) {
+			result.add(new PathElement(((NamedElement)eObject).getName(), eObject));
+		}
+		else if (eObject instanceof ENamedElement) {
 			result.add(new PathElement(((ENamedElement)eObject).getName(), eObject));
 		}
 		else if (eObject instanceof NamedElementCS) {

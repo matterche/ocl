@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCS.java,v 1.2.6.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: LetExpCS.java,v 1.2.6.2 2010/12/06 18:03:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -39,6 +39,7 @@ public interface LetExpCS extends ExpCS {
 	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS#getLetExpression <em>Let Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable</em>' containment reference list isn't clear,
@@ -47,7 +48,8 @@ public interface LetExpCS extends ExpCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getLetExpCS_Variable()
-	 * @model containment="true"
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS#getLetExpression
+	 * @model opposite="letExpression" containment="true"
 	 * @generated
 	 */
 	EList<LetVariableCS> getVariable();

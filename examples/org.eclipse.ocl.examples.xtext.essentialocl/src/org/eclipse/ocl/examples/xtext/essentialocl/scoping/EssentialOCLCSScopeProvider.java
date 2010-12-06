@@ -12,34 +12,31 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeProvider.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
+ * $Id: EssentialOCLCSScopeProvider.java,v 1.1.2.3 2010/12/06 18:03:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.DefaultScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util.EssentialOCLCSTSwitch;
 
@@ -71,19 +68,14 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 		}
 
 		@Override
-		public ScopeAdapter caseBooleanLiteralExpCS(BooleanLiteralExpCS eObject) {
-			return new BooleanLiteralExpCSScopeAdapter(eObject);
-		}
-
-		@Override
 		public ScopeAdapter caseCollectionLiteralExpCS(CollectionLiteralExpCS eObject) {
 			return new CollectionLiteralExpCSScopeAdapter(eObject);
 		}
 
-//		@Override
-//		public ScopeAdapter caseIndexExpCS(IndexExpCS eObject) {
-//			return new IndexExpCSScopeAdapter(eObject);
-//		}
+		@Override
+		public ScopeAdapter caseCollectionLiteralPartCS(CollectionLiteralPartCS eObject) {
+			return new EmptyCSScopeAdapter(eObject);
+		}
 
 		@Override
 		public ScopeAdapter caseContextCS(ContextCS object) {
@@ -91,13 +83,13 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 		}
 
 		@Override
-		public ScopeAdapter caseInfixExpCS(InfixExpCS object) {
-			return new InfixExpCSScopeAdapter(object);
+		public ScopeAdapter caseExpCS(ExpCS eObject) {
+			return new ExpCSScopeAdapter<ExpCS, OclExpression>(eObject, OclExpression.class);
 		}
 
 		@Override
-		public ScopeAdapter caseInvalidLiteralExpCS(InvalidLiteralExpCS eObject) {
-			return new InvalidLiteralExpCSScopeAdapter(eObject);
+		public ScopeAdapter caseInfixExpCS(InfixExpCS object) {
+			return new InfixExpCSScopeAdapter(object);
 		}
 
 		@Override
@@ -118,21 +110,6 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 		@Override
 		public ScopeAdapter caseNavigationOperatorCS(NavigationOperatorCS eObject) {
 			return new NavigationOperatorCSScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseNestedExpCS(NestedExpCS eObject) {
-			return new NestedExpCSScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseNullLiteralExpCS(NullLiteralExpCS eObject) {
-			return new NullLiteralExpCSScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseNumberLiteralExpCS(NumberLiteralExpCS eObject) {
-			return new NumberLiteralExpCSScopeAdapter(eObject);
 		}
 
 /*		@Override
@@ -162,18 +139,13 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 		}
 
 		@Override
-		public ScopeAdapter caseStringLiteralExpCS(StringLiteralExpCS eObject) {
-			return new StringLiteralExpCSScopeAdapter(eObject);
-		}
-
-		@Override
 		public ScopeAdapter caseTupleLiteralExpCS(TupleLiteralExpCS eObject) {
 			return new TupleLiteralExpCSScopeAdapter(eObject);
 		}
 
 		@Override
-		public ScopeAdapter caseTupleTypeCS(TupleTypeCS eObject) {
-			return new TupleTypeCSScopeAdapter(eObject);
+		public ScopeAdapter caseTupleLiteralPartCS(TupleLiteralPartCS eObject) {
+			return new EmptyCSScopeAdapter(eObject);
 		}
 
 		@Override
@@ -183,7 +155,7 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 
 		@Override
 		public ScopeAdapter defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ModelElementCS) eObject);
+			return new DefaultScopeAdapter(eObject);
 		}
 
 		public ScopeAdapter doInPackageSwitch(EObject eObject) {

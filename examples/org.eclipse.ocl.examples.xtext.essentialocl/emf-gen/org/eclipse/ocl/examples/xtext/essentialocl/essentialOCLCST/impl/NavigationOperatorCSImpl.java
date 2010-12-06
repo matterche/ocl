@@ -12,14 +12,15 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSImpl.java,v 1.1.2.1 2010/10/05 17:52:13 ewillink Exp $
+ * $Id: NavigationOperatorCSImpl.java,v 1.1.2.2 2010/12/06 18:03:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,4 +54,9 @@ public class NavigationOperatorCSImpl extends BinaryOperatorCSImpl implements Na
 		return EssentialOCLCSTPackage.Literals.NAVIGATION_OPERATOR_CS;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitNavigationOperatorCS(this);
+	}
 } //NavigationOperatorCSImpl

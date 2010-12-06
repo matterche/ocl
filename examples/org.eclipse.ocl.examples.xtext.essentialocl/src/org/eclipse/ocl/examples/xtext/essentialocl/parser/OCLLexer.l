@@ -35,6 +35,7 @@ Options in effect for C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.
 
 C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLLexer.gi:108:4:108:6:3229:3231: Warning: The macro "$Id" is undefined. No substitution made
 C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLLexer.gi:108:73:108:73:3298:3298: Warning: The macro "$" is undefined. No substitution made
+C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/../lpg/LexerTemplateF.gi:82:20:82:33:2776:2789: Warning: The macro "$case" is undefined. No substitution made
 
 
 C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLLexer.gi:220:9:220:13:5115:5119: Informative: Grammar is  LALR(2).
