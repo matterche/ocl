@@ -1,9 +1,8 @@
-library ocl : ocllib = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib/lib'
+library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
 {
 precedence left:NAVIGATION left:UNARY left:MULTIPLICATIVE left:ADDITIVE left:RELATIONAL left:EQUALITY left:AND left:OR left:XOR left:IMPLIES;
 
--- All user defined classes conform to oclM1::Classifier
-package stdlib24 : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {
+--package stdlib24 : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {
 
 type Bag<T> conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
 	iteration reject(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
@@ -258,8 +257,6 @@ type UniqueCollection<T> conformsTo Collection<T> {
 }
 
 primitive type UnlimitedNatural conformsTo Integer {
-}
-
 }
 
 }

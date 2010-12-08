@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OCLstdlib.java,v 1.1.2.3 2010/12/06 17:13:33 ewillink Exp $
+ * $Id: OCLstdlib.java,v 1.1.2.4 2010/12/08 10:26:12 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.library.oclstdlib;
 
@@ -103,3334 +103,3325 @@ public class OCLstdlib extends XMLResourceImpl
 	public static Package create()
 	{
 		Package symbol_1 = PivotFactory.eINSTANCE.createPackage(); // ocl
-		Precedence symbol_2 = PivotFactory.eINSTANCE.createPrecedence(); // IMPLIES
-		Precedence symbol_3 = PivotFactory.eINSTANCE.createPrecedence(); // MULTIPLICATIVE
-		Precedence symbol_4 = PivotFactory.eINSTANCE.createPrecedence(); // UNARY
-		Precedence symbol_5 = PivotFactory.eINSTANCE.createPrecedence(); // OR
-		Precedence symbol_6 = PivotFactory.eINSTANCE.createPrecedence(); // EQUALITY
-		Precedence symbol_7 = PivotFactory.eINSTANCE.createPrecedence(); // RELATIONAL
-		Precedence symbol_8 = PivotFactory.eINSTANCE.createPrecedence(); // AND
-		Precedence symbol_9 = PivotFactory.eINSTANCE.createPrecedence(); // XOR
-		Precedence symbol_10 = PivotFactory.eINSTANCE.createPrecedence(); // ADDITIVE
-		Precedence symbol_11 = PivotFactory.eINSTANCE.createPrecedence(); // NAVIGATION
-		Package symbol_12 = PivotFactory.eINSTANCE.createPackage(); // ocl.orphanage
-		Class symbol_13 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Bag[stdlib24.Bag{T}?T]
+		Precedence symbol_2 = PivotFactory.eINSTANCE.createPrecedence(); // ADDITIVE
+		Precedence symbol_3 = PivotFactory.eINSTANCE.createPrecedence(); // AND
+		Precedence symbol_4 = PivotFactory.eINSTANCE.createPrecedence(); // MULTIPLICATIVE
+		Precedence symbol_5 = PivotFactory.eINSTANCE.createPrecedence(); // UNARY
+		Precedence symbol_6 = PivotFactory.eINSTANCE.createPrecedence(); // OR
+		Precedence symbol_7 = PivotFactory.eINSTANCE.createPrecedence(); // EQUALITY
+		Precedence symbol_8 = PivotFactory.eINSTANCE.createPrecedence(); // XOR
+		Precedence symbol_9 = PivotFactory.eINSTANCE.createPrecedence(); // NAVIGATION
+		Precedence symbol_10 = PivotFactory.eINSTANCE.createPrecedence(); // IMPLIES
+		Precedence symbol_11 = PivotFactory.eINSTANCE.createPrecedence(); // RELATIONAL
+		Class symbol_12 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag{T}
+		TemplateSignature symbol_13 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Bag{T}.
+		TypeTemplateParameter symbol_14 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_15 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag{T}?T
 		
-		Class symbol_14 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Bag[stdlib24.Collection{T}?T]
+		TemplateSignature symbol_16 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Bag{T}.flatten{T2}().
+		TypeTemplateParameter symbol_17 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_18 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag{T}.flatten{T2}()?T2
 		
-		Class symbol_15 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Bag[stdlib24.NonOrderedCollection{T}?T]
 		
-		Class symbol_16 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Bag[stdlib24.Bag{T}.flatten{T2}()?T2]
+		Class symbol_19 = PivotFactory.eINSTANCE.createClass(); // ocl.Boolean
 		
-		Class symbol_17 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.Collection{T}.excludesAll{T2}(stdlib24.Collection[T2])?T2]
+		Class symbol_20 = PivotFactory.eINSTANCE.createClass(); // ocl.Classifier
 		
-		Class symbol_18 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.NonUniqueCollection{T}?T]
+		Class symbol_21 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection{T}
+		TemplateSignature symbol_22 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Collection{T}.
+		TypeTemplateParameter symbol_23 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_24 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection{T}?T
 		
-		Class symbol_19 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.Collection{T}?T]
+		TemplateSignature symbol_25 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Collection{T}.excludesAll{T2}(ocl.Collection[T2]).
+		TypeTemplateParameter symbol_26 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_27 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection{T}.excludesAll{T2}(ocl.Collection[T2])?T2
 		
-		Class symbol_20 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.UniqueCollection{T}?T]
+		TemplateSignature symbol_28 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Collection{T}.flatten{T2}().
+		TypeTemplateParameter symbol_29 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_30 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection{T}.flatten{T2}()?T2
 		
-		Class symbol_21 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])?T2]
+		TemplateSignature symbol_31 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Collection{T}.includesAll{T2}(ocl.Collection[T2]).
+		TypeTemplateParameter symbol_32 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_33 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection{T}.includesAll{T2}(ocl.Collection[T2])?T2
 		
-		Class symbol_22 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.OclAny]
+		TemplateSignature symbol_34 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Collection{T}.iterate{Tacc}(ocl.Collection{T}?T;Tacc).
+		TypeTemplateParameter symbol_35 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_36 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection{T}.iterate{Tacc}(ocl.Collection{T}?T;Tacc)?Tacc
 		
-		Class symbol_23 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.Collection{T}.includesAll{T2}(stdlib24.Collection[T2])?T2]
+		TemplateSignature symbol_37 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Collection{T}.product{T2}(ocl.Collection[T2]).
+		TypeTemplateParameter symbol_38 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_39 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection{T}.product{T2}(ocl.Collection[T2])?T2
 		
-		Class symbol_24 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.NonOrderedCollection{T}?T]
 		
-		Class symbol_25 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.Collection{T}.flatten{T2}()?T2]
+		Class symbol_40 = PivotFactory.eINSTANCE.createClass(); // ocl.Enumeration
 		
-		Class symbol_26 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection[stdlib24.OrderedCollection{T}?T]
+		Class symbol_41 = PivotFactory.eINSTANCE.createClass(); // ocl.Integer
 		
-		Class symbol_27 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonOrderedCollection[stdlib24.Bag{T}?T]
+		Class symbol_42 = PivotFactory.eINSTANCE.createClass(); // ocl.NonOrderedCollection{T}
+		TemplateSignature symbol_43 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.NonOrderedCollection{T}.
+		TypeTemplateParameter symbol_44 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_45 = PivotFactory.eINSTANCE.createClass(); // ocl.NonOrderedCollection{T}?T
 		
-		Class symbol_28 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonOrderedCollection[stdlib24.Set{T}?T]
 		
-		Class symbol_29 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonUniqueCollection[stdlib24.Sequence{T}?T]
+		Class symbol_46 = PivotFactory.eINSTANCE.createClass(); // ocl.NonUniqueCollection{T}
+		TemplateSignature symbol_47 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.NonUniqueCollection{T}.
+		TypeTemplateParameter symbol_48 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_49 = PivotFactory.eINSTANCE.createClass(); // ocl.NonUniqueCollection{T}?T
 		
-		Class symbol_30 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonUniqueCollection[stdlib24.Bag{T}?T]
 		
-		Class symbol_31 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedCollection[stdlib24.Collection{T}?T]
+		Class symbol_50 = PivotFactory.eINSTANCE.createClass(); // ocl.OclAny
+		TemplateSignature symbol_51 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.OclAny.oclAsType{T}(ocl.Classifier).
+		TypeTemplateParameter symbol_52 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_53 = PivotFactory.eINSTANCE.createClass(); // ocl.OclAny.oclAsType{T}(ocl.Classifier)?T
 		
-		Class symbol_32 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedCollection[stdlib24.OrderedCollection{T}?T]
 		
-		Class symbol_33 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedCollection[stdlib24.Sequence{T}?T]
+		Class symbol_54 = PivotFactory.eINSTANCE.createClass(); // ocl.OclInvalid
 		
-		Class symbol_34 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedCollection[stdlib24.OrderedSet{T}?T]
+		Class symbol_55 = PivotFactory.eINSTANCE.createClass(); // ocl.OclMessage
 		
-		Class symbol_35 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedSet[stdlib24.OrderedSet{T}?T]
+		Class symbol_56 = PivotFactory.eINSTANCE.createClass(); // ocl.OclState
 		
-		Class symbol_36 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedSet[stdlib24.UniqueCollection{T}?T]
+		Class symbol_57 = PivotFactory.eINSTANCE.createClass(); // ocl.OclTuple
 		
-		Class symbol_37 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedSet[stdlib24.Collection{T}?T]
+		Class symbol_58 = PivotFactory.eINSTANCE.createClass(); // ocl.OclVoid
 		
-		Class symbol_38 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedSet[stdlib24.OrderedCollection{T}?T]
+		Class symbol_59 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedCollection{T}
+		TemplateSignature symbol_60 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.OrderedCollection{T}.
+		TypeTemplateParameter symbol_61 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_62 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedCollection{T}?T
 		
-		Class symbol_39 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence[stdlib24.OrderedCollection{T}?T]
 		
-		Class symbol_40 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence[stdlib24.Collection{T}?T]
+		Class symbol_63 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedSet{T}
+		TemplateSignature symbol_64 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.OrderedSet{T}.
+		TypeTemplateParameter symbol_65 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_66 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedSet{T}?T
 		
-		Class symbol_41 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence[stdlib24.String]
 		
-		Class symbol_42 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence[stdlib24.NonUniqueCollection{T}?T]
+		Class symbol_67 = PivotFactory.eINSTANCE.createClass(); // ocl.Real
+		TemplateSignature symbol_68 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Real.oclAsType{T}(ocl.Classifier).
+		TypeTemplateParameter symbol_69 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_70 = PivotFactory.eINSTANCE.createClass(); // ocl.Real.oclAsType{T}(ocl.Classifier)?T
 		
-		Class symbol_43 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence[stdlib24.Sequence{T}.flatten{T2}()?T2]
 		
-		Class symbol_44 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence[stdlib24.Sequence{T}?T]
+		Class symbol_71 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence{T}
+		TemplateSignature symbol_72 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Sequence{T}.
+		TypeTemplateParameter symbol_73 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_74 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence{T}?T
 		
-		Class symbol_45 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.Collection{T}?T]
+		TemplateSignature symbol_75 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Sequence{T}.flatten{T2}().
+		TypeTemplateParameter symbol_76 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_77 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence{T}.flatten{T2}()?T2
 		
-		Class symbol_46 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.Set{T}.flatten{T2}()?T2]
 		
-		Class symbol_47 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.Classifier]
+		Class symbol_78 = PivotFactory.eINSTANCE.createClass(); // ocl.Set{T}
+		TemplateSignature symbol_79 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Set{T}.
+		TypeTemplateParameter symbol_80 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_81 = PivotFactory.eINSTANCE.createClass(); // ocl.Set{T}?T
 		
-		Class symbol_48 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.Tuple[stdlib24.Collection{T}?T,stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])?T2]]
+		TemplateSignature symbol_82 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Set{T}.flatten{T2}().
+		TypeTemplateParameter symbol_83 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_84 = PivotFactory.eINSTANCE.createClass(); // ocl.Set{T}.flatten{T2}()?T2
 		
-		Class symbol_49 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.OclVoid]
 		
-		Class symbol_50 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.NonOrderedCollection{T}?T]
+		Class symbol_85 = PivotFactory.eINSTANCE.createClass(); // ocl.String
 		
-		Class symbol_51 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.Set{T}?T]
+		Class symbol_86 = PivotFactory.eINSTANCE.createClass(); // ocl.Tuple{T1,T2}
+		TemplateSignature symbol_87 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Tuple{T1,T2}.
+		TypeTemplateParameter symbol_88 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_89 = PivotFactory.eINSTANCE.createClass(); // ocl.Tuple{T1,T2}?T1
+		TypeTemplateParameter symbol_90 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_91 = PivotFactory.eINSTANCE.createClass(); // ocl.Tuple{T1,T2}?T2
 		
-		Class symbol_52 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.OclAny]
 		
-		Class symbol_53 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.OrderedSet{T}?T]
+		Class symbol_92 = PivotFactory.eINSTANCE.createClass(); // ocl.UniqueCollection{T}
+		TemplateSignature symbol_93 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.UniqueCollection{T}.
+		TypeTemplateParameter symbol_94 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		Class symbol_95 = PivotFactory.eINSTANCE.createClass(); // ocl.UniqueCollection{T}?T
 		
-		Class symbol_54 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.Enumeration]
 		
-		Class symbol_55 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.OclInvalid]
+		Class symbol_96 = PivotFactory.eINSTANCE.createClass(); // ocl.UnlimitedNatural
 		
-		Class symbol_56 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set[stdlib24.Boolean]
+		Package symbol_97 = PivotFactory.eINSTANCE.createPackage(); // ocl.orphanage
+		Class symbol_98 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag[ocl.NonOrderedCollection{T}?T]
 		
-		Class symbol_57 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Tuple[stdlib24.Collection{T}?T,stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])?T2]
+		Class symbol_99 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag[ocl.Bag{T}?T]
 		
-		Class symbol_58 = PivotFactory.eINSTANCE.createClass(); // stdlib24.UniqueCollection[stdlib24.Set{T}?T]
+		Class symbol_100 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag[ocl.Bag{T}.flatten{T2}()?T2]
 		
-		Class symbol_59 = PivotFactory.eINSTANCE.createClass(); // stdlib24.UniqueCollection[stdlib24.OrderedSet{T}?T]
+		Class symbol_101 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag[ocl.Collection{T}?T]
 		
+		Class symbol_102 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.Collection{T}.includesAll{T2}(ocl.Collection[T2])?T2]
 		
-		Package symbol_60 = PivotFactory.eINSTANCE.createPackage(); // stdlib24
-		Class symbol_61 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Bag{T}
-		TemplateSignature symbol_62 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Bag{T}.
-		TypeTemplateParameter symbol_63 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_64 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Bag{T}?T
+		Class symbol_103 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.Collection{T}.flatten{T2}()?T2]
 		
-		TemplateSignature symbol_65 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Bag{T}.flatten{T2}().
-		TypeTemplateParameter symbol_66 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_67 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Bag{T}.flatten{T2}()?T2
+		Class symbol_104 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.UniqueCollection{T}?T]
 		
+		Class symbol_105 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.Collection{T}?T]
 		
-		Class symbol_68 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Boolean
+		Class symbol_106 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.Collection{T}.excludesAll{T2}(ocl.Collection[T2])?T2]
 		
-		Class symbol_69 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Classifier
+		Class symbol_107 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.OrderedCollection{T}?T]
 		
-		Class symbol_70 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection{T}
-		TemplateSignature symbol_71 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Collection{T}.
-		TypeTemplateParameter symbol_72 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_73 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection{T}?T
+		Class symbol_108 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.OclAny]
 		
-		TemplateSignature symbol_74 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Collection{T}.excludesAll{T2}(stdlib24.Collection[T2]).
-		TypeTemplateParameter symbol_75 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_76 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection{T}.excludesAll{T2}(stdlib24.Collection[T2])?T2
+		Class symbol_109 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.Collection{T}.product{T2}(ocl.Collection[T2])?T2]
 		
-		TemplateSignature symbol_77 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Collection{T}.flatten{T2}().
-		TypeTemplateParameter symbol_78 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_79 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection{T}.flatten{T2}()?T2
+		Class symbol_110 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.NonOrderedCollection{T}?T]
 		
-		TemplateSignature symbol_80 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Collection{T}.includesAll{T2}(stdlib24.Collection[T2]).
-		TypeTemplateParameter symbol_81 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_82 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection{T}.includesAll{T2}(stdlib24.Collection[T2])?T2
+		Class symbol_111 = PivotFactory.eINSTANCE.createClass(); // ocl.Collection[ocl.NonUniqueCollection{T}?T]
 		
-		TemplateSignature symbol_83 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Collection{T}.iterate{Tacc}(stdlib24.Collection{T}?T;Tacc).
-		TypeTemplateParameter symbol_84 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_85 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection{T}.iterate{Tacc}(stdlib24.Collection{T}?T;Tacc)?Tacc
+		Class symbol_112 = PivotFactory.eINSTANCE.createClass(); // ocl.NonOrderedCollection[ocl.Bag{T}?T]
 		
-		TemplateSignature symbol_86 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2]).
-		TypeTemplateParameter symbol_87 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_88 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])?T2
+		Class symbol_113 = PivotFactory.eINSTANCE.createClass(); // ocl.NonOrderedCollection[ocl.Set{T}?T]
 		
+		Class symbol_114 = PivotFactory.eINSTANCE.createClass(); // ocl.NonUniqueCollection[ocl.Bag{T}?T]
 		
-		Class symbol_89 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Enumeration
+		Class symbol_115 = PivotFactory.eINSTANCE.createClass(); // ocl.NonUniqueCollection[ocl.Sequence{T}?T]
 		
-		Class symbol_90 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Integer
+		Class symbol_116 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedCollection[ocl.OrderedCollection{T}?T]
 		
-		Class symbol_91 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonOrderedCollection{T}
-		TemplateSignature symbol_92 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.NonOrderedCollection{T}.
-		TypeTemplateParameter symbol_93 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_94 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonOrderedCollection{T}?T
+		Class symbol_117 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedCollection[ocl.Collection{T}?T]
 		
+		Class symbol_118 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedCollection[ocl.OrderedSet{T}?T]
 		
-		Class symbol_95 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonUniqueCollection{T}
-		TemplateSignature symbol_96 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.NonUniqueCollection{T}.
-		TypeTemplateParameter symbol_97 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_98 = PivotFactory.eINSTANCE.createClass(); // stdlib24.NonUniqueCollection{T}?T
+		Class symbol_119 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedCollection[ocl.Sequence{T}?T]
 		
+		Class symbol_120 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedSet[ocl.OrderedSet{T}?T]
 		
-		Class symbol_99 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OclAny
-		TemplateSignature symbol_100 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.OclAny.oclAsType{T}(stdlib24.Classifier).
-		TypeTemplateParameter symbol_101 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_102 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OclAny.oclAsType{T}(stdlib24.Classifier)?T
+		Class symbol_121 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedSet[ocl.UniqueCollection{T}?T]
 		
+		Class symbol_122 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedSet[ocl.Collection{T}?T]
 		
-		Class symbol_103 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OclInvalid
+		Class symbol_123 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedSet[ocl.OrderedCollection{T}?T]
 		
-		Class symbol_104 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OclMessage
+		Class symbol_124 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence[ocl.Sequence{T}.flatten{T2}()?T2]
 		
-		Class symbol_105 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OclState
+		Class symbol_125 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence[ocl.Sequence{T}?T]
 		
-		Class symbol_106 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OclTuple
+		Class symbol_126 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence[ocl.Collection{T}?T]
 		
-		Class symbol_107 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OclVoid
+		Class symbol_127 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence[ocl.String]
 		
-		Class symbol_108 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedCollection{T}
-		TemplateSignature symbol_109 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.OrderedCollection{T}.
-		TypeTemplateParameter symbol_110 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_111 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedCollection{T}?T
+		Class symbol_128 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence[ocl.OrderedCollection{T}?T]
 		
+		Class symbol_129 = PivotFactory.eINSTANCE.createClass(); // ocl.Sequence[ocl.NonUniqueCollection{T}?T]
 		
-		Class symbol_112 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedSet{T}
-		TemplateSignature symbol_113 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.OrderedSet{T}.
-		TypeTemplateParameter symbol_114 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_115 = PivotFactory.eINSTANCE.createClass(); // stdlib24.OrderedSet{T}?T
+		Class symbol_130 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.OclAny]
 		
+		Class symbol_131 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.Set{T}.flatten{T2}()?T2]
 		
-		Class symbol_116 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Real
-		TemplateSignature symbol_117 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Real.oclAsType{T}(stdlib24.Classifier).
-		TypeTemplateParameter symbol_118 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_119 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Real.oclAsType{T}(stdlib24.Classifier)?T
+		Class symbol_132 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.Enumeration]
 		
+		Class symbol_133 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.OclVoid]
 		
-		Class symbol_120 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence{T}
-		TemplateSignature symbol_121 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Sequence{T}.
-		TypeTemplateParameter symbol_122 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_123 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence{T}?T
+		Class symbol_134 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.OclInvalid]
 		
-		TemplateSignature symbol_124 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Sequence{T}.flatten{T2}().
-		TypeTemplateParameter symbol_125 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_126 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Sequence{T}.flatten{T2}()?T2
+		Class symbol_135 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.Collection{T}?T]
 		
+		Class symbol_136 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.Boolean]
 		
-		Class symbol_127 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set{T}
-		TemplateSignature symbol_128 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Set{T}.
-		TypeTemplateParameter symbol_129 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_130 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set{T}?T
+		Class symbol_137 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.Classifier]
 		
-		TemplateSignature symbol_131 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Set{T}.flatten{T2}().
-		TypeTemplateParameter symbol_132 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_133 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Set{T}.flatten{T2}()?T2
+		Class symbol_138 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.NonOrderedCollection{T}?T]
 		
+		Class symbol_139 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.OrderedSet{T}?T]
 		
-		Class symbol_134 = PivotFactory.eINSTANCE.createClass(); // stdlib24.String
+		Class symbol_140 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.Tuple[ocl.Collection{T}?T,ocl.Collection{T}.product{T2}(ocl.Collection[T2])?T2]]
 		
-		Class symbol_135 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Tuple{T1,T2}
-		TemplateSignature symbol_136 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.Tuple{T1,T2}.
-		TypeTemplateParameter symbol_137 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_138 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Tuple{T1,T2}?T1
-		TypeTemplateParameter symbol_139 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_140 = PivotFactory.eINSTANCE.createClass(); // stdlib24.Tuple{T1,T2}?T2
+		Class symbol_141 = PivotFactory.eINSTANCE.createClass(); // ocl.Set[ocl.Set{T}?T]
 		
+		Class symbol_142 = PivotFactory.eINSTANCE.createClass(); // ocl.Tuple[ocl.Collection{T}?T,ocl.Collection{T}.product{T2}(ocl.Collection[T2])?T2]
 		
-		Class symbol_141 = PivotFactory.eINSTANCE.createClass(); // stdlib24.UniqueCollection{T}
-		TemplateSignature symbol_142 = PivotFactory.eINSTANCE.createTemplateSignature(); // stdlib24.UniqueCollection{T}.
-		TypeTemplateParameter symbol_143 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_144 = PivotFactory.eINSTANCE.createClass(); // stdlib24.UniqueCollection{T}?T
+		Class symbol_143 = PivotFactory.eINSTANCE.createClass(); // ocl.UniqueCollection[ocl.Set{T}?T]
 		
-		
-		Class symbol_145 = PivotFactory.eINSTANCE.createClass(); // stdlib24.UnlimitedNatural
+		Class symbol_144 = PivotFactory.eINSTANCE.createClass(); // ocl.UniqueCollection[ocl.OrderedSet{T}?T]
 		
 		
 
 		symbol_1.setName("ocl");
-		symbol_1.setNsPrefix("ocllib");
-		symbol_1.setNsURI("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib/lib");
-		symbol_2.setName("IMPLIES");
+		symbol_1.setNsPrefix("ocl");
+		symbol_1.setNsURI("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib");
+		symbol_2.setName("ADDITIVE");
 		symbol_2.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_2);
-		symbol_3.setName("MULTIPLICATIVE");
+		symbol_3.setName("AND");
 		symbol_3.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_3);
-		symbol_4.setName("UNARY");
+		symbol_4.setName("MULTIPLICATIVE");
 		symbol_4.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_4);
-		symbol_5.setName("OR");
+		symbol_5.setName("UNARY");
 		symbol_5.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_5);
-		symbol_6.setName("EQUALITY");
+		symbol_6.setName("OR");
 		symbol_6.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_6);
-		symbol_7.setName("RELATIONAL");
+		symbol_7.setName("EQUALITY");
 		symbol_7.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_7);
-		symbol_8.setName("AND");
+		symbol_8.setName("XOR");
 		symbol_8.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_8);
-		symbol_9.setName("XOR");
+		symbol_9.setName("NAVIGATION");
 		symbol_9.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_9);
-		symbol_10.setName("ADDITIVE");
+		symbol_10.setName("IMPLIES");
 		symbol_10.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_10);
-		symbol_11.setName("NAVIGATION");
+		symbol_11.setName("RELATIONAL");
 		symbol_11.setAssociativity(AssociativityKind.LEFT);
 		symbol_1.getOwnedPrecedences().add(symbol_11);
 		//
-		// ocl::orphanage
+		// ocl::Bag ocl.Bag{T}
 		//
-		symbol_12.setName("orphanage");
-		//
-		// ocl::orphanage::Bag stdlib24.Bag[stdlib24.Bag{T}?T]
-		//
-		symbol_13.setName("Bag");
-		{
-			TemplateBinding symbol_146 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_146.setSignature(symbol_62);
-			{
-				TemplateParameterSubstitution symbol_147 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_147.setFormal(symbol_63);	
-				symbol_147.setActual(symbol_64);	
-				symbol_146.getParameterSubstitutions().add(symbol_147);
-			}
-			symbol_13.getTemplateBindings().add(symbol_146);
+		symbol_12.setName("Bag");
+		symbol_15.setName("T");
+		symbol_14.setOwnedParameteredElement(symbol_15);
+		symbol_13.getOwnedParameters().add(symbol_14);
+		
+		symbol_12.setOwnedTemplateSignature(symbol_13);
+		symbol_12.getSuperClasses().add(symbol_112);
+		symbol_12.getSuperClasses().add(symbol_114);
+		{	// ocl::Bag::<>() ocl.Bag{T}.<>(ocl.OclAny)
+			Operation symbol_145 = PivotFactory.eINSTANCE.createOperation();
+			symbol_145.setName("<>");
+			symbol_145.setType(symbol_19);
+			Parameter symbol_146 = PivotFactory.eINSTANCE.createParameter();
+			symbol_146.setName("bag");
+			symbol_146.setType(symbol_50);
+			symbol_146.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_145.getOwnedParameters().add(symbol_146);
+			symbol_145.setPrecedence(symbol_7);
+			symbol_145.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
+			symbol_12.getOwnedOperations().add(symbol_145);
 		}
-		symbol_12.getOwnedTypes().add(symbol_13);
-		//
-		// ocl::orphanage::Bag stdlib24.Bag[stdlib24.Collection{T}?T]
-		//
-		symbol_14.setName("Bag");
-		{
-			TemplateBinding symbol_148 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_148.setSignature(symbol_62);
-			{
-				TemplateParameterSubstitution symbol_149 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_149.setFormal(symbol_63);	
-				symbol_149.setActual(symbol_73);	
-				symbol_148.getParameterSubstitutions().add(symbol_149);
-			}
-			symbol_14.getTemplateBindings().add(symbol_148);
+		{	// ocl::Bag::=() ocl.Bag{T}.=(ocl.OclAny)
+			Operation symbol_147 = PivotFactory.eINSTANCE.createOperation();
+			symbol_147.setName("=");
+			symbol_147.setType(symbol_19);
+			Parameter symbol_148 = PivotFactory.eINSTANCE.createParameter();
+			symbol_148.setName("bag");
+			symbol_148.setType(symbol_50);
+			symbol_148.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_147.getOwnedParameters().add(symbol_148);
+			symbol_147.setPrecedence(symbol_7);
+			symbol_147.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
+			symbol_12.getOwnedOperations().add(symbol_147);
 		}
-		symbol_12.getOwnedTypes().add(symbol_14);
-		//
-		// ocl::orphanage::Bag stdlib24.Bag[stdlib24.NonOrderedCollection{T}?T]
-		//
-		symbol_15.setName("Bag");
-		{
-			TemplateBinding symbol_150 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_150.setSignature(symbol_62);
-			{
-				TemplateParameterSubstitution symbol_151 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_151.setFormal(symbol_63);	
-				symbol_151.setActual(symbol_94);	
-				symbol_150.getParameterSubstitutions().add(symbol_151);
-			}
-			symbol_15.getTemplateBindings().add(symbol_150);
+		{	// ocl::Bag::excluding() ocl.Bag{T}.excluding(ocl.OclAny)
+			Operation symbol_149 = PivotFactory.eINSTANCE.createOperation();
+			symbol_149.setName("excluding");
+			symbol_149.setType(symbol_99);
+			Parameter symbol_150 = PivotFactory.eINSTANCE.createParameter();
+			symbol_150.setName("object");
+			symbol_150.setType(symbol_50);
+			symbol_150.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_149.getOwnedParameters().add(symbol_150);
+			symbol_149.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
+			symbol_12.getOwnedOperations().add(symbol_149);
 		}
-		symbol_12.getOwnedTypes().add(symbol_15);
-		//
-		// ocl::orphanage::Bag stdlib24.Bag[stdlib24.Bag{T}.flatten{T2}()?T2]
-		//
-		symbol_16.setName("Bag");
-		{
-			TemplateBinding symbol_152 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_152.setSignature(symbol_62);
-			{
-				TemplateParameterSubstitution symbol_153 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_153.setFormal(symbol_63);	
-				symbol_153.setActual(symbol_67);	
-				symbol_152.getParameterSubstitutions().add(symbol_153);
-			}
-			symbol_16.getTemplateBindings().add(symbol_152);
+		{	// ocl::Bag::flatten() ocl.Bag{T}.flatten{T2}()
+			Operation symbol_151 = PivotFactory.eINSTANCE.createOperation();
+			symbol_18.setName("T2");
+			symbol_17.setOwnedParameteredElement(symbol_18);
+			symbol_16.getOwnedParameters().add(symbol_17);
+			
+			symbol_151.setOwnedTemplateSignature(symbol_16);
+			symbol_151.setName("flatten");
+			symbol_151.setType(symbol_100);
+			symbol_151.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
+			symbol_12.getOwnedOperations().add(symbol_151);
 		}
-		symbol_12.getOwnedTypes().add(symbol_16);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.Collection{T}.excludesAll{T2}(stdlib24.Collection[T2])?T2]
-		//
-		symbol_17.setName("Collection");
-		{
-			TemplateBinding symbol_154 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_154.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_155 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_155.setFormal(symbol_72);	
-				symbol_155.setActual(symbol_76);	
-				symbol_154.getParameterSubstitutions().add(symbol_155);
-			}
-			symbol_17.getTemplateBindings().add(symbol_154);
+		{	// ocl::Bag::including() ocl.Bag{T}.including(ocl.Bag{T}?T)
+			Operation symbol_152 = PivotFactory.eINSTANCE.createOperation();
+			symbol_152.setName("including");
+			symbol_152.setType(symbol_99);
+			Parameter symbol_153 = PivotFactory.eINSTANCE.createParameter();
+			symbol_153.setName("object");
+			symbol_153.setType(symbol_15);
+			symbol_153.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_152.getOwnedParameters().add(symbol_153);
+			symbol_152.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
+			symbol_12.getOwnedOperations().add(symbol_152);
 		}
-		symbol_12.getOwnedTypes().add(symbol_17);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.NonUniqueCollection{T}?T]
-		//
-		symbol_18.setName("Collection");
-		{
-			TemplateBinding symbol_156 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_156.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_157 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_157.setFormal(symbol_72);	
-				symbol_157.setActual(symbol_98);	
-				symbol_156.getParameterSubstitutions().add(symbol_157);
-			}
-			symbol_18.getTemplateBindings().add(symbol_156);
+		{	// ocl::Bag::reject() ocl.Bag{T}.reject(ocl.Bag{T}?T)
+			Operation symbol_154 = PivotFactory.eINSTANCE.createOperation();
+			symbol_154.setName("reject");
+			symbol_154.setType(symbol_99);
+			Parameter symbol_155 = PivotFactory.eINSTANCE.createParameter();
+			symbol_155.setName("i");
+			symbol_155.setType(symbol_15);
+			symbol_155.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_154.getOwnedParameters().add(symbol_155);
+			symbol_154.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
+			symbol_12.getOwnedOperations().add(symbol_154);
 		}
-		symbol_12.getOwnedTypes().add(symbol_18);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.Collection{T}?T]
-		//
-		symbol_19.setName("Collection");
-		{
-			TemplateBinding symbol_158 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_158.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_159 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_159.setFormal(symbol_72);	
-				symbol_159.setActual(symbol_73);	
-				symbol_158.getParameterSubstitutions().add(symbol_159);
-			}
-			symbol_19.getTemplateBindings().add(symbol_158);
+		{	// ocl::Bag::select() ocl.Bag{T}.select(ocl.Bag{T}?T)
+			Operation symbol_156 = PivotFactory.eINSTANCE.createOperation();
+			symbol_156.setName("select");
+			symbol_156.setType(symbol_99);
+			Parameter symbol_157 = PivotFactory.eINSTANCE.createParameter();
+			symbol_157.setName("i");
+			symbol_157.setType(symbol_15);
+			symbol_157.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_156.getOwnedParameters().add(symbol_157);
+			symbol_156.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
+			symbol_12.getOwnedOperations().add(symbol_156);
 		}
-		symbol_12.getOwnedTypes().add(symbol_19);
+		symbol_1.getOwnedTypes().add(symbol_12);
 		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.UniqueCollection{T}?T]
+		// ocl::Boolean ocl.Boolean
 		//
-		symbol_20.setName("Collection");
-		{
-			TemplateBinding symbol_160 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_160.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_161 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_161.setFormal(symbol_72);	
-				symbol_161.setActual(symbol_144);	
-				symbol_160.getParameterSubstitutions().add(symbol_161);
-			}
-			symbol_20.getTemplateBindings().add(symbol_160);
+		symbol_19.setName("Boolean");
+		symbol_19.setPrimitive(Boolean.TRUE);
+		symbol_19.getSuperClasses().add(symbol_50);
+		{	// ocl::Boolean::<>() ocl.Boolean.<>(ocl.OclAny)
+			Operation symbol_158 = PivotFactory.eINSTANCE.createOperation();
+			symbol_158.setName("<>");
+			symbol_158.setType(symbol_19);
+			Parameter symbol_159 = PivotFactory.eINSTANCE.createParameter();
+			symbol_159.setName("object2");
+			symbol_159.setType(symbol_50);
+			symbol_159.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_158.getOwnedParameters().add(symbol_159);
+			symbol_158.setPrecedence(symbol_7);
+			symbol_158.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanNotEqualOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_158);
 		}
-		symbol_12.getOwnedTypes().add(symbol_20);
+		{	// ocl::Boolean::=() ocl.Boolean.=(ocl.OclAny)
+			Operation symbol_160 = PivotFactory.eINSTANCE.createOperation();
+			symbol_160.setName("=");
+			symbol_160.setType(symbol_19);
+			Parameter symbol_161 = PivotFactory.eINSTANCE.createParameter();
+			symbol_161.setName("object2");
+			symbol_161.setType(symbol_50);
+			symbol_161.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_160.getOwnedParameters().add(symbol_161);
+			symbol_160.setPrecedence(symbol_7);
+			symbol_160.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanEqualOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_160);
+		}
+		{	// ocl::Boolean::allInstances() ocl.Boolean.allInstances()
+			Operation symbol_162 = PivotFactory.eINSTANCE.createOperation();
+			symbol_162.setName("allInstances");
+			symbol_162.setType(symbol_136);
+			symbol_162.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_162);
+		}
+		{	// ocl::Boolean::and() ocl.Boolean.and(ocl.Boolean)
+			Operation symbol_163 = PivotFactory.eINSTANCE.createOperation();
+			symbol_163.setName("and");
+			symbol_163.setType(symbol_19);
+			Parameter symbol_164 = PivotFactory.eINSTANCE.createParameter();
+			symbol_164.setName("b");
+			symbol_164.setType(symbol_19);
+			symbol_164.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_163.getOwnedParameters().add(symbol_164);
+			symbol_163.setPrecedence(symbol_3);
+			symbol_163.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanAndOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_163);
+		}
+		{	// ocl::Boolean::implies() ocl.Boolean.implies(ocl.Boolean)
+			Operation symbol_165 = PivotFactory.eINSTANCE.createOperation();
+			symbol_165.setName("implies");
+			symbol_165.setType(symbol_19);
+			Parameter symbol_166 = PivotFactory.eINSTANCE.createParameter();
+			symbol_166.setName("b");
+			symbol_166.setType(symbol_19);
+			symbol_166.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_165.getOwnedParameters().add(symbol_166);
+			symbol_165.setPrecedence(symbol_10);
+			symbol_165.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_165);
+		}
+		{	// ocl::Boolean::not() ocl.Boolean.not()
+			Operation symbol_167 = PivotFactory.eINSTANCE.createOperation();
+			symbol_167.setName("not");
+			symbol_167.setType(symbol_19);
+			symbol_167.setPrecedence(symbol_5);
+			symbol_167.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanNotOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_167);
+		}
+		{	// ocl::Boolean::or() ocl.Boolean.or(ocl.Boolean)
+			Operation symbol_168 = PivotFactory.eINSTANCE.createOperation();
+			symbol_168.setName("or");
+			symbol_168.setType(symbol_19);
+			Parameter symbol_169 = PivotFactory.eINSTANCE.createParameter();
+			symbol_169.setName("b");
+			symbol_169.setType(symbol_19);
+			symbol_169.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_168.getOwnedParameters().add(symbol_169);
+			symbol_168.setPrecedence(symbol_6);
+			symbol_168.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanOrOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_168);
+		}
+		{	// ocl::Boolean::toString() ocl.Boolean.toString()
+			Operation symbol_170 = PivotFactory.eINSTANCE.createOperation();
+			symbol_170.setName("toString");
+			symbol_170.setType(symbol_85);
+			symbol_170.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_170);
+		}
+		{	// ocl::Boolean::xor() ocl.Boolean.xor(ocl.Boolean)
+			Operation symbol_171 = PivotFactory.eINSTANCE.createOperation();
+			symbol_171.setName("xor");
+			symbol_171.setType(symbol_19);
+			Parameter symbol_172 = PivotFactory.eINSTANCE.createParameter();
+			symbol_172.setName("b");
+			symbol_172.setType(symbol_19);
+			symbol_172.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_171.getOwnedParameters().add(symbol_172);
+			symbol_171.setPrecedence(symbol_8);
+			symbol_171.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanXorOperation.INSTANCE);
+			symbol_19.getOwnedOperations().add(symbol_171);
+		}
+		symbol_1.getOwnedTypes().add(symbol_19);
 		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])?T2]
+		// ocl::Classifier ocl.Classifier
+		//
+		symbol_20.setName("Classifier");
+		symbol_20.getSuperClasses().add(symbol_50);
+		{	// ocl::Classifier::allInstances() ocl.Classifier.allInstances()
+			Operation symbol_173 = PivotFactory.eINSTANCE.createOperation();
+			symbol_173.setName("allInstances");
+			symbol_173.setType(symbol_137);
+			symbol_173.setImplementation(org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation.INSTANCE);
+			symbol_20.getOwnedOperations().add(symbol_173);
+		}
+		symbol_1.getOwnedTypes().add(symbol_20);
+		//
+		// ocl::Collection ocl.Collection{T}
 		//
 		symbol_21.setName("Collection");
-		{
-			TemplateBinding symbol_162 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_162.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_163 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_163.setFormal(symbol_72);	
-				symbol_163.setActual(symbol_88);	
-				symbol_162.getParameterSubstitutions().add(symbol_163);
-			}
-			symbol_21.getTemplateBindings().add(symbol_162);
-		}
-		symbol_12.getOwnedTypes().add(symbol_21);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.OclAny]
-		//
-		symbol_22.setName("Collection");
-		{
-			TemplateBinding symbol_164 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_164.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_165 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_165.setFormal(symbol_72);	
-				symbol_165.setActual(symbol_99);	
-				symbol_164.getParameterSubstitutions().add(symbol_165);
-			}
-			symbol_22.getTemplateBindings().add(symbol_164);
-		}
-		symbol_12.getOwnedTypes().add(symbol_22);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.Collection{T}.includesAll{T2}(stdlib24.Collection[T2])?T2]
-		//
-		symbol_23.setName("Collection");
-		{
-			TemplateBinding symbol_166 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_166.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_167 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_167.setFormal(symbol_72);	
-				symbol_167.setActual(symbol_82);	
-				symbol_166.getParameterSubstitutions().add(symbol_167);
-			}
-			symbol_23.getTemplateBindings().add(symbol_166);
-		}
-		symbol_12.getOwnedTypes().add(symbol_23);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.NonOrderedCollection{T}?T]
-		//
-		symbol_24.setName("Collection");
-		{
-			TemplateBinding symbol_168 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_168.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_169 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_169.setFormal(symbol_72);	
-				symbol_169.setActual(symbol_94);	
-				symbol_168.getParameterSubstitutions().add(symbol_169);
-			}
-			symbol_24.getTemplateBindings().add(symbol_168);
-		}
-		symbol_12.getOwnedTypes().add(symbol_24);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.Collection{T}.flatten{T2}()?T2]
-		//
-		symbol_25.setName("Collection");
-		{
-			TemplateBinding symbol_170 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_170.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_171 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_171.setFormal(symbol_72);	
-				symbol_171.setActual(symbol_79);	
-				symbol_170.getParameterSubstitutions().add(symbol_171);
-			}
-			symbol_25.getTemplateBindings().add(symbol_170);
-		}
-		symbol_12.getOwnedTypes().add(symbol_25);
-		//
-		// ocl::orphanage::Collection stdlib24.Collection[stdlib24.OrderedCollection{T}?T]
-		//
-		symbol_26.setName("Collection");
-		{
-			TemplateBinding symbol_172 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_172.setSignature(symbol_71);
-			{
-				TemplateParameterSubstitution symbol_173 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_173.setFormal(symbol_72);	
-				symbol_173.setActual(symbol_111);	
-				symbol_172.getParameterSubstitutions().add(symbol_173);
-			}
-			symbol_26.getTemplateBindings().add(symbol_172);
-		}
-		symbol_12.getOwnedTypes().add(symbol_26);
-		//
-		// ocl::orphanage::NonOrderedCollection stdlib24.NonOrderedCollection[stdlib24.Bag{T}?T]
-		//
-		symbol_27.setName("NonOrderedCollection");
-		{
-			TemplateBinding symbol_174 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_174.setSignature(symbol_92);
-			{
-				TemplateParameterSubstitution symbol_175 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_175.setFormal(symbol_93);	
-				symbol_175.setActual(symbol_64);	
-				symbol_174.getParameterSubstitutions().add(symbol_175);
-			}
-			symbol_27.getTemplateBindings().add(symbol_174);
-		}
-		symbol_12.getOwnedTypes().add(symbol_27);
-		//
-		// ocl::orphanage::NonOrderedCollection stdlib24.NonOrderedCollection[stdlib24.Set{T}?T]
-		//
-		symbol_28.setName("NonOrderedCollection");
-		{
-			TemplateBinding symbol_176 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_176.setSignature(symbol_92);
-			{
-				TemplateParameterSubstitution symbol_177 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_177.setFormal(symbol_93);	
-				symbol_177.setActual(symbol_130);	
-				symbol_176.getParameterSubstitutions().add(symbol_177);
-			}
-			symbol_28.getTemplateBindings().add(symbol_176);
-		}
-		symbol_12.getOwnedTypes().add(symbol_28);
-		//
-		// ocl::orphanage::NonUniqueCollection stdlib24.NonUniqueCollection[stdlib24.Sequence{T}?T]
-		//
-		symbol_29.setName("NonUniqueCollection");
-		{
-			TemplateBinding symbol_178 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_178.setSignature(symbol_96);
-			{
-				TemplateParameterSubstitution symbol_179 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_179.setFormal(symbol_97);	
-				symbol_179.setActual(symbol_123);	
-				symbol_178.getParameterSubstitutions().add(symbol_179);
-			}
-			symbol_29.getTemplateBindings().add(symbol_178);
-		}
-		symbol_12.getOwnedTypes().add(symbol_29);
-		//
-		// ocl::orphanage::NonUniqueCollection stdlib24.NonUniqueCollection[stdlib24.Bag{T}?T]
-		//
-		symbol_30.setName("NonUniqueCollection");
-		{
-			TemplateBinding symbol_180 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_180.setSignature(symbol_96);
-			{
-				TemplateParameterSubstitution symbol_181 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_181.setFormal(symbol_97);	
-				symbol_181.setActual(symbol_64);	
-				symbol_180.getParameterSubstitutions().add(symbol_181);
-			}
-			symbol_30.getTemplateBindings().add(symbol_180);
-		}
-		symbol_12.getOwnedTypes().add(symbol_30);
-		//
-		// ocl::orphanage::OrderedCollection stdlib24.OrderedCollection[stdlib24.Collection{T}?T]
-		//
-		symbol_31.setName("OrderedCollection");
-		{
-			TemplateBinding symbol_182 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_182.setSignature(symbol_109);
-			{
-				TemplateParameterSubstitution symbol_183 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_183.setFormal(symbol_110);	
-				symbol_183.setActual(symbol_73);	
-				symbol_182.getParameterSubstitutions().add(symbol_183);
-			}
-			symbol_31.getTemplateBindings().add(symbol_182);
-		}
-		symbol_12.getOwnedTypes().add(symbol_31);
-		//
-		// ocl::orphanage::OrderedCollection stdlib24.OrderedCollection[stdlib24.OrderedCollection{T}?T]
-		//
-		symbol_32.setName("OrderedCollection");
-		{
-			TemplateBinding symbol_184 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_184.setSignature(symbol_109);
-			{
-				TemplateParameterSubstitution symbol_185 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_185.setFormal(symbol_110);	
-				symbol_185.setActual(symbol_111);	
-				symbol_184.getParameterSubstitutions().add(symbol_185);
-			}
-			symbol_32.getTemplateBindings().add(symbol_184);
-		}
-		symbol_12.getOwnedTypes().add(symbol_32);
-		//
-		// ocl::orphanage::OrderedCollection stdlib24.OrderedCollection[stdlib24.Sequence{T}?T]
-		//
-		symbol_33.setName("OrderedCollection");
-		{
-			TemplateBinding symbol_186 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_186.setSignature(symbol_109);
-			{
-				TemplateParameterSubstitution symbol_187 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_187.setFormal(symbol_110);	
-				symbol_187.setActual(symbol_123);	
-				symbol_186.getParameterSubstitutions().add(symbol_187);
-			}
-			symbol_33.getTemplateBindings().add(symbol_186);
-		}
-		symbol_12.getOwnedTypes().add(symbol_33);
-		//
-		// ocl::orphanage::OrderedCollection stdlib24.OrderedCollection[stdlib24.OrderedSet{T}?T]
-		//
-		symbol_34.setName("OrderedCollection");
-		{
-			TemplateBinding symbol_188 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_188.setSignature(symbol_109);
-			{
-				TemplateParameterSubstitution symbol_189 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_189.setFormal(symbol_110);	
-				symbol_189.setActual(symbol_115);	
-				symbol_188.getParameterSubstitutions().add(symbol_189);
-			}
-			symbol_34.getTemplateBindings().add(symbol_188);
-		}
-		symbol_12.getOwnedTypes().add(symbol_34);
-		//
-		// ocl::orphanage::OrderedSet stdlib24.OrderedSet[stdlib24.OrderedSet{T}?T]
-		//
-		symbol_35.setName("OrderedSet");
-		{
-			TemplateBinding symbol_190 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_190.setSignature(symbol_113);
-			{
-				TemplateParameterSubstitution symbol_191 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_191.setFormal(symbol_114);	
-				symbol_191.setActual(symbol_115);	
-				symbol_190.getParameterSubstitutions().add(symbol_191);
-			}
-			symbol_35.getTemplateBindings().add(symbol_190);
-		}
-		symbol_12.getOwnedTypes().add(symbol_35);
-		//
-		// ocl::orphanage::OrderedSet stdlib24.OrderedSet[stdlib24.UniqueCollection{T}?T]
-		//
-		symbol_36.setName("OrderedSet");
-		{
-			TemplateBinding symbol_192 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_192.setSignature(symbol_113);
-			{
-				TemplateParameterSubstitution symbol_193 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_193.setFormal(symbol_114);	
-				symbol_193.setActual(symbol_144);	
-				symbol_192.getParameterSubstitutions().add(symbol_193);
-			}
-			symbol_36.getTemplateBindings().add(symbol_192);
-		}
-		symbol_12.getOwnedTypes().add(symbol_36);
-		//
-		// ocl::orphanage::OrderedSet stdlib24.OrderedSet[stdlib24.Collection{T}?T]
-		//
-		symbol_37.setName("OrderedSet");
-		{
-			TemplateBinding symbol_194 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_194.setSignature(symbol_113);
-			{
-				TemplateParameterSubstitution symbol_195 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_195.setFormal(symbol_114);	
-				symbol_195.setActual(symbol_73);	
-				symbol_194.getParameterSubstitutions().add(symbol_195);
-			}
-			symbol_37.getTemplateBindings().add(symbol_194);
-		}
-		symbol_12.getOwnedTypes().add(symbol_37);
-		//
-		// ocl::orphanage::OrderedSet stdlib24.OrderedSet[stdlib24.OrderedCollection{T}?T]
-		//
-		symbol_38.setName("OrderedSet");
-		{
-			TemplateBinding symbol_196 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_196.setSignature(symbol_113);
-			{
-				TemplateParameterSubstitution symbol_197 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_197.setFormal(symbol_114);	
-				symbol_197.setActual(symbol_111);	
-				symbol_196.getParameterSubstitutions().add(symbol_197);
-			}
-			symbol_38.getTemplateBindings().add(symbol_196);
-		}
-		symbol_12.getOwnedTypes().add(symbol_38);
-		//
-		// ocl::orphanage::Sequence stdlib24.Sequence[stdlib24.OrderedCollection{T}?T]
-		//
-		symbol_39.setName("Sequence");
-		{
-			TemplateBinding symbol_198 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_198.setSignature(symbol_121);
-			{
-				TemplateParameterSubstitution symbol_199 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_199.setFormal(symbol_122);	
-				symbol_199.setActual(symbol_111);	
-				symbol_198.getParameterSubstitutions().add(symbol_199);
-			}
-			symbol_39.getTemplateBindings().add(symbol_198);
-		}
-		symbol_12.getOwnedTypes().add(symbol_39);
-		//
-		// ocl::orphanage::Sequence stdlib24.Sequence[stdlib24.Collection{T}?T]
-		//
-		symbol_40.setName("Sequence");
-		{
-			TemplateBinding symbol_200 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_200.setSignature(symbol_121);
-			{
-				TemplateParameterSubstitution symbol_201 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_201.setFormal(symbol_122);	
-				symbol_201.setActual(symbol_73);	
-				symbol_200.getParameterSubstitutions().add(symbol_201);
-			}
-			symbol_40.getTemplateBindings().add(symbol_200);
-		}
-		symbol_12.getOwnedTypes().add(symbol_40);
-		//
-		// ocl::orphanage::Sequence stdlib24.Sequence[stdlib24.String]
-		//
-		symbol_41.setName("Sequence");
-		{
-			TemplateBinding symbol_202 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_202.setSignature(symbol_121);
-			{
-				TemplateParameterSubstitution symbol_203 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_203.setFormal(symbol_122);	
-				symbol_203.setActual(symbol_134);	
-				symbol_202.getParameterSubstitutions().add(symbol_203);
-			}
-			symbol_41.getTemplateBindings().add(symbol_202);
-		}
-		symbol_12.getOwnedTypes().add(symbol_41);
-		//
-		// ocl::orphanage::Sequence stdlib24.Sequence[stdlib24.NonUniqueCollection{T}?T]
-		//
-		symbol_42.setName("Sequence");
-		{
-			TemplateBinding symbol_204 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_204.setSignature(symbol_121);
-			{
-				TemplateParameterSubstitution symbol_205 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_205.setFormal(symbol_122);	
-				symbol_205.setActual(symbol_98);	
-				symbol_204.getParameterSubstitutions().add(symbol_205);
-			}
-			symbol_42.getTemplateBindings().add(symbol_204);
-		}
-		symbol_12.getOwnedTypes().add(symbol_42);
-		//
-		// ocl::orphanage::Sequence stdlib24.Sequence[stdlib24.Sequence{T}.flatten{T2}()?T2]
-		//
-		symbol_43.setName("Sequence");
-		{
-			TemplateBinding symbol_206 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_206.setSignature(symbol_121);
-			{
-				TemplateParameterSubstitution symbol_207 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_207.setFormal(symbol_122);	
-				symbol_207.setActual(symbol_126);	
-				symbol_206.getParameterSubstitutions().add(symbol_207);
-			}
-			symbol_43.getTemplateBindings().add(symbol_206);
-		}
-		symbol_12.getOwnedTypes().add(symbol_43);
-		//
-		// ocl::orphanage::Sequence stdlib24.Sequence[stdlib24.Sequence{T}?T]
-		//
-		symbol_44.setName("Sequence");
-		{
-			TemplateBinding symbol_208 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_208.setSignature(symbol_121);
-			{
-				TemplateParameterSubstitution symbol_209 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_209.setFormal(symbol_122);	
-				symbol_209.setActual(symbol_123);	
-				symbol_208.getParameterSubstitutions().add(symbol_209);
-			}
-			symbol_44.getTemplateBindings().add(symbol_208);
-		}
-		symbol_12.getOwnedTypes().add(symbol_44);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.Collection{T}?T]
-		//
-		symbol_45.setName("Set");
-		{
-			TemplateBinding symbol_210 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_210.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_211 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_211.setFormal(symbol_129);	
-				symbol_211.setActual(symbol_73);	
-				symbol_210.getParameterSubstitutions().add(symbol_211);
-			}
-			symbol_45.getTemplateBindings().add(symbol_210);
-		}
-		symbol_12.getOwnedTypes().add(symbol_45);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.Set{T}.flatten{T2}()?T2]
-		//
-		symbol_46.setName("Set");
-		{
-			TemplateBinding symbol_212 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_212.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_213 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_213.setFormal(symbol_129);	
-				symbol_213.setActual(symbol_133);	
-				symbol_212.getParameterSubstitutions().add(symbol_213);
-			}
-			symbol_46.getTemplateBindings().add(symbol_212);
-		}
-		symbol_12.getOwnedTypes().add(symbol_46);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.Classifier]
-		//
-		symbol_47.setName("Set");
-		{
-			TemplateBinding symbol_214 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_214.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_215 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_215.setFormal(symbol_129);	
-				symbol_215.setActual(symbol_69);	
-				symbol_214.getParameterSubstitutions().add(symbol_215);
-			}
-			symbol_47.getTemplateBindings().add(symbol_214);
-		}
-		symbol_12.getOwnedTypes().add(symbol_47);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.Tuple[stdlib24.Collection{T}?T,stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])?T2]]
-		//
-		symbol_48.setName("Set");
-		{
-			TemplateBinding symbol_216 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_216.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_217 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_217.setFormal(symbol_129);	
-				symbol_217.setActual(symbol_57);	
-				symbol_216.getParameterSubstitutions().add(symbol_217);
-			}
-			symbol_48.getTemplateBindings().add(symbol_216);
-		}
-		symbol_12.getOwnedTypes().add(symbol_48);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.OclVoid]
-		//
-		symbol_49.setName("Set");
-		{
-			TemplateBinding symbol_218 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_218.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_219 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_219.setFormal(symbol_129);	
-				symbol_219.setActual(symbol_107);	
-				symbol_218.getParameterSubstitutions().add(symbol_219);
-			}
-			symbol_49.getTemplateBindings().add(symbol_218);
-		}
-		symbol_12.getOwnedTypes().add(symbol_49);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.NonOrderedCollection{T}?T]
-		//
-		symbol_50.setName("Set");
-		{
-			TemplateBinding symbol_220 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_220.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_221 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_221.setFormal(symbol_129);	
-				symbol_221.setActual(symbol_94);	
-				symbol_220.getParameterSubstitutions().add(symbol_221);
-			}
-			symbol_50.getTemplateBindings().add(symbol_220);
-		}
-		symbol_12.getOwnedTypes().add(symbol_50);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.Set{T}?T]
-		//
-		symbol_51.setName("Set");
-		{
-			TemplateBinding symbol_222 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_222.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_223 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_223.setFormal(symbol_129);	
-				symbol_223.setActual(symbol_130);	
-				symbol_222.getParameterSubstitutions().add(symbol_223);
-			}
-			symbol_51.getTemplateBindings().add(symbol_222);
-		}
-		symbol_12.getOwnedTypes().add(symbol_51);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.OclAny]
-		//
-		symbol_52.setName("Set");
-		{
-			TemplateBinding symbol_224 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_224.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_225 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_225.setFormal(symbol_129);	
-				symbol_225.setActual(symbol_99);	
-				symbol_224.getParameterSubstitutions().add(symbol_225);
-			}
-			symbol_52.getTemplateBindings().add(symbol_224);
-		}
-		symbol_12.getOwnedTypes().add(symbol_52);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.OrderedSet{T}?T]
-		//
-		symbol_53.setName("Set");
-		{
-			TemplateBinding symbol_226 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_226.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_227 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_227.setFormal(symbol_129);	
-				symbol_227.setActual(symbol_115);	
-				symbol_226.getParameterSubstitutions().add(symbol_227);
-			}
-			symbol_53.getTemplateBindings().add(symbol_226);
-		}
-		symbol_12.getOwnedTypes().add(symbol_53);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.Enumeration]
-		//
-		symbol_54.setName("Set");
-		{
-			TemplateBinding symbol_228 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_228.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_229 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_229.setFormal(symbol_129);	
-				symbol_229.setActual(symbol_89);	
-				symbol_228.getParameterSubstitutions().add(symbol_229);
-			}
-			symbol_54.getTemplateBindings().add(symbol_228);
-		}
-		symbol_12.getOwnedTypes().add(symbol_54);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.OclInvalid]
-		//
-		symbol_55.setName("Set");
-		{
-			TemplateBinding symbol_230 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_230.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_231 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_231.setFormal(symbol_129);	
-				symbol_231.setActual(symbol_103);	
-				symbol_230.getParameterSubstitutions().add(symbol_231);
-			}
-			symbol_55.getTemplateBindings().add(symbol_230);
-		}
-		symbol_12.getOwnedTypes().add(symbol_55);
-		//
-		// ocl::orphanage::Set stdlib24.Set[stdlib24.Boolean]
-		//
-		symbol_56.setName("Set");
-		{
-			TemplateBinding symbol_232 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_232.setSignature(symbol_128);
-			{
-				TemplateParameterSubstitution symbol_233 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_233.setFormal(symbol_129);	
-				symbol_233.setActual(symbol_68);	
-				symbol_232.getParameterSubstitutions().add(symbol_233);
-			}
-			symbol_56.getTemplateBindings().add(symbol_232);
-		}
-		symbol_12.getOwnedTypes().add(symbol_56);
-		//
-		// ocl::orphanage::Tuple stdlib24.Tuple[stdlib24.Collection{T}?T,stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])?T2]
-		//
-		symbol_57.setName("Tuple");
-		{
-			TemplateBinding symbol_234 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_234.setSignature(symbol_136);
-			{
-				TemplateParameterSubstitution symbol_235 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_235.setFormal(symbol_139);	
-				symbol_235.setActual(symbol_88);	
-				symbol_234.getParameterSubstitutions().add(symbol_235);
-			}{
-				TemplateParameterSubstitution symbol_236 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_236.setFormal(symbol_137);	
-				symbol_236.setActual(symbol_73);	
-				symbol_234.getParameterSubstitutions().add(symbol_236);
-			}
-			symbol_57.getTemplateBindings().add(symbol_234);
-		}
-		symbol_12.getOwnedTypes().add(symbol_57);
-		//
-		// ocl::orphanage::UniqueCollection stdlib24.UniqueCollection[stdlib24.Set{T}?T]
-		//
-		symbol_58.setName("UniqueCollection");
-		{
-			TemplateBinding symbol_237 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_237.setSignature(symbol_142);
-			{
-				TemplateParameterSubstitution symbol_238 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_238.setFormal(symbol_143);	
-				symbol_238.setActual(symbol_130);	
-				symbol_237.getParameterSubstitutions().add(symbol_238);
-			}
-			symbol_58.getTemplateBindings().add(symbol_237);
-		}
-		symbol_12.getOwnedTypes().add(symbol_58);
-		//
-		// ocl::orphanage::UniqueCollection stdlib24.UniqueCollection[stdlib24.OrderedSet{T}?T]
-		//
-		symbol_59.setName("UniqueCollection");
-		{
-			TemplateBinding symbol_239 = PivotFactory.eINSTANCE.createTemplateBinding();
-			symbol_239.setSignature(symbol_142);
-			{
-				TemplateParameterSubstitution symbol_240 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_240.setFormal(symbol_143);	
-				symbol_240.setActual(symbol_115);	
-				symbol_239.getParameterSubstitutions().add(symbol_240);
-			}
-			symbol_59.getTemplateBindings().add(symbol_239);
-		}
-		symbol_12.getOwnedTypes().add(symbol_59);
-		symbol_1.getNestedPackages().add(symbol_12);
-		//
-		// ocl::stdlib24
-		//
-		symbol_60.setName("stdlib24");
-		symbol_60.setNsPrefix("ocl");
-		symbol_60.setNsURI("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib");
-		//
-		// ocl::stdlib24::Bag stdlib24.Bag{T}
-		//
-		symbol_61.setName("Bag");
-		symbol_64.setName("T");
-		symbol_63.setOwnedParameteredElement(symbol_64);
-		symbol_62.getOwnedParameters().add(symbol_63);
+		symbol_24.setName("T");
+		symbol_23.setOwnedParameteredElement(symbol_24);
+		symbol_22.getOwnedParameters().add(symbol_23);
 		
-		symbol_61.setOwnedTemplateSignature(symbol_62);
-		symbol_61.getSuperClasses().add(symbol_30);
-		symbol_61.getSuperClasses().add(symbol_27);
-		{	// ocl::stdlib24::Bag::<>() stdlib24.Bag{T}.<>(stdlib24.OclAny)
-			Operation symbol_241 = PivotFactory.eINSTANCE.createOperation();
-			symbol_241.setName("<>");
-			symbol_241.setType(symbol_68);
-			Parameter symbol_242 = PivotFactory.eINSTANCE.createParameter();
-			symbol_242.setName("bag");
-			symbol_242.setType(symbol_99);
-			symbol_242.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_241.getOwnedParameters().add(symbol_242);
-			symbol_241.setPrecedence(symbol_6);
-			symbol_241.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
-			symbol_61.getOwnedOperations().add(symbol_241);
+		symbol_21.setOwnedTemplateSignature(symbol_22);
+		symbol_21.getSuperClasses().add(symbol_50);
+		{	// ocl::Collection::<>() ocl.Collection{T}.<>(ocl.OclAny)
+			Operation symbol_174 = PivotFactory.eINSTANCE.createOperation();
+			symbol_174.setName("<>");
+			symbol_174.setType(symbol_19);
+			Parameter symbol_175 = PivotFactory.eINSTANCE.createParameter();
+			symbol_175.setName("c");
+			symbol_175.setType(symbol_50);
+			symbol_175.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_174.getOwnedParameters().add(symbol_175);
+			symbol_174.setPrecedence(symbol_7);
+			symbol_174.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_174);
 		}
-		{	// ocl::stdlib24::Bag::=() stdlib24.Bag{T}.=(stdlib24.OclAny)
-			Operation symbol_243 = PivotFactory.eINSTANCE.createOperation();
-			symbol_243.setName("=");
-			symbol_243.setType(symbol_68);
-			Parameter symbol_244 = PivotFactory.eINSTANCE.createParameter();
-			symbol_244.setName("bag");
-			symbol_244.setType(symbol_99);
-			symbol_244.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_243.getOwnedParameters().add(symbol_244);
-			symbol_243.setPrecedence(symbol_6);
-			symbol_243.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
-			symbol_61.getOwnedOperations().add(symbol_243);
+		{	// ocl::Collection::=() ocl.Collection{T}.=(ocl.OclAny)
+			Operation symbol_176 = PivotFactory.eINSTANCE.createOperation();
+			symbol_176.setName("=");
+			symbol_176.setType(symbol_19);
+			Parameter symbol_177 = PivotFactory.eINSTANCE.createParameter();
+			symbol_177.setName("c");
+			symbol_177.setType(symbol_50);
+			symbol_177.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_176.getOwnedParameters().add(symbol_177);
+			symbol_176.setPrecedence(symbol_7);
+			symbol_176.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_176);
 		}
-		{	// ocl::stdlib24::Bag::excluding() stdlib24.Bag{T}.excluding(stdlib24.OclAny)
+		{	// ocl::Collection::any() ocl.Collection{T}.any(ocl.Collection{T}?T)
+			Operation symbol_178 = PivotFactory.eINSTANCE.createOperation();
+			symbol_178.setName("any");
+			symbol_178.setType(symbol_24);
+			Parameter symbol_179 = PivotFactory.eINSTANCE.createParameter();
+			symbol_179.setName("i");
+			symbol_179.setType(symbol_24);
+			symbol_179.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_178.getOwnedParameters().add(symbol_179);
+			symbol_178.setImplementation(org.eclipse.ocl.examples.library.iterator.AnyIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_178);
+		}
+		{	// ocl::Collection::asBag() ocl.Collection{T}.asBag()
+			Operation symbol_180 = PivotFactory.eINSTANCE.createOperation();
+			symbol_180.setName("asBag");
+			symbol_180.setType(symbol_101);
+			symbol_180.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_180);
+		}
+		{	// ocl::Collection::asOrderedSet() ocl.Collection{T}.asOrderedSet()
+			Operation symbol_181 = PivotFactory.eINSTANCE.createOperation();
+			symbol_181.setName("asOrderedSet");
+			symbol_181.setType(symbol_122);
+			symbol_181.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_181);
+		}
+		{	// ocl::Collection::asSequence() ocl.Collection{T}.asSequence()
+			Operation symbol_182 = PivotFactory.eINSTANCE.createOperation();
+			symbol_182.setName("asSequence");
+			symbol_182.setType(symbol_126);
+			symbol_182.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_182);
+		}
+		{	// ocl::Collection::asSet() ocl.Collection{T}.asSet()
+			Operation symbol_183 = PivotFactory.eINSTANCE.createOperation();
+			symbol_183.setName("asSet");
+			symbol_183.setType(symbol_135);
+			symbol_183.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_183);
+		}
+		{	// ocl::Collection::collect() ocl.Collection{T}.collect(ocl.Collection{T}?T)
+			Operation symbol_184 = PivotFactory.eINSTANCE.createOperation();
+			symbol_184.setName("collect");
+			symbol_184.setType(symbol_105);
+			Parameter symbol_185 = PivotFactory.eINSTANCE.createParameter();
+			symbol_185.setName("i");
+			symbol_185.setType(symbol_24);
+			symbol_185.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_184.getOwnedParameters().add(symbol_185);
+			symbol_184.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_184);
+		}
+		{	// ocl::Collection::collectNested() ocl.Collection{T}.collectNested(ocl.Collection{T}?T)
+			Operation symbol_186 = PivotFactory.eINSTANCE.createOperation();
+			symbol_186.setName("collectNested");
+			symbol_186.setType(symbol_105);
+			Parameter symbol_187 = PivotFactory.eINSTANCE.createParameter();
+			symbol_187.setName("i");
+			symbol_187.setType(symbol_24);
+			symbol_187.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_186.getOwnedParameters().add(symbol_187);
+			symbol_186.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_186);
+		}
+		{	// ocl::Collection::count() ocl.Collection{T}.count(ocl.OclAny)
+			Operation symbol_188 = PivotFactory.eINSTANCE.createOperation();
+			symbol_188.setName("count");
+			symbol_188.setType(symbol_41);
+			Parameter symbol_189 = PivotFactory.eINSTANCE.createParameter();
+			symbol_189.setName("object");
+			symbol_189.setType(symbol_50);
+			symbol_189.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_188.getOwnedParameters().add(symbol_189);
+			symbol_188.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionCountOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_188);
+		}
+		{	// ocl::Collection::excludes() ocl.Collection{T}.excludes(ocl.OclAny)
+			Operation symbol_190 = PivotFactory.eINSTANCE.createOperation();
+			symbol_190.setName("excludes");
+			symbol_190.setType(symbol_19);
+			Parameter symbol_191 = PivotFactory.eINSTANCE.createParameter();
+			symbol_191.setName("object");
+			symbol_191.setType(symbol_50);
+			symbol_191.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_190.getOwnedParameters().add(symbol_191);
+			symbol_190.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_190);
+		}
+		{	// ocl::Collection::excludesAll() ocl.Collection{T}.excludesAll{T2}(ocl.Collection[T2])
+			Operation symbol_192 = PivotFactory.eINSTANCE.createOperation();
+			symbol_27.setName("T2");
+			symbol_26.setOwnedParameteredElement(symbol_27);
+			symbol_25.getOwnedParameters().add(symbol_26);
+			
+			symbol_192.setOwnedTemplateSignature(symbol_25);
+			symbol_192.setName("excludesAll");
+			symbol_192.setType(symbol_19);
+			Parameter symbol_193 = PivotFactory.eINSTANCE.createParameter();
+			symbol_193.setName("c2");
+			symbol_193.setType(symbol_106);
+			symbol_193.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_192.getOwnedParameters().add(symbol_193);
+			symbol_192.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_192);
+		}
+		{	// ocl::Collection::excluding() ocl.Collection{T}.excluding(ocl.OclAny)
+			Operation symbol_194 = PivotFactory.eINSTANCE.createOperation();
+			symbol_194.setName("excluding");
+			symbol_194.setType(symbol_105);
+			Parameter symbol_195 = PivotFactory.eINSTANCE.createParameter();
+			symbol_195.setName("object");
+			symbol_195.setType(symbol_50);
+			symbol_195.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_194.getOwnedParameters().add(symbol_195);
+			symbol_194.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_194);
+		}
+		{	// ocl::Collection::exists() ocl.Collection{T}.exists(ocl.Collection{T}?T)
+			Operation symbol_196 = PivotFactory.eINSTANCE.createOperation();
+			symbol_196.setName("exists");
+			symbol_196.setType(symbol_19);
+			Parameter symbol_197 = PivotFactory.eINSTANCE.createParameter();
+			symbol_197.setName("i");
+			symbol_197.setType(symbol_24);
+			symbol_197.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_196.getOwnedParameters().add(symbol_197);
+			symbol_196.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_196);
+		}
+		{	// ocl::Collection::exists() ocl.Collection{T}.exists(ocl.Collection{T}?T;T)
+			Operation symbol_198 = PivotFactory.eINSTANCE.createOperation();
+			symbol_198.setName("exists");
+			symbol_198.setType(symbol_19);
+			Parameter symbol_199 = PivotFactory.eINSTANCE.createParameter();
+			symbol_199.setName("i");
+			symbol_199.setType(symbol_24);
+			symbol_199.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_198.getOwnedParameters().add(symbol_199);
+			Parameter symbol_200 = PivotFactory.eINSTANCE.createParameter();
+			symbol_200.setName("j");
+			symbol_200.setType(symbol_24);
+			symbol_200.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_198.getOwnedParameters().add(symbol_200);
+			symbol_198.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_198);
+		}
+		{	// ocl::Collection::flatten() ocl.Collection{T}.flatten{T2}()
+			Operation symbol_201 = PivotFactory.eINSTANCE.createOperation();
+			symbol_30.setName("T2");
+			symbol_29.setOwnedParameteredElement(symbol_30);
+			symbol_28.getOwnedParameters().add(symbol_29);
+			
+			symbol_201.setOwnedTemplateSignature(symbol_28);
+			symbol_201.setName("flatten");
+			symbol_201.setType(symbol_103);
+			symbol_201.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_201);
+		}
+		{	// ocl::Collection::forAll() ocl.Collection{T}.forAll(ocl.Collection{T}?T)
+			Operation symbol_202 = PivotFactory.eINSTANCE.createOperation();
+			symbol_202.setName("forAll");
+			symbol_202.setType(symbol_19);
+			Parameter symbol_203 = PivotFactory.eINSTANCE.createParameter();
+			symbol_203.setName("i");
+			symbol_203.setType(symbol_24);
+			symbol_203.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_202.getOwnedParameters().add(symbol_203);
+			symbol_202.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_202);
+		}
+		{	// ocl::Collection::forAll() ocl.Collection{T}.forAll(ocl.Collection{T}?T;T)
+			Operation symbol_204 = PivotFactory.eINSTANCE.createOperation();
+			symbol_204.setName("forAll");
+			symbol_204.setType(symbol_19);
+			Parameter symbol_205 = PivotFactory.eINSTANCE.createParameter();
+			symbol_205.setName("i");
+			symbol_205.setType(symbol_24);
+			symbol_205.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_204.getOwnedParameters().add(symbol_205);
+			Parameter symbol_206 = PivotFactory.eINSTANCE.createParameter();
+			symbol_206.setName("j");
+			symbol_206.setType(symbol_24);
+			symbol_206.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_204.getOwnedParameters().add(symbol_206);
+			symbol_204.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_204);
+		}
+		{	// ocl::Collection::includes() ocl.Collection{T}.includes(ocl.OclAny)
+			Operation symbol_207 = PivotFactory.eINSTANCE.createOperation();
+			symbol_207.setName("includes");
+			symbol_207.setType(symbol_19);
+			Parameter symbol_208 = PivotFactory.eINSTANCE.createParameter();
+			symbol_208.setName("object");
+			symbol_208.setType(symbol_50);
+			symbol_208.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_207.getOwnedParameters().add(symbol_208);
+			symbol_207.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_207);
+		}
+		{	// ocl::Collection::includesAll() ocl.Collection{T}.includesAll{T2}(ocl.Collection[T2])
+			Operation symbol_209 = PivotFactory.eINSTANCE.createOperation();
+			symbol_33.setName("T2");
+			symbol_32.setOwnedParameteredElement(symbol_33);
+			symbol_31.getOwnedParameters().add(symbol_32);
+			
+			symbol_209.setOwnedTemplateSignature(symbol_31);
+			symbol_209.setName("includesAll");
+			symbol_209.setType(symbol_19);
+			Parameter symbol_210 = PivotFactory.eINSTANCE.createParameter();
+			symbol_210.setName("c2");
+			symbol_210.setType(symbol_102);
+			symbol_210.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_209.getOwnedParameters().add(symbol_210);
+			symbol_209.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_209);
+		}
+		{	// ocl::Collection::including() ocl.Collection{T}.including(ocl.Collection{T}?T)
+			Operation symbol_211 = PivotFactory.eINSTANCE.createOperation();
+			symbol_211.setName("including");
+			symbol_211.setType(symbol_105);
+			Parameter symbol_212 = PivotFactory.eINSTANCE.createParameter();
+			symbol_212.setName("object");
+			symbol_212.setType(symbol_24);
+			symbol_212.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_211.getOwnedParameters().add(symbol_212);
+			symbol_211.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_211);
+		}
+		{	// ocl::Collection::isEmpty() ocl.Collection{T}.isEmpty()
+			Operation symbol_213 = PivotFactory.eINSTANCE.createOperation();
+			symbol_213.setName("isEmpty");
+			symbol_213.setType(symbol_19);
+			symbol_213.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIsEmptyOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_213);
+		}
+		{	// ocl::Collection::isUnique() ocl.Collection{T}.isUnique(ocl.Collection{T}?T)
+			Operation symbol_214 = PivotFactory.eINSTANCE.createOperation();
+			symbol_214.setName("isUnique");
+			symbol_214.setType(symbol_19);
+			Parameter symbol_215 = PivotFactory.eINSTANCE.createParameter();
+			symbol_215.setName("i");
+			symbol_215.setType(symbol_24);
+			symbol_215.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_214.getOwnedParameters().add(symbol_215);
+			symbol_214.setImplementation(org.eclipse.ocl.examples.library.iterator.IsUniqueIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_214);
+		}
+		{	// ocl::Collection::iterate() ocl.Collection{T}.iterate{Tacc}(ocl.Collection{T}?T;Tacc)
+			Operation symbol_216 = PivotFactory.eINSTANCE.createOperation();
+			symbol_36.setName("Tacc");
+			symbol_35.setOwnedParameteredElement(symbol_36);
+			symbol_34.getOwnedParameters().add(symbol_35);
+			
+			symbol_216.setOwnedTemplateSignature(symbol_34);
+			symbol_216.setName("iterate");
+			symbol_216.setType(symbol_36);
+			Parameter symbol_217 = PivotFactory.eINSTANCE.createParameter();
+			symbol_217.setName("i");
+			symbol_217.setType(symbol_24);
+			symbol_217.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_216.getOwnedParameters().add(symbol_217);
+			Parameter symbol_218 = PivotFactory.eINSTANCE.createParameter();
+			symbol_218.setName("acc");
+			symbol_218.setType(symbol_36);
+			symbol_218.setIteratorKind(IteratorKind.ACCUMULATOR);
+			symbol_216.getOwnedParameters().add(symbol_218);
+			symbol_216.setImplementation(org.eclipse.ocl.examples.library.iterator.IsUniqueIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_216);
+		}
+		{	// ocl::Collection::max() ocl.Collection{T}.max()
+			Operation symbol_219 = PivotFactory.eINSTANCE.createOperation();
+			symbol_219.setName("max");
+			symbol_219.setType(symbol_24);
+			symbol_219.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionMaxOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_219);
+		}
+		{	// ocl::Collection::min() ocl.Collection{T}.min()
+			Operation symbol_220 = PivotFactory.eINSTANCE.createOperation();
+			symbol_220.setName("min");
+			symbol_220.setType(symbol_24);
+			symbol_220.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionMinOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_220);
+		}
+		{	// ocl::Collection::notEmpty() ocl.Collection{T}.notEmpty()
+			Operation symbol_221 = PivotFactory.eINSTANCE.createOperation();
+			symbol_221.setName("notEmpty");
+			symbol_221.setType(symbol_19);
+			symbol_221.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEmptyOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_221);
+		}
+		{	// ocl::Collection::one() ocl.Collection{T}.one(ocl.Collection{T}?T)
+			Operation symbol_222 = PivotFactory.eINSTANCE.createOperation();
+			symbol_222.setName("one");
+			symbol_222.setType(symbol_19);
+			Parameter symbol_223 = PivotFactory.eINSTANCE.createParameter();
+			symbol_223.setName("i");
+			symbol_223.setType(symbol_24);
+			symbol_223.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_222.getOwnedParameters().add(symbol_223);
+			symbol_222.setImplementation(org.eclipse.ocl.examples.library.iterator.OneIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_222);
+		}
+		{	// ocl::Collection::product() ocl.Collection{T}.product{T2}(ocl.Collection[T2])
+			Operation symbol_224 = PivotFactory.eINSTANCE.createOperation();
+			symbol_39.setName("T2");
+			symbol_38.setOwnedParameteredElement(symbol_39);
+			symbol_37.getOwnedParameters().add(symbol_38);
+			
+			symbol_224.setOwnedTemplateSignature(symbol_37);
+			symbol_224.setName("product");
+			symbol_224.setType(symbol_140);
+			Parameter symbol_225 = PivotFactory.eINSTANCE.createParameter();
+			symbol_225.setName("c2");
+			symbol_225.setType(symbol_109);
+			symbol_225.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_224.getOwnedParameters().add(symbol_225);
+			symbol_224.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionProductOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_224);
+		}
+		{	// ocl::Collection::reject() ocl.Collection{T}.reject(ocl.Collection{T}?T)
+			Operation symbol_226 = PivotFactory.eINSTANCE.createOperation();
+			symbol_226.setName("reject");
+			symbol_226.setType(symbol_105);
+			Parameter symbol_227 = PivotFactory.eINSTANCE.createParameter();
+			symbol_227.setName("i");
+			symbol_227.setType(symbol_24);
+			symbol_227.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_226.getOwnedParameters().add(symbol_227);
+			symbol_226.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_226);
+		}
+		{	// ocl::Collection::select() ocl.Collection{T}.select(ocl.Collection{T}?T)
+			Operation symbol_228 = PivotFactory.eINSTANCE.createOperation();
+			symbol_228.setName("select");
+			symbol_228.setType(symbol_105);
+			Parameter symbol_229 = PivotFactory.eINSTANCE.createParameter();
+			symbol_229.setName("i");
+			symbol_229.setType(symbol_24);
+			symbol_229.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_228.getOwnedParameters().add(symbol_229);
+			symbol_228.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_228);
+		}
+		{	// ocl::Collection::size() ocl.Collection{T}.size()
+			Operation symbol_230 = PivotFactory.eINSTANCE.createOperation();
+			symbol_230.setName("size");
+			symbol_230.setType(symbol_41);
+			symbol_230.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionSizeOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_230);
+		}
+		{	// ocl::Collection::sortedBy() ocl.Collection{T}.sortedBy(ocl.Collection{T}?T)
+			Operation symbol_231 = PivotFactory.eINSTANCE.createOperation();
+			symbol_231.setName("sortedBy");
+			symbol_231.setType(symbol_117);
+			Parameter symbol_232 = PivotFactory.eINSTANCE.createParameter();
+			symbol_232.setName("i");
+			symbol_232.setType(symbol_24);
+			symbol_232.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_231.getOwnedParameters().add(symbol_232);
+			symbol_231.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_231);
+		}
+		{	// ocl::Collection::sum() ocl.Collection{T}.sum()
+			Operation symbol_233 = PivotFactory.eINSTANCE.createOperation();
+			symbol_233.setName("sum");
+			symbol_233.setType(symbol_24);
+			symbol_233.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionSumOperation.INSTANCE);
+			symbol_21.getOwnedOperations().add(symbol_233);
+		}
+		symbol_1.getOwnedTypes().add(symbol_21);
+		//
+		// ocl::Enumeration ocl.Enumeration
+		//
+		symbol_40.setName("Enumeration");
+		symbol_40.getSuperClasses().add(symbol_50);
+		{	// ocl::Enumeration::allInstances() ocl.Enumeration.allInstances()
+			Operation symbol_234 = PivotFactory.eINSTANCE.createOperation();
+			symbol_234.setName("allInstances");
+			symbol_234.setType(symbol_132);
+			symbol_234.setImplementation(org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
+			symbol_40.getOwnedOperations().add(symbol_234);
+		}
+		symbol_1.getOwnedTypes().add(symbol_40);
+		//
+		// ocl::Integer ocl.Integer
+		//
+		symbol_41.setName("Integer");
+		symbol_41.setPrimitive(Boolean.TRUE);
+		symbol_41.getSuperClasses().add(symbol_67);
+		{	// ocl::Integer::*() ocl.Integer.*(ocl.Integer)
+			Operation symbol_235 = PivotFactory.eINSTANCE.createOperation();
+			symbol_235.setName("*");
+			symbol_235.setType(symbol_41);
+			Parameter symbol_236 = PivotFactory.eINSTANCE.createParameter();
+			symbol_236.setName("i");
+			symbol_236.setType(symbol_41);
+			symbol_236.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_235.getOwnedParameters().add(symbol_236);
+			symbol_235.setPrecedence(symbol_4);
+			symbol_235.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_235);
+		}
+		{	// ocl::Integer::+() ocl.Integer.+(ocl.Integer)
+			Operation symbol_237 = PivotFactory.eINSTANCE.createOperation();
+			symbol_237.setName("+");
+			symbol_237.setType(symbol_41);
+			Parameter symbol_238 = PivotFactory.eINSTANCE.createParameter();
+			symbol_238.setName("i");
+			symbol_238.setType(symbol_41);
+			symbol_238.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_237.getOwnedParameters().add(symbol_238);
+			symbol_237.setPrecedence(symbol_2);
+			symbol_237.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_237);
+		}
+		{	// ocl::Integer::-() ocl.Integer.-()
+			Operation symbol_239 = PivotFactory.eINSTANCE.createOperation();
+			symbol_239.setName("-");
+			symbol_239.setType(symbol_41);
+			symbol_239.setPrecedence(symbol_5);
+			symbol_239.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNegateOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_239);
+		}
+		{	// ocl::Integer::-() ocl.Integer.-(ocl.Integer)
+			Operation symbol_240 = PivotFactory.eINSTANCE.createOperation();
+			symbol_240.setName("-");
+			symbol_240.setType(symbol_41);
+			Parameter symbol_241 = PivotFactory.eINSTANCE.createParameter();
+			symbol_241.setName("i");
+			symbol_241.setType(symbol_41);
+			symbol_241.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_240.getOwnedParameters().add(symbol_241);
+			symbol_240.setPrecedence(symbol_2);
+			symbol_240.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_240);
+		}
+		{	// ocl::Integer::/() ocl.Integer./(ocl.Integer)
+			Operation symbol_242 = PivotFactory.eINSTANCE.createOperation();
+			symbol_242.setName("/");
+			symbol_242.setType(symbol_67);
+			Parameter symbol_243 = PivotFactory.eINSTANCE.createParameter();
+			symbol_243.setName("i");
+			symbol_243.setType(symbol_41);
+			symbol_243.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_242.getOwnedParameters().add(symbol_243);
+			symbol_242.setPrecedence(symbol_4);
+			symbol_242.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_242);
+		}
+		{	// ocl::Integer::abs() ocl.Integer.abs()
+			Operation symbol_244 = PivotFactory.eINSTANCE.createOperation();
+			symbol_244.setName("abs");
+			symbol_244.setType(symbol_41);
+			symbol_244.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericAbsOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_244);
+		}
+		{	// ocl::Integer::div() ocl.Integer.div(ocl.Integer)
 			Operation symbol_245 = PivotFactory.eINSTANCE.createOperation();
-			symbol_245.setName("excluding");
-			symbol_245.setType(symbol_13);
+			symbol_245.setName("div");
+			symbol_245.setType(symbol_41);
 			Parameter symbol_246 = PivotFactory.eINSTANCE.createParameter();
-			symbol_246.setName("object");
-			symbol_246.setType(symbol_99);
+			symbol_246.setName("i");
+			symbol_246.setType(symbol_41);
 			symbol_246.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_245.getOwnedParameters().add(symbol_246);
-			symbol_245.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
-			symbol_61.getOwnedOperations().add(symbol_245);
+			symbol_245.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_245);
 		}
-		{	// ocl::stdlib24::Bag::flatten() stdlib24.Bag{T}.flatten{T2}()
+		{	// ocl::Integer::max() ocl.Integer.max(ocl.Integer)
 			Operation symbol_247 = PivotFactory.eINSTANCE.createOperation();
-			symbol_67.setName("T2");
-			symbol_66.setOwnedParameteredElement(symbol_67);
-			symbol_65.getOwnedParameters().add(symbol_66);
-			
-			symbol_247.setOwnedTemplateSignature(symbol_65);
-			symbol_247.setName("flatten");
-			symbol_247.setType(symbol_16);
-			symbol_247.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
-			symbol_61.getOwnedOperations().add(symbol_247);
+			symbol_247.setName("max");
+			symbol_247.setType(symbol_41);
+			Parameter symbol_248 = PivotFactory.eINSTANCE.createParameter();
+			symbol_248.setName("i");
+			symbol_248.setType(symbol_41);
+			symbol_248.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_247.getOwnedParameters().add(symbol_248);
+			symbol_247.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_247);
 		}
-		{	// ocl::stdlib24::Bag::including() stdlib24.Bag{T}.including(stdlib24.Bag{T}?T)
-			Operation symbol_248 = PivotFactory.eINSTANCE.createOperation();
-			symbol_248.setName("including");
-			symbol_248.setType(symbol_13);
-			Parameter symbol_249 = PivotFactory.eINSTANCE.createParameter();
-			symbol_249.setName("object");
-			symbol_249.setType(symbol_64);
-			symbol_249.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_248.getOwnedParameters().add(symbol_249);
-			symbol_248.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
-			symbol_61.getOwnedOperations().add(symbol_248);
+		{	// ocl::Integer::min() ocl.Integer.min(ocl.Integer)
+			Operation symbol_249 = PivotFactory.eINSTANCE.createOperation();
+			symbol_249.setName("min");
+			symbol_249.setType(symbol_41);
+			Parameter symbol_250 = PivotFactory.eINSTANCE.createParameter();
+			symbol_250.setName("i");
+			symbol_250.setType(symbol_41);
+			symbol_250.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_249.getOwnedParameters().add(symbol_250);
+			symbol_249.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_249);
 		}
-		{	// ocl::stdlib24::Bag::reject() stdlib24.Bag{T}.reject(stdlib24.Bag{T}?T)
-			Operation symbol_250 = PivotFactory.eINSTANCE.createOperation();
-			symbol_250.setName("reject");
-			symbol_250.setType(symbol_13);
-			Parameter symbol_251 = PivotFactory.eINSTANCE.createParameter();
-			symbol_251.setName("i");
-			symbol_251.setType(symbol_64);
-			symbol_251.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_250.getOwnedParameters().add(symbol_251);
-			symbol_250.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
-			symbol_61.getOwnedOperations().add(symbol_250);
+		{	// ocl::Integer::mod() ocl.Integer.mod(ocl.Integer)
+			Operation symbol_251 = PivotFactory.eINSTANCE.createOperation();
+			symbol_251.setName("mod");
+			symbol_251.setType(symbol_41);
+			Parameter symbol_252 = PivotFactory.eINSTANCE.createParameter();
+			symbol_252.setName("i");
+			symbol_252.setType(symbol_41);
+			symbol_252.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_251.getOwnedParameters().add(symbol_252);
+			symbol_251.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericModOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_251);
 		}
-		{	// ocl::stdlib24::Bag::select() stdlib24.Bag{T}.select(stdlib24.Bag{T}?T)
-			Operation symbol_252 = PivotFactory.eINSTANCE.createOperation();
-			symbol_252.setName("select");
-			symbol_252.setType(symbol_13);
-			Parameter symbol_253 = PivotFactory.eINSTANCE.createParameter();
-			symbol_253.setName("i");
-			symbol_253.setType(symbol_64);
-			symbol_253.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_252.getOwnedParameters().add(symbol_253);
-			symbol_252.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
-			symbol_61.getOwnedOperations().add(symbol_252);
+		{	// ocl::Integer::toString() ocl.Integer.toString()
+			Operation symbol_253 = PivotFactory.eINSTANCE.createOperation();
+			symbol_253.setName("toString");
+			symbol_253.setType(symbol_85);
+			symbol_253.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_41.getOwnedOperations().add(symbol_253);
 		}
-		symbol_60.getOwnedTypes().add(symbol_61);
+		symbol_1.getOwnedTypes().add(symbol_41);
 		//
-		// ocl::stdlib24::Boolean stdlib24.Boolean
+		// ocl::NonOrderedCollection ocl.NonOrderedCollection{T}
 		//
-		symbol_68.setName("Boolean");
-		symbol_68.setPrimitive(Boolean.TRUE);
-		symbol_68.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::Boolean::<>() stdlib24.Boolean.<>(stdlib24.OclAny)
+		symbol_42.setName("NonOrderedCollection");
+		symbol_45.setName("T");
+		symbol_44.setOwnedParameteredElement(symbol_45);
+		symbol_43.getOwnedParameters().add(symbol_44);
+		
+		symbol_42.setOwnedTemplateSignature(symbol_43);
+		symbol_42.getSuperClasses().add(symbol_110);
+		{	// ocl::NonOrderedCollection::closure() ocl.NonOrderedCollection{T}.closure(ocl.NonOrderedCollection{T}?T)
 			Operation symbol_254 = PivotFactory.eINSTANCE.createOperation();
-			symbol_254.setName("<>");
-			symbol_254.setType(symbol_68);
+			symbol_254.setName("closure");
+			symbol_254.setType(symbol_138);
 			Parameter symbol_255 = PivotFactory.eINSTANCE.createParameter();
-			symbol_255.setName("object2");
-			symbol_255.setType(symbol_99);
-			symbol_255.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_255.setName("i");
+			symbol_255.setType(symbol_45);
+			symbol_255.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_254.getOwnedParameters().add(symbol_255);
-			symbol_254.setPrecedence(symbol_6);
-			symbol_254.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanNotEqualOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_254);
+			symbol_254.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
+			symbol_42.getOwnedOperations().add(symbol_254);
 		}
-		{	// ocl::stdlib24::Boolean::=() stdlib24.Boolean.=(stdlib24.OclAny)
+		{	// ocl::NonOrderedCollection::collect() ocl.NonOrderedCollection{T}.collect(ocl.NonOrderedCollection{T}?T)
 			Operation symbol_256 = PivotFactory.eINSTANCE.createOperation();
-			symbol_256.setName("=");
-			symbol_256.setType(symbol_68);
+			symbol_256.setName("collect");
+			symbol_256.setType(symbol_98);
 			Parameter symbol_257 = PivotFactory.eINSTANCE.createParameter();
-			symbol_257.setName("object2");
-			symbol_257.setType(symbol_99);
-			symbol_257.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_257.setName("i");
+			symbol_257.setType(symbol_45);
+			symbol_257.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_256.getOwnedParameters().add(symbol_257);
-			symbol_256.setPrecedence(symbol_6);
-			symbol_256.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanEqualOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_256);
+			symbol_256.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
+			symbol_42.getOwnedOperations().add(symbol_256);
 		}
-		{	// ocl::stdlib24::Boolean::allInstances() stdlib24.Boolean.allInstances()
+		{	// ocl::NonOrderedCollection::collectNested() ocl.NonOrderedCollection{T}.collectNested(ocl.NonOrderedCollection{T}?T)
 			Operation symbol_258 = PivotFactory.eINSTANCE.createOperation();
-			symbol_258.setName("allInstances");
-			symbol_258.setType(symbol_56);
-			symbol_258.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_258);
+			symbol_258.setName("collectNested");
+			symbol_258.setType(symbol_98);
+			Parameter symbol_259 = PivotFactory.eINSTANCE.createParameter();
+			symbol_259.setName("i");
+			symbol_259.setType(symbol_45);
+			symbol_259.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_258.getOwnedParameters().add(symbol_259);
+			symbol_258.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
+			symbol_42.getOwnedOperations().add(symbol_258);
 		}
-		{	// ocl::stdlib24::Boolean::and() stdlib24.Boolean.and(stdlib24.Boolean)
-			Operation symbol_259 = PivotFactory.eINSTANCE.createOperation();
-			symbol_259.setName("and");
-			symbol_259.setType(symbol_68);
-			Parameter symbol_260 = PivotFactory.eINSTANCE.createParameter();
-			symbol_260.setName("b");
-			symbol_260.setType(symbol_68);
-			symbol_260.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_259.getOwnedParameters().add(symbol_260);
-			symbol_259.setPrecedence(symbol_8);
-			symbol_259.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanAndOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_259);
+		{	// ocl::NonOrderedCollection::intersection() ocl.NonOrderedCollection{T}.intersection(ocl.Bag[ocl.NonOrderedCollection{T}?T])
+			Operation symbol_260 = PivotFactory.eINSTANCE.createOperation();
+			symbol_260.setName("intersection");
+			symbol_260.setType(symbol_98);
+			Parameter symbol_261 = PivotFactory.eINSTANCE.createParameter();
+			symbol_261.setName("bag");
+			symbol_261.setType(symbol_98);
+			symbol_261.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_260.getOwnedParameters().add(symbol_261);
+			symbol_260.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
+			symbol_42.getOwnedOperations().add(symbol_260);
 		}
-		{	// ocl::stdlib24::Boolean::implies() stdlib24.Boolean.implies(stdlib24.Boolean)
-			Operation symbol_261 = PivotFactory.eINSTANCE.createOperation();
-			symbol_261.setName("implies");
-			symbol_261.setType(symbol_68);
-			Parameter symbol_262 = PivotFactory.eINSTANCE.createParameter();
-			symbol_262.setName("b");
-			symbol_262.setType(symbol_68);
-			symbol_262.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_261.getOwnedParameters().add(symbol_262);
-			symbol_261.setPrecedence(symbol_2);
-			symbol_261.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_261);
+		{	// ocl::NonOrderedCollection::intersection() ocl.NonOrderedCollection{T}.intersection(ocl.Set[ocl.NonOrderedCollection{T}?T])
+			Operation symbol_262 = PivotFactory.eINSTANCE.createOperation();
+			symbol_262.setName("intersection");
+			symbol_262.setType(symbol_138);
+			Parameter symbol_263 = PivotFactory.eINSTANCE.createParameter();
+			symbol_263.setName("s");
+			symbol_263.setType(symbol_138);
+			symbol_263.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_262.getOwnedParameters().add(symbol_263);
+			symbol_262.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
+			symbol_42.getOwnedOperations().add(symbol_262);
 		}
-		{	// ocl::stdlib24::Boolean::not() stdlib24.Boolean.not()
-			Operation symbol_263 = PivotFactory.eINSTANCE.createOperation();
-			symbol_263.setName("not");
-			symbol_263.setType(symbol_68);
-			symbol_263.setPrecedence(symbol_4);
-			symbol_263.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanNotOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_263);
-		}
-		{	// ocl::stdlib24::Boolean::or() stdlib24.Boolean.or(stdlib24.Boolean)
+		{	// ocl::NonOrderedCollection::union() ocl.NonOrderedCollection{T}.union(ocl.Bag[ocl.NonOrderedCollection{T}?T])
 			Operation symbol_264 = PivotFactory.eINSTANCE.createOperation();
-			symbol_264.setName("or");
-			symbol_264.setType(symbol_68);
+			symbol_264.setName("union");
+			symbol_264.setType(symbol_98);
 			Parameter symbol_265 = PivotFactory.eINSTANCE.createParameter();
-			symbol_265.setName("b");
-			symbol_265.setType(symbol_68);
+			symbol_265.setName("bag");
+			symbol_265.setType(symbol_98);
 			symbol_265.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_264.getOwnedParameters().add(symbol_265);
-			symbol_264.setPrecedence(symbol_5);
-			symbol_264.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanOrOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_264);
+			symbol_264.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
+			symbol_42.getOwnedOperations().add(symbol_264);
 		}
-		{	// ocl::stdlib24::Boolean::toString() stdlib24.Boolean.toString()
+		{	// ocl::NonOrderedCollection::union() ocl.NonOrderedCollection{T}.union(ocl.Set[ocl.NonOrderedCollection{T}?T])
 			Operation symbol_266 = PivotFactory.eINSTANCE.createOperation();
-			symbol_266.setName("toString");
-			symbol_266.setType(symbol_134);
-			symbol_266.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_266);
+			symbol_266.setName("union");
+			symbol_266.setType(symbol_138);
+			Parameter symbol_267 = PivotFactory.eINSTANCE.createParameter();
+			symbol_267.setName("s");
+			symbol_267.setType(symbol_138);
+			symbol_267.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_266.getOwnedParameters().add(symbol_267);
+			symbol_266.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
+			symbol_42.getOwnedOperations().add(symbol_266);
 		}
-		{	// ocl::stdlib24::Boolean::xor() stdlib24.Boolean.xor(stdlib24.Boolean)
-			Operation symbol_267 = PivotFactory.eINSTANCE.createOperation();
-			symbol_267.setName("xor");
-			symbol_267.setType(symbol_68);
-			Parameter symbol_268 = PivotFactory.eINSTANCE.createParameter();
-			symbol_268.setName("b");
-			symbol_268.setType(symbol_68);
-			symbol_268.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_267.getOwnedParameters().add(symbol_268);
-			symbol_267.setPrecedence(symbol_9);
-			symbol_267.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanXorOperation.INSTANCE);
-			symbol_68.getOwnedOperations().add(symbol_267);
-		}
-		symbol_60.getOwnedTypes().add(symbol_68);
+		symbol_1.getOwnedTypes().add(symbol_42);
 		//
-		// ocl::stdlib24::Classifier stdlib24.Classifier
+		// ocl::NonUniqueCollection ocl.NonUniqueCollection{T}
 		//
-		symbol_69.setName("Classifier");
-		symbol_69.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::Classifier::allInstances() stdlib24.Classifier.allInstances()
-			Operation symbol_269 = PivotFactory.eINSTANCE.createOperation();
-			symbol_269.setName("allInstances");
-			symbol_269.setType(symbol_47);
-			symbol_269.setImplementation(org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation.INSTANCE);
-			symbol_69.getOwnedOperations().add(symbol_269);
-		}
-		symbol_60.getOwnedTypes().add(symbol_69);
-		//
-		// ocl::stdlib24::Collection stdlib24.Collection{T}
-		//
-		symbol_70.setName("Collection");
-		symbol_73.setName("T");
-		symbol_72.setOwnedParameteredElement(symbol_73);
-		symbol_71.getOwnedParameters().add(symbol_72);
+		symbol_46.setName("NonUniqueCollection");
+		symbol_49.setName("T");
+		symbol_48.setOwnedParameteredElement(symbol_49);
+		symbol_47.getOwnedParameters().add(symbol_48);
 		
-		symbol_70.setOwnedTemplateSignature(symbol_71);
-		symbol_70.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::Collection::<>() stdlib24.Collection{T}.<>(stdlib24.OclAny)
+		symbol_46.setOwnedTemplateSignature(symbol_47);
+		symbol_46.getSuperClasses().add(symbol_111);
+		{	// ocl::NonUniqueCollection::sortedBy() ocl.NonUniqueCollection{T}.sortedBy(ocl.NonUniqueCollection{T}?T)
+			Operation symbol_268 = PivotFactory.eINSTANCE.createOperation();
+			symbol_268.setName("sortedBy");
+			symbol_268.setType(symbol_129);
+			Parameter symbol_269 = PivotFactory.eINSTANCE.createParameter();
+			symbol_269.setName("i");
+			symbol_269.setType(symbol_49);
+			symbol_269.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_268.getOwnedParameters().add(symbol_269);
+			symbol_268.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
+			symbol_46.getOwnedOperations().add(symbol_268);
+		}
+		symbol_1.getOwnedTypes().add(symbol_46);
+		//
+		// ocl::OclAny ocl.OclAny
+		//
+		symbol_50.setName("OclAny");
+		{	// ocl::OclAny::<>() ocl.OclAny.<>(ocl.OclAny)
 			Operation symbol_270 = PivotFactory.eINSTANCE.createOperation();
 			symbol_270.setName("<>");
-			symbol_270.setType(symbol_68);
+			symbol_270.setType(symbol_19);
 			Parameter symbol_271 = PivotFactory.eINSTANCE.createParameter();
-			symbol_271.setName("c");
-			symbol_271.setType(symbol_99);
+			symbol_271.setName("object2");
+			symbol_271.setType(symbol_50);
 			symbol_271.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_270.getOwnedParameters().add(symbol_271);
-			symbol_270.setPrecedence(symbol_6);
-			symbol_270.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_270);
+			symbol_270.setPrecedence(symbol_7);
+			symbol_270.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_270);
 		}
-		{	// ocl::stdlib24::Collection::=() stdlib24.Collection{T}.=(stdlib24.OclAny)
+		{	// ocl::OclAny::=() ocl.OclAny.=(ocl.OclAny)
 			Operation symbol_272 = PivotFactory.eINSTANCE.createOperation();
 			symbol_272.setName("=");
-			symbol_272.setType(symbol_68);
+			symbol_272.setType(symbol_19);
 			Parameter symbol_273 = PivotFactory.eINSTANCE.createParameter();
-			symbol_273.setName("c");
-			symbol_273.setType(symbol_99);
+			symbol_273.setName("object2");
+			symbol_273.setType(symbol_50);
 			symbol_273.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_272.getOwnedParameters().add(symbol_273);
-			symbol_272.setPrecedence(symbol_6);
-			symbol_272.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_272);
+			symbol_272.setPrecedence(symbol_7);
+			symbol_272.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_272);
 		}
-		{	// ocl::stdlib24::Collection::any() stdlib24.Collection{T}.any(stdlib24.Collection{T}?T)
+		{	// ocl::OclAny::oclAsSet() ocl.OclAny.oclAsSet()
 			Operation symbol_274 = PivotFactory.eINSTANCE.createOperation();
-			symbol_274.setName("any");
-			symbol_274.setType(symbol_73);
-			Parameter symbol_275 = PivotFactory.eINSTANCE.createParameter();
-			symbol_275.setName("i");
-			symbol_275.setType(symbol_73);
-			symbol_275.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_274.getOwnedParameters().add(symbol_275);
-			symbol_274.setImplementation(org.eclipse.ocl.examples.library.iterator.AnyIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_274);
+			symbol_274.setName("oclAsSet");
+			symbol_274.setType(symbol_108);
+			symbol_274.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_274);
 		}
-		{	// ocl::stdlib24::Collection::asBag() stdlib24.Collection{T}.asBag()
-			Operation symbol_276 = PivotFactory.eINSTANCE.createOperation();
-			symbol_276.setName("asBag");
-			symbol_276.setType(symbol_14);
-			symbol_276.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_276);
+		{	// ocl::OclAny::oclAsType() ocl.OclAny.oclAsType{T}(ocl.Classifier)
+			Operation symbol_275 = PivotFactory.eINSTANCE.createOperation();
+			symbol_53.setName("T");
+			symbol_52.setOwnedParameteredElement(symbol_53);
+			symbol_51.getOwnedParameters().add(symbol_52);
+			
+			symbol_275.setOwnedTemplateSignature(symbol_51);
+			symbol_275.setName("oclAsType");
+			symbol_275.setType(symbol_53);
+			Parameter symbol_276 = PivotFactory.eINSTANCE.createParameter();
+			symbol_276.setName("type");
+			symbol_276.setType(symbol_20);
+			symbol_276.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_275.getOwnedParameters().add(symbol_276);
+			symbol_275.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_275);
 		}
-		{	// ocl::stdlib24::Collection::asOrderedSet() stdlib24.Collection{T}.asOrderedSet()
+		{	// ocl::OclAny::oclIsInState() ocl.OclAny.oclIsInState(ocl.OclState)
 			Operation symbol_277 = PivotFactory.eINSTANCE.createOperation();
-			symbol_277.setName("asOrderedSet");
-			symbol_277.setType(symbol_37);
-			symbol_277.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_277);
+			symbol_277.setName("oclIsInState");
+			symbol_277.setType(symbol_19);
+			Parameter symbol_278 = PivotFactory.eINSTANCE.createParameter();
+			symbol_278.setName("statespec");
+			symbol_278.setType(symbol_56);
+			symbol_278.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_277.getOwnedParameters().add(symbol_278);
+			symbol_277.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_277);
 		}
-		{	// ocl::stdlib24::Collection::asSequence() stdlib24.Collection{T}.asSequence()
-			Operation symbol_278 = PivotFactory.eINSTANCE.createOperation();
-			symbol_278.setName("asSequence");
-			symbol_278.setType(symbol_40);
-			symbol_278.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_278);
-		}
-		{	// ocl::stdlib24::Collection::asSet() stdlib24.Collection{T}.asSet()
+		{	// ocl::OclAny::oclIsInvalid() ocl.OclAny.oclIsInvalid()
 			Operation symbol_279 = PivotFactory.eINSTANCE.createOperation();
-			symbol_279.setName("asSet");
-			symbol_279.setType(symbol_45);
-			symbol_279.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_279);
+			symbol_279.setName("oclIsInvalid");
+			symbol_279.setType(symbol_19);
+			symbol_279.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_279);
 		}
-		{	// ocl::stdlib24::Collection::collect() stdlib24.Collection{T}.collect(stdlib24.Collection{T}?T)
+		{	// ocl::OclAny::oclIsKindOf() ocl.OclAny.oclIsKindOf(ocl.Classifier)
 			Operation symbol_280 = PivotFactory.eINSTANCE.createOperation();
-			symbol_280.setName("collect");
+			symbol_280.setName("oclIsKindOf");
 			symbol_280.setType(symbol_19);
 			Parameter symbol_281 = PivotFactory.eINSTANCE.createParameter();
-			symbol_281.setName("i");
-			symbol_281.setType(symbol_73);
-			symbol_281.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_281.setName("type");
+			symbol_281.setType(symbol_20);
+			symbol_281.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_280.getOwnedParameters().add(symbol_281);
-			symbol_280.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_280);
+			symbol_280.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_280);
 		}
-		{	// ocl::stdlib24::Collection::collectNested() stdlib24.Collection{T}.collectNested(stdlib24.Collection{T}?T)
+		{	// ocl::OclAny::oclIsNew() ocl.OclAny.oclIsNew()
 			Operation symbol_282 = PivotFactory.eINSTANCE.createOperation();
-			symbol_282.setName("collectNested");
+			symbol_282.setName("oclIsNew");
 			symbol_282.setType(symbol_19);
-			Parameter symbol_283 = PivotFactory.eINSTANCE.createParameter();
-			symbol_283.setName("i");
-			symbol_283.setType(symbol_73);
-			symbol_283.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_282.getOwnedParameters().add(symbol_283);
-			symbol_282.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_282);
+			symbol_282.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_282);
 		}
-		{	// ocl::stdlib24::Collection::count() stdlib24.Collection{T}.count(stdlib24.OclAny)
-			Operation symbol_284 = PivotFactory.eINSTANCE.createOperation();
-			symbol_284.setName("count");
-			symbol_284.setType(symbol_90);
-			Parameter symbol_285 = PivotFactory.eINSTANCE.createParameter();
-			symbol_285.setName("object");
-			symbol_285.setType(symbol_99);
-			symbol_285.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_284.getOwnedParameters().add(symbol_285);
-			symbol_284.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionCountOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_284);
+		{	// ocl::OclAny::oclIsTypeOf() ocl.OclAny.oclIsTypeOf(ocl.Classifier)
+			Operation symbol_283 = PivotFactory.eINSTANCE.createOperation();
+			symbol_283.setName("oclIsTypeOf");
+			symbol_283.setType(symbol_19);
+			Parameter symbol_284 = PivotFactory.eINSTANCE.createParameter();
+			symbol_284.setName("type");
+			symbol_284.setType(symbol_20);
+			symbol_284.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_283.getOwnedParameters().add(symbol_284);
+			symbol_283.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_283);
 		}
-		{	// ocl::stdlib24::Collection::excludes() stdlib24.Collection{T}.excludes(stdlib24.OclAny)
+		{	// ocl::OclAny::oclIsUndefined() ocl.OclAny.oclIsUndefined()
+			Operation symbol_285 = PivotFactory.eINSTANCE.createOperation();
+			symbol_285.setName("oclIsUndefined");
+			symbol_285.setType(symbol_19);
+			symbol_285.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_285);
+		}
+		{	// ocl::OclAny::oclType() ocl.OclAny.oclType()
 			Operation symbol_286 = PivotFactory.eINSTANCE.createOperation();
-			symbol_286.setName("excludes");
-			symbol_286.setType(symbol_68);
-			Parameter symbol_287 = PivotFactory.eINSTANCE.createParameter();
-			symbol_287.setName("object");
-			symbol_287.setType(symbol_99);
-			symbol_287.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_286.getOwnedParameters().add(symbol_287);
-			symbol_286.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_286);
+			symbol_286.setName("oclType");
+			symbol_286.setType(symbol_20);
+			symbol_286.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation.INSTANCE);
+			symbol_50.getOwnedOperations().add(symbol_286);
 		}
-		{	// ocl::stdlib24::Collection::excludesAll() stdlib24.Collection{T}.excludesAll{T2}(stdlib24.Collection[T2])
-			Operation symbol_288 = PivotFactory.eINSTANCE.createOperation();
-			symbol_76.setName("T2");
-			symbol_75.setOwnedParameteredElement(symbol_76);
-			symbol_74.getOwnedParameters().add(symbol_75);
-			
-			symbol_288.setOwnedTemplateSignature(symbol_74);
-			symbol_288.setName("excludesAll");
-			symbol_288.setType(symbol_68);
-			Parameter symbol_289 = PivotFactory.eINSTANCE.createParameter();
-			symbol_289.setName("c2");
-			symbol_289.setType(symbol_17);
-			symbol_289.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_288.getOwnedParameters().add(symbol_289);
-			symbol_288.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_288);
+		symbol_1.getOwnedTypes().add(symbol_50);
+		//
+		// ocl::OclInvalid ocl.OclInvalid
+		//
+		symbol_54.setName("OclInvalid");
+		symbol_54.getSuperClasses().add(symbol_58);
+		{	// ocl::OclInvalid::<>() ocl.OclInvalid.<>(ocl.OclAny)
+			Operation symbol_287 = PivotFactory.eINSTANCE.createOperation();
+			symbol_287.setName("<>");
+			symbol_287.setType(symbol_19);
+			Parameter symbol_288 = PivotFactory.eINSTANCE.createParameter();
+			symbol_288.setName("object2");
+			symbol_288.setType(symbol_50);
+			symbol_288.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_287.getOwnedParameters().add(symbol_288);
+			symbol_287.setPrecedence(symbol_7);
+			symbol_287.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidNotEqualOperation.INSTANCE);
+			symbol_54.getOwnedOperations().add(symbol_287);
 		}
-		{	// ocl::stdlib24::Collection::excluding() stdlib24.Collection{T}.excluding(stdlib24.OclAny)
-			Operation symbol_290 = PivotFactory.eINSTANCE.createOperation();
-			symbol_290.setName("excluding");
-			symbol_290.setType(symbol_19);
-			Parameter symbol_291 = PivotFactory.eINSTANCE.createParameter();
-			symbol_291.setName("object");
-			symbol_291.setType(symbol_99);
-			symbol_291.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_290.getOwnedParameters().add(symbol_291);
-			symbol_290.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_290);
+		{	// ocl::OclInvalid::=() ocl.OclInvalid.=(ocl.OclAny)
+			Operation symbol_289 = PivotFactory.eINSTANCE.createOperation();
+			symbol_289.setName("=");
+			symbol_289.setType(symbol_19);
+			Parameter symbol_290 = PivotFactory.eINSTANCE.createParameter();
+			symbol_290.setName("object2");
+			symbol_290.setType(symbol_50);
+			symbol_290.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_289.getOwnedParameters().add(symbol_290);
+			symbol_289.setPrecedence(symbol_7);
+			symbol_289.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidEqualOperation.INSTANCE);
+			symbol_54.getOwnedOperations().add(symbol_289);
 		}
-		{	// ocl::stdlib24::Collection::exists() stdlib24.Collection{T}.exists(stdlib24.Collection{T}?T)
+		{	// ocl::OclInvalid::allInstances() ocl.OclInvalid.allInstances()
+			Operation symbol_291 = PivotFactory.eINSTANCE.createOperation();
+			symbol_291.setName("allInstances");
+			symbol_291.setType(symbol_134);
+			symbol_291.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation.INSTANCE);
+			symbol_54.getOwnedOperations().add(symbol_291);
+		}
+		symbol_1.getOwnedTypes().add(symbol_54);
+		//
+		// ocl::OclMessage ocl.OclMessage
+		//
+		symbol_55.setName("OclMessage");
+		symbol_55.getSuperClasses().add(symbol_50);
+		{	// ocl::OclMessage::hasReturned() ocl.OclMessage.hasReturned()
 			Operation symbol_292 = PivotFactory.eINSTANCE.createOperation();
-			symbol_292.setName("exists");
-			symbol_292.setType(symbol_68);
-			Parameter symbol_293 = PivotFactory.eINSTANCE.createParameter();
-			symbol_293.setName("i");
-			symbol_293.setType(symbol_73);
-			symbol_293.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_292.getOwnedParameters().add(symbol_293);
-			symbol_292.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_292);
+			symbol_292.setName("hasReturned");
+			symbol_292.setType(symbol_19);
+			symbol_292.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_55.getOwnedOperations().add(symbol_292);
 		}
-		{	// ocl::stdlib24::Collection::exists() stdlib24.Collection{T}.exists(stdlib24.Collection{T}?T;T)
+		{	// ocl::OclMessage::isOperationCall() ocl.OclMessage.isOperationCall()
+			Operation symbol_293 = PivotFactory.eINSTANCE.createOperation();
+			symbol_293.setName("isOperationCall");
+			symbol_293.setType(symbol_19);
+			symbol_293.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_55.getOwnedOperations().add(symbol_293);
+		}
+		{	// ocl::OclMessage::isSignalSent() ocl.OclMessage.isSignalSent()
 			Operation symbol_294 = PivotFactory.eINSTANCE.createOperation();
-			symbol_294.setName("exists");
-			symbol_294.setType(symbol_68);
-			Parameter symbol_295 = PivotFactory.eINSTANCE.createParameter();
-			symbol_295.setName("i");
-			symbol_295.setType(symbol_73);
-			symbol_295.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_294.getOwnedParameters().add(symbol_295);
-			Parameter symbol_296 = PivotFactory.eINSTANCE.createParameter();
-			symbol_296.setName("j");
-			symbol_296.setType(symbol_73);
-			symbol_296.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_294.getOwnedParameters().add(symbol_296);
-			symbol_294.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_294);
+			symbol_294.setName("isSignalSent");
+			symbol_294.setType(symbol_19);
+			symbol_294.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_55.getOwnedOperations().add(symbol_294);
 		}
-		{	// ocl::stdlib24::Collection::flatten() stdlib24.Collection{T}.flatten{T2}()
-			Operation symbol_297 = PivotFactory.eINSTANCE.createOperation();
-			symbol_79.setName("T2");
-			symbol_78.setOwnedParameteredElement(symbol_79);
-			symbol_77.getOwnedParameters().add(symbol_78);
-			
-			symbol_297.setOwnedTemplateSignature(symbol_77);
-			symbol_297.setName("flatten");
-			symbol_297.setType(symbol_25);
-			symbol_297.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_297);
+		{	// ocl::OclMessage::result() ocl.OclMessage.result()
+			Operation symbol_295 = PivotFactory.eINSTANCE.createOperation();
+			symbol_295.setName("result");
+			symbol_295.setType(symbol_50);
+			symbol_295.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_55.getOwnedOperations().add(symbol_295);
 		}
-		{	// ocl::stdlib24::Collection::forAll() stdlib24.Collection{T}.forAll(stdlib24.Collection{T}?T)
+		symbol_1.getOwnedTypes().add(symbol_55);
+		//
+		// ocl::OclState ocl.OclState
+		//
+		symbol_56.setName("OclState");
+		symbol_56.getSuperClasses().add(symbol_50);
+		symbol_1.getOwnedTypes().add(symbol_56);
+		//
+		// ocl::OclTuple ocl.OclTuple
+		//
+		symbol_57.setName("OclTuple");
+		symbol_57.getSuperClasses().add(symbol_50);
+		{	// ocl::OclTuple::<>() ocl.OclTuple.<>(ocl.OclAny)
+			Operation symbol_296 = PivotFactory.eINSTANCE.createOperation();
+			symbol_296.setName("<>");
+			symbol_296.setType(symbol_19);
+			Parameter symbol_297 = PivotFactory.eINSTANCE.createParameter();
+			symbol_297.setName("object2");
+			symbol_297.setType(symbol_50);
+			symbol_297.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_296.getOwnedParameters().add(symbol_297);
+			symbol_296.setPrecedence(symbol_7);
+			symbol_296.setImplementation(org.eclipse.ocl.examples.library.tuple.TupleNotEqualOperation.INSTANCE);
+			symbol_57.getOwnedOperations().add(symbol_296);
+		}
+		{	// ocl::OclTuple::=() ocl.OclTuple.=(ocl.OclAny)
 			Operation symbol_298 = PivotFactory.eINSTANCE.createOperation();
-			symbol_298.setName("forAll");
-			symbol_298.setType(symbol_68);
+			symbol_298.setName("=");
+			symbol_298.setType(symbol_19);
 			Parameter symbol_299 = PivotFactory.eINSTANCE.createParameter();
-			symbol_299.setName("i");
-			symbol_299.setType(symbol_73);
-			symbol_299.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_299.setName("object2");
+			symbol_299.setType(symbol_50);
+			symbol_299.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_298.getOwnedParameters().add(symbol_299);
-			symbol_298.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_298);
+			symbol_298.setPrecedence(symbol_7);
+			symbol_298.setImplementation(org.eclipse.ocl.examples.library.tuple.TupleEqualOperation.INSTANCE);
+			symbol_57.getOwnedOperations().add(symbol_298);
 		}
-		{	// ocl::stdlib24::Collection::forAll() stdlib24.Collection{T}.forAll(stdlib24.Collection{T}?T;T)
+		symbol_1.getOwnedTypes().add(symbol_57);
+		//
+		// ocl::OclVoid ocl.OclVoid
+		//
+		symbol_58.setName("OclVoid");
+		symbol_58.getSuperClasses().add(symbol_50);
+		{	// ocl::OclVoid::<>() ocl.OclVoid.<>(ocl.OclAny)
 			Operation symbol_300 = PivotFactory.eINSTANCE.createOperation();
-			symbol_300.setName("forAll");
-			symbol_300.setType(symbol_68);
+			symbol_300.setName("<>");
+			symbol_300.setType(symbol_19);
 			Parameter symbol_301 = PivotFactory.eINSTANCE.createParameter();
-			symbol_301.setName("i");
-			symbol_301.setType(symbol_73);
-			symbol_301.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_301.setName("object2");
+			symbol_301.setType(symbol_50);
+			symbol_301.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_300.getOwnedParameters().add(symbol_301);
-			Parameter symbol_302 = PivotFactory.eINSTANCE.createParameter();
-			symbol_302.setName("j");
-			symbol_302.setType(symbol_73);
-			symbol_302.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_300.getOwnedParameters().add(symbol_302);
-			symbol_300.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_300);
+			symbol_300.setPrecedence(symbol_7);
+			symbol_300.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidNotEqualOperation.INSTANCE);
+			symbol_58.getOwnedOperations().add(symbol_300);
 		}
-		{	// ocl::stdlib24::Collection::includes() stdlib24.Collection{T}.includes(stdlib24.OclAny)
-			Operation symbol_303 = PivotFactory.eINSTANCE.createOperation();
-			symbol_303.setName("includes");
-			symbol_303.setType(symbol_68);
-			Parameter symbol_304 = PivotFactory.eINSTANCE.createParameter();
-			symbol_304.setName("object");
-			symbol_304.setType(symbol_99);
-			symbol_304.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_303.getOwnedParameters().add(symbol_304);
-			symbol_303.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_303);
+		{	// ocl::OclVoid::=() ocl.OclVoid.=(ocl.OclAny)
+			Operation symbol_302 = PivotFactory.eINSTANCE.createOperation();
+			symbol_302.setName("=");
+			symbol_302.setType(symbol_19);
+			Parameter symbol_303 = PivotFactory.eINSTANCE.createParameter();
+			symbol_303.setName("object2");
+			symbol_303.setType(symbol_50);
+			symbol_303.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_302.getOwnedParameters().add(symbol_303);
+			symbol_302.setPrecedence(symbol_7);
+			symbol_302.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidEqualOperation.INSTANCE);
+			symbol_58.getOwnedOperations().add(symbol_302);
 		}
-		{	// ocl::stdlib24::Collection::includesAll() stdlib24.Collection{T}.includesAll{T2}(stdlib24.Collection[T2])
+		{	// ocl::OclVoid::allInstances() ocl.OclVoid.allInstances()
+			Operation symbol_304 = PivotFactory.eINSTANCE.createOperation();
+			symbol_304.setName("allInstances");
+			symbol_304.setType(symbol_133);
+			symbol_304.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation.INSTANCE);
+			symbol_58.getOwnedOperations().add(symbol_304);
+		}
+		{	// ocl::OclVoid::and() ocl.OclVoid.and(ocl.Boolean)
 			Operation symbol_305 = PivotFactory.eINSTANCE.createOperation();
-			symbol_82.setName("T2");
-			symbol_81.setOwnedParameteredElement(symbol_82);
-			symbol_80.getOwnedParameters().add(symbol_81);
-			
-			symbol_305.setOwnedTemplateSignature(symbol_80);
-			symbol_305.setName("includesAll");
-			symbol_305.setType(symbol_68);
+			symbol_305.setName("and");
+			symbol_305.setType(symbol_19);
 			Parameter symbol_306 = PivotFactory.eINSTANCE.createParameter();
-			symbol_306.setName("c2");
-			symbol_306.setType(symbol_23);
+			symbol_306.setName("b");
+			symbol_306.setType(symbol_19);
 			symbol_306.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_305.getOwnedParameters().add(symbol_306);
-			symbol_305.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_305);
+			symbol_305.setPrecedence(symbol_3);
+			symbol_305.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation.INSTANCE);
+			symbol_58.getOwnedOperations().add(symbol_305);
 		}
-		{	// ocl::stdlib24::Collection::including() stdlib24.Collection{T}.including(stdlib24.Collection{T}?T)
+		{	// ocl::OclVoid::implies() ocl.OclVoid.implies(ocl.Boolean)
 			Operation symbol_307 = PivotFactory.eINSTANCE.createOperation();
-			symbol_307.setName("including");
+			symbol_307.setName("implies");
 			symbol_307.setType(symbol_19);
 			Parameter symbol_308 = PivotFactory.eINSTANCE.createParameter();
-			symbol_308.setName("object");
-			symbol_308.setType(symbol_73);
+			symbol_308.setName("b");
+			symbol_308.setType(symbol_19);
 			symbol_308.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_307.getOwnedParameters().add(symbol_308);
-			symbol_307.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_307);
+			symbol_307.setPrecedence(symbol_10);
+			symbol_307.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation.INSTANCE);
+			symbol_58.getOwnedOperations().add(symbol_307);
 		}
-		{	// ocl::stdlib24::Collection::isEmpty() stdlib24.Collection{T}.isEmpty()
+		{	// ocl::OclVoid::or() ocl.OclVoid.or(ocl.Boolean)
 			Operation symbol_309 = PivotFactory.eINSTANCE.createOperation();
-			symbol_309.setName("isEmpty");
-			symbol_309.setType(symbol_68);
-			symbol_309.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIsEmptyOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_309);
+			symbol_309.setName("or");
+			symbol_309.setType(symbol_19);
+			Parameter symbol_310 = PivotFactory.eINSTANCE.createParameter();
+			symbol_310.setName("b");
+			symbol_310.setType(symbol_19);
+			symbol_310.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_309.getOwnedParameters().add(symbol_310);
+			symbol_309.setPrecedence(symbol_6);
+			symbol_309.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation.INSTANCE);
+			symbol_58.getOwnedOperations().add(symbol_309);
 		}
-		{	// ocl::stdlib24::Collection::isUnique() stdlib24.Collection{T}.isUnique(stdlib24.Collection{T}?T)
-			Operation symbol_310 = PivotFactory.eINSTANCE.createOperation();
-			symbol_310.setName("isUnique");
-			symbol_310.setType(symbol_68);
-			Parameter symbol_311 = PivotFactory.eINSTANCE.createParameter();
-			symbol_311.setName("i");
-			symbol_311.setType(symbol_73);
-			symbol_311.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_310.getOwnedParameters().add(symbol_311);
-			symbol_310.setImplementation(org.eclipse.ocl.examples.library.iterator.IsUniqueIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_310);
+		symbol_1.getOwnedTypes().add(symbol_58);
+		//
+		// ocl::OrderedCollection ocl.OrderedCollection{T}
+		//
+		symbol_59.setName("OrderedCollection");
+		symbol_62.setName("T");
+		symbol_61.setOwnedParameteredElement(symbol_62);
+		symbol_60.getOwnedParameters().add(symbol_61);
+		
+		symbol_59.setOwnedTemplateSignature(symbol_60);
+		symbol_59.getSuperClasses().add(symbol_107);
+		{	// ocl::OrderedCollection::at() ocl.OrderedCollection{T}.at(ocl.Integer)
+			Operation symbol_311 = PivotFactory.eINSTANCE.createOperation();
+			symbol_311.setName("at");
+			symbol_311.setType(symbol_62);
+			Parameter symbol_312 = PivotFactory.eINSTANCE.createParameter();
+			symbol_312.setName("index");
+			symbol_312.setType(symbol_41);
+			symbol_312.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_311.getOwnedParameters().add(symbol_312);
+			symbol_311.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAtOperation.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_311);
 		}
-		{	// ocl::stdlib24::Collection::iterate() stdlib24.Collection{T}.iterate{Tacc}(stdlib24.Collection{T}?T;Tacc)
-			Operation symbol_312 = PivotFactory.eINSTANCE.createOperation();
-			symbol_85.setName("Tacc");
-			symbol_84.setOwnedParameteredElement(symbol_85);
-			symbol_83.getOwnedParameters().add(symbol_84);
-			
-			symbol_312.setOwnedTemplateSignature(symbol_83);
-			symbol_312.setName("iterate");
-			symbol_312.setType(symbol_85);
-			Parameter symbol_313 = PivotFactory.eINSTANCE.createParameter();
-			symbol_313.setName("i");
-			symbol_313.setType(symbol_73);
-			symbol_313.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_312.getOwnedParameters().add(symbol_313);
+		{	// ocl::OrderedCollection::closure() ocl.OrderedCollection{T}.closure(ocl.OrderedCollection{T}?T)
+			Operation symbol_313 = PivotFactory.eINSTANCE.createOperation();
+			symbol_313.setName("closure");
+			symbol_313.setType(symbol_123);
 			Parameter symbol_314 = PivotFactory.eINSTANCE.createParameter();
-			symbol_314.setName("acc");
-			symbol_314.setType(symbol_85);
-			symbol_314.setIteratorKind(IteratorKind.ACCUMULATOR);
-			symbol_312.getOwnedParameters().add(symbol_314);
-			symbol_312.setImplementation(org.eclipse.ocl.examples.library.iterator.IsUniqueIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_312);
+			symbol_314.setName("i");
+			symbol_314.setType(symbol_62);
+			symbol_314.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_313.getOwnedParameters().add(symbol_314);
+			symbol_313.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_313);
 		}
-		{	// ocl::stdlib24::Collection::max() stdlib24.Collection{T}.max()
+		{	// ocl::OrderedCollection::collect() ocl.OrderedCollection{T}.collect(ocl.OrderedCollection{T}?T)
 			Operation symbol_315 = PivotFactory.eINSTANCE.createOperation();
-			symbol_315.setName("max");
-			symbol_315.setType(symbol_73);
-			symbol_315.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionMaxOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_315);
+			symbol_315.setName("collect");
+			symbol_315.setType(symbol_128);
+			Parameter symbol_316 = PivotFactory.eINSTANCE.createParameter();
+			symbol_316.setName("i");
+			symbol_316.setType(symbol_62);
+			symbol_316.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_315.getOwnedParameters().add(symbol_316);
+			symbol_315.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_315);
 		}
-		{	// ocl::stdlib24::Collection::min() stdlib24.Collection{T}.min()
-			Operation symbol_316 = PivotFactory.eINSTANCE.createOperation();
-			symbol_316.setName("min");
-			symbol_316.setType(symbol_73);
-			symbol_316.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionMinOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_316);
-		}
-		{	// ocl::stdlib24::Collection::notEmpty() stdlib24.Collection{T}.notEmpty()
+		{	// ocl::OrderedCollection::collectNested() ocl.OrderedCollection{T}.collectNested(ocl.OrderedCollection{T}?T)
 			Operation symbol_317 = PivotFactory.eINSTANCE.createOperation();
-			symbol_317.setName("notEmpty");
-			symbol_317.setType(symbol_68);
-			symbol_317.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEmptyOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_317);
+			symbol_317.setName("collectNested");
+			symbol_317.setType(symbol_128);
+			Parameter symbol_318 = PivotFactory.eINSTANCE.createParameter();
+			symbol_318.setName("i");
+			symbol_318.setType(symbol_62);
+			symbol_318.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_317.getOwnedParameters().add(symbol_318);
+			symbol_317.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_317);
 		}
-		{	// ocl::stdlib24::Collection::one() stdlib24.Collection{T}.one(stdlib24.Collection{T}?T)
-			Operation symbol_318 = PivotFactory.eINSTANCE.createOperation();
-			symbol_318.setName("one");
-			symbol_318.setType(symbol_68);
-			Parameter symbol_319 = PivotFactory.eINSTANCE.createParameter();
-			symbol_319.setName("i");
-			symbol_319.setType(symbol_73);
-			symbol_319.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_318.getOwnedParameters().add(symbol_319);
-			symbol_318.setImplementation(org.eclipse.ocl.examples.library.iterator.OneIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_318);
+		{	// ocl::OrderedCollection::first() ocl.OrderedCollection{T}.first()
+			Operation symbol_319 = PivotFactory.eINSTANCE.createOperation();
+			symbol_319.setName("first");
+			symbol_319.setType(symbol_62);
+			symbol_319.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionFirstOperation.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_319);
 		}
-		{	// ocl::stdlib24::Collection::product() stdlib24.Collection{T}.product{T2}(stdlib24.Collection[T2])
+		{	// ocl::OrderedCollection::indexOf() ocl.OrderedCollection{T}.indexOf(ocl.OclAny)
 			Operation symbol_320 = PivotFactory.eINSTANCE.createOperation();
-			symbol_88.setName("T2");
-			symbol_87.setOwnedParameteredElement(symbol_88);
-			symbol_86.getOwnedParameters().add(symbol_87);
-			
-			symbol_320.setOwnedTemplateSignature(symbol_86);
-			symbol_320.setName("product");
-			symbol_320.setType(symbol_48);
+			symbol_320.setName("indexOf");
+			symbol_320.setType(symbol_41);
 			Parameter symbol_321 = PivotFactory.eINSTANCE.createParameter();
-			symbol_321.setName("c2");
-			symbol_321.setType(symbol_21);
+			symbol_321.setName("obj");
+			symbol_321.setType(symbol_50);
 			symbol_321.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_320.getOwnedParameters().add(symbol_321);
-			symbol_320.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionProductOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_320);
+			symbol_320.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionIndexOfOperation.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_320);
 		}
-		{	// ocl::stdlib24::Collection::reject() stdlib24.Collection{T}.reject(stdlib24.Collection{T}?T)
+		{	// ocl::OrderedCollection::last() ocl.OrderedCollection{T}.last()
 			Operation symbol_322 = PivotFactory.eINSTANCE.createOperation();
-			symbol_322.setName("reject");
-			symbol_322.setType(symbol_19);
-			Parameter symbol_323 = PivotFactory.eINSTANCE.createParameter();
-			symbol_323.setName("i");
-			symbol_323.setType(symbol_73);
-			symbol_323.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_322.getOwnedParameters().add(symbol_323);
-			symbol_322.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_322);
+			symbol_322.setName("last");
+			symbol_322.setType(symbol_62);
+			symbol_322.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_322);
 		}
-		{	// ocl::stdlib24::Collection::select() stdlib24.Collection{T}.select(stdlib24.Collection{T}?T)
+		{	// ocl::OrderedCollection::reverse() ocl.OrderedCollection{T}.reverse()
+			Operation symbol_323 = PivotFactory.eINSTANCE.createOperation();
+			symbol_323.setName("reverse");
+			symbol_323.setType(symbol_116);
+			symbol_323.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
+			symbol_59.getOwnedOperations().add(symbol_323);
+		}
+		symbol_1.getOwnedTypes().add(symbol_59);
+		//
+		// ocl::OrderedSet ocl.OrderedSet{T}
+		//
+		symbol_63.setName("OrderedSet");
+		symbol_66.setName("T");
+		symbol_65.setOwnedParameteredElement(symbol_66);
+		symbol_64.getOwnedParameters().add(symbol_65);
+		
+		symbol_63.setOwnedTemplateSignature(symbol_64);
+		symbol_63.getSuperClasses().add(symbol_118);
+		symbol_63.getSuperClasses().add(symbol_144);
+		{	// ocl::OrderedSet::-() ocl.OrderedSet{T}.-(ocl.Set[ocl.OrderedSet{T}?T])
 			Operation symbol_324 = PivotFactory.eINSTANCE.createOperation();
-			symbol_324.setName("select");
-			symbol_324.setType(symbol_19);
+			symbol_324.setName("-");
+			symbol_324.setType(symbol_120);
 			Parameter symbol_325 = PivotFactory.eINSTANCE.createParameter();
-			symbol_325.setName("i");
-			symbol_325.setType(symbol_73);
-			symbol_325.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_325.setName("s");
+			symbol_325.setType(symbol_139);
+			symbol_325.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_324.getOwnedParameters().add(symbol_325);
-			symbol_324.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_324);
+			symbol_324.setPrecedence(symbol_2);
+			symbol_324.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_324);
 		}
-		{	// ocl::stdlib24::Collection::size() stdlib24.Collection{T}.size()
+		{	// ocl::OrderedSet::<>() ocl.OrderedSet{T}.<>(ocl.OclAny)
 			Operation symbol_326 = PivotFactory.eINSTANCE.createOperation();
-			symbol_326.setName("size");
-			symbol_326.setType(symbol_90);
-			symbol_326.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionSizeOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_326);
+			symbol_326.setName("<>");
+			symbol_326.setType(symbol_19);
+			Parameter symbol_327 = PivotFactory.eINSTANCE.createParameter();
+			symbol_327.setName("o");
+			symbol_327.setType(symbol_50);
+			symbol_327.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_326.getOwnedParameters().add(symbol_327);
+			symbol_326.setPrecedence(symbol_7);
+			symbol_326.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_326);
 		}
-		{	// ocl::stdlib24::Collection::sortedBy() stdlib24.Collection{T}.sortedBy(stdlib24.Collection{T}?T)
-			Operation symbol_327 = PivotFactory.eINSTANCE.createOperation();
-			symbol_327.setName("sortedBy");
-			symbol_327.setType(symbol_31);
-			Parameter symbol_328 = PivotFactory.eINSTANCE.createParameter();
-			symbol_328.setName("i");
-			symbol_328.setType(symbol_73);
-			symbol_328.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_327.getOwnedParameters().add(symbol_328);
-			symbol_327.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_327);
+		{	// ocl::OrderedSet::=() ocl.OrderedSet{T}.=(ocl.OclAny)
+			Operation symbol_328 = PivotFactory.eINSTANCE.createOperation();
+			symbol_328.setName("=");
+			symbol_328.setType(symbol_19);
+			Parameter symbol_329 = PivotFactory.eINSTANCE.createParameter();
+			symbol_329.setName("o");
+			symbol_329.setType(symbol_50);
+			symbol_329.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_328.getOwnedParameters().add(symbol_329);
+			symbol_328.setPrecedence(symbol_7);
+			symbol_328.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_328);
 		}
-		{	// ocl::stdlib24::Collection::sum() stdlib24.Collection{T}.sum()
-			Operation symbol_329 = PivotFactory.eINSTANCE.createOperation();
-			symbol_329.setName("sum");
-			symbol_329.setType(symbol_73);
-			symbol_329.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionSumOperation.INSTANCE);
-			symbol_70.getOwnedOperations().add(symbol_329);
-		}
-		symbol_60.getOwnedTypes().add(symbol_70);
-		//
-		// ocl::stdlib24::Enumeration stdlib24.Enumeration
-		//
-		symbol_89.setName("Enumeration");
-		symbol_89.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::Enumeration::allInstances() stdlib24.Enumeration.allInstances()
+		{	// ocl::OrderedSet::append() ocl.OrderedSet{T}.append(ocl.OrderedSet{T}?T)
 			Operation symbol_330 = PivotFactory.eINSTANCE.createOperation();
-			symbol_330.setName("allInstances");
-			symbol_330.setType(symbol_54);
-			symbol_330.setImplementation(org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
-			symbol_89.getOwnedOperations().add(symbol_330);
+			symbol_330.setName("append");
+			symbol_330.setType(symbol_120);
+			Parameter symbol_331 = PivotFactory.eINSTANCE.createParameter();
+			symbol_331.setName("object");
+			symbol_331.setType(symbol_66);
+			symbol_331.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_330.getOwnedParameters().add(symbol_331);
+			symbol_330.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_330);
 		}
-		symbol_60.getOwnedTypes().add(symbol_89);
-		//
-		// ocl::stdlib24::Integer stdlib24.Integer
-		//
-		symbol_90.setName("Integer");
-		symbol_90.setPrimitive(Boolean.TRUE);
-		symbol_90.getSuperClasses().add(symbol_116);
-		{	// ocl::stdlib24::Integer::*() stdlib24.Integer.*(stdlib24.Integer)
-			Operation symbol_331 = PivotFactory.eINSTANCE.createOperation();
-			symbol_331.setName("*");
-			symbol_331.setType(symbol_90);
-			Parameter symbol_332 = PivotFactory.eINSTANCE.createParameter();
-			symbol_332.setName("i");
-			symbol_332.setType(symbol_90);
-			symbol_332.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_331.getOwnedParameters().add(symbol_332);
-			symbol_331.setPrecedence(symbol_3);
-			symbol_331.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_331);
+		{	// ocl::OrderedSet::excluding() ocl.OrderedSet{T}.excluding(ocl.OclAny)
+			Operation symbol_332 = PivotFactory.eINSTANCE.createOperation();
+			symbol_332.setName("excluding");
+			symbol_332.setType(symbol_120);
+			Parameter symbol_333 = PivotFactory.eINSTANCE.createParameter();
+			symbol_333.setName("object");
+			symbol_333.setType(symbol_50);
+			symbol_333.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_332.getOwnedParameters().add(symbol_333);
+			symbol_332.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_332);
 		}
-		{	// ocl::stdlib24::Integer::+() stdlib24.Integer.+(stdlib24.Integer)
-			Operation symbol_333 = PivotFactory.eINSTANCE.createOperation();
-			symbol_333.setName("+");
-			symbol_333.setType(symbol_90);
-			Parameter symbol_334 = PivotFactory.eINSTANCE.createParameter();
-			symbol_334.setName("i");
-			symbol_334.setType(symbol_90);
-			symbol_334.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_333.getOwnedParameters().add(symbol_334);
-			symbol_333.setPrecedence(symbol_10);
-			symbol_333.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_333);
+		{	// ocl::OrderedSet::including() ocl.OrderedSet{T}.including(ocl.OrderedSet{T}?T)
+			Operation symbol_334 = PivotFactory.eINSTANCE.createOperation();
+			symbol_334.setName("including");
+			symbol_334.setType(symbol_120);
+			Parameter symbol_335 = PivotFactory.eINSTANCE.createParameter();
+			symbol_335.setName("object");
+			symbol_335.setType(symbol_66);
+			symbol_335.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_334.getOwnedParameters().add(symbol_335);
+			symbol_334.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_334);
 		}
-		{	// ocl::stdlib24::Integer::-() stdlib24.Integer.-()
-			Operation symbol_335 = PivotFactory.eINSTANCE.createOperation();
-			symbol_335.setName("-");
-			symbol_335.setType(symbol_90);
-			symbol_335.setPrecedence(symbol_4);
-			symbol_335.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNegateOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_335);
-		}
-		{	// ocl::stdlib24::Integer::-() stdlib24.Integer.-(stdlib24.Integer)
+		{	// ocl::OrderedSet::insertAt() ocl.OrderedSet{T}.insertAt(ocl.Integer,ocl.OrderedSet{T}?T)
 			Operation symbol_336 = PivotFactory.eINSTANCE.createOperation();
-			symbol_336.setName("-");
-			symbol_336.setType(symbol_90);
+			symbol_336.setName("insertAt");
+			symbol_336.setType(symbol_120);
 			Parameter symbol_337 = PivotFactory.eINSTANCE.createParameter();
-			symbol_337.setName("i");
-			symbol_337.setType(symbol_90);
+			symbol_337.setName("index");
+			symbol_337.setType(symbol_41);
 			symbol_337.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_336.getOwnedParameters().add(symbol_337);
-			symbol_336.setPrecedence(symbol_10);
-			symbol_336.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_336);
+			Parameter symbol_338 = PivotFactory.eINSTANCE.createParameter();
+			symbol_338.setName("object");
+			symbol_338.setType(symbol_66);
+			symbol_338.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_336.getOwnedParameters().add(symbol_338);
+			symbol_336.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_336);
 		}
-		{	// ocl::stdlib24::Integer::/() stdlib24.Integer./(stdlib24.Integer)
-			Operation symbol_338 = PivotFactory.eINSTANCE.createOperation();
-			symbol_338.setName("/");
-			symbol_338.setType(symbol_116);
-			Parameter symbol_339 = PivotFactory.eINSTANCE.createParameter();
-			symbol_339.setName("i");
-			symbol_339.setType(symbol_90);
-			symbol_339.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_338.getOwnedParameters().add(symbol_339);
-			symbol_338.setPrecedence(symbol_3);
-			symbol_338.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_338);
+		{	// ocl::OrderedSet::intersection() ocl.OrderedSet{T}.intersection(ocl.Set[ocl.OrderedSet{T}?T])
+			Operation symbol_339 = PivotFactory.eINSTANCE.createOperation();
+			symbol_339.setName("intersection");
+			symbol_339.setType(symbol_120);
+			Parameter symbol_340 = PivotFactory.eINSTANCE.createParameter();
+			symbol_340.setName("o");
+			symbol_340.setType(symbol_139);
+			symbol_340.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_339.getOwnedParameters().add(symbol_340);
+			symbol_339.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_339);
 		}
-		{	// ocl::stdlib24::Integer::abs() stdlib24.Integer.abs()
-			Operation symbol_340 = PivotFactory.eINSTANCE.createOperation();
-			symbol_340.setName("abs");
-			symbol_340.setType(symbol_90);
-			symbol_340.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericAbsOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_340);
-		}
-		{	// ocl::stdlib24::Integer::div() stdlib24.Integer.div(stdlib24.Integer)
+		{	// ocl::OrderedSet::prepend() ocl.OrderedSet{T}.prepend(ocl.OrderedSet{T}?T)
 			Operation symbol_341 = PivotFactory.eINSTANCE.createOperation();
-			symbol_341.setName("div");
-			symbol_341.setType(symbol_90);
+			symbol_341.setName("prepend");
+			symbol_341.setType(symbol_120);
 			Parameter symbol_342 = PivotFactory.eINSTANCE.createParameter();
-			symbol_342.setName("i");
-			symbol_342.setType(symbol_90);
+			symbol_342.setName("object");
+			symbol_342.setType(symbol_66);
 			symbol_342.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_341.getOwnedParameters().add(symbol_342);
-			symbol_341.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_341);
+			symbol_341.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_341);
 		}
-		{	// ocl::stdlib24::Integer::max() stdlib24.Integer.max(stdlib24.Integer)
+		{	// ocl::OrderedSet::reject() ocl.OrderedSet{T}.reject(ocl.OrderedSet{T}?T)
 			Operation symbol_343 = PivotFactory.eINSTANCE.createOperation();
-			symbol_343.setName("max");
-			symbol_343.setType(symbol_90);
+			symbol_343.setName("reject");
+			symbol_343.setType(symbol_120);
 			Parameter symbol_344 = PivotFactory.eINSTANCE.createParameter();
 			symbol_344.setName("i");
-			symbol_344.setType(symbol_90);
-			symbol_344.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_344.setType(symbol_66);
+			symbol_344.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_343.getOwnedParameters().add(symbol_344);
-			symbol_343.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_343);
+			symbol_343.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_343);
 		}
-		{	// ocl::stdlib24::Integer::min() stdlib24.Integer.min(stdlib24.Integer)
+		{	// ocl::OrderedSet::reverse() ocl.OrderedSet{T}.reverse()
 			Operation symbol_345 = PivotFactory.eINSTANCE.createOperation();
-			symbol_345.setName("min");
-			symbol_345.setType(symbol_90);
-			Parameter symbol_346 = PivotFactory.eINSTANCE.createParameter();
-			symbol_346.setName("i");
-			symbol_346.setType(symbol_90);
-			symbol_346.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_345.getOwnedParameters().add(symbol_346);
-			symbol_345.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_345);
+			symbol_345.setName("reverse");
+			symbol_345.setType(symbol_120);
+			symbol_345.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_345);
 		}
-		{	// ocl::stdlib24::Integer::mod() stdlib24.Integer.mod(stdlib24.Integer)
-			Operation symbol_347 = PivotFactory.eINSTANCE.createOperation();
-			symbol_347.setName("mod");
-			symbol_347.setType(symbol_90);
-			Parameter symbol_348 = PivotFactory.eINSTANCE.createParameter();
-			symbol_348.setName("i");
-			symbol_348.setType(symbol_90);
-			symbol_348.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_347.getOwnedParameters().add(symbol_348);
-			symbol_347.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericModOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_347);
+		{	// ocl::OrderedSet::select() ocl.OrderedSet{T}.select(ocl.OrderedSet{T}?T)
+			Operation symbol_346 = PivotFactory.eINSTANCE.createOperation();
+			symbol_346.setName("select");
+			symbol_346.setType(symbol_120);
+			Parameter symbol_347 = PivotFactory.eINSTANCE.createParameter();
+			symbol_347.setName("i");
+			symbol_347.setType(symbol_66);
+			symbol_347.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_346.getOwnedParameters().add(symbol_347);
+			symbol_346.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_346);
 		}
-		{	// ocl::stdlib24::Integer::toString() stdlib24.Integer.toString()
-			Operation symbol_349 = PivotFactory.eINSTANCE.createOperation();
-			symbol_349.setName("toString");
-			symbol_349.setType(symbol_134);
-			symbol_349.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_90.getOwnedOperations().add(symbol_349);
+		{	// ocl::OrderedSet::subOrderedSet() ocl.OrderedSet{T}.subOrderedSet(ocl.Integer,ocl.Integer)
+			Operation symbol_348 = PivotFactory.eINSTANCE.createOperation();
+			symbol_348.setName("subOrderedSet");
+			symbol_348.setType(symbol_120);
+			Parameter symbol_349 = PivotFactory.eINSTANCE.createParameter();
+			symbol_349.setName("lower");
+			symbol_349.setType(symbol_41);
+			symbol_349.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_348.getOwnedParameters().add(symbol_349);
+			Parameter symbol_350 = PivotFactory.eINSTANCE.createParameter();
+			symbol_350.setName("upper");
+			symbol_350.setType(symbol_41);
+			symbol_350.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_348.getOwnedParameters().add(symbol_350);
+			symbol_348.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_348);
 		}
-		symbol_60.getOwnedTypes().add(symbol_90);
+		{	// ocl::OrderedSet::symmetricDifference() ocl.OrderedSet{T}.symmetricDifference(ocl.Set[ocl.OrderedSet{T}?T])
+			Operation symbol_351 = PivotFactory.eINSTANCE.createOperation();
+			symbol_351.setName("symmetricDifference");
+			symbol_351.setType(symbol_120);
+			Parameter symbol_352 = PivotFactory.eINSTANCE.createParameter();
+			symbol_352.setName("s");
+			symbol_352.setType(symbol_139);
+			symbol_352.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_351.getOwnedParameters().add(symbol_352);
+			symbol_351.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_351);
+		}
+		{	// ocl::OrderedSet::union() ocl.OrderedSet{T}.union(ocl.OrderedSet[ocl.OrderedSet{T}?T])
+			Operation symbol_353 = PivotFactory.eINSTANCE.createOperation();
+			symbol_353.setName("union");
+			symbol_353.setType(symbol_120);
+			Parameter symbol_354 = PivotFactory.eINSTANCE.createParameter();
+			symbol_354.setName("o");
+			symbol_354.setType(symbol_120);
+			symbol_354.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_353.getOwnedParameters().add(symbol_354);
+			symbol_353.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_353);
+		}
+		{	// ocl::OrderedSet::union() ocl.OrderedSet{T}.union(ocl.Set[ocl.OrderedSet{T}?T])
+			Operation symbol_355 = PivotFactory.eINSTANCE.createOperation();
+			symbol_355.setName("union");
+			symbol_355.setType(symbol_139);
+			Parameter symbol_356 = PivotFactory.eINSTANCE.createParameter();
+			symbol_356.setName("s");
+			symbol_356.setType(symbol_139);
+			symbol_356.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_355.getOwnedParameters().add(symbol_356);
+			symbol_355.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
+			symbol_63.getOwnedOperations().add(symbol_355);
+		}
+		symbol_1.getOwnedTypes().add(symbol_63);
 		//
-		// ocl::stdlib24::NonOrderedCollection stdlib24.NonOrderedCollection{T}
+		// ocl::Real ocl.Real
 		//
-		symbol_91.setName("NonOrderedCollection");
-		symbol_94.setName("T");
-		symbol_93.setOwnedParameteredElement(symbol_94);
-		symbol_92.getOwnedParameters().add(symbol_93);
-		
-		symbol_91.setOwnedTemplateSignature(symbol_92);
-		symbol_91.getSuperClasses().add(symbol_24);
-		{	// ocl::stdlib24::NonOrderedCollection::closure() stdlib24.NonOrderedCollection{T}.closure(stdlib24.NonOrderedCollection{T}?T)
-			Operation symbol_350 = PivotFactory.eINSTANCE.createOperation();
-			symbol_350.setName("closure");
-			symbol_350.setType(symbol_50);
-			Parameter symbol_351 = PivotFactory.eINSTANCE.createParameter();
-			symbol_351.setName("i");
-			symbol_351.setType(symbol_94);
-			symbol_351.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_350.getOwnedParameters().add(symbol_351);
-			symbol_350.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
-			symbol_91.getOwnedOperations().add(symbol_350);
+		symbol_67.setName("Real");
+		symbol_67.setPrimitive(Boolean.TRUE);
+		symbol_67.getSuperClasses().add(symbol_50);
+		{	// ocl::Real::*() ocl.Real.*(ocl.Real)
+			Operation symbol_357 = PivotFactory.eINSTANCE.createOperation();
+			symbol_357.setName("*");
+			symbol_357.setType(symbol_67);
+			Parameter symbol_358 = PivotFactory.eINSTANCE.createParameter();
+			symbol_358.setName("r");
+			symbol_358.setType(symbol_67);
+			symbol_358.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_357.getOwnedParameters().add(symbol_358);
+			symbol_357.setPrecedence(symbol_4);
+			symbol_357.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_357);
 		}
-		{	// ocl::stdlib24::NonOrderedCollection::collect() stdlib24.NonOrderedCollection{T}.collect(stdlib24.NonOrderedCollection{T}?T)
-			Operation symbol_352 = PivotFactory.eINSTANCE.createOperation();
-			symbol_352.setName("collect");
-			symbol_352.setType(symbol_15);
-			Parameter symbol_353 = PivotFactory.eINSTANCE.createParameter();
-			symbol_353.setName("i");
-			symbol_353.setType(symbol_94);
-			symbol_353.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_352.getOwnedParameters().add(symbol_353);
-			symbol_352.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
-			symbol_91.getOwnedOperations().add(symbol_352);
+		{	// ocl::Real::+() ocl.Real.+(ocl.Real)
+			Operation symbol_359 = PivotFactory.eINSTANCE.createOperation();
+			symbol_359.setName("+");
+			symbol_359.setType(symbol_67);
+			Parameter symbol_360 = PivotFactory.eINSTANCE.createParameter();
+			symbol_360.setName("r");
+			symbol_360.setType(symbol_67);
+			symbol_360.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_359.getOwnedParameters().add(symbol_360);
+			symbol_359.setPrecedence(symbol_2);
+			symbol_359.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_359);
 		}
-		{	// ocl::stdlib24::NonOrderedCollection::collectNested() stdlib24.NonOrderedCollection{T}.collectNested(stdlib24.NonOrderedCollection{T}?T)
-			Operation symbol_354 = PivotFactory.eINSTANCE.createOperation();
-			symbol_354.setName("collectNested");
-			symbol_354.setType(symbol_15);
-			Parameter symbol_355 = PivotFactory.eINSTANCE.createParameter();
-			symbol_355.setName("i");
-			symbol_355.setType(symbol_94);
-			symbol_355.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_354.getOwnedParameters().add(symbol_355);
-			symbol_354.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
-			symbol_91.getOwnedOperations().add(symbol_354);
+		{	// ocl::Real::-() ocl.Real.-(ocl.Real)
+			Operation symbol_361 = PivotFactory.eINSTANCE.createOperation();
+			symbol_361.setName("-");
+			symbol_361.setType(symbol_67);
+			Parameter symbol_362 = PivotFactory.eINSTANCE.createParameter();
+			symbol_362.setName("r");
+			symbol_362.setType(symbol_67);
+			symbol_362.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_361.getOwnedParameters().add(symbol_362);
+			symbol_361.setPrecedence(symbol_2);
+			symbol_361.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_361);
 		}
-		{	// ocl::stdlib24::NonOrderedCollection::intersection() stdlib24.NonOrderedCollection{T}.intersection(stdlib24.Bag[stdlib24.NonOrderedCollection{T}?T])
-			Operation symbol_356 = PivotFactory.eINSTANCE.createOperation();
-			symbol_356.setName("intersection");
-			symbol_356.setType(symbol_15);
-			Parameter symbol_357 = PivotFactory.eINSTANCE.createParameter();
-			symbol_357.setName("bag");
-			symbol_357.setType(symbol_15);
-			symbol_357.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_356.getOwnedParameters().add(symbol_357);
-			symbol_356.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
-			symbol_91.getOwnedOperations().add(symbol_356);
+		{	// ocl::Real::-() ocl.Real.-()
+			Operation symbol_363 = PivotFactory.eINSTANCE.createOperation();
+			symbol_363.setName("-");
+			symbol_363.setType(symbol_67);
+			symbol_363.setPrecedence(symbol_5);
+			symbol_363.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNegateOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_363);
 		}
-		{	// ocl::stdlib24::NonOrderedCollection::intersection() stdlib24.NonOrderedCollection{T}.intersection(stdlib24.Set[stdlib24.NonOrderedCollection{T}?T])
-			Operation symbol_358 = PivotFactory.eINSTANCE.createOperation();
-			symbol_358.setName("intersection");
-			symbol_358.setType(symbol_50);
-			Parameter symbol_359 = PivotFactory.eINSTANCE.createParameter();
-			symbol_359.setName("s");
-			symbol_359.setType(symbol_50);
-			symbol_359.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_358.getOwnedParameters().add(symbol_359);
-			symbol_358.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
-			symbol_91.getOwnedOperations().add(symbol_358);
-		}
-		{	// ocl::stdlib24::NonOrderedCollection::union() stdlib24.NonOrderedCollection{T}.union(stdlib24.Bag[stdlib24.NonOrderedCollection{T}?T])
-			Operation symbol_360 = PivotFactory.eINSTANCE.createOperation();
-			symbol_360.setName("union");
-			symbol_360.setType(symbol_15);
-			Parameter symbol_361 = PivotFactory.eINSTANCE.createParameter();
-			symbol_361.setName("bag");
-			symbol_361.setType(symbol_15);
-			symbol_361.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_360.getOwnedParameters().add(symbol_361);
-			symbol_360.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
-			symbol_91.getOwnedOperations().add(symbol_360);
-		}
-		{	// ocl::stdlib24::NonOrderedCollection::union() stdlib24.NonOrderedCollection{T}.union(stdlib24.Set[stdlib24.NonOrderedCollection{T}?T])
-			Operation symbol_362 = PivotFactory.eINSTANCE.createOperation();
-			symbol_362.setName("union");
-			symbol_362.setType(symbol_50);
-			Parameter symbol_363 = PivotFactory.eINSTANCE.createParameter();
-			symbol_363.setName("s");
-			symbol_363.setType(symbol_50);
-			symbol_363.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_362.getOwnedParameters().add(symbol_363);
-			symbol_362.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
-			symbol_91.getOwnedOperations().add(symbol_362);
-		}
-		symbol_60.getOwnedTypes().add(symbol_91);
-		//
-		// ocl::stdlib24::NonUniqueCollection stdlib24.NonUniqueCollection{T}
-		//
-		symbol_95.setName("NonUniqueCollection");
-		symbol_98.setName("T");
-		symbol_97.setOwnedParameteredElement(symbol_98);
-		symbol_96.getOwnedParameters().add(symbol_97);
-		
-		symbol_95.setOwnedTemplateSignature(symbol_96);
-		symbol_95.getSuperClasses().add(symbol_18);
-		{	// ocl::stdlib24::NonUniqueCollection::sortedBy() stdlib24.NonUniqueCollection{T}.sortedBy(stdlib24.NonUniqueCollection{T}?T)
+		{	// ocl::Real::/() ocl.Real./(ocl.Real)
 			Operation symbol_364 = PivotFactory.eINSTANCE.createOperation();
-			symbol_364.setName("sortedBy");
-			symbol_364.setType(symbol_42);
+			symbol_364.setName("/");
+			symbol_364.setType(symbol_67);
 			Parameter symbol_365 = PivotFactory.eINSTANCE.createParameter();
-			symbol_365.setName("i");
-			symbol_365.setType(symbol_98);
-			symbol_365.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_365.setName("r");
+			symbol_365.setType(symbol_67);
+			symbol_365.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_364.getOwnedParameters().add(symbol_365);
-			symbol_364.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
-			symbol_95.getOwnedOperations().add(symbol_364);
+			symbol_364.setPrecedence(symbol_4);
+			symbol_364.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_364);
 		}
-		symbol_60.getOwnedTypes().add(symbol_95);
-		//
-		// ocl::stdlib24::OclAny stdlib24.OclAny
-		//
-		symbol_99.setName("OclAny");
-		{	// ocl::stdlib24::OclAny::<>() stdlib24.OclAny.<>(stdlib24.OclAny)
+		{	// ocl::Real::<() ocl.Real.<(ocl.Real)
 			Operation symbol_366 = PivotFactory.eINSTANCE.createOperation();
-			symbol_366.setName("<>");
-			symbol_366.setType(symbol_68);
+			symbol_366.setName("<");
+			symbol_366.setType(symbol_19);
 			Parameter symbol_367 = PivotFactory.eINSTANCE.createParameter();
-			symbol_367.setName("object2");
-			symbol_367.setType(symbol_99);
+			symbol_367.setName("r");
+			symbol_367.setType(symbol_67);
 			symbol_367.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_366.getOwnedParameters().add(symbol_367);
-			symbol_366.setPrecedence(symbol_6);
-			symbol_366.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_366);
+			symbol_366.setPrecedence(symbol_11);
+			symbol_366.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_366);
 		}
-		{	// ocl::stdlib24::OclAny::=() stdlib24.OclAny.=(stdlib24.OclAny)
+		{	// ocl::Real::<=() ocl.Real.<=(ocl.Real)
 			Operation symbol_368 = PivotFactory.eINSTANCE.createOperation();
-			symbol_368.setName("=");
-			symbol_368.setType(symbol_68);
+			symbol_368.setName("<=");
+			symbol_368.setType(symbol_19);
 			Parameter symbol_369 = PivotFactory.eINSTANCE.createParameter();
-			symbol_369.setName("object2");
-			symbol_369.setType(symbol_99);
+			symbol_369.setName("r");
+			symbol_369.setType(symbol_67);
 			symbol_369.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_368.getOwnedParameters().add(symbol_369);
-			symbol_368.setPrecedence(symbol_6);
-			symbol_368.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_368);
+			symbol_368.setPrecedence(symbol_11);
+			symbol_368.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_368);
 		}
-		{	// ocl::stdlib24::OclAny::oclAsSet() stdlib24.OclAny.oclAsSet()
+		{	// ocl::Real::<>() ocl.Real.<>(ocl.OclAny)
 			Operation symbol_370 = PivotFactory.eINSTANCE.createOperation();
-			symbol_370.setName("oclAsSet");
-			symbol_370.setType(symbol_22);
-			symbol_370.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_370);
+			symbol_370.setName("<>");
+			symbol_370.setType(symbol_19);
+			Parameter symbol_371 = PivotFactory.eINSTANCE.createParameter();
+			symbol_371.setName("object2");
+			symbol_371.setType(symbol_50);
+			symbol_371.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_370.getOwnedParameters().add(symbol_371);
+			symbol_370.setPrecedence(symbol_7);
+			symbol_370.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNotEqualOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_370);
 		}
-		{	// ocl::stdlib24::OclAny::oclAsType() stdlib24.OclAny.oclAsType{T}(stdlib24.Classifier)
-			Operation symbol_371 = PivotFactory.eINSTANCE.createOperation();
-			symbol_102.setName("T");
-			symbol_101.setOwnedParameteredElement(symbol_102);
-			symbol_100.getOwnedParameters().add(symbol_101);
-			
-			symbol_371.setOwnedTemplateSignature(symbol_100);
-			symbol_371.setName("oclAsType");
-			symbol_371.setType(symbol_102);
-			Parameter symbol_372 = PivotFactory.eINSTANCE.createParameter();
-			symbol_372.setName("type");
-			symbol_372.setType(symbol_69);
-			symbol_372.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_371.getOwnedParameters().add(symbol_372);
-			symbol_371.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_371);
+		{	// ocl::Real::=() ocl.Real.=(ocl.OclAny)
+			Operation symbol_372 = PivotFactory.eINSTANCE.createOperation();
+			symbol_372.setName("=");
+			symbol_372.setType(symbol_19);
+			Parameter symbol_373 = PivotFactory.eINSTANCE.createParameter();
+			symbol_373.setName("object2");
+			symbol_373.setType(symbol_50);
+			symbol_373.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_372.getOwnedParameters().add(symbol_373);
+			symbol_372.setPrecedence(symbol_7);
+			symbol_372.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericEqualOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_372);
 		}
-		{	// ocl::stdlib24::OclAny::oclIsInState() stdlib24.OclAny.oclIsInState(stdlib24.OclState)
-			Operation symbol_373 = PivotFactory.eINSTANCE.createOperation();
-			symbol_373.setName("oclIsInState");
-			symbol_373.setType(symbol_68);
-			Parameter symbol_374 = PivotFactory.eINSTANCE.createParameter();
-			symbol_374.setName("statespec");
-			symbol_374.setType(symbol_105);
-			symbol_374.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_373.getOwnedParameters().add(symbol_374);
-			symbol_373.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_373);
+		{	// ocl::Real::>() ocl.Real.>(ocl.Real)
+			Operation symbol_374 = PivotFactory.eINSTANCE.createOperation();
+			symbol_374.setName(">");
+			symbol_374.setType(symbol_19);
+			Parameter symbol_375 = PivotFactory.eINSTANCE.createParameter();
+			symbol_375.setName("r");
+			symbol_375.setType(symbol_67);
+			symbol_375.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_374.getOwnedParameters().add(symbol_375);
+			symbol_374.setPrecedence(symbol_11);
+			symbol_374.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_374);
 		}
-		{	// ocl::stdlib24::OclAny::oclIsInvalid() stdlib24.OclAny.oclIsInvalid()
-			Operation symbol_375 = PivotFactory.eINSTANCE.createOperation();
-			symbol_375.setName("oclIsInvalid");
-			symbol_375.setType(symbol_68);
-			symbol_375.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_375);
-		}
-		{	// ocl::stdlib24::OclAny::oclIsKindOf() stdlib24.OclAny.oclIsKindOf(stdlib24.Classifier)
+		{	// ocl::Real::>=() ocl.Real.>=(ocl.Real)
 			Operation symbol_376 = PivotFactory.eINSTANCE.createOperation();
-			symbol_376.setName("oclIsKindOf");
-			symbol_376.setType(symbol_68);
+			symbol_376.setName(">=");
+			symbol_376.setType(symbol_19);
 			Parameter symbol_377 = PivotFactory.eINSTANCE.createParameter();
-			symbol_377.setName("type");
-			symbol_377.setType(symbol_69);
+			symbol_377.setName("r");
+			symbol_377.setType(symbol_67);
 			symbol_377.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_376.getOwnedParameters().add(symbol_377);
-			symbol_376.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_376);
+			symbol_376.setPrecedence(symbol_11);
+			symbol_376.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_376);
 		}
-		{	// ocl::stdlib24::OclAny::oclIsNew() stdlib24.OclAny.oclIsNew()
+		{	// ocl::Real::abs() ocl.Real.abs()
 			Operation symbol_378 = PivotFactory.eINSTANCE.createOperation();
-			symbol_378.setName("oclIsNew");
-			symbol_378.setType(symbol_68);
-			symbol_378.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_378);
+			symbol_378.setName("abs");
+			symbol_378.setType(symbol_67);
+			symbol_378.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericAbsOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_378);
 		}
-		{	// ocl::stdlib24::OclAny::oclIsTypeOf() stdlib24.OclAny.oclIsTypeOf(stdlib24.Classifier)
+		{	// ocl::Real::floor() ocl.Real.floor()
 			Operation symbol_379 = PivotFactory.eINSTANCE.createOperation();
-			symbol_379.setName("oclIsTypeOf");
-			symbol_379.setType(symbol_68);
-			Parameter symbol_380 = PivotFactory.eINSTANCE.createParameter();
-			symbol_380.setName("type");
-			symbol_380.setType(symbol_69);
-			symbol_380.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_379.getOwnedParameters().add(symbol_380);
-			symbol_379.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_379);
+			symbol_379.setName("floor");
+			symbol_379.setType(symbol_41);
+			symbol_379.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericFloorOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_379);
 		}
-		{	// ocl::stdlib24::OclAny::oclIsUndefined() stdlib24.OclAny.oclIsUndefined()
-			Operation symbol_381 = PivotFactory.eINSTANCE.createOperation();
-			symbol_381.setName("oclIsUndefined");
-			symbol_381.setType(symbol_68);
-			symbol_381.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_381);
+		{	// ocl::Real::max() ocl.Real.max(ocl.Real)
+			Operation symbol_380 = PivotFactory.eINSTANCE.createOperation();
+			symbol_380.setName("max");
+			symbol_380.setType(symbol_67);
+			Parameter symbol_381 = PivotFactory.eINSTANCE.createParameter();
+			symbol_381.setName("r");
+			symbol_381.setType(symbol_67);
+			symbol_381.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_380.getOwnedParameters().add(symbol_381);
+			symbol_380.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_380);
 		}
-		{	// ocl::stdlib24::OclAny::oclType() stdlib24.OclAny.oclType()
+		{	// ocl::Real::min() ocl.Real.min(ocl.Real)
 			Operation symbol_382 = PivotFactory.eINSTANCE.createOperation();
-			symbol_382.setName("oclType");
-			symbol_382.setType(symbol_69);
-			symbol_382.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation.INSTANCE);
-			symbol_99.getOwnedOperations().add(symbol_382);
+			symbol_382.setName("min");
+			symbol_382.setType(symbol_67);
+			Parameter symbol_383 = PivotFactory.eINSTANCE.createParameter();
+			symbol_383.setName("r");
+			symbol_383.setType(symbol_67);
+			symbol_383.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_382.getOwnedParameters().add(symbol_383);
+			symbol_382.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_382);
 		}
-		symbol_60.getOwnedTypes().add(symbol_99);
-		//
-		// ocl::stdlib24::OclInvalid stdlib24.OclInvalid
-		//
-		symbol_103.setName("OclInvalid");
-		symbol_103.getSuperClasses().add(symbol_107);
-		{	// ocl::stdlib24::OclInvalid::<>() stdlib24.OclInvalid.<>(stdlib24.OclAny)
-			Operation symbol_383 = PivotFactory.eINSTANCE.createOperation();
-			symbol_383.setName("<>");
-			symbol_383.setType(symbol_68);
-			Parameter symbol_384 = PivotFactory.eINSTANCE.createParameter();
-			symbol_384.setName("object2");
-			symbol_384.setType(symbol_99);
-			symbol_384.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_383.getOwnedParameters().add(symbol_384);
-			symbol_383.setPrecedence(symbol_6);
-			symbol_383.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidNotEqualOperation.INSTANCE);
-			symbol_103.getOwnedOperations().add(symbol_383);
+		{	// ocl::Real::oclAsType() ocl.Real.oclAsType{T}(ocl.Classifier)
+			Operation symbol_384 = PivotFactory.eINSTANCE.createOperation();
+			symbol_70.setName("T");
+			symbol_69.setOwnedParameteredElement(symbol_70);
+			symbol_68.getOwnedParameters().add(symbol_69);
+			
+			symbol_384.setOwnedTemplateSignature(symbol_68);
+			symbol_384.setName("oclAsType");
+			symbol_384.setType(symbol_70);
+			Parameter symbol_385 = PivotFactory.eINSTANCE.createParameter();
+			symbol_385.setName("type");
+			symbol_385.setType(symbol_20);
+			symbol_385.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_384.getOwnedParameters().add(symbol_385);
+			symbol_384.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_384);
 		}
-		{	// ocl::stdlib24::OclInvalid::=() stdlib24.OclInvalid.=(stdlib24.OclAny)
-			Operation symbol_385 = PivotFactory.eINSTANCE.createOperation();
-			symbol_385.setName("=");
-			symbol_385.setType(symbol_68);
-			Parameter symbol_386 = PivotFactory.eINSTANCE.createParameter();
-			symbol_386.setName("object2");
-			symbol_386.setType(symbol_99);
-			symbol_386.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_385.getOwnedParameters().add(symbol_386);
-			symbol_385.setPrecedence(symbol_6);
-			symbol_385.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidEqualOperation.INSTANCE);
-			symbol_103.getOwnedOperations().add(symbol_385);
+		{	// ocl::Real::round() ocl.Real.round()
+			Operation symbol_386 = PivotFactory.eINSTANCE.createOperation();
+			symbol_386.setName("round");
+			symbol_386.setType(symbol_41);
+			symbol_386.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericRoundOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_386);
 		}
-		{	// ocl::stdlib24::OclInvalid::allInstances() stdlib24.OclInvalid.allInstances()
+		{	// ocl::Real::toString() ocl.Real.toString()
 			Operation symbol_387 = PivotFactory.eINSTANCE.createOperation();
-			symbol_387.setName("allInstances");
-			symbol_387.setType(symbol_55);
-			symbol_387.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation.INSTANCE);
-			symbol_103.getOwnedOperations().add(symbol_387);
+			symbol_387.setName("toString");
+			symbol_387.setType(symbol_85);
+			symbol_387.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_67.getOwnedOperations().add(symbol_387);
 		}
-		symbol_60.getOwnedTypes().add(symbol_103);
+		symbol_1.getOwnedTypes().add(symbol_67);
 		//
-		// ocl::stdlib24::OclMessage stdlib24.OclMessage
+		// ocl::Sequence ocl.Sequence{T}
 		//
-		symbol_104.setName("OclMessage");
-		symbol_104.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::OclMessage::hasReturned() stdlib24.OclMessage.hasReturned()
+		symbol_71.setName("Sequence");
+		symbol_74.setName("T");
+		symbol_73.setOwnedParameteredElement(symbol_74);
+		symbol_72.getOwnedParameters().add(symbol_73);
+		
+		symbol_71.setOwnedTemplateSignature(symbol_72);
+		symbol_71.getSuperClasses().add(symbol_115);
+		symbol_71.getSuperClasses().add(symbol_119);
+		{	// ocl::Sequence::<>() ocl.Sequence{T}.<>(ocl.OclAny)
 			Operation symbol_388 = PivotFactory.eINSTANCE.createOperation();
-			symbol_388.setName("hasReturned");
-			symbol_388.setType(symbol_68);
-			symbol_388.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_104.getOwnedOperations().add(symbol_388);
+			symbol_388.setName("<>");
+			symbol_388.setType(symbol_19);
+			Parameter symbol_389 = PivotFactory.eINSTANCE.createParameter();
+			symbol_389.setName("s");
+			symbol_389.setType(symbol_50);
+			symbol_389.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_388.getOwnedParameters().add(symbol_389);
+			symbol_388.setPrecedence(symbol_7);
+			symbol_388.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_388);
 		}
-		{	// ocl::stdlib24::OclMessage::isOperationCall() stdlib24.OclMessage.isOperationCall()
-			Operation symbol_389 = PivotFactory.eINSTANCE.createOperation();
-			symbol_389.setName("isOperationCall");
-			symbol_389.setType(symbol_68);
-			symbol_389.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_104.getOwnedOperations().add(symbol_389);
-		}
-		{	// ocl::stdlib24::OclMessage::isSignalSent() stdlib24.OclMessage.isSignalSent()
+		{	// ocl::Sequence::=() ocl.Sequence{T}.=(ocl.OclAny)
 			Operation symbol_390 = PivotFactory.eINSTANCE.createOperation();
-			symbol_390.setName("isSignalSent");
-			symbol_390.setType(symbol_68);
-			symbol_390.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_104.getOwnedOperations().add(symbol_390);
+			symbol_390.setName("=");
+			symbol_390.setType(symbol_19);
+			Parameter symbol_391 = PivotFactory.eINSTANCE.createParameter();
+			symbol_391.setName("s");
+			symbol_391.setType(symbol_50);
+			symbol_391.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_390.getOwnedParameters().add(symbol_391);
+			symbol_390.setPrecedence(symbol_7);
+			symbol_390.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_390);
 		}
-		{	// ocl::stdlib24::OclMessage::result() stdlib24.OclMessage.result()
-			Operation symbol_391 = PivotFactory.eINSTANCE.createOperation();
-			symbol_391.setName("result");
-			symbol_391.setType(symbol_99);
-			symbol_391.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_104.getOwnedOperations().add(symbol_391);
-		}
-		symbol_60.getOwnedTypes().add(symbol_104);
-		//
-		// ocl::stdlib24::OclState stdlib24.OclState
-		//
-		symbol_105.setName("OclState");
-		symbol_105.getSuperClasses().add(symbol_99);
-		symbol_60.getOwnedTypes().add(symbol_105);
-		//
-		// ocl::stdlib24::OclTuple stdlib24.OclTuple
-		//
-		symbol_106.setName("OclTuple");
-		symbol_106.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::OclTuple::<>() stdlib24.OclTuple.<>(stdlib24.OclAny)
+		{	// ocl::Sequence::append() ocl.Sequence{T}.append(ocl.Sequence{T}?T)
 			Operation symbol_392 = PivotFactory.eINSTANCE.createOperation();
-			symbol_392.setName("<>");
-			symbol_392.setType(symbol_68);
+			symbol_392.setName("append");
+			symbol_392.setType(symbol_125);
 			Parameter symbol_393 = PivotFactory.eINSTANCE.createParameter();
-			symbol_393.setName("object2");
-			symbol_393.setType(symbol_99);
+			symbol_393.setName("object");
+			symbol_393.setType(symbol_74);
 			symbol_393.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_392.getOwnedParameters().add(symbol_393);
-			symbol_392.setPrecedence(symbol_6);
-			symbol_392.setImplementation(org.eclipse.ocl.examples.library.tuple.TupleNotEqualOperation.INSTANCE);
-			symbol_106.getOwnedOperations().add(symbol_392);
+			symbol_392.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_392);
 		}
-		{	// ocl::stdlib24::OclTuple::=() stdlib24.OclTuple.=(stdlib24.OclAny)
+		{	// ocl::Sequence::excluding() ocl.Sequence{T}.excluding(ocl.OclAny)
 			Operation symbol_394 = PivotFactory.eINSTANCE.createOperation();
-			symbol_394.setName("=");
-			symbol_394.setType(symbol_68);
+			symbol_394.setName("excluding");
+			symbol_394.setType(symbol_125);
 			Parameter symbol_395 = PivotFactory.eINSTANCE.createParameter();
-			symbol_395.setName("object2");
-			symbol_395.setType(symbol_99);
+			symbol_395.setName("object");
+			symbol_395.setType(symbol_50);
 			symbol_395.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_394.getOwnedParameters().add(symbol_395);
-			symbol_394.setPrecedence(symbol_6);
-			symbol_394.setImplementation(org.eclipse.ocl.examples.library.tuple.TupleEqualOperation.INSTANCE);
-			symbol_106.getOwnedOperations().add(symbol_394);
+			symbol_394.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_394);
 		}
-		symbol_60.getOwnedTypes().add(symbol_106);
-		//
-		// ocl::stdlib24::OclVoid stdlib24.OclVoid
-		//
-		symbol_107.setName("OclVoid");
-		symbol_107.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::OclVoid::<>() stdlib24.OclVoid.<>(stdlib24.OclAny)
+		{	// ocl::Sequence::flatten() ocl.Sequence{T}.flatten{T2}()
 			Operation symbol_396 = PivotFactory.eINSTANCE.createOperation();
-			symbol_396.setName("<>");
-			symbol_396.setType(symbol_68);
-			Parameter symbol_397 = PivotFactory.eINSTANCE.createParameter();
-			symbol_397.setName("object2");
-			symbol_397.setType(symbol_99);
-			symbol_397.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_396.getOwnedParameters().add(symbol_397);
-			symbol_396.setPrecedence(symbol_6);
-			symbol_396.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidNotEqualOperation.INSTANCE);
-			symbol_107.getOwnedOperations().add(symbol_396);
+			symbol_77.setName("T2");
+			symbol_76.setOwnedParameteredElement(symbol_77);
+			symbol_75.getOwnedParameters().add(symbol_76);
+			
+			symbol_396.setOwnedTemplateSignature(symbol_75);
+			symbol_396.setName("flatten");
+			symbol_396.setType(symbol_124);
+			symbol_396.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_396);
 		}
-		{	// ocl::stdlib24::OclVoid::=() stdlib24.OclVoid.=(stdlib24.OclAny)
-			Operation symbol_398 = PivotFactory.eINSTANCE.createOperation();
-			symbol_398.setName("=");
-			symbol_398.setType(symbol_68);
-			Parameter symbol_399 = PivotFactory.eINSTANCE.createParameter();
-			symbol_399.setName("object2");
-			symbol_399.setType(symbol_99);
-			symbol_399.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_398.getOwnedParameters().add(symbol_399);
-			symbol_398.setPrecedence(symbol_6);
-			symbol_398.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidEqualOperation.INSTANCE);
-			symbol_107.getOwnedOperations().add(symbol_398);
+		{	// ocl::Sequence::including() ocl.Sequence{T}.including(ocl.Sequence{T}?T)
+			Operation symbol_397 = PivotFactory.eINSTANCE.createOperation();
+			symbol_397.setName("including");
+			symbol_397.setType(symbol_125);
+			Parameter symbol_398 = PivotFactory.eINSTANCE.createParameter();
+			symbol_398.setName("object");
+			symbol_398.setType(symbol_74);
+			symbol_398.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_397.getOwnedParameters().add(symbol_398);
+			symbol_397.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_397);
 		}
-		{	// ocl::stdlib24::OclVoid::allInstances() stdlib24.OclVoid.allInstances()
-			Operation symbol_400 = PivotFactory.eINSTANCE.createOperation();
-			symbol_400.setName("allInstances");
-			symbol_400.setType(symbol_49);
-			symbol_400.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation.INSTANCE);
-			symbol_107.getOwnedOperations().add(symbol_400);
+		{	// ocl::Sequence::insertAt() ocl.Sequence{T}.insertAt(ocl.Integer,ocl.Sequence{T}?T)
+			Operation symbol_399 = PivotFactory.eINSTANCE.createOperation();
+			symbol_399.setName("insertAt");
+			symbol_399.setType(symbol_125);
+			Parameter symbol_400 = PivotFactory.eINSTANCE.createParameter();
+			symbol_400.setName("index");
+			symbol_400.setType(symbol_41);
+			symbol_400.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_399.getOwnedParameters().add(symbol_400);
+			Parameter symbol_401 = PivotFactory.eINSTANCE.createParameter();
+			symbol_401.setName("object");
+			symbol_401.setType(symbol_74);
+			symbol_401.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_399.getOwnedParameters().add(symbol_401);
+			symbol_399.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_399);
 		}
-		{	// ocl::stdlib24::OclVoid::and() stdlib24.OclVoid.and(stdlib24.Boolean)
-			Operation symbol_401 = PivotFactory.eINSTANCE.createOperation();
-			symbol_401.setName("and");
-			symbol_401.setType(symbol_68);
-			Parameter symbol_402 = PivotFactory.eINSTANCE.createParameter();
-			symbol_402.setName("b");
-			symbol_402.setType(symbol_68);
-			symbol_402.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_401.getOwnedParameters().add(symbol_402);
-			symbol_401.setPrecedence(symbol_8);
-			symbol_401.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation.INSTANCE);
-			symbol_107.getOwnedOperations().add(symbol_401);
+		{	// ocl::Sequence::prepend() ocl.Sequence{T}.prepend(ocl.Sequence{T}?T)
+			Operation symbol_402 = PivotFactory.eINSTANCE.createOperation();
+			symbol_402.setName("prepend");
+			symbol_402.setType(symbol_125);
+			Parameter symbol_403 = PivotFactory.eINSTANCE.createParameter();
+			symbol_403.setName("object");
+			symbol_403.setType(symbol_74);
+			symbol_403.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_402.getOwnedParameters().add(symbol_403);
+			symbol_402.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_402);
 		}
-		{	// ocl::stdlib24::OclVoid::implies() stdlib24.OclVoid.implies(stdlib24.Boolean)
-			Operation symbol_403 = PivotFactory.eINSTANCE.createOperation();
-			symbol_403.setName("implies");
-			symbol_403.setType(symbol_68);
-			Parameter symbol_404 = PivotFactory.eINSTANCE.createParameter();
-			symbol_404.setName("b");
-			symbol_404.setType(symbol_68);
-			symbol_404.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_403.getOwnedParameters().add(symbol_404);
-			symbol_403.setPrecedence(symbol_2);
-			symbol_403.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation.INSTANCE);
-			symbol_107.getOwnedOperations().add(symbol_403);
+		{	// ocl::Sequence::reject() ocl.Sequence{T}.reject(ocl.Sequence{T}?T)
+			Operation symbol_404 = PivotFactory.eINSTANCE.createOperation();
+			symbol_404.setName("reject");
+			symbol_404.setType(symbol_125);
+			Parameter symbol_405 = PivotFactory.eINSTANCE.createParameter();
+			symbol_405.setName("i");
+			symbol_405.setType(symbol_74);
+			symbol_405.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_404.getOwnedParameters().add(symbol_405);
+			symbol_404.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_404);
 		}
-		{	// ocl::stdlib24::OclVoid::or() stdlib24.OclVoid.or(stdlib24.Boolean)
-			Operation symbol_405 = PivotFactory.eINSTANCE.createOperation();
-			symbol_405.setName("or");
-			symbol_405.setType(symbol_68);
-			Parameter symbol_406 = PivotFactory.eINSTANCE.createParameter();
-			symbol_406.setName("b");
-			symbol_406.setType(symbol_68);
-			symbol_406.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_405.getOwnedParameters().add(symbol_406);
-			symbol_405.setPrecedence(symbol_5);
-			symbol_405.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation.INSTANCE);
-			symbol_107.getOwnedOperations().add(symbol_405);
+		{	// ocl::Sequence::reverse() ocl.Sequence{T}.reverse()
+			Operation symbol_406 = PivotFactory.eINSTANCE.createOperation();
+			symbol_406.setName("reverse");
+			symbol_406.setType(symbol_125);
+			symbol_406.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_406);
 		}
-		symbol_60.getOwnedTypes().add(symbol_107);
-		//
-		// ocl::stdlib24::OrderedCollection stdlib24.OrderedCollection{T}
-		//
-		symbol_108.setName("OrderedCollection");
-		symbol_111.setName("T");
-		symbol_110.setOwnedParameteredElement(symbol_111);
-		symbol_109.getOwnedParameters().add(symbol_110);
-		
-		symbol_108.setOwnedTemplateSignature(symbol_109);
-		symbol_108.getSuperClasses().add(symbol_26);
-		{	// ocl::stdlib24::OrderedCollection::at() stdlib24.OrderedCollection{T}.at(stdlib24.Integer)
+		{	// ocl::Sequence::select() ocl.Sequence{T}.select(ocl.Sequence{T}?T)
 			Operation symbol_407 = PivotFactory.eINSTANCE.createOperation();
-			symbol_407.setName("at");
-			symbol_407.setType(symbol_111);
+			symbol_407.setName("select");
+			symbol_407.setType(symbol_125);
 			Parameter symbol_408 = PivotFactory.eINSTANCE.createParameter();
-			symbol_408.setName("index");
-			symbol_408.setType(symbol_90);
-			symbol_408.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_408.setName("i");
+			symbol_408.setType(symbol_74);
+			symbol_408.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_407.getOwnedParameters().add(symbol_408);
-			symbol_407.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAtOperation.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_407);
+			symbol_407.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_407);
 		}
-		{	// ocl::stdlib24::OrderedCollection::closure() stdlib24.OrderedCollection{T}.closure(stdlib24.OrderedCollection{T}?T)
+		{	// ocl::Sequence::subSequence() ocl.Sequence{T}.subSequence(ocl.Integer,ocl.Integer)
 			Operation symbol_409 = PivotFactory.eINSTANCE.createOperation();
-			symbol_409.setName("closure");
-			symbol_409.setType(symbol_38);
+			symbol_409.setName("subSequence");
+			symbol_409.setType(symbol_125);
 			Parameter symbol_410 = PivotFactory.eINSTANCE.createParameter();
-			symbol_410.setName("i");
-			symbol_410.setType(symbol_111);
-			symbol_410.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_410.setName("lower");
+			symbol_410.setType(symbol_41);
+			symbol_410.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_409.getOwnedParameters().add(symbol_410);
-			symbol_409.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_409);
+			Parameter symbol_411 = PivotFactory.eINSTANCE.createParameter();
+			symbol_411.setName("upper");
+			symbol_411.setType(symbol_41);
+			symbol_411.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_409.getOwnedParameters().add(symbol_411);
+			symbol_409.setImplementation(org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_409);
 		}
-		{	// ocl::stdlib24::OrderedCollection::collect() stdlib24.OrderedCollection{T}.collect(stdlib24.OrderedCollection{T}?T)
-			Operation symbol_411 = PivotFactory.eINSTANCE.createOperation();
-			symbol_411.setName("collect");
-			symbol_411.setType(symbol_39);
-			Parameter symbol_412 = PivotFactory.eINSTANCE.createParameter();
-			symbol_412.setName("i");
-			symbol_412.setType(symbol_111);
-			symbol_412.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_411.getOwnedParameters().add(symbol_412);
-			symbol_411.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_411);
+		{	// ocl::Sequence::union() ocl.Sequence{T}.union(ocl.Sequence[ocl.Sequence{T}?T])
+			Operation symbol_412 = PivotFactory.eINSTANCE.createOperation();
+			symbol_412.setName("union");
+			symbol_412.setType(symbol_125);
+			Parameter symbol_413 = PivotFactory.eINSTANCE.createParameter();
+			symbol_413.setName("s");
+			symbol_413.setType(symbol_125);
+			symbol_413.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_412.getOwnedParameters().add(symbol_413);
+			symbol_412.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
+			symbol_71.getOwnedOperations().add(symbol_412);
 		}
-		{	// ocl::stdlib24::OrderedCollection::collectNested() stdlib24.OrderedCollection{T}.collectNested(stdlib24.OrderedCollection{T}?T)
-			Operation symbol_413 = PivotFactory.eINSTANCE.createOperation();
-			symbol_413.setName("collectNested");
-			symbol_413.setType(symbol_39);
-			Parameter symbol_414 = PivotFactory.eINSTANCE.createParameter();
-			symbol_414.setName("i");
-			symbol_414.setType(symbol_111);
-			symbol_414.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_413.getOwnedParameters().add(symbol_414);
-			symbol_413.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_413);
+		symbol_1.getOwnedTypes().add(symbol_71);
+		//
+		// ocl::Set ocl.Set{T}
+		//
+		symbol_78.setName("Set");
+		symbol_81.setName("T");
+		symbol_80.setOwnedParameteredElement(symbol_81);
+		symbol_79.getOwnedParameters().add(symbol_80);
+		
+		symbol_78.setOwnedTemplateSignature(symbol_79);
+		symbol_78.getSuperClasses().add(symbol_143);
+		symbol_78.getSuperClasses().add(symbol_113);
+		{	// ocl::Set::-() ocl.Set{T}.-(ocl.Set[ocl.OclAny])
+			Operation symbol_414 = PivotFactory.eINSTANCE.createOperation();
+			symbol_414.setName("-");
+			symbol_414.setType(symbol_141);
+			Parameter symbol_415 = PivotFactory.eINSTANCE.createParameter();
+			symbol_415.setName("s");
+			symbol_415.setType(symbol_130);
+			symbol_415.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_414.getOwnedParameters().add(symbol_415);
+			symbol_414.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_414);
 		}
-		{	// ocl::stdlib24::OrderedCollection::first() stdlib24.OrderedCollection{T}.first()
-			Operation symbol_415 = PivotFactory.eINSTANCE.createOperation();
-			symbol_415.setName("first");
-			symbol_415.setType(symbol_111);
-			symbol_415.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionFirstOperation.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_415);
-		}
-		{	// ocl::stdlib24::OrderedCollection::indexOf() stdlib24.OrderedCollection{T}.indexOf(stdlib24.OclAny)
+		{	// ocl::Set::<>() ocl.Set{T}.<>(ocl.OclAny)
 			Operation symbol_416 = PivotFactory.eINSTANCE.createOperation();
-			symbol_416.setName("indexOf");
-			symbol_416.setType(symbol_90);
+			symbol_416.setName("<>");
+			symbol_416.setType(symbol_19);
 			Parameter symbol_417 = PivotFactory.eINSTANCE.createParameter();
-			symbol_417.setName("obj");
-			symbol_417.setType(symbol_99);
+			symbol_417.setName("s");
+			symbol_417.setType(symbol_50);
 			symbol_417.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_416.getOwnedParameters().add(symbol_417);
-			symbol_416.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionIndexOfOperation.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_416);
+			symbol_416.setPrecedence(symbol_7);
+			symbol_416.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_416);
 		}
-		{	// ocl::stdlib24::OrderedCollection::last() stdlib24.OrderedCollection{T}.last()
+		{	// ocl::Set::=() ocl.Set{T}.=(ocl.OclAny)
 			Operation symbol_418 = PivotFactory.eINSTANCE.createOperation();
-			symbol_418.setName("last");
-			symbol_418.setType(symbol_111);
-			symbol_418.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_418);
+			symbol_418.setName("=");
+			symbol_418.setType(symbol_19);
+			Parameter symbol_419 = PivotFactory.eINSTANCE.createParameter();
+			symbol_419.setName("s");
+			symbol_419.setType(symbol_50);
+			symbol_419.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_418.getOwnedParameters().add(symbol_419);
+			symbol_418.setPrecedence(symbol_7);
+			symbol_418.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_418);
 		}
-		{	// ocl::stdlib24::OrderedCollection::reverse() stdlib24.OrderedCollection{T}.reverse()
-			Operation symbol_419 = PivotFactory.eINSTANCE.createOperation();
-			symbol_419.setName("reverse");
-			symbol_419.setType(symbol_32);
-			symbol_419.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
-			symbol_108.getOwnedOperations().add(symbol_419);
-		}
-		symbol_60.getOwnedTypes().add(symbol_108);
-		//
-		// ocl::stdlib24::OrderedSet stdlib24.OrderedSet{T}
-		//
-		symbol_112.setName("OrderedSet");
-		symbol_115.setName("T");
-		symbol_114.setOwnedParameteredElement(symbol_115);
-		symbol_113.getOwnedParameters().add(symbol_114);
-		
-		symbol_112.setOwnedTemplateSignature(symbol_113);
-		symbol_112.getSuperClasses().add(symbol_59);
-		symbol_112.getSuperClasses().add(symbol_34);
-		{	// ocl::stdlib24::OrderedSet::-() stdlib24.OrderedSet{T}.-(stdlib24.Set[stdlib24.OrderedSet{T}?T])
+		{	// ocl::Set::excluding() ocl.Set{T}.excluding(ocl.OclAny)
 			Operation symbol_420 = PivotFactory.eINSTANCE.createOperation();
-			symbol_420.setName("-");
-			symbol_420.setType(symbol_35);
+			symbol_420.setName("excluding");
+			symbol_420.setType(symbol_141);
 			Parameter symbol_421 = PivotFactory.eINSTANCE.createParameter();
-			symbol_421.setName("s");
-			symbol_421.setType(symbol_53);
+			symbol_421.setName("object");
+			symbol_421.setType(symbol_50);
 			symbol_421.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_420.getOwnedParameters().add(symbol_421);
-			symbol_420.setPrecedence(symbol_10);
-			symbol_420.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_420);
+			symbol_420.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_420);
 		}
-		{	// ocl::stdlib24::OrderedSet::<>() stdlib24.OrderedSet{T}.<>(stdlib24.OclAny)
+		{	// ocl::Set::flatten() ocl.Set{T}.flatten{T2}()
 			Operation symbol_422 = PivotFactory.eINSTANCE.createOperation();
-			symbol_422.setName("<>");
-			symbol_422.setType(symbol_68);
-			Parameter symbol_423 = PivotFactory.eINSTANCE.createParameter();
-			symbol_423.setName("o");
-			symbol_423.setType(symbol_99);
-			symbol_423.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_422.getOwnedParameters().add(symbol_423);
-			symbol_422.setPrecedence(symbol_6);
-			symbol_422.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_422);
+			symbol_84.setName("T2");
+			symbol_83.setOwnedParameteredElement(symbol_84);
+			symbol_82.getOwnedParameters().add(symbol_83);
+			
+			symbol_422.setOwnedTemplateSignature(symbol_82);
+			symbol_422.setName("flatten");
+			symbol_422.setType(symbol_131);
+			symbol_422.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_422);
 		}
-		{	// ocl::stdlib24::OrderedSet::=() stdlib24.OrderedSet{T}.=(stdlib24.OclAny)
-			Operation symbol_424 = PivotFactory.eINSTANCE.createOperation();
-			symbol_424.setName("=");
-			symbol_424.setType(symbol_68);
-			Parameter symbol_425 = PivotFactory.eINSTANCE.createParameter();
-			symbol_425.setName("o");
-			symbol_425.setType(symbol_99);
-			symbol_425.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_424.getOwnedParameters().add(symbol_425);
-			symbol_424.setPrecedence(symbol_6);
-			symbol_424.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_424);
+		{	// ocl::Set::including() ocl.Set{T}.including(ocl.Set{T}?T)
+			Operation symbol_423 = PivotFactory.eINSTANCE.createOperation();
+			symbol_423.setName("including");
+			symbol_423.setType(symbol_141);
+			Parameter symbol_424 = PivotFactory.eINSTANCE.createParameter();
+			symbol_424.setName("object");
+			symbol_424.setType(symbol_81);
+			symbol_424.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_423.getOwnedParameters().add(symbol_424);
+			symbol_423.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_423);
 		}
-		{	// ocl::stdlib24::OrderedSet::append() stdlib24.OrderedSet{T}.append(stdlib24.OrderedSet{T}?T)
-			Operation symbol_426 = PivotFactory.eINSTANCE.createOperation();
-			symbol_426.setName("append");
-			symbol_426.setType(symbol_35);
-			Parameter symbol_427 = PivotFactory.eINSTANCE.createParameter();
-			symbol_427.setName("object");
-			symbol_427.setType(symbol_115);
-			symbol_427.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_426.getOwnedParameters().add(symbol_427);
-			symbol_426.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_426);
+		{	// ocl::Set::intersection() ocl.Set{T}.intersection(ocl.Set[ocl.Set{T}?T])
+			Operation symbol_425 = PivotFactory.eINSTANCE.createOperation();
+			symbol_425.setName("intersection");
+			symbol_425.setType(symbol_141);
+			Parameter symbol_426 = PivotFactory.eINSTANCE.createParameter();
+			symbol_426.setName("s");
+			symbol_426.setType(symbol_141);
+			symbol_426.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_425.getOwnedParameters().add(symbol_426);
+			symbol_425.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_425);
 		}
-		{	// ocl::stdlib24::OrderedSet::excluding() stdlib24.OrderedSet{T}.excluding(stdlib24.OclAny)
-			Operation symbol_428 = PivotFactory.eINSTANCE.createOperation();
-			symbol_428.setName("excluding");
-			symbol_428.setType(symbol_35);
-			Parameter symbol_429 = PivotFactory.eINSTANCE.createParameter();
-			symbol_429.setName("object");
-			symbol_429.setType(symbol_99);
-			symbol_429.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_428.getOwnedParameters().add(symbol_429);
-			symbol_428.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_428);
+		{	// ocl::Set::reject() ocl.Set{T}.reject(ocl.Set{T}?T)
+			Operation symbol_427 = PivotFactory.eINSTANCE.createOperation();
+			symbol_427.setName("reject");
+			symbol_427.setType(symbol_141);
+			Parameter symbol_428 = PivotFactory.eINSTANCE.createParameter();
+			symbol_428.setName("i");
+			symbol_428.setType(symbol_81);
+			symbol_428.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_427.getOwnedParameters().add(symbol_428);
+			symbol_427.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_427);
 		}
-		{	// ocl::stdlib24::OrderedSet::including() stdlib24.OrderedSet{T}.including(stdlib24.OrderedSet{T}?T)
-			Operation symbol_430 = PivotFactory.eINSTANCE.createOperation();
-			symbol_430.setName("including");
-			symbol_430.setType(symbol_35);
-			Parameter symbol_431 = PivotFactory.eINSTANCE.createParameter();
-			symbol_431.setName("object");
-			symbol_431.setType(symbol_115);
-			symbol_431.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_430.getOwnedParameters().add(symbol_431);
-			symbol_430.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_430);
+		{	// ocl::Set::select() ocl.Set{T}.select(ocl.Set{T}?T)
+			Operation symbol_429 = PivotFactory.eINSTANCE.createOperation();
+			symbol_429.setName("select");
+			symbol_429.setType(symbol_141);
+			Parameter symbol_430 = PivotFactory.eINSTANCE.createParameter();
+			symbol_430.setName("i");
+			symbol_430.setType(symbol_81);
+			symbol_430.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_429.getOwnedParameters().add(symbol_430);
+			symbol_429.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_429);
 		}
-		{	// ocl::stdlib24::OrderedSet::insertAt() stdlib24.OrderedSet{T}.insertAt(stdlib24.Integer,stdlib24.OrderedSet{T}?T)
-			Operation symbol_432 = PivotFactory.eINSTANCE.createOperation();
-			symbol_432.setName("insertAt");
-			symbol_432.setType(symbol_35);
-			Parameter symbol_433 = PivotFactory.eINSTANCE.createParameter();
-			symbol_433.setName("index");
-			symbol_433.setType(symbol_90);
-			symbol_433.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_432.getOwnedParameters().add(symbol_433);
+		{	// ocl::Set::symmetricDifference() ocl.Set{T}.symmetricDifference(ocl.Set[ocl.OclAny])
+			Operation symbol_431 = PivotFactory.eINSTANCE.createOperation();
+			symbol_431.setName("symmetricDifference");
+			symbol_431.setType(symbol_141);
+			Parameter symbol_432 = PivotFactory.eINSTANCE.createParameter();
+			symbol_432.setName("s");
+			symbol_432.setType(symbol_130);
+			symbol_432.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_431.getOwnedParameters().add(symbol_432);
+			symbol_431.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
+			symbol_78.getOwnedOperations().add(symbol_431);
+		}
+		symbol_1.getOwnedTypes().add(symbol_78);
+		//
+		// ocl::String ocl.String
+		//
+		symbol_85.setName("String");
+		symbol_85.setPrimitive(Boolean.TRUE);
+		symbol_85.getSuperClasses().add(symbol_50);
+		{	// ocl::String::+() ocl.String.+(ocl.String)
+			Operation symbol_433 = PivotFactory.eINSTANCE.createOperation();
+			symbol_433.setName("+");
+			symbol_433.setType(symbol_85);
 			Parameter symbol_434 = PivotFactory.eINSTANCE.createParameter();
-			symbol_434.setName("object");
-			symbol_434.setType(symbol_115);
+			symbol_434.setName("s");
+			symbol_434.setType(symbol_85);
 			symbol_434.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_432.getOwnedParameters().add(symbol_434);
-			symbol_432.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_432);
+			symbol_433.getOwnedParameters().add(symbol_434);
+			symbol_433.setPrecedence(symbol_2);
+			symbol_433.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_433);
 		}
-		{	// ocl::stdlib24::OrderedSet::intersection() stdlib24.OrderedSet{T}.intersection(stdlib24.Set[stdlib24.OrderedSet{T}?T])
+		{	// ocl::String::<() ocl.String.<(ocl.String)
 			Operation symbol_435 = PivotFactory.eINSTANCE.createOperation();
-			symbol_435.setName("intersection");
-			symbol_435.setType(symbol_35);
+			symbol_435.setName("<");
+			symbol_435.setType(symbol_19);
 			Parameter symbol_436 = PivotFactory.eINSTANCE.createParameter();
-			symbol_436.setName("o");
-			symbol_436.setType(symbol_53);
+			symbol_436.setName("s");
+			symbol_436.setType(symbol_85);
 			symbol_436.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_435.getOwnedParameters().add(symbol_436);
-			symbol_435.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_435);
+			symbol_435.setPrecedence(symbol_11);
+			symbol_435.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_435);
 		}
-		{	// ocl::stdlib24::OrderedSet::prepend() stdlib24.OrderedSet{T}.prepend(stdlib24.OrderedSet{T}?T)
+		{	// ocl::String::<=() ocl.String.<=(ocl.String)
 			Operation symbol_437 = PivotFactory.eINSTANCE.createOperation();
-			symbol_437.setName("prepend");
-			symbol_437.setType(symbol_35);
+			symbol_437.setName("<=");
+			symbol_437.setType(symbol_19);
 			Parameter symbol_438 = PivotFactory.eINSTANCE.createParameter();
-			symbol_438.setName("object");
-			symbol_438.setType(symbol_115);
+			symbol_438.setName("s");
+			symbol_438.setType(symbol_85);
 			symbol_438.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_437.getOwnedParameters().add(symbol_438);
-			symbol_437.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_437);
+			symbol_437.setPrecedence(symbol_11);
+			symbol_437.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_437);
 		}
-		{	// ocl::stdlib24::OrderedSet::reject() stdlib24.OrderedSet{T}.reject(stdlib24.OrderedSet{T}?T)
+		{	// ocl::String::<>() ocl.String.<>(ocl.OclAny)
 			Operation symbol_439 = PivotFactory.eINSTANCE.createOperation();
-			symbol_439.setName("reject");
-			symbol_439.setType(symbol_35);
+			symbol_439.setName("<>");
+			symbol_439.setType(symbol_19);
 			Parameter symbol_440 = PivotFactory.eINSTANCE.createParameter();
-			symbol_440.setName("i");
-			symbol_440.setType(symbol_115);
-			symbol_440.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_440.setName("object2");
+			symbol_440.setType(symbol_50);
+			symbol_440.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_439.getOwnedParameters().add(symbol_440);
-			symbol_439.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_439);
+			symbol_439.setPrecedence(symbol_7);
+			symbol_439.setImplementation(org.eclipse.ocl.examples.library.string.StringNotEqualOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_439);
 		}
-		{	// ocl::stdlib24::OrderedSet::reverse() stdlib24.OrderedSet{T}.reverse()
+		{	// ocl::String::=() ocl.String.=(ocl.OclAny)
 			Operation symbol_441 = PivotFactory.eINSTANCE.createOperation();
-			symbol_441.setName("reverse");
-			symbol_441.setType(symbol_35);
-			symbol_441.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_441);
+			symbol_441.setName("=");
+			symbol_441.setType(symbol_19);
+			Parameter symbol_442 = PivotFactory.eINSTANCE.createParameter();
+			symbol_442.setName("object2");
+			symbol_442.setType(symbol_50);
+			symbol_442.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_441.getOwnedParameters().add(symbol_442);
+			symbol_441.setPrecedence(symbol_7);
+			symbol_441.setImplementation(org.eclipse.ocl.examples.library.string.StringEqualOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_441);
 		}
-		{	// ocl::stdlib24::OrderedSet::select() stdlib24.OrderedSet{T}.select(stdlib24.OrderedSet{T}?T)
-			Operation symbol_442 = PivotFactory.eINSTANCE.createOperation();
-			symbol_442.setName("select");
-			symbol_442.setType(symbol_35);
-			Parameter symbol_443 = PivotFactory.eINSTANCE.createParameter();
-			symbol_443.setName("i");
-			symbol_443.setType(symbol_115);
-			symbol_443.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_442.getOwnedParameters().add(symbol_443);
-			symbol_442.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_442);
+		{	// ocl::String::>() ocl.String.>(ocl.String)
+			Operation symbol_443 = PivotFactory.eINSTANCE.createOperation();
+			symbol_443.setName(">");
+			symbol_443.setType(symbol_19);
+			Parameter symbol_444 = PivotFactory.eINSTANCE.createParameter();
+			symbol_444.setName("s");
+			symbol_444.setType(symbol_85);
+			symbol_444.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_443.getOwnedParameters().add(symbol_444);
+			symbol_443.setPrecedence(symbol_11);
+			symbol_443.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_443);
 		}
-		{	// ocl::stdlib24::OrderedSet::subOrderedSet() stdlib24.OrderedSet{T}.subOrderedSet(stdlib24.Integer,stdlib24.Integer)
-			Operation symbol_444 = PivotFactory.eINSTANCE.createOperation();
-			symbol_444.setName("subOrderedSet");
-			symbol_444.setType(symbol_35);
-			Parameter symbol_445 = PivotFactory.eINSTANCE.createParameter();
-			symbol_445.setName("lower");
-			symbol_445.setType(symbol_90);
-			symbol_445.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_444.getOwnedParameters().add(symbol_445);
+		{	// ocl::String::>=() ocl.String.>=(ocl.String)
+			Operation symbol_445 = PivotFactory.eINSTANCE.createOperation();
+			symbol_445.setName(">=");
+			symbol_445.setType(symbol_19);
 			Parameter symbol_446 = PivotFactory.eINSTANCE.createParameter();
-			symbol_446.setName("upper");
-			symbol_446.setType(symbol_90);
+			symbol_446.setName("s");
+			symbol_446.setType(symbol_85);
 			symbol_446.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_444.getOwnedParameters().add(symbol_446);
-			symbol_444.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_444);
+			symbol_445.getOwnedParameters().add(symbol_446);
+			symbol_445.setPrecedence(symbol_11);
+			symbol_445.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_445);
 		}
-		{	// ocl::stdlib24::OrderedSet::symmetricDifference() stdlib24.OrderedSet{T}.symmetricDifference(stdlib24.Set[stdlib24.OrderedSet{T}?T])
+		{	// ocl::String::at() ocl.String.at(ocl.Integer)
 			Operation symbol_447 = PivotFactory.eINSTANCE.createOperation();
-			symbol_447.setName("symmetricDifference");
-			symbol_447.setType(symbol_35);
+			symbol_447.setName("at");
+			symbol_447.setType(symbol_85);
 			Parameter symbol_448 = PivotFactory.eINSTANCE.createParameter();
-			symbol_448.setName("s");
-			symbol_448.setType(symbol_53);
+			symbol_448.setName("i");
+			symbol_448.setType(symbol_41);
 			symbol_448.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_447.getOwnedParameters().add(symbol_448);
-			symbol_447.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_447);
+			symbol_447.setImplementation(org.eclipse.ocl.examples.library.string.StringAtOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_447);
 		}
-		{	// ocl::stdlib24::OrderedSet::union() stdlib24.OrderedSet{T}.union(stdlib24.OrderedSet[stdlib24.OrderedSet{T}?T])
+		{	// ocl::String::characters() ocl.String.characters()
 			Operation symbol_449 = PivotFactory.eINSTANCE.createOperation();
-			symbol_449.setName("union");
-			symbol_449.setType(symbol_35);
-			Parameter symbol_450 = PivotFactory.eINSTANCE.createParameter();
-			symbol_450.setName("o");
-			symbol_450.setType(symbol_35);
-			symbol_450.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_449.getOwnedParameters().add(symbol_450);
-			symbol_449.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_449);
+			symbol_449.setName("characters");
+			symbol_449.setType(symbol_127);
+			symbol_449.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_449);
 		}
-		{	// ocl::stdlib24::OrderedSet::union() stdlib24.OrderedSet{T}.union(stdlib24.Set[stdlib24.OrderedSet{T}?T])
-			Operation symbol_451 = PivotFactory.eINSTANCE.createOperation();
-			symbol_451.setName("union");
-			symbol_451.setType(symbol_53);
-			Parameter symbol_452 = PivotFactory.eINSTANCE.createParameter();
-			symbol_452.setName("s");
-			symbol_452.setType(symbol_53);
-			symbol_452.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_451.getOwnedParameters().add(symbol_452);
-			symbol_451.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
-			symbol_112.getOwnedOperations().add(symbol_451);
+		{	// ocl::String::concat() ocl.String.concat(ocl.String)
+			Operation symbol_450 = PivotFactory.eINSTANCE.createOperation();
+			symbol_450.setName("concat");
+			symbol_450.setType(symbol_85);
+			Parameter symbol_451 = PivotFactory.eINSTANCE.createParameter();
+			symbol_451.setName("s");
+			symbol_451.setType(symbol_85);
+			symbol_451.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_450.getOwnedParameters().add(symbol_451);
+			symbol_450.setImplementation(org.eclipse.ocl.examples.library.string.StringConcatOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_450);
 		}
-		symbol_60.getOwnedTypes().add(symbol_112);
-		//
-		// ocl::stdlib24::Real stdlib24.Real
-		//
-		symbol_116.setName("Real");
-		symbol_116.setPrimitive(Boolean.TRUE);
-		symbol_116.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::Real::*() stdlib24.Real.*(stdlib24.Real)
-			Operation symbol_453 = PivotFactory.eINSTANCE.createOperation();
-			symbol_453.setName("*");
-			symbol_453.setType(symbol_116);
-			Parameter symbol_454 = PivotFactory.eINSTANCE.createParameter();
-			symbol_454.setName("r");
-			symbol_454.setType(symbol_116);
-			symbol_454.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_453.getOwnedParameters().add(symbol_454);
-			symbol_453.setPrecedence(symbol_3);
-			symbol_453.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_453);
+		{	// ocl::String::equalsIgnoreCase() ocl.String.equalsIgnoreCase(ocl.String)
+			Operation symbol_452 = PivotFactory.eINSTANCE.createOperation();
+			symbol_452.setName("equalsIgnoreCase");
+			symbol_452.setType(symbol_19);
+			Parameter symbol_453 = PivotFactory.eINSTANCE.createParameter();
+			symbol_453.setName("s");
+			symbol_453.setType(symbol_85);
+			symbol_453.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_452.getOwnedParameters().add(symbol_453);
+			symbol_452.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_452);
 		}
-		{	// ocl::stdlib24::Real::+() stdlib24.Real.+(stdlib24.Real)
-			Operation symbol_455 = PivotFactory.eINSTANCE.createOperation();
-			symbol_455.setName("+");
-			symbol_455.setType(symbol_116);
-			Parameter symbol_456 = PivotFactory.eINSTANCE.createParameter();
-			symbol_456.setName("r");
-			symbol_456.setType(symbol_116);
-			symbol_456.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_455.getOwnedParameters().add(symbol_456);
-			symbol_455.setPrecedence(symbol_10);
-			symbol_455.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_455);
+		{	// ocl::String::indexOf() ocl.String.indexOf(ocl.String)
+			Operation symbol_454 = PivotFactory.eINSTANCE.createOperation();
+			symbol_454.setName("indexOf");
+			symbol_454.setType(symbol_41);
+			Parameter symbol_455 = PivotFactory.eINSTANCE.createParameter();
+			symbol_455.setName("s");
+			symbol_455.setType(symbol_85);
+			symbol_455.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_454.getOwnedParameters().add(symbol_455);
+			symbol_454.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_454);
 		}
-		{	// ocl::stdlib24::Real::-() stdlib24.Real.-(stdlib24.Real)
+		{	// ocl::String::size() ocl.String.size()
+			Operation symbol_456 = PivotFactory.eINSTANCE.createOperation();
+			symbol_456.setName("size");
+			symbol_456.setType(symbol_41);
+			symbol_456.setImplementation(org.eclipse.ocl.examples.library.string.StringSizeOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_456);
+		}
+		{	// ocl::String::substring() ocl.String.substring(ocl.Integer,ocl.Integer)
 			Operation symbol_457 = PivotFactory.eINSTANCE.createOperation();
-			symbol_457.setName("-");
-			symbol_457.setType(symbol_116);
+			symbol_457.setName("substring");
+			symbol_457.setType(symbol_85);
 			Parameter symbol_458 = PivotFactory.eINSTANCE.createParameter();
-			symbol_458.setName("r");
-			symbol_458.setType(symbol_116);
+			symbol_458.setName("lower");
+			symbol_458.setType(symbol_41);
 			symbol_458.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_457.getOwnedParameters().add(symbol_458);
-			symbol_457.setPrecedence(symbol_10);
-			symbol_457.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_457);
+			Parameter symbol_459 = PivotFactory.eINSTANCE.createParameter();
+			symbol_459.setName("upper");
+			symbol_459.setType(symbol_41);
+			symbol_459.setIteratorKind(IteratorKind.PARAMETER);
+			symbol_457.getOwnedParameters().add(symbol_459);
+			symbol_457.setImplementation(org.eclipse.ocl.examples.library.string.StringSubstringOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_457);
 		}
-		{	// ocl::stdlib24::Real::-() stdlib24.Real.-()
-			Operation symbol_459 = PivotFactory.eINSTANCE.createOperation();
-			symbol_459.setName("-");
-			symbol_459.setType(symbol_116);
-			symbol_459.setPrecedence(symbol_4);
-			symbol_459.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNegateOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_459);
-		}
-		{	// ocl::stdlib24::Real::/() stdlib24.Real./(stdlib24.Real)
+		{	// ocl::String::toBoolean() ocl.String.toBoolean()
 			Operation symbol_460 = PivotFactory.eINSTANCE.createOperation();
-			symbol_460.setName("/");
-			symbol_460.setType(symbol_116);
-			Parameter symbol_461 = PivotFactory.eINSTANCE.createParameter();
-			symbol_461.setName("r");
-			symbol_461.setType(symbol_116);
-			symbol_461.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_460.getOwnedParameters().add(symbol_461);
-			symbol_460.setPrecedence(symbol_3);
-			symbol_460.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_460);
+			symbol_460.setName("toBoolean");
+			symbol_460.setType(symbol_19);
+			symbol_460.setImplementation(org.eclipse.ocl.examples.library.string.StringToBooleanOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_460);
 		}
-		{	// ocl::stdlib24::Real::<() stdlib24.Real.<(stdlib24.Real)
+		{	// ocl::String::toInteger() ocl.String.toInteger()
+			Operation symbol_461 = PivotFactory.eINSTANCE.createOperation();
+			symbol_461.setName("toInteger");
+			symbol_461.setType(symbol_41);
+			symbol_461.setImplementation(org.eclipse.ocl.examples.library.string.StringToIntegerOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_461);
+		}
+		{	// ocl::String::toLowerCase() ocl.String.toLowerCase()
 			Operation symbol_462 = PivotFactory.eINSTANCE.createOperation();
-			symbol_462.setName("<");
-			symbol_462.setType(symbol_68);
-			Parameter symbol_463 = PivotFactory.eINSTANCE.createParameter();
-			symbol_463.setName("r");
-			symbol_463.setType(symbol_116);
-			symbol_463.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_462.getOwnedParameters().add(symbol_463);
-			symbol_462.setPrecedence(symbol_7);
-			symbol_462.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_462);
+			symbol_462.setName("toLowerCase");
+			symbol_462.setType(symbol_85);
+			symbol_462.setImplementation(org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_462);
 		}
-		{	// ocl::stdlib24::Real::<=() stdlib24.Real.<=(stdlib24.Real)
+		{	// ocl::String::toReal() ocl.String.toReal()
+			Operation symbol_463 = PivotFactory.eINSTANCE.createOperation();
+			symbol_463.setName("toReal");
+			symbol_463.setType(symbol_67);
+			symbol_463.setImplementation(org.eclipse.ocl.examples.library.string.StringToRealOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_463);
+		}
+		{	// ocl::String::toUpperCase() ocl.String.toUpperCase()
 			Operation symbol_464 = PivotFactory.eINSTANCE.createOperation();
-			symbol_464.setName("<=");
-			symbol_464.setType(symbol_68);
-			Parameter symbol_465 = PivotFactory.eINSTANCE.createParameter();
-			symbol_465.setName("r");
-			symbol_465.setType(symbol_116);
-			symbol_465.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_464.getOwnedParameters().add(symbol_465);
-			symbol_464.setPrecedence(symbol_7);
-			symbol_464.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_464);
+			symbol_464.setName("toUpperCase");
+			symbol_464.setType(symbol_85);
+			symbol_464.setImplementation(org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
+			symbol_85.getOwnedOperations().add(symbol_464);
 		}
-		{	// ocl::stdlib24::Real::<>() stdlib24.Real.<>(stdlib24.OclAny)
-			Operation symbol_466 = PivotFactory.eINSTANCE.createOperation();
-			symbol_466.setName("<>");
-			symbol_466.setType(symbol_68);
-			Parameter symbol_467 = PivotFactory.eINSTANCE.createParameter();
-			symbol_467.setName("object2");
-			symbol_467.setType(symbol_99);
-			symbol_467.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_466.getOwnedParameters().add(symbol_467);
-			symbol_466.setPrecedence(symbol_6);
-			symbol_466.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNotEqualOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_466);
-		}
-		{	// ocl::stdlib24::Real::=() stdlib24.Real.=(stdlib24.OclAny)
-			Operation symbol_468 = PivotFactory.eINSTANCE.createOperation();
-			symbol_468.setName("=");
-			symbol_468.setType(symbol_68);
-			Parameter symbol_469 = PivotFactory.eINSTANCE.createParameter();
-			symbol_469.setName("object2");
-			symbol_469.setType(symbol_99);
-			symbol_469.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_468.getOwnedParameters().add(symbol_469);
-			symbol_468.setPrecedence(symbol_6);
-			symbol_468.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericEqualOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_468);
-		}
-		{	// ocl::stdlib24::Real::>() stdlib24.Real.>(stdlib24.Real)
-			Operation symbol_470 = PivotFactory.eINSTANCE.createOperation();
-			symbol_470.setName(">");
-			symbol_470.setType(symbol_68);
-			Parameter symbol_471 = PivotFactory.eINSTANCE.createParameter();
-			symbol_471.setName("r");
-			symbol_471.setType(symbol_116);
-			symbol_471.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_470.getOwnedParameters().add(symbol_471);
-			symbol_470.setPrecedence(symbol_7);
-			symbol_470.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_470);
-		}
-		{	// ocl::stdlib24::Real::>=() stdlib24.Real.>=(stdlib24.Real)
-			Operation symbol_472 = PivotFactory.eINSTANCE.createOperation();
-			symbol_472.setName(">=");
-			symbol_472.setType(symbol_68);
-			Parameter symbol_473 = PivotFactory.eINSTANCE.createParameter();
-			symbol_473.setName("r");
-			symbol_473.setType(symbol_116);
-			symbol_473.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_472.getOwnedParameters().add(symbol_473);
-			symbol_472.setPrecedence(symbol_7);
-			symbol_472.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_472);
-		}
-		{	// ocl::stdlib24::Real::abs() stdlib24.Real.abs()
-			Operation symbol_474 = PivotFactory.eINSTANCE.createOperation();
-			symbol_474.setName("abs");
-			symbol_474.setType(symbol_116);
-			symbol_474.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericAbsOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_474);
-		}
-		{	// ocl::stdlib24::Real::floor() stdlib24.Real.floor()
-			Operation symbol_475 = PivotFactory.eINSTANCE.createOperation();
-			symbol_475.setName("floor");
-			symbol_475.setType(symbol_90);
-			symbol_475.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericFloorOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_475);
-		}
-		{	// ocl::stdlib24::Real::max() stdlib24.Real.max(stdlib24.Real)
-			Operation symbol_476 = PivotFactory.eINSTANCE.createOperation();
-			symbol_476.setName("max");
-			symbol_476.setType(symbol_116);
-			Parameter symbol_477 = PivotFactory.eINSTANCE.createParameter();
-			symbol_477.setName("r");
-			symbol_477.setType(symbol_116);
-			symbol_477.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_476.getOwnedParameters().add(symbol_477);
-			symbol_476.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_476);
-		}
-		{	// ocl::stdlib24::Real::min() stdlib24.Real.min(stdlib24.Real)
-			Operation symbol_478 = PivotFactory.eINSTANCE.createOperation();
-			symbol_478.setName("min");
-			symbol_478.setType(symbol_116);
-			Parameter symbol_479 = PivotFactory.eINSTANCE.createParameter();
-			symbol_479.setName("r");
-			symbol_479.setType(symbol_116);
-			symbol_479.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_478.getOwnedParameters().add(symbol_479);
-			symbol_478.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_478);
-		}
-		{	// ocl::stdlib24::Real::oclAsType() stdlib24.Real.oclAsType{T}(stdlib24.Classifier)
-			Operation symbol_480 = PivotFactory.eINSTANCE.createOperation();
-			symbol_119.setName("T");
-			symbol_118.setOwnedParameteredElement(symbol_119);
-			symbol_117.getOwnedParameters().add(symbol_118);
-			
-			symbol_480.setOwnedTemplateSignature(symbol_117);
-			symbol_480.setName("oclAsType");
-			symbol_480.setType(symbol_119);
-			Parameter symbol_481 = PivotFactory.eINSTANCE.createParameter();
-			symbol_481.setName("type");
-			symbol_481.setType(symbol_69);
-			symbol_481.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_480.getOwnedParameters().add(symbol_481);
-			symbol_480.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_480);
-		}
-		{	// ocl::stdlib24::Real::round() stdlib24.Real.round()
-			Operation symbol_482 = PivotFactory.eINSTANCE.createOperation();
-			symbol_482.setName("round");
-			symbol_482.setType(symbol_90);
-			symbol_482.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericRoundOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_482);
-		}
-		{	// ocl::stdlib24::Real::toString() stdlib24.Real.toString()
-			Operation symbol_483 = PivotFactory.eINSTANCE.createOperation();
-			symbol_483.setName("toString");
-			symbol_483.setType(symbol_134);
-			symbol_483.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_116.getOwnedOperations().add(symbol_483);
-		}
-		symbol_60.getOwnedTypes().add(symbol_116);
+		symbol_1.getOwnedTypes().add(symbol_85);
 		//
-		// ocl::stdlib24::Sequence stdlib24.Sequence{T}
+		// ocl::Tuple ocl.Tuple{T1,T2}
 		//
-		symbol_120.setName("Sequence");
-		symbol_123.setName("T");
-		symbol_122.setOwnedParameteredElement(symbol_123);
-		symbol_121.getOwnedParameters().add(symbol_122);
+		symbol_86.setName("Tuple");
+		symbol_89.setName("T1");
+		symbol_88.setOwnedParameteredElement(symbol_89);
+		symbol_87.getOwnedParameters().add(symbol_88);
+		symbol_91.setName("T2");
+		symbol_90.setOwnedParameteredElement(symbol_91);
+		symbol_87.getOwnedParameters().add(symbol_90);
 		
-		symbol_120.setOwnedTemplateSignature(symbol_121);
-		symbol_120.getSuperClasses().add(symbol_29);
-		symbol_120.getSuperClasses().add(symbol_33);
-		{	// ocl::stdlib24::Sequence::<>() stdlib24.Sequence{T}.<>(stdlib24.OclAny)
-			Operation symbol_484 = PivotFactory.eINSTANCE.createOperation();
-			symbol_484.setName("<>");
-			symbol_484.setType(symbol_68);
-			Parameter symbol_485 = PivotFactory.eINSTANCE.createParameter();
-			symbol_485.setName("s");
-			symbol_485.setType(symbol_99);
-			symbol_485.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_484.getOwnedParameters().add(symbol_485);
-			symbol_484.setPrecedence(symbol_6);
-			symbol_484.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_484);
+		symbol_86.setOwnedTemplateSignature(symbol_87);
+		symbol_86.getSuperClasses().add(symbol_57);
+		{ // ocl::Tuple::first ocl.Tuple{T1,T2}.first
+			Property symbol_465 = PivotFactory.eINSTANCE.createProperty();
+			symbol_465.setName("first");
+			symbol_465.setType(symbol_89);
+			symbol_465.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_86.getOwnedAttributes().add(symbol_465);
 		}
-		{	// ocl::stdlib24::Sequence::=() stdlib24.Sequence{T}.=(stdlib24.OclAny)
-			Operation symbol_486 = PivotFactory.eINSTANCE.createOperation();
-			symbol_486.setName("=");
-			symbol_486.setType(symbol_68);
-			Parameter symbol_487 = PivotFactory.eINSTANCE.createParameter();
-			symbol_487.setName("s");
-			symbol_487.setType(symbol_99);
-			symbol_487.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_486.getOwnedParameters().add(symbol_487);
-			symbol_486.setPrecedence(symbol_6);
-			symbol_486.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_486);
+		{ // ocl::Tuple::second ocl.Tuple{T1,T2}.second
+			Property symbol_466 = PivotFactory.eINSTANCE.createProperty();
+			symbol_466.setName("second");
+			symbol_466.setType(symbol_91);
+			symbol_466.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+			symbol_86.getOwnedAttributes().add(symbol_466);
 		}
-		{	// ocl::stdlib24::Sequence::append() stdlib24.Sequence{T}.append(stdlib24.Sequence{T}?T)
-			Operation symbol_488 = PivotFactory.eINSTANCE.createOperation();
-			symbol_488.setName("append");
-			symbol_488.setType(symbol_44);
-			Parameter symbol_489 = PivotFactory.eINSTANCE.createParameter();
-			symbol_489.setName("object");
-			symbol_489.setType(symbol_123);
-			symbol_489.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_488.getOwnedParameters().add(symbol_489);
-			symbol_488.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_488);
-		}
-		{	// ocl::stdlib24::Sequence::excluding() stdlib24.Sequence{T}.excluding(stdlib24.OclAny)
-			Operation symbol_490 = PivotFactory.eINSTANCE.createOperation();
-			symbol_490.setName("excluding");
-			symbol_490.setType(symbol_44);
-			Parameter symbol_491 = PivotFactory.eINSTANCE.createParameter();
-			symbol_491.setName("object");
-			symbol_491.setType(symbol_99);
-			symbol_491.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_490.getOwnedParameters().add(symbol_491);
-			symbol_490.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_490);
-		}
-		{	// ocl::stdlib24::Sequence::flatten() stdlib24.Sequence{T}.flatten{T2}()
-			Operation symbol_492 = PivotFactory.eINSTANCE.createOperation();
-			symbol_126.setName("T2");
-			symbol_125.setOwnedParameteredElement(symbol_126);
-			symbol_124.getOwnedParameters().add(symbol_125);
-			
-			symbol_492.setOwnedTemplateSignature(symbol_124);
-			symbol_492.setName("flatten");
-			symbol_492.setType(symbol_43);
-			symbol_492.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_492);
-		}
-		{	// ocl::stdlib24::Sequence::including() stdlib24.Sequence{T}.including(stdlib24.Sequence{T}?T)
-			Operation symbol_493 = PivotFactory.eINSTANCE.createOperation();
-			symbol_493.setName("including");
-			symbol_493.setType(symbol_44);
-			Parameter symbol_494 = PivotFactory.eINSTANCE.createParameter();
-			symbol_494.setName("object");
-			symbol_494.setType(symbol_123);
-			symbol_494.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_493.getOwnedParameters().add(symbol_494);
-			symbol_493.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_493);
-		}
-		{	// ocl::stdlib24::Sequence::insertAt() stdlib24.Sequence{T}.insertAt(stdlib24.Integer,stdlib24.Sequence{T}?T)
-			Operation symbol_495 = PivotFactory.eINSTANCE.createOperation();
-			symbol_495.setName("insertAt");
-			symbol_495.setType(symbol_44);
-			Parameter symbol_496 = PivotFactory.eINSTANCE.createParameter();
-			symbol_496.setName("index");
-			symbol_496.setType(symbol_90);
-			symbol_496.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_495.getOwnedParameters().add(symbol_496);
-			Parameter symbol_497 = PivotFactory.eINSTANCE.createParameter();
-			symbol_497.setName("object");
-			symbol_497.setType(symbol_123);
-			symbol_497.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_495.getOwnedParameters().add(symbol_497);
-			symbol_495.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_495);
-		}
-		{	// ocl::stdlib24::Sequence::prepend() stdlib24.Sequence{T}.prepend(stdlib24.Sequence{T}?T)
-			Operation symbol_498 = PivotFactory.eINSTANCE.createOperation();
-			symbol_498.setName("prepend");
-			symbol_498.setType(symbol_44);
-			Parameter symbol_499 = PivotFactory.eINSTANCE.createParameter();
-			symbol_499.setName("object");
-			symbol_499.setType(symbol_123);
-			symbol_499.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_498.getOwnedParameters().add(symbol_499);
-			symbol_498.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_498);
-		}
-		{	// ocl::stdlib24::Sequence::reject() stdlib24.Sequence{T}.reject(stdlib24.Sequence{T}?T)
-			Operation symbol_500 = PivotFactory.eINSTANCE.createOperation();
-			symbol_500.setName("reject");
-			symbol_500.setType(symbol_44);
-			Parameter symbol_501 = PivotFactory.eINSTANCE.createParameter();
-			symbol_501.setName("i");
-			symbol_501.setType(symbol_123);
-			symbol_501.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_500.getOwnedParameters().add(symbol_501);
-			symbol_500.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_500);
-		}
-		{	// ocl::stdlib24::Sequence::reverse() stdlib24.Sequence{T}.reverse()
-			Operation symbol_502 = PivotFactory.eINSTANCE.createOperation();
-			symbol_502.setName("reverse");
-			symbol_502.setType(symbol_44);
-			symbol_502.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_502);
-		}
-		{	// ocl::stdlib24::Sequence::select() stdlib24.Sequence{T}.select(stdlib24.Sequence{T}?T)
-			Operation symbol_503 = PivotFactory.eINSTANCE.createOperation();
-			symbol_503.setName("select");
-			symbol_503.setType(symbol_44);
-			Parameter symbol_504 = PivotFactory.eINSTANCE.createParameter();
-			symbol_504.setName("i");
-			symbol_504.setType(symbol_123);
-			symbol_504.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_503.getOwnedParameters().add(symbol_504);
-			symbol_503.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_503);
-		}
-		{	// ocl::stdlib24::Sequence::subSequence() stdlib24.Sequence{T}.subSequence(stdlib24.Integer,stdlib24.Integer)
-			Operation symbol_505 = PivotFactory.eINSTANCE.createOperation();
-			symbol_505.setName("subSequence");
-			symbol_505.setType(symbol_44);
-			Parameter symbol_506 = PivotFactory.eINSTANCE.createParameter();
-			symbol_506.setName("lower");
-			symbol_506.setType(symbol_90);
-			symbol_506.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_505.getOwnedParameters().add(symbol_506);
-			Parameter symbol_507 = PivotFactory.eINSTANCE.createParameter();
-			symbol_507.setName("upper");
-			symbol_507.setType(symbol_90);
-			symbol_507.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_505.getOwnedParameters().add(symbol_507);
-			symbol_505.setImplementation(org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_505);
-		}
-		{	// ocl::stdlib24::Sequence::union() stdlib24.Sequence{T}.union(stdlib24.Sequence[stdlib24.Sequence{T}?T])
-			Operation symbol_508 = PivotFactory.eINSTANCE.createOperation();
-			symbol_508.setName("union");
-			symbol_508.setType(symbol_44);
-			Parameter symbol_509 = PivotFactory.eINSTANCE.createParameter();
-			symbol_509.setName("s");
-			symbol_509.setType(symbol_44);
-			symbol_509.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_508.getOwnedParameters().add(symbol_509);
-			symbol_508.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
-			symbol_120.getOwnedOperations().add(symbol_508);
-		}
-		symbol_60.getOwnedTypes().add(symbol_120);
+		symbol_1.getOwnedTypes().add(symbol_86);
 		//
-		// ocl::stdlib24::Set stdlib24.Set{T}
+		// ocl::UniqueCollection ocl.UniqueCollection{T}
 		//
-		symbol_127.setName("Set");
-		symbol_130.setName("T");
-		symbol_129.setOwnedParameteredElement(symbol_130);
-		symbol_128.getOwnedParameters().add(symbol_129);
+		symbol_92.setName("UniqueCollection");
+		symbol_95.setName("T");
+		symbol_94.setOwnedParameteredElement(symbol_95);
+		symbol_93.getOwnedParameters().add(symbol_94);
 		
-		symbol_127.setOwnedTemplateSignature(symbol_128);
-		symbol_127.getSuperClasses().add(symbol_28);
-		symbol_127.getSuperClasses().add(symbol_58);
-		{	// ocl::stdlib24::Set::-() stdlib24.Set{T}.-(stdlib24.Set[stdlib24.OclAny])
-			Operation symbol_510 = PivotFactory.eINSTANCE.createOperation();
-			symbol_510.setName("-");
-			symbol_510.setType(symbol_51);
-			Parameter symbol_511 = PivotFactory.eINSTANCE.createParameter();
-			symbol_511.setName("s");
-			symbol_511.setType(symbol_52);
-			symbol_511.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_510.getOwnedParameters().add(symbol_511);
-			symbol_510.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_510);
+		symbol_92.setOwnedTemplateSignature(symbol_93);
+		symbol_92.getSuperClasses().add(symbol_104);
+		{	// ocl::UniqueCollection::sortedBy() ocl.UniqueCollection{T}.sortedBy(ocl.UniqueCollection{T}?T)
+			Operation symbol_467 = PivotFactory.eINSTANCE.createOperation();
+			symbol_467.setName("sortedBy");
+			symbol_467.setType(symbol_121);
+			Parameter symbol_468 = PivotFactory.eINSTANCE.createParameter();
+			symbol_468.setName("i");
+			symbol_468.setType(symbol_95);
+			symbol_468.setIteratorKind(IteratorKind.ITERATOR);
+			symbol_467.getOwnedParameters().add(symbol_468);
+			symbol_467.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
+			symbol_92.getOwnedOperations().add(symbol_467);
 		}
-		{	// ocl::stdlib24::Set::<>() stdlib24.Set{T}.<>(stdlib24.OclAny)
-			Operation symbol_512 = PivotFactory.eINSTANCE.createOperation();
-			symbol_512.setName("<>");
-			symbol_512.setType(symbol_68);
-			Parameter symbol_513 = PivotFactory.eINSTANCE.createParameter();
-			symbol_513.setName("s");
-			symbol_513.setType(symbol_99);
-			symbol_513.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_512.getOwnedParameters().add(symbol_513);
-			symbol_512.setPrecedence(symbol_6);
-			symbol_512.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_512);
-		}
-		{	// ocl::stdlib24::Set::=() stdlib24.Set{T}.=(stdlib24.OclAny)
-			Operation symbol_514 = PivotFactory.eINSTANCE.createOperation();
-			symbol_514.setName("=");
-			symbol_514.setType(symbol_68);
-			Parameter symbol_515 = PivotFactory.eINSTANCE.createParameter();
-			symbol_515.setName("s");
-			symbol_515.setType(symbol_99);
-			symbol_515.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_514.getOwnedParameters().add(symbol_515);
-			symbol_514.setPrecedence(symbol_6);
-			symbol_514.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_514);
-		}
-		{	// ocl::stdlib24::Set::excluding() stdlib24.Set{T}.excluding(stdlib24.OclAny)
-			Operation symbol_516 = PivotFactory.eINSTANCE.createOperation();
-			symbol_516.setName("excluding");
-			symbol_516.setType(symbol_51);
-			Parameter symbol_517 = PivotFactory.eINSTANCE.createParameter();
-			symbol_517.setName("object");
-			symbol_517.setType(symbol_99);
-			symbol_517.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_516.getOwnedParameters().add(symbol_517);
-			symbol_516.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_516);
-		}
-		{	// ocl::stdlib24::Set::flatten() stdlib24.Set{T}.flatten{T2}()
-			Operation symbol_518 = PivotFactory.eINSTANCE.createOperation();
-			symbol_133.setName("T2");
-			symbol_132.setOwnedParameteredElement(symbol_133);
-			symbol_131.getOwnedParameters().add(symbol_132);
-			
-			symbol_518.setOwnedTemplateSignature(symbol_131);
-			symbol_518.setName("flatten");
-			symbol_518.setType(symbol_46);
-			symbol_518.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_518);
-		}
-		{	// ocl::stdlib24::Set::including() stdlib24.Set{T}.including(stdlib24.Set{T}?T)
-			Operation symbol_519 = PivotFactory.eINSTANCE.createOperation();
-			symbol_519.setName("including");
-			symbol_519.setType(symbol_51);
-			Parameter symbol_520 = PivotFactory.eINSTANCE.createParameter();
-			symbol_520.setName("object");
-			symbol_520.setType(symbol_130);
-			symbol_520.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_519.getOwnedParameters().add(symbol_520);
-			symbol_519.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_519);
-		}
-		{	// ocl::stdlib24::Set::intersection() stdlib24.Set{T}.intersection(stdlib24.Set[stdlib24.Set{T}?T])
-			Operation symbol_521 = PivotFactory.eINSTANCE.createOperation();
-			symbol_521.setName("intersection");
-			symbol_521.setType(symbol_51);
-			Parameter symbol_522 = PivotFactory.eINSTANCE.createParameter();
-			symbol_522.setName("s");
-			symbol_522.setType(symbol_51);
-			symbol_522.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_521.getOwnedParameters().add(symbol_522);
-			symbol_521.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_521);
-		}
-		{	// ocl::stdlib24::Set::reject() stdlib24.Set{T}.reject(stdlib24.Set{T}?T)
-			Operation symbol_523 = PivotFactory.eINSTANCE.createOperation();
-			symbol_523.setName("reject");
-			symbol_523.setType(symbol_51);
-			Parameter symbol_524 = PivotFactory.eINSTANCE.createParameter();
-			symbol_524.setName("i");
-			symbol_524.setType(symbol_130);
-			symbol_524.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_523.getOwnedParameters().add(symbol_524);
-			symbol_523.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_523);
-		}
-		{	// ocl::stdlib24::Set::select() stdlib24.Set{T}.select(stdlib24.Set{T}?T)
-			Operation symbol_525 = PivotFactory.eINSTANCE.createOperation();
-			symbol_525.setName("select");
-			symbol_525.setType(symbol_51);
-			Parameter symbol_526 = PivotFactory.eINSTANCE.createParameter();
-			symbol_526.setName("i");
-			symbol_526.setType(symbol_130);
-			symbol_526.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_525.getOwnedParameters().add(symbol_526);
-			symbol_525.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_525);
-		}
-		{	// ocl::stdlib24::Set::symmetricDifference() stdlib24.Set{T}.symmetricDifference(stdlib24.Set[stdlib24.OclAny])
-			Operation symbol_527 = PivotFactory.eINSTANCE.createOperation();
-			symbol_527.setName("symmetricDifference");
-			symbol_527.setType(symbol_51);
-			Parameter symbol_528 = PivotFactory.eINSTANCE.createParameter();
-			symbol_528.setName("s");
-			symbol_528.setType(symbol_52);
-			symbol_528.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_527.getOwnedParameters().add(symbol_528);
-			symbol_527.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
-			symbol_127.getOwnedOperations().add(symbol_527);
-		}
-		symbol_60.getOwnedTypes().add(symbol_127);
+		symbol_1.getOwnedTypes().add(symbol_92);
 		//
-		// ocl::stdlib24::String stdlib24.String
+		// ocl::UnlimitedNatural ocl.UnlimitedNatural
 		//
-		symbol_134.setName("String");
-		symbol_134.setPrimitive(Boolean.TRUE);
-		symbol_134.getSuperClasses().add(symbol_99);
-		{	// ocl::stdlib24::String::+() stdlib24.String.+(stdlib24.String)
-			Operation symbol_529 = PivotFactory.eINSTANCE.createOperation();
-			symbol_529.setName("+");
-			symbol_529.setType(symbol_134);
-			Parameter symbol_530 = PivotFactory.eINSTANCE.createParameter();
-			symbol_530.setName("s");
-			symbol_530.setType(symbol_134);
-			symbol_530.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_529.getOwnedParameters().add(symbol_530);
-			symbol_529.setPrecedence(symbol_10);
-			symbol_529.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_529);
-		}
-		{	// ocl::stdlib24::String::<() stdlib24.String.<(stdlib24.String)
-			Operation symbol_531 = PivotFactory.eINSTANCE.createOperation();
-			symbol_531.setName("<");
-			symbol_531.setType(symbol_68);
-			Parameter symbol_532 = PivotFactory.eINSTANCE.createParameter();
-			symbol_532.setName("s");
-			symbol_532.setType(symbol_134);
-			symbol_532.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_531.getOwnedParameters().add(symbol_532);
-			symbol_531.setPrecedence(symbol_7);
-			symbol_531.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_531);
-		}
-		{	// ocl::stdlib24::String::<=() stdlib24.String.<=(stdlib24.String)
-			Operation symbol_533 = PivotFactory.eINSTANCE.createOperation();
-			symbol_533.setName("<=");
-			symbol_533.setType(symbol_68);
-			Parameter symbol_534 = PivotFactory.eINSTANCE.createParameter();
-			symbol_534.setName("s");
-			symbol_534.setType(symbol_134);
-			symbol_534.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_533.getOwnedParameters().add(symbol_534);
-			symbol_533.setPrecedence(symbol_7);
-			symbol_533.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_533);
-		}
-		{	// ocl::stdlib24::String::<>() stdlib24.String.<>(stdlib24.OclAny)
-			Operation symbol_535 = PivotFactory.eINSTANCE.createOperation();
-			symbol_535.setName("<>");
-			symbol_535.setType(symbol_68);
-			Parameter symbol_536 = PivotFactory.eINSTANCE.createParameter();
-			symbol_536.setName("object2");
-			symbol_536.setType(symbol_99);
-			symbol_536.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_535.getOwnedParameters().add(symbol_536);
-			symbol_535.setPrecedence(symbol_6);
-			symbol_535.setImplementation(org.eclipse.ocl.examples.library.string.StringNotEqualOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_535);
-		}
-		{	// ocl::stdlib24::String::=() stdlib24.String.=(stdlib24.OclAny)
-			Operation symbol_537 = PivotFactory.eINSTANCE.createOperation();
-			symbol_537.setName("=");
-			symbol_537.setType(symbol_68);
-			Parameter symbol_538 = PivotFactory.eINSTANCE.createParameter();
-			symbol_538.setName("object2");
-			symbol_538.setType(symbol_99);
-			symbol_538.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_537.getOwnedParameters().add(symbol_538);
-			symbol_537.setPrecedence(symbol_6);
-			symbol_537.setImplementation(org.eclipse.ocl.examples.library.string.StringEqualOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_537);
-		}
-		{	// ocl::stdlib24::String::>() stdlib24.String.>(stdlib24.String)
-			Operation symbol_539 = PivotFactory.eINSTANCE.createOperation();
-			symbol_539.setName(">");
-			symbol_539.setType(symbol_68);
-			Parameter symbol_540 = PivotFactory.eINSTANCE.createParameter();
-			symbol_540.setName("s");
-			symbol_540.setType(symbol_134);
-			symbol_540.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_539.getOwnedParameters().add(symbol_540);
-			symbol_539.setPrecedence(symbol_7);
-			symbol_539.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_539);
-		}
-		{	// ocl::stdlib24::String::>=() stdlib24.String.>=(stdlib24.String)
-			Operation symbol_541 = PivotFactory.eINSTANCE.createOperation();
-			symbol_541.setName(">=");
-			symbol_541.setType(symbol_68);
-			Parameter symbol_542 = PivotFactory.eINSTANCE.createParameter();
-			symbol_542.setName("s");
-			symbol_542.setType(symbol_134);
-			symbol_542.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_541.getOwnedParameters().add(symbol_542);
-			symbol_541.setPrecedence(symbol_7);
-			symbol_541.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_541);
-		}
-		{	// ocl::stdlib24::String::at() stdlib24.String.at(stdlib24.Integer)
-			Operation symbol_543 = PivotFactory.eINSTANCE.createOperation();
-			symbol_543.setName("at");
-			symbol_543.setType(symbol_134);
-			Parameter symbol_544 = PivotFactory.eINSTANCE.createParameter();
-			symbol_544.setName("i");
-			symbol_544.setType(symbol_90);
-			symbol_544.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_543.getOwnedParameters().add(symbol_544);
-			symbol_543.setImplementation(org.eclipse.ocl.examples.library.string.StringAtOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_543);
-		}
-		{	// ocl::stdlib24::String::characters() stdlib24.String.characters()
-			Operation symbol_545 = PivotFactory.eINSTANCE.createOperation();
-			symbol_545.setName("characters");
-			symbol_545.setType(symbol_41);
-			symbol_545.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_545);
-		}
-		{	// ocl::stdlib24::String::concat() stdlib24.String.concat(stdlib24.String)
-			Operation symbol_546 = PivotFactory.eINSTANCE.createOperation();
-			symbol_546.setName("concat");
-			symbol_546.setType(symbol_134);
-			Parameter symbol_547 = PivotFactory.eINSTANCE.createParameter();
-			symbol_547.setName("s");
-			symbol_547.setType(symbol_134);
-			symbol_547.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_546.getOwnedParameters().add(symbol_547);
-			symbol_546.setImplementation(org.eclipse.ocl.examples.library.string.StringConcatOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_546);
-		}
-		{	// ocl::stdlib24::String::equalsIgnoreCase() stdlib24.String.equalsIgnoreCase(stdlib24.String)
-			Operation symbol_548 = PivotFactory.eINSTANCE.createOperation();
-			symbol_548.setName("equalsIgnoreCase");
-			symbol_548.setType(symbol_68);
-			Parameter symbol_549 = PivotFactory.eINSTANCE.createParameter();
-			symbol_549.setName("s");
-			symbol_549.setType(symbol_134);
-			symbol_549.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_548.getOwnedParameters().add(symbol_549);
-			symbol_548.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_548);
-		}
-		{	// ocl::stdlib24::String::indexOf() stdlib24.String.indexOf(stdlib24.String)
-			Operation symbol_550 = PivotFactory.eINSTANCE.createOperation();
-			symbol_550.setName("indexOf");
-			symbol_550.setType(symbol_90);
-			Parameter symbol_551 = PivotFactory.eINSTANCE.createParameter();
-			symbol_551.setName("s");
-			symbol_551.setType(symbol_134);
-			symbol_551.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_550.getOwnedParameters().add(symbol_551);
-			symbol_550.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_550);
-		}
-		{	// ocl::stdlib24::String::size() stdlib24.String.size()
-			Operation symbol_552 = PivotFactory.eINSTANCE.createOperation();
-			symbol_552.setName("size");
-			symbol_552.setType(symbol_90);
-			symbol_552.setImplementation(org.eclipse.ocl.examples.library.string.StringSizeOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_552);
-		}
-		{	// ocl::stdlib24::String::substring() stdlib24.String.substring(stdlib24.Integer,stdlib24.Integer)
-			Operation symbol_553 = PivotFactory.eINSTANCE.createOperation();
-			symbol_553.setName("substring");
-			symbol_553.setType(symbol_134);
-			Parameter symbol_554 = PivotFactory.eINSTANCE.createParameter();
-			symbol_554.setName("lower");
-			symbol_554.setType(symbol_90);
-			symbol_554.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_553.getOwnedParameters().add(symbol_554);
-			Parameter symbol_555 = PivotFactory.eINSTANCE.createParameter();
-			symbol_555.setName("upper");
-			symbol_555.setType(symbol_90);
-			symbol_555.setIteratorKind(IteratorKind.PARAMETER);
-			symbol_553.getOwnedParameters().add(symbol_555);
-			symbol_553.setImplementation(org.eclipse.ocl.examples.library.string.StringSubstringOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_553);
-		}
-		{	// ocl::stdlib24::String::toBoolean() stdlib24.String.toBoolean()
-			Operation symbol_556 = PivotFactory.eINSTANCE.createOperation();
-			symbol_556.setName("toBoolean");
-			symbol_556.setType(symbol_68);
-			symbol_556.setImplementation(org.eclipse.ocl.examples.library.string.StringToBooleanOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_556);
-		}
-		{	// ocl::stdlib24::String::toInteger() stdlib24.String.toInteger()
-			Operation symbol_557 = PivotFactory.eINSTANCE.createOperation();
-			symbol_557.setName("toInteger");
-			symbol_557.setType(symbol_90);
-			symbol_557.setImplementation(org.eclipse.ocl.examples.library.string.StringToIntegerOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_557);
-		}
-		{	// ocl::stdlib24::String::toLowerCase() stdlib24.String.toLowerCase()
-			Operation symbol_558 = PivotFactory.eINSTANCE.createOperation();
-			symbol_558.setName("toLowerCase");
-			symbol_558.setType(symbol_134);
-			symbol_558.setImplementation(org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_558);
-		}
-		{	// ocl::stdlib24::String::toReal() stdlib24.String.toReal()
-			Operation symbol_559 = PivotFactory.eINSTANCE.createOperation();
-			symbol_559.setName("toReal");
-			symbol_559.setType(symbol_116);
-			symbol_559.setImplementation(org.eclipse.ocl.examples.library.string.StringToRealOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_559);
-		}
-		{	// ocl::stdlib24::String::toUpperCase() stdlib24.String.toUpperCase()
-			Operation symbol_560 = PivotFactory.eINSTANCE.createOperation();
-			symbol_560.setName("toUpperCase");
-			symbol_560.setType(symbol_134);
-			symbol_560.setImplementation(org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
-			symbol_134.getOwnedOperations().add(symbol_560);
-		}
-		symbol_60.getOwnedTypes().add(symbol_134);
+		symbol_96.setName("UnlimitedNatural");
+		symbol_96.setPrimitive(Boolean.TRUE);
+		symbol_96.getSuperClasses().add(symbol_41);
+		symbol_1.getOwnedTypes().add(symbol_96);
 		//
-		// ocl::stdlib24::Tuple stdlib24.Tuple{T1,T2}
+		// ocl::orphanage
 		//
-		symbol_135.setName("Tuple");
-		symbol_138.setName("T1");
-		symbol_137.setOwnedParameteredElement(symbol_138);
-		symbol_136.getOwnedParameters().add(symbol_137);
-		symbol_140.setName("T2");
-		symbol_139.setOwnedParameteredElement(symbol_140);
-		symbol_136.getOwnedParameters().add(symbol_139);
-		
-		symbol_135.setOwnedTemplateSignature(symbol_136);
-		symbol_135.getSuperClasses().add(symbol_106);
-		{ // ocl::stdlib24::Tuple::first stdlib24.Tuple{T1,T2}.first
-			Property symbol_561 = PivotFactory.eINSTANCE.createProperty();
-			symbol_561.setName("first");
-			symbol_561.setType(symbol_138);
-			symbol_561.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_135.getOwnedAttributes().add(symbol_561);
+		symbol_97.setName("orphanage");
+		//
+		// ocl::orphanage::Bag ocl.Bag[ocl.NonOrderedCollection{T}?T]
+		//
+		symbol_98.setName("Bag");
+		{
+			TemplateBinding symbol_469 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_469.setSignature(symbol_13);
+			{
+				TemplateParameterSubstitution symbol_470 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_470.setFormal(symbol_14);	
+				symbol_470.setActual(symbol_45);	
+				symbol_469.getParameterSubstitutions().add(symbol_470);
+			}
+			symbol_98.getTemplateBindings().add(symbol_469);
 		}
-		{ // ocl::stdlib24::Tuple::second stdlib24.Tuple{T1,T2}.second
-			Property symbol_562 = PivotFactory.eINSTANCE.createProperty();
-			symbol_562.setName("second");
-			symbol_562.setType(symbol_140);
-			symbol_562.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
-			symbol_135.getOwnedAttributes().add(symbol_562);
+		symbol_97.getOwnedTypes().add(symbol_98);
+		//
+		// ocl::orphanage::Bag ocl.Bag[ocl.Bag{T}?T]
+		//
+		symbol_99.setName("Bag");
+		{
+			TemplateBinding symbol_471 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_471.setSignature(symbol_13);
+			{
+				TemplateParameterSubstitution symbol_472 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_472.setFormal(symbol_14);	
+				symbol_472.setActual(symbol_15);	
+				symbol_471.getParameterSubstitutions().add(symbol_472);
+			}
+			symbol_99.getTemplateBindings().add(symbol_471);
 		}
-		symbol_60.getOwnedTypes().add(symbol_135);
+		symbol_97.getOwnedTypes().add(symbol_99);
 		//
-		// ocl::stdlib24::UniqueCollection stdlib24.UniqueCollection{T}
+		// ocl::orphanage::Bag ocl.Bag[ocl.Bag{T}.flatten{T2}()?T2]
 		//
-		symbol_141.setName("UniqueCollection");
-		symbol_144.setName("T");
-		symbol_143.setOwnedParameteredElement(symbol_144);
-		symbol_142.getOwnedParameters().add(symbol_143);
-		
-		symbol_141.setOwnedTemplateSignature(symbol_142);
-		symbol_141.getSuperClasses().add(symbol_20);
-		{	// ocl::stdlib24::UniqueCollection::sortedBy() stdlib24.UniqueCollection{T}.sortedBy(stdlib24.UniqueCollection{T}?T)
-			Operation symbol_563 = PivotFactory.eINSTANCE.createOperation();
-			symbol_563.setName("sortedBy");
-			symbol_563.setType(symbol_36);
-			Parameter symbol_564 = PivotFactory.eINSTANCE.createParameter();
-			symbol_564.setName("i");
-			symbol_564.setType(symbol_144);
-			symbol_564.setIteratorKind(IteratorKind.ITERATOR);
-			symbol_563.getOwnedParameters().add(symbol_564);
-			symbol_563.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
-			symbol_141.getOwnedOperations().add(symbol_563);
+		symbol_100.setName("Bag");
+		{
+			TemplateBinding symbol_473 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_473.setSignature(symbol_13);
+			{
+				TemplateParameterSubstitution symbol_474 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_474.setFormal(symbol_14);	
+				symbol_474.setActual(symbol_18);	
+				symbol_473.getParameterSubstitutions().add(symbol_474);
+			}
+			symbol_100.getTemplateBindings().add(symbol_473);
 		}
-		symbol_60.getOwnedTypes().add(symbol_141);
+		symbol_97.getOwnedTypes().add(symbol_100);
 		//
-		// ocl::stdlib24::UnlimitedNatural stdlib24.UnlimitedNatural
+		// ocl::orphanage::Bag ocl.Bag[ocl.Collection{T}?T]
 		//
-		symbol_145.setName("UnlimitedNatural");
-		symbol_145.setPrimitive(Boolean.TRUE);
-		symbol_145.getSuperClasses().add(symbol_90);
-		symbol_60.getOwnedTypes().add(symbol_145);
-		symbol_1.getNestedPackages().add(symbol_60);
+		symbol_101.setName("Bag");
+		{
+			TemplateBinding symbol_475 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_475.setSignature(symbol_13);
+			{
+				TemplateParameterSubstitution symbol_476 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_476.setFormal(symbol_14);	
+				symbol_476.setActual(symbol_24);	
+				symbol_475.getParameterSubstitutions().add(symbol_476);
+			}
+			symbol_101.getTemplateBindings().add(symbol_475);
+		}
+		symbol_97.getOwnedTypes().add(symbol_101);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.Collection{T}.includesAll{T2}(ocl.Collection[T2])?T2]
+		//
+		symbol_102.setName("Collection");
+		{
+			TemplateBinding symbol_477 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_477.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_478 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_478.setFormal(symbol_23);	
+				symbol_478.setActual(symbol_33);	
+				symbol_477.getParameterSubstitutions().add(symbol_478);
+			}
+			symbol_102.getTemplateBindings().add(symbol_477);
+		}
+		symbol_97.getOwnedTypes().add(symbol_102);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.Collection{T}.flatten{T2}()?T2]
+		//
+		symbol_103.setName("Collection");
+		{
+			TemplateBinding symbol_479 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_479.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_480 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_480.setFormal(symbol_23);	
+				symbol_480.setActual(symbol_30);	
+				symbol_479.getParameterSubstitutions().add(symbol_480);
+			}
+			symbol_103.getTemplateBindings().add(symbol_479);
+		}
+		symbol_97.getOwnedTypes().add(symbol_103);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.UniqueCollection{T}?T]
+		//
+		symbol_104.setName("Collection");
+		{
+			TemplateBinding symbol_481 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_481.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_482 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_482.setFormal(symbol_23);	
+				symbol_482.setActual(symbol_95);	
+				symbol_481.getParameterSubstitutions().add(symbol_482);
+			}
+			symbol_104.getTemplateBindings().add(symbol_481);
+		}
+		symbol_97.getOwnedTypes().add(symbol_104);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.Collection{T}?T]
+		//
+		symbol_105.setName("Collection");
+		{
+			TemplateBinding symbol_483 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_483.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_484 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_484.setFormal(symbol_23);	
+				symbol_484.setActual(symbol_24);	
+				symbol_483.getParameterSubstitutions().add(symbol_484);
+			}
+			symbol_105.getTemplateBindings().add(symbol_483);
+		}
+		symbol_97.getOwnedTypes().add(symbol_105);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.Collection{T}.excludesAll{T2}(ocl.Collection[T2])?T2]
+		//
+		symbol_106.setName("Collection");
+		{
+			TemplateBinding symbol_485 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_485.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_486 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_486.setFormal(symbol_23);	
+				symbol_486.setActual(symbol_27);	
+				symbol_485.getParameterSubstitutions().add(symbol_486);
+			}
+			symbol_106.getTemplateBindings().add(symbol_485);
+		}
+		symbol_97.getOwnedTypes().add(symbol_106);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.OrderedCollection{T}?T]
+		//
+		symbol_107.setName("Collection");
+		{
+			TemplateBinding symbol_487 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_487.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_488 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_488.setFormal(symbol_23);	
+				symbol_488.setActual(symbol_62);	
+				symbol_487.getParameterSubstitutions().add(symbol_488);
+			}
+			symbol_107.getTemplateBindings().add(symbol_487);
+		}
+		symbol_97.getOwnedTypes().add(symbol_107);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.OclAny]
+		//
+		symbol_108.setName("Collection");
+		{
+			TemplateBinding symbol_489 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_489.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_490 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_490.setFormal(symbol_23);	
+				symbol_490.setActual(symbol_50);	
+				symbol_489.getParameterSubstitutions().add(symbol_490);
+			}
+			symbol_108.getTemplateBindings().add(symbol_489);
+		}
+		symbol_97.getOwnedTypes().add(symbol_108);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.Collection{T}.product{T2}(ocl.Collection[T2])?T2]
+		//
+		symbol_109.setName("Collection");
+		{
+			TemplateBinding symbol_491 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_491.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_492 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_492.setFormal(symbol_23);	
+				symbol_492.setActual(symbol_39);	
+				symbol_491.getParameterSubstitutions().add(symbol_492);
+			}
+			symbol_109.getTemplateBindings().add(symbol_491);
+		}
+		symbol_97.getOwnedTypes().add(symbol_109);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.NonOrderedCollection{T}?T]
+		//
+		symbol_110.setName("Collection");
+		{
+			TemplateBinding symbol_493 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_493.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_494 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_494.setFormal(symbol_23);	
+				symbol_494.setActual(symbol_45);	
+				symbol_493.getParameterSubstitutions().add(symbol_494);
+			}
+			symbol_110.getTemplateBindings().add(symbol_493);
+		}
+		symbol_97.getOwnedTypes().add(symbol_110);
+		//
+		// ocl::orphanage::Collection ocl.Collection[ocl.NonUniqueCollection{T}?T]
+		//
+		symbol_111.setName("Collection");
+		{
+			TemplateBinding symbol_495 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_495.setSignature(symbol_22);
+			{
+				TemplateParameterSubstitution symbol_496 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_496.setFormal(symbol_23);	
+				symbol_496.setActual(symbol_49);	
+				symbol_495.getParameterSubstitutions().add(symbol_496);
+			}
+			symbol_111.getTemplateBindings().add(symbol_495);
+		}
+		symbol_97.getOwnedTypes().add(symbol_111);
+		//
+		// ocl::orphanage::NonOrderedCollection ocl.NonOrderedCollection[ocl.Bag{T}?T]
+		//
+		symbol_112.setName("NonOrderedCollection");
+		{
+			TemplateBinding symbol_497 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_497.setSignature(symbol_43);
+			{
+				TemplateParameterSubstitution symbol_498 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_498.setFormal(symbol_44);	
+				symbol_498.setActual(symbol_15);	
+				symbol_497.getParameterSubstitutions().add(symbol_498);
+			}
+			symbol_112.getTemplateBindings().add(symbol_497);
+		}
+		symbol_97.getOwnedTypes().add(symbol_112);
+		//
+		// ocl::orphanage::NonOrderedCollection ocl.NonOrderedCollection[ocl.Set{T}?T]
+		//
+		symbol_113.setName("NonOrderedCollection");
+		{
+			TemplateBinding symbol_499 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_499.setSignature(symbol_43);
+			{
+				TemplateParameterSubstitution symbol_500 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_500.setFormal(symbol_44);	
+				symbol_500.setActual(symbol_81);	
+				symbol_499.getParameterSubstitutions().add(symbol_500);
+			}
+			symbol_113.getTemplateBindings().add(symbol_499);
+		}
+		symbol_97.getOwnedTypes().add(symbol_113);
+		//
+		// ocl::orphanage::NonUniqueCollection ocl.NonUniqueCollection[ocl.Bag{T}?T]
+		//
+		symbol_114.setName("NonUniqueCollection");
+		{
+			TemplateBinding symbol_501 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_501.setSignature(symbol_47);
+			{
+				TemplateParameterSubstitution symbol_502 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_502.setFormal(symbol_48);	
+				symbol_502.setActual(symbol_15);	
+				symbol_501.getParameterSubstitutions().add(symbol_502);
+			}
+			symbol_114.getTemplateBindings().add(symbol_501);
+		}
+		symbol_97.getOwnedTypes().add(symbol_114);
+		//
+		// ocl::orphanage::NonUniqueCollection ocl.NonUniqueCollection[ocl.Sequence{T}?T]
+		//
+		symbol_115.setName("NonUniqueCollection");
+		{
+			TemplateBinding symbol_503 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_503.setSignature(symbol_47);
+			{
+				TemplateParameterSubstitution symbol_504 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_504.setFormal(symbol_48);	
+				symbol_504.setActual(symbol_74);	
+				symbol_503.getParameterSubstitutions().add(symbol_504);
+			}
+			symbol_115.getTemplateBindings().add(symbol_503);
+		}
+		symbol_97.getOwnedTypes().add(symbol_115);
+		//
+		// ocl::orphanage::OrderedCollection ocl.OrderedCollection[ocl.OrderedCollection{T}?T]
+		//
+		symbol_116.setName("OrderedCollection");
+		{
+			TemplateBinding symbol_505 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_505.setSignature(symbol_60);
+			{
+				TemplateParameterSubstitution symbol_506 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_506.setFormal(symbol_61);	
+				symbol_506.setActual(symbol_62);	
+				symbol_505.getParameterSubstitutions().add(symbol_506);
+			}
+			symbol_116.getTemplateBindings().add(symbol_505);
+		}
+		symbol_97.getOwnedTypes().add(symbol_116);
+		//
+		// ocl::orphanage::OrderedCollection ocl.OrderedCollection[ocl.Collection{T}?T]
+		//
+		symbol_117.setName("OrderedCollection");
+		{
+			TemplateBinding symbol_507 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_507.setSignature(symbol_60);
+			{
+				TemplateParameterSubstitution symbol_508 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_508.setFormal(symbol_61);	
+				symbol_508.setActual(symbol_24);	
+				symbol_507.getParameterSubstitutions().add(symbol_508);
+			}
+			symbol_117.getTemplateBindings().add(symbol_507);
+		}
+		symbol_97.getOwnedTypes().add(symbol_117);
+		//
+		// ocl::orphanage::OrderedCollection ocl.OrderedCollection[ocl.OrderedSet{T}?T]
+		//
+		symbol_118.setName("OrderedCollection");
+		{
+			TemplateBinding symbol_509 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_509.setSignature(symbol_60);
+			{
+				TemplateParameterSubstitution symbol_510 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_510.setFormal(symbol_61);	
+				symbol_510.setActual(symbol_66);	
+				symbol_509.getParameterSubstitutions().add(symbol_510);
+			}
+			symbol_118.getTemplateBindings().add(symbol_509);
+		}
+		symbol_97.getOwnedTypes().add(symbol_118);
+		//
+		// ocl::orphanage::OrderedCollection ocl.OrderedCollection[ocl.Sequence{T}?T]
+		//
+		symbol_119.setName("OrderedCollection");
+		{
+			TemplateBinding symbol_511 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_511.setSignature(symbol_60);
+			{
+				TemplateParameterSubstitution symbol_512 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_512.setFormal(symbol_61);	
+				symbol_512.setActual(symbol_74);	
+				symbol_511.getParameterSubstitutions().add(symbol_512);
+			}
+			symbol_119.getTemplateBindings().add(symbol_511);
+		}
+		symbol_97.getOwnedTypes().add(symbol_119);
+		//
+		// ocl::orphanage::OrderedSet ocl.OrderedSet[ocl.OrderedSet{T}?T]
+		//
+		symbol_120.setName("OrderedSet");
+		{
+			TemplateBinding symbol_513 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_513.setSignature(symbol_64);
+			{
+				TemplateParameterSubstitution symbol_514 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_514.setFormal(symbol_65);	
+				symbol_514.setActual(symbol_66);	
+				symbol_513.getParameterSubstitutions().add(symbol_514);
+			}
+			symbol_120.getTemplateBindings().add(symbol_513);
+		}
+		symbol_97.getOwnedTypes().add(symbol_120);
+		//
+		// ocl::orphanage::OrderedSet ocl.OrderedSet[ocl.UniqueCollection{T}?T]
+		//
+		symbol_121.setName("OrderedSet");
+		{
+			TemplateBinding symbol_515 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_515.setSignature(symbol_64);
+			{
+				TemplateParameterSubstitution symbol_516 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_516.setFormal(symbol_65);	
+				symbol_516.setActual(symbol_95);	
+				symbol_515.getParameterSubstitutions().add(symbol_516);
+			}
+			symbol_121.getTemplateBindings().add(symbol_515);
+		}
+		symbol_97.getOwnedTypes().add(symbol_121);
+		//
+		// ocl::orphanage::OrderedSet ocl.OrderedSet[ocl.Collection{T}?T]
+		//
+		symbol_122.setName("OrderedSet");
+		{
+			TemplateBinding symbol_517 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_517.setSignature(symbol_64);
+			{
+				TemplateParameterSubstitution symbol_518 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_518.setFormal(symbol_65);	
+				symbol_518.setActual(symbol_24);	
+				symbol_517.getParameterSubstitutions().add(symbol_518);
+			}
+			symbol_122.getTemplateBindings().add(symbol_517);
+		}
+		symbol_97.getOwnedTypes().add(symbol_122);
+		//
+		// ocl::orphanage::OrderedSet ocl.OrderedSet[ocl.OrderedCollection{T}?T]
+		//
+		symbol_123.setName("OrderedSet");
+		{
+			TemplateBinding symbol_519 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_519.setSignature(symbol_64);
+			{
+				TemplateParameterSubstitution symbol_520 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_520.setFormal(symbol_65);	
+				symbol_520.setActual(symbol_62);	
+				symbol_519.getParameterSubstitutions().add(symbol_520);
+			}
+			symbol_123.getTemplateBindings().add(symbol_519);
+		}
+		symbol_97.getOwnedTypes().add(symbol_123);
+		//
+		// ocl::orphanage::Sequence ocl.Sequence[ocl.Sequence{T}.flatten{T2}()?T2]
+		//
+		symbol_124.setName("Sequence");
+		{
+			TemplateBinding symbol_521 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_521.setSignature(symbol_72);
+			{
+				TemplateParameterSubstitution symbol_522 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_522.setFormal(symbol_73);	
+				symbol_522.setActual(symbol_77);	
+				symbol_521.getParameterSubstitutions().add(symbol_522);
+			}
+			symbol_124.getTemplateBindings().add(symbol_521);
+		}
+		symbol_97.getOwnedTypes().add(symbol_124);
+		//
+		// ocl::orphanage::Sequence ocl.Sequence[ocl.Sequence{T}?T]
+		//
+		symbol_125.setName("Sequence");
+		{
+			TemplateBinding symbol_523 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_523.setSignature(symbol_72);
+			{
+				TemplateParameterSubstitution symbol_524 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_524.setFormal(symbol_73);	
+				symbol_524.setActual(symbol_74);	
+				symbol_523.getParameterSubstitutions().add(symbol_524);
+			}
+			symbol_125.getTemplateBindings().add(symbol_523);
+		}
+		symbol_97.getOwnedTypes().add(symbol_125);
+		//
+		// ocl::orphanage::Sequence ocl.Sequence[ocl.Collection{T}?T]
+		//
+		symbol_126.setName("Sequence");
+		{
+			TemplateBinding symbol_525 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_525.setSignature(symbol_72);
+			{
+				TemplateParameterSubstitution symbol_526 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_526.setFormal(symbol_73);	
+				symbol_526.setActual(symbol_24);	
+				symbol_525.getParameterSubstitutions().add(symbol_526);
+			}
+			symbol_126.getTemplateBindings().add(symbol_525);
+		}
+		symbol_97.getOwnedTypes().add(symbol_126);
+		//
+		// ocl::orphanage::Sequence ocl.Sequence[ocl.String]
+		//
+		symbol_127.setName("Sequence");
+		{
+			TemplateBinding symbol_527 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_527.setSignature(symbol_72);
+			{
+				TemplateParameterSubstitution symbol_528 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_528.setFormal(symbol_73);	
+				symbol_528.setActual(symbol_85);	
+				symbol_527.getParameterSubstitutions().add(symbol_528);
+			}
+			symbol_127.getTemplateBindings().add(symbol_527);
+		}
+		symbol_97.getOwnedTypes().add(symbol_127);
+		//
+		// ocl::orphanage::Sequence ocl.Sequence[ocl.OrderedCollection{T}?T]
+		//
+		symbol_128.setName("Sequence");
+		{
+			TemplateBinding symbol_529 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_529.setSignature(symbol_72);
+			{
+				TemplateParameterSubstitution symbol_530 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_530.setFormal(symbol_73);	
+				symbol_530.setActual(symbol_62);	
+				symbol_529.getParameterSubstitutions().add(symbol_530);
+			}
+			symbol_128.getTemplateBindings().add(symbol_529);
+		}
+		symbol_97.getOwnedTypes().add(symbol_128);
+		//
+		// ocl::orphanage::Sequence ocl.Sequence[ocl.NonUniqueCollection{T}?T]
+		//
+		symbol_129.setName("Sequence");
+		{
+			TemplateBinding symbol_531 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_531.setSignature(symbol_72);
+			{
+				TemplateParameterSubstitution symbol_532 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_532.setFormal(symbol_73);	
+				symbol_532.setActual(symbol_49);	
+				symbol_531.getParameterSubstitutions().add(symbol_532);
+			}
+			symbol_129.getTemplateBindings().add(symbol_531);
+		}
+		symbol_97.getOwnedTypes().add(symbol_129);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.OclAny]
+		//
+		symbol_130.setName("Set");
+		{
+			TemplateBinding symbol_533 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_533.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_534 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_534.setFormal(symbol_80);	
+				symbol_534.setActual(symbol_50);	
+				symbol_533.getParameterSubstitutions().add(symbol_534);
+			}
+			symbol_130.getTemplateBindings().add(symbol_533);
+		}
+		symbol_97.getOwnedTypes().add(symbol_130);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.Set{T}.flatten{T2}()?T2]
+		//
+		symbol_131.setName("Set");
+		{
+			TemplateBinding symbol_535 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_535.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_536 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_536.setFormal(symbol_80);	
+				symbol_536.setActual(symbol_84);	
+				symbol_535.getParameterSubstitutions().add(symbol_536);
+			}
+			symbol_131.getTemplateBindings().add(symbol_535);
+		}
+		symbol_97.getOwnedTypes().add(symbol_131);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.Enumeration]
+		//
+		symbol_132.setName("Set");
+		{
+			TemplateBinding symbol_537 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_537.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_538 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_538.setFormal(symbol_80);	
+				symbol_538.setActual(symbol_40);	
+				symbol_537.getParameterSubstitutions().add(symbol_538);
+			}
+			symbol_132.getTemplateBindings().add(symbol_537);
+		}
+		symbol_97.getOwnedTypes().add(symbol_132);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.OclVoid]
+		//
+		symbol_133.setName("Set");
+		{
+			TemplateBinding symbol_539 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_539.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_540 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_540.setFormal(symbol_80);	
+				symbol_540.setActual(symbol_58);	
+				symbol_539.getParameterSubstitutions().add(symbol_540);
+			}
+			symbol_133.getTemplateBindings().add(symbol_539);
+		}
+		symbol_97.getOwnedTypes().add(symbol_133);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.OclInvalid]
+		//
+		symbol_134.setName("Set");
+		{
+			TemplateBinding symbol_541 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_541.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_542 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_542.setFormal(symbol_80);	
+				symbol_542.setActual(symbol_54);	
+				symbol_541.getParameterSubstitutions().add(symbol_542);
+			}
+			symbol_134.getTemplateBindings().add(symbol_541);
+		}
+		symbol_97.getOwnedTypes().add(symbol_134);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.Collection{T}?T]
+		//
+		symbol_135.setName("Set");
+		{
+			TemplateBinding symbol_543 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_543.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_544 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_544.setFormal(symbol_80);	
+				symbol_544.setActual(symbol_24);	
+				symbol_543.getParameterSubstitutions().add(symbol_544);
+			}
+			symbol_135.getTemplateBindings().add(symbol_543);
+		}
+		symbol_97.getOwnedTypes().add(symbol_135);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.Boolean]
+		//
+		symbol_136.setName("Set");
+		{
+			TemplateBinding symbol_545 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_545.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_546 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_546.setFormal(symbol_80);	
+				symbol_546.setActual(symbol_19);	
+				symbol_545.getParameterSubstitutions().add(symbol_546);
+			}
+			symbol_136.getTemplateBindings().add(symbol_545);
+		}
+		symbol_97.getOwnedTypes().add(symbol_136);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.Classifier]
+		//
+		symbol_137.setName("Set");
+		{
+			TemplateBinding symbol_547 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_547.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_548 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_548.setFormal(symbol_80);	
+				symbol_548.setActual(symbol_20);	
+				symbol_547.getParameterSubstitutions().add(symbol_548);
+			}
+			symbol_137.getTemplateBindings().add(symbol_547);
+		}
+		symbol_97.getOwnedTypes().add(symbol_137);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.NonOrderedCollection{T}?T]
+		//
+		symbol_138.setName("Set");
+		{
+			TemplateBinding symbol_549 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_549.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_550 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_550.setFormal(symbol_80);	
+				symbol_550.setActual(symbol_45);	
+				symbol_549.getParameterSubstitutions().add(symbol_550);
+			}
+			symbol_138.getTemplateBindings().add(symbol_549);
+		}
+		symbol_97.getOwnedTypes().add(symbol_138);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.OrderedSet{T}?T]
+		//
+		symbol_139.setName("Set");
+		{
+			TemplateBinding symbol_551 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_551.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_552 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_552.setFormal(symbol_80);	
+				symbol_552.setActual(symbol_66);	
+				symbol_551.getParameterSubstitutions().add(symbol_552);
+			}
+			symbol_139.getTemplateBindings().add(symbol_551);
+		}
+		symbol_97.getOwnedTypes().add(symbol_139);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.Tuple[ocl.Collection{T}?T,ocl.Collection{T}.product{T2}(ocl.Collection[T2])?T2]]
+		//
+		symbol_140.setName("Set");
+		{
+			TemplateBinding symbol_553 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_553.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_554 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_554.setFormal(symbol_80);	
+				symbol_554.setActual(symbol_142);	
+				symbol_553.getParameterSubstitutions().add(symbol_554);
+			}
+			symbol_140.getTemplateBindings().add(symbol_553);
+		}
+		symbol_97.getOwnedTypes().add(symbol_140);
+		//
+		// ocl::orphanage::Set ocl.Set[ocl.Set{T}?T]
+		//
+		symbol_141.setName("Set");
+		{
+			TemplateBinding symbol_555 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_555.setSignature(symbol_79);
+			{
+				TemplateParameterSubstitution symbol_556 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_556.setFormal(symbol_80);	
+				symbol_556.setActual(symbol_81);	
+				symbol_555.getParameterSubstitutions().add(symbol_556);
+			}
+			symbol_141.getTemplateBindings().add(symbol_555);
+		}
+		symbol_97.getOwnedTypes().add(symbol_141);
+		//
+		// ocl::orphanage::Tuple ocl.Tuple[ocl.Collection{T}?T,ocl.Collection{T}.product{T2}(ocl.Collection[T2])?T2]
+		//
+		symbol_142.setName("Tuple");
+		{
+			TemplateBinding symbol_557 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_557.setSignature(symbol_87);
+			{
+				TemplateParameterSubstitution symbol_558 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_558.setFormal(symbol_88);	
+				symbol_558.setActual(symbol_24);	
+				symbol_557.getParameterSubstitutions().add(symbol_558);
+			}{
+				TemplateParameterSubstitution symbol_559 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_559.setFormal(symbol_90);	
+				symbol_559.setActual(symbol_39);	
+				symbol_557.getParameterSubstitutions().add(symbol_559);
+			}
+			symbol_142.getTemplateBindings().add(symbol_557);
+		}
+		symbol_97.getOwnedTypes().add(symbol_142);
+		//
+		// ocl::orphanage::UniqueCollection ocl.UniqueCollection[ocl.Set{T}?T]
+		//
+		symbol_143.setName("UniqueCollection");
+		{
+			TemplateBinding symbol_560 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_560.setSignature(symbol_93);
+			{
+				TemplateParameterSubstitution symbol_561 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_561.setFormal(symbol_94);	
+				symbol_561.setActual(symbol_81);	
+				symbol_560.getParameterSubstitutions().add(symbol_561);
+			}
+			symbol_143.getTemplateBindings().add(symbol_560);
+		}
+		symbol_97.getOwnedTypes().add(symbol_143);
+		//
+		// ocl::orphanage::UniqueCollection ocl.UniqueCollection[ocl.OrderedSet{T}?T]
+		//
+		symbol_144.setName("UniqueCollection");
+		{
+			TemplateBinding symbol_562 = PivotFactory.eINSTANCE.createTemplateBinding();
+			symbol_562.setSignature(symbol_93);
+			{
+				TemplateParameterSubstitution symbol_563 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				symbol_563.setFormal(symbol_94);	
+				symbol_563.setActual(symbol_66);	
+				symbol_562.getParameterSubstitutions().add(symbol_563);
+			}
+			symbol_144.getTemplateBindings().add(symbol_562);
+		}
+		symbol_97.getOwnedTypes().add(symbol_144);
+		symbol_1.getNestedPackages().add(symbol_97);
 		return symbol_1;
 	}
 }
