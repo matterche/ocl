@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.7.6.1 2010/10/01 14:48:53 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.7.6.2 2010/12/08 10:31:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -37,7 +36,7 @@ import org.eclipse.xtext.parsetree.AbstractNode;
 
 public class OCLinEcoreLinkingService extends EssentialOCLLinkingService
 {
-	private static final Logger log = Logger.getLogger(OCLinEcoreLinkingService.class);
+//	private static final Logger log = Logger.getLogger(OCLinEcoreLinkingService.class);
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
