@@ -67,13 +67,16 @@
       <ecoreDataType href="pivot.ecore#//Boolean"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
+      <ecoreDataType href="pivot.ecore#//CallableImplementation"/>
+    </genDataTypes>
+    <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Int"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Integer"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
-      <ecoreDataType href="pivot.ecore#//Object"/>
+      <ecoreDataType href="pivot.ecore#//_"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Real"/>
@@ -465,11 +468,8 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//ImplementableElement/implementationClass"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//ImplementableElement/implementation"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//ImplementableElement/implementation"/>
       </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false">
-      <ecoreClass href="pivot.ecore#//CallableImplementation"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//Operation"/>

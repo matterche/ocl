@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -111,7 +111,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 
 /**
  * <!-- begin-user-doc -->
@@ -213,11 +212,6 @@ public class PivotAdapterFactory
 			public Adapter caseCallOperationAction(CallOperationAction object)
 			{
 				return createCallOperationActionAdapter();
-			}
-			@Override
-			public Adapter caseCallableImplementation(CallableImplementation object)
-			{
-				return createCallableImplementationAdapter();
 			}
 			@Override
 			public Adapter caseClass(org.eclipse.ocl.examples.pivot.Class object)
@@ -1810,20 +1804,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createImplementableElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation <em>Callable Implementation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation
-	 * @generated
-	 */
-	public Adapter createCallableImplementationAdapter() {
 		return null;
 	}
 

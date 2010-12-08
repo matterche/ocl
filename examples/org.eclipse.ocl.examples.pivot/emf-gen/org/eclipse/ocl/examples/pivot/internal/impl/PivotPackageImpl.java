@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -626,13 +626,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass callableImplementationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass operationEClass = null;
 
 	/**
@@ -766,6 +759,13 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType callableImplementationEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType intEDataType = null;
 
 	/**
@@ -774,13 +774,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EDataType integerEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType objectEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -809,6 +802,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EDataType unlimitedNaturalEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType _EDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -888,7 +888,7 @@ public class PivotPackageImpl
 	public EClass getAnnotation() {
 		if (annotationEClass == null)
 		{
-			annotationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(11);
+			annotationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(12);
 		}
 		return annotationEClass;
 	}
@@ -1052,7 +1052,7 @@ public class PivotPackageImpl
 	public EClass getBagType() {
 		if (bagTypeEClass == null)
 		{
-			bagTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(15);
+			bagTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(16);
 		}
 		return bagTypeEClass;
 	}
@@ -1100,7 +1100,7 @@ public class PivotPackageImpl
 	public EClass getBooleanLiteralExp() {
 		if (booleanLiteralExpEClass == null)
 		{
-			booleanLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(16);
+			booleanLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(17);
 		}
 		return booleanLiteralExpEClass;
 	}
@@ -1148,7 +1148,7 @@ public class PivotPackageImpl
 	public EClass getCallOperationAction() {
 		if (callOperationActionEClass == null)
 		{
-			callOperationActionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(18);
+			callOperationActionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(19);
 		}
 		return callOperationActionEClass;
 	}
@@ -3274,7 +3274,7 @@ public class PivotPackageImpl
 	public EClass getAssociationClass() {
 		if (associationClassEClass == null)
 		{
-			associationClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(13);
+			associationClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(14);
 		}
 		return associationClassEClass;
 	}
@@ -3315,8 +3315,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getImplementableElement_Implementation() {
-        return (EReference)getImplementableElement().getEStructuralFeatures().get(1);
+	public EAttribute getImplementableElement_Implementation() {
+        return (EAttribute)getImplementableElement().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3324,12 +3324,12 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallableImplementation() {
-		if (callableImplementationEClass == null)
+	public EDataType getCallableImplementation() {
+		if (callableImplementationEDataType == null)
 		{
-			callableImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(19);
+			callableImplementationEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(1);
 		}
-		return callableImplementationEClass;
+		return callableImplementationEDataType;
 	}
 
 	/**
@@ -3655,7 +3655,7 @@ public class PivotPackageImpl
 	public EClass getAnyType() {
 		if (anyTypeEClass == null)
 		{
-			anyTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(12);
+			anyTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(13);
 		}
 		return anyTypeEClass;
 	}
@@ -3668,7 +3668,7 @@ public class PivotPackageImpl
 	public EClass getAssociationClassCallExp() {
 		if (associationClassCallExpEClass == null)
 		{
-			associationClassCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(14);
+			associationClassCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(15);
 		}
 		return associationClassCallExpEClass;
 	}
@@ -3743,7 +3743,7 @@ public class PivotPackageImpl
 	public EClass getCallExp() {
 		if (callExpEClass == null)
 		{
-			callExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(17);
+			callExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(18);
 		}
 		return callExpEClass;
 	}
@@ -3778,7 +3778,7 @@ public class PivotPackageImpl
 	public EEnum getAssociativityKind() {
 		if (associativityKindEEnum == null)
 		{
-			associativityKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(8);
+			associativityKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(9);
 		}
 		return associativityKindEEnum;
 	}
@@ -3791,7 +3791,7 @@ public class PivotPackageImpl
 	public EEnum getCollectionKind() {
 		if (collectionKindEEnum == null)
 		{
-			collectionKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(9);
+			collectionKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(10);
 		}
 		return collectionKindEEnum;
 	}
@@ -3804,7 +3804,7 @@ public class PivotPackageImpl
 	public EEnum getIteratorKind() {
 		if (iteratorKindEEnum == null)
 		{
-			iteratorKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(10);
+			iteratorKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(11);
 		}
 		return iteratorKindEEnum;
 	}
@@ -3830,7 +3830,7 @@ public class PivotPackageImpl
 	public EDataType getInt() {
 		if (intEDataType == null)
 		{
-			intEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(1);
+			intEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(2);
 		}
 		return intEDataType;
 	}
@@ -3843,22 +3843,9 @@ public class PivotPackageImpl
 	public EDataType getInteger() {
 		if (integerEDataType == null)
 		{
-			integerEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(2);
+			integerEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(3);
 		}
 		return integerEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType getObject() {
-		if (objectEDataType == null)
-		{
-			objectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(3);
-		}
-		return objectEDataType;
 	}
 
 	/**
@@ -3911,6 +3898,20 @@ public class PivotPackageImpl
 			unlimitedNaturalEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(7);
 		}
 		return unlimitedNaturalEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType get_()
+	{
+		if (_EDataType == null)
+		{
+			_EDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(8);
+		}
+		return _EDataType;
 	}
 
 	/**

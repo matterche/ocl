@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -317,8 +317,6 @@ public class PivotValidator
 				return validateCallExp((CallExp)value, diagnostics, context);
 			case PivotPackage.CALL_OPERATION_ACTION:
 				return validateCallOperationAction((CallOperationAction)value, diagnostics, context);
-			case PivotPackage.CALLABLE_IMPLEMENTATION:
-				return validateCallableImplementation((CallableImplementation)value, diagnostics, context);
 			case PivotPackage.CLASS:
 				return validateClass((org.eclipse.ocl.examples.pivot.Class)value, diagnostics, context);
 			case PivotPackage.COLLECTION_ITEM:
@@ -503,12 +501,12 @@ public class PivotValidator
 				return validateIteratorKind((IteratorKind)value, diagnostics, context);
 			case PivotPackage.BOOLEAN:
 				return validateBoolean((Boolean)value, diagnostics, context);
+			case PivotPackage.CALLABLE_IMPLEMENTATION:
+				return validateCallableImplementation((CallableImplementation)value, diagnostics, context);
 			case PivotPackage.INT:
 				return validateInt((Integer)value, diagnostics, context);
 			case PivotPackage.INTEGER:
 				return validateInteger((BigInteger)value, diagnostics, context);
-			case PivotPackage.OBJECT:
-				return validateObject(value, diagnostics, context);
 			case PivotPackage.REAL:
 				return validateReal((BigDecimal)value, diagnostics, context);
 			case PivotPackage.STRING:
@@ -517,6 +515,8 @@ public class PivotValidator
 				return validateThrowable((Throwable)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return validateUnlimitedNatural((BigInteger)value, diagnostics, context);
+			case PivotPackage._PIVOT:
+				return validate_(value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1255,7 +1255,7 @@ public class PivotValidator
 	public boolean validateCallableImplementation(
 			CallableImplementation callableImplementation,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)callableImplementation, diagnostics, context);
+		return true;
 	}
 
 	/**
@@ -1919,16 +1919,6 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateObject(Object object, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateReal(BigDecimal real, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return true;
@@ -1961,6 +1951,16 @@ public class PivotValidator
 	 */
 	public boolean validateUnlimitedNatural(BigInteger unlimitedNatural,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validate_(Object _, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
 		return true;
 	}
 

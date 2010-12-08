@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -135,14 +135,24 @@ public class OperationImpl
 	protected String implementationClass = IMPLEMENTATION_CLASS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' reference.
+	 * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getImplementation()
 	 * @generated
 	 * @ordered
 	 */
-	protected CallableImplementation implementation;
+	protected static final CallableImplementation IMPLEMENTATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImplementation()
+	 * @generated
+	 * @ordered
+	 */
+	protected CallableImplementation implementation = IMPLEMENTATION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRaisedExceptions() <em>Raised Exception</em>}' reference list.
@@ -968,7 +978,7 @@ public class OperationImpl
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
 				return;
 			case PivotPackage.OPERATION__IMPLEMENTATION:
-				setImplementation((CallableImplementation)null);
+				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
 				getRaisedExceptions().clear();
@@ -1028,7 +1038,7 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.OPERATION__IMPLEMENTATION:
-				return implementation != null;
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
 				return raisedExceptions != null && !raisedExceptions.isEmpty();
 			case PivotPackage.OPERATION__OWNED_PARAMETER:

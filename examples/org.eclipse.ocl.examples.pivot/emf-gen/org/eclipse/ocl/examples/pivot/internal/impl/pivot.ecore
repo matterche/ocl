@@ -9,13 +9,14 @@
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="CallableImplementation" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Int" instanceClassName="int"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="java.math.BigInteger"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="java.math.BigDecimal"/>
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Throwable" instanceClassName="java.lang.Throwable"/>
   <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="java.math.BigInteger"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="_" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EEnum" name="AssociativityKind">
     <eLiterals name="Left"/>
     <eLiterals name="Right" value="1"/>
@@ -63,8 +64,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
         lowerBound="1" eType="#//Operation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CallableImplementation" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"
-      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//Namespace">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
@@ -255,8 +254,8 @@
       interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" ordered="false"
         eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" ordered="false"
-        eType="#//CallableImplementation" transient="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" ordered="false"
+        eType="#//CallableImplementation" transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" ordered="false"
@@ -264,7 +263,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" ordered="false"
-        eType="#//Object"/>
+        eType="#//_"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
         eType="#//OclExpression"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" ordered="false"

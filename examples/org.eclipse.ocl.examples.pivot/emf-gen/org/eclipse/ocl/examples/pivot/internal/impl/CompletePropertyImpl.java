@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -384,7 +384,7 @@ public class CompletePropertyImpl
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
-				setImplementation((CallableImplementation)null);
+				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
@@ -455,7 +455,7 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
-				return implementation != null;
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
 				return ((eFlags & IS_READ_ONLY_EFLAG) != 0) != IS_READ_ONLY_EDEFAULT;
 			case PivotPackage.COMPLETE_PROPERTY__DEFAULT:

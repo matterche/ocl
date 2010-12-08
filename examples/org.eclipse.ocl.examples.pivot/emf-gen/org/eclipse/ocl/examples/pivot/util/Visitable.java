@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: Visitable.java,v 1.1.2.1 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: Visitable.java,v 1.1.2.2 2010/12/08 10:25:27 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 

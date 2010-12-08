@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperationImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: CompleteOperationImpl.java,v 1.1.2.4 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -404,7 +404,7 @@ public class CompleteOperationImpl
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
-				setImplementation((CallableImplementation)null);
+				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
 				getRaisedExceptions().clear();
@@ -470,7 +470,7 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
-				return implementation != null;
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
 				return raisedExceptions != null && !raisedExceptions.isEmpty();
 			case PivotPackage.COMPLETE_OPERATION__OWNED_PARAMETER:

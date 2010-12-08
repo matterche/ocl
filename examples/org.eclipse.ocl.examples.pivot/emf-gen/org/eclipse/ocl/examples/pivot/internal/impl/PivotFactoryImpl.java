@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -96,6 +96,7 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 
 /**
  * <!-- begin-user-doc -->
@@ -238,12 +239,12 @@ public class PivotFactoryImpl
 				return createIteratorKindFromString(eDataType, initialValue);
 			case PivotPackage.BOOLEAN:
 				return createBooleanFromString(eDataType, initialValue);
+			case PivotPackage.CALLABLE_IMPLEMENTATION:
+				return createCallableImplementationFromString(eDataType, initialValue);
 			case PivotPackage.INT:
 				return createIntFromString(eDataType, initialValue);
 			case PivotPackage.INTEGER:
 				return createIntegerFromString(eDataType, initialValue);
-			case PivotPackage.OBJECT:
-				return createObjectFromString(eDataType, initialValue);
 			case PivotPackage.REAL:
 				return createRealFromString(eDataType, initialValue);
 			case PivotPackage.STRING:
@@ -252,6 +253,8 @@ public class PivotFactoryImpl
 				return createThrowableFromString(eDataType, initialValue);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return createUnlimitedNaturalFromString(eDataType, initialValue);
+			case PivotPackage._PIVOT:
+				return create_FromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -274,12 +277,12 @@ public class PivotFactoryImpl
 				return convertIteratorKindToString(eDataType, instanceValue);
 			case PivotPackage.BOOLEAN:
 				return convertBooleanToString(eDataType, instanceValue);
+			case PivotPackage.CALLABLE_IMPLEMENTATION:
+				return convertCallableImplementationToString(eDataType, instanceValue);
 			case PivotPackage.INT:
 				return convertIntToString(eDataType, instanceValue);
 			case PivotPackage.INTEGER:
 				return convertIntegerToString(eDataType, instanceValue);
-			case PivotPackage.OBJECT:
-				return convertObjectToString(eDataType, instanceValue);
 			case PivotPackage.REAL:
 				return convertRealToString(eDataType, instanceValue);
 			case PivotPackage.STRING:
@@ -288,6 +291,8 @@ public class PivotFactoryImpl
 				return convertThrowableToString(eDataType, instanceValue);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return convertUnlimitedNaturalToString(eDataType, instanceValue);
+			case PivotPackage._PIVOT:
+				return convert_ToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -1064,6 +1069,26 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CallableImplementation createCallableImplementationFromString(EDataType eDataType, String initialValue)
+	{
+		return (CallableImplementation)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCallableImplementationToString(EDataType eDataType, Object instanceValue)
+	{
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Integer createIntFromString(EDataType eDataType, String initialValue) {
 		return (Integer)super.createFromString(eDataType, initialValue);
 	}
@@ -1093,26 +1118,6 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	public String convertIntegerToString(EDataType eDataType,
-			Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object createObjectFromString(EDataType eDataType,
-			String initialValue) {
-		return super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertObjectToString(EDataType eDataType,
 			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
@@ -1193,6 +1198,26 @@ public class PivotFactoryImpl
 	 */
 	public String convertUnlimitedNaturalToString(EDataType eDataType,
 			Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object create_FromString(EDataType eDataType, String initialValue)
+	{
+		return super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convert_ToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 

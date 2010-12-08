@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImplementableElement.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: ImplementableElement.java,v 1.1.2.4 2010/12/08 10:25:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -67,26 +67,26 @@ public interface ImplementableElement
 	void setImplementationClass(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Implementation</b></em>' reference.
+	 * Returns the value of the '<em><b>Implementation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Implementation</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Implementation</em>' reference.
+	 * @return the value of the '<em>Implementation</em>' attribute.
 	 * @see #setImplementation(CallableImplementation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getImplementableElement_Implementation()
-	 * @model type="org.eclipse.ocl.examples.pivot.CallableImplementation" resolveProxies="false" transient="true" ordered="false"
+	 * @model dataType="org.eclipse.ocl.examples.pivot.CallableImplementation" transient="true" ordered="false"
 	 * @generated
 	 */
 	CallableImplementation getImplementation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.ImplementableElement#getImplementation <em>Implementation</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.ImplementableElement#getImplementation <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Implementation</em>' reference.
+	 * @param value the new value of the '<em>Implementation</em>' attribute.
 	 * @see #getImplementation()
 	 * @generated
 	 */
