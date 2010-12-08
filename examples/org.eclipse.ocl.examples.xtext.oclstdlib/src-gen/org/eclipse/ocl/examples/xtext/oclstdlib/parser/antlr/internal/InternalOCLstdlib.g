@@ -273,9 +273,34 @@ ruleLibrary returns [EObject current=null]
     |(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getLibraryAccess().getOwnedTypeClassifierCSParserRuleCall_5_2_0(), currentNode); 
 	    }
-		lv_ownedAnnotation_13_0=ruleAnnotationElementCS		{
+		lv_ownedType_13_0=ruleClassifierCS		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getLibraryRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		add(
+	       			$current, 
+	       			"ownedType",
+	        		lv_ownedType_13_0, 
+	        		"ClassifierCS", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0(), currentNode); 
+	    }
+		lv_ownedAnnotation_14_0=ruleAnnotationElementCS		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getLibraryRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -284,7 +309,7 @@ ruleLibrary returns [EObject current=null]
 	       		add(
 	       			$current, 
 	       			"ownedAnnotation",
-	        		lv_ownedAnnotation_13_0, 
+	        		lv_ownedAnnotation_14_0, 
 	        		"AnnotationElementCS", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {

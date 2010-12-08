@@ -114,13 +114,13 @@ protected class ThisRootNode extends RootToken {
  * 
  * Library returns LibRootPackageCS:
  * 	("library" | "module") name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? ownedImport+=ImportCS* "{"
- * 	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
+ * 	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
  * 	ownedAnnotation+=AnnotationElementCS)* "}";
  *
  **/
 
 // ("library" | "module") name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? ownedImport+=ImportCS* "{"
-// (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
+// (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 // ownedAnnotation+=AnnotationElementCS)* "}"
 protected class Library_Group extends GroupToken {
 	
@@ -435,7 +435,7 @@ protected class Library_LeftCurlyBracketKeyword_4 extends KeywordToken  {
 
 }
 
-// (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
+// (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 // ownedAnnotation+=AnnotationElementCS)*
 protected class Library_Alternatives_5 extends AlternativesToken {
 
@@ -453,7 +453,8 @@ protected class Library_Alternatives_5 extends AlternativesToken {
 		switch(index) {
 			case 0: return new Library_OwnedNestedPackageAssignment_5_0(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new Library_Group_5_1(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Library_OwnedAnnotationAssignment_5_2(lastRuleCallOrigin, this, 2, inst);
+			case 2: return new Library_OwnedTypeAssignment_5_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Library_OwnedAnnotationAssignment_5_3(lastRuleCallOrigin, this, 3, inst);
 			default: return null;
 		}	
 	}
@@ -622,16 +623,63 @@ protected class Library_SemicolonKeyword_5_1_2 extends KeywordToken  {
 }
 
 
-// ownedAnnotation+=AnnotationElementCS
-protected class Library_OwnedAnnotationAssignment_5_2 extends AssignmentToken  {
+// ownedType+=ClassifierCS
+protected class Library_OwnedTypeAssignment_5_2 extends AssignmentToken  {
 	
-	public Library_OwnedAnnotationAssignment_5_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Library_OwnedTypeAssignment_5_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_2();
+		return grammarAccess.getLibraryAccess().getOwnedTypeAssignment_5_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ClassifierCS_ClassCSParserRuleCall(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("ownedType",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ownedType");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getClassifierCSRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getLibraryAccess().getOwnedTypeClassifierCSParserRuleCall_5_2_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Library_Alternatives_5(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Library_LeftCurlyBracketKeyword_4(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// ownedAnnotation+=AnnotationElementCS
+protected class Library_OwnedAnnotationAssignment_5_3 extends AssignmentToken  {
+	
+	public Library_OwnedAnnotationAssignment_5_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_3();
 	}
 
     @Override
@@ -650,7 +698,7 @@ protected class Library_OwnedAnnotationAssignment_5_2 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getAnnotationElementCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_2_0(); 
+				element = grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0(); 
 				consumed = obj;
 				return param;
 			}

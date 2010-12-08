@@ -43,20 +43,22 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedPrecedenceAssignment_5_1_1 = (Assignment)cGroup_5_1.eContents().get(1);
 		private final RuleCall cOwnedPrecedencePrecedenceCSParserRuleCall_5_1_1_0 = (RuleCall)cOwnedPrecedenceAssignment_5_1_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_5_1_2 = (Keyword)cGroup_5_1.eContents().get(2);
-		private final Assignment cOwnedAnnotationAssignment_5_2 = (Assignment)cAlternatives_5.eContents().get(2);
-		private final RuleCall cOwnedAnnotationAnnotationElementCSParserRuleCall_5_2_0 = (RuleCall)cOwnedAnnotationAssignment_5_2.eContents().get(0);
+		private final Assignment cOwnedTypeAssignment_5_2 = (Assignment)cAlternatives_5.eContents().get(2);
+		private final RuleCall cOwnedTypeClassifierCSParserRuleCall_5_2_0 = (RuleCall)cOwnedTypeAssignment_5_2.eContents().get(0);
+		private final Assignment cOwnedAnnotationAssignment_5_3 = (Assignment)cAlternatives_5.eContents().get(3);
+		private final RuleCall cOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0 = (RuleCall)cOwnedAnnotationAssignment_5_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 		//
 		//Library returns LibRootPackageCS:
 		//	("library" | "module") name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? ownedImport+=ImportCS* "{"
-		//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
+		//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 		//	ownedAnnotation+=AnnotationElementCS)* "}";
 		public ParserRule getRule() { return rule; }
 
 		//("library" | "module") name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? ownedImport+=ImportCS* "{"
-		//(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
+		//(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 		//ownedAnnotation+=AnnotationElementCS)* "}"
 		public Group getGroup() { return cGroup; }
 
@@ -105,7 +107,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 
-		//(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
+		//(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 		//ownedAnnotation+=AnnotationElementCS)*
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 
@@ -130,11 +132,17 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_5_1_2() { return cSemicolonKeyword_5_1_2; }
 
+		//ownedType+=ClassifierCS
+		public Assignment getOwnedTypeAssignment_5_2() { return cOwnedTypeAssignment_5_2; }
+
+		//ClassifierCS
+		public RuleCall getOwnedTypeClassifierCSParserRuleCall_5_2_0() { return cOwnedTypeClassifierCSParserRuleCall_5_2_0; }
+
 		//ownedAnnotation+=AnnotationElementCS
-		public Assignment getOwnedAnnotationAssignment_5_2() { return cOwnedAnnotationAssignment_5_2; }
+		public Assignment getOwnedAnnotationAssignment_5_3() { return cOwnedAnnotationAssignment_5_3; }
 
 		//AnnotationElementCS
-		public RuleCall getOwnedAnnotationAnnotationElementCSParserRuleCall_5_2_0() { return cOwnedAnnotationAnnotationElementCSParserRuleCall_5_2_0; }
+		public RuleCall getOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0() { return cOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
@@ -2206,7 +2214,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//Library returns LibRootPackageCS:
 	//	("library" | "module") name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? ownedImport+=ImportCS* "{"
-	//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
+	//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 	//	ownedAnnotation+=AnnotationElementCS)* "}";
 	public LibraryElements getLibraryAccess() {
 		return (pLibrary != null) ? pLibrary : (pLibrary = new LibraryElements());

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.5.6.2 2010/12/06 18:14:18 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.5.6.3 2010/12/08 10:35:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -1117,6 +1117,15 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_ROOT_PACKAGE_CS__NS_URI = BaseCSTPackage.ROOT_PACKAGE_CS__NS_URI;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ROOT_PACKAGE_CS__OWNED_TYPE = BaseCSTPackage.ROOT_PACKAGE_CS__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
