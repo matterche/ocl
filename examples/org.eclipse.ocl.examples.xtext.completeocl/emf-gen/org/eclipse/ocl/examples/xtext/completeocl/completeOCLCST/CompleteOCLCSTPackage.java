@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.6.6.2 2010/12/06 18:36:43 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.6.6.3 2010/12/08 10:28:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -506,6 +506,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPLETE_OCL_DOCUMENT_CS__NS_URI = BaseCSTPackage.ROOT_PACKAGE_CS__NS_URI;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_TYPE = BaseCSTPackage.ROOT_PACKAGE_CS__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.

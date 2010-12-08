@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTAdapterFactory.java,v 1.3.6.2 2010/12/06 18:36:45 ewillink Exp $
+ * $Id: CompleteOCLCSTAdapterFactory.java,v 1.3.6.3 2010/12/08 10:28:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -251,6 +252,11 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseAbstractPackageCS(AbstractPackageCS object)
 			{
 				return createAbstractPackageCSAdapter();
+			}
+			@Override
+			public Adapter casePackageCS(PackageCS object)
+			{
+				return createPackageCSAdapter();
 			}
 			@Override
 			public Adapter caseRootCS(RootCS object)
@@ -700,6 +706,21 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractPackageCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS <em>Package CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS
+	 * @generated
+	 */
+	public Adapter createPackageCSAdapter()
 	{
 		return null;
 	}

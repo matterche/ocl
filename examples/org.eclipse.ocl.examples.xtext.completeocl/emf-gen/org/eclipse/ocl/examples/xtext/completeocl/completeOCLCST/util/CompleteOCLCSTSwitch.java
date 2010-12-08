@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTSwitch.java,v 1.3.6.2 2010/12/06 18:36:45 ewillink Exp $
+ * $Id: CompleteOCLCSTSwitch.java,v 1.3.6.3 2010/12/08 10:28:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -170,8 +171,9 @@ public class CompleteOCLCSTSwitch<T>
 				CompleteOCLDocumentCS completeOCLDocumentCS = (CompleteOCLDocumentCS)theEObject;
 				T result = caseCompleteOCLDocumentCS(completeOCLDocumentCS);
 				if (result == null) result = caseRootPackageCS(completeOCLDocumentCS);
-				if (result == null) result = caseAbstractPackageCS(completeOCLDocumentCS);
+				if (result == null) result = casePackageCS(completeOCLDocumentCS);
 				if (result == null) result = caseRootCS(completeOCLDocumentCS);
+				if (result == null) result = caseAbstractPackageCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamespaceCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamedElementCS(completeOCLDocumentCS);
 				if (result == null) result = caseMonikeredElementCS(completeOCLDocumentCS);
@@ -800,6 +802,22 @@ public class CompleteOCLCSTSwitch<T>
 	 * @generated
 	 */
 	public T caseAbstractPackageCS(AbstractPackageCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Package CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Package CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackageCS(PackageCS object)
 	{
 		return null;
 	}
