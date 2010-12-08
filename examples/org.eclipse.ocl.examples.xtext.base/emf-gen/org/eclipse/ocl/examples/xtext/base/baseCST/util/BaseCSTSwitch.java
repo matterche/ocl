@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.3.6.2 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.3.6.3 2010/12/08 10:24:34 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -769,8 +769,9 @@ public class BaseCSTSwitch<T> {
 			{
 				RootPackageCS rootPackageCS = (RootPackageCS)theEObject;
 				T result = caseRootPackageCS(rootPackageCS);
-				if (result == null) result = caseAbstractPackageCS(rootPackageCS);
+				if (result == null) result = casePackageCS(rootPackageCS);
 				if (result == null) result = caseRootCS(rootPackageCS);
+				if (result == null) result = caseAbstractPackageCS(rootPackageCS);
 				if (result == null) result = caseNamespaceCS(rootPackageCS);
 				if (result == null) result = caseNamedElementCS(rootPackageCS);
 				if (result == null) result = caseMonikeredElementCS(rootPackageCS);

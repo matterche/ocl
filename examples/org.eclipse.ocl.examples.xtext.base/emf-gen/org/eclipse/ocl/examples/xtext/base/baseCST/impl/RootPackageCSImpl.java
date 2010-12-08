@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSImpl.java,v 1.1.2.2 2010/12/06 17:53:56 ewillink Exp $
+ * $Id: RootPackageCSImpl.java,v 1.1.2.3 2010/12/08 10:24:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public class RootPackageCSImpl extends AbstractPackageCSImpl implements RootPackageCS
+public class RootPackageCSImpl extends PackageCSImpl implements RootPackageCS
 {
 	/**
 	 * The cached value of the '{@link #getOwnedImport() <em>Owned Import</em>}' containment reference list.

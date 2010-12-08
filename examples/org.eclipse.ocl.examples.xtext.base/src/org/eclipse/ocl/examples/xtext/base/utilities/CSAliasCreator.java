@@ -18,7 +18,13 @@ public class CSAliasCreator extends AliasAdapter.AbstractCreator
 
 	public String getAlias(EObject eObject) {
 		if (eObject instanceof AbstractPackageCS) {
-			return ((AbstractPackageCS)eObject).getMoniker();
+			AbstractPackageCS csPackage = (AbstractPackageCS)eObject;
+			String moniker = csPackage.getMoniker();
+//			String nsPrefix = csPackage.getNsPrefix();
+//			if (nsPrefix != null) {
+//				return nsPrefix;
+//			}
+			return moniker;
 		}
 		return null;
 	}

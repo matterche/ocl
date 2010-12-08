@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.4 2010/12/08 10:24:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -115,7 +115,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		}
 		EList<Adapter> eAdapters = eObject.eAdapters();
 		ScopeAdapter adapter = (ScopeAdapter) EcoreUtil.getAdapter(eAdapters, ScopeAdapter.class);
-		if (adapter != null) {
+		if (adapter instanceof ScopeCSAdapter) {
 			return (ScopeCSAdapter) adapter;
 		}
 		EClass eClass = eObject.eClass();

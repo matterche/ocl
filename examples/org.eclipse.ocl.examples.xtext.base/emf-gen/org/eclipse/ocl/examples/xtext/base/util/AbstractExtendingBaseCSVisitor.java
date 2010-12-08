@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingBaseCSVisitor.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: AbstractExtendingBaseCSVisitor.java,v 1.1.2.2 2010/12/08 10:24:34 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -198,7 +198,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {
-		return visitAbstractPackageCS(object);
+		return visitPackageCS(object);
 	}
 
 	public R visitSimpleClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS object) {

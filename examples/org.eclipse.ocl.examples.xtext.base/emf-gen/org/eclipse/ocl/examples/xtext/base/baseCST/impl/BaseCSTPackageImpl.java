@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.6.6.3 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.6.6.4 2010/12/08 10:24:34 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -2284,7 +2284,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		referenceCSEClass.getESuperTypes().add(this.getStructuralFeatureCS());
 		referenceCSRefEClass.getESuperTypes().add(this.getElementCS());
 		rootCSEClass.getESuperTypes().add(this.getModelElementCS());
-		rootPackageCSEClass.getESuperTypes().add(this.getAbstractPackageCS());
+		rootPackageCSEClass.getESuperTypes().add(this.getPackageCS());
 		rootPackageCSEClass.getESuperTypes().add(this.getRootCS());
 		simpleClassifierRefCSEClass.getESuperTypes().add(this.getClassifierRefCS());
 		simpleOperationRefCSEClass.getESuperTypes().add(this.getOperationRefCS());

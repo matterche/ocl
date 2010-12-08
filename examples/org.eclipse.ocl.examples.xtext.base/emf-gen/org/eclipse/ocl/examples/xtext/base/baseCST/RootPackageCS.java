@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCS.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: RootPackageCS.java,v 1.1.2.2 2010/12/08 10:24:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -28,7 +28,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TestConstraint='true'"
  * @generated
  */
-public interface RootPackageCS extends AbstractPackageCS, RootCS
+public interface RootPackageCS extends PackageCS, RootCS
 {
 
 } // RootPackageCS

@@ -218,7 +218,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLibrary" upperBound="-1"
         eType="#//LibraryCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RootPackageCS" eSuperTypes="#//AbstractPackageCS #//RootCS">
+  <eClassifiers xsi:type="ecore:EClass" name="RootPackageCS" eSuperTypes="#//PackageCS #//RootCS">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="TestConstraint"/>
     </eAnnotations>

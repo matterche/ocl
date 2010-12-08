@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackage.java,v 1.4.6.3 2010/12/06 17:53:56 ewillink Exp $
+ * $Id: BaseCSTPackage.java,v 1.4.6.4 2010/12/08 10:24:34 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -4453,7 +4453,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_ANNOTATION = ABSTRACT_PACKAGE_CS__OWNED_ANNOTATION;
+	int ROOT_PACKAGE_CS__OWNED_ANNOTATION = PACKAGE_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4462,7 +4462,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__PIVOT = ABSTRACT_PACKAGE_CS__PIVOT;
+	int ROOT_PACKAGE_CS__PIVOT = PACKAGE_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4471,7 +4471,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__ORIGINAL_XMI_ID = ABSTRACT_PACKAGE_CS__ORIGINAL_XMI_ID;
+	int ROOT_PACKAGE_CS__ORIGINAL_XMI_ID = PACKAGE_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Error</b></em>' attribute list.
@@ -4480,7 +4480,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__ERROR = ABSTRACT_PACKAGE_CS__ERROR;
+	int ROOT_PACKAGE_CS__ERROR = PACKAGE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -4489,7 +4489,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__MONIKER = ABSTRACT_PACKAGE_CS__MONIKER;
+	int ROOT_PACKAGE_CS__MONIKER = PACKAGE_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4498,7 +4498,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__NAME = ABSTRACT_PACKAGE_CS__NAME;
+	int ROOT_PACKAGE_CS__NAME = PACKAGE_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
@@ -4507,7 +4507,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_NESTED_PACKAGE = ABSTRACT_PACKAGE_CS__OWNED_NESTED_PACKAGE;
+	int ROOT_PACKAGE_CS__OWNED_NESTED_PACKAGE = PACKAGE_CS__OWNED_NESTED_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
@@ -4516,7 +4516,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__NS_PREFIX = ABSTRACT_PACKAGE_CS__NS_PREFIX;
+	int ROOT_PACKAGE_CS__NS_PREFIX = PACKAGE_CS__NS_PREFIX;
 
 	/**
 	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
@@ -4525,7 +4525,16 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__NS_URI = ABSTRACT_PACKAGE_CS__NS_URI;
+	int ROOT_PACKAGE_CS__NS_URI = PACKAGE_CS__NS_URI;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_PACKAGE_CS__OWNED_TYPE = PACKAGE_CS__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
@@ -4534,7 +4543,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_IMPORT = ABSTRACT_PACKAGE_CS_FEATURE_COUNT + 0;
+	int ROOT_PACKAGE_CS__OWNED_IMPORT = PACKAGE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Library</b></em>' containment reference list.
@@ -4543,7 +4552,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_LIBRARY = ABSTRACT_PACKAGE_CS_FEATURE_COUNT + 1;
+	int ROOT_PACKAGE_CS__OWNED_LIBRARY = PACKAGE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Root Package CS</em>' class.
@@ -4552,7 +4561,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS_FEATURE_COUNT = ABSTRACT_PACKAGE_CS_FEATURE_COUNT + 2;
+	int ROOT_PACKAGE_CS_FEATURE_COUNT = PACKAGE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: RootPackageCSScopeAdapter.java,v 1.1.2.3 2010/12/08 10:24:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -36,6 +36,7 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 		org.eclipse.ocl.examples.pivot.Package pivot = getPivot();
 		if (pivot != null) {
 			environmentView.addNamedElements(PivotPackage.Literals.PACKAGE, pivot.getNestedPackages());
+			environmentView.addNamedElements(PivotPackage.Literals.TYPE, pivot.getOwnedTypes());
 		}
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
 			for (ImportCS anImport : getTarget().getOwnedImport()) {

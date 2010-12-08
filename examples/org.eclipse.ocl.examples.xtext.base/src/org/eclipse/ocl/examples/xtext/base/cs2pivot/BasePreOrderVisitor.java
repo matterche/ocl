@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.2 2010/12/08 10:24:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -186,7 +186,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 	}
 
-	protected static class RootPackageContentContinuation extends SingleContinuation<RootPackageCS>
+/*	protected static class RootPackageContentContinuation extends SingleContinuation<RootPackageCS>
 	{
 		protected RootPackageContentContinuation(CS2PivotConversion context, RootPackageCS csElement) {
 			super(context, null, null, csElement);
@@ -198,7 +198,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackages(), csElement.getOwnedNestedPackage());
 			return null;
 		}
-	}
+	} */
 
 	protected static class TemplateBindingContinuation extends SingleContinuation<TemplateBindingCS>
 	{
@@ -516,7 +516,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	@Override
 	public Continuation<?> visitRootPackageCS(RootPackageCS csRootPackage) {
 		visitAbstractPackageCS(csRootPackage);
-		return new RootPackageContentContinuation(context, csRootPackage);
+		return new /*Root*/PackageContentContinuation(context, csRootPackage);
 	}
 
 	@Override
