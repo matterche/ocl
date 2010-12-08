@@ -206,7 +206,8 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLibraryAccess().getOwnedImportAssignment_3(), "rule__Library__OwnedImportAssignment_3");
 					put(grammarAccess.getLibraryAccess().getOwnedNestedPackageAssignment_5_0(), "rule__Library__OwnedNestedPackageAssignment_5_0");
 					put(grammarAccess.getLibraryAccess().getOwnedPrecedenceAssignment_5_1_1(), "rule__Library__OwnedPrecedenceAssignment_5_1_1");
-					put(grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_2(), "rule__Library__OwnedAnnotationAssignment_5_2");
+					put(grammarAccess.getLibraryAccess().getOwnedTypeAssignment_5_2(), "rule__Library__OwnedTypeAssignment_5_2");
+					put(grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_3(), "rule__Library__OwnedAnnotationAssignment_5_3");
 					put(grammarAccess.getAccumulatorCSAccess().getNameAssignment_0(), "rule__AccumulatorCS__NameAssignment_0");
 					put(grammarAccess.getAccumulatorCSAccess().getOwnedTypeAssignment_2(), "rule__AccumulatorCS__OwnedTypeAssignment_2");
 					put(grammarAccess.getAnnotationCSAccess().getNameAssignment_1(), "rule__AnnotationCS__NameAssignment_1");

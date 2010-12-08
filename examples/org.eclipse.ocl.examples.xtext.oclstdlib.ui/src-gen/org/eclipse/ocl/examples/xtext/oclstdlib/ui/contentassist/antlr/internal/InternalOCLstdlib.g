@@ -2634,9 +2634,15 @@ rule__Library__Alternatives_5
 )
 
     |(
-{ before(grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_2()); }
-(rule__Library__OwnedAnnotationAssignment_5_2)
-{ after(grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_2()); }
+{ before(grammarAccess.getLibraryAccess().getOwnedTypeAssignment_5_2()); }
+(rule__Library__OwnedTypeAssignment_5_2)
+{ after(grammarAccess.getLibraryAccess().getOwnedTypeAssignment_5_2()); }
+)
+
+    |(
+{ before(grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_3()); }
+(rule__Library__OwnedAnnotationAssignment_5_3)
+{ after(grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_3()); }
 )
 
 ;
@@ -15735,14 +15741,29 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Library__OwnedAnnotationAssignment_5_2
+rule__Library__OwnedTypeAssignment_5_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_2_0()); }
-	ruleAnnotationElementCS{ after(grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_2_0()); }
+{ before(grammarAccess.getLibraryAccess().getOwnedTypeClassifierCSParserRuleCall_5_2_0()); }
+	ruleClassifierCS{ after(grammarAccess.getLibraryAccess().getOwnedTypeClassifierCSParserRuleCall_5_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Library__OwnedAnnotationAssignment_5_3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0()); }
+	ruleAnnotationElementCS{ after(grammarAccess.getLibraryAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0()); }
 )
 
 ;
