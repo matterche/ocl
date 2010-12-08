@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.6 2010/12/08 17:39:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -780,6 +780,13 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType objectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType realEDataType = null;
 
 	/**
@@ -802,13 +809,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EDataType unlimitedNaturalEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType _EDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -3853,10 +3853,24 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getObject()
+	{
+		if (objectEDataType == null)
+		{
+			objectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(4);
+		}
+		return objectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getReal() {
 		if (realEDataType == null)
 		{
-			realEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(4);
+			realEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(5);
 		}
 		return realEDataType;
 	}
@@ -3869,7 +3883,7 @@ public class PivotPackageImpl
 	public EDataType getString() {
 		if (stringEDataType == null)
 		{
-			stringEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(5);
+			stringEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(6);
 		}
 		return stringEDataType;
 	}
@@ -3882,7 +3896,7 @@ public class PivotPackageImpl
 	public EDataType getThrowable() {
 		if (throwableEDataType == null)
 		{
-			throwableEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(6);
+			throwableEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(7);
 		}
 		return throwableEDataType;
 	}
@@ -3895,23 +3909,9 @@ public class PivotPackageImpl
 	public EDataType getUnlimitedNatural() {
 		if (unlimitedNaturalEDataType == null)
 		{
-			unlimitedNaturalEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(7);
+			unlimitedNaturalEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(8);
 		}
 		return unlimitedNaturalEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType get_()
-	{
-		if (_EDataType == null)
-		{
-			_EDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(8);
-		}
-		return _EDataType;
 	}
 
 	/**

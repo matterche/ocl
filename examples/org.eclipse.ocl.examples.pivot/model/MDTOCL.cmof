@@ -223,7 +223,7 @@
     <Ecore:EDataType xmi:id="_jgIDoAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Throwable" base_PrimitiveType="_ijfAsNPCEd-Vct1SlsNNwg"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EDataType xmi:id="_o1e-wAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Object" base_PrimitiveType="_jtMXsMhyEd-sJIf4tYBt-g" dataTypeName=""/>
+    <Ecore:EDataType xmi:id="_o1e-wAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Object" base_PrimitiveType="_jtMXsMhyEd-sJIf4tYBt-g"/>
   </xmi:Extension>
   <cmof:Tag xmi:id="_25" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
   <cmof:Tag xmi:id="_26" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>

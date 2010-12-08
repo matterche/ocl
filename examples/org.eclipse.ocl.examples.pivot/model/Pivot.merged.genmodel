@@ -76,7 +76,7 @@
       <ecoreDataType href="pivot.ecore#//Integer"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
-      <ecoreDataType href="pivot.ecore#//_"/>
+      <ecoreDataType href="pivot.ecore#//Object"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Real"/>

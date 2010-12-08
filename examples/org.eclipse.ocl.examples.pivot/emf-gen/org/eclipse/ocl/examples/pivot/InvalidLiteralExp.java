@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExp.java,v 1.1.2.4 2010/12/08 10:25:29 ewillink Exp $
+ * $Id: InvalidLiteralExp.java,v 1.1.2.5 2010/12/08 17:39:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -49,7 +49,7 @@ public interface InvalidLiteralExp
 	 * @return the value of the '<em>Object</em>' attribute.
 	 * @see #setObject(Object)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInvalidLiteralExp_Object()
-	 * @model dataType="org.eclipse.ocl.examples.pivot._" ordered="false"
+	 * @model dataType="org.eclipse.ocl.examples.pivot.Object" ordered="false"
 	 * @generated
 	 */
 	Object getObject();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.6 2010/12/08 17:39:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -507,6 +507,8 @@ public class PivotValidator
 				return validateInt((Integer)value, diagnostics, context);
 			case PivotPackage.INTEGER:
 				return validateInteger((BigInteger)value, diagnostics, context);
+			case PivotPackage.OBJECT:
+				return validateObject(value, diagnostics, context);
 			case PivotPackage.REAL:
 				return validateReal((BigDecimal)value, diagnostics, context);
 			case PivotPackage.STRING:
@@ -515,8 +517,6 @@ public class PivotValidator
 				return validateThrowable((Throwable)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return validateUnlimitedNatural((BigInteger)value, diagnostics, context);
-			case PivotPackage._PIVOT:
-				return validate_(value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1919,6 +1919,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateObject(Object object, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateReal(BigDecimal real, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return true;
@@ -1951,16 +1961,6 @@ public class PivotValidator
 	 */
 	public boolean validateUnlimitedNatural(BigInteger unlimitedNatural,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validate_(Object _, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
 		return true;
 	}
 

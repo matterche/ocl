@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.6 2010/12/08 17:39:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -245,6 +245,8 @@ public class PivotFactoryImpl
 				return createIntFromString(eDataType, initialValue);
 			case PivotPackage.INTEGER:
 				return createIntegerFromString(eDataType, initialValue);
+			case PivotPackage.OBJECT:
+				return createObjectFromString(eDataType, initialValue);
 			case PivotPackage.REAL:
 				return createRealFromString(eDataType, initialValue);
 			case PivotPackage.STRING:
@@ -253,8 +255,6 @@ public class PivotFactoryImpl
 				return createThrowableFromString(eDataType, initialValue);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return createUnlimitedNaturalFromString(eDataType, initialValue);
-			case PivotPackage._PIVOT:
-				return create_FromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -283,6 +283,8 @@ public class PivotFactoryImpl
 				return convertIntToString(eDataType, instanceValue);
 			case PivotPackage.INTEGER:
 				return convertIntegerToString(eDataType, instanceValue);
+			case PivotPackage.OBJECT:
+				return convertObjectToString(eDataType, instanceValue);
 			case PivotPackage.REAL:
 				return convertRealToString(eDataType, instanceValue);
 			case PivotPackage.STRING:
@@ -291,8 +293,6 @@ public class PivotFactoryImpl
 				return convertThrowableToString(eDataType, instanceValue);
 			case PivotPackage.UNLIMITED_NATURAL:
 				return convertUnlimitedNaturalToString(eDataType, instanceValue);
-			case PivotPackage._PIVOT:
-				return convert_ToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -1127,6 +1127,26 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Object createObjectFromString(EDataType eDataType, String initialValue)
+	{
+		return super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertObjectToString(EDataType eDataType, Object instanceValue)
+	{
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BigDecimal createRealFromString(EDataType eDataType,
 			String initialValue) {
 		return (BigDecimal)super.createFromString(eDataType, initialValue);
@@ -1198,26 +1218,6 @@ public class PivotFactoryImpl
 	 */
 	public String convertUnlimitedNaturalToString(EDataType eDataType,
 			Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object create_FromString(EDataType eDataType, String initialValue)
-	{
-		return super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convert_ToString(EDataType eDataType, Object instanceValue)
-	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 

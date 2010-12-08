@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.6 2010/12/08 17:39:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -15972,6 +15972,16 @@ public interface PivotPackage
 	int INTEGER = 102;
 
 	/**
+	 * The meta object id for the '<em>Object</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Object
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
+	 * @generated
+	 */
+	int OBJECT = 103;
+
+	/**
 	 * The meta object id for the '<em>Real</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15979,7 +15989,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 103;
+	int REAL = 104;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -15989,7 +15999,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 104;
+	int STRING = 105;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -15999,7 +16009,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 105;
+	int THROWABLE = 106;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -16009,17 +16019,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 106;
-
-	/**
-	 * The meta object id for the '<em>Pivot</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see java.lang.Object
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#get_()
-	 * @generated
-	 */
-	int _PIVOT = 107;
+	int UNLIMITED_NATURAL = 107;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -19011,6 +19011,17 @@ public interface PivotPackage
 	EDataType getInteger();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Object <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Object</em>'.
+	 * @see java.lang.Object
+	 * @model instanceClass="java.lang.Object"
+	 * @generated
+	 */
+	EDataType getObject();
+
+	/**
 	 * Returns the meta object for data type '{@link java.math.BigDecimal <em>Real</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19053,17 +19064,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EDataType getUnlimitedNatural();
-
-	/**
-	 * Returns the meta object for data type '{@link java.lang.Object <em>Pivot</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Pivot</em>'.
-	 * @see java.lang.Object
-	 * @model instanceClass="java.lang.Object"
-	 * @generated
-	 */
-	EDataType get_();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -21566,6 +21566,16 @@ public interface PivotPackage
 		EDataType INTEGER = eINSTANCE.getInteger();
 
 		/**
+		 * The meta object literal for the '<em>Object</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Object
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
+		 * @generated
+		 */
+		EDataType OBJECT = eINSTANCE.getObject();
+
+		/**
 		 * The meta object literal for the '<em>Real</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21604,16 +21614,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EDataType UNLIMITED_NATURAL = eINSTANCE.getUnlimitedNatural();
-
-		/**
-		 * The meta object literal for the '<em>Pivot</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see java.lang.Object
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#get_()
-		 * @generated
-		 */
-		EDataType _PIVOT = eINSTANCE.get_();
 
 	}
 

@@ -12,11 +12,11 @@
   <eClassifiers xsi:type="ecore:EDataType" name="CallableImplementation" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Int" instanceClassName="int"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="java.math.BigInteger"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="java.math.BigDecimal"/>
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Throwable" instanceClassName="java.lang.Throwable"/>
   <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="java.math.BigInteger"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="_" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EEnum" name="AssociativityKind">
     <eLiterals name="Left"/>
     <eLiterals name="Right" value="1"/>
@@ -263,7 +263,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" ordered="false"
-        eType="#//_"/>
+        eType="#//Object"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
         eType="#//OclExpression"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" ordered="false"
