@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.1 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.2 2010/12/09 22:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -27,6 +27,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
@@ -231,6 +232,22 @@ public class EssentialOCLPostOrderVisitor
 		}
 	}
 
+	protected static class ContextCSCompletion extends SingleContinuation<ContextCS>
+	{	
+		private ContextCSCompletion(CS2PivotConversion context, ContextCS csElement, ExpressionInOcl pivotElement) {
+			super(context, pivotElement, PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, csElement,
+				new PivotDependency(csElement.getOwnedExpression()));
+		}
+	
+		@Override
+		public BasicContinuation<?> execute() {
+			ExpressionInOcl pivotElement = context.getPivotElement(ExpressionInOcl.class, csElement);
+			OclExpression pivotExpr = context.getPivotElement(OclExpression.class, csElement.getOwnedExpression());
+			pivotElement.setBodyExpression(pivotExpr);
+			return null;
+		}
+	}
+
 	protected static class ExpConstraintCSCompletion extends SingleContinuation<ExpConstraintCS>
 	{	
 		private ExpConstraintCSCompletion(CS2PivotConversion context, ExpConstraintCS csElement) {
@@ -263,10 +280,87 @@ public class EssentialOCLPostOrderVisitor
 			return null;
 		}
 	}
+
+	protected static class LetVariableCSInCompletion extends SingleContinuation<LetVariableCS>
+	{
+		private final ExpCS csIn;
+
+		private LetVariableCSInCompletion(CS2PivotConversion context,
+				Element pivotParent, LetVariableCS csElement, ExpCS csIn) {
+			super(context, pivotParent, PivotPackage.Literals.LET_EXP__IN, csElement, new PivotTypeOfDependency(csIn));
+			this.csIn = csIn;
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			Variable variable = context.getPivotElement(Variable.class, csElement);
+			LetExp letExp = (LetExp) variable.eContainer();
+			TypedElement inElement = context.getPivotElement(TypedElement.class, csIn);
+			letExp.setIn(inElement instanceof OclExpression ? (OclExpression)inElement : (LetExp)inElement.eContainer());
+			context.setType(letExp, inElement.getType());
+			return null;
+		}
+	}
+
+	protected static class LetVariableCSVariableCompletion extends SingleContinuation<LetVariableCS>
+	{
+		private static Dependency<?>[] computeDependencies(LetVariableCS csElement) {
+			ExpCS csInitExpression = csElement.getInitExpression();
+			TypedRefCS csType = csElement.getOwnedType();
+			Dependency<?> initTypeDependency = csInitExpression != null ? new PivotTypeOfDependency(csInitExpression) : null;
+			Dependency<?> varTypeDependency = csType != null ? new PivotDependency(csType) : null;
+			return Dependency.combine(initTypeDependency, varTypeDependency);
+		}
+
+		private final ExpCS csIn;
+
+		private LetVariableCSVariableCompletion(CS2PivotConversion context,
+				Element pivotLetExp, LetVariableCS csElement, ExpCS csIn) {
+			super(context, pivotLetExp, PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, csElement, computeDependencies(csElement));
+			this.csIn = csIn;
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			Variable pivotVariable = context.getPivotElement(Variable.class, csElement);
+			ExpCS csInitExpression = csElement.getInitExpression();
+			OclExpression initExpression = csInitExpression != null ? context.getPivotElement(OclExpression.class, csInitExpression) : null;
+			pivotVariable.setInitExpression(initExpression);
+			Type initType = initExpression != null ? initExpression.getType() : null;
+			TypedRefCS csVariableType = csElement.getOwnedType();
+			Type variableType = csVariableType != null ? context.getPivotElement(Type.class, csVariableType) : null;
+			if (variableType == null) {
+				variableType = initType;
+			}
+			context.setType(pivotVariable, variableType);
+			return new LetVariableCSInCompletion(context, pivotParent, csElement, csIn);
+		}
+	}
+
+	protected static class NameExpCSTypeCompletion
+			extends SingleContinuation<NameExpCS> {
+
+		private final VariableExp expression;
+
+		private NameExpCSTypeCompletion(CS2PivotConversion context,
+				Element pivotParent, EStructuralFeature pivotFeature,
+				NameExpCS csElement, VariableExp expression) {
+			super(context, pivotParent, pivotFeature, csElement,
+				new TypeOfDependency(expression.getReferredVariable()));
+			this.expression = expression;
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			VariableDeclaration variableDeclaration = expression.getReferredVariable();
+			context.setType(expression, variableDeclaration.getType());
+			return null;
+		}
+	}
 	
-	protected class NameExpCSCompletion extends SingleContinuation<NameExpCS>
+	protected class NameExpCSVariableCompletion extends SingleContinuation<NameExpCS>
 	{	
-		private NameExpCSCompletion(CS2PivotConversion context, NameExpCS csElement) {
+		private NameExpCSVariableCompletion(CS2PivotConversion context, NameExpCS csElement) {
 			super(context, null, null, csElement);
 		}
 	
@@ -274,21 +368,15 @@ public class EssentialOCLPostOrderVisitor
 		public BasicContinuation<?> execute() {
 			NamedElement element = csElement.getElement();
 			if (element instanceof VariableDeclaration) {
-				final VariableDeclaration variableDeclaration = (VariableDeclaration) element;
-				final VariableExp expression = refreshExpression(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csElement);
+				VariableDeclaration variableDeclaration = (VariableDeclaration) element;
+				VariableExp expression = refreshExpression(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csElement);
 				expression.setReferredVariable(variableDeclaration);
-				return new SingleContinuation<NameExpCS>(context, expression, PivotPackage.Literals.TYPED_ELEMENT__TYPE, csElement, new TypeOfDependency(variableDeclaration))
-				{
-					@Override
-					public BasicContinuation<?> execute() {
-						context.setType(expression, variableDeclaration.getType());
-						return null;
-					}			
-				};
+				return new NameExpCSTypeCompletion(context, expression, PivotPackage.Literals.TYPED_ELEMENT__TYPE,
+					csElement, expression);
 			}
 			else if (element instanceof Property) {
-				final PropertyCallExp expression = refreshExpression(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csElement);
-				final Property property = (Property) element;
+				PropertyCallExp expression = refreshExpression(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csElement);
+				Property property = (Property) element;
 				expression.setReferredProperty(property);
 				context.setType(expression, property.getType());		// FIXME resolve template parameter
 			}
@@ -298,6 +386,19 @@ public class EssentialOCLPostOrderVisitor
 			else {
 				logger.warn("Unsupported NameExpCS " + element.eClass().getName());		// FIXME
 			}
+			return null;
+		}
+	}
+
+	protected static class NavigatingArgCSCompletion extends SingleContinuation<NavigatingArgCS>
+	{	
+		private NavigatingArgCSCompletion(CS2PivotConversion context, NavigatingArgCS csElement) {
+			super(context, null, null, csElement);
+		}
+	
+		@Override
+		public BasicContinuation<?> execute() {
+			context.installPivotElement(csElement, csElement.getName().getPivot());
 			return null;
 		}
 	}
@@ -337,9 +438,21 @@ public class EssentialOCLPostOrderVisitor
 			for (Parameter parameter : parameters) {
 				IteratorKind iteratorKind = parameter.getIteratorKind();
 				switch (iteratorKind) {
-					case ACCUMULATOR: operationAccumulatorCount++; break;
-					case ITERATOR: operationIteratorCount++; break;
-					case PARAMETER: operationParameterCount++; break;
+					case ACCUMULATOR: {
+						assert operationParameterCount == 0;
+						operationAccumulatorCount++;
+						break;
+					}
+					case ITERATOR: {
+						assert operationParameterCount == 0;
+						assert operationAccumulatorCount == 0;
+						operationIteratorCount++;
+						break;
+					}
+					case PARAMETER: {
+						operationParameterCount++;
+						break;
+					}
 				}
 			}
 			List<NavigatingArgCS> arguments = csElement.getArguments();
@@ -353,16 +466,25 @@ public class EssentialOCLPostOrderVisitor
 					}
 				}
 				else if (";".equals(prefix)) {
-					if (barIndex < 0) {
+					if (semiIndex < 0) {
 						semiIndex = i;
 					}
 				}
 			}
-			int iteratorCount = (semiIndex > 0) ? semiIndex : (barIndex > 0) ? barIndex : iMax;
-			int accumulatorCount = (semiIndex > 0) && (barIndex > semiIndex) ? (barIndex - semiIndex) : 0;
-			int parameterCount = barIndex > 0 ? (iMax - barIndex) : iMax;
 			if (semiIndex > barIndex) {
 				csElement.getError().add("accumulators cannot follow parameters");
+			}
+			int iteratorCount = 0;
+			int accumulatorCount = 0;
+			int parameterCount = 0;
+			if (operationParameterCount == 0) {
+				iteratorCount = (semiIndex > 0) ? semiIndex : (barIndex > 0) ? barIndex : iMax;
+				accumulatorCount = (semiIndex > 0) && (barIndex > semiIndex) ? (barIndex - semiIndex) : 0;
+			}
+			else {
+				iteratorCount = (semiIndex > 0) ? semiIndex : (barIndex > 0) ? barIndex : 0;
+				accumulatorCount = (semiIndex > 0) && (barIndex > semiIndex) ? (barIndex - semiIndex) : 0;
+				parameterCount = iMax - Math.max(0, Math.max(semiIndex, barIndex));
 			}
 			if (accumulatorCount > operationAccumulatorCount) {
 				csElement.getError().add("Too many accumulators");
@@ -385,7 +507,7 @@ public class EssentialOCLPostOrderVisitor
 				NavigatingArgCS arg = arguments.get(i);
 				String prefix = arg.getPrefix();
 				if (i >= barIndex) {
-					parameter = getParameter(operation, IteratorKind.PARAMETER, i - barIndex);
+					parameter = getParameter(operation, IteratorKind.PARAMETER, barIndex > 0 ? i - barIndex : i);
 					if ((prefix != null) && !",".equals(prefix) && !"|".equals(prefix)) {
 						arg.getError().add("Unexpected extra '" + prefix + "' separator for parameter");
 					}
@@ -402,8 +524,7 @@ public class EssentialOCLPostOrderVisitor
 						arg.getError().add("Unexpected extra '" + prefix + "' separator for iterator");
 					}
 				}
-				int index = parameters.indexOf(parameter);
-				pivotArguments.set(index, context.getPivotElement(OclExpression.class, arg));
+				pivotArguments.add(context.getPivotElement(OclExpression.class, arg));
 				context.installPivotElement(arg, parameter);
 			}
 			context.refreshList(expression.getArguments(), pivotArguments);
@@ -517,6 +638,25 @@ public class EssentialOCLPostOrderVisitor
 			VariableExp expression = context.getPivotElement(VariableExp.class, csElement);
 			expression.setReferredVariable(variableDeclaration);
 			context.setType(expression, variableDeclaration.getType());
+			return null;
+		}
+	}
+
+	protected static class VariableCSInitCompletion extends SingleContinuation<VariableCS>
+	{	
+		private VariableCSInitCompletion(CS2PivotConversion context, VariableCS csElement, Variable pivotElement) {
+			super(context, pivotElement, PivotPackage.Literals.TYPED_ELEMENT__TYPE, csElement,
+				new PivotDependency(csElement.getOwnedType()));
+		}
+	
+		@Override
+		public BasicContinuation<?> execute() {
+			Variable pivotElement = context.getPivotElement(Variable.class, csElement);
+			OclExpression initExpression = context.getPivotElement(OclExpression.class, csElement.getInitExpression());
+			Type variableType = context.getPivotElement(Type.class, csElement.getOwnedType());
+			// FIXME deduce from initType
+			pivotElement.setInitExpression(initExpression);
+			pivotElement.setType(variableType);
 			return null;
 		}
 	}
@@ -818,8 +958,7 @@ public class EssentialOCLPostOrderVisitor
 		ExpressionInOcl pivotElement = context.refreshMonikeredElement(ExpressionInOcl.class,
 			PivotPackage.Literals.EXPRESSION_IN_OCL, csContext);
 		context.installPivotElement(csContext, pivotElement);
-		pivotElement.setBodyExpression(context.getPivotElement(OclExpression.class, csContext.getOwnedExpression()));
-		return null; // new ContextCSCompletion(context, csContext, pivotElement);
+		return new ContextCSCompletion(context, csContext, pivotElement);
 	}
 
 	@Override
@@ -880,7 +1019,7 @@ public class EssentialOCLPostOrderVisitor
 		// The CS Let therefore just re-uses the Pivot of the first CS Let Variable
 		Variable firstLet = context.getPivotElement(Variable.class, csLetExp.getVariable().get(0));
 		context.installPivotElement(csLetExp, (Element) firstLet.eContainer());
-		return null; //new LetExpCSCompletion(context, csLetExp);
+		return null;
 	}
 
 	@Override
@@ -888,72 +1027,17 @@ public class EssentialOCLPostOrderVisitor
 		LetExpCS csLetExpression = csLetVariable.getLetExpression();
 		List<LetVariableCS> csLetVariables = csLetExpression.getVariable();
 		int index = csLetVariables.indexOf(csLetVariable);
-		String letMoniker = csLetExpression.getMoniker() + "_" + index;
 		boolean isLast = index >= csLetVariables.size()-1;
-		final ExpCS csIn = isLast ? csLetExpression.getIn() : csLetVariables.get(index+1);
-		final LetExp pivotLetExp = context.refreshMonikeredElement(LetExp.class,
+		ExpCS csIn = isLast ? csLetExpression.getIn() : csLetVariables.get(index+1);				
+		String letMoniker = csLetExpression.getMoniker() + "_" + index;
+		LetExp pivotLetExp = context.refreshMonikeredElement(LetExp.class,
 			PivotPackage.Literals.LET_EXP, letMoniker);
-		final Variable pivotVariable = context.refreshMonikeredElement(Variable.class,
+		Variable pivotVariable = context.refreshNamedElement(Variable.class,
 			PivotPackage.Literals.VARIABLE, csLetVariable);
-		context.installPivotElement(csLetVariable, pivotVariable);
-		context.refreshName(pivotVariable, csLetVariable.getName());
 		pivotLetExp.setVariable(pivotVariable);
-		TypedRefCS csType = csLetVariable.getOwnedType();
-		if (csType != null) {
-			return new SingleContinuation<LetVariableCS>(context, pivotVariable, PivotPackage.Literals.TYPED_ELEMENT__TYPE, csLetVariable, new PivotDependency(csType))
-			{
-				@Override
-				public BasicContinuation<?> execute() {
-					context.setType(pivotVariable, (Type) csElement.getOwnedType().getPivot());
-					return new SingleContinuation< LetVariableCS>(context, pivotVariable, PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, csElement, new PivotDependency(csElement.getInitExpression()))
-					{
-						@Override
-						public BasicContinuation<?> execute() {
-							pivotVariable.setInitExpression(context.getPivotElement(OclExpression.class, csElement.getInitExpression()));
-							return new SingleContinuation<LetVariableCS>(context, pivotLetExp, PivotPackage.Literals.LET_EXP__IN, csElement, new PivotTypeOfDependency(csIn))
-							{
-								@Override
-								public BasicContinuation<?> execute() {
-									TypedElement pivotInElement = context.getPivotElement(TypedElement.class, csIn);
-									if (pivotInElement instanceof Variable) {
-										pivotInElement = (TypedElement) pivotInElement.eContainer();
-									}
-									OclExpression pivotInExpression = (OclExpression) pivotInElement;
-									pivotLetExp.setIn(pivotInExpression);
-									context.setType(pivotLetExp, pivotInExpression.getType());
-									return null;
-								}
-							};
-						}			
-					};
-				}			
-			};
-		}
-		else {
-			return new SingleContinuation<LetVariableCS>(context, pivotVariable, PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, csLetVariable, new PivotTypeOfDependency(csLetVariable.getInitExpression()))
-			{
-				@Override
-				public BasicContinuation<?> execute() {
-					OclExpression pivotInitExpression = context.getPivotElement(OclExpression.class, csElement.getInitExpression());
-					context.setType(pivotVariable, pivotInitExpression.getType());
-					pivotVariable.setInitExpression(pivotInitExpression);
-					return new SingleContinuation<LetVariableCS>(context, pivotLetExp, PivotPackage.Literals.LET_EXP__IN, csElement, new PivotTypeOfDependency(csIn))
-					{
-						@Override
-						public BasicContinuation<?> execute() {
-							TypedElement pivotInElement = context.getPivotElement(TypedElement.class, csIn);
-							if (pivotInElement instanceof Variable) {
-								pivotInElement = (TypedElement) pivotInElement.eContainer();
-							}
-							OclExpression pivotInExpression = (OclExpression) pivotInElement;
-							pivotLetExp.setIn(pivotInExpression);
-							context.setType(pivotLetExp, pivotInExpression.getType());
-							return null;
-						}			
-					};
-				}			
-			};
-		}
+		// Wait till Variable and InitExpression types available to resolve LetExp.variable
+		//  then wait till InExpression type available to resolve LetExp.type
+		return new LetVariableCSVariableCompletion(context, pivotVariable, csLetVariable, csIn);
 	}
 
 	@Override
@@ -974,12 +1058,13 @@ public class EssentialOCLPostOrderVisitor
 //			return new IndexExpCSCompletion(context, (IndexExpCS) eContainer);
 //		}
 		else {
-			return new NameExpCSCompletion(context, csNameExp);
+			return new NameExpCSVariableCompletion(context, csNameExp);
 		}
 	}
 
+	@Override
 	public Continuation<?> visitNavigatingArgCS(NavigatingArgCS csNavigatingArg) {
-		return null;
+		return new NavigatingArgCSCompletion(context, csNavigatingArg);
 	}
 
 	@Override
@@ -1056,6 +1141,20 @@ public class EssentialOCLPostOrderVisitor
 	@Override
 	public Continuation<?> visitStringLiteralExpCS(StringLiteralExpCS csStringLiteralExp) {
 		StringLiteralExp expression = refreshExpression(StringLiteralExp.class, PivotPackage.Literals.STRING_LITERAL_EXP, csStringLiteralExp);
+		List<String> names = csStringLiteralExp.getName();
+		if (names.size() == 0) {
+			expression.setStringSymbol("");
+		}
+		else if (names.size() == 1) {
+			expression.setStringSymbol(names.get(0));
+		}
+		else {
+			StringBuffer s = new StringBuffer();
+			for (String name : names) {
+				s.append(name);
+			}
+			expression.setStringSymbol(s.toString());
+		}
 		expression.setType(context.getPivotManager().getStringType());
 		return null;
 	}
@@ -1076,13 +1175,8 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitVariableCS(VariableCS csVariable) {
-		Variable pivotElement = context.refreshMonikeredElement(Variable.class,
+		Variable pivotElement = context.refreshNamedElement(Variable.class,
 			PivotPackage.Literals.VARIABLE, csVariable);
-		context.installPivotElement(csVariable, pivotElement);
-		context.refreshName(pivotElement, csVariable.getName());
-//			converter.referenceElement(csVariable.getOwnedType());
-//			pivotElement.setInitExpression(converter.referenceElement(OclExpression.class, csVariable.getInitExpression()));
-//			converter.queueResolver(csVariable);	// For type
-		return null;
+		return new VariableCSInitCompletion(context, csVariable, pivotElement);
 	}	
 }

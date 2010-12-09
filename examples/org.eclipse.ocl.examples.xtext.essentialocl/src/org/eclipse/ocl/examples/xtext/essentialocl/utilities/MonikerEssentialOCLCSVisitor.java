@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerEssentialOCLCSVisitor.java,v 1.1.2.1 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: MonikerEssentialOCLCSVisitor.java,v 1.1.2.2 2010/12/09 22:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -55,6 +55,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingEssentialOCLCSVisitor;
 import org.eclipse.xtext.parsetree.CompositeNode;
@@ -137,6 +138,11 @@ public class MonikerEssentialOCLCSVisitor
 		}
 
 		@Override
+		public String visitIfExpCS(IfExpCS object) {
+			return "if";
+		}
+
+		@Override
 		public String visitInfixExpCS(InfixExpCS object) {
 			return "?";
 		}
@@ -144,6 +150,16 @@ public class MonikerEssentialOCLCSVisitor
 		@Override
 		public String visitInvalidLiteralExpCS(InvalidLiteralExpCS object) {
 			return "invalid";
+		}
+
+		@Override
+		public String visitLetExpCS(LetExpCS object) {
+			return "let";
+		}
+
+		@Override
+		public String visitLetVariableCS(LetVariableCS object) {
+			return object.getName();
 		}
 
 		@Override
@@ -274,6 +290,15 @@ public class MonikerEssentialOCLCSVisitor
 		}
 
 		@Override
+		public Object visitIfExpCS(IfExpCS object) {
+			updateContext(object);			
+			safeVisit(object.getCondition());
+			safeVisit(object.getThenExpression());
+			safeVisit(object.getElseExpression());
+			return null;
+		}
+
+		@Override
 		public Object visitInfixExpCS(InfixExpCS object) {
 			updateContext(object);			
 			for (ExpCS csExp : object.getOwnedExpression()) {
@@ -282,6 +307,16 @@ public class MonikerEssentialOCLCSVisitor
 			for (OperatorCS csOperator : object.getOwnedOperator()) {
 				safeVisit(csOperator);
 			}
+			return null;
+		}
+
+		@Override
+		public Object visitLetExpCS(LetExpCS object) {
+			updateContext(object);			
+			for (LetVariableCS csVariable : object.getVariable()) {
+				safeVisit(csVariable);
+			}
+			safeVisit(object.getIn());
 			return null;
 		}
 
@@ -363,6 +398,13 @@ public class MonikerEssentialOCLCSVisitor
 			return null;
 		}
 
+		@Override
+		public Object visitVariableCS(VariableCS object) {
+			updateContext(object);			
+			safeVisit(object.getInitExpression());
+			return null;
+		}
+
 		public Object visiting(VisitableCS visitable) {
 			logger.error("cs tree-content visting " + visitable.getClass().getName());
 			return null;
@@ -371,6 +413,7 @@ public class MonikerEssentialOCLCSVisitor
 	
 	protected EssentialOCLCSTreeNameVisitor treeNameVisitor = null;
 
+	@SuppressWarnings("unchecked")
 	public MonikerEssentialOCLCSVisitor(CS2Moniker context) {
 		super((BaseCSVisitor<Object, CS2Moniker>) context.getVisitor(BaseCSTPackage.eINSTANCE), context);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeProvider.java,v 1.1.2.3 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLCSScopeProvider.java,v 1.1.2.4 2010/12/09 22:15:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
@@ -100,6 +101,11 @@ public class EssentialOCLCSScopeProvider extends BaseScopeProvider
 		@Override
 		public ScopeAdapter caseNameExpCS(NameExpCS eObject) {
 			return new NameExpCSScopeAdapter(eObject);
+		}
+
+		@Override
+		public ScopeAdapter caseNavigatingArgCS(NavigatingArgCS eObject) {
+			return new EmptyCSScopeAdapter(eObject);		// FIXME iterators
 		}
 
 		@Override

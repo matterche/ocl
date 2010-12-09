@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.1 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.2 2010/12/09 22:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -35,26 +35,26 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitContextCS(ContextCS csContext) {
-		return Continuation.TERMINATE;
+		return null;
 	}
 
 	@Override
 	public Continuation<?> visitExpCS(ExpCS csExp) {
-		return Continuation.TERMINATE;
+		return null;
 	}
 
 	@Override
 	public Continuation<?> visitOperatorCS(OperatorCS object) {
-		return Continuation.TERMINATE;
+		return null;
 	}
 
 	@Override
 	public Continuation<?> visitNavigatingArgCS(NavigatingArgCS csNavigatingArg) {
-		return Continuation.TERMINATE;
+		return null;
 	}
 
 	@Override
 	public Continuation<?> visitVariableCS(VariableCS csVariable) {
-		return Continuation.TERMINATE;
+		return null;
 	}
 }
