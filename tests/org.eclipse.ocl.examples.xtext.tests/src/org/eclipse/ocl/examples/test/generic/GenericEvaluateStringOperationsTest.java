@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.2 2010/12/09 22:15:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -28,12 +28,13 @@ public abstract class GenericEvaluateStringOperationsTest
     @Override
     protected void setUp() {
         super.setUp();
-        helper.setContext(getMetaclass(denormalize("%Package")));
+//        helper.setContext(getMetaclass(denormalize("%Package")));
+        helper.setContext(getMetaclass("Classifier"));
     }
 
 	public void testStringConcat() {
 		assertQueryEquals(null, "concatenationTest", "'concatenation'.concat('Test')");
-		assertQueryEquals(null, "concatenation\\n", "'concatenation'.concat('\\n')");
+		assertQueryEquals(null, "concatenation\n", "'concatenation'.concat('\\n')");
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in 'concatenation'.concat(s)");
 		assertQueryInvalid(null, "let s : String = invalid in s.concat('concatenation')");
@@ -254,7 +255,7 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryEquals(null, "upper", "'UPPER'.toLowerCase()"); //$NON-NLS-2$
 		// Ensures word-final sigma and regular sigmas are converted as needed
 //		assertQueryEquals(null, 
-//			"á½€Î´Ï…ÏƒÏƒÎµÏ�Ï‚", "'á½ˆÎ”Î¥Î£Î£Î•ÎŽÎ£'.toLowerCase()");
+//			"Ã¡Â½â‚¬ÃŽÂ´Ã�â€¦Ã�Æ’Ã�Æ’ÃŽÂµÃ�ï¿½Ã�â€š", "'Ã¡Â½Ë†ÃŽâ€�ÃŽÂ¥ÃŽÂ£ÃŽÂ£ÃŽâ€¢ÃŽÅ½ÃŽÂ£'.toLowerCase()");
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toLowerCase()");
 		// null
@@ -281,10 +282,10 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryEquals(null, "LOWER", "'lower'.toUpperCase()");
 		
 		// Ensures word-final sigma and regular sigmas are converted as needed
-//		assertQueryEquals(null, "á½ˆÎ”Î¥Î£Î£Î•ÎŽÎ£", "'á½€Î´Ï…ÏƒÏƒÎµÏ�Ï‚'.toUpperCase()");
+//		assertQueryEquals(null, "Ã¡Â½Ë†ÃŽâ€�ÃŽÂ¥ÃŽÂ£ÃŽÂ£ÃŽâ€¢ÃŽÅ½ÃŽÂ£", "'Ã¡Â½â‚¬ÃŽÂ´Ã�â€¦Ã�Æ’Ã�Æ’ÃŽÂµÃ�ï¿½Ã�â€š'.toUpperCase()");
 		
 		// Sharp s should be mapped to a double S upper case
-//		assertQueryEquals(null, "SS", "'ÃŸ'.toUpperCase()");
+//		assertQueryEquals(null, "SS", "'ÃƒÅ¸'.toUpperCase()");
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toUpperCase()");
 		// null

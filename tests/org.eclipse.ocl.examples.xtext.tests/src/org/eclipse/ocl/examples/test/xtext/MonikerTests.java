@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.1.2.2 2010/12/06 18:47:46 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.1.2.3 2010/12/09 22:15:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 
@@ -63,7 +62,7 @@ public class MonikerTests extends XtextTestCase
 						fail("Duplicate moniker " + moniker + " for " + csElement.eClass().getName());
 					}
 					monikerMap.put(moniker, csMonikeredElement);
-					System.out.println(csMonikeredElement.eClass().getName() + " : " + moniker);
+//					System.out.println(csMonikeredElement.eClass().getName() + " : " + moniker);
 //					String signature = Ecore2Moniker.toSignature(eElement);
 //					System.out.println(eObject.eClass().getName() + " : " + signature);
 				}
@@ -104,7 +103,7 @@ public class MonikerTests extends XtextTestCase
 		for (String csMoniker : csMonikers) {
 			MonikeredElementCS csElement = csMonikerMap.get(csMoniker);
 			if (hasCorrespondingPivot(csElement)) {
-				System.out.println(csElement.eClass().getName() + " : " + csMoniker);
+//				System.out.println(csElement.eClass().getName() + " : " + csMoniker);
 				MonikeredElement pivot = (MonikeredElement) csElement.getPivot();
 				String pivotMoniker = pivot.getMoniker();
 				assertEquals("Pivot moniker for CS:", csMoniker, pivotMoniker);
@@ -132,7 +131,7 @@ public class MonikerTests extends XtextTestCase
 							fail("Duplicate moniker " + moniker + " for " + pivotElement.eClass().getName());
 						}
 						monikerMap.put(moniker, pivotElement);
-						System.out.println(eObject.eClass().getName() + " : " + moniker);
+//						System.out.println(eObject.eClass().getName() + " : " + moniker);
 		//				String signature = Ecore2Moniker.toSignature(eElement);
 		//				System.out.println(eObject.eClass().getName() + " : " + signature);
 					}
@@ -252,22 +251,22 @@ public class MonikerTests extends XtextTestCase
 	}
 
 	public void testMoniker_midi_oclstdlib() throws IOException, InterruptedException {
-		BaseScopeProvider.LOOKUP.setState(true);
+//		BaseScopeProvider.LOOKUP.setState(true);
 		doMonikerTestOCLstdlib("midi");
 	}
 
 	public void testMoniker_mini_oclstdlib() throws IOException, InterruptedException {
-		BaseScopeProvider.LOOKUP.setState(true);
+//		BaseScopeProvider.LOOKUP.setState(true);
 		doMonikerTestOCLstdlib("mini");
 	}
 
 	public void testMoniker_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		BaseScopeProvider.LOOKUP.setState(true);
+//		BaseScopeProvider.LOOKUP.setState(true);
 		doMonikerTestOCLstdlib("oclstdlib");
 	}
 
-//	public void testMoniker_OCL_2_3_oclstdlib() throws IOException, InterruptedException {
+	public void testMoniker_OCL_2_3_oclstdlib() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
-//		doMonikerTestOCLstdlib("OCL-2.3x");
-//	}
+		doMonikerTestOCLstdlib("OCL-2.3x");
+	}
 }
