@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.1.2.2 2010/12/09 22:15:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -226,6 +226,8 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
+		Type type = context.getPivotManager().getLibraryType(csPrimitiveTypeRef.getName());
+		context.installPivotElement(csPrimitiveTypeRef, type);
 		return null;
 	}
 

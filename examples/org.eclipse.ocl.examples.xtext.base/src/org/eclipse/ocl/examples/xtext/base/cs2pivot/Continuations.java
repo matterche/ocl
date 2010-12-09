@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Continuations.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: Continuations.java,v 1.1.2.2 2010/12/09 22:15:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -79,15 +79,4 @@ public class Continuations implements Continuation<ModelElementCS>
 			return this;
 		}
 	}
-
-	public boolean isTerminate() {
-		if (continuations != null) {
-			for (BasicContinuation<?> continuation : continuations) {
-				if (continuation.isTerminate()) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}			
 }

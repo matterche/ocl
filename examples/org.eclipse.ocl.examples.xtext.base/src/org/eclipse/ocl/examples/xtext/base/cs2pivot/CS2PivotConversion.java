@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.2 2010/12/09 22:15:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -118,6 +118,7 @@ public class CS2PivotConversion extends AbstractConversion
 				s.append("\n    ");
 				if (!dependency.canExecute()) {
 					s.append("BLOCKED ");
+					dependency.canExecute();			// FIXME debugging
 				}
 				s.append(dependency);					
 			}
@@ -418,7 +419,7 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		return refreshMonikeredElement(pivotClass, pivotEClass, moniker);
 	}
-	@Deprecated
+
 	public <T extends MonikeredElement> T refreshMonikeredElement(Class<T> pivotClass, EClass pivotEClass, String moniker) {
 		assert pivotClass == pivotEClass.getInstanceClass();
 		assert moniker != null;
@@ -496,9 +497,11 @@ public class CS2PivotConversion extends AbstractConversion
 		List<T> newPivotElements = new ArrayList<T>();
 		for (ModelElementCS csElement : csElements) {
 			T pivotElement = getPivotElement(pivotClass, csElement);
-			assert pivotElement != null;
 			if (pivotElement != null) {
 				newPivotElements.add(pivotElement);
+			}
+			else {
+				assert pivotElement != null;
 			}
 		}
 		refreshList(pivotElements, newPivotElements);
@@ -875,12 +878,12 @@ public class CS2PivotConversion extends AbstractConversion
 				if (continuation != null) {
 					continuation.addTo(continuations);
 				}
-				if ((continuation == null) || !continuation.isTerminate()) {
+//				if ((continuation == null) || !continuation.isTerminate()) {
 					List<EObject> eContents = eObject.eContents();
 					if (eContents.size() > 0) {
 						visitInPreOrder(eContents, continuations);
 					}
-				}
+//				}
 			}
 		}
 	}
