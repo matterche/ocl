@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
@@ -29,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS
 
 public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends BaseCSScopeAdapter<CS, P>
 {	
-	protected EssentialOCLCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
+	protected EssentialOCLCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csElement, pivotClass);
 	}	
 
 	@Override

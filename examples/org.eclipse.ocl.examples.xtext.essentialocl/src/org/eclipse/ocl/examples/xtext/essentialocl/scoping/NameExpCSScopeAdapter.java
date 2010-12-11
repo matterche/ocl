@@ -12,18 +12,16 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: NameExpCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -32,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 
 public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpression>
 {
-	public NameExpCSScopeAdapter(NameExpCS csElement) {
-		super(csElement, OclExpression.class);
+	public NameExpCSScopeAdapter(PivotManager pivotManager, NameExpCS csElement) {
+		super(pivotManager, csElement, OclExpression.class);
 	}
 
 	@Override
@@ -44,7 +42,7 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 		int namespaceCount = namespaces.size();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT) {
 			if (namespaceCount > 0) {
-				ScopeAdapter scopeAdapter = getScopeAdapter(namespaces.get(namespaceCount-1));
+				ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, namespaces.get(namespaceCount-1));
 				if (scopeAdapter != null) {
 					return scopeAdapter.getOuterScopeView(scopeView.getTargetReference());
 //					scopeAdapter.computeLookup(environmentView, scopeView);
@@ -57,17 +55,5 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 //			return null;
 		}
 		return scopeView.getOuterScope();
-	}
-
-	@Override
-	public Type getSynthesizedType() {
-		NamedElement element = target.getElement();	// FIXME pivotManager op
-		if (element instanceof Type) {
-			return (Type) element;
-		}
-		if (element instanceof TypedElement) {
-			return ((TypedElement) element).getType();
-		}
-		throw new UnsupportedOperationException("getSynthesizedType namespace");
 	}
 }

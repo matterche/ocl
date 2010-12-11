@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BinaryOperatorCSImpl.java,v 1.1.2.2 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: BinaryOperatorCSImpl.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -32,8 +32,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BinaryOperatorCSImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BinaryOperatorCSImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BinaryOperatorCSImpl#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,24 +41,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 public class BinaryOperatorCSImpl extends OperatorCSImpl implements BinaryOperatorCS
 {
 	/**
-	 * The cached value of the '{@link #getLeft() <em>Left</em>}' reference.
+	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeft()
+	 * @see #getArgument()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS left;
-
-	/**
-	 * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRight()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS right;
+	protected ExpCS argument;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,9 +76,9 @@ public class BinaryOperatorCSImpl extends OperatorCSImpl implements BinaryOperat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getLeft()
+	public ExpCS getArgument()
 	{
-		return left;
+		return argument;
 	}
 
 	/**
@@ -97,35 +86,12 @@ public class BinaryOperatorCSImpl extends OperatorCSImpl implements BinaryOperat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(ExpCS newLeft)
+	public void setArgument(ExpCS newArgument)
 	{
-		ExpCS oldLeft = left;
-		left = newLeft;
+		ExpCS oldArgument = argument;
+		argument = newArgument;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.BINARY_OPERATOR_CS__LEFT, oldLeft, left));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpCS getRight()
-	{
-		return right;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRight(ExpCS newRight)
-	{
-		ExpCS oldRight = right;
-		right = newRight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.BINARY_OPERATOR_CS__RIGHT, oldRight, right));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.BINARY_OPERATOR_CS__ARGUMENT, oldArgument, argument));
 	}
 
 	/**
@@ -138,10 +104,8 @@ public class BinaryOperatorCSImpl extends OperatorCSImpl implements BinaryOperat
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__LEFT:
-				return getLeft();
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__RIGHT:
-				return getRight();
+			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__ARGUMENT:
+				return getArgument();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,11 +120,8 @@ public class BinaryOperatorCSImpl extends OperatorCSImpl implements BinaryOperat
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__LEFT:
-				setLeft((ExpCS)newValue);
-				return;
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__RIGHT:
-				setRight((ExpCS)newValue);
+			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__ARGUMENT:
+				setArgument((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,11 +137,8 @@ public class BinaryOperatorCSImpl extends OperatorCSImpl implements BinaryOperat
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__LEFT:
-				setLeft((ExpCS)null);
-				return;
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__RIGHT:
-				setRight((ExpCS)null);
+			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__ARGUMENT:
+				setArgument((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -196,10 +154,8 @@ public class BinaryOperatorCSImpl extends OperatorCSImpl implements BinaryOperat
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__LEFT:
-				return left != null;
-			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__RIGHT:
-				return right != null;
+			case EssentialOCLCSTPackage.BINARY_OPERATOR_CS__ARGUMENT:
+				return argument != null;
 		}
 		return super.eIsSet(featureID);
 	}

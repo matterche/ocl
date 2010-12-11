@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BinaryOperatorCS.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: BinaryOperatorCS.java,v 1.1.2.2 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -25,8 +25,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getLeft <em>Left</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getRight <em>Right</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,55 +36,29 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 public interface BinaryOperatorCS extends OperatorCS
 {
 	/**
-	 * Returns the value of the '<em><b>Left</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Left</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Left</em>' reference.
-	 * @see #setLeft(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getBinaryOperatorCS_Left()
-	 * @model resolveProxies="false" required="true" transient="true"
-	 * @generated
-	 */
-	ExpCS getLeft();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getLeft <em>Left</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Left</em>' reference.
-	 * @see #getLeft()
-	 * @generated
-	 */
-	void setLeft(ExpCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Right</b></em>' reference.
+	 * Returns the value of the '<em><b>Argument</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Right</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right</em>' reference.
-	 * @see #setRight(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getBinaryOperatorCS_Right()
+	 * @return the value of the '<em>Argument</em>' reference.
+	 * @see #setArgument(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getBinaryOperatorCS_Argument()
 	 * @model resolveProxies="false" required="true" transient="true"
 	 * @generated
 	 */
-	ExpCS getRight();
+	ExpCS getArgument();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getRight <em>Right</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getArgument <em>Argument</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right</em>' reference.
-	 * @see #getRight()
+	 * @param value the new value of the '<em>Argument</em>' reference.
+	 * @see #getArgument()
 	 * @generated
 	 */
-	void setRight(ExpCS value);
+	void setArgument(ExpCS value);
 
 } // BinaryOperatorCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.1.2.1 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.1.2.2 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -24,6 +24,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 
 
@@ -42,6 +44,10 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 
 		public EssentialOCLPreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
 			return new EssentialOCLPreOrderVisitor(converter);
+		}
+
+		public BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager) {
+			return new EssentialOCLScopeVisitor(pivotManager);
 		}
 
 		public EPackage getEPackage() {

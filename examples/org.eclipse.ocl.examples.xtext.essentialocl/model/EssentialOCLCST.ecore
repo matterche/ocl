@@ -4,10 +4,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="essentialOCLCST"
     nsURI="http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST" nsPrefix="essentialOCLCST">
   <eClassifiers xsi:type="ecore:EClass" name="BinaryOperatorCS" eSuperTypes="#//OperatorCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//ExpCS"
-        transient="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//ExpCS"
-        transient="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" lowerBound="1"
+        eType="#//ExpCS" transient="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -110,7 +108,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="NumberLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//BigNumber"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperatorCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS #//ExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS #//ExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ExpCS" transient="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" upperBound="-1"
         eType="#//UnaryOperatorCS" containment="true"/>
@@ -142,10 +143,7 @@
         eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Type"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnaryOperatorCS" eSuperTypes="#//OperatorCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="child" lowerBound="1" eType="#//ExpCS"
-        transient="true" resolveProxies="false"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryOperatorCS" eSuperTypes="#//OperatorCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="VariableCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypedRefCS"

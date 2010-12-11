@@ -12,26 +12,25 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSScopeAdapter.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: LetExpCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 {
-	public LetExpCSScopeAdapter(LetExpCS csElement) {
-		super(csElement, LetExp.class);
+	public LetExpCSScopeAdapter(PivotManager pivotManager, LetExpCS csElement) {
+		super(pivotManager, csElement, LetExp.class);
 	}
 
 	@Override
@@ -43,11 +42,5 @@ public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 			}
 		}
 		return scopeView.getOuterScope();
-	}
-
-	@Override
-	public Type getSynthesizedType() {
-		ExpCS in = getTarget().getIn();
-		return getScopeAdapter(in).getSynthesizedType();
 	}
 }

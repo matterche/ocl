@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardDocumentScopeAdapter.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: StandardDocumentScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 
@@ -37,8 +38,8 @@ public abstract class StandardDocumentScopeAdapter<CS extends RootPackageCS, P e
 //	protected Map<String, org.eclipse.ocl.examples.pivot.Package> libraryNameMap = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 //	protected Map<String, Type> libraryTypeMap = new HashMap<String, Type>();
 
-	public StandardDocumentScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
+	public StandardDocumentScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csElement, pivotClass);
 	}
 
 	@Override

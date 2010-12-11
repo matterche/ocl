@@ -12,19 +12,20 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:52:12 ewillink Exp $
+ * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 
 public class TupleLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<TupleLiteralExpCS, TupleLiteralExp>
 {
-	public TupleLiteralExpCSScopeAdapter(TupleLiteralExpCS csElement) {
-		super(csElement, TupleLiteralExp.class);
+	public TupleLiteralExpCSScopeAdapter(PivotManager pivotManager, TupleLiteralExpCS csElement) {
+		super(pivotManager, csElement, TupleLiteralExp.class);
 	}
 
 	@Override

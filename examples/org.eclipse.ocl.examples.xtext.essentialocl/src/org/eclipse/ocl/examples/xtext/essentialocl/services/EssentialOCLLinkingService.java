@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
@@ -73,7 +74,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 //				if (adapter == null) {
 //					CS2PivotResourceAdapter.refreshPivotMappings(eResource);
 //				}
-				scopeAdapter = ElementUtil.getScopeCSAdapter(context);
+				scopeAdapter = ElementUtil.getScopeCSAdapter((ElementCS) context);
 				if (scopeAdapter.isUnresolvable()) {
 					if (traceLookup) {
 						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " already unresolvable");

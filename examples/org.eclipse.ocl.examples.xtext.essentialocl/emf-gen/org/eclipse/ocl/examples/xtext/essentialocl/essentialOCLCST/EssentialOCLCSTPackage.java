@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackage.java,v 1.6.6.3 2010/12/06 18:03:08 ewillink Exp $
+ * $Id: EssentialOCLCSTPackage.java,v 1.6.6.4 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -365,13 +365,22 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int OPERATOR_CS__PARENT = BaseCSTPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CS__SOURCE = BaseCSTPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Operator CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_CS_FEATURE_COUNT = BaseCSTPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+	int OPERATOR_CS_FEATURE_COUNT = BaseCSTPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BinaryOperatorCSImpl <em>Binary Operator CS</em>}' class.
@@ -447,22 +456,22 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int BINARY_OPERATOR_CS__PARENT = OPERATOR_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Left</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_OPERATOR_CS__LEFT = OPERATOR_CS_FEATURE_COUNT + 0;
+	int BINARY_OPERATOR_CS__SOURCE = OPERATOR_CS__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Argument</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_OPERATOR_CS__RIGHT = OPERATOR_CS_FEATURE_COUNT + 1;
+	int BINARY_OPERATOR_CS__ARGUMENT = OPERATOR_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Binary Operator CS</em>' class.
@@ -471,7 +480,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_OPERATOR_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 2;
+	int BINARY_OPERATOR_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2308,22 +2317,22 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATION_OPERATOR_CS__PARENT = BINARY_OPERATOR_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Left</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_OPERATOR_CS__LEFT = BINARY_OPERATOR_CS__LEFT;
+	int NAVIGATION_OPERATOR_CS__SOURCE = BINARY_OPERATOR_CS__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Argument</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_OPERATOR_CS__RIGHT = BINARY_OPERATOR_CS__RIGHT;
+	int NAVIGATION_OPERATOR_CS__ARGUMENT = BINARY_OPERATOR_CS__ARGUMENT;
 
 	/**
 	 * The number of structural features of the '<em>Navigation Operator CS</em>' class.
@@ -3186,13 +3195,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int UNARY_OPERATOR_CS__PARENT = OPERATOR_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Child</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_OPERATOR_CS__CHILD = OPERATOR_CS_FEATURE_COUNT + 0;
+	int UNARY_OPERATOR_CS__SOURCE = OPERATOR_CS__SOURCE;
 
 	/**
 	 * The number of structural features of the '<em>Unary Operator CS</em>' class.
@@ -3201,7 +3210,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_OPERATOR_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 1;
+	int UNARY_OPERATOR_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.UnlimitedNaturalLiteralExpCSImpl <em>Unlimited Natural Literal Exp CS</em>}' class.
@@ -3298,26 +3307,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getBinaryOperatorCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getLeft <em>Left</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Left</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getLeft()
+	 * @return the meta object for the reference '<em>Argument</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getArgument()
 	 * @see #getBinaryOperatorCS()
 	 * @generated
 	 */
-	EReference getBinaryOperatorCS_Left();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getRight <em>Right</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Right</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS#getRight()
-	 * @see #getBinaryOperatorCS()
-	 * @generated
-	 */
-	EReference getBinaryOperatorCS_Right();
+	EReference getBinaryOperatorCS_Argument();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS <em>Prefix Exp CS</em>}'.
@@ -3529,17 +3527,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUnaryOperatorCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS#getChild <em>Child</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Child</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS#getChild()
-	 * @see #getUnaryOperatorCS()
-	 * @generated
-	 */
-	EReference getUnaryOperatorCS_Child();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS <em>Unlimited Natural Literal Exp CS</em>}'.
@@ -3971,6 +3958,17 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getOperatorCS();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS#getSource()
+	 * @see #getOperatorCS()
+	 * @generated
+	 */
+	EReference getOperatorCS_Source();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.Number <em>Big Number</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4174,20 +4172,12 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass BINARY_OPERATOR_CS = eINSTANCE.getBinaryOperatorCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Left</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Argument</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_OPERATOR_CS__LEFT = eINSTANCE.getBinaryOperatorCS_Left();
-
-		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BINARY_OPERATOR_CS__RIGHT = eINSTANCE.getBinaryOperatorCS_Right();
+		EReference BINARY_OPERATOR_CS__ARGUMENT = eINSTANCE.getBinaryOperatorCS_Argument();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.PrefixExpCSImpl <em>Prefix Exp CS</em>}' class.
@@ -4366,14 +4356,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UNARY_OPERATOR_CS = eINSTANCE.getUnaryOperatorCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Child</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNARY_OPERATOR_CS__CHILD = eINSTANCE.getUnaryOperatorCS_Child();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.UnlimitedNaturalLiteralExpCSImpl <em>Unlimited Natural Literal Exp CS</em>}' class.
@@ -4746,6 +4728,14 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OPERATOR_CS = eINSTANCE.getOperatorCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CS__SOURCE = eINSTANCE.getOperatorCS_Source();
 
 		/**
 		 * The meta object literal for the '<em>Big Number</em>' data type.

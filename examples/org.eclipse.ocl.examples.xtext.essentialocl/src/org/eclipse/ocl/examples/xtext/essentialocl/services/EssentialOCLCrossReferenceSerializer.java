@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -90,7 +90,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			}
 			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
 			Element pivot = csContext.getPivot();
-			RootScopeAdapter documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(context);
+			RootScopeAdapter documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(csRef);
 			List<PathElement> contextPath = getPath(documentScopeAdapter, pivot);
 			List<PathElement> objectPath = getPath(documentScopeAdapter, (Element)object);
 			return getDivergentPath(objectPath, contextPath);

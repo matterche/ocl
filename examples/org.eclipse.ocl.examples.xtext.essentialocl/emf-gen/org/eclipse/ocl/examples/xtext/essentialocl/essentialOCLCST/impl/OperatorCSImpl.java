@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperatorCSImpl.java,v 1.1.2.2 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: OperatorCSImpl.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperatorCSImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperatorCSImpl#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +51,16 @@ public abstract class OperatorCSImpl extends NamedElementCSImpl implements Opera
 	 * @ordered
 	 */
 	protected OperatorCS parent;
+
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS source;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,6 +111,29 @@ public abstract class OperatorCSImpl extends NamedElementCSImpl implements Opera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ExpCS getSource()
+	{
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(ExpCS newSource)
+	{
+		ExpCS oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.OPERATOR_CS__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -107,6 +141,8 @@ public abstract class OperatorCSImpl extends NamedElementCSImpl implements Opera
 		{
 			case EssentialOCLCSTPackage.OPERATOR_CS__PARENT:
 				return getParent();
+			case EssentialOCLCSTPackage.OPERATOR_CS__SOURCE:
+				return getSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -123,6 +159,9 @@ public abstract class OperatorCSImpl extends NamedElementCSImpl implements Opera
 		{
 			case EssentialOCLCSTPackage.OPERATOR_CS__PARENT:
 				setParent((OperatorCS)newValue);
+				return;
+			case EssentialOCLCSTPackage.OPERATOR_CS__SOURCE:
+				setSource((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -141,6 +180,9 @@ public abstract class OperatorCSImpl extends NamedElementCSImpl implements Opera
 			case EssentialOCLCSTPackage.OPERATOR_CS__PARENT:
 				setParent((OperatorCS)null);
 				return;
+			case EssentialOCLCSTPackage.OPERATOR_CS__SOURCE:
+				setSource((ExpCS)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -157,6 +199,8 @@ public abstract class OperatorCSImpl extends NamedElementCSImpl implements Opera
 		{
 			case EssentialOCLCSTPackage.OPERATOR_CS__PARENT:
 				return parent != null;
+			case EssentialOCLCSTPackage.OPERATOR_CS__SOURCE:
+				return source != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperatorCS.java,v 1.1.2.2 2010/12/06 18:03:08 ewillink Exp $
+ * $Id: OperatorCS.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -24,6 +24,12 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
  * A representation of the model object '<em><b>Operator CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS#getSource <em>Source</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getOperatorCS()
  * @model abstract="true"
@@ -31,5 +37,30 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
  */
 public interface OperatorCS extends NamedElementCS, ExpCS
 {
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Child</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see #setSource(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getOperatorCS_Source()
+	 * @model resolveProxies="false" required="true" transient="true"
+	 * @generated
+	 */
+	ExpCS getSource();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS#getSource <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @see #getSource()
+	 * @generated
+	 */
+	void setSource(ExpCS value);
 
 } // OperatorCS

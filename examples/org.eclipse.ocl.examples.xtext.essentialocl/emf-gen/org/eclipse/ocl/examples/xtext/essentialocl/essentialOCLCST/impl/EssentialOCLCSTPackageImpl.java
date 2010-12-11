@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackageImpl.java,v 1.6.6.3 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: EssentialOCLCSTPackageImpl.java,v 1.6.6.4 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -416,19 +416,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBinaryOperatorCS_Left()
+	public EReference getBinaryOperatorCS_Argument()
 	{
 		return (EReference)binaryOperatorCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBinaryOperatorCS_Right()
-	{
-		return (EReference)binaryOperatorCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -626,16 +616,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	public EClass getUnaryOperatorCS()
 	{
 		return unaryOperatorCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUnaryOperatorCS_Child()
-	{
-		return (EReference)unaryOperatorCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1033,6 +1013,16 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getOperatorCS_Source()
+	{
+		return (EReference)operatorCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getBigNumber() {
 		return bigNumberEDataType;
 	}
@@ -1208,8 +1198,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		// Create classes and their features
 		binaryOperatorCSEClass = createEClass(BINARY_OPERATOR_CS);
-		createEReference(binaryOperatorCSEClass, BINARY_OPERATOR_CS__LEFT);
-		createEReference(binaryOperatorCSEClass, BINARY_OPERATOR_CS__RIGHT);
+		createEReference(binaryOperatorCSEClass, BINARY_OPERATOR_CS__ARGUMENT);
 
 		booleanLiteralExpCSEClass = createEClass(BOOLEAN_LITERAL_EXP_CS);
 		createEAttribute(booleanLiteralExpCSEClass, BOOLEAN_LITERAL_EXP_CS__NAME);
@@ -1288,6 +1277,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEAttribute(numberLiteralExpCSEClass, NUMBER_LITERAL_EXP_CS__NAME);
 
 		operatorCSEClass = createEClass(OPERATOR_CS);
+		createEReference(operatorCSEClass, OPERATOR_CS__SOURCE);
 
 		prefixExpCSEClass = createEClass(PREFIX_EXP_CS);
 		createEReference(prefixExpCSEClass, PREFIX_EXP_CS__OWNED_OPERATOR);
@@ -1316,7 +1306,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__ELEMENT);
 
 		unaryOperatorCSEClass = createEClass(UNARY_OPERATOR_CS);
-		createEReference(unaryOperatorCSEClass, UNARY_OPERATOR_CS__CHILD);
 
 		unlimitedNaturalLiteralExpCSEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP_CS);
 
@@ -1405,8 +1394,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(binaryOperatorCSEClass, BinaryOperatorCS.class, "BinaryOperatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getBinaryOperatorCS_Left(), this.getExpCS(), null, "left", null, 1, 1, BinaryOperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getBinaryOperatorCS_Right(), this.getExpCS(), null, "right", null, 1, 1, BinaryOperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getBinaryOperatorCS_Argument(), this.getExpCS(), null, "argument", null, 1, 1, BinaryOperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(booleanLiteralExpCSEClass, BooleanLiteralExpCS.class, "BooleanLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getBooleanLiteralExpCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, BooleanLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1489,6 +1477,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEAttribute(getNumberLiteralExpCS_Name(), this.getBigNumber(), "name", null, 0, 1, NumberLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(operatorCSEClass, OperatorCS.class, "OperatorCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOperatorCS_Source(), this.getExpCS(), null, "source", null, 1, 1, OperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(prefixExpCSEClass, PrefixExpCS.class, "PrefixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPrefixExpCS_OwnedOperator(), this.getUnaryOperatorCS(), null, "ownedOperator", null, 0, -1, PrefixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1517,7 +1506,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEReference(getTypeNameExpCS_Element(), thePivotPackage.getType(), null, "element", null, 0, 1, TypeNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(unaryOperatorCSEClass, UnaryOperatorCS.class, "UnaryOperatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getUnaryOperatorCS_Child(), this.getExpCS(), null, "child", null, 1, 1, UnaryOperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(unlimitedNaturalLiteralExpCSEClass, UnlimitedNaturalLiteralExpCS.class, "UnlimitedNaturalLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

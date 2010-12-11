@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id: ExpCSScopeAdapter.java,v 1.1.2.3 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: ExpCSScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 public class ExpCSScopeAdapter<CS extends ExpCS, P extends OclExpression> extends EssentialOCLCSScopeAdapter<CS, P>
 {
-	public ExpCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
+	public ExpCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csElement, pivotClass);
 	}
 
 	protected ScopeAdapter getParentSourceScope() {
@@ -35,11 +35,5 @@ public class ExpCSScopeAdapter<CS extends ExpCS, P extends OclExpression> extend
 	@Override
 	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
 		return getParentSourceScope();
-	}
-
-	@Override
-	public Type getSynthesizedType() {
-		P pivot = getPivot();
-		return pivot != null ? pivot.getType() : null;
 	}
 }

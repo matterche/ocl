@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 
 public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS, ExpressionInOcl>
 {
-	public ContextCSScopeAdapter(ContextCS csElement) {
-		super(csElement, ExpressionInOcl.class);
+	public ContextCSScopeAdapter(PivotManager pivotManager, ContextCS csElement) {
+		super(pivotManager, csElement, ExpressionInOcl.class);
 	}
 }

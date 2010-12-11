@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.2 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
@@ -29,7 +28,6 @@ import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.scoping.IScopeProvider;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -61,10 +59,10 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 		return EssentialOCLQualifiedNameProvider.class;
 	}
 
-	@Override
-	public Class<? extends IScopeProvider> bindIScopeProvider() {
-		return EssentialOCLCSScopeProvider.class;
-	}
+//	@Override
+//	public Class<? extends IScopeProvider> bindIScopeProvider() {
+//		return EssentialOCLCSScopeProvider.class;
+//	}
 
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {

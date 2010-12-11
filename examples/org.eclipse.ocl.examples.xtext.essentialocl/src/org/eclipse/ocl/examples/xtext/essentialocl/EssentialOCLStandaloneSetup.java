@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: EssentialOCLStandaloneSetup.java,v 1.1.6.3 2010/12/11 10:45:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.MonikerEssentialOCLCSVisitor;
 
 /**
@@ -32,7 +31,7 @@ public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGene
 	}
 
 	public static void init() {
-		EssentialOCLCSScopeProvider.FACTORY.getClass();
+//		EssentialOCLCSScopeProvider.FACTORY.getClass();
 		MonikerEssentialOCLCSVisitor.FACTORY.getClass();
 //		EssentialOCLCS2PivotSwitch.FACTORY.getClass();
 //		Pivot2BaseCSSwitch.FACTORY.getClass();

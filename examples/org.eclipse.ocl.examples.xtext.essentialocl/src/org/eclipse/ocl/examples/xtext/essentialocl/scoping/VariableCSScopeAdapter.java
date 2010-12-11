@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: VariableCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: VariableCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -28,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class VariableCSScopeAdapter extends EssentialOCLCSScopeAdapter<VariableCS, Variable>
 {
-	public VariableCSScopeAdapter(VariableCS csElement) {
-		super(csElement, Variable.class);
+	public VariableCSScopeAdapter(PivotManager pivotManager, VariableCS csElement) {
+		super(pivotManager, csElement, Variable.class);
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class VariableCSScopeAdapter extends EssentialOCLCSScopeAdapter<VariableC
 		else {
 			TypeRefCS type = getTarget().getOwnedType();
 			Type libType = getLibraryType(type);
-			environmentView.addElementsOfScope(libType, scopeView);
+			environmentView.addElementsOfScope(pivotManager, libType, scopeView);
 			return scopeView.getOuterScope();
 		}
 	}

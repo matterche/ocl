@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.2 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -29,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExp
 
 public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, OperationCallExp>
 {
-	public NavigatingExpCSScopeAdapter(NavigatingExpCS eObject) {
-		super(eObject, OperationCallExp.class);
+	public NavigatingExpCSScopeAdapter(PivotManager pivotManager, NavigatingExpCS eObject) {
+		super(pivotManager, eObject, OperationCallExp.class);
 	}
 
 	@Override
@@ -43,14 +44,14 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			if (index >= 0) {
 				if (index < csInfixParent.getOwnedOperator().size()) {
 					BinaryOperatorCS csOperatorAsSource = csInfixParent.getOwnedOperator().get(index);
-					if (csTarget == csOperatorAsSource.getLeft()) {
+					if (csTarget == csOperatorAsSource.getSource()) {
 						ScopeAdapter scopeAdapter = getScopeAdapter(csOperatorAsSource);
 						return new BaseScopeView(scopeAdapter, PivotPackage.Literals.CALL_EXP__SOURCE, null);
 					}
 				}
 				if (index-1 >= 0) {
 					BinaryOperatorCS csOperatorAsArgument = csInfixParent.getOwnedOperator().get(index-1);
-					if (csTarget.getNamedExp() == csOperatorAsArgument.getRight()) {
+					if (csTarget.getNamedExp() == csOperatorAsArgument.getArgument()) {
 						ScopeAdapter scopeAdapter = getScopeAdapter(csOperatorAsArgument);
 						return new BaseScopeView(scopeAdapter, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 					}
