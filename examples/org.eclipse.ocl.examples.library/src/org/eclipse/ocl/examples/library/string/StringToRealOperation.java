@@ -12,11 +12,14 @@
  *
  * </copyright>
  *
- * $Id: StringToRealOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: StringToRealOperation.java,v 1.1.2.2 2010/12/11 10:44:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import java.math.BigDecimal;
+
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * StringToRealOperation realises the String::toReal() library operation.
@@ -30,5 +33,16 @@ public class StringToRealOperation extends AbstractStringUnaryOperation
 	@Override
 	public  Object evaluateString(String sourceVal) {
 		return new BigDecimal(sourceVal.trim());
+	}
+
+	@Override
+	public Object evaluate(EvaluationVisitor evaluationVisitor,
+			Object sourceVal, OperationCallExp operationCall) {
+		try {
+			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
+		}
+		catch (NumberFormatException e) {
+			return evaluationVisitor.getStandardLibrary().createInvalidValue(sourceVal, operationCall, "Not a Real", e);
+		}
 	}
 }

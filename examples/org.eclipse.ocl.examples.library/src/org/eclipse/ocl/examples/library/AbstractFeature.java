@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractFeature.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: AbstractFeature.java,v 1.1.2.3 2010/12/11 10:44:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -48,8 +48,7 @@ public abstract class AbstractFeature implements LibraryFeature
 
 	public static BigInteger bigIntegerValueOf(Object val) {
 		if (val instanceof UnlimitedNaturalLiteralExp) {
-//			val = ((UnlimitedNaturalLiteralExp<?>)val).getUnlimitedNaturalSymbol();
-			val = ((UnlimitedNaturalLiteralExp)val).getSymbol();
+			val = ((UnlimitedNaturalLiteralExp)val).getUnlimitedNaturalSymbol();
 		}
 		if (val instanceof BigInteger) {
 			return (BigInteger) val;
@@ -77,10 +76,6 @@ public abstract class AbstractFeature implements LibraryFeature
 //			sourceSet.add(object);
 			return null;
 		}
-	}
-
-	public static<T>  T createInvalid(T invalid, String reason) {
-		return invalid;
 	}
 	
 	public static boolean isBoolean(Object value) {
@@ -137,7 +132,7 @@ public abstract class AbstractFeature implements LibraryFeature
 	}
 	
 	public static boolean isUnlimited(Object value) {
-		return (value instanceof UnlimitedNaturalLiteralExp) && (((UnlimitedNaturalLiteralExp)value).getSymbol().signum() < 0);
+		return (value instanceof UnlimitedNaturalLiteralExp) && (((UnlimitedNaturalLiteralExp)value).getUnlimitedNaturalSymbol().signum() < 0);
 	}
 
 	public static boolean isUnlimited(BigInteger value) {

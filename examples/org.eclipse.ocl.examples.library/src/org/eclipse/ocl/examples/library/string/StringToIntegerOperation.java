@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: StringToIntegerOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: StringToIntegerOperation.java,v 1.1.2.2 2010/12/11 10:44:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.util.ObjectUtil2;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 
 /**
  * StringToIntegerOperation realises the String::toInteger() library operation.
@@ -28,7 +30,18 @@ public class StringToIntegerOperation extends AbstractStringUnaryOperation
 	public static final StringToIntegerOperation INSTANCE = new StringToIntegerOperation();
 
 	@Override
-	public  Object evaluateString(String sourceVal) {
+	public Object evaluateString(String sourceVal) {
 		return ObjectUtil2.createBigInteger(sourceVal.trim());
+	}
+
+	@Override
+	public Object evaluate(EvaluationVisitor evaluationVisitor,
+			Object sourceVal, OperationCallExp operationCall) {
+		try {
+			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
+		}
+		catch (NumberFormatException e) {
+			return evaluationVisitor.getStandardLibrary().createInvalidValue(sourceVal, operationCall, "Not an Integer", e);
+		}
 	}
 }

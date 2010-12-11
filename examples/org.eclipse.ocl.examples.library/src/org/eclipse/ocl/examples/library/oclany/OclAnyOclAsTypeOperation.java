@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.3 2010/12/11 10:44:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -37,8 +37,11 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		if (sourceType == null) {
 			return null;
 		}
-		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		Type argType = stdlib.getTypeOfType(argVal);
+		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0); // FIXME cast
+		if (!(argVal instanceof Type)) {
+			return stdlib.createInvalidValue(argVal, operationCall, "Type required", null);
+		}
+		Type argType = (Type) argVal;
 		if (stdlib.conformsTo(sourceType, argType)) {
 			return evaluateConforming(evaluationVisitor, sourceVal, argType);
 		}

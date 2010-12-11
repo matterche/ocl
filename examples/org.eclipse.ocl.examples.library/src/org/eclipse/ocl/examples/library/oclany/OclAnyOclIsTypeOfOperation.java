@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.3 2010/12/11 10:44:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -35,7 +35,10 @@ public class OclAnyOclIsTypeOfOperation extends AbstractOperation
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
 		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		Type argType = stdlib.getTypeOfType(argVal);
-		return (sourceType != null) && (sourceType == argType);
+		if (!(argVal instanceof Type)) {
+			return stdlib.createInvalidValue(argVal, operationCall, "Type required", null);
+		}
+		Type argType = (Type) argVal;
+		return stdlib.conformsTo(sourceType, argType) && stdlib.conformsTo(argType, sourceType);
 	}
 }
