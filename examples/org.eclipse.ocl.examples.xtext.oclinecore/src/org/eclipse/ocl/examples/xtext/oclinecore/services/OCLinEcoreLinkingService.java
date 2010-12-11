@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.7.6.2 2010/12/08 10:31:26 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.7.6.3 2010/12/11 10:44:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -23,10 +23,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -41,12 +43,12 @@ public class OCLinEcoreLinkingService extends EssentialOCLLinkingService
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
 		if ((ref == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS)) {
-			return getLinkedImport(context, node);
+			return getLinkedImport((ModelElementCS)context, node);
 		}
 		return super.getLinkedObjects(context, ref, node);
 	}
 
-	private List<EObject> getLinkedImport(EObject context, AbstractNode node) {
+	private List<EObject> getLinkedImport(ModelElementCS context, AbstractNode node) {
 		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
 		String text = getText(node);
 		if ((scopeAdapter instanceof ImportScopeAdapter) && (text != null)) {
@@ -55,7 +57,7 @@ public class OCLinEcoreLinkingService extends EssentialOCLLinkingService
 			uri = uri.resolve(csResource.getURI());
 			ImportScopeAdapter importScopeAdapter = (ImportScopeAdapter)scopeAdapter;
 			URI oldURI = importScopeAdapter.getURI();
-			EObject importedElement;				
+			Element importedElement;				
 			if (uri.equals(oldURI)) {
 				importedElement = importScopeAdapter.getImportedElement();
 			}

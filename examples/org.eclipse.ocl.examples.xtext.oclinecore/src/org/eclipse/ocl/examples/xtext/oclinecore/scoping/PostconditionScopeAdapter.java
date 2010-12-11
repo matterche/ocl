@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PostconditionScopeAdapter.java,v 1.3.6.1 2010/10/01 14:48:52 ewillink Exp $
+ * $Id: PostconditionScopeAdapter.java,v 1.3.6.2 2010/12/11 10:44:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
@@ -24,8 +25,8 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstra
 
 public class PostconditionScopeAdapter extends EssentialOCLCSScopeAdapter<OCLinEcoreConstraintCS, Constraint>
 {
-	public PostconditionScopeAdapter(OCLinEcoreConstraintCS csElement) {
-		super(csElement, Constraint.class);
+	public PostconditionScopeAdapter(PivotManager pivotManager, OCLinEcoreConstraintCS csElement) {
+		super(pivotManager, csElement, Constraint.class);
 	}
 
 	@Override

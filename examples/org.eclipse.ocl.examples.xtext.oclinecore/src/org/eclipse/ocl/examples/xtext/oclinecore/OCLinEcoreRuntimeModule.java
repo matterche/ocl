@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.2 2010/12/06 18:28:15 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.3 2010/12/11 10:44:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreGlobalScopeProvider;
-import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreCSScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
@@ -31,7 +30,6 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
-import org.eclipse.xtext.scoping.IScopeProvider;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -71,10 +69,10 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 		return OCLinEcoreGlobalScopeProvider.class;
 	}
 
-	@Override
-	public Class<? extends IScopeProvider> bindIScopeProvider() {
-		return OCLinEcoreCSScopeProvider.class;
-	}
+//	@Override
+//	public Class<? extends IScopeProvider> bindIScopeProvider() {
+//		return OCLinEcoreCSScopeProvider.class;
+//	}
 	
 	@Override
 	public Class<? extends XtextResource> bindXtextResource() {

@@ -12,18 +12,19 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSScopeAdapter.java,v 1.1.2.2 2010/12/06 18:28:19 ewillink Exp $
+ * $Id: OCLinEcoreCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:44:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
 public class OCLinEcoreCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends EssentialOCLCSScopeAdapter<CS, P>
 {
-	public OCLinEcoreCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
+	public OCLinEcoreCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csElement, pivotClass);
 	}
 	
 }

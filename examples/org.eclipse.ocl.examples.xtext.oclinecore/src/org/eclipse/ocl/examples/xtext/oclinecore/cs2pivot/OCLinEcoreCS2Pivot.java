@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCS2Pivot.java,v 1.1.2.1 2010/12/06 18:28:15 ewillink Exp $
+ * $Id: OCLinEcoreCS2Pivot.java,v 1.1.2.2 2010/12/11 10:44:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
@@ -41,6 +43,10 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 
 		public OCLinEcorePreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
 			return new OCLinEcorePreOrderVisitor(converter);
+		}
+
+		public BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager) {
+			return new OCLinEcoreScopeVisitor(pivotManager);
 		}
 
 		public EPackage getEPackage() {

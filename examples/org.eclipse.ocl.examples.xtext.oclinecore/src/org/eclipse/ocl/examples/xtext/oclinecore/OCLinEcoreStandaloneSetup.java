@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:28:15 ewillink Exp $
+ * $Id: OCLinEcoreStandaloneSetup.java,v 1.1.6.3 2010/12/11 10:44:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
 import org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot.OCLinEcoreCS2Pivot;
-import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreCSScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.MonikerOCLinEcoreCSVisitor;
 
 /**
@@ -33,7 +32,7 @@ public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerate
 	}
 
 	public static void init() {
-		OCLinEcoreCSScopeProvider.FACTORY.getClass();
+//		OCLinEcoreCSScopeProvider.FACTORY.getClass();
 		MonikerOCLinEcoreCSVisitor.FACTORY.getClass();
 		OCLinEcoreCS2Pivot.FACTORY.getClass();
 //		Pivot2BaseCSSwitch.FACTORY.getClass();
