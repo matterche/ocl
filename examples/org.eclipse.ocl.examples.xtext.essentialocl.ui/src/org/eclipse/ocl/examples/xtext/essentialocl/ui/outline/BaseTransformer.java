@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseTransformer.java,v 1.1.2.2 2010/12/06 18:08:46 ewillink Exp $
+ * $Id: BaseTransformer.java,v 1.1.2.3 2010/12/11 10:44:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
 
 /**
@@ -65,7 +65,7 @@ public class BaseTransformer extends AbstractDeclarativeSemanticModelTransformer
 	
 	public List<EObject> getChildren(org.eclipse.ocl.examples.pivot.Class pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
-		addContents(contents, ElementUtil.getTemplateParameters(pivotElement));
+		addContents(contents, PivotUtil.getTemplateParameters(pivotElement));
 //		addContents(contents, pivotElement.getSuperClasses());
 		addContents(contents, pivotElement.getOwnedOperations());
 		addContents(contents, pivotElement.getOwnedAttributes());
@@ -74,13 +74,13 @@ public class BaseTransformer extends AbstractDeclarativeSemanticModelTransformer
 
 	public List<EObject> getChildren(Type pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
-		addContents(contents, ElementUtil.getTemplateParameters(pivotElement));
+		addContents(contents, PivotUtil.getTemplateParameters(pivotElement));
 		return appendContents(contents, pivotElement);
 	}
 
 	public List<EObject> getChildren(Operation pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
-		addContents(contents, ElementUtil.getTemplateParameters(pivotElement));
+		addContents(contents, PivotUtil.getTemplateParameters(pivotElement));
 		addContents(contents, pivotElement.getOwnedParameters());
 		return appendContents(contents, pivotElement);
 	}

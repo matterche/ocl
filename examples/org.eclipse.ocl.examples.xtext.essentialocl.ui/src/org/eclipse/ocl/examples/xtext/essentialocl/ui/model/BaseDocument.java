@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.1.2.1 2010/10/01 15:04:04 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.1.2.2 2010/12/11 10:44:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -72,7 +73,8 @@ public class BaseDocument extends XtextDocument
 
 	protected RootCSScopeAdapter getDocumentScopeAdapter() {
 		if (!resource2.getContents().isEmpty()) {
-			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(resource2.getContents().get(0));
+			ElementCS csElement = (ElementCS) resource2.getContents().get(0);
+			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
 			if (scopeAdapter != null) {
 				return scopeAdapter.getRootScopeAdapter();
 			}
