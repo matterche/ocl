@@ -1005,7 +1005,7 @@
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//UnlimitedNaturalLiteralExp"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//UnlimitedNaturalLiteralExp/symbol"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//UnlimitedNaturalLiteralExp/unlimitedNaturalSymbol"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

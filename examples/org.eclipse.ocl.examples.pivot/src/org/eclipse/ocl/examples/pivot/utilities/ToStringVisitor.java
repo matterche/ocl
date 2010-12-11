@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.1.2.3 2010/12/11 10:44:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -408,7 +408,7 @@ public class ToStringVisitor extends AbstractVisitor2<String>
      */
     @Override
     public String visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unl) {
-    	BigInteger value = unl.getSymbol();
+    	BigInteger value = unl.getUnlimitedNaturalSymbol();
     	if (value == null) {
     		return NULL_PLACEHOLDER;
     	}

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.4 2010/12/06 17:29:02 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.5 2010/12/11 10:44:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -218,7 +218,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				return createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", null);
 			}
 		}
-		return implementation.evaluate(getUndecoratedVisitor(), sourceValue, callExp);
+		try {
+			return implementation.evaluate(getUndecoratedVisitor(), sourceValue, callExp);
+		}
+		catch (Exception e) {
+			// This is a backstop. Library operations should catch their own exceptions
+			//  and produce a better reason as a result.
+			return createInvalidValue(sourceValue, callExp, "Evaluation failure", e);
+		}
 	}
 
 	public EvaluationVisitor createNestedVisitor() {
@@ -631,7 +638,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
      */
     @Override
     public Object visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp) {
-		BigInteger value = unlimitedNaturalLiteralExp.getSymbol();
+		BigInteger value = unlimitedNaturalLiteralExp.getUnlimitedNaturalSymbol();
 		return value != null ? getUnlimitedNaturalValue(value) : null;
 	}
 	

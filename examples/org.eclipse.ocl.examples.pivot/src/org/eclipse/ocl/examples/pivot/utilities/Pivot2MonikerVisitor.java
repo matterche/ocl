@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.1 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.2 2010/12/11 10:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -266,7 +266,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 
 		@Override
 		public String visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp object) {
-			return object.getSymbol().toString();
+			return object.getUnlimitedNaturalSymbol().toString();
 		}
 
 		@Override
@@ -345,7 +345,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			context.appendName(object);
 		}
 		else if (!object.getTemplateBindings().isEmpty()) {
-			org.eclipse.ocl.examples.pivot.Class templateableClass = PivotUtils.getTemplateableClass(object);
+			org.eclipse.ocl.examples.pivot.Class templateableClass = PivotUtil.getTemplateableClass(object);
 			context.appendParent(templateableClass, SCOPE_SEPARATOR);
 //			context.append(((MonikeredElement) templateableClass.eContainer()).getMoniker());
 //			context.append(SCOPE_SEPARATOR);

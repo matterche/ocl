@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.1.2.1 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.1.2.2 2010/12/11 10:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -234,7 +234,7 @@ public class PivotSaver
 				resolveVisitor.safeVisit(element);
 			}
 			List<Type> ownedTypes = orphanage.getOwnedTypes();
-			List<Type> sorted = PivotUtils.sortByMoniker(new ArrayList<Type>(ownedTypes));
+			List<Type> sorted = PivotUtil.sortByMoniker(new ArrayList<Type>(ownedTypes));
 			ownedTypes.clear();
 			ownedTypes.addAll(sorted);
 		}

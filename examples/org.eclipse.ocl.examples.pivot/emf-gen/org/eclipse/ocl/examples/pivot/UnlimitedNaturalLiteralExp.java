@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExp.java,v 1.1.2.3 2010/12/11 10:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -26,7 +26,7 @@ import java.math.BigInteger;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getSymbol <em>Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,29 +38,29 @@ public interface UnlimitedNaturalLiteralExp
 		extends NumericLiteralExp {
 
 	/**
-	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
+	 * Returns the value of the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Symbol</em>' attribute.
-	 * @see #setSymbol(BigInteger)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getUnlimitedNaturalLiteralExp_Symbol()
+	 * @return the value of the '<em>Unlimited Natural Symbol</em>' attribute.
+	 * @see #setUnlimitedNaturalSymbol(BigInteger)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.UnlimitedNatural" required="true" ordered="false"
 	 * @generated
 	 */
-	BigInteger getSymbol();
+	BigInteger getUnlimitedNaturalSymbol();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getSymbol <em>Symbol</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Symbol</em>' attribute.
-	 * @see #getSymbol()
+	 * @param value the new value of the '<em>Unlimited Natural Symbol</em>' attribute.
+	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
 	 */
-	void setSymbol(BigInteger value);
+	void setUnlimitedNaturalSymbol(BigInteger value);
 
 } // UnlimitedNaturalLiteralExp

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.1.2.2 2010/12/06 17:29:02 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.1.2.3 2010/12/11 10:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -56,7 +56,6 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.Annotation;
@@ -88,6 +87,7 @@ import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotConstants
 {
@@ -98,7 +98,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 			return null;
 		}
 		List<Adapter> eAdapters = resource.eAdapters();
-		Ecore2Pivot adapter = (Ecore2Pivot) EcoreUtil.getAdapter(eAdapters, Ecore2Pivot.class);
+		Ecore2Pivot adapter = PivotUtil.getAdapter(Ecore2Pivot.class, resource);
 		if (adapter != null) {
 			return adapter;
 		}

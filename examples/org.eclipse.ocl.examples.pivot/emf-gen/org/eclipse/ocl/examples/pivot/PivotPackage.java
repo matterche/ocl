@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.6 2010/12/08 17:39:01 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.7 2010/12/11 10:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -15148,13 +15148,13 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__TYPE = NUMERIC_LITERAL_EXP__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
+	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp</em>' class.
@@ -17472,15 +17472,15 @@ public interface PivotPackage
 	EClass getUnlimitedNaturalLiteralExp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getSymbol <em>Symbol</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Symbol</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getSymbol()
+	 * @return the meta object for the attribute '<em>Unlimited Natural Symbol</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp#getUnlimitedNaturalSymbol()
 	 * @see #getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	EAttribute getUnlimitedNaturalLiteralExp_Symbol();
+	EAttribute getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.UnspecifiedValueExp <em>Unspecified Value Exp</em>}'.
@@ -20308,12 +20308,12 @@ public interface PivotPackage
 		EClass UNLIMITED_NATURAL_LITERAL_EXP = eINSTANCE.getUnlimitedNaturalLiteralExp();
 
 		/**
-		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Unlimited Natural Symbol</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute UNLIMITED_NATURAL_LITERAL_EXP__SYMBOL = eINSTANCE.getUnlimitedNaturalLiteralExp_Symbol();
+		EAttribute UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL = eINSTANCE.getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.

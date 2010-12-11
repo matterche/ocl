@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.6 2010/12/08 17:39:01 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.7 2010/12/11 10:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -2355,7 +2355,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUnlimitedNaturalLiteralExp_Symbol() {
+	public EAttribute getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol()
+	{
         return (EAttribute)getUnlimitedNaturalLiteralExp().getEStructuralFeatures().get(0);
 	}
 

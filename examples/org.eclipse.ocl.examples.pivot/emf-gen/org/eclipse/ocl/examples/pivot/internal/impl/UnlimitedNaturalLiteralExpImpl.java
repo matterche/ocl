@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.1.2.4 2010/12/11 10:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl#getSymbol <em>Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl#getUnlimitedNaturalSymbol <em>Unlimited Natural Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,24 +48,24 @@ public class UnlimitedNaturalLiteralExpImpl
 		implements UnlimitedNaturalLiteralExp {
 
 	/**
-	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * The default value of the '{@link #getUnlimitedNaturalSymbol() <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSymbol()
+	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger SYMBOL_EDEFAULT = null;
+	protected static final BigInteger UNLIMITED_NATURAL_SYMBOL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * The cached value of the '{@link #getUnlimitedNaturalSymbol() <em>Unlimited Natural Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSymbol()
+	 * @see #getUnlimitedNaturalSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected BigInteger symbol = SYMBOL_EDEFAULT;
+	protected BigInteger unlimitedNaturalSymbol = UNLIMITED_NATURAL_SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,8 +91,8 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BigInteger getSymbol() {
-		return symbol;
+	public BigInteger getUnlimitedNaturalSymbol() {
+		return unlimitedNaturalSymbol;
 	}
 
 	/**
@@ -100,11 +100,11 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSymbol(BigInteger newSymbol) {
-		BigInteger oldSymbol = symbol;
-		symbol = newSymbol;
+	public void setUnlimitedNaturalSymbol(BigInteger newUnlimitedNaturalSymbol) {
+		BigInteger oldUnlimitedNaturalSymbol = unlimitedNaturalSymbol;
+		unlimitedNaturalSymbol = newUnlimitedNaturalSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__SYMBOL, oldSymbol, symbol));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL, oldUnlimitedNaturalSymbol, unlimitedNaturalSymbol));
 	}
 
 	/**
@@ -131,8 +131,8 @@ public class UnlimitedNaturalLiteralExpImpl
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__SYMBOL:
-				return getSymbol();
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
+				return getUnlimitedNaturalSymbol();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -171,8 +171,8 @@ public class UnlimitedNaturalLiteralExpImpl
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
 				return;
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__SYMBOL:
-				setSymbol((BigInteger)newValue);
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
+				setUnlimitedNaturalSymbol((BigInteger)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -208,8 +208,8 @@ public class UnlimitedNaturalLiteralExpImpl
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__SYMBOL:
-				setSymbol(SYMBOL_EDEFAULT);
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
+				setUnlimitedNaturalSymbol(UNLIMITED_NATURAL_SYMBOL_EDEFAULT);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -238,8 +238,8 @@ public class UnlimitedNaturalLiteralExpImpl
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				return type != null;
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__SYMBOL:
-				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
+				return UNLIMITED_NATURAL_SYMBOL_EDEFAULT == null ? unlimitedNaturalSymbol != null : !UNLIMITED_NATURAL_SYMBOL_EDEFAULT.equals(unlimitedNaturalSymbol);
 		}
 		return eDynamicIsSet(featureID);
 	}

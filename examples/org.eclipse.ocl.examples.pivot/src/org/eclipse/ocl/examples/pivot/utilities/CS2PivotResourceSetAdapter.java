@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceSetAdapter.java,v 1.1.2.1 2010/10/01 13:49:55 ewillink Exp $
+ * $Id: CS2PivotResourceSetAdapter.java,v 1.1.2.2 2010/12/11 10:44:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * A CS2PivotResourceSetAdapter enhances the ResourceSet for Concrete Syntax model
@@ -34,13 +33,12 @@ public class CS2PivotResourceSetAdapter implements Adapter
 		if (csResourceSet == null) {
 			return null;
 		}
-		List<Adapter> eAdapters = csResourceSet.eAdapters();
-		return (CS2PivotResourceSetAdapter) EcoreUtil.getAdapter(eAdapters, CS2PivotResourceSetAdapter.class);
+		return PivotUtil.getAdapter(CS2PivotResourceSetAdapter.class, csResourceSet);
 	}
 	
 	public static CS2PivotResourceSetAdapter getAdapter(ResourceSet csResourceSet, PivotManager pivotManager) {
 		List<Adapter> eAdapters = csResourceSet.eAdapters();
-		CS2PivotResourceSetAdapter adapter = (CS2PivotResourceSetAdapter) EcoreUtil.getAdapter(eAdapters, CS2PivotResourceSetAdapter.class);
+		CS2PivotResourceSetAdapter adapter = PivotUtil.getAdapter(CS2PivotResourceSetAdapter.class, eAdapters);
 		if (adapter == null) {
 			if (pivotManager == null) {
 				pivotManager = new PivotManager();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibraryContribution.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: StandardLibraryContribution.java,v 1.1.2.3 2010/12/11 10:44:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
@@ -41,21 +41,28 @@ public interface StandardLibraryContribution extends RegisteredContribution<Stan
 			return getContribution().getResource();
 		}
 	}
+
+	static final class Null implements StandardLibraryContribution
+	{
+		public StandardLibraryContribution getContribution() {
+			return this;
+		}
+
+		public Resource getResource() {
+			return null;
+		}
+	}
 	
 	/**
 	 * A Null contribution may be installed to exploit the manually loaded content
 	 * as the standard library.
 	 */
-	static StandardLibraryContribution NULL = new StandardLibraryContribution()
-	{
-		public StandardLibraryContribution getContribution() {
-			return this;
-		}
-		
-		public Resource getResource() {
-			return null;
-		}
-	};
+	static StandardLibraryContribution NULL = new Null();
 	
+	/**
+	 * Return the resource containing the contribution to the standard library.
+	 * 
+	 * @return the contributing resource.
+	 */
 	Resource getResource();
 }

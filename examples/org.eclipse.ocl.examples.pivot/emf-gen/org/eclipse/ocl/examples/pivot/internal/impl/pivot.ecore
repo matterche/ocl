@@ -675,8 +675,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypedMultiplicityElement" abstract="true"
       eSuperTypes="#//TypedElement #//MultiplicityElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"
-        lowerBound="1" eType="#//UnlimitedNatural"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol"
+        ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedValueExp" eSuperTypes="#//OclExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true"

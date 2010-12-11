@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AliasAdapter.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: AliasAdapter.java,v 1.1.2.3 2010/12/11 10:44:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -27,7 +27,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * An AliasAdapter extends a Resource to provide a set of aliases for elements,
@@ -95,8 +94,7 @@ public class AliasAdapter extends AdapterImpl
 		if (resource == null) {
 			return null;
 		}
-		List<Adapter> eAdapters = resource.eAdapters();
-		return (AliasAdapter) EcoreUtil.getAdapter(eAdapters, AliasAdapter.class);
+		return PivotUtil.getAdapter(AliasAdapter.class, resource);
 	}
 
 	public static AliasAdapter getAdapter(Resource resource) {
@@ -104,12 +102,11 @@ public class AliasAdapter extends AdapterImpl
 			return null;
 		}
 		List<Adapter> eAdapters = resource.eAdapters();
-		AliasAdapter adapter = (AliasAdapter) EcoreUtil.getAdapter(eAdapters, AliasAdapter.class);
-		if (adapter != null) {
-			return adapter;
+		AliasAdapter adapter = PivotUtil.getAdapter(AliasAdapter.class, eAdapters);
+		if (adapter == null) {
+			adapter = new AliasAdapter();
+			eAdapters.add(adapter);
 		}
-		adapter = new AliasAdapter();
-		eAdapters.add(adapter);
 		return adapter;
 	}
 
