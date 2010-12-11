@@ -3,22 +3,7 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ConstraintCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.DefaultScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.RootPackageCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeProvider;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util.OCLstdlibCSTSwitch;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProvider;
 
 /**
  * This class contains custom scoping description.
@@ -27,59 +12,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util.OCLstdlibCSTSw
  * on how and when to use it 
  *
  */
-public class OCLstdlibScopeProvider extends EssentialOCLCSScopeProvider
+public class OCLstdlibScopeProvider extends EssentialOCLScopeProvider
 {
-	protected static class Factory extends EssentialOCLCSScopeProvider.Factory
-	{
-		protected Factory() {
-			addSwitch(OCLstdlibCSTPackage.eINSTANCE, new OCLstdlibScopeSwitch());
-		}
-	}
-
-	public static ModelElementCSScopeAdapter.Factory FACTORY = new Factory();
-	
-	public static class OCLstdlibScopeSwitch 
-		extends OCLstdlibCSTSwitch<ScopeAdapter>
-		implements ScopeAdapter.Switch
-	{
-		@Override
-		public ScopeAdapter caseLibConstraintCS(LibConstraintCS csObject) {
-			return new ConstraintCSScopeAdapter(csObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibIterationCS(LibIterationCS csObject) {
-			return new LibOperationScopeAdapter(csObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibOperationCS(LibOperationCS csObject) {
-			return new LibOperationScopeAdapter(csObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibPropertyCS(LibPropertyCS csObject) {
-			return new EmptyCSScopeAdapter(csObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibRootPackageCS(LibRootPackageCS csObject) {
-			return new RootPackageCSScopeAdapter(csObject);
-		}
-
-		@Override
-		public ScopeAdapter caseParameterCS(ParameterCS csObject) {
-			return new EmptyCSScopeAdapter(csObject);
-		}
-
-		@Override
-		public ScopeAdapter defaultCase(EObject csObject) {
-			return new DefaultScopeAdapter(csObject);
-		}
-
-		public ScopeAdapter doInPackageSwitch(EObject csObject) {
-			return doSwitch(csObject.eClass(), csObject);
-		}
-	}
-
 }

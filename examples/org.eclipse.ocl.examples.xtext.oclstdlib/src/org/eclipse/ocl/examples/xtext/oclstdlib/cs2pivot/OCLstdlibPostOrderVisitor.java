@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPostOrderVisitor.java,v 1.1.2.1 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: OCLstdlibPostOrderVisitor.java,v 1.1.2.2 2010/12/11 10:45:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
@@ -46,7 +47,7 @@ public class OCLstdlibPostOrderVisitor
 		  
 		@Override
 		public Continuation<?> visitLibAccumulatorCS(LibAccumulatorCS csLibAccumulator) {
-			Parameter pivotElement = context.getPivotElement(Parameter.class, csLibAccumulator);
+			Parameter pivotElement = PivotUtil.getPivot(Parameter.class, csLibAccumulator);
 			pivotElement.setIteratorKind(IteratorKind.ACCUMULATOR);
 			return super.visitLibAccumulatorCS(csLibAccumulator);
 		}
@@ -54,23 +55,23 @@ public class OCLstdlibPostOrderVisitor
 		@Override
 		public Continuation<?> visitLibConstraintCS(LibConstraintCS csLibConstraint) {
 			Continuation<?> continuation = super.visitLibConstraintCS(csLibConstraint);
-			Constraint pivotElement = context.getPivotElement(Constraint.class, csLibConstraint);
+			Constraint pivotElement = PivotUtil.getPivot(Constraint.class, csLibConstraint);
 			ValueSpecification pivotSpecification = pivotElement.getSpecification();
-			OclExpression pivotExpression = context.getPivotElement(OclExpression.class, csLibConstraint.getOwnedExpression());
+			OclExpression pivotExpression = PivotUtil.getPivot(OclExpression.class, csLibConstraint.getOwnedExpression());
 			((ExpressionInOcl)pivotSpecification).setBodyExpression(pivotExpression);
 			return continuation;
 		}
 
 		@Override
 		public Continuation<?> visitLibIteratorCS(LibIteratorCS csLibIterator) {
-			Parameter pivotElement = context.getPivotElement(Parameter.class, csLibIterator);
+			Parameter pivotElement = PivotUtil.getPivot(Parameter.class, csLibIterator);
 			pivotElement.setIteratorKind(IteratorKind.ITERATOR);
 			return super.visitLibIteratorCS(csLibIterator);
 		}
 
 		@Override
 		public Continuation<?> visitLibOperationCS(LibOperationCS csOperation) {
-			Operation pivotElement = context.getPivotElement(Operation.class, csOperation);
+			Operation pivotElement = PivotUtil.getPivot(Operation.class, csOperation);
 			pivotElement.setPrecedence(csOperation.getPrecedence());
 			pivotElement.setIsStatic(csOperation.isStatic());
 			JvmType implementation = csOperation.getImplementation();
@@ -82,7 +83,7 @@ public class OCLstdlibPostOrderVisitor
 
 		@Override
 		public Continuation<?> visitLibPropertyCS(LibPropertyCS csProperty) {
-			Property pivotElement = context.getPivotElement(Property.class, csProperty);
+			Property pivotElement = PivotUtil.getPivot(Property.class, csProperty);
 			pivotElement.setIsStatic(csProperty.isStatic());
 			JvmType implementation = csProperty.getImplementation();
 			if (implementation != null) {
@@ -93,7 +94,7 @@ public class OCLstdlibPostOrderVisitor
 
 		@Override
 		public Continuation<?> visitParameterCS(ParameterCS csParameter) {
-			Parameter pivotElement = context.getPivotElement(Parameter.class, csParameter);
+			Parameter pivotElement = PivotUtil.getPivot(Parameter.class, csParameter);
 			pivotElement.setIteratorKind(IteratorKind.PARAMETER);
 			return super.visitParameterCS(csParameter);
 		}

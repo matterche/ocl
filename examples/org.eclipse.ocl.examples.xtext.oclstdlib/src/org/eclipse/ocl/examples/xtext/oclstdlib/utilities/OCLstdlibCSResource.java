@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSResource.java,v 1.1.2.1 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: OCLstdlibCSResource.java,v 1.1.2.2 2010/12/11 10:45:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
@@ -40,8 +40,11 @@ public class OCLstdlibCSResource extends EssentialOCLCSResource
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
 			NotificationChain notifications) {
 		if (resourceSet != null) {
-			PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
-			CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+			CS2PivotResourceSetAdapter adapter = CS2PivotResourceSetAdapter.findAdapter(resourceSet);
+			if (adapter == null) {
+				PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
+				CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+			}
 		}
 		return super.basicSetResourceSet(resourceSet, notifications);
 	}

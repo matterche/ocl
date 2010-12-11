@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: OCLstdlibStandaloneSetup.java,v 1.1.6.3 2010/12/11 10:45:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
 import org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot.OCLstdlibCS2Pivot;
-import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.MonikerOCLstdlibCSVisitor;
 
 /**
@@ -33,7 +32,7 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated{
 	}
 
 	public static void init() {
-		OCLstdlibScopeProvider.FACTORY.getClass();
+//		OCLstdlibScopeProvider.FACTORY.getClass();
 		MonikerOCLstdlibCSVisitor.FACTORY.getClass();
 		OCLstdlibCS2Pivot.FACTORY.getClass();
 //		Pivot2BaseCSSwitch.FACTORY.getClass();

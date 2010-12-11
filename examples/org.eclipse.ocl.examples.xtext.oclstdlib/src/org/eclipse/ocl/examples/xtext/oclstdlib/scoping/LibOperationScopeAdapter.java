@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibOperationScopeAdapter.java,v 1.5.6.2 2010/12/06 18:14:18 ewillink Exp $
+ * $Id: LibOperationScopeAdapter.java,v 1.5.6.3 2010/12/11 10:45:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -21,6 +21,8 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -28,12 +30,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class LibOperationScopeAdapter extends BaseCSScopeAdapter<OperationCS, Operation>
 {
-	public LibOperationScopeAdapter(OperationCS csElement) {
-		super(csElement, Operation.class);
+	public LibOperationScopeAdapter(PivotManager pivotManager, OperationCS csElement) {
+		super(pivotManager, csElement, Operation.class);
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class LibOperationScopeAdapter extends BaseCSScopeAdapter<OperationCS, Op
 			else {
 				environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, pivot.getOwnedParameters());
 			}
-			environmentView.addElements(PivotPackage.Literals.TYPE, ElementUtil.getTypeTemplateParameterables(pivot));
+			environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 		}
 		else {
 			OperationCS target = getTarget();
