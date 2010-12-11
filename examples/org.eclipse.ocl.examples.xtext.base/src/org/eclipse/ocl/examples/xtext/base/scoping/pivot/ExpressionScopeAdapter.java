@@ -12,15 +12,16 @@
  *
  * </copyright>
  *
- * $Id: ExpressionScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: ExpressionScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 
 public abstract class ExpressionScopeAdapter<P extends OclExpression> extends AbstractPivotScopeAdapter<P>
 {
-	public ExpressionScopeAdapter(P pivotElement) {
-		super(pivotElement);
+	public ExpressionScopeAdapter(PivotManager pivotManager, P pivotElement) {
+		super(pivotManager, pivotElement);
 	}
 }

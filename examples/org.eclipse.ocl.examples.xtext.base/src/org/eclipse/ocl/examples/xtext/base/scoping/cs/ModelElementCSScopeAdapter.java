@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: ModelElementCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 
@@ -37,17 +39,17 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 	 * Creates an instance.
 	 * @param parent 
 	 */
-	protected ModelElementCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		this(csElement.eContainer(), csElement, pivotClass);
+	protected ModelElementCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		this(pivotManager, csElement.eContainer(), csElement, pivotClass);
 	}
 	
-	protected ModelElementCSScopeAdapter(EObject csParent, CS csElement, Class<P> pivotClass) {
-		this(csParent != null ? getScopeCSAdapter(csParent) : null, csElement, pivotClass);
+	protected ModelElementCSScopeAdapter(PivotManager pivotManager, EObject csParent, CS csElement, Class<P> pivotClass) {
+		this(pivotManager, csParent != null ? getScopeCSAdapter((ElementCS) csParent) : null, csElement, pivotClass);
 	}
 
 	@SuppressWarnings("unchecked")
-	private ModelElementCSScopeAdapter(ScopeCSAdapter parentScopeAdapter, CS csElement, Class<P> pivotClass) {
-		super(parentScopeAdapter, csElement);
+	private ModelElementCSScopeAdapter(PivotManager pivotManager, ScopeCSAdapter parentScopeAdapter, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, parentScopeAdapter, csElement);
 		this.csClass = (Class<CS>) csElement.getClass();
 		this.pivotClass = pivotClass;
 	}

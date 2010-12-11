@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -23,16 +23,18 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, Constraint>
 {
-	public ConstraintCSScopeAdapter(ConstraintCS csElement) {
-		super(csElement, Constraint.class);
+	public ConstraintCSScopeAdapter(PivotManager pivotManager, ConstraintCS csElement) {
+		super(pivotManager, csElement, Constraint.class);
 	}
 
 	@Override
@@ -45,7 +47,7 @@ public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, C
 				if (contextVariable != null) {
 					environmentView.addElement("self", contextVariable);
 					Type type = contextVariable.getType();
-					environmentView.addElementsOfScope(type, scopeView);
+					environmentView.addElementsOfScope(pivotManager, type, scopeView);
 				}
 			}
 		}
@@ -59,6 +61,6 @@ public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, C
 		if (eContainer instanceof FeatureCS) {
 			eContainer = eContainer.eContainer();
 		}
-		return getScopeAdapter(eContainer);
+		return getScopeAdapter((ModelElementCS)eContainer);
 	}
 }

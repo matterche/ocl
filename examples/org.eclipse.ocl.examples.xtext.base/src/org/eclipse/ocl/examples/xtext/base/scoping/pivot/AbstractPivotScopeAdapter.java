@@ -12,12 +12,10 @@
  *
  * </copyright>
  *
- * $Id: AbstractPivotScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: AbstractPivotScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
@@ -40,16 +38,16 @@ public abstract class AbstractPivotScopeAdapter<P extends Element> extends Abstr
 	 * Creates an instance.
 	 * @param parent 
 	 */
-	protected AbstractPivotScopeAdapter(P pivotElement) {
-		this(pivotElement.eContainer(), pivotElement);
+	protected AbstractPivotScopeAdapter(PivotManager pivotManager, P pivotElement) {
+		this(pivotManager, (Element)pivotElement.eContainer(), pivotElement);
 	}
 	
-	protected AbstractPivotScopeAdapter(EObject parentElement, P pivotElement) {
-		this(parentElement != null ? getScopeAdapter(parentElement) : null, pivotElement);
+	protected AbstractPivotScopeAdapter(PivotManager pivotManager, Element parentElement, P pivotElement) {
+		this(pivotManager, parentElement != null ? getScopeAdapter(pivotManager, parentElement) : null, pivotElement);
 	}
 
-	private AbstractPivotScopeAdapter(ScopeAdapter containerScopeAdapter, P pivotElement) {
-		super(containerScopeAdapter, pivotElement);
+	private AbstractPivotScopeAdapter(PivotManager pivotManager, ScopeAdapter containerScopeAdapter, P pivotElement) {
+		super(pivotManager, containerScopeAdapter, pivotElement);
 		this.document = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 //		this.pivotClass = (Class<P>) pivotElement.getClass();
 //		assert (document != null) || (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) : "Null parent for a " + pivotElement.getClass().getName();
@@ -62,14 +60,14 @@ public abstract class AbstractPivotScopeAdapter<P extends Element> extends Abstr
 		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSignature for " + target.eClass().getName()); //$NON-NLS-1$
 	}
 
-	public PivotManager getPivotManager() {
+/*	public PivotManager getPivotManager() {
 		Resource pivotResource = target.eResource();
 		PivotManager pivotManager = PivotManager.findAdapter(pivotResource.getResourceSet());
 		if (pivotManager == null) {
 			return null;
 		}
 		return pivotManager;
-	}
+	} */
 
 	public RootScopeAdapter getRootScopeAdapter() {
 		return document;

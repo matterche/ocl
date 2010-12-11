@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAdapter.java,v 1.2.6.3 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: ScopeAdapter.java,v 1.2.6.4 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 
 /**
@@ -33,7 +32,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 public interface ScopeAdapter extends Adapter
 {	
 	public static interface Switch {
-		ScopeAdapter doInPackageSwitch(EObject eObject);
+		ScopeAdapter createVisitor(EObject eObject);
+//		ScopeAdapter doInPackageSwitch(EObject eObject);
 	}
 	
 	/**
@@ -68,14 +68,6 @@ public interface ScopeAdapter extends Adapter
 	RootScopeAdapter getRootScopeAdapter();
 	
 	ScopeAdapter getSourceScope(EStructuralFeature containmentFeature);
-
-	/**
-	 * Return the <i>Synthesized Attribute</i> corresponding to the type of the AST
-	 * element associated with the target.
-	 * 
-	 * @return the type or null if unknown
-	 */
-	Type getSynthesizedType();
 
 	EObject getTarget();
 }

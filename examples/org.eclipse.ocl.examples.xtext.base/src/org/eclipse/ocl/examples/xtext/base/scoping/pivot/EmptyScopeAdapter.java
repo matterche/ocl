@@ -12,21 +12,16 @@
  *
  * </copyright>
  *
- * $Id: VariableScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: EmptyScopeAdapter.java,v 1.1.2.1 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 
-public class VariableScopeAdapter extends AbstractPivotScopeAdapter<Variable>
+public class EmptyScopeAdapter extends AbstractPivotScopeAdapter<Element>
 {
-	public VariableScopeAdapter(Variable pivotElement) {
-		super(pivotElement);
-	}
-	
-	@Override
-	public Type getSynthesizedType() {
-		return target.getType();
+	public EmptyScopeAdapter(PivotManager pivotManager, Element pivotElement) {
+		super(pivotManager, pivotElement);
 	}
 }

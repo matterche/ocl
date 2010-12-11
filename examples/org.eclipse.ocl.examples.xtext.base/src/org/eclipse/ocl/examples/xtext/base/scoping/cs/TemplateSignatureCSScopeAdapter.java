@@ -12,20 +12,21 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignatureCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: TemplateSignatureCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TemplateSignatureCSScopeAdapter extends MonikeredElementCSScopeAdapter<TemplateSignatureCS, TemplateSignature>
 {
-	public TemplateSignatureCSScopeAdapter(TemplateSignatureCS csElement) {
-		super(csElement, TemplateSignature.class);
+	public TemplateSignatureCSScopeAdapter(PivotManager pivotManager, TemplateSignatureCS csElement) {
+		super(pivotManager, csElement, TemplateSignature.class);
 	}
 
 	@Override

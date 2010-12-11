@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.2 2010/12/09 22:15:44 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -162,20 +163,6 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		@SuppressWarnings("unchecked")
 		T castElement = (T) nameableElement;
-		return castElement;
-	}
-
-	public <T extends Element> T getPivotElement(Class<T> pivotClass, ModelElementCS csElement) {
-		Element pivotElement = csElement.getPivot();
-		if (pivotElement == null) {
-			return null;
-		}
-		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			logger.error("Pivot '" + pivotElement.getClass().getName() + "' element is not a '" + pivotClass.getName() + "'"); //$NON-NLS-1$
-			return null;
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) pivotElement;
 		return castElement;
 	}
 
@@ -386,6 +373,12 @@ public class CS2PivotConversion extends AbstractConversion
 	public void putPivotElement(MonikeredElement pivotElement) {
 		converter.putPivotElement(pivotElement.getMoniker(), pivotElement);
 	}
+	
+	public <T extends OclExpression> T refreshExpression(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement) {
+		T pivotElement = refreshMonikeredElement(pivotClass, pivotEClass, csElement);
+		installPivotElement(csElement, pivotElement);
+		return pivotElement;
+	}
 
 	public <T extends Element> void refreshList(Class<T> pivotClass, List<T> pivotElements, List<? extends MonikeredElementCS> csElements) {
 		if (!pivotElements.isEmpty() ||!csElements.isEmpty()) {
@@ -496,7 +489,7 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		List<T> newPivotElements = new ArrayList<T>();
 		for (ModelElementCS csElement : csElements) {
-			T pivotElement = getPivotElement(pivotClass, csElement);
+			T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
 			if (pivotElement != null) {
 				newPivotElements.add(pivotElement);
 			}
@@ -667,7 +660,7 @@ public class CS2PivotConversion extends AbstractConversion
 				}
 			}
 			ParameterableElementCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
-			ParameterableElement pivotActualParameter = getPivotElement(ParameterableElement.class, csActualParameter);
+			ParameterableElement pivotActualParameter = PivotUtil.getPivot(ParameterableElement.class, csActualParameter);
 			templateParameterSubstitution.setActual(pivotActualParameter);
 			installPivotElement(csTemplateParameterSubstitution, templateParameterSubstitution);
 //			queueResolver(csTemplateParameterSubstitution);		// To resolve actuals

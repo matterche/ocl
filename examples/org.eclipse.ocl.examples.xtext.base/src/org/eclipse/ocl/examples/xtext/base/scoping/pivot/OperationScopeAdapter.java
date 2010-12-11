@@ -12,21 +12,22 @@
  *
  * </copyright>
  *
- * $Id: OperationScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: OperationScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class OperationScopeAdapter extends AbstractPivotScopeAdapter<Operation>
 {
-	public OperationScopeAdapter(Operation pivotElement) {
-		super(pivotElement);
+	public OperationScopeAdapter(PivotManager pivotManager, Operation pivotElement) {
+		super(pivotManager, pivotElement);
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class OperationScopeAdapter extends AbstractPivotScopeAdapter<Operation>
 		else {
 			environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, target.getOwnedParameters());
 		}
-		environmentView.addElements(PivotPackage.Literals.TYPE, ElementUtil.getTypeTemplateParameterables(target));
+		environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(target));
 		return scopeView.getOuterScope();
 	}
 }

@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ImportScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ImportScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -26,30 +27,30 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 public class ImportScopeAdapter extends MonikeredElementCSScopeAdapter<ImportCS, org.eclipse.ocl.examples.pivot.Package>
 {
 	private URI uri = null;
-	private EObject importedElement = null;
+	private Element importedElement = null;
 	
-	public ImportScopeAdapter(ImportCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public ImportScopeAdapter(PivotManager pivotManager, ImportCS csElement) {
+		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == null) {
-			environmentView.addElementsOfScope(importedElement, scopeView);
+			environmentView.addElementsOfScope(pivotManager, importedElement, scopeView);
 		}
 		else {
-			environmentView.addElementsOfScope(importedElement, scopeView);
+			environmentView.addElementsOfScope(pivotManager, importedElement, scopeView);
 		}
 		return scopeView.getOuterScope();
 	}
 
-	public void setImportedElement(URI uri, EObject importedElement) {
+	public void setImportedElement(URI uri, Element importedElement) {
 		this.uri = uri;
 		this.importedElement = importedElement;
 	}
 
-	public EObject getImportedElement() {
+	public Element getImportedElement() {
 		return importedElement;
 	}
 

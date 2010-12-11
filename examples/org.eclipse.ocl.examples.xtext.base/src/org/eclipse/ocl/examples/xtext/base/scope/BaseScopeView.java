@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.2.6.2 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.2.6.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -105,7 +105,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		EStructuralFeature eContainingFeature = getTarget().eContainingFeature();
 		return new BaseScopeView(parent, eContainingFeature, targetReference);
 	}
-
+	
 	public ScopeAdapter getScopeAdapter() {
 		return scopeAdapter;
 	}

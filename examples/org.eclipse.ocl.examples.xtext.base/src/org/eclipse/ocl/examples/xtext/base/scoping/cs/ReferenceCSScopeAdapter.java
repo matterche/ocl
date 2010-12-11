@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ReferenceCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
@@ -29,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Property>
 {
-	public ReferenceCSScopeAdapter(ReferenceCS csElement) {
-		super(csElement, Property.class);
+	public ReferenceCSScopeAdapter(PivotManager pivotManager, ReferenceCS csElement) {
+		super(pivotManager, csElement, Property.class);
 	}
 
 	public void addAllReferences(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class csClass) {

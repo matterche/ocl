@@ -12,21 +12,21 @@
  *
  * </copyright>
  *
- * $Id: LetExpScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: LetExpScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class LetExpScopeAdapter extends ExpressionScopeAdapter<LetExp>
 {
-	public LetExpScopeAdapter(LetExp pivotElement) {
-		super(pivotElement);
+	public LetExpScopeAdapter(PivotManager pivotManager, LetExp pivotElement) {
+		super(pivotManager, pivotElement);
 	}
 
 	@Override
@@ -36,10 +36,5 @@ public class LetExpScopeAdapter extends ExpressionScopeAdapter<LetExp>
 			environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, target.getVariable());
 		}
 		return scopeView.getOuterScope();
-	}
-	
-	@Override
-	public Type getSynthesizedType() {
-		return target.getIn().getType();
 	}
 }

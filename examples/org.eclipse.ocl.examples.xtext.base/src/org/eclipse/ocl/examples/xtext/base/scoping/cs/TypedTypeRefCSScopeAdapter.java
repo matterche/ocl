@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: TypedTypeRefCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -25,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TypedTypeRefCSScopeAdapter extends ModelElementCSScopeAdapter<TypedTypeRefCS, Type>
 {
-	public TypedTypeRefCSScopeAdapter(TypedTypeRefCS csElement) {
-		super(csElement, Type.class);
+	public TypedTypeRefCSScopeAdapter(PivotManager pivotManager, TypedTypeRefCS csElement) {
+		super(pivotManager, csElement, Type.class);
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class TypedTypeRefCSScopeAdapter extends ModelElementCSScopeAdapter<Typed
 		}
 		else {
 			Type type = getTarget().getType();
-			environmentView.addElementsOfScope(type, scopeView);
+			environmentView.addElementsOfScope(pivotManager, type, scopeView);
 			return scopeView.getOuterScope();
 		}
 	}

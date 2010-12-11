@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.2 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -26,7 +26,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -57,7 +61,7 @@ public class EnvironmentView
 	}
 
 	public boolean accepts(EClass eClass) {
-		return ElementUtil.conformsTo(reference, eClass);
+		return PivotUtil.conformsTo(reference, eClass);
 	}
 
 	/**
@@ -118,8 +122,15 @@ public class EnvironmentView
 		return additions;
 	}
 
-	public void addElementsOfScope(EObject element, ScopeView scopeView) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(element);
+	public void addElementsOfScope(PivotManager pivotManager, Element element, ScopeView scopeView) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(pivotManager, element);
+		if (scopeAdapter != null) {
+			scopeAdapter.computeLookup(this, scopeView);
+		}
+	}
+
+	public void addElementsOfScope(ModelElementCS csElement, ScopeView scopeView) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
 		if (scopeAdapter != null) {
 			scopeAdapter.computeLookup(this, scopeView);
 		}

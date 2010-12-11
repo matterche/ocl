@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCSScopeAdapter.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: TupleTypeCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TupleTypeCSScopeAdapter extends BaseCSScopeAdapter<TupleTypeCS, TupleType>
 {
-	public TupleTypeCSScopeAdapter(TupleTypeCS csElement) {
-		super(csElement, TupleType.class);
+	public TupleTypeCSScopeAdapter(PivotManager pivotManager, TupleTypeCS csElement) {
+		super(pivotManager, csElement, TupleType.class);
 	}
 
 	@Override
@@ -33,10 +33,5 @@ public class TupleTypeCSScopeAdapter extends BaseCSScopeAdapter<TupleTypeCS, Tup
 //		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		environmentView.addNamedElements(getTarget().getOwnedParts());
 		return scopeView.getOuterScope();
-	}
-
-	@Override
-	public Type getSynthesizedType() {
-		return getPivot();
 	}
 }

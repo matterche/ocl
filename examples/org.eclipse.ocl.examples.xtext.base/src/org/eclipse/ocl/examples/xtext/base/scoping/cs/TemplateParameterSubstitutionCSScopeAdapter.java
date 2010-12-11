@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterSubstitutionCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: TemplateParameterSubstitutionCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -25,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TemplateParameterSubstitutionCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateParameterSubstitutionCS, TemplateParameterSubstitution>
 {
-	public TemplateParameterSubstitutionCSScopeAdapter(TemplateParameterSubstitutionCS csElement) {
-		super(csElement, TemplateParameterSubstitution.class);
+	public TemplateParameterSubstitutionCSScopeAdapter(PivotManager pivotManager, TemplateParameterSubstitutionCS csElement) {
+		super(pivotManager, csElement, TemplateParameterSubstitution.class);
 	}
 
 	@Override

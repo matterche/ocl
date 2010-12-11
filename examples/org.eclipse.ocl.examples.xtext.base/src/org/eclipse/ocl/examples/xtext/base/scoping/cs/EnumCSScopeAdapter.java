@@ -12,21 +12,22 @@
  *
  * </copyright>
  *
- * $Id: EnumCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: EnumCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class EnumCSScopeAdapter extends BaseCSScopeAdapter<EnumerationCS, Enumeration>
 {
-	public EnumCSScopeAdapter(EnumerationCS csElement) {
-		super(csElement, Enumeration.class);
+	public EnumCSScopeAdapter(PivotManager pivotManager, EnumerationCS csElement) {
+		super(pivotManager, csElement, Enumeration.class);
 	}
 
 	@Override
@@ -34,9 +35,9 @@ public class EnumCSScopeAdapter extends BaseCSScopeAdapter<EnumerationCS, Enumer
 		Enumeration pivot = getPivot();
 		if (pivot != null) {
 			environmentView.addNamedElements(PivotPackage.Literals.ENUMERATION_LITERAL, pivot.getOwnedLiterals());
-			environmentView.addElements(PivotPackage.Literals.TEMPLATE_PARAMETER, ElementUtil.getTemplateParameters(pivot));
+			environmentView.addElements(PivotPackage.Literals.TEMPLATE_PARAMETER, PivotUtil.getTemplateParameters(pivot));
 		}
-		addLibContents(environmentView, getOclAnyType(), scopeView);
+		addLibContents(environmentView, pivotManager.getOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}
 }

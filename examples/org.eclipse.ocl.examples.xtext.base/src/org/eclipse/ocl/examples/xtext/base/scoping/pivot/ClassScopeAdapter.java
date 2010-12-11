@@ -12,37 +12,35 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtils;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Class>
 {
-	public ClassScopeAdapter(org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		super(pivotElement);
+	public ClassScopeAdapter(PivotManager pivotManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
+		super(pivotManager, pivotElement);
 	}
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
 		List<org.eclipse.ocl.examples.pivot.Class> superClasses = target.getSuperClasses();
 		if (superClasses.size() > 0) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
-					environmentView.addElementsOfScope(superClass, scopeView);
+					environmentView.addElementsOfScope(pivotManager, superClass, scopeView);
 			}
 		}
 		else {
-			Type anyType = getOclAnyType();
-			Type libType = getClassifierType();
+			Type anyType = pivotManager.getOclAnyType();
+			Type libType = pivotManager.getClassifierType();
 			if ((libType != target) && (anyType != target)){		// FIXME Is this the right place for the trap
 				addLibContents(environmentView, libType, scopeView);
 			}
@@ -54,11 +52,11 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 		org.eclipse.ocl.examples.pivot.Class pivot = getTarget();
 		org.eclipse.ocl.examples.pivot.Class unspecializedPivot;
 		if (pivot.getTemplateBindings().size() > 0) {
-			unspecializedPivot = PivotUtils.getTemplateableClass(pivot);
+			unspecializedPivot = PivotUtil.getTemplateableClass(pivot);
 		}
 		else {
 			unspecializedPivot = pivot;
-			environmentView.addElements(PivotPackage.Literals.TYPE, ElementUtil.getTypeTemplateParameterables(pivot));
+			environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 		}
 		environmentView.addNamedElements(PivotPackage.Literals.OPERATION, unspecializedPivot.getOwnedOperations());
 		environmentView.addNamedElements(PivotPackage.Literals.PROPERTY, unspecializedPivot.getOwnedAttributes());
@@ -77,9 +75,9 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 		return scopeView.getOuterScope();
 	}
 
-	@Override
+/*	@Override
 	public PivotManager getPivotManager() {
 		Resource resource = target.eResource();
 		return PivotManager.getAdapter(resource.getResourceSet());
-	}
+	} */
 }

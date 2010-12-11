@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2Pivot.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseCS2Pivot.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * BaseCST2Pivot provides an extensible conversion from CS models to the pivot model.
@@ -80,6 +82,10 @@ public class BaseCS2Pivot extends CS2Pivot
 
 		public BasePreOrderVisitor createPreOrderVisitor(CS2PivotConversion converter) {
 			return new BasePreOrderVisitor(converter);
+		}
+
+		public BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager) {
+			return new BaseScopeVisitor(pivotManager);
 		}
 
 		public EPackage getEPackage() {

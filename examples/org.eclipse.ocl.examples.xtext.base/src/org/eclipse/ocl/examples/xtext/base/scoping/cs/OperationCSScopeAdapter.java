@@ -12,23 +12,24 @@
  *
  * </copyright>
  *
- * $Id: OperationCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: OperationCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class OperationCSScopeAdapter extends BaseCSScopeAdapter<OperationCS, Operation>
 {
-	public OperationCSScopeAdapter(OperationCS csElement) {
-		super(csElement, Operation.class);
+	public OperationCSScopeAdapter(PivotManager pivotManager, OperationCS csElement) {
+		super(pivotManager, csElement, Operation.class);
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class OperationCSScopeAdapter extends BaseCSScopeAdapter<OperationCS, Ope
 			else {
 				environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, pivot.getOwnedParameters());
 			}
-			environmentView.addElements(PivotPackage.Literals.TEMPLATE_PARAMETER, ElementUtil.getTemplateParameters(pivot));
+			environmentView.addElements(PivotPackage.Literals.TEMPLATE_PARAMETER, PivotUtil.getTemplateParameters(pivot));
 		}
 		return scopeView.getOuterScope();
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtils;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
@@ -36,11 +36,11 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 	@Override
 	public ElementCS visitClass(org.eclipse.ocl.examples.pivot.Class object) {
 		org.eclipse.ocl.examples.pivot.Class scopeClass = context.getScope();
-		org.eclipse.ocl.examples.pivot.Package scopePackage = PivotUtils.getPackage(scopeClass);
+		org.eclipse.ocl.examples.pivot.Package scopePackage = PivotUtil.getPackage(scopeClass);
 		TypedTypeRefCS csRef = BaseCSTFactory.eINSTANCE.createTypedTypeRefCS();
 		csRef.setType(object);
 		csRef.setPivot(object);
-		org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtils.getPackage(object);
+		org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(object);
 		if (!object.isPrimitive() && (objectPackage != scopePackage)) {
 			context.importPackage(objectPackage);
 		}

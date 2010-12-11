@@ -12,18 +12,16 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeAdapter;
@@ -71,12 +69,12 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 	protected final RootCSScopeAdapter root;
 	protected long unresolveableModificationCount = -1;
 	
-	protected ElementCSScopeAdapter(CS csElement) {
-		this(getScopeCSAdapter(csElement.eContainer()), csElement);
+	protected ElementCSScopeAdapter(PivotManager pivotManager, CS csElement) {
+		this(pivotManager, getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
 	}
 
-	protected ElementCSScopeAdapter(ScopeCSAdapter parent, CS target) {
-		super(parent, target);
+	protected ElementCSScopeAdapter(PivotManager pivotManager, ScopeCSAdapter parent, CS target) {
+		super(pivotManager, parent, target);
 		this.root = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 		assert (root != null) || (target instanceof RootCS);
 	}	
@@ -85,7 +83,7 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 		return root;
 	}
 
-	public PivotManager getPivotManager() {
+/*	public PivotManager getPivotManager() {
 		Resource csResource = target.eResource();
 		CS2PivotResourceAdapter cs2PivotResourceAdapter = CS2PivotResourceAdapter.findAdapter(csResource);
 		if (cs2PivotResourceAdapter == null) {
@@ -93,7 +91,7 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 		}
 		PivotManager pivotManager = cs2PivotResourceAdapter.getPivotManager();
 		return pivotManager;
-	}
+	} */
 
 //	public final String getMoniker() {
 //		return CS2Moniker.toString(target);

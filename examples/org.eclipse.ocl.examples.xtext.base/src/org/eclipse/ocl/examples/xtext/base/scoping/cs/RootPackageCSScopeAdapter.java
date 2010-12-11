@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSScopeAdapter.java,v 1.1.2.3 2010/12/08 10:24:34 ewillink Exp $
+ * $Id: RootPackageCSScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
@@ -27,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPackageCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public RootPackageCSScopeAdapter(RootPackageCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public RootPackageCSScopeAdapter(PivotManager pivotManager, RootPackageCS csElement) {
+		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefaultScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: DefaultScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -29,13 +29,9 @@ public class DefaultScopeAdapter extends AbstractScopeAdapter<EObject>
 {
 	private static final Logger logger = Logger.getLogger(DefaultScopeAdapter.class);
 
-	public DefaultScopeAdapter(EObject eObject) {
-		super(null, eObject);
+	public DefaultScopeAdapter(PivotManager pivotManager, EObject eObject) {
+		super(pivotManager, null, eObject);
 		logger.warn("Using DefaultScopeAdapter for '" + eObject.eClass().getName() + "'");
-	}
-
-	public PivotManager getPivotManager() {
-		return null;
 	}
 
 	public RootScopeAdapter getRootScopeAdapter() {

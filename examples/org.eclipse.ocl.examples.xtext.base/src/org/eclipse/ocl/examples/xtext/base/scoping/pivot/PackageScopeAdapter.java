@@ -12,18 +12,19 @@
  *
  * </copyright>
  *
- * $Id: PackageScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: PackageScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class PackageScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageScopeAdapter(org.eclipse.ocl.examples.pivot.Package pivotElement) {
-		super(pivotElement);
+	public PackageScopeAdapter(PivotManager pivotManager, org.eclipse.ocl.examples.pivot.Package pivotElement) {
+		super(pivotManager, pivotElement);
 	}
 
 	@Override

@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractBaseCSVisitor.java,v 1.1.2.2 2010/12/08 10:24:34 ewillink Exp $
+ * $Id: AbstractBaseCSVisitor.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 

@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:01 ewillink Exp $
+ * $Id: TemplateBindingCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 
 public class TemplateBindingCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateBindingCS, TemplateBinding>
 {
-	public TemplateBindingCSScopeAdapter(TemplateBindingCS csElement) {
-		super(csElement, TemplateBinding.class);
+	public TemplateBindingCSScopeAdapter(PivotManager pivotManager, TemplateBindingCS csElement) {
+		super(pivotManager, csElement, TemplateBinding.class);
 	}
 
 /*	@Override

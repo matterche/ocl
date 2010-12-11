@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementCSScopeAdapter.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: MonikeredElementCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 
@@ -34,12 +35,12 @@ public abstract class MonikeredElementCSScopeAdapter<CS extends MonikeredElement
 	 * Creates an instance.
 	 * @param parent 
 	 */
-	protected MonikeredElementCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
+	protected MonikeredElementCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csElement, pivotClass);
 	}
 	
-	protected MonikeredElementCSScopeAdapter(EObject csParent, CS csElement, Class<P> pivotClass) {
-		super(csParent, csElement, pivotClass);
+	protected MonikeredElementCSScopeAdapter(PivotManager pivotManager, EObject csParent, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csParent, csElement, pivotClass);
 	}
 
 	public final String getMoniker() {

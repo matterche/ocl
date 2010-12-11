@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.2 2010/12/08 10:24:34 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -77,7 +78,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Class pivotElement = context.getPivotElement(org.eclipse.ocl.examples.pivot.Class.class, csElement);
+			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
 			refreshOperations(csElement, pivotElement);
 			return null;
 		}
@@ -86,7 +87,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			List<OperationCS> csOperations = csClass.getOwnedOperation();
 			List<Operation> newPivotOperations = new ArrayList<Operation>();
 			for (OperationCS csOperation : csOperations) {
-				Operation pivotOperation = context.getPivotElement(Operation.class, csOperation);
+				Operation pivotOperation = PivotUtil.getPivot(Operation.class, csOperation);
 				newPivotOperations.add(pivotOperation);
 			}
 			context.refreshList(pivotElement.getOwnedOperations(), newPivotOperations);
@@ -101,7 +102,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Class pivotElement = context.getPivotElement(org.eclipse.ocl.examples.pivot.Class.class, csElement);
+			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
 			context.refreshList(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), csElement.getOwnedSuperType());
 			return null;
 		}
@@ -253,7 +254,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type pivotElement = context.getPivotElement(Type.class, csElement);
+			Type pivotElement = PivotUtil.getPivot(Type.class, csElement);
 			context.refreshTemplateSignature(csElement, pivotElement);
 			context.getTypesHaveSignaturesInterDependency().setSatisfied(this);
 			return null;
@@ -351,7 +352,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			if (!pivotType.eIsProxy()) {
 				TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 				if ((csTemplateBinding != null) && ElementUtil.isSpecialization(csTemplateBinding)) {
-					TemplateBinding pivotTemplateBinding = context.getPivotElement(TemplateBinding.class, csTemplateBinding);
+					TemplateBinding pivotTemplateBinding = PivotUtil.getPivot(TemplateBinding.class, csTemplateBinding);
 					pivotType = (Type) pivotTemplateBinding.getBoundElement();
 				}
 				context.installPivotElement(csElement, pivotType);

@@ -12,36 +12,41 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.4 2010/12/08 10:24:34 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.5 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.PivotScopeVisitor;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 
 /**
  * A AbstractScopeAdapter provides the basic behaviour for a family of derived
@@ -53,15 +58,17 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAdapter, Adapter.Internal
 {	
 	private static final Logger logger = Logger.getLogger(AbstractScopeAdapter.class);
-	private static Map<EPackage, Switch> switchMap = new HashMap<EPackage, Switch>();
 
-	public static class Factory
-	{
-		protected void addSwitch(EPackage ePackage, Switch iSwitch) {
-			switchMap.put(ePackage, iSwitch);
+	public static RootScopeAdapter getDocumentScopeAdapter(PivotManager pivotManager, Element context) {
+		for (ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
+			if (scopeAdapter instanceof RootScopeAdapter) {
+				return (RootScopeAdapter) scopeAdapter;
+			}
 		}
+		return null;
 	}
-	public static RootScopeAdapter getDocumentScopeAdapter(EObject context) {
+
+	public static RootScopeAdapter getDocumentScopeAdapter(ModelElementCS context) {
 		for (ScopeAdapter scopeAdapter = getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
 			if (scopeAdapter instanceof RootScopeAdapter) {
 				return (RootScopeAdapter) scopeAdapter;
@@ -70,7 +77,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return null;
 	}
 
-	public static ScopeAdapter getScopeAdapter(EObject eObject) {
+	public static ScopeAdapter getScopeAdapter(PivotManager pivotManager, Element eObject) {
 		if (eObject == null) {
 			logger.warn("getScopeAdapter for null");
 			return null;
@@ -79,59 +86,66 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 			logger.warn("getScopeAdapter for proxy " + eObject);
 			return null;
 		}
-		if (eObject instanceof ModelElementCS) {
-			Element pivotElement = ((ModelElementCS)eObject).getPivot();
-			if ((pivotElement != null) && (pivotElement.eResource() != null)) {
-				eObject = pivotElement;
-			}
-		}
-		EList<Adapter> eAdapters = eObject.eAdapters();
-		ScopeAdapter adapter = (ScopeAdapter) EcoreUtil.getAdapter(eAdapters, ScopeAdapter.class);
+		ScopeAdapter adapter = PivotUtil.getAdapter(ScopeAdapter.class, eObject);
 		if (adapter != null) {
 			return adapter;
 		}
-		EClass eClass = eObject.eClass();
-		Switch adapterSwitch = switchMap.get(eClass.getEPackage());
-		if (adapterSwitch != null) {
-			adapter = adapterSwitch.doInPackageSwitch(eObject);
-		}
-//		if (adapter != null) {
-//			if (adapter.getTarget() == null) {
-//				eAdapters.add(adapter);
-//			}
-			return adapter;
-//		}
-//		return null;
+		Resource resource = eObject.eResource();
+		ResourceSet resourceSet = resource.getResourceSet();
+		PivotScopeVisitor visitor = new PivotScopeVisitor(pivotManager);
+		return eObject.accept(visitor);	
 	}
 
-	public static ScopeCSAdapter getScopeCSAdapter(EObject eObject) {
-		if (eObject == null) {
+	public static ScopeAdapter getScopeAdapter(ModelElementCS csElement) {
+		if (csElement == null) {
 			logger.warn("getScopeAdapter for null");
 			return null;
 		}
-		if (eObject.eIsProxy()) {			// Shouldn't happen, but certainly does during development
-			logger.warn("getScopeAdapter for proxy " + eObject);
+		if (csElement.eIsProxy()) {			// Shouldn't happen, but certainly does during development
+			logger.warn("getScopeAdapter for proxy " + csElement);
 			return null;
 		}
-		EList<Adapter> eAdapters = eObject.eAdapters();
-		ScopeAdapter adapter = (ScopeAdapter) EcoreUtil.getAdapter(eAdapters, ScopeAdapter.class);
-		if (adapter instanceof ScopeCSAdapter) {
-			return (ScopeCSAdapter) adapter;
+		Element pivotElement = csElement.getPivot();
+		if (pivotElement == null) {
+//			logger.warn("getScopeAdapter for null pivot");
+			return getScopeCSAdapter(csElement);
 		}
-		EClass eClass = eObject.eClass();
-		Switch adapterSwitch = switchMap.get(eClass.getEPackage());
-		if (adapterSwitch != null) {
-			adapter = adapterSwitch.doInPackageSwitch(eObject);
+		ScopeAdapter adapter = PivotUtil.getAdapter(ScopeAdapter.class, pivotElement);
+		if (adapter != null) {
+			return adapter;
 		}
-//		if (adapter != null) {
-//			if (adapter.getTarget() == null) {
-//				eAdapters.add(adapter);
-//			}
-			return (ScopeCSAdapter) adapter;
-//		}
-//		return null;
+		Resource csResource = csElement.eResource();
+		ResourceSet csResourceSet = csResource.getResourceSet();
+		CS2PivotResourceSetAdapter csAdapter = CS2PivotResourceSetAdapter.findAdapter(csResourceSet);
+		PivotManager pivotManager = csAdapter.getPivotManager();
+//		PivotManager pivotManager = PivotManager.getAdapter(resourceSet);
+		PivotScopeVisitor visitor = new PivotScopeVisitor(pivotManager);
+		return pivotElement.accept(visitor);	
+	}
+
+	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {
+		if (csElement == null) {
+			logger.warn("getScopeCSAdapter for null");
+			return null;
+		}
+		if (csElement.eIsProxy()) {			// Shouldn't happen, but certainly does during development
+			logger.warn("getScopeCSAdapter for proxy " + csElement);
+			return null;
+		}
+		ScopeCSAdapter adapter = PivotUtil.getAdapter(ScopeCSAdapter.class, csElement, ScopeAdapter.class);
+		if (adapter != null) {
+			return adapter;
+		}
+		BaseCSResource csResource = (BaseCSResource) csElement.eResource();
+		CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
+		CS2Pivot converter = resourceAdapter.getConverter();		
+		EClass eClass = csElement.eClass();
+		EPackage ePackage = eClass.getEPackage();
+		BaseCSVisitor<ScopeCSAdapter, PivotManager> visitor = converter.getScopeVisitor(ePackage);		
+		return csElement.accept(visitor);	
 	}
 	
+	protected final PivotManager pivotManager;
 
 	/**
 	 * The last notifier set to this adapter.
@@ -140,7 +154,9 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	protected final ScopeAdapter parent;
 
-	protected AbstractScopeAdapter(ScopeAdapter parent, T target) {
+	protected AbstractScopeAdapter(PivotManager pivotManager, ScopeAdapter parent, T target) {
+		this.pivotManager = pivotManager;
+		assert pivotManager != null;
 		this.parent = parent;
 		this.target = target;
 		target.eAdapters().add(this);
@@ -150,7 +166,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		if (libType == null) {
 			return;
 		}
-		environmentView.addElementsOfScope(libType, scopeView);
+		environmentView.addElementsOfScope(pivotManager, libType, scopeView);
 		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
 				addLibContents(environmentView, superClass, scopeView);
@@ -171,44 +187,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return new BaseScopeView(this, null, targetReference);
 	}
 
-	public Type getBooleanType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getBooleanType();
-	}
-
-	public Type getClassifierType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getClassifierType();
-	}
-
-	public Type getCollectionType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getCollectionType();
-	}
-
-	public Type getIntegerType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getIntegerType();
-	}
-
-	public Type getInvalidType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getInvalidType();
-	}
-
 	public Type getLibraryType(String collectionTypeName, Type elementType) {
-		PivotManager pivotManager = getPivotManager();
 		return pivotManager.getLibraryType(collectionTypeName, Collections.singletonList(elementType));
-	}
-
-	public Type getNullType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getNullType();
-	}
-
-	public Type getOclAnyType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getOclAnyType();
 	}
 
 	public ScopeView getOuterScopeView(EReference targetReference) {
@@ -220,43 +200,16 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return parent;
 	}
 
-	public Type getRealType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getRealType();
-	}
-
-	public Type getSetType(TypeCS type) {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getSetType();
+	public final PivotManager getPivotManager() {
+		return pivotManager;
 	}
 	
 	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
 		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSourceScope for " + target.eClass().getName()); //$NON-NLS-1$
-//		return null;
-	}
-
-	public Type getStringType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getStringType();
-	}
-
-	public Type getSynthesizedType() {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSynthesizedType for " + target.eClass().getName()); //$NON-NLS-1$
-//		return null;
 	}
 
 	public T getTarget() {
 		return target;
-	}
-
-	public Type getTupleType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getTupleType();
-	}
-
-	public Type getUnlimitedNaturalType() {
-		PivotManager pivotManager = getPivotManager();
-		return pivotManager.getUnlimitedNaturalType();
 	}
 	
 	public boolean isAdapterForType(Object type) {

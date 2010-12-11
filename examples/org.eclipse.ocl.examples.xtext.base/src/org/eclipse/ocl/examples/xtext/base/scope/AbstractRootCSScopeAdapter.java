@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.2 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -29,8 +30,8 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 {
 	private long modificationCount = 0;
 
-	public AbstractRootCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
+	public AbstractRootCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csElement, pivotClass);
 	}
 
 	public void endModification() {}

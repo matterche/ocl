@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -32,17 +32,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.parsetree.AbstractNode;
@@ -61,6 +62,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	public static interface Factory {
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
+		BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager);
 		EPackage getEPackage();
 	}
 
@@ -74,8 +76,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		if (resourceSet == null) {
 			return null;
 		}
-		List<Adapter> eAdapters = resourceSet.eAdapters();
-		return (CS2Pivot) EcoreUtil.getAdapter(eAdapters, CS2Pivot.class);
+		return PivotUtil.getAdapter(CS2Pivot.class, resourceSet);
 	}
 
 	public static List<LeafNode> getDocumentationNodes(CompositeNode node) {
@@ -131,6 +132,8 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	 * The new pivot element to alias map.
 	 */
 	protected final Map<EObject, String> aliasMap = new HashMap<EObject, String>();
+
+	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, PivotManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, PivotManager>>();
 
 	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, PivotManager pivotManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
@@ -209,6 +212,24 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 
 	public Collection<? extends Resource> getPivotResources() {
 		return pivotManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
+	}
+
+	public BaseCSVisitor<ScopeCSAdapter, PivotManager> getScopeVisitor(EPackage ePackage) {
+		BaseCSVisitor<ScopeCSAdapter, PivotManager> scopeVisitor = scopeVisitorMap.get(ePackage);
+		if ((scopeVisitor == null) && !scopeVisitorMap.containsKey(ePackage)) {
+			Factory factory = getFactory(ePackage);
+			if (factory != null) {
+				scopeVisitor = factory.createScopeVisitor(pivotManager);
+				if (scopeVisitor == null) {
+					logger.error("No Scope Visitor created for " + ePackage.getName());
+				}
+			}
+			else {
+				logger.error("No Scope Visitor Factory registered for " + ePackage.getName());
+			}
+			scopeVisitorMap.put(ePackage, scopeVisitor);
+		}
+		return scopeVisitor;
 	}
 
 	public Notifier getTarget() {

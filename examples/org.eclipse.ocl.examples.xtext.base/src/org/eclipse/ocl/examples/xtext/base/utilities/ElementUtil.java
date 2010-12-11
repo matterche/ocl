@@ -12,27 +12,27 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1.2.2 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
@@ -49,23 +49,6 @@ import org.eclipse.xtext.parsetree.NodeUtil;
 
 public class ElementUtil
 {
-	public static boolean conformsTo(EStructuralFeature eStructuralFeature, EClassifier contentType) {
-		if (eStructuralFeature == null) {			// Wildcard match all
-			return true;
-		}
-		EClassifier targetType = eStructuralFeature.getEType();
-		if (targetType == contentType) {
-			return true;
-		}
-		if (!(targetType instanceof EClass)) {
-			return false;
-		}
-		if (!(contentType instanceof EClass)) {
-			return false;
-		}
-		return ((EClass) targetType).isSuperTypeOf((EClass) contentType);
-	}
-
 	public static String getCollectionTypeName(TypedElementCS csTypedElement) {
 		String multiplicity = csTypedElement.getMultiplicity();
 		if (multiplicity != null) {
@@ -126,71 +109,29 @@ public class ElementUtil
 		return null;
 	}
 
-	public static CompositeNode getParserNode(EObject eObject) {
-		NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(eObject);
+	public static CompositeNode getParserNode(ElementCS csElement) {
+		NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(csElement);
 		return nodeAdapter != null ? nodeAdapter.getParserNode() : null;
 	}
 
-	public static ScopeAdapter getScopeAdapter(EObject element) {
-		return ModelElementCSScopeAdapter.getScopeAdapter(element);
+	public static PivotManager getPivotManager(Resource csResource) {
+		ResourceSet csResourceSet = csResource.getResourceSet();
+		CS2PivotResourceSetAdapter adapter = CS2PivotResourceSetAdapter.getAdapter(csResourceSet, null);
+		PivotManager pivotManager = adapter.getPivotManager();
+		assert pivotManager != null;
+		return pivotManager;
 	}
 
-	public static ScopeCSAdapter getScopeCSAdapter(EObject element) {
-		return ModelElementCSScopeAdapter.getScopeCSAdapter(element);
+	public static ScopeAdapter getScopeAdapter(PivotManager pivotManager, Element element) {
+		return ModelElementCSScopeAdapter.getScopeAdapter(pivotManager, element);
 	}
 
-	public static List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {
-		if (templateableElement != null) {
-			TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
-			if (ownedTemplateSignature != null) {
-				return ownedTemplateSignature.getParameters();
-			}
-		}
-		return Collections.emptyList();
+	public static ScopeAdapter getScopeAdapter(ModelElementCS csElement) {
+		return ModelElementCSScopeAdapter.getScopeAdapter(csElement);
 	}
 
-	public static List<ParameterableElement> getTemplateParameterables(TemplateableElement templateableElement) {
-		if (templateableElement == null) {
-			return Collections.emptyList();
-		}
-		TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
-		if (ownedTemplateSignature == null) {
-			return Collections.emptyList();
-		}
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
-		if (templateParameters.size() == 0) {
-			return Collections.emptyList();
-		}
-		if (templateParameters.size() == 1) {
-			return Collections.singletonList(templateParameters.get(0).getParameteredElement());
-		}
-		List<ParameterableElement> results = new ArrayList<ParameterableElement>(templateParameters.size());
-		for (TemplateParameter templateParameter : templateParameters) {
-			results.add(templateParameter.getParameteredElement());
-		}
-		return results;
-	}
-
-	public static List<Type> getTypeTemplateParameterables(TemplateableElement templateableElement) {
-		if (templateableElement == null) {
-			return Collections.emptyList();
-		}
-		TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
-		if (ownedTemplateSignature == null) {
-			return Collections.emptyList();
-		}
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
-		if (templateParameters.size() == 0) {
-			return Collections.emptyList();
-		}
-		if (templateParameters.size() == 1) {
-			return Collections.singletonList((Type)templateParameters.get(0).getParameteredElement());
-		}
-		List<Type> results = new ArrayList<Type>(templateParameters.size());
-		for (TemplateParameter templateParameter : templateParameters) {
-			results.add((Type) templateParameter.getParameteredElement());
-		}
-		return results;
+	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {
+		return ModelElementCSScopeAdapter.getScopeCSAdapter(csElement);
 	}
 
 /*	public static Collection<TemplateParameterSubstitutionCS> getTemplateParameterSubstitutions(ParameterizedTypeRefCS templateableElement) {
@@ -264,10 +205,10 @@ public class ElementUtil
 		return true;
 	}
 
-	public static Type specializeClass(ClassCS csClass) {
+/*	public static Type specializeClass(ClassCS csClass) {
 //		if (ElementUtil.getTemplateParameters(csClass).isEmpty()) {
 			return (Type) csClass;				
-/*		}
+		}
 		Signature s = new Signature();
 		csClass.getSignature(s, bindings);
 		String name = s.toString();
@@ -281,8 +222,8 @@ public class ElementUtil
 		boundElement.setBinds(csClass);
 		boundElement.setBindings(bindings);
 		boundDocument.getOwnedType().add(boundElement);
-		return boundElement; */
-	}
+		return boundElement; 
+	} */
 
 /*	public static OperationCS specializeOperation(OperationCS csOperation, TypeBindingsCS bindings) {
 		ClassCS owner = csOperation.getOwner();

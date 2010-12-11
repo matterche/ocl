@@ -12,24 +12,25 @@
  *
  * </copyright>
  *
- * $Id: DataTypeCSScopeAdapter.java,v 1.1.2.2 2010/10/05 17:42:55 ewillink Exp $
+ * $Id: DataTypeCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class DataTypeCSScopeAdapter extends BaseCSScopeAdapter<DataTypeCS, DataType>
 {
-	public DataTypeCSScopeAdapter(DataTypeCS csElement) {
-		super(csElement, DataType.class);
+	public DataTypeCSScopeAdapter(PivotManager pivotManager, DataTypeCS csElement) {
+		super(pivotManager, csElement, DataType.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		addLibContents(environmentView, getOclAnyType(), scopeView);
+		addLibContents(environmentView, pivotManager.getOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}
 }

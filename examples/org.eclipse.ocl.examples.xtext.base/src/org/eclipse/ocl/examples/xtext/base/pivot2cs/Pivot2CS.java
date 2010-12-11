@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CS.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -32,13 +32,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -75,8 +75,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		if (resourceSet == null) {
 			return null;
 		}
-		List<Adapter> eAdapters = resourceSet.eAdapters();
-		return (Pivot2CS) EcoreUtil.getAdapter(eAdapters, Pivot2CS.class);
+		return PivotUtil.getAdapter(Pivot2CS.class, resourceSet);
 	}
 
 	public static List<LeafNode> getDocumentationNodes(CompositeNode node) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.1.2.3 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -39,12 +39,12 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends MonikeredElementCSScopeAdapter<CS, P>
 {	
-	protected BaseCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
+	protected BaseCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csElement, pivotClass);
 	}
 
-	protected BaseCSScopeAdapter(EObject csDocumentElement, CS csElement, Class<P> pivotClass) {
-		super(csDocumentElement, csElement, pivotClass);
+	protected BaseCSScopeAdapter(PivotManager pivotManager, EObject csDocumentElement, CS csElement, Class<P> pivotClass) {
+		super(pivotManager, csDocumentElement, csElement, pivotClass);
 	}
 
 	protected Type commonConformantType(Type firstTypeCS, Type secondTypeCS) {
@@ -77,7 +77,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			}
 		} */
 		else {
-			candidateType = getClassifierType();
+			candidateType = pivotManager.getClassifierType();
 			if (candidateType == requiredType) {
 				return true;
 			}
@@ -89,7 +89,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		List<TypedRefCS> superTypes = csClass.getOwnedSuperType();
 		int size = superTypes.size();
 		if (size == 0) {
-			Type libType = getClassifierType();
+			Type libType = pivotManager.getClassifierType();
 			return Collections.singletonList(libType);
 		} else if (size == 1) {
 			Type result = getLibraryType(superTypes.get(0));
@@ -142,10 +142,10 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			return null;
 		}
 		if (csElement instanceof ClassCS) {
-			return ElementUtil.specializeClass((ClassCS) csElement);
+//			return ElementUtil.specializeClass((ClassCS) csElement);
+			return (Type) csElement;				
 		}
 		else if (csElement instanceof ClassifierCS) {		// DataType
-			PivotManager pivotManager = getPivotManager();
 			EObject eObject = ((ClassifierCS) csElement).getPivot();
 			if (eObject == EcorePackage.Literals.EBIG_DECIMAL) {
 				return pivotManager.getRealType();

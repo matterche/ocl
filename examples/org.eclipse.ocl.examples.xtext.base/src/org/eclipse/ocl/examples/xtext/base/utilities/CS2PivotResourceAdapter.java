@@ -11,8 +11,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
@@ -28,14 +29,14 @@ public class CS2PivotResourceAdapter implements Adapter
 		if (csResource == null) {
 			return null;
 		}
-		List<Adapter> eAdapters = csResource.eAdapters();
-		return (CS2PivotResourceAdapter) EcoreUtil.getAdapter(eAdapters, CS2PivotResourceAdapter.class);
+		return PivotUtil.getAdapter(CS2PivotResourceAdapter.class, csResource);
 	}
 	
 	public static CS2PivotResourceAdapter getAdapter(BaseCSResource csResource, PivotManager pivotManager) {
 		List<Adapter> eAdapters = csResource.eAdapters();
-		CS2PivotResourceAdapter adapter = (CS2PivotResourceAdapter) EcoreUtil.getAdapter(eAdapters, CS2PivotResourceAdapter.class);
+		CS2PivotResourceAdapter adapter = PivotUtil.getAdapter(CS2PivotResourceAdapter.class, eAdapters);
 		if (adapter == null) {
+			pivotManager = ElementUtil.getPivotManager(csResource);
 			if (pivotManager == null) {
 				pivotManager = new PivotManager();
 			}
@@ -90,7 +91,8 @@ public class CS2PivotResourceAdapter implements Adapter
 	public long getModificationCount() {
 		List<EObject> contents = csResource.getContents();
 		if (!contents.isEmpty()) {
-			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(contents.get(0));
+			ElementCS csElement = (ElementCS) contents.get(0);
+			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
 			if (scopeAdapter != null) {
 				RootCSScopeAdapter documentScopeAdapter = scopeAdapter.getRootScopeAdapter();
 				if (documentScopeAdapter != null) {

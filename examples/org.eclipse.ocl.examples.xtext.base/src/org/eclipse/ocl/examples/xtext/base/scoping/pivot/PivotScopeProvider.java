@@ -12,31 +12,19 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeProvider.java,v 1.1.2.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: PivotScopeProvider.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.util.PivotSwitch;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.DefaultScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
@@ -49,18 +37,18 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  */
 public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 {
-	protected static class Factory extends ModelElementCSScopeAdapter.Factory
+/*	protected static class Factory extends ModelElementCSScopeAdapter.Factory
 	{
 		protected Factory() {
 			addSwitch(PivotPackage.eINSTANCE, new PivotScopeSwitch());
 		}
-	}
+	} */
 
-	public static ModelElementCSScopeAdapter.Factory FACTORY = new Factory();
+//	public static ModelElementCSScopeAdapter.Factory FACTORY = new Factory();
 	
 	public static final TracingOption LOOKUP = new TracingOption("org.eclipse.ocl.examples.xtext.base", "lookup");  //$NON-NLS-1$//$NON-NLS-2$
 	
-	public static class PivotScopeSwitch 
+/*	public static class PivotScopeSwitch 
 		extends PivotSwitch<ScopeAdapter>
 		implements ScopeAdapter.Switch
 	{
@@ -71,17 +59,17 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 
 		@Override
 		public ScopeAdapter caseConstraint(Constraint pivotElement) {
-			return new ConstraintScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
 		public ScopeAdapter caseExpressionInOcl(ExpressionInOcl pivotElement) {
-			return new ExpressionInOclScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
 		public ScopeAdapter caseIfExp(IfExp pivotElement) {
-			return new IfExpScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
@@ -96,7 +84,7 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 
 		@Override
 		public ScopeAdapter caseOperationCallExp(OperationCallExp pivotElement) {
-			return new OperationCallExpScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
@@ -111,27 +99,27 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 
 		@Override
 		public ScopeAdapter casePropertyCallExp(PropertyCallExp pivotElement) {
-			return new PropertyCallExpScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
 		public ScopeAdapter caseTemplateSignature(TemplateSignature pivotElement) {
-			return new TemplateSignatureScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
 		public ScopeAdapter caseTypeTemplateParameter(TypeTemplateParameter pivotElement) {
-			return new TypeTemplateParameterScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
 		public ScopeAdapter caseVariable(Variable pivotElement) {
-			return new VariableScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
 		public ScopeAdapter caseVariableExp(VariableExp pivotElement) {
-			return new VariableExpScopeAdapter(pivotElement);
+			return new EmptyScopeAdapter(pivotElement);
 		}
 
 		@Override
@@ -143,11 +131,14 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 			int classifierID = eObject.eClass().getClassifierID();
 			return doSwitch(classifierID, eObject);
 		}
-	}
+	} */
 
 	@Override
 	public ScopeView getScope(EObject context, EReference reference) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
+		Resource resource = context.eResource();
+		PivotManager pivotManager = PivotManager.getAdapter(resource.getResourceSet());
+//		assert pivotManager != null;
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ModelElementCS)context);
 		if (scopeAdapter == null) {
 			return null;
 		}
