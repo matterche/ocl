@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.6.6.2 2010/12/06 18:36:45 ewillink Exp $
+ * $Id: OperationContextScopeAdapter.java,v 1.6.6.3 2010/12/11 10:44:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
@@ -31,8 +32,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContex
 
 public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<OperationContextDeclCS, Operation>
 {
-	public OperationContextScopeAdapter(OperationContextDeclCS csElement) {
-		super(csElement, Operation.class);
+	public OperationContextScopeAdapter(PivotManager pivotManager, OperationContextDeclCS csElement) {
+		super(pivotManager, csElement, Operation.class);
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<Ope
 			if (csOperationRef instanceof SimpleOperationRefCS) {
 				SimpleOperationRefCS csSimpleOperationRef = (SimpleOperationRefCS)csOperationRef;
 				OperationCS operationContext = csSimpleOperationRef.getOperation();
-				EObject classifierContext = operationContext.eContainer();
+				ModelElementCS classifierContext = (ModelElementCS) operationContext.eContainer();
 				environmentView.addNamedElements(operationContext.getOwnedParameter());
 				environmentView.addElementsOfScope(classifierContext, scopeView);
 				environmentView.addElement("self", classifierContext);

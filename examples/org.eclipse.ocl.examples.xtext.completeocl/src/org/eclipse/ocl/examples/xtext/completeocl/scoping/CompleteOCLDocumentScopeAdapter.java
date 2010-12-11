@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.6.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.6.6.2 2010/12/11 10:44:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -26,8 +27,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.StandardDocumentScope
 
 public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapter<CompleteOCLDocumentCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public CompleteOCLDocumentScopeAdapter(CompleteOCLDocumentCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public CompleteOCLDocumentScopeAdapter(PivotManager pivotManager, CompleteOCLDocumentCS csElement) {
+		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override

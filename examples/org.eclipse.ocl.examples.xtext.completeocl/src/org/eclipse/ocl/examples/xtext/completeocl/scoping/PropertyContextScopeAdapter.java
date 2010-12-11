@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.5.6.2 2010/12/06 18:36:45 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.5.6.3 2010/12/11 10:44:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
@@ -31,8 +32,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContext
 
 public class PropertyContextScopeAdapter extends ModelElementCSScopeAdapter<PropertyContextDeclCS, Property>
 {
-	public PropertyContextScopeAdapter(PropertyContextDeclCS csElement) {
-		super(csElement, Property.class);
+	public PropertyContextScopeAdapter(PivotManager pivotManager, PropertyContextDeclCS csElement) {
+		super(pivotManager, csElement, Property.class);
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class PropertyContextScopeAdapter extends ModelElementCSScopeAdapter<Prop
 			if (csStructuralFeatureRef instanceof SimpleStructuralFeatureRefCS) {
 				SimpleStructuralFeatureRefCS csSimpleStructuralFeatureRef = (SimpleStructuralFeatureRefCS)csStructuralFeatureRef;
 				StructuralFeatureCS feature = csSimpleStructuralFeatureRef.getFeature();
-				EObject classifierContext = feature.eContainer();
+				ModelElementCS classifierContext = (ModelElementCS) feature.eContainer();
 				environmentView.addElementsOfScope(classifierContext, scopeView);
 				environmentView.addElement("self", classifierContext);
 			}

@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLStandaloneSetup.java,v 1.1.6.2 2010/12/06 18:36:45 ewillink Exp $
+ * $Id: CompleteOCLStandaloneSetup.java,v 1.1.6.3 2010/12/11 10:44:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.completeocl.cs2pivot.CompleteOCLCS2Pivot;
-import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.MonikerCompleteOCLCSVisitor;
 
 /**
@@ -28,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.utilities.MonikerCompleteOCLCS
 public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenerated{
 
 	public static void doSetup() {
-		CompleteOCLScopeProvider.FACTORY.getClass();
+//		CompleteOCLScopeProvider.FACTORY.getClass();
 		MonikerCompleteOCLCSVisitor.FACTORY.getClass();
 		CompleteOCLCS2Pivot.FACTORY.getClass();
 //		CompleteOCL2MonikerSwitch.FACTORY.getClass();

@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PostScopeAdapter.java,v 1.4.6.2 2010/12/06 18:36:45 ewillink Exp $
+ * $Id: PostScopeAdapter.java,v 1.4.6.3 2010/12/11 10:44:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
@@ -27,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAd
 
 public class PostScopeAdapter extends EssentialOCLCSScopeAdapter<PostCS, Constraint>
 {
-	public PostScopeAdapter(PostCS csElement) {
-		super(csElement, Constraint.class);
+	public PostScopeAdapter(PivotManager pivotManager, PostCS csElement) {
+		super(pivotManager, csElement, Constraint.class);
 	}
 
 	@Override

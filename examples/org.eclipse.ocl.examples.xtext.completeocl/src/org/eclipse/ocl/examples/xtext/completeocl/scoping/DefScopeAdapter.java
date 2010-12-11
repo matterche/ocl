@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefScopeAdapter.java,v 1.4.6.1 2010/10/01 15:03:01 ewillink Exp $
+ * $Id: DefScopeAdapter.java,v 1.4.6.2 2010/12/11 10:44:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -28,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAd
 
 public class DefScopeAdapter extends EssentialOCLCSScopeAdapter<DefCS, TypedElement>
 {
-	public DefScopeAdapter(DefCS csElement) {
-		super(csElement, TypedElement.class);
+	public DefScopeAdapter(PivotManager pivotManager, DefCS csElement) {
+		super(pivotManager, csElement, TypedElement.class);
 	}
 
 	@Override
