@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.2 2010/12/11 10:46:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
+
+import java.math.BigDecimal;
 
 /**
  * Tests for numeric operations.
@@ -29,7 +31,8 @@ public abstract class GenericEvaluateNumericOperationsTest
     @Override
     protected void setUp() {
         super.setUp();
-        helper.setContext(getMetaclass(denormalize("%Package")));
+//        helper.setContext(getMetaclass(denormalize("%Package")));
+        helper.setContext(getMetaclass("Classifier"));
     }
     
 	public void testNumberAbs() {
@@ -38,9 +41,9 @@ public abstract class GenericEvaluateNumericOperationsTest
 		assertQueryEquals(null, 3, "(-3).abs()");
 
 		// Real::abs()
-		assertQueryEquals(null, 3.0, "(3.0).abs()");
-		assertQueryEquals(null, 3.0, "(-3.0).abs()");
-		assertQueryEquals(null, 3.1758, "(3.1758).abs()");
+		assertQueryEquals(null, 3.0, "(3.0).abs()", 0.0);
+		assertQueryEquals(null, 3.0, "(-3.0).abs()", 0.0);
+		assertQueryEquals(null, 3.1758, "(3.1758).abs()", 0.0);
 		// invalid
 		assertQueryInvalid(null, "let i : Integer = invalid in i.abs()");
 		assertQueryInvalid(null, "let r : Real = invalid in r.abs()");
@@ -69,19 +72,19 @@ public abstract class GenericEvaluateNumericOperationsTest
 	public void testNumberDivide() {
 		// A.2.1.3 Contrary to other operations, "Integer x Integer -> Real"
 		// Integer::/(Integer)
-		assertQueryEquals(null, 1.0, "1 / 1");
-		assertQueryEquals(null, -0.25, "1 / -4");
+		assertQueryEquals(null, 1.0, "1 / 1", 0.0);
+		assertQueryEquals(null, -0.25, "1 / -4", 0.0);
 
 		// Integer::/(Real)
-		assertQueryEquals(null, 1.0, "1 / 1.0");
-		assertQueryEquals(null, -0.25, "1 / -4.0");
+		assertQueryEquals(null, 1.0, "1 / 1.0", 0.0);
+		assertQueryEquals(null, -0.25, "1 / -4.0", 0.0);
 
 		// Real::/(Integer)
-		assertQueryEquals(null, 1.0, "1.0 / 1");
-		assertQueryEquals(null, -0.25, "1.0 / -4");
+		assertQueryEquals(null, 1.0, "1.0 / 1", 0.0);
+		assertQueryEquals(null, -0.25, "1.0 / -4", 0.0);
 
 		// Real::/(Real)
-		assertQueryEquals(null, 1.0, "1.0 / 1.0");
+		assertQueryEquals(null, 1.0, "1.0 / 1.0", 0.0);
 		assertQueryEquals(null, 1.11 / 1.12, "1.11 / 1.12", 1 * doubleEpsilon);
 		
 		// by zero
@@ -338,22 +341,22 @@ public abstract class GenericEvaluateNumericOperationsTest
 		assertQueryEquals(null, -2, "(-3).max(-2)");
 
 		// Integer::max(Real)
-		assertQueryEquals(null, 3.0, "3.max(2.0)");
-		assertQueryEquals(null, 2.0, "(-3).max(2.0)");
-		assertQueryEquals(null, 3.0, "3.max(-2.0)");
-		assertQueryEquals(null, -2.0, "(-3).max(-2.0)");
+		assertQueryEquals(null, 3.0, "3.max(2.0)", 0.0);
+		assertQueryEquals(null, 2.0, "(-3).max(2.0)", 0.0);
+		assertQueryEquals(null, 3.0, "3.max(-2.0)", 0.0);
+		assertQueryEquals(null, -2.0, "(-3).max(-2.0)", 0.0);
 
 		// Real::max(Integer)
-		assertQueryEquals(null, 3.0, "(3.0).max(2)");
-		assertQueryEquals(null, 2.0, "(-3.0).max(2)");
-		assertQueryEquals(null, 3.0, "(3.0).max(-2)");
-		assertQueryEquals(null, -2.0, "(-3.0).max(-2)");
+		assertQueryEquals(null, 3.0, "(3.0).max(2)", 0.0);
+		assertQueryEquals(null, 2.0, "(-3.0).max(2)", 0.0);
+		assertQueryEquals(null, 3.0, "(3.0).max(-2)", 0.0);
+		assertQueryEquals(null, -2.0, "(-3.0).max(-2)", 0.0);
 
 		// Real::max(Real)
-		assertQueryEquals(null, 3.0, "(3.0).max(2.0)");
-		assertQueryEquals(null, 2.0, "(-3.0).max(2.0)");
-		assertQueryEquals(null, 3.0, "(3.0).max(-2.0)");
-		assertQueryEquals(null, -2.0, "(-3.0).max(-2.0)");
+		assertQueryEquals(null, 3.0, "(3.0).max(2.0)", 0.0);
+		assertQueryEquals(null, 2.0, "(-3.0).max(2.0)", 0.0);
+		assertQueryEquals(null, 3.0, "(3.0).max(-2.0)", 0.0);
+		assertQueryEquals(null, -2.0, "(-3.0).max(-2.0)", 0.0);
 
 		// invalid
 		assertQueryInvalid(null, "let i : Integer = invalid in 1.max(i)");
@@ -382,22 +385,22 @@ public abstract class GenericEvaluateNumericOperationsTest
 		assertQueryEquals(null, -3, "(-3).min(-2)");
 
 		// Integer::min(Real)
-		assertQueryEquals(null, 2.0, "3.min(2.0)");
-		assertQueryEquals(null, -3.0, "(-3).min(2.0)");
-		assertQueryEquals(null, -2.0, "3.min(-2.0)");
-		assertQueryEquals(null, -3.0, "(-3).min(-2.0)");
+		assertQueryEquals(null, 2.0, "3.min(2.0)", 0.0);
+		assertQueryEquals(null, -3.0, "(-3).min(2.0)", 0.0);
+		assertQueryEquals(null, -2.0, "3.min(-2.0)", 0.0);
+		assertQueryEquals(null, -3.0, "(-3).min(-2.0)", 0.0);
 
 		// Real::min(Integer)
-		assertQueryEquals(null, 2.0, "(3.0).min(2)");
-		assertQueryEquals(null, -3.0, "(-3.0).min(2)");
-		assertQueryEquals(null, -2.0, "(3.0).min(-2)");
-		assertQueryEquals(null, -3.0, "(-3.0).min(-2)");
+		assertQueryEquals(null, 2.0, "(3.0).min(2)", 0.0);
+		assertQueryEquals(null, -3.0, "(-3.0).min(2)", 0.0);
+		assertQueryEquals(null, -2.0, "(3.0).min(-2)", 0.0);
+		assertQueryEquals(null, -3.0, "(-3.0).min(-2)", 0.0);
 
 		// Real::min(Real)
-		assertQueryEquals(null, 2.0, "(3.0).min(2.0)");
-		assertQueryEquals(null, -3.0, "(-3.0).min(2.0)");
-		assertQueryEquals(null, -2.0, "(3.0).min(-2.0)");
-		assertQueryEquals(null, -3.0, "(-3.0).min(-2.0)");
+		assertQueryEquals(null, 2.0, "(3.0).min(2.0)", 0.0);
+		assertQueryEquals(null, -3.0, "(-3.0).min(2.0)", 0.0);
+		assertQueryEquals(null, -2.0, "(3.0).min(-2.0)", 0.0);
+		assertQueryEquals(null, -3.0, "(-3.0).min(-2.0)", 0.0);
 
 		// invalid
 		assertQueryInvalid(null, "let i : Integer = invalid in 1.min(i)");
@@ -478,7 +481,7 @@ public abstract class GenericEvaluateNumericOperationsTest
 
 	public void testNumberNegate() {
 		assertQueryEquals(null, -1, "-1");
-		assertQueryEquals(null, -1.0, "-1.0");
+		assertQueryEquals(null, -1.0, "-1.0", 0.0);
 		// invalid
 		assertQueryInvalid(null, "let i : Integer = invalid in -i");
 		assertQueryInvalid(null, "let r : Real = invalid in -r");
@@ -575,16 +578,16 @@ public abstract class GenericEvaluateNumericOperationsTest
 		assertQueryEquals(null, -4, "1 * -4");
 
 		// Integer::*(Real)
-		assertQueryEquals(null, 1.0, "1 * 1.0");
-		assertQueryEquals(null, -4.0, "1 * -4.0");
+		assertQueryEquals(null, 1.0, "1 * 1.0", 0.0);
+		assertQueryEquals(null, -4.0, "1 * -4.0", 0.0);
 
 		// Real::*(Integer)
-		assertQueryEquals(null, 1.0, "1.0 * 1");
-		assertQueryEquals(null, -4.0, "1.0 * -4");
+		assertQueryEquals(null, 1.0, "1.0 * 1", 0.0);
+		assertQueryEquals(null, -4.0, "1.0 * -4", 0.0);
 
 		// Real::*(Real)
-		assertQueryEquals(null, 1.0, "1.0 * 1.0");
-		assertQueryEquals(null, 1.11 * 1.12, "1.11 * 1.12", 1 * doubleEpsilon);
+		assertQueryEquals(null, 1.0, "1.0 * 1.0", 0.0);
+		assertQueryEquals(null, BigDecimal.valueOf(1.11).multiply(BigDecimal.valueOf(1.12)), "1.11 * 1.12", 0.0);
 
 		// invalid
 		assertQueryInvalid(null, "let i : Integer = invalid in 1 * i");

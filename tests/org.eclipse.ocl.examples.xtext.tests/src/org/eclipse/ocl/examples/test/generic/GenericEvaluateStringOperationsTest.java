@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.2 2010/12/09 22:15:47 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.3 2010/12/11 10:46:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
+
+import java.math.BigDecimal;
 
 
 /**
@@ -236,9 +238,10 @@ public abstract class GenericEvaluateStringOperationsTest
 	}
 
 	public void testStringToInteger() {
+		pivotManager.setAllowExplanatoryInvalids(true);
 		assertQueryEquals(null, Integer.valueOf(4), "'4'.toInteger()");
 		assertQueryEquals(null, Integer.valueOf(-4), "'-4'.toInteger()");
-		assertQueryInvalid(null, "'4.0'.toInteger()");
+		assertQueryInvalid(null, "'4.0'.toInteger()", "Not an Integer", NumberFormatException.class);
 
 		assertQueryInvalid(null, "'2.4.0'.toInteger()");
 		assertQueryInvalid(null, "'a'.toInteger()");
@@ -263,12 +266,13 @@ public abstract class GenericEvaluateStringOperationsTest
 	}
 
 	public void testStringToReal() {
+		pivotManager.setAllowExplanatoryInvalids(true);
 		assertQueryEquals(null, Double.valueOf(4d), "'4'.toReal()");
 		assertQueryEquals(null, Double.valueOf(-4d), "'-4'.toReal()");
-		assertQueryEquals(null, Double.valueOf(4d), "'4.0'.toReal()");
+		assertQueryEquals(null, new BigDecimal("4.0"), "'4.0'.toReal()");
 
-		assertQueryInvalid(null, "'2.4.0'.toReal()");
-		assertQueryInvalid(null, "'a'.toReal()");
+		assertQueryInvalid(null, "'2.4.0'.toReal()", "Not a Real", NumberFormatException.class);
+		assertQueryInvalid(null, "'a'.toReal()", "Not a Real", NumberFormatException.class);
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toReal()");
 		// null

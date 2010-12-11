@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.3 2010/12/06 18:47:46 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.4 2010/12/11 10:46:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -24,6 +24,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -385,12 +386,35 @@ public abstract class GenericTestSuite
 	 * Assert that the result of evaluating an expression as a query is equal to expected.
 	 * @return the evaluation result
 	 */
-	protected Object assertQueryEquals(Object context, Double expected, String expression, double tolerance) {
+	protected Object assertQueryEquals(Object context, BigDecimal expected, BigDecimal delta, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			BigDecimal value = (BigDecimal) evaluate(helper, context, denormalized);
+			assertTrue(denormalized, (value.compareTo(expected.add(delta)) >= 0) && (value.compareTo(expected.subtract(delta)) >= 0));
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is equal to expected.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryEquals(Object context, Number expected, String expression, double tolerance) {
 		String denormalized = denormalize(expression);
 		try {
 			Object value = evaluate(helper, context, denormalized);
-			if (value instanceof Double) {
-				double delta = (Double)value - expected;
+			/*if (value instanceof Double) {
+				double delta = (Double)value - (Double)expected;
+				if ((delta < -tolerance) || (tolerance < delta)) {
+					assertEquals(denormalized, expected, value);
+				}
+			}
+			else*/ if (value instanceof BigDecimal) {
+				BigDecimal expectedValue = expected instanceof BigDecimal ? (BigDecimal)expected : BigDecimal.valueOf((Double)expected);
+				double delta = ((BigDecimal)value).subtract(expectedValue).doubleValue();
 				if ((delta < -tolerance) || (tolerance < delta)) {
 					assertEquals(denormalized, expected, value);
 				}
@@ -461,6 +485,24 @@ public abstract class GenericTestSuite
 				assertEquals(denormalized, environment.getPivotManager().getInvalidValue(), value);
 			}
 			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	protected Object assertQueryInvalid(Object context, String expression,
+			String reason, Class<?> exceptionClass) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			if (!(value instanceof InvalidLiteralExp)) {
+				assertEquals(denormalized, environment.getPivotManager().getInvalidValue(), value);
+			}
+			InvalidLiteralExp invalidValue = (InvalidLiteralExp)value;
+			assertEquals("Invalaid Value Reason", reason, invalidValue.getReason());
+			assertEquals("Invalaid Value Throwable", exceptionClass, invalidValue.getThrowable().getClass());
+			return invalidValue;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
 			return null;
@@ -647,7 +689,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Object value = evaluate(helper, context, denormalized);
-			if (!(value instanceof UnlimitedNaturalLiteralExp) || !(((UnlimitedNaturalLiteralExp)value).getSymbol().signum() < 0)) {
+			if (!(value instanceof UnlimitedNaturalLiteralExp) || !(((UnlimitedNaturalLiteralExp)value).getUnlimitedNaturalSymbol().signum() < 0)) {
 				assertEquals(denormalized, environment.getPivotManager().getUnlimitedValue(), value);
 			}
 			return value;
