@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.3 2010/12/13 08:15:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -37,11 +37,11 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		BinaryOperatorCS target = getTarget();
+		BinaryOperatorCS csOperator = getTarget();
 		if (containmentFeature == PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
-			OclExpression source = PivotUtil.getPivot(OclExpression.class, target.getSource());
+			OclExpression csSource = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
 //			ScopeAdapter typeScopeAdapter = getScopeAdapter(pivotManager, source.getType());
-			environmentView.addElementsOfScope(pivotManager, source.getType(), scopeView);
+			environmentView.addElementsOfScope(pivotManager, csSource.getType(), scopeView);
 //			return typeScopeAdapter.compute Lookup(environmentView, typeScopeAdapter.getInnerScopeView(null));
 //			return getScopeCSAdapter(parent).getOuterScopeView(null);
 			return scopeView.getOuterScope();

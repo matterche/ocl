@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.1.2.4 2010/12/13 08:15:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -65,7 +65,9 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 			}
 			ScopeCSAdapter scopeAdapter = null;
 			IScope scope = null;
-			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// FIXME this is costly; don't inflict it when not needed
+			String uri = TypesPackage.eNS_URI;
+//			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// FIXME this is costly; don't inflict it when not needed
+			if (ref.getEReferenceType().getEPackage().getNsURI().equals(uri)) {
 				scope = globalScopeProvider.getScope(context, ref);
 			}
 			else {

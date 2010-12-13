@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.4 2010/12/13 08:15:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -24,9 +24,9 @@ import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
 public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, OperationCallExp>
 {
@@ -38,23 +38,15 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EObject csParent = getParent().getTarget();
 		if (csParent instanceof InfixExpCS) {
-			InfixExpCS csInfixParent = (InfixExpCS)csParent;
-			NavigatingExpCS csTarget = getTarget();
-			int index = csInfixParent.getOwnedExpression().indexOf(csTarget);
-			if (index >= 0) {
-				if (index < csInfixParent.getOwnedOperator().size()) {
-					BinaryOperatorCS csOperatorAsSource = csInfixParent.getOwnedOperator().get(index);
-					if (csTarget == csOperatorAsSource.getSource()) {
-						ScopeAdapter scopeAdapter = getScopeAdapter(csOperatorAsSource);
-						return new BaseScopeView(scopeAdapter, PivotPackage.Literals.CALL_EXP__SOURCE, null);
-					}
+			NavigatingExpCS csExpression = getTarget();
+			OperatorCS csOperator = csExpression.getParent();
+			if (csOperator != null) {
+				ScopeAdapter scopeAdapter = getScopeAdapter(csOperator);
+				if (csExpression == csOperator.getSource()) {
+					return new BaseScopeView(scopeAdapter, PivotPackage.Literals.CALL_EXP__SOURCE, null);
 				}
-				if (index-1 >= 0) {
-					BinaryOperatorCS csOperatorAsArgument = csInfixParent.getOwnedOperator().get(index-1);
-					if (csTarget.getNamedExp() == csOperatorAsArgument.getArgument()) {
-						ScopeAdapter scopeAdapter = getScopeAdapter(csOperatorAsArgument);
-						return new BaseScopeView(scopeAdapter, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
-					}
+				else {
+					return new BaseScopeView(scopeAdapter, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 				}
 			}
 		}

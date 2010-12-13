@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.1.2.2 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -36,6 +36,10 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 		private Factory() {
 			BaseCS2Pivot.FACTORY.getClass();
 			CS2Pivot.addFactory(this);
+		}
+
+		public EssentialOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+			return new EssentialOCLLeft2RightVisitor(converter);
 		}
 
 		public EssentialOCLPostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
