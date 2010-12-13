@@ -12,13 +12,16 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionAtOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OrderedCollectionAtOperation.java,v 1.1.2.3 2010/12/13 08:14:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import java.math.BigInteger;
 import java.util.Collection;
 
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
@@ -36,5 +39,16 @@ public class OrderedCollectionAtOperation extends AbstractOrderedCollectionBinar
 			return null;
 		}
 		return CollectionUtil.at(sourceVal, ((BigInteger)argVal).intValue());
+	}
+
+	@Override
+	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+		try {
+			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
+		}
+		catch (IndexOutOfBoundsException e) {
+			StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+			return stdlib.createInvalidValue(sourceVal, operationCall, "Bad Index", e);
+		}
 	}
 }
