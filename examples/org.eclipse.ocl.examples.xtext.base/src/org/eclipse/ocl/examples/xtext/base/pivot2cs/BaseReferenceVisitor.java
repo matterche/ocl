@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.1.2.3 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -57,7 +56,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 */	}
 
 	public ElementCS visiting(Visitable visitable) {
-		logger.warn("reference-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("reference-visiting " + visitable.eClass().getName());
 		return null;
 	}
 }

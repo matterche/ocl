@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeVisitor.java,v 1.1.2.1 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: BaseScopeVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -226,7 +225,7 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	}
 
 	public ScopeCSAdapter visiting(VisitableCS visitable) {
-		logger.warn("cs-scope-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("cs-scope-visiting " + visitable.eClass().getName());
 		return null;
 	}
 }

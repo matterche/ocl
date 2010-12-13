@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.1.2.4 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -113,7 +113,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 
 	public Continuation<?> visiting(VisitableCS visitable) {
-		logger.warn("post-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("post-visiting " + visitable.eClass().getName());
 		return null;
 	}
 

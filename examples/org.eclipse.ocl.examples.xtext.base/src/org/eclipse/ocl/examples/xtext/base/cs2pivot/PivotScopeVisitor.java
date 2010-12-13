@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.1.2.1 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -37,6 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EmptyScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.LetExpScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.OperationCallExpScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.OperationScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PackageScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.RootPackageScopeAdapter;
@@ -82,7 +82,7 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Pi
 
 	@Override
 	public ScopeAdapter visitOperationCallExp(OperationCallExp pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new OperationCallExpScopeAdapter(context, pivotElement);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Pi
 	}
 
 	public ScopeAdapter visiting(Visitable visitable) {
-		logger.warn("scope-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("scope-visiting " + visitable.eClass().getName());
 		return null;
 	}	
 }

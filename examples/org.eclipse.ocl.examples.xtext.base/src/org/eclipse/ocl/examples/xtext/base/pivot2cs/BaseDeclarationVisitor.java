@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -212,7 +211,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	public ElementCS visiting(Visitable visitable) {
-		logger.warn("declaration-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("declaration-visiting " + visitable.eClass().getName());
 		return null;
 	}
 }

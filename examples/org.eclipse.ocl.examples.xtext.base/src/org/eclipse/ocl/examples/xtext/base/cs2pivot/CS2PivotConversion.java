@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.4 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -88,8 +88,9 @@ public class CS2PivotConversion extends AbstractConversion
 	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
 	
 	/**
-	 * The per-package Switches
+	 * The per-package Vistors
 	 */
+	private final Map<EPackage, BaseCSVisitor<MonikeredElement, CS2PivotConversion>> left2RightVisitorMap = new HashMap<EPackage, BaseCSVisitor<MonikeredElement, CS2PivotConversion>>();
 	private final Map<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>> postOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>>();
 	private final Map<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>> preOrderVisitorMap = new HashMap<EPackage, BaseCSVisitor<Continuation<?>, CS2PivotConversion>>();
 
@@ -143,6 +144,24 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		return documentationStrings;
 	} */
+
+	public BaseCSVisitor<MonikeredElement, CS2PivotConversion> getLeft2RightVisitor(EPackage ePackage) {
+		BaseCSVisitor<MonikeredElement, CS2PivotConversion> left2RightVisitor = left2RightVisitorMap.get(ePackage);
+		if ((left2RightVisitor == null) && !left2RightVisitorMap.containsKey(ePackage)) {
+			Factory factory = converter.getFactory(ePackage);
+			if (factory != null) {
+				left2RightVisitor = factory.createLeft2RightVisitor(this);
+				if (left2RightVisitor == null) {
+					logger.error("No Left2Right Visitor created for " + ePackage.getName());
+				}
+			}
+			else {
+				logger.error("No Left2Right Visitor Factory registered for " + ePackage.getName());
+			}
+			left2RightVisitorMap.put(ePackage, left2RightVisitor);
+		}
+		return left2RightVisitor;
+	}
 
 	public InterDependency<OperationContinuation> getOperationsHaveTemplateParametersInterDependency() {
 		return operationsHaveTemplateParameters;
@@ -372,6 +391,23 @@ public class CS2PivotConversion extends AbstractConversion
 
 	public void putPivotElement(MonikeredElement pivotElement) {
 		converter.putPivotElement(pivotElement.getMoniker(), pivotElement);
+	}
+
+	public <T extends MonikeredElement> T refreshExpTree(Class<T> pivotClass, ModelElementCS csElement) {
+		if (csElement == null) {
+			return null;
+		}
+		MonikeredElement pivotElement = visitLeft2Right(csElement);
+		if (pivotElement == null) {
+			return null;
+		}
+		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
+			logger.error("Pivot '" + pivotElement.getClass().getName() + "' element is not a '" + pivotClass.getName() + "'"); //$NON-NLS-1$
+			return null;
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) pivotElement;
+		return castElement;
 	}
 	
 	public <T extends OclExpression> T refreshExpression(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement) {
@@ -841,6 +877,17 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			System.out.println(s.toString());
 		} */	
+	}
+
+	public MonikeredElement visitLeft2Right(EObject eObject) {
+		BaseCSVisitor<MonikeredElement, CS2PivotConversion> left2RightVisitor = getLeft2RightVisitor(eObject.eClass().getEPackage());
+		if ((left2RightVisitor == null) || !(eObject instanceof VisitableCS)) {
+			logger.warn("Unsupported " + eObject.eClass().getName());
+			return null;
+		}
+		else {
+			return ((VisitableCS)eObject).accept(left2RightVisitor);
+		}
 	}
 
 	protected void visitInPostOrder(List<? extends EObject> eObjects, List<BasicContinuation<?>> continuations) {

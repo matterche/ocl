@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerBaseCSVisitor.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: MonikerBaseCSVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -22,7 +22,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -99,7 +98,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 	}
 
 	public Object visiting(VisitableCS visitable) {
-		logger.warn("moniker-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("moniker-visiting " + visitable.eClass().getName());
 		return null;
 	}	
 

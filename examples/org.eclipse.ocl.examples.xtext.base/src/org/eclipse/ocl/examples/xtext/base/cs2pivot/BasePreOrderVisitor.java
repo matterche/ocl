@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.4 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -402,7 +401,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	public Continuation<?> visiting(VisitableCS visitable) {
-		logger.warn("pre-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("pre-visiting " + visitable.eClass().getName());
 		return null;
 	}
 

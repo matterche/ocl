@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2Pivot.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: BaseCS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -74,6 +74,10 @@ public class BaseCS2Pivot extends CS2Pivot
 	{
 		private Factory() {
 			CS2Pivot.addFactory(this);
+		}
+
+		public BaseLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+			return new BaseLeft2RightVisitor(converter);
 		}
 
 		public BasePostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {

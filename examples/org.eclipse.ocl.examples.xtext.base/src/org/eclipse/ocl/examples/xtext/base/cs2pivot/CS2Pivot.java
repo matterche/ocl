@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -60,6 +60,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	private static final Logger logger = Logger.getLogger(CS2Pivot.class);
 
 	public static interface Factory {
+		BaseCSVisitor<MonikeredElement, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager);
