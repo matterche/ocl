@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.1.2.3 2010/12/09 22:15:47 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.1.2.4 2010/12/13 08:15:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -109,7 +109,7 @@ public class MonikerTests extends XtextTestCase
 				assertEquals("Pivot moniker for CS:", csMoniker, pivotMoniker);
 			}
 			else {
-				System.out.println("[" + csElement.eClass().getName() + "] : " + csMoniker);				
+//				System.out.println("[" + csElement.eClass().getName() + "] : " + csMoniker);				
 			}
 		}
 	}
