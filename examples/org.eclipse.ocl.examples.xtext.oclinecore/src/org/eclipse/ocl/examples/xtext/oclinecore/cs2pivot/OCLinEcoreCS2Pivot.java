@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCS2Pivot.java,v 1.1.2.2 2010/12/11 10:44:27 ewillink Exp $
+ * $Id: OCLinEcoreCS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
@@ -35,6 +35,10 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 		private Factory() {
 			EssentialOCLCS2Pivot.FACTORY.getClass();
 			CS2Pivot.addFactory(this);
+		}
+
+		public OCLinEcoreLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+			return new OCLinEcoreLeft2RightVisitor(converter);
 		}
 
 		public OCLinEcorePostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
