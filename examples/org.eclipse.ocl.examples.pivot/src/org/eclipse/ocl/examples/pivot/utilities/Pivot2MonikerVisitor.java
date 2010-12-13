@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.2 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.3 2010/12/13 08:14:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -574,7 +574,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	}
 
 	public Object visiting(Visitable visitable) {
-		logger.warn("moniker-visiting " + ((EObject)visitable).eClass().getName());
+		logger.warn("moniker-visiting " + visitable.eClass().getName());
 		return null;
 	}	
 }

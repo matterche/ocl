@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.5 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.6 2010/12/13 08:14:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -21,11 +21,12 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
@@ -58,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeUtil;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.values.Bag;
 
 /**
  * A PivotManager adapts a ResourceSet to provide facilities for the pivot
@@ -86,20 +88,6 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	{
 		public NoDefaultLibrary() {
 			StandardLibraryContribution.REGISTRY.put(DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
-		}
-	}
-
-	/**
-	 * 'Highest' precedence first
-	 */
-	public static class PrecedenceComparator implements Comparator<Precedence> {
-
-		public static final PrecedenceComparator INSTANCE = new PrecedenceComparator();
-
-		public int compare(Precedence o1, Precedence o2) {
-			return o2.getOrder().compareTo(o1.getOrder()); // NB least positive
-															// is hioghest
-															// precedence
 		}
 	}
 
@@ -537,7 +525,22 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 				? getUnlimitedNaturalType()
 				: getIntegerType();
 		}
-		return getInvalidType();
+		if (value instanceof Collection) {
+			if (value instanceof Bag<?>) {
+				return getBagType();
+			}
+			if (value instanceof LinkedHashSet<?>) {
+				return getOrderedSetType();
+			}
+			if (value instanceof List<?>) {
+				return getSequenceType();
+			}
+			if (value instanceof Set<?>) {
+				return getSetType();
+			}
+			return getCollectionType();
+		}
+		return type;
 	}
 
 	public Object getValueOfValue(Object value) {
@@ -709,25 +712,5 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == pivotResourceSet;
-	}
-
-	public List<Precedence> getSortedPrecedences(
-			Collection<Precedence> unsortedPrecedences) {
-		// if (nameToPrecedencesMap == null) {
-		// compilePrecedences(computePivotRootPackages());
-		// }
-		List<Precedence> precedences = new ArrayList<Precedence>(
-			unsortedPrecedences);
-		/*
-		 * for (String operatorName : infixOperatorNames) { String
-		 * precedenceName = infixToPrecedenceNameMap.get(operatorName); if
-		 * (precedenceName == null) { logger.warn("No precedence for operator '"
-		 * + operatorName + "'"); } else { List<Precedence> precedence =
-		 * nameToPrecedencesMap.get(precedenceName); if (precedence == null) {
-		 * logger.warn("No precedence for precedence '" + precedenceName + "'");
-		 * } else { precedences.add(precedence.get(0)); } } }
-		 */
-		Collections.sort(precedences, new PrecedenceComparator());
-		return precedences;
 	}
 }

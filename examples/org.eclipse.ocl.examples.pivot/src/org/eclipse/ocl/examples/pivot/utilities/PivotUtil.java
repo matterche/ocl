@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.1 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.2 2010/12/13 08:14:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -42,6 +43,20 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 public class PivotUtil
 {	
 	private static final Logger logger = Logger.getLogger(PivotUtil.class);
+
+	/**
+	 * 'Highest' precedence first
+	 */
+	public static class PrecedenceComparator implements Comparator<Precedence>
+	{
+		public static final PrecedenceComparator INSTANCE = new PrecedenceComparator();
+
+		public int compare(Precedence o1, Precedence o2) {
+			return o2.getOrder().compareTo(o1.getOrder()); // NB least positive
+															// is highest
+															// precedence
+		}
+	}
 
 	public static boolean conformsTo(EStructuralFeature eStructuralFeature, EClassifier contentType) {
 		if (eStructuralFeature == null) {			// Wildcard match all

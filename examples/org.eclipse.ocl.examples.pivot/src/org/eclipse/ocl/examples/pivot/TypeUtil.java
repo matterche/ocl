@@ -16,7 +16,7 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: TypeUtil.java,v 1.1.2.3 2010/12/13 08:14:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -574,6 +574,11 @@ public class TypeUtil {
 			if (conformsToClass(superClass, requiredType)) {
 				return true;
 			}
+		}
+		List<TemplateBinding> templateBindings = actualType.getTemplateBindings();
+		if (templateBindings.size() > 0) {
+			TemplateableElement template = templateBindings.get(0).getSignature().getTemplate();
+			return conformsToClass((org.eclipse.ocl.examples.pivot.Class)template, requiredType);
 		}
 		return false;
 	}

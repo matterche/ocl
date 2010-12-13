@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1.2.2 2010/12/06 17:20:46 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.1.2.3 2010/12/13 08:14:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -25,6 +25,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -35,7 +36,6 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.xtext.resource.XtextResource;
 
 
 /**
@@ -53,26 +53,18 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 
 	public OclExpression createQuery(String expression) throws ParserException {
 		PivotManager pivotManager = getEnvironment().getPivotManager();
-		URI uri = URI.createURI("test.essentialocl");
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		XtextResource resource = (XtextResource) resourceSet.createResource(uri);
-		CS2PivotResourceSetAdapter resourceSetAdapter = CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
-//		IParser parser = resource.getParser();
-//		IParseResult parseResult = parser.parse(new StringReader(expression));
-//		List<SyntaxError> parseErrors = parseResult.getParseErrors();
-//		EObject rootASTElement = parseResult.getRootASTElement();
-		
-//		if (rootASTElement instanceof ModelElementCS) {
-			
-//		}
+		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+		URI uri = URI.createURI("test.essentialocl");
+		Resource resource = resourceSet.createResource(uri);
 		String string = "body:\n" + expression + "\n;";
 		InputStream inputStream = new ByteArrayInputStream(string.getBytes());
 		try {
 			resource.load(inputStream, null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ParserException("Failed to load expression", e);
 		}
+		checkResourceErrors("Errors in '" + expression + "'", resource);
 		List<EObject> contents = resource.getContents();
 		int size = contents.size();
 		if (size == 0) {
@@ -92,9 +84,36 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		return null;
 	}
 
-	public Constraint createInvariant(String expression)
-			throws ParserException {
-		// TODO Auto-generated method stub
+	public Constraint createInvariant(String expression) throws ParserException {
+		PivotManager pivotManager = getEnvironment().getPivotManager();
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+		URI uri = URI.createURI("test.essentialocl");
+		Resource resource = resourceSet.createResource(uri);
+		String string = "inv:\n" + expression + "\n;";
+		InputStream inputStream = new ByteArrayInputStream(string.getBytes());
+		try {
+			resource.load(inputStream, null);
+		} catch (IOException e) {
+			throw new ParserException("Failed to load expression", e);
+		}
+		checkResourceErrors("Errors in '" + expression + "'", resource);
+		List<EObject> contents = resource.getContents();
+		int size = contents.size();
+		if (size == 0) {
+			return null;
+		}
+		if (size > 1) {
+			logger.warn("Extra returns ignored");
+		}
+		EObject csObject = contents.get(0);
+		if (csObject instanceof Pivotable) {
+			Element pivotElement = ((Pivotable)csObject).getPivot();
+			if (pivotElement instanceof ExpressionInOcl) {
+//				return ((ExpressionInOcl) pivotElement).getBodyExpression();
+			}
+		}
+		logger.warn("Non-expression ignored");
 		return null;
 	}
 
@@ -114,5 +133,18 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 			throws ParserException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public static void checkResourceErrors(String message, Resource resource) throws ParserException {
+		List<Resource.Diagnostic> errors = resource.getErrors();
+		if (errors.size() > 0) {
+			StringBuffer s = new StringBuffer();
+			s.append(message);
+			for (Resource.Diagnostic conversionError : errors) {
+				s.append("\n");
+				s.append(conversionError.getMessage());
+			}
+			throw new ParserException(s.toString());
+		}
 	}
 }

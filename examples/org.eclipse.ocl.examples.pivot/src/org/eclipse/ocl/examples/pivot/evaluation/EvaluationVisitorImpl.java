@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.5 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.6 2010/12/13 08:14:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -345,15 +345,17 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 					OclExpression last = range.getLast();
 
 					// evaluate first value
-					Integer firstVal = (Integer) first.accept(getUndecoratedVisitor());
-					Integer lastVal = (Integer) last.accept(getUndecoratedVisitor());
+					BigInteger firstVal = (BigInteger) first.accept(getUndecoratedVisitor());
+					BigInteger lastVal = (BigInteger) last.accept(getUndecoratedVisitor());
 					if (!((firstVal == null) || (lastVal == null))) {
 						// TODO: enhance IntegerRangeList to support multiple ranges
 						// add values between first and last inclusive
-						int firstInt = firstVal.intValue();
-						int lastInt = lastVal.intValue();
-						for (int i = firstInt; i <= lastInt; i++) {
-                            result.add(new Integer(i));
+						BigInteger increment = BigInteger.valueOf(lastVal.compareTo(firstVal));
+						for (BigInteger i = firstVal; true; i = i.add(increment)) {
+                            result.add(i);
+                            if (i.equals(lastVal)) {
+                            	break;
+                            }
                         }
 					}
 				} // end of collection range
@@ -639,7 +641,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     @Override
     public Object visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp) {
 		BigInteger value = unlimitedNaturalLiteralExp.getUnlimitedNaturalSymbol();
-		return value != null ? getUnlimitedNaturalValue(value) : null;
+		if (value == null) {
+			return null;
+		}
+		if (value.signum() < 0) {
+			return unlimitedNaturalLiteralExp;
+		}
+		return getUnlimitedNaturalValue(value);
 	}
 	
 	/**

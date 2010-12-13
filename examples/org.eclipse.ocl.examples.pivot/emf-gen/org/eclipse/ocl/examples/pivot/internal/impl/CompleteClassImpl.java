@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteClassImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: CompleteClassImpl.java,v 1.1.2.4 2010/12/13 08:14:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,8 +20,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
@@ -198,13 +200,14 @@ public class CompleteClassImpl
 		if (completeSuperClasses == null) {
 			completeSuperClasses = new BasicEList<CompleteClass>();
 			for (org.eclipse.ocl.examples.pivot.Class superClass : getSuperClasses()) {
-				completeSuperClasses.add(completeEnvironment
-					.getCompleteClass(superClass));
+				completeSuperClasses.add(completeEnvironment.getCompleteClass(superClass));
 			}
-			for (org.eclipse.ocl.examples.pivot.Class superClass : model
-				.getSuperClasses()) {
-				completeSuperClasses.add(completeEnvironment
-					.getCompleteClass(superClass));
+			org.eclipse.ocl.examples.pivot.Class thisModel = model;
+			if (thisModel.getTemplateBindings().size() > 0) {
+				thisModel = (org.eclipse.ocl.examples.pivot.Class)thisModel.getTemplateBindings().get(0).getSignature().getTemplate();
+			}
+			for (org.eclipse.ocl.examples.pivot.Class superClass : thisModel.getSuperClasses()) {
+				completeSuperClasses.add(completeEnvironment.getCompleteClass(superClass));
 			}
 		}
 		return completeSuperClasses;
@@ -234,42 +237,36 @@ public class CompleteClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public CompleteOperation getDynamicOperation(
-			CompleteOperation staticOperation) {
+	public CompleteOperation getDynamicOperation(CompleteOperation staticOperation) {
 		if (dynamicOperationMap == null) {
 			dynamicOperationMap = new HashMap<CompleteOperation, CompleteOperation>();
 		}
-		CompleteOperation dynamicOperation = dynamicOperationMap
-			.get(staticOperation);
+		CompleteOperation dynamicOperation = dynamicOperationMap.get(staticOperation);
 		if ((dynamicOperation == null)
 			&& !dynamicOperationMap.containsKey(staticOperation)) {
 			List<CompleteClass> staticClasses = new ArrayList<CompleteClass>();
-			for (Parameter staticParameter : staticOperation
-				.getCompleteParameters()) {
+			for (Parameter staticParameter : staticOperation.getCompleteParameters()) {
 				Type staticType = staticParameter.getType();
 				CompleteClass staticClass = completeEnvironment
 					.getCompleteClass((org.eclipse.ocl.examples.pivot.Class) staticType);
 				staticClasses.add(staticClass);
 			}
-			List<CompleteOperation> dynamicOperations = findOperationsOrNull(
+			Set<CompleteOperation> dynamicOperations = findOperationsOrNull(
 				this, staticOperation.getName(), staticClasses);
 			if ((dynamicOperations != null) && (dynamicOperations.size() == 1)) {
-				dynamicOperation = dynamicOperations.get(0);
+				dynamicOperation = dynamicOperations.iterator().next();
 			}
 			dynamicOperationMap.put(staticOperation, dynamicOperation);
 		}
 		return dynamicOperation;
 	}
 
-	private List<CompleteOperation> findOperationsOrNull(
-			CompleteClass completeClass, String staticName,
-			List<CompleteClass> staticClasses) {
+	private Set<CompleteOperation> findOperationsOrNull(CompleteClass completeClass,
+			String staticName, List<CompleteClass> staticClasses) {
 		int staticSize = staticClasses.size();
-		List<CompleteOperation> list = null;
-		for (CompleteOperation dynamicOperation : completeClass
-			.getCompleteOperations(staticName)) {
-			List<Parameter> dynamicParameters = dynamicOperation
-				.getCompleteParameters();
+		Set<CompleteOperation> list = null;
+		for (CompleteOperation dynamicOperation : completeClass.getCompleteOperations(staticName)) {
+			List<Parameter> dynamicParameters = dynamicOperation.getCompleteParameters();
 			if (staticSize == dynamicParameters.size()) {
 				boolean gotIt = true;
 				for (int i = 0; i < staticSize; i++) {
@@ -284,16 +281,15 @@ public class CompleteClassImpl
 				}
 				if (gotIt) {
 					if (list == null) {
-						list = new ArrayList<CompleteOperation>();
+						list = new HashSet<CompleteOperation>();
 					}
 					list.add(dynamicOperation);
 				}
 			}
 		}
 		if (list == null) {
-			for (CompleteClass completeSuperClass : completeClass
-				.getCompleteSuperClasses()) {
-				List<CompleteOperation> superOperations = findOperationsOrNull(
+			for (CompleteClass completeSuperClass : completeClass.getCompleteSuperClasses()) {
+				Set<CompleteOperation> superOperations = findOperationsOrNull(
 					completeSuperClass, staticName, staticClasses);
 				if (superOperations != null) {
 					if (list == null) {
@@ -320,7 +316,11 @@ public class CompleteClassImpl
 					.getCompleteOperation(operation));
 			}
 		}
-		for (Operation operation : model.getOwnedOperations()) {
+		org.eclipse.ocl.examples.pivot.Class thisModel = model;
+		if (thisModel.getTemplateBindings().size() > 0) {
+			thisModel = (org.eclipse.ocl.examples.pivot.Class)thisModel.getTemplateBindings().get(0).getSignature().getTemplate();
+		}
+		for (Operation operation : thisModel.getOwnedOperations()) {
 			if (name.equals(operation.getName())) {
 				CompleteOperation completeOperation = completeEnvironment
 					.getCompleteOperation(operation);
