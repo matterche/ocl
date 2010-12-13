@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2Pivot.java,v 1.1.2.2 2010/12/11 10:44:23 ewillink Exp $
+ * $Id: CompleteOCLCS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -35,6 +35,10 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 		private Factory() {
 			EssentialOCLCS2Pivot.FACTORY.getClass();
 			CS2Pivot.addFactory(this);
+		}
+
+		public CompleteOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
+			return new CompleteOCLLeft2RightVisitor(converter);
 		}
 
 		public CompleteOCLPostOrderVisitor createPostOrderVisitor(CS2PivotConversion converter) {
