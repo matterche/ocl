@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackageImpl.java,v 1.4.6.2 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: OCLstdlibCSTPackageImpl.java,v 1.4.6.3 2010/12/19 15:57:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
@@ -54,6 +55,13 @@ public class OCLstdlibCSTPackageImpl
 	 * @generated
 	 */
 	private EClass libAccumulatorCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass libClassCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,6 +198,26 @@ public class OCLstdlibCSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLibClassCS()
+	{
+		return libClassCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLibClassCS_MetaTypeName()
+	{
+		return (EAttribute)libClassCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLibConstraintCS() {
 		return libConstraintCSEClass;
 	}
@@ -201,6 +229,26 @@ public class OCLstdlibCSTPackageImpl
 	 */
 	public EClass getLibIterationCS() {
 		return libIterationCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLibIterationCS_OwnedIterator()
+	{
+		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLibIterationCS_OwnedAccumulator()
+	{
+		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -344,9 +392,14 @@ public class OCLstdlibCSTPackageImpl
 
 		libAccumulatorCSEClass = createEClass(LIB_ACCUMULATOR_CS);
 
+		libClassCSEClass = createEClass(LIB_CLASS_CS);
+		createEAttribute(libClassCSEClass, LIB_CLASS_CS__META_TYPE_NAME);
+
 		libConstraintCSEClass = createEClass(LIB_CONSTRAINT_CS);
 
 		libIterationCSEClass = createEClass(LIB_ITERATION_CS);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ITERATOR);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ACCUMULATOR);
 
 		libIteratorCSEClass = createEClass(LIB_ITERATOR_CS);
 
@@ -399,6 +452,7 @@ public class OCLstdlibCSTPackageImpl
 
 		// Add supertypes to classes
 		libAccumulatorCSEClass.getESuperTypes().add(theBaseCSTPackage.getParameterCS());
+		libClassCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassCS());
 		libConstraintCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpConstraintCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());
 		libIterationCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
@@ -416,9 +470,14 @@ public class OCLstdlibCSTPackageImpl
 
 		initEClass(libAccumulatorCSEClass, LibAccumulatorCS.class, "LibAccumulatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(libClassCSEClass, LibClassCS.class, "LibClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLibClassCS_MetaTypeName(), ecorePackage.getEString(), "metaTypeName", null, 0, 1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(libConstraintCSEClass, LibConstraintCS.class, "LibConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libIterationCSEClass, LibIterationCS.class, "LibIterationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLibIterationCS_OwnedIterator(), theBaseCSTPackage.getParameterCS(), null, "ownedIterator", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibIterationCS_OwnedAccumulator(), theBaseCSTPackage.getParameterCS(), null, "ownedAccumulator", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libIteratorCSEClass, LibIteratorCS.class, "LibIteratorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

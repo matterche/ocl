@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTSwitch.java,v 1.2.6.3 2010/12/08 10:35:35 ewillink Exp $
+ * $Id: OCLstdlibCSTSwitch.java,v 1.2.6.4 2010/12/19 15:57:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -25,6 +25,8 @@ import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
@@ -35,13 +37,16 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
@@ -152,6 +157,26 @@ public class OCLstdlibCSTSwitch<T> {
 				if (result == null) result = caseElementCS(libAccumulatorCS);
 				if (result == null) result = casePivotable(libAccumulatorCS);
 				if (result == null) result = caseVisitableCS(libAccumulatorCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibCSTPackage.LIB_CLASS_CS:
+			{
+				LibClassCS libClassCS = (LibClassCS)theEObject;
+				T result = caseLibClassCS(libClassCS);
+				if (result == null) result = caseClassCS(libClassCS);
+				if (result == null) result = caseClassifierCS(libClassCS);
+				if (result == null) result = caseNamespaceCS(libClassCS);
+				if (result == null) result = caseNamedElementCS(libClassCS);
+				if (result == null) result = caseTypeCS(libClassCS);
+				if (result == null) result = caseTemplateableElementCS(libClassCS);
+				if (result == null) result = caseParameterableElementCS(libClassCS);
+				if (result == null) result = caseMonikeredElementCS(libClassCS);
+				if (result == null) result = caseNameable(libClassCS);
+				if (result == null) result = caseModelElementCS(libClassCS);
+				if (result == null) result = caseElementCS(libClassCS);
+				if (result == null) result = casePivotable(libClassCS);
+				if (result == null) result = caseVisitableCS(libClassCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -293,6 +318,22 @@ public class OCLstdlibCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseLibAccumulatorCS(LibAccumulatorCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lib Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lib Class CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLibClassCS(LibClassCS object)
+	{
 		return null;
 	}
 
@@ -537,6 +578,38 @@ public class OCLstdlibCSTSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameterable Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterableElementCS(ParameterableElementCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifierCS(ClassifierCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Typed Element CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -563,6 +636,22 @@ public class OCLstdlibCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseParameterCS(ParameterCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeCS(TypeCS object)
+	{
 		return null;
 	}
 
@@ -638,6 +727,22 @@ public class OCLstdlibCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseNamespaceCS(NamespaceCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassCS(ClassCS object)
+	{
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactoryImpl.java,v 1.2.6.2 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: OCLstdlibCSTFactoryImpl.java,v 1.2.6.3 2010/12/19 15:57:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
@@ -85,6 +86,7 @@ public class OCLstdlibCSTFactoryImpl
 		switch (eClass.getClassifierID())
 		{
 			case OCLstdlibCSTPackage.LIB_ACCUMULATOR_CS: return createLibAccumulatorCS();
+			case OCLstdlibCSTPackage.LIB_CLASS_CS: return createLibClassCS();
 			case OCLstdlibCSTPackage.LIB_CONSTRAINT_CS: return createLibConstraintCS();
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS: return createLibIterationCS();
 			case OCLstdlibCSTPackage.LIB_ITERATOR_CS: return createLibIteratorCS();
@@ -105,6 +107,17 @@ public class OCLstdlibCSTFactoryImpl
 	public LibAccumulatorCS createLibAccumulatorCS() {
 		LibAccumulatorCSImpl libAccumulatorCS = new LibAccumulatorCSImpl();
 		return libAccumulatorCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LibClassCS createLibClassCS()
+	{
+		LibClassCSImpl libClassCS = new LibClassCSImpl();
+		return libClassCS;
 	}
 
 	/**

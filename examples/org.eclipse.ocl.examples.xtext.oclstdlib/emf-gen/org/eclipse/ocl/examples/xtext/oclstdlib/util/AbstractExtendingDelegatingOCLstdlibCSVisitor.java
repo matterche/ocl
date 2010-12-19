@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingDelegatingOCLstdlibCSVisitor.java,v 1.1.2.3 2010/12/11 10:45:46 ewillink Exp $
+ * $Id: AbstractExtendingDelegatingOCLstdlibCSVisitor.java,v 1.1.2.4 2010/12/19 15:57:38 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
 
@@ -46,6 +46,10 @@ public abstract class AbstractExtendingDelegatingOCLstdlibCSVisitor<R, C, D exte
 
 	public R visitLibAccumulatorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS object) {
 		return delegate.visitParameterCS(object);
+	}
+
+	public R visitLibClassCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS object) {
+		return delegate.visitClassCS(object);
 	}
 
 	public R visitLibConstraintCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS object) {

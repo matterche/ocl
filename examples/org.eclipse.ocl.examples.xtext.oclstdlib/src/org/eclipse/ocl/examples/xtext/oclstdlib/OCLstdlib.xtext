@@ -12,7 +12,7 @@
  *
  * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.5.6.4 2010/12/08 10:35:35 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.5.6.5 2010/12/19 15:57:40 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -67,7 +67,6 @@ RestrictedKeywords:
 |	'post'
 |	'pre'
 |	'precedence'
-|	'primitive'
 |	'property'
 |	'right'
 |	'static'
@@ -76,11 +75,26 @@ RestrictedKeywords:
 |	'Tuple'
 ;
 
+MetaTypeName:
+	'AnyType'
+|	'BagType'
+|	'Class'
+|	'CollectionType'
+|	'InvalidType'
+|	'OrderedSetType'
+|	'PrimitiveType'
+|	'SequenceType'
+|	'SetType'
+|	'TupleType'
+|	'VoidType'
+;
+
 Name:
 	Identifier
 |	DOUBLE_QUOTED_STRING
 |	EssentialOCLReservedKeyword
 |	RestrictedKeywords
+|	MetaTypeName
 ;
 
 AccumulatorCS returns LibAccumulatorCS:
@@ -99,10 +113,10 @@ AnnotationElementCS returns base::AnnotationElementCS:
 	AnnotationCS | DocumentationCS
 ;
 
-ClassCS returns base::ClassCS:
-	(qualifier+='primitive')? 'type' name=Name
+ClassCS returns LibClassCS:
+	'type' name=Name
 	(ownedTemplateSignature=TemplateSignatureCS)?
-	(':' ownedMetaType=TypedRefCS)?
+	(':' metaTypeName=MetaTypeName)?
 	('conformsTo' ownedSuperType+=TypedRefCS (',' ownedSuperType+=TypedRefCS)*)?
 	'{' (ownedOperation+=OperationCS
 	   | ownedProperty+=LibPropertyCS
@@ -132,11 +146,11 @@ InvCS returns LibConstraintCS:
 	stereotype='inv' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
 ;
 
-LibIterationCS returns LibOperationCS:
+LibIterationCS returns LibIterationCS:
 	'iteration' name=Name
 	(ownedTemplateSignature=TemplateSignatureCS)?
-	'(' ownedParameter+=IteratorCS (',' ownedParameter+=IteratorCS)*
-	(';' ownedParameter+=AccumulatorCS (',' ownedParameter+=AccumulatorCS)*)?
+	'(' ownedIterator+=IteratorCS (',' ownedIterator+=IteratorCS)*
+	(';' ownedAccumulator+=AccumulatorCS (',' ownedAccumulator+=AccumulatorCS)*)?
 	('|' ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)?
 	')'
 	':' ownedType=TypedRefCS

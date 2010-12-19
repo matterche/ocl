@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullOCLstdlibCSVisitor.java,v 1.1.2.3 2010/12/11 10:45:46 ewillink Exp $
+ * $Id: AbstractNullOCLstdlibCSVisitor.java,v 1.1.2.4 2010/12/19 15:57:38 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
 
@@ -42,6 +42,10 @@ public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
 	}	
 
 	public R visitLibAccumulatorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS object) {
+		return null;
+	}
+
+	public R visitLibClassCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS object) {
 		return null;
 	}
 

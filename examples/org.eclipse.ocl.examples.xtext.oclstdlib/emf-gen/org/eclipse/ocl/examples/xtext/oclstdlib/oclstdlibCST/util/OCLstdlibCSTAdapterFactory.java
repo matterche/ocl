@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTAdapterFactory.java,v 1.2.6.3 2010/12/08 10:35:35 ewillink Exp $
+ * $Id: OCLstdlibCSTAdapterFactory.java,v 1.2.6.4 2010/12/19 15:57:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -25,6 +25,8 @@ import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
@@ -35,13 +37,16 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
@@ -125,6 +130,11 @@ public class OCLstdlibCSTAdapterFactory
 				return createLibAccumulatorCSAdapter();
 			}
 			@Override
+			public Adapter caseLibClassCS(LibClassCS object)
+			{
+				return createLibClassCSAdapter();
+			}
+			@Override
 			public Adapter caseLibConstraintCS(LibConstraintCS object)
 			{
 				return createLibConstraintCSAdapter();
@@ -205,6 +215,36 @@ public class OCLstdlibCSTAdapterFactory
 				return createParameterCSAdapter();
 			}
 			@Override
+			public Adapter caseTypeCS(TypeCS object)
+			{
+				return createTypeCSAdapter();
+			}
+			@Override
+			public Adapter caseTemplateableElementCS(TemplateableElementCS object)
+			{
+				return createTemplateableElementCSAdapter();
+			}
+			@Override
+			public Adapter caseParameterableElementCS(ParameterableElementCS object)
+			{
+				return createParameterableElementCSAdapter();
+			}
+			@Override
+			public Adapter caseClassifierCS(ClassifierCS object)
+			{
+				return createClassifierCSAdapter();
+			}
+			@Override
+			public Adapter caseNamespaceCS(NamespaceCS object)
+			{
+				return createNamespaceCSAdapter();
+			}
+			@Override
+			public Adapter caseClassCS(ClassCS object)
+			{
+				return createClassCSAdapter();
+			}
+			@Override
 			public Adapter caseConstraintCS(ConstraintCS object)
 			{
 				return createConstraintCSAdapter();
@@ -220,11 +260,6 @@ public class OCLstdlibCSTAdapterFactory
 				return createFeatureCSAdapter();
 			}
 			@Override
-			public Adapter caseTemplateableElementCS(TemplateableElementCS object)
-			{
-				return createTemplateableElementCSAdapter();
-			}
-			@Override
 			public Adapter caseOperationCS(OperationCS object)
 			{
 				return createOperationCSAdapter();
@@ -238,11 +273,6 @@ public class OCLstdlibCSTAdapterFactory
 			public Adapter caseAttributeCS(AttributeCS object)
 			{
 				return createAttributeCSAdapter();
-			}
-			@Override
-			public Adapter caseNamespaceCS(NamespaceCS object)
-			{
-				return createNamespaceCSAdapter();
 			}
 			@Override
 			public Adapter caseAbstractPackageCS(AbstractPackageCS object)
@@ -295,6 +325,21 @@ public class OCLstdlibCSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLibAccumulatorCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS <em>Lib Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS
+	 * @generated
+	 */
+	public Adapter createLibClassCSAdapter()
+	{
 		return null;
 	}
 
@@ -523,6 +568,36 @@ public class OCLstdlibCSTAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS <em>Parameterable Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS
+	 * @generated
+	 */
+	public Adapter createParameterableElementCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS <em>Classifier CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS
+	 * @generated
+	 */
+	public Adapter createClassifierCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS <em>Typed Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -547,6 +622,21 @@ public class OCLstdlibCSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createParameterCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS <em>Type CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS
+	 * @generated
+	 */
+	public Adapter createTypeCSAdapter()
+	{
 		return null;
 	}
 
@@ -617,6 +707,21 @@ public class OCLstdlibCSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createNamespaceCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS <em>Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS
+	 * @generated
+	 */
+	public Adapter createClassCSAdapter()
+	{
 		return null;
 	}
 

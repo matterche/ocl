@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.5.6.3 2010/12/08 10:35:35 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.5.6.4 2010/12/19 15:57:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -93,7 +93,7 @@ public interface OCLstdlibCSTPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibConstraintCS()
 	 * @generated
 	 */
-	int LIB_CONSTRAINT_CS = 2;
+	int LIB_CONSTRAINT_CS = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl <em>Lib Iteration CS</em>}' class.
@@ -103,7 +103,7 @@ public interface OCLstdlibCSTPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibIterationCS()
 	 * @generated
 	 */
-	int LIB_ITERATION_CS = 3;
+	int LIB_ITERATION_CS = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIteratorCSImpl <em>Lib Iterator CS</em>}' class.
@@ -113,7 +113,7 @@ public interface OCLstdlibCSTPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibIteratorCS()
 	 * @generated
 	 */
-	int LIB_ITERATOR_CS = 4;
+	int LIB_ITERATOR_CS = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibOperationCSImpl <em>Lib Operation CS</em>}' class.
@@ -123,7 +123,7 @@ public interface OCLstdlibCSTPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibOperationCS()
 	 * @generated
 	 */
-	int LIB_OPERATION_CS = 5;
+	int LIB_OPERATION_CS = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibPropertyCSImpl <em>Lib Property CS</em>}' class.
@@ -133,7 +133,7 @@ public interface OCLstdlibCSTPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibPropertyCS()
 	 * @generated
 	 */
-	int LIB_PROPERTY_CS = 6;
+	int LIB_PROPERTY_CS = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibRootPackageCSImpl <em>Lib Root Package CS</em>}' class.
@@ -143,7 +143,7 @@ public interface OCLstdlibCSTPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibRootPackageCS()
 	 * @generated
 	 */
-	int LIB_ROOT_PACKAGE_CS = 7;
+	int LIB_ROOT_PACKAGE_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS <em>Java Implementation CS</em>}' class.
@@ -291,15 +291,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_ACCUMULATOR_CS__OWNER = BaseCSTPackage.PARAMETER_CS__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Iterator Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ACCUMULATOR_CS__ITERATOR_KIND = BaseCSTPackage.PARAMETER_CS__ITERATOR_KIND;
-
-	/**
 	 * The number of structural features of the '<em>Lib Accumulator CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -307,6 +298,169 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_ACCUMULATOR_CS_FEATURE_COUNT = BaseCSTPackage.PARAMETER_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl <em>Lib Class CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibClassCS()
+	 * @generated
+	 */
+	int LIB_CLASS_CS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNED_ANNOTATION = BaseCSTPackage.CLASS_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__PIVOT = BaseCSTPackage.CLASS_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CLASS_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Error</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__ERROR = BaseCSTPackage.CLASS_CS__ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__MONIKER = BaseCSTPackage.CLASS_CS__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__NAME = BaseCSTPackage.CLASS_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNED_TEMPLATE_SIGNATURE = BaseCSTPackage.CLASS_CS__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNER = BaseCSTPackage.CLASS_CS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__INSTANCE_CLASS_NAME = BaseCSTPackage.CLASS_CS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNED_CONSTRAINT = BaseCSTPackage.CLASS_CS__OWNED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__QUALIFIER = BaseCSTPackage.CLASS_CS__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Super Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNED_SUPER_TYPE = BaseCSTPackage.CLASS_CS__OWNED_SUPER_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNED_OPERATION = BaseCSTPackage.CLASS_CS__OWNED_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNED_PROPERTY = BaseCSTPackage.CLASS_CS__OWNED_PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Owned Meta Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNED_META_TYPE = BaseCSTPackage.CLASS_CS__OWNED_META_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Meta Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__META_TYPE_NAME = BaseCSTPackage.CLASS_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Lib Class CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS_FEATURE_COUNT = BaseCSTPackage.CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -561,13 +715,31 @@ public interface OCLstdlibCSTPackage
 	int LIB_ITERATION_CS__IMPLEMENTATION = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owned Iterator</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__OWNED_ITERATOR = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Accumulator</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__OWNED_ACCUMULATOR = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Lib Iteration CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS_FEATURE_COUNT = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 1;
+	int LIB_ITERATION_CS_FEATURE_COUNT = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -685,15 +857,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_ITERATOR_CS__OWNER = BaseCSTPackage.PARAMETER_CS__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Iterator Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATOR_CS__ITERATOR_KIND = BaseCSTPackage.PARAMETER_CS__ITERATOR_KIND;
 
 	/**
 	 * The number of structural features of the '<em>Lib Iterator CS</em>' class.
@@ -1171,7 +1334,7 @@ public interface OCLstdlibCSTPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getPrecedenceCS()
 	 * @generated
 	 */
-	int PRECEDENCE_CS = 8;
+	int PRECEDENCE_CS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1256,6 +1419,27 @@ public interface OCLstdlibCSTPackage
 	EClass getLibAccumulatorCS();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS <em>Lib Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Lib Class CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS
+	 * @generated
+	 */
+	EClass getLibClassCS();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getMetaTypeName <em>Meta Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Meta Type Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getMetaTypeName()
+	 * @see #getLibClassCS()
+	 * @generated
+	 */
+	EAttribute getLibClassCS_MetaTypeName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS <em>Lib Constraint CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1274,6 +1458,28 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 */
 	EClass getLibIterationCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getOwnedIterator <em>Owned Iterator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Iterator</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getOwnedIterator()
+	 * @see #getLibIterationCS()
+	 * @generated
+	 */
+	EReference getLibIterationCS_OwnedIterator();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getOwnedAccumulator <em>Owned Accumulator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Accumulator</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getOwnedAccumulator()
+	 * @see #getLibIterationCS()
+	 * @generated
+	 */
+	EReference getLibIterationCS_OwnedAccumulator();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS <em>Lib Iterator CS</em>}'.
@@ -1435,6 +1641,24 @@ public interface OCLstdlibCSTPackage
 		EClass LIB_ACCUMULATOR_CS = eINSTANCE.getLibAccumulatorCS();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl <em>Lib Class CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibClassCS()
+		 * @generated
+		 */
+		EClass LIB_CLASS_CS = eINSTANCE.getLibClassCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Meta Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LIB_CLASS_CS__META_TYPE_NAME = eINSTANCE.getLibClassCS_MetaTypeName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibConstraintCSImpl <em>Lib Constraint CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1453,6 +1677,22 @@ public interface OCLstdlibCSTPackage
 		 * @generated
 		 */
 		EClass LIB_ITERATION_CS = eINSTANCE.getLibIterationCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Iterator</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIB_ITERATION_CS__OWNED_ITERATOR = eINSTANCE.getLibIterationCS_OwnedIterator();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Accumulator</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIB_ITERATION_CS__OWNED_ACCUMULATOR = eINSTANCE.getLibIterationCS_OwnedAccumulator();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIteratorCSImpl <em>Lib Iterator CS</em>}' class.

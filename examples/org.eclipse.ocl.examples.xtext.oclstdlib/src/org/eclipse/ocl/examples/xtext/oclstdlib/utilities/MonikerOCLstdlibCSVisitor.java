@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerOCLstdlibCSVisitor.java,v 1.1.2.1 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: MonikerOCLstdlibCSVisitor.java,v 1.1.2.2 2010/12/19 15:57:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.MonikerEssentialOCLCSVisitor;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
@@ -47,6 +48,15 @@ public class MonikerOCLstdlibCSVisitor
 	@SuppressWarnings("unchecked")
 	public MonikerOCLstdlibCSVisitor(CS2Moniker context) {
 		super((EssentialOCLCSVisitor<Object, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+	}
+
+	@Override
+	public Object visitLibIterationCS(LibIterationCS object) {
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+		context.appendNameCS(object);
+		context.appendTemplateParametersCS(object);
+		context.appendParametersCS(object.getOwnedIterator(), object.getOwnedAccumulator(), object.getOwnedParameter());
+		return true;
 	}
 
 	@Override

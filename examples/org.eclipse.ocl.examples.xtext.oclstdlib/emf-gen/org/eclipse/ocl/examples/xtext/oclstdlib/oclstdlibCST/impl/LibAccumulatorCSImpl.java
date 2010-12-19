@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LibAccumulatorCSImpl.java,v 1.1.2.1 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: LibAccumulatorCSImpl.java,v 1.1.2.2 2010/12/19 15:57:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.examples.pivot.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
@@ -54,16 +53,6 @@ public class LibAccumulatorCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return OCLstdlibCSTPackage.Literals.LIB_ACCUMULATOR_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public IteratorKind getIteratorKind() {
-		return IteratorKind.ACCUMULATOR;
 	}
 
 	@SuppressWarnings("unchecked")

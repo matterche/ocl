@@ -12,15 +12,21 @@
  *
  * </copyright>
  *
- * $Id: LibIterationCSImpl.java,v 1.3.6.2 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: LibIterationCSImpl.java,v 1.3.6.3 2010/12/19 15:57:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
@@ -37,6 +43,8 @@ import org.eclipse.xtext.common.types.JvmType;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl#getImplementation <em>Implementation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl#getOwnedIterator <em>Owned Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl#getOwnedAccumulator <em>Owned Accumulator</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +63,25 @@ public class LibIterationCSImpl
 	 * @ordered
 	 */
 	protected JvmType implementation;
+
+	/**
+	 * The cached value of the '{@link #getOwnedIterator() <em>Owned Iterator</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedIterator()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ParameterCS> ownedIterator;
+	/**
+	 * The cached value of the '{@link #getOwnedAccumulator() <em>Owned Accumulator</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAccumulator()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ParameterCS> ownedAccumulator;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,6 +147,52 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ParameterCS> getOwnedIterator()
+	{
+		if (ownedIterator == null)
+		{
+			ownedIterator = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR);
+		}
+		return ownedIterator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ParameterCS> getOwnedAccumulator()
+	{
+		if (ownedAccumulator == null)
+		{
+			ownedAccumulator = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR);
+		}
+		return ownedAccumulator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
+				return ((InternalEList<?>)getOwnedIterator()).basicRemove(otherEnd, msgs);
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
+				return ((InternalEList<?>)getOwnedAccumulator()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
@@ -127,6 +200,10 @@ public class LibIterationCSImpl
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				if (resolve) return getImplementation();
 				return basicGetImplementation();
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
+				return getOwnedIterator();
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
+				return getOwnedAccumulator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -136,12 +213,21 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				setImplementation((JvmType)newValue);
+				return;
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
+				getOwnedIterator().clear();
+				getOwnedIterator().addAll((Collection<? extends ParameterCS>)newValue);
+				return;
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
+				getOwnedAccumulator().clear();
+				getOwnedAccumulator().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -159,6 +245,12 @@ public class LibIterationCSImpl
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				setImplementation((JvmType)null);
 				return;
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
+				getOwnedIterator().clear();
+				return;
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
+				getOwnedAccumulator().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -174,6 +266,10 @@ public class LibIterationCSImpl
 		{
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				return implementation != null;
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
+				return ownedIterator != null && !ownedIterator.isEmpty();
+			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
+				return ownedAccumulator != null && !ownedAccumulator.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
