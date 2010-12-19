@@ -2252,8 +2252,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////  keep it as simple as possible and avoid backtracking.
 	//
 	//NavigatingExpCS returns NamedExpCS:
-	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (arguments+=NavigatingArgCSfirst
-	//	arguments+=NavigatingArgCSnext*)? ")")?;
+	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgOrBodyCS (","
+	//	argument+=NavigatingArgOrBodyCS)* (";" argument+=NavigatingAccCS ("," argument+=NavigatingAccCS)*)? ("|"
+	//	argument+=NavigatingBodyCS ("," argument+=NavigatingBodyCS)*)?)? ")")?;
 	public EssentialOCLGrammarAccess.NavigatingExpCSElements getNavigatingExpCSAccess() {
 		return gaEssentialOCL.getNavigatingExpCSAccess();
 	}
@@ -2262,25 +2263,34 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingExpCSAccess().getRule();
 	}
 
-	//NavigatingArgCSfirst returns NavigatingArgCS:
+	//NavigatingArgOrBodyCS:
 	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)?;
-	public EssentialOCLGrammarAccess.NavigatingArgCSfirstElements getNavigatingArgCSfirstAccess() {
-		return gaEssentialOCL.getNavigatingArgCSfirstAccess();
+	public EssentialOCLGrammarAccess.NavigatingArgOrBodyCSElements getNavigatingArgOrBodyCSAccess() {
+		return gaEssentialOCL.getNavigatingArgOrBodyCSAccess();
 	}
 	
-	public ParserRule getNavigatingArgCSfirstRule() {
-		return getNavigatingArgCSfirstAccess().getRule();
+	public ParserRule getNavigatingArgOrBodyCSRule() {
+		return getNavigatingArgOrBodyCSAccess().getRule();
 	}
 
-	//NavigatingArgCSnext returns NavigatingArgCS:
-	//	prefix="|" name=NavigatingArgExpCS | prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? | prefix=";"
+	//NavigatingAccCS:
 	//	name=NavigatingArgExpCS ":" ownedType=TypeExpCS "=" init=ExpCS;
-	public EssentialOCLGrammarAccess.NavigatingArgCSnextElements getNavigatingArgCSnextAccess() {
-		return gaEssentialOCL.getNavigatingArgCSnextAccess();
+	public EssentialOCLGrammarAccess.NavigatingAccCSElements getNavigatingAccCSAccess() {
+		return gaEssentialOCL.getNavigatingAccCSAccess();
 	}
 	
-	public ParserRule getNavigatingArgCSnextRule() {
-		return getNavigatingArgCSnextAccess().getRule();
+	public ParserRule getNavigatingAccCSRule() {
+		return getNavigatingAccCSAccess().getRule();
+	}
+
+	//NavigatingBodyCS:
+	//	name=NavigatingArgExpCS;
+	public EssentialOCLGrammarAccess.NavigatingBodyCSElements getNavigatingBodyCSAccess() {
+		return gaEssentialOCL.getNavigatingBodyCSAccess();
+	}
+	
+	public ParserRule getNavigatingBodyCSRule() {
+		return getNavigatingBodyCSAccess().getRule();
 	}
 
 	//IfExpCS:
