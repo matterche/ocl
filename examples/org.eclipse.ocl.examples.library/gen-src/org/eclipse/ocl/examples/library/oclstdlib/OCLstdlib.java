@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OCLstdlib.java,v 1.1.2.5 2010/12/13 08:14:47 ewillink Exp $
+ * $Id: OCLstdlib.java,v 1.1.2.6 2010/12/19 15:53:35 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.library.oclstdlib;
 
@@ -123,7 +123,7 @@ public class OCLstdlib extends XMLResourceImpl
 		Class symbol_18 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag{T}.flatten{T2}()?T2
 		
 		
-		Class symbol_19 = PivotFactory.eINSTANCE.createClass(); // ocl.Boolean
+		Class symbol_19 = PivotFactory.eINSTANCE.createPrimitiveType(); // ocl.Boolean
 		
 		Class symbol_20 = PivotFactory.eINSTANCE.createClass(); // ocl.Classifier
 		
@@ -155,7 +155,7 @@ public class OCLstdlib extends XMLResourceImpl
 		
 		Class symbol_40 = PivotFactory.eINSTANCE.createClass(); // ocl.Enumeration
 		
-		Class symbol_41 = PivotFactory.eINSTANCE.createClass(); // ocl.Integer
+		Class symbol_41 = PivotFactory.eINSTANCE.createPrimitiveType(); // ocl.Integer
 		
 		Class symbol_42 = PivotFactory.eINSTANCE.createClass(); // ocl.NonOrderedCollection{T}
 		TemplateSignature symbol_43 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.NonOrderedCollection{T}.
@@ -197,7 +197,7 @@ public class OCLstdlib extends XMLResourceImpl
 		Class symbol_66 = PivotFactory.eINSTANCE.createClass(); // ocl.OrderedSet{T}?T
 		
 		
-		Class symbol_67 = PivotFactory.eINSTANCE.createClass(); // ocl.Real
+		Class symbol_67 = PivotFactory.eINSTANCE.createPrimitiveType(); // ocl.Real
 		TemplateSignature symbol_68 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Real.oclAsType{T}(ocl.Classifier).
 		TypeTemplateParameter symbol_69 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
 		Class symbol_70 = PivotFactory.eINSTANCE.createClass(); // ocl.Real.oclAsType{T}(ocl.Classifier)?T
@@ -223,7 +223,7 @@ public class OCLstdlib extends XMLResourceImpl
 		Class symbol_84 = PivotFactory.eINSTANCE.createClass(); // ocl.Set{T}.flatten{T2}()?T2
 		
 		
-		Class symbol_85 = PivotFactory.eINSTANCE.createClass(); // ocl.String
+		Class symbol_85 = PivotFactory.eINSTANCE.createPrimitiveType(); // ocl.String
 		
 		Class symbol_86 = PivotFactory.eINSTANCE.createClass(); // ocl.Tuple{T1,T2}
 		TemplateSignature symbol_87 = PivotFactory.eINSTANCE.createTemplateSignature(); // ocl.Tuple{T1,T2}.
@@ -239,7 +239,7 @@ public class OCLstdlib extends XMLResourceImpl
 		Class symbol_95 = PivotFactory.eINSTANCE.createClass(); // ocl.UniqueCollection{T}?T
 		
 		
-		Class symbol_96 = PivotFactory.eINSTANCE.createClass(); // ocl.UnlimitedNatural
+		Class symbol_96 = PivotFactory.eINSTANCE.createPrimitiveType(); // ocl.UnlimitedNatural
 		
 		Package symbol_97 = PivotFactory.eINSTANCE.createPackage(); // ocl.orphanage
 		Class symbol_98 = PivotFactory.eINSTANCE.createClass(); // ocl.Bag[ocl.Bag{T}?T]
@@ -389,7 +389,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_146 = PivotFactory.eINSTANCE.createParameter();
 			symbol_146.setName("bag");
 			symbol_146.setType(symbol_50);
-			symbol_146.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_145.getOwnedParameters().add(symbol_146);
 			symbol_145.setPrecedence(symbol_5);
 			symbol_145.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
@@ -402,7 +401,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_148 = PivotFactory.eINSTANCE.createParameter();
 			symbol_148.setName("bag");
 			symbol_148.setType(symbol_50);
-			symbol_148.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_147.getOwnedParameters().add(symbol_148);
 			symbol_147.setPrecedence(symbol_5);
 			symbol_147.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
@@ -415,7 +413,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_150 = PivotFactory.eINSTANCE.createParameter();
 			symbol_150.setName("object");
 			symbol_150.setType(symbol_50);
-			symbol_150.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_149.getOwnedParameters().add(symbol_150);
 			symbol_149.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_149);
@@ -439,7 +436,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_153 = PivotFactory.eINSTANCE.createParameter();
 			symbol_153.setName("object");
 			symbol_153.setType(symbol_15);
-			symbol_153.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_152.getOwnedParameters().add(symbol_153);
 			symbol_152.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_152);
@@ -451,7 +447,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_155 = PivotFactory.eINSTANCE.createParameter();
 			symbol_155.setName("i");
 			symbol_155.setType(symbol_15);
-			symbol_155.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_154.getOwnedParameters().add(symbol_155);
 			symbol_154.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_154);
@@ -463,7 +458,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_157 = PivotFactory.eINSTANCE.createParameter();
 			symbol_157.setName("i");
 			symbol_157.setType(symbol_15);
-			symbol_157.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_156.getOwnedParameters().add(symbol_157);
 			symbol_156.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_156);
@@ -473,7 +467,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::Boolean ocl.Boolean
 		//
 		symbol_19.setName("Boolean");
-		symbol_19.setPrimitive(Boolean.TRUE);
+//		symbol_19.setPrimitive(Boolean.TRUE);
 		symbol_19.getSuperClasses().add(symbol_50);
 		{	// ocl::Boolean::<>() ocl.Boolean.<>(ocl.OclAny)
 			Operation symbol_158 = PivotFactory.eINSTANCE.createOperation();
@@ -482,7 +476,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_159 = PivotFactory.eINSTANCE.createParameter();
 			symbol_159.setName("object2");
 			symbol_159.setType(symbol_50);
-			symbol_159.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_158.getOwnedParameters().add(symbol_159);
 			symbol_158.setPrecedence(symbol_5);
 			symbol_158.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanNotEqualOperation.INSTANCE);
@@ -495,7 +488,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_161 = PivotFactory.eINSTANCE.createParameter();
 			symbol_161.setName("object2");
 			symbol_161.setType(symbol_50);
-			symbol_161.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_160.getOwnedParameters().add(symbol_161);
 			symbol_160.setPrecedence(symbol_5);
 			symbol_160.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanEqualOperation.INSTANCE);
@@ -515,7 +507,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_164 = PivotFactory.eINSTANCE.createParameter();
 			symbol_164.setName("b");
 			symbol_164.setType(symbol_19);
-			symbol_164.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_163.getOwnedParameters().add(symbol_164);
 			symbol_163.setPrecedence(symbol_10);
 			symbol_163.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanAndOperation.INSTANCE);
@@ -528,7 +519,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_166 = PivotFactory.eINSTANCE.createParameter();
 			symbol_166.setName("b");
 			symbol_166.setType(symbol_19);
-			symbol_166.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_165.getOwnedParameters().add(symbol_166);
 			symbol_165.setPrecedence(symbol_4);
 			symbol_165.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation.INSTANCE);
@@ -549,7 +539,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_169 = PivotFactory.eINSTANCE.createParameter();
 			symbol_169.setName("b");
 			symbol_169.setType(symbol_19);
-			symbol_169.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_168.getOwnedParameters().add(symbol_169);
 			symbol_168.setPrecedence(symbol_7);
 			symbol_168.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanOrOperation.INSTANCE);
@@ -569,7 +558,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_172 = PivotFactory.eINSTANCE.createParameter();
 			symbol_172.setName("b");
 			symbol_172.setType(symbol_19);
-			symbol_172.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_171.getOwnedParameters().add(symbol_172);
 			symbol_171.setPrecedence(symbol_9);
 			symbol_171.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanXorOperation.INSTANCE);
@@ -606,7 +594,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_175 = PivotFactory.eINSTANCE.createParameter();
 			symbol_175.setName("c");
 			symbol_175.setType(symbol_50);
-			symbol_175.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_174.getOwnedParameters().add(symbol_175);
 			symbol_174.setPrecedence(symbol_5);
 			symbol_174.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
@@ -619,7 +606,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_177 = PivotFactory.eINSTANCE.createParameter();
 			symbol_177.setName("c");
 			symbol_177.setType(symbol_50);
-			symbol_177.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_176.getOwnedParameters().add(symbol_177);
 			symbol_176.setPrecedence(symbol_5);
 			symbol_176.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
@@ -632,7 +618,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_179 = PivotFactory.eINSTANCE.createParameter();
 			symbol_179.setName("i");
 			symbol_179.setType(symbol_24);
-			symbol_179.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_178.getOwnedParameters().add(symbol_179);
 			symbol_178.setImplementation(org.eclipse.ocl.examples.library.iterator.AnyIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_178);
@@ -672,7 +657,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_185 = PivotFactory.eINSTANCE.createParameter();
 			symbol_185.setName("i");
 			symbol_185.setType(symbol_24);
-			symbol_185.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_184.getOwnedParameters().add(symbol_185);
 			symbol_184.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_184);
@@ -684,7 +668,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_187 = PivotFactory.eINSTANCE.createParameter();
 			symbol_187.setName("i");
 			symbol_187.setType(symbol_24);
-			symbol_187.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_186.getOwnedParameters().add(symbol_187);
 			symbol_186.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_186);
@@ -696,7 +679,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_189 = PivotFactory.eINSTANCE.createParameter();
 			symbol_189.setName("object");
 			symbol_189.setType(symbol_50);
-			symbol_189.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_188.getOwnedParameters().add(symbol_189);
 			symbol_188.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionCountOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_188);
@@ -708,7 +690,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_191 = PivotFactory.eINSTANCE.createParameter();
 			symbol_191.setName("object");
 			symbol_191.setType(symbol_50);
-			symbol_191.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_190.getOwnedParameters().add(symbol_191);
 			symbol_190.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_190);
@@ -725,7 +706,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_193 = PivotFactory.eINSTANCE.createParameter();
 			symbol_193.setName("c2");
 			symbol_193.setType(symbol_109);
-			symbol_193.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_192.getOwnedParameters().add(symbol_193);
 			symbol_192.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_192);
@@ -737,7 +717,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_195 = PivotFactory.eINSTANCE.createParameter();
 			symbol_195.setName("object");
 			symbol_195.setType(symbol_50);
-			symbol_195.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_194.getOwnedParameters().add(symbol_195);
 			symbol_194.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_194);
@@ -749,7 +728,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_197 = PivotFactory.eINSTANCE.createParameter();
 			symbol_197.setName("i");
 			symbol_197.setType(symbol_24);
-			symbol_197.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_196.getOwnedParameters().add(symbol_197);
 			symbol_196.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_196);
@@ -761,12 +739,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_199 = PivotFactory.eINSTANCE.createParameter();
 			symbol_199.setName("i");
 			symbol_199.setType(symbol_24);
-			symbol_199.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_198.getOwnedParameters().add(symbol_199);
 			Parameter symbol_200 = PivotFactory.eINSTANCE.createParameter();
 			symbol_200.setName("j");
 			symbol_200.setType(symbol_24);
-			symbol_200.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_198.getOwnedParameters().add(symbol_200);
 			symbol_198.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_198);
@@ -790,7 +766,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_203 = PivotFactory.eINSTANCE.createParameter();
 			symbol_203.setName("i");
 			symbol_203.setType(symbol_24);
-			symbol_203.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_202.getOwnedParameters().add(symbol_203);
 			symbol_202.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_202);
@@ -802,12 +777,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_205 = PivotFactory.eINSTANCE.createParameter();
 			symbol_205.setName("i");
 			symbol_205.setType(symbol_24);
-			symbol_205.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_204.getOwnedParameters().add(symbol_205);
 			Parameter symbol_206 = PivotFactory.eINSTANCE.createParameter();
 			symbol_206.setName("j");
 			symbol_206.setType(symbol_24);
-			symbol_206.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_204.getOwnedParameters().add(symbol_206);
 			symbol_204.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_204);
@@ -819,7 +792,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_208 = PivotFactory.eINSTANCE.createParameter();
 			symbol_208.setName("object");
 			symbol_208.setType(symbol_50);
-			symbol_208.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_207.getOwnedParameters().add(symbol_208);
 			symbol_207.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_207);
@@ -836,7 +808,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_210 = PivotFactory.eINSTANCE.createParameter();
 			symbol_210.setName("c2");
 			symbol_210.setType(symbol_107);
-			symbol_210.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_209.getOwnedParameters().add(symbol_210);
 			symbol_209.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_209);
@@ -848,7 +819,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_212 = PivotFactory.eINSTANCE.createParameter();
 			symbol_212.setName("object");
 			symbol_212.setType(symbol_24);
-			symbol_212.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_211.getOwnedParameters().add(symbol_212);
 			symbol_211.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_211);
@@ -867,7 +837,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_215 = PivotFactory.eINSTANCE.createParameter();
 			symbol_215.setName("i");
 			symbol_215.setType(symbol_24);
-			symbol_215.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_214.getOwnedParameters().add(symbol_215);
 			symbol_214.setImplementation(org.eclipse.ocl.examples.library.iterator.IsUniqueIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_214);
@@ -884,12 +853,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_217 = PivotFactory.eINSTANCE.createParameter();
 			symbol_217.setName("i");
 			symbol_217.setType(symbol_24);
-			symbol_217.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_216.getOwnedParameters().add(symbol_217);
 			Parameter symbol_218 = PivotFactory.eINSTANCE.createParameter();
 			symbol_218.setName("acc");
 			symbol_218.setType(symbol_36);
-			symbol_218.setIteratorKind(IteratorKind.ACCUMULATOR);
 			symbol_216.getOwnedParameters().add(symbol_218);
 			symbol_216.setImplementation(org.eclipse.ocl.examples.library.iterator.IsUniqueIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_216);
@@ -922,7 +889,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_223 = PivotFactory.eINSTANCE.createParameter();
 			symbol_223.setName("i");
 			symbol_223.setType(symbol_24);
-			symbol_223.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_222.getOwnedParameters().add(symbol_223);
 			symbol_222.setImplementation(org.eclipse.ocl.examples.library.iterator.OneIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_222);
@@ -939,7 +905,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_225 = PivotFactory.eINSTANCE.createParameter();
 			symbol_225.setName("c2");
 			symbol_225.setType(symbol_111);
-			symbol_225.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_224.getOwnedParameters().add(symbol_225);
 			symbol_224.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionProductOperation.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_224);
@@ -951,7 +916,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_227 = PivotFactory.eINSTANCE.createParameter();
 			symbol_227.setName("i");
 			symbol_227.setType(symbol_24);
-			symbol_227.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_226.getOwnedParameters().add(symbol_227);
 			symbol_226.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_226);
@@ -963,7 +927,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_229 = PivotFactory.eINSTANCE.createParameter();
 			symbol_229.setName("i");
 			symbol_229.setType(symbol_24);
-			symbol_229.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_228.getOwnedParameters().add(symbol_229);
 			symbol_228.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_228);
@@ -982,7 +945,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_232 = PivotFactory.eINSTANCE.createParameter();
 			symbol_232.setName("i");
 			symbol_232.setType(symbol_24);
-			symbol_232.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_231.getOwnedParameters().add(symbol_232);
 			symbol_231.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
 			symbol_21.getOwnedOperations().add(symbol_231);
@@ -1012,7 +974,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::Integer ocl.Integer
 		//
 		symbol_41.setName("Integer");
-		symbol_41.setPrimitive(Boolean.TRUE);
+//		symbol_41.setPrimitive(Boolean.TRUE);
 		symbol_41.getSuperClasses().add(symbol_67);
 		{	// ocl::Integer::*() ocl.Integer.*(ocl.Integer)
 			Operation symbol_235 = PivotFactory.eINSTANCE.createOperation();
@@ -1021,7 +983,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_236 = PivotFactory.eINSTANCE.createParameter();
 			symbol_236.setName("i");
 			symbol_236.setType(symbol_41);
-			symbol_236.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_235.getOwnedParameters().add(symbol_236);
 			symbol_235.setPrecedence(symbol_2);
 			symbol_235.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
@@ -1034,7 +995,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_238 = PivotFactory.eINSTANCE.createParameter();
 			symbol_238.setName("i");
 			symbol_238.setType(symbol_41);
-			symbol_238.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_237.getOwnedParameters().add(symbol_238);
 			symbol_237.setPrecedence(symbol_8);
 			symbol_237.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
@@ -1055,7 +1015,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_241 = PivotFactory.eINSTANCE.createParameter();
 			symbol_241.setName("i");
 			symbol_241.setType(symbol_41);
-			symbol_241.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_240.getOwnedParameters().add(symbol_241);
 			symbol_240.setPrecedence(symbol_8);
 			symbol_240.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
@@ -1068,7 +1027,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_243 = PivotFactory.eINSTANCE.createParameter();
 			symbol_243.setName("i");
 			symbol_243.setType(symbol_41);
-			symbol_243.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_242.getOwnedParameters().add(symbol_243);
 			symbol_242.setPrecedence(symbol_2);
 			symbol_242.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
@@ -1088,7 +1046,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_246 = PivotFactory.eINSTANCE.createParameter();
 			symbol_246.setName("i");
 			symbol_246.setType(symbol_41);
-			symbol_246.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_245.getOwnedParameters().add(symbol_246);
 			symbol_245.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivOperation.INSTANCE);
 			symbol_41.getOwnedOperations().add(symbol_245);
@@ -1100,7 +1057,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_248 = PivotFactory.eINSTANCE.createParameter();
 			symbol_248.setName("i");
 			symbol_248.setType(symbol_41);
-			symbol_248.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_247.getOwnedParameters().add(symbol_248);
 			symbol_247.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
 			symbol_41.getOwnedOperations().add(symbol_247);
@@ -1112,7 +1068,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_250 = PivotFactory.eINSTANCE.createParameter();
 			symbol_250.setName("i");
 			symbol_250.setType(symbol_41);
-			symbol_250.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_249.getOwnedParameters().add(symbol_250);
 			symbol_249.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
 			symbol_41.getOwnedOperations().add(symbol_249);
@@ -1124,7 +1079,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_252 = PivotFactory.eINSTANCE.createParameter();
 			symbol_252.setName("i");
 			symbol_252.setType(symbol_41);
-			symbol_252.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_251.getOwnedParameters().add(symbol_252);
 			symbol_251.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericModOperation.INSTANCE);
 			symbol_41.getOwnedOperations().add(symbol_251);
@@ -1154,7 +1108,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_255 = PivotFactory.eINSTANCE.createParameter();
 			symbol_255.setName("i");
 			symbol_255.setType(symbol_45);
-			symbol_255.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_254.getOwnedParameters().add(symbol_255);
 			symbol_254.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
 			symbol_42.getOwnedOperations().add(symbol_254);
@@ -1166,7 +1119,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_257 = PivotFactory.eINSTANCE.createParameter();
 			symbol_257.setName("i");
 			symbol_257.setType(symbol_45);
-			symbol_257.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_256.getOwnedParameters().add(symbol_257);
 			symbol_256.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
 			symbol_42.getOwnedOperations().add(symbol_256);
@@ -1178,7 +1130,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_259 = PivotFactory.eINSTANCE.createParameter();
 			symbol_259.setName("i");
 			symbol_259.setType(symbol_45);
-			symbol_259.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_258.getOwnedParameters().add(symbol_259);
 			symbol_258.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
 			symbol_42.getOwnedOperations().add(symbol_258);
@@ -1190,7 +1141,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_261 = PivotFactory.eINSTANCE.createParameter();
 			symbol_261.setName("bag");
 			symbol_261.setType(symbol_100);
-			symbol_261.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_260.getOwnedParameters().add(symbol_261);
 			symbol_260.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_42.getOwnedOperations().add(symbol_260);
@@ -1202,7 +1152,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_263 = PivotFactory.eINSTANCE.createParameter();
 			symbol_263.setName("s");
 			symbol_263.setType(symbol_131);
-			symbol_263.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_262.getOwnedParameters().add(symbol_263);
 			symbol_262.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_42.getOwnedOperations().add(symbol_262);
@@ -1214,7 +1163,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_265 = PivotFactory.eINSTANCE.createParameter();
 			symbol_265.setName("bag");
 			symbol_265.setType(symbol_100);
-			symbol_265.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_264.getOwnedParameters().add(symbol_265);
 			symbol_264.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_42.getOwnedOperations().add(symbol_264);
@@ -1226,7 +1174,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_267 = PivotFactory.eINSTANCE.createParameter();
 			symbol_267.setName("s");
 			symbol_267.setType(symbol_131);
-			symbol_267.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_266.getOwnedParameters().add(symbol_267);
 			symbol_266.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_42.getOwnedOperations().add(symbol_266);
@@ -1249,7 +1196,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_269 = PivotFactory.eINSTANCE.createParameter();
 			symbol_269.setName("i");
 			symbol_269.setType(symbol_49);
-			symbol_269.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_268.getOwnedParameters().add(symbol_269);
 			symbol_268.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
 			symbol_46.getOwnedOperations().add(symbol_268);
@@ -1266,7 +1212,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_271 = PivotFactory.eINSTANCE.createParameter();
 			symbol_271.setName("object2");
 			symbol_271.setType(symbol_50);
-			symbol_271.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_270.getOwnedParameters().add(symbol_271);
 			symbol_270.setPrecedence(symbol_5);
 			symbol_270.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
@@ -1279,7 +1224,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_273 = PivotFactory.eINSTANCE.createParameter();
 			symbol_273.setName("object2");
 			symbol_273.setType(symbol_50);
-			symbol_273.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_272.getOwnedParameters().add(symbol_273);
 			symbol_272.setPrecedence(symbol_5);
 			symbol_272.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
@@ -1304,7 +1248,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_276 = PivotFactory.eINSTANCE.createParameter();
 			symbol_276.setName("type");
 			symbol_276.setType(symbol_20);
-			symbol_276.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_275.getOwnedParameters().add(symbol_276);
 			symbol_275.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation.INSTANCE);
 			symbol_50.getOwnedOperations().add(symbol_275);
@@ -1316,7 +1259,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_278 = PivotFactory.eINSTANCE.createParameter();
 			symbol_278.setName("statespec");
 			symbol_278.setType(symbol_56);
-			symbol_278.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_277.getOwnedParameters().add(symbol_278);
 			symbol_277.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation.INSTANCE);
 			symbol_50.getOwnedOperations().add(symbol_277);
@@ -1335,7 +1277,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_281 = PivotFactory.eINSTANCE.createParameter();
 			symbol_281.setName("type");
 			symbol_281.setType(symbol_20);
-			symbol_281.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_280.getOwnedParameters().add(symbol_281);
 			symbol_280.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation.INSTANCE);
 			symbol_50.getOwnedOperations().add(symbol_280);
@@ -1354,7 +1295,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_284 = PivotFactory.eINSTANCE.createParameter();
 			symbol_284.setName("type");
 			symbol_284.setType(symbol_20);
-			symbol_284.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_283.getOwnedParameters().add(symbol_284);
 			symbol_283.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation.INSTANCE);
 			symbol_50.getOwnedOperations().add(symbol_283);
@@ -1386,7 +1326,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_288 = PivotFactory.eINSTANCE.createParameter();
 			symbol_288.setName("object2");
 			symbol_288.setType(symbol_50);
-			symbol_288.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_287.getOwnedParameters().add(symbol_288);
 			symbol_287.setPrecedence(symbol_5);
 			symbol_287.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidNotEqualOperation.INSTANCE);
@@ -1399,7 +1338,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_290 = PivotFactory.eINSTANCE.createParameter();
 			symbol_290.setName("object2");
 			symbol_290.setType(symbol_50);
-			symbol_290.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_289.getOwnedParameters().add(symbol_290);
 			symbol_289.setPrecedence(symbol_5);
 			symbol_289.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidEqualOperation.INSTANCE);
@@ -1465,7 +1403,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_297 = PivotFactory.eINSTANCE.createParameter();
 			symbol_297.setName("object2");
 			symbol_297.setType(symbol_50);
-			symbol_297.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_296.getOwnedParameters().add(symbol_297);
 			symbol_296.setPrecedence(symbol_5);
 			symbol_296.setImplementation(org.eclipse.ocl.examples.library.tuple.TupleNotEqualOperation.INSTANCE);
@@ -1478,7 +1415,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_299 = PivotFactory.eINSTANCE.createParameter();
 			symbol_299.setName("object2");
 			symbol_299.setType(symbol_50);
-			symbol_299.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_298.getOwnedParameters().add(symbol_299);
 			symbol_298.setPrecedence(symbol_5);
 			symbol_298.setImplementation(org.eclipse.ocl.examples.library.tuple.TupleEqualOperation.INSTANCE);
@@ -1497,7 +1433,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_301 = PivotFactory.eINSTANCE.createParameter();
 			symbol_301.setName("object2");
 			symbol_301.setType(symbol_50);
-			symbol_301.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_300.getOwnedParameters().add(symbol_301);
 			symbol_300.setPrecedence(symbol_5);
 			symbol_300.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidNotEqualOperation.INSTANCE);
@@ -1510,7 +1445,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_303 = PivotFactory.eINSTANCE.createParameter();
 			symbol_303.setName("object2");
 			symbol_303.setType(symbol_50);
-			symbol_303.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_302.getOwnedParameters().add(symbol_303);
 			symbol_302.setPrecedence(symbol_5);
 			symbol_302.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidEqualOperation.INSTANCE);
@@ -1530,7 +1464,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_306 = PivotFactory.eINSTANCE.createParameter();
 			symbol_306.setName("b");
 			symbol_306.setType(symbol_19);
-			symbol_306.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_305.getOwnedParameters().add(symbol_306);
 			symbol_305.setPrecedence(symbol_10);
 			symbol_305.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation.INSTANCE);
@@ -1543,7 +1476,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_308 = PivotFactory.eINSTANCE.createParameter();
 			symbol_308.setName("b");
 			symbol_308.setType(symbol_19);
-			symbol_308.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_307.getOwnedParameters().add(symbol_308);
 			symbol_307.setPrecedence(symbol_4);
 			symbol_307.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation.INSTANCE);
@@ -1556,7 +1488,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_310 = PivotFactory.eINSTANCE.createParameter();
 			symbol_310.setName("b");
 			symbol_310.setType(symbol_19);
-			symbol_310.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_309.getOwnedParameters().add(symbol_310);
 			symbol_309.setPrecedence(symbol_7);
 			symbol_309.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation.INSTANCE);
@@ -1580,7 +1511,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_312 = PivotFactory.eINSTANCE.createParameter();
 			symbol_312.setName("index");
 			symbol_312.setType(symbol_41);
-			symbol_312.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_311.getOwnedParameters().add(symbol_312);
 			symbol_311.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAtOperation.INSTANCE);
 			symbol_59.getOwnedOperations().add(symbol_311);
@@ -1592,7 +1522,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_314 = PivotFactory.eINSTANCE.createParameter();
 			symbol_314.setName("i");
 			symbol_314.setType(symbol_62);
-			symbol_314.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_313.getOwnedParameters().add(symbol_314);
 			symbol_313.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
 			symbol_59.getOwnedOperations().add(symbol_313);
@@ -1604,7 +1533,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_316 = PivotFactory.eINSTANCE.createParameter();
 			symbol_316.setName("i");
 			symbol_316.setType(symbol_62);
-			symbol_316.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_315.getOwnedParameters().add(symbol_316);
 			symbol_315.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
 			symbol_59.getOwnedOperations().add(symbol_315);
@@ -1616,7 +1544,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_318 = PivotFactory.eINSTANCE.createParameter();
 			symbol_318.setName("i");
 			symbol_318.setType(symbol_62);
-			symbol_318.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_317.getOwnedParameters().add(symbol_318);
 			symbol_317.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
 			symbol_59.getOwnedOperations().add(symbol_317);
@@ -1635,7 +1562,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_321 = PivotFactory.eINSTANCE.createParameter();
 			symbol_321.setName("obj");
 			symbol_321.setType(symbol_50);
-			symbol_321.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_320.getOwnedParameters().add(symbol_321);
 			symbol_320.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionIndexOfOperation.INSTANCE);
 			symbol_59.getOwnedOperations().add(symbol_320);
@@ -1673,7 +1599,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_325 = PivotFactory.eINSTANCE.createParameter();
 			symbol_325.setName("s");
 			symbol_325.setType(symbol_135);
-			symbol_325.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_324.getOwnedParameters().add(symbol_325);
 			symbol_324.setPrecedence(symbol_8);
 			symbol_324.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
@@ -1686,7 +1611,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_327 = PivotFactory.eINSTANCE.createParameter();
 			symbol_327.setName("o");
 			symbol_327.setType(symbol_50);
-			symbol_327.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_326.getOwnedParameters().add(symbol_327);
 			symbol_326.setPrecedence(symbol_5);
 			symbol_326.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
@@ -1699,7 +1623,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_329 = PivotFactory.eINSTANCE.createParameter();
 			symbol_329.setName("o");
 			symbol_329.setType(symbol_50);
-			symbol_329.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_328.getOwnedParameters().add(symbol_329);
 			symbol_328.setPrecedence(symbol_5);
 			symbol_328.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
@@ -1712,7 +1635,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_331 = PivotFactory.eINSTANCE.createParameter();
 			symbol_331.setName("object");
 			symbol_331.setType(symbol_66);
-			symbol_331.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_330.getOwnedParameters().add(symbol_331);
 			symbol_330.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_330);
@@ -1724,7 +1646,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_333 = PivotFactory.eINSTANCE.createParameter();
 			symbol_333.setName("object");
 			symbol_333.setType(symbol_50);
-			symbol_333.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_332.getOwnedParameters().add(symbol_333);
 			symbol_332.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_332);
@@ -1736,7 +1657,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_335 = PivotFactory.eINSTANCE.createParameter();
 			symbol_335.setName("object");
 			symbol_335.setType(symbol_66);
-			symbol_335.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_334.getOwnedParameters().add(symbol_335);
 			symbol_334.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_334);
@@ -1748,12 +1668,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_337 = PivotFactory.eINSTANCE.createParameter();
 			symbol_337.setName("index");
 			symbol_337.setType(symbol_41);
-			symbol_337.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_336.getOwnedParameters().add(symbol_337);
 			Parameter symbol_338 = PivotFactory.eINSTANCE.createParameter();
 			symbol_338.setName("object");
 			symbol_338.setType(symbol_66);
-			symbol_338.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_336.getOwnedParameters().add(symbol_338);
 			symbol_336.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_336);
@@ -1765,7 +1683,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_340 = PivotFactory.eINSTANCE.createParameter();
 			symbol_340.setName("o");
 			symbol_340.setType(symbol_135);
-			symbol_340.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_339.getOwnedParameters().add(symbol_340);
 			symbol_339.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_339);
@@ -1777,7 +1694,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_342 = PivotFactory.eINSTANCE.createParameter();
 			symbol_342.setName("object");
 			symbol_342.setType(symbol_66);
-			symbol_342.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_341.getOwnedParameters().add(symbol_342);
 			symbol_341.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_341);
@@ -1789,7 +1705,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_344 = PivotFactory.eINSTANCE.createParameter();
 			symbol_344.setName("i");
 			symbol_344.setType(symbol_66);
-			symbol_344.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_343.getOwnedParameters().add(symbol_344);
 			symbol_343.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_343);
@@ -1808,7 +1723,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_347 = PivotFactory.eINSTANCE.createParameter();
 			symbol_347.setName("i");
 			symbol_347.setType(symbol_66);
-			symbol_347.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_346.getOwnedParameters().add(symbol_347);
 			symbol_346.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_346);
@@ -1820,12 +1734,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_349 = PivotFactory.eINSTANCE.createParameter();
 			symbol_349.setName("lower");
 			symbol_349.setType(symbol_41);
-			symbol_349.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_348.getOwnedParameters().add(symbol_349);
 			Parameter symbol_350 = PivotFactory.eINSTANCE.createParameter();
 			symbol_350.setName("upper");
 			symbol_350.setType(symbol_41);
-			symbol_350.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_348.getOwnedParameters().add(symbol_350);
 			symbol_348.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_348);
@@ -1837,7 +1749,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_352 = PivotFactory.eINSTANCE.createParameter();
 			symbol_352.setName("s");
 			symbol_352.setType(symbol_135);
-			symbol_352.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_351.getOwnedParameters().add(symbol_352);
 			symbol_351.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_351);
@@ -1849,7 +1760,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_354 = PivotFactory.eINSTANCE.createParameter();
 			symbol_354.setName("o");
 			symbol_354.setType(symbol_120);
-			symbol_354.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_353.getOwnedParameters().add(symbol_354);
 			symbol_353.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_353);
@@ -1861,7 +1771,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_356 = PivotFactory.eINSTANCE.createParameter();
 			symbol_356.setName("s");
 			symbol_356.setType(symbol_135);
-			symbol_356.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_355.getOwnedParameters().add(symbol_356);
 			symbol_355.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_63.getOwnedOperations().add(symbol_355);
@@ -1871,7 +1780,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::Real ocl.Real
 		//
 		symbol_67.setName("Real");
-		symbol_67.setPrimitive(Boolean.TRUE);
+//		symbol_67.setPrimitive(Boolean.TRUE);
 		symbol_67.getSuperClasses().add(symbol_50);
 		{	// ocl::Real::*() ocl.Real.*(ocl.Real)
 			Operation symbol_357 = PivotFactory.eINSTANCE.createOperation();
@@ -1880,7 +1789,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_358 = PivotFactory.eINSTANCE.createParameter();
 			symbol_358.setName("r");
 			symbol_358.setType(symbol_67);
-			symbol_358.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_357.getOwnedParameters().add(symbol_358);
 			symbol_357.setPrecedence(symbol_2);
 			symbol_357.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
@@ -1893,7 +1801,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_360 = PivotFactory.eINSTANCE.createParameter();
 			symbol_360.setName("r");
 			symbol_360.setType(symbol_67);
-			symbol_360.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_359.getOwnedParameters().add(symbol_360);
 			symbol_359.setPrecedence(symbol_8);
 			symbol_359.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
@@ -1906,7 +1813,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_362 = PivotFactory.eINSTANCE.createParameter();
 			symbol_362.setName("r");
 			symbol_362.setType(symbol_67);
-			symbol_362.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_361.getOwnedParameters().add(symbol_362);
 			symbol_361.setPrecedence(symbol_8);
 			symbol_361.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
@@ -1927,7 +1833,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_365 = PivotFactory.eINSTANCE.createParameter();
 			symbol_365.setName("r");
 			symbol_365.setType(symbol_67);
-			symbol_365.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_364.getOwnedParameters().add(symbol_365);
 			symbol_364.setPrecedence(symbol_2);
 			symbol_364.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
@@ -1940,7 +1845,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_367 = PivotFactory.eINSTANCE.createParameter();
 			symbol_367.setName("r");
 			symbol_367.setType(symbol_67);
-			symbol_367.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_366.getOwnedParameters().add(symbol_367);
 			symbol_366.setPrecedence(symbol_6);
 			symbol_366.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation.INSTANCE);
@@ -1953,7 +1857,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_369 = PivotFactory.eINSTANCE.createParameter();
 			symbol_369.setName("r");
 			symbol_369.setType(symbol_67);
-			symbol_369.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_368.getOwnedParameters().add(symbol_369);
 			symbol_368.setPrecedence(symbol_6);
 			symbol_368.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation.INSTANCE);
@@ -1966,7 +1869,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_371 = PivotFactory.eINSTANCE.createParameter();
 			symbol_371.setName("object2");
 			symbol_371.setType(symbol_50);
-			symbol_371.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_370.getOwnedParameters().add(symbol_371);
 			symbol_370.setPrecedence(symbol_5);
 			symbol_370.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNotEqualOperation.INSTANCE);
@@ -1979,7 +1881,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_373 = PivotFactory.eINSTANCE.createParameter();
 			symbol_373.setName("object2");
 			symbol_373.setType(symbol_50);
-			symbol_373.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_372.getOwnedParameters().add(symbol_373);
 			symbol_372.setPrecedence(symbol_5);
 			symbol_372.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericEqualOperation.INSTANCE);
@@ -1992,7 +1893,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_375 = PivotFactory.eINSTANCE.createParameter();
 			symbol_375.setName("r");
 			symbol_375.setType(symbol_67);
-			symbol_375.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_374.getOwnedParameters().add(symbol_375);
 			symbol_374.setPrecedence(symbol_6);
 			symbol_374.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation.INSTANCE);
@@ -2005,7 +1905,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_377 = PivotFactory.eINSTANCE.createParameter();
 			symbol_377.setName("r");
 			symbol_377.setType(symbol_67);
-			symbol_377.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_376.getOwnedParameters().add(symbol_377);
 			symbol_376.setPrecedence(symbol_6);
 			symbol_376.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation.INSTANCE);
@@ -2032,7 +1931,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_381 = PivotFactory.eINSTANCE.createParameter();
 			symbol_381.setName("r");
 			symbol_381.setType(symbol_67);
-			symbol_381.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_380.getOwnedParameters().add(symbol_381);
 			symbol_380.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
 			symbol_67.getOwnedOperations().add(symbol_380);
@@ -2044,7 +1942,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_383 = PivotFactory.eINSTANCE.createParameter();
 			symbol_383.setName("r");
 			symbol_383.setType(symbol_67);
-			symbol_383.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_382.getOwnedParameters().add(symbol_383);
 			symbol_382.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
 			symbol_67.getOwnedOperations().add(symbol_382);
@@ -2061,7 +1958,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_385 = PivotFactory.eINSTANCE.createParameter();
 			symbol_385.setName("type");
 			symbol_385.setType(symbol_20);
-			symbol_385.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_384.getOwnedParameters().add(symbol_385);
 			symbol_384.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation.INSTANCE);
 			symbol_67.getOwnedOperations().add(symbol_384);
@@ -2099,7 +1995,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_389 = PivotFactory.eINSTANCE.createParameter();
 			symbol_389.setName("s");
 			symbol_389.setType(symbol_50);
-			symbol_389.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_388.getOwnedParameters().add(symbol_389);
 			symbol_388.setPrecedence(symbol_5);
 			symbol_388.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
@@ -2112,7 +2007,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_391 = PivotFactory.eINSTANCE.createParameter();
 			symbol_391.setName("s");
 			symbol_391.setType(symbol_50);
-			symbol_391.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_390.getOwnedParameters().add(symbol_391);
 			symbol_390.setPrecedence(symbol_5);
 			symbol_390.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
@@ -2125,7 +2019,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_393 = PivotFactory.eINSTANCE.createParameter();
 			symbol_393.setName("object");
 			symbol_393.setType(symbol_74);
-			symbol_393.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_392.getOwnedParameters().add(symbol_393);
 			symbol_392.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_392);
@@ -2137,7 +2030,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_395 = PivotFactory.eINSTANCE.createParameter();
 			symbol_395.setName("object");
 			symbol_395.setType(symbol_50);
-			symbol_395.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_394.getOwnedParameters().add(symbol_395);
 			symbol_394.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_394);
@@ -2161,7 +2053,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_398 = PivotFactory.eINSTANCE.createParameter();
 			symbol_398.setName("object");
 			symbol_398.setType(symbol_74);
-			symbol_398.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_397.getOwnedParameters().add(symbol_398);
 			symbol_397.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_397);
@@ -2173,12 +2064,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_400 = PivotFactory.eINSTANCE.createParameter();
 			symbol_400.setName("index");
 			symbol_400.setType(symbol_41);
-			symbol_400.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_399.getOwnedParameters().add(symbol_400);
 			Parameter symbol_401 = PivotFactory.eINSTANCE.createParameter();
 			symbol_401.setName("object");
 			symbol_401.setType(symbol_74);
-			symbol_401.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_399.getOwnedParameters().add(symbol_401);
 			symbol_399.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_399);
@@ -2190,7 +2079,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_403 = PivotFactory.eINSTANCE.createParameter();
 			symbol_403.setName("object");
 			symbol_403.setType(symbol_74);
-			symbol_403.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_402.getOwnedParameters().add(symbol_403);
 			symbol_402.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_402);
@@ -2202,7 +2090,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_405 = PivotFactory.eINSTANCE.createParameter();
 			symbol_405.setName("i");
 			symbol_405.setType(symbol_74);
-			symbol_405.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_404.getOwnedParameters().add(symbol_405);
 			symbol_404.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_404);
@@ -2221,7 +2108,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_408 = PivotFactory.eINSTANCE.createParameter();
 			symbol_408.setName("i");
 			symbol_408.setType(symbol_74);
-			symbol_408.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_407.getOwnedParameters().add(symbol_408);
 			symbol_407.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_407);
@@ -2233,12 +2119,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_410 = PivotFactory.eINSTANCE.createParameter();
 			symbol_410.setName("lower");
 			symbol_410.setType(symbol_41);
-			symbol_410.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_409.getOwnedParameters().add(symbol_410);
 			Parameter symbol_411 = PivotFactory.eINSTANCE.createParameter();
 			symbol_411.setName("upper");
 			symbol_411.setType(symbol_41);
-			symbol_411.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_409.getOwnedParameters().add(symbol_411);
 			symbol_409.setImplementation(org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_409);
@@ -2250,7 +2134,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_413 = PivotFactory.eINSTANCE.createParameter();
 			symbol_413.setName("s");
 			symbol_413.setType(symbol_124);
-			symbol_413.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_412.getOwnedParameters().add(symbol_413);
 			symbol_412.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_71.getOwnedOperations().add(symbol_412);
@@ -2274,7 +2157,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_415 = PivotFactory.eINSTANCE.createParameter();
 			symbol_415.setName("s");
 			symbol_415.setType(symbol_138);
-			symbol_415.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_414.getOwnedParameters().add(symbol_415);
 			symbol_414.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
 			symbol_78.getOwnedOperations().add(symbol_414);
@@ -2286,7 +2168,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_417 = PivotFactory.eINSTANCE.createParameter();
 			symbol_417.setName("s");
 			symbol_417.setType(symbol_50);
-			symbol_417.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_416.getOwnedParameters().add(symbol_417);
 			symbol_416.setPrecedence(symbol_5);
 			symbol_416.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation.INSTANCE);
@@ -2299,7 +2180,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_419 = PivotFactory.eINSTANCE.createParameter();
 			symbol_419.setName("s");
 			symbol_419.setType(symbol_50);
-			symbol_419.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_418.getOwnedParameters().add(symbol_419);
 			symbol_418.setPrecedence(symbol_5);
 			symbol_418.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionEqualOperation.INSTANCE);
@@ -2312,7 +2192,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_421 = PivotFactory.eINSTANCE.createParameter();
 			symbol_421.setName("object");
 			symbol_421.setType(symbol_50);
-			symbol_421.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_420.getOwnedParameters().add(symbol_421);
 			symbol_420.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_78.getOwnedOperations().add(symbol_420);
@@ -2336,7 +2215,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_424 = PivotFactory.eINSTANCE.createParameter();
 			symbol_424.setName("object");
 			symbol_424.setType(symbol_81);
-			symbol_424.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_423.getOwnedParameters().add(symbol_424);
 			symbol_423.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_78.getOwnedOperations().add(symbol_423);
@@ -2348,7 +2226,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_426 = PivotFactory.eINSTANCE.createParameter();
 			symbol_426.setName("s");
 			symbol_426.setType(symbol_139);
-			symbol_426.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_425.getOwnedParameters().add(symbol_426);
 			symbol_425.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_78.getOwnedOperations().add(symbol_425);
@@ -2360,7 +2237,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_428 = PivotFactory.eINSTANCE.createParameter();
 			symbol_428.setName("i");
 			symbol_428.setType(symbol_81);
-			symbol_428.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_427.getOwnedParameters().add(symbol_428);
 			symbol_427.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_78.getOwnedOperations().add(symbol_427);
@@ -2372,7 +2248,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_430 = PivotFactory.eINSTANCE.createParameter();
 			symbol_430.setName("i");
 			symbol_430.setType(symbol_81);
-			symbol_430.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_429.getOwnedParameters().add(symbol_430);
 			symbol_429.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_78.getOwnedOperations().add(symbol_429);
@@ -2384,7 +2259,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_432 = PivotFactory.eINSTANCE.createParameter();
 			symbol_432.setName("s");
 			symbol_432.setType(symbol_138);
-			symbol_432.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_431.getOwnedParameters().add(symbol_432);
 			symbol_431.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
 			symbol_78.getOwnedOperations().add(symbol_431);
@@ -2394,7 +2268,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::String ocl.String
 		//
 		symbol_85.setName("String");
-		symbol_85.setPrimitive(Boolean.TRUE);
+//		symbol_85.setPrimitive(Boolean.TRUE);
 		symbol_85.getSuperClasses().add(symbol_50);
 		{	// ocl::String::+() ocl.String.+(ocl.String)
 			Operation symbol_433 = PivotFactory.eINSTANCE.createOperation();
@@ -2403,7 +2277,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_434 = PivotFactory.eINSTANCE.createParameter();
 			symbol_434.setName("s");
 			symbol_434.setType(symbol_85);
-			symbol_434.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_433.getOwnedParameters().add(symbol_434);
 			symbol_433.setPrecedence(symbol_8);
 			symbol_433.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
@@ -2416,7 +2289,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_436 = PivotFactory.eINSTANCE.createParameter();
 			symbol_436.setName("s");
 			symbol_436.setType(symbol_85);
-			symbol_436.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_435.getOwnedParameters().add(symbol_436);
 			symbol_435.setPrecedence(symbol_6);
 			symbol_435.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanOperation.INSTANCE);
@@ -2429,7 +2301,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_438 = PivotFactory.eINSTANCE.createParameter();
 			symbol_438.setName("s");
 			symbol_438.setType(symbol_85);
-			symbol_438.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_437.getOwnedParameters().add(symbol_438);
 			symbol_437.setPrecedence(symbol_6);
 			symbol_437.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation.INSTANCE);
@@ -2442,7 +2313,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_440 = PivotFactory.eINSTANCE.createParameter();
 			symbol_440.setName("object2");
 			symbol_440.setType(symbol_50);
-			symbol_440.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_439.getOwnedParameters().add(symbol_440);
 			symbol_439.setPrecedence(symbol_5);
 			symbol_439.setImplementation(org.eclipse.ocl.examples.library.string.StringNotEqualOperation.INSTANCE);
@@ -2455,7 +2325,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_442 = PivotFactory.eINSTANCE.createParameter();
 			symbol_442.setName("object2");
 			symbol_442.setType(symbol_50);
-			symbol_442.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_441.getOwnedParameters().add(symbol_442);
 			symbol_441.setPrecedence(symbol_5);
 			symbol_441.setImplementation(org.eclipse.ocl.examples.library.string.StringEqualOperation.INSTANCE);
@@ -2468,7 +2337,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_444 = PivotFactory.eINSTANCE.createParameter();
 			symbol_444.setName("s");
 			symbol_444.setType(symbol_85);
-			symbol_444.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_443.getOwnedParameters().add(symbol_444);
 			symbol_443.setPrecedence(symbol_6);
 			symbol_443.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanOperation.INSTANCE);
@@ -2481,7 +2349,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_446 = PivotFactory.eINSTANCE.createParameter();
 			symbol_446.setName("s");
 			symbol_446.setType(symbol_85);
-			symbol_446.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_445.getOwnedParameters().add(symbol_446);
 			symbol_445.setPrecedence(symbol_6);
 			symbol_445.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation.INSTANCE);
@@ -2494,7 +2361,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_448 = PivotFactory.eINSTANCE.createParameter();
 			symbol_448.setName("i");
 			symbol_448.setType(symbol_41);
-			symbol_448.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_447.getOwnedParameters().add(symbol_448);
 			symbol_447.setImplementation(org.eclipse.ocl.examples.library.string.StringAtOperation.INSTANCE);
 			symbol_85.getOwnedOperations().add(symbol_447);
@@ -2513,7 +2379,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_451 = PivotFactory.eINSTANCE.createParameter();
 			symbol_451.setName("s");
 			symbol_451.setType(symbol_85);
-			symbol_451.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_450.getOwnedParameters().add(symbol_451);
 			symbol_450.setImplementation(org.eclipse.ocl.examples.library.string.StringConcatOperation.INSTANCE);
 			symbol_85.getOwnedOperations().add(symbol_450);
@@ -2525,7 +2390,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_453 = PivotFactory.eINSTANCE.createParameter();
 			symbol_453.setName("s");
 			symbol_453.setType(symbol_85);
-			symbol_453.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_452.getOwnedParameters().add(symbol_453);
 			symbol_452.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 			symbol_85.getOwnedOperations().add(symbol_452);
@@ -2537,7 +2401,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_455 = PivotFactory.eINSTANCE.createParameter();
 			symbol_455.setName("s");
 			symbol_455.setType(symbol_85);
-			symbol_455.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_454.getOwnedParameters().add(symbol_455);
 			symbol_454.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 			symbol_85.getOwnedOperations().add(symbol_454);
@@ -2556,12 +2419,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_458 = PivotFactory.eINSTANCE.createParameter();
 			symbol_458.setName("lower");
 			symbol_458.setType(symbol_41);
-			symbol_458.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_457.getOwnedParameters().add(symbol_458);
 			Parameter symbol_459 = PivotFactory.eINSTANCE.createParameter();
 			symbol_459.setName("upper");
 			symbol_459.setType(symbol_41);
-			symbol_459.setIteratorKind(IteratorKind.PARAMETER);
 			symbol_457.getOwnedParameters().add(symbol_459);
 			symbol_457.setImplementation(org.eclipse.ocl.examples.library.string.StringSubstringOperation.INSTANCE);
 			symbol_85.getOwnedOperations().add(symbol_457);
@@ -2647,7 +2508,6 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_468 = PivotFactory.eINSTANCE.createParameter();
 			symbol_468.setName("i");
 			symbol_468.setType(symbol_95);
-			symbol_468.setIteratorKind(IteratorKind.ITERATOR);
 			symbol_467.getOwnedParameters().add(symbol_468);
 			symbol_467.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
 			symbol_92.getOwnedOperations().add(symbol_467);
@@ -2657,7 +2517,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::UnlimitedNatural ocl.UnlimitedNatural
 		//
 		symbol_96.setName("UnlimitedNatural");
-		symbol_96.setPrimitive(Boolean.TRUE);
+//		symbol_96.setPrimitive(Boolean.TRUE);
 		symbol_96.getSuperClasses().add(symbol_41);
 		symbol_1.getOwnedTypes().add(symbol_96);
 		//
