@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.1.2.4 2010/12/13 08:15:55 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.1.2.5 2010/12/19 17:47:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -250,23 +250,23 @@ public class MonikerTests extends XtextTestCase
 		doMonikerTestEcore("OCLEcore");
 	}
 
-	public void testMoniker_midi_oclstdlib() throws IOException, InterruptedException {
+//	public void testMoniker_midi_oclstdlib() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
-		doMonikerTestOCLstdlib("midi");
-	}
+//		doMonikerTestOCLstdlib("midi");
+//	}
 
-	public void testMoniker_mini_oclstdlib() throws IOException, InterruptedException {
+//	public void testMoniker_mini_oclstdlib() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
-		doMonikerTestOCLstdlib("mini");
-	}
+//		doMonikerTestOCLstdlib("mini");
+//	}
 
 	public void testMoniker_oclstdlib_oclstdlib() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
 		doMonikerTestOCLstdlib("oclstdlib");
 	}
 
-	public void testMoniker_OCL_2_3_oclstdlib() throws IOException, InterruptedException {
+//	public void testMoniker_OCL_2_3_oclstdlib() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
-		doMonikerTestOCLstdlib("OCL-2.3x");
-	}
+//		doMonikerTestOCLstdlib("OCL-2.3x");
+//	}
 }

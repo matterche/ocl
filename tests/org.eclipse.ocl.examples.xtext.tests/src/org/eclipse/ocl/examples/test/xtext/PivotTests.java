@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.1.2.3 2010/12/19 16:07:17 ewillink Exp $
+ * $Id: PivotTests.java,v 1.1.2.4 2010/12/19 17:47:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -370,13 +370,13 @@ public class PivotTests extends XtextTestCase
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("trace", new EcoreResourceFactoryImpl());
 	}
 
-	public void testPivot_mini_oclstdlib() throws IOException, InterruptedException {
-		doPivotTestOCLstdlib("mini");
-	}
+//	public void testPivot_mini_oclstdlib() throws IOException, InterruptedException {
+//		doPivotTestOCLstdlib("mini");
+//	}
 
-	public void testPivot_midi_oclstdlib() throws IOException, InterruptedException {
-		doPivotTestOCLstdlib("midi");
-	}
+//	public void testPivot_midi_oclstdlib() throws IOException, InterruptedException {
+//		doPivotTestOCLstdlib("midi");
+//	}
 
 	public void testPivot_oclstdlib_oclstdlib() throws IOException, InterruptedException {
 		doPivotTestOCLstdlib("oclstdlib");

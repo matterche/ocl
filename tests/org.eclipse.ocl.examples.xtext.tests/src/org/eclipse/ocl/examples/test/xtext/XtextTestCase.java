@@ -56,7 +56,6 @@ import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -69,6 +68,7 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
@@ -149,17 +149,10 @@ public class XtextTestCase extends TestCase
 		}
 	}
 
-	public static void assertNoResourceErrors(String message, Resource resource) {
-		List<Resource.Diagnostic> errors = resource.getErrors();
-		if (errors.size() > 0) {
-			StringBuffer s = new StringBuffer();
-			s.append(message);
-			for (Resource.Diagnostic conversionError : errors) {
-				s.append("\n");
-				s.append(conversionError.getMessage());
-			}
-			fail(s.toString());
-		}
+	public static void assertNoResourceErrors(String prefix, Resource resource) {
+		String message = PivotUtil.getResourceErrorsString(resource, prefix);
+		if (message != null)
+			fail(message);
 	}
 
 	public static void assertNoUnresolvedProxies(String message, Resource resource) {

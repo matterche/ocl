@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.1.2.4 2010/12/09 22:15:47 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.1.2.5 2010/12/19 17:47:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -72,7 +72,7 @@ public class OCLstdlibTests extends XtextTestCase
 		assertNoUnresolvedProxies("File Model", fileResource);
 		assertNoValidationErrors("File Model", fileResource);
 		//
-		//	Load oclstdlib.oclstdlib as pre-code-generated Java.
+		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
 		Resource javaResource = OCLstdlib.INSTANCE;
 		PivotAliasCreator.refreshPackageAliases(javaResource);
