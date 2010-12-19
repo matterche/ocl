@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerEssentialOCLCSVisitor.java,v 1.1.2.3 2010/12/19 15:54:35 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.1 2010/12/19 18:33:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
-import org.eclipse.ocl.examples.xtext.base.utilities.MonikerBaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCS2MonikerVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
@@ -62,14 +62,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegat
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
 
-public class MonikerEssentialOCLCSVisitor
+public class EssentialOCLCS2MonikerVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Object, CS2Moniker, BaseCSVisitor<Object, CS2Moniker>>
 	implements PivotConstants {
 
 	private static final class Factory implements CS2Moniker.Factory
 	{
 		private Factory() {
-			MonikerBaseCSVisitor.FACTORY.getClass();
+			BaseCS2MonikerVisitor.FACTORY.getClass();
 			CS2Moniker.addFactory(EssentialOCLCSTPackage.eINSTANCE, this);
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS, "first");
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS, "last");
@@ -79,14 +79,14 @@ public class MonikerEssentialOCLCSVisitor
 		}
 
 		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
-			return new MonikerEssentialOCLCSVisitor(context);
+			return new EssentialOCLCS2MonikerVisitor(context);
 		}
 	}
 
 	public static CS2Moniker.Factory FACTORY = new Factory();
 
 	@SuppressWarnings("unchecked")
-	public MonikerEssentialOCLCSVisitor(CS2Moniker context) {
+	public EssentialOCLCS2MonikerVisitor(CS2Moniker context) {
 		super((BaseCSVisitor<Object, CS2Moniker>) context.getVisitor(BaseCSTPackage.eINSTANCE), context);
 	}
 
