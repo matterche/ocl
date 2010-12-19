@@ -12,23 +12,22 @@
  *
  * </copyright>
  *
- * $Id: MonikerEssentialOCLCSVisitor.java,v 1.1.2.2 2010/12/09 22:15:40 ewillink Exp $
+ * $Id: MonikerEssentialOCLCSVisitor.java,v 1.1.2.3 2010/12/19 15:54:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.MonikerBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
@@ -44,449 +43,301 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLitera
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingEssentialOCLCSVisitor;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
 
 public class MonikerEssentialOCLCSVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Object, CS2Moniker, BaseCSVisitor<Object, CS2Moniker>>
-	implements PivotConstants
-{	
-	private static final Logger logger = Logger.getLogger(MonikerEssentialOCLCSVisitor.class);
+	implements PivotConstants {
 
 	private static final class Factory implements CS2Moniker.Factory
 	{
 		private Factory() {
 			MonikerBaseCSVisitor.FACTORY.getClass();
 			CS2Moniker.addFactory(EssentialOCLCSTPackage.eINSTANCE, this);
-//			roleNames.put(EssentialOCLCSTPackage.Literals.CALL_EXP__SOURCE, "src");
-//			roleNames.put(EssentialOCLCSTPackage.Literals.CONSTRAINT__SPECIFICATION, "spec");
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS, "first");
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS, "last");
-			roleNames.put(EssentialOCLCSTPackage.Literals.CONTEXT_CS__OWNED_EXPRESSION, "x");
-			roleNames.put(EssentialOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION, "z");
-			roleNames.put(EssentialOCLCSTPackage.Literals.IF_EXP_CS__CONDITION, "q");
-			roleNames.put(EssentialOCLCSTPackage.Literals.IF_EXP_CS__THEN_EXPRESSION, "t");
-			roleNames.put(EssentialOCLCSTPackage.Literals.IF_EXP_CS__ELSE_EXPRESSION, "f");
-			roleNames.put(EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN, "i");
-			roleNames.put(EssentialOCLCSTPackage.Literals.LET_EXP_CS__VARIABLE, "v");
-//			roleNames.put(EssentialOCLCSTPackage.Literals.LOOP_EXP__BODY, "body");
-//			roleNames.put(EssentialOCLCSTPackage.Literals.LOOP_EXP__ITERATOR, "it");
-			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_EXPRESSION, "x");
-			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_OPERATOR, "o");
-			roleNames.put(EssentialOCLCSTPackage.Literals.PREFIX_EXP_CS__OWNED_EXPRESSION, "x");
-			roleNames.put(EssentialOCLCSTPackage.Literals.PREFIX_EXP_CS__OWNED_OPERATOR, "o");
+			roleNames.put(EssentialOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION, "specification|ownedExpression");
+			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_EXPRESSION, "source");
+//			roleNames.put(EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT, "argument");
 		}
-		
+
 		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
 			return new MonikerEssentialOCLCSVisitor(context);
 		}
 	}
 
 	public static CS2Moniker.Factory FACTORY = new Factory();
-	
-	/**
-	 * An EssentialOCLCSTreeNameVisitor provides the name of an expression tree
-	 * node. This name is not unique but serves to spread the namespace within
-	 * the flattened expression tree names.
-	 */
-	public static class EssentialOCLCSTreeNameVisitor 
-	extends AbstractExtendingEssentialOCLCSVisitor<String, Object>
-	{
-		protected EssentialOCLCSTreeNameVisitor() {
-			super(null);
-		}
-
-		@Override
-		public String safeVisit(VisitableCS v) {
-			try {
-				if (v != null) {
-					return v.accept(this);
-				}
-			} catch (Exception e) {
-				logger.warn("Failed to cs tree-name visit " + v.getClass().getName(), e);
-			}
-			return null;
-		}
-
-		@Override
-		public String visitBooleanLiteralExpCS(BooleanLiteralExpCS object) {
-			return object.getName();
-		}
-
-		@Override
-		public String visitCollectionLiteralExpCS(CollectionLiteralExpCS object) {
-			return object.getOwnedType().getName();
-		}
-
-		@Override
-		public String visitExpCS(ExpCS object) {
-			return "";
-		}
-
-		@Override
-		public String visitIfExpCS(IfExpCS object) {
-			return "if";
-		}
-
-		@Override
-		public String visitInfixExpCS(InfixExpCS object) {
-			return "?";
-		}
-
-		@Override
-		public String visitInvalidLiteralExpCS(InvalidLiteralExpCS object) {
-			return "invalid";
-		}
-
-		@Override
-		public String visitLetExpCS(LetExpCS object) {
-			return "let";
-		}
-
-		@Override
-		public String visitLetVariableCS(LetVariableCS object) {
-			return object.getName();
-		}
-
-		@Override
-		public String visitNameExpCS(NameExpCS object) {
-			CompositeNode node = NodeUtil.getNode(object);
-			return node.serialize().trim();
-		}
-
-		@Override
-		public String visitNavigatingArgCS(NavigatingArgCS object) {
-			return "?";
-		}
-
-		@Override
-		public String visitNavigatingExpCS(NavigatingExpCS object) {
-			return "?";
-		}
-
-		@Override
-		public String visitNestedExpCS(NestedExpCS object) {
-			return "?";
-		}
-
-		@Override
-		public String visitNullLiteralExpCS(NullLiteralExpCS object) {
-			return "null";
-		}
-
-		@Override
-		public String visitNumberLiteralExpCS(NumberLiteralExpCS object) {
-			return object.getName().toString();
-		}
-
-		@Override
-		public String visitOperatorCS(OperatorCS object) {
-			return object.getName();
-		}		
-
-		@Override
-		public String visitPrefixExpCS(PrefixExpCS object) {
-			return "?";
-		}
-
-		@Override
-		public String visitSelfExpCS(SelfExpCS object) {
-			return "self";
-		}
-
-		@Override
-		public String visitUnlimitedNaturalLiteralExpCS(UnlimitedNaturalLiteralExpCS object) {
-			return "*";
-		}
-
-		public String visiting(VisitableCS visitable) {
-			logger.error("cs tree-name visting " + visitable.getClass().getName());
-			return null;
-		}	
-	}
-	
-	/**
-	 * An EssentialOCLCSTreeContentVisitor supervises the pre-order traversal
-	 * of the contained content of an expression tree, accumulating content in
-	 * a map of node name to list of same-named nodes.
-	 */
-	public static class EssentialOCLCSTreeContentVisitor 
-	extends AbstractExtendingEssentialOCLCSVisitor<Object, Map<String, List<ModelElementCS>>>
-	{
-		protected final EssentialOCLCSTreeNameVisitor treeNameVisitor;
-		
-		protected EssentialOCLCSTreeContentVisitor(Map<String, List<ModelElementCS>> contents, EssentialOCLCSTreeNameVisitor treeNameVisitor) {
-			super(contents);
-			this.treeNameVisitor = treeNameVisitor;
-		}
-
-		@Override
-		public Object safeVisit(VisitableCS v) {
-			try {
-				if (v != null) {
-					return v.accept(this);
-				}
-			} catch (Exception e) {
-				logger.warn("Failed to cs tree-content visit " + v.getClass().getName(), e);
-			}
-			return null;
-		}
-
-		protected void updateContext(ModelElementCS object) {
-			String name = treeNameVisitor.safeVisit(object);
-			if (name != null) {
-				List<ModelElementCS> csList = context.get(name);
-				if (csList == null) {
-					csList = new ArrayList<ModelElementCS>();
-					context.put(name, csList);
-				}
-				csList.add(object);
-			}
-		}
-
-		@Override
-		public Object visitCollectionLiteralExpCS(CollectionLiteralExpCS object) {
-			updateContext(object);			
-//			CollectionTypeCS type = object.getOwnedType();
-//			for (CollectionLiteralPartCS csPart : object.getOwnedParts()) {
-//				safeVisit(csPart);
-//			}
-			return null;
-		}
-
-/*		@Override
-		public Object visitCollectionLiteralPartCS(CollectionLiteralPartCS object) {
-			updateContext(object);			
-			ExpCS first = object.getExpressionCS();
-			if (first != null) {
-				safeVisit(first);
-			}
-			ExpCS last = object.getExpressionCS();
-			if (last != null) {
-				safeVisit(last);
-			}
-			return null;
-		} */
-
-		@Override
-		public Object visitExpCS(ExpCS object) {
-			updateContext(object);			
-			assert object.eContents().isEmpty();		// FIXME review
-			return null;
-		}
-
-		@Override
-		public Object visitIfExpCS(IfExpCS object) {
-			updateContext(object);			
-			safeVisit(object.getCondition());
-			safeVisit(object.getThenExpression());
-			safeVisit(object.getElseExpression());
-			return null;
-		}
-
-		@Override
-		public Object visitInfixExpCS(InfixExpCS object) {
-			updateContext(object);			
-			for (ExpCS csExp : object.getOwnedExpression()) {
-				safeVisit(csExp);
-			}
-			for (OperatorCS csOperator : object.getOwnedOperator()) {
-				safeVisit(csOperator);
-			}
-			return null;
-		}
-
-		@Override
-		public Object visitLetExpCS(LetExpCS object) {
-			updateContext(object);			
-			for (LetVariableCS csVariable : object.getVariable()) {
-				safeVisit(csVariable);
-			}
-			safeVisit(object.getIn());
-			return null;
-		}
-
-		@Override
-		public Object visitNameExpCS(NameExpCS object) {
-			updateContext(object);			
-			assert object.eContents().isEmpty();
-			return null;
-		}
-
-		@Override
-		public Object visitNavigatingArgCS(NavigatingArgCS object) {
-			updateContext(object);			
-			ExpCS name = object.getName();
-			if (name != null) {
-				safeVisit(name);
-			}
-//			safeVisit(object.getOwnedType());
-			ExpCS init = object.getInit();
-			if (init != null) {
-				safeVisit(init);
-			}
-			return null;
-		}
-
-		@Override
-		public Object visitNavigatingExpCS(NavigatingExpCS object) {
-			updateContext(object);			
-			NamedExpCS namedExp = object.getNamedExp();
-			if (namedExp != null) {
-				safeVisit(namedExp);
-			}
-			for (NavigatingArgCS csArg : object.getArguments()) {
-				safeVisit(csArg);
-			}
-			return null;
-		}
-
-		@Override
-		public Object visitNestedExpCS(NestedExpCS object) {
-			updateContext(object);			
-			ExpCS source = object.getSource();
-			if (source != null) {
-				safeVisit(source);
-			}
-			return null;
-		}
-
-		@Override
-		public Object visitOperatorCS(OperatorCS object) {
-			updateContext(object);			
-			assert object.eContents().isEmpty();
-			return null;
-		}		
-
-		@Override
-		public Object visitPrefixExpCS(PrefixExpCS object) {
-			updateContext(object);			
-			for (OperatorCS csOperator : object.getOwnedOperator()) {
-				safeVisit(csOperator);
-			}
-			ExpCS ownedExpression = object.getOwnedExpression();
-			if (ownedExpression != null) {
-				safeVisit(ownedExpression);
-			}
-			return null;
-		}
-
-		@Override
-		public String visitSelfExpCS(SelfExpCS object) {
-			updateContext(object);			
-			assert object.eContents().isEmpty();
-			return null;
-		}
-
-		@Override
-		public Object visitTypeLiteralExpCS(TypeLiteralExpCS object) {
-			updateContext(object);			
-			return null;
-		}
-
-		@Override
-		public Object visitVariableCS(VariableCS object) {
-			updateContext(object);			
-			safeVisit(object.getInitExpression());
-			return null;
-		}
-
-		public Object visiting(VisitableCS visitable) {
-			logger.error("cs tree-content visting " + visitable.getClass().getName());
-			return null;
-		}	
-	}
-	
-	protected EssentialOCLCSTreeNameVisitor treeNameVisitor = null;
 
 	@SuppressWarnings("unchecked")
 	public MonikerEssentialOCLCSVisitor(CS2Moniker context) {
 		super((BaseCSVisitor<Object, CS2Moniker>) context.getVisitor(BaseCSTPackage.eINSTANCE), context);
 	}
 
-	protected void appendExpNode(ModelElementCS object) {
-		ModelElementCS csRoot = getExpTreeRoot(object);
-		context.appendParentCS(csRoot, SCOPE_SEPARATOR);
-		context.appendRoleCS(csRoot);
-		if (!(csRoot.eContainer() instanceof ExpCS) && !(csRoot.eContainer() instanceof CollectionLiteralPartCS)) {
-			context.append(SCOPE_SEPARATOR);
-			context.append("x");
+	protected void appendExpPrefix(ElementCS object) {
+		ElementCS child = getChildCS(object);
+		MonikeredElementCS parent = getParentCS(child);
+		EReference feature = getParentChildFeature(object);
+		assert feature.getEContainingClass().isInstance(parent);
+		assert feature.getEReferenceType().isInstance(child);
+		context.append(getPivotedCS(parent).getMoniker());
+		context.append(MONIKER_SCOPE_SEPARATOR);
+		if (feature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
+			int iMax = ((LetExpCS) parent).getVariable().size();
+			for (int i = 1; i < iMax; i++) {
+				context.append(EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN.getName());
+				context.append(MONIKER_OPERATOR_SEPARATOR);
+				context.append(MONIKER_LET_EXP);
+				context.append(MONIKER_SCOPE_SEPARATOR);
+			}
 		}
-		Map<String, List<ModelElementCS>> expTreeMap = new HashMap<String, List<ModelElementCS>>();
-		getTreeContentVisitor(expTreeMap).safeVisit(csRoot);
-		String name = getTreeNameVisitor().safeVisit(object);
-		List<ModelElementCS> csList = expTreeMap.get(name);
-		int index = (csList != null) ? csList.indexOf(object) : -1;
-		if (index >= 0) {
-			context.append(SCOPE_SEPARATOR);
-			context.append(name);
-			context.append(OPERATOR_SEPARATOR);
+		int index = 0;
+		if (feature.isMany()) {
+			index = ((List<?>)parent.eGet(feature)).indexOf(child);
+			if (feature == EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT) {
+				NavigatingExpCS csNavigatingExp = (NavigatingExpCS)parent;
+				int argsOrBodies = 0;
+				int accs = 0;
+				int bodies = 0;
+				for (NavigatingArgCS csNavigatingArg : csNavigatingExp.getArgument()) {
+					if (csNavigatingArg instanceof NavigatingArgOrBodyCS) {
+						argsOrBodies++;
+					}
+					else if (csNavigatingArg instanceof NavigatingAccCS) {
+						accs++;
+					}
+					else {
+						bodies++;
+					}
+				}
+				if ((accs + bodies) > 0) {
+					index -= argsOrBodies + accs;
+				}
+				if (index < 0) {
+					index += accs;
+					if (index >= 0) {
+						feature = PivotPackage.Literals.ITERATE_EXP__RESULT;
+					}
+					else {
+						index += argsOrBodies;
+						feature = PivotPackage.Literals.LOOP_EXP__ITERATOR;
+					}
+				}
+			}
+		}
+		context.appendRoleCS(feature);
+		if (index != 0) {
+			assert index > 0;
 			context.append(index);
+		}
+		context.append(MONIKER_OPERATOR_SEPARATOR);
+	}
+
+	/**
+	 * Return the CS element from the CS elements associated with the
+	 * same pivot element as csElement, whose child-parent relationship
+	 * corresponds to the child-parent relationship of the pivot element.
+	 * 
+	 * @param csElement for which the child counterpart is required
+	 * @return the child counterpart
+	 */
+	protected ElementCS getChildCS(ElementCS csElement) {
+		if (csElement instanceof ExpCS) {
+			OperatorCS operator = ((ExpCS) csElement).getParent();
+			if (operator != null) {
+				return csElement;
+			}
+		}
+		EObject csParent = csElement.eContainer();
+		if (csParent instanceof InfixExpCS) {
+			return getChildCS((InfixExpCS) csParent);
+		}
+		else if (csParent instanceof NavigatingArgCS) {
+			return getChildCS((NavigatingArgCS) csParent);
+		}
+		else if (csParent instanceof NavigatingExpCS) {
+			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
+			if (csElement == csNavigatingExp.getNamedExp()) {
+				return getChildCS(csNavigatingExp.getParent());
+			}
+			else {
+				return csElement;
+			}
+		}
+		else if (csParent instanceof NestedExpCS) {
+			return getChildCS((NestedExpCS) csParent);
+		}
+		else if (csParent instanceof PrefixExpCS) {
+			return getChildCS((PrefixExpCS) csParent);
+		}
+		else {
+			return csElement;
+		}
+	}
+
+	// FIXME Simplify since csElement is the immediate child
+	protected MonikeredElementCS getParentCS(EObject csElement) {
+		if (csElement instanceof ExpCS) {
+			OperatorCS operator = ((ExpCS) csElement).getParent();
+			if (operator != null) {
+				return operator;
+			}
+		}
+		EObject csParent = csElement.eContainer();
+		if (csParent instanceof InfixExpCS) {
+			return getParentCS(csParent);
+		}
+		else if (csParent instanceof NavigatingArgCS) {
+			return getParentCS(csParent);
+		}
+		else if (csParent instanceof NavigatingExpCS) {
+			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
+			if (csElement == csNavigatingExp.getNamedExp()) {
+				return getParentCS(csNavigatingExp.getParent());
+			}
+			else {
+				return (MonikeredElementCS) csParent;
+//				return getParent(csNavigatingExp);
+			}
+		}
+		else if (csParent instanceof NestedExpCS) {
+			return getParentCS(csParent);
+		}
+		else if (csParent instanceof PrefixExpCS) {
+			return getParentCS(csParent);
+		}
+		else if (csParent instanceof MonikeredElementCS) {
+			return (MonikeredElementCS) csParent;
+		}
+		else {
+			return null;
+		}
+	}
+
+	// FIXME Simplify since csElement is the immediate child
+	protected EReference getParentChildFeature(ElementCS csElement) {
+		if (csElement instanceof ExpCS) {
+			OperatorCS operator = ((ExpCS) csElement).getParent();
+			if (operator != null) {
+				if (operator.getSource() == csElement) {
+					return EssentialOCLCSTPackage.Literals.OPERATOR_CS__SOURCE;
+				}
+				else {
+					return EssentialOCLCSTPackage.Literals.BINARY_OPERATOR_CS__ARGUMENT;
+				}
+			}
+		}
+		EObject csParent = csElement.eContainer();
+		if (csParent instanceof InfixExpCS) {
+			return getParentChildFeature((InfixExpCS) csParent);
+		}
+		else if (csParent instanceof NavigatingArgCS) {
+//			return EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGS; //getParentChildFeature((NavigatingArgCS) csParent);
+			return getParentChildFeature((NavigatingArgCS) csParent);
+		}
+		else if (csParent instanceof NavigatingExpCS) {
+			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
+			if (csElement == csNavigatingExp.getNamedExp()) {
+				return getParentChildFeature(csNavigatingExp.getParent());
+			}
+			else {
+				return EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT;
+			}
+		}
+		else if (csParent instanceof NestedExpCS) {
+			return getParentChildFeature((NestedExpCS) csParent);
+		}
+		else if (csParent instanceof PrefixExpCS) {
+			return getParentChildFeature((PrefixExpCS) csParent);
+		}
+		else {
+			return (EReference) csElement.eContainingFeature();
 		}
 	}
 
 	/**
-	 * Return the root node with respect to which all monikers are determined.
+	 * Return the element associated with csElement for which there is a
+	 * pivot element with an identical moniker.
+	 * @param csElement
+	 * @return the csElement with a matching pivot element
 	 */
-	protected ModelElementCS getExpTreeRoot(ModelElementCS object) {
-		for (ModelElementCS eObject = object; eObject != null; eObject = (ModelElementCS) eObject.eContainer()) {
-			EObject eContainer = eObject.eContainer();
-			if (!(eContainer instanceof ExpCS) && !(eContainer instanceof NavigatingArgCS)) {
-				return eObject;
-			}
-			if (eContainer instanceof IfExpCS) {
-				return eObject;
-			}
-			if (eContainer instanceof LetExpCS) {
-				return eObject;
-			}
-			if (eContainer instanceof LetVariableCS) {
-				return eObject;
-			}		
+	protected MonikeredElementCS getPivotedCS(EObject csElement) {
+		if (csElement instanceof InfixExpCS) {
+			return getPivotedCS(((InfixExpCS)csElement).getOwnedOperator().get(0));
 		}
-		return null;
+		else if (csElement instanceof NavigatingArgCS) {
+			return getPivotedCS(((NavigatingArgCS)csElement).getName());
+		}
+		else if (csElement instanceof NavigatingExpCS) {
+			return getPivotedCS(((NavigatingExpCS)csElement).getNamedExp());
+		}
+		else if (csElement instanceof NavigationOperatorCS) {
+			return getPivotedCS(((NavigationOperatorCS)csElement).getArgument());
+		}
+		else if (csElement instanceof NestedExpCS) {
+			return getPivotedCS(((NestedExpCS)csElement).getSource());
+		}
+		else if (csElement instanceof PrefixExpCS) {
+			return getPivotedCS(((PrefixExpCS)csElement).getOwnedOperator().get(0));
+		}
+		else if (csElement instanceof MonikeredElementCS) {
+			return (MonikeredElementCS) csElement;
+		}
+		else {
+			return null;
+		}
 	}
 
-	protected EssentialOCLCSTreeContentVisitor getTreeContentVisitor(Map<String, List<ModelElementCS>> map) {
-		return new EssentialOCLCSTreeContentVisitor(map, getTreeNameVisitor());
+	@Override
+	public String toString() {
+		return context.toString();
 	}
-	
-	protected EssentialOCLCSTreeNameVisitor getTreeNameVisitor() {
-		if (treeNameVisitor == null) {
-			treeNameVisitor = new EssentialOCLCSTreeNameVisitor();
-		}
-		return treeNameVisitor;
+
+	@Override
+	public Object visitBooleanLiteralExpCS(BooleanLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.append(object.getName());
+		return true;
+	}
+
+	@Override
+	public Object visitCollectionLiteralExpCS(CollectionLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.appendNameCS(object.getOwnedType());
+		return true;
 	}
 
 	@Override
 	public Object visitCollectionLiteralPartCS(CollectionLiteralPartCS object) {
-		context.appendParentCS(object, "@");
+		context.appendParentCS(object, MONIKER_PART_SEPARATOR);
 		context.appendIndex(object);
 		return true;
 	}
 
 	@Override
 	public Object visitCollectionTypeCS(CollectionTypeCS object) {
-//		Element pivot = object.getPivot();
-//		if (pivot != null) { 
-//			context.appendElement(pivot);
-//			return true;
-//		}
-//		context.appendParentCS(object, SCOPE_SEPARATOR);
+		// Element pivot = object.getPivot();
+		// if (pivot != null) {
+		// context.appendElement(pivot);
+		// return true;
+		// }
+		// context.appendParentCS(object, SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		TypeRefCS type = object.getOwnedType();
 		if (type != null) {
@@ -504,33 +355,148 @@ public class MonikerEssentialOCLCSVisitor
 	}
 
 	@Override
-	public Object visitExpCS(ExpCS object) {
-		appendExpNode(object);
+	public Object visitIfExpCS(IfExpCS object) {
+		appendExpPrefix(object);
+		context.append(MONIKER_IF_EXP);
+		return true;
+	}
+
+	@Override
+	public Object visitInfixExpCS(InfixExpCS object) {
+		appendExpPrefix(object);
+		context.append("infix");
+		return true;
+	}
+
+	@Override
+	public Object visitInvalidLiteralExpCS(InvalidLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.append(MONIKER_INVALID_LITERAL_EXP);
+		return true;
+	}
+
+	@Override
+	public Object visitLetExpCS(LetExpCS object) {
+		appendExpPrefix(object);
+		context.append(MONIKER_LET_EXP);
 		return true;
 	}
 
 	@Override
 	public Object visitLetVariableCS(LetVariableCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
-		context.append("var_");
-		context.append(object.getName());
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+		LetExpCS csLetExp = object.getLetExpression();
+		for (LetVariableCS csVariable : csLetExp.getVariable()) {
+			if (csVariable == object) {
+				break;
+			}
+			context.append(EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN.getName());
+			context.append(MONIKER_OPERATOR_SEPARATOR);
+			context.append(MONIKER_LET_EXP);
+			context.append(MONIKER_SCOPE_SEPARATOR);
+		}
+//		context.append(MONIKER_LET_VARIABLE_PREFIX);
+		context.append("variable");
+		context.append(MONIKER_OPERATOR_SEPARATOR);
+		context.appendNameCS(object);
+		return true;
+	}
+
+	@Override
+	public Object visitNameExpCS(NameExpCS object) {
+		appendExpPrefix(object);
+		CompositeNode node = NodeUtil.getNode(object);
+		context.append(node.serialize().trim());
 		return true;
 	}
 
 	@Override
 	public Object visitNavigatingArgCS(NavigatingArgCS object) {
-		appendExpNode(object);
+		appendExpPrefix(object);
+		context.append("navarg");		
+		return true;
+	}
+
+	@Override
+	public Object visitNavigatingExpCS(NavigatingExpCS object) {
+		appendExpPrefix(object);
+		context.append("navexp");
+		return true;
+	}
+
+	@Override
+	public Object visitNavigationOperatorCS(NavigationOperatorCS object) {
+		appendExpPrefix(object);
+		context.append("navop");		
+		return true;
+	}
+
+	@Override
+	public Object visitNestedExpCS(NestedExpCS object) {
+		appendExpPrefix(object);
+		context.append("nested");		
+		return true;
+	}
+
+	@Override
+	public Object visitNullLiteralExpCS(NullLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.append(MONIKER_NULL_LITERAL_EXP);
+		return true;
+	}
+
+	@Override
+	public Object visitNumberLiteralExpCS(NumberLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.append(object.getName().toString());
 		return true;
 	}
 
 	@Override
 	public Object visitOperatorCS(OperatorCS object) {
-		appendExpNode(object);
+		appendExpPrefix(object);
+		context.appendNameCS(object);
 		return true;
 	}
 
 	@Override
-	public String toString() {
-		return context.toString();
+	public Object visitPrefixExpCS(PrefixExpCS object) {
+		appendExpPrefix(object);
+		context.append("prefix");
+		return true;
+	}
+
+	@Override
+	public Object visitSelfExpCS(SelfExpCS object) {
+		appendExpPrefix(object);
+		context.append("self");
+		return true;
+	}
+
+	@Override
+	public Object visitStringLiteralExpCS(StringLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.append(MONIKER_STRING_LITERAL_EXP);
+		return true;
+	}
+
+	@Override
+	public Object visitTypeLiteralExpCS(TypeLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.append(MONIKER_TYPE_LITERAL_EXP);
+		return true;
+	}
+
+	@Override
+	public Object visitTypeNameExpCS(TypeNameExpCS object) {
+		context.append(((MonikeredElement) object.getPivot()).getMoniker());
+		return true;
+	}
+
+	@Override
+	public Object visitUnlimitedNaturalLiteralExpCS(UnlimitedNaturalLiteralExpCS object) {
+		appendExpPrefix(object);
+		context.append(MONIKER_UNLIMITED_NATURAL_LITERAL_EXP);
+		return true;
 	}
 }

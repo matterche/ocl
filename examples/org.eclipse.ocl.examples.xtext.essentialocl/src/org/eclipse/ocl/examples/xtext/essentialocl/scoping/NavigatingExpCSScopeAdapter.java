@@ -12,19 +12,28 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.4 2010/12/13 08:15:02 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.5 2010/12/19 15:54:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
@@ -36,17 +45,37 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EObject fromArgument = scopeView.getChild();
+		for (NavigatingArgCS csArgument : target.getArgument()) {
+			if (csArgument instanceof NavigatingBodyCS) {
+				break;
+			}
+			Element pivot = csArgument.getPivot();
+			if (pivot instanceof Variable) {
+				environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Variable) pivot);
+			}
+			if (csArgument == fromArgument) {
+				break;
+			}
+		}
 		EObject csParent = getParent().getTarget();
 		if (csParent instanceof InfixExpCS) {
-			NavigatingExpCS csExpression = getTarget();
-			OperatorCS csOperator = csExpression.getParent();
+			OperatorCS csOperator = target.getParent();
 			if (csOperator != null) {
 				ScopeAdapter scopeAdapter = getScopeAdapter(csOperator);
-				if (csExpression == csOperator.getSource()) {
-					return new BaseScopeView(scopeAdapter, PivotPackage.Literals.CALL_EXP__SOURCE, null);
-				}
-				else {
-					return new BaseScopeView(scopeAdapter, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+				ExpCS csSource = csOperator.getSource();
+				if (target == csSource) {									// Implicit source
+					return new BaseScopeView(scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
+				} else {
+					OclExpression source = (OclExpression)csSource.getPivot();
+					Type sourceType = source != null ? source.getType() : null;
+					if (PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(csOperator.getName()) && !(sourceType instanceof CollectionType)) {
+						Type setType = pivotManager.getSetType();				// Implicit set
+						environmentView.addElementsOfScope(pivotManager, setType, scopeView);
+					}
+					else {														// Normal dot navigation
+						return new BaseScopeView(scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+					}
 				}
 			}
 		}

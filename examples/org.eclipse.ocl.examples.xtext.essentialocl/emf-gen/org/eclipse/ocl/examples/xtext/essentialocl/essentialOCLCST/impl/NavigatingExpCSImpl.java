@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSImpl.java,v 1.1.2.2 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: NavigatingExpCSImpl.java,v 1.1.2.3 2010/12/19 15:54:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,15 +46,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements NavigatingExpCS
 {
 	/**
-	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArguments()
+	 * @see #getArgument()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<NavigatingArgCS> arguments;
-
+	protected EList<NavigatingArgCS> argument;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,13 +80,30 @@ public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements Navi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<NavigatingArgCS> getArguments()
+	public EList<NavigatingArgCS> getArgument()
 	{
-		if (arguments == null)
+		if (argument == null)
 		{
-			arguments = new EObjectContainmentEList<NavigatingArgCS>(NavigatingArgCS.class, this, EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS);
+			argument = new EObjectContainmentWithInverseEList<NavigatingArgCS>(NavigatingArgCS.class, this, EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT, EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP);
 		}
-		return arguments;
+		return argument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getArgument()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -100,8 +116,8 @@ public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements Navi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT:
+				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -116,8 +132,8 @@ public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements Navi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
-				return getArguments();
+			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT:
+				return getArgument();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,9 +149,9 @@ public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements Navi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
-				getArguments().clear();
-				getArguments().addAll((Collection<? extends NavigatingArgCS>)newValue);
+			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT:
+				getArgument().clear();
+				getArgument().addAll((Collection<? extends NavigatingArgCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,8 +167,8 @@ public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements Navi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
-				getArguments().clear();
+			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT:
+				getArgument().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -168,8 +184,8 @@ public class NavigatingExpCSImpl extends DecoratedNamedExpCSImpl implements Navi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENTS:
-				return arguments != null && !arguments.isEmpty();
+			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT:
+				return argument != null && !argument.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

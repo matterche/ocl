@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingEssentialOCLCSVisitor.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: AbstractExtendingEssentialOCLCSVisitor.java,v 1.1.2.4 2010/12/19 15:54:34 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.essentialocl.util;
 
@@ -113,8 +113,20 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		return visitExpCS(object);
 	}
 
+	public R visitNavigatingAccCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS object) {
+		return visitNavigatingArgCS(object);
+	}
+
 	public R visitNavigatingArgCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS object) {
 		return visitModelElementCS(object);
+	}
+
+	public R visitNavigatingArgOrBodyCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS object) {
+		return visitNavigatingArgCS(object);
+	}
+
+	public R visitNavigatingBodyCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS object) {
+		return visitNavigatingArgCS(object);
 	}
 
 	public R visitNavigatingExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS object) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.4 2010/12/19 15:54:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -81,8 +82,8 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 
 	protected String getConvertedLinkText(EObject object, EReference reference, EObject context) {
 		if ((reference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (context instanceof TypedTypeRefCS)) {
-			if ((object instanceof org.eclipse.ocl.examples.pivot.Class) && ((org.eclipse.ocl.examples.pivot.Class)object).isPrimitive()) {
-				return ((org.eclipse.ocl.examples.pivot.Class)object).getName();
+			if (object instanceof PrimitiveType) {
+				return ((PrimitiveType)object).getName();
 			}
 			TypeRefCS csRef = (TypedTypeRefCS) context;
 			while (csRef.eContainer() instanceof TypeRefCS) {

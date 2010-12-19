@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.1 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.2 2010/12/19 15:54:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOpe
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ContextCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpCSScopeAdapter;
@@ -120,6 +121,11 @@ public class EssentialOCLScopeVisitor
 
 	@Override
 	public ScopeCSAdapter visitTupleLiteralPartCS(TupleLiteralPartCS eObject) {
+		return new EmptyCSScopeAdapter(context, eObject);
+	}
+
+	@Override
+	public ScopeCSAdapter visitTypeNameExpCS(TypeNameExpCS eObject) {
 		return new EmptyCSScopeAdapter(context, eObject);
 	}
 

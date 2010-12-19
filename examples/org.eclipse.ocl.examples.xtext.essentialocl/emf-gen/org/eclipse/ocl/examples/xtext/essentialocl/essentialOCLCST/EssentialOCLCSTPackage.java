@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackage.java,v 1.6.6.4 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLCSTPackage.java,v 1.6.6.5 2010/12/19 15:54:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -129,7 +129,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 26;
+	int PRIMITIVE_LITERAL_EXP_CS = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -139,7 +139,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 30;
+	int TUPLE_LITERAL_EXP_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -149,7 +149,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 29;
+	int STRING_LITERAL_EXP_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -179,7 +179,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 22;
+	int NULL_LITERAL_EXP_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -239,7 +239,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingExpCS()
 	 * @generated
 	 */
-	int NAVIGATING_EXP_CS = 19;
+	int NAVIGATING_EXP_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl <em>Index Exp CS</em>}' class.
@@ -259,7 +259,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeNameExpCS()
 	 * @generated
 	 */
-	int TYPE_NAME_EXP_CS = 33;
+	int TYPE_NAME_EXP_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.
@@ -279,7 +279,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNestedExpCS()
 	 * @generated
 	 */
-	int NESTED_EXP_CS = 21;
+	int NESTED_EXP_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NumberLiteralExpCSImpl <em>Number Literal Exp CS</em>}' class.
@@ -289,7 +289,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNumberLiteralExpCS()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_EXP_CS = 23;
+	int NUMBER_LITERAL_EXP_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperatorCSImpl <em>Operator CS</em>}' class.
@@ -299,7 +299,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getOperatorCS()
 	 * @generated
 	 */
-	int OPERATOR_CS = 24;
+	int OPERATOR_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1735,7 +1735,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 36;
+	int VARIABLE_CS = 39;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1935,7 +1935,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getSimpleNamedExpCS()
 	 * @generated
 	 */
-	int SIMPLE_NAMED_EXP_CS = 28;
+	int SIMPLE_NAMED_EXP_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2118,13 +2118,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATING_ARG_CS__ERROR = BaseCSTPackage.MODEL_ELEMENT_CS__ERROR;
 
 	/**
-	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
+	 * The feature id for the '<em><b>Navigating Exp</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS__PREFIX = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int NAVIGATING_ARG_CS__NAVIGATING_EXP = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -2136,13 +2136,168 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATING_ARG_CS__NAME = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of structural features of the '<em>Navigating Arg CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_CS_FEATURE_COUNT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingArgOrBodyCSImpl <em>Navigating Arg Or Body CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingArgOrBodyCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingArgOrBodyCS()
+	 * @generated
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS = 19;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS__OWNED_ANNOTATION = NAVIGATING_ARG_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS__PIVOT = NAVIGATING_ARG_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS__ORIGINAL_XMI_ID = NAVIGATING_ARG_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Error</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS__ERROR = NAVIGATING_ARG_CS__ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Navigating Exp</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS__NAVIGATING_EXP = NAVIGATING_ARG_CS__NAVIGATING_EXP;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS__NAME = NAVIGATING_ARG_CS__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS__OWNED_TYPE = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+	int NAVIGATING_ARG_OR_BODY_CS__OWNED_TYPE = NAVIGATING_ARG_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Navigating Arg Or Body CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_OR_BODY_CS_FEATURE_COUNT = NAVIGATING_ARG_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingAccCSImpl <em>Navigating Acc CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingAccCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingAccCS()
+	 * @generated
+	 */
+	int NAVIGATING_ACC_CS = 20;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ACC_CS__OWNED_ANNOTATION = NAVIGATING_ARG_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ACC_CS__PIVOT = NAVIGATING_ARG_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ACC_CS__ORIGINAL_XMI_ID = NAVIGATING_ARG_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Error</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ACC_CS__ERROR = NAVIGATING_ARG_CS__ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Navigating Exp</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ACC_CS__NAVIGATING_EXP = NAVIGATING_ARG_CS__NAVIGATING_EXP;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ACC_CS__NAME = NAVIGATING_ARG_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ACC_CS__OWNED_TYPE = NAVIGATING_ARG_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Init</b></em>' containment reference.
@@ -2151,16 +2306,89 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS__INIT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
+	int NAVIGATING_ACC_CS__INIT = NAVIGATING_ARG_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Navigating Arg CS</em>' class.
+	 * The number of structural features of the '<em>Navigating Acc CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS_FEATURE_COUNT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 4;
+	int NAVIGATING_ACC_CS_FEATURE_COUNT = NAVIGATING_ARG_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingBodyCSImpl <em>Navigating Body CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingBodyCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingBodyCS()
+	 * @generated
+	 */
+	int NAVIGATING_BODY_CS = 21;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_BODY_CS__OWNED_ANNOTATION = NAVIGATING_ARG_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_BODY_CS__PIVOT = NAVIGATING_ARG_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_BODY_CS__ORIGINAL_XMI_ID = NAVIGATING_ARG_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Error</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_BODY_CS__ERROR = NAVIGATING_ARG_CS__ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Navigating Exp</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_BODY_CS__NAVIGATING_EXP = NAVIGATING_ARG_CS__NAVIGATING_EXP;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_BODY_CS__NAME = NAVIGATING_ARG_CS__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Navigating Body CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_BODY_CS_FEATURE_COUNT = NAVIGATING_ARG_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2226,13 +2454,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATING_EXP_CS__NAMED_EXP = DECORATED_NAMED_EXP_CS__NAMED_EXP;
 
 	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_EXP_CS__ARGUMENTS = DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 0;
+	int NAVIGATING_EXP_CS__ARGUMENT = DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Navigating Exp CS</em>' class.
@@ -2251,7 +2479,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigationOperatorCS()
 	 * @generated
 	 */
-	int NAVIGATION_OPERATOR_CS = 20;
+	int NAVIGATION_OPERATOR_CS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2558,7 +2786,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getPrefixExpCS()
 	 * @generated
 	 */
-	int PREFIX_EXP_CS = 25;
+	int PREFIX_EXP_CS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2649,7 +2877,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getSelfExpCS()
 	 * @generated
 	 */
-	int SELF_EXP_CS = 27;
+	int SELF_EXP_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2875,7 +3103,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleLiteralPartCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART_CS = 31;
+	int TUPLE_LITERAL_PART_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2966,7 +3194,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 32;
+	int TYPE_LITERAL_EXP_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3129,7 +3357,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnaryOperatorCS()
 	 * @generated
 	 */
-	int UNARY_OPERATOR_CS = 34;
+	int UNARY_OPERATOR_CS = 37;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3220,7 +3448,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 35;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3293,7 +3521,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getBigNumber()
 	 * @generated
 	 */
-	int BIG_NUMBER = 37;
+	int BIG_NUMBER = 40;
 
 
 	/**
@@ -3633,15 +3861,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getNavigatingArgCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getPrefix <em>Prefix</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getNavigatingExp <em>Navigating Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Prefix</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getPrefix()
+	 * @return the meta object for the container reference '<em>Navigating Exp</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getNavigatingExp()
 	 * @see #getNavigatingArgCS()
 	 * @generated
 	 */
-	EAttribute getNavigatingArgCS_Prefix();
+	EReference getNavigatingArgCS_NavigatingExp();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getName <em>Name</em>}'.
@@ -3655,26 +3883,67 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EReference getNavigatingArgCS_Name();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getOwnedType <em>Owned Type</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS <em>Navigating Arg Or Body CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Navigating Arg Or Body CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS
+	 * @generated
+	 */
+	EClass getNavigatingArgOrBodyCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS#getOwnedType <em>Owned Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Owned Type</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getOwnedType()
-	 * @see #getNavigatingArgCS()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS#getOwnedType()
+	 * @see #getNavigatingArgOrBodyCS()
 	 * @generated
 	 */
-	EReference getNavigatingArgCS_OwnedType();
+	EReference getNavigatingArgOrBodyCS_OwnedType();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getInit <em>Init</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS <em>Navigating Acc CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Navigating Acc CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS
+	 * @generated
+	 */
+	EClass getNavigatingAccCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS#getOwnedType <em>Owned Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Type</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS#getOwnedType()
+	 * @see #getNavigatingAccCS()
+	 * @generated
+	 */
+	EReference getNavigatingAccCS_OwnedType();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS#getInit <em>Init</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Init</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getInit()
-	 * @see #getNavigatingArgCS()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS#getInit()
+	 * @see #getNavigatingAccCS()
 	 * @generated
 	 */
-	EReference getNavigatingArgCS_Init();
+	EReference getNavigatingAccCS_Init();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS <em>Navigating Body CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Navigating Body CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS
+	 * @generated
+	 */
+	EClass getNavigatingBodyCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS <em>Navigating Exp CS</em>}'.
@@ -3687,15 +3956,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getNavigatingExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArguments <em>Arguments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Arguments</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArguments()
+	 * @return the meta object for the containment reference list '<em>Argument</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument()
 	 * @see #getNavigatingExpCS()
 	 * @generated
 	 */
-	EReference getNavigatingExpCS_Arguments();
+	EReference getNavigatingExpCS_Argument();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS <em>Navigation Operator CS</em>}'.
@@ -4450,12 +4719,12 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass NAVIGATING_ARG_CS = eINSTANCE.getNavigatingArgCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Prefix</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Navigating Exp</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAVIGATING_ARG_CS__PREFIX = eINSTANCE.getNavigatingArgCS_Prefix();
+		EReference NAVIGATING_ARG_CS__NAVIGATING_EXP = eINSTANCE.getNavigatingArgCS_NavigatingExp();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
@@ -4466,12 +4735,40 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EReference NAVIGATING_ARG_CS__NAME = eINSTANCE.getNavigatingArgCS_Name();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingArgOrBodyCSImpl <em>Navigating Arg Or Body CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingArgOrBodyCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingArgOrBodyCS()
+		 * @generated
+		 */
+		EClass NAVIGATING_ARG_OR_BODY_CS = eINSTANCE.getNavigatingArgOrBodyCS();
+
+		/**
 		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NAVIGATING_ARG_CS__OWNED_TYPE = eINSTANCE.getNavigatingArgCS_OwnedType();
+		EReference NAVIGATING_ARG_OR_BODY_CS__OWNED_TYPE = eINSTANCE.getNavigatingArgOrBodyCS_OwnedType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingAccCSImpl <em>Navigating Acc CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingAccCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingAccCS()
+		 * @generated
+		 */
+		EClass NAVIGATING_ACC_CS = eINSTANCE.getNavigatingAccCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAVIGATING_ACC_CS__OWNED_TYPE = eINSTANCE.getNavigatingAccCS_OwnedType();
 
 		/**
 		 * The meta object literal for the '<em><b>Init</b></em>' containment reference feature.
@@ -4479,7 +4776,17 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NAVIGATING_ARG_CS__INIT = eINSTANCE.getNavigatingArgCS_Init();
+		EReference NAVIGATING_ACC_CS__INIT = eINSTANCE.getNavigatingAccCS_Init();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingBodyCSImpl <em>Navigating Body CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingBodyCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingBodyCS()
+		 * @generated
+		 */
+		EClass NAVIGATING_BODY_CS = eINSTANCE.getNavigatingBodyCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl <em>Navigating Exp CS</em>}' class.
@@ -4492,12 +4799,12 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass NAVIGATING_EXP_CS = eINSTANCE.getNavigatingExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Argument</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NAVIGATING_EXP_CS__ARGUMENTS = eINSTANCE.getNavigatingExpCS_Arguments();
+		EReference NAVIGATING_EXP_CS__ARGUMENT = eINSTANCE.getNavigatingExpCS_Argument();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigationOperatorCSImpl <em>Navigation Operator CS</em>}' class.

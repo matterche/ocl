@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: EssentialOCLCSVisitor.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLCSVisitor.java,v 1.1.2.4 2010/12/19 15:54:34 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.essentialocl.util;
 
@@ -46,7 +46,10 @@ public interface EssentialOCLCSVisitor<R, C> extends org.eclipse.ocl.examples.xt
 	R visitLetVariableCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS object);
 	R visitLiteralExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS object);
 	R visitNameExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS object);
+	R visitNavigatingAccCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS object);
 	R visitNavigatingArgCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS object);
+	R visitNavigatingArgOrBodyCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS object);
+	R visitNavigatingBodyCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS object);
 	R visitNavigatingExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS object);
 	R visitNavigationOperatorCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS object);
 	R visitNestedExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS object);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.1.2.4 2010/12/13 08:15:02 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.1.2.5 2010/12/19 15:54:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -134,18 +134,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 	}
 
 	public String getText(AbstractNode node) {
-		LeafNode leafNode = null;
-		if (node instanceof LeafNode) {
-			leafNode = (LeafNode) node;
-		}
-		else {
-			for (LeafNode lNode : node.getLeafNodes()) {
-				if (!lNode.isHidden()) {
-					leafNode = lNode;
-					break;
-				}
-			}
-		}
+		LeafNode leafNode = ElementUtil.getLeafNode(node);
 		if (leafNode == null) {
 			return null;
 		}

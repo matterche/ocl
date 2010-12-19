@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTAdapterFactory.java,v 1.5.6.3 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLCSTAdapterFactory.java,v 1.5.6.4 2010/12/19 15:54:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -226,6 +226,21 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseNavigatingArgCS(NavigatingArgCS object)
 			{
 				return createNavigatingArgCSAdapter();
+			}
+			@Override
+			public Adapter caseNavigatingArgOrBodyCS(NavigatingArgOrBodyCS object)
+			{
+				return createNavigatingArgOrBodyCSAdapter();
+			}
+			@Override
+			public Adapter caseNavigatingAccCS(NavigatingAccCS object)
+			{
+				return createNavigatingAccCSAdapter();
+			}
+			@Override
+			public Adapter caseNavigatingBodyCS(NavigatingBodyCS object)
+			{
+				return createNavigatingBodyCSAdapter();
 			}
 			@Override
 			public Adapter caseNavigatingExpCS(NavigatingExpCS object)
@@ -680,6 +695,51 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNavigatingArgCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS <em>Navigating Arg Or Body CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS
+	 * @generated
+	 */
+	public Adapter createNavigatingArgOrBodyCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS <em>Navigating Acc CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS
+	 * @generated
+	 */
+	public Adapter createNavigatingAccCSAdapter()
+	{
+		return null;
+	}
+
+/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS <em>Navigating Body CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS
+	 * @generated
+	 */
+	public Adapter createNavigatingBodyCSAdapter()
 	{
 		return null;
 	}

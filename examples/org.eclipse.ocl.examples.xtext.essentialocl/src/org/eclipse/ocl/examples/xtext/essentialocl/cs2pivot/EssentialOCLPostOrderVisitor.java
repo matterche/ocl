@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.4 2010/12/13 08:15:02 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.5 2010/12/19 15:54:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -44,6 +46,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
@@ -53,6 +56,19 @@ public class EssentialOCLPostOrderVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Continuation<?>, CS2PivotConversion, BasePostOrderVisitor>
 {
 	static final Logger logger = Logger.getLogger(EssentialOCLPostOrderVisitor.class);
+
+	protected static class ContextCSCompletion extends SingleContinuation<ContextCS>
+	{
+		public ContextCSCompletion(CS2PivotConversion context, ContextCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			context.visitLeft2Right(csElement);
+			return null;
+		}
+	}
 	
 	public EssentialOCLPostOrderVisitor(CS2PivotConversion context) {
 		super(new BasePostOrderVisitor(context), context);
@@ -87,9 +103,11 @@ public class EssentialOCLPostOrderVisitor
 	public Continuation<?> visitContextCS(ContextCS csContext) {
 		ExpCS ownedExpression = csContext.getOwnedExpression();
 		if (ownedExpression != null) {
-			context.visitLeft2Right(csContext);
+			return new ContextCSCompletion(context, csContext);
 		}
-		return null;
+		else {
+			return null;
+		}
 	}
 
 	@Override
@@ -189,6 +207,12 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitTypeLiteralExpCS(TypeLiteralExpCS csTypeLiteralExp) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS csTypeNameExp) {
+		context.installPivotElement(csTypeNameExp, csTypeNameExp.getElement());
 		return null;
 	}
 

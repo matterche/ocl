@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCS.java,v 1.1.2.2 2010/12/06 18:03:08 ewillink Exp $
+ * $Id: NavigatingExpCS.java,v 1.1.2.3 2010/12/19 15:54:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,19 +37,21 @@ import org.eclipse.emf.common.util.EList;
 public interface NavigatingExpCS extends DecoratedNamedExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getNavigatingExp <em>Navigating Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Arguments</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingExpCS_Arguments()
-	 * @model containment="true"
+	 * @return the value of the '<em>Argument</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingExpCS_Argument()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getNavigatingExp
+	 * @model opposite="navigatingExp" containment="true"
 	 * @generated
 	 */
-	EList<NavigatingArgCS> getArguments();
+	EList<NavigatingArgCS> getArgument();
 
 } // NavigatingExpCS

@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: NavigatingArgCS.java,v 1.1.2.1 2010/10/01 14:30:26 ewillink Exp $
+ * $Id: NavigatingArgCS.java,v 1.1.2.2 2010/12/19 15:54:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,44 +26,44 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getNavigatingExp <em>Navigating Exp</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getInit <em>Init</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingArgCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface NavigatingArgCS extends ModelElementCS
 {
 	/**
-	 * Returns the value of the '<em><b>Prefix</b></em>' attribute.
+	 * Returns the value of the '<em><b>Navigating Exp</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Prefix</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Navigating Exp</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Prefix</em>' attribute.
-	 * @see #setPrefix(String)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingArgCS_Prefix()
-	 * @model
+	 * @return the value of the '<em>Navigating Exp</em>' container reference.
+	 * @see #setNavigatingExp(NavigatingExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingArgCS_NavigatingExp()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument
+	 * @model opposite="argument" transient="false"
 	 * @generated
 	 */
-	String getPrefix();
+	NavigatingExpCS getNavigatingExp();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getPrefix <em>Prefix</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getNavigatingExp <em>Navigating Exp</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Prefix</em>' attribute.
-	 * @see #getPrefix()
+	 * @param value the new value of the '<em>Navigating Exp</em>' container reference.
+	 * @see #getNavigatingExp()
 	 * @generated
 	 */
-	void setPrefix(String value);
+	void setNavigatingExp(NavigatingExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
@@ -91,57 +90,5 @@ public interface NavigatingArgCS extends ModelElementCS
 	 * @generated
 	 */
 	void setName(ExpCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Type</em>' containment reference.
-	 * @see #setOwnedType(TypedRefCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingArgCS_OwnedType()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TypedRefCS getOwnedType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getOwnedType <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
-	 * @see #getOwnedType()
-	 * @generated
-	 */
-	void setOwnedType(TypedRefCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Init</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Init</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init</em>' containment reference.
-	 * @see #setInit(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingArgCS_Init()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ExpCS getInit();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getInit <em>Init</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init</em>' containment reference.
-	 * @see #getInit()
-	 * @generated
-	 */
-	void setInit(ExpCS value);
 
 } // NavigatingArgCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCL.xtext,v 1.5.6.4 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: EssentialOCL.xtext,v 1.5.6.5 2010/12/19 15:54:34 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, DOCUMENTATION, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
 
@@ -322,18 +322,24 @@ NavigatingExpCS_Base returns NamedExpCS:
 NavigatingExpCS returns NamedExpCS:
 	NavigatingExpCS_Base
 	({NavigatingExpCS.namedExp=current}
-		'(' (arguments+=NavigatingArgCSfirst (arguments+=NavigatingArgCSnext)*)? ')'
+		'(' (  argument+=NavigatingArgOrBodyCS (',' argument+=NavigatingArgOrBodyCS)*
+			   (';' argument+=NavigatingAccCS (',' argument+=NavigatingAccCS)*)?
+			   ('|' argument+=NavigatingBodyCS (',' argument+=NavigatingBodyCS)*)?
+			)? 
+		')'
 	)?
 ;
 
-NavigatingArgCSfirst returns NavigatingArgCS:
+NavigatingArgOrBodyCS returns NavigatingArgOrBodyCS:
 	name=NavigatingArgExpCS (':' ownedType=TypeExpCS)?
 ;
 
-NavigatingArgCSnext returns NavigatingArgCS:
-	(prefix='|' name=NavigatingArgExpCS)
-| 	(prefix=',' name=NavigatingArgExpCS (':' ownedType=TypeExpCS)?)
-|	(prefix=';' name=NavigatingArgExpCS ':' ownedType=TypeExpCS '=' init=ExpCS)
+NavigatingAccCS returns NavigatingAccCS:
+	name=NavigatingArgExpCS ':' ownedType=TypeExpCS '=' init=ExpCS
+;
+
+NavigatingBodyCS returns NavigatingBodyCS:
+	name=NavigatingArgExpCS
 ;
 
 NavigatingArgExpCS returns ExpCS:		// Intended to be overridden

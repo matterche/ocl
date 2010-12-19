@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactoryImpl.java,v 1.5.6.3 2010/12/06 18:03:07 ewillink Exp $
+ * $Id: EssentialOCLCSTFactoryImpl.java,v 1.5.6.4 2010/12/19 15:54:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -40,7 +40,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
@@ -122,7 +124,9 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.LET_VARIABLE_CS: return createLetVariableCS();
 			case EssentialOCLCSTPackage.LITERAL_EXP_CS: return createLiteralExpCS();
 			case EssentialOCLCSTPackage.NAME_EXP_CS: return createNameExpCS();
-			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS: return createNavigatingArgCS();
+			case EssentialOCLCSTPackage.NAVIGATING_ARG_OR_BODY_CS: return createNavigatingArgOrBodyCS();
+			case EssentialOCLCSTPackage.NAVIGATING_ACC_CS: return createNavigatingAccCS();
+			case EssentialOCLCSTPackage.NAVIGATING_BODY_CS: return createNavigatingBodyCS();
 			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS: return createNavigatingExpCS();
 			case EssentialOCLCSTPackage.NAVIGATION_OPERATOR_CS: return createNavigationOperatorCS();
 			case EssentialOCLCSTPackage.NESTED_EXP_CS: return createNestedExpCS();
@@ -320,10 +324,32 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NavigatingArgCS createNavigatingArgCS()
+	public NavigatingArgOrBodyCS createNavigatingArgOrBodyCS()
 	{
-		NavigatingArgCSImpl navigatingArgCS = new NavigatingArgCSImpl();
-		return navigatingArgCS;
+		NavigatingArgOrBodyCSImpl navigatingArgOrBodyCS = new NavigatingArgOrBodyCSImpl();
+		return navigatingArgOrBodyCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NavigatingAccCS createNavigatingAccCS()
+	{
+		NavigatingAccCSImpl navigatingAccCS = new NavigatingAccCSImpl();
+		return navigatingAccCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NavigatingBodyCS createNavigatingBodyCS()
+	{
+		NavigatingBodyCSImpl navigatingBodyCS = new NavigatingBodyCSImpl();
+		return navigatingBodyCS;
 	}
 
 	/**

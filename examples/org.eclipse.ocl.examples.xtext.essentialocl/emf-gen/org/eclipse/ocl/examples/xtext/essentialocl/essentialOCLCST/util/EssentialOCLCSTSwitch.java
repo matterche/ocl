@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTSwitch.java,v 1.5.6.3 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLCSTSwitch.java,v 1.5.6.4 2010/12/19 15:54:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -416,6 +416,42 @@ public class EssentialOCLCSTSwitch<T>
 				if (result == null) result = caseElementCS(navigatingArgCS);
 				if (result == null) result = casePivotable(navigatingArgCS);
 				if (result == null) result = caseVisitableCS(navigatingArgCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.NAVIGATING_ARG_OR_BODY_CS:
+			{
+				NavigatingArgOrBodyCS navigatingArgOrBodyCS = (NavigatingArgOrBodyCS)theEObject;
+				T result = caseNavigatingArgOrBodyCS(navigatingArgOrBodyCS);
+				if (result == null) result = caseNavigatingArgCS(navigatingArgOrBodyCS);
+				if (result == null) result = caseModelElementCS(navigatingArgOrBodyCS);
+				if (result == null) result = caseElementCS(navigatingArgOrBodyCS);
+				if (result == null) result = casePivotable(navigatingArgOrBodyCS);
+				if (result == null) result = caseVisitableCS(navigatingArgOrBodyCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.NAVIGATING_ACC_CS:
+			{
+				NavigatingAccCS navigatingAccCS = (NavigatingAccCS)theEObject;
+				T result = caseNavigatingAccCS(navigatingAccCS);
+				if (result == null) result = caseNavigatingArgCS(navigatingAccCS);
+				if (result == null) result = caseModelElementCS(navigatingAccCS);
+				if (result == null) result = caseElementCS(navigatingAccCS);
+				if (result == null) result = casePivotable(navigatingAccCS);
+				if (result == null) result = caseVisitableCS(navigatingAccCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.NAVIGATING_BODY_CS:
+			{
+				NavigatingBodyCS navigatingBodyCS = (NavigatingBodyCS)theEObject;
+				T result = caseNavigatingBodyCS(navigatingBodyCS);
+				if (result == null) result = caseNavigatingArgCS(navigatingBodyCS);
+				if (result == null) result = caseModelElementCS(navigatingBodyCS);
+				if (result == null) result = caseElementCS(navigatingBodyCS);
+				if (result == null) result = casePivotable(navigatingBodyCS);
+				if (result == null) result = caseVisitableCS(navigatingBodyCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -988,6 +1024,54 @@ public class EssentialOCLCSTSwitch<T>
 	 * @generated
 	 */
 	public T caseNavigatingArgCS(NavigatingArgCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigating Arg Or Body CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigating Arg Or Body CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigatingArgOrBodyCS(NavigatingArgOrBodyCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigating Acc CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigating Acc CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigatingAccCS(NavigatingAccCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigating Body CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigating Body CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigatingBodyCS(NavigatingBodyCS object)
 	{
 		return null;
 	}

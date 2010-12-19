@@ -86,18 +86,26 @@
     <eOperations name="getNamedElement" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//NamedElement"/>
     <eOperations name="getSimpleNamedExp" eType="#//SimpleNamedExpCS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NavigatingArgCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ModelElementCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigatingArgCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ModelElementCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigatingExp" eType="#//NavigatingExpCS"
+        eOpposite="#//NavigatingExpCS/argument"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//ExpCS"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigatingArgOrBodyCS" eSuperTypes="#//NavigatingArgCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypedRefCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigatingAccCS" eSuperTypes="#//NavigatingArgCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypedRefCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="init" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigatingBodyCS" eSuperTypes="#//NavigatingArgCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NavigatingExpCS" eSuperTypes="#//DecoratedNamedExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-        eType="#//NavigatingArgCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" upperBound="-1"
+        eType="#//NavigatingArgCS" containment="true" eOpposite="#//NavigatingArgCS/navigatingExp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NavigationOperatorCS" eSuperTypes="#//BinaryOperatorCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NestedExpCS" eSuperTypes="#//ExpCS">
