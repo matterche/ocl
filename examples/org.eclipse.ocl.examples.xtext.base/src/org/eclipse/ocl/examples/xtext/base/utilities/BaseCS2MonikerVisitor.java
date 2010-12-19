@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerBaseCSVisitor.java,v 1.1.2.3 2010/12/19 15:51:36 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.1 2010/12/19 18:33:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -71,9 +71,9 @@ import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
-public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object, CS2Moniker> implements PivotConstants
+public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object, CS2Moniker> implements PivotConstants
 {			
-	private static final Logger logger = Logger.getLogger(MonikerBaseCSVisitor.class);
+	private static final Logger logger = Logger.getLogger(BaseCS2MonikerVisitor.class);
 
 	private static final class Factory implements CS2Moniker.Factory
 	{
@@ -82,13 +82,13 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 		}
 		
 		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
-			return new MonikerBaseCSVisitor(context);
+			return new BaseCS2MonikerVisitor(context);
 		}
 	}
 
 	public static CS2Moniker.Factory FACTORY = new Factory();
 			
-	public MonikerBaseCSVisitor(CS2Moniker context) {
+	public BaseCS2MonikerVisitor(CS2Moniker context) {
 		super(context);
 	}
 
