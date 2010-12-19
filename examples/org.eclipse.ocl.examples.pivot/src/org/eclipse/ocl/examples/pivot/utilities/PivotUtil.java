@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.4 2010/12/19 17:47:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -128,6 +129,20 @@ public class PivotUtil
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
 		return castElement;
+	}
+
+	public static String getResourceErrorsString(Resource resource, String prefix) {
+		List<Resource.Diagnostic> errors = resource.getErrors();
+		if (errors.size() <= 0) {
+			return null;
+		}
+		StringBuffer s = new StringBuffer();
+		s.append(prefix);
+		for (Resource.Diagnostic conversionError : errors) {
+			s.append("\n");
+			s.append(conversionError.getMessage());
+		}
+		return s.toString();
 	}
 
 	public static List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {
