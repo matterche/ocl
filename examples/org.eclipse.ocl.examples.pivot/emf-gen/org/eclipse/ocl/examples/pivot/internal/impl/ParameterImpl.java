@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: ParameterImpl.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.IteratorKind;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -44,7 +43,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl#getIteratorKind <em>Iterator Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl#getOperation <em>Operation</em>}</li>
  * </ul>
  * </p>
@@ -54,53 +52,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 public class ParameterImpl
 		extends TypedMultiplicityElementImpl
 		implements Parameter {
-
-	/**
-	 * The default value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIteratorKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final IteratorKind ITERATOR_KIND_EDEFAULT = IteratorKind.PARAMETER;
-
-	/**
-	 * The offset of the flags representing the value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ITERATOR_KIND_EFLAG_OFFSET = 11;
-
-	/**
-	 * The flags representing the default value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ITERATOR_KIND_EFLAG_DEFAULT = ITERATOR_KIND_EDEFAULT.ordinal() << ITERATOR_KIND_EFLAG_OFFSET;
-
-	/**
-	 * The array of enumeration values for '{@link IteratorKind Iterator Kind}'
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	private static final IteratorKind[] ITERATOR_KIND_EFLAG_VALUES = IteratorKind.values();
-
-	/**
-	 * The flags representing the value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIteratorKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ITERATOR_KIND_EFLAG = 0x3 << ITERATOR_KIND_EFLAG_OFFSET;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,28 +70,6 @@ public class ParameterImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PARAMETER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IteratorKind getIteratorKind() {
-		return ITERATOR_KIND_EFLAG_VALUES[(eFlags & ITERATOR_KIND_EFLAG) >>> ITERATOR_KIND_EFLAG_OFFSET];
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIteratorKind(IteratorKind newIteratorKind) {
-		IteratorKind oldIteratorKind = ITERATOR_KIND_EFLAG_VALUES[(eFlags & ITERATOR_KIND_EFLAG) >>> ITERATOR_KIND_EFLAG_OFFSET];
-		if (newIteratorKind == null) newIteratorKind = ITERATOR_KIND_EDEFAULT;
-		eFlags = eFlags & ~ITERATOR_KIND_EFLAG | newIteratorKind.ordinal() << ITERATOR_KIND_EFLAG_OFFSET;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PARAMETER__ITERATOR_KIND, oldIteratorKind, newIteratorKind));
 	}
 
 	/**
@@ -284,8 +213,6 @@ public class ParameterImpl
 				return getLower();
 			case PivotPackage.PARAMETER__UPPER:
 				return getUpper();
-			case PivotPackage.PARAMETER__ITERATOR_KIND:
-				return getIteratorKind();
 			case PivotPackage.PARAMETER__OPERATION:
 				if (resolve) return getOperation();
 				return basicGetOperation();
@@ -339,9 +266,6 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__UPPER:
 				setUpper((BigInteger)newValue);
 				return;
-			case PivotPackage.PARAMETER__ITERATOR_KIND:
-				setIteratorKind((IteratorKind)newValue);
-				return;
 			case PivotPackage.PARAMETER__OPERATION:
 				setOperation((Operation)newValue);
 				return;
@@ -391,9 +315,6 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
-			case PivotPackage.PARAMETER__ITERATOR_KIND:
-				setIteratorKind(ITERATOR_KIND_EDEFAULT);
-				return;
 			case PivotPackage.PARAMETER__OPERATION:
 				setOperation((Operation)null);
 				return;
@@ -432,8 +353,6 @@ public class ParameterImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.PARAMETER__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
-			case PivotPackage.PARAMETER__ITERATOR_KIND:
-				return (eFlags & ITERATOR_KIND_EFLAG) != ITERATOR_KIND_EFLAG_DEFAULT;
 			case PivotPackage.PARAMETER__OPERATION:
 				return basicGetOperation() != null;
 		}

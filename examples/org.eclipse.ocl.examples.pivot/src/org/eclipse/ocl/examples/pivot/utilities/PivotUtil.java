@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.2 2010/12/13 08:14:55 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -52,6 +52,12 @@ public class PivotUtil
 		public static final PrecedenceComparator INSTANCE = new PrecedenceComparator();
 
 		public int compare(Precedence o1, Precedence o2) {
+			if (o1 == null) {
+				return o2 != null ? -1 : 0;
+			}
+			if (o2 == null) {
+				return 1;
+			}
 			return o2.getOrder().compareTo(o1.getOrder()); // NB least positive
 															// is highest
 															// precedence

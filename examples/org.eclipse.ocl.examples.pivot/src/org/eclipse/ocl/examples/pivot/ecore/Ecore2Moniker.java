@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Moniker.java,v 1.1.2.2 2010/12/06 17:29:02 ewillink Exp $
+ * $Id: Ecore2Moniker.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -218,7 +218,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 
 	@Override
 	public Object caseEAnnotation(EAnnotation eElement) {
-		appendParent(eElement, SCOPE_SEPARATOR);
+		appendParent(eElement, MONIKER_SCOPE_SEPARATOR);
 		s.append("'");
 		append(eElement.getSource());
 		s.append("'");
@@ -234,7 +234,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 
 	@Override
 	public Object caseENamedElement(ENamedElement eElement) {
-		appendParent(eElement, SCOPE_SEPARATOR);
+		appendParent(eElement, MONIKER_SCOPE_SEPARATOR);
 		appendName(eElement);
 		return true;
 	}
@@ -268,7 +268,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	public Object caseETypeParameter(ETypeParameter eElement) {
 		if (!hasEmitted(eElement)) {
 			if (toString().length() < MONIKER_OVERFLOW_LIMIT) {
-				appendParent(eElement, SCOPE_SEPARATOR);
+				appendParent(eElement, MONIKER_SCOPE_SEPARATOR);
 			}
 			else {
 				append(OVERFLOW_MARKER);

@@ -44,12 +44,6 @@
     <eLiterals name="Bag" value="3"/>
     <eLiterals name="Sequence" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="IteratorKind">
-    <eLiterals name="Parameter"/>
-    <eLiterals name="Iterator" value="1"/>
-    <eLiterals name="Accumulator" value="2"/>
-    <eLiterals name="Result" value="3"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" ordered="false"
         upperBound="-1" eType="#//Element" containment="true"/>
@@ -58,7 +52,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" ordered="false"
         upperBound="-1" eType="#//Element"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AnyType" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnyType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationClass" eSuperTypes="#//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="unownedAttribute" ordered="false"
         upperBound="-1" eType="#//Property" eOpposite="#//Property/association"/>
@@ -110,8 +104,6 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
         eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitive" ordered="false"
-        eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subClass" ordered="false"
         upperBound="-1" eType="#//Class" transient="true" resolveProxies="false"/>
   </eClassifiers>
@@ -373,7 +365,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="throwable" ordered="false"
         eType="#//Throwable"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IterateExp" eSuperTypes="#//LoopExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//Variable"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Iteration" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedIterator" ordered="false"
+        upperBound="-1" eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAccumulator" ordered="false"
+        upperBound="-1" eType="#//Parameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//LoopExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="LetExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" ordered="false" lowerBound="1"
         eType="#//OclExpression" containment="true"/>
@@ -386,6 +389,8 @@
         eType="#//OclExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" upperBound="-1"
         eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredIteration" ordered="false"
+        eType="#//Iteration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MessageExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
@@ -684,8 +689,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A parameter is a typed element that represents a parameter of an operation."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteratorKind" ordered="false"
-        lowerBound="1" eType="#//IteratorKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
         eType="#//Operation" eOpposite="#//Operation/ownedParameter">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1217,5 +1220,5 @@
     <eTypeParameters name="R"/>
     <eTypeParameters name="C"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Class"/>
 </ecore:EPackage>

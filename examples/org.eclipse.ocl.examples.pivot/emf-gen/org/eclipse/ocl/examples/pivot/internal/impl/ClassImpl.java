@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: ClassImpl.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -51,7 +51,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSuperClasses <em>Super Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isPrimitive <em>Primitive</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSubClasses <em>Sub Class</em>}</li>
  * </ul>
  * </p>
@@ -133,26 +132,6 @@ public class ClassImpl
 	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isPrimitive() <em>Primitive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isPrimitive()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean PRIMITIVE_EDEFAULT = false;
-
-	/**
-	 * The flag representing the value of the '{@link #isPrimitive() <em>Primitive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isPrimitive()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int PRIMITIVE_EFLAG = 1 << 10;
-
-	/**
 	 * The cached value of the '{@link #getSubClasses() <em>Sub Class</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -221,27 +200,6 @@ public class ClassImpl
 		instanceClassName = newInstanceClassName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isPrimitive() {
-		return (eFlags & PRIMITIVE_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPrimitive(boolean newPrimitive) {
-		boolean oldPrimitive = (eFlags & PRIMITIVE_EFLAG) != 0;
-		if (newPrimitive) eFlags |= PRIMITIVE_EFLAG; else eFlags &= ~PRIMITIVE_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__PRIMITIVE, oldPrimitive, newPrimitive));
 	}
 
 	/**
@@ -452,8 +410,6 @@ public class ClassImpl
 				return getSuperClasses();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.CLASS__PRIMITIVE:
-				return isPrimitive();
 			case PivotPackage.CLASS__SUB_CLASS:
 				return getSubClasses();
 		}
@@ -525,9 +481,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.CLASS__PRIMITIVE:
-				setPrimitive((Boolean)newValue);
-				return;
 			case PivotPackage.CLASS__SUB_CLASS:
 				getSubClasses().clear();
 				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
@@ -593,9 +546,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.CLASS__PRIMITIVE:
-				setPrimitive(PRIMITIVE_EDEFAULT);
-				return;
 			case PivotPackage.CLASS__SUB_CLASS:
 				getSubClasses().clear();
 				return;
@@ -644,8 +594,6 @@ public class ClassImpl
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.CLASS__PRIMITIVE:
-				return ((eFlags & PRIMITIVE_EFLAG) != 0) != PRIMITIVE_EDEFAULT;
 			case PivotPackage.CLASS__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
 		}

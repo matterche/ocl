@@ -48,21 +48,6 @@
         <ecoreEnumLiteral href="pivot.ecore#//CollectionKind/Sequence"/>
       </genEnumLiterals>
     </genEnums>
-    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false">
-      <ecoreEnum href="pivot.ecore#//IteratorKind"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral">
-        <ecoreEnumLiteral href="pivot.ecore#//IteratorKind/Parameter"/>
-      </genEnumLiterals>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral">
-        <ecoreEnumLiteral href="pivot.ecore#//IteratorKind/Iterator"/>
-      </genEnumLiterals>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral">
-        <ecoreEnumLiteral href="pivot.ecore#//IteratorKind/Accumulator"/>
-      </genEnumLiterals>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral">
-        <ecoreEnumLiteral href="pivot.ecore#//IteratorKind/Result"/>
-      </genEnumLiterals>
-    </genEnums>
     <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Boolean"/>
     </genDataTypes>
@@ -154,9 +139,6 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Class/instanceClassName"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Class/primitive"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Class/subClass"/>
@@ -497,9 +479,6 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//Parameter"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Parameter/iteratorKind"/>
-      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Parameter/operation"/>
       </genFeatures>
@@ -871,12 +850,9 @@
       <ecoreClass href="pivot.ecore#//InvalidType"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="pivot.ecore#//LetExp"/>
+      <ecoreClass href="pivot.ecore#//IterateExp"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//LetExp/in"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//LetExp/variable"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//IterateExp/result"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
@@ -886,6 +862,30 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//LoopExp/iterator"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//LoopExp/referredIteration"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//Iteration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Iteration/ownedIterator"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Iteration/ownedAccumulator"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//IteratorExp"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//LetExp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//LetExp/in"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//LetExp/variable"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

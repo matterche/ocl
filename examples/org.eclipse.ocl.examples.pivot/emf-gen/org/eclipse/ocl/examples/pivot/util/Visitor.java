@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: Visitor.java,v 1.1.2.4 2010/12/11 10:44:58 ewillink Exp $
+ * $Id: Visitor.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -81,6 +81,9 @@ public interface Visitor<R, C>
 	R visitIntegerLiteralExp(org.eclipse.ocl.examples.pivot.IntegerLiteralExp object);
 	R visitInvalidLiteralExp(org.eclipse.ocl.examples.pivot.InvalidLiteralExp object);
 	R visitInvalidType(org.eclipse.ocl.examples.pivot.InvalidType object);
+	R visitIterateExp(org.eclipse.ocl.examples.pivot.IterateExp object);
+	R visitIteration(org.eclipse.ocl.examples.pivot.Iteration object);
+	R visitIteratorExp(org.eclipse.ocl.examples.pivot.IteratorExp object);
 	R visitLetExp(org.eclipse.ocl.examples.pivot.LetExp object);
 	R visitLiteralExp(org.eclipse.ocl.examples.pivot.LiteralExp object);
 	R visitLoopExp(org.eclipse.ocl.examples.pivot.LoopExp object);

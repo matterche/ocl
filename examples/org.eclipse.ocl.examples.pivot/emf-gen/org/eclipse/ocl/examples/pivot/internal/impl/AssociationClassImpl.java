@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: AssociationClassImpl.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -214,8 +214,6 @@ public class AssociationClassImpl
 				return getSuperClasses();
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.ASSOCIATION_CLASS__PRIMITIVE:
-				return isPrimitive();
 			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
 				return getSubClasses();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
@@ -289,9 +287,6 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__PRIMITIVE:
-				setPrimitive((Boolean)newValue);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
 				getSubClasses().clear();
 				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
@@ -361,9 +356,6 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__PRIMITIVE:
-				setPrimitive(PRIMITIVE_EDEFAULT);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
 				getSubClasses().clear();
 				return;
@@ -415,8 +407,6 @@ public class AssociationClassImpl
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.ASSOCIATION_CLASS__PRIMITIVE:
-				return ((eFlags & PRIMITIVE_EFLAG) != 0) != PRIMITIVE_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:

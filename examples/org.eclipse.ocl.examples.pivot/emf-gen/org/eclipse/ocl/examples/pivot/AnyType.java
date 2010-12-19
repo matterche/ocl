@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyType.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: AnyType.java,v 1.1.2.3 2010/12/19 15:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -27,5 +27,5 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface AnyType
-		extends Type {
+		extends org.eclipse.ocl.examples.pivot.Class {
 } // AnyType

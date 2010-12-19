@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.1 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.2 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -61,16 +61,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private Type unlimitedNaturalType = null;
 	private UnlimitedNaturalLiteralExp unlimitedValue = null;
 	
-	private boolean allowExplanatoryInvalids = false;
+//	private boolean allowExplanatoryInvalids = false;
 	private Map<String, Type> nameToLibraryTypeMap = null;
 
 	public InvalidLiteralExp createInvalidValue(Object object,
 			OclExpression expression, String reason, Throwable throwable) {
-		if (!allowExplanatoryInvalids) {
-			return getInvalidValue();
-		}
-		InvalidLiteralExp invalidValue = PivotFactory.eINSTANCE
-			.createInvalidLiteralExp();
+		InvalidLiteralExp invalidValue = PivotFactory.eINSTANCE.createInvalidLiteralExp();
 		invalidValue.setType(getInvalidType());
 		invalidValue.setObject(object);
 		invalidValue.setExpression(expression);
@@ -94,6 +90,10 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("Bag");
 	}
 
+	public Type getBagTypeType() {
+		return getRequiredLibraryType("BagType");
+	}
+
 	public Type getBooleanType() {
 		if (booleanType == null) {
 			booleanType = getRequiredLibraryType("Boolean");
@@ -110,6 +110,10 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 
 	public Type getCollectionType() {
 		return getRequiredLibraryType("Collection");
+	}
+
+	public Type getCollectionTypeType() {
+		return getRequiredLibraryType("CollectionType");
 	}
 
 	public Type getIntegerType() {
@@ -169,6 +173,14 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("OrderedSet");
 	}
 
+	public Type getOrderedSetTypeType() {
+		return getRequiredLibraryType("OrderedSetType");
+	}
+
+	public Type getPrimitiveTypeType() {
+		return getRequiredLibraryType("PrimitiveType");
+	}
+
 	public Type getRealType() {
 		if (realType == null) {
 			realType = getRequiredLibraryType("Real");
@@ -188,8 +200,16 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("Sequence");
 	}
 
+	public Type getSequenceTypeType() {
+		return getRequiredLibraryType("SequenceType");
+	}
+
 	public Type getSetType() {
 		return getRequiredLibraryType("Set");
+	}
+
+	public Type getSetTypeType() {
+		return getRequiredLibraryType("SetType");
 	}
 
 	public Type getStringType() {
@@ -230,13 +250,13 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return unlimitedValue;
 	}
 
-	public boolean isAllowExplanatoryInvalids() {
-		return allowExplanatoryInvalids;
-	}
+//	public boolean isAllowExplanatoryInvalids() {
+//		return allowExplanatoryInvalids;
+//	}
 	
 	protected abstract Resource loadDefaultLibrary(String uri);
 
-	public void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids) {
-		this.allowExplanatoryInvalids = allowExplanatoryInvalids;
-	}
+//	public void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids) {
+//		this.allowExplanatoryInvalids = allowExplanatoryInvalids;
+//	}
 }

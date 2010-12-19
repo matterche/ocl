@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -24,8 +24,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -130,17 +132,30 @@ public abstract class Abstract2Moniker implements PivotConstants
 		}
 	}
 	
-	public void appendParameters(List<Parameter> parameters) {
+	public void appendParameters(Operation operation) {
 		s.append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
-		for (Parameter parameter : parameters) {
+		if (operation instanceof Iteration) {
+			Iteration iteration = (Iteration)operation;
+			for (Parameter parameter : iteration.getOwnedIterators()) {
+				s.append(prefix);
+				appendElement(parameter.getType());
+				prefix = PARAMETER_SEPARATOR;
+			}
+			if (iteration.getOwnedAccumulators().size() > 0) {
+				prefix = ITERATOR_SEPARATOR;
+				for (Parameter parameter : iteration.getOwnedAccumulators()) {
+					s.append(prefix);
+					appendElement(parameter.getType());
+					prefix = PARAMETER_SEPARATOR;
+				}
+			}
+			prefix = ACCUMULATOR_SEPARATOR;
+		}
+		for (Parameter parameter : operation.getOwnedParameters()) {
 			s.append(prefix);
 			appendElement(parameter.getType());
-			switch (parameter.getIteratorKind()) {
-				case ACCUMULATOR: prefix = ACCUMULATOR_SEPARATOR; break;
-				case ITERATOR: prefix = ITERATOR_SEPARATOR; break;
-				default: prefix = PARAMETER_SEPARATOR; break;
-			}
+			prefix = PARAMETER_SEPARATOR;
 		}
 		s.append(PARAMETER_SUFFIX);
 	}
@@ -164,7 +179,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 				append("<<unresolved-proxy>>");	
 			}
 			else  {
-				assert element instanceof org.eclipse.ocl.examples.pivot.Package || element instanceof ExpressionInOcl : element.eClass().getName();	
+				assert element instanceof org.eclipse.ocl.examples.pivot.Package || element instanceof ExpressionInOcl : element.eClass().getName() + " has no parent";	
 			}
 		}
 		append(parentSeparator);
@@ -180,7 +195,9 @@ public abstract class Abstract2Moniker implements PivotConstants
 			append(roleName);
 			if (eFeature.isMany()) {
 				int index = ((List<?>)object.eContainer().eGet(object.eContainingFeature())).indexOf(object);
-				append(index);
+				if (index != 0) {
+					append(index);
+				}
 			}
 		}
 	}

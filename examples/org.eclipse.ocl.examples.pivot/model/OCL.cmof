@@ -140,6 +140,7 @@
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0QogHEd-aGOJuUCcZBA" name="LoopExp" isAbstract="true" superClass="_IPg0FIgHEd-aGOJuUCcZBA">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0RIgHEd-aGOJuUCcZBA" name="body" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0RYgHEd-aGOJuUCcZBA" name="iterator" type="_IPg0MIgHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_oS89YAblEeC3-uphdlDm-Q" name="referredIteration" type="_oWAYwAbiEeC3-uphdlDm-Q" lower="0"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0SogHEd-aGOJuUCcZBA" name="StringLiteralExp" superClass="_IPg0YIgHEd-aGOJuUCcZBA">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0TIgHEd-aGOJuUCcZBA" name="stringSymbol">
@@ -222,17 +223,18 @@
     <ownedMember xmi:type="cmof:Class" xmi:id="_k-CR8MgZEd-sJIf4tYBt-g" name="CallOperationAction"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_gYqCQMgZEd-sJIf4tYBt-g" name="SendSignalAction"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_TVwKEMoxEd-ZL8lMORCEkg" name="VariableDeclaration" isAbstract="true"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_tvEdQAbkEeC3-uphdlDm-Q" name="IterateExp" superClass="_IPg0QogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_8Y2KEAbkEeC3-uphdlDm-Q" name="result" type="_IPg0MIgHEd-aGOJuUCcZBA" isOrdered="true" lower="0" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_1X7sEAbkEeC3-uphdlDm-Q" name="IteratorExp" superClass="_IPg0QogHEd-aGOJuUCcZBA"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_rMVQYI9nEd-UToJjGuajxg" name="OCL_Library">
-    <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter">
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_An4VUNYcEd-OVqg2QIeiMw" name="iteratorKind" type="_zvYY4NYbEd-OVqg2QIeiMw"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_oWAYwAbiEeC3-uphdlDm-Q" name="Iteration" superClass="_l0ihkAbiEeC3-uphdlDm-Q">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_QH8c0AbjEeC3-uphdlDm-Q" name="ownedIterator" type="_2vcHMI9nEd-UToJjGuajxg" upper="*" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_-o2IsAbiEeC3-uphdlDm-Q" name="ownedAccumulator" type="_2vcHMI9nEd-UToJjGuajxg" upper="*" lower="0" isComposite="true"/>
     </ownedMember>
-    <ownedMember xmi:type="cmof:Enumeration" xmi:id="_zvYY4NYbEd-OVqg2QIeiMw" name="IteratorKind">
-      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_3ff0gNYbEd-OVqg2QIeiMw" name="Parameter" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
-      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_9OhM0NYbEd-OVqg2QIeiMw" name="Iterator" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
-      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_9beDsNYbEd-OVqg2QIeiMw" name="Accumulator" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
-      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_xBZTMNYcEd-OVqg2QIeiMw" name="Result" enumeration="_zvYY4NYbEd-OVqg2QIeiMw"/>
-    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_l0ihkAbiEeC3-uphdlDm-Q" name="Operation"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_tASF0IgKEd-aGOJuUCcZBA" name="OCL_PrimitiveTypes">
     <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_Hcolt4gHEd-aGOJuUCcZBA" name="Boolean"/>
@@ -266,7 +268,7 @@
       <importedPackage xmi:type="cmof:Package" href="Infrastructure.cmof#Core-Basic"/>
     </packageImport>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcoltogHEd-aGOJuUCcZBA" name="AnyType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcoloYgHEd-aGOJuUCcZBA" name="BagType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_Hcolo4gHEd-aGOJuUCcZBA" name="CollectionType">
@@ -276,7 +278,7 @@
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolsIgHEd-aGOJuUCcZBA" name="InvalidType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcoluIgHEd-aGOJuUCcZBA" name="MessageType">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcoluogHEd-aGOJuUCcZBA" name="referredSignal" type="_ASveEIq1Ed-VzsYvPRGeYg" lower="0"/>
@@ -304,7 +306,7 @@
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolpogHEd-aGOJuUCcZBA" name="VoidType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
     </ownedMember>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_ad68EMowEd-ZL8lMORCEkg" name="OCL_Variables">

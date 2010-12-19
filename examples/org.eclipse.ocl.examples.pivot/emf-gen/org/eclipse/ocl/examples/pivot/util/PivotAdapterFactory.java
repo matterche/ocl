@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.1.2.6 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -54,6 +54,9 @@ import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
@@ -347,6 +350,21 @@ public class PivotAdapterFactory
 			public Adapter caseInvalidType(InvalidType object)
 			{
 				return createInvalidTypeAdapter();
+			}
+			@Override
+			public Adapter caseIterateExp(IterateExp object)
+			{
+				return createIterateExpAdapter();
+			}
+			@Override
+			public Adapter caseIteration(Iteration object)
+			{
+				return createIterationAdapter();
+			}
+			@Override
+			public Adapter caseIteratorExp(IteratorExp object)
+			{
+				return createIteratorExpAdapter();
 			}
 			@Override
 			public Adapter caseLetExp(LetExp object)
@@ -1132,6 +1150,51 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createInvalidTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.IterateExp <em>Iterate Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.IterateExp
+	 * @generated
+	 */
+	public Adapter createIterateExpAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.Iteration <em>Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.Iteration
+	 * @generated
+	 */
+	public Adapter createIterationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.IteratorExp <em>Iterator Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.IteratorExp
+	 * @generated
+	 */
+	public Adapter createIteratorExpAdapter()
+	{
 		return null;
 	}
 

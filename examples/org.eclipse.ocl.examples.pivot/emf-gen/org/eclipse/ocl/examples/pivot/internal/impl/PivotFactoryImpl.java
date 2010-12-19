@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.6 2010/12/08 17:39:01 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.7 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -55,7 +55,9 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.IteratorKind;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
@@ -178,6 +180,9 @@ public class PivotFactoryImpl
 			case PivotPackage.INTEGER_LITERAL_EXP: return (EObject)createIntegerLiteralExp();
 			case PivotPackage.INVALID_LITERAL_EXP: return (EObject)createInvalidLiteralExp();
 			case PivotPackage.INVALID_TYPE: return (EObject)createInvalidType();
+			case PivotPackage.ITERATE_EXP: return (EObject)createIterateExp();
+			case PivotPackage.ITERATION: return (EObject)createIteration();
+			case PivotPackage.ITERATOR_EXP: return (EObject)createIteratorExp();
 			case PivotPackage.LET_EXP: return (EObject)createLetExp();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
@@ -235,8 +240,6 @@ public class PivotFactoryImpl
 				return createAssociativityKindFromString(eDataType, initialValue);
 			case PivotPackage.COLLECTION_KIND:
 				return createCollectionKindFromString(eDataType, initialValue);
-			case PivotPackage.ITERATOR_KIND:
-				return createIteratorKindFromString(eDataType, initialValue);
 			case PivotPackage.BOOLEAN:
 				return createBooleanFromString(eDataType, initialValue);
 			case PivotPackage.CALLABLE_IMPLEMENTATION:
@@ -273,8 +276,6 @@ public class PivotFactoryImpl
 				return convertAssociativityKindToString(eDataType, instanceValue);
 			case PivotPackage.COLLECTION_KIND:
 				return convertCollectionKindToString(eDataType, instanceValue);
-			case PivotPackage.ITERATOR_KIND:
-				return convertIteratorKindToString(eDataType, instanceValue);
 			case PivotPackage.BOOLEAN:
 				return convertBooleanToString(eDataType, instanceValue);
 			case PivotPackage.CALLABLE_IMPLEMENTATION:
@@ -733,6 +734,39 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IterateExp createIterateExp()
+	{
+		IterateExpImpl iterateExp = new IterateExpImpl();
+		return iterateExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Iteration createIteration()
+	{
+		IterationImpl iteration = new IterationImpl();
+		return iteration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IteratorExp createIteratorExp()
+	{
+		IteratorExpImpl iteratorExp = new IteratorExpImpl();
+		return iteratorExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LetExp createLetExp() {
 		LetExpImpl letExp = new LetExpImpl();
 		return letExp;
@@ -1018,28 +1052,6 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	public String convertCollectionKindToString(EDataType eDataType,
-			Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IteratorKind createIteratorKindFromString(EDataType eDataType,
-			String initialValue) {
-		IteratorKind result = IteratorKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertIteratorKindToString(EDataType eDataType,
 			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}

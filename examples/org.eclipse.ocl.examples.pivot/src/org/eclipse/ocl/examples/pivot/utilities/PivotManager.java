@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.6 2010/12/13 08:14:55 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.7 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -193,54 +193,6 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		orphans.getOwnedTypes().add(pivotElement);
 	}
 
-	protected void compileLibraryOperation(Operation operation) {
-		Precedence precedence = operation.getPrecedence();
-		if (precedence != null) {
-			List<Parameter> parameters = operation.getOwnedParameters();
-			if (parameters.size() == 0) {
-				String newName = precedence.getName();
-				String operatorName = operation.getName();
-				String oldName = prefixToPrecedenceNameMap.put(operatorName,
-					newName);
-				if ((oldName != null) && !oldName.equals(newName)) {
-					logger
-						.warn("Conflicting precedences for prefix operation '"
-							+ operatorName + "'");
-				}
-			} else if (parameters.size() == 1) {
-				String newName = precedence.getName();
-				String operatorName = operation.getName();
-				String oldName = infixToPrecedenceNameMap.put(operatorName,
-					newName);
-				if ((oldName != null) && !oldName.equals(newName)) {
-					logger.warn("Conflicting precedences for infix operation '"
-						+ operatorName + "'");
-				}
-			}
-		}
-	}
-
-	protected void compileLibraryPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackages()) {
-			compileLibraryPackage(nestedPackage);
-		}
-		for (Type type : pivotPackage.getOwnedTypes()) {
-			if (type.getTemplateBindings().isEmpty()) {
-				compileLibraryType(type);
-			}
-		}
-	}
-
-	protected void compileLibraryType(Type pivotType) {
-		defineLibraryType(pivotType);
-		if (pivotType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (Operation operation : ((org.eclipse.ocl.examples.pivot.Class) pivotType)
-				.getOwnedOperations()) {
-				compileLibraryOperation(operation);
-			}
-		}
-	}
-
 	/**
 	 * Interleave the ownedPrecedences of the rootPackages to establish a merged
 	 * ordering and assign the index in that ordering to each
@@ -257,7 +209,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		for (org.eclipse.ocl.examples.pivot.Package rootPackage : rootPackages) {
 			List<Precedence> precedences = rootPackage.getOwnedPrecedences();
 			if (precedences.size() > 0) {
-				compileLibraryPackage(rootPackage);
+				compilePrecedencePackage(rootPackage);
 				int prevIndex = -1;
 				List<Precedence> list = null;
 				String name = null;
@@ -305,6 +257,54 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			}
 		}
 		return errors;
+	}
+
+	protected void compilePrecedenceOperation(Operation operation) {
+		Precedence precedence = operation.getPrecedence();
+		if (precedence != null) {
+			List<Parameter> parameters = operation.getOwnedParameters();
+			if (parameters.size() == 0) {
+				String newName = precedence.getName();
+				String operatorName = operation.getName();
+				String oldName = prefixToPrecedenceNameMap.put(operatorName,
+					newName);
+				if ((oldName != null) && !oldName.equals(newName)) {
+					logger
+						.warn("Conflicting precedences for prefix operation '"
+							+ operatorName + "'");
+				}
+			} else if (parameters.size() == 1) {
+				String newName = precedence.getName();
+				String operatorName = operation.getName();
+				String oldName = infixToPrecedenceNameMap.put(operatorName,
+					newName);
+				if ((oldName != null) && !oldName.equals(newName)) {
+					logger.warn("Conflicting precedences for infix operation '"
+						+ operatorName + "'");
+				}
+			}
+		}
+	}
+
+	protected void compilePrecedencePackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackages()) {
+			compilePrecedencePackage(nestedPackage);
+		}
+		for (Type type : pivotPackage.getOwnedTypes()) {
+			if (type.getTemplateBindings().isEmpty()) {
+				compilePrecedenceType(type);
+			}
+		}
+	}
+
+	protected void compilePrecedenceType(Type pivotType) {
+		defineLibraryType(pivotType);
+		if (pivotType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (Operation operation : ((org.eclipse.ocl.examples.pivot.Class) pivotType)
+				.getOwnedOperations()) {
+				compilePrecedenceOperation(operation);
+			}
+		}
 	}
 
 	public Map<String, MonikeredElement> computeMoniker2PivotMap(
@@ -437,7 +437,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		}
 		Pivot2Moniker s = new Pivot2Moniker(null);
 		s.appendElement((Element) libraryType.eContainer());
-		s.append(PivotConstants.SCOPE_SEPARATOR);
+		s.append(PivotConstants.MONIKER_SCOPE_SEPARATOR);
 		s.append(libraryType.getName());
 		s.appendTemplateArguments(templateArguments);
 		String moniker = s.toString();
@@ -588,7 +588,20 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		if (pivotResource != null) {
 			pivotResourceSet.getResources().add(pivotResource);
 		}
-		compilePrecedences(computePivotRootPackages());
+		for (org.eclipse.ocl.examples.pivot.Package rootPackage : computePivotRootPackages()) {
+			loadLibraryPackage(rootPackage);
+		}
+	}
+
+	protected void loadLibraryPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackages()) {
+			loadLibraryPackage(nestedPackage);
+		}
+		for (Type type : pivotPackage.getOwnedTypes()) {
+			if (type.getTemplateBindings().isEmpty()) {
+				defineLibraryType(type);
+			}
+		}
 	}
 
 	public Element loadResource(URI uri, String alias) {

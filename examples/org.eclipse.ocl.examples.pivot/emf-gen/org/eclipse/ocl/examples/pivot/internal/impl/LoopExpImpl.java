@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: LoopExpImpl.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -45,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.LoopExpImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.LoopExpImpl#getIterators <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.LoopExpImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +75,16 @@ public abstract class LoopExpImpl
 	 * @ordered
 	 */
 	protected EList<Variable> iterators;
+
+	/**
+	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferredIteration()
+	 * @generated
+	 * @ordered
+	 */
+	protected Iteration referredIteration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -214,6 +226,49 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Iteration getReferredIteration()
+	{
+		if (referredIteration != null && ((EObject)referredIteration).eIsProxy())
+		{
+			InternalEObject oldReferredIteration = (InternalEObject)referredIteration;
+			referredIteration = (Iteration)eResolveProxy(oldReferredIteration);
+			if (referredIteration != oldReferredIteration)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.LOOP_EXP__REFERRED_ITERATION, oldReferredIteration, referredIteration));
+			}
+		}
+		return referredIteration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Iteration basicGetReferredIteration()
+	{
+		return referredIteration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferredIteration(Iteration newReferredIteration)
+	{
+		Iteration oldReferredIteration = referredIteration;
+		referredIteration = newReferredIteration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LOOP_EXP__REFERRED_ITERATION, oldReferredIteration, referredIteration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -267,6 +322,9 @@ public abstract class LoopExpImpl
 				return basicGetBody();
 			case PivotPackage.LOOP_EXP__ITERATOR:
 				return getIterators();
+			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
+				if (resolve) return getReferredIteration();
+				return basicGetReferredIteration();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -315,6 +373,9 @@ public abstract class LoopExpImpl
 				getIterators().clear();
 				getIterators().addAll((Collection<? extends Variable>)newValue);
 				return;
+			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
+				setReferredIteration((Iteration)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -358,6 +419,9 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__ITERATOR:
 				getIterators().clear();
 				return;
+			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
+				setReferredIteration((Iteration)null);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -391,6 +455,8 @@ public abstract class LoopExpImpl
 				return body != null;
 			case PivotPackage.LOOP_EXP__ITERATOR:
 				return iterators != null && !iterators.isEmpty();
+			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
+				return referredIteration != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

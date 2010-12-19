@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.1.2.2 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -170,7 +170,7 @@ public class PivotSaver
 		}
 
 		public Object visiting(Visitable visitable) {
-			logger.warn("pivot-save-visiting " + visitable.eClass().getName());
+			logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 			return null;
 		}
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.1.2.6 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -54,6 +54,9 @@ import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
@@ -208,7 +211,9 @@ public class PivotSwitch<T> {
 			{
 				AnyType anyType = (AnyType)theEObject;
 				T result = caseAnyType(anyType);
+				if (result == null) result = caseClass(anyType);
 				if (result == null) result = caseType(anyType);
+				if (result == null) result = caseNamespace(anyType);
 				if (result == null) result = caseNamedElement(anyType);
 				if (result == null) result = caseParameterableElement(anyType);
 				if (result == null) result = caseTemplateableElement(anyType);
@@ -726,7 +731,9 @@ public class PivotSwitch<T> {
 			{
 				InvalidType invalidType = (InvalidType)theEObject;
 				T result = caseInvalidType(invalidType);
+				if (result == null) result = caseClass(invalidType);
 				if (result == null) result = caseType(invalidType);
+				if (result == null) result = caseNamespace(invalidType);
 				if (result == null) result = caseNamedElement(invalidType);
 				if (result == null) result = caseParameterableElement(invalidType);
 				if (result == null) result = caseTemplateableElement(invalidType);
@@ -735,6 +742,62 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseElement(invalidType);
 				if (result == null) result = caseOclAny(invalidType);
 				if (result == null) result = caseVisitable(invalidType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.ITERATE_EXP:
+			{
+				IterateExp iterateExp = (IterateExp)theEObject;
+				T result = caseIterateExp(iterateExp);
+				if (result == null) result = caseLoopExp(iterateExp);
+				if (result == null) result = caseCallExp(iterateExp);
+				if (result == null) result = caseOclExpression(iterateExp);
+				if (result == null) result = caseTypedElement(iterateExp);
+				if (result == null) result = caseNamedElement(iterateExp);
+				if (result == null) result = caseMonikeredElement(iterateExp);
+				if (result == null) result = caseNameable(iterateExp);
+				if (result == null) result = caseElement(iterateExp);
+				if (result == null) result = caseOclAny(iterateExp);
+				if (result == null) result = caseVisitable(iterateExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.ITERATION:
+			{
+				Iteration iteration = (Iteration)theEObject;
+				T result = caseIteration(iteration);
+				if (result == null) result = caseOperation(iteration);
+				if (result == null) result = caseTypedMultiplicityElement(iteration);
+				if (result == null) result = caseFeature(iteration);
+				if (result == null) result = caseNamespace(iteration);
+				if (result == null) result = caseParameterableElement(iteration);
+				if (result == null) result = caseTemplateableElement(iteration);
+				if (result == null) result = caseImplementableElement(iteration);
+				if (result == null) result = caseTypedElement(iteration);
+				if (result == null) result = caseMultiplicityElement(iteration);
+				if (result == null) result = caseNamedElement(iteration);
+				if (result == null) result = caseMonikeredElement(iteration);
+				if (result == null) result = caseNameable(iteration);
+				if (result == null) result = caseElement(iteration);
+				if (result == null) result = caseOclAny(iteration);
+				if (result == null) result = caseVisitable(iteration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.ITERATOR_EXP:
+			{
+				IteratorExp iteratorExp = (IteratorExp)theEObject;
+				T result = caseIteratorExp(iteratorExp);
+				if (result == null) result = caseLoopExp(iteratorExp);
+				if (result == null) result = caseCallExp(iteratorExp);
+				if (result == null) result = caseOclExpression(iteratorExp);
+				if (result == null) result = caseTypedElement(iteratorExp);
+				if (result == null) result = caseNamedElement(iteratorExp);
+				if (result == null) result = caseMonikeredElement(iteratorExp);
+				if (result == null) result = caseNameable(iteratorExp);
+				if (result == null) result = caseElement(iteratorExp);
+				if (result == null) result = caseOclAny(iteratorExp);
+				if (result == null) result = caseVisitable(iteratorExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1570,7 +1633,9 @@ public class PivotSwitch<T> {
 			{
 				VoidType voidType = (VoidType)theEObject;
 				T result = caseVoidType(voidType);
+				if (result == null) result = caseClass(voidType);
 				if (result == null) result = caseType(voidType);
+				if (result == null) result = caseNamespace(voidType);
 				if (result == null) result = caseNamedElement(voidType);
 				if (result == null) result = caseParameterableElement(voidType);
 				if (result == null) result = caseTemplateableElement(voidType);
@@ -2078,6 +2143,54 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseInvalidType(InvalidType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIterateExp(IterateExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iteration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIteration(Iteration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iterator Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iterator Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIteratorExp(IteratorExp object)
+	{
 		return null;
 	}
 

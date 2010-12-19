@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VoidTypeImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: VoidTypeImpl.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.VoidType;
  * @generated
  */
 public class VoidTypeImpl
-		extends TypeImpl
+		extends ClassImpl
 		implements VoidType {
 
 	/**

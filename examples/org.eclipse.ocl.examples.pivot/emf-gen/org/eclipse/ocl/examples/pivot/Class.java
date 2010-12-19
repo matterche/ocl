@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Class.java,v 1.1.2.3 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: Class.java,v 1.1.2.4 2010/12/19 15:52:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses <em>Super Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isPrimitive <em>Primitive</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSubClasses <em>Sub Class</em>}</li>
  * </ul>
  * </p>
@@ -99,33 +98,6 @@ public interface Class
 	 * @generated
 	 */
 	void setInstanceClassName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Primitive</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Primitive</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Primitive</em>' attribute.
-	 * @see #setPrimitive(boolean)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_Primitive()
-	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
-	 * @generated
-	 */
-	boolean isPrimitive();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#isPrimitive <em>Primitive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Primitive</em>' attribute.
-	 * @see #isPrimitive()
-	 * @generated
-	 */
-	void setPrimitive(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Attribute</b></em>' containment reference list.

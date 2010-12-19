@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1.2.3 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -205,8 +205,7 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 		Operation oper = oc.getReferredOperation();
 		
 		result.append(sourceResult);
-		// FIXME conformsTo Collection
-		result.append(sourceType instanceof CollectionType ? "->" : "."); //$NON-NLS-1$ //$NON-NLS-2$
+		result.append(sourceType instanceof CollectionType ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 		result.append(getName(oper != null ? oper : oc));
 		
         result.append('(');
@@ -336,7 +335,7 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 			result += " : " + getName(type);//$NON-NLS-1$
 		}
         
-        if (initResult != null) {
+        if (vd.getInitExpression() != null) {
 			result += " = " + initResult;//$NON-NLS-1$
         }
         
@@ -826,6 +825,18 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 		if (mpc.isPre()) {
 			result.append("@pre"); //$NON-NLS-1$
 		}
+	}
+
+	@Override
+	public String safeVisit(Visitable v) {
+		StringBuffer savedResult = result;
+		result = new StringBuffer();
+		String nestedResult = super.safeVisit(v);
+		if (nestedResult == null) {				// FIXME Eliminate tjis hybrid protocol
+			nestedResult = result.toString();
+		}
+		result = savedResult;
+		return nestedResult;
 	}
 
 	@Override

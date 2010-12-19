@@ -12,33 +12,34 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: IteratorExpImpl.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.examples.pivot.AnyType;
+
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Any Type</b></em>'.
+ * An implementation of the model object '<em><b>Iterator Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class AnyTypeImpl
-		extends ClassImpl
-		implements AnyType {
-
+public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AnyTypeImpl() {
+	protected IteratorExpImpl()
+	{
 		super();
 	}
 
@@ -48,8 +49,14 @@ public class AnyTypeImpl
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
-		return PivotPackage.Literals.ANY_TYPE;
+	protected EClass eStaticClass()
+	{
+		return PivotPackage.Literals.ITERATOR_EXP;
 	}
 
-} //AnyTypeImpl
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitIteratorExp(this);
+	}
+
+} //IteratorExpImpl

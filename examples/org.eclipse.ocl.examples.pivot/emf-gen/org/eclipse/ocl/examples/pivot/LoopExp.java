@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: LoopExp.java,v 1.1.2.4 2010/12/19 15:52:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LoopExp#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LoopExp#getIterators <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.LoopExp#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,5 +112,31 @@ public interface LoopExp
 	 * @generated
 	 */
 	Variable createIterator();
+
+	/**
+	 * Returns the value of the '<em><b>Referred Iteration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Iteration</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referred Iteration</em>' reference.
+	 * @see #setReferredIteration(Iteration)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_ReferredIteration()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	Iteration getReferredIteration();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.LoopExp#getReferredIteration <em>Referred Iteration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referred Iteration</em>' reference.
+	 * @see #getReferredIteration()
+	 * @generated
+	 */
+	void setReferredIteration(Iteration value);
 
 } // LoopExp

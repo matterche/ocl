@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: CollectionTypeImpl.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -166,8 +166,6 @@ public class CollectionTypeImpl
 				return getSuperClasses();
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
-				return isPrimitive();
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				return getSubClasses();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
@@ -242,9 +240,6 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
-				setPrimitive((Boolean)newValue);
-				return;
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				getSubClasses().clear();
 				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
@@ -313,9 +308,6 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
-				setPrimitive(PRIMITIVE_EDEFAULT);
-				return;
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				getSubClasses().clear();
 				return;
@@ -367,8 +359,6 @@ public class CollectionTypeImpl
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.COLLECTION_TYPE__PRIMITIVE:
-				return ((eFlags & PRIMITIVE_EFLAG) != 0) != PRIMITIVE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:

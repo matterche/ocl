@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.1.2.2 2010/10/09 20:09:24 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -247,5 +247,5 @@ public interface StandardLibrary {
 	 * or compare the type to getInvalidType().
 	 * @param allowExplanatoryInvalids
 	 */
-	void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids);
+//	void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids);
 }

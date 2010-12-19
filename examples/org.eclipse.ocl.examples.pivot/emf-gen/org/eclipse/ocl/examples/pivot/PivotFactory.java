@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.1.2.5 2010/12/19 15:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -423,6 +423,33 @@ public interface PivotFactory
 	 * @generated
 	 */
 	InvalidType createInvalidType();
+
+	/**
+	 * Returns a new object of class '<em>Iterate Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iterate Exp</em>'.
+	 * @generated
+	 */
+	IterateExp createIterateExp();
+
+	/**
+	 * Returns a new object of class '<em>Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iteration</em>'.
+	 * @generated
+	 */
+	Iteration createIteration();
+
+	/**
+	 * Returns a new object of class '<em>Iterator Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iterator Exp</em>'.
+	 * @generated
+	 */
+	IteratorExp createIteratorExp();
 
 	/**
 	 * Returns a new object of class '<em>Let Exp</em>'.

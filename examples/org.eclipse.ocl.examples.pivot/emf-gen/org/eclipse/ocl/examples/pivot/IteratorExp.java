@@ -12,20 +12,21 @@
  *
  * </copyright>
  *
- * $Id: InvalidType.java,v 1.1.2.3 2010/12/19 15:52:39 ewillink Exp $
+ * $Id: IteratorExp.java,v 1.1.2.4 2010/12/19 15:52:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
+
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Invalid Type</b></em>'.
+ * A representation of the model object '<em><b>Iterator Exp</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInvalidType()
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIteratorExp()
  * @model
  * @generated
  */
-public interface InvalidType
-		extends org.eclipse.ocl.examples.pivot.Class {
-} // InvalidType
+public interface IteratorExp extends LoopExp
+{
+} // IteratorExp
