@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerOCLstdlibCSVisitor.java,v 1.1.2.2 2010/12/19 15:57:40 ewillink Exp $
+ * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.1.2.1 2010/12/19 18:33:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
@@ -21,32 +21,32 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.MonikerEssentialOCLCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
-public class MonikerOCLstdlibCSVisitor
+public class OCLstdlibCS2MonikerVisitor
 	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Object, CS2Moniker, EssentialOCLCSVisitor<Object, CS2Moniker>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
 	{
 		private Factory() {
-			MonikerEssentialOCLCSVisitor.FACTORY.getClass();
+			EssentialOCLCS2MonikerVisitor.FACTORY.getClass();
 			CS2Moniker.addFactory(OCLstdlibCSTPackage.eINSTANCE, this);
 		}
 		
 		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
-			return new MonikerOCLstdlibCSVisitor(context);
+			return new OCLstdlibCS2MonikerVisitor(context);
 		}
 	}
 
 	public static CS2Moniker.Factory FACTORY = new Factory();
 		
 	@SuppressWarnings("unchecked")
-	public MonikerOCLstdlibCSVisitor(CS2Moniker context) {
+	public OCLstdlibCS2MonikerVisitor(CS2Moniker context) {
 		super((EssentialOCLCSVisitor<Object, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 

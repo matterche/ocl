@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibStandaloneSetup.java,v 1.1.6.3 2010/12/11 10:45:46 ewillink Exp $
+ * $Id: OCLstdlibStandaloneSetup.java,v 1.1.6.4 2010/12/19 18:33:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
 import org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot.OCLstdlibCS2Pivot;
-import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.MonikerOCLstdlibCSVisitor;
+import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCS2MonikerVisitor;
 
 /**
  * Initialization support for running Xtext languages 
@@ -32,10 +32,8 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated{
 	}
 
 	public static void init() {
-//		OCLstdlibScopeProvider.FACTORY.getClass();
-		MonikerOCLstdlibCSVisitor.FACTORY.getClass();
+		OCLstdlibCS2MonikerVisitor.FACTORY.getClass();
 		OCLstdlibCS2Pivot.FACTORY.getClass();
-//		Pivot2BaseCSSwitch.FACTORY.getClass();
 	}
 }
 
