@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerCompleteOCLCSVisitor.java,v 1.1.2.1 2010/12/06 18:36:43 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.1.2.1 2010/12/19 18:33:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -23,29 +23,29 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.MonikerEssentialOCLCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 
-public class MonikerCompleteOCLCSVisitor
+public class CompleteOCLCS2MonikerVisitor
 	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Object, CS2Moniker, EssentialOCLCSVisitor<Object, CS2Moniker>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
 	{
 		private Factory() {
-			MonikerEssentialOCLCSVisitor.FACTORY.getClass();
+			EssentialOCLCS2MonikerVisitor.FACTORY.getClass();
 			CS2Moniker.addFactory(CompleteOCLCSTPackage.eINSTANCE, this);
 //			roleNames.put(CompleteOCLCSTPackage.Literals.LIB_CONSTRAINT_CS__OWNED_EXPRESSION, "z");
 		}
 		
 		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
-			return new MonikerCompleteOCLCSVisitor(context);
+			return new CompleteOCLCS2MonikerVisitor(context);
 		}
 	}
 
 	public static CS2Moniker.Factory FACTORY = new Factory();
 		
 	@SuppressWarnings("unchecked")
-	public MonikerCompleteOCLCSVisitor(CS2Moniker context) {
+	public CompleteOCLCS2MonikerVisitor(CS2Moniker context) {
 		super((EssentialOCLCSVisitor<Object, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 }
