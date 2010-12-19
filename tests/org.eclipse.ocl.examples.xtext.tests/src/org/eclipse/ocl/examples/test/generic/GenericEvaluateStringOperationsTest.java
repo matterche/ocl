@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.3 2010/12/11 10:46:49 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.4 2010/12/19 16:07:17 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -238,7 +238,6 @@ public abstract class GenericEvaluateStringOperationsTest
 	}
 
 	public void testStringToInteger() {
-		pivotManager.setAllowExplanatoryInvalids(true);
 		assertQueryEquals(null, Integer.valueOf(4), "'4'.toInteger()");
 		assertQueryEquals(null, Integer.valueOf(-4), "'-4'.toInteger()");
 		assertQueryInvalid(null, "'4.0'.toInteger()", "Not an Integer", NumberFormatException.class);
@@ -266,7 +265,6 @@ public abstract class GenericEvaluateStringOperationsTest
 	}
 
 	public void testStringToReal() {
-		pivotManager.setAllowExplanatoryInvalids(true);
 		assertQueryEquals(null, Double.valueOf(4d), "'4'.toReal()");
 		assertQueryEquals(null, Double.valueOf(-4d), "'-4'.toReal()");
 		assertQueryEquals(null, new BigDecimal("4.0"), "'4.0'.toReal()");

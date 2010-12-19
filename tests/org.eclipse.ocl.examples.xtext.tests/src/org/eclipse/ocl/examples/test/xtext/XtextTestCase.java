@@ -56,12 +56,16 @@ import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
@@ -73,10 +77,12 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 import org.eclipse.xtext.resource.XtextResource;
@@ -247,6 +253,10 @@ public class XtextTestCase extends TestCase
 		if ((pivotElement instanceof Variable) && (pivotElement.eContainer() instanceof ExpressionInOcl)) {
 			return false;
 		}
+		if ((pivotElement instanceof Variable) && (pivotElement.eContainer() instanceof LoopExp)
+				&& Character.isDigit((((Variable)pivotElement).getName().charAt(0)))) {
+			return false;
+		}
 //		if (pivotElement instanceof TemplateBinding) {
 //			return false;
 //		}
@@ -255,6 +265,13 @@ public class XtextTestCase extends TestCase
 //		}
 		return true;
 	}
+
+//	protected static boolean hasOptionalCS(MonikeredElement pivotElement) {
+//		if ((pivotElement instanceof LetExp) && (pivotElement.eContainer() instanceof LetExp)) {
+//			return false;
+//		}
+//		return true;
+//	}
 
 	protected static boolean hasCorrespondingPivot(MonikeredElementCS csElement) {
 		if (csElement instanceof TupleTypeCS) {
@@ -275,6 +292,9 @@ public class XtextTestCase extends TestCase
 		if (csElement instanceof PrefixExpCS) {
 			return false;
 		}
+		if (csElement instanceof NavigatingArgCS) {
+			return false;
+		}
 		if (csElement instanceof NavigatingExpCS) {
 			return false;
 		}
@@ -282,6 +302,9 @@ public class XtextTestCase extends TestCase
 			return false;
 		}
 		if (csElement instanceof CollectionTypeCS) {
+			return false;
+		}
+		if (csElement instanceof TypeNameExpCS) {
 			return false;
 		}
 		return true;
@@ -328,6 +351,9 @@ public class XtextTestCase extends TestCase
 			return false;
 		}
 		if ((pivotElement instanceof Property) && (pivotElement.eContainer() instanceof TupleType)) {
+			return false;
+		}
+		if ((pivotElement instanceof VariableExp) && (pivotElement.eContainer() instanceof OperationCallExp)) {
 			return false;
 		}
 		return true;

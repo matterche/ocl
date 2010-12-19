@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.4 2010/12/11 10:46:49 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.5 2010/12/19 16:07:17 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -937,8 +937,9 @@ public abstract class GenericTestSuite
 	protected Object evaluate(OCLHelper aHelper,
             Object context,
             String expression) throws ParserException {
-        pivotManager.getPivotResourceSet().getResources().clear();
+//        pivotManager.getPivotResourceSet().getResources().clear();
         OclExpression query = aHelper.createQuery(expression);
+        String s = query.toString();		// FIXME debugging
         return ocl.evaluate(context, query);
     }
 	

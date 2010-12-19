@@ -12,7 +12,7 @@ type Bag<T> conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
 	operation including(object : T) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 }
 
-primitive type Boolean conformsTo OclAny {
+type Boolean : PrimitiveType conformsTo OclAny {
 	operation allInstances() : Set<Boolean> => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.logical.BooleanEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.logical.BooleanNotEqualOperation';
@@ -70,7 +70,7 @@ type Enumeration conformsTo OclAny {
 	operation allInstances() : Set<Enumeration> => 'org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation';
 }
 
-primitive type Integer conformsTo Real {
+type Integer : PrimitiveType conformsTo Real {
 	operation "-"() : Integer precedence=UNARY => 'org.eclipse.ocl.examples.library.numeric.NumericNegateOperation';
 	operation "+"(i : Integer) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
 	operation "-"(i : Integer) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
@@ -173,7 +173,7 @@ type OrderedSet<T> conformsTo OrderedCollection<T>,UniqueCollection<T> {
 	operation union(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
-primitive type Real conformsTo OclAny {
+type Real : PrimitiveType conformsTo OclAny {
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.numeric.NumericEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.numeric.NumericNotEqualOperation';
 	operation "+"(r : Real) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
@@ -223,7 +223,7 @@ type Set<T> conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
 	operation symmetricDifference(s : Set<OclAny>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation';
 }
 
-primitive type String conformsTo OclAny {
+type String : PrimitiveType conformsTo OclAny {
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.string.StringEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.string.StringNotEqualOperation';
 	operation "+"(s : String) : String precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
@@ -254,7 +254,7 @@ type UniqueCollection<T> conformsTo Collection<T> {
 	iteration sortedBy(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 }
 
-primitive type UnlimitedNatural conformsTo Integer {
+type UnlimitedNatural : PrimitiveType conformsTo Integer {
 }
 
 }

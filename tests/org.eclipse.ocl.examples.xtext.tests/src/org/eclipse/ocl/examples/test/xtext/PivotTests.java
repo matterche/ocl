@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.1.2.2 2010/12/06 18:47:46 ewillink Exp $
+ * $Id: PivotTests.java,v 1.1.2.3 2010/12/19 16:07:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -58,16 +58,16 @@ public class PivotTests extends XtextTestCase
 			super(aConverter);
 		}
 
-		public void assertContainedBy(CS2Pivot updater) {
+		public void assertContainedBy(CS2Pivot thatConverter) {
 			List<String> theseMonikers = new ArrayList<String>(moniker2PivotMap.keySet());
-			List<String> thoseMonikers = new ArrayList<String>(updater.getMonikers());
+			List<String> thoseMonikers = new ArrayList<String>(thatConverter.getMonikers());
 			Collections.sort(theseMonikers);
 			Collections.sort(thoseMonikers);
 			for (String moniker : moniker2PivotMap.keySet()) {
-				MonikeredElement oldPivotElement = getPivotElement(moniker);
-				MonikeredElement newPivotElement = updater.getPivotElement(moniker);
-				if (isValidPivot(oldPivotElement) && isValidPivot(newPivotElement)) {
-					assertEquals("Preserved pivot", oldPivotElement, newPivotElement);
+				MonikeredElement thisPivotElement = getPivotElement(moniker);
+				MonikeredElement thatPivotElement = thatConverter.getPivotElement(moniker);
+				if (isValidPivot(thisPivotElement) && isValidPivot(thatPivotElement)) {
+					assertEquals("Preserved pivot", thisPivotElement, thatPivotElement);
 				}
 			}
 		}
