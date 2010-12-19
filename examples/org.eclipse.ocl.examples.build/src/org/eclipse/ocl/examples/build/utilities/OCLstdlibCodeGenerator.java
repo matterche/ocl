@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCodeGenerator.java,v 1.1.2.2 2010/12/06 17:12:02 ewillink Exp $
+ * $Id: OCLstdlibCodeGenerator.java,v 1.1.2.3 2010/12/19 17:47:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.build.acceleo.GenerateOCLstdlib;
 import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotSaver;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
@@ -87,6 +88,11 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 			PivotManager pivotManager = new PivotManager.NoDefaultLibrary();
 			CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(fileURI, true);
+			String message = PivotUtil.getResourceErrorsString(xtextResource, "OCLstdlib parse failure");
+			if (message != null) {
+				issues.addError(this, message, null, null, null);
+				return;
+			}
 			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextResource, pivotManager);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
 			List<Object> arguments = new ArrayList<Object>();
