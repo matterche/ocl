@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.1.2.4 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.1.2.5 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -24,15 +24,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
-import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
@@ -62,25 +58,6 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2PivotConversion>
 {
 	public static final Logger logger = Logger.getLogger(BasePostOrderVisitor.class);
-	
-	protected static class ConstraintContentContinuation extends SingleContinuation<ConstraintCS>
-	{
-		public ConstraintContentContinuation(CS2PivotConversion context, ConstraintCS csElement) {
-			super(context, null, null, csElement);
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			Constraint pivotElement = PivotUtil.getPivot(Constraint.class, csElement);
-			ValueSpecification specification = pivotElement.getSpecification();
-			context.putPivotElement(specification);
-			if (specification instanceof ExpressionInOcl) {
-				Variable contextVariable = ((ExpressionInOcl)specification).getContextVariable();
-				context.putPivotElement(contextVariable);
-			}
-			return null;
-		}
-	}
 	
 	public BasePostOrderVisitor(CS2PivotConversion context) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
@@ -113,7 +90,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 
 	public Continuation<?> visiting(VisitableCS visitable) {
-		logger.warn("post-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}
 
@@ -148,27 +125,9 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitConstraintCS(ConstraintCS csConstraint) {
+		@SuppressWarnings("unused")
 		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csConstraint);
-		ValueSpecification pivotSpecification = pivotElement.getSpecification();
-		if (!(pivotSpecification instanceof ExpressionInOcl)) {
-			pivotSpecification = PivotFactory.eINSTANCE.createExpressionInOcl();
-			pivotElement.setSpecification(pivotSpecification);
-		}
-		ExpressionInOcl expressionInOcl = (ExpressionInOcl)pivotSpecification;
-		pivotElement.setStereotype(csConstraint.getStereotype());
-		EObject classifierContext = ((ModelElementCS)csConstraint.eContainer()).getPivot();
-		while ((classifierContext != null) && !(classifierContext instanceof org.eclipse.ocl.examples.pivot.Class)) {
-			classifierContext = classifierContext.eContainer();
-		}
-		org.eclipse.ocl.examples.pivot.Class pivotClass = (org.eclipse.ocl.examples.pivot.Class)classifierContext;
-		Variable contextVariable = expressionInOcl.getContextVariable();
-		if (contextVariable == null) {
-			contextVariable = PivotFactory.eINSTANCE.createVariable();
-			expressionInOcl.setContextVariable(contextVariable);
-		}
-		context.refreshName(contextVariable, "self");
-		context.setType(contextVariable, pivotClass);
-		return new ConstraintContentContinuation(context, csConstraint);
+		return null;
 	}
 
 	@Override
@@ -228,12 +187,13 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
 		Type type = context.getPivotManager().getLibraryType(csPrimitiveTypeRef.getName());
-		context.installPivotElement(csPrimitiveTypeRef, type);
+		context.reusePivotElement(csPrimitiveTypeRef, type);
 		return null;
 	}
 
 	@Override
 	public Continuation<?> visitReferenceCS(ReferenceCS csReference) {
+		@SuppressWarnings("unused")
 		Property pivotElement = PivotUtil.getPivot(Property.class, csReference);
 		// FIXME opposite
 		return visitTypedElementCS(csReference);

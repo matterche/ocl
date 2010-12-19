@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.1.2.3 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.1.2.4 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -40,7 +41,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		csRef.setType(object);
 		csRef.setPivot(object);
 		org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(object);
-		if (!object.isPrimitive() && (objectPackage != scopePackage)) {
+		if (!(object instanceof PrimitiveType) && (objectPackage != scopePackage)) {
 			context.importPackage(objectPackage);
 		}
 		// FIXME TemplateBindings
@@ -56,7 +57,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 */	}
 
 	public ElementCS visiting(Visitable visitable) {
-		logger.warn("reference-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}
 }

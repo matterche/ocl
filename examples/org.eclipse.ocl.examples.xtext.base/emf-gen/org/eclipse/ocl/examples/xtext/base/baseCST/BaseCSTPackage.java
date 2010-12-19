@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackage.java,v 1.4.6.4 2010/12/08 10:24:34 ewillink Exp $
+ * $Id: BaseCSTPackage.java,v 1.4.6.5 2010/12/19 15:51:36 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -3608,22 +3608,13 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETER_CS__OWNER = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Iterator Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__ITERATOR_KIND = TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Parameter CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int PARAMETER_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -6287,17 +6278,6 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getParameterCS_Owner();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getIteratorKind <em>Iterator Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Iterator Kind</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getIteratorKind()
-	 * @see #getParameterCS()
-	 * @generated
-	 */
-	EAttribute getParameterCS_IteratorKind();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS <em>Parameterable Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7657,14 +7637,6 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PARAMETER_CS__OWNER = eINSTANCE.getParameterCS_Owner();
-
-		/**
-		 * The meta object literal for the '<em><b>Iterator Kind</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER_CS__ITERATOR_KIND = eINSTANCE.getParameterCS_IteratorKind();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS <em>Parameterable Element CS</em>}' class.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: BaseScopeVisitor.java,v 1.1.2.3 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -225,7 +225,7 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	}
 
 	public ScopeCSAdapter visiting(VisitableCS visitable) {
-		logger.warn("cs-scope-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -55,6 +55,15 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_SUPER_TYPE) {
 				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
+			}
+			else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_META_TYPE) {
+				environmentView.addNamedElement(pivotManager.getBagTypeType());
+				environmentView.addNamedElement(pivotManager.getCollectionTypeType());
+				environmentView.addNamedElement(pivotManager.getOrderedSetTypeType());
+				environmentView.addNamedElement(pivotManager.getSequenceTypeType());
+				environmentView.addNamedElement(pivotManager.getSetTypeType());
+				environmentView.addNamedElement(pivotManager.getPrimitiveTypeType());
+				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {
 				environmentView.addNamedElements(PivotPackage.Literals.OPERATION, pivot.getOwnedOperations());

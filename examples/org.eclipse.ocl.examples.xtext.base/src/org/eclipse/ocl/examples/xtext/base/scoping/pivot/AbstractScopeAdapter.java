@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.5 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.6 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -90,8 +90,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		if (adapter != null) {
 			return adapter;
 		}
-		Resource resource = eObject.eResource();
-		ResourceSet resourceSet = resource.getResourceSet();
+//		Resource resource = eObject.eResource();
+//		ResourceSet resourceSet = resource.getResourceSet();
 		PivotScopeVisitor visitor = new PivotScopeVisitor(pivotManager);
 		return eObject.accept(visitor);	
 	}
@@ -184,7 +184,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	}
 
 	public ScopeView getInnerScopeView(EReference targetReference) {
-		return new BaseScopeView(this, null, targetReference);
+		return new BaseScopeView(this, null, null, targetReference);
 	}
 
 	public Type getLibraryType(String collectionTypeName, Type elementType) {
@@ -193,7 +193,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	public ScopeView getOuterScopeView(EReference targetReference) {
 		ScopeAdapter parent = getParent();
-		return new BaseScopeView(parent, target.eContainingFeature(), targetReference);
+		return new BaseScopeView(parent, target, target.eContainingFeature(), targetReference);
 	}
 
 	public ScopeAdapter getParent() {

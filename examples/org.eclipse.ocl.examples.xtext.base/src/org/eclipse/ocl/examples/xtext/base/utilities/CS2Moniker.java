@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.1.2.3 2010/12/08 10:24:34 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -25,6 +25,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -42,12 +43,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
-public class CS2Moniker extends Abstract2Moniker
-{	
+public class CS2Moniker
+		extends Abstract2Moniker {
+
 	private static final Logger logger = Logger.getLogger(CS2Moniker.class);
-	
-	public static interface Factory
-	{
+
+	public static interface Factory {
+
 		public abstract BaseCSVisitor<?, ?> create(CS2Moniker moniker);
 	}
 
@@ -63,12 +65,12 @@ public class CS2Moniker extends Abstract2Moniker
 		assert !"".equals(string);
 		return string;
 	}
-	
+
 	/**
 	 * The registry of Moniker Visitor Factories for supported EPackages.
 	 */
 	private static Map<EPackage, Factory> csFactoryMap = new HashMap<EPackage, Factory>();
-	
+
 	/**
 	 * The template parameters defined by csScope and its ancestors. This is
 	 * computed lazily by computeTemplateParameters.
@@ -76,19 +78,20 @@ public class CS2Moniker extends Abstract2Moniker
 	private List<TemplateParameterCS> csTemplateParameters = null;
 
 	/**
-	 * CS TemplateParameters that already appear in the result and do not need re-qualification.
+	 * CS TemplateParameters that already appear in the result and do not need
+	 * re-qualification.
 	 */
 	private List<TemplateParameterCS> csEmittedParameters = null;
-	
+
 	/**
-	 * The Moniker Visitors created for each required EPackage. 
+	 * The Moniker Visitors created for each required EPackage.
 	 */
-	private Map<EPackage, BaseCSVisitor<?, ?>> csVisitorMap = new HashMap<EPackage, BaseCSVisitor<?, ?>>();	
-	
+	private Map<EPackage, BaseCSVisitor<?, ?>> csVisitorMap = new HashMap<EPackage, BaseCSVisitor<?, ?>>();
+
 	public CS2Moniker(MonikeredElementCS target) {
 		super(target);
 	}
-	
+
 	public void appendElementCS(VisitableCS csVisitable) {
 		assert csVisitable != null;
 		int oldSize = length();
@@ -101,63 +104,93 @@ public class CS2Moniker extends Abstract2Moniker
 	}
 
 	public void appendNameCS(NamedElementCS csNamedElement) {
-		append(csNamedElement != null ? csNamedElement.getName() : null);
+		append(csNamedElement != null
+			? csNamedElement.getName()
+			: null);
 	}
-	
-	public void appendParametersCS(List<ParameterCS> parameters) {
+
+	public void appendParametersCS(List<ParameterCS> csIterators,
+			List<ParameterCS> csAccumulators, List<ParameterCS> csParameters) {
 		append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
-		for (ParameterCS csParameter : parameters) {
+		if (csIterators != null) {
+			for (ParameterCS csIterator : csIterators) {
+				append(prefix);
+				appendElementCS(csIterator.getOwnedType());
+				prefix = PARAMETER_SEPARATOR;
+			}
+			prefix = ACCUMULATOR_SEPARATOR;
+		}
+		if ((csAccumulators != null) && (csAccumulators.size() > 0)) {
+			prefix = ITERATOR_SEPARATOR;
+			for (ParameterCS csAccumulator : csAccumulators) {
+				append(prefix);
+				appendElementCS(csAccumulator.getOwnedType());
+				prefix = PARAMETER_SEPARATOR;
+			}
+			prefix = ACCUMULATOR_SEPARATOR;
+		}
+		for (ParameterCS csParameter : csParameters) {
 			append(prefix);
 			appendElementCS(csParameter.getOwnedType());
-			switch (csParameter.getIteratorKind()) {
-				case ACCUMULATOR: prefix = ACCUMULATOR_SEPARATOR; break;
-				case ITERATOR: prefix = ITERATOR_SEPARATOR; break;
-				default: prefix = PARAMETER_SEPARATOR; break;
-			}
+			prefix = PARAMETER_SEPARATOR;
 		}
 		append(PARAMETER_SUFFIX);
 	}
 
 	public void appendParentCS(ElementCS csElement, String parentSeparator) {
+		EObject parent = csElement != null
+			? csElement.eContainer()
+			: null;
+		appendParentElementCS(parent, parentSeparator);
+	}
+
+	public void appendParentElementCS(EObject parent, String parentSeparator) {
 		if (toString().length() >= MONIKER_OVERFLOW_LIMIT) {
 			append(OVERFLOW_MARKER);
-		}
-		else {
-			EObject parent = csElement != null ? csElement.eContainer() : null;
-			if ((parent instanceof MonikeredElementCS) && ((MonikeredElementCS) parent).hasMoniker()) {
-				append(((MonikeredElementCS) parent).getMoniker());	
-			}
-			else if (parent instanceof VisitableCS) {
-				appendElementCS((VisitableCS) parent);	
+		} else {
+			if ((parent instanceof MonikeredElementCS)
+				&& ((MonikeredElementCS) parent).hasMoniker()) {
+				append(((MonikeredElementCS) parent).getMoniker()); // FIXME
+																	// Always
+																	// getMoniker
+			} else if (parent instanceof VisitableCS) {
+				appendElementCS((VisitableCS) parent);
 			}
 		}
 		append(parentSeparator);
 	}
 
 	public void appendRoleCS(ElementCS object) {
-		EStructuralFeature eFeature = object.eContainmentFeature();
+		EReference eFeature = object.eContainmentFeature();
+		appendRoleCS(eFeature);
+		if (eFeature.isMany()) {
+			int index = ((List<?>) object.eContainer().eGet(
+				object.eContainingFeature())).indexOf(object);
+			append(index);
+		}
+	}
+
+	public void appendRoleCS(EStructuralFeature eFeature) {
 		String roleName = roleNames.get(eFeature);
 		if (roleName == null) {
 			roleName = eFeature.getName();
 		}
 		append(roleName);
-		if (eFeature.isMany()) {
-			int index = ((List<?>)object.eContainer().eGet(object.eContainingFeature())).indexOf(object);
-			append(index);
-		}
 	}
-	
+
 	public void appendTemplateBindingsCS(ParameterizedTypeRefCS typeRef) {
 		TemplateBindingCS templateBinding = typeRef.getOwnedTemplateBinding();
 		if (templateBinding != null) {
 			append(TEMPLATE_BINDING_PREFIX);
-			List<TemplateParameterSubstitutionCS> templateParameterSubstitutions = templateBinding.getOwnedParameterSubstitution();
+			List<TemplateParameterSubstitutionCS> templateParameterSubstitutions = templateBinding
+				.getOwnedParameterSubstitution();
 			if (!templateParameterSubstitutions.isEmpty()) {
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameterSubstitutionCS templateParameterSubstitution : templateParameterSubstitutions) {
 					append(prefix);
-					appendElementCS(templateParameterSubstitution.getOwnedActualParameter());
+					appendElementCS(templateParameterSubstitution
+						.getOwnedActualParameter());
 					prefix = TEMPLATE_BINDING_SEPARATOR;
 				}
 			}
@@ -165,17 +198,21 @@ public class CS2Moniker extends Abstract2Moniker
 		}
 	}
 
-	public void appendTemplateParametersCS(TemplateableElementCS csTemplateableElement) {
-		TemplateSignatureCS csTemplateSignature = csTemplateableElement.getOwnedTemplateSignature();
+	public void appendTemplateParametersCS(
+			TemplateableElementCS csTemplateableElement) {
+		TemplateSignatureCS csTemplateSignature = csTemplateableElement
+			.getOwnedTemplateSignature();
 		if (csTemplateSignature != null) {
-			List<TemplateParameterCS> csTemplateParameters = csTemplateSignature.getOwnedTemplateParameter();
+			List<TemplateParameterCS> csTemplateParameters = csTemplateSignature
+				.getOwnedTemplateParameter();
 			if (!csTemplateParameters.isEmpty()) {
 				append(TEMPLATE_SIGNATURE_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameterCS csTemplateParameter : csTemplateParameters) {
 					append(prefix);
 					emittedTemplateParameterCS(csTemplateParameter);
-//					appendTemplateParameter((TemplateParameter) csTemplateParameter.getPivot());
+					// appendTemplateParameter((TemplateParameter)
+					// csTemplateParameter.getPivot());
 					appendNameCS(csTemplateParameter);
 					prefix = TEMPLATE_SIGNATURE_SEPARATOR;
 				}
@@ -183,25 +220,28 @@ public class CS2Moniker extends Abstract2Moniker
 			}
 		}
 	}
-	
+
 	private void computeTemplateParametersCS(EObject csElement) {
 		if (csTemplateParameters != null) {
 			return;
 		}
-		EObject parent = csElement != null ? csElement.eContainer() : null;
+		EObject parent = csElement != null
+			? csElement.eContainer()
+			: null;
 		if (parent != null) {
 			computeTemplateParametersCS(parent);
-		}
-		else {
+		} else {
 			csTemplateParameters = Collections.emptyList();
 		}
 		if (csElement instanceof TemplateableElementCS) {
-			TemplateSignatureCS ownedTemplateSignature = ((TemplateableElementCS)csElement).getOwnedTemplateSignature();
+			TemplateSignatureCS ownedTemplateSignature = ((TemplateableElementCS) csElement)
+				.getOwnedTemplateSignature();
 			if (ownedTemplateSignature != null) {
 				if (csTemplateParameters.isEmpty()) {
 					csTemplateParameters = new ArrayList<TemplateParameterCS>();
 				}
-				csTemplateParameters.addAll(ownedTemplateSignature.getOwnedTemplateParameter());
+				csTemplateParameters.addAll(ownedTemplateSignature
+					.getOwnedTemplateParameter());
 			}
 		}
 	}
@@ -213,24 +253,26 @@ public class CS2Moniker extends Abstract2Moniker
 			if (factory != null) {
 				monikerVisitor = factory.create(this);
 				if (monikerVisitor == null) {
-					logger.error("No Moniker Visitor created for " + ePackage.getName());
+					logger.error("No Moniker Visitor created for "
+						+ ePackage.getName());
 				}
-			}
-			else {
-				logger.error("No Moniker Visitor Factory registered for " + ePackage.getName());
+			} else {
+				logger.error("No Moniker Visitor Factory registered for "
+					+ ePackage.getName());
 			}
 			csVisitorMap.put(ePackage, monikerVisitor);
 		}
 		return monikerVisitor;
 	}
 
-	protected void emittedTemplateParameterCS(TemplateParameterCS csTemplateParameter) {
+	protected void emittedTemplateParameterCS(
+			TemplateParameterCS csTemplateParameter) {
 		if (csEmittedParameters == null) {
 			csEmittedParameters = new ArrayList<TemplateParameterCS>();
 		}
 		csEmittedParameters.add(csTemplateParameter);
 	}
-	
+
 	public TemplateParameterCS getTemplateParameterCS(String text) {
 		for (TemplateParameterCS templateParameter : getTemplateParametersCS()) {
 			if (templateParameter.getName().equals(text)) {
@@ -246,7 +288,7 @@ public class CS2Moniker extends Abstract2Moniker
 		}
 		return csTemplateParameters;
 	}
-	
+
 	public boolean hasEmittedCS(TemplateParameterCS csTemplateParameter) {
 		if (csEmittedParameters != null) {
 			if (csEmittedParameters.contains(csTemplateParameter)) {
@@ -265,22 +307,23 @@ public class CS2Moniker extends Abstract2Moniker
 	public boolean isTemplateParameterCS(TemplateParameterCS object) {
 		return getTemplateParametersCS().contains(object);
 	}
-	
-//	public void popBindings(int oldSize) {
-//		while (substitutions.size() > oldSize) {
-//			substitutions.remove(substitutions.size()-1);
-//		}	
-//	}
 
-//	public int pushBindings(ParameterizedTypeRefCS templateBindable) {
-//		if (substitutions == null) {
-//			substitutions = new ArrayList<TemplateParameterSubstitutionCS>();
-//		}
-//		int size = substitutions.size();
-//		TemplateBindingCS ownedTemplateBinding = templateBindable.getOwnedTemplateBinding();
-//		if (ownedTemplateBinding != null) {
-//			substitutions.addAll(ownedTemplateBinding.getOwnedParameterSubstitution());
-//		}
-//		return size;
-//	}
+	// public void popBindings(int oldSize) {
+	// while (substitutions.size() > oldSize) {
+	// substitutions.remove(substitutions.size()-1);
+	// }
+	// }
+
+	// public int pushBindings(ParameterizedTypeRefCS templateBindable) {
+	// if (substitutions == null) {
+	// substitutions = new ArrayList<TemplateParameterSubstitutionCS>();
+	// }
+	// int size = substitutions.size();
+	// TemplateBindingCS ownedTemplateBinding =
+	// templateBindable.getOwnedTemplateBinding();
+	// if (ownedTemplateBinding != null) {
+	// substitutions.addAll(ownedTemplateBinding.getOwnedParameterSubstitution());
+	// }
+	// return size;
+	// }
 }

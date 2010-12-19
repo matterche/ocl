@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLeft2RightVisitor.java,v 1.1.2.1 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: BaseLeft2RightVisitor.java,v 1.1.2.2 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -120,7 +120,7 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Monike
 	}
 
 	public MonikeredElement visiting(VisitableCS visitable) {
-		logger.warn("l2r-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}
 }

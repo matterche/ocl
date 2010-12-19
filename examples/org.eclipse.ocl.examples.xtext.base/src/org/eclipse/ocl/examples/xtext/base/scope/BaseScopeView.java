@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.2.6.3 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.2.6.4 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -34,17 +34,20 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 public class BaseScopeView extends AbstractScope implements ScopeView
 {
 	protected final ScopeAdapter scopeAdapter;					// Adapting the CST node
+	protected final EObject child;								// Child targeted by containmentFeature, null for child-independent
 	protected final EStructuralFeature containmentFeature;		// Selecting child-specific candidates, null for child-independent
 	protected final EReference targetReference;					// Selecting permissible candidate types
 	
-	public BaseScopeView(ScopeAdapter scopeAdapter, EStructuralFeature containmentFeature, EReference targetReference) {
+	public BaseScopeView(ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
 		this.scopeAdapter = scopeAdapter;
+		this.child = child;
 		this.containmentFeature = containmentFeature;
 		this.targetReference = targetReference;
 	}
 
 	public BaseScopeView(ScopeView scopeView) {
 		this.scopeAdapter = scopeView.getScopeAdapter();
+		this.child = scopeView.getChild();
 		this.containmentFeature = scopeView.getContainmentFeature();
 		this.targetReference = scopeView.getTargetReference();
 	}
@@ -85,6 +88,10 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		return environmentView.getDescriptions();
 	}
 
+	public EObject getChild() {
+		return child;
+	}
+
 	public EStructuralFeature getContainmentFeature() {
 		return containmentFeature;
 	}
@@ -102,8 +109,9 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		if (parent == null) {
 			return ScopeView.NULLSCOPEVIEW;
 		}
-		EStructuralFeature eContainingFeature = getTarget().eContainingFeature();
-		return new BaseScopeView(parent, eContainingFeature, targetReference);
+		EObject target = getTarget();
+		EStructuralFeature eContainingFeature = target.eContainingFeature();
+		return new BaseScopeView(parent, target, eContainingFeature, targetReference);
 	}
 	
 	public ScopeAdapter getScopeAdapter() {
@@ -123,7 +131,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 			EObject target = parent.getTarget();
 			if (!(target instanceof QualifiedRefCS)) {
 				EStructuralFeature eContainingFeature = target.eContainingFeature();
-				return new BaseScopeView(parent, eContainingFeature, targetReference);
+				return new BaseScopeView(parent, target, eContainingFeature, targetReference);
 			}
 		}
 		return ScopeView.NULLSCOPEVIEW;

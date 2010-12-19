@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.3 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -162,7 +162,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitProperty(Property object) {
 		Type type = object.getType();
-		if ((type instanceof DataType) || (((type instanceof org.eclipse.ocl.examples.pivot.Class) && ((org.eclipse.ocl.examples.pivot.Class)type).isPrimitive()))) {
+		if (type instanceof DataType) {
 			AttributeCS csElement = context.refreshStructuralFeature(AttributeCS.class, BaseCSTPackage.Literals.ATTRIBUTE_CS, object);
 			return csElement;
 		}
@@ -211,7 +211,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	public ElementCS visiting(Visitable visitable) {
-		logger.warn("declaration-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}
 }

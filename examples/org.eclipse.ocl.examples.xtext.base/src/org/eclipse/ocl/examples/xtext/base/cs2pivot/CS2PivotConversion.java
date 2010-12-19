@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.4 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.5 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -99,13 +100,30 @@ public class CS2PivotConversion extends AbstractConversion
 	private InterDependency<PackageContentContinuation> packagesHaveTypes = new InterDependency<PackageContentContinuation>("All unspecialized types defined", null);
 	private InterDependency<TemplateSignatureContinuation> typesHaveSignatures = new InterDependency<TemplateSignatureContinuation>("All unspecialized signatures defined", packagesHaveTypes);
 	private InterDependency<TemplateBindingContinuation> typesHaveSpecializations = new InterDependency<TemplateBindingContinuation>("All specialized types defined", typesHaveSignatures);
-	private InterDependency<OperationContinuation> operationsHaveTemplateParameters = new InterDependency<OperationContinuation>("All operation template parameters defined", typesHaveSignatures);
+	private InterDependency<OperationContinuation<?>> operationsHaveTemplateParameters = new InterDependency<OperationContinuation<?>>("All operation template parameters defined", typesHaveSignatures);
+
+	// CS <-> pivot pairs with identical monikers
+	private Map<MonikeredElementCS, MonikeredElement> debugCheckMap = new HashMap<MonikeredElementCS, MonikeredElement>();
+	// CS -> pivot pairs with possibly divergent monikers
+	private Map<ElementCS, Element> debugOtherMap = new HashMap<ElementCS, Element>();
 	
 	public CS2PivotConversion(CS2Pivot converter) {
 		this.converter = converter;
 		this.pivotManager = converter.getPivotManager();
 	}
 
+	public void checkMonikers() {
+		for (Map.Entry<MonikeredElementCS, MonikeredElement> entry : debugCheckMap.entrySet()) {
+			MonikeredElementCS csElement = entry.getKey();
+			MonikeredElement element = entry.getValue();
+			String csMoniker = csElement.getMoniker();
+			String moniker = element.getMoniker();
+			assert csMoniker.equals(moniker) : "\n" + csElement.eClass().getName() + ": '" + csMoniker + "'\n"
+			 + element.eClass().getName() + ": '" + moniker + "'";
+		}
+//		debugCheckQueue.clear();
+	}
+	
 	public void declareAlias(Namespace pivotElement, AbstractPackageCS csElement) {
 		converter.declareAlias(pivotElement, csElement);
 	}
@@ -163,7 +181,7 @@ public class CS2PivotConversion extends AbstractConversion
 		return left2RightVisitor;
 	}
 
-	public InterDependency<OperationContinuation> getOperationsHaveTemplateParametersInterDependency() {
+	public InterDependency<OperationContinuation<?>> getOperationsHaveTemplateParametersInterDependency() {
 		return operationsHaveTemplateParameters;
 	}
 
@@ -319,13 +337,46 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 
 	public void installPivotElement(ModelElementCS csElement, Element newPivotElement) {
-//		logger.trace("Installing " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$
+		if (csElement instanceof MonikeredElementCS) {
+			assert !"NavigatingExpCS".equals(csElement.eClass().getName());		// FIXME debugging
+			debugCheckMap.put((MonikeredElementCS) csElement, (MonikeredElement) newPivotElement);
+		}
+		else {
+			debugOtherMap.put(csElement, newPivotElement);
+		}
+		installPivotElementInternal(csElement, newPivotElement);
+	}
+	
+	/**
+	 * Install a CS to Pivot mapping for which the CS element does not have a
+	 * matching moniker. This occurs where the CS requires multiple objects for
+	 * a pivot object and so only one of the CS objects can have a matching moniker.
+	 * e.g. NavigationArgCS
+	 */
+	public void reusePivotElement(ModelElementCS csElement, Element newPivotElement) {
+		debugOtherMap.put(csElement, newPivotElement);
+		installPivotElementInternal(csElement, newPivotElement);
+	}
+
+	/**
+	 * Install a CS to Pivot mapping for which the CS element does not map to the
+	 * pivot object. This occurs where the pivot requires multiple objects for
+	 * a CS object and so only one of the pivot objects can have a matching moniker.
+	 * e.g. LetExpCS
+	 */
+	public void usePivotElement(ModelElementCS csElement, Element newPivotElement) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void installPivotElementInternal(ModelElementCS csElement, Element newPivotElement) {
+//		logger.trace("Installing " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$		
 		EObject oldPivotElement = csElement.getPivot();
-		if (newPivotElement == null) {
+		/*if (newPivotElement == null) {
 			if (!(csElement instanceof TemplateBindingCS)) {
 				logger.warn("Missing new pivot element for " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$
 			}
-		} else if (oldPivotElement == null) {
+		} else*/ if (oldPivotElement == null) {
 			assert !newPivotElement.eIsProxy();
 			csElement.setPivot(newPivotElement);
 		} else if (oldPivotElement != newPivotElement) {
@@ -338,6 +389,25 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		} else {
 //			logger.info("Duplicate pivot element for " + csClassName + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+
+	public void installResidualMonikers(MonikeredElement monikeredElement) {
+		if (!monikeredElement.hasMoniker()) {
+			putPivotElement(monikeredElement);
+		}
+		for (TreeIterator<EObject> tit = monikeredElement.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof MonikeredElement) {
+				MonikeredElement childElement = (MonikeredElement) eObject;
+				if (!childElement.hasMoniker()) {
+					putPivotElement(childElement);
+				}
+//				String moniker = Pivot2Moniker.toString(childElement);
+				String moniker = childElement.getMoniker();
+				MonikeredElement getElement = getPivotElement(MonikeredElement.class, moniker);
+				assert getElement == childElement;
+			}
 		}
 	}
 
@@ -536,7 +606,7 @@ public class CS2PivotConversion extends AbstractConversion
 		refreshList(pivotElements, newPivotElements);
 	}
 
-	protected void refreshTemplateSignature(TemplateableElementCS csTemplateableElement, TemplateableElement pivotTemplateableElement) {
+	public void refreshTemplateSignature(TemplateableElementCS csTemplateableElement, TemplateableElement pivotTemplateableElement) {
 		TemplateSignatureCS csTemplateSignature = csTemplateableElement.getOwnedTemplateSignature();
 		if (csTemplateSignature == null) {
 			if (pivotTemplateableElement.getOwnedTemplateSignature() != null) {
@@ -787,6 +857,8 @@ public class CS2PivotConversion extends AbstractConversion
 	 * @param csResources 
 	 */
 	public void update(Collection<? extends Resource> csResources) {
+		debugCheckMap.clear();
+		debugOtherMap.clear();
 		List<BasicContinuation<?>> continuations = new ArrayList<BasicContinuation<?>>();
 		//
 		//	Perform the pre-order traversal to create packages, unspecialized classes and precedences.
@@ -839,6 +911,7 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			continuations = moreContinuations;
 		}
+		checkMonikers();		
 		//
 		//	Set the monikers as IDs throughout the pivot model.
 		//

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.1.2.5 2010/12/19 15:51:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -227,6 +227,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			return type; //getLibraryType(type);
 		}
 		else if (csElement instanceof TypeParameterCS) {
+			@SuppressWarnings("unused")
 			TypeParameterCS typeParameter = (TypeParameterCS)csElement;
 	/*		if (bindings != null) {
 				for (TypeBindingCS binding : bindings.getBindings()) {

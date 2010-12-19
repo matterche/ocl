@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -44,6 +44,6 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		if (scopeAdapter == null) {
 			return null;
 		}
-		return new BaseScopeView(scopeAdapter, reference, reference);
+		return new BaseScopeView(scopeAdapter, null, reference, reference);
 	}
 }

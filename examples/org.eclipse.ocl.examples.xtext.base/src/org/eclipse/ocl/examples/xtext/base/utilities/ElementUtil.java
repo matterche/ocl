@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -43,7 +43,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.xtext.parsetree.AbstractNode;
 import org.eclipse.xtext.parsetree.CompositeNode;
+import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeAdapter;
 import org.eclipse.xtext.parsetree.NodeUtil;
 
@@ -98,6 +100,22 @@ public class ElementUtil
 			return null;
 		}
 		return templateParameters.get(index);
+	}
+
+	public static LeafNode getLeafNode(AbstractNode node) {
+		LeafNode leafNode = null;
+		if (node instanceof LeafNode) {
+			return (LeafNode) node;
+		}
+		else {
+			for (LeafNode lNode : node.getLeafNodes()) {
+				if (!lNode.isHidden()) {
+					leafNode = lNode;
+					return leafNode;
+				}
+			}
+		}
+		return null;
 	}
 
 	public static <T extends NamedElementCS> T getNamedElementCS(Collection<T> namedElements, String name) {

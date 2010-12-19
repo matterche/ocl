@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.1.2.3 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -20,6 +20,8 @@ import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -35,6 +37,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EmptyScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.IterateExpScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.IteratorExpScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.LetExpScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.OperationCallExpScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.OperationScopeAdapter;
@@ -68,6 +72,16 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Pi
 	@Override
 	public ScopeAdapter visitIfExp(IfExp pivotElement) {
 		return new EmptyScopeAdapter(context, pivotElement);
+	}
+
+	@Override
+	public ScopeAdapter visitIterateExp(IterateExp pivotElement) {
+		return new IterateExpScopeAdapter(context, pivotElement);
+	}
+
+	@Override
+	public ScopeAdapter visitIteratorExp(IteratorExp pivotElement) {
+		return new IteratorExpScopeAdapter(context, pivotElement);
 	}
 
 	@Override
@@ -121,7 +135,7 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Pi
 	}
 
 	public ScopeAdapter visiting(Visitable visitable) {
-		logger.warn("scope-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}	
 }

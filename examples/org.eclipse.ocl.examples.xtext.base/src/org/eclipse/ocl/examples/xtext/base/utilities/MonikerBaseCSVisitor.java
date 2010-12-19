@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerBaseCSVisitor.java,v 1.1.2.2 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: MonikerBaseCSVisitor.java,v 1.1.2.3 2010/12/19 15:51:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -98,13 +98,13 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 	}
 
 	public Object visiting(VisitableCS visitable) {
-		logger.warn("moniker-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}	
 
 	@Override
 	public Object visitAnnotationCS(AnnotationCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.append(ANNOTATION_QUOTE);
 		context.append(String.valueOf(object.getName()));
 		context.append(ANNOTATION_QUOTE);
@@ -113,7 +113,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitAttributeCS(AttributeCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
@@ -132,7 +132,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitClassifierCS(ClassifierCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		context.appendTemplateParametersCS(object);
 		return true;
@@ -140,9 +140,9 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitConstraintCS(ConstraintCS csConstraint) {
-		context.appendParentCS(csConstraint, SCOPE_SEPARATOR);
+		context.appendParentCS(csConstraint, MONIKER_SCOPE_SEPARATOR);
 		context.append(csConstraint.getStereotype());
-		context.append(OPERATOR_SEPARATOR);
+		context.append(MONIKER_OPERATOR_SEPARATOR);
 		if (csConstraint.getName() != null) {
 			context.appendNameCS(csConstraint);
 		}
@@ -167,7 +167,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitEnumerationLiteralCS(EnumerationLiteralCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
@@ -180,17 +180,17 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitNamedElementCS(NamedElementCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_OPERATOR_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
 
 	@Override
 	public Object visitOperationCS(OperationCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		context.appendTemplateParametersCS(object);
-		context.appendParametersCS(object.getOwnedParameter());
+		context.appendParametersCS(null, null, object.getOwnedParameter());
 		return true;
 	}
 
@@ -211,7 +211,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitParameterCS(ParameterCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
@@ -263,7 +263,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitReferenceCS(ReferenceCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
@@ -285,7 +285,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 				return true;
 			}
 		}
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
@@ -342,13 +342,13 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 
 	@Override
 	public Object visitTemplateSignatureCS(TemplateSignatureCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		return true;
 	}
 
 	@Override
 	public Object visitTuplePartCS(TuplePartCS object) {
-		context.appendParentCS(object, SCOPE_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
@@ -419,7 +419,7 @@ public class MonikerBaseCSVisitor extends AbstractExtendingBaseCSVisitor<Object,
 				context.appendElement(type);
 			}
 			else {
-				context.appendParent(type, SCOPE_SEPARATOR);
+				context.appendParent(type, MONIKER_SCOPE_SEPARATOR);
 				context.appendName(type);
 			}
 			context.appendTemplateBindingsCS(object);

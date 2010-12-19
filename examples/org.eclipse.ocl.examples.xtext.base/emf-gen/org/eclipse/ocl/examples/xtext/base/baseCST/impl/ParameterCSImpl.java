@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterCSImpl.java,v 1.2.6.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ParameterCSImpl.java,v 1.2.6.3 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -36,23 +35,12 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl#getOwner <em>Owner</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl#getIteratorKind <em>Iterator Kind</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ParameterCSImpl extends TypedElementCSImpl implements ParameterCS {
-	/**
-	 * The default value of the '{@link #getIteratorKind() <em>Iterator Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIteratorKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final IteratorKind ITERATOR_KIND_EDEFAULT = IteratorKind.PARAMETER;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,16 +105,6 @@ public class ParameterCSImpl extends TypedElementCSImpl implements ParameterCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public IteratorKind getIteratorKind()
-	{
-		return IteratorKind.PARAMETER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -182,8 +160,6 @@ public class ParameterCSImpl extends TypedElementCSImpl implements ParameterCS {
 		{
 			case BaseCSTPackage.PARAMETER_CS__OWNER:
 				return getOwner();
-			case BaseCSTPackage.PARAMETER_CS__ITERATOR_KIND:
-				return getIteratorKind();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,8 +207,6 @@ public class ParameterCSImpl extends TypedElementCSImpl implements ParameterCS {
 		{
 			case BaseCSTPackage.PARAMETER_CS__OWNER:
 				return getOwner() != null;
-			case BaseCSTPackage.PARAMETER_CS__ITERATOR_KIND:
-				return getIteratorKind() != ITERATOR_KIND_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

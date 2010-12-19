@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -45,9 +45,13 @@ public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, C
 			if (specification instanceof ExpressionInOcl) {
 				Variable contextVariable = ((ExpressionInOcl)specification).getContextVariable();
 				if (contextVariable != null) {
-					environmentView.addElement("self", contextVariable);
+					environmentView.addNamedElement(contextVariable);
 					Type type = contextVariable.getType();
 					environmentView.addElementsOfScope(pivotManager, type, scopeView);
+				}
+				Variable resultVariable = ((ExpressionInOcl)specification).getResultVariable();
+				if (resultVariable != null) {
+					environmentView.addNamedElement(resultVariable);
 				}
 			}
 		}

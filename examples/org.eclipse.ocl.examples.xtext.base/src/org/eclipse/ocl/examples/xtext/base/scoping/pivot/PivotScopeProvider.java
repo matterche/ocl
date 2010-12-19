@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeProvider.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: PivotScopeProvider.java,v 1.1.2.4 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -37,111 +35,14 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  */
 public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 {
-/*	protected static class Factory extends ModelElementCSScopeAdapter.Factory
-	{
-		protected Factory() {
-			addSwitch(PivotPackage.eINSTANCE, new PivotScopeSwitch());
-		}
-	} */
-
-//	public static ModelElementCSScopeAdapter.Factory FACTORY = new Factory();
-	
 	public static final TracingOption LOOKUP = new TracingOption("org.eclipse.ocl.examples.xtext.base", "lookup");  //$NON-NLS-1$//$NON-NLS-2$
-	
-/*	public static class PivotScopeSwitch 
-		extends PivotSwitch<ScopeAdapter>
-		implements ScopeAdapter.Switch
-	{
-		@Override
-		public ScopeAdapter caseClass(org.eclipse.ocl.examples.pivot.Class pivotElement) {
-			return new ClassScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseConstraint(Constraint pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseExpressionInOcl(ExpressionInOcl pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseIfExp(IfExp pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseLetExp(LetExp pivotElement) {
-			return new LetExpScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseOperation(Operation pivotElement) {
-			return new OperationScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseOperationCallExp(OperationCallExp pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter casePackage(org.eclipse.ocl.examples.pivot.Package pivotElement) {
-			if (pivotElement.eContainer() == null) {
-				return new RootPackageScopeAdapter(pivotElement);
-			}
-			else {
-				return new PackageScopeAdapter(pivotElement);
-			}
-		}
-
-		@Override
-		public ScopeAdapter casePropertyCallExp(PropertyCallExp pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseTemplateSignature(TemplateSignature pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseTypeTemplateParameter(TypeTemplateParameter pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseVariable(Variable pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter caseVariableExp(VariableExp pivotElement) {
-			return new EmptyScopeAdapter(pivotElement);
-		}
-
-		@Override
-		public ScopeAdapter defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter(eObject);
-		}
-
-		public ScopeAdapter doInPackageSwitch(EObject eObject) {
-			int classifierID = eObject.eClass().getClassifierID();
-			return doSwitch(classifierID, eObject);
-		}
-	} */
 
 	@Override
 	public ScopeView getScope(EObject context, EReference reference) {
-		Resource resource = context.eResource();
-		PivotManager pivotManager = PivotManager.getAdapter(resource.getResourceSet());
-//		assert pivotManager != null;
 		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ModelElementCS)context);
 		if (scopeAdapter == null) {
 			return null;
 		}
-		return new BaseScopeView(scopeAdapter, reference, reference);
+		return new BaseScopeView(scopeAdapter, null, reference, reference);
 	}
 }

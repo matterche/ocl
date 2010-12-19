@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeView.java,v 1.2.6.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: ScopeView.java,v 1.2.6.2 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -51,6 +51,10 @@ public interface ScopeView extends IScope
 		
 		public Iterable<IEObjectDescription> getAllContentsByEObject(EObject object) {
 			return Collections.emptyList();
+		}
+
+		public EObject getChild() {
+			return null;
 		}
 
 		public EStructuralFeature getContainmentFeature() {
@@ -93,6 +97,8 @@ public interface ScopeView extends IScope
     IEObjectDescription computeLookup(EnvironmentView environmentView);
 
     void computeLookupWithParents(EnvironmentView environmentView);
+
+	EObject getChild();
 
 	EStructuralFeature getContainmentFeature();
 

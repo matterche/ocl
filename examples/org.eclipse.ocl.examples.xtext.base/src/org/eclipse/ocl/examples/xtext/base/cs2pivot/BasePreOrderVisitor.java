@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.4 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.5 2010/12/19 15:51:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -107,9 +107,9 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 	}
 	
-	protected static class OperationContinuation extends SingleContinuation<OperationCS>
+	public static class OperationContinuation<T extends OperationCS> extends SingleContinuation<T>
 	{
-		public OperationContinuation(CS2PivotConversion context, OperationCS csElement) {
+		public OperationContinuation(CS2PivotConversion context, T csElement) {
 			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
 			context.getOperationsHaveTemplateParametersInterDependency().addDependency(this);
 		}
@@ -237,6 +237,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			boolean isSpecialization = ElementUtil.isSpecialization(csElement);
 			if (isSpecialization) {
 				ParameterizedTypeRefCS csParameterizedTypeRef = csElement.getOwningTemplateBindableElement();
+				@SuppressWarnings("unused")
 				Type pivotType = (Type) context.specializeTemplates((TypedTypeRefCS) csParameterizedTypeRef);
 			}
 			context.getTypesHaveSpecializationsInterDependency().setSatisfied(this);
@@ -401,7 +402,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	public Continuation<?> visiting(VisitableCS visitable) {
-		logger.warn("pre-visiting " + visitable.eClass().getName());
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
 		return null;
 	}
 
@@ -431,8 +432,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	@Override
 	public Continuation<?> visitClassCS(ClassCS csClass) {
 		List<String> qualifiers = csClass.getQualifier();
+		@SuppressWarnings("unused")
 		boolean isInterface = qualifiers.contains("interface");
-		boolean isPrimitive = qualifiers.contains("primitive");
 		org.eclipse.ocl.examples.pivot.Class pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
 			PivotPackage.Literals.CLASS, csClass);
 		if (qualifiers.contains("abstract")) {
@@ -441,9 +442,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 //		if (qualifiers.contains("interface")) {
 //			pivotElement.setIsInterface(true);
 //		}
-		if (qualifiers.contains("primitive")) {
-			pivotElement.setPrimitive(Boolean.TRUE);
-		}
 		if (qualifiers.contains("static")) {
 			pivotElement.setIsStatic(true);
 		}
@@ -494,7 +492,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitOperationCS(OperationCS csOperation) {
-		return new OperationContinuation(context, csOperation);
+		return new OperationContinuation<OperationCS>(context, csOperation);
 	}
 
 	@Override
