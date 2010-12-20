@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.1 2010/12/19 18:33:46 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.2 2010/12/20 06:52:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -139,6 +139,14 @@ public class EssentialOCLCS2MonikerVisitor
 						feature = PivotPackage.Literals.LOOP_EXP__ITERATOR;
 					}
 				}
+			}
+		}
+		else if (feature == EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS) {
+			if (((CollectionLiteralPartCS)parent).getLastExpressionCS() != null) {
+				feature = PivotPackage.Literals.COLLECTION_RANGE__FIRST;
+			}
+			else {
+				feature = PivotPackage.Literals.COLLECTION_ITEM__ITEM;
 			}
 		}
 		context.appendRoleCS(feature);
