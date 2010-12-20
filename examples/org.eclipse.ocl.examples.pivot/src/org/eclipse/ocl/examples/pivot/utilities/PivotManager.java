@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.7 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.8 2010/12/20 06:52:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -33,6 +33,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
@@ -447,7 +448,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 				return ownedSpecialization;
 			}
 		}
-		Type specialization = PivotFactory.eINSTANCE.createClass();
+		EClass eClass = libraryType.eClass();
+		Type specialization = (Type) eClass.getEPackage().getEFactoryInstance().create(eClass);
+//		Type specialization = PivotFactory.eINSTANCE.createClass();
 		specialization.setName(string);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);

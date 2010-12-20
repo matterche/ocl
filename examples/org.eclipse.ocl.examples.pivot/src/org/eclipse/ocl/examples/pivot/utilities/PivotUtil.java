@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.4 2010/12/19 17:47:08 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.5 2010/12/20 06:52:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -64,6 +65,25 @@ public class PivotUtil
 															// precedence
 		}
 	}
+
+	/**
+	 * In TemplateSignature order.
+	 */
+	public static class TemplateParameterSubstitutionComparator
+		implements Comparator<TemplateParameterSubstitution>
+	{
+		public static Comparator<? super TemplateParameterSubstitution> INSTANCE =
+			new TemplateParameterSubstitutionComparator();
+
+		public int compare(TemplateParameterSubstitution o1, TemplateParameterSubstitution o2) {
+			TemplateParameter f1 = o1.getFormal();
+			TemplateParameter f2 = o2.getFormal();
+			int i1 = f1.getSignature().getParameters().indexOf(f1);
+			int i2 = f2.getSignature().getParameters().indexOf(f2);
+			return i1 - i2;
+		}
+	}
+
 
 	public static boolean conformsTo(EStructuralFeature eStructuralFeature, EClassifier contentType) {
 		if (eStructuralFeature == null) {			// Wildcard match all

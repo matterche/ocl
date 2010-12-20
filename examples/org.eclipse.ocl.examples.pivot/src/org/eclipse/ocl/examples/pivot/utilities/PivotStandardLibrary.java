@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.2 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.3 2010/12/20 06:52:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -60,6 +60,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private Type tupleType = null;
 	private Type unlimitedNaturalType = null;
 	private UnlimitedNaturalLiteralExp unlimitedValue = null;
+	private Type oclVoidType = null;
 	
 //	private boolean allowExplanatoryInvalids = false;
 	private Map<String, Type> nameToLibraryTypeMap = null;
@@ -167,6 +168,13 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 
 	public Type getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
+	}
+
+	public Type getOclVoidType() {
+		if (oclVoidType == null) {
+			oclVoidType = getRequiredLibraryType("OclVoid");
+		}
+		return oclVoidType;
 	}
 
 	public Type getOrderedSetType() {
