@@ -215,9 +215,6 @@ Class [type.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [type.m
 [/if]
 [if (type.ownedTemplateSignature->notEmpty())]
 [declareTemplateSignature(type.ownedTemplateSignature)/]
-[if (type.oclIsKindOf(CollectionType))]
-[type.getSymbolName()/].setElementType([type.ownedTemplateSignature.ownedParameter->at(1).ownedParameteredElement.getSymbolName()/]);
-[/if]
 [/if]
 [for (operation : Operation | type.ownedOperation->sortedBy(name))]
 [if (operation.ownedTemplateSignature->notEmpty())]
@@ -360,6 +357,9 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 // [type.getSignature()/] [type.moniker/]
 //
 [type.getSymbolName()/].setName("[type.name/]");
+[if (type.oclIsKindOf(CollectionType))]
+[type.getSymbolName()/].setElementType([type.oclAsType(CollectionType).elementType.getSymbolName()/]);
+[/if]
 [if (type.ownedTemplateSignature->notEmpty())]
 [emitTemplateSignature(type.ownedTemplateSignature)/]
 [type.getSymbolName()/].setOwnedTemplateSignature([type.ownedTemplateSignature.getSymbolName()/]);
