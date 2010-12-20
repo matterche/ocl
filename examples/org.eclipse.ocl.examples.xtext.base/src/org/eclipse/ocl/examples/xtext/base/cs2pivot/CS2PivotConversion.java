@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.5 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.6 2010/12/20 06:52:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -794,9 +795,15 @@ public class CS2PivotConversion extends AbstractConversion
 		TemplateableElement specializedPivotElement = getPivotElement(TemplateableElement.class, moniker);
 		if (specializedPivotElement == null) {
 			if (unspecializedPivotElement instanceof Type) {
-				org.eclipse.ocl.examples.pivot.Class pivotClass = refreshMonikeredElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
+				EClass eClass = unspecializedPivotElement.eClass();
+				@SuppressWarnings("unchecked")
+				Class<? extends org.eclipse.ocl.examples.pivot.Class> pivotClazz = (Class<? extends org.eclipse.ocl.examples.pivot.Class>) eClass.getInstanceClass();
+				org.eclipse.ocl.examples.pivot.Class pivotClass = refreshMonikeredElement(pivotClazz, eClass, csElement);
 				refreshName(pivotClass, ((Type)unspecializedPivotElement).getName());
 				specializedPivotElement = pivotClass;
+				if (pivotClass instanceof CollectionType) {
+					((CollectionType)pivotClass).setElementType(pivotManager.getOclVoidType());
+				}
 			}
 			else {							// FIXME Non-Type TemplateParameters
 				logger.error("Missing support for non-type specialization " + moniker); //$NON-NLS-1$
