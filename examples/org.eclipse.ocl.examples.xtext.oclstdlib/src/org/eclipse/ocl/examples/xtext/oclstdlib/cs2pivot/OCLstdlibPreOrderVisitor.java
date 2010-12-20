@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.2 2010/12/19 15:57:40 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.3 2010/12/20 06:52:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -53,6 +53,20 @@ public class OCLstdlibPreOrderVisitor
 	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
 {
 	private static final Logger logger = Logger.getLogger(OCLstdlibPreOrderVisitor.class);
+	
+	protected static class CollectionElementTypeContinuation extends SingleContinuation<LibClassCS>
+	{
+		public CollectionElementTypeContinuation(CS2PivotConversion context, LibClassCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			CollectionType type = context.getPivotElement(CollectionType.class, csElement.getMoniker());
+			type.setElementType(context.getPivotManager().getOclVoidType());
+			return null;
+		}
+	}
 	
 	protected static class IterationContinuation extends OperationContinuation<LibIterationCS>
 	{
@@ -111,50 +125,51 @@ public class OCLstdlibPreOrderVisitor
 	@Override
 	public Continuation<?> visitLibClassCS(LibClassCS csLibClass) {
 		String metaTypeName = csLibClass.getMetaTypeName();
+		org.eclipse.ocl.examples.pivot.Class type;
 		if ((metaTypeName == null) || "Class".equals(metaTypeName)) {
-			context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csLibClass);
+			type = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csLibClass);
 		}
 		else if ("AnyType".equals(metaTypeName)) {
-			context.refreshNamedElement(AnyType.class, PivotPackage.Literals.ANY_TYPE, csLibClass);
+			type = context.refreshNamedElement(AnyType.class, PivotPackage.Literals.ANY_TYPE, csLibClass);
 		}
 		else if ("BagType".equals(metaTypeName)) {
-			CollectionType type = context.refreshNamedElement(BagType.class, PivotPackage.Literals.BAG_TYPE, csLibClass);
-			type.setElementType(type);			// FIXME
+			type = context.refreshNamedElement(BagType.class, PivotPackage.Literals.BAG_TYPE, csLibClass);
 		}
 		else if ("CollectionType".equals(metaTypeName)) {
-			CollectionType type = context.refreshNamedElement(CollectionType.class, PivotPackage.Literals.COLLECTION_TYPE, csLibClass);
-			type.setElementType(type);			// FIXME
+			type = context.refreshNamedElement(CollectionType.class, PivotPackage.Literals.COLLECTION_TYPE, csLibClass);
 		}
 		else if ("InvalidType".equals(metaTypeName)) {
-			context.refreshNamedElement(InvalidType.class, PivotPackage.Literals.INVALID_TYPE, csLibClass);
+			type = context.refreshNamedElement(InvalidType.class, PivotPackage.Literals.INVALID_TYPE, csLibClass);
 		}
 		else if ("OrderedSetType".equals(metaTypeName)) {
-			CollectionType type = context.refreshNamedElement(OrderedSetType.class, PivotPackage.Literals.ORDERED_SET_TYPE, csLibClass);
-			type.setElementType(type);			// FIXME
+			type = context.refreshNamedElement(OrderedSetType.class, PivotPackage.Literals.ORDERED_SET_TYPE, csLibClass);
 		}
 		else if ("PrimitiveType".equals(metaTypeName)) {
-			context.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, csLibClass);
+			type = context.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, csLibClass);
 		}
 		else if ("SequenceType".equals(metaTypeName)) {
-			CollectionType type = context.refreshNamedElement(SequenceType.class, PivotPackage.Literals.SEQUENCE_TYPE, csLibClass);
-			type.setElementType(type);			// FIXME
+			type = context.refreshNamedElement(SequenceType.class, PivotPackage.Literals.SEQUENCE_TYPE, csLibClass);
 		}
 		else if ("SetType".equals(metaTypeName)) {
-			CollectionType type = context.refreshNamedElement(SetType.class, PivotPackage.Literals.SET_TYPE, csLibClass);
-			type.setElementType(type);			// FIXME
+			type = context.refreshNamedElement(SetType.class, PivotPackage.Literals.SET_TYPE, csLibClass);
 		}
 		else if ("TupleType".equals(metaTypeName)) {
-			context.refreshNamedElement(TupleType.class, PivotPackage.Literals.TUPLE_TYPE, csLibClass);
+			type = context.refreshNamedElement(TupleType.class, PivotPackage.Literals.TUPLE_TYPE, csLibClass);
 		}
 		else if ("VoidType".equals(metaTypeName)) {
-			context.refreshNamedElement(VoidType.class, PivotPackage.Literals.VOID_TYPE, csLibClass);
+			type = context.refreshNamedElement(VoidType.class, PivotPackage.Literals.VOID_TYPE, csLibClass);
 		}
 		else {
 			logger.warn("Unsupported metaTypeName '" + metaTypeName + "'");
-			context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
-			PivotPackage.Literals.CLASS, csLibClass);
+			type = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
+				PivotPackage.Literals.CLASS, csLibClass);
 		}
-		return super.visitLibClassCS(csLibClass);
+		Continuation<?> continuation = super.visitLibClassCS(csLibClass);
+		if (type instanceof CollectionType) {
+			continuation = Continuations.combine(continuation,
+				new CollectionElementTypeContinuation(context, csLibClass));
+		}
+		return continuation;
 	}
 
 	@Override
