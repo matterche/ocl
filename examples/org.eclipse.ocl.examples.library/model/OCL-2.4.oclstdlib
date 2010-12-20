@@ -84,7 +84,7 @@ type Integer : PrimitiveType conformsTo Real {
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
-type NonOrderedCollection<T> conformsTo Collection<T> {
+type NonOrderedCollection<T> : CollectionType conformsTo Collection<T> {
 	iteration closure(i : T) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
 	iteration collect(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
 	iteration collectNested(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
@@ -94,7 +94,7 @@ type NonOrderedCollection<T> conformsTo Collection<T> {
 	operation union(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
-type NonUniqueCollection<T> conformsTo Collection<T> {
+type NonUniqueCollection<T> : CollectionType conformsTo Collection<T> {
 	iteration sortedBy(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 }
 
@@ -143,7 +143,7 @@ type OclVoid : VoidType conformsTo OclAny {
 	operation or(b : Boolean) : Boolean precedence=OR => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation';
 }
 
-type OrderedCollection<T> conformsTo Collection<T> {
+type OrderedCollection<T> : CollectionType conformsTo Collection<T> {
 	iteration closure(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
 	iteration collect(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
 	iteration collectNested(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
@@ -250,7 +250,7 @@ type Tuple<T1, T2> conformsTo OclTuple {
 	property second : T2 => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
-type UniqueCollection<T> conformsTo Collection<T> {
+type UniqueCollection<T> : CollectionType conformsTo Collection<T> {
 	iteration sortedBy(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 }
 
