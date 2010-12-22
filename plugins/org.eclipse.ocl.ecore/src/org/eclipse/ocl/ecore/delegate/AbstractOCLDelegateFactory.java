@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AbstractOCLDelegateFactory.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: AbstractOCLDelegateFactory.java,v 1.2.4.1 2010/12/22 11:24:28 asanchez Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -55,6 +55,9 @@ public abstract class AbstractOCLDelegateFactory
 		return delegateDomain;
 	}
 
+	/**
+	 * @nooverride This is not intended to be overridden by clients.
+	 */
 	public String getURI() {
 		return delegateURI;
 	}
