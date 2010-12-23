@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.2 2010/12/23 19:26:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -34,6 +34,10 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.values.BagValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SequenceValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
 
 /**
  * Tests for iterator expressions.
@@ -83,7 +87,7 @@ public abstract class GenericIteratorsTest
      * Tests the generic iterate() iterator.
      */
     public void test_iterate_143996() {
-    	Set<String> expected = createSet("pkg2", "bob", "pkg3");
+    	SetValue expected = createSet("pkg2", "bob", "pkg3");
 
         // complete form
         assertQueryEquals(pkg1, expected, "%nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
@@ -99,8 +103,7 @@ public abstract class GenericIteratorsTest
      * Tests the select() iterator.
      */
 	public void test_select() {
-		boolean isOrdered = reflection.isOrdered("nestedPackage");
-        Collection<org.eclipse.ocl.examples.pivot.Package> expected = createCollection(isOrdered, true, pkg2, pkg3);
+		CollectionValue expected = createOrderedSet(pkg2, pkg3);
 
         // complete form
         assertQueryEquals(pkg1, expected, "%nestedPackage->select(p : %Package | p.name <> 'bob')");
@@ -111,8 +114,7 @@ public abstract class GenericIteratorsTest
         // shortest form
         assertQueryEquals(pkg1, expected, "%nestedPackage->select(name <> 'bob')");
 
-        expected.clear();
-        expected.addAll(reflection.getNestedPackages(pkg1));
+        expected = createSet(reflection.getNestedPackages(pkg1));
         assertQueryEquals(pkg1, expected, "%nestedPackage->select(true)");
     }
 
@@ -120,8 +122,7 @@ public abstract class GenericIteratorsTest
      * Tests the reject() iterator.
      */
     public void test_reject() {
-		boolean isOrdered = reflection.isOrdered("nestedPackage");
-        Collection<org.eclipse.ocl.examples.pivot.Package> expected = createCollection(isOrdered, true, pkg2, pkg3);
+		CollectionValue expected = createSet(pkg2, pkg3);
 
         // complete form
         assertQueryEquals(pkg1, expected, "%nestedPackage->reject(p : %Package | p.name = 'bob')");
@@ -132,7 +133,7 @@ public abstract class GenericIteratorsTest
         // shortest form
         assertQueryEquals(pkg1, expected, "%nestedPackage->reject(name = 'bob')");
 
-        expected.clear();
+        expected = createSet();
         assertQueryEquals(pkg1, expected, "%nestedPackage->reject(true)");
     }
 
@@ -223,8 +224,7 @@ public abstract class GenericIteratorsTest
      * Tests the collect() iterator.
      */
     public void test_collect() {
-		boolean isOrdered = reflection.isOrdered("nestedPackage");
-        Collection<String> expected1 = createCollection(isOrdered, false, "pkg2", "bob", "pkg3");
+        CollectionValue expected1 = createBag("pkg2", "bob", "pkg3");
 
         // complete form
         assertQueryEquals(pkg1, expected1, "%nestedPackage->collect(p : %Package | p.name)");
@@ -239,7 +239,7 @@ public abstract class GenericIteratorsTest
         assertQueryEquals(pkg1, expected1, "%nestedPackage.name");
 
         // flattening of nested collections
-        Collection<org.eclipse.ocl.examples.pivot.Package> expected2 = createCollection(isOrdered, false, jim, pkg4, pkg5);
+        CollectionValue expected2 = createBag(jim, pkg4, pkg5);
 
         assertQueryEquals(pkg1, expected2, "%nestedPackage.%nestedPackage");
     }
@@ -271,7 +271,7 @@ public abstract class GenericIteratorsTest
      */
     public void test_collect_flattens_217461() {
         String self = "foo";
-        List<String> expected = createSequence("THIS AND", "THAT", "THE OTHER");
+        SequenceValue expected = createSequence("THIS AND", "THAT", "THE OTHER");
 
         assertQueryEquals(self, expected, "Sequence{Sequence{'this and', 'that'}, Sequence{'the other'}}->collect(s : Sequence(String) | s.toUpperCase())");
     }
@@ -290,8 +290,7 @@ public abstract class GenericIteratorsTest
      * Tests the collectNested() iterator.
      */
     public void test_collectNested() {
-		boolean isOrdered = reflection.isOrdered("nestedPackage");
-        Collection<String> expected1 = createCollection(isOrdered, false, "pkg2", "bob", "pkg3");
+        CollectionValue expected1 = createBag("pkg2", "bob", "pkg3");
 
         // complete form
         assertQueryEquals(pkg1, expected1, "%nestedPackage->collectNested(p : %Package | p.name)");
@@ -306,7 +305,7 @@ public abstract class GenericIteratorsTest
 		Set<org.eclipse.ocl.examples.pivot.Package> e1 = Collections.singleton(jim);
         Set<?> e2 = Collections.EMPTY_SET;
         HashSet<Object> e3 = new HashSet<Object>(Arrays.asList(new Object[] {pkg4, pkg5}));
-		Collection<? extends Object> expected2 = createCollection(isOrdered, false, e1, e2, e3);
+		CollectionValue expected2 = createBag(e1, e2, e3);
 
         assertQueryEquals(pkg1, expected2, "%nestedPackage->collectNested(%nestedPackage)");
     }
@@ -315,7 +314,7 @@ public abstract class GenericIteratorsTest
      * Tests the sortedBy() iterator.
      */
     public void test_sortedBy() {
-        Set<org.eclipse.ocl.examples.pivot.Package> expectedSet = createSet(bob, pkg2, pkg3);
+    	SetValue expectedSet = createSet(bob, pkg2, pkg3);
 
         // complete form
         assertQueryEquals(pkg1, expectedSet, "%nestedPackage->sortedBy(p : %Package | p.name)");
@@ -326,7 +325,7 @@ public abstract class GenericIteratorsTest
         // shortest form
         assertQueryEquals(pkg1, expectedSet, "%nestedPackage->sortedBy(name)");
 
-        List<String> expected = createSequence("a", "b", "c", "d", "e");
+        SequenceValue expected = createSequence("a", "b", "c", "d", "e");
         assertQueryEquals(pkg1, expected, "Bag{'d', 'b', 'e', 'a', 'c'}->sortedBy(e | e)");
     }
 
@@ -334,21 +333,19 @@ public abstract class GenericIteratorsTest
      * Tests the closure() iterator.
      */
     public void test_closure() {
-    	boolean nestedIsOrdered = reflection.isOrdered("nestedPackage"); // Ecore and UML differ here
-    	boolean nestingIsOrdered = reflection.isOrdered("nestingPackage");
-        Collection<org.eclipse.ocl.examples.pivot.Package> expected1 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5); // closure does not include self (george)
+    	CollectionValue expected1 = createSet(pkg1, pkg3, pkg5); // closure does not include self (george)
         assertQueryEquals(george, expected1, "self->closure(%nestingPackage)");
 
-	    Collection<org.eclipse.ocl.examples.pivot.Package> expected2 = createCollection(nestedIsOrdered, true, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        CollectionValue expected2 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage->asSequence())");
-	    Collection<org.eclipse.ocl.examples.pivot.Package> expected3 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+	    SetValue expected3 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
-        Collection<org.eclipse.ocl.examples.pivot.Package> expected4 = createCollection(nestingIsOrdered, true);
+        CollectionValue expected4 = createSet();
         assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
         // empty closure
         assertQueryEquals(pkg1, expected4, "self->asSequence()->closure(%nestingPackage)");
@@ -364,7 +361,7 @@ public abstract class GenericIteratorsTest
 
         helper.setContext(getMetaclass(denormalize("%Reference")));
 
-        Set<Property> expected = createSet(nestedPackage, nestingPackage); // cyclic closure *does* include self
+        SetValue expected = createSet(nestedPackage, nestingPackage); // cyclic closure *does* include self
         assertQueryEquals(nestingPackage, expected, "self->closure(%opposite)");
         assertQueryEquals(nestedPackage, expected, "self->closure(%opposite)");
     }
@@ -530,7 +527,7 @@ public abstract class GenericIteratorsTest
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
-    	Collection<Object> expected = createBag(getNull(), getNull(), getNull());
+        BagValue expected = createBag(getNull(), getNull(), getNull());
         assertQueryEquals(EcorePackage.eINSTANCE, expected,
             "let b:Boolean = null in Bag{1, 2, 3}->collect(null)");
     }
@@ -548,7 +545,7 @@ public abstract class GenericIteratorsTest
     	Set<BigInteger> e1 = Collections.singleton(BigInteger.valueOf(1));
     	Object e2 = getNull();
     	Set<BigInteger> e3 = Collections.singleton(BigInteger.valueOf(3));
-        Collection<? extends Object> expected = createBag(e1, e2, e3);
+        BagValue expected = createBag(e1, e2, e3);
         assertQueryEquals(EcorePackage.eINSTANCE, expected,
             "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)");
     }

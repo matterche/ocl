@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.4 2010/12/19 16:07:17 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.5 2010/12/23 19:26:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
-
-import java.math.BigDecimal;
-
 
 /**
  * Tests for String operations.
@@ -265,9 +262,9 @@ public abstract class GenericEvaluateStringOperationsTest
 	}
 
 	public void testStringToReal() {
-		assertQueryEquals(null, Double.valueOf(4d), "'4'.toReal()");
-		assertQueryEquals(null, Double.valueOf(-4d), "'-4'.toReal()");
-		assertQueryEquals(null, new BigDecimal("4.0"), "'4.0'.toReal()");
+		assertQueryEquals(null, 4.0, "'4'.toReal()", 0.0);
+		assertQueryEquals(null, -4.0, "'-4'.toReal()", 0.0);
+		assertQueryEquals(null, 4.0, "'4.0'.toReal()", 0.0);
 
 		assertQueryInvalid(null, "'2.4.0'.toReal()", "Not a Real", NumberFormatException.class);
 		assertQueryInvalid(null, "'a'.toReal()", "Not a Real", NumberFormatException.class);

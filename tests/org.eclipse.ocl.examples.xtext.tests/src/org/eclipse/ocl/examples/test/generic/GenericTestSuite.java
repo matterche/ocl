@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.5 2010/12/19 16:07:17 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.6 2010/12/23 19:26:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -28,6 +28,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -58,7 +59,6 @@ import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
@@ -66,12 +66,23 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.values.Bag;
+import org.eclipse.ocl.examples.pivot.values.BagImpl;
+import org.eclipse.ocl.examples.pivot.values.BagValue;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.ObjectValue;
+import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.SequenceValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.StringValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -131,44 +142,74 @@ public abstract class GenericTestSuite
 	private static boolean initialized = false;
 	protected static boolean OCL20A = false;		// True for MDT OCL 1.3.0 behaviour
 
-    public static <T> Collection<T> createBag(T... elements) {
-    	Collection<T> collection = CollectionUtil.createNewBag();
-    	if (elements != null) {
-    		for (T element : elements) {
-    			collection.add(element);
+    public static BagValue createBag(Object... objects) {
+    	Bag<ObjectValue> collection = new BagImpl<ObjectValue>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(ObjectValue.valueOf(object));
     		}
     	}
-    	return collection;
+    	return new BagValue(collection);
     }
 
-    public static <T> Set<T> createOrderedSet(T... elements) {
-    	Set<T> collection = CollectionUtil.createNewOrderedSet();
+    public static BagValue createBag(String... elements) {
+    	Bag<StringValue> collection = new BagImpl<StringValue>();
     	if (elements != null) {
-    		for (T element : elements) {
-    			collection.add(element);
+    		for (String element : elements) {
+    			collection.add(StringValue.valueOf(element));
     		}
     	}
-    	return collection;
+    	return new BagValue(collection);
     }
 
-    public static <T> List<T> createSequence(T... elements) {
-    	List<T> collection = CollectionUtil.createNewSequence();
-    	if (elements != null) {
-    		for (T element : elements) {
-    			collection.add(element);
+    public static OrderedSetValue createOrderedSet(Object... objects) {
+    	LinkedHashSet<ObjectValue> collection = new LinkedHashSet<ObjectValue>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(ObjectValue.valueOf(object));
     		}
     	}
-    	return collection;
+    	return new OrderedSetValue(collection);
     }
 
-    public static <T> Set<T> createSet(T... elements) {
-    	Set<T> collection = CollectionUtil.createNewSet();
-    	if (elements != null) {
-    		for (T element : elements) {
-    			collection.add(element);
+    public static SetValue createSet(Collection<Object> objects) {
+    	Set<ObjectValue> collection = new HashSet<ObjectValue>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(ObjectValue.valueOf(object));
     		}
     	}
-    	return collection;
+    	return new SetValue(collection);
+    }
+
+    public static SequenceValue createSequence(String... elements) {
+    	List<StringValue> collection = new ArrayList<StringValue>();
+    	if (elements != null) {
+    		for (String element : elements) {
+    			collection.add(StringValue.valueOf(element));
+    		}
+    	}
+    	return new SequenceValue(collection);
+    }
+
+    public static SetValue createSet(Object... objects) {
+    	Set<ObjectValue> collection = new HashSet<ObjectValue>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(ObjectValue.valueOf(object));
+    		}
+    	}
+    	return new SetValue(collection);
+    }
+
+    public static SetValue createSet(String... elements) {
+    	Set<StringValue> collection = new HashSet<StringValue>();
+    	if (elements != null) {
+    		for (String element : elements) {
+    			collection.add(StringValue.valueOf(element));
+    		}
+    	}
+    	return new SetValue(collection);
     }
 	
 	public static void debugPrintln(String string) {
@@ -362,13 +403,13 @@ public abstract class GenericTestSuite
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
 		String denormalized = denormalize(expression);
 		try {
-			Object expectedValue = pivotManager.getValueOfValue(expected);
-			Object value = evaluate(helper, context, denormalized);
+			Value expectedValue = pivotManager.getValueOfValue(expected);
+			Value value = evaluate(helper, context, denormalized);
 			assertEquals(denormalized, expectedValue, value);
-			if (expectedValue instanceof LinkedHashSet) {
-				assertTrue(denormalized, value instanceof LinkedHashSet);
-				Iterator<?> es = ((LinkedHashSet<?>)expectedValue).iterator();
-				Iterator<?> vs = ((LinkedHashSet<?>)value).iterator();
+			if (expectedValue instanceof OrderedSetValue) {
+				assertTrue(denormalized, value instanceof OrderedSetValue);
+				Iterator<?> es = ((OrderedSetValue)expectedValue).iterator();
+				Iterator<?> vs = ((OrderedSetValue)value).iterator();
 				while (es.hasNext()) {
 					Object e = es.next();
 					Object v = vs.next();
@@ -405,22 +446,13 @@ public abstract class GenericTestSuite
 	protected Object assertQueryEquals(Object context, Number expected, String expression, double tolerance) {
 		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			/*if (value instanceof Double) {
-				double delta = (Double)value - (Double)expected;
-				if ((delta < -tolerance) || (tolerance < delta)) {
-					assertEquals(denormalized, expected, value);
-				}
-			}
-			else*/ if (value instanceof BigDecimal) {
-				BigDecimal expectedValue = expected instanceof BigDecimal ? (BigDecimal)expected : BigDecimal.valueOf((Double)expected);
-				double delta = ((BigDecimal)value).subtract(expectedValue).doubleValue();
-				if ((delta < -tolerance) || (tolerance < delta)) {
-					assertEquals(denormalized, expected, value);
-				}
-			}
-			else {
-				assertEquals(denormalized, expected, value);				
+			Value expectedValue = pivotManager.getValueOfValue(expected);
+			Value value = evaluate(helper, context, denormalized);
+			BigDecimal expectedVal = ((RealValue)expectedValue).bigDecimalValue();
+			BigDecimal val = ((RealValue)value).bigDecimalValue();
+			double delta = val.subtract(expectedVal).doubleValue();
+			if ((delta < -tolerance) || (tolerance < delta)) {
+				assertEquals(denormalized, expected, value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -450,8 +482,8 @@ public abstract class GenericTestSuite
 	protected Object assertQueryFalse(Object context, String expression) {
 		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, false, value);
+			Value value = evaluate(helper, context, denormalized);
+			assertEquals(denormalized, BooleanValue.FALSE, value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -477,12 +509,12 @@ public abstract class GenericTestSuite
 	 * Assert that the result of evaluating an expression as a query is invalid.
 	 * @return the evaluation result
 	 */
-	protected Object assertQueryInvalid(Object context, String expression) {
+	protected Value assertQueryInvalid(Object context, String expression) {
 		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			if (!(value instanceof InvalidLiteralExp)) {
-				assertEquals(denormalized, environment.getPivotManager().getInvalidValue(), value);
+			Value value = evaluate(helper, context, denormalized);
+			if (!value.isInvalid()) {
+				fail(denormalized + " expected: invalid but was:" + value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -495,13 +527,13 @@ public abstract class GenericTestSuite
 			String reason, Class<?> exceptionClass) {
 		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			if (!(value instanceof InvalidLiteralExp)) {
+			Value value = evaluate(helper, context, denormalized);
+			if (!value.isInvalid()) {
 				assertEquals(denormalized, environment.getPivotManager().getInvalidValue(), value);
 			}
-			InvalidLiteralExp invalidValue = (InvalidLiteralExp)value;
-			assertEquals("Invalaid Value Reason", reason, invalidValue.getReason());
-			assertEquals("Invalaid Value Throwable", exceptionClass, invalidValue.getThrowable().getClass());
+			InvalidValue invalidValue = (InvalidValue)value;
+			assertEquals("Invalid Value Reason", reason, invalidValue.getReason());
+			assertEquals("Invalid Value Throwable", exceptionClass, invalidValue.getThrowable().getClass());
 			return invalidValue;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -595,13 +627,13 @@ public abstract class GenericTestSuite
 	 *            Expression that is to be evaluated. Note that we'll use
 	 *            {@link EClass} as this expression's context.
 	 */
-	protected Object assertResultContainsAll(Object context, Collection<Object> expectedResult, String expression) {
+	protected Object assertResultContainsAll(Object context, CollectionValue expectedResult, String expression) {
 		String denormalizedExpression = denormalize(expression);
 		try {
-			Object result = evaluate(helper, context, denormalizedExpression);
+			Value result = evaluate(helper, context, denormalizedExpression);
 			assertTrue(expectedResult.getClass().isInstance(result));
-			assertSame(expectedResult.size(), ((Collection<?>) result).size());
-			assertTrue("Expected " + result + " to contain " + expectedResult, CollectionUtil.includesAll((Collection<?>) result, expectedResult));
+			assertSame(expectedResult.size(), ((CollectionValue) result).size());
+			assertTrue("Expected " + result + " to contain " + expectedResult, ((CollectionValue) result).includesAll(expectedResult));
 			return result;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalizedExpression + "\": " + e.getLocalizedMessage());
@@ -621,13 +653,12 @@ public abstract class GenericTestSuite
 	 *            Expression that is to be evaluated. Note that we'll use
 	 *            {@link EClass} as this expression's context.
 	 */
-	@SuppressWarnings("unchecked")
 	protected Object assertResultContainsAll(Object context, String expectedResultExpression, String expression) {
 		String denormalizedExpectedResultExpression = denormalize(expectedResultExpression);
 		try {
 			Object expectedResultQuery = evaluate(helper, null, denormalizedExpectedResultExpression);
-			assertTrue(expectedResultQuery instanceof Collection<?>);
-			Object result = assertResultContainsAll(context, (Collection<Object>) expectedResultQuery, expression);
+			assertTrue(expectedResultQuery instanceof CollectionValue);
+			Object result = assertResultContainsAll(context, (CollectionValue) expectedResultQuery, expression);
 			return result;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalizedExpectedResultExpression + "\": " + e.getLocalizedMessage());
@@ -658,8 +689,8 @@ public abstract class GenericTestSuite
 	protected Object assertQueryTrue(Object context, String expression) {
 		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, true, value);
+			Value value = evaluate(helper, context, denormalized);
+			assertEquals(denormalized, BooleanValue.TRUE, value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -688,8 +719,8 @@ public abstract class GenericTestSuite
 	protected Object assertQueryUnlimited(Object context, String expression) {
 		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			if (!(value instanceof UnlimitedNaturalLiteralExp) || !(((UnlimitedNaturalLiteralExp)value).getUnlimitedNaturalSymbol().signum() < 0)) {
+			Value value = evaluate(helper, context, denormalized);
+			if (!value.isUnlimited()) {
 				assertEquals(denormalized, environment.getPivotManager().getUnlimitedValue(), value);
 			}
 			return value;
@@ -789,11 +820,11 @@ public abstract class GenericTestSuite
 	/**
 	 * Return an isOrdered,isUnique collection containing args.
 	 */
-	protected<Z> Collection<Z> createCollection(boolean isOrdered, boolean isUnique, Z... args) {
+	protected CollectionValue createCollection(boolean isOrdered, boolean isUnique, Value... args) {
 		if (isOrdered)
-			return isUnique ? createOrderedSet(args) : createSequence(args);
+			return isUnique ? new OrderedSetValue(args) : new SequenceValue(args);
 		else
-			return isUnique ? createSet(args) : createBag(args);
+			return isUnique ? new SetValue(args) : new BagValue(args);
 	}
 
 	protected void createDocument(String text) {
@@ -934,12 +965,12 @@ public abstract class GenericTestSuite
 		return result;
 	}
 
-	protected Object evaluate(OCLHelper aHelper,
-            Object context,
+	protected Value evaluate(OCLHelper aHelper, Object context,
             String expression) throws ParserException {
 //        pivotManager.getPivotResourceSet().getResources().clear();
         OclExpression query = aHelper.createQuery(expression);
-        String s = query.toString();		// FIXME debugging
+        @SuppressWarnings("unused")
+		String s = query.toString();		// FIXME debugging
         return ocl.evaluate(context, query);
     }
 	

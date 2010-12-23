@@ -12,20 +12,18 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.2 2010/12/23 19:26:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
 
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.values.Bag;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.BagValue;
+import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.examples.pivot.values.SequenceValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
 
 /**
  * Tests for collection operations.
@@ -37,7 +35,8 @@ public abstract class GenericEvaluateCollectionOperationsTest
     @Override
     protected void setUp() {
         super.setUp();
-        helper.setContext(getMetaclass(denormalize("%Package")));
+//        helper.setContext(getMetaclass(denormalize("%Package")));
+        helper.setContext(getMetaclass("String"));
     }
 
 	public void testCollectionAppend() {
@@ -60,7 +59,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsBag() {
-		Bag<Object> emptyBag = CollectionUtil.createNewBag();
+		BagValue emptyBag = new BagValue();
 		assertQueryEquals(null, emptyBag, "Sequence{}->asBag()");
 		assertQueryEquals(null, emptyBag, "Bag{}->asBag()");
 		assertQueryEquals(null, emptyBag, "Set{}->asBag()");
@@ -83,7 +82,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsOrderedSet() {
-		LinkedHashSet<Object> emptySet = CollectionUtil.createNewOrderedSet();
+		OrderedSetValue emptySet = new OrderedSetValue();
 		assertQueryEquals(null, emptySet, "Sequence{}->asOrderedSet()");
 		assertQueryEquals(null, emptySet, "Bag{}->asOrderedSet()");
 		assertQueryEquals(null, emptySet, "Set{}->asOrderedSet()");
@@ -111,7 +110,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsSequence() {
-		List<Object> emptySequence = CollectionUtil.createNewSequence();
+		SequenceValue emptySequence = new SequenceValue();
 		assertQueryEquals(null, emptySequence, "Sequence{}->asSequence()");
 		assertQueryEquals(null, emptySequence, "Bag{}->asSequence()");
 		assertQueryEquals(null, emptySequence, "Set{}->asSequence()");
@@ -141,7 +140,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsSet() {
-		Set<Object> emptySet = CollectionUtil.createNewSet();
+		SetValue emptySet = new SetValue();
 		assertQueryEquals(null, emptySet, "Sequence{}->asSet()");
 		assertQueryEquals(null, emptySet, "Bag{}->asSet()");
 		assertQueryEquals(null, emptySet, "Set{}->asSet()");
@@ -531,12 +530,12 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionFlatten() {
-		Bag<Object> emptyBag = CollectionUtil.createNewBag();
-		Set<Object> emptySet = CollectionUtil.createNewSet();
-		assertQueryEquals(null, CollectionUtil.createNewSequence(), "Sequence{}->flatten()");
+		BagValue emptyBag = new BagValue();
+		SetValue emptySet = new SetValue();
+		assertQueryEquals(null, new SequenceValue(), "Sequence{}->flatten()");
 		assertQueryEquals(null, emptyBag, "Bag{}->flatten()");
 		assertQueryEquals(null, emptySet, "Set{}->flatten()");
-		assertQueryEquals(null, CollectionUtil.createNewOrderedSet(), "OrderedSet{}->flatten()");
+		assertQueryEquals(null, new OrderedSetValue(), "OrderedSet{}->flatten()");
 
 		String expression = "Sequence{Set{1,2,3}, Sequence{2.0, 3.0}, Bag{'test'}}->flatten()";
 		String expectedResultExpression = "Sequence{1, 2, 3, 2.0, 3.0, 'test'}";
@@ -806,8 +805,8 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionIntersection() {
-		Bag<Object> emptyBag = CollectionUtil.createNewBag();
-		Set<Object> emptySet = CollectionUtil.createNewSet();
+		BagValue emptyBag = new BagValue();
+		SetValue emptySet = new SetValue();
 		// No duplicates
 		assertQueryEquals(null, emptySet, "Set{'a', 'b'}->intersection(Set{'c', 'd'})");
 		assertQueryEquals(null, emptySet, "Set{'a', 'b'}->intersection(Bag{'c', 'd'})");
@@ -1158,7 +1157,7 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		// bug284129
 		assertQueryResults(null, "Set{Tuple{first = 3, second = 3.0}, Tuple{first = 3, second = 4}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
 		// empty
-		Set<Object> emptySet = CollectionUtil.createNewSet();
+		SetValue emptySet = new SetValue();
 		assertQueryEquals(null, emptySet, "Sequence{3, 4}->product(OrderedSet{})");
 		assertQueryEquals(null, emptySet, "Bag{3, 4}->product(Set{})");
 		assertQueryEquals(null, emptySet, "Set{3, 4}->product(Bag{})");
