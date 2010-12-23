@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.3 2010/12/20 06:52:43 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.4 2010/12/23 19:25:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.OperationContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
@@ -62,7 +63,7 @@ public class OCLstdlibPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			CollectionType type = context.getPivotElement(CollectionType.class, csElement.getMoniker());
+			CollectionType type = PivotUtil.getPivot(CollectionType.class, csElement);
 			type.setElementType(context.getPivotManager().getOclVoidType());
 			return null;
 		}
