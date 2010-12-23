@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.6 2010/12/13 08:14:55 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.7 2010/12/23 19:25:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -23,8 +23,7 @@ package org.eclipse.ocl.examples.pivot.evaluation;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.AbstractList;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +73,20 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
+import org.eclipse.ocl.examples.pivot.values.AbstractCollectionValue;
+import org.eclipse.ocl.examples.pivot.values.AbstractValue;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.ElementValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.StringValue;
+import org.eclipse.ocl.examples.pivot.values.TypeValue;
+import org.eclipse.ocl.examples.pivot.values.UnlimitedValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -110,8 +122,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //	}
 
 	// private static inner class for lazy lists over an integer range
-	private static final class IntegerRangeList
-		extends AbstractList<Integer> {
+	private static final class IntegerRangeList extends AbstractValue
+		/*extends AbstractList<Integer>*/ {
 
 //		public IntegerRangeList() {
 //			super();
@@ -131,12 +143,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //			return last;
 //		}
 
-		@Override
+//		@Override
         public int size() {
 			return last - first + 1;
 		}
 
-		@Override
+//		@Override
         public Integer get(int index) {
 			if (index < 0 || index >= size()) {
 				String message = OCLMessages.bind(
@@ -153,7 +165,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return new Integer(first + index);
 		}
 
-		@Override
+//		@Override
         public java.util.Iterator<Integer> iterator() {
 			// local iterator class that provides
 			// hasNext() and next() methods appropriate
@@ -202,9 +214,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		getEvaluationEnvironment().add(variable.getName(), variable);
 //	}
 
-	protected Object callImplementation(ImplementableElement implementableElement, Object sourceValue, CallExp callExp) {
+	protected Value callImplementation(ImplementableElement implementableElement, Value sourceValue, CallExp callExp) {
 		if (implementableElement == null) {
-			return createInvalidValue(sourceValue, callExp, "No implementable element", null);
+			return new InvalidValue(sourceValue, callExp, "No implementable element", null);
 		}
 		CallableImplementation implementation = implementableElement.getImplementation();
 		if (implementation == null) {
@@ -212,10 +224,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			try {
 				implementation = loadImplementationClass(implementationClassName);
 			} catch (Exception e) {
-				return createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", e);
+				return new InvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", e);
 			}
 			if (implementation == null) {
-				return createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", null);
+				return new InvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", null);
 			}
 		}
 		try {
@@ -224,7 +236,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return createInvalidValue(sourceValue, callExp, "Evaluation failure", e);
+			return new InvalidValue(sourceValue, callExp, "Evaluation failure", e);
 		}
 	}
 
@@ -262,11 +274,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * on that object.
 	 */
 	@Override
-    public Object visitAssociationClassCallExp(AssociationClassCallExp ae) {
-		Object context = ae.getSource().accept(getUndecoratedVisitor());
+    public Value visitAssociationClassCallExp(AssociationClassCallExp ae) {
+		Value context = ae.getSource().accept(getUndecoratedVisitor());
 		
-		if (isUndefined(context)) {
-			return getInvalidValue();
+		if (context.isUndefined()) {
+			return new InvalidValue(null, ae, "Undefined context for AssociationClassCall", null);
 		}
 		
 		// evaluate attribute on source value
@@ -282,21 +294,20 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @return the value of the boolean literal as a java.lang.Boolean.
 	 */
 	@Override
-    public Object visitBooleanLiteralExp(BooleanLiteralExp booleanLiteralExp) {
+    public BooleanValue visitBooleanLiteralExp(BooleanLiteralExp booleanLiteralExp) {
     	boolean value = booleanLiteralExp.isBooleanSymbol();
-		return Boolean.valueOf(value);
+		return BooleanValue.valueOf(value);
 	}
 
 	/**
 	 * Callback for a CollectionLiteralExp visit.
 	 */
 	@Override
-    public Object visitCollectionLiteralExp(CollectionLiteralExp cl) {
+    public Value visitCollectionLiteralExp(CollectionLiteralExp cl) {
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
 		List<CollectionLiteralPart> parts = cl.getParts();
-		Collection<Object> result = CollectionUtil.createNewCollection(kind);
 
 		if ((kind == CollectionKind.SEQUENCE) && CollectionUtil.isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
@@ -306,37 +317,49 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			OclExpression last = collRange.getLast();
 
 			// evaluate first value
-			Integer firstVal = (Integer) first.accept(getUndecoratedVisitor());
+			Value firstVal = first.accept(getUndecoratedVisitor());
 			if (firstVal == null) {
-				result.add(null);
-				return result;
+				return createInvalidValue(first, cl, "Invalid first element", null);
 			}
 			// evaluate last value
-			Integer lastVal = (Integer) last.accept(getUndecoratedVisitor());
+			Value lastVal = last.accept(getUndecoratedVisitor());
 			if (lastVal == null) {
-				result.add(null);
-				return result;
+				return createInvalidValue(last, cl, "Invalid last element", null);
 			}
-
-			int firstInt = firstVal.intValue();
-			int lastInt = lastVal.intValue();
-			if (firstInt > lastInt) {
-                return result;
-            }
+			IntegerValue firstInteger = firstVal.asIntegerValue();
+			if (firstInteger == null) {
+				return createInvalidValue(firstVal, cl, "Non integer first element", null);
+			}
+			IntegerValue lastInteger = lastVal.asIntegerValue();
+			if (lastInteger == null) {
+				return createInvalidValue(lastVal, cl, "Non integer last element", null);
+			}
+			Integer firstInt = firstInteger.asInteger();
+			if (firstInt == null) {
+				return createInvalidValue(firstInteger, cl, "Out of range first element", null);
+			}
+			Integer lastInt = lastInteger.asInteger();
+			if (lastInt == null) {
+				return createInvalidValue(lastInteger, cl, "Out of range last element", null);
+			}
+//			if (firstInt > lastInt) {
+//                return result;
+//            }
 
 			// construct a lazy integer list for the range
 			return new IntegerRangeList(firstInt, lastInt);
 		} else {
+			List<Value> results = new ArrayList<Value>();
 			// not a sequence or not a simple range
 			for (CollectionLiteralPart part : parts) {
 				if (part instanceof CollectionItem) {
 					// CollectionItem part
 					CollectionItem item = (CollectionItem) part;
 					OclExpression itemExp = item.getItem();
-					Object itemVal = itemExp.accept(getUndecoratedVisitor());
+					Value itemVal = itemExp.accept(getUndecoratedVisitor());
 					if (itemVal != null) {
 						// add it to the result set
-						result.add(itemVal);
+						results.add(itemVal);
 					}
 				} else {
 					// Collection range
@@ -345,26 +368,45 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 					OclExpression last = range.getLast();
 
 					// evaluate first value
-					BigInteger firstVal = (BigInteger) first.accept(getUndecoratedVisitor());
-					BigInteger lastVal = (BigInteger) last.accept(getUndecoratedVisitor());
-					if (!((firstVal == null) || (lastVal == null))) {
-						// TODO: enhance IntegerRangeList to support multiple ranges
-						// add values between first and last inclusive
-						BigInteger increment = BigInteger.valueOf(lastVal.compareTo(firstVal));
-						for (BigInteger i = firstVal; true; i = i.add(increment)) {
-                            result.add(i);
-                            if (i.equals(lastVal)) {
-                            	break;
-                            }
-                        }
+					Value firstVal = first.accept(getUndecoratedVisitor());
+					if (firstVal == null) {
+						return createInvalidValue(first, cl, "Invalid first element", null);
 					}
+					Value lastVal = last.accept(getUndecoratedVisitor());
+					if (lastVal == null) {
+						return createInvalidValue(last, cl, "Invalid last element", null);
+					}
+					IntegerValue firstInteger = firstVal.asIntegerValue();
+					if (firstInteger == null) {
+						return createInvalidValue(firstVal, cl, "Non integer first element", null);
+					}
+					IntegerValue lastInteger = lastVal.asIntegerValue();
+					if (lastInteger == null) {
+						return createInvalidValue(lastVal, cl, "Non integer last element", null);
+					}
+					Integer firstInt = firstInteger.asInteger();
+					if (firstInt == null) {
+						return createInvalidValue(firstInteger, cl, "Out of range first element", null);
+					}
+					Integer lastInt = lastInteger.asInteger();
+					if (lastInt == null) {
+						return createInvalidValue(lastInteger, cl, "Out of range last element", null);
+					}
+					// TODO: enhance IntegerRangeList to support multiple ranges
+					// add values between first and last inclusive
+					int increment = lastInt.compareTo(firstInt);
+					for (int i = firstInt; true; i = i + increment) {
+                        results.add(IntegerValue.valueOf(i));
+                        if (i == lastInt) {
+                        	break;
+                        }
+                    }
 				} // end of collection range
 
 			} // end of parts iterator
+			return AbstractCollectionValue.create(kind, results);
 
 		} // end of not-simple range case
-
-		return result;
 	} // end of Set, OrderedSet, Bag Literals
 
 	/**
@@ -376,7 +418,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @return the enumeration literal as an Integer
 	 */
 	@Override
-    public Object visitEnumLiteralExp(EnumLiteralExp el) {
+    public Value visitEnumLiteralExp(EnumLiteralExp el) {
 		return getEvaluationEnvironment().getValue(el.getReferredEnumLiteral());
 	}
 
@@ -384,7 +426,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * Callback for an IfExp visit.
 	 */
 	@Override
-    public Object visitIfExp(IfExp ifExp) {
+    public Value visitIfExp(IfExp ifExp) {
 		OclExpression condition = ifExp.getCondition();
 		if (condition == null) {
 			return null;
@@ -408,14 +450,17 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @return the value of the integer literal as a java.lang.Integer.
 	 */
 	@Override
-    public Object visitIntegerLiteralExp(IntegerLiteralExp integerLiteralExp) {
+    public Value visitIntegerLiteralExp(IntegerLiteralExp integerLiteralExp) {
 		BigInteger value = integerLiteralExp.getIntegerSymbol();
-		return value != null ? getIntegerValue(value) : null;
+		if (value == null) {
+			return new InvalidValue(null, integerLiteralExp, "Invalid Integer Value", null);
+		}
+		return IntegerValue.valueOf(value);
 	}
 
 	@Override
-    public Object visitInvalidLiteralExp(InvalidLiteralExp invalidLiteralExp) {
-		return invalidLiteralExp;
+    public Value visitInvalidLiteralExp(InvalidLiteralExp invalidLiteralExp) {
+		return new InvalidValue(invalidLiteralExp.getObject(), invalidLiteralExp, invalidLiteralExp.getReason(), invalidLiteralExp.getThrowable());
 	}
 
 	/**
@@ -444,7 +489,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * Callback for LetExp visit.
 	 */
 	@Override
-    public Object visitLetExp(LetExp letExp) {
+    public Value visitLetExp(LetExp letExp) {
 		OclExpression expression = letExp.getIn();
 		if (expression == null) {
 			return null;
@@ -474,13 +519,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	
 	@Override
-    public Object visitMessageExp(MessageExp m) {
+    public Value visitMessageExp(MessageExp m) {
 		throw new UnsupportedOperationException("evaluation of MessageExp"); //$NON-NLS-1$
 	}
 
 	@Override
-    public Object visitNullLiteralExp(NullLiteralExp nullLiteralExp) {
-		return getNullValue();
+    public Value visitNullLiteralExp(NullLiteralExp nullLiteralExp) {
+		return NullValue.INSTANCE;
 	}
 
 	/**
@@ -489,9 +534,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 *  
 	 */
 	@Override
-    public Object visitOperationCallExp(OperationCallExp operationCallExp) {
+    public Value visitOperationCallExp(OperationCallExp operationCallExp) {
 		OclExpression source = operationCallExp.getSource();	// FIXME self
-		Object sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
+		Value sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
 		Type dynamicSourceType = getStandardLibrary().getTypeOfValue(sourceValue, source != null ? source.getType() : operationCallExp.getReferredOperation().getClass_());
 		Operation staticOperation = operationCallExp.getReferredOperation();
 		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
@@ -507,9 +552,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 *  
 	 */
 	@Override
-    public Object visitPropertyCallExp(PropertyCallExp propertyCallExp) {
+    public Value visitPropertyCallExp(PropertyCallExp propertyCallExp) {
 		OclExpression source = propertyCallExp.getSource();	// FIXME self
-		Object sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
+		Value sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
 		Property property = propertyCallExp.getReferredProperty();
 		return callImplementation(property, sourceValue, propertyCallExp);
 	}
@@ -522,16 +567,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * on that object.
 	 */
 //	@Override
-    public Object visitPropertyCallExp2(PropertyCallExp pc) {
+    public Value visitPropertyCallExp2(PropertyCallExp pc) {
 		Property property = pc.getReferredProperty();
 		OclExpression source = pc.getSource();
 
 		// evaluate source
-		Object context = source.accept(getUndecoratedVisitor());
+		Value context = source.accept(getUndecoratedVisitor());
 
 		// if source is undefined, result is OclInvalid
-		if (isUndefined(context)) {
-            return getInvalidValue();
+		if (context.isUndefined()) {
+            return new InvalidValue(null, pc, "Undefined source for PropertyCall", null);
         }
 
 		OclExpression derivation = getPropertyBody(property);
@@ -554,19 +599,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 		}
 		
-		Object result = getEvaluationEnvironment().navigateProperty(property, qualifiers, context);
+		Value result = getEvaluationEnvironment().navigateProperty(property, qualifiers, context);
 		
-		if ((pc.getType() instanceof CollectionType) && !(result instanceof Collection<?>)) {
+		if ((pc.getType() instanceof CollectionType) && !(result instanceof CollectionValue)) {
 			// this was an XSD "unspecified multiplicity".  Now that we know what
 			//    the multiplicity is, we can coerce it to a collection value
 			CollectionKind kind = CollectionUtil.getKind((CollectionType) pc.getType());
-			
-			Collection<Object> collection = CollectionUtil.createNewCollection(kind);
-			
-			collection.add(result);
-			result = collection;
-		}
-		
+			result = AbstractCollectionValue.create(kind, result);
+		}		
 		return result;
 	}
 
@@ -576,14 +616,17 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @return the value of the real literal as a java.lang.Double.
 	 */
 	@Override
-    public Object visitRealLiteralExp(RealLiteralExp realLiteralExp) {
+    public Value visitRealLiteralExp(RealLiteralExp realLiteralExp) {
 		BigDecimal value = realLiteralExp.getRealSymbol();
-		return value != null ? getRealValue(value) : null;
+		if (value == null) {
+			return new InvalidValue(null, realLiteralExp, "Invalid Real Value", null);
+		}
+		return RealValue.valueOf(value);
 	}
 	
 	@Override
-    public Object visitStateExp(StateExp s) {
-		return s.getReferredState();
+    public Value visitStateExp(StateExp s) {
+		return ElementValue.valueOf(s.getReferredState());
 	}
 
 	/**
@@ -592,9 +635,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @return the value of the string literal as a java.lang.String.
 	 */
 	@Override
-    public Object visitStringLiteralExp(StringLiteralExp stringLiteralExp) {
+    public Value visitStringLiteralExp(StringLiteralExp stringLiteralExp) {
 		String value = stringLiteralExp.getStringSymbol();
-		return value != null ? getStringValue(value) : null;
+		if (value == null) {
+			return new InvalidValue(null, stringLiteralExp, "Invalid String Value", null);
+		}
+		return StringValue.valueOf(value);
 	}
 
 	/**
@@ -605,7 +651,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @return String
 	 */
 	@Override
-    public Object visitTupleLiteralExp(TupleLiteralExp tl) {
+    public Value visitTupleLiteralExp(TupleLiteralExp tl) {
 		Type type = tl.getType();
 		List<TupleLiteralPart> tp = tl.getParts();
 		
@@ -621,7 +667,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 	
 	@Override
-    public Object visitTupleLiteralPart(TupleLiteralPart tp) {
+    public Value visitTupleLiteralPart(TupleLiteralPart tp) {
 		return tp.getAttribute().accept(getUndecoratedVisitor());
 	}
 
@@ -629,8 +675,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * Callback for a TypeExp visiy.
 	 */
 	@Override
-    public Object visitTypeExp(TypeExp t) {
-		return t.getReferredType();
+    public Value visitTypeExp(TypeExp t) {
+		return TypeValue.valueOf(t.getReferredType());
 	}
     
     /**
@@ -639,22 +685,22 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
      * @return the value of the natural literal as a java.lang.Integer.
      */
     @Override
-    public Object visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp) {
+    public Value visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp) {
 		BigInteger value = unlimitedNaturalLiteralExp.getUnlimitedNaturalSymbol();
 		if (value == null) {
-			return null;
+			return new InvalidValue(null, unlimitedNaturalLiteralExp, "Invalid Unlimited Natural Value", null);
 		}
 		if (value.signum() < 0) {
-			return unlimitedNaturalLiteralExp;
+			return UnlimitedValue.INSTANCE;
 		}
-		return getUnlimitedNaturalValue(value);
+		return IntegerValue.valueOf(value);
 	}
 	
 	/**
 	 * Callback for an UnspecifiedValueExp visit.
 	 */
 	@Override
-    public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
+    public Value visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
 		// TODO: return a "random instance of the type of the expression"
 		throw new UnsupportedOperationException("evaluation of UnspecifiedValueExp"); //$NON-NLS-1$
 	}
@@ -663,16 +709,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * Callback for a Variable visit.
 	 */
 	@Override
-    public Object visitVariable(Variable variable) {
+    public Value visitVariable(Variable variable) {
 		// add the variable to the environment, initialized to
 		// its initial expression (if it has one). return the name
 		// of the variable.
 //		String varName = variable.getName();
 		OclExpression initExp = variable.getInitExpression();
 		if (initExp == null) {
-			return createInvalidValue(variable, null, "Uninitialized variable", null);
+			return new InvalidValue(null, null, "Uninitialized variable", null);
 		}
-		Object initVal = initExp.accept(getUndecoratedVisitor());
+		Value initVal = initExp.accept(getUndecoratedVisitor());
 // FIXME		getEvaluationEnvironment().setVariable(variable, initVal);
 		return initVal;
 	}
@@ -685,7 +731,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @return the value of the variable
 	 */
 	@Override
-    public Object visitVariableExp(VariableExp variableExp) {
+    public Value visitVariableExp(VariableExp variableExp) {
 //		getValueOfVariable(getReferredVariable())
 		// get the referred variable name
 		VariableDeclaration variableDeclaration = variableExp.getReferredVariable();
@@ -696,7 +742,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		Object variableValue = getEvaluationEnvironment().getValueOf(varName);
 //		return variableValue;
 		if (variable == null) {
-			return createInvalidValue(variable, variableExp, "Undefined variable", null);
+			return new InvalidValue(null, variableExp, "Undefined variable", null);
 		}
 		return variable.accept(getUndecoratedVisitor());
 	}

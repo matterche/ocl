@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: OCLBase.java,v 1.1.2.3 2010/12/23 19:25:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,6 +35,8 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -424,7 +426,7 @@ public abstract class OCLBase {
 	 * @see #isInvalid(Object)
 	 * @see #check(Object, Object)
 	 */
-	public Object evaluate(Object context, OclExpression expression) {
+	public org.eclipse.ocl.examples.pivot.values.Value evaluate(Object context, OclExpression expression) {
 		evaluationProblems = null;
 		
 		// can determine a more appropriate context from the context
@@ -433,7 +435,7 @@ public abstract class OCLBase {
 			expression);
 
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
-		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, context);
+		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, ObjectValue.valueOf(context));
 
 		Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extents = getExtentMap();
 		if (extents == null) {
@@ -444,7 +446,7 @@ public abstract class OCLBase {
 		EvaluationVisitor ev = environmentFactory
 			.createEvaluationVisitor(rootEnvironment, localEvalEnv, extents);
 
-		Object result;
+		org.eclipse.ocl.examples.pivot.values.Value result;
 
 		try {
 			result = expression.accept(ev);
@@ -455,7 +457,7 @@ public abstract class OCLBase {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
 		if (result == null) {
-			result = rootEnvironment.getOCLStandardLibrary().getInvalidValue();
+			result = new InvalidValue("Java-Null value");
 		}
 		return result;
 	}

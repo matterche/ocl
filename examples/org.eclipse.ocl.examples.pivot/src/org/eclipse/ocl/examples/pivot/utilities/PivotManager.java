@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.8 2010/12/20 06:52:55 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.9 2010/12/23 19:25:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -61,6 +61,12 @@ import org.eclipse.ocl.examples.pivot.TypeUtil;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.values.Bag;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.ObjectValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.StringValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * A PivotManager adapts a ResourceSet to provide facilities for the pivot
@@ -362,10 +368,10 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return pivotResource;
 	}
 
-	public Type getCollectionType(Type collectionType, Type elementType) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	public Type getCollectionType(Type collectionType, Type elementType) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	public Type getCommonSuperType(Type firstType, Type secondType) {
 		return TypeUtil.getCommonSuperType(firstType, secondType);
@@ -546,15 +552,27 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return type;
 	}
 
-	public Object getValueOfValue(Object value) {
+	public Value getValueOfValue(Object value) {
+		if (value instanceof String) {
+			return StringValue.valueOf((String) value);
+			}
 		if ((value instanceof Integer) || (value instanceof Long)
-			|| (value instanceof Short)) {
-			return BigInteger.valueOf(((Number) value).longValue());
-		}
+				|| (value instanceof Short)) {
+			return IntegerValue.valueOf(((Number) value).longValue());
+			}
 		if ((value instanceof Float) || (value instanceof Double)) {
-			return new BigDecimal(((Number) value).doubleValue());
+			return RealValue.valueOf(((Number) value).doubleValue());
 		}
-		return value;
+		if (value instanceof BigDecimal) {
+			return RealValue.valueOf((BigDecimal) value);
+		}
+		if (value instanceof BigInteger) {
+			return IntegerValue.valueOf((BigInteger) value);
+		}
+		if (value instanceof Boolean) {
+			return BooleanValue.valueOf((Boolean) value);
+		}
+		return ObjectValue.valueOf(value);
 	}
 
 	public boolean isAdapterForType(Object type) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.3 2010/12/23 19:25:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.util.Adaptable;
@@ -51,7 +52,7 @@ public abstract class AbstractEvaluationEnvironment
 		implements EvaluationEnvironment, Adaptable, Customizable {
 	
     private final EvaluationEnvironment parent;
-    private final Map<String, Object> map = new HashMap<String, Object>();
+    private final Map<String, Value> map = new HashMap<String, Value>();
     private final Map<VariableDeclaration, VariableDeclaration> variables = new HashMap<VariableDeclaration, VariableDeclaration>();
 
     private final Map<Option<?>, Object> options = new HashMap<Option<?>, Object>();
@@ -80,8 +81,8 @@ public abstract class AbstractEvaluationEnvironment
      *            the name whose value is to be returned
      * @return the value associated with the name
      */
-    public Object getValueOf(String name) {
-        Object object = map.get(name);
+    public Value getValueOf(String name) {
+    	Value object = map.get(name);
         if ((object == null) && (parent != null) && !map.containsKey(name)) {
         	object = parent.getValueOf(name);
         }
@@ -104,7 +105,7 @@ public abstract class AbstractEvaluationEnvironment
      * @param value
      *            the new value
      */
-    public void replace(String name, Object value) {
+    public void replace(String name, Value value) {
         map.put(name, value);
     }
 
@@ -116,7 +117,7 @@ public abstract class AbstractEvaluationEnvironment
      * @param value
      *            the associated binding
      */
-    public void add(String name, Object value) {
+    public void add(String name, Value value) {
         if (map.containsKey(name)) {
             String message = OCLMessages.bind(
             		OCLMessages.BindingExist_ERROR_,
@@ -154,7 +155,7 @@ public abstract class AbstractEvaluationEnvironment
      *            the name to remove
      * @return the value associated with the removed name
      */
-    public Object remove(String name) {
+    public Value remove(String name) {
         return map.remove(name);
     }
 

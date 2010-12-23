@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEvaluationEnvironment.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: PivotEvaluationEnvironment.java,v 1.1.2.2 2010/12/23 19:25:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -32,7 +32,8 @@ import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.util.Tuple;
+import org.eclipse.ocl.examples.pivot.values.Tuple;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.util.UnicodeSupport;
 
 /**
@@ -401,13 +402,13 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     	throw new UnsupportedOperationException(getClass().getName() + ".callOperation");
     }
 
-    public Object navigateProperty(Property property, List<?> qualifiers,
+    public Value navigateProperty(Property property, List<?> qualifiers,
     		Object source)
     		throws IllegalArgumentException {
     	throw new UnsupportedOperationException(getClass().getName() + ".navigateProperty");
     }
 
-    public Object navigateAssociationClass(Type associationClass,
+    public Value navigateAssociationClass(Type associationClass,
     		Property navigationSource, Object source)
     		throws IllegalArgumentException {
     	throw new UnsupportedOperationException(getClass().getName() + ".navigateAssociationClass");
@@ -425,12 +426,11 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     	throw new UnsupportedOperationException(getClass().getName() + ".getType");
     }
 
-    public Tuple<Operation, Property> createTuple(Type type,
-    		Map<Property, Object> values) {
+    public Tuple createTuple(Type type, Map<Property, Object> values) {
     	throw new UnsupportedOperationException(getClass().getName() + ".createTuple");
     }
 
-    public Object getValue(EnumerationLiteral enumerationLiteral) {
+    public Value getValue(EnumerationLiteral enumerationLiteral) {
     	throw new UnsupportedOperationException(getClass().getName() + ".getValue");
     }
 

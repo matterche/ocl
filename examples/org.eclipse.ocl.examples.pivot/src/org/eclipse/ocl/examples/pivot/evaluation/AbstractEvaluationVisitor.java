@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.4 2010/12/06 17:29:02 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.5 2010/12/23 19:25:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -40,6 +40,9 @@ import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -56,7 +59,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEvaluationVisitor
-	extends AbstractVisitor2<Object> implements EvaluationVisitor {
+	extends AbstractVisitor2<Value> implements EvaluationVisitor {
 
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;
@@ -105,7 +108,7 @@ public abstract class AbstractEvaluationVisitor
      * @param target the object on which to evaluate the operation body
      * @param args the arguments to the operation call
      */
-    protected Object call(Operation operation, OclExpression body, Object target, Object[] args) {
+    protected Object call(Operation operation, OclExpression body, Value target, Value[] args) {
     	// create a nested evaluation environment for this operation call
     	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
     	EvaluationEnvironment nestedEvalEnv = nestedVisitor.getEvaluationEnvironment();
@@ -124,8 +127,8 @@ public abstract class AbstractEvaluationVisitor
 		return body.accept(nestedVisitor);
     }
 
-	public Object createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
-        return getStandardLibrary().createInvalidValue(object, expression, reason, throwable);
+	public Value createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
+        return new InvalidValue(object, expression, reason, throwable);
 	}
    
     /**
@@ -347,6 +350,7 @@ public abstract class AbstractEvaluationVisitor
 	        EvaluationOptions.LAX_NULL_HANDLING);
 	}
 
+	@Deprecated
 	public boolean isDefined(Object value) {
 		if (value == null) {
 			return false;
@@ -368,6 +372,7 @@ public abstract class AbstractEvaluationVisitor
 	 * 
 	 * @return whether it is undefined
 	 */
+	@Deprecated
 	protected boolean isUndefined(Object value) {
 		return (value == null) || 
 			(value == getEnvironment().getOCLStandardLibrary().getInvalidValue());
@@ -382,7 +387,7 @@ public abstract class AbstractEvaluationVisitor
      * 
      * @return the property's value
      */
-    protected Object navigate(Property property, OclExpression derivation, Object target) {
+    protected Value navigate(Property property, OclExpression derivation, Value target) {
     	// create a nested evaluation environment for this property call
     	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
     	EvaluationEnvironment nestedEvalEnv = nestedVisitor.getEvaluationEnvironment();    	
@@ -522,7 +527,7 @@ public abstract class AbstractEvaluationVisitor
 	 * {@link #visitExpression(OCLExpression)}.
 	 */
 	@Override
-    public Object visitConstraint(Constraint constraint) {
+    public Value visitConstraint(Constraint constraint) {
 		OclExpression body = getSpecification(constraint).getBodyExpression();
 		boolean isBoolean = BOOLEAN_CONSTRAINTS.contains(
 				getEnvironment().getUMLReflection().getStereotype(constraint));
@@ -535,9 +540,9 @@ public abstract class AbstractEvaluationVisitor
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 		
-		Object result = body.accept(getUndecoratedVisitor());
+		Value result = body.accept(getUndecoratedVisitor());
 		
-		return isBoolean? Boolean.TRUE.equals(result) : result;
+		return isBoolean ? BooleanValue.valueOf(Boolean.TRUE.equals(result)) : result;
 	}
 
 	/**
@@ -569,11 +574,11 @@ public abstract class AbstractEvaluationVisitor
 	} */
 
 	@Deprecated
-	public Object visitExpression(OclExpression expression) {
+	public Value visitExpression(OclExpression expression) {
 		return expression.accept(this);
 	}
 
-	public Object visiting(Visitable visitable) {
+	public Value visiting(Visitable visitable) {
 		throw new UnsupportedOperationException();
 	}
 

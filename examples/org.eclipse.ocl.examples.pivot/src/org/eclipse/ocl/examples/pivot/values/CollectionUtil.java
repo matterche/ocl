@@ -13,16 +13,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.1.2.2 2010/12/23 19:25:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.ObjectUtil;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -52,91 +48,6 @@ public class CollectionUtil {
 	private CollectionUtil() {
 		super();
 	}
-
-    /**
-     * Implementation of the OCL
-     * <tt>Collection::includes(object : T) : Boolean</tt>
-     * operation.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return whether the collection includes the object
-     */
-    public static boolean includes(Collection<?> self, Object object) {
-    	return self.contains(object);
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>Collection::excludes(object : T) : Boolean</tt>
-     * operation.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return whether the collection does not include the object
-     */
-    public static boolean excludes(Collection<?> self, Object object) {
-        return !includes(self, object);
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>Collection::count(object : T) : Integer</tt>
-     * operation.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return the number of occurrences of the object in the collection
-     */
-    public static int count(Collection<?> self, Object object) {
-        int count = 0;
-        for (Object next : self) {
-            if (ObjectUtil.equal(next, object)) {
-                count++;
-            }
-        }
-        
-        return count;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>Collection::includesAll(c : Collection(T)) : Boolean</tt>
-     * operation.
-     * 
-     * @param self the source collection
-     * @param c another collection
-     * @return whether the source collection includes all of the elements
-     *     of the other
-     */
-    public static boolean includesAll(Collection<?> self, Collection<?> c) {
-    	for (Object next : c) {
-    		if (!includes(self, next)) {
-    			return false;
-    		}
-    	}
-    	
-        return true;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>Collection::excludesAll(c : Collection(T)) : Boolean</tt>
-     * operation.
-     * 
-     * @param self the source collection
-     * @param c another collection
-     * @return whether the source collection does not contain any of the
-     *     elements of the other
-     */
-    public static boolean excludesAll(Collection<?> self, Collection<?> c) {
-        for (Object next : c) {
-            if (includes(self, next)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Implementation of the OCL
@@ -226,7 +137,7 @@ public class CollectionUtil {
      * @param c another collection of the same kind
      * @return whether collections are equal
      */
-    public static boolean equals(Collection<?> self, Collection<?> c) {
+    public static boolean equals(CollectionValue self, CollectionValue c) {
     	if (self.size() != c.size()) {
     		// collections of different sizes cannot be equal
     		return false;
@@ -234,10 +145,10 @@ public class CollectionUtil {
             return ((Bag<?>) self).equals(c);
     	} else if (self instanceof List<?> && c instanceof List<?>) {
             return ((List<?>) self).equals(c);
-    	} else if (self instanceof LinkedHashSet<?> && c instanceof LinkedHashSet<?>) {
+    	} else if (self instanceof OrderedSetValue && c instanceof OrderedSetValue) {
             // OrderedSet
 
-            // LinkedHashSet.equals() doesn't care about order but we do
+            // PivotOrderedSet.equals() doesn't care about order but we do
             int size1 = self.size();
             int size2 = c.size();
             if (size1 != size2) {
@@ -294,144 +205,36 @@ public class CollectionUtil {
      * @param c another set or bag
      * @return the intersection of the source set or bag with the other set or bag
      */
-    public static <E> Collection<E> intersection(
-    		Collection<? extends E> self, Collection<? extends E> c) {
-    	
+    public static CollectionValue intersection(CollectionValue self, CollectionValue c) {
+        boolean resultIsSet = (self instanceof Set<?>) || (c instanceof Set<?>);  	
         int size1 = self.size();
         int size2 = c.size();
         
         // if either collection is empty, then so is the result
-        if (size1 == 0) {
-            return createNewCollection(self);
-        } else if (size2 == 0) {
-            return createNewCollection(c);
+        if ((size1 == 0) || (size2 == 0)) {
+            return resultIsSet ? SetValue.EMPTY : BagValue.EMPTY;
         }
-        
-        Collection<E> result = null;
-
-        if (self instanceof Set<?> || c instanceof Set<?>) {
-            // if either argument is a set, so is the result
-            if (size1 == 0 || size2 == 0) {
-                return Collections.emptySet();
-            }
-            result = createNewSet();
-        } else {
-            // both arguments are bags, so is the result
-            if (size1 == 0 || size2 == 0) {
-                return BagImpl.emptyBag();
-            }
-            result = createNewBag();
-        }
+        Collection<Value> result = resultIsSet ? new HashSet<Value>() : new BagImpl<Value>();
 
         // loop over the smaller collection and add only elements
         // that are in the larger collection
         if (self.size() > c.size()) {
-            for (E e : c) {
-                if (includes(self, e)) {
+            for (Value e : c) {
+                if (self.includes(e)) {
                     result.add(e);
                 }
             }
         } else {
-            for (E e : self) {
-                if (includes(c, e)) {
+            for (Value e : self) {
+                if (c.includes(e)) {
                     result.add(e);
                 }
             }
         }
 
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::union(set : Set(T)) : Set(T)</tt></li>
-     * <li><tt>Set::union(bag : Bag(T)) : Bag(T)</tt></li>
-     * <li><tt>Bag::union(set : Set(T)) : Bag(T)</tt></li>
-     * <li><tt>Bag::union(bag : Bag(T)) : Bag(T)</tt></li>
-     * <li><tt>Sequence::union(s : Sequence(T)) : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param c another collection
-     * @return the union of the source collection with the other
-     */
-    public static <E> Collection<E> union(
-    		Collection<? extends E> self, Collection<? extends E> c) {
-    	
-    	// if either argument is empty, then the union is the other
-    	if (self.isEmpty()) {
-            return createNewCollection(c);
-        } else if (c.isEmpty()) {
-            return createNewCollection(self);
-        }
-    	
-        Collection<E> result = null;
-        if (self instanceof Bag<?> || c instanceof Bag<?>) {
-            result = createNewBag(self);
-        } else if (self instanceof List<?> || c instanceof List<?>) {
-            result = createNewSequence(self);
-        } else {
-            result = createNewSet(self);
-        }
-        
-        result.addAll(c);
-
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::flatten() : Set(T2)</tt></li>
-     * <li><tt>Bag::flatten() : Bag(T2)</tt></li>
-     * <li><tt>Sequence::flatten() : Sequence(T2)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @return the flattened collection
-     */
-    public static Collection<?> flatten(Collection<?> self) {
-        Collection<?> result = self;
-        
-        for (;;) {
-            if (result.isEmpty()) {
-                break;
-            }
-            
-            Iterator<?> it = result.iterator();
-            Object object = it.next();
-    
-            // if the element type is not a collection type, the result is the
-            // current collection.
-            if (!(object instanceof Collection<?>)) {
-                break;
-            }
-    
-            Collection<Object> newResult = null;
-            if (result instanceof Bag<?>) {
-                newResult = createNewBag();
-            } else if (result instanceof Set<?>) {
-                newResult = createNewSet();
-            } else {
-                // Sequence
-                newResult = createNewSequence();
-            }
-            
-            // the element type is a collection type -- flatten one level
-            newResult.addAll((Collection<?>) object);
-            while (it.hasNext()) {
-                newResult.addAll((Collection<?>) it.next());
-            }
-            
-            result = newResult;
-            // loop until the result is empty or the first element is not a
-            // collection
-        }
-        
-        return result;
+        return resultIsSet
+        	? new SetValue((Set<Value>)result)
+        	: new BagValue((Bag<Value>)result);
     }
 
     /**
@@ -456,187 +259,6 @@ public class CollectionUtil {
 
     /**
      * Implementation of the OCL
-     * <tt>Set::-(set : Set(T)) : Set(T)</tt>
-     * operation.
-     * 
-     * @param self the source set
-     * @param set another set
-     * @return the subtraction of the other set from the source set
-     */
-    public static <E> Set<E> minus(Set<? extends E> self, Set<? extends E> set) {
-        Set<E> result = createNewSet(self);
-        result.removeAll(set);
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::excluding(object : T) : Set(T)</tt></li>
-     * <li><tt>Bag::excluding(object : T) : Bag(T)</tt></li>
-     * <li><tt>Sequence::excluding(object : T) : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return the source collection without any occurences of the object
-     */
-    public static <E> Collection<E> excluding(Collection<E> self, Object object) {
-        Collection<E> result = null;
-        if (self instanceof Set<?>) {
-            result = createNewSet(self);
-        } else if (self instanceof Bag<?>) {
-            result = createNewBag(self);
-        } else if (self instanceof List<?>) {
-            List<E> resultSeq = createNewSequence(self);
-            while (resultSeq.remove(object)) {
-                ; // for sequences we need to remove all the matching elements
-            }
-            return resultSeq;
-        } else {
-            result = createNewOrderedSet(self);
-        }
-
-        // non-sequences (bags remove all occurrences internally)
-        result.remove(object);
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>Set::symmetricDifference(set : Set(T)) : Set(T)</tt>
-     * operation.
-     * 
-     * @param self the source set
-     * @param set another set
-     * @return the set of elements in either the source or the other set but not
-     *     in both
-     */
-    public static <E> Set<E> symmetricDifference(Set<? extends E> self,
-        Set<? extends E> set) {
-        
-        Set<E> result = createNewSet(self);
-        
-        for (E e : set) {
-            if (result.contains(e)) {
-                result.remove(e);
-            } else {
-                result.add(e);
-            }
-        }
-        
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::including(object : T) : Set(T)</tt></li>
-     * <li><tt>Bag::including(object : T) : Bag(T)</tt></li>
-     * <li><tt>Sequence::including(object : T) : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return the source collection with the object added
-     */
-    public static <E> Collection<E> including(Collection<E> self, E object) {
-        Collection<E> result;
-        
-        if (self instanceof Set<?>) {
-            result = createNewSet(self);
-        } else if (self instanceof Bag<?>) {
-            result = createNewBag(self);
-        } else {
-            result = createNewSequence(self);
-        }
-
-        result.add(object);
-        
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::asSet() : Set(T)</tt></li>
-     * <li><tt>Bag::asSet() : Set(T)</tt></li>
-     * <li><tt>Sequence::asSet() : Set(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @return the source collection as a set
-     */
-    public static <E> Set<E> asSet(Collection<E> self) {
-        if (self instanceof Set<?>) {
-            return (Set<E>) self;
-        }
-        return createNewSet(self);
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::asBag() : Bag(T)</tt></li>
-     * <li><tt>Bag::asBag() : Bag(T)</tt></li>
-     * <li><tt>Sequence::asBag() : Bag(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @return the source collection as a bag
-     */
-    public static <E> Bag<E> asBag(Collection<E> self) {
-        if (self instanceof Bag<?>) {
-            return (Bag<E>) self;
-        }
-        return createNewBag(self);
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::asSequence() : Sequence(T)</tt></li>
-     * <li><tt>Bag::asSequence() : Sequence(T)</tt></li>
-     * <li><tt>Sequence::asSequence() : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @return the source collection as a sequence
-     */
-    public static <E> List<E> asSequence(Collection<E> self) {
-        if (self instanceof List<?>) {
-            return (List<E>) self;
-        }
-        return createNewSequence(self);
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>Set::asOrderedSet() : OrderedSet(T)</tt></li>
-     * <li><tt>Bag::asOrderedSet() : OrderedSet(T)</tt></li>
-     * <li><tt>Sequence::asOrderedSet() : OrderedSet(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @return the source collection as an ordered set
-     */
-    public static <E> LinkedHashSet<E> asOrderedSet(Collection<E> self) {
-        // TODO: create an interface for OrderedSet
-        if (self instanceof LinkedHashSet<?>) {
-            return (LinkedHashSet<E>) self;
-        }
-        return createNewOrderedSet(self);
-    }
-
-    /**
-     * Implementation of the OCL
      * <tt>Collection::product(c : Collection(T2)) : Set(Tuple(first : T, second : T2))</tt>
      * operations.
      * 
@@ -647,412 +269,14 @@ public class CollectionUtil {
      * @param c another collection
      * @return the product of the collections
      */
-    public static
-    <P,Q> Set<Tuple> product(Collection<P> self, Collection<Q> c, TupleType tupleType) {   	
-        Set<Tuple> result = createNewSet();		
-        for (P next1 : self) {
-        	for (Q next2 : c) {
+    public static SetValue product(CollectionValue self, CollectionValue c, TupleType tupleType) {   	
+    	Set<Tuple> result = new HashSet<Tuple>();		
+        for (Value next1 : self) {
+        	for (Value next2 : c) {
         		result.add(new TupleImpl(tupleType, next1, next2));
         	}
         }
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::append(object : T) : OrderedSet(T)</tt></li>
-     * <li><tt>Sequence::append(object : T) : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return the source collection with the object appended
-     */
-    public static <E> Collection<E> append(Collection<E> self, E object) {
-        Collection<E> result;
-        // TODO: make an interface for OrderedSet
-        if (self instanceof LinkedHashSet<?>) {
-            result = createNewOrderedSet(self);
-            result.remove(object);  // appended object must be last
-        } else {
-            result = createNewSequence(self);
-        }
-        
-        result.add(object);
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::prepend(object : T) : OrderedSet(T)</tt></li>
-     * <li><tt>Sequence::prepend(object : T) : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return the source collection with the object prepended
-     */
-    public static <E> Collection<E> prepend(Collection<E> self, E object) {
-        Collection<E> result;
-        if (self instanceof LinkedHashSet<?>) {
-            result = createNewOrderedSet();
-        } else {
-            result = createNewSequence();
-        }
-        result.add(object);
-        result.addAll(self);
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::insertAt(index : Integer, object : T) : OrderedSet(T)</tt></li>
-     * <li><tt>Sequence::insertAt(index : Integer, object : T) : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param index the 1-based (in OCL fashion) index
-     * @param object an object
-     * @return the source collection with the object inserted at the index
-     * 
-     * @throws IndexOutOfBoundsException if the index is out of bounds
-     */
-    public static <E> Collection<E> insertAt(Collection<E> self, int index, E object) {
-        index = index - 1;
-        
-        if (index < 0 || index > self.size()) {
-			throw new IndexOutOfBoundsException(
-				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ self.size());
-        }
-        
-        Collection<E> result;
-        if (self instanceof LinkedHashSet<?>) {
-            result = createNewOrderedSet();
-        } else {
-            result = createNewSequence();
-        }
-        
-        int curr = 0;
-        for (Iterator<E> it = self.iterator(); it.hasNext();) {
-            if (curr == index) {
-                result.add(object);
-            }
-            result.add(it.next());
-            curr++;
-        }
-        
-        if (index == self.size()) {
-        	// the loop finished before we could add the object
-        	result.add(object);
-        }
-        
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>OrderedSet::subOrderedSet(lower : Integer, upper : Integer) : OrderedSet(T)</tt>
-     * operation.
-     * 
-     * @param self the source set
-     * @param lower the 1-based (in OCL fashion) inclusive lower bound
-     * @param upper the 1-based (in OCL fashion) inclusive upper bound
-     * @return the slice of the source set
-     * 
-     * @throws IndexOutOfBoundsException if an index is out of bounds
-     * @throws IllegalArgumentException if the lower bound is greater than the upper
-     */
-    public static <E> Collection<E> subOrderedSet(Collection<E> self, int lower,
-            int upper) {
-        lower = lower - 1;
-        upper = upper - 1;
-        
-        if (lower < 0) {
-			throw new IndexOutOfBoundsException("lower: " + (lower + 1)); //$NON-NLS-1$
-        } else if (upper >= self.size()) {
-			throw new IndexOutOfBoundsException(
-				"upper: " + (upper + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ self.size());
-        } else if (upper < lower) {
-			throw new IllegalArgumentException(
-				"lower: " + (lower + 1) + ", upper: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ (upper + 1));
-        }
-        
-        Collection<E> result;
-        if (self instanceof LinkedHashSet<?>) {
-            result = createNewOrderedSet();
-        } else {
-            result = createNewSequence();
-        }
-        int curr = 0;
-        for (Iterator<E> it = self.iterator(); it.hasNext();) {
-            E object = it.next();
-            if (curr >= lower && curr <= upper) {
-                result.add(object);
-            }
-            curr++;
-        }
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <tt>Sequence::subSequence(lower : Integer, upper : Integer) : Sequence(T)</tt></li>
-     * operation.
-     * 
-     * @param self the source sequence
-     * @param lower the 1-based (in OCL fashion) inclusive lower bound
-     * @param upper the 1-based (in OCL fashion) inclusive upper bound
-     * @return the source collection with the object inserted at the index
-     * 
-     * @throws IndexOutOfBoundsException if an index is out of bounds
-     * @throws IllegalArgumentException if the lower bound is greater than the upper
-     */
-    public static <E> Collection<E> subSequence(Collection<E> self, int lower,
-            int upper) {
-        lower = lower - 1;
-        upper = upper - 1;
-        
-        if (lower < 0) {
-			throw new IndexOutOfBoundsException("lower: " + (lower + 1)); //$NON-NLS-1$
-        } else if (upper >= self.size()) {
-			throw new IndexOutOfBoundsException(
-				"upper: " + (upper + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ self.size());
-        } else if (upper < lower) {
-			throw new IllegalArgumentException(
-				"lower: " + (lower + 1) + ", upper: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ (upper + 1));
-        }
-        
-        Collection<E> result = createNewSequence();
-        int curr = 0;
-        for (Iterator<E> it = self.iterator(); it.hasNext();) {
-            E object = it.next();
-            if (curr >= lower && curr <= upper) {
-                result.add(object);
-            }
-            curr++;
-        }
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::at(index : Integer) : T</tt></li>
-     * <li><tt>Sequence::at(index : Integer) : T</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param index the 1-based (in OCL fashion) index
-     * @return the object at the specified index of the source collection
-     * 
-     * @throws IndexOutOfBoundsException if the index is out of bounds
-     */
-    public static <E> E at(Collection<E> self, int index) {
-        index = index - 1;
-        
-        if (index < 0 || index >= self.size()) {
-			throw new IndexOutOfBoundsException(
-				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ self.size());
-		}
-        
-        int curr = 0;
-        for (Iterator<E> it = self.iterator(); it.hasNext();) {
-            E object = it.next();
-            if (curr++ == index) {
-                return object;
-            }
-        }
-        return null; // undefined
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::first() : T</tt></li>
-     * <li><tt>Sequence::first() : T</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @return the first object of the source collection
-     */
-    public static <E> E first(Collection<E> self) {
-        if (self.isEmpty()) {
-            return null; // undefined
-        }
-        return self.iterator().next();
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::lset() : T</tt></li>
-     * <li><tt>Sequence::lset() : T</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @return the last object in the source collection
-     */
-    public static <E> E last(Collection<E> self) {
-        if (self.isEmpty()) {
-            return null; // undefined
-        }
-        E result = null;
-        for (E next : self) {
-            result = next;
-        }
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::indexOf(object : T) : Integer</tt></li>
-     * <li><tt>Sequence::indexOf(object : T) : Integer</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return the index of the object in the source collection
-     */
-    public static <E> Integer indexOf(Collection<? extends E> self, E object) {
-        int index = 1;
-        
-        for (E next : self) {
-            if (object.equals(next)) {
-                return index;
-            }
-            index++;
-        }
-        
-        return null; // undefined
-    }
-
-    /**
-     * Creates a new OCL <tt>Set</tt>.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> Set<E> createNewSet() {
-        return (Set<E>) createNewCollection(CollectionKind.SET);
-    }
-
-    /**
-     * Creates a new OCL <tt>Set</tt> with initial contents supplied.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> Set<E> createNewSet(Collection<? extends E> c) {
-        return (Set<E>) createNewCollection(CollectionKind.SET, c);
-    }
-
-    /**
-     * Creates a new OCL <tt>Bag</tt>.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> Bag<E> createNewBag() {
-        return (Bag<E>) createNewCollection(CollectionKind.BAG);
-    }
-
-    /**
-     * Creates a new OCL <tt>Bag</tt> with initial contents supplied.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> Bag<E> createNewBag(Collection<? extends E> c) {
-        return (Bag<E>) createNewCollection(CollectionKind.BAG, c);
-    }
-
-    /**
-     * Creates a new OCL <tt>OrderedSet</tt>.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> LinkedHashSet<E> createNewOrderedSet() {
-        return (LinkedHashSet<E>) createNewCollection(
-        		CollectionKind.ORDERED_SET);
-    }
-
-    /**
-     * Creates a new OCL <tt>OrderedSet</tt> with initial contents supplied.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> LinkedHashSet<E> createNewOrderedSet(Collection<? extends E> c) {
-        return (LinkedHashSet<E>) createNewCollection(
-        		CollectionKind.ORDERED_SET, c);
-    }
-
-    /**
-     * Creates a new OCL <tt>Sequence</tt>.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> List<E> createNewSequence() {
-        return (List<E>) createNewCollection(CollectionKind.SEQUENCE);
-    }
-
-    /**
-     * Creates a new OCL <tt>Sequence</tt> with initial contents supplied.
-     */
-    @SuppressWarnings("unchecked")
-    public static <E> List<E> createNewSequence(Collection<? extends E> c) {
-        return (List<E>) createNewCollection(CollectionKind.SEQUENCE, c);
-    }
-    
-    /**
-     * Creates a new, empty OCL collection of the same kind as the specified
-     * prototype.
-     * 
-     * @param c a collection
-     * @return a new, empty collection of the same kind as <code>c</code>
-     */
-    public static <E> Collection<E> createNewCollectionOfSameKind(Collection<?> c) {
-    	Collection<E> result;
-    	
-    	if (c instanceof Bag<?>) {
-    		result = createNewBag();
-    	} else if (c instanceof LinkedHashSet<?>) {
-    		result = createNewOrderedSet();
-    	} else if (c instanceof Set<?>) {
-    		result = createNewSet();
-    	} else {
-    		result = createNewSequence();
-    	}
-    	
-    	return result;
-    }
-    
-    /**
-     * Creates a new OCL collection of the same kind and contents as the
-     * specified prototype.
-     * 
-     * @param c a collection
-     * @return a copy of <code>c</code>
-     */
-    public static <E> Collection<E> createNewCollection(Collection<? extends E> c) {
-    	Collection<E> result;
-    	
-    	if (c instanceof Bag<?>) {
-    		result = createNewBag(c);
-    	} else if (c instanceof LinkedHashSet<?>) {
-    		result = createNewOrderedSet(c);
-    	} else if (c instanceof Set<?>) {
-    		result = createNewSet(c);
-    	} else {
-    		result = createNewSequence(c);
-    	}
-    	
-    	return result;
+        return new SetValue();
     }
     
 	/**
@@ -1061,16 +285,16 @@ public class CollectionUtil {
 	 * @param kind the OCL collection kind
 	 * @return the new collection
 	 */
-	public static <E> Collection<E> createNewCollection(CollectionKind kind) {
+	public static CollectionValue createNewCollection(CollectionKind kind) {
 		switch (kind) {
 			case SET:
-				return new HashSet<E>();
+				return new SetValue();
 			case SEQUENCE:
-				return new ArrayList<E>();
+				return new SequenceValue();
 			case ORDERED_SET:
-				return new LinkedHashSet<E>();
+				return new OrderedSetValue();
 			case BAG:
-				return new BagImpl<E>();
+				return new BagValue();
 			default: {
 				String message = OCLMessages.bind(
 						OCLMessages.OCLCollectionKindNotImpl_ERROR_,
@@ -1094,17 +318,17 @@ public class CollectionUtil {
      * @return the new collection of the specified <code>kind</code>, containing
      *     the same elements as <code>c</code>
      */
-	public static <E> Collection<E> createNewCollection(
-			CollectionKind kind, Collection<E> c) {
+	public static <E extends Value> CollectionValue createNewCollection(
+			CollectionKind kind, CollectionValue c) {
 		switch (kind) {
 			case SET:
-				return new HashSet<E>(c);
+				return new SetValue(c);
 			case SEQUENCE:
-				return new ArrayList<E>(c);
+				return new SequenceValue(c);
 			case BAG:
-				return new BagImpl<E>(c);
+				return new BagValue(c);
 			case ORDERED_SET:
-				return new LinkedHashSet<E>(c);
+				return new OrderedSetValue(c);
 			default: {
 				String message = OCLMessages.bind(
 						OCLMessages.OCLCollectionKindNotImpl_ERROR_,
@@ -1126,16 +350,16 @@ public class CollectionUtil {
 	 * 
 	 * @return its kind (likewise, not <code>null</code>)
 	 */
-	private static CollectionKind kindOf(Collection<?> c) {
+	private static CollectionKind kindOf(CollectionValue c) {
 	    CollectionKind result;
 	    
         if (c instanceof List<?>){
             result = CollectionKind.SEQUENCE;
-        } else if (c instanceof LinkedHashSet<?>) {
+        } else if (c instanceof OrderedSetValue) {
             result = CollectionKind.ORDERED_SET;
-        } else if (c instanceof Set<?>) {
+        } else if (c instanceof SetValue) {
             result = CollectionKind.SET;
-        } else if (c instanceof Bag<?>) {
+        } else if (c instanceof BagValue) {
             result = CollectionKind.BAG;
         } else {
             result = CollectionKind.COLLECTION;
@@ -1154,7 +378,7 @@ public class CollectionUtil {
 	 * 
 	 * @since 1.2
 	 */
-	public static String toString(Collection<?> c) {
+	public static String toString(CollectionValue c) {
 	    StringBuilder result = new StringBuilder();
 	    
         result.append(kindOf(c).getName());
@@ -1170,9 +394,9 @@ public class CollectionUtil {
                 }
                 
                 Object next = iter.next();
-                if (next instanceof Collection<?>) {
+                if (next instanceof CollectionValue) {
                     // nested collection
-                    result.append(toString((Collection<?>) next));
+                    result.append(toString((CollectionValue) next));
                 } else if (next instanceof String) {
                     // string literal
                     result.append('\'').append(next).append('\'');

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.1.2.3 2010/12/23 19:25:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -29,11 +29,13 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.values.Tuple;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.types.TupleType;
-import org.eclipse.ocl.util.Adaptable;
-import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.util.Tuple;
+//import org.eclipse.ocl.util.Adaptable;
+//import org.eclipse.ocl.util.OCLUtil;
+//import org.eclipse.ocl.util.Tuple;
 
 /**
  * The evaluation environment keeps track of the current values of variables
@@ -63,7 +65,7 @@ public interface EvaluationEnvironment {
      *            the name whose value is to be returned
      * @return the value associated with the name
      */
-    Object getValueOf(String name);
+	Value getValueOf(String name);
 
     /**
      * Replaces the current value of the supplied name with the supplied value.
@@ -73,7 +75,7 @@ public interface EvaluationEnvironment {
      * @param value
      *            the new value
      */
-    void replace(String name, Object value);
+    void replace(String name, Value value);
 
     /**
      * Adds the supplied name and value binding to the environment.  The name
@@ -86,7 +88,7 @@ public interface EvaluationEnvironment {
      *            
      * @see #replace(String, Object)
      */
-    void add(String name, Object value);
+    void add(String name, Value value);
     void addVariable(VariableDeclaration declaration, VariableDeclaration definition);
 
     /**
@@ -97,7 +99,7 @@ public interface EvaluationEnvironment {
      *            the name to remove
      * @return the value associated with the removed name
      */
-    Object remove(String name);
+    Value remove(String name);
 
     /**
      * Clears the environment of variables.
@@ -153,7 +155,7 @@ public interface EvaluationEnvironment {
      * @throws IllegalArgumentException if the property is not supported by the
      *     element or by this environment
      */
-    Object navigateProperty(Property property, List<?> qualifiers, Object source)
+    Value navigateProperty(Property property, List<?> qualifiers, Object source)
     	throws IllegalArgumentException;
     
     /**
@@ -171,7 +173,7 @@ public interface EvaluationEnvironment {
      *     associated with the source element, or is not supported by this
      *     environment
      */
-    Object navigateAssociationClass(Type associationClass, Property navigationSource, Object source)
+    Value navigateAssociationClass(Type associationClass, Property navigationSource, Object source)
     	throws IllegalArgumentException;
 	
 	/**
@@ -233,7 +235,7 @@ public interface EvaluationEnvironment {
      * @param values a mapping of the tuple parts
      * @return the new tuple instance
      */
-    Tuple<Operation, Property> createTuple(Type type, Map<Property, Object> values);
+    Tuple createTuple(Type type, Map<Property, Object> values);
 
 	/**
 	 * Obtains the Java-language value of the specified enumeration literal.
@@ -242,7 +244,7 @@ public interface EvaluationEnvironment {
 	 * @param enumerationLiteral the enumeration literal model element
 	 * @return the corresponding run-time instance
 	 */
-	Object getValue(EnumerationLiteral enumerationLiteral);
+	Value getValue(EnumerationLiteral enumerationLiteral);
 
 	VariableDeclaration getVariable(VariableDeclaration variableDeclaration);
 }

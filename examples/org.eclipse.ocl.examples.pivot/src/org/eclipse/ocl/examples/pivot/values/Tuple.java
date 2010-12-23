@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Tuple.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: Tuple.java,v 1.1.2.2 2010/12/23 19:25:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values;
@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public interface Tuple {
+public interface Tuple extends Value {
     /**
      * Obtains the tuple's type.
      * 

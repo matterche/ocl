@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TupleImpl.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: TupleImpl.java,v 1.1.2.2 2010/12/23 19:25:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -29,11 +28,11 @@ import org.eclipse.ocl.examples.pivot.TupleType;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public class TupleImpl implements Tuple
+public class TupleImpl extends AbstractValue implements Tuple
 {
     private final TupleType type;
 
-    private final Map<String, Object> parts = new java.util.HashMap<String, Object>();
+    private final Map<String, Value> parts = new java.util.HashMap<String, Value>();
 
     /**
      * Initializes me with a map of part values.
@@ -41,10 +40,10 @@ public class TupleImpl implements Tuple
      * @param type my type
      * @param values my parts
      */
-    public TupleImpl(TupleType type, Map<Property, Object> values) {
+    public TupleImpl(TupleType type, Map<Property, Value> values) {
         this.type = type;
 
-        for (Map.Entry<Property, Object> entry : values.entrySet()) {
+        for (Map.Entry<Property, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
     }
@@ -57,7 +56,7 @@ public class TupleImpl implements Tuple
      * @param firstValue my first value
      * @param secondValue my second value
      */
-    public TupleImpl(TupleType type, Object firstValue, Object secondValue) {
+    public TupleImpl(TupleType type, Value firstValue, Value secondValue) {
         this.type = type;						// FIXME use optimised ProductTupleImpl
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
@@ -69,12 +68,12 @@ public class TupleImpl implements Tuple
     }
 
     // implements the inherited specification
-    public Object getValue(String partName) {
+    public Value getValue(String partName) {
         return parts.get(partName);
     }
 
     // implements the inherited specification
-    public Object getValue(Property part) {
+    public Value getValue(Property part) {
         return getValue(part.getName());
     }
 
@@ -100,6 +99,16 @@ public class TupleImpl implements Tuple
     }
     
     @Override
+	public boolean isInvalid() {
+    	for (Value part : parts.values()) {
+    		if (part.isInvalid()) {
+    			return true;
+    		}
+    	}
+		return false;
+	}
+
+	@Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("Tuple{"); //$NON-NLS-1$
@@ -125,8 +134,8 @@ public class TupleImpl implements Tuple
     private String toString(Object o) {
         if (o instanceof String) {
             return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
-        } else if (o instanceof Collection<?>) {
-            return CollectionUtil.toString((Collection<?>) o);
+        } else if (o instanceof CollectionValue) {
+            return CollectionUtil.toString((CollectionValue) o);
         } else if (o == null) {
             return "null"; //$NON-NLS-1$
         } else {
