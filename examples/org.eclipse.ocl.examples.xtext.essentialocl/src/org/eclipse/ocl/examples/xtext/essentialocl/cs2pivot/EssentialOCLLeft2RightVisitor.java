@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.2 2010/12/19 15:54:34 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.3 2010/12/23 19:25:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -91,9 +91,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
@@ -524,11 +524,17 @@ public class EssentialOCLLeft2RightVisitor
 
 	@Override
 	public MonikeredElement visitCollectionLiteralExpCS(CollectionLiteralExpCS csCollectionLiteralExp) {
-		CollectionLiteralExp expression = context.refreshExpression(CollectionLiteralExp.class, PivotPackage.Literals.COLLECTION_LITERAL_EXP, csCollectionLiteralExp);
 		Type commonType = null;
+//		InvalidLiteralExp invalidValue = null;
 		for (CollectionLiteralPartCS csPart : csCollectionLiteralExp.getOwnedParts()) {
 			CollectionLiteralPart pivotPart = context.refreshExpTree(CollectionLiteralPart.class, csPart);
 			Type type = pivotPart.getType();
+//			if (type instanceof InvalidType) {	// FIXME Use propagated reason via InvalidType
+//				if (invalidValue == null) {
+//					invalidValue = pivotManager.createInvalidValue(csPart, null, "Invalid Collection content", null);
+//				}
+//			}
+//			else
 			if (commonType == null) {
 				commonType = type;
 			}
@@ -536,6 +542,11 @@ public class EssentialOCLLeft2RightVisitor
 				commonType = pivotManager.getCommonSuperType(commonType, type);
 			}
 		}
+//		if (invalidValue != null) {
+//			context.installPivotElement(csCollectionLiteralExp, invalidValue);
+//			return invalidValue;
+//		}
+		CollectionLiteralExp expression = context.refreshExpression(CollectionLiteralExp.class, PivotPackage.Literals.COLLECTION_LITERAL_EXP, csCollectionLiteralExp);
 		context.refreshPivotList(CollectionLiteralPart.class, expression.getParts(), csCollectionLiteralExp.getOwnedParts());
 		CollectionTypeCS ownedCollectionType = csCollectionLiteralExp.getOwnedType();
 		TypedRefCS ownedElementType = ownedCollectionType.getOwnedType();

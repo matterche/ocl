@@ -12,11 +12,17 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.5 2010/12/19 15:54:34 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.6 2010/12/23 19:25:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
+import java.util.Collections;
+
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -96,6 +102,17 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csCollectionType) {
+		PivotManager pivotManager = context.getPivotManager();
+		TypedRefCS csElementType = csCollectionType.getOwnedType();
+		Type type;
+		if (csElementType != null) {
+			Type elementType = PivotUtil.getPivot(Type.class, csElementType);
+			type = pivotManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
+		}
+		else {
+			type = pivotManager.getLibraryType(csCollectionType.getName());
+		}
+		context.reusePivotElement(csCollectionType, type);
 		return null;
 	}
 
