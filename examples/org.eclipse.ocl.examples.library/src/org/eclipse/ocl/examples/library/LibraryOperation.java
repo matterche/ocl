@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: LibraryOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: LibraryOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * @since 3.1
@@ -34,5 +35,5 @@ public interface LibraryOperation extends LibraryFeature
 	 * @param operationCall the operation and additional arguments
 	 * @return the evaluated value
 	 */
-	Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall);
+	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall);
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateExists.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateExists.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -20,8 +20,10 @@ package org.eclipse.ocl.examples.library.evaluation;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  *
@@ -37,25 +39,12 @@ public final class IterationTemplateExists extends IterationTemplate {
 	}
 	
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName, Object body) {
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
-		
-		// check for undefined result:
-		// the current result value cannot be true since the short-circuit
-		// "isDone" mechanism below would have caused the evaluation to stop.
-		// If the body result is undefined then the entire expression's value
-		// is invalid
-		if (isUndefined(body)) {
-			setDone(true);
-			return getInvalid();
-		}
-		
-		Boolean currVal = (Boolean)env.getValueOf(resultName);
-		Boolean bodyVal = (Boolean)body;
-		
-		boolean resultVal = currVal.booleanValue() || bodyVal.booleanValue();
+		Value currVal = env.getValueOf(resultName);		
+		boolean resultVal = currVal.isTrue() || bodyVal.isTrue();
 		if (resultVal)
 			setDone(true);
-		return resultVal ? Boolean.TRUE : Boolean.FALSE;
+		return BooleanValue.valueOf(resultVal);
 	}
 }

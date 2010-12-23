@@ -13,19 +13,20 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateClosure.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SequenceValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * Instantiation of the iteration template for the <code>closure</code>
@@ -51,35 +52,28 @@ public class IterationTemplateClosure extends IterationTemplate
 	 * Recursively evaluates the iterator body expression.
 	 */
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName, Object bodyVal) {
-		// If the body result is invalid then the entire expression's value
-		// is invalid, because OCL does not permit invalid in a collection
-		if (isInvalid(bodyVal)) {
-			setDone(true);
-			return getInvalid();
-		}
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();		
-		@SuppressWarnings("unchecked")
-		Collection<Object> results = (Collection<Object>) env.getValueOf(resultName);
+		CollectionValue.Accumulator resultVal = (CollectionValue.Accumulator) env.getValueOf(resultName);
 		if (depth > 0) {
 			// If there is the parent is the iterator
 			String iterName = iterators.get(0).getName();
-			Object currObj = env.getValueOf(iterName);
-			if (!results.add(currObj)) {
-				return results;
+			Value currObj = env.getValueOf(iterName);
+			if (!resultVal.add(currObj)) {
+				return resultVal;
 			}
 		}
 		if (bodyVal != null) {
 			try {
 				depth++;
-				Collection<?> bodyColl;
-				if (bodyVal instanceof Collection<?>) {
-					bodyColl = (Collection<?>) bodyVal;
+				CollectionValue bodyColl;
+				if (bodyVal instanceof CollectionValue) {
+					bodyColl = (CollectionValue) bodyVal;
 				}
 				else {
-					bodyColl = Collections.singleton(bodyVal);
+					bodyColl = new SequenceValue(bodyVal);
 				}
-				Object[] iteratorValues = pauseIterators(iterators);
+				Value[] iteratorValues = pauseIterators(iterators);
 				evaluate(bodyColl, iterators, body, resultName);
 				resumeIterators(iterators, iteratorValues);
 			}
@@ -87,7 +81,7 @@ public class IterationTemplateClosure extends IterationTemplate
 				depth--;
 			}
 		}
-		return results;
+		return resultVal;
 	}
 	
 	/**
@@ -100,8 +94,8 @@ public class IterationTemplateClosure extends IterationTemplate
 	 * 
 	 * @return the current values of the <code>iterators</code>
 	 */
-	private Object[] pauseIterators(List<Variable> iterators) {
-		Object[] result = new Object[iterators.size()];
+	private Value[] pauseIterators(List<Variable> iterators) {
+		Value[] result = new Value[iterators.size()];
 		EvaluationEnvironment env = getEvalEnvironment();		
 		for (int i = 0, n = result.length; i < n; i++) {
 			Variable iterDecl = iterators.get(i);			
@@ -117,7 +111,7 @@ public class IterationTemplateClosure extends IterationTemplate
 	 * @param iterators the iterators to resume
 	 * @param values the iterator values to restore
 	 */
-	private void resumeIterators(List<Variable> iterators, Object[] values) {
+	private void resumeIterators(List<Variable> iterators, Value[] values) {
 		EvaluationEnvironment env = getEvalEnvironment();		
 		for (int i = 0, n = values.length; i < n; i++) {
 			Variable iterDecl = iterators.get(i);			

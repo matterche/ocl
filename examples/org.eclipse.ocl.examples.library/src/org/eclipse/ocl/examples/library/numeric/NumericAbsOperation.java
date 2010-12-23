@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NumericAbsOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericAbsOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import org.eclipse.ocl.examples.pivot.values.NumericValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -30,12 +30,7 @@ public class NumericAbsOperation extends AbstractNumericUnaryOperation
 	public static final NumericAbsOperation INSTANCE = new NumericAbsOperation();
 
 	@Override
-	protected Object evaluateInteger(BigInteger left) {
-		return left.abs();
-	}
-	
-	@Override
-	protected Object evaluateReal(BigDecimal left) {
+	protected Value evaluateNumeric(NumericValue left) {
 		return left.abs();
 	}
 }

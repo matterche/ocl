@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NumericEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * NumericEqualOperation realises the =() library operation.
@@ -29,32 +31,32 @@ public class NumericEqualOperation extends AbstractNumericBinaryOperation
 	public static final NumericEqualOperation INSTANCE = new NumericEqualOperation();
 
 	@Override
-	protected Boolean evaluateInteger(BigInteger left, BigInteger right) {
-		return left.compareTo(right) == 0;
+	protected BooleanValue evaluateInteger(IntegerValue left, IntegerValue right) {
+		return BooleanValue.valueOf(left.compareTo(right) == 0);
 	}
 
 	@Override
-	protected Boolean evaluateInvalid(Object left, Object right) {
-		return isInvalid(left) == isInvalid(right);
+	protected BooleanValue evaluateInvalid(Value left, Value right) {
+		return BooleanValue.valueOf(left.isInvalid() == right.isInvalid());
 	}
 
 	@Override
-	protected Boolean evaluateNonNumeric(Object left, Object right) {
-		return Boolean.FALSE;
+	protected BooleanValue evaluateNonNumeric(Value left, Value right) {
+		return BooleanValue.FALSE;
 	}
 
 	@Override
-	protected Boolean evaluateNull(Object left, Object right) {
-		return isNull(left) == isNull(right);
+	protected BooleanValue evaluateNull(Value left, Value right) {
+		return BooleanValue.valueOf(left.isNull() == right.isNull());
 	}
 
 	@Override
-	protected Boolean evaluateReal(BigDecimal left, BigDecimal right) {
-		return left.compareTo(right) == 0;
+	protected BooleanValue evaluateReal(RealValue left, RealValue right) {
+		return BooleanValue.valueOf(left.compareTo(right) == 0);
 	}
 
 	@Override
-	protected Boolean evaluateUnlimited(Object left, Object right) {
-		return isUnlimited(left) && isUnlimited(right);
+	protected BooleanValue evaluateUnlimited(Value left, Value right) {
+		return BooleanValue.valueOf(left.isUnlimited() && right.isUnlimited());
 	}
 }

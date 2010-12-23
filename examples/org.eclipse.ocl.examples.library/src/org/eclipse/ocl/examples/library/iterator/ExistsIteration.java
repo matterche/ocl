@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: ExistsIteration.java,v 1.1.2.3 2010/12/06 17:13:33 ewillink Exp $
+ * $Id: ExistsIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
@@ -26,6 +25,9 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * ExistsIteration realises the Collection::exists() library iteration.
@@ -36,15 +38,15 @@ public class ExistsIteration extends AbstractIteration
 {
 	public static final ExistsIteration INSTANCE = new ExistsIteration();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp iteratorExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
 		List<Variable> iterators = getIterators(iteratorExp);
 		OclExpression body = getBody(iteratorExp);		
-		Collection<?> coll = (Collection<?>) sourceVal;
+		CollectionValue coll = (CollectionValue) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateExists.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, Boolean.FALSE);		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, BooleanValue.FALSE);		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);

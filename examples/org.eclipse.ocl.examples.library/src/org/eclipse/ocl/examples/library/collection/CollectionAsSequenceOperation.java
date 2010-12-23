@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionAsSequenceOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionAsSequenceOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionAsSequenceOperation realises the Collection::asSequence() library operation.
@@ -30,7 +29,7 @@ public class CollectionAsSequenceOperation extends AbstractCollectionUnaryOperat
 	public static final CollectionAsSequenceOperation INSTANCE = new CollectionAsSequenceOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.asSequence(sourceVal);
+	protected Value evaluateCollection(CollectionValue sourceVal) {
+		return sourceVal.asSequenceValue();
 	}
 }

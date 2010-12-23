@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionEqualOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionEqualOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionEqualOperation realises the Collection::=() library operation.
@@ -30,22 +30,22 @@ public class CollectionEqualOperation extends AbstractCollectionPairedOperation
 	public static final CollectionEqualOperation INSTANCE = new CollectionEqualOperation();
 
 	@Override
-	protected Boolean evaluateCollection(Collection<?> sourceVal, Collection<?> argVal) {
-		return CollectionUtil.equals(sourceVal, argVal);
+	protected BooleanValue evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
+		return BooleanValue.valueOf(sourceVal.equals(argVal));
 	}
 	
 	@Override
-	protected Boolean evaluateInvalid(Object sourceVal, Object argVal) {
-		return isInvalid(sourceVal) && isInvalid(argVal);
+	protected BooleanValue evaluateInvalid(Value sourceVal, Value argVal) {
+		return BooleanValue.valueOf(sourceVal.isInvalid() && argVal.isInvalid());
 	}
 	
 	@Override
-	protected Boolean evaluateNonCollection(Object sourceVal, Object argVal) {
-		return Boolean.FALSE;
+	protected BooleanValue evaluateNonCollection(Value sourceVal, Value argVal) {
+		return BooleanValue.FALSE;
 	}
 
 	@Override
-	protected Boolean evaluateNull(Object sourceVal, Object argVal) {
-		return isNull(sourceVal) && isNull(argVal);
+	protected BooleanValue evaluateNull(Value sourceVal, Value argVal) {
+		return BooleanValue.valueOf(sourceVal.isNull() && argVal.isNull());
 	}
 }

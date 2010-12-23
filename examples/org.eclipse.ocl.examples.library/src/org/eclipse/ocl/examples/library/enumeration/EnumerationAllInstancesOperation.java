@@ -12,11 +12,9 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
-
-import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.Enumeration;
@@ -24,7 +22,8 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * EnumerationAllInstancesOperation realises the Enumeration::allInstances() library operation.
@@ -35,16 +34,14 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 {
 	public static final EnumerationAllInstancesOperation INSTANCE = new EnumerationAllInstancesOperation();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfType(sourceVal);
-		Set<Object> result = CollectionUtil.createNewSet();
 		// the instances are the literals
 //		for (EnumerationLiteral oclLiteral : ((Enumeration)sourceType).getOwnedLiterals()) {
 //			EObject metaModelElement = oclLiteral.getMetaModelElement();
 //			result.add(metaModelElement != null ? metaModelElement : oclLiteral);
 //		}
-		result.add(((Enumeration)sourceType).getOwnedLiterals());
-		return result;
+		return SetValue.valueOfElements(((Enumeration)sourceType).getOwnedLiterals());
 	}
 }

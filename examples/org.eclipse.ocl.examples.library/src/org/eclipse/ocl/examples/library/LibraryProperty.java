@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: LibraryProperty.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: LibraryProperty.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * @since 3.1
@@ -26,5 +27,5 @@ public interface LibraryProperty extends LibraryFeature
 {
 	/**
 	 */
-	Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, PropertyCallExp propertyCall);
+	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, PropertyCallExp propertyCall);
 }

@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractCollectionPairedOperation provides the standard null to Bag{}
@@ -28,34 +28,34 @@ import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
  */
 public abstract class AbstractCollectionPairedOperation extends AbstractBinaryOperation
 {
-	public Object evaluate(Object left, Object right) {
-		if (isInvalid(left) || isInvalid(right)) {
+	public Value evaluate(Value left, Value right) {
+		if (left.isInvalid() || right.isInvalid()) {
 			return evaluateInvalid(left, right);
 		}		
-		if (isNull(left) || isNull(right)) {
+		if (left.isNull() || right.isNull()) {
 			return evaluateNull(left, right);
 		}		
 //		Collection<?> sourceColl = convertToCollection(sourceVal);
 //		Collection<?> argColl = convertToCollection(argVal);		// FIXME Pass target collection kind
-		if ((left instanceof Collection<?>) && (right instanceof Collection<?>)) {
-			return evaluateCollection((Collection<?>)left, (Collection<?>)right);
+		if ((left instanceof CollectionValue) && (right instanceof CollectionValue)) {
+			return evaluateCollection((CollectionValue)left, (CollectionValue)right);
 		}
 		else {
 			return evaluateNonCollection(left, right);
 		}
 	}
 	
-	protected abstract Object evaluateCollection(Collection<?> sourceVal, Collection<?> argVal);
+	protected abstract Value evaluateCollection(CollectionValue sourceVal, CollectionValue argVal);
 	
-	protected Object evaluateInvalid(Object sourceVal, Object argVal) {
+	protected Value evaluateInvalid(Value sourceVal, Value argVal) {
 		return null;
 	}
 	
-	protected Object evaluateNonCollection(Object sourceVal, Object argVal) {
+	protected Value evaluateNonCollection(Value sourceVal, Value argVal) {
 		return null;
 	}
 	
-	protected Object evaluateNull(Object sourceVal, Object argVal) {
+	protected Value evaluateNull(Value sourceVal, Value argVal) {
 		return null;
 	}
 }

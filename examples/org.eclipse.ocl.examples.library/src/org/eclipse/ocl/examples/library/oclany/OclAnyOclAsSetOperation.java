@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsSetOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OclAnyOclAsSetOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import java.util.Set;
-
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclAnyOclAsSetOperation realises the OclAny::oclAsSet() library operation.
@@ -30,15 +29,13 @@ public class OclAnyOclAsSetOperation extends AbstractUnaryOperation
 {
 	public static final OclAnyOclAsSetOperation INSTANCE = new OclAnyOclAsSetOperation();
 
-	public Object evaluate(Object argument) {
-		if (isInvalid(argument)) {
+	public SetValue evaluate(Value argument) {
+		if (argument.isInvalid()) {
 			return null;
 		}
-		if (isNull(argument)) {
+		if (argument.isNull()) {
 			return null;
 		}
-		Set<Object> newSet = CollectionUtil.createNewSet();
-		newSet.add(argument);
-		return newSet;
+		return new SetValue(argument);
 	}
 }

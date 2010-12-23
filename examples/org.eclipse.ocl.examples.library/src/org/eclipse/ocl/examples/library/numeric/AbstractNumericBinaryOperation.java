@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractNumericBinaryOperation dispatches a binary library operation to
@@ -29,33 +29,25 @@ import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
  */
 public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOperation
 {
-	public Object evaluate(Object left, Object right) {
-		if (isInvalid(left) || isInvalid(right)) {
+	public Value evaluate(Value left, Value right) {
+		if (left.isInvalid() || right.isInvalid()) {
 			return evaluateInvalid(left, right);
 		}
-		else if (isNull(left) || isNull(right)) {
+		else if (left.isNull() || right.isNull()) {
 			return evaluateNull(left, right);
 		}
-		else if (isUnlimited(left) || isUnlimited(right)) {
+		else if (left.isUnlimited() || right.isUnlimited()) {
 			return evaluateUnlimited(left, right);
 		}
-		else if (left instanceof BigInteger) {
-			if (right instanceof BigInteger) {
-				return evaluateInteger((BigInteger)left, (BigInteger)right);
-			}
-			else if (right instanceof BigDecimal) {
-				left = new BigDecimal((BigInteger)left);
-				return evaluateReal((BigDecimal)left, (BigDecimal)right);
-			}
+		IntegerValue leftInteger = left.asIntegerValue();
+		IntegerValue rightInteger = right.asIntegerValue();
+		if ((leftInteger != null) && (rightInteger != null)) {
+			return evaluateInteger(leftInteger, rightInteger);
 		}
-		else if (left instanceof BigDecimal) {
-			if (right instanceof BigDecimal) {
-				return evaluateReal((BigDecimal)left, (BigDecimal)right);
-			}
-			else if (right instanceof BigInteger) {
-				right = new BigDecimal((BigInteger)right);
-				return evaluateReal((BigDecimal)left, (BigDecimal)right);
-			}
+		RealValue leftReal = left.toRealValue();
+		RealValue rightReal = right.toRealValue();
+		if ((leftReal != null) && (rightReal != null)) {
+			return evaluateReal(leftReal, rightReal);
 		}
 		return evaluateNonNumeric(left, right);
 	}
@@ -66,7 +58,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateInteger(BigInteger left, BigInteger right) {
+	protected Value evaluateInteger(IntegerValue left, IntegerValue right) {
 		return evaluate(left, right);
 	}
 	
@@ -76,7 +68,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateInvalid(Object left, Object right) {
+	protected Value evaluateInvalid(Value left, Value right) {
 		return null;
 	}
 	
@@ -87,7 +79,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateNonNumeric(Object left, Object right) {
+	protected Value evaluateNonNumeric(Value left, Value right) {
 		return null;
 	}
 	
@@ -98,7 +90,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateNull(Object left, Object right) {
+	protected Value evaluateNull(Value left, Value right) {
 		return null;
 	}
 
@@ -108,7 +100,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
+	protected Value evaluateReal(RealValue left, RealValue right) {
 		return evaluate(left, right);
 	}
 	
@@ -119,7 +111,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateUnlimited(Object left, Object right) {
+	protected Value evaluateUnlimited(Value left, Value right) {
 		return null;
 	}
 	

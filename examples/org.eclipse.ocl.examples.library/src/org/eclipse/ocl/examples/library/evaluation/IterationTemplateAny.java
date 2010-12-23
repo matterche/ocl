@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateAny.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateAny.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -21,8 +21,9 @@ package org.eclipse.ocl.examples.library.evaluation;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  *
@@ -38,22 +39,14 @@ public class IterationTemplateAny extends IterationTemplate {
 	}
 	
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName, Object bodyVal) {
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		// should be exactly one iterator
 		String iterName = iterators.get(0).getName();
-		Object currObj = env.getValueOf(iterName);
-		Object resultVal = null;
+		Value currObj = env.getValueOf(iterName);
+		Value resultVal = null;
 		
-		// If the body result is undefined then the entire expression's value
-		// is invalid
-		if (isUndefined(bodyVal)) {
-			setDone(true);
-			return getInvalid();
-		}
-		
-		boolean bodyCond = ((Boolean)bodyVal).booleanValue();
-		if (bodyCond) {
+		if (bodyVal.isTrue()) {
 			resultVal = currObj;
 			setDone(true);
 		}

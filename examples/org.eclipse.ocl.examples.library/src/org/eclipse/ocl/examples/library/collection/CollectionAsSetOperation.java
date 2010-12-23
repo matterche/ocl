@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionAsSetOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionAsSetOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionAsSetOperation realises the Collection::asSet() library operation.
@@ -30,7 +29,7 @@ public class CollectionAsSetOperation extends AbstractCollectionUnaryOperation
 	public static final CollectionAsSetOperation INSTANCE = new CollectionAsSetOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.asSet(sourceVal);
+	protected Value evaluateCollection(CollectionValue sourceVal) {
+		return sourceVal.asSetValue();
 	}
 }

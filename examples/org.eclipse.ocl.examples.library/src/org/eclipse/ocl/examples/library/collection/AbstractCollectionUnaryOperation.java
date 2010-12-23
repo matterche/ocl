@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-import java.util.Set;
-
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractCollectionUnaryOperation provides the standard null to Bag{}
@@ -30,22 +29,21 @@ import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
  */
 public abstract class AbstractCollectionUnaryOperation extends AbstractUnaryOperation
 {
-	public Object evaluate(Object argument) {
-		if (isInvalid(argument)) {
+	public Value evaluate(Value argument) {
+		CollectionValue collectionValue = argument.asCollectionValue();
+		if (collectionValue != null) {
+			return evaluateCollection(collectionValue);
+		}
+		else if (argument.isInvalid()) {
 			return null;
 		}
-		else if (isNull(argument)) {
-			return evaluateCollection(CollectionUtil.createNewBag());
-		}
-		else if (argument instanceof Collection<?>) {
-			return evaluateCollection((Collection<?>)argument);
+		else if (argument.isNull()) {
+			return evaluateCollection(new SetValue());
 		}
 		else {
-			Set<Object> sourceSet = CollectionUtil.createNewSet();
-			sourceSet.add(argument);
-			return evaluateCollection(sourceSet);
+			return evaluateCollection(new SetValue(argument));
 		}
 	}
 	
-	protected abstract Object evaluateCollection(Collection<?> sourceVal);
+	protected abstract Value evaluateCollection(CollectionValue sourceVal);
 }

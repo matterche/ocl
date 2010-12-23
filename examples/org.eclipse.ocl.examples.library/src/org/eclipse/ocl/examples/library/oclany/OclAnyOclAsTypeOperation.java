@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.3 2010/12/11 10:44:20 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -21,6 +21,9 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.TypeValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclAnyOclAsTypeOperation realises the OclAny::oclAsType() library operation.
@@ -31,17 +34,18 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 {
 	public static final OclAnyOclAsTypeOperation INSTANCE = new OclAnyOclAsTypeOperation();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
 		if (sourceType == null) {
 			return null;
 		}
-		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0); // FIXME cast
-		if (!(argVal instanceof Type)) {
-			return stdlib.createInvalidValue(argVal, operationCall, "Type required", null);
+		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0); // FIXME cast
+		TypeValue typeVal = argVal.asTypeValue();
+		if (typeVal == null) {
+			return new InvalidValue(argVal, operationCall, "Type required", null);
 		}
-		Type argType = (Type) argVal;
+		Type argType = typeVal.getType();
 		if (stdlib.conformsTo(sourceType, argType)) {
 			return evaluateConforming(evaluationVisitor, sourceVal, argType);
 		}
@@ -50,11 +54,11 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		}
 	}
 
-	protected Object evaluateConforming(EvaluationVisitor evaluationVisitor, Object sourceVal, Type argType) {
+	protected Value evaluateConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) {
 		return sourceVal;
 	}
 
-	protected Object evaluateNonConforming(EvaluationVisitor evaluationVisitor, Object sourceVal, Type argType) {
+	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) {
 		return null;
 	}
 }

@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateSelect.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateSelect.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  *
@@ -38,31 +39,13 @@ public class IterationTemplateSelect extends IterationTemplate {
 	}
 
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName, Object body) {
-		EvaluationEnvironment env = getEvalEnvironment();
-		
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+		EvaluationEnvironment env = getEvalEnvironment();		
 		// should be exactly one iterator
 		String iterName = iterators.get(0).getName();
-		Object currObj = env.getValueOf(iterName);
-		
-		@SuppressWarnings("unchecked")
-		Collection<Object> resultVal = (Collection<Object>) env.getValueOf(resultName);
-		
-		// check for undefined result:
-		// the current result value cannot be true since the short-circuit
-		// "isDone" mechanism below would have caused the evaluation to stop.
-		// If the body result is undefined then the entire expression's value
-		// is invalid
-		if (isUndefined(body)) {
-			setDone(true);
-			return getInvalid();
-		}
-		
-		Boolean bodyVal = (Boolean)body;
-		if (bodyVal == null)
-			return resultVal;
-		boolean bodyCond = bodyVal.booleanValue();
-		if (bodyCond)
+		Value currObj = env.getValueOf(iterName);
+		CollectionValue.Accumulator resultVal = (CollectionValue.Accumulator) env.getValueOf(resultName);
+		if (bodyVal.isTrue())
 			resultVal.add(currObj);
 		return resultVal;
 	}

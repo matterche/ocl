@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractStringBinaryOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: AbstractStringBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractStringBinaryOperation dispatches a binary string library operation to
@@ -26,17 +27,19 @@ import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
  */
 public abstract class AbstractStringBinaryOperation extends AbstractBinaryOperation
 {
-	public Object evaluate(Object left, Object right) {
-		if (isInvalid(left) || isInvalid(right)) {
+	public Value evaluate(Value left, Value right) {
+		if (left.isInvalid() || right.isInvalid()) {
 			return evaluateInvalid(left, right);
 		}
-		else if (isNull(left) || isNull(right)) {
+		else if (left.isNull() || right.isNull()) {
 			return evaluateNull(left, right);
 		}
-		if (!isString(left) || !isString(right)) {
+		String leftString = left.asString();
+		String rightString = right.asString();
+		if ((leftString == null) || (rightString == null)) {
 			return null;
 		}
-		return evaluateString((String)left, (String)right);
+		return evaluateString(leftString, rightString);
 	}
 	
 	/**
@@ -45,7 +48,7 @@ public abstract class AbstractStringBinaryOperation extends AbstractBinaryOperat
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateInvalid(Object left, Object right) {
+	protected Value evaluateInvalid(Value left, Value right) {
 		return null;
 	}
 	
@@ -56,7 +59,7 @@ public abstract class AbstractStringBinaryOperation extends AbstractBinaryOperat
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateNull(Object left, Object right) {
+	protected Value evaluateNull(Value left, Value right) {
 		return null;
 	}
 	
@@ -66,5 +69,5 @@ public abstract class AbstractStringBinaryOperation extends AbstractBinaryOperat
 	 * @param right argument
 	 * @return result
 	 */
-	protected abstract Object evaluateString(String left, String right);
+	protected abstract Value evaluateString(String left, String right);
 }

@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclInvalidEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: OclInvalidEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclinvalid;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclInvalidEqualOperation realises the OclInvalid::=() library operation.
@@ -27,10 +29,10 @@ public class OclInvalidEqualOperation extends AbstractBinaryOperation
 {
 	public static final OclInvalidEqualOperation INSTANCE = new OclInvalidEqualOperation();
 
-	public Boolean evaluate(Object left, Object right) {
-		if (isInvalid(right)) {
-			return true;
+	public BooleanValue evaluate(Value left, Value right) {
+		if (right.isInvalid()) {
+			return BooleanValue.TRUE;
 		}
-		return false;
+		return BooleanValue.FALSE;
 	}
 }

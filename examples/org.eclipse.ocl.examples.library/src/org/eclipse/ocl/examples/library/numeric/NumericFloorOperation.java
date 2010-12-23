@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: NumericFloorOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericFloorOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * FloorOperation realises the floor() library operation.
@@ -31,12 +30,12 @@ public class NumericFloorOperation extends AbstractNumericUnaryOperation
 	public static final NumericFloorOperation INSTANCE = new NumericFloorOperation();
 
 	@Override
-	protected Object evaluateInteger(BigInteger left) {
+	protected Value evaluateInteger(IntegerValue left) {
 		return left;
 	}
 	
 	@Override
-	protected Object evaluateReal(BigDecimal left) {
-		return left.setScale(0, RoundingMode.FLOOR).toBigInteger();
+	protected Value evaluateReal(RealValue left) {
+		return left.floor();
 	}
 }

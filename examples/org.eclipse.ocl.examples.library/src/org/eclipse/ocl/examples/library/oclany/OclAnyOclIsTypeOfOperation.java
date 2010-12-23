@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.3 2010/12/11 10:44:20 ewillink Exp $
+ * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.4 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -21,6 +21,10 @@ import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.TypeValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclAnyOclIsTypeOfOperation realises the OclAny::oclIsTypeOf() library operation.
@@ -31,14 +35,15 @@ public class OclAnyOclIsTypeOfOperation extends AbstractOperation
 {
 	public static final OclAnyOclIsTypeOfOperation INSTANCE = new OclAnyOclIsTypeOfOperation();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
-		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		if (!(argVal instanceof Type)) {
-			return stdlib.createInvalidValue(argVal, operationCall, "Type required", null);
+		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+		TypeValue argTypeValue = argVal.asTypeValue();
+		if (argTypeValue == null) {
+			return new InvalidValue(argVal, operationCall, "Type required", null);
 		}
-		Type argType = (Type) argVal;
-		return stdlib.conformsTo(sourceType, argType) && stdlib.conformsTo(argType, sourceType);
+		Type argType = argTypeValue.getType();
+		return BooleanValue.valueOf(stdlib.conformsTo(sourceType, argType) && stdlib.conformsTo(argType, sourceType));
 	}
 }

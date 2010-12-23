@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractTernaryOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: AbstractTernaryOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractBinaryOperation dispatches a binary library operation to
@@ -27,16 +28,16 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
  */
 public abstract class AbstractTernaryOperation extends AbstractOperation implements LibraryTernaryOperation
 {
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
-		if (isInvalid(sourceVal)) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		if (sourceVal.isInvalid()) {
 			return null;
 		}
-		Object argVal1 = evaluateArgument(evaluationVisitor, operationCall, 0);
-		if (isInvalid(argVal1)) {
+		Value argVal1 = evaluateArgument(evaluationVisitor, operationCall, 0);
+		if (argVal1.isInvalid()) {
 			return null;
 		}
-		Object argVal2 = evaluateArgument(evaluationVisitor, operationCall, 1);
-		if (isInvalid(argVal2)) {
+		Value argVal2 = evaluateArgument(evaluationVisitor, operationCall, 1);
+		if (argVal2.isInvalid()) {
 			return null;
 		}
 		return evaluate(sourceVal, argVal1, argVal2);

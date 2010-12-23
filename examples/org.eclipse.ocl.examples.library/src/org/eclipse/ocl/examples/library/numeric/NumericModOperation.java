@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NumericModOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericModOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigInteger;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -29,10 +30,7 @@ public class NumericModOperation extends AbstractNumericBinaryOperation
 	public static final NumericModOperation INSTANCE = new NumericModOperation();
 
 	@Override
-	protected Object evaluateInteger(BigInteger left, BigInteger right) {
-		if (right.signum() == 0) {
-			return null;
-		}
-		return left.remainder(right);
+	protected Value evaluateInteger(IntegerValue left, IntegerValue right) {
+		return left.mod(right);
 	}
 }

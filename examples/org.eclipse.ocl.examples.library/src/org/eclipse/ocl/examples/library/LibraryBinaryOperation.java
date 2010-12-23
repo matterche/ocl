@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LibraryBinaryOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: LibraryBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
+
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * @since 3.1
@@ -28,5 +30,5 @@ public interface LibraryBinaryOperation extends LibraryOperation {
 	 * @param right argument
 	 * @return the evaluated value
 	 */
-	Object evaluate(Object left, Object right);
+	Value evaluate(Value left, Value right);
 }

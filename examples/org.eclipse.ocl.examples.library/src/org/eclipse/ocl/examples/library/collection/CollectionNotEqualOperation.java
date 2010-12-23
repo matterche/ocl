@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionNotEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: CollectionNotEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionNotEqualOperation realises the Collection::<>() library operation.
@@ -28,22 +30,22 @@ public class CollectionNotEqualOperation extends CollectionEqualOperation
 	public static final CollectionNotEqualOperation INSTANCE = new CollectionNotEqualOperation();
 
 	@Override
-	protected Boolean evaluateCollection(Collection<?> sourceVal, Collection<?> argVal) {
-		return !super.evaluateCollection(sourceVal, argVal);
+	protected BooleanValue evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
+		return BooleanValue.valueOfNot(super.evaluateCollection(sourceVal, argVal));
 	}
 	
 	@Override
-	protected Boolean evaluateInvalid(Object sourceVal, Object argVal) {
-		return !super.evaluateInvalid(sourceVal, argVal);
+	protected BooleanValue evaluateInvalid(Value sourceVal, Value argVal) {
+		return BooleanValue.valueOfNot(super.evaluateInvalid(sourceVal, argVal));
 	}
 	
 	@Override
-	protected Boolean evaluateNonCollection(Object sourceVal, Object argVal) {
-		return !super.evaluateNonCollection(sourceVal, argVal);
+	protected BooleanValue evaluateNonCollection(Value sourceVal, Value argVal) {
+		return BooleanValue.valueOfNot(super.evaluateNonCollection(sourceVal, argVal));
 	}
 
 	@Override
-	protected Boolean evaluateNull(Object sourceVal, Object argVal) {
-		return !super.evaluateNull(sourceVal, argVal);
+	protected BooleanValue evaluateNull(Value sourceVal, Value argVal) {
+		return BooleanValue.valueOfNot(super.evaluateNull(sourceVal, argVal));
 	}
 }

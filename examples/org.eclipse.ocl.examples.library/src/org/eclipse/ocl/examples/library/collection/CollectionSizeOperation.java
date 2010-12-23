@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionSizeOperation.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: CollectionSizeOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.math.BigInteger;
-import java.util.Collection;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 
 /**
  * CollectionSizeOperation realises the Collection::size() library operation.
@@ -29,7 +29,7 @@ public class CollectionSizeOperation extends AbstractCollectionUnaryOperation
 	public static final CollectionSizeOperation INSTANCE = new CollectionSizeOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return BigInteger.valueOf(sourceVal.size());
+	protected IntegerValue evaluateCollection(CollectionValue sourceVal) {
+		return IntegerValue.valueOf(sourceVal.size());
 	}
 }

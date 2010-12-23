@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractIteration.java,v 1.1.2.3 2010/12/06 17:13:33 ewillink Exp $
+ * $Id: AbstractIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractIteration realises shared characteristics of library iterations.
@@ -34,7 +35,7 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 {
 	private static AtomicInteger tempCounter = new AtomicInteger();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceValue, CallExp callExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
 		return evaluate(evaluationVisitor, sourceValue, (OperationCallExp) callExp);
 	}	
 

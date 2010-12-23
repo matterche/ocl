@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateOne.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateOne.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -20,8 +20,10 @@ package org.eclipse.ocl.examples.library.evaluation;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  *
@@ -37,38 +39,26 @@ public class IterationTemplateOne extends IterationTemplate {
 	}
 
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName,
-		Object body) {
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		// should be exactly one iterator
 		//		String iterName = ((VariableDeclaration)iterators.get(0)).getVarName();
 		//		Object currObj = env.getValueOf(iterName);
-		Boolean resultVal = (Boolean) env.getValueOf(resultName);
-
-		// If the body result is undefined then the entire expression's value
-		// is invalid
-		if (isUndefined(body)) {
-			setDone(true);
-			return getInvalid();
-		}
-		
-		Boolean bodyVal = (Boolean) body;
-
-		boolean bodyCond = bodyVal.booleanValue();
-		if (bodyCond) {
+		Value resultVal = env.getValueOf(resultName);
+		if (bodyVal.isTrue()) {
 			if (!foundOne) {
-				// if this is the first element satsifying the body condition
+				// if this is the first element satisfying the body condition
 				// make a note of it.
 				foundOne = true;
-				return Boolean.TRUE;
+				return BooleanValue.TRUE;
 			} else {
 				// this is the second satisfying element.  The result is false
 				// and we can stop iterating.
 				setDone(true);
-				return Boolean.FALSE;
+				return BooleanValue.FALSE;
 			}
 		}
-		return resultVal.booleanValue() ? Boolean.TRUE : Boolean.FALSE;
+		return BooleanValue.valueOf(resultVal.isTrue());
 	}
 
 	private boolean foundOne = false;

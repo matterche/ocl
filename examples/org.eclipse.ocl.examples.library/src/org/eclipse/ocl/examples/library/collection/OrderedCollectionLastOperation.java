@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionLastOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OrderedCollectionLastOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OrderedCollectionLastOperation realises the OrderedCollection::last() library operation.
@@ -30,7 +29,7 @@ public class OrderedCollectionLastOperation extends AbstractOrderedCollectionUna
 	public static final OrderedCollectionLastOperation INSTANCE = new OrderedCollectionLastOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.last(sourceVal);
+	protected Value evaluateCollection(OrderedCollectionValue sourceVal) {
+		return sourceVal.last();
 	}
 }

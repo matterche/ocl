@@ -12,27 +12,41 @@
  *
  * </copyright>
  *
- * $Id: CollectionMaxOperation.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: CollectionMaxOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
+import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.library.numeric.NumericMaxOperation;
-import org.eclipse.ocl.examples.library.util.CollectionUtil2;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionMaxOperation realises the Collection::max() library operation.
  * 
  * @since 3.1
  */
-public class CollectionMaxOperation extends AbstractCollectionUnaryOperation
+public class CollectionMaxOperation extends AbstractOperation
 {
 	public static final CollectionMaxOperation INSTANCE = new CollectionMaxOperation();
 
-	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		CollectionValue collectionValue = sourceVal.asCollectionValue();
+		if (collectionValue == null) {
+			if (sourceVal.isInvalid()) {
+				return null;
+			}
+			if (sourceVal.isNull()) {
+				collectionValue = new SetValue();
+			}
+			else {
+				collectionValue = new SetValue(sourceVal);
+			}
+		}
 		// FIXME Bug 301351 Look for user-defined max
-		return CollectionUtil2.maxMin(sourceVal, new NumericMaxOperation());
+		return collectionValue.maxMin(evaluationVisitor, new NumericMaxOperation());
 	}
 }

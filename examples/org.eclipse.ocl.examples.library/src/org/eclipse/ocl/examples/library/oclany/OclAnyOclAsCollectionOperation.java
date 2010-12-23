@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsCollectionOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OclAnyOclAsCollectionOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import java.util.Collection;
-import java.util.Set;
-
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclAnyOclAsCollectionOperation realises the OclAny::oclAsCollection() library operation.
@@ -31,18 +30,16 @@ public class OclAnyOclAsCollectionOperation extends AbstractUnaryOperation
 {
 	public static final OclAnyOclAsCollectionOperation INSTANCE = new OclAnyOclAsCollectionOperation();
 
-	public Object evaluate(Object argument) {
-		if (isInvalid(argument)) {
+	public Value evaluate(Value argument) {
+		if (argument.isInvalid()) {
 			return null;
 		}
-		if (isNull(argument)) {
+		if (argument.isNull()) {
 			return null;
 		}
-		if (argument instanceof Collection<?>) {
+		if (argument instanceof CollectionValue) {
 			return argument;
 		}
-		Set<Object> newSet = CollectionUtil.createNewSet();
-		newSet.add(argument);
-		return newSet;
+		return new SetValue(argument);
 	}
 }

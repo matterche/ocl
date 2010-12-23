@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: NumericRoundOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericRoundOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * RoundOperation realises the round() library operation.
@@ -31,19 +30,12 @@ public class NumericRoundOperation extends AbstractNumericUnaryOperation
 	public static final NumericRoundOperation INSTANCE = new NumericRoundOperation();
 
 	@Override
-	protected Object evaluateInteger(BigInteger left) {
+	protected Value evaluateInteger(IntegerValue left) {
 		return left;
 	}
 	
 	@Override
-	protected Object evaluateReal(BigDecimal left) {
-		BigDecimal rounded;
-		if (left.signum() >= 0) {
-			rounded = left.setScale(0, RoundingMode.HALF_UP);		// functions as HALF_AWAY
-		}
-		else {
-			rounded = left.negate().setScale(0, RoundingMode.HALF_DOWN).negate();
-		}
-		return rounded.toBigInteger();
+	protected Value evaluateReal(RealValue left) {
+		return left.round();
 	}
 }

@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LibraryUnaryOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: LibraryUnaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
+
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * @since 3.1
@@ -27,5 +29,5 @@ public interface LibraryUnaryOperation extends LibraryOperation {
 	 * @param argument the argument
 	 * @return the evaluated value
 	 */
-	Object evaluate(Object argument);
+	Value evaluate(Value argument);
 }

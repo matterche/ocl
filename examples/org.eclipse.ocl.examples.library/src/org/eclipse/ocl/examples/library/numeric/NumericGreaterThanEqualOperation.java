@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NumericGreaterThanEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericGreaterThanEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -30,17 +32,17 @@ public class NumericGreaterThanEqualOperation extends AbstractNumericBinaryOpera
 	public static final NumericGreaterThanEqualOperation INSTANCE = new NumericGreaterThanEqualOperation();
 
 	@Override
-	protected Object evaluateInteger(BigInteger left, BigInteger right) {
-		return left.compareTo(right) >= 0;
+	protected BooleanValue evaluateInteger(IntegerValue left, IntegerValue right) {
+		return BooleanValue.valueOf(left.compareTo(right) >= 0);
 	}
 
 	@Override
-	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
-		return left.compareTo(right) >= 0;
+	protected BooleanValue evaluateReal(RealValue left, RealValue right) {
+		return BooleanValue.valueOf(left.compareTo(right) >= 0);
 	}
 
 	@Override
-	protected Object evaluateUnlimited(Object left, Object right) {
-		return isUnlimited(left);
+	protected BooleanValue evaluateUnlimited(Value left, Value right) {
+		return BooleanValue.valueOf(left.isUnlimited());
 	}
 }

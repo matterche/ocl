@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsUndefinedOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: OclAnyOclIsUndefinedOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclAnyOclIsUndefinedOperation realises the OclAny::oclIsUndefined() library operation.
@@ -27,10 +29,10 @@ public class OclAnyOclIsUndefinedOperation extends AbstractUnaryOperation
 {
 	public static final OclAnyOclIsUndefinedOperation INSTANCE = new OclAnyOclIsUndefinedOperation();
 
-	public Object evaluate(Object argument) {
-		if (isUndefined(argument)) {
-			return Boolean.TRUE;
+	public BooleanValue evaluate(Value argument) {
+		if (argument.isUndefined()) {
+			return BooleanValue.TRUE;
 		}
-		return Boolean.FALSE;
+		return BooleanValue.FALSE;
 	}
 }

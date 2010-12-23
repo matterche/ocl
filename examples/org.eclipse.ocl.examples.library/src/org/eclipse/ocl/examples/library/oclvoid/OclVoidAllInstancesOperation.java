@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: OclVoidAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OclVoidAllInstancesOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
-import java.util.Collections;
-
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclVoidAllInstancesOperation realises the OclVoid::allInstances() library operation.
@@ -32,9 +32,8 @@ public class OclVoidAllInstancesOperation extends AbstractOperation
 {
 	public static final OclVoidAllInstancesOperation INSTANCE = new OclVoidAllInstancesOperation();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+	public SetValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		// OclVoid has a single instance: null
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-		return Collections.singleton(stdlib.getNullValue());
+		return new SetValue(NullValue.INSTANCE);
 	}
 }

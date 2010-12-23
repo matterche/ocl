@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: StringToLowerCaseOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: StringToLowerCaseOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
+import org.eclipse.ocl.examples.pivot.values.StringValue;
 
 /**
  * StringToLowerCaseOperation realises the String::toLowerCase() library operation.
@@ -27,7 +28,7 @@ public class StringToLowerCaseOperation extends AbstractStringUnaryOperation
 	public static final StringToLowerCaseOperation INSTANCE = new StringToLowerCaseOperation();
 
 	@Override
-	public  Object evaluateString(String sourceVal) {
-		return sourceVal.toLowerCase();
+	public StringValue evaluateString(String sourceVal) {
+		return StringValue.valueOf(sourceVal.toLowerCase());
 	}
 }

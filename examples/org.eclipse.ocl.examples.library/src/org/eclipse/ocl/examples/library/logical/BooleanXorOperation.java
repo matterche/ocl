@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: BooleanXorOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: BooleanXorOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * BooleanXorOperation realises the Boolean::xor() library operation.
@@ -27,21 +29,21 @@ public class BooleanXorOperation extends AbstractBinaryOperation
 {
 	public static final BooleanXorOperation INSTANCE = new BooleanXorOperation();
 
-	public Object evaluate(Object left, Object right) {
-		if (left == Boolean.TRUE) {
-			if (right == Boolean.TRUE) {
-				return Boolean.FALSE;
+	public BooleanValue evaluate(Value left, Value right) {
+		if (left == BooleanValue.TRUE) {
+			if (right == BooleanValue.TRUE) {
+				return BooleanValue.FALSE;
 			}
-			else if (right == Boolean.FALSE) {
-				return Boolean.TRUE;
+			else if (right == BooleanValue.FALSE) {
+				return BooleanValue.TRUE;
 			}
 		}
-		else if (left == Boolean.FALSE) {
-			if (right == Boolean.TRUE) {
-				return Boolean.TRUE;
+		else if (left == BooleanValue.FALSE) {
+			if (right == BooleanValue.TRUE) {
+				return BooleanValue.TRUE;
 			}
-			else if (right == Boolean.FALSE) {
-				return Boolean.FALSE;
+			else if (right == BooleanValue.FALSE) {
+				return BooleanValue.FALSE;
 			}
 		}
 		return null;

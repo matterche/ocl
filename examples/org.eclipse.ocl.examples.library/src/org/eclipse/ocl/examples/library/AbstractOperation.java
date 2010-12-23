@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: AbstractOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -22,17 +22,18 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * @since 3.1
  */
 public abstract class AbstractOperation extends AbstractFeature implements LibraryOperation
 {
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceValue, CallExp callExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
 		return evaluate(evaluationVisitor, sourceValue, (OperationCallExp) callExp);
 	}
 	
-	protected Object evaluateArgument(EvaluationVisitor evaluationVisitor,
+	protected Value evaluateArgument(EvaluationVisitor evaluationVisitor,
 			OperationCallExp operationCall, int i) {
 		List<OclExpression> args = operationCall.getArguments();
 		if ((i < 0) || (args.size() <= i)) {

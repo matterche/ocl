@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: BooleanImpliesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: BooleanImpliesOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * ImpliesOperation realises the implies() library operation.
@@ -30,23 +32,23 @@ public class BooleanImpliesOperation extends AbstractBinaryOperation
 	public static final BooleanImpliesOperation INSTANCE = new BooleanImpliesOperation();
 
 	@Override
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
-		if (sourceVal == Boolean.FALSE) {
-			return Boolean.TRUE;
+	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		if (sourceVal == BooleanValue.FALSE) {
+			return BooleanValue.TRUE;
 		}
-		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		return evaluate(sourceVal, argVal);
 	}
 
-	public Object evaluate(Object left, Object right) {
-		if (left == Boolean.FALSE) {
-			return Boolean.TRUE;
+	public BooleanValue evaluate(Value left, Value right) {
+		if (left == BooleanValue.FALSE) {
+			return BooleanValue.TRUE;
 		}
-		if (right == Boolean.TRUE) {
-			return Boolean.TRUE;
+		if (right == BooleanValue.TRUE) {
+			return BooleanValue.TRUE;
 		}
-		else if ((left == Boolean.TRUE) && (right == Boolean.FALSE)) {
-			return Boolean.FALSE;
+		else if ((left == BooleanValue.TRUE) && (right == BooleanValue.FALSE)) {
+			return BooleanValue.FALSE;
 		}
 		return null;
 	}

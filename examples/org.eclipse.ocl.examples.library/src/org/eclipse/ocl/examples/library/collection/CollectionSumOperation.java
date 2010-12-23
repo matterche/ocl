@@ -12,28 +12,43 @@
  *
  * </copyright>
  *
- * $Id: CollectionSumOperation.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: CollectionSumOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.math.BigInteger;
-import java.util.Collection;
-
+import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.examples.library.util.CollectionUtil2;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionSumOperation realises the Collection::sum() library operation.
  * 
  * @since 3.1
  */
-public class CollectionSumOperation extends AbstractCollectionUnaryOperation
+public class CollectionSumOperation extends AbstractOperation
 {
 	public static final CollectionSumOperation INSTANCE = new CollectionSumOperation();
 
-	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		// FIXME Bug 301351 Look for user-defined max
-		return CollectionUtil2.sum(sourceVal, new NumericPlusOperation(), BigInteger.ZERO);
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		CollectionValue collectionValue = sourceVal.asCollectionValue();
+		if (collectionValue == null) {
+			if (sourceVal.isInvalid()) {
+				return null;
+			}
+			if (sourceVal.isNull()) {
+				collectionValue = new SetValue();
+			}
+			else {
+				collectionValue = new SetValue(sourceVal);
+			}
+		}
+		// FIXME Bug 301351 Look for user-defined zero
+		return CollectionUtil2.sum(collectionValue, new NumericPlusOperation(), IntegerValue.valueOf(0));
 	}
 }

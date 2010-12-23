@@ -12,14 +12,15 @@
  *
  * </copyright>
  *
- * $Id: StringToRealOperation.java,v 1.1.2.2 2010/12/11 10:44:20 ewillink Exp $
+ * $Id: StringToRealOperation.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
-import java.math.BigDecimal;
-
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * StringToRealOperation realises the String::toReal() library operation.
@@ -31,18 +32,18 @@ public class StringToRealOperation extends AbstractStringUnaryOperation
 	public static final StringToRealOperation INSTANCE = new StringToRealOperation();
 
 	@Override
-	public  Object evaluateString(String sourceVal) {
-		return new BigDecimal(sourceVal.trim());
+	public  RealValue evaluateString(String sourceVal) {
+		return RealValue.valueOf(sourceVal);
 	}
 
 	@Override
-	public Object evaluate(EvaluationVisitor evaluationVisitor,
-			Object sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor,
+			Value sourceVal, OperationCallExp operationCall) {
 		try {
 			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
 		}
 		catch (NumberFormatException e) {
-			return evaluationVisitor.getStandardLibrary().createInvalidValue(sourceVal, operationCall, "Not a Real", e);
+			return new InvalidValue(sourceVal, operationCall, "Not a Real", e);
 		}
 	}
 }

@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractJavaBinaryOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: AbstractJavaBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.java;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractStringBinaryOperation dispatches a binary string library operation to
@@ -26,14 +27,16 @@ import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
  */
 public abstract class AbstractJavaBinaryOperation extends AbstractBinaryOperation
 {
-	public Object evaluate(Object left, Object right) {
-		if (isInvalid(left) || isInvalid(right)) {
+	public Value evaluate(Value left, Value right) {
+		if (left.isInvalid() || right.isInvalid()) {
 			return evaluateInvalid(left, right);
 		}
-		else if (isNull(left) || isNull(right)) {
+		else if (left.isNull() || right.isNull()) {
 			return evaluateNull(left, right);
 		}
-		if (!isString(left) || !isString(right)) {
+		String leftString = left.asString();
+		String rightString = right.asString();
+		if ((leftString == null) || (rightString == null)) {
 			return null;
 		}
 		return evaluateJava((Comparable<?>)left, (Comparable<?>)right);
@@ -45,7 +48,7 @@ public abstract class AbstractJavaBinaryOperation extends AbstractBinaryOperatio
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateInvalid(Object left, Object right) {
+	protected Value evaluateInvalid(Value left, Value right) {
 		return null;
 	}
 	
@@ -56,7 +59,7 @@ public abstract class AbstractJavaBinaryOperation extends AbstractBinaryOperatio
 	 * @param right argument
 	 * @return result
 	 */
-	protected Object evaluateNull(Object left, Object right) {
+	protected Value evaluateNull(Value left, Value right) {
 		return null;
 	}
 	
@@ -66,5 +69,5 @@ public abstract class AbstractJavaBinaryOperation extends AbstractBinaryOperatio
 	 * @param right argument
 	 * @return result
 	 */
-	protected abstract Object evaluateJava(Comparable<?> left, Comparable<?> right);
+	protected abstract Value evaluateJava(Comparable<?> left, Comparable<?> right);
 }

@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: StringToUpperCaseOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: StringToUpperCaseOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
+
+import org.eclipse.ocl.examples.pivot.values.StringValue;
 
 
 /**
@@ -27,7 +29,7 @@ public class StringToUpperCaseOperation extends AbstractStringUnaryOperation
 	public static final StringToUpperCaseOperation INSTANCE = new StringToUpperCaseOperation();
 
 	@Override
-	public  Object evaluateString(String sourceVal) {
-		return sourceVal.toUpperCase();
+	public StringValue evaluateString(String sourceVal) {
+		return StringValue.valueOf(sourceVal.toUpperCase());
 	}
 }

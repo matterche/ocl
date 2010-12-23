@@ -12,13 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionReverseOperation.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: OrderedCollectionReverseOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.library.util.CollectionUtil2;
+import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 
 /**
  * OrderedCollectionReverseOperation realises the OrderedCollection::reverse() library operation.
@@ -30,7 +28,7 @@ public class OrderedCollectionReverseOperation extends AbstractOrderedCollection
 	public static final OrderedCollectionReverseOperation INSTANCE = new OrderedCollectionReverseOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil2.reverse(sourceVal);
+	protected OrderedCollectionValue evaluateCollection(OrderedCollectionValue sourceVal) {
+		return sourceVal.reverse();
 	}
 }

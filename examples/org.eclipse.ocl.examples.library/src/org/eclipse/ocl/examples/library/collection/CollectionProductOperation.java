@@ -12,19 +12,20 @@
  *
  * </copyright>
  *
- * $Id: CollectionProductOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionProductOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
-
-import java.util.Collection;
-import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionProductOperation realises the Collection::product() library operation.
@@ -35,31 +36,31 @@ public class CollectionProductOperation extends AbstractOperation // FIXME Make 
 {
 	public static final CollectionProductOperation INSTANCE = new CollectionProductOperation();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
-		if (isInvalid(sourceVal)) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		if (sourceVal.isInvalid()) {
 			return null;
 		}
-		Object argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		if (isInvalid(sourceVal) ||isInvalid(argVal)) {
+		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+		if (sourceVal.isInvalid() || argVal.isInvalid()) {
 			return null;
 		}		
-		if (!(argVal instanceof Collection<?>)) {
+		CollectionValue argumentValue = argVal.asCollectionValue();
+		if (argumentValue == null) {
 			return null;
-		}		
-		if (isNull(sourceVal)) {
-			return evaluateCollection(evaluationVisitor, CollectionUtil.createNewBag(), operationCall, (Collection<?>)argVal);
 		}
-		else if (sourceVal instanceof Collection<?>) {
-			return evaluateCollection(evaluationVisitor, (Collection<?>)sourceVal, operationCall, (Collection<?>) argVal);
+		if (sourceVal.isNull()) {
+			return evaluateCollection(evaluationVisitor, new BagValue(), operationCall, argumentValue);
+		}
+		else if (sourceVal instanceof CollectionValue) {
+			return evaluateCollection(evaluationVisitor, (CollectionValue)sourceVal, operationCall, argumentValue);
 		}
 		else {
-			Set<Object> sourceSet = CollectionUtil.createNewSet();
-			sourceSet.add(sourceVal);
-			return evaluateCollection(evaluationVisitor, sourceSet, operationCall, (Collection<?>)argVal);
+			SetValue sourceSet = new SetValue(sourceVal);
+			return evaluateCollection(evaluationVisitor, sourceSet, operationCall, argumentValue);
 		}
 	}
 
-	protected Object evaluateCollection(EvaluationVisitor evaluationVisitor, Collection<?> sourceVal, OperationCallExp operationCall, Collection<?> argVal) {
+	protected Value evaluateCollection(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, OperationCallExp operationCall, CollectionValue argVal) {
 		CollectionType collType = (CollectionType) operationCall.getType();
 		TupleType tupleType = (TupleType) collType.getElementType();
 		return CollectionUtil.product(sourceVal, argVal, tupleType);

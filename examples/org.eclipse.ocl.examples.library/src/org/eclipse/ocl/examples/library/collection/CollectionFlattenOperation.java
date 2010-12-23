@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionFlattenOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionFlattenOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionFlattenOperation realises the Collection::flatten() library operation.
@@ -30,7 +29,7 @@ public class CollectionFlattenOperation extends AbstractCollectionUnaryOperation
 	public static final CollectionFlattenOperation INSTANCE = new CollectionFlattenOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.flatten(sourceVal);
+	protected Value evaluateCollection(CollectionValue sourceVal) {
+		return sourceVal.flatten();
 	}
 }

@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: JavaEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: JavaEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.java;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * JavaEqualOperation realises the Java::=() library operation.
@@ -25,16 +27,18 @@ import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
  */
 public class JavaEqualOperation extends AbstractBinaryOperation
 {
-	public Boolean evaluate(Object left, Object right) {
-		if (isString(left) && isString(right)) {
-			return String.valueOf(left).equals(String.valueOf(right));
+	public BooleanValue evaluate(Value left, Value right) {
+		String leftString = left.asString();
+		String rightString = right.asString();
+		if ((leftString != null) && (rightString != null)) {
+			return BooleanValue.valueOf(leftString.equals(rightString));
 		}
-		if (isInvalid(left) && isInvalid(right)) {
-			return Boolean.TRUE;
+		if (left.isInvalid() && right.isInvalid()) {
+			return BooleanValue.TRUE;
 		}
-		if (isNull(left) && isNull(right)) {
-			return Boolean.TRUE;
+		if (left.isNull() && right.isNull()) {
+			return BooleanValue.TRUE;
 		}			
-		return Boolean.FALSE;
+		return BooleanValue.FALSE;
 	}
 }

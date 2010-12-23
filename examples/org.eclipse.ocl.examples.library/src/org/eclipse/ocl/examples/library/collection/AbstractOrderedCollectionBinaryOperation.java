@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractOrderedCollectionBinaryOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: AbstractOrderedCollectionBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractOrderedCollectionBinaryOperation provides the standard null to Bag{}
@@ -28,17 +28,16 @@ import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
  */
 public abstract class AbstractOrderedCollectionBinaryOperation extends AbstractBinaryOperation
 {
-	public Object evaluate(Object left, Object right) {
-		if (isInvalid(left) || isInvalid(right)) {
+	public Value evaluate(Value left, Value right) {
+		OrderedCollectionValue leftOrderedCollectionValue = left.asOrderedCollectionValue();
+		if (leftOrderedCollectionValue == null) {
+			return null;
+		}
+		if (right.isInvalid()) {
 			return null;
 		}		
-		if (isOrderedCollection(left)) {
-			return evaluateCollection((Collection<?>)left, right);
-		}
-		else {
-			return null;
-		}
+		return evaluateCollection(leftOrderedCollectionValue, right);
 	}
 
-	protected abstract Object evaluateCollection(Collection<?> sourceVal, Object argVal);
+	protected abstract Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal);
 }

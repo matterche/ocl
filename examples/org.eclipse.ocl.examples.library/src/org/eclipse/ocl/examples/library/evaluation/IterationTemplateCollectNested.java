@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollectNested.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateCollectNested.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  *
@@ -37,19 +38,9 @@ public final class IterationTemplateCollectNested extends IterationTemplate {
 	}
 	
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName, Object bodyVal) {
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
-		
-		@SuppressWarnings("unchecked")
-		Collection<Object> currVal = (Collection<Object>) env.getValueOf(resultName);
-		
-		// If the body result is invalid then the entire expression's value
-		// is invalid, because OCL does not permit invalid in a collection
-		if (isInvalid(bodyVal)) {
-			setDone(true);
-			return bodyVal;
-		}
-		
+		CollectionValue.Accumulator currVal = (CollectionValue.Accumulator) env.getValueOf(resultName);
 		currVal.add(bodyVal);
 		return currVal;
 	}

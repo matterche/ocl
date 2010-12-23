@@ -12,12 +12,10 @@
  *
  * </copyright>
  *
- * $Id: IsUniqueIteration.java,v 1.1.2.3 2010/12/06 17:13:33 ewillink Exp $
+ * $Id: IsUniqueIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
@@ -27,6 +25,10 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * IsUniqueIteration realises the Collection::isUnique() library iteration.
@@ -37,15 +39,15 @@ public class IsUniqueIteration extends AbstractIteration
 {
 	public static final IsUniqueIteration INSTANCE = new IsUniqueIteration();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp iteratorExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
 		List<Variable> iterators = getIterators(iteratorExp);
 		OclExpression body = getBody(iteratorExp);		
-		Collection<?> coll = (Collection<?>) sourceVal;
+		CollectionValue coll = (CollectionValue) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateIsUnique.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, new HashSet<Object>());		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, new SetValue());		
 		try {
 			// evaluate
 			is.evaluate(coll, iterators, body, resultName);
@@ -53,6 +55,6 @@ public class IsUniqueIteration extends AbstractIteration
 			// remove result name from environment
 			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
 		}
-		return is.isDone() ? Boolean.FALSE : Boolean.TRUE;
+		return BooleanValue.valueOf(is.isDone());
 	}
 }

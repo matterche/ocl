@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: BooleanNotOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: BooleanNotOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * NotOperation realises the not() library operation.
@@ -27,12 +29,12 @@ public class BooleanNotOperation extends AbstractUnaryOperation
 {
 	public static final BooleanNotOperation INSTANCE = new BooleanNotOperation();
 
-	public Object evaluate(Object argument) {
-		if (argument == Boolean.TRUE) {
-			return Boolean.FALSE;
+	public BooleanValue evaluate(Value argument) {
+		if (argument == BooleanValue.TRUE) {
+			return BooleanValue.FALSE;
 		}
-		else if (argument == Boolean.FALSE) {
-			return Boolean.TRUE;
+		else if (argument == BooleanValue.FALSE) {
+			return BooleanValue.TRUE;
 		}
 		return null;
 	}

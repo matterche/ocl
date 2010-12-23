@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: SequenceSubSequenceOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: SequenceSubSequenceOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.math.BigInteger;
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SequenceValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * SequenceSubSequenceOperation realises the OrderedSet::subSequence() library operation.
@@ -31,13 +31,19 @@ public class SequenceSubSequenceOperation extends AbstractOrderedCollectionTerna
 	public static final SequenceSubSequenceOperation INSTANCE = new SequenceSubSequenceOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal, Object argVal1, Object argVal2) {
-		if (!(argVal1 instanceof BigInteger)) {
-			return null;
+	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal1, Value argVal2) {
+		SequenceValue selfValue = sourceVal.asSequenceValue();
+		if (selfValue == null) {
+			return new InvalidValue(sourceVal, null, "Invalid self for subsequence", null);
 		}
-		if (!(argVal2 instanceof BigInteger)) {
-			return null;
+		Integer fromValue = argVal1.asInteger();
+		if (fromValue == null) {
+			return new InvalidValue(argVal1, null, "Invalid from index for subsequence", null);
 		}
-		return CollectionUtil.subSequence(sourceVal, ((BigInteger)argVal1).intValue(), ((BigInteger)argVal2).intValue());
+		Integer toValue = argVal2.asInteger();
+		if (toValue == null) {
+			return new InvalidValue(argVal2, null, "Invalid to index for subsequence", null);
+		}
+		return selfValue.subSequence(fromValue, toValue);
 	}
 }

@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: StringToIntegerOperation.java,v 1.1.2.2 2010/12/11 10:44:20 ewillink Exp $
+ * $Id: StringToIntegerOperation.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
-import org.eclipse.ocl.examples.library.util.ObjectUtil2;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * StringToIntegerOperation realises the String::toInteger() library operation.
@@ -30,18 +32,18 @@ public class StringToIntegerOperation extends AbstractStringUnaryOperation
 	public static final StringToIntegerOperation INSTANCE = new StringToIntegerOperation();
 
 	@Override
-	public Object evaluateString(String sourceVal) {
-		return ObjectUtil2.createBigInteger(sourceVal.trim());
+	public IntegerValue evaluateString(String sourceVal) {
+		return IntegerValue.valueOf(sourceVal.trim());
 	}
 
 	@Override
-	public Object evaluate(EvaluationVisitor evaluationVisitor,
-			Object sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor,
+			Value sourceVal, OperationCallExp operationCall) {
 		try {
 			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
 		}
 		catch (NumberFormatException e) {
-			return evaluationVisitor.getStandardLibrary().createInvalidValue(sourceVal, operationCall, "Not an Integer", e);
+			return new InvalidValue(sourceVal, operationCall, "Not an Integer", e);
 		}
 	}
 }

@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionAsOrderedSetOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionAsOrderedSetOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionAsOrderedSetOperation realises the Collection::asOrderedSet() library operation.
@@ -30,7 +29,7 @@ public class CollectionAsOrderedSetOperation extends AbstractCollectionUnaryOper
 	public static final CollectionAsOrderedSetOperation INSTANCE = new CollectionAsOrderedSetOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.asOrderedSet(sourceVal);
+	protected Value evaluateCollection(CollectionValue sourceVal) {
+		return sourceVal.asOrderedSetValue();
 	}
 }

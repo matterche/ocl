@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionNotEmptyOperation.java,v 1.1.2.1 2010/10/01 13:28:35 ewillink Exp $
+ * $Id: CollectionNotEmptyOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 
 /**
  * CollectionNotEmptyOperation realises the Collection::notEmpty() library operation.
@@ -28,7 +29,7 @@ public class CollectionNotEmptyOperation extends AbstractCollectionUnaryOperatio
 	public static final CollectionNotEmptyOperation INSTANCE = new CollectionNotEmptyOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return sourceVal.size() != 0;
+	protected BooleanValue evaluateCollection(CollectionValue sourceVal) {
+		return BooleanValue.valueOf(sourceVal.notEmpty());
 	}
 }

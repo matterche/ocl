@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-import java.util.Set;
-
 import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractCollectionTernaryOperation provides the standard null to Bag{}
@@ -30,22 +29,21 @@ import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
  */
 public abstract class AbstractCollectionTernaryOperation extends AbstractTernaryOperation
 {
-	public Object evaluate(Object source, Object arg1, Object arg2) {
-		if (isInvalid(source) || isInvalid(arg1) || isInvalid(arg2)) {
+	public Value evaluate(Value source, Value arg1, Value arg2) {
+		if (source.isInvalid() || arg1.isInvalid() || arg2.isInvalid()) {
 			return null;
 		}		
-		if (isNull(source)) {
-			return evaluateCollection(CollectionUtil.createNewBag(), arg1, arg2);
+		if (source.isNull()) {
+			return evaluateCollection(new SetValue(), arg1, arg2);
 		}
-		else if (source instanceof Collection<?>) {
-			return evaluateCollection((Collection<?>)source, arg1, arg2);
+		CollectionValue collectionValue = source.asCollectionValue();
+		if (collectionValue != null) {
+			return evaluateCollection(collectionValue, arg1, arg2);
 		}
 		else {
-			Set<Object> sourceSet = CollectionUtil.createNewSet();
-			sourceSet.add(source);
-			return evaluateCollection(sourceSet, arg1, arg2);
+			return evaluateCollection(new SetValue(source), arg1, arg2);
 		}
 	}
 	
-	protected abstract Object evaluateCollection(Collection<?> sourceVal, Object argVal1, Object argVal2);
+	protected abstract Value evaluateCollection(CollectionValue sourceVal, Value argVal1, Object argVal2);
 }

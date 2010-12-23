@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateIsUnique.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateIsUnique.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  *
@@ -38,12 +39,10 @@ public class IterationTemplateIsUnique extends IterationTemplate {
 	}
 	
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName, Object bodyVal) {
-		EvaluationEnvironment env = getEvalEnvironment();
-		
-		@SuppressWarnings("unchecked")
-		Set<Object> currVal = (Set<Object>) env.getValueOf(resultName);
-		if (currVal.contains(bodyVal)) {
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+		EvaluationEnvironment env = getEvalEnvironment();		
+		CollectionValue.Accumulator currVal = (CollectionValue.Accumulator) env.getValueOf(resultName);
+		if (currVal.includes(bodyVal)) {
 			setDone(true);
 		}
 		else

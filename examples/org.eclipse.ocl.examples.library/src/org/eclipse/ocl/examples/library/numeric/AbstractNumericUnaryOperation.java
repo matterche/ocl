@@ -12,14 +12,15 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.NumericValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractNumericUnaryOperation dispatches a unary library operation to
@@ -29,28 +30,28 @@ import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
  */
 public abstract class AbstractNumericUnaryOperation extends AbstractUnaryOperation
 {
-	public Object evaluate(Object sourceVal) {
-		if (isUnlimited(sourceVal)) {
+	public Value evaluate(Value sourceVal) {
+		if (sourceVal.isUnlimited()) {
 			return evaluateUnlimited(sourceVal);			
 		}
-		else if (sourceVal instanceof BigInteger) {
-			return evaluateInteger((BigInteger)sourceVal);			
+		else if (sourceVal instanceof IntegerValue) {
+			return evaluateInteger((IntegerValue)sourceVal);			
 		}
-		else if (sourceVal instanceof BigDecimal) {
-			return evaluateReal((BigDecimal)sourceVal);			
+		else if (sourceVal instanceof RealValue) {
+			return evaluateReal((RealValue)sourceVal);			
 		}
 		return null;
 	}
 
-	protected Object evaluateReal(BigDecimal left) {
-		return evaluate(left);
+	protected Value evaluateReal(RealValue left) {
+		return evaluateNumeric(left);
 	}
 	
-	protected Object evaluateInteger(BigInteger left) {
-		return evaluate(left);
+	protected Value evaluateInteger(IntegerValue left) {
+		return evaluateNumeric(left);
 	}
 	
-	protected Object evaluateUnlimited(Object left) {
+	protected Value evaluateUnlimited(Object left) {
 		return null;
 	}
 	
@@ -58,7 +59,7 @@ public abstract class AbstractNumericUnaryOperation extends AbstractUnaryOperati
 	 * Return the result of evaluating the operation on left. 
 	 * A null return or an exception may be used for invalid.
 	 */
-	protected <T extends Number & Comparable<T>> Object evaluate(T left) {
+	protected <T extends NumericValue> Value evaluateNumeric(T left) {
 		return null;
 	}
 }

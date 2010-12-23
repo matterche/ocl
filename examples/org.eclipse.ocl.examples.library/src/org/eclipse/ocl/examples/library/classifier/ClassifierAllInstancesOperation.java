@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * ClassifierAllInstancesOperation realises the Classifier::allInstances() library operation.
@@ -33,9 +34,9 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 {
 	public static final ClassifierAllInstancesOperation INSTANCE = new ClassifierAllInstancesOperation();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
-		Map<?, ? extends Set<?>> extentMap = evaluationVisitor.getExtentMap();
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap = evaluationVisitor.getExtentMap();
 		Set<?> instances = extentMap.get(sourceVal);
-		return instances != null ? instances : Collections.EMPTY_SET;
+		return instances != null ? SetValue.valueOfObjects(instances) : SetValue.EMPTY;
 	}
 }

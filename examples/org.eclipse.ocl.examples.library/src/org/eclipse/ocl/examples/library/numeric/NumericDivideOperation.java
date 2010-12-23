@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: NumericDivideOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericDivideOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -30,28 +30,13 @@ public class NumericDivideOperation extends AbstractNumericBinaryOperation
 {
 	public static final NumericDivideOperation INSTANCE = new NumericDivideOperation();
 
-	private static final int MINIMUM_SCALE = Double.SIZE/2;		// Gives nearly twice the precision of Double
-
-	protected BigDecimal divideBigDecimal(BigDecimal left, BigDecimal right) {
-		try {
-			if (right.signum() == 0) {
-				return null;
-			}
-			int scale = Math.max(left.scale() - right.scale(), MINIMUM_SCALE);
-			BigDecimal result = left.divide(right, scale, RoundingMode.HALF_EVEN);
-			return result;
-		} catch (ArithmeticException e) {
-			return null;
-		}
+	@Override
+	protected Value evaluateInteger(IntegerValue left, IntegerValue right) {
+		return left.divide(right);
 	}
 
 	@Override
-	protected Object evaluateInteger(BigInteger left, BigInteger right) {
-		return divideBigDecimal(new BigDecimal(left), new BigDecimal(right));
-	}
-
-	@Override
-	protected Object evaluateReal(BigDecimal left, BigDecimal right) {
-		return divideBigDecimal(left, right);
+	protected Value evaluateReal(RealValue left, RealValue right) {
+		return left.divide(right);
 	}
 }

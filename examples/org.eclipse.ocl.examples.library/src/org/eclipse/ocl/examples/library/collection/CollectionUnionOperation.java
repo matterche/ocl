@@ -12,13 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CollectionUnionOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionUnionOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 
 /**
  * CollectionUnionOperation realises the Collection::union() library operation.
@@ -30,7 +28,7 @@ public class CollectionUnionOperation extends AbstractCollectionPairedOperation
 	public static final CollectionUnionOperation INSTANCE = new CollectionUnionOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal, Collection<?> argVal) {
-		return CollectionUtil.union(sourceVal, argVal);
+	protected CollectionValue evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
+		return sourceVal.union(argVal);
 	}
 }

@@ -12,13 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil2.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionUtil2.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.util;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 
 import org.eclipse.ocl.examples.library.LibraryBinaryOperation;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
@@ -27,6 +25,8 @@ import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 public class CollectionUtil2 {
 
@@ -39,7 +39,7 @@ public class CollectionUtil2 {
 	 * @return the new collection
 	 * @since 3.1
 	 */
-	public static <E> Collection<E> createNewCollection(boolean isOrdered, boolean isUnique) {
+	public static CollectionValue createNewCollection(boolean isOrdered, boolean isUnique) {
 		if (isOrdered) {
 			if (isUnique) {
 				return CollectionUtil.createNewCollection(CollectionKind.ORDERED_SET);
@@ -80,31 +80,6 @@ public class CollectionUtil2 {
 
     /**
      * Implementation of the OCL
-     * <tt>Collection::max() : T</tt>
-     * or
-     * <tt>Collection::min() : T</tt>
-     * operation.
-     * 
-     * @param self the source collection
-     * @param binaryOperation the pair-wise max or min operation
-     * @return the maximum or minimum of the collection's elements
-     * @since 3.1
-     */
-	public static Object maxMin(Collection<?> self, LibraryBinaryOperation binaryOperation) {
-        Iterator<?> it = self.iterator();
-        if (!it.hasNext()) {
-        	return null;
-        }
-        Object result = it.next();
-        while ((result != null) && it.hasNext()) {
-            Object next = it.next();
-        	result = binaryOperation.evaluate(result, next);
-        }
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
      * <tt>Collection::sum() : T</tt>
      * operation.
      * 
@@ -114,40 +89,11 @@ public class CollectionUtil2 {
      * @return the maximum or minimum of the collection's elements
      * @since 3.1
      */
-	public static Object sum(Collection<?> self, LibraryBinaryOperation binaryOperation, Object zero) {
-        Object result = zero;
-        for (Iterator<?> it = self.iterator(); (result != null) && it.hasNext(); ) {
-            Object next = it.next();
+	public static Value sum(CollectionValue self, LibraryBinaryOperation binaryOperation, Value zero) {
+		Value result = zero;
+        for (Iterator<Value> it = self.iterator(); (result != null) && it.hasNext(); ) {
+        	Value next = it.next();
         	result = binaryOperation.evaluate(result, next);
-        }
-        return result;
-    }
-
-    /**
-     * Implementation of the OCL
-     * <ul>
-     * <li><tt>OrderedSet::reverse() : OrderedSet(T)</tt></li>
-     * <li><tt>Sequence::reverse() : Sequence(T)</tt></li>
-     * </ul>
-     * operations.
-     * 
-     * @param self the source collection
-     * @param object an object
-     * @return the reversed source collection
-     * @since 3.1
-     */
-	public static <E> Collection<E> reverse(Collection<E> self) {
-        Collection<E> result;
-    	Object[] elements = self.toArray();
-        if (self instanceof LinkedHashSet<?>) {
-        	result = CollectionUtil.createNewOrderedSet();
-        } else {
-            result = CollectionUtil.createNewSequence();
-        }
-        for (int i = elements.length; --i >= 0; ) {
-            @SuppressWarnings("unchecked")
-        	E element = (E)elements[i];
-			result.add(element);
         }
         return result;
     }

@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OclInvalidNotEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: OclInvalidNotEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclinvalid;
+
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -27,7 +30,7 @@ public class OclInvalidNotEqualOperation extends OclInvalidEqualOperation
 	public static final OclInvalidNotEqualOperation INSTANCE = new OclInvalidNotEqualOperation();
 
 	@Override
-	public Boolean evaluate(Object left, Object right) {
-		return !super.evaluate(left, right);
+	public BooleanValue evaluate(Value left, Value right) {
+		return BooleanValue.valueOfNot(super.evaluate(left, right));
 	}
 }

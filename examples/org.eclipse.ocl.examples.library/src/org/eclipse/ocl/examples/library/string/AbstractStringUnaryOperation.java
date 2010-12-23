@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractStringUnaryOperation.java,v 1.1.2.1 2010/10/01 13:28:34 ewillink Exp $
+ * $Id: AbstractStringUnaryOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * AbstractStringBinaryOperation dispatches a binary string library operation to
@@ -26,17 +27,18 @@ import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
  */
 public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperation
 {
-	public Object evaluate(Object sourceVal) {
-		if (isInvalid(sourceVal)) {
+	public Value evaluate(Value sourceVal) {
+		if (sourceVal.isInvalid()) {
 			return evaluateInvalid(sourceVal);
 		}
-		else if (isNull(sourceVal)) {
+		else if (sourceVal.isNull()) {
 			return evaluateNull(sourceVal);
 		}
-		if (!isString(sourceVal)) {
+		String sourceString = sourceVal.asString();
+		if (sourceString == null) {
 			return null;
 		}
-		return evaluateString((String)sourceVal);
+		return evaluateString(sourceString);
 	}
 	
 	/**
@@ -44,7 +46,7 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 	 * @param left argument
 	 * @return result
 	 */
-	protected Object evaluateInvalid(Object left) {
+	protected Value evaluateInvalid(Value left) {
 		return null;
 	}
 	
@@ -53,7 +55,7 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 	 * @param left argument
 	 * @return result
 	 */
-	protected Object evaluateNull(Object left) {
+	protected Value evaluateNull(Value left) {
 		return null;
 	}
 	
@@ -62,5 +64,5 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 	 * @param left argument
 	 * @return result
 	 */
-	protected abstract Object evaluateString(String left);
+	protected abstract Value evaluateString(String left);
 }

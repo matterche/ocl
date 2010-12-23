@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: BooleanAllInstancesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: BooleanAllInstancesOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
-
-import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * BooleanAllInstancesOperation realises the Boolean::allInstances() library operation.
@@ -32,14 +32,12 @@ public class BooleanAllInstancesOperation extends AbstractOperation
 {
 	public static final BooleanAllInstancesOperation INSTANCE = new BooleanAllInstancesOperation();
 
-	private static Set<Boolean> allInstances = null;
+	private static SetValue allInstances = null;
 	
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+	public SetValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		// Boolean has two instances: false, true
 		if (allInstances == null) {
-			allInstances = CollectionUtil.createNewSet();
-			allInstances.add(Boolean.FALSE);
-			allInstances.add(Boolean.TRUE);
+			allInstances = new SetValue(BooleanValue.FALSE, BooleanValue.TRUE);
 		}
 		return allInstances;
 	}

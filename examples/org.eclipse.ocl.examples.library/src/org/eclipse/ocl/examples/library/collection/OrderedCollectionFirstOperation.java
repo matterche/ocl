@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionFirstOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OrderedCollectionFirstOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OrderedCollectionFirstOperation realises the OrderedCollection::first() library operation.
@@ -30,7 +29,7 @@ public class OrderedCollectionFirstOperation extends AbstractOrderedCollectionUn
 	public static final OrderedCollectionFirstOperation INSTANCE = new OrderedCollectionFirstOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal) {
-		return CollectionUtil.first(sourceVal);
+	protected Value evaluateCollection(OrderedCollectionValue sourceVal) {
+		return sourceVal.first();
 	}
 }

@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NumericNotEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:36 ewillink Exp $
+ * $Id: NumericNotEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -30,32 +32,32 @@ public class NumericNotEqualOperation extends NumericEqualOperation
 	public static final NumericNotEqualOperation INSTANCE = new NumericNotEqualOperation();
 
 	@Override
-	protected Boolean evaluateInteger(BigInteger left, BigInteger right) {
-		return !super.evaluateInteger(left, right);
+	protected BooleanValue evaluateInteger(IntegerValue left, IntegerValue right) {
+		return BooleanValue.valueOfNot(super.evaluateInteger(left, right));
 	}
 
 	@Override
-	protected Boolean evaluateInvalid(Object left, Object right) {
-		return !super.evaluateInvalid(left, right);
+	protected BooleanValue evaluateInvalid(Value left, Value right) {
+		return BooleanValue.valueOfNot(super.evaluateInvalid(left, right));
 	}
 
 	@Override
-	protected Boolean evaluateNonNumeric(Object left, Object right) {
-		return !super.evaluateNonNumeric(left, right);
+	protected BooleanValue evaluateNonNumeric(Value left, Value right) {
+		return BooleanValue.valueOfNot(super.evaluateNonNumeric(left, right));
 	}
 
 	@Override
-	protected Boolean evaluateNull(Object left, Object right) {
-		return !super.evaluateNull(left, right);
+	protected BooleanValue evaluateNull(Value left, Value right) {
+		return BooleanValue.valueOfNot(super.evaluateNull(left, right));
 	}
 
 	@Override
-	protected Boolean evaluateReal(BigDecimal left, BigDecimal right) {
-		return !super.evaluateReal(left, right);
+	protected BooleanValue evaluateReal(RealValue left, RealValue right) {
+		return BooleanValue.valueOfNot(super.evaluateReal(left, right));
 	}
 
 	@Override
-	protected Boolean evaluateUnlimited(Object left, Object right) {
-		return !super.evaluateUnlimited(left, right);
+	protected BooleanValue evaluateUnlimited(Value left, Value right) {
+		return BooleanValue.valueOfNot(super.evaluateUnlimited(left, right));
 	}
 }

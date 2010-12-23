@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateSortedBy.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplateSortedBy.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -23,11 +23,26 @@ import java.util.Map;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.values.AbstractValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  *
  */
-public class IterationTemplateSortedBy extends IterationTemplate {
+public class IterationTemplateSortedBy extends IterationTemplate
+{
+	public static class SortingValue extends AbstractValue
+	{
+		private Map<Object, Value> content;
+
+		public SortingValue(Map<Object, Value> content) {
+			this.content = content;
+		}
+
+		public void put(Value iterVal, Value comparable) {
+			content.put(iterVal, comparable);
+		}
+	}
 	private IterationTemplateSortedBy(EvaluationVisitor evaluationVisitor) {
 		super(evaluationVisitor);
 	}
@@ -37,31 +52,14 @@ public class IterationTemplateSortedBy extends IterationTemplate {
 	}
 	
 	@Override
-    protected Object evaluateResult(List<Variable> iterators, String resultName, Object bodyVal) {
+    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
-		
-		@SuppressWarnings("unchecked")
-		Map<Object, Comparable<Object>> resultVal =
-			(Map<Object, Comparable<Object>>) env.getValueOf(resultName);
+		SortingValue resultVal = (SortingValue) env.getValueOf(resultName);
 		
 		// must have exactly one iterator
 		String iterName = iterators.get(0).getName();
-		Object iterVal = env.getValueOf(iterName);
-		
-		// check for undefined result:
-		// the current result value cannot be true since the short-circuit
-		// "isDone" mechanism below would have caused the evaluation to stop.
-		// If the body result is undefined then the entire expression's value
-		// is invalid
-		if (isUndefined(bodyVal)) {
-			setDone(true);
-			return getInvalid();
-		}
-		
-		@SuppressWarnings("unchecked")
-		Comparable<Object> comparable = (Comparable<Object>) bodyVal;
-		
-		resultVal.put(iterVal, comparable);
+		Value iterVal = env.getValueOf(iterName);
+		resultVal.put(iterVal, bodyVal);
 		return resultVal;
 	}
 }

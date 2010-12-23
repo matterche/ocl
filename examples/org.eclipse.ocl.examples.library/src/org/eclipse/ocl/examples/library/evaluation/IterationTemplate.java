@@ -13,12 +13,11 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +27,9 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 public class IterationTemplate {
 	
@@ -61,7 +63,7 @@ public class IterationTemplate {
 		return done;
 	}
 	
-	public Object evaluate(Collection<?> coll, List<Variable> iterators,
+	public Value evaluate(CollectionValue coll, List<Variable> iterators,
 							OclExpression body, String resultName) {
 
 		// if the collection is empty, then nothing to do
@@ -71,17 +73,26 @@ public class IterationTemplate {
 		// construct an array of java iterators, one for each
 		// ocl iterator in the expression
 		int numIters = iterators.size();
-		Iterator<?>[] javaIters = new Iterator[numIters];
+		Iterator<?>[] javaIters = new Iterator<?>[numIters];
 
 		try {
 			initializeIterators(iterators, javaIters, coll);
 			
 			while (true) {
 				// evaluate the body of the expression in this environment
-				Object bodyVal = body.accept(evaluationVisitor);
+				Value bodyVal = body.accept(evaluationVisitor);
 		
-				// get the new result value
-				Object resultVal = evaluateResult(iterators, resultName, bodyVal);
+				// If the body result is invalid then the entire expression's value
+				// is invalid, because OCL does not permit invalid in a collection
+				Value resultVal; 
+				if (bodyVal.isInvalid()) {
+					setDone(true);
+					resultVal = new InvalidValue("undefined body");
+				}
+				else {
+					// get the new result value
+					resultVal = evaluateResult(iterators, resultName, bodyVal);
+				}
 				
 				// set the result variable in the environment with the result value
 				env.replace(resultName, resultVal);
@@ -112,13 +123,13 @@ public class IterationTemplate {
 	protected void initializeIterators(
 			List<Variable> iterators,
 			Iterator<?>[] javaIters,
-			Collection<?> c) {
+			CollectionValue c) {
 		
 		for (int i = 0, n = javaIters.length; i < n; i++) {
 			javaIters[i] = c.iterator();
 			Variable iterDecl = iterators.get(i);
 			String iterName = iterDecl.accept(evaluationVisitor).toString(); // FIXME
-			Object value = javaIters[i].next();
+			Value value = (Value) javaIters[i].next();
 			env.replace(iterName, value);
 		}
 	}
@@ -135,7 +146,7 @@ public class IterationTemplate {
 	protected void advanceIterators(
 			List<Variable> iterators,
 			Iterator<?>[] javaIters,
-			Collection<?> c,
+			CollectionValue c,
 			int curr) {
 		
 		// assumes all the iterators have been added to the environment
@@ -145,7 +156,7 @@ public class IterationTemplate {
 			String iterName = iterDecl.getName();
 			if (i != curr)
 				javaIters[i] = c.iterator();
-			Object value = javaIters[i].next();
+			Value value = (Value) javaIters[i].next();
 			env.replace(iterName, value);
 		}
 	}
@@ -166,8 +177,7 @@ public class IterationTemplate {
 	}
 	
 	// override this method for different iterator behaviors
-	protected Object evaluateResult(
-			List<Variable> iterators, String resultName, Object bodyVal) {
+	protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		return bodyVal;
 	}
 	
@@ -184,14 +194,17 @@ public class IterationTemplate {
 		return evaluationVisitor.getStandardLibrary().getInvalidValue();
 	}
 
+	@Deprecated
 	protected boolean isInvalid(Object bodyVal) {
 		return bodyVal instanceof InvalidLiteralExp;
 	}
 
+	@Deprecated
 	protected boolean isNull(Object bodyVal) {
 		return bodyVal instanceof NullLiteralExp;
 	}
 
+	@Deprecated
 	protected boolean isUndefined(Object bodyVal) {
 		return isInvalid(bodyVal) || isNull(bodyVal);
 	}

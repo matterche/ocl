@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TupleEqualOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: TupleEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.tuple;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * TupleEqualOperation realises the Tuple::=() library operation.
@@ -27,16 +29,16 @@ public class TupleEqualOperation extends AbstractBinaryOperation
 {
 	public static final TupleEqualOperation INSTANCE = new TupleEqualOperation();
 
-	public Boolean evaluate(Object left, Object right) {
-		if (isInvalid(left) && isInvalid(right)) {
-			return true;
+	public BooleanValue evaluate(Value left, Value right) {
+		if (left.isInvalid() && right.isInvalid()) {
+			return BooleanValue.TRUE;
 		}
-		if (isNull(left) && isNull(right)) {
-			return true;
+		if (left.isNull() && right.isNull()) {
+			return BooleanValue.TRUE;
 		}
-		if (isUndefined(left) && isUndefined(right)) {
-			return false;
+		if (left.isUndefined() && right.isUndefined()) {
+			return BooleanValue.FALSE;
 		}	
-		return left.equals(right);
+		return BooleanValue.valueOf(left.equals(right));
 	}
 }

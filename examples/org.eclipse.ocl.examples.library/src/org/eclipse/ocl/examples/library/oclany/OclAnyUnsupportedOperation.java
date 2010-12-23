@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OclAnyUnsupportedOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: OclAnyUnsupportedOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclIsUndefinedOperation realises the oclIsUndefined() library operation.
@@ -29,7 +30,7 @@ public class OclAnyUnsupportedOperation extends AbstractOperation
 {
 	public static final OclAnyUnsupportedOperation INSTANCE = new OclAnyUnsupportedOperation();
 
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		throw new UnsupportedOperationException();
 	}
 }

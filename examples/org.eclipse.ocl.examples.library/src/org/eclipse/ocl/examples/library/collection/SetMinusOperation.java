@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: SetMinusOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: SetMinusOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-import java.util.Set;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * SetMinusOperation realises the Set::-() library operation.
@@ -31,13 +30,13 @@ public class SetMinusOperation extends AbstractCollectionPairedOperation
 	public static final SetMinusOperation INSTANCE = new SetMinusOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal, Collection<?> argVal) {
-		if (!(sourceVal instanceof Set<?>)) {
+	protected Value evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
+		if (!(sourceVal instanceof SetValue)) {
 			return null;
 		}
-		if (!(argVal instanceof Set<?>)) {
+		if (!(argVal instanceof SetValue)) {
 			return null;
 		}
-		return CollectionUtil.minus((Set<?>)sourceVal, (Set<?>)argVal);
+		return ((SetValue)sourceVal).minus((SetValue)argVal);
 	}
 }

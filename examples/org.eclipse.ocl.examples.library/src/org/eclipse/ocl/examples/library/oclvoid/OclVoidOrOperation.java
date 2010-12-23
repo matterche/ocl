@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclVoidOrOperation.java,v 1.1.2.1 2010/10/01 13:28:37 ewillink Exp $
+ * $Id: OclVoidOrOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OclVoidOrOperation realises the OclVoid::or() library operation.
@@ -27,9 +29,9 @@ public class OclVoidOrOperation extends AbstractBinaryOperation
 {
 	public static final OclVoidOrOperation INSTANCE = new OclVoidOrOperation();
 
-	public Object evaluate(Object left, Object right) {
-		if (right == Boolean.TRUE) {
-			return Boolean.TRUE;
+	public BooleanValue evaluate(Value left, Value right) {
+		if (right == BooleanValue.TRUE) {
+			return BooleanValue.TRUE;
 		}
 		return null;
 	}

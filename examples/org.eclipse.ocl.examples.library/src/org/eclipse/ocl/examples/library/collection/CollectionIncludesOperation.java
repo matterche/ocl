@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionIncludesOperation.java,v 1.1.2.2 2010/10/05 17:29:59 ewillink Exp $
+ * $Id: CollectionIncludesOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import java.util.Collection;
-
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionIncludesOperation realises the Collection::includes() library operation.
@@ -30,7 +30,7 @@ public class CollectionIncludesOperation extends AbstractCollectionBinaryOperati
 	public static final CollectionIncludesOperation INSTANCE = new CollectionIncludesOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal, Object argVal) {
-		return CollectionUtil.includes(sourceVal, argVal);
+	protected BooleanValue evaluateCollection(CollectionValue sourceVal, Value argVal) {
+		return BooleanValue.valueOf(sourceVal.includes(argVal));
 	}
 }

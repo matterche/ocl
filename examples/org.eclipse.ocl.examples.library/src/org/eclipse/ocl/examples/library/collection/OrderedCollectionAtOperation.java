@@ -12,17 +12,17 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionAtOperation.java,v 1.1.2.3 2010/12/13 08:14:47 ewillink Exp $
+ * $Id: OrderedCollectionAtOperation.java,v 1.1.2.4 2010/12/23 19:24:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import java.math.BigInteger;
-import java.util.Collection;
 
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * OrderedCollectionAtOperation realises the OrderedCollection::at() library operation.
@@ -34,21 +34,20 @@ public class OrderedCollectionAtOperation extends AbstractOrderedCollectionBinar
 	public static final OrderedCollectionAtOperation INSTANCE = new OrderedCollectionAtOperation();
 
 	@Override
-	protected Object evaluateCollection(Collection<?> sourceVal, Object argVal) {
+	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal) {
 		if (!(argVal instanceof BigInteger)) {
 			return null;
 		}
-		return CollectionUtil.at(sourceVal, ((BigInteger)argVal).intValue());
+		return sourceVal.at(((BigInteger)argVal).intValue());
 	}
 
 	@Override
-	public Object evaluate(EvaluationVisitor evaluationVisitor, Object sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		try {
 			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
 		}
 		catch (IndexOutOfBoundsException e) {
-			StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-			return stdlib.createInvalidValue(sourceVal, operationCall, "Bad Index", e);
+			return new InvalidValue(sourceVal, operationCall, "Bad Index", e);
 		}
 	}
 }
