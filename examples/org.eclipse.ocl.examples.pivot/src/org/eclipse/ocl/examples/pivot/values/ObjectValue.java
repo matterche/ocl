@@ -12,34 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ObjectValue.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: ObjectValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
-
-public class ObjectValue extends AbstractValue
+public interface ObjectValue extends Value
 {
-	public static ObjectValue valueOf(Object object) {
-		return new ObjectValue(object);
-	}
-
-	protected final Object object;
-	
-	public ObjectValue(Object object) {
-		this.object = object;
-	}
-
-//	@Override
-//	public ObjectValue<E> asObjectValue() {
-//		return this;
-//	}
-
-	public Object getObject() {
-		return object;
-	}
-
-	@Override
-	public String toString() {
-		return object.toString();
-	}
+	Object getObject();
 }

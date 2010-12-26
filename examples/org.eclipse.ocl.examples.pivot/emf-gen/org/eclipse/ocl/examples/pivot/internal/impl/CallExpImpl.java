@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.1.2.5 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: CallExpImpl.java,v 1.1.2.6 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#isImplicit <em>Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +60,25 @@ public abstract class CallExpImpl
 	 * @ordered
 	 */
 	protected OclExpression source;
+
+	/**
+	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMPLICIT_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IMPLICIT_EFLAG = 1 << 9;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,6 +196,29 @@ public abstract class CallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isImplicit()
+	{
+		return (eFlags & IMPLICIT_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImplicit(boolean newImplicit)
+	{
+		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
+		if (newImplicit) eFlags |= IMPLICIT_EFLAG; else eFlags &= ~IMPLICIT_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CALL_EXP__IMPLICIT, oldImplicit, newImplicit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -220,6 +263,8 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.CALL_EXP__IMPLICIT:
+				return isImplicit();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -261,6 +306,9 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.CALL_EXP__IMPLICIT:
+				setImplicit((Boolean)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -298,6 +346,9 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.CALL_EXP__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -327,8 +378,21 @@ public abstract class CallExpImpl
 				return type != null;
 			case PivotPackage.CALL_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.CALL_EXP__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString()
+	{
+		return super.toString();
 	}
 
 } //CallExpImpl

@@ -18,7 +18,8 @@ Export-Package: org.eclipse.ocl.examples.pivot,
  org.eclipse.ocl.examples.pivot.options,
  org.eclipse.ocl.examples.pivot.util,
  org.eclipse.ocl.examples.pivot.utilities,
- org.eclipse.ocl.examples.pivot.values
+ org.eclipse.ocl.examples.pivot.values,
+ org.eclipse.ocl.examples.pivot.values.impl
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,

@@ -12,16 +12,19 @@
  *
  * </copyright>
  *
- * $Id: TupleImpl.java,v 1.1.2.2 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: TupleImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.pivot.values;
+package org.eclipse.ocl.examples.pivot.values.impl;
 
 import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.Tuple;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * UML implementation of a tuple value.
@@ -135,11 +138,56 @@ public class TupleImpl extends AbstractValue implements Tuple
         if (o instanceof String) {
             return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
         } else if (o instanceof CollectionValue) {
-            return CollectionUtil.toString((CollectionValue) o);
+            return toString((CollectionValue) o);
         } else if (o == null) {
             return "null"; //$NON-NLS-1$
         } else {
             return o.toString();
         }
     }
+	
+	/**
+	 * Computes the string representation of a collection value using syntax
+	 * like OCL's collection literals (e.g., <tt>OrderedSet{...}</tt>) instead
+	 * of Java's default (i.e., <tt>[...]</tt>).
+	 * 
+	 * @param c a collection (not <code>null</code>)
+	 * @return the string representation of the specified collection
+	 * 
+	 * @since 1.2
+	 */
+	public static String toString(CollectionValue c) {
+	    StringBuilder result = new StringBuilder();
+	    
+        result.append(c.getKind().getName());
+        result.append('{');
+        
+        boolean notFirst = false;
+        for (Iterator<?> iter = c.iterator();;) {
+            if (iter.hasNext()) {
+                if (notFirst) {
+                    result.append(", "); //$NON-NLS-1$
+                } else {
+                    notFirst = true;
+                }
+                
+                Object next = iter.next();
+                if (next instanceof CollectionValue) {
+                    // nested collection
+                    result.append(toString((CollectionValue) next));
+                } else if (next instanceof String) {
+                    // string literal
+                    result.append('\'').append(next).append('\'');
+                } else {
+                    result.append(next);
+                }
+            } else {
+                break;
+            }
+        }
+        
+        result.append('}');
+        
+	    return result.toString();
+	}
 }

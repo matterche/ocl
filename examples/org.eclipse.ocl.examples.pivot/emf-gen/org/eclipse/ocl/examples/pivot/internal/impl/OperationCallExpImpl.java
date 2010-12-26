@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -218,6 +218,8 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
+				return isImplicit();
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return isPre();
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
@@ -266,6 +268,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
+				setImplicit((Boolean)newValue);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				setIsPre((Boolean)newValue);
 				return;
@@ -313,6 +318,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
 				return;
@@ -351,6 +359,8 @@ public class OperationCallExpImpl
 				return type != null;
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:

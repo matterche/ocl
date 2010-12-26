@@ -12,10 +12,10 @@
  *
  * </copyright>
  *
- * $Id: BagImpl.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: BagImpl.java,v 1.1.2.1 2010/12/26 15:21:28 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.pivot.values;
+package org.eclipse.ocl.examples.pivot.values.impl;
 
 import java.util.AbstractCollection;
 import java.util.Collection;
@@ -26,6 +26,7 @@ import java.util.NoSuchElementException;
 
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.values.Bag;
 
 /**
  * Default implementation of the {@link Bag} interface.

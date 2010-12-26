@@ -12,61 +12,16 @@
  *
  * </copyright>
  *
- * $Id: InvalidValue.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: InvalidValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
 
-public class InvalidValue extends AbstractValue
-{
-	protected final Object object;
-	protected final OclExpression expression;
-	protected final String reason;
-	protected final Throwable throwable;
-	
-	public InvalidValue(String reason) {
-		this.object = null;
-		this.expression = null;
-		this.reason = reason;
-		this.throwable = null;
-	}
-
-	public InvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
-		this.object = object;
-		this.expression = expression;
-		this.reason = reason;
-		this.throwable = throwable;
-	}
-	
-	public OclExpression getExpression() {
-		return expression;
-	}
-
-	public Object getObject() {
-		return object;
-	}
-	
-	public String getReason() {
-		return reason;
-	}
-	
-	public Throwable getThrowable() {
-		return throwable;
-	}
-
-	@Override
-	public boolean isInvalid() {
-		return true;
-	}
-
-	@Override
-	public boolean isUndefined() {
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Invalid: " + reason;
-	}
+public interface InvalidValue extends NullValue
+{	
+	OclExpression getExpression();
+	String getReason();
+	Throwable getThrowable();
+	Object getValue();
 }

@@ -7,7 +7,7 @@ public interface OrderedCollectionValue extends CollectionValue
     Value at(int index);
 	Value first();
     OrderedCollectionValue insertAt(int index, Value object);
-    int indexOf(Value object);
+    IntegerValue indexOf(Value object);
     Value last();
     OrderedCollectionValue prepend(Value object);
 	OrderedCollectionValue reverse();

@@ -16,7 +16,7 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.1.2.3 2010/12/13 08:14:55 ewillink Exp $
+ * $Id: TypeUtil.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -31,9 +31,9 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
  * Static utilities for introspecting OCL types.
@@ -297,7 +297,7 @@ public class TypeUtil {
 					if (ct.getElementType() == stdlib.getT2()) {
 						// special handling for the Collection(T2) parameter
 						// of the product collection operation
-						paramType = resolveCollectionType(env, CollectionUtil.getKind(ct),
+						paramType = resolveCollectionType(env, getKind(ct),
 							stdlib.getT());
 					}
 				}
@@ -855,5 +855,21 @@ public class TypeUtil {
 		
 	private static TypeChecker getTypeCheckerAdapter(Environment env) {
 		return OCLUtil.getAdapter(env, TypeChecker.class);
+	}
+
+	public static CollectionKind getKind(CollectionType type) {
+		if (type instanceof BagType) {
+			return CollectionKind.BAG;
+		}
+		else if (type instanceof SequenceType) {
+			return CollectionKind.SEQUENCE;
+		}
+		else if (type instanceof OrderedSetType) {
+			return CollectionKind.ORDERED_SET;
+		}
+		else if (type instanceof SetType) {
+			return CollectionKind.SET;
+		}
+		return null;
 	}
 }

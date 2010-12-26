@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.8 2010/12/19 15:52:38 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.9 2010/12/26 15:21:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -2664,13 +2664,22 @@ public interface PivotPackage
 	int CALL_EXP__SOURCE = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__IMPLICIT = OCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
+	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Ocl Type</em>' operation.
@@ -2788,6 +2797,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP__SOURCE = CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP__IMPLICIT = CALL_EXP__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -2923,6 +2941,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP__SOURCE = FEATURE_CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP__IMPLICIT = FEATURE_CALL_EXP__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -3076,6 +3103,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP__IMPLICIT = NAVIGATION_CALL_EXP__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -10120,6 +10156,15 @@ public interface PivotPackage
 	int LOOP_EXP__SOURCE = CALL_EXP__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__IMPLICIT = CALL_EXP__IMPLICIT;
+
+	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10271,6 +10316,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP__SOURCE = LOOP_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__IMPLICIT = LOOP_EXP__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -10793,6 +10847,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP__SOURCE = LOOP_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__IMPLICIT = LOOP_EXP__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -11738,6 +11801,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP__SOURCE = FEATURE_CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__IMPLICIT = FEATURE_CALL_EXP__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -13151,6 +13223,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__IMPLICIT = NAVIGATION_CALL_EXP__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -16231,13 +16312,22 @@ public interface PivotPackage
 	int VARIABLE__REPRESENTED_PARAMETER = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__IMPLICIT = VARIABLE_DECLARATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 2;
+	int VARIABLE_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Ocl Type</em>' operation.
@@ -17610,6 +17700,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getVariable_RepresentedParameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Variable#isImplicit <em>Implicit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Implicit</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Variable#isImplicit()
+	 * @see #getVariable()
+	 * @generated
+	 */
+	EAttribute getVariable_Implicit();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.IfExp <em>If Exp</em>}'.
@@ -19740,6 +19841,17 @@ public interface PivotPackage
 	EReference getCallExp_Source();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.CallExp#isImplicit <em>Implicit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Implicit</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CallExp#isImplicit()
+	 * @see #getCallExp()
+	 * @generated
+	 */
+	EAttribute getCallExp_Implicit();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.util.Visitor <em>Visitor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20575,6 +20687,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference VARIABLE__REPRESENTED_PARAMETER = eINSTANCE.getVariable_RepresentedParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Implicit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VARIABLE__IMPLICIT = eINSTANCE.getVariable_Implicit();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -22333,6 +22453,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference CALL_EXP__SOURCE = eINSTANCE.getCallExp_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Implicit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CALL_EXP__IMPLICIT = eINSTANCE.getCallExp_Implicit();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.util.Visitor <em>Visitor</em>}' class.

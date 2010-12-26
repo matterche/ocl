@@ -12,28 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NullValue.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: NullValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
-public class NullValue extends AbstractValue
+public interface NullValue
+	extends BooleanValue, IntegerValue, RealValue, StringValue, UnlimitedValue,
+		BagValue, OrderedSetValue, SequenceValue, SetValue,
+		ObjectValue, TypeValue
 {
-	public final static NullValue INSTANCE = new NullValue(); 
-	
-	private NullValue() {}
-
-	@Override
-	public boolean isNull() {
-		return true;
-	}
-
-	@Override
-	public boolean isUndefined() {
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "<null>";
-	}
+	InvalidValue negate();	
 }

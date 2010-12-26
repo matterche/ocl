@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingVisitor.java,v 1.1.2.6 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: AbstractExtendingVisitor.java,v 1.1.2.7 2010/12/26 15:21:28 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 

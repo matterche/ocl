@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.1.2.3 2010/12/26 15:21:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -34,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.options.ParsingOptions;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 
 /**
@@ -192,8 +191,8 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 			CollectionType first = (CollectionType) type1;
 			CollectionType other = (CollectionType) type2;
 
-			int kindRelationship = getRelationship(CollectionUtil.getKind(first),
-				CollectionUtil.getKind(other));
+			int kindRelationship = getRelationship(TypeUtil.getKind(first),
+				TypeUtil.getKind(other));
 
 			if (kindRelationship == UNRELATED_TYPE) {
 				return kindRelationship;
@@ -476,8 +475,8 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 
 			CollectionType ct2 = (CollectionType) type2;
 
-			CollectionKind commonKind = commonSuperType(CollectionUtil.getKind(ct1),
-				CollectionUtil.getKind(ct2));
+			CollectionKind commonKind = commonSuperType(TypeUtil.getKind(ct1),
+				TypeUtil.getKind(ct2));
 
 			Type resultElementType = commonSuperType(problemObject, ct1
 				.getElementType(), ct2.getElementType());
@@ -859,7 +858,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 					if (ct.getElementType() == stdlib.getT2()) {
 						// special handling for the Collection(T2) parameter
 						// of the product collection operation
-						paramType = (Type) resolveCollectionType(CollectionUtil.getKind(ct),
+						paramType = (Type) resolveCollectionType(TypeUtil.getKind(ct),
 							stdlib.getT());
 					}
 				}
@@ -932,7 +931,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 					}
 				}
 
-				result = (Type) resolveCollectionType(CollectionUtil.getKind(collType),
+				result = (Type) resolveCollectionType(TypeUtil.getKind(collType),
 					ownerMatch);
 			} else if (elemType == stdlib.getT2()) {
 				// wildard to match any other collection type
@@ -953,7 +952,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 					}
 				}
 
-				result = (Type) resolveCollectionType(CollectionUtil.getKind(collType), argMatch);
+				result = (Type) resolveCollectionType(TypeUtil.getKind(collType), argMatch);
 			}
 		}
 

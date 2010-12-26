@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.1.2.3 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: OCLBase.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,8 +35,8 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
-import org.eclipse.ocl.examples.pivot.values.ObjectValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -435,7 +435,8 @@ public abstract class OCLBase {
 			expression);
 
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
-		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, ObjectValue.valueOf(context));
+		Value contextValue = getEnvironment().getPivotManager().getValueOfValue(context);
+		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, contextValue);
 
 		Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extents = getExtentMap();
 		if (extents == null) {
@@ -457,7 +458,7 @@ public abstract class OCLBase {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
 		if (result == null) {
-			result = new InvalidValue("Java-Null value");
+			result = ValueFactory.createInvalidValue("Java-Null value");
 		}
 		return result;
 	}

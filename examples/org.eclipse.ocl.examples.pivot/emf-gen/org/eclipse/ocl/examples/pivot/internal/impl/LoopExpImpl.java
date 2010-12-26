@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: LoopExpImpl.java,v 1.1.2.6 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -317,6 +317,8 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.LOOP_EXP__IMPLICIT:
+				return isImplicit();
 			case PivotPackage.LOOP_EXP__BODY:
 				if (resolve) return getBody();
 				return basicGetBody();
@@ -366,6 +368,9 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.LOOP_EXP__IMPLICIT:
+				setImplicit((Boolean)newValue);
+				return;
 			case PivotPackage.LOOP_EXP__BODY:
 				setBody((OclExpression)newValue);
 				return;
@@ -413,6 +418,9 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.LOOP_EXP__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 			case PivotPackage.LOOP_EXP__BODY:
 				setBody((OclExpression)null);
 				return;
@@ -451,6 +459,8 @@ public abstract class LoopExpImpl
 				return type != null;
 			case PivotPackage.LOOP_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.LOOP_EXP__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.LOOP_EXP__BODY:
 				return body != null;
 			case PivotPackage.LOOP_EXP__ITERATOR:

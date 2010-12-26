@@ -53,6 +53,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="CallExp" abstract="true" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
@@ -696,6 +698,8 @@
         eType="#//OclExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representedParameter" ordered="false"
         eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" abstract="true"
       eSuperTypes="#//TypedElement"/>

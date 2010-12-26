@@ -12,26 +12,51 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: Value.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
+import org.eclipse.ocl.examples.pivot.values.impl.BagValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.BooleanValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.NullValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.OrderedSetValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.SequenceValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.SetValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.UnlimitedValueImpl;
 
-public interface Value { //extends Comparable<Value> {
+/**
+ * isXXX returns true if self is an XXX and is not Null and is not Invalid.
+ * asXXX returns an XXX if self is an XXX, null otherwise; note Null, Invalid are an XXX.
+ * toXXX returns an XXX if self is or can be converted to an XXX; Invalid otherwise.
+ */
+public interface Value //extends Comparable<Value>
+{
+	BagValue EMPTY_BAG = new BagValueImpl();
+	OrderedSetValue EMPTY_ORDERED_SET = new OrderedSetValueImpl();
+	SequenceValue EMPTY_SEQUENCE = new SequenceValueImpl();	
+	SetValue EMPTY_SET = new SetValueImpl();
+	BooleanValue FALSE = BooleanValueImpl.FALSE; 
+	NullValue NULL = NullValueImpl.INSTANCE; 
+	BooleanValue TRUE = BooleanValueImpl.TRUE;
+	UnlimitedValue UNLIMITED = new UnlimitedValueImpl(); 
 
-//	boolean and(Value bodyVal);
 	BagValue asBagValue();
 	BooleanValue asBooleanValue();
 	CollectionValue asCollectionValue();
+	BooleanValue asFalse(); 
 	Integer asInteger();
 	IntegerValue asIntegerValue();
+	InvalidValue asInvalidValue();
 	OrderedCollectionValue asOrderedCollectionValue();
 	OrderedSetValue asOrderedSetValue();
 	RealValue asRealValue();
 	SequenceValue asSequenceValue();
 	SetValue asSetValue();
 	String asString();
+	StringValue asStringValue();
+	BooleanValue asTrue();
 	TypeValue asTypeValue();
+	UniqueCollectionValue asUniqueCollectionValue();
 	boolean isFalse();
 	boolean isInvalid();
 	boolean isNull();
@@ -40,5 +65,6 @@ public interface Value { //extends Comparable<Value> {
 	boolean isUnlimited();
 	boolean isUnlimitedNatural();
 	RealValue toRealValue();
-
+	void toString(StringBuffer s, int sizeLimit);
+	InvalidValue toInvalidValue();
 }

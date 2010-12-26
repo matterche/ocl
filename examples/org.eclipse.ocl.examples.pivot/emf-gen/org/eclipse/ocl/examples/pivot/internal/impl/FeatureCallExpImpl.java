@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.1.2.5 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -64,7 +64,7 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_PRE_EFLAG = 1 << 9;
+	protected static final int IS_PRE_EFLAG = 1 << 10;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +133,8 @@ public abstract class FeatureCallExpImpl
 			case PivotPackage.FEATURE_CALL_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.FEATURE_CALL_EXP__IMPLICIT:
+				return isImplicit();
 			case PivotPackage.FEATURE_CALL_EXP__IS_PRE:
 				return isPre();
 		}
@@ -176,6 +178,9 @@ public abstract class FeatureCallExpImpl
 			case PivotPackage.FEATURE_CALL_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.FEATURE_CALL_EXP__IMPLICIT:
+				setImplicit((Boolean)newValue);
+				return;
 			case PivotPackage.FEATURE_CALL_EXP__IS_PRE:
 				setIsPre((Boolean)newValue);
 				return;
@@ -216,6 +221,9 @@ public abstract class FeatureCallExpImpl
 			case PivotPackage.FEATURE_CALL_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.FEATURE_CALL_EXP__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 			case PivotPackage.FEATURE_CALL_EXP__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
 				return;
@@ -248,6 +256,8 @@ public abstract class FeatureCallExpImpl
 				return type != null;
 			case PivotPackage.FEATURE_CALL_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.FEATURE_CALL_EXP__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.FEATURE_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 		}

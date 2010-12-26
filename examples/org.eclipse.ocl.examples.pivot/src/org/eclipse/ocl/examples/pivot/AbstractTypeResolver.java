@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: AbstractTypeResolver.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 
 /**
  * A partial implementation of the {@link TypeResolver} interface, useful for
@@ -296,7 +295,7 @@ public abstract class AbstractTypeResolver implements TypeResolver {
             if (next instanceof CollectionType) {
     			CollectionType type = (CollectionType) next;
     			
-    			if ((CollectionUtil.getKind(type) == kind) &&
+    			if ((TypeUtil.getKind(type) == kind) &&
     					(TypeUtil.getRelationship(
     						env,
     						type.getElementType(),

@@ -12,35 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ElementValue.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: ElementValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
 import org.eclipse.ocl.examples.pivot.Element;
 
-public class ElementValue<E extends Element> extends AbstractValue
+public interface ElementValue<E extends Element> extends Value
 {
-	public static <E extends Element> ElementValue<E> valueOf(E element) {
-		return new ElementValue<E>(element);
-	}
-
-	protected final E element;
-	
-	protected ElementValue(E element) {
-		this.element = element;
-	}
-
-//	@Override
-//	public ElementValue<E> asElementValue() {
-//		return this;
-//	}
-
-	public E getElement() {
-		return element;
-	}
-
-	@Override
-	public String toString() {
-		return element.toString();
-	}
+	E getElement();
 }

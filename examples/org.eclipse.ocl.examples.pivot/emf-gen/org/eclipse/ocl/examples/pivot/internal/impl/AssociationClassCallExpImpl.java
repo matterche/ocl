@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.1.2.5 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -148,6 +148,8 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
+				return isImplicit();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				return isPre();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
@@ -199,6 +201,9 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				setSource((OclExpression)newValue);
 				return;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
+				setImplicit((Boolean)newValue);
+				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				setIsPre((Boolean)newValue);
 				return;
@@ -249,6 +254,9 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				setSource((OclExpression)null);
 				return;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
 				return;
@@ -290,6 +298,8 @@ public class AssociationClassCallExpImpl
 				return type != null;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
 				return source != null;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:

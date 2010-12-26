@@ -12,28 +12,14 @@
  *
  * </copyright>
  *
- * $Id: TypeValue.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: TypeValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
 import org.eclipse.ocl.examples.pivot.Type;
 
-public class TypeValue extends ElementValue<Type>
+public interface TypeValue extends ElementValue<Type>
 {
-	public static TypeValue valueOf(Type type) {
-		return new TypeValue(type);
-	}
-	
-	private TypeValue(Type type) {
-		super(type);
-	}
-
-	@Override
-	public TypeValue asTypeValue() {
-		return this;
-	}
-
-	public Type getType() {
-		return element;
-	}
+	TypeValue asTypeValue();
+	Type getType();
 }

@@ -12,43 +12,10 @@
  *
  * </copyright>
  *
- * $Id: StringValue.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: StringValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
-
-public class StringValue extends AbstractValue
+public interface StringValue extends Value
 {
-	public static StringValue valueOf(String value) {
-		return new StringValue(value);
-	}
-
-	private final String value;
-	
-	private StringValue(String value) {
-		this.value = value;
-	}
-
-	@Override
-	public String asString() {
-		return value;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof StringValue)) {
-			return false;
-		}
-		return value.equals(((StringValue)obj).value);
-	}
-
-	@Override
-	public int hashCode() {
-		return value.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return value;
-	}
 }

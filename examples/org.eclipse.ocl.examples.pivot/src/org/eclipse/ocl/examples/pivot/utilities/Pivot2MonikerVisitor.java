@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.5 2010/12/26 15:21:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -23,8 +23,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -94,6 +96,13 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	}
 
 	public void appendExpPrefix(NamedElement object) {
+		EObject parent = object.eContainer();
+		if (parent instanceof CallExp) {
+			CallExp callExpParent = (CallExp)parent;
+			if (callExpParent.isImplicit() && (callExpParent.getSource() == object)) {
+				object = callExpParent;
+			}
+		}
 		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendRole(object);
 		context.append(MONIKER_OPERATOR_SEPARATOR);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.8 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.9 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -1724,6 +1724,16 @@ public class PivotPackageImpl
 	 */
 	public EReference getVariable_RepresentedParameter() {
         return (EReference)getVariable().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVariable_Implicit()
+	{
+        return (EAttribute)getVariable().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3834,6 +3844,16 @@ public class PivotPackageImpl
 	 */
 	public EReference getCallExp_Source() {
         return (EReference)getCallExp().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCallExp_Implicit()
+	{
+        return (EAttribute)getCallExp().getEStructuralFeatures().get(1);
 	}
 
 	/**

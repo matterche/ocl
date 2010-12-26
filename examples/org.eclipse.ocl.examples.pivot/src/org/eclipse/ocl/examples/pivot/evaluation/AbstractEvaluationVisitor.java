@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.5 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.6 2010/12/26 15:21:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -40,9 +40,8 @@ import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.impl.InvalidValueImpl;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -128,7 +127,7 @@ public abstract class AbstractEvaluationVisitor
     }
 
 	public Value createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
-        return new InvalidValue(object, expression, reason, throwable);
+        return new InvalidValueImpl(object, expression, reason, throwable);
 	}
    
     /**
@@ -542,7 +541,7 @@ public abstract class AbstractEvaluationVisitor
 		
 		Value result = body.accept(getUndecoratedVisitor());
 		
-		return isBoolean ? BooleanValue.valueOf(Boolean.TRUE.equals(result)) : result;
+		return isBoolean ? result.asTrue() : result;
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.9 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.10 2010/12/26 15:21:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -56,17 +57,14 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeUtil;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.values.Bag;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.ObjectValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * A PivotManager adapts a ResourceSet to provide facilities for the pivot
@@ -368,10 +366,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return pivotResource;
 	}
 
-//	public Type getCollectionType(Type collectionType, Type elementType) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	public Type getCollectionType(String collectionTypeName, Type elementType) {
+		return getLibraryType(collectionTypeName, Collections.singletonList(elementType));
+	}
 
 	public Type getCommonSuperType(Type firstType, Type secondType) {
 		return TypeUtil.getCommonSuperType(firstType, secondType);
@@ -554,25 +551,28 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	public Value getValueOfValue(Object value) {
 		if (value instanceof String) {
-			return StringValue.valueOf((String) value);
+			return ValueFactory.createStringValue((String) value);
 			}
 		if ((value instanceof Integer) || (value instanceof Long)
 				|| (value instanceof Short)) {
-			return IntegerValue.valueOf(((Number) value).longValue());
+			return ValueFactory.createIntegerValue(((Number) value).longValue());
 			}
 		if ((value instanceof Float) || (value instanceof Double)) {
-			return RealValue.valueOf(((Number) value).doubleValue());
+			return ValueFactory.createRealValue(((Number) value).doubleValue());
 		}
 		if (value instanceof BigDecimal) {
-			return RealValue.valueOf((BigDecimal) value);
+			return ValueFactory.createRealValue((BigDecimal) value);
 		}
 		if (value instanceof BigInteger) {
-			return IntegerValue.valueOf((BigInteger) value);
+			return ValueFactory.createIntegerValue((BigInteger) value);
 		}
 		if (value instanceof Boolean) {
-			return BooleanValue.valueOf((Boolean) value);
+			return ValueFactory.createBooleanValue((Boolean) value);
 		}
-		return ObjectValue.valueOf(value);
+		if (value == null) {
+			return Value.NULL;
+		}
+		return ValueFactory.createObjectValue(value);
 	}
 
 	public boolean isAdapterForType(Object type) {
@@ -677,12 +677,11 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		// Do nothing.
 	}
 
-	public Operation resolveOperation(Type leftType, String operationName,
-			Type... rightTypes) {
+	public Operation resolveOperation(Type leftType, String operationName, Type... rightTypes) {
 		if (!(leftType instanceof org.eclipse.ocl.examples.pivot.Class)) {
 			return null;
 		}
-		List<Operation> candidateOperations = resolveOperations(
+		Set<Operation> candidateOperations = resolveOperations(
 			(org.eclipse.ocl.examples.pivot.Class) leftType, operationName,
 			rightTypes);
 		if (candidateOperations == null) {
@@ -691,48 +690,66 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		if (candidateOperations.size() > 1) {
 			logger.warn("Ambiguous operation '" + operationName + "'");
 		}
-		return candidateOperations.get(0);
+		return candidateOperations.iterator().next();
 	}
 
-	public List<Operation> resolveOperations(
-			org.eclipse.ocl.examples.pivot.Class pivotClass,
+	public Set<Operation> resolveOperations(org.eclipse.ocl.examples.pivot.Class pivotClass,
 			String operationName, Type... pivotArguments) {
-		List<Operation> pivotOperations = null;
-		for (Operation pivotOperation : pivotClass.getOwnedOperations()) {
-			if (operationName.equals(pivotOperation.getName())) {
-				List<Parameter> pivotParameters = pivotOperation
-					.getOwnedParameters();
-				if (pivotArguments.length == pivotParameters.size()) {
-					boolean typesConform = true;
-					for (int i = 0; i < pivotArguments.length; i++) {
-						Type argumentType = pivotArguments[i];
-						Parameter pivotParameter = pivotParameters.get(i);
-						Type parameterType = pivotParameter.getType();
-						if (!TypeUtil.conformsToType(argumentType,
-							parameterType)) {
-							typesConform = false;
-							break;
-						}
+		Set<Operation> pivotOperations = resolveLocalOperation(pivotClass, operationName, pivotArguments);
+		for (TemplateBinding templateBinding : pivotClass.getTemplateBindings()) {
+			TemplateSignature signature = templateBinding.getSignature();
+			TemplateableElement template = signature.getTemplate();
+			if (template instanceof org.eclipse.ocl.examples.pivot.Class) {
+				Set<Operation> morePivotOperations = resolveLocalOperation((org.eclipse.ocl.examples.pivot.Class) template,
+					operationName, pivotArguments);
+				if (morePivotOperations != null) {
+					if (pivotOperations == null) {
+						pivotOperations = morePivotOperations;
 					}
-					if (typesConform) {
-						if (pivotOperations == null) {
-							pivotOperations = new ArrayList<Operation>();
-						}
-						pivotOperations.add(pivotOperation);
+					else {
+						pivotOperations.addAll(morePivotOperations);
 					}
 				}
 			}
 		}
 		if (pivotOperations == null) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : pivotClass
-				.getSuperClasses()) {
-				List<Operation> superOperations = resolveOperations(superClass,
+			for (org.eclipse.ocl.examples.pivot.Class superClass : pivotClass.getSuperClasses()) {
+				Set<Operation> superOperations = resolveOperations(superClass,
 					operationName, pivotArguments);
 				if (superOperations != null) {
 					if (pivotOperations == null) {
 						pivotOperations = superOperations;
 					} else {
 						pivotOperations.addAll(superOperations);
+					}
+				}
+			}
+		}
+		return pivotOperations;
+	}
+
+	public Set<Operation> resolveLocalOperation(org.eclipse.ocl.examples.pivot.Class pivotClass,
+			String operationName, Type... pivotArguments) {
+		Set<Operation> pivotOperations = null;
+		for (Operation pivotOperation : pivotClass.getOwnedOperations()) {
+			if (operationName.equals(pivotOperation.getName())) {
+				List<Parameter> pivotParameters = pivotOperation.getOwnedParameters();
+				if (pivotArguments.length == pivotParameters.size()) {
+					boolean typesConform = true;
+					for (int i = 0; i < pivotArguments.length; i++) {
+						Type argumentType = pivotArguments[i];
+						Parameter pivotParameter = pivotParameters.get(i);
+						Type parameterType = pivotParameter.getType();
+						if (!TypeUtil.conformsToType(argumentType, parameterType)) {
+							typesConform = false;
+							break;
+						}
+					}
+					if (typesConform) {
+						if (pivotOperations == null) {
+							pivotOperations = new HashSet<Operation>();
+						}
+						pivotOperations.add(pivotOperation);
 					}
 				}
 			}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: CallExp.java,v 1.1.2.3 2010/12/26 15:21:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CallExp#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CallExp#isImplicit <em>Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,5 +84,32 @@ public interface CallExp
 	 * @generated
 	 */
 	OclExpression createSource();
+
+	/**
+	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Implicit</em>' attribute.
+	 * @see #setImplicit(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCallExp_Implicit()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
+	 * @generated
+	 */
+	boolean isImplicit();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CallExp#isImplicit <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Implicit</em>' attribute.
+	 * @see #isImplicit()
+	 * @generated
+	 */
+	void setImplicit(boolean value);
 
 } // CallExp

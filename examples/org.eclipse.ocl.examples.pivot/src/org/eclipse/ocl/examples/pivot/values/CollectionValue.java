@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionValue.java,v 1.1.2.1 2010/12/23 19:25:10 ewillink Exp $
+ * $Id: CollectionValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -21,32 +21,41 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.TupleType;
 
 public interface CollectionValue extends Value, Iterable<Value>
 {
 	interface Accumulator extends CollectionValue {
 		boolean add(Value value);	
 	}
+	
+	interface BinaryOperation {
+		Value evaluate(Value result, Value element);
+	}
 
 	Collection<Value> asCollection();	
 	List<Value> asList();
-    int count(Value value);
+    IntegerValue count(Value value);
     CollectionValue createNew();
-	boolean excludes(Value value);	
-    boolean excludesAll(CollectionValue c);
+	BooleanValue excludes(Value value);	
+	BooleanValue excludesAll(CollectionValue c);
 	CollectionValue excluding(Value value);
     CollectionValue flatten();
-	boolean includes(Value value);	
-    boolean includesAll(CollectionValue c);
+	boolean flatten(Collection<Value> flattenedElements);
+	CollectionKind getKind();
+    BooleanValue includes(Value value);	
+    BooleanValue includesAll(CollectionValue c);
 	CollectionValue including(Value value);
-	boolean isEmpty();
+	CollectionValue intersection(CollectionValue c);
+	BooleanValue isEmpty();
 	Iterator<Value> iterator();
-//	Value maxMin(LibraryBinaryOperation binaryOperation);
-	boolean notEmpty();
-    int size();
+	Value maxMin(BinaryOperation binaryOperation);
+	BooleanValue notEmpty();
+    SetValue product(CollectionValue c, TupleType tupleType);   	
+	IntegerValue size();
     OrderedCollectionValue sort(Comparator<Value> comparator);
+	Value sum(BinaryOperation binaryOperation, Value zero);
+	OrderedCollectionValue toOrderedCollectionValue();
     CollectionValue union(CollectionValue c);
-	Value maxMin(EvaluationVisitor evaluationVisitor, CallableImplementation operation);
 }

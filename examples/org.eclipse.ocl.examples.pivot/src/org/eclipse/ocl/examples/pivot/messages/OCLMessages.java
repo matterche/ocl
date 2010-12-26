@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
  */
 public class OCLMessages {
 
-	static final String BUNDLE_NAME = "org.eclipse.ocl.internal.l10n.OCLMessages"; //$NON-NLS-1$
+	static final String BUNDLE_NAME = "org.eclipse.ocl.examples.pivot.messages.OCLMessages"; //$NON-NLS-1$
 
 	public static String no_message;
     public static String Input_ERROR_;
@@ -259,7 +259,7 @@ public class OCLMessages {
 	public static String ValidationConstraintIsNotBoolean_ERROR_;	
 	public static String ValidationResultIsInvalid_ERROR_;	
 	public static String ValidationResultIsNull_ERROR_;	
-	public static String ValidationResultIsNotBoolean_ERROR_;
+//	public static String ValidationResultIsNotBoolean_ERROR_;
 	
 	private static IMessages messagesImpl;
 	
@@ -279,7 +279,7 @@ public class OCLMessages {
 		try {
 			@SuppressWarnings("unchecked")
 			Class<IMessages> nlsClass = (Class<IMessages>) Class
-				.forName("org.eclipse.ocl.internal.l10n.IMessages$NLS"); //$NON-NLS-1$
+				.forName("org.eclipse.ocl.examples.pivot.messages.IMessages$NLS"); //$NON-NLS-1$
 			messagesImpl = nlsClass.newInstance();
 		} catch (NoClassDefFoundError e) {
 			// expected in non-Eclipse environment

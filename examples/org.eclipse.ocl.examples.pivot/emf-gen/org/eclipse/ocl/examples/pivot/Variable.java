@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Variable.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: Variable.java,v 1.1.2.4 2010/12/26 15:21:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Variable#getInitExpression <em>Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Variable#getRepresentedParameter <em>Represented Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Variable#isImplicit <em>Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,5 +111,32 @@ public interface Variable
 	 * @generated
 	 */
 	void setRepresentedParameter(Parameter value);
+
+	/**
+	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Implicit</em>' attribute.
+	 * @see #setImplicit(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getVariable_Implicit()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
+	 * @generated
+	 */
+	boolean isImplicit();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Variable#isImplicit <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Implicit</em>' attribute.
+	 * @see #isImplicit()
+	 * @generated
+	 */
+	void setImplicit(boolean value);
 
 } // Variable

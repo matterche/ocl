@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: VariableImpl.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableImpl#getInitExpression <em>Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableImpl#getRepresentedParameter <em>Represented Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableImpl#isImplicit <em>Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +73,26 @@ public class VariableImpl
 	 * @ordered
 	 */
 	protected Parameter representedParameter;
+
+	/**
+	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMPLICIT_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IMPLICIT_EFLAG = 1 << 9;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,6 +250,29 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isImplicit()
+	{
+		return (eFlags & IMPLICIT_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImplicit(boolean newImplicit)
+	{
+		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
+		if (newImplicit) eFlags |= IMPLICIT_EFLAG; else eFlags &= ~IMPLICIT_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__IMPLICIT, oldImplicit, newImplicit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -276,6 +320,8 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				if (resolve) return getRepresentedParameter();
 				return basicGetRepresentedParameter();
+			case PivotPackage.VARIABLE__IMPLICIT:
+				return isImplicit();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -320,6 +366,9 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				setRepresentedParameter((Parameter)newValue);
 				return;
+			case PivotPackage.VARIABLE__IMPLICIT:
+				setImplicit((Boolean)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -360,6 +409,9 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				setRepresentedParameter((Parameter)null);
 				return;
+			case PivotPackage.VARIABLE__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -391,8 +443,27 @@ public class VariableImpl
 				return initExpression != null;
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				return representedParameter != null;
+			case PivotPackage.VARIABLE__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (implicit: "); //$NON-NLS-1$
+		result.append((eFlags & IMPLICIT_EFLAG) != 0);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override
