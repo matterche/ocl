@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.3 2010/12/23 19:25:42 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.4 2010/12/26 15:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -210,7 +211,7 @@ public class EssentialOCLLeft2RightVisitor
 		return null;		// FIXME elementType
 	}
 
-	protected MonikeredElement handleIterationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Iteration iteration) {
+	protected LoopExp handleIterationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Iteration iteration) {
 		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
 //		List<Parameter> iterators = iteration.getOwnedIterators();
 		List<Parameter> accumulators = iteration.getOwnedAccumulators();
@@ -332,7 +333,38 @@ public class EssentialOCLLeft2RightVisitor
 		return expression;
 	}
 
-	protected MonikeredElement handleOperationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Operation operation) {
+	protected CallExp handleNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
+		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
+		NavigationOperatorCS csOperator = (NavigationOperatorCS) csNavigatingExp.getParent();
+		ExpCS csSource;
+		if (csOperator != null) {
+			csSource = csOperator.getSource();
+		}
+		else {
+			csSource = null; // Implicit
+		}
+		OclExpression source = PivotUtil.getPivot(OclExpression.class, csSource);
+		NamedElement namedElement = csNamedExp.getNamedElement();
+		if (namedElement.eIsProxy()) {
+			csNamedExp.getError().add("Unresolved operation name");
+		}
+		else if (namedElement instanceof Iteration) {
+			return handleIterationCall(csNavigatingExp, source, (Iteration)namedElement);
+		}
+		else if (namedElement instanceof Operation) {
+			return handleOperationCall(csNavigatingExp, source, (Operation)namedElement);
+		}
+		else {
+			csNamedExp.getError().add("Operation name expected");
+//			expression.setSource(context.getPivotManager().createInvalidValue(namedElement, null, "not an operation", null));
+//			expression.setReferredOperation(operation);
+//			expression.setType(context.getPivotManager().getInvalidType());
+//			return expression;
+		}
+		return null;
+	}
+
+	protected OperationCallExp handleOperationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Operation operation) {
 		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
 		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNamedExp);
 		expression.setSource(source);
@@ -795,40 +827,38 @@ public class EssentialOCLLeft2RightVisitor
 
 	@Override
 	public MonikeredElement visitNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
-		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
-		NavigationOperatorCS csOperator = (NavigationOperatorCS) csNavigatingExp.getParent();
-		ExpCS csSource;
-		if (csOperator != null) {
-			csSource = csOperator.getSource();
+		if (csNavigatingExp.getParent() instanceof NavigationOperatorCS) {
+			return PivotUtil.getPivot(OclExpression.class, csNavigatingExp);
 		}
 		else {
-			csSource = null; // Implicit
+			return handleNavigatingExpCS(csNavigatingExp);
 		}
-		OclExpression source = PivotUtil.getPivot(OclExpression.class, csSource);
-		NamedElement namedElement = csNamedExp.getNamedElement();
-		if (namedElement.eIsProxy()) {
-			csNamedExp.getError().add("Unresolved operation name");
-		}
-		else if (namedElement instanceof Iteration) {
-			return handleIterationCall(csNavigatingExp, source, (Iteration)namedElement);
-		}
-		else if (namedElement instanceof Operation) {
-			return handleOperationCall(csNavigatingExp, source, (Operation)namedElement);
-		}
-		else {
-			csNamedExp.getError().add("Operation name expected");
-//			expression.setSource(context.getPivotManager().createInvalidValue(namedElement, null, "not an operation", null));
-//			expression.setReferredOperation(operation);
-//			expression.setType(context.getPivotManager().getInvalidType());
-//			return expression;
-		}
-		return null;
 	}
 
 	@Override
-	public MonikeredElement visitNavigationOperatorCS(NavigationOperatorCS csNavigationOperator) {
-//		context.installPivotElement(csNavigationOperator, PropertyCallExp;
-		return null; //PivotUtil.getPivot(OclExpression.class, csNavigationOperator);
+	public CallExp visitNavigationOperatorCS(NavigationOperatorCS csNavigationOperator) {
+		CallExp navigatingExp = handleNavigatingExpCS((NavigatingExpCS) csNavigationOperator.getArgument());
+		Type requiredSourceType = null;
+		if (navigatingExp instanceof LoopExp) {
+			requiredSourceType = ((LoopExp)navigatingExp).getReferredIteration().getClass_();
+		}
+		else if (navigatingExp instanceof OperationCallExp) {
+			requiredSourceType = ((OperationCallExp)navigatingExp).getReferredOperation().getClass_();
+		}
+		OclExpression source = navigatingExp.getSource();
+		Type actualSourceType = source.getType();
+		if ((requiredSourceType instanceof CollectionType) && !(actualSourceType instanceof CollectionType)) {
+			OperationCallExp expression = context.refreshMonikeredElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNavigationOperator);
+			expression.setImplicit(true);
+			expression.setSource(source);
+			expression.setName("oclAsSet");
+			Operation resolvedOperation = context.resolveOperationCall(expression);
+			expression.setReferredOperation(resolvedOperation);
+			expression.setType(pivotManager.getCollectionType("Set", actualSourceType));
+			navigatingExp.setSource(expression);
+		}
+		context.reusePivotElement(csNavigationOperator, navigatingExp);
+		return navigatingExp;
 	}
 
 	@Override

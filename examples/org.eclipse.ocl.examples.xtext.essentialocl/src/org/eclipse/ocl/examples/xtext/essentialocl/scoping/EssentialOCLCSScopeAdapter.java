@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.4 2010/12/26 15:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -37,12 +37,12 @@ public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, 
 	@Override
 	public Type getLibraryType(ElementCS csElement) {
 		if (csElement instanceof PrimitiveTypeRefCS) {
-			return getLibraryType(((PrimitiveTypeRefCS)csElement).getName(), null);
+			return pivotManager.getCollectionType(((PrimitiveTypeRefCS)csElement).getName(), null);
 		}
 		else if (csElement instanceof CollectionTypeCS) {
 			CollectionTypeCS collectionType = (CollectionTypeCS)csElement;
 			Type elementType = getLibraryType(collectionType.getOwnedType());
-			return getLibraryType(collectionType.getName(), elementType);
+			return pivotManager.getCollectionType(collectionType.getName(), elementType);
 		}
 		else if (csElement instanceof TupleTypeCS) {			
 			TupleTypeCS tupleType = (TupleTypeCS)csElement;

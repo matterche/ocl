@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.2 2010/12/20 06:52:51 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.3 2010/12/26 15:20:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCS2MonikerVisitor;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
@@ -43,9 +43,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLitera
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
@@ -155,6 +155,27 @@ public class EssentialOCLCS2MonikerVisitor
 			context.append(index);
 		}
 		context.append(MONIKER_OPERATOR_SEPARATOR);
+/*		if (parent instanceof NavigationOperatorCS) {
+			NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)parent;
+			if (object == csNavigationOperator.getSource()) {
+				CallExp navigatingExp = PivotUtil.getPivot(CallExp.class, csNavigationOperator.getArgument());
+				Type requiredSourceType = null;
+				if (navigatingExp instanceof LoopExp) {
+					requiredSourceType = ((LoopExp)navigatingExp).getReferredIteration().getClass_();
+				}
+				else if (navigatingExp instanceof OperationCallExp) {
+					requiredSourceType = ((OperationCallExp)navigatingExp).getReferredOperation().getClass_();
+				}
+				OclExpression source = navigatingExp.getSource();
+				Type actualSourceType = source.getType();
+				if ((requiredSourceType instanceof CollectionType) && !(actualSourceType instanceof CollectionType)) {
+					context.append("oclAsSet");		
+					context.append("MONIKER_SCOPE_SEPARATOR");		
+					context.append("source");		
+					context.append("MONIKER_OPERATOR_SEPARATOR");		
+				}
+			}
+		} */
 	}
 
 	/**
