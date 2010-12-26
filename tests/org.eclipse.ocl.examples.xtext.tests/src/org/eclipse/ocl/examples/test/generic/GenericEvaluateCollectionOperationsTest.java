@@ -12,18 +12,12 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.2 2010/12/23 19:26:11 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.3 2010/12/26 15:23:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
 
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.values.BagValue;
-import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.examples.pivot.values.SequenceValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * Tests for collection operations.
@@ -59,11 +53,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsBag() {
-		BagValue emptyBag = new BagValue();
-		assertQueryEquals(null, emptyBag, "Sequence{}->asBag()");
-		assertQueryEquals(null, emptyBag, "Bag{}->asBag()");
-		assertQueryEquals(null, emptyBag, "Set{}->asBag()");
-		assertQueryEquals(null, emptyBag, "OrderedSet{}->asBag()");
+		assertQueryEquals(null, Value.EMPTY_BAG, "Sequence{}->asBag()");
+		assertQueryEquals(null, Value.EMPTY_BAG, "Bag{}->asBag()");
+		assertQueryEquals(null, Value.EMPTY_BAG, "Set{}->asBag()");
+		assertQueryEquals(null, Value.EMPTY_BAG, "OrderedSet{}->asBag()");
 
 		assertQueryResults(null, "Bag{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asBag()");
 		assertQueryResults(null, "Bag{1, 2.0, '3'}", "Bag{1, 2.0, '3'}->asBag()");
@@ -82,11 +75,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsOrderedSet() {
-		OrderedSetValue emptySet = new OrderedSetValue();
-		assertQueryEquals(null, emptySet, "Sequence{}->asOrderedSet()");
-		assertQueryEquals(null, emptySet, "Bag{}->asOrderedSet()");
-		assertQueryEquals(null, emptySet, "Set{}->asOrderedSet()");
-		assertQueryEquals(null, emptySet, "OrderedSet{}->asOrderedSet()");
+		assertQueryEquals(null, Value.EMPTY_ORDERED_SET, "Sequence{}->asOrderedSet()");
+		assertQueryEquals(null, Value.EMPTY_ORDERED_SET, "Bag{}->asOrderedSet()");
+		assertQueryEquals(null, Value.EMPTY_ORDERED_SET, "Set{}->asOrderedSet()");
+		assertQueryEquals(null, Value.EMPTY_ORDERED_SET, "OrderedSet{}->asOrderedSet()");
 
 		assertQueryResults(null, "OrderedSet{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asOrderedSet()");
 		assertQueryResults(null, "OrderedSet{1, 2.0, '3'}", "OrderedSet{1, 2.0, '3'}->asOrderedSet()");
@@ -110,11 +102,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsSequence() {
-		SequenceValue emptySequence = new SequenceValue();
-		assertQueryEquals(null, emptySequence, "Sequence{}->asSequence()");
-		assertQueryEquals(null, emptySequence, "Bag{}->asSequence()");
-		assertQueryEquals(null, emptySequence, "Set{}->asSequence()");
-		assertQueryEquals(null, emptySequence, "OrderedSet{}->asSequence()");
+		assertQueryEquals(null, Value.EMPTY_SEQUENCE, "Sequence{}->asSequence()");
+		assertQueryEquals(null, Value.EMPTY_SEQUENCE, "Bag{}->asSequence()");
+		assertQueryEquals(null, Value.EMPTY_SEQUENCE, "Set{}->asSequence()");
+		assertQueryEquals(null, Value.EMPTY_SEQUENCE, "OrderedSet{}->asSequence()");
 
 		assertQueryResults(null, "Sequence{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asSequence()");
 		assertQueryResults(null, "Sequence{1, 2.0, '3'}", "OrderedSet{1, 2.0, '3'}->asSequence()");
@@ -132,7 +123,6 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->asSequence()");
 		assertQueryInvalid(null, "let o : OrderedSet(Integer) = invalid in o->asSequence()");
 		// null collection
-//		assertQueryEquals(null, emptySequence, "null->asSequence()");
 		assertQueryInvalid(null, "let s : Sequence(Integer) = null in s->asSequence()");
 		assertQueryInvalid(null, "let b : Bag(Integer) = null in b->asSequence()");
 		assertQueryInvalid(null, "let s : Set(Integer) = null in s->asSequence()");
@@ -140,11 +130,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsSet() {
-		SetValue emptySet = new SetValue();
-		assertQueryEquals(null, emptySet, "Sequence{}->asSet()");
-		assertQueryEquals(null, emptySet, "Bag{}->asSet()");
-		assertQueryEquals(null, emptySet, "Set{}->asSet()");
-		assertQueryEquals(null, emptySet, "OrderedSet{}->asSet()");
+		assertQueryEquals(null, Value.EMPTY_SET, "Sequence{}->asSet()");
+		assertQueryEquals(null, Value.EMPTY_SET, "Bag{}->asSet()");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{}->asSet()");
+		assertQueryEquals(null, Value.EMPTY_SET, "OrderedSet{}->asSet()");
 
 		assertQueryResults(null, "Set{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asSet()");
 		assertResultContainsAll(null, "Set{1, 2.0, '3'}", "Bag{1, 2.0, '3'}->asSet()");
@@ -530,12 +519,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionFlatten() {
-		BagValue emptyBag = new BagValue();
-		SetValue emptySet = new SetValue();
-		assertQueryEquals(null, new SequenceValue(), "Sequence{}->flatten()");
-		assertQueryEquals(null, emptyBag, "Bag{}->flatten()");
-		assertQueryEquals(null, emptySet, "Set{}->flatten()");
-		assertQueryEquals(null, new OrderedSetValue(), "OrderedSet{}->flatten()");
+		assertQueryEquals(null, Value.EMPTY_SEQUENCE, "Sequence{}->flatten()");
+		assertQueryEquals(null, Value.EMPTY_BAG, "Bag{}->flatten()");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{}->flatten()");
+		assertQueryEquals(null, Value.EMPTY_ORDERED_SET, "OrderedSet{}->flatten()");
 
 		String expression = "Sequence{Set{1,2,3}, Sequence{2.0, 3.0}, Bag{'test'}}->flatten()";
 		String expectedResultExpression = "Sequence{1, 2, 3, 2.0, 3.0, 'test'}";
@@ -805,13 +792,11 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionIntersection() {
-		BagValue emptyBag = new BagValue();
-		SetValue emptySet = new SetValue();
 		// No duplicates
-		assertQueryEquals(null, emptySet, "Set{'a', 'b'}->intersection(Set{'c', 'd'})");
-		assertQueryEquals(null, emptySet, "Set{'a', 'b'}->intersection(Bag{'c', 'd'})");
-		assertQueryEquals(null, emptySet, "Bag{'a', 'b'}->intersection(Set{'c', 'd'})");
-		assertQueryEquals(null, emptyBag, "Bag{'a', 'b'}->intersection(Bag{'c', 'd'})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{'a', 'b'}->intersection(Bag{'c', 'd'})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Bag{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, Value.EMPTY_BAG, "Bag{'a', 'b'}->intersection(Bag{'c', 'd'})");
 		// Duplicates
 		assertQueryResults(null, "Set{'a', 'b'}", "Set{'a', 'b', 'a'}->intersection(Set{'a', 'b', 'c'})");
 		assertQueryResults(null, "Set{'a', 'b'}", "Set{'a', 'b', 'a'}->intersection(Bag{'a', 'b', 'c'})");
@@ -840,22 +825,22 @@ public abstract class GenericEvaluateCollectionOperationsTest
 
 		
 		// empty collection
-		assertQueryEquals(null, emptySet, "Set{3, 4}->intersection(Set{})");
-		assertQueryEquals(null, emptySet, "Set{3, 4}->intersection(Bag{})");
-		assertQueryEquals(null, emptyBag, "Bag{3, 4}->intersection(Bag{})");
-		assertQueryEquals(null, emptySet, "Bag{3, 4}->intersection(Set{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{3, 4}->intersection(Set{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{3, 4}->intersection(Bag{})");
+		assertQueryEquals(null, Value.EMPTY_BAG, "Bag{3, 4}->intersection(Bag{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Bag{3, 4}->intersection(Set{})");
 		// implicit collection
-		assertQueryEquals(null, emptySet, "1->intersection(Set{})");
-		assertQueryEquals(null, emptySet, "2->intersection(Bag{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "1->intersection(Set{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "2->intersection(Bag{})");
 
 //        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
 //        	"Set{}->intersection(Set{3, 4})",
 //        	OCLMessages.OperationNotFound_ERROR_, "intersection(Set(Integer))", "Set(OclVoid)");	
 		
-		assertQueryEquals(null, emptySet, "Set{}->intersection(Set{3, 4})");
-		assertQueryEquals(null, emptySet, "Set{}->intersection(Bag{3, 4})");
-		assertQueryEquals(null, emptyBag, "Bag{}->intersection(Bag{3, 4})");
-		assertQueryEquals(null, emptySet, "Bag{}->intersection(Set{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{}->intersection(Set{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{}->intersection(Bag{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_BAG, "Bag{}->intersection(Bag{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Bag{}->intersection(Set{3, 4})");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->intersection(Set{4})");
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->intersection(Bag{4})");
@@ -899,6 +884,8 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryFalse(null, "Set{4, 4, 'test'}->isEmpty()");
 		assertQueryFalse(null, "OrderedSet{4, 4, 'test'}->isEmpty()");
 
+		assertQueryResults(null, "Set{'test'}", "'test'.oclAsSet()");
+		assertQueryFalse(null, "'test'.oclAsSet()->isEmpty()");
 		assertQueryFalse(null, "'test'->isEmpty()");
 		assertQueryFalse(null, "''->isEmpty()");
 		// invalid collection
@@ -913,13 +900,15 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryInvalid(null, "Set{invalid}->isEmpty()");
 		assertQueryInvalid(null, "OrderedSet{invalid}->isEmpty()");
 		// null collection
-		assertQueryInvalid(null, "null->isEmpty()");
+//		assertQueryInvalid(null, "null->isEmpty()");
+		assertQueryTrue(null, "null->isEmpty()");
 		assertQueryInvalid(null, "let s : Sequence(Integer) = null in s->isEmpty()");
 		assertQueryInvalid(null, "let b : Bag(Integer) = null in b->isEmpty()");
 		assertQueryInvalid(null, "let s : Set(Integer) = null in s->isEmpty()");
 		assertQueryInvalid(null, "let o : OrderedSet(Integer) = null in o->isEmpty()");
 		// null collection element
-		assertQueryInvalid(null, "let s : String = null in s->isEmpty()");
+//		assertQueryInvalid(null, "let s : String = null in s->isEmpty()");
+		assertQueryTrue(null, "let s : String = null in s->isEmpty()");
 		assertQueryFalse(null, "Sequence{null}->isEmpty()");
 		assertQueryFalse(null, "Bag{null}->isEmpty()");
 		assertQueryFalse(null, "Set{null}->isEmpty()");
@@ -950,15 +939,19 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryEquals(null, 2, "Sequence{1, 2}->max()");
 		assertQueryEquals(null, 5.0, "Set{5, 4.0, 3.0, 2, 1}->max()");
 		assertQueryEquals(null, 1, "Bag{1}->max()");
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"OrderedSet{'hi', 'lo'}->max()",
-        	OCLMessages.MaxOperator_ERROR_);
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Set{}->max()",
-        	OCLMessages.MaxOperator_ERROR_);
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"OrderedSet{true, 1, 'bad'}->max()",
-        	OCLMessages.MaxOperator_ERROR_);		
+		assertQueryEquals(null, 1, "Bag{1}->max()");
+		assertQueryInvalid(null, "OrderedSet{'hi', 'lo'}->max()");
+		assertQueryInvalid(null, "Set{}->max()");
+		assertQueryInvalid(null, "OrderedSet{true, 1, 'bad'}->max()");
+//        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+//        	"OrderedSet{'hi', 'lo'}->max()",
+//        	OCLMessages.MaxOperator_ERROR_);
+//        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+//        	"Set{}->max()",
+//        	OCLMessages.MaxOperator_ERROR_);
+//        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+//        	"OrderedSet{true, 1, 'bad'}->max()",
+//        	OCLMessages.MaxOperator_ERROR_);		
 		// FIXME Bug 301351 Subtest-not-implemented user-defined max
 	}
 
@@ -966,15 +959,18 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryEquals(null, 1, "Sequence{1, 2}->min()");
 		assertQueryEquals(null, 1.0, "Set{5, 4.0, 3.0, 2, 1}->min()");
 		assertQueryEquals(null, 1, "Bag{1}->min()");
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"OrderedSet{'hi', 'lo'}->min()",
-        	OCLMessages.MinOperator_ERROR_);
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Set{}->min()",
-        	OCLMessages.MinOperator_ERROR_);
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"OrderedSet{true, 1, 'bad'}->min()",
-        	OCLMessages.MinOperator_ERROR_);		
+		assertQueryInvalid(null, "OrderedSet{'hi', 'lo'}->min()");
+		assertQueryInvalid(null, "Set{}->min()");
+		assertQueryInvalid(null, "OrderedSet{true, 1, 'bad'}->min()");
+//        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+//        	"OrderedSet{'hi', 'lo'}->min()",
+//        	OCLMessages.MinOperator_ERROR_);
+//        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+//        	"Set{}->min()",
+//        	OCLMessages.MinOperator_ERROR_);
+//        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+//        	"OrderedSet{true, 1, 'bad'}->min()",
+//        	OCLMessages.MinOperator_ERROR_);		
 		// FIXME Bug 301351 Subtest-not-implemented user-defined min
 	}
 
@@ -1028,7 +1024,8 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryInvalid(null, "Set{invalid}->notEmpty()");
 		assertQueryInvalid(null, "OrderedSet{invalid}->notEmpty()");
 		// null collection
-		assertQueryInvalid(null, "null->notEmpty()");
+//		assertQueryInvalid(null, "null->notEmpty()");
+		assertQueryFalse(null, "null->notEmpty()");
 		assertQueryInvalid(null, "let s : Sequence(Integer) = null in s->notEmpty()");
 		assertQueryInvalid(null, "let b : Bag(Integer) = null in b->notEmpty()");
 		assertQueryInvalid(null, "let s : Set(Integer) = null in s->notEmpty()");
@@ -1066,7 +1063,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 
 	public void testCollectionNotEqualOrderedXOrdered() {
 		// same order, same quantities
-		assertQueryFalse(null, "Sequence{4, 5, 'test'} <> Sequence{4, 5, 'test'}");
+/*		assertQueryFalse(null, "Sequence{4, 5, 'test'} <> Sequence{4, 5, 'test'}");
 		assertQueryFalse(null, "Sequence{4, 5, 'test', 5} <> Sequence{4, 5, 'test', 5}");
 		assertQueryFalse(null, "OrderedSet{4, 5, 'test', 5} <> OrderedSet{4, 5, 'test'}");
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> OrderedSet{4, 5, 'test', 5}");
@@ -1075,7 +1072,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		// distinct order, same quantities
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> Sequence{4, 'test', 5}");
 		assertQueryTrue(null, "Sequence{4, 5, 'test', 5} <> Sequence{5, 4, 'test', 5}");
-		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> OrderedSet{4, 'test', 5}");
+*/		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> OrderedSet{4, 'test', 5}");
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} <> OrderedSet{5, 4, 'test', 5}");
 		assertQueryTrue(null, "OrderedSet{4, 5, 'test', 5} <> Sequence{5, 4, 'test'}");
 
@@ -1157,16 +1154,15 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		// bug284129
 		assertQueryResults(null, "Set{Tuple{first = 3, second = 3.0}, Tuple{first = 3, second = 4}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
 		// empty
-		SetValue emptySet = new SetValue();
-		assertQueryEquals(null, emptySet, "Sequence{3, 4}->product(OrderedSet{})");
-		assertQueryEquals(null, emptySet, "Bag{3, 4}->product(Set{})");
-		assertQueryEquals(null, emptySet, "Set{3, 4}->product(Bag{})");
-		assertQueryEquals(null, emptySet, "OrderedSet{3, 4}->product(Sequence{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Sequence{3, 4}->product(OrderedSet{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Bag{3, 4}->product(Set{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{3, 4}->product(Bag{})");
+		assertQueryEquals(null, Value.EMPTY_SET, "OrderedSet{3, 4}->product(Sequence{})");
 
-		assertQueryEquals(null, emptySet, "Sequence{}->product(OrderedSet{3, 4})");
-		assertQueryEquals(null, emptySet, "Bag{}->product(Set{3, 4})");
-		assertQueryEquals(null, emptySet, "Set{}->product(Bag{3, 4})");
-		assertQueryEquals(null, emptySet, "OrderedSet{}->product(Sequence{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Sequence{}->product(OrderedSet{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Bag{}->product(Set{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_SET, "Set{}->product(Bag{3, 4})");
+		assertQueryEquals(null, Value.EMPTY_SET, "OrderedSet{}->product(Sequence{3, 4})");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Sequence(Integer) = invalid in OrderedSet{3, 4}->product(s)");
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Set{3, 4}->product(b)");
@@ -1236,7 +1232,8 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		assertQueryInvalid(null, "Bag{'a', 'b', invalid}->size()");
 		assertQueryInvalid(null, "Sequence{'a', 'b', invalid}->size()");
 		// null collection
-		assertQueryInvalid(null, "let s : String = null in s->size()");
+//		assertQueryInvalid(null, "let s : String = null in s->size()");
+		assertQueryEquals(null, 0, "let s : String = null in s->size()");
 		assertQueryInvalid(null, "let s : Sequence(Integer) = null in s->size()");
 		// null collection element
 		assertQueryEquals(null, 4, "Sequence{'a', 'b', null, null}->size()");
