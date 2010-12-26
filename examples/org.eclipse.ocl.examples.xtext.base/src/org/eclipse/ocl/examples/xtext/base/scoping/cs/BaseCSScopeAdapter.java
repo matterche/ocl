@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.1.2.5 2010/12/19 15:51:36 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.1.2.6 2010/12/26 15:20:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -187,7 +187,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			String collectionTypeName = ElementUtil.getCollectionTypeName(typedElement);
 			Type csType = getLibraryType(type);
 			if (collectionTypeName != null) {
-				return getLibraryType(collectionTypeName, csType);
+				return pivotManager.getCollectionType(collectionTypeName, csType);
 			}
 			else {
 				return csType;
@@ -196,7 +196,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		else if (csElement instanceof PrimitiveTypeRefCS) {
 			PrimitiveTypeRefCS primitiveTypeRefCS = (PrimitiveTypeRefCS)csElement;
 			String name = primitiveTypeRefCS.getName();
-			return getLibraryType(name, null);
+			return pivotManager.getLibraryType(name);
 		}
 		else if (csElement instanceof QualifiedTypeRefCS) {
 			QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)csElement;

@@ -12,11 +12,9 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.6 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.7 2010/12/26 15:20:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
-
-import java.util.Collections;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
@@ -185,10 +183,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	public ScopeView getInnerScopeView(EReference targetReference) {
 		return new BaseScopeView(this, null, null, targetReference);
-	}
-
-	public Type getLibraryType(String collectionTypeName, Type elementType) {
-		return pivotManager.getLibraryType(collectionTypeName, Collections.singletonList(elementType));
 	}
 
 	public ScopeView getOuterScopeView(EReference targetReference) {
