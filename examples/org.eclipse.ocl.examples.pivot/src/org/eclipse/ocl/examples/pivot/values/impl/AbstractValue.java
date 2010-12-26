@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractValue.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: AbstractValue.java,v 1.1.2.2 2010/12/26 16:56:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -132,6 +132,10 @@ public abstract class AbstractValue extends ValueFactory implements Value
 	
 	public boolean isUnlimitedNatural() {
 		return false;
+	}
+
+	public String oclToString() {
+		return toString();
 	}
 
 	public InvalidValue toInvalidValue() {

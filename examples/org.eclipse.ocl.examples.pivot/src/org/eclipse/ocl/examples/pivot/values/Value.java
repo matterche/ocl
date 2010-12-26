@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: Value.java,v 1.1.2.3 2010/12/26 16:56:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -64,6 +64,7 @@ public interface Value //extends Comparable<Value>
 	boolean isUndefined();
 	boolean isUnlimited();
 	boolean isUnlimitedNatural();
+	String oclToString();
 	RealValue toRealValue();
 	void toString(StringBuffer s, int sizeLimit);
 	InvalidValue toInvalidValue();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NullValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: NullValueImpl.java,v 1.1.2.2 2010/12/26 16:56:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -46,6 +46,10 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 
 	public boolean isNull() {
 		return true;
+	}
+
+	public String oclToString() {
+		return "null";
 	}
 
 	public InvalidValue toInvalidValue() {

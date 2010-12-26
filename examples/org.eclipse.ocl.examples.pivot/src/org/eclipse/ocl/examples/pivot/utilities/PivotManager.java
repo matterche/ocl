@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.10 2010/12/26 15:21:30 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.11 2010/12/26 16:56:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -552,11 +553,11 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	public Value getValueOfValue(Object value) {
 		if (value instanceof String) {
 			return ValueFactory.createStringValue((String) value);
-			}
+		}
 		if ((value instanceof Integer) || (value instanceof Long)
 				|| (value instanceof Short)) {
 			return ValueFactory.createIntegerValue(((Number) value).longValue());
-			}
+		}
 		if ((value instanceof Float) || (value instanceof Double)) {
 			return ValueFactory.createRealValue(((Number) value).doubleValue());
 		}
@@ -572,6 +573,16 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		if (value == null) {
 			return Value.NULL;
 		}
+		try {
+			int length = Array.getLength(value);
+			List<Value> values = new ArrayList<Value>();
+			for (int i = 0; i < length; i++) {
+				Value v = getValueOfValue(Array.get(value, i));
+				values.add(v);
+			}
+			return ValueFactory.createSequenceValue(values);
+		} 
+		catch (IllegalArgumentException e) {}
 		return ValueFactory.createObjectValue(value);
 	}
 

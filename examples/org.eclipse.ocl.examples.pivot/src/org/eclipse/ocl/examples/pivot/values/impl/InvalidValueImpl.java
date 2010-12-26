@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.1.2.2 2010/12/26 16:56:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -77,6 +77,10 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 
 	public boolean isNull() {
 		return false;
+	}
+
+	public String oclToString() {
+		return "invalid";
 	}
 
 	public InvalidValue toInvalidValue() {
