@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.2 2010/12/11 10:46:49 ewillink Exp $
+ * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.3 2010/12/26 16:56:18 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -606,6 +606,15 @@ public abstract class GenericEvaluateNumericOperationsTest
 
 		assertQueryInvalid(null, "let i1 : Integer = null, i2 : Integer = null in i1 * i2");
 		assertQueryInvalid(null, "let r1 : Real = null, r2 : Real = null in r1 * r2");
+	}
+
+	public void testNumberToString() {
+		assertQueryEquals(null, "1", "1.toString()");
+		assertQueryEquals(null, "3.0", "3.0.toString()");
+		assertQueryEquals(null, "4.0", "(1.0+3.0).toString()");
+		assertQueryEquals(null, "null", "null.toString()");
+		assertQueryEquals(null, "invalid", "invalid.toString()");
+		assertQueryEquals(null, "*", "*.toString()");
 	}
 
 	public void testUnlimitedAbs() {

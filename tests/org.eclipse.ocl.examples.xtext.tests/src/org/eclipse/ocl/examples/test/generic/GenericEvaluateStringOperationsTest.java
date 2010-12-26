@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.5 2010/12/23 19:26:11 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.6 2010/12/26 16:56:18 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -31,6 +31,16 @@ public abstract class GenericEvaluateStringOperationsTest
         helper.setContext(getMetaclass("Classifier"));
     }
 
+	public void testStringCharacters() {
+		assertQueryEquals(null, new String[] {}, "''.characters()");
+		assertQueryEquals(null, new String[] {"a"}, "'a'.characters()");
+		assertQueryEquals(null, new String[] {"a", "\r", "\n", "b"}, "'a\\r\nb'.characters()");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.characters()");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.characters()");
+	}
+
 	public void testStringConcat() {
 		assertQueryEquals(null, "concatenationTest", "'concatenation'.concat('Test')");
 		assertQueryEquals(null, "concatenation\n", "'concatenation'.concat('\\n')");
@@ -45,6 +55,7 @@ public abstract class GenericEvaluateStringOperationsTest
 	public void testStringEqual() {
 		assertQueryFalse(null, "'test' = 'se'");
 		assertQueryTrue(null, "'test' = 'test'");
+		assertQueryFalse(null, "'tESt' = 'TesT'");
 		// invalid
 		assertQueryFalse(null, "let s : String = invalid in s = 'se'");
 		assertQueryFalse(null, "let s : String = invalid in 'test' = s");
@@ -53,6 +64,15 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryFalse(null, "let s : String = null in s = 'se'");
 		assertQueryFalse(null, "let s : String = null in 'test' = s");
 		assertQueryTrue(null, "let s1 : String = null, s2 : String = null in s1 = s2");
+	}
+
+	public void testStringEqualIgnoresCase() {
+		assertQueryFalse(null, "'test'.equalsIgnoreCase('se')");
+		assertQueryTrue(null, "'test'.equalsIgnoreCase('test')");
+		assertQueryTrue(null, "'Test'.equalsIgnoreCase('tEst')");
+		assertQueryTrue(null, "'tesT'.equalsIgnoreCase('teSt')");
+		assertQueryTrue(null, "'TEST'.equalsIgnoreCase('test')");
+		assertQueryTrue(null, "'test'.equalsIgnoreCase('TEST')");
 	}
 
 	public void testStringGreaterThan() {
@@ -99,6 +119,20 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryInvalid(null, "let s : String = null in s >= 'se'");
 		assertQueryInvalid(null, "let s : String = null in 'test' >= s");
 		assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 >= s2");
+	}
+
+	public void testStringIndexOf() {
+		assertQueryEquals(null, "t", "'test'.indexOf(1)");
+		assertQueryEquals(null, "e", "'test'.indexOf(2)");
+		assertQueryEquals(null, "t", "'test'.indexOf(4)");
+		// out of bounds
+		assertQueryInvalid(null, "'test'.indexOf(0)");
+		assertQueryInvalid(null, "'test'.indexOf(5)");
+		assertQueryInvalid(null, "''.indexOf(1)");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.indexOf(1)");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.indexOf(1)");
 	}
 
 	public void testStringLessThan() {
@@ -194,6 +228,17 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryFalse(null, "''.oclIsUndefined()");
 	}
 
+	public void testStringPlus() {
+		assertQueryEquals(null, "concatenationTest", "'concatenation' + 'Test'");
+		assertQueryEquals(null, "concatenation\n", "'concatenation' + '\\n'");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in 'concatenation' + s");
+		assertQueryInvalid(null, "let s : String = invalid in s + 'concatenation'");
+		// null
+		assertQueryInvalid(null, "let s : String = null in 'concatenation' + s");
+		assertQueryInvalid(null, "let s : String = null in s + 'concatenation'");
+	}
+
 	public void testStringSize() {
 		assertQueryEquals(null, Integer.valueOf(4), "'test'.size()"); //$NON-NLS-2$
 		assertQueryEquals(null, Integer.valueOf(0), "''.size()"); //$NON-NLS-2$
@@ -272,6 +317,11 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryInvalid(null, "let s : String = invalid in s.toReal()");
 		// null
 		assertQueryInvalid(null, "let s : String = null in s.toReal()");
+	}
+
+	public void testStringToString() {
+		assertQueryEquals(null, "'4.0'", "'4.0'.toString()");
+		assertQueryEquals(null, "'4.0\t4'", "('4.0' + '\t' + '4').toString()");
 	}
 
 	public void testStringToUpperCase() {

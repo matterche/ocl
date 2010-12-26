@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.2 2010/12/26 16:56:18 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -61,7 +61,8 @@ public abstract class GenericEvaluateOclAnyOperationsTest
         pkg4 = reflection.createNestedPackage(pkg3, "pkg4");
         pkg5 = reflection.createNestedPackage(pkg3, "pkg5");
         george = reflection.createNestedPackage(pkg5, "george"); */
-        helper.setContext(getMetaclass(denormalize("%Package")));
+//        helper.setContext(getMetaclass(denormalize("%Package")));
+        helper.setContext(getMetaclass(denormalize("OclAny")));
     }
 
 	public void testEqualInvalid() {

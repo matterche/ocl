@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateBooleanOperationsTest.java,v 1.1.2.1 2010/10/01 15:33:24 ewillink Exp $
+ * $Id: GenericEvaluateBooleanOperationsTest.java,v 1.1.2.2 2010/12/26 16:56:18 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -129,6 +129,12 @@ public abstract class GenericEvaluateBooleanOperationsTest
 		assertQueryInvalid(null, "let a : Boolean = null in a or false");
 		assertQueryTrue(null, "let a : Boolean = null in a or true");
 		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = null in a or b");
+	}
+
+	public void testBooleanToString() {
+		assertQueryEquals(null, "false", "false.toString()");
+		assertQueryEquals(null, "true", "true.toString()");
+		assertQueryEquals(null, "true", "(not false).toString()");
 	}
 
 	public void testBooleanXor() {
