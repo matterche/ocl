@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericMaxOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: NumericMaxOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -31,12 +31,12 @@ public class NumericMaxOperation extends AbstractNumericBinaryOperation
 	public static final NumericMaxOperation INSTANCE = new NumericMaxOperation();
 
 	@Override
-	protected Value evaluateInteger(IntegerValue left, IntegerValue right) {
+	protected IntegerValue evaluateInteger(IntegerValue left, IntegerValue right) {
 		return left.max(right);
 	}
 
 	@Override
-	protected Value evaluateReal(RealValue left, RealValue right) {
+	protected RealValue evaluateReal(RealValue left, RealValue right) {
 		return left.max(right);
 	}
 

@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -34,14 +33,14 @@ public abstract class AbstractCollectionTernaryOperation extends AbstractTernary
 			return null;
 		}		
 		if (source.isNull()) {
-			return evaluateCollection(new SetValue(), arg1, arg2);
+			return evaluateCollection(createSetValue(), arg1, arg2);
 		}
 		CollectionValue collectionValue = source.asCollectionValue();
 		if (collectionValue != null) {
 			return evaluateCollection(collectionValue, arg1, arg2);
 		}
 		else {
-			return evaluateCollection(new SetValue(source), arg1, arg2);
+			return evaluateCollection(createSetValue(source), arg1, arg2);
 		}
 	}
 	

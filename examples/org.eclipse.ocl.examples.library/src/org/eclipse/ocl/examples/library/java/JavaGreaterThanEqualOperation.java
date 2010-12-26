@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: JavaGreaterThanEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: JavaGreaterThanEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.java;
 
@@ -33,6 +33,6 @@ public class JavaGreaterThanEqualOperation extends AbstractJavaBinaryOperation
 		Comparable<Object> comparableLeft = (Comparable<Object>)left;
 		@SuppressWarnings("unchecked")
 		Comparable<Object> comparableRight = (Comparable<Object>)right;
-		return BooleanValue.valueOf(comparableLeft.compareTo(comparableRight) >= 0);
+		return createBooleanValue(comparableLeft.compareTo(comparableRight) >= 0);
 	}
 }

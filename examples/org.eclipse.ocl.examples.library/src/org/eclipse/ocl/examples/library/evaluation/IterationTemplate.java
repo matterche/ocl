@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -67,7 +67,7 @@ public class IterationTemplate {
 							OclExpression body, String resultName) {
 
 		// if the collection is empty, then nothing to do
-		if (coll.isEmpty())
+		if (coll.isEmpty().isTrue())
 			return env.getValueOf(resultName);
 		
 		// construct an array of java iterators, one for each
@@ -87,7 +87,7 @@ public class IterationTemplate {
 				Value resultVal; 
 				if (bodyVal.isInvalid()) {
 					setDone(true);
-					resultVal = new InvalidValue("undefined body");
+					resultVal = createInvalidValue("undefined body");
 				}
 				else {
 					// get the new result value
@@ -189,6 +189,14 @@ public class IterationTemplate {
 //	protected MergedLibrary getOCLLibrary() {
 //		return evalVisitor.getEnvironment().getMergedLibrary();
 //	}
+
+	public InvalidValue createInvalidValue(String reason) {
+		return createInvalidValue(null, null, reason, null);
+	}
+
+	public InvalidValue createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
+		return createInvalidValue(object, expression, reason, throwable);
+	}
 	
 	protected Object getInvalid() {
 		return evaluationVisitor.getStandardLibrary().getInvalidValue();

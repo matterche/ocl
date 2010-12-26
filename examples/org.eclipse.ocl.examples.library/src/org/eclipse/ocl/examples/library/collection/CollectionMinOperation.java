@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionMinOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: CollectionMinOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.library.numeric.NumericMinOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -35,18 +34,12 @@ public class CollectionMinOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		CollectionValue collectionValue = sourceVal.asCollectionValue();
-		if (collectionValue == null) {
-			if (sourceVal.isInvalid()) {
-				return null;
-			}
-			if (sourceVal.isNull()) {
-				collectionValue = new SetValue();
-			}
-			else {
-				collectionValue = new SetValue(sourceVal);
-			}
+		if (collectionValue != null) {
+			// FIXME Bug 301351 Look for user-defined min
+			return collectionValue.maxMin(NumericMinOperation.INSTANCE);
 		}
-		// FIXME Bug 301351 Look for user-defined max
-		return collectionValue.maxMin(evaluationVisitor, new NumericMinOperation());
+		else {
+			return createInvalidValue(sourceVal, operationCall, "non-collection source for max", null);
+		}
 	}
 }

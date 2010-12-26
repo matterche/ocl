@@ -12,32 +12,15 @@
  *
  * </copyright>
  *
- * $Id: AbstractFeature.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: AbstractFeature.java,v 1.1.2.5 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * @since 3.1
  */
-public abstract class AbstractFeature implements LibraryFeature
+public abstract class AbstractFeature extends ValueFactory implements LibraryFeature
 {
-	public static CollectionValue convertToCollection(Value object) {
-		if (object.isInvalid()) {
-			return null;
-		}
-		else if (object.isNull()) {
-			return null;
-		}
-		else if (object instanceof CollectionValue) {
-			return (CollectionValue)object;
-		}
-		else {
-//			Set<Object> sourceSet = new SetValue();
-//			sourceSet.add(object);
-			return null;
-		}
-	}
 }

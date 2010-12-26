@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: AbstractCollectionPairedOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -35,10 +35,10 @@ public abstract class AbstractCollectionPairedOperation extends AbstractBinaryOp
 		if (left.isNull() || right.isNull()) {
 			return evaluateNull(left, right);
 		}		
-//		Collection<?> sourceColl = convertToCollection(sourceVal);
-//		Collection<?> argColl = convertToCollection(argVal);		// FIXME Pass target collection kind
-		if ((left instanceof CollectionValue) && (right instanceof CollectionValue)) {
-			return evaluateCollection((CollectionValue)left, (CollectionValue)right);
+		CollectionValue leftCollectionValue = left.asCollectionValue();
+		CollectionValue rightCollectionValue = right.asCollectionValue();
+		if ((leftCollectionValue != null) && (rightCollectionValue != null)) {
+			return evaluateCollection(leftCollectionValue, rightCollectionValue);
 		}
 		else {
 			return evaluateNonCollection(left, right);
@@ -48,14 +48,24 @@ public abstract class AbstractCollectionPairedOperation extends AbstractBinaryOp
 	protected abstract Value evaluateCollection(CollectionValue sourceVal, CollectionValue argVal);
 	
 	protected Value evaluateInvalid(Value sourceVal, Value argVal) {
-		return null;
+		return sourceVal.isInvalid() ? sourceVal : argVal;
 	}
 	
 	protected Value evaluateNonCollection(Value sourceVal, Value argVal) {
-		return null;
+		if (sourceVal.asCollectionValue() == null) {
+			return createInvalidValue(sourceVal, null, "non-collection", null);
+		}
+		else {
+			return createInvalidValue(argVal, null, "non-collection", null);
+		}
 	}
 	
 	protected Value evaluateNull(Value sourceVal, Value argVal) {
-		return null;
+		if (sourceVal.isNull()) {
+			return createInvalidValue(sourceVal, null, "non-collection", null);
+		}
+		else {
+			return createInvalidValue(argVal, null, "non-collection", null);
+		}
 	}
 }

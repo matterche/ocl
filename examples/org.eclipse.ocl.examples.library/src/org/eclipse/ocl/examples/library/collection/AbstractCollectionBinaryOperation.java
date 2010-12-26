@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: AbstractCollectionBinaryOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -30,11 +30,46 @@ public abstract class AbstractCollectionBinaryOperation extends AbstractBinaryOp
 {
 	public Value evaluate(Value left, Value right) {
 		if (left.isInvalid() || right.isInvalid()) {
-			return null;
+			return evaluateInvalid(left, right);
 		}		
-		CollectionValue sourceColl = convertToCollection(left);
-		return evaluateCollection(sourceColl, right);
+		if (left.isNull()) {
+			return evaluateNull(left, right);
+		}		
+		CollectionValue leftCollectionValue = left.asCollectionValue();
+		if (leftCollectionValue != null) {
+			return evaluateCollection(leftCollectionValue, right);
+		}
+		else {
+			return evaluateNonCollection(left, right);
+		}
 	}
 	
 	protected abstract Value evaluateCollection(CollectionValue sourceVal, Value argVal);
+	
+	protected Value evaluateInvalid(Value sourceVal, Value argVal) {
+		if (sourceVal.isInvalid()) {
+			return sourceVal;
+		}
+		else {
+			return argVal;
+		}
+	}
+	
+	protected Value evaluateNonCollection(Value sourceVal, Value argVal) {
+		if (sourceVal.asCollectionValue() == null) {
+			return createInvalidValue(sourceVal, null, "non-collection", null);
+		}
+		else {
+			return createInvalidValue(argVal, null, "non-collection", null);
+		}
+	}
+	
+	protected Value evaluateNull(Value sourceVal, Value argVal) {
+		if (sourceVal.isNull()) {
+			return createInvalidValue(sourceVal, null, "non-collection", null);
+		}
+		else {
+			return createInvalidValue(argVal, null, "non-collection", null);
+		}
+	}
 }

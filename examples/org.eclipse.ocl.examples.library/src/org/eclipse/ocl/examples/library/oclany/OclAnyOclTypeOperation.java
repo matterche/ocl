@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclTypeOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OclAnyOclTypeOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -36,6 +35,6 @@ public class OclAnyOclTypeOperation extends AbstractOperation
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
-		return TypeValue.valueOf(sourceType);
+		return createTypeValue(sourceType);
 	}
 }

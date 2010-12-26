@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyNotEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: OclAnyNotEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -21,7 +21,9 @@ import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
- * OclAnyNotEqualOperation realises the OCLAny::<>() library operation.
+ * OclAnyNotEqualOperation realises the OCLAny::<>() library operation and
+ * regular derived implementations since the Value classes exhibit
+ * OCL value semantics.
  * 
  * @since 3.1
  */
@@ -31,6 +33,6 @@ public class OclAnyNotEqualOperation extends OclAnyEqualOperation
 
 	@Override
 	public BooleanValue evaluate(Value left, Value right) {
-		return BooleanValue.valueOfNot(super.evaluate(left, right));
+		return super.evaluate(left, right).asFalse();
 	}
 }

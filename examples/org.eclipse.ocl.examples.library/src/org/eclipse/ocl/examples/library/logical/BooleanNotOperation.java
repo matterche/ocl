@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanNotOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: BooleanNotOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -30,11 +30,11 @@ public class BooleanNotOperation extends AbstractUnaryOperation
 	public static final BooleanNotOperation INSTANCE = new BooleanNotOperation();
 
 	public BooleanValue evaluate(Value argument) {
-		if (argument == BooleanValue.TRUE) {
-			return BooleanValue.FALSE;
+		if (argument == Value.TRUE) {
+			return Value.FALSE;
 		}
-		else if (argument == BooleanValue.FALSE) {
-			return BooleanValue.TRUE;
+		else if (argument == Value.FALSE) {
+			return Value.TRUE;
 		}
 		return null;
 	}

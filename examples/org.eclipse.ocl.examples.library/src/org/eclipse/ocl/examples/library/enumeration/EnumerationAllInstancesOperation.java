@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.Enumeration;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -42,6 +45,10 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 //			EObject metaModelElement = oclLiteral.getMetaModelElement();
 //			result.add(metaModelElement != null ? metaModelElement : oclLiteral);
 //		}
-		return SetValue.valueOfElements(((Enumeration)sourceType).getOwnedLiterals());
+		Set<Value> results = new HashSet<Value>();
+		for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiterals()) {
+			results.add(createObjectValue(instance));
+		}
+		return createSetValue(results);
 	}
 }

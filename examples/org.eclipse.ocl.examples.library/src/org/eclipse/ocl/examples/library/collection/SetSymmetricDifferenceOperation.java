@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -31,12 +31,17 @@ public class SetSymmetricDifferenceOperation extends AbstractCollectionPairedOpe
 
 	@Override
 	protected Value evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
-		if (!(sourceVal instanceof SetValue)) {
-			return null;
+		SetValue leftSetValue = sourceVal.asSetValue();
+		if (leftSetValue == null) {
+			return createInvalidValue(sourceVal, null, "non-set symmetricDifference source", null);
 		}
-		if (!(argVal instanceof SetValue)) {
-			return null;
+		SetValue rightSetValue = argVal.asSetValue();
+		if (rightSetValue == null) {
+			return createInvalidValue(sourceVal, null, "non-set symmetricDifference argument", null);
 		}
-		return ((SetValue)sourceVal).symmetricDifference((SetValue)argVal);
+		else if (rightSetValue.isInvalid()) {
+			return rightSetValue;
+		}		
+		return leftSetValue.symmetricDifference((SetValue)argVal);
 	}
 }

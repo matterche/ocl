@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionIndexOfOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OrderedCollectionIndexOfOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -30,11 +30,7 @@ public class OrderedCollectionIndexOfOperation extends AbstractOrderedCollection
 	public static final OrderedCollectionIndexOfOperation INSTANCE = new OrderedCollectionIndexOfOperation();
 
 	@Override
-	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal) {
-		int index = sourceVal.indexOf(argVal);
-		if (index < 0) {
-			return null;
-		}
-		return IntegerValue.valueOf(index);
+	protected IntegerValue evaluateCollection(OrderedCollectionValue sourceVal, Value argVal) {
+		return sourceVal.indexOf(argVal);
 	}
 }

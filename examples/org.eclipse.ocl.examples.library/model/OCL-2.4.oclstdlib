@@ -5,17 +5,17 @@ precedence left:NAVIGATION left:UNARY left:MULTIPLICATIVE left:ADDITIVE left:REL
 type Bag<T> : BagType conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
 	iteration reject(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	iteration select(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(bag : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionEqualOperation';
-	operation "<>"(bag : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation excluding(object : OclAny) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	operation flatten<T2>() : Bag<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
 	operation including(object : T) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 }
 
 type Boolean : PrimitiveType conformsTo OclAny {
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation allInstances() : Set<Boolean> => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.logical.BooleanEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.logical.BooleanNotEqualOperation';
 	operation and(b : Boolean) : Boolean precedence=AND => 'org.eclipse.ocl.examples.library.logical.BooleanAndOperation';
 	operation implies(b : Boolean) : Boolean precedence=IMPLIES => 'org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation';
 	operation not() : Boolean precedence=UNARY => 'org.eclipse.ocl.examples.library.logical.BooleanNotOperation';
@@ -42,8 +42,8 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	iteration reject(i : T) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	iteration select(i : T) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	iteration sortedBy(i : T) : OrderedCollection<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
-	operation "="(c : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionEqualOperation';
-	operation "<>"(c : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation asBag() : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation';
 	operation asOrderedSet() : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation';
 	operation asSequence() : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation';
@@ -101,7 +101,7 @@ type NonUniqueCollection<T> : CollectionType conformsTo Collection<T> {
 type OclAny : AnyType {
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
-	operation oclAsSet() : Collection<OclAny> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet() : Set<OclAny> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
 	operation oclAsType<T>(type : Classifier) : T => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation';
 	operation oclIsInState(statespec : OclState) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation';
 	operation oclIsInvalid() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation';
@@ -115,8 +115,8 @@ type OclAny : AnyType {
 
 type OclInvalid : InvalidType conformsTo OclVoid {
 	operation allInstances() : Set<OclInvalid> => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 }
 
 type OclMessage conformsTo OclAny {
@@ -130,14 +130,14 @@ type OclState conformsTo OclAny {
 }
 
 type OclTuple conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.tuple.TupleEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.tuple.TupleNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 }
 
 type OclVoid : VoidType conformsTo OclAny {
 	operation allInstances() : Set<OclVoid> => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation and(b : Boolean) : Boolean precedence=AND => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation';
 	operation implies(b : Boolean) : Boolean precedence=IMPLIES => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation';
 	operation or(b : Boolean) : Boolean precedence=OR => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation';
@@ -157,8 +157,8 @@ type OrderedCollection<T> : CollectionType conformsTo Collection<T> {
 type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection<T>,UniqueCollection<T> {
 	iteration reject(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	iteration select(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(o : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionEqualOperation';
-	operation "<>"(o : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "-"(s : Set<T>) : OrderedSet<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	operation append(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
 	operation excluding(object : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
@@ -174,8 +174,8 @@ type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection<T>,UniqueCollec
 }
 
 type Real : PrimitiveType conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.numeric.NumericEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.numeric.NumericNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "+"(r : Real) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
 	operation "-"(r : Real) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
 	operation "*"(r : Real) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
@@ -197,8 +197,8 @@ type Real : PrimitiveType conformsTo OclAny {
 type Sequence<T> : SequenceType conformsTo OrderedCollection<T>,NonUniqueCollection<T> {
 	iteration reject(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	iteration select(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(s : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionEqualOperation';
-	operation "<>"(s : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation append(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
 	operation excluding(object : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	operation flatten<T2>() : Sequence<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
@@ -213,8 +213,8 @@ type Sequence<T> : SequenceType conformsTo OrderedCollection<T>,NonUniqueCollect
 type Set<T> : SetType conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
 	iteration reject(i : T) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	iteration select(i : T) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(s : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionEqualOperation';
-	operation "<>"(s : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.collection.CollectionNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "-"(s : Set<OclAny>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	operation excluding(object : OclAny) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	operation flatten<T2>() : Set<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
@@ -224,8 +224,8 @@ type Set<T> : SetType conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
 }
 
 type String : PrimitiveType conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.string.StringEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.string.StringNotEqualOperation';
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "+"(s : String) : String precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 	operation at(i : Integer) : String => 'org.eclipse.ocl.examples.library.string.StringAtOperation';
 	operation characters() : Sequence<String>  => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';

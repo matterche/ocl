@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringToRealOperation.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
+ * $Id: StringToRealOperation.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -33,7 +32,7 @@ public class StringToRealOperation extends AbstractStringUnaryOperation
 
 	@Override
 	public  RealValue evaluateString(String sourceVal) {
-		return RealValue.valueOf(sourceVal);
+		return createRealValue(sourceVal);
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class StringToRealOperation extends AbstractStringUnaryOperation
 			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
 		}
 		catch (NumberFormatException e) {
-			return new InvalidValue(sourceVal, operationCall, "Not a Real", e);
+			return createInvalidValue(sourceVal, operationCall, "Not a Real", e);
 		}
 	}
 }

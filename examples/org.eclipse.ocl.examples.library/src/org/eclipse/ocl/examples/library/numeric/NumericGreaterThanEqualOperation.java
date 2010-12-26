@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericGreaterThanEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: NumericGreaterThanEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -33,16 +33,16 @@ public class NumericGreaterThanEqualOperation extends AbstractNumericBinaryOpera
 
 	@Override
 	protected BooleanValue evaluateInteger(IntegerValue left, IntegerValue right) {
-		return BooleanValue.valueOf(left.compareTo(right) >= 0);
+		return createBooleanValue(left.compareTo(right) >= 0);
 	}
 
 	@Override
 	protected BooleanValue evaluateReal(RealValue left, RealValue right) {
-		return BooleanValue.valueOf(left.compareTo(right) >= 0);
+		return createBooleanValue(left.compareTo(right) >= 0);
 	}
 
 	@Override
 	protected BooleanValue evaluateUnlimited(Value left, Value right) {
-		return BooleanValue.valueOf(left.isUnlimited());
+		return createBooleanValue(left.isUnlimited());
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateSortedBy.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: IterationTemplateSortedBy.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -23,8 +23,8 @@ import java.util.Map;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.values.AbstractValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
 
 /**
  *

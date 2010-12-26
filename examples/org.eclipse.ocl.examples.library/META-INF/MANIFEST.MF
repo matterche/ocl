@@ -22,6 +22,4 @@ Export-Package: org.eclipse.ocl.examples.library,
  org.eclipse.ocl.examples.library.oclinvalid,
  org.eclipse.ocl.examples.library.oclstdlib,
  org.eclipse.ocl.examples.library.oclvoid,
- org.eclipse.ocl.examples.library.string,
- org.eclipse.ocl.examples.library.tuple,
- org.eclipse.ocl.examples.library.util
+ org.eclipse.ocl.examples.library.string

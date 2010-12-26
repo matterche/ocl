@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: StringSubstringOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
+ * $Id: StringSubstringOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
-import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -38,7 +37,7 @@ public class StringSubstringOperation extends AbstractTernaryOperation
 			int lower = startInteger.intValue();
 			int upper = endInteger.intValue();
 			if ((0 < lower) && (lower <= upper) && (upper <= size))
-				return StringValue.valueOf(sourceString.substring(lower-1, upper));
+				return createStringValue(sourceString.substring(lower-1, upper));
 		}			
 		return null;
 	}

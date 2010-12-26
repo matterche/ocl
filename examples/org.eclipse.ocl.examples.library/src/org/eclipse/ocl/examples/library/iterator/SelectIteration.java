@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SelectIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: SelectIteration.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -21,7 +21,6 @@ import java.util.List;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateSelect;
-import org.eclipse.ocl.examples.library.util.CollectionUtil2;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
@@ -43,9 +42,9 @@ public class SelectIteration extends AbstractIteration
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
-		boolean isOrdered = CollectionUtil2.isOrdered(sourceType);
-		boolean isUnique = CollectionUtil2.isUnique(sourceType);
-		Value initResultVal = CollectionUtil2.createNewCollection(isOrdered, isUnique);
+		boolean isOrdered = isOrdered(sourceType);
+		boolean isUnique = isUnique(sourceType);
+		Value initResultVal = createCollectionValue(isOrdered, isUnique);
 		List<Variable> iterators = getIterators(iteratorExp);
 		OclExpression body = getBody(iteratorExp);		
 		CollectionValue coll = (CollectionValue) sourceVal;

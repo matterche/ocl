@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -34,11 +34,15 @@ public abstract class AbstractNumericUnaryOperation extends AbstractUnaryOperati
 		if (sourceVal.isUnlimited()) {
 			return evaluateUnlimited(sourceVal);			
 		}
-		else if (sourceVal instanceof IntegerValue) {
-			return evaluateInteger((IntegerValue)sourceVal);			
-		}
-		else if (sourceVal instanceof RealValue) {
-			return evaluateReal((RealValue)sourceVal);			
+		if (!sourceVal.isUndefined()) {
+			IntegerValue integerValue = sourceVal.asIntegerValue(); 
+			if (integerValue != null) {
+				return evaluateInteger(integerValue);			
+			}
+			RealValue realValue = sourceVal.asRealValue(); 
+			if (realValue != null) {
+				return evaluateReal(realValue);
+			}
 		}
 		return null;
 	}

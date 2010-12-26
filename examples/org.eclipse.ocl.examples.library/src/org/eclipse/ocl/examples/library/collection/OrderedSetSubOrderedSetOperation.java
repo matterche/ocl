@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetSubOrderedSetOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OrderedSetSubOrderedSetOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -34,15 +33,15 @@ public class OrderedSetSubOrderedSetOperation extends AbstractOrderedCollectionT
 	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal1, Value argVal2) {
 		OrderedSetValue selfValue = sourceVal.asOrderedSetValue();
 		if (selfValue == null) {
-			return new InvalidValue(sourceVal, null, "Invalid self for suborderedset", null);
+			return createInvalidValue(sourceVal, null, "suborderedset self", null);
 		}
 		Integer fromValue = argVal1.asInteger();
 		if (fromValue == null) {
-			return new InvalidValue(argVal1, null, "Invalid from index for suborderedset", null);
+			return createInvalidValue(argVal1, null, "suborderedset from", null);
 		}
 		Integer toValue = argVal2.asInteger();
 		if (toValue == null) {
-			return new InvalidValue(argVal2, null, "Invalid to index for suborderedset", null);
+			return createInvalidValue(argVal2, null, "suborderedset to", null);
 		}
 		return selfValue.subOrderedSet(fromValue, toValue);
 	}

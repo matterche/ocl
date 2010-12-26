@@ -12,17 +12,17 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.3 2010/12/23 19:24:50 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -36,7 +36,14 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap = evaluationVisitor.getExtentMap();
+		Set<Value> results = new HashSet<Value>();
 		Set<?> instances = extentMap.get(sourceVal);
-		return instances != null ? SetValue.valueOfObjects(instances) : SetValue.EMPTY;
+		if (instances == null) {
+			return Value.EMPTY_SET;
+		}
+		for (Object instance : instances) {
+			results.add(createObjectValue(instance));
+		}
+		return createSetValue(results);
 	}
 }

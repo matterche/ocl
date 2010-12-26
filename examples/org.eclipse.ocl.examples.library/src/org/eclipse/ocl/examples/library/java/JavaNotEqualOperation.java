@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: JavaNotEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: JavaNotEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.java;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-
 
 /**
  * JavaNotEqualOperation realises the Java::<>() library operation.
@@ -29,6 +28,6 @@ public class JavaNotEqualOperation extends JavaEqualOperation
 {
 	@Override
 	public BooleanValue evaluate(Value left, Value right) {
-		return BooleanValue.valueOfNot(super.evaluate(left, right));
+		return super.evaluate(left, right).asFalse();
 	}
 }

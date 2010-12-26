@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IsUniqueIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: IsUniqueIteration.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -25,9 +25,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -47,7 +45,7 @@ public class IsUniqueIteration extends AbstractIteration
 		IterationTemplate is = IterationTemplateIsUnique.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, new SetValue());		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, createSetValue());		
 		try {
 			// evaluate
 			is.evaluate(coll, iterators, body, resultName);
@@ -55,6 +53,6 @@ public class IsUniqueIteration extends AbstractIteration
 			// remove result name from environment
 			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
 		}
-		return BooleanValue.valueOf(is.isDone());
+		return createBooleanValue(is.isDone());
 	}
 }

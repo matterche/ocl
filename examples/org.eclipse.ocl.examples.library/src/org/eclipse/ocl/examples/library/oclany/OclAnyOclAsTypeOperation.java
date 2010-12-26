@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -43,7 +42,7 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0); // FIXME cast
 		TypeValue typeVal = argVal.asTypeValue();
 		if (typeVal == null) {
-			return new InvalidValue(argVal, operationCall, "Type required", null);
+			return createInvalidValue(argVal, operationCall, "Type required", null);
 		}
 		Type argType = typeVal.getType();
 		if (stdlib.conformsTo(sourceType, argType)) {

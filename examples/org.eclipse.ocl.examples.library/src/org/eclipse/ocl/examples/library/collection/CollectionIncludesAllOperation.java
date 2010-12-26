@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionIncludesAllOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: CollectionIncludesAllOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -30,6 +30,6 @@ public class CollectionIncludesAllOperation extends AbstractCollectionPairedOper
 
 	@Override
 	protected BooleanValue evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
-		return BooleanValue.valueOf(sourceVal.includesAll(argVal));
+		return sourceVal.includesAll(argVal);
 	}
 }

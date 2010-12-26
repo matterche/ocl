@@ -12,12 +12,9 @@
  *
  * </copyright>
  *
- * $Id: NumericOclAsTypeOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: NumericOclAsTypeOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
@@ -43,7 +40,7 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 			return null;
 		}
 		else if ((sourceVal instanceof IntegerValue) && (argType == stdlib.getRealType())) {
-			return RealValue.valueOf((IntegerValue)sourceVal);
+			return ((IntegerValue)sourceVal).toRealValue();
 		}
 		else {
 			return sourceVal;
@@ -53,35 +50,26 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	@Override
 	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) {
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-		if (sourceVal instanceof BigDecimal) {
-			BigDecimal source = (BigDecimal) sourceVal;
+		RealValue realValue = sourceVal.asRealValue();
+		if (realValue != null) {
 			if (argType == stdlib.getUnlimitedNaturalType()) {
-				if (source.signum() < 0) {
-					return null;
+				if (realValue.signum() < 0) {
+					return createInvalidValue(sourceVal, null, "not positive", null);
 				}
-				BigInteger result = source.toBigInteger();
-				BigDecimal delta = source.subtract(new BigDecimal(result));
-				if (delta.signum() != 0) {
-					return null;
-				}
-				return IntegerValue.valueOf(result);
+				return realValue.toIntegerValue();
 			}
 			else if (argType == stdlib.getIntegerType()) {
-				BigInteger result = source.toBigInteger();
-				BigDecimal delta = source.subtract(new BigDecimal(result));
-				if (delta.signum() != 0) {
-					return null;
-				}
-				return IntegerValue.valueOf(result);
+				return realValue.toIntegerValue();
 			}
+			return null;
 		}
-		else if (sourceVal instanceof BigInteger) {
-			BigInteger source = (BigInteger) sourceVal;
+		IntegerValue integerValue = sourceVal.asIntegerValue();
+		if (integerValue != null) {
 			if (argType == stdlib.getUnlimitedNaturalType()) {
-				if (source.signum() < 0) {
-					return null;
+				if (integerValue.signum() < 0) {
+					return createInvalidValue(sourceVal, null, "not positive", null);
 				}
-				return IntegerValue.valueOf(source);
+				return integerValue;
 			}
 		}
 		return null;

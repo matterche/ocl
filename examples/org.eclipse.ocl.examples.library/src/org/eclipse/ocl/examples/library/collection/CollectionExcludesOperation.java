@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionExcludesOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: CollectionExcludesOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -31,6 +31,6 @@ public class CollectionExcludesOperation extends AbstractCollectionBinaryOperati
 
 	@Override
 	protected BooleanValue evaluateCollection(CollectionValue sourceVal, Value argVal) {
-		return BooleanValue.valueOf(sourceVal.excludes(argVal));
+		return sourceVal.excludes(argVal);
 	}
 }

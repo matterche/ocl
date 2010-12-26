@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionProductOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: CollectionProductOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -21,8 +21,6 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.BagValue;
-import org.eclipse.ocl.examples.pivot.values.CollectionUtil;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -49,13 +47,13 @@ public class CollectionProductOperation extends AbstractOperation // FIXME Make 
 			return null;
 		}
 		if (sourceVal.isNull()) {
-			return evaluateCollection(evaluationVisitor, new BagValue(), operationCall, argumentValue);
+			return evaluateCollection(evaluationVisitor, createBagValue(), operationCall, argumentValue);
 		}
 		else if (sourceVal instanceof CollectionValue) {
 			return evaluateCollection(evaluationVisitor, (CollectionValue)sourceVal, operationCall, argumentValue);
 		}
 		else {
-			SetValue sourceSet = new SetValue(sourceVal);
+			SetValue sourceSet = createSetValue(sourceVal);
 			return evaluateCollection(evaluationVisitor, sourceSet, operationCall, argumentValue);
 		}
 	}
@@ -63,6 +61,6 @@ public class CollectionProductOperation extends AbstractOperation // FIXME Make 
 	protected Value evaluateCollection(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, OperationCallExp operationCall, CollectionValue argVal) {
 		CollectionType collType = (CollectionType) operationCall.getType();
 		TupleType tupleType = (TupleType) collType.getElementType();
-		return CollectionUtil.product(sourceVal, argVal, tupleType);
+		return sourceVal.product(argVal, tupleType);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,7 +23,6 @@ import java.util.Map;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateSortedBy;
-import org.eclipse.ocl.examples.library.util.CollectionUtil2;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
@@ -31,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -77,7 +75,7 @@ public class SortedByIteration extends AbstractIteration
 		}
 		// sort the source collection based on the natural ordering of the
 		// body expression evaluations
-		SequenceValue result = new SequenceValue(coll);
+		SequenceValue result = createSequenceValue(coll);
 
 //		Collections.sort(result, new Comparator<Object>() {
 //
@@ -93,13 +91,13 @@ public class SortedByIteration extends AbstractIteration
 		// SortedSet if source is a SortedSet or a Set
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
-		boolean isUnique = CollectionUtil2.isUnique(sourceType);
+		boolean isUnique = isUnique(sourceType);
 		
 		if (isUnique) {
-			return new OrderedSetValue(result);
+			return createOrderedSetValue(result);
 		}
 		else {
-			return new SequenceValue(result);
+			return createSequenceValue(result);
 		}
 				
 //		CollectionValue initResultVal = CollectionUtil2.createNewCollection(true, isUnique);

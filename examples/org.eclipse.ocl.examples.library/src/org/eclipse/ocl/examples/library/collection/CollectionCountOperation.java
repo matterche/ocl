@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionCountOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: CollectionCountOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -31,6 +31,6 @@ public class CollectionCountOperation extends AbstractCollectionBinaryOperation
 
 	@Override
 	protected IntegerValue evaluateCollection(CollectionValue sourceVal, Value argVal) {
-		return IntegerValue.valueOf(sourceVal.count(argVal));
+		return sourceVal.count(argVal);
 	}
 }

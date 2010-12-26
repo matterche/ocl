@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringToBooleanOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
+ * $Id: StringToBooleanOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
@@ -29,6 +29,6 @@ public class StringToBooleanOperation extends AbstractStringUnaryOperation
 
 	@Override
 	public BooleanValue evaluateString(String sourceVal) {
-		return BooleanValue.valueOf("true".equals(sourceVal)); //$NON-NLS-1$
+		return createBooleanValue("true".equals(sourceVal)); //$NON-NLS-1$
 	}
 }

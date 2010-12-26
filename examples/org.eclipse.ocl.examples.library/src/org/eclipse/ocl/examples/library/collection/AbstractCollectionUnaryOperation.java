@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: AbstractCollectionUnaryOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -34,14 +33,8 @@ public abstract class AbstractCollectionUnaryOperation extends AbstractUnaryOper
 		if (collectionValue != null) {
 			return evaluateCollection(collectionValue);
 		}
-		else if (argument.isInvalid()) {
-			return null;
-		}
-		else if (argument.isNull()) {
-			return evaluateCollection(new SetValue());
-		}
 		else {
-			return evaluateCollection(new SetValue(argument));
+			return createInvalidValue(argument, null, "non-collection", null);
 		}
 	}
 	

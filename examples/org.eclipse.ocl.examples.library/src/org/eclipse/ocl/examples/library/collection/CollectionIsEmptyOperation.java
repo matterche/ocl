@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionIsEmptyOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: CollectionIsEmptyOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -30,6 +30,6 @@ public class CollectionIsEmptyOperation extends AbstractCollectionUnaryOperation
 
 	@Override
 	protected BooleanValue evaluateCollection(CollectionValue sourceVal) {
-		return BooleanValue.valueOf(sourceVal.isEmpty());
+		return sourceVal.isEmpty();
 	}
 }

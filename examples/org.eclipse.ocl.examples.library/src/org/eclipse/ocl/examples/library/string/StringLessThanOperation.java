@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringLessThanOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
+ * $Id: StringLessThanOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
@@ -30,6 +30,6 @@ public class StringLessThanOperation extends AbstractStringBinaryOperation
 
 	@Override
 	protected BooleanValue evaluateString(String left, String right) {
-		return BooleanValue.valueOf(left.compareTo(right) < 0);
+		return createBooleanValue(left.compareTo(right) < 0);
 	}
 }

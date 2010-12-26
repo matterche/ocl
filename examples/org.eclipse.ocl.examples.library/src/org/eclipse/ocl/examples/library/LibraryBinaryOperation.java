@@ -12,16 +12,18 @@
  *
  * </copyright>
  *
- * $Id: LibraryBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: LibraryBinaryOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * @since 3.1
  */
-public interface LibraryBinaryOperation extends LibraryOperation {
+public interface LibraryBinaryOperation extends LibraryOperation, CollectionValue.BinaryOperation
+ {
 	/**
 	 * Return the result of evaluating the operation on left and right arguments.
 	 * An invalid return may be indicated by throwing an exception returning Java null or OCL invalid.

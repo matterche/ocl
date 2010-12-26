@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateIsUnique.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: IterationTemplateIsUnique.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -42,7 +42,7 @@ public class IterationTemplateIsUnique extends IterationTemplate {
     protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();		
 		CollectionValue.Accumulator currVal = (CollectionValue.Accumulator) env.getValueOf(resultName);
-		if (currVal.includes(bodyVal)) {
+		if (currVal.includes(bodyVal).isTrue()) {
 			setDone(true);
 		}
 		else

@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: BooleanAllInstancesOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: BooleanAllInstancesOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -37,7 +36,7 @@ public class BooleanAllInstancesOperation extends AbstractOperation
 	public SetValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		// Boolean has two instances: false, true
 		if (allInstances == null) {
-			allInstances = new SetValue(BooleanValue.FALSE, BooleanValue.TRUE);
+			allInstances = createSetValue(Value.FALSE, Value.TRUE);
 		}
 		return allInstances;
 	}

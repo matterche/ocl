@@ -12,17 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.4 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -41,9 +39,9 @@ public class OclAnyOclIsTypeOfOperation extends AbstractOperation
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue argTypeValue = argVal.asTypeValue();
 		if (argTypeValue == null) {
-			return new InvalidValue(argVal, operationCall, "Type required", null);
+			return createInvalidValue(argVal, operationCall, "Type required", null);
 		}
 		Type argType = argTypeValue.getType();
-		return BooleanValue.valueOf(stdlib.conformsTo(sourceType, argType) && stdlib.conformsTo(argType, sourceType));
+		return createBooleanValue(stdlib.conformsTo(sourceType, argType) && stdlib.conformsTo(argType, sourceType));
 	}
 }

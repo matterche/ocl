@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionInsertAtOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OrderedCollectionInsertAtOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -33,11 +32,11 @@ public class OrderedCollectionInsertAtOperation extends AbstractOrderedCollectio
 	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal1, Value argVal2) {
 		OrderedCollectionValue selfValue = sourceVal.asOrderedCollectionValue();
 		if (selfValue == null) {
-			return new InvalidValue(sourceVal, null, "Invalid self for insertAt", null);
+			return createInvalidValue(sourceVal, null, "Invalid self for insertAt", null);
 		}
 		Integer indexValue = argVal1.asInteger();
 		if (indexValue == null) {
-			return new InvalidValue(argVal1, null, "Invalid index for insertAt", null);
+			return createInvalidValue(argVal1, null, "Invalid index for insertAt", null);
 		}
 		if (argVal2.isInvalid()) {
 			return null;

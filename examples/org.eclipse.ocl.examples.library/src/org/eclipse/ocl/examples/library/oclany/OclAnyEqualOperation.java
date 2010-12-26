@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyEqualOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OclAnyEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -21,7 +21,9 @@ import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
- * OclAnyEqualOperation realises the OCLAny::=() library operation.
+ * OclAnyEqualOperation realises the OCLAny::=() library operation and
+ * regular derived implementations since the Value classes exhibit
+ * OCL value semantics.
  * 
  * @since 3.1
  */
@@ -30,15 +32,6 @@ public class OclAnyEqualOperation extends AbstractBinaryOperation
 	public static final OclAnyEqualOperation INSTANCE = new OclAnyEqualOperation();
 
 	public BooleanValue evaluate(Value left, Value right) {
-		if (left.isInvalid() && right.isInvalid()) {
-			return BooleanValue.TRUE;
-		}
-		if (left.isNull() && right.isNull()) {
-			return BooleanValue.TRUE;
-		}
-		if (left.isUndefined() && right.isUndefined()) {
-			return BooleanValue.FALSE;
-		}
-		return BooleanValue.valueOf(left == right);
+		return createBooleanValue(left.equals(right));
 	}
 }

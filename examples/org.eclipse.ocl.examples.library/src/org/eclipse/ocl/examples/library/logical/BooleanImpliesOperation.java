@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanImpliesOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: BooleanImpliesOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -33,22 +33,22 @@ public class BooleanImpliesOperation extends AbstractBinaryOperation
 
 	@Override
 	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		if (sourceVal == BooleanValue.FALSE) {
-			return BooleanValue.TRUE;
+		if (sourceVal == Value.FALSE) {
+			return Value.TRUE;
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		return evaluate(sourceVal, argVal);
 	}
 
 	public BooleanValue evaluate(Value left, Value right) {
-		if (left == BooleanValue.FALSE) {
-			return BooleanValue.TRUE;
+		if (left == Value.FALSE) {
+			return Value.TRUE;
 		}
-		if (right == BooleanValue.TRUE) {
-			return BooleanValue.TRUE;
+		if (right == Value.TRUE) {
+			return Value.TRUE;
 		}
-		else if ((left == BooleanValue.TRUE) && (right == BooleanValue.FALSE)) {
-			return BooleanValue.FALSE;
+		else if ((left == Value.TRUE) && (right == Value.FALSE)) {
+			return Value.FALSE;
 		}
 		return null;
 	}

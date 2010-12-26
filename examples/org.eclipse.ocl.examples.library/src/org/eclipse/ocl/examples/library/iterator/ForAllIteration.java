@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ForAllIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: ForAllIteration.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -46,7 +45,7 @@ public class ForAllIteration extends AbstractIteration
 		IterationTemplate is = IterationTemplateForAll.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, BooleanValue.TRUE);		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, Value.TRUE);		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);
