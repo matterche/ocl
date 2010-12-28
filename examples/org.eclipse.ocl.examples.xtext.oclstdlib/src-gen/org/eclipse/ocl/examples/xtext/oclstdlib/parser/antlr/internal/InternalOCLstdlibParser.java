@@ -2378,7 +2378,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 70:
                 {
-                int LA10_34 = input.LA(2);
+                int LA10_21 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2389,7 +2389,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 34, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 21, input);
 
                     throw nvae;
                 }
@@ -2397,7 +2397,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 71:
                 {
-                int LA10_35 = input.LA(2);
+                int LA10_22 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2408,7 +2408,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 35, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 22, input);
 
                     throw nvae;
                 }
@@ -2416,7 +2416,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 72:
                 {
-                int LA10_36 = input.LA(2);
+                int LA10_23 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2427,7 +2427,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 36, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 23, input);
 
                     throw nvae;
                 }
@@ -2435,7 +2435,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 73:
                 {
-                int LA10_37 = input.LA(2);
+                int LA10_24 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2446,7 +2446,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 37, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 24, input);
 
                     throw nvae;
                 }
@@ -2454,7 +2454,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 74:
                 {
-                int LA10_38 = input.LA(2);
+                int LA10_25 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2465,7 +2465,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 38, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 25, input);
 
                     throw nvae;
                 }
@@ -2473,7 +2473,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 75:
                 {
-                int LA10_39 = input.LA(2);
+                int LA10_26 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2484,7 +2484,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 39, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 26, input);
 
                     throw nvae;
                 }
@@ -2492,7 +2492,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 76:
                 {
-                int LA10_40 = input.LA(2);
+                int LA10_27 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2503,7 +2503,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 40, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 27, input);
 
                     throw nvae;
                 }
@@ -2511,7 +2511,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 77:
                 {
-                int LA10_41 = input.LA(2);
+                int LA10_28 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2522,7 +2522,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 41, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 28, input);
 
                     throw nvae;
                 }
@@ -2530,7 +2530,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 78:
                 {
-                int LA10_42 = input.LA(2);
+                int LA10_29 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2541,7 +2541,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 42, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 29, input);
 
                     throw nvae;
                 }
@@ -2549,7 +2549,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 79:
                 {
-                int LA10_43 = input.LA(2);
+                int LA10_30 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2560,7 +2560,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 43, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 30, input);
 
                     throw nvae;
                 }
@@ -2568,7 +2568,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 break;
             case 80:
                 {
-                int LA10_44 = input.LA(2);
+                int LA10_31 = input.LA(2);
 
                 if ( (synpred42()) ) {
                     alt10=1;
@@ -2579,7 +2579,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                 else {
                     if (backtracking>0) {failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 44, input);
+                        new NoViableAltException("748:1: (this_Identifier_0= ruleIdentifier | this_DOUBLE_QUOTED_STRING_1= RULE_DOUBLE_QUOTED_STRING | this_EssentialOCLReservedKeyword_2= ruleEssentialOCLReservedKeyword | this_RestrictedKeywords_3= ruleRestrictedKeywords | this_MetaTypeName_4= ruleMetaTypeName )", 10, 31, input);
 
                     throw nvae;
                 }

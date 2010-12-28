@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTSwitch.java,v 1.2.6.4 2010/12/19 15:57:40 ewillink Exp $
+ * $Id: OCLstdlibCSTSwitch.java,v 1.2.6.5 2010/12/28 12:26:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -46,9 +45,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
@@ -276,7 +275,6 @@ public class OCLstdlibCSTSwitch<T> {
 				if (result == null) result = caseRootPackageCS(libRootPackageCS);
 				if (result == null) result = casePackageCS(libRootPackageCS);
 				if (result == null) result = caseRootCS(libRootPackageCS);
-				if (result == null) result = caseAbstractPackageCS(libRootPackageCS);
 				if (result == null) result = caseNamespaceCS(libRootPackageCS);
 				if (result == null) result = caseNamedElementCS(libRootPackageCS);
 				if (result == null) result = caseMonikeredElementCS(libRootPackageCS);
@@ -743,21 +741,6 @@ public class OCLstdlibCSTSwitch<T> {
 	 */
 	public T caseClassCS(ClassCS object)
 	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Package CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractPackageCS(AbstractPackageCS object) {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.4 2010/12/23 19:25:46 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.5 2010/12/28 12:26:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -105,15 +106,15 @@ public class OCLstdlibPreOrderVisitor
 		}
 	}
 
-	protected static class RootPackagePrecedenceContinuation extends SingleContinuation<LibRootPackageCS>
+	protected static class LibraryPrecedenceContinuation extends SingleContinuation<LibRootPackageCS>
 	{
-		private RootPackagePrecedenceContinuation(CS2PivotConversion context, LibRootPackageCS csElement) {
+		private LibraryPrecedenceContinuation(CS2PivotConversion context, LibRootPackageCS csElement) {
 			super(context, null, null, csElement);
 		}
 
 		@Override
 		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
+			Library pivotElement = PivotUtil.getPivot(Library.class, csElement);
 			context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedences(), csElement.getOwnedPrecedence());
 			return null;
 		}
@@ -180,8 +181,10 @@ public class OCLstdlibPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitLibRootPackageCS(LibRootPackageCS csLibRootPackage) {
-		Continuation<?> superContinuation = visitRootPackageCS(csLibRootPackage);
-		Continuation<?> localContinuation =  new RootPackagePrecedenceContinuation(context, csLibRootPackage);
+		@SuppressWarnings("unused")
+		Library pivotElement = context.refreshNamedElement(Library.class, PivotPackage.Literals.LIBRARY, csLibRootPackage);
+		Continuation<?> superContinuation = visitPackageCS(csLibRootPackage);
+		Continuation<?> localContinuation =  new LibraryPrecedenceContinuation(context, csLibRootPackage);
 		return Continuations.combine(superContinuation, localContinuation);
 	}
 

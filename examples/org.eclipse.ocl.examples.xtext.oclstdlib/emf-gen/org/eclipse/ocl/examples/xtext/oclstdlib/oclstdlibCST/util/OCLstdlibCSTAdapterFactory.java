@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTAdapterFactory.java,v 1.2.6.4 2010/12/19 15:57:40 ewillink Exp $
+ * $Id: OCLstdlibCSTAdapterFactory.java,v 1.2.6.5 2010/12/28 12:26:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -23,7 +23,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -46,9 +45,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
@@ -273,11 +272,6 @@ public class OCLstdlibCSTAdapterFactory
 			public Adapter caseAttributeCS(AttributeCS object)
 			{
 				return createAttributeCSAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPackageCS(AbstractPackageCS object)
-			{
-				return createAbstractPackageCSAdapter();
 			}
 			@Override
 			public Adapter casePackageCS(PackageCS object)
@@ -722,20 +716,6 @@ public class OCLstdlibCSTAdapterFactory
 	 */
 	public Adapter createClassCSAdapter()
 	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS <em>Abstract Package CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS
-	 * @generated
-	 */
-	public Adapter createAbstractPackageCSAdapter() {
 		return null;
 	}
 
