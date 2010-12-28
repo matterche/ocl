@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.6.6.3 2010/12/08 10:28:45 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.6.6.4 2010/12/28 12:16:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -481,6 +481,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int COMPLETE_OCL_DOCUMENT_CS__NAME = BaseCSTPackage.ROOT_PACKAGE_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_TYPE = BaseCSTPackage.ROOT_PACKAGE_CS__OWNED_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -506,15 +515,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPLETE_OCL_DOCUMENT_CS__NS_URI = BaseCSTPackage.ROOT_PACKAGE_CS__NS_URI;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_TYPE = BaseCSTPackage.ROOT_PACKAGE_CS__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTAdapterFactory.java,v 1.3.6.3 2010/12/08 10:28:45 ewillink Exp $
+ * $Id: CompleteOCLCSTAdapterFactory.java,v 1.3.6.4 2010/12/28 12:16:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -247,11 +246,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseNamespaceCS(NamespaceCS object)
 			{
 				return createNamespaceCSAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPackageCS(AbstractPackageCS object)
-			{
-				return createAbstractPackageCSAdapter();
 			}
 			@Override
 			public Adapter casePackageCS(PackageCS object)
@@ -696,21 +690,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS <em>Abstract Package CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS
-	 * @generated
-	 */
-	public Adapter createAbstractPackageCSAdapter()
-	{
-		return null;
-	}
-
-/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS <em>Package CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

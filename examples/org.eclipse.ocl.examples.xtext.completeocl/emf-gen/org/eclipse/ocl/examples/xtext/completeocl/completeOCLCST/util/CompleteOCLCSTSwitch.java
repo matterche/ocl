@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTSwitch.java,v 1.3.6.3 2010/12/08 10:28:45 ewillink Exp $
+ * $Id: CompleteOCLCSTSwitch.java,v 1.3.6.4 2010/12/28 12:16:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -173,7 +172,6 @@ public class CompleteOCLCSTSwitch<T>
 				if (result == null) result = caseRootPackageCS(completeOCLDocumentCS);
 				if (result == null) result = casePackageCS(completeOCLDocumentCS);
 				if (result == null) result = caseRootCS(completeOCLDocumentCS);
-				if (result == null) result = caseAbstractPackageCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamespaceCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamedElementCS(completeOCLDocumentCS);
 				if (result == null) result = caseMonikeredElementCS(completeOCLDocumentCS);
@@ -791,22 +789,6 @@ public class CompleteOCLCSTSwitch<T>
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Package CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractPackageCS(AbstractPackageCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Package CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
