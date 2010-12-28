@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.3 2010/12/13 08:15:02 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.4 2010/12/28 12:19:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -41,7 +42,12 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 		if (containmentFeature == PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
 			OclExpression csSource = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
 //			ScopeAdapter typeScopeAdapter = getScopeAdapter(pivotManager, source.getType());
-			environmentView.addElementsOfScope(pivotManager, csSource.getType(), scopeView);
+			if (csSource instanceof TypeExp) {
+				environmentView.addElementsOfScope(pivotManager, ((TypeExp)csSource).getReferredType(), scopeView);
+			}
+			else {
+				environmentView.addElementsOfScope(pivotManager, csSource.getType(), scopeView);
+			}
 //			return typeScopeAdapter.compute Lookup(environmentView, typeScopeAdapter.getInnerScopeView(null));
 //			return getScopeCSAdapter(parent).getOuterScopeView(null);
 			return scopeView.getOuterScope();

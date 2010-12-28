@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.3 2010/12/26 15:20:45 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.4 2010/12/28 12:19:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -21,7 +21,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -58,6 +60,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteral
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
@@ -434,8 +437,14 @@ public class EssentialOCLCS2MonikerVisitor
 	@Override
 	public Object visitNameExpCS(NameExpCS object) {
 		appendExpPrefix(object);
-		CompositeNode node = NodeUtil.getNode(object);
-		context.append(node.serialize().trim());
+		NamedElement element = ((NameExpCSImpl)object).basicGetElement();
+		if (!element.eIsProxy()) {
+			context.appendName(element);
+		}
+		else {
+			CompositeNode node = NodeUtil.getNode(object);
+			context.append(node.serialize().trim());
+		}
 		return true;
 	}
 
@@ -512,7 +521,7 @@ public class EssentialOCLCS2MonikerVisitor
 	@Override
 	public Object visitTypeLiteralExpCS(TypeLiteralExpCS object) {
 		appendExpPrefix(object);
-		context.append(MONIKER_TYPE_LITERAL_EXP);
+		context.append(((Type) object.getOwnedType().getPivot()).getName());
 		return true;
 	}
 
