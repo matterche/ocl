@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsUndefinedOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclAnyOclIsUndefinedOperation.java,v 1.1.2.4 2010/12/28 12:21:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -30,9 +30,6 @@ public class OclAnyOclIsUndefinedOperation extends AbstractUnaryOperation
 	public static final OclAnyOclIsUndefinedOperation INSTANCE = new OclAnyOclIsUndefinedOperation();
 
 	public BooleanValue evaluate(Value argument) {
-		if (argument.isUndefined()) {
-			return Value.TRUE;
-		}
-		return Value.FALSE;
+		return createBooleanValue(argument.isUndefined());
 	}
 }

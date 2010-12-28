@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.5 2010/12/28 12:21:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
@@ -23,6 +23,8 @@ import java.util.Set;
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -35,9 +37,13 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 	public static final ClassifierAllInstancesOperation INSTANCE = new ClassifierAllInstancesOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap = evaluationVisitor.getExtentMap();
+		TypeValue typeVal = sourceVal.asTypeValue();
+		if ((typeVal == null) || typeVal.isNull()) {
+			return createInvalidValue(sourceVal, operationCall, "Type value expected", null);
+		}
+		ModelManager modelManager = evaluationVisitor.getModelManager();
 		Set<Value> results = new HashSet<Value>();
-		Set<?> instances = extentMap.get(sourceVal);
+		Set<?> instances = modelManager.get(typeVal.getType());
 		if (instances == null) {
 			return Value.EMPTY_SET;
 		}
