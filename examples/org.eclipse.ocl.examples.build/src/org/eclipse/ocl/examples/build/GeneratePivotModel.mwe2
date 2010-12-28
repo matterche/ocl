@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GeneratePivotModel.mwe2,v 1.1.2.3 2010/12/06 17:12:02 ewillink Exp $
+ * $Id: GeneratePivotModel.mwe2,v 1.1.2.4 2010/12/28 12:21:54 ewillink Exp $
  * 
  * Run As->MWE2 Workflow to regenerate the pivot model.
  */
@@ -89,5 +89,6 @@ Workflow {
     	javaPackageName = "${projectName}"
     	javaClassName = "Visitor"
     }
+  	component = @GenerateOclMetaModel {}
 }
 
