@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.7 2010/12/26 15:23:27 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.8 2010/12/28 12:26:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -140,7 +141,6 @@ public abstract class GenericTestSuite
 	private static ArrayList<Resource> standardResources;
 
 	private static boolean initialized = false;
-	protected static boolean OCL20A = false;		// True for MDT OCL 1.3.0 behaviour
 
     public static BagValue createBag(Object... objects) {
     	Bag<ObjectValue> collection = new BagImpl<ObjectValue>();
@@ -273,7 +273,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
         try {
         	@SuppressWarnings("unused")
-			OclExpression query = helper.createQuery(denormalized);
+			ExpressionInOcl query = helper.createQuery(denormalized);
             fail("Should not have parsed \"" + denormalized + "\"");
         } catch (ParserException e) {
         	assertEquals("Exception for \"" + denormalized + "\"", exception, e.getClass());
@@ -284,6 +284,11 @@ public abstract class GenericTestSuite
         	String expectedMessage = NLS.bind(messageTemplate, bindings);
         	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
         }	   
+	}
+     protected void assertSemanticErrorQuery(String expression,
+    		 String messageTemplate, String... bindings) {
+    	 assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+    		 expression, messageTemplate, bindings);	   
 	}
     	
 	/**
@@ -384,11 +389,11 @@ public abstract class GenericTestSuite
 	/**
 	 * Assert that an expression can be parsed as a query for a context and return the query.
 	 */
-	protected OclExpression assertQuery(Type context, String expression) {
+	protected ExpressionInOcl assertQuery(Type context, String expression) {
 		helper.setContext(context);
 		String denormalized = denormalize(expression);
 		try {
-			OclExpression result = helper.createQuery(denormalized);
+			ExpressionInOcl result = helper.createQuery(denormalized);
 			return result;
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -489,20 +494,6 @@ public abstract class GenericTestSuite
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
 			return null;
-		}
-	}
-
-	/**
-	 * Assert that the result of evaluating an expression as a query is false,
-	 * unless unlessCondition is true in which case the result is true.
-	 * @return the evaluation result
-	 */
-	protected Object assertQueryFalse(boolean unlessCondition, Object context, String expression) {
-		if (unlessCondition) {
-			return assertQueryTrue(context, expression);
-		}
-		else {
-			return assertQueryFalse(context, expression);
 		}
 	}
 
@@ -701,20 +692,6 @@ public abstract class GenericTestSuite
 	}
 
 	/**
-	 * Assert that the result of evaluating an expression as a query is true,
-	 * unless unlessCondition is true in which case the result is false.
-	 * @return the evaluation result
-	 */
-	protected Object assertQueryTrue(boolean unlessCondition, Object context, String expression) {
-		if (unlessCondition) {
-			return assertQueryFalse(context, expression);
-		}
-		else {
-			return assertQueryTrue(context, expression);
-		}
-	}
-
-	/**
 	 * Assert that the result of evaluating an expression as a query is an unlimited value.
 	 * @return the evaluation result
 	 */
@@ -881,11 +858,11 @@ public abstract class GenericTestSuite
 		return result;
 	}
 	
-	protected OclExpression createQuery(org.eclipse.ocl.examples.pivot.Class context, String expression) {
+	protected ExpressionInOcl createQuery(org.eclipse.ocl.examples.pivot.Class context, String expression) {
 		return assertQuery(context, expression);
 	}
 	
-	protected OclExpression createQuery(
+	protected ExpressionInOcl createQuery(
 			EnvironmentFactory envFactory,
 			Type context, String text) {
 		
@@ -893,7 +870,7 @@ public abstract class GenericTestSuite
 		OCLHelper helper = localOcl.createOCLHelper();
 		helper.setContext(context);
 		
-		OclExpression result = null;
+		ExpressionInOcl result = null;
 		
 		try {
 			result = helper.createQuery(text);
@@ -970,7 +947,7 @@ public abstract class GenericTestSuite
 	protected Value evaluate(OCLHelper aHelper, Object context,
             String expression) throws ParserException {
 //        pivotManager.getPivotResourceSet().getResources().clear();
-        OclExpression query = aHelper.createQuery(expression);
+		ExpressionInOcl query = aHelper.createQuery(expression);
         @SuppressWarnings("unused")
 		String s = query.toString();		// FIXME debugging
         return ocl.evaluate(context, query);
