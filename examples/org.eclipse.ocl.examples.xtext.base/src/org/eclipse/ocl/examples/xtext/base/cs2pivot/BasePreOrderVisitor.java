@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.5 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.6 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -53,7 +52,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -139,7 +137,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
+			org.eclipse.ocl.examples.pivot.Package pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, csElement);
 			context.refreshPivotList(Type.class, pivotElement.getOwnedTypes(), csElement.getOwnedType());
 			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackages(), csElement.getOwnedNestedPackage());
 			context.getPackagesHaveTypesInterDependency().setSatisfied(this);
@@ -407,24 +405,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
-	public Continuation<?> visitAbstractPackageCS(AbstractPackageCS csAbstractPackage) {
-		org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class,
-			PivotPackage.Literals.PACKAGE, csAbstractPackage);
-		context.declareAlias(pivotElement, csAbstractPackage);
-		String newNsPrefix = csAbstractPackage.getNsPrefix();
-		String oldNsPrefix = pivotElement.getNsPrefix();
-		if ((newNsPrefix != oldNsPrefix) && ((newNsPrefix == null) || !newNsPrefix.equals(oldNsPrefix))) {
-			pivotElement.setNsPrefix(newNsPrefix);
-		}
-		String newNsURI = csAbstractPackage.getNsURI();
-		String oldNsURI = pivotElement.getNsURI();
-		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
-			pivotElement.setNsURI(newNsURI);
-		}
-		return null;
-	}
-
-	@Override
 	public Continuation<?> visitAnnotationCS(AnnotationCS object) {
 		return null;
 	}
@@ -497,7 +477,19 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitPackageCS(PackageCS csPackage) {
-		visitAbstractPackageCS(csPackage);
+		org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class,
+			PivotPackage.Literals.PACKAGE, csPackage);
+		context.declareAlias(pivotElement, csPackage);
+		String newNsPrefix = csPackage.getNsPrefix();
+		String oldNsPrefix = pivotElement.getNsPrefix();
+		if ((newNsPrefix != oldNsPrefix) && ((newNsPrefix == null) || !newNsPrefix.equals(oldNsPrefix))) {
+			pivotElement.setNsPrefix(newNsPrefix);
+		}
+		String newNsURI = csPackage.getNsURI();
+		String oldNsURI = pivotElement.getNsURI();
+		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
+			pivotElement.setNsURI(newNsURI);
+		}
 		return new PackageContentContinuation(context, csPackage);
 	}
 
@@ -509,12 +501,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	@Override
 	public Continuation<?> visitReferenceCS(ReferenceCS object) {
 		return null;
-	}
-
-	@Override
-	public Continuation<?> visitRootPackageCS(RootPackageCS csRootPackage) {
-		visitAbstractPackageCS(csRootPackage);
-		return new /*Root*/PackageContentContinuation(context, csRootPackage);
 	}
 
 	@Override

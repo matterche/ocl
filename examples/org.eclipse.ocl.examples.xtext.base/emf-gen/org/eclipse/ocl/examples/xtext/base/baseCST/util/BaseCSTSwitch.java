@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.3.6.3 2010/12/08 10:24:34 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.3.6.4 2010/12/28 12:18:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -23,8 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.*;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -80,6 +78,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
@@ -167,21 +167,6 @@ public class BaseCSTSwitch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID)
 		{
-			case BaseCSTPackage.ABSTRACT_PACKAGE_CS:
-			{
-				AbstractPackageCS abstractPackageCS = (AbstractPackageCS)theEObject;
-				T result = caseAbstractPackageCS(abstractPackageCS);
-				if (result == null) result = caseNamespaceCS(abstractPackageCS);
-				if (result == null) result = caseNamedElementCS(abstractPackageCS);
-				if (result == null) result = caseMonikeredElementCS(abstractPackageCS);
-				if (result == null) result = caseNameable(abstractPackageCS);
-				if (result == null) result = caseModelElementCS(abstractPackageCS);
-				if (result == null) result = caseElementCS(abstractPackageCS);
-				if (result == null) result = casePivotable(abstractPackageCS);
-				if (result == null) result = caseVisitableCS(abstractPackageCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BaseCSTPackage.ANNOTATION_CS:
 			{
 				AnnotationCS annotationCS = (AnnotationCS)theEObject;
@@ -242,7 +227,6 @@ public class BaseCSTSwitch<T> {
 				BoundDocumentCS boundDocumentCS = (BoundDocumentCS)theEObject;
 				T result = caseBoundDocumentCS(boundDocumentCS);
 				if (result == null) result = casePackageCS(boundDocumentCS);
-				if (result == null) result = caseAbstractPackageCS(boundDocumentCS);
 				if (result == null) result = caseNamespaceCS(boundDocumentCS);
 				if (result == null) result = caseNamedElementCS(boundDocumentCS);
 				if (result == null) result = caseMonikeredElementCS(boundDocumentCS);
@@ -564,7 +548,6 @@ public class BaseCSTSwitch<T> {
 			{
 				PackageCS packageCS = (PackageCS)theEObject;
 				T result = casePackageCS(packageCS);
-				if (result == null) result = caseAbstractPackageCS(packageCS);
 				if (result == null) result = caseNamespaceCS(packageCS);
 				if (result == null) result = caseNamedElementCS(packageCS);
 				if (result == null) result = caseMonikeredElementCS(packageCS);
@@ -771,7 +754,6 @@ public class BaseCSTSwitch<T> {
 				T result = caseRootPackageCS(rootPackageCS);
 				if (result == null) result = casePackageCS(rootPackageCS);
 				if (result == null) result = caseRootCS(rootPackageCS);
-				if (result == null) result = caseAbstractPackageCS(rootPackageCS);
 				if (result == null) result = caseNamespaceCS(rootPackageCS);
 				if (result == null) result = caseNamedElementCS(rootPackageCS);
 				if (result == null) result = caseMonikeredElementCS(rootPackageCS);
@@ -1052,22 +1034,6 @@ public class BaseCSTSwitch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Package CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractPackageCS(AbstractPackageCS object)
-	{
-		return null;
 	}
 
 	/**

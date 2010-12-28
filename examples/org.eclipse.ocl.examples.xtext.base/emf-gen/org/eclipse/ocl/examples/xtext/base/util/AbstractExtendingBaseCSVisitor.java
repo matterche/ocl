@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingBaseCSVisitor.java,v 1.1.2.5 2010/12/23 19:25:34 ewillink Exp $
+ * $Id: AbstractExtendingBaseCSVisitor.java,v 1.1.2.6 2010/12/28 12:18:28 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -44,10 +44,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	protected AbstractExtendingBaseCSVisitor(C context) {
 	    super(context);
 	}	
-
-	public R visitAbstractPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS object) {
-		return visitNamedElementCS(object);
-	}
 
 	public R visitAnnotationCS(org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS object) {
 		return visitAnnotationElementCS(object);
@@ -150,7 +146,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object) {
-		return visitAbstractPackageCS(object);
+		return visitNamedElementCS(object);
 	}
 
 	public R visitPackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS object) {

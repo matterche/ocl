@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CS.java,v 1.1.2.2 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.1.2.3 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -39,9 +39,9 @@ import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.parsetree.AbstractNode;
@@ -179,7 +179,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		return map;
 	}	
 
-	public void declareAlias(Namespace pivotElement, AbstractPackageCS csElement) {
+	public void declareAlias(Namespace pivotElement, PackageCS csElement) {
 		aliasMap.put(pivotElement, AliasAdapter.getAlias(csElement));
 	}
 

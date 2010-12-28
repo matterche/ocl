@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.1.2.4 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -39,12 +39,13 @@ import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.parsetree.AbstractNode;
 import org.eclipse.xtext.parsetree.CompositeNode;
@@ -183,7 +184,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return map;
 	}	
 
-	public void declareAlias(Namespace pivotElement, AbstractPackageCS csElement) {
+	public void declareAlias(Namespace pivotElement, PackageCS csElement) {
 		aliasMap.put(pivotElement, AliasAdapter.getAlias(csElement));
 	}
 
@@ -290,8 +291,8 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		assert newTarget == pivotManager.getPivotResourceSet();
 	}
 	
-	public void update() {
-		CS2PivotConversion conversion = new CS2PivotConversion(this);
+	public void update(ProblemHandler problemHandler) {
+		CS2PivotConversion conversion = new CS2PivotConversion(this, problemHandler);
 		conversion.update(getCSResources());
 	}
 }

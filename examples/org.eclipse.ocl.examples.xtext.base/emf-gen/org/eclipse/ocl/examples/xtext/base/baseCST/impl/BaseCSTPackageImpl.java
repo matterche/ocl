@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.6.6.5 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.6.6.6 2010/12/28 12:18:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -105,13 +104,6 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
  * @generated
  */
 public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractPackageCSEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -640,46 +632,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BaseCSTPackage.eNS_URI, theBaseCSTPackage);
 		return theBaseCSTPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAbstractPackageCS()
-	{
-		return abstractPackageCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractPackageCS_OwnedNestedPackage()
-	{
-		return (EReference)abstractPackageCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAbstractPackageCS_NsPrefix()
-	{
-		return (EAttribute)abstractPackageCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAbstractPackageCS_NsURI()
-	{
-		return (EAttribute)abstractPackageCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1263,6 +1215,36 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 */
 	public EReference getPackageCS_OwnedType() {
 		return (EReference)packageCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackageCS_OwnedNestedPackage()
+	{
+		return (EReference)packageCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPackageCS_NsPrefix()
+	{
+		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPackageCS_NsURI()
+	{
+		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1955,11 +1937,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		abstractPackageCSEClass = createEClass(ABSTRACT_PACKAGE_CS);
-		createEReference(abstractPackageCSEClass, ABSTRACT_PACKAGE_CS__OWNED_NESTED_PACKAGE);
-		createEAttribute(abstractPackageCSEClass, ABSTRACT_PACKAGE_CS__NS_PREFIX);
-		createEAttribute(abstractPackageCSEClass, ABSTRACT_PACKAGE_CS__NS_URI);
-
 		annotationCSEClass = createEClass(ANNOTATION_CS);
 		createEReference(annotationCSEClass, ANNOTATION_CS__OWNED_CONTENT);
 		createEReference(annotationCSEClass, ANNOTATION_CS__REFERENCE);
@@ -2049,6 +2026,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		packageCSEClass = createEClass(PACKAGE_CS);
 		createEReference(packageCSEClass, PACKAGE_CS__OWNED_TYPE);
+		createEReference(packageCSEClass, PACKAGE_CS__OWNED_NESTED_PACKAGE);
+		createEAttribute(packageCSEClass, PACKAGE_CS__NS_PREFIX);
+		createEAttribute(packageCSEClass, PACKAGE_CS__NS_URI);
 
 		packageRefCSEClass = createEClass(PACKAGE_REF_CS);
 
@@ -2195,7 +2175,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		qualifiedRefCSEClass_E.getEBounds().add(g1);
 
 		// Add supertypes to classes
-		abstractPackageCSEClass.getESuperTypes().add(this.getNamespaceCS());
 		annotationCSEClass.getESuperTypes().add(this.getAnnotationElementCS());
 		annotationElementCSEClass.getESuperTypes().add(this.getNamedElementCS());
 		attributeCSEClass.getESuperTypes().add(this.getStructuralFeatureCS());
@@ -2232,7 +2211,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		operationCSEClass.getESuperTypes().add(this.getFeatureCS());
 		operationCSEClass.getESuperTypes().add(this.getTemplateableElementCS());
 		operationRefCSEClass.getESuperTypes().add(this.getModelElementCS());
-		packageCSEClass.getESuperTypes().add(this.getAbstractPackageCS());
+		packageCSEClass.getESuperTypes().add(this.getNamespaceCS());
 		packageRefCSEClass.getESuperTypes().add(this.getMonikeredElementCS());
 		parameterCSEClass.getESuperTypes().add(this.getTypedElementCS());
 		parameterableElementCSEClass.getESuperTypes().add(this.getMonikeredElementCS());
@@ -2300,11 +2279,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		wildcardTypeRefCSEClass.getESuperTypes().add(this.getTypeRefCS());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(abstractPackageCSEClass, AbstractPackageCS.class, "AbstractPackageCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAbstractPackageCS_OwnedNestedPackage(), this.getAbstractPackageCS(), null, "ownedNestedPackage", null, 0, -1, AbstractPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getAbstractPackageCS_NsPrefix(), ecorePackage.getEString(), "nsPrefix", null, 0, 1, AbstractPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getAbstractPackageCS_NsURI(), ecorePackage.getEString(), "nsURI", null, 0, 1, AbstractPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(annotationCSEClass, AnnotationCS.class, "AnnotationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAnnotationCS_OwnedContent(), this.getModelElementCS(), null, "ownedContent", null, 0, -1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAnnotationCS_Reference(), this.getModelElementCSRef(), null, "reference", null, 0, -1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2402,6 +2376,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		initEClass(packageCSEClass, PackageCS.class, "PackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPackageCS_OwnedType(), this.getClassifierCS(), this.getClassifierCS_Owner(), "ownedType", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPackageCS_OwnedNestedPackage(), this.getPackageCS(), null, "ownedNestedPackage", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPackageCS_NsPrefix(), ecorePackage.getEString(), "nsPrefix", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPackageCS_NsURI(), ecorePackage.getEString(), "nsURI", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		EOperation op = addEOperation(packageCSEClass, this.getClassifierCS(), "getClassifier", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

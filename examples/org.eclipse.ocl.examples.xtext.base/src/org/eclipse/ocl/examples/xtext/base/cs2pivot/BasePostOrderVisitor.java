@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.1.2.5 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.1.2.6 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -42,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
@@ -91,13 +91,6 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	public Continuation<?> visiting(VisitableCS visitable) {
 		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitAbstractPackageCS(AbstractPackageCS csAbstractPackage) {
-		org.eclipse.ocl.examples.pivot.Package pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, csAbstractPackage);
-		context.handleVisitNamedElement(csAbstractPackage, pivotElement);
 		return null;
 	}
 
@@ -176,6 +169,13 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	public Continuation<?> visitNamedElementCS(NamedElementCS csNamedElement) {
 		NamedElement pivotElement = PivotUtil.getPivot(NamedElement.class, csNamedElement);
 		context.handleVisitNamedElement(csNamedElement, pivotElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitPackageCS(PackageCS csPackage) {
+		org.eclipse.ocl.examples.pivot.Package pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, csPackage);
+		context.handleVisitNamedElement(csPackage, pivotElement);
 		return null;
 	}
 

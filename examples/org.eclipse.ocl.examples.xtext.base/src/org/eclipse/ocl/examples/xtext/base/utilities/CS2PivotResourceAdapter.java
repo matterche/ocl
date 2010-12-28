@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.lpg.ProblemHandler;
 
 /**
  * A CS2PivotResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -54,11 +55,13 @@ public class CS2PivotResourceAdapter implements Adapter
 	}
 	
 	private final Resource csResource;
+	protected final ProblemHandler problemHandler;
 	private final PivotManager pivotManager;
 	private final CS2Pivot converter;
 	
 	public CS2PivotResourceAdapter(BaseCSResource csResource, PivotManager pivotManager) {
 		this.csResource = csResource;
+		this.problemHandler = csResource.getProblemHandler();
 		this.pivotManager = pivotManager;
 		Map<Resource, Resource> cs2pivotResourceMap = computeCS2PivotResourceMap(
 			csResource, pivotManager);
@@ -120,7 +123,7 @@ public class CS2PivotResourceAdapter implements Adapter
 	}	
 	
 	public void refreshPivotMappings() {
-		converter.update();
+		converter.update(problemHandler);
 	}
 
 	public void notifyChanged(Notification notification) {

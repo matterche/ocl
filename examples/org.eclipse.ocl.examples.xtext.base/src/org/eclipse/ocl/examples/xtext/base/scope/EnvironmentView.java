@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.3 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.4 2010/12/28 12:18:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -291,4 +291,5 @@ public class EnvironmentView
 		s.append("}"); //$NON-NLS-1$
 		return s.toString();
 	}
+
 }

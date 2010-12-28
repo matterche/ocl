@@ -3,7 +3,7 @@ package org.eclipse.ocl.examples.xtext.base.utilities;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 
 /**
  * A CSAliasCreator support creation of CS package aliases from CS package monikers.
@@ -17,8 +17,8 @@ public class CSAliasCreator extends AliasAdapter.AbstractCreator
 	}
 
 	public String getAlias(EObject eObject) {
-		if (eObject instanceof AbstractPackageCS) {
-			AbstractPackageCS csPackage = (AbstractPackageCS)eObject;
+		if (eObject instanceof PackageCS) {
+			PackageCS csPackage = (PackageCS)eObject;
 			String moniker = csPackage.getMoniker();
 //			String nsPrefix = csPackage.getNsPrefix();
 //			if (nsPrefix != null) {

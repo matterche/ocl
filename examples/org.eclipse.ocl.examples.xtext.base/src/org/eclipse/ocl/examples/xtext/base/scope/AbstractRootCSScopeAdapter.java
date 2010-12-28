@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:33 ewillink Exp $
+ * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.4 2010/12/28 12:18:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.MonikeredElementCSScopeAdapter;
 
@@ -36,7 +36,7 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 
 	public void endModification() {}
 
-	public String getAlias(AbstractPackageCS csPackage) {
+	public String getAlias(PackageCS csPackage) {
 		for (ImportCS csImport : target.getOwnedImport()) {
 			if (csPackage.getPivot() == csImport.getNamespace()) {
 				return csImport.getName();

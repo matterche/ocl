@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BaseLeft2RightVisitor.java,v 1.1.2.2 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: BaseLeft2RightVisitor.java,v 1.1.2.3 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
@@ -42,11 +41,6 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Monike
 
 	public BaseLeft2RightVisitor(CS2PivotConversion context) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
-	}
-
-	@Override
-	public MonikeredElement visitAbstractPackageCS(AbstractPackageCS object) {
-		return null;
 	}
 
 	@Override

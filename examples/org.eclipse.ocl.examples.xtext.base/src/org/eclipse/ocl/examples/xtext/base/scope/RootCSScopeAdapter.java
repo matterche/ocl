@@ -12,18 +12,18 @@
  *
  * </copyright>
  *
- * $Id: RootCSScopeAdapter.java,v 1.1.2.1 2010/10/01 14:13:03 ewillink Exp $
+ * $Id: RootCSScopeAdapter.java,v 1.1.2.2 2010/12/28 12:18:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 
 public interface RootCSScopeAdapter extends RootScopeAdapter
 {
 	void endModification();
 
-	String getAlias(AbstractPackageCS csPackage);
+	String getAlias(PackageCS csPackage);
 
 	long getModificationCount();
 	

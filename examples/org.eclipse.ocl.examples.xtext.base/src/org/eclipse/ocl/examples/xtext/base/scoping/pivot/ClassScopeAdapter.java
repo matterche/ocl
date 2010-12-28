@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.1.2.5 2010/12/28 12:18:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -35,7 +35,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 		List<org.eclipse.ocl.examples.pivot.Class> superClasses = target.getSuperClasses();
 		if (superClasses.size() > 0) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
-					environmentView.addElementsOfScope(pivotManager, superClass, scopeView);
+				environmentView.addElementsOfScope(pivotManager, superClass, scopeView);
 			}
 		}
 		else {

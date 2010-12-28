@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.1.2.4 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.1.2.5 2010/12/28 12:18:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -119,4 +119,9 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 //	public String toString() {
 //		return String.valueOf(getMoniker());
 //	}
+
+	@Override
+	public String toString() {
+		return target.toString();
+	}
 }

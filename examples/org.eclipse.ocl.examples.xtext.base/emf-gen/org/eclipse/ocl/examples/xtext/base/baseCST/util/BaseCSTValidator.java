@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.1.2.2 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.1.2.3 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -24,8 +24,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.examples.xtext.base.baseCST.*;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -82,6 +80,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
@@ -168,8 +168,6 @@ public class BaseCSTValidator extends EObjectValidator
 	{
 		switch (classifierID)
 		{
-			case BaseCSTPackage.ABSTRACT_PACKAGE_CS:
-				return validateAbstractPackageCS((AbstractPackageCS)value, diagnostics, context);
 			case BaseCSTPackage.ANNOTATION_CS:
 				return validateAnnotationCS((AnnotationCS)value, diagnostics, context);
 			case BaseCSTPackage.ANNOTATION_ELEMENT_CS:
@@ -303,16 +301,6 @@ public class BaseCSTValidator extends EObjectValidator
 			default:
 				return true;
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAbstractPackageCS(AbstractPackageCS abstractPackageCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(abstractPackageCS, diagnostics, context);
 	}
 
 	/**

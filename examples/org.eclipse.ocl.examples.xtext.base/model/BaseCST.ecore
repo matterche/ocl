@@ -8,12 +8,6 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractPackageCS" abstract="true" eSuperTypes="#//NamespaceCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNestedPackage" upperBound="-1"
-        eType="#//AbstractPackageCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationCS" eSuperTypes="#//AnnotationElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" upperBound="-1"
         eType="#//ModelElementCS" containment="true" resolveProxies="false"/>
@@ -132,12 +126,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="OperationRefCS" abstract="true" eSuperTypes="#//ModelElementCS">
     <eOperations name="getOperation" eType="#//OperationCS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PackageCS" eSuperTypes="#//AbstractPackageCS">
+  <eClassifiers xsi:type="ecore:EClass" name="PackageCS" eSuperTypes="#//NamespaceCS">
     <eOperations name="getClassifier" eType="#//ClassifierCS">
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" upperBound="-1"
         eType="#//ClassifierCS" containment="true" eOpposite="#//ClassifierCS/owner"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNestedPackage" upperBound="-1"
+        eType="#//PackageCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageRefCS" abstract="true" eSuperTypes="#//MonikeredElementCS">
     <eOperations name="getPackage" eType="#//PackageCS"/>

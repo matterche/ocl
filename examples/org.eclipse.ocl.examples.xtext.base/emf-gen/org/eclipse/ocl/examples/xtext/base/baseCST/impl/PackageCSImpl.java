@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: PackageCSImpl.java,v 1.4.6.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: PackageCSImpl.java,v 1.4.6.3 2010/12/28 12:18:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -38,12 +41,15 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PackageCSImpl#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PackageCSImpl#getOwnedNestedPackage <em>Owned Nested Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PackageCSImpl#getNsPrefix <em>Ns Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PackageCSImpl#getNsURI <em>Ns URI</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
+public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -53,6 +59,52 @@ public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
 	 * @ordered
 	 */
 	protected EList<ClassifierCS> ownedType;
+
+	/**
+	 * The cached value of the '{@link #getOwnedNestedPackage() <em>Owned Nested Package</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedNestedPackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PackageCS> ownedNestedPackage;
+	/**
+	 * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NS_PREFIX_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected String nsPrefix = NS_PREFIX_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NS_URI_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected String nsURI = NS_URI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,6 +136,66 @@ public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
 			ownedType = new EObjectContainmentWithInverseEList<ClassifierCS>(ClassifierCS.class, this, BaseCSTPackage.PACKAGE_CS__OWNED_TYPE, BaseCSTPackage.CLASSIFIER_CS__OWNER);
 		}
 		return ownedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<PackageCS> getOwnedNestedPackage()
+	{
+		if (ownedNestedPackage == null)
+		{
+			ownedNestedPackage = new EObjectContainmentEList<PackageCS>(PackageCS.class, this, BaseCSTPackage.PACKAGE_CS__OWNED_NESTED_PACKAGE);
+		}
+		return ownedNestedPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNsPrefix()
+	{
+		return nsPrefix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNsPrefix(String newNsPrefix)
+	{
+		String oldNsPrefix = nsPrefix;
+		nsPrefix = newNsPrefix;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PACKAGE_CS__NS_PREFIX, oldNsPrefix, nsPrefix));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNsURI()
+	{
+		return nsURI;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNsURI(String newNsURI)
+	{
+		String oldNsURI = nsURI;
+		nsURI = newNsURI;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PACKAGE_CS__NS_URI, oldNsURI, nsURI));
 	}
 
 	/**
@@ -127,6 +239,8 @@ public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
 		{
 			case BaseCSTPackage.PACKAGE_CS__OWNED_TYPE:
 				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
+			case BaseCSTPackage.PACKAGE_CS__OWNED_NESTED_PACKAGE:
+				return ((InternalEList<?>)getOwnedNestedPackage()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -142,6 +256,12 @@ public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
 		{
 			case BaseCSTPackage.PACKAGE_CS__OWNED_TYPE:
 				return getOwnedType();
+			case BaseCSTPackage.PACKAGE_CS__OWNED_NESTED_PACKAGE:
+				return getOwnedNestedPackage();
+			case BaseCSTPackage.PACKAGE_CS__NS_PREFIX:
+				return getNsPrefix();
+			case BaseCSTPackage.PACKAGE_CS__NS_URI:
+				return getNsURI();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,6 +280,16 @@ public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends ClassifierCS>)newValue);
 				return;
+			case BaseCSTPackage.PACKAGE_CS__OWNED_NESTED_PACKAGE:
+				getOwnedNestedPackage().clear();
+				getOwnedNestedPackage().addAll((Collection<? extends PackageCS>)newValue);
+				return;
+			case BaseCSTPackage.PACKAGE_CS__NS_PREFIX:
+				setNsPrefix((String)newValue);
+				return;
+			case BaseCSTPackage.PACKAGE_CS__NS_URI:
+				setNsURI((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -176,6 +306,15 @@ public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
 			case BaseCSTPackage.PACKAGE_CS__OWNED_TYPE:
 				getOwnedType().clear();
 				return;
+			case BaseCSTPackage.PACKAGE_CS__OWNED_NESTED_PACKAGE:
+				getOwnedNestedPackage().clear();
+				return;
+			case BaseCSTPackage.PACKAGE_CS__NS_PREFIX:
+				setNsPrefix(NS_PREFIX_EDEFAULT);
+				return;
+			case BaseCSTPackage.PACKAGE_CS__NS_URI:
+				setNsURI(NS_URI_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -191,6 +330,12 @@ public class PackageCSImpl extends AbstractPackageCSImpl implements PackageCS {
 		{
 			case BaseCSTPackage.PACKAGE_CS__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
+			case BaseCSTPackage.PACKAGE_CS__OWNED_NESTED_PACKAGE:
+				return ownedNestedPackage != null && !ownedNestedPackage.isEmpty();
+			case BaseCSTPackage.PACKAGE_CS__NS_PREFIX:
+				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
+			case BaseCSTPackage.PACKAGE_CS__NS_URI:
+				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
 		}
 		return super.eIsSet(featureID);
 	}

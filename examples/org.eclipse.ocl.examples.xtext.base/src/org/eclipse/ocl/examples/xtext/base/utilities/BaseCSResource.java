@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSResource.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseCSResource.java,v 1.1.2.2 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -21,8 +21,10 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.ocl.lpg.ProblemHandler;
 
 public interface BaseCSResource extends Resource
 {
 	CS2Pivot createCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, PivotManager pivotManager);
+	ProblemHandler getProblemHandler();
 }

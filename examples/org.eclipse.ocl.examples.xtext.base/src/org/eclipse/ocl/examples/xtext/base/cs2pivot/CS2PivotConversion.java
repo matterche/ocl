@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.6 2010/12/20 06:52:47 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.7 2010/12/28 12:18:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -55,12 +57,12 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AbstractPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
@@ -76,6 +78,8 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.Template
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.Factory;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.lpg.ProblemHandler.Severity;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
@@ -83,9 +87,38 @@ import org.eclipse.xtext.parsetree.NodeUtil;
 
 public class CS2PivotConversion extends AbstractConversion
 {	
+	private static class CSDiagnostic implements Diagnostic
+	{
+		protected final String message;
+		
+		public CSDiagnostic(String message) {
+			this.message = message;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
+		public String getLocation() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public int getLine() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		public int getColumn() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+	}
+
 	private static final Logger logger = Logger.getLogger(CS2PivotConversion.class);
 
 	protected final CS2Pivot converter;
+	protected final ProblemHandler problemHandler;
 	protected final PivotManager pivotManager;
 	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
 	
@@ -108,9 +141,30 @@ public class CS2PivotConversion extends AbstractConversion
 	// CS -> pivot pairs with possibly divergent monikers
 	private Map<ElementCS, Element> debugOtherMap = new HashMap<ElementCS, Element>();
 	
-	public CS2PivotConversion(CS2Pivot converter) {
+	public CS2PivotConversion(CS2Pivot converter, ProblemHandler problemHandler) {
 		this.converter = converter;
+		this.problemHandler = problemHandler;
 		this.pivotManager = converter.getPivotManager();
+	}
+
+	public boolean checkForNoErrors(Collection<? extends Resource> csResources) {
+		boolean hasNoErrors = true;
+		for (Resource csResource : csResources) {
+			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
+				EObject eObject = it.next();
+				if (eObject instanceof ModelElementCS) {
+					ModelElementCS csElement = (ModelElementCS)eObject;
+					for (String error : csElement.getError()) {
+						CompositeNode node = NodeUtil.getNode(csElement);
+						hasNoErrors = false;
+						int offset = node.getOffset();
+						int length = node.getLength();
+						problemHandler.analyzerProblem(Severity.ERROR, error, "xx", offset, offset+length);
+					}
+				}
+			}
+		}
+		return hasNoErrors;
 	}
 
 	public void checkMonikers() {
@@ -125,7 +179,7 @@ public class CS2PivotConversion extends AbstractConversion
 //		debugCheckQueue.clear();
 	}
 	
-	public void declareAlias(Namespace pivotElement, AbstractPackageCS csElement) {
+	public void declareAlias(Namespace pivotElement, PackageCS csElement) {
 		converter.declareAlias(pivotElement, csElement);
 	}
 
@@ -355,8 +409,10 @@ public class CS2PivotConversion extends AbstractConversion
 	 * e.g. NavigationArgCS
 	 */
 	public void reusePivotElement(ModelElementCS csElement, Element newPivotElement) {
-		debugOtherMap.put(csElement, newPivotElement);
-		installPivotElementInternal(csElement, newPivotElement);
+		if (newPivotElement != null) {
+			debugOtherMap.put(csElement, newPivotElement);
+			installPivotElementInternal(csElement, newPivotElement);
+		}
 	}
 
 	/**
@@ -863,7 +919,7 @@ public class CS2PivotConversion extends AbstractConversion
 	 * Sequence the update passes to make the pivot match the CS.
 	 * @param csResources 
 	 */
-	public void update(Collection<? extends Resource> csResources) {
+	public boolean update(Collection<? extends Resource> csResources) {
 		debugCheckMap.clear();
 		debugOtherMap.clear();
 		List<BasicContinuation<?>> continuations = new ArrayList<BasicContinuation<?>>();
@@ -898,7 +954,7 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		Type oclAnyType = pivotManager.getOclAnyType();
 		if (oclAnyType == null) {
-			return;				// FIXME throw ??
+			return false;				// FIXME throw ??
 		}
 		//
 		//	Perform the post-order traversal to create and install the bulk of non-package/class
@@ -906,6 +962,10 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		for (Resource csResource : csResources) {
 			visitInPostOrder(csResource.getContents(), continuations);
+		}
+		boolean hasNoErrors = checkForNoErrors(csResources);
+		if (!hasNoErrors) {
+			return false;
 		}
 		//
 		//	Perform post-order continuations to establish complex dependencies.
@@ -918,6 +978,10 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			continuations = moreContinuations;
 		}
+		hasNoErrors = checkForNoErrors(csResources);
+		if (!hasNoErrors) {
+			return false;
+		}
 		checkMonikers();		
 		//
 		//	Set the monikers as IDs throughout the pivot model.
@@ -926,37 +990,7 @@ public class CS2PivotConversion extends AbstractConversion
 			Resource pivotResource = converter.getPivotResource(csResource);
 			PivotManager.setMonikerAsID(Collections.singletonList(pivotResource));	// FIXME purge
 		}
-		
-/*		Map<String, MonikeredElementCS> moniker2CSMap = computeMoniker2CSMap(getCSResources());
-		Set<String> allMonikers = new HashSet<String>(moniker2PivotMap.keySet());
-		allMonikers.addAll(moniker2CSMap.keySet());
-		List<String> sortedMonikers = new ArrayList<String>(allMonikers);
-		Collections.sort(sortedMonikers);
-		for (String moniker : sortedMonikers) {
-			MonikeredElementCS csElement = moniker2CSMap.get(moniker);
-			MonikeredElement element = moniker2PivotMap.get(moniker);
-			StringBuffer s = new StringBuffer();
-			s.append(moniker);
-			s.append(" <==> ");
-			if (csElement != null) {
-				s.append(csElement.eClass().getName());
-				s.append("@");
-				s.append(csElement.hashCode());
-			}
-			else {
-				s.append("<<null>>");
-			}
-			s.append(" <==> ");
-			if (element != null) {
-				s.append(element.eClass().getName());
-				s.append("@");
-				s.append(element.hashCode());
-			}
-			else {
-				s.append("<<null>>");
-			}
-			System.out.println(s.toString());
-		} */	
+		return true;
 	}
 
 	public MonikeredElement visitLeft2Right(EObject eObject) {

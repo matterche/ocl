@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCS.java,v 1.3.6.1 2010/10/01 14:13:02 ewillink Exp $
+ * $Id: PackageCS.java,v 1.3.6.2 2010/12/28 12:18:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -28,6 +28,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS#getOwnedNestedPackage <em>Owned Nested Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS#getNsPrefix <em>Ns Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS#getNsURI <em>Ns URI</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PackageCS extends AbstractPackageCS {
+public interface PackageCS extends NamespaceCS {
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS}.
@@ -53,6 +56,74 @@ public interface PackageCS extends AbstractPackageCS {
 	 * @generated
 	 */
 	EList<ClassifierCS> getOwnedType();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Nested Package</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Nested Package</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPackageCS_OwnedNestedPackage()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PackageCS> getOwnedNestedPackage();
+
+	/**
+	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ns Prefix</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ns Prefix</em>' attribute.
+	 * @see #setNsPrefix(String)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPackageCS_NsPrefix()
+	 * @model
+	 * @generated
+	 */
+	String getNsPrefix();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS#getNsPrefix <em>Ns Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ns Prefix</em>' attribute.
+	 * @see #getNsPrefix()
+	 * @generated
+	 */
+	void setNsPrefix(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Ns URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ns URI</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ns URI</em>' attribute.
+	 * @see #setNsURI(String)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPackageCS_NsURI()
+	 * @model
+	 * @generated
+	 */
+	String getNsURI();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS#getNsURI <em>Ns URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ns URI</em>' attribute.
+	 * @see #getNsURI()
+	 * @generated
+	 */
+	void setNsURI(String value);
 
 	/**
 	 * <!-- begin-user-doc -->
