@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: StringValueImpl.java,v 1.1.2.2 2010/12/28 12:17:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -44,10 +44,10 @@ public class StringValueImpl extends AbstractValue implements StringValue
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof StringValueImpl)) {
+		if (!(obj instanceof StringValue)) {
 			return false;
 		}
-		return value.equals(((StringValueImpl)obj).value);
+		return value.equals(((StringValue)obj).asString());
 	}
 
 	@Override

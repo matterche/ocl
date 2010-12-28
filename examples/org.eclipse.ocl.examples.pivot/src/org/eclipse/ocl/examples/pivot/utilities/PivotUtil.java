@@ -12,11 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.5 2010/12/20 06:52:55 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.6 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -30,8 +31,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -126,6 +129,15 @@ public class PivotUtil
 		@SuppressWarnings("unchecked")
 		T castAdapter = (T) adapter;
 		return castAdapter;
+	}
+
+	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {
+		if (elements == null)
+			return null;
+		for (T element : elements)
+			if (ClassUtils.equals(name, element.getName()))
+				return element;
+		return null;				
 	}
 
 	public static org.eclipse.ocl.examples.pivot.Package getPackage(EObject object) {

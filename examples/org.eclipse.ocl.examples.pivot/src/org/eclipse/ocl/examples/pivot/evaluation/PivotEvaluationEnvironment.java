@@ -13,25 +13,22 @@
  *
  * </copyright>
  *
- * $Id: PivotEvaluationEnvironment.java,v 1.1.2.2 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: PivotEvaluationEnvironment.java,v 1.1.2.3 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import java.lang.reflect.Method;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.Tuple;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.util.UnicodeSupport;
@@ -48,8 +45,8 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     /**
      * Initializes me.
      */
-    public PivotEvaluationEnvironment() {
-        super();
+    public PivotEvaluationEnvironment(PivotManager pivotManager) {
+        super(pivotManager);
     }
 
     /**
@@ -332,20 +329,11 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     } */
 
     // implements the inherited specification
-    public Map<org.eclipse.ocl.examples.pivot.Class, Set<EObject>> createExtentMap(Object object) {
+    public ModelManager createModelManager(Object object) {
         if (object instanceof EObject) {
-            return new LazyExtentMap<org.eclipse.ocl.examples.pivot.Class, EObject>((EObject)object) {
-
-                // implements the inherited specification
-                @Override
-                protected boolean isInstance(org.eclipse.ocl.examples.pivot.Class cls, EObject eObject) {
-                	EClass eClass = eObject.eClass();
-                    return false ;// FIXME cls.isInstance(element);
-                }
-            };
+            return new PivotModelManager(pivotManager, (EObject) object);
         }
-
-        return Collections.emptyMap();
+        return ModelManager.NULL;
     }
 
 //    public Map<org.eclipse.ocl.examples.pivot.Class, Set<Object>> createExtentMap(

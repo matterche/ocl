@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEnvironmentFactory.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: PivotEnvironmentFactory.java,v 1.1.2.2 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -141,7 +141,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 
     // implements the inherited specification
 	public PivotEvaluationEnvironment createEvaluationEnvironment() {
-		return new PivotEvaluationEnvironment();
+		return new PivotEvaluationEnvironment(pivotManager);
 	}
 
     // implements the inherited specification

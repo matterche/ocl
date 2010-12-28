@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.1.2.5 2010/12/19 15:52:39 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.1.2.6 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -459,6 +459,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	LetExp createLetExp();
+
+	/**
+	 * Returns a new object of class '<em>Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Library</em>'.
+	 * @generated
+	 */
+	Library createLibrary();
 
 	/**
 	 * Returns a new object of class '<em>Message Exp</em>'.

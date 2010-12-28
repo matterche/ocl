@@ -12,17 +12,16 @@
  *
  * </copyright>
  *
- * $Id: QueryBase.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: QueryBase.java,v 1.1.2.3 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 
 
 /**
@@ -159,9 +158,9 @@ public interface QueryBase {
 	 * 
 	 * @return the map of classes to their extents
      *    
-     * @see OCLBase#setExtentMap
+     * @see OCLBase#setModelManager
 	 */
-	public Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> getExtentMap();
+	public ModelManager getModelManager();
 	
 	/**
 	 * Obtains the expression that I evaluate (or check as a boolean constraint).

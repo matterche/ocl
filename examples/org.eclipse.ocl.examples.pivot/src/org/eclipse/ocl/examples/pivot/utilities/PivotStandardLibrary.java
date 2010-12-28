@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.3 2010/12/20 06:52:55 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.4 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 
 public abstract class PivotStandardLibrary implements StandardLibrary
 {
@@ -60,7 +61,10 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private Type tupleType = null;
 	private Type unlimitedNaturalType = null;
 	private UnlimitedNaturalLiteralExp unlimitedValue = null;
+	private Type oclInvalidType = null;
 	private Type oclVoidType = null;
+	
+	org.eclipse.ocl.examples.pivot.Package pivotPackage = null;
 	
 //	private boolean allowExplanatoryInvalids = false;
 	private Map<String, Type> nameToLibraryTypeMap = null;
@@ -166,6 +170,13 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("OclAny");
 	}
 
+	public Type getOclInvalidType() {
+		if (oclInvalidType == null) {
+			oclInvalidType = getRequiredLibraryType("OclInvalid");
+		}
+		return oclInvalidType;
+	}
+
 	public Type getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
 	}
@@ -184,6 +195,20 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	public Type getOrderedSetTypeType() {
 		return getRequiredLibraryType("OrderedSetType");
 	}
+	
+	public org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
+		if (pivotPackage == null) {
+			pivotPackage = OclMetaModel.create((org.eclipse.ocl.examples.pivot.Class)getClassifierType());
+		}
+		return pivotPackage;
+	}
+
+	/**
+	 * Return the pivot model class for className with the Pivot Model.
+	 */
+	public Type getPivotType(String className) {
+		return PivotUtil.getNamedElement(getPivotPackage().getOwnedTypes(), className);
+	}	
 
 	public Type getPrimitiveTypeType() {
 		return getRequiredLibraryType("PrimitiveType");
@@ -199,7 +224,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	public Type getRequiredLibraryType(String typeName) {
 		Type type = getLibraryType(typeName);
 		if (type == null) {
-			logger.error("No '" + typeName + "' type in the OCL Standard Library");
+			if ((nameToLibraryTypeMap == null) || nameToLibraryTypeMap.isEmpty()) {
+				logger.error("No OCL Standard Library available");
+			}
+			else {
+				logger.error("No '" + typeName + "' type in the OCL Standard Library");
+			}
 		}
 		return type;
 	}

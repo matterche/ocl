@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignatureImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: TemplateSignatureImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -402,12 +402,6 @@ public class TemplateSignatureImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATE_SIGNATURE___OCL_TYPE:
-				return oclType();
-			case PivotPackage.TEMPLATE_SIGNATURE___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.TEMPLATE_SIGNATURE___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.TEMPLATE_SIGNATURE___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.TEMPLATE_SIGNATURE___VALIDATE_OWN_ELEMENTS__DIAGNOSTICCHAIN_MAP:

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEnvironment.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: PivotEnvironment.java,v 1.1.2.3 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.lpg.AbstractParser;
+import org.eclipse.ocl.lpg.ProblemHandler;
 
 /**
  * Implementation of the {@link Environment} for parsing OCL expressions on
@@ -186,6 +188,11 @@ public class PivotEnvironment extends AbstractEnvironment {
         return uml;
     }
 	
+	@Override
+	protected ProblemHandler createDefaultProblemHandler(AbstractParser parser) {
+		return new PivotProblemHandler(parser);
+	}
+
 	/**
 	 * Creates a new type resolver for use with this environment, persisted
 	 * in a default resource.

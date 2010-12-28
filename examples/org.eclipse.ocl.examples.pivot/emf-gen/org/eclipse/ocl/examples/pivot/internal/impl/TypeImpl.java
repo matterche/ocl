@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: TypeImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -786,12 +786,6 @@ public abstract class TypeImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TYPE___OCL_TYPE:
-				return oclType();
-			case PivotPackage.TYPE___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.TYPE___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.TYPE___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.TYPE___IS_TEMPLATE_PARAMETER:

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElementImpl.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: TemplateableElementImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -366,12 +366,6 @@ public abstract class TemplateableElementImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATEABLE_ELEMENT___OCL_TYPE:
-				return oclType();
-			case PivotPackage.TEMPLATEABLE_ELEMENT___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.TEMPLATEABLE_ELEMENT___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.TEMPLATEABLE_ELEMENT___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS:

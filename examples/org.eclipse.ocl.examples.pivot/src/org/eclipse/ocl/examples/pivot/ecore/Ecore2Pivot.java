@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.1.2.3 2010/12/11 10:44:59 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.1.2.4 2010/12/28 12:17:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -773,7 +773,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {
 			EcoreAliasCreator.refreshPackageAliases(ecoreResource);			
-			Resource pivotResource = importResource();
+			Resource pivotResource = importObjects(ecoreResource.getContents(), ecoreResource.getURI());
 			AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
 			if (ecoreAdapter != null) {
 				Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();
@@ -793,14 +793,13 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		return ecoreResource;
 	}
 
-	protected Resource importResource() {
-		URI ecoreURI = ecoreResource.getURI();
+	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
 		Resource pivotResource = pivotManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
 		pivotRoot = PivotFactory.eINSTANCE.createPackage();
 		pivotRoot.setName(ecoreURI.lastSegment());
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
-		for (EObject eObject : ecoreResource.getContents()) {
+		for (EObject eObject : ecoreContents) {
 			Object pivotElement = ecorePass1.doInPackageSwitch(eObject);
 			if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
 				packages.add((org.eclipse.ocl.examples.pivot.Package) pivotElement);

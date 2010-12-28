@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -22,8 +22,6 @@ import static org.eclipse.ocl.Environment.SELF_VARIABLE_NAME;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
@@ -31,6 +29,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
@@ -44,7 +43,7 @@ import org.eclipse.ocl.util.ProblemAware;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.QueryImpl#getExtentMap <em>Extent Map</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.QueryImpl#getModelManager <em>Extent Map</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.QueryImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
@@ -53,7 +52,7 @@ import org.eclipse.ocl.util.ProblemAware;
  */
 public class QueryBaseImpl implements QueryBase, ProblemAware {
 	
-	private Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap = null;
+	private ModelManager modelManager = null;
 
 	private final OclExpression expression;
 
@@ -66,28 +65,28 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 	 * 
 	 * @param environment
 	 * @param expr
-	 * @param extentMap may be <code>null</code>, in which case I will use my
+	 * @param modelManager may be <code>null</code>, in which case I will use my
 	 *     evaluation environment to create a dynamic extent map
 	 */
 	public QueryBaseImpl(Environment environment,
 			OclExpression expr,
-			Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap) {
+			ModelManager modelManager) {
 		
 		this.environment = environment;
 		this.expression = expr;
-		this.extentMap = extentMap;
+		this.modelManager = modelManager;
 	}
 
-	public Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> getExtentMap() {
-		if (extentMap == null) {
+	public ModelManager getModelManager() {
+		if (modelManager == null) {
 			EvaluationEnvironment myEnv = getEvaluationEnvironment();
 			
 			Object context = myEnv.getValueOf(SELF_VARIABLE_NAME);
 			
-			extentMap = myEnv.createExtentMap(context);
+			modelManager = myEnv.createModelManager(context);
 		}
 		
-		return extentMap;
+		return modelManager;
 	}
 
 	public OclExpression getExpression() {
@@ -116,7 +115,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		
 		EvaluationVisitor ev =
 			environment.getFactory().createEvaluationVisitor(
-					environment, myEnv, getExtentMap());
+					environment, myEnv, getModelManager());
 		
 		Object result;
 		
@@ -139,7 +138,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		//    the client.  There is no "self" context variable
 		EvaluationVisitor ev =
 			environment.getFactory().createEvaluationVisitor(
-					environment, getEvaluationEnvironment(), getExtentMap());
+					environment, getEvaluationEnvironment(), getModelManager());
 		
 		Object result;
 		

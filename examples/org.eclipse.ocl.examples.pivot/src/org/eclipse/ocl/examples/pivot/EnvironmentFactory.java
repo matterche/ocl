@@ -13,19 +13,18 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentFactory.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: EnvironmentFactory.java,v 1.1.2.3 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.util.Adaptable;
 
 /**
@@ -205,12 +204,12 @@ public interface EnvironmentFactory {
      *    (or some compatible environment)
      * @param evalEnv the evaluation environment that the visitor is to use
      *    for tracking variables, navigating properties, etc.
-     * @param extentMap the map of <tt>Class</tt>es to their extends
+     * @param modelManager the map of <tt>Class</tt>es to their extends
      * @return the new evaluation visitor
      */
 	EvaluationVisitor createEvaluationVisitor(Environment env,
 			EvaluationEnvironment evalEnv,
-			Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<? extends Object>> extentMap);
+			ModelManager modelManager);
 	
 	/**
 	 * Optional adapter interface for look-up methods that throw

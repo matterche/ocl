@@ -14,13 +14,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.6 2010/12/26 15:21:30 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.7 2010/12/28 12:17:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -29,17 +28,17 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
-import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.impl.InvalidValueImpl;
 
@@ -67,7 +66,7 @@ public abstract class AbstractEvaluationVisitor
 	private Environment env;
 	private StandardLibrary stdlib;
 	
-	private Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap;
+	private ModelManager modelManager;
 
     private EvaluationVisitor undecoratedVisitor;
     
@@ -83,17 +82,17 @@ public abstract class AbstractEvaluationVisitor
 	 * 
      * @param env the current environment
 	 * @param evalEnv an evaluation environment (map of variable names to values)
-	 * @param extentMap a map of classes to their instance sets
+	 * @param modelManager a map of classes to their instance sets
 	 */
 	protected AbstractEvaluationVisitor(
 			Environment env,
 			EvaluationEnvironment evalEnv,
-			Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap) {
+			ModelManager modelManager) {
         super(null);
         this.evalEnv = evalEnv;
         this.env = env;
         stdlib = env.getOCLStandardLibrary();
-        this.extentMap = extentMap;
+        this.modelManager = modelManager;
         
         this.undecoratedVisitor = this;  // assume I have no decorator
     }
@@ -154,8 +153,8 @@ public abstract class AbstractEvaluationVisitor
 	}
 	
     // implements the interface method
-	public Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> getExtentMap() {
-		return extentMap;
+	public ModelManager getModelManager() {
+		return modelManager;
 	}
     
     /**

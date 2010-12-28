@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeTemplateParameterImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: TypeTemplateParameterImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -380,12 +380,6 @@ public class TypeTemplateParameterImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER___OCL_TYPE:
-				return oclType();
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP:
 				return validateMustBeCompatible((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER___VALIDATE_HAS_CONSTRAINING_TYPE__DIAGNOSTICCHAIN_MAP:

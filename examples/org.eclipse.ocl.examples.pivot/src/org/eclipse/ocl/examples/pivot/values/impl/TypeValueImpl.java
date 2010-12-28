@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: TypeValueImpl.java,v 1.1.2.2 2010/12/28 12:17:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -28,6 +28,19 @@ public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 	@Override
 	public TypeValueImpl asTypeValue() {
 		return this;
+	}
+
+	@Override
+	public int hashCode() {
+		return element.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof TypeValue)) {
+			return false;
+		}
+		return element.equals(((TypeValue)obj).getType());
 	}
 
 	public Type getType() {

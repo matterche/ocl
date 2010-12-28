@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterableElementImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: ParameterableElementImpl.java,v 1.1.2.3 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -392,12 +392,6 @@ public abstract class ParameterableElementImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.PARAMETERABLE_ELEMENT___OCL_TYPE:
-				return oclType();
-			case PivotPackage.PARAMETERABLE_ELEMENT___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.PARAMETERABLE_ELEMENT___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.PARAMETERABLE_ELEMENT___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER:

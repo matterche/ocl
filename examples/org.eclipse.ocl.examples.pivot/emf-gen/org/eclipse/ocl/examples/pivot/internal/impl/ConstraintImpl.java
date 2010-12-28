@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: ConstraintImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -498,12 +498,6 @@ public class ConstraintImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.CONSTRAINT___OCL_TYPE:
-				return oclType();
-			case PivotPackage.CONSTRAINT___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.CONSTRAINT___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.CONSTRAINT___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP:

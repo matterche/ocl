@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.9 2010/12/26 15:21:29 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.10 2010/12/28 12:17:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -122,7 +122,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 48;
+	int NAVIGATION_CALL_EXP = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
@@ -172,7 +172,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 39;
+	int LITERAL_EXP = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
@@ -372,7 +372,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 50;
+	int NUMERIC_LITERAL_EXP = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -422,7 +422,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 40;
+	int LOOP_EXP = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl <em>Message Exp</em>}' class.
@@ -432,7 +432,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMessageExp()
 	 * @generated
 	 */
-	int MESSAGE_EXP = 41;
+	int MESSAGE_EXP = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SendSignalActionImpl <em>Send Signal Action</em>}' class.
@@ -462,7 +462,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMessageType()
 	 * @generated
 	 */
-	int MESSAGE_TYPE = 42;
+	int MESSAGE_TYPE = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
@@ -472,7 +472,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNullLiteralExp()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP = 49;
+	int NULL_LITERAL_EXP = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
@@ -695,79 +695,6 @@ public interface PivotPackage
 	int VISITABLE = 96;
 
 	/**
-	 * The number of structural features of the '<em>Visitable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITABLE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Visitable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITABLE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclAnyImpl <em>Ocl Any</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.OclAnyImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclAny()
-	 * @generated
-	 */
-	int OCL_ANY = 51;
-
-	/**
-	 * The number of structural features of the '<em>Ocl Any</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_ANY_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_ANY___OCL_TYPE = VISITABLE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_ANY___OCL_IS_INVALID = VISITABLE_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_ANY___OCL_IS_UNDEFINED = VISITABLE_OPERATION_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Ocl Any</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_ANY_OPERATION_COUNT = VISITABLE_OPERATION_COUNT + 3;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -778,60 +705,6 @@ public interface PivotPackage
 	int ELEMENT = 23;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT__OWNED_COMMENT = OCL_ANY_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT___OCL_TYPE = OCL_ANY___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT___OCL_IS_INVALID = OCL_ANY___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT___OCL_IS_UNDEFINED = OCL_ANY___OCL_IS_UNDEFINED;
-
-	/**
-	 * The number of operations of the '<em>Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_OPERATION_COUNT = OCL_ANY_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl <em>Monikered Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -839,79 +712,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMonikeredElement()
 	 * @generated
 	 */
-	int MONIKERED_ELEMENT = 43;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT__MONIKER = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Monikered Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT___OCL_TYPE = ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT___OCL_IS_INVALID = ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT___OCL_IS_UNDEFINED = ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT___HAS_MONIKER = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Monikered Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
+	int MONIKERED_ELEMENT = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -921,115 +722,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 46;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__OWNED_COMMENT = MONIKERED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__MONIKER = MONIKERED_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__NAME = MONIKERED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__OWNED_RULE = MONIKERED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__IS_STATIC = MONIKERED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__OWNED_ANNOTATION = MONIKERED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = MONIKERED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT___OCL_TYPE = MONIKERED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT___OCL_IS_INVALID = MONIKERED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT___OCL_IS_UNDEFINED = MONIKERED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT___HAS_MONIKER = MONIKERED_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The number of operations of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = MONIKERED_ELEMENT_OPERATION_COUNT + 0;
+	int NAMED_ELEMENT = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -1042,141 +735,6 @@ public interface PivotPackage
 	int ANNOTATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__MONIKER = NAMED_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_RULE = NAMED_ELEMENT__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Content</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_CONTENT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Detail</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_DETAIL = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Reference</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__REFERENCE = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Annotation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION___HAS_MONIKER = NAMED_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The number of operations of the '<em>Annotation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl <em>Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1185,186 +743,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	int TYPE = 85;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__MONIKER = NAMED_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNED_RULE = NAMED_ELEMENT__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNING_TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__TEMPLATE_BINDING = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNED_TEMPLATE_SIGNATURE = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___HAS_MONIKER = NAMED_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___PARAMETERABLE_ELEMENTS = NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___IS_TEMPLATE = NAMED_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl <em>Class</em>}' class.
@@ -1454,7 +832,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamespace()
 	 * @generated
 	 */
-	int NAMESPACE = 47;
+	int NAMESPACE = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrecedenceImpl <em>Precedence</em>}' class.
@@ -1484,7 +862,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMultiplicityElement()
 	 * @generated
 	 */
-	int MULTIPLICITY_ELEMENT = 44;
+	int MULTIPLICITY_ELEMENT = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedMultiplicityElementImpl <em>Typed Multiplicity Element</em>}' class.
@@ -1624,7 +1002,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNameable()
 	 * @generated
 	 */
-	int NAMEABLE = 45;
+	int NAMEABLE = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DetailImpl <em>Detail</em>}' class.
@@ -1645,6 +1023,488 @@ public interface PivotPackage
 	 * @generated
 	 */
 	int ANY_TYPE = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl <em>Feature</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFeature()
+	 * @generated
+	 */
+	int FEATURE = 28;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.IterateExpImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIterateExp()
+	 * @generated
+	 */
+	int ITERATE_EXP = 35;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterationImpl <em>Iteration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.IterationImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteration()
+	 * @generated
+	 */
+	int ITERATION = 36;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.IteratorExpImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteratorExp()
+	 * @generated
+	 */
+	int ITERATOR_EXP = 37;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl <em>Library</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibrary()
+	 * @generated
+	 */
+	int LIBRARY = 39;
+
+	/**
+	 * The number of structural features of the '<em>Visitable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISITABLE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Visitable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISITABLE_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__OWNED_COMMENT = VISITABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_OPERATION_COUNT = VISITABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONIKERED_ELEMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONIKERED_ELEMENT__MONIKER = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Monikered Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONIKERED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONIKERED_ELEMENT___HAS_MONIKER = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Monikered Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONIKERED_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__OWNED_COMMENT = MONIKERED_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__MONIKER = MONIKERED_ELEMENT__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = MONIKERED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__OWNED_RULE = MONIKERED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__IS_STATIC = MONIKERED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__OWNED_ANNOTATION = MONIKERED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = MONIKERED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT___HAS_MONIKER = MONIKERED_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = MONIKERED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__MONIKER = NAMED_ELEMENT__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_RULE = NAMED_ELEMENT__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Content</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_CONTENT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_DETAIL = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__REFERENCE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION___HAS_MONIKER = NAMED_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The number of operations of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__MONIKER = NAMED_ELEMENT__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__OWNED_RULE = NAMED_ELEMENT__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__OWNING_TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__TEMPLATE_BINDING = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__OWNED_TEMPLATE_SIGNATURE = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___HAS_MONIKER = NAMED_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___PARAMETERABLE_ELEMENTS = NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___IS_TEMPLATE = NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -1807,33 +1667,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 6;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___OCL_TYPE = TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___OCL_IS_INVALID = TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___OCL_IS_UNDEFINED = TYPE___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -2041,33 +1874,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE___OCL_TYPE = CLASS___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE___OCL_IS_INVALID = CLASS___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE___OCL_IS_UNDEFINED = CLASS___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -2286,33 +2092,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS___OCL_TYPE = CLASS___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS___OCL_IS_INVALID = CLASS___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS___OCL_IS_UNDEFINED = CLASS___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2430,33 +2209,6 @@ public interface PivotPackage
 	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2545,33 +2297,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OCL_EXPRESSION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION___OCL_TYPE = TYPED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION___OCL_IS_INVALID = TYPED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION___OCL_IS_UNDEFINED = TYPED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -2680,33 +2405,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -2824,33 +2522,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP___OCL_TYPE = CALL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP___OCL_IS_INVALID = CALL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP___OCL_IS_UNDEFINED = CALL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -2986,33 +2657,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP___OCL_TYPE = FEATURE_CALL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP___OCL_IS_INVALID = FEATURE_CALL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP___OCL_IS_UNDEFINED = FEATURE_CALL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -3157,33 +2801,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP___OCL_TYPE = NAVIGATION_CALL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP___OCL_IS_INVALID = NAVIGATION_CALL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP___OCL_IS_UNDEFINED = NAVIGATION_CALL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -3364,33 +2981,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE___OCL_TYPE = CLASS___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE___OCL_IS_INVALID = CLASS___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE___OCL_IS_UNDEFINED = CLASS___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -3609,33 +3199,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE___OCL_TYPE = DATA_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE___OCL_IS_INVALID = DATA_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE___OCL_IS_UNDEFINED = DATA_TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3852,33 +3415,6 @@ public interface PivotPackage
 	int BAG_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE___OCL_TYPE = COLLECTION_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE___OCL_IS_INVALID = COLLECTION_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE___OCL_IS_UNDEFINED = COLLECTION_TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3996,33 +3532,6 @@ public interface PivotPackage
 	int LITERAL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4111,33 +3620,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP___OCL_TYPE = LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP___OCL_IS_INVALID = LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP___OCL_IS_UNDEFINED = LITERAL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -4239,33 +3721,6 @@ public interface PivotPackage
 	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP___OCL_TYPE = PRIMITIVE_LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP___OCL_IS_INVALID = PRIMITIVE_LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP___OCL_IS_UNDEFINED = PRIMITIVE_LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4356,33 +3811,6 @@ public interface PivotPackage
 	int CALL_OPERATION_ACTION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_OPERATION_ACTION___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_OPERATION_ACTION___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_OPERATION_ACTION___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4471,33 +3899,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_PART_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART___OCL_TYPE = TYPED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART___OCL_IS_INVALID = TYPED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART___OCL_IS_UNDEFINED = TYPED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -4597,33 +3998,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM___OCL_TYPE = COLLECTION_LITERAL_PART___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM___OCL_IS_INVALID = COLLECTION_LITERAL_PART___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM___OCL_IS_UNDEFINED = COLLECTION_LITERAL_PART___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -4734,33 +4108,6 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP___OCL_TYPE = LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP___OCL_IS_INVALID = LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP___OCL_IS_UNDEFINED = LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4869,33 +4216,6 @@ public interface PivotPackage
 	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE___OCL_TYPE = COLLECTION_LITERAL_PART___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE___OCL_IS_INVALID = COLLECTION_LITERAL_PART___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE___OCL_IS_UNDEFINED = COLLECTION_LITERAL_PART___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4948,33 +4268,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COMMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT___OCL_TYPE = ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT___OCL_IS_INVALID = ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT___OCL_IS_UNDEFINED = ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The number of operations of the '<em>Comment</em>' class.
@@ -5193,33 +4486,6 @@ public interface PivotPackage
 	int COMPLETE_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___OCL_TYPE = CLASS___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___OCL_IS_INVALID = CLASS___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___OCL_IS_UNDEFINED = CLASS___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5353,33 +4619,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAMESPACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -5533,33 +4772,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PACKAGE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___OCL_TYPE = NAMESPACE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___OCL_IS_INVALID = NAMESPACE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___OCL_IS_UNDEFINED = NAMESPACE___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -5731,33 +4943,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COMPLETE_ENVIRONMENT_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___OCL_TYPE = PACKAGE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___OCL_IS_INVALID = PACKAGE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___OCL_IS_UNDEFINED = PACKAGE___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -5938,33 +5123,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___OCL_TYPE = TYPED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___OCL_IS_INVALID = TYPED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___OCL_IS_UNDEFINED = TYPED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -6244,33 +5402,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 10;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___OCL_TYPE = TYPED_MULTIPLICITY_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___OCL_IS_INVALID = TYPED_MULTIPLICITY_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___OCL_IS_UNDEFINED = TYPED_MULTIPLICITY_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -6615,33 +5746,6 @@ public interface PivotPackage
 	int COMPLETE_OPERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___OCL_TYPE = OPERATION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___OCL_IS_INVALID = OPERATION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___OCL_IS_UNDEFINED = OPERATION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6930,33 +6034,6 @@ public interface PivotPackage
 	int COMPLETE_PACKAGE_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE___OCL_TYPE = PACKAGE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE___OCL_IS_INVALID = PACKAGE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE___OCL_IS_UNDEFINED = PACKAGE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7198,33 +6275,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 11;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___OCL_TYPE = TYPED_MULTIPLICITY_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___OCL_IS_INVALID = TYPED_MULTIPLICITY_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___OCL_IS_UNDEFINED = TYPED_MULTIPLICITY_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -7551,33 +6601,6 @@ public interface PivotPackage
 	int COMPLETE_PROPERTY_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___OCL_TYPE = PROPERTY___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___OCL_IS_INVALID = PROPERTY___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___OCL_IS_UNDEFINED = PROPERTY___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7776,33 +6799,6 @@ public interface PivotPackage
 	int CONSTRAINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7911,33 +6907,6 @@ public interface PivotPackage
 	int DETAIL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DETAIL___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DETAIL___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DETAIL___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8035,33 +7004,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUM_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP___OCL_TYPE = LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP___OCL_IS_INVALID = LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP___OCL_IS_UNDEFINED = LITERAL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -8253,33 +7195,6 @@ public interface PivotPackage
 	int ENUMERATION_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION___OCL_TYPE = DATA_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION___OCL_IS_INVALID = DATA_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION___OCL_IS_UNDEFINED = DATA_TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8397,33 +7312,6 @@ public interface PivotPackage
 	int ENUMERATION_LITERAL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8530,33 +7418,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VALUE_SPECIFICATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION___OCL_TYPE = TYPED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION___OCL_IS_INVALID = TYPED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION___OCL_IS_UNDEFINED = TYPED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -8746,33 +7607,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPAQUE_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_EXPRESSION___OCL_TYPE = VALUE_SPECIFICATION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_EXPRESSION___OCL_IS_INVALID = VALUE_SPECIFICATION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_EXPRESSION___OCL_IS_UNDEFINED = VALUE_SPECIFICATION___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9009,33 +7843,6 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL_FEATURE_COUNT = OPAQUE_EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___OCL_TYPE = OPAQUE_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___OCL_IS_INVALID = OPAQUE_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___OCL_IS_UNDEFINED = OPAQUE_EXPRESSION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9126,16 +7933,6 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL_OPERATION_COUNT = OPAQUE_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl <em>Feature</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFeature()
-	 * @generated
-	 */
-	int FEATURE = 28;
-
-	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9197,33 +7994,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9341,33 +8111,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int IF_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9496,33 +8239,6 @@ public interface PivotPackage
 	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP___OCL_TYPE = PRIMITIVE_LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP___OCL_IS_INVALID = PRIMITIVE_LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP___OCL_IS_UNDEFINED = PRIMITIVE_LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9620,33 +8336,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP___OCL_TYPE = NUMERIC_LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP___OCL_IS_INVALID = NUMERIC_LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP___OCL_IS_UNDEFINED = NUMERIC_LITERAL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9773,33 +8462,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP___OCL_TYPE = LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP___OCL_IS_INVALID = LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP___OCL_IS_UNDEFINED = LITERAL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9982,33 +8644,6 @@ public interface PivotPackage
 	int INVALID_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE___OCL_TYPE = CLASS___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE___OCL_IS_INVALID = CLASS___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE___OCL_IS_UNDEFINED = CLASS___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10052,36 +8687,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.IterateExpImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIterateExp()
-	 * @generated
-	 */
-	int ITERATE_EXP = 35;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterationImpl <em>Iteration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.IterationImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteration()
-	 * @generated
-	 */
-	int ITERATION = 36;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.IteratorExpImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteratorExp()
-	 * @generated
-	 */
-	int ITERATOR_EXP = 37;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -10199,33 +8804,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LOOP_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP___OCL_TYPE = CALL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP___OCL_IS_INVALID = CALL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP___OCL_IS_UNDEFINED = CALL_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -10370,33 +8948,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP___OCL_TYPE = LOOP_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP___OCL_IS_INVALID = LOOP_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP___OCL_IS_UNDEFINED = LOOP_EXP___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -10633,33 +9184,6 @@ public interface PivotPackage
 	int ITERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___OCL_TYPE = OPERATION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___OCL_IS_INVALID = OPERATION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___OCL_IS_UNDEFINED = OPERATION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10894,33 +9418,6 @@ public interface PivotPackage
 	int ITERATOR_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP___OCL_TYPE = LOOP_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP___OCL_IS_INVALID = LOOP_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP___OCL_IS_UNDEFINED = LOOP_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11029,33 +9526,6 @@ public interface PivotPackage
 	int LET_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11072,6 +9542,177 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LET_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_COMMENT = PACKAGE__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__MONIKER = PACKAGE__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__NAME = PACKAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_RULE = PACKAGE__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__IS_STATIC = PACKAGE__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_ANNOTATION = PACKAGE__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__TEMPLATE_BINDING = PACKAGE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_TEMPLATE_SIGNATURE = PACKAGE__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__NESTED_PACKAGE = PACKAGE__NESTED_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__NESTING_PACKAGE = PACKAGE__NESTING_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__NS_PREFIX = PACKAGE__NS_PREFIX;
+
+	/**
+	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__NS_URI = PACKAGE__NS_URI;
+
+	/**
+	 * The feature id for the '<em><b>Owned Precedence</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_PRECEDENCE = PACKAGE__OWNED_PRECEDENCE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_TYPE = PACKAGE__OWNED_TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Library</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY___HAS_MONIKER = PACKAGE___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY___PARAMETERABLE_ELEMENTS = PACKAGE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY___IS_TEMPLATE = PACKAGE___IS_TEMPLATE;
+
+	/**
+	 * The number of operations of the '<em>Library</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_OPERATION_COUNT = PACKAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -11180,33 +9821,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -11353,33 +9967,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE___OCL_TYPE = TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE___OCL_IS_INVALID = TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE___OCL_IS_UNDEFINED = TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11486,33 +10073,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MULTIPLICITY_ELEMENT_FEATURE_COUNT = MONIKERED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_ELEMENT___OCL_TYPE = MONIKERED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_ELEMENT___OCL_IS_INVALID = MONIKERED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_ELEMENT___OCL_IS_UNDEFINED = MONIKERED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -11686,33 +10246,6 @@ public interface PivotPackage
 	int NULL_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP___OCL_TYPE = PRIMITIVE_LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP___OCL_IS_INVALID = PRIMITIVE_LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP___OCL_IS_UNDEFINED = PRIMITIVE_LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11848,33 +10381,6 @@ public interface PivotPackage
 	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP___OCL_TYPE = FEATURE_CALL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP___OCL_IS_INVALID = FEATURE_CALL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP___OCL_IS_UNDEFINED = FEATURE_CALL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11956,33 +10462,6 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER___OCL_TYPE = ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER___OCL_IS_INVALID = ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER___OCL_IS_UNDEFINED = ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12062,33 +10541,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_TEMPLATE_PARAMETER_FEATURE_COUNT = TEMPLATE_PARAMETER_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_TEMPLATE_PARAMETER___OCL_TYPE = TEMPLATE_PARAMETER___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_TEMPLATE_PARAMETER___OCL_IS_INVALID = TEMPLATE_PARAMETER___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_TEMPLATE_PARAMETER___OCL_IS_UNDEFINED = TEMPLATE_PARAMETER___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
@@ -12280,33 +10732,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE___OCL_TYPE = COLLECTION_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE___OCL_IS_INVALID = COLLECTION_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE___OCL_IS_UNDEFINED = COLLECTION_TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12397,33 +10822,6 @@ public interface PivotPackage
 	int PARAMETERABLE_ELEMENT_FEATURE_COUNT = MONIKERED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___OCL_TYPE = MONIKERED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___OCL_IS_INVALID = MONIKERED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___OCL_IS_UNDEFINED = MONIKERED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12494,33 +10892,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___OCL_TYPE = PARAMETERABLE_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___OCL_IS_INVALID = PARAMETERABLE_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___OCL_IS_UNDEFINED = PARAMETERABLE_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -12665,33 +11036,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PARAMETER_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER___OCL_TYPE = TYPED_MULTIPLICITY_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER___OCL_IS_INVALID = TYPED_MULTIPLICITY_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER___OCL_IS_UNDEFINED = TYPED_MULTIPLICITY_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -12874,33 +11218,6 @@ public interface PivotPackage
 	int PRECEDENCE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRECEDENCE___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRECEDENCE___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRECEDENCE___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13081,33 +11398,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE___OCL_TYPE = DATA_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE___OCL_IS_INVALID = DATA_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE___OCL_IS_UNDEFINED = DATA_TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13279,33 +11569,6 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP___OCL_TYPE = NAVIGATION_CALL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP___OCL_IS_INVALID = NAVIGATION_CALL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP___OCL_IS_UNDEFINED = NAVIGATION_CALL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13405,33 +11668,6 @@ public interface PivotPackage
 	int REAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP___OCL_TYPE = NUMERIC_LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP___OCL_IS_INVALID = NUMERIC_LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP___OCL_IS_UNDEFINED = NUMERIC_LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13520,33 +11756,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEND_SIGNAL_ACTION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_SIGNAL_ACTION___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_SIGNAL_ACTION___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_SIGNAL_ACTION___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -13736,33 +11945,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE___OCL_TYPE = COLLECTION_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE___OCL_IS_INVALID = COLLECTION_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE___OCL_IS_UNDEFINED = COLLECTION_TYPE___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -13981,33 +12163,6 @@ public interface PivotPackage
 	int SET_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE___OCL_TYPE = COLLECTION_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE___OCL_IS_INVALID = COLLECTION_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE___OCL_IS_UNDEFINED = COLLECTION_TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14116,33 +12271,6 @@ public interface PivotPackage
 	int SIGNAL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14222,33 +12350,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE___OCL_TYPE = NAMED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE___OCL_IS_INVALID = NAMED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE___OCL_IS_UNDEFINED = NAMED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -14350,33 +12451,6 @@ public interface PivotPackage
 	int STATE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14476,33 +12550,6 @@ public interface PivotPackage
 	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP___OCL_TYPE = PRIMITIVE_LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP___OCL_IS_INVALID = PRIMITIVE_LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP___OCL_IS_UNDEFINED = PRIMITIVE_LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14564,33 +12611,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_BINDING_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING___OCL_TYPE = ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING___OCL_IS_INVALID = ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING___OCL_IS_UNDEFINED = ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Validate Parameter Substitution Formal</em>' operation.
@@ -14672,33 +12692,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_SUBSTITUTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION___OCL_TYPE = ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION___OCL_IS_INVALID = ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION___OCL_IS_UNDEFINED = ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
@@ -14836,33 +12829,6 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___OCL_TYPE = TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___OCL_IS_INVALID = TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___OCL_IS_UNDEFINED = TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14962,33 +12928,6 @@ public interface PivotPackage
 	int TEMPLATE_SIGNATURE_FEATURE_COUNT = MONIKERED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_SIGNATURE___OCL_TYPE = MONIKERED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_SIGNATURE___OCL_IS_INVALID = MONIKERED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_SIGNATURE___OCL_IS_UNDEFINED = MONIKERED_ELEMENT___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15059,33 +12998,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATEABLE_ELEMENT_FEATURE_COUNT = MONIKERED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATEABLE_ELEMENT___OCL_TYPE = MONIKERED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATEABLE_ELEMENT___OCL_IS_INVALID = MONIKERED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATEABLE_ELEMENT___OCL_IS_UNDEFINED = MONIKERED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -15205,33 +13117,6 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP___OCL_TYPE = LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP___OCL_IS_INVALID = LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP___OCL_IS_UNDEFINED = LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15329,33 +13214,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART___OCL_TYPE = TYPED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART___OCL_IS_INVALID = TYPED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART___OCL_IS_UNDEFINED = TYPED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -15538,33 +13396,6 @@ public interface PivotPackage
 	int TUPLE_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE___OCL_TYPE = DATA_TYPE___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE___OCL_IS_INVALID = DATA_TYPE___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE___OCL_IS_UNDEFINED = DATA_TYPE___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15691,33 +13522,6 @@ public interface PivotPackage
 	int TYPE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15815,33 +13619,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE_TEMPLATE_PARAMETER_FEATURE_COUNT = TEMPLATE_PARAMETER_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER___OCL_TYPE = TEMPLATE_PARAMETER___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER___OCL_IS_INVALID = TEMPLATE_PARAMETER___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER___OCL_IS_UNDEFINED = TEMPLATE_PARAMETER___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
@@ -15952,33 +13729,6 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP___OCL_TYPE = NUMERIC_LITERAL_EXP___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP___OCL_IS_INVALID = NUMERIC_LITERAL_EXP___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP___OCL_IS_UNDEFINED = NUMERIC_LITERAL_EXP___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16069,33 +13819,6 @@ public interface PivotPackage
 	int UNSPECIFIED_VALUE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16184,33 +13907,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION___OCL_TYPE = TYPED_ELEMENT___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION___OCL_IS_INVALID = TYPED_ELEMENT___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION___OCL_IS_UNDEFINED = TYPED_ELEMENT___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -16330,33 +14026,6 @@ public interface PivotPackage
 	int VARIABLE_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE___OCL_TYPE = VARIABLE_DECLARATION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE___OCL_IS_INVALID = VARIABLE_DECLARATION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE___OCL_IS_UNDEFINED = VARIABLE_DECLARATION___OCL_IS_UNDEFINED;
-
-	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16454,33 +14123,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP___OCL_TYPE = OCL_EXPRESSION___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP___OCL_IS_INVALID = OCL_EXPRESSION___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP___OCL_IS_UNDEFINED = OCL_EXPRESSION___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -16689,33 +14331,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Ocl Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE___OCL_TYPE = CLASS___OCL_TYPE;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Invalid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE___OCL_IS_INVALID = CLASS___OCL_IS_INVALID;
-
-	/**
-	 * The operation id for the '<em>Ocl Is Undefined</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE___OCL_IS_UNDEFINED = CLASS___OCL_IS_UNDEFINED;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -16977,46 +14592,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getElement_OwnedComment();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.OclAny <em>Ocl Any</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ocl Any</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.OclAny
-	 * @generated
-	 */
-	EClass getOclAny();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.OclAny#oclType() <em>Ocl Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Ocl Type</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.OclAny#oclType()
-	 * @generated
-	 */
-	EOperation getOclAny__OclType();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.OclAny#oclIsInvalid() <em>Ocl Is Invalid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Ocl Is Invalid</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.OclAny#oclIsInvalid()
-	 * @generated
-	 */
-	EOperation getOclAny__OclIsInvalid();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.OclAny#oclIsUndefined() <em>Ocl Is Undefined</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Ocl Is Undefined</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.OclAny#oclIsUndefined()
-	 * @generated
-	 */
-	EOperation getOclAny__OclIsUndefined();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.OclExpression <em>Ocl Expression</em>}'.
@@ -17944,6 +15519,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getLetExp_Variable();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Library <em>Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Library</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Library
+	 * @generated
+	 */
+	EClass getLibrary();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.LoopExp <em>Loop Exp</em>}'.
@@ -20087,40 +17672,6 @@ public interface PivotPackage
 		EReference ELEMENT__OWNED_COMMENT = eINSTANCE.getElement_OwnedComment();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclAnyImpl <em>Ocl Any</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.OclAnyImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclAny()
-		 * @generated
-		 */
-		EClass OCL_ANY = eINSTANCE.getOclAny();
-
-		/**
-		 * The meta object literal for the '<em><b>Ocl Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OCL_ANY___OCL_TYPE = eINSTANCE.getOclAny__OclType();
-
-		/**
-		 * The meta object literal for the '<em><b>Ocl Is Invalid</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OCL_ANY___OCL_IS_INVALID = eINSTANCE.getOclAny__OclIsInvalid();
-
-		/**
-		 * The meta object literal for the '<em><b>Ocl Is Undefined</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OCL_ANY___OCL_IS_UNDEFINED = eINSTANCE.getOclAny__OclIsUndefined();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclExpressionImpl <em>Ocl Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20889,6 +18440,16 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference LET_EXP__VARIABLE = eINSTANCE.getLetExp_Variable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl <em>Library</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibrary()
+		 * @generated
+		 */
+		EClass LIBRARY = eINSTANCE.getLibrary();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LoopExpImpl <em>Loop Exp</em>}' class.

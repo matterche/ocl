@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: TemplateBindingImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -400,12 +400,6 @@ public class TemplateBindingImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATE_BINDING___OCL_TYPE:
-				return oclType();
-			case PivotPackage.TEMPLATE_BINDING___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.TEMPLATE_BINDING___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.TEMPLATE_BINDING___VALIDATE_PARAMETER_SUBSTITUTION_FORMAL__DIAGNOSTICCHAIN_MAP:
 				return validateParameterSubstitutionFormal((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.TEMPLATE_BINDING___VALIDATE_ONE_PARAMETER_SUBSTITUTION__DIAGNOSTICCHAIN_MAP:

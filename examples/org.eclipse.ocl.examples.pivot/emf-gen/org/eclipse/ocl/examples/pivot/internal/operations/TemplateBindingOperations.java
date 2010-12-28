@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingOperations.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: TemplateBindingOperations.java,v 1.1.2.4 2010/12/28 12:17:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
@@ -39,8 +39,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class TemplateBindingOperations
-		extends OclAnyOperations {
+public class TemplateBindingOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

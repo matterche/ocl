@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: OCLHelper.java,v 1.1.2.2 2010/12/28 12:17:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -23,9 +23,9 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLBase;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -231,7 +231,7 @@ public interface OCLHelper {
      * 
      * @throws ParserException if the <code>expression</code> fails to parse
      */
-    OclExpression createQuery(String expression) throws ParserException;
+    ExpressionInOcl createQuery(String expression) throws ParserException;
 
     /**
      * Creates a constraint of the specified kind, by parsing the given

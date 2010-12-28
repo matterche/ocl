@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.1.2.1 2010/10/01 13:51:57 ewillink Exp $
+ * $Id: QueryImpl.java,v 1.1.2.2 2010/12/28 12:17:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -24,6 +24,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.util.ProblemAware;
 
 
@@ -73,8 +74,8 @@ class QueryImpl implements OCL.Query, ProblemAware {
 		return (OclExpression) delegate.getExpression();
 	}
 
-	public Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> getExtentMap() {
-		return delegate.getExtentMap();
+	public ModelManager getModelManager() {
+		return delegate.getModelManager();
 	}
 
 	public String queryText() {

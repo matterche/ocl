@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.11 2010/12/26 16:56:23 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.12 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -46,9 +46,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -64,6 +66,9 @@ import org.eclipse.ocl.examples.pivot.TypeUtil;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.values.Bag;
+import org.eclipse.ocl.examples.pivot.values.ElementValue;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
+import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -162,6 +167,8 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	protected final ResourceSet pivotResourceSet;
 	protected org.eclipse.ocl.examples.pivot.Package pivotOrphans = null;
+	protected Map<String, org.eclipse.ocl.examples.pivot.Package> packageMap = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
+
 
 	protected final CompleteEnvironmentManager completeEnvironmentManager = new CompleteEnvironmentManager(this);
 
@@ -197,6 +204,10 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	public void addOrphanType(Type pivotElement) {
 		org.eclipse.ocl.examples.pivot.Package orphans = getOrphanPackage();
 		orphans.getOwnedTypes().add(pivotElement);
+	}
+
+	public void addPackage(String key, Package pivotPackage) {
+		packageMap.put(key, pivotPackage);
 	}
 
 	/**
@@ -355,7 +366,17 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	}
 
 	public boolean conformsTo(Type firstType, Type secondType) {
-		return TypeUtil.conformsToType(firstType, secondType);
+		Type oclVoidType = getOclVoidType();
+		Type oclInvalidType = getOclInvalidType();
+		if (firstType == oclInvalidType) {
+			return true;
+		}
+		else if (firstType == oclVoidType) {
+			return secondType != oclInvalidType;
+		}
+		else {
+			return TypeUtil.conformsToType(firstType, secondType);
+		}
 	}
 
 	public Resource createResource(URI uri, String contentType) {
@@ -481,6 +502,10 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		}
 		return pivotOrphans;
 	}
+	
+	public Set<Map.Entry<String, org.eclipse.ocl.examples.pivot.Package>> getPackages() {
+		return packageMap.entrySet();
+	}
 
 	public ResourceSet getPivotResourceSet() {
 		return pivotResourceSet;
@@ -547,42 +572,64 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			}
 			return getCollectionType();
 		}
+		if (value instanceof ElementValue<?>) {
+			if (value instanceof NullValue) {
+				return type;
+			}
+			else if (value instanceof TypeValue) {
+				return ((TypeValue)value).getElement();
+			}
+			else {
+				EClass eClass = ((ElementValue<?>) value).getElement().eClass();
+				return getPivotType(eClass.getName());
+			}
+		}
 		return type;
 	}
 
 	public Value getValueOfValue(Object value) {
+		if (value instanceof Number) {
+			if ((value instanceof Integer) || (value instanceof Long)
+					|| (value instanceof Short)) {
+				return ValueFactory.createIntegerValue(((Number) value).longValue());
+			}
+			if ((value instanceof Float) || (value instanceof Double)) {
+				return ValueFactory.createRealValue(((Number) value).doubleValue());
+			}
+			if (value instanceof BigDecimal) {
+				return ValueFactory.createRealValue((BigDecimal) value);
+			}
+			if (value instanceof BigInteger) {
+				return ValueFactory.createIntegerValue((BigInteger) value);
+			}			
+		}
 		if (value instanceof String) {
 			return ValueFactory.createStringValue((String) value);
-		}
-		if ((value instanceof Integer) || (value instanceof Long)
-				|| (value instanceof Short)) {
-			return ValueFactory.createIntegerValue(((Number) value).longValue());
-		}
-		if ((value instanceof Float) || (value instanceof Double)) {
-			return ValueFactory.createRealValue(((Number) value).doubleValue());
-		}
-		if (value instanceof BigDecimal) {
-			return ValueFactory.createRealValue((BigDecimal) value);
-		}
-		if (value instanceof BigInteger) {
-			return ValueFactory.createIntegerValue((BigInteger) value);
 		}
 		if (value instanceof Boolean) {
 			return ValueFactory.createBooleanValue((Boolean) value);
 		}
+		if (value instanceof Element) {
+			if (value instanceof Type) {
+				return ValueFactory.createTypeValue((Type) value);
+			}
+			return ValueFactory.createElementValue((Element) value);
+		}
 		if (value == null) {
 			return Value.NULL;
 		}
-		try {
-			int length = Array.getLength(value);
-			List<Value> values = new ArrayList<Value>();
-			for (int i = 0; i < length; i++) {
-				Value v = getValueOfValue(Array.get(value, i));
-				values.add(v);
-			}
-			return ValueFactory.createSequenceValue(values);
-		} 
-		catch (IllegalArgumentException e) {}
+		if (value.getClass().isArray()) {
+			try {
+				int length = Array.getLength(value);
+				List<Value> values = new ArrayList<Value>();
+				for (int i = 0; i < length; i++) {
+					Value v = getValueOfValue(Array.get(value, i));
+					values.add(v);
+				}
+				return ValueFactory.createSequenceValue(values);
+			} 
+			catch (IllegalArgumentException e) {}
+		}
 		return ValueFactory.createObjectValue(value);
 	}
 
@@ -621,7 +668,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			pivotResourceSet.getResources().add(pivotResource);
 		}
 		for (org.eclipse.ocl.examples.pivot.Package rootPackage : computePivotRootPackages()) {
-			loadLibraryPackage(rootPackage);
+			if (rootPackage instanceof Library) {
+				loadLibraryPackage(rootPackage);
+			}
 		}
 	}
 

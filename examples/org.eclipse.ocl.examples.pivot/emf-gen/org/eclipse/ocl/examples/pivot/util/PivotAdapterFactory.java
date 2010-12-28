@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.1.2.6 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.1.2.7 2010/12/28 12:17:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
@@ -69,7 +70,6 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclAny;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -372,6 +372,11 @@ public class PivotAdapterFactory
 				return createLetExpAdapter();
 			}
 			@Override
+			public Adapter caseLibrary(Library object)
+			{
+				return createLibraryAdapter();
+			}
+			@Override
 			public Adapter caseLiteralExp(LiteralExp object)
 			{
 				return createLiteralExpAdapter();
@@ -430,11 +435,6 @@ public class PivotAdapterFactory
 			public Adapter caseNumericLiteralExp(NumericLiteralExp object)
 			{
 				return createNumericLiteralExpAdapter();
-			}
-			@Override
-			public Adapter caseOclAny(OclAny object)
-			{
-				return createOclAnyAdapter();
 			}
 			@Override
 			public Adapter caseOclExpression(OclExpression object)
@@ -730,20 +730,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.OclAny <em>Ocl Any</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.OclAny
-	 * @generated
-	 */
-	public Adapter createOclAnyAdapter() {
 		return null;
 	}
 
@@ -1209,6 +1195,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLetExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.Library <em>Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.Library
+	 * @generated
+	 */
+	public Adapter createLibraryAdapter()
+	{
 		return null;
 	}
 

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.8 2010/12/26 15:21:30 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.9 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
@@ -43,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
@@ -106,13 +106,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * 
 	 * @param env
 	 *            an evaluation environment (map of variable names to values)
-	 * @param extentMap
+	 * @param modelManager
 	 *            a map of classes to their instance lists
 	 */
 	public EvaluationVisitorImpl(Environment env,
 			EvaluationEnvironment evalEnv,
-			Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap) {
-		super(env, evalEnv, extentMap);
+			ModelManager modelManager) {
+		super(env, evalEnv, modelManager);
 	}
 
 
@@ -245,7 +245,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		EnvironmentFactory factory = env.getFactory();
 		EvaluationEnvironment evalEnv = getEvaluationEnvironment();
     	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evalEnv);
-		return new EvaluationVisitorImpl(env, nestedEvalEnv, getExtentMap());
+		return new EvaluationVisitorImpl(env, nestedEvalEnv, getModelManager());
 	}
 
 	public Object getValueOfVariable(VariableDeclaration variable) {
@@ -422,6 +422,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return getEvaluationEnvironment().getValue(el.getReferredEnumLiteral());
 	}
 
+	@Override
+	public Value visitExpressionInOcl(ExpressionInOcl expression) {
+		return safeVisit(expression.getBodyExpression());
+	}
+
 	/**
 	 * Callback for an IfExp visit.
 	 */
@@ -537,13 +542,24 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitOperationCallExp(OperationCallExp operationCallExp) {
 		OclExpression source = operationCallExp.getSource();	// FIXME self
 		Value sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
-		Type dynamicSourceType = getStandardLibrary().getTypeOfValue(sourceValue, source != null ? source.getType() : operationCallExp.getReferredOperation().getClass_());
-		Operation staticOperation = operationCallExp.getReferredOperation();
-		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
-		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-		CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
-		CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
-		return callImplementation(dynamicOperation, sourceValue, operationCallExp);
+/*		if (sourceValue instanceof TypeValue) {
+			Type dynamicSourceType = ((TypeValue)sourceValue).getType();
+			Operation staticOperation = operationCallExp.getReferredOperation();
+			CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
+			CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
+			CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
+			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
+		}
+		else {
+*/			Type dynamicSourceType = getStandardLibrary().getTypeOfValue(sourceValue, source != null ? source.getType() : operationCallExp.getReferredOperation().getClass_());
+			Operation staticOperation = operationCallExp.getReferredOperation();
+			CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
+			CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
+			CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
+			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
+//		}
 	}
 
 	/**
@@ -665,11 +681,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		String varName = variable.getName();
 		OclExpression initExp = variable.getInitExpression();
 		if (initExp == null) {
-			return new InvalidValueImpl(null, null, "Uninitialized variable", null);
+			return new InvalidValueImpl(variable, null, "Uninitialized variable", null);
 		}
-		Value initVal = initExp.accept(getUndecoratedVisitor());
-// FIXME		getEvaluationEnvironment().setVariable(variable, initVal);
-		return initVal;
+		Value value = initExp.accept(getUndecoratedVisitor());
+	// FIXME		getEvaluationEnvironment().setVariable(variable, initVal);
+		return value;
 	}
 
 	/**
@@ -691,6 +707,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		Object variableValue = getEvaluationEnvironment().getValueOf(varName);
 //		return variableValue;
 		if (variable == null) {
+			Value value = getEvaluationEnvironment().getValueOf(variableDeclaration.getName());
+			if (value != null) {
+				return value;
+			}
 			return new InvalidValueImpl(null, variableExp, "Undefined variable", null);
 		}
 		return variable.accept(getUndecoratedVisitor());

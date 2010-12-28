@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.3 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.4 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.Option;
@@ -51,17 +52,21 @@ import org.eclipse.ocl.util.Adaptable;
 public abstract class AbstractEvaluationEnvironment
 		implements EvaluationEnvironment, Adaptable, Customizable {
 	
-    private final EvaluationEnvironment parent;
+    protected final PivotManager pivotManager;
+
+	private final EvaluationEnvironment parent;
     private final Map<String, Value> map = new HashMap<String, Value>();
     private final Map<VariableDeclaration, VariableDeclaration> variables = new HashMap<VariableDeclaration, VariableDeclaration>();
 
     private final Map<Option<?>, Object> options = new HashMap<Option<?>, Object>();
     
-    protected AbstractEvaluationEnvironment() {
-    	this(null);
+    protected AbstractEvaluationEnvironment(PivotManager pivotManager) {
+    	this.pivotManager = pivotManager;
+    	this.parent = null;
     }
     
     protected AbstractEvaluationEnvironment(EvaluationEnvironment parent) {	
+    	this.pivotManager = parent.getPivotManager();
     	this.parent = parent;
     }
     
@@ -73,6 +78,10 @@ public abstract class AbstractEvaluationEnvironment
     protected EvaluationEnvironment getParent() {
     	return parent;
     }
+    
+	public PivotManager getPivotManager() {
+		return pivotManager;
+	}
     
     /**
      * Returns the value associated with the supplied name

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueSpecificationImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: ValueSpecificationImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -565,12 +565,6 @@ public abstract class ValueSpecificationImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.VALUE_SPECIFICATION___OCL_TYPE:
-				return oclType();
-			case PivotPackage.VALUE_SPECIFICATION___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.VALUE_SPECIFICATION___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.VALUE_SPECIFICATION___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER:

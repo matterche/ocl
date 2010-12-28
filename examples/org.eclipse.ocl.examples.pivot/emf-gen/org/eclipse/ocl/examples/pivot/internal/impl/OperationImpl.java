@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.1.2.6 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -1212,12 +1212,6 @@ public class OperationImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.OPERATION___OCL_TYPE:
-				return oclType();
-			case PivotPackage.OPERATION___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.OPERATION___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.OPERATION___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP:

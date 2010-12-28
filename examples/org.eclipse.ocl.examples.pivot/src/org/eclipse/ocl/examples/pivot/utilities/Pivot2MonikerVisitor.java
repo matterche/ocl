@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.5 2010/12/26 15:21:30 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.6 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -382,7 +382,8 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	@Override
 	public Object visitTypeExp(TypeExp object) {
 		appendExpPrefix(object);
-		context.append(MONIKER_TYPE_LITERAL_EXP);
+		context.appendName(object.getReferredType());
+//		context.append(MONIKER_TYPE_LITERAL_EXP);
 		return true;
 	}
 

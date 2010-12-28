@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.1.2.2 2010/12/06 17:29:02 ewillink Exp $
+ * $Id: HelperUtil.java,v 1.1.2.3 2010/12/28 12:17:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -432,6 +432,23 @@ public class HelperUtil {
 			}
 		}
 		
+		return result;
+	}
+	public static
+	Object getConstraintContext(Environment env, Object element, ExpressionInOcl expr) {		
+		Object result = element;
+		Variable contextVariable = expr.getContextVariable();
+		if (contextVariable != null) {
+			Type contextClassifier = contextVariable.getType();			
+			if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
+					contextClassifier)) {				
+				Object application = env.getUMLReflection().getStereotypeApplication(
+						element, contextClassifier);				
+				if (application != null) {
+					result = application;
+				}
+			}
+		}
 		return result;
 	}
 }

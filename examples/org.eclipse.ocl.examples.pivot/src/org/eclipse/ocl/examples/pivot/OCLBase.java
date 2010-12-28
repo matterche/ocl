@@ -16,13 +16,11 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: OCLBase.java,v 1.1.2.5 2010/12/28 12:17:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +31,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -70,7 +69,7 @@ public abstract class OCLBase {
 
 	private EvaluationEnvironment evalEnv;
 
-	private Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap;
+	private ModelManager modelManager;
 
 	private List<Constraint> constraints = new java.util.ArrayList<Constraint>();
 
@@ -223,14 +222,14 @@ public abstract class OCLBase {
 	}
 
 	/**
-	 * Obtains the extent map, if any, provided by the client to customize the
+	 * Obtains the model manager, if any, provided by the client to customize the
 	 * evaluation of constraints.
 	 * 
-	 * @return the client-provided custom extent map, or <code>null</code> if
+	 * @return the client-provided custom model manager, or <code>null</code> if
 	 *         thie OCL is using the default dynamic extent map implementation
 	 */
-	public Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> getExtentMap() {
-		return extentMap;
+	public ModelManager getModelManager() {
+		return modelManager;
 	}
 
 	/**
@@ -238,12 +237,12 @@ public abstract class OCLBase {
 	 * evaluation of OCL constraints. This is only needed if the default dynamic
 	 * extent-map implementation is not suitable.
 	 * 
-	 * @param extentMap
+	 * @param modelManager
 	 *            a custom extent map, or <code>null</code> to use the default
 	 *            dynamic extent map implementation
 	 */
-	public void setExtentMap(Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extentMap) {
-		this.extentMap = extentMap;
+	public void setModelManager(ModelManager modelManager) {
+		this.modelManager = modelManager;
 	}
 
 	/**
@@ -438,10 +437,47 @@ public abstract class OCLBase {
 		Value contextValue = getEnvironment().getPivotManager().getValueOfValue(context);
 		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, contextValue);
 
-		Map<org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> extents = getExtentMap();
+		ModelManager extents = getModelManager();
 		if (extents == null) {
 			// let the evaluation environment create one
-			extents = localEvalEnv.createExtentMap(context);
+			extents = localEvalEnv.createModelManager(context);
+		}
+
+		EvaluationVisitor ev = environmentFactory
+			.createEvaluationVisitor(rootEnvironment, localEvalEnv, extents);
+
+		org.eclipse.ocl.examples.pivot.values.Value result;
+
+		try {
+			result = expression.accept(ev);
+		} catch (EvaluationHaltedException e) {
+			evaluationProblems = e.getDiagnostic();
+			result = null;
+		} finally {
+			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
+		}
+		if (result == null) {
+			result = ValueFactory.createInvalidValue("Java-Null value");
+		}
+		return result;
+	}
+	public org.eclipse.ocl.examples.pivot.values.Value evaluate(Object context, ExpressionInOcl expression) {
+		evaluationProblems = null;
+		
+		// can determine a more appropriate context from the context
+		// variable of the expression, to account for stereotype constraints
+		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
+		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
+		Value value = getEnvironment().getPivotManager().getValueOfValue(context);
+		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
+//		localEvalEnv.addVariable(expression.getContextVariable(), value);
+//		if ((value != null) && !value.isUndefined()) {
+//			expression.getContextVariable().setValue(value);
+//		}
+		ModelManager extents = getModelManager();
+		if (extents == null) {
+			// let the evaluation environment create one
+			extents = localEvalEnv.createModelManager(context);
 		}
 
 		EvaluationVisitor ev = environmentFactory
@@ -569,7 +605,7 @@ public abstract class OCLBase {
 	 * @see #createQuery(Object)
 	 */
 	public QueryBase createQuery(OclExpression query) {
-		return new QueryBaseImpl(rootEnvironment, query, extentMap);
+		return new QueryBaseImpl(rootEnvironment, query, modelManager);
 	}
 
 	/**
@@ -592,7 +628,7 @@ public abstract class OCLBase {
 	public QueryBase createQuery(Constraint constraint) {
 		return new QueryBaseImpl(
 			rootEnvironment, rootEnvironment.getUMLReflection()
-				.getSpecification(constraint).getBodyExpression(), extentMap);
+				.getSpecification(constraint).getBodyExpression(), modelManager);
 	}
 
 	/**

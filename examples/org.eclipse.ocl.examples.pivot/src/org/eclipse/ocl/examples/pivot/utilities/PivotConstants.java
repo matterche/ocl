@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.1.2.4 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -55,7 +55,7 @@ public interface PivotConstants
 	static final String MONIKER_NULL_LITERAL_EXP = "null";
 	static final String MONIKER_STRING_LITERAL_EXP = "string";
 	static final String MONIKER_TUPLE_LITERAL_EXP = "tuple";
-	static final String MONIKER_TYPE_LITERAL_EXP = "type";
+//	static final String MONIKER_TYPE_LITERAL_EXP = "type";
 	static final String MONIKER_UNLIMITED_NATURAL_LITERAL_EXP = "*";
 
 	static final String MONIKER_EXP_CHILD_PREFIX = "x";

@@ -198,7 +198,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="#//OclAny">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="#//Visitable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
         upperBound="-1" eType="#//Comment" containment="true"/>
   </eClassifiers>
@@ -283,6 +283,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" ordered="false"
         lowerBound="1" eType="#//Variable" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Library" eSuperTypes="#//Package"/>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExp" abstract="true" eSuperTypes="#//OclExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LoopExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" ordered="false" lowerBound="1"
@@ -370,11 +371,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclAny" abstract="true" eSuperTypes="#//Visitable">
-    <eOperations name="oclType" ordered="false" lowerBound="1" eType="#//Class"/>
-    <eOperations name="oclIsInvalid" ordered="false" lowerBound="1" eType="#//Boolean"/>
-    <eOperations name="oclIsUndefined" ordered="false" lowerBound="1" eType="#//Boolean"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclExpression" eSuperTypes="#//TypedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
     <eOperations name="language_body_size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">

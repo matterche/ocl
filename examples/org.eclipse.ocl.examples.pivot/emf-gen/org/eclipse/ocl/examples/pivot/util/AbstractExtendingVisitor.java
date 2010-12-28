@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingVisitor.java,v 1.1.2.7 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: AbstractExtendingVisitor.java,v 1.1.2.8 2010/12/28 12:17:28 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -138,7 +138,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitElement(org.eclipse.ocl.examples.pivot.Element object) {
-		return visitOclAny(object);
+		return visiting(object);
 	}
 
 	public R visitEnumLiteralExp(org.eclipse.ocl.examples.pivot.EnumLiteralExp object) {
@@ -197,6 +197,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitOclExpression(object);
 	}
 
+	public R visitLibrary(org.eclipse.ocl.examples.pivot.Library object) {
+		return visitPackage(object);
+	}
+
 	public R visitLiteralExp(org.eclipse.ocl.examples.pivot.LiteralExp object) {
 		return visitOclExpression(object);
 	}
@@ -239,10 +243,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public R visitNumericLiteralExp(org.eclipse.ocl.examples.pivot.NumericLiteralExp object) {
 		return visitPrimitiveLiteralExp(object);
-	}
-
-	public R visitOclAny(org.eclipse.ocl.examples.pivot.OclAny object) {
-		return visiting(object);
 	}
 
 	public R visitOclExpression(org.eclipse.ocl.examples.pivot.OclExpression object) {

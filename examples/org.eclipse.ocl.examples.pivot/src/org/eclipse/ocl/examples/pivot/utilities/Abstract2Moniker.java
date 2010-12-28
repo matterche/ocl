@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.1.2.4 2010/12/20 06:52:55 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.1.2.5 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -124,7 +124,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 			append(((NamedElement) monikeredElement).getName());
 		}
 		else if (monikeredElement == null) {
-			logger.warn("null for PivotMoniker.appendName()");
+//			logger.warn("null for PivotMoniker.appendName()");
 			append("/null/");
 		}
 		else {

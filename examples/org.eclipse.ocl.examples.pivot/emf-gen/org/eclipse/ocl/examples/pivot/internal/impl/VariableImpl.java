@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: VariableImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -452,18 +452,12 @@ public class VariableImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (implicit: "); //$NON-NLS-1$
-		result.append((eFlags & IMPLICIT_EFLAG) != 0);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 	@Override

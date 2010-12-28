@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: Element.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: Element.java,v 1.1.2.3 2010/12/28 12:17:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,11 +37,12 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElement()
- * @model abstract="true"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.pivot.Visitable"
+ * @extends PivotObject
  * @generated
  */
 public interface Element
-		extends OclAny {
+		extends PivotObject, Visitable {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Comment</b></em>' containment reference list.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementImpl.java,v 1.1.2.5 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: ElementImpl.java,v 1.1.2.6 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,12 +21,16 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -43,7 +47,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public abstract class ElementImpl
-		extends OclAnyImpl
+		extends PivotObjectImpl
 		implements Element {
 
 	/**
@@ -179,8 +183,34 @@ public abstract class ElementImpl
 		return eDynamicIsSet(featureID);
 	}
 
-	@Override
+	/**
+	 * Creates a new instance of the specified Ecore class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the instance to create.
+	 * @return The new instance.
+	 * @generated
+	 */
+	protected EObject create(EClass eClass)
+	{
+		return EcoreUtil.create(eClass);
+	}
+
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitElement(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		ToStringVisitor v = new ToStringVisitor();
+		String s = accept(v);
+		return s != null
+			? s
+			: v.toString();
 	}
 } //ElementImpl

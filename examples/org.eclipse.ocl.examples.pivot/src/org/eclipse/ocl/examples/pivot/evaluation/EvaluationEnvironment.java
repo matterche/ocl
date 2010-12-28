@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.1.2.3 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.1.2.4 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
@@ -29,13 +27,12 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.Tuple;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.types.TupleType;
-//import org.eclipse.ocl.util.Adaptable;
-//import org.eclipse.ocl.util.OCLUtil;
-//import org.eclipse.ocl.util.Tuple;
+import org.eclipse.ocl.util.Adaptable;
 
 /**
  * The evaluation environment keeps track of the current values of variables
@@ -197,7 +194,7 @@ public interface EvaluationEnvironment {
 	 *     classifier extents
 	 * @return the extent map
 	 */
-	Map<org.eclipse.ocl.examples.pivot.Class, Set<EObject>> createExtentMap(Object object);
+    ModelManager createModelManager(Object object);
     
     /**
      * Queries whether an object is an instance of the specified classifier or
@@ -247,4 +244,6 @@ public interface EvaluationEnvironment {
 	Value getValue(EnumerationLiteral enumerationLiteral);
 
 	VariableDeclaration getVariable(VariableDeclaration variableDeclaration);
+
+	PivotManager getPivotManager();
 }

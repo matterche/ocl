@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: CompleteEnvironmentImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -110,12 +110,6 @@ public class CompleteEnvironmentImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT___OCL_TYPE:
-				return oclType();
-			case PivotPackage.COMPLETE_ENVIRONMENT___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.COMPLETE_ENVIRONMENT___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.COMPLETE_ENVIRONMENT___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.COMPLETE_ENVIRONMENT___PARAMETERABLE_ELEMENTS:

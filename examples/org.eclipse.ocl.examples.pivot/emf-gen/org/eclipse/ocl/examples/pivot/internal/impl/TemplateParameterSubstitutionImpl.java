@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterSubstitutionImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: TemplateParameterSubstitutionImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -525,12 +525,6 @@ public class TemplateParameterSubstitutionImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION___OCL_TYPE:
-				return oclType();
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP:
 				return validateMustBeCompatible((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

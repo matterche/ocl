@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedMultiplicityElementImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: TypedMultiplicityElementImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -548,12 +548,6 @@ public abstract class TypedMultiplicityElementImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___OCL_TYPE:
-				return oclType();
-			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___OCL_IS_INVALID:
-				return oclIsInvalid();
-			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___OCL_IS_UNDEFINED:
-				return oclIsUndefined();
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER:
 				return hasMoniker();
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP:

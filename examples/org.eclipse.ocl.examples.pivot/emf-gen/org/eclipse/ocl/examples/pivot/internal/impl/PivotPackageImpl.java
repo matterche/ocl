@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.9 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.10 2010/12/28 12:17:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -74,13 +74,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass elementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass oclAnyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -312,6 +305,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass letExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass libraryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -942,7 +942,7 @@ public class PivotPackageImpl
 	public EClass getNamedElement() {
 		if (namedElementEClass == null)
 		{
-			namedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(57);
+			namedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(58);
 		}
 		return namedElementEClass;
 	}
@@ -1003,46 +1003,6 @@ public class PivotPackageImpl
 	 */
 	public EReference getElement_OwnedComment() {
         return (EReference)getElement().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getOclAny() {
-		if (oclAnyEClass == null)
-		{
-			oclAnyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(62);
-		}
-		return oclAnyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getOclAny__OclType() {
-        return getOclAny().getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getOclAny__OclIsInvalid() {
-        return getOclAny().getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getOclAny__OclIsUndefined() {
-        return getOclAny().getEOperations().get(2);
 	}
 
 	/**
@@ -1149,7 +1109,7 @@ public class PivotPackageImpl
 	public EClass getLiteralExp() {
 		if (literalExpEClass == null)
 		{
-			literalExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(50);
+			literalExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(51);
 		}
 		return literalExpEClass;
 	}
@@ -1806,7 +1766,7 @@ public class PivotPackageImpl
 	public EClass getNumericLiteralExp() {
 		if (numericLiteralExpEClass == null)
 		{
-			numericLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(61);
+			numericLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(62);
 		}
 		return numericLiteralExpEClass;
 	}
@@ -1981,10 +1941,24 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLibrary()
+	{
+		if (libraryEClass == null)
+		{
+			libraryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(50);
+		}
+		return libraryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLoopExp() {
 		if (loopExpEClass == null)
 		{
-			loopExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(51);
+			loopExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(52);
 		}
 		return loopExpEClass;
 	}
@@ -2025,7 +1999,7 @@ public class PivotPackageImpl
 	public EClass getMessageExp() {
 		if (messageExpEClass == null)
 		{
-			messageExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(52);
+			messageExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(53);
 		}
 		return messageExpEClass;
 	}
@@ -2109,7 +2083,7 @@ public class PivotPackageImpl
 	public EClass getMessageType() {
 		if (messageTypeEClass == null)
 		{
-			messageTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(53);
+			messageTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(54);
 		}
 		return messageTypeEClass;
 	}
@@ -2140,7 +2114,7 @@ public class PivotPackageImpl
 	public EClass getNullLiteralExp() {
 		if (nullLiteralExpEClass == null)
 		{
-			nullLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(60);
+			nullLiteralExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(61);
 		}
 		return nullLiteralExpEClass;
 	}
@@ -2686,7 +2660,7 @@ public class PivotPackageImpl
 	public EClass getMonikeredElement() {
 		if (monikeredElementEClass == null)
 		{
-			monikeredElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(54);
+			monikeredElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(55);
 		}
 		return monikeredElementEClass;
 	}
@@ -3056,7 +3030,7 @@ public class PivotPackageImpl
 	public EClass getNamespace() {
 		if (namespaceEClass == null)
 		{
-			namespaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(58);
+			namespaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(59);
 		}
 		return namespaceEClass;
 	}
@@ -3247,7 +3221,7 @@ public class PivotPackageImpl
 	public EClass getMultiplicityElement() {
 		if (multiplicityElementEClass == null)
 		{
-			multiplicityElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(55);
+			multiplicityElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(56);
 		}
 		return multiplicityElementEClass;
 	}
@@ -3709,7 +3683,7 @@ public class PivotPackageImpl
 	public EClass getNameable() {
 		if (nameableEClass == null)
 		{
-			nameableEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(56);
+			nameableEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(57);
 		}
 		return nameableEClass;
 	}
@@ -3779,7 +3753,7 @@ public class PivotPackageImpl
 	public EClass getNavigationCallExp() {
 		if (navigationCallExpEClass == null)
 		{
-			navigationCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(59);
+			navigationCallExpEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(60);
 		}
 		return navigationCallExpEClass;
 	}

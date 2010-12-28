@@ -117,7 +117,7 @@
       <ownedMember xmi:type="cmof:Class" xmi:id="_9HMksMilEd-sJIf4tYBt-g" name="TypedMultiplicityElement" isAbstract="true" superClass="_4oqj4MilEd-sJIf4tYBt-g _1tWpUMilEd-sJIf4tYBt-g"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_tG-HYMeqEd-sJIf4tYBt-g" name="MDT_OCL_Visiting">
-      <ownedMember xmi:type="cmof:Class" xmi:id="_xBkUsMeqEd-sJIf4tYBt-g" name="OclAny" clientDependency="#_lMyWQM-FEd-OX-Zde0V6vA" isAbstract="true">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_xBkUsMeqEd-sJIf4tYBt-g" name="Element" clientDependency="#_lMyWQM-FEd-OX-Zde0V6vA" isAbstract="true">
         <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
           <interfaceRealization xmi:type="cmof:InterfaceRealization" xmi:id="_lMyWQM-FEd-OX-Zde0V6vA" supplier="_T5siAM9-Ed-OX-Zde0V6vA" client="_xBkUsMeqEd-sJIf4tYBt-g" contract="_T5siAM9-Ed-OX-Zde0V6vA" implementingClassifier="_xBkUsMeqEd-sJIf4tYBt-g"/>
         </xmi:Extension>
@@ -227,9 +227,15 @@
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EDataType xmi:id="_ycK_AA4KEeC_ef2AeAygNw"/>
   </xmi:Extension>
-  <cmof:Tag xmi:id="_26" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
-  <cmof:Tag xmi:id="_27" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>
-  <cmof:Tag xmi:id="_28" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_XXNRYMlBEd-bx742yyafXQ"/>
-  <cmof:Tag xmi:id="_29" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
-  <cmof:Tag xmi:id="_30" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_SUQk8Mo-Ed-ZL8lMORCEkg"/>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EDataType xmi:id="_4szvABEdEeCsy5gumoi3HA" instanceClassName="org.eclipse.ocl.examples.pivot.values.Value"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EReference xmi:id="_PafA0BEeEeCsy5gumoi3HA" isTransient="true"/>
+  </xmi:Extension>
+  <cmof:Tag xmi:id="_28" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
+  <cmof:Tag xmi:id="_29" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>
+  <cmof:Tag xmi:id="_30" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_XXNRYMlBEd-bx742yyafXQ"/>
+  <cmof:Tag xmi:id="_31" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
+  <cmof:Tag xmi:id="_32" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_SUQk8Mo-Ed-ZL8lMORCEkg"/>
 </xmi:XMI>

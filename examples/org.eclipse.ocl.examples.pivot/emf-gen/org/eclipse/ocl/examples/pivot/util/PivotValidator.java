@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.7 2010/12/19 15:52:39 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.8 2010/12/28 12:17:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -65,6 +65,7 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
@@ -76,7 +77,6 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclAny;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -381,6 +381,8 @@ public class PivotValidator
 				return validateIteratorExp((IteratorExp)value, diagnostics, context);
 			case PivotPackage.LET_EXP:
 				return validateLetExp((LetExp)value, diagnostics, context);
+			case PivotPackage.LIBRARY:
+				return validateLibrary((Library)value, diagnostics, context);
 			case PivotPackage.LITERAL_EXP:
 				return validateLiteralExp((LiteralExp)value, diagnostics, context);
 			case PivotPackage.LOOP_EXP:
@@ -405,8 +407,6 @@ public class PivotValidator
 				return validateNullLiteralExp((NullLiteralExp)value, diagnostics, context);
 			case PivotPackage.NUMERIC_LITERAL_EXP:
 				return validateNumericLiteralExp((NumericLiteralExp)value, diagnostics, context);
-			case PivotPackage.OCL_ANY:
-				return validateOclAny((OclAny)value, diagnostics, context);
 			case PivotPackage.OCL_EXPRESSION:
 				return validateOclExpression((OclExpression)value, diagnostics, context);
 			case PivotPackage.OPAQUE_EXPRESSION:
@@ -586,16 +586,6 @@ public class PivotValidator
 	public boolean validateElement(Element element,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)element, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOclAny(OclAny oclAny, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)oclAny, diagnostics, context);
 	}
 
 	/**
@@ -1615,6 +1605,16 @@ public class PivotValidator
 	public boolean validateLetExp(LetExp letExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)letExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLibrary(Library library, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)library, diagnostics, context);
 	}
 
 	/**

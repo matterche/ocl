@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.1.2.5 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.1.2.6 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
-
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
@@ -49,8 +46,8 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -114,8 +111,8 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Value>
     /**
      * Obtains my delegate's extent map.
      */
-    public Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<?>> getExtentMap() {
-        return getDelegate().getExtentMap();
+    public ModelManager getModelManager() {
+        return getDelegate().getModelManager();
     }
 
     /**

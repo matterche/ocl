@@ -10,6 +10,10 @@
     </ownedMember>
     <ownedMember xmi:type="cmof:Association" xmi:id="_xpoHUIquEd-VzsYvPRGeYg" name="A_associationClass_property" memberEnd="_o58aYIquEd-VzsYvPRGeYg _gtXagIquEd-VzsYvPRGeYg"/>
   </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="Actions-CompleteActions" name="OCL_Classes">
+    <ownedMember xmi:type="cmof:Class" xmi:id="_v7rW4JL1Ed-tR9a-2UcrVA" name="Class"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_xU8P4JL1Ed-tR9a-2UcrVA" name="DataType" superClass="_v7rW4JL1Ed-tR9a-2UcrVA"/>
+  </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_lHK24IqvEd-VzsYvPRGeYg" name="OCL_Complete">
     <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_-n1zgM-1Ed-OX-Zde0V6vA" name="Boolean"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_-Nn98IqvEd-VzsYvPRGeYg" name="Class"/>
@@ -236,7 +240,9 @@
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_QH8c0AbjEeC3-uphdlDm-Q" name="ownedIterator" type="_2vcHMI9nEd-UToJjGuajxg" upper="*" lower="0" isComposite="true"/>
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_-o2IsAbiEeC3-uphdlDm-Q" name="ownedAccumulator" type="_2vcHMI9nEd-UToJjGuajxg" upper="*" lower="0" isComposite="true"/>
     </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_Moz7QBGeEeCsy5gumoi3HA" name="Library" superClass="_PSf6UBGeEeCsy5gumoi3HA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_l0ihkAbiEeC3-uphdlDm-Q" name="Operation"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_PSf6UBGeEeCsy5gumoi3HA" name="Package"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_tASF0IgKEd-aGOJuUCcZBA" name="OCL_PrimitiveTypes">
@@ -245,26 +251,6 @@
     <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_-CEyEIqrEd-VzsYvPRGeYg" name="Real"/>
     <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_DhJhYK5wEd-xTJkHwX_SlQ" name="String"/>
     <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_E8feAK5wEd-xTJkHwX_SlQ" name="UnlimitedNatural"/>
-  </ownedMember>
-  <ownedMember xmi:type="cmof:Package" xmi:id="Actions" name="OCL_StandardLibrary">
-    <ownedMember xmi:type="cmof:Package" xmi:id="Actions-CompleteActions" name="OclAny">
-      <ownedMember xmi:type="cmof:Class" xmi:id="Actions-CompleteActions-ReadExtentAction" name="OclAny" isAbstract="true">
-        <ownedOperation xmi:type="cmof:Operation" xmi:id="_eNnskId3Ed-N4tjuug6Vsw" name="oclType" class="Actions-CompleteActions-ReadExtentAction" isQuery="true">
-          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_lLCxsId3Ed-N4tjuug6Vsw" direction="return">
-            <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:type="cmof:Operation" xmi:id="_s7pnQId3Ed-N4tjuug6Vsw" name="oclIsInvalid" class="Actions-CompleteActions-ReadExtentAction" isQuery="true">
-          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_s7pnQYd3Ed-N4tjuug6Vsw" type="_Hcolt4gHEd-aGOJuUCcZBA" direction="return"/>
-        </ownedOperation>
-        <ownedOperation xmi:type="cmof:Operation" xmi:id="_ENnR4Id4Ed-N4tjuug6Vsw" name="oclIsUndefined" class="Actions-CompleteActions-ReadExtentAction" isQuery="true">
-          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_ENnR4Yd4Ed-N4tjuug6Vsw" type="_Hcolt4gHEd-aGOJuUCcZBA" direction="return"/>
-        </ownedOperation>
-      </ownedMember>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_uRGUEIdzEd-N4tjuug6Vsw" name="Element" isAbstract="true" superClass="Actions-CompleteActions-ReadExtentAction"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_v7rW4JL1Ed-tR9a-2UcrVA" name="Class"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_xU8P4JL1Ed-tR9a-2UcrVA" name="DataType" superClass="_v7rW4JL1Ed-tR9a-2UcrVA"/>
-    </ownedMember>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_HcoloIgHEd-aGOJuUCcZBA" name="OCL_Types">
     <packageImport xmi:type="cmof:PackageImport" xmi:id="_GgusIIgJEd-aGOJuUCcZBA" importingNamespace="_HcoloIgHEd-aGOJuUCcZBA">

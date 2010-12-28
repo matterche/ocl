@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.1.2.5 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.1.2.6 2010/12/28 12:17:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
-
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -60,9 +57,9 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
 	/**
      * Obtains the mapping of model classes to their extents.
      * 
-	 * @return the extent map
+	 * @return the model manager
 	 */
-	public Map<? extends org.eclipse.ocl.examples.pivot.Class, ? extends Set<? extends Object>> getExtentMap();
+	public ModelManager getModelManager();
 
 	public StandardLibrary getStandardLibrary();
 

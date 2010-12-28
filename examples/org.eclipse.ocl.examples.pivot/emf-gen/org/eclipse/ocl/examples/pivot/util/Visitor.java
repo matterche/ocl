@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: Visitor.java,v 1.1.2.7 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: Visitor.java,v 1.1.2.8 2010/12/28 12:17:28 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -85,6 +85,7 @@ public interface Visitor<R, C>
 	R visitIteration(org.eclipse.ocl.examples.pivot.Iteration object);
 	R visitIteratorExp(org.eclipse.ocl.examples.pivot.IteratorExp object);
 	R visitLetExp(org.eclipse.ocl.examples.pivot.LetExp object);
+	R visitLibrary(org.eclipse.ocl.examples.pivot.Library object);
 	R visitLiteralExp(org.eclipse.ocl.examples.pivot.LiteralExp object);
 	R visitLoopExp(org.eclipse.ocl.examples.pivot.LoopExp object);
 	R visitMessageExp(org.eclipse.ocl.examples.pivot.MessageExp object);
@@ -96,7 +97,6 @@ public interface Visitor<R, C>
 	R visitNavigationCallExp(org.eclipse.ocl.examples.pivot.NavigationCallExp object);
 	R visitNullLiteralExp(org.eclipse.ocl.examples.pivot.NullLiteralExp object);
 	R visitNumericLiteralExp(org.eclipse.ocl.examples.pivot.NumericLiteralExp object);
-	R visitOclAny(org.eclipse.ocl.examples.pivot.OclAny object);
 	R visitOclExpression(org.eclipse.ocl.examples.pivot.OclExpression object);
 	R visitOpaqueExpression(org.eclipse.ocl.examples.pivot.OpaqueExpression object);
 	R visitOperation(org.eclipse.ocl.examples.pivot.Operation object);
