@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.2 2010/12/19 15:54:34 ewillink Exp $
+ * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.3 2010/12/31 19:11:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NameExpCSScopeAdapter
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigatingExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigationOperatorCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TupleLiteralExpCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TypeNameExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.VariableCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 
@@ -126,7 +127,7 @@ public class EssentialOCLScopeVisitor
 
 	@Override
 	public ScopeCSAdapter visitTypeNameExpCS(TypeNameExpCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new TypeNameExpCSScopeAdapter(context, eObject);
 	}
 
 	@Override
