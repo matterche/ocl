@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.10 2010/12/28 12:17:29 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.11 2010/12/31 19:12:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -1453,13 +1453,22 @@ public interface PivotPackage
 	int TYPE__PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__INSTANCE_CLASS_NAME = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -1606,6 +1615,15 @@ public interface PivotPackage
 	int CLASS__PACKAGE = TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1642,13 +1660,13 @@ public interface PivotPackage
 	int CLASS__SUPER_CLASS = TYPE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__INSTANCE_CLASS_NAME = TYPE_FEATURE_COUNT + 4;
+	int CLASS__IS_INTERFACE = TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -1813,6 +1831,15 @@ public interface PivotPackage
 	int ANY_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1849,13 +1876,13 @@ public interface PivotPackage
 	int ANY_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+	int ANY_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -2020,6 +2047,15 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__PACKAGE = CLASS__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2056,13 +2092,13 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+	int ASSOCIATION_CLASS__IS_INTERFACE = CLASS__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -2920,6 +2956,15 @@ public interface PivotPackage
 	int DATA_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2956,13 +3001,13 @@ public interface PivotPackage
 	int DATA_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+	int DATA_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -2974,13 +3019,22 @@ public interface PivotPackage
 	int DATA_TYPE__SUB_CLASS = CLASS__SUB_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__IS_SERIALIZABLE = CLASS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+	int DATA_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -3127,6 +3181,15 @@ public interface PivotPackage
 	int COLLECTION_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3163,13 +3226,13 @@ public interface PivotPackage
 	int COLLECTION_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+	int COLLECTION_TYPE__IS_INTERFACE = DATA_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -3179,6 +3242,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__SUB_CLASS = DATA_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__IS_SERIALIZABLE = DATA_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -3343,6 +3415,15 @@ public interface PivotPackage
 	int BAG_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3379,13 +3460,13 @@ public interface PivotPackage
 	int BAG_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+	int BAG_TYPE__IS_INTERFACE = COLLECTION_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -3395,6 +3476,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__SUB_CLASS = COLLECTION_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__IS_SERIALIZABLE = COLLECTION_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -4378,6 +4468,15 @@ public interface PivotPackage
 	int COMPLETE_CLASS__PACKAGE = CLASS__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_CLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4414,13 +4513,13 @@ public interface PivotPackage
 	int COMPLETE_CLASS__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_CLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+	int COMPLETE_CLASS__IS_INTERFACE = CLASS__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -6259,13 +6358,67 @@ public interface PivotPackage
 	int PROPERTY__ASSOCIATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_ID = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__KEYS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_RESOLVE_PROXIES = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_TRANSIENT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_UNSETTABLE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_VOLATILE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 15;
+
+	/**
 	 * The feature id for the '<em><b>Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 10;
+	int PROPERTY__CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of structural features of the '<em>Property</em>' class.
@@ -6274,7 +6427,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 11;
+	int PROPERTY_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -6563,6 +6716,60 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COMPLETE_PROPERTY__ASSOCIATION = PROPERTY__ASSOCIATION;
+
+	/**
+	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__IS_ID = PROPERTY__IS_ID;
+
+	/**
+	 * The feature id for the '<em><b>Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__KEYS = PROPERTY__KEYS;
+
+	/**
+	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__IS_RESOLVE_PROXIES = PROPERTY__IS_RESOLVE_PROXIES;
+
+	/**
+	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__IS_TRANSIENT = PROPERTY__IS_TRANSIENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__IS_UNSETTABLE = PROPERTY__IS_UNSETTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__IS_VOLATILE = PROPERTY__IS_VOLATILE;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' container reference.
@@ -7123,6 +7330,15 @@ public interface PivotPackage
 	int ENUMERATION__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7159,13 +7375,13 @@ public interface PivotPackage
 	int ENUMERATION__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+	int ENUMERATION__IS_INTERFACE = DATA_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -7175,6 +7391,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION__SUB_CLASS = DATA_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__IS_SERIALIZABLE = DATA_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Literal</b></em>' containment reference list.
@@ -7303,13 +7528,22 @@ public interface PivotPackage
 	int ENUMERATION_LITERAL__ENUMERATION = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Enumeration Literal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ENUMERATION_LITERAL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -8581,6 +8815,15 @@ public interface PivotPackage
 	int INVALID_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8617,13 +8860,13 @@ public interface PivotPackage
 	int INVALID_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+	int INVALID_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -9940,6 +10183,15 @@ public interface PivotPackage
 	int MESSAGE_TYPE__PACKAGE = TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Referred Signal</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10660,6 +10912,15 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10696,13 +10957,13 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+	int ORDERED_SET_TYPE__IS_INTERFACE = COLLECTION_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -10712,6 +10973,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__SUB_CLASS = COLLECTION_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__IS_SERIALIZABLE = COLLECTION_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -11335,6 +11605,15 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11371,13 +11650,13 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+	int PRIMITIVE_TYPE__IS_INTERFACE = DATA_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -11387,6 +11666,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__SUB_CLASS = DATA_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__IS_SERIALIZABLE = DATA_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -11875,6 +12163,15 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11911,13 +12208,13 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+	int SEQUENCE_TYPE__IS_INTERFACE = COLLECTION_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -11927,6 +12224,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__SUB_CLASS = COLLECTION_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__IS_SERIALIZABLE = COLLECTION_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -12091,6 +12397,15 @@ public interface PivotPackage
 	int SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12127,13 +12442,13 @@ public interface PivotPackage
 	int SET_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+	int SET_TYPE__IS_INTERFACE = COLLECTION_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -12143,6 +12458,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__SUB_CLASS = COLLECTION_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__IS_SERIALIZABLE = COLLECTION_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -12811,6 +13135,15 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_TYPE__PACKAGE = TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Specification</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13333,6 +13666,15 @@ public interface PivotPackage
 	int TUPLE_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13369,13 +13711,13 @@ public interface PivotPackage
 	int TUPLE_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+	int TUPLE_TYPE__IS_INTERFACE = DATA_TYPE__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -13385,6 +13727,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__SUB_CLASS = DATA_TYPE__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__IS_SERIALIZABLE = DATA_TYPE__IS_SERIALIZABLE;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Type</em>' class.
@@ -14270,6 +14621,15 @@ public interface PivotPackage
 	int VOID_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14306,13 +14666,13 @@ public interface PivotPackage
 	int VOID_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+	int VOID_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
@@ -14643,6 +15003,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getDataType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.DataType#isSerializable <em>Is Serializable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Serializable</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.DataType#isSerializable()
+	 * @see #getDataType()
+	 * @generated
+	 */
+	EAttribute getDataType_IsSerializable();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.BooleanLiteralExp <em>Boolean Literal Exp</em>}'.
@@ -15116,6 +15487,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getEnumerationLiteral_Enumeration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.EnumerationLiteral#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.EnumerationLiteral#getValue()
+	 * @see #getEnumerationLiteral()
+	 * @generated
+	 */
+	EAttribute getEnumerationLiteral_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Enumeration <em>Enumeration</em>}'.
@@ -16109,6 +16491,17 @@ public interface PivotPackage
 	EReference getClass_SuperClass();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Interface</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Class#isInterface()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EAttribute getClass_IsInterface();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Class#getSubClasses <em>Sub Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16118,17 +16511,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getClass_SubClass();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Instance Class Name</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Class#getInstanceClassName()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EAttribute getClass_InstanceClassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Type <em>Type</em>}'.
@@ -16150,6 +16532,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getType_Package();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance Class Name</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Type#getInstanceClassName()
+	 * @see #getType()
+	 * @generated
+	 */
+	EAttribute getType_InstanceClassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateableElement <em>Templateable Element</em>}'.
@@ -16766,6 +17159,72 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getProperty_Association();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isID <em>Is ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is ID</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#isID()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_IsID();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Property#getKeys <em>Keys</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Keys</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#getKeys()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EReference getProperty_Keys();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Resolve Proxies</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#isResolveProxies()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_IsResolveProxies();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isTransient <em>Is Transient</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Transient</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#isTransient()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_IsTransient();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isUnsettable <em>Is Unsettable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Unsettable</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#isUnsettable()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_IsUnsettable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isVolatile <em>Is Volatile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Volatile</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#isVolatile()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_IsVolatile();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}'.
@@ -17720,6 +18179,14 @@ public interface PivotPackage
 		EClass DATA_TYPE = eINSTANCE.getDataType();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Serializable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_TYPE__IS_SERIALIZABLE = eINSTANCE.getDataType_IsSerializable();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18108,6 +18575,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference ENUMERATION_LITERAL__ENUMERATION = eINSTANCE.getEnumerationLiteral_Enumeration();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENUMERATION_LITERAL__VALUE = eINSTANCE.getEnumerationLiteral_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumerationImpl <em>Enumeration</em>}' class.
@@ -18950,20 +19425,20 @@ public interface PivotPackage
 		EReference CLASS__SUPER_CLASS = eINSTANCE.getClass_SuperClass();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Interface</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CLASS__IS_INTERFACE = eINSTANCE.getClass_IsInterface();
+
+		/**
 		 * The meta object literal for the '<em><b>Sub Class</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference CLASS__SUB_CLASS = eINSTANCE.getClass_SubClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance Class Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CLASS__INSTANCE_CLASS_NAME = eINSTANCE.getClass_InstanceClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl <em>Type</em>}' class.
@@ -18982,6 +19457,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TYPE__PACKAGE = eINSTANCE.getType_Package();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPE__INSTANCE_CLASS_NAME = eINSTANCE.getType_InstanceClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl <em>Templateable Element</em>}' class.
@@ -19470,6 +19953,54 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference PROPERTY__ASSOCIATION = eINSTANCE.getProperty_Association();
+
+		/**
+		 * The meta object literal for the '<em><b>Is ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__IS_ID = eINSTANCE.getProperty_IsID();
+
+		/**
+		 * The meta object literal for the '<em><b>Keys</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY__KEYS = eINSTANCE.getProperty_Keys();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Resolve Proxies</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__IS_RESOLVE_PROXIES = eINSTANCE.getProperty_IsResolveProxies();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Transient</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__IS_TRANSIENT = eINSTANCE.getProperty_IsTransient();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Unsettable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__IS_UNSETTABLE = eINSTANCE.getProperty_IsUnsettable();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Volatile</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__IS_VOLATILE = eINSTANCE.getProperty_IsVolatile();
 
 		/**
 		 * The meta object literal for the '<em><b>Class</b></em>' container reference feature.

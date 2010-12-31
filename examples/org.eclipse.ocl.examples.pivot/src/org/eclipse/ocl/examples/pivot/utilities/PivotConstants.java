@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.1.2.4 2010/12/28 12:17:30 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public interface PivotConstants
 {
-	static final int MONIKER_OVERFLOW_LIMIT = 256;
+	static final int MONIKER_OVERFLOW_LIMIT = 1024;
 	static final String ANNOTATION_QUOTE = "'"; //$NON-NLS-1$
 	static final String BINDINGS_PREFIX = "/"; //$NON-NLS-1$ // FIXME Rename
 	static final String ITERATOR_SEPARATOR = ";"; //$NON-NLS-1$
@@ -55,26 +55,12 @@ public interface PivotConstants
 	static final String MONIKER_NULL_LITERAL_EXP = "null";
 	static final String MONIKER_STRING_LITERAL_EXP = "string";
 	static final String MONIKER_TUPLE_LITERAL_EXP = "tuple";
-//	static final String MONIKER_TYPE_LITERAL_EXP = "type";
 	static final String MONIKER_UNLIMITED_NATURAL_LITERAL_EXP = "*";
 
 	static final String MONIKER_EXP_CHILD_PREFIX = "x";
 	
 	static final String ORPHANAGE_NAME = "orphanage";
 	static final String ORPHANAGE_URI = "orphanage";
-
-	public static final String PIVOT_URI = "http://www.org.eclipse/ocl/pivot"; //$NON-NLS-1$
-	public static final String PIVOT_EATTRIBUTE__ID = "EATTRIBUTE__ID"; //$NON-NLS-1$
-	public static final String PIVOT_ECLASS__INTERFACE = "ECLASS__INTERFACE"; //$NON-NLS-1$
-	public static final String PIVOT_ECLASSIFIER__INSTANCE_CLASS_NAME = "ECLASSIFIER__INSTANCE_CLASS_NAME"; //$NON-NLS-1$
-	public static final String PIVOT_EDATA_TYPE__SERIALIZABLE = "EDATA_TYPE__SERIALIZABLE"; //$NON-NLS-1$
-//	public static final String PIVOT_EPACKAGE__NS_PREFIX = "EPACKAGE__NS_PREFIX"; //$NON-NLS-1$
-//	public static final String PIVOT_EPACKAGE__NS_URI = "EPACKAGE__NS_URI"; //$NON-NLS-1$
-	public static final String PIVOT_EREFERENCE__RESOLVE_PROXIES = "EREFERENCE__RESOLVE_PROXIES"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL = "ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__TRANSIENT = "ESTRUCTURAL_FEATURE__TRANSIENT"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__UNSETTABLE = "ESTRUCTURAL_FEATURE__UNSETTABLE"; //$NON-NLS-1$
-	public static final String PIVOT_ESTRUCTURAL_FEATURE__VOLATILE = "ESTRUCTURAL_FEATURE__VOLATILE"; //$NON-NLS-1$
 	
 	public static Map<EStructuralFeature,String> roleNames = new HashMap<EStructuralFeature,String>();
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.1.2.6 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.1.2.7 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
@@ -67,6 +68,12 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isID <em>Is ID</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getKeys <em>Keys</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isResolveProxies <em>Is Resolve Proxies</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isTransient <em>Is Transient</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isUnsettable <em>Is Unsettable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getClass_ <em>Class</em>}</li>
  * </ul>
  * </p>
@@ -228,12 +235,123 @@ public class PropertyImpl
 	protected AssociationClass association;
 
 	/**
+	 * The default value of the '{@link #isID() <em>Is ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ID_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isID() <em>Is ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_ID_EFLAG = 1 << 14;
+
+	/**
+	 * The cached value of the '{@link #getKeys() <em>Keys</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKeys()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Property> keys;
+
+	/**
+	 * The default value of the '{@link #isResolveProxies() <em>Is Resolve Proxies</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolveProxies()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_RESOLVE_PROXIES_EDEFAULT = true;
+
+	/**
+	 * The flag representing the value of the '{@link #isResolveProxies() <em>Is Resolve Proxies</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolveProxies()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_RESOLVE_PROXIES_EFLAG = 1 << 15;
+
+	/**
+	 * The default value of the '{@link #isTransient() <em>Is Transient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_TRANSIENT_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isTransient() <em>Is Transient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_TRANSIENT_EFLAG = 1 << 16;
+
+	/**
+	 * The default value of the '{@link #isUnsettable() <em>Is Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnsettable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_UNSETTABLE_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isUnsettable() <em>Is Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnsettable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_UNSETTABLE_EFLAG = 1 << 17;
+
+	/**
+	 * The default value of the '{@link #isVolatile() <em>Is Volatile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVolatile()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_VOLATILE_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isVolatile() <em>Is Volatile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVolatile()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_VOLATILE_EFLAG = 1 << 18;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected PropertyImpl() {
 		super();
+		eFlags |= IS_RESOLVE_PROXIES_EFLAG;
 	}
 
 	/**
@@ -651,6 +769,135 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isID()
+	{
+		return (eFlags & IS_ID_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsID(boolean newIsID)
+	{
+		boolean oldIsID = (eFlags & IS_ID_EFLAG) != 0;
+		if (newIsID) eFlags |= IS_ID_EFLAG; else eFlags &= ~IS_ID_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_ID, oldIsID, newIsID));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Property> getKeys()
+	{
+		if (keys == null)
+		{
+			keys = new EObjectResolvingEList<Property>(Property.class, this, PivotPackage.PROPERTY__KEYS);
+		}
+		return keys;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isResolveProxies()
+	{
+		return (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsResolveProxies(boolean newIsResolveProxies)
+	{
+		boolean oldIsResolveProxies = (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
+		if (newIsResolveProxies) eFlags |= IS_RESOLVE_PROXIES_EFLAG; else eFlags &= ~IS_RESOLVE_PROXIES_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_RESOLVE_PROXIES, oldIsResolveProxies, newIsResolveProxies));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTransient()
+	{
+		return (eFlags & IS_TRANSIENT_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsTransient(boolean newIsTransient)
+	{
+		boolean oldIsTransient = (eFlags & IS_TRANSIENT_EFLAG) != 0;
+		if (newIsTransient) eFlags |= IS_TRANSIENT_EFLAG; else eFlags &= ~IS_TRANSIENT_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_TRANSIENT, oldIsTransient, newIsTransient));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isUnsettable()
+	{
+		return (eFlags & IS_UNSETTABLE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsUnsettable(boolean newIsUnsettable)
+	{
+		boolean oldIsUnsettable = (eFlags & IS_UNSETTABLE_EFLAG) != 0;
+		if (newIsUnsettable) eFlags |= IS_UNSETTABLE_EFLAG; else eFlags &= ~IS_UNSETTABLE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_UNSETTABLE, oldIsUnsettable, newIsUnsettable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isVolatile()
+	{
+		return (eFlags & IS_VOLATILE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsVolatile(boolean newIsVolatile)
+	{
+		boolean oldIsVolatile = (eFlags & IS_VOLATILE_EFLAG) != 0;
+		if (newIsVolatile) eFlags |= IS_VOLATILE_EFLAG; else eFlags &= ~IS_VOLATILE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_VOLATILE, oldIsVolatile, newIsVolatile));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public org.eclipse.ocl.examples.pivot.Class getClass_() {
 		if (eContainerFeatureID() != PivotPackage.PROPERTY__CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eContainer();
@@ -851,6 +1098,18 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				if (resolve) return getAssociation();
 				return basicGetAssociation();
+			case PivotPackage.PROPERTY__IS_ID:
+				return isID();
+			case PivotPackage.PROPERTY__KEYS:
+				return getKeys();
+			case PivotPackage.PROPERTY__IS_RESOLVE_PROXIES:
+				return isResolveProxies();
+			case PivotPackage.PROPERTY__IS_TRANSIENT:
+				return isTransient();
+			case PivotPackage.PROPERTY__IS_UNSETTABLE:
+				return isUnsettable();
+			case PivotPackage.PROPERTY__IS_VOLATILE:
+				return isVolatile();
 			case PivotPackage.PROPERTY__CLASS:
 				if (resolve) return getClass_();
 				return basicGetClass_();
@@ -934,6 +1193,25 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)newValue);
 				return;
+			case PivotPackage.PROPERTY__IS_ID:
+				setIsID((Boolean)newValue);
+				return;
+			case PivotPackage.PROPERTY__KEYS:
+				getKeys().clear();
+				getKeys().addAll((Collection<? extends Property>)newValue);
+				return;
+			case PivotPackage.PROPERTY__IS_RESOLVE_PROXIES:
+				setIsResolveProxies((Boolean)newValue);
+				return;
+			case PivotPackage.PROPERTY__IS_TRANSIENT:
+				setIsTransient((Boolean)newValue);
+				return;
+			case PivotPackage.PROPERTY__IS_UNSETTABLE:
+				setIsUnsettable((Boolean)newValue);
+				return;
+			case PivotPackage.PROPERTY__IS_VOLATILE:
+				setIsVolatile((Boolean)newValue);
+				return;
 			case PivotPackage.PROPERTY__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
@@ -1013,6 +1291,24 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)null);
 				return;
+			case PivotPackage.PROPERTY__IS_ID:
+				setIsID(IS_ID_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__KEYS:
+				getKeys().clear();
+				return;
+			case PivotPackage.PROPERTY__IS_RESOLVE_PROXIES:
+				setIsResolveProxies(IS_RESOLVE_PROXIES_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__IS_TRANSIENT:
+				setIsTransient(IS_TRANSIENT_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__IS_UNSETTABLE:
+				setIsUnsettable(IS_UNSETTABLE_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__IS_VOLATILE:
+				setIsVolatile(IS_VOLATILE_EDEFAULT);
+				return;
 			case PivotPackage.PROPERTY__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
@@ -1071,6 +1367,18 @@ public class PropertyImpl
 				return opposite != null;
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				return association != null;
+			case PivotPackage.PROPERTY__IS_ID:
+				return ((eFlags & IS_ID_EFLAG) != 0) != IS_ID_EDEFAULT;
+			case PivotPackage.PROPERTY__KEYS:
+				return keys != null && !keys.isEmpty();
+			case PivotPackage.PROPERTY__IS_RESOLVE_PROXIES:
+				return ((eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0) != IS_RESOLVE_PROXIES_EDEFAULT;
+			case PivotPackage.PROPERTY__IS_TRANSIENT:
+				return ((eFlags & IS_TRANSIENT_EFLAG) != 0) != IS_TRANSIENT_EDEFAULT;
+			case PivotPackage.PROPERTY__IS_UNSETTABLE:
+				return ((eFlags & IS_UNSETTABLE_EFLAG) != 0) != IS_UNSETTABLE_EDEFAULT;
+			case PivotPackage.PROPERTY__IS_VOLATILE:
+				return ((eFlags & IS_VOLATILE_EFLAG) != 0) != IS_VOLATILE_EDEFAULT;
 			case PivotPackage.PROPERTY__CLASS:
 				return basicGetClass_() != null;
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -62,7 +63,7 @@ public class PivotSaver
 					break;
 				}
 			}
-			return visitType(object);
+			return null;
 		}
 
 		@Override
@@ -77,22 +78,33 @@ public class PivotSaver
 			return null;
 		}
 
-		@Override
-		public Object visitType(Type object) {
-			types.put(object.getMoniker(), object);
-			if (isOrphanType(object)) {
-				if (orphanage == null) {
-					orphanage = object.getPackage();
-				}
-			}
-			return null;
-		}
+//		@Override
+//		public Object visitType(Type object) {
+//			types.put(object.getMoniker(), object);
+//			if (isOrphanType(object)) {
+//				if (orphanage == null) {
+//					orphanage = object.getPackage();
+//				}
+//			}
+//			return null;
+//		}
 
 		@Override
 		public Object visitTypedElement(TypedElement object) {
 			Type referredType = object.getType();
 			if ((referredType != null) && (isOrphanType(referredType))) {
 				specializingElements.add(object);
+			}
+			return null;
+		}
+
+		@Override
+		public Object visitTypeTemplateParameter(TypeTemplateParameter object) {
+			for (Type constrainingType : object.getConstrainingTypes()) {
+				if (isOrphanType(constrainingType)) {
+					specializingElements.add(object);
+					break;
+				}
 			}
 			return null;
 		}
@@ -160,6 +172,19 @@ public class PivotSaver
 		}
 
 		@Override
+		public Object visitTypeTemplateParameter(TypeTemplateParameter object) {
+			List<Type> constrainingTypes = object.getConstrainingTypes();
+			for (int i = 0; i < constrainingTypes.size(); i++) {
+				Type referredType = constrainingTypes.get(i);
+				Type resolvedType = resolveType(referredType);
+				if (resolvedType != null) {
+					constrainingTypes.set(i, resolvedType);
+				}
+			}
+			return null;
+		}
+
+		@Override
 		public Object visitTypedElement(TypedElement object) {
 			Type referredType = object.getType();
 			Type resolvedType = resolveType(referredType);
@@ -211,6 +236,8 @@ public class PivotSaver
 	}
 
 	protected boolean isOrphanType(Type type) {		// FIXME Non-static PivotUtils
+		// FIXME surely an orphan is one for which eResource() is null,
+		//  or one that is in the orphanage.
 		if (type.getTemplateBindings().size() > 0) {
 			return true;
 		}

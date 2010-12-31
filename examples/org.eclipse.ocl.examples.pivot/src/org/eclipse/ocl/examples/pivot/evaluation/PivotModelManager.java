@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotModelManager.java,v 1.1.2.1 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: PivotModelManager.java,v 1.1.2.2 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -60,7 +60,7 @@ public class PivotModelManager extends LazyModelManager
 			}
 			ecoreConverter = new Ecore2Pivot(null, pivotManager);
 			ecoreConverter.importObjects(roots, URI.createDeviceURI("temp://eval"));
-			objectType = ecoreConverter.getPivot(eClass, Type.class);
+			objectType = ecoreConverter.getPivotType(eClass);
 //			throw new UnsupportedOperationException();
 		}
 	    return pivotManager.conformsTo(objectType, requiredType);

@@ -194,6 +194,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Type/package"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Type/instanceClassName"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="pivot.ecore#//TemplateableElement"/>
@@ -402,7 +405,7 @@
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Class/superClass"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Class/instanceClassName"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Class/isInterface"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Class/subClass"/>
@@ -427,6 +430,24 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Property/association"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Property/isID"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Property/keys"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Property/isResolveProxies"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Property/isTransient"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Property/isUnsettable"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Property/isVolatile"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Property/class"/>
@@ -596,6 +617,9 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//DataType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//DataType/isSerializable"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//BooleanLiteralExp"/>
@@ -751,6 +775,9 @@
       <ecoreClass href="pivot.ecore#//EnumerationLiteral"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//EnumerationLiteral/enumeration"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//EnumerationLiteral/value"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

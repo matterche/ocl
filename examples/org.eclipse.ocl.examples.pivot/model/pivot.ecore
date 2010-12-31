@@ -45,12 +45,12 @@
     <eLiterals name="Sequence" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" ordered="false"
-        upperBound="-1" eType="#//Element" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDetail" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Detail" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" ordered="false"
-        upperBound="-1" eType="#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" upperBound="-1"
+        eType="#//Element" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDetail" upperBound="-1"
+        eType="#//Detail" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" upperBound="-1"
+        eType="#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnyType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationClass" eSuperTypes="#//Class">
@@ -80,6 +80,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A class is a type that has objects as its instances."/>
     </eAnnotations>
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//Type/instanceClassName"/>
+      </contents>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -104,8 +110,8 @@
         <details key="documentation" value="The immediate superclasses of a class, from which the class inherits."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
-        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subClass" ordered="false"
         upperBound="-1" eType="#//Class" transient="true" resolveProxies="false"/>
   </eClassifiers>
@@ -274,6 +280,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="DataType is an abstract class that acts as a common superclass for different kinds of data types."/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSerializable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Detail" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
@@ -315,6 +323,8 @@
         <details key="documentation" value="The Enumeration that this EnumerationLiteral is a member of."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        eType="#//Integer" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOcl" eSuperTypes="#//OpaqueExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" ordered="false"
@@ -526,8 +536,8 @@
         upperBound="-1" eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
         lowerBound="1" eType="#//Boolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" ordered="false"
-        upperBound="-1" eType="#//Annotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Namespace" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="NavigationCallExp" abstract="true" eSuperTypes="#//FeatureCallExp">
@@ -788,6 +798,18 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="association" ordered="false"
         eType="#//AssociationClass" eOpposite="#//AssociationClass/unownedAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isID" ordered="false" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" ordered="false" upperBound="-1"
+        eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isResolveProxies" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTransient" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnsettable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVolatile" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
         eType="#//Class" eOpposite="#//Class/ownedAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1070,7 +1092,7 @@
         eType="#//Property" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleType" eSuperTypes="#//DataType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement #//ParameterableElement #//TemplateableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//NamedElement #//ParameterableElement #//TemplateableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xD;&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
     </eAnnotations>
@@ -1096,6 +1118,8 @@
         <details key="documentation" value="Specifies the owning package of this classifier, if any."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
+        eType="#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" ordered="false"

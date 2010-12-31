@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterTypeImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: TemplateParameterTypeImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -142,6 +142,8 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				return getSpecification();
 		}
@@ -195,6 +197,9 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				setSpecification((String)newValue);
 				return;
@@ -244,6 +249,9 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				setSpecification(SPECIFICATION_EDEFAULT);
 				return;
@@ -282,6 +290,8 @@ public class TemplateParameterTypeImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				return basicGetPackage() != null;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				return SPECIFICATION_EDEFAULT == null ? specification != null : !SPECIFICATION_EDEFAULT.equals(specification);
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.1.2.5 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.1.2.6 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -230,6 +230,18 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				if (resolve) return getAssociation();
 				return basicGetAssociation();
+			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
+				return isID();
+			case PivotPackage.COMPLETE_PROPERTY__KEYS:
+				return getKeys();
+			case PivotPackage.COMPLETE_PROPERTY__IS_RESOLVE_PROXIES:
+				return isResolveProxies();
+			case PivotPackage.COMPLETE_PROPERTY__IS_TRANSIENT:
+				return isTransient();
+			case PivotPackage.COMPLETE_PROPERTY__IS_UNSETTABLE:
+				return isUnsettable();
+			case PivotPackage.COMPLETE_PROPERTY__IS_VOLATILE:
+				return isVolatile();
 			case PivotPackage.COMPLETE_PROPERTY__CLASS:
 				if (resolve) return getClass_();
 				return basicGetClass_();
@@ -319,6 +331,25 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)newValue);
 				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
+				setIsID((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__KEYS:
+				getKeys().clear();
+				getKeys().addAll((Collection<? extends Property>)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_RESOLVE_PROXIES:
+				setIsResolveProxies((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_TRANSIENT:
+				setIsTransient((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_UNSETTABLE:
+				setIsUnsettable((Boolean)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_VOLATILE:
+				setIsVolatile((Boolean)newValue);
+				return;
 			case PivotPackage.COMPLETE_PROPERTY__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
@@ -404,6 +435,24 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)null);
 				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
+				setIsID(IS_ID_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__KEYS:
+				getKeys().clear();
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_RESOLVE_PROXIES:
+				setIsResolveProxies(IS_RESOLVE_PROXIES_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_TRANSIENT:
+				setIsTransient(IS_TRANSIENT_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_UNSETTABLE:
+				setIsUnsettable(IS_UNSETTABLE_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IS_VOLATILE:
+				setIsVolatile(IS_VOLATILE_EDEFAULT);
+				return;
 			case PivotPackage.COMPLETE_PROPERTY__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
@@ -468,6 +517,18 @@ public class CompletePropertyImpl
 				return opposite != null;
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				return association != null;
+			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
+				return ((eFlags & IS_ID_EFLAG) != 0) != IS_ID_EDEFAULT;
+			case PivotPackage.COMPLETE_PROPERTY__KEYS:
+				return keys != null && !keys.isEmpty();
+			case PivotPackage.COMPLETE_PROPERTY__IS_RESOLVE_PROXIES:
+				return ((eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0) != IS_RESOLVE_PROXIES_EDEFAULT;
+			case PivotPackage.COMPLETE_PROPERTY__IS_TRANSIENT:
+				return ((eFlags & IS_TRANSIENT_EFLAG) != 0) != IS_TRANSIENT_EDEFAULT;
+			case PivotPackage.COMPLETE_PROPERTY__IS_UNSETTABLE:
+				return ((eFlags & IS_UNSETTABLE_EFLAG) != 0) != IS_UNSETTABLE_EDEFAULT;
+			case PivotPackage.COMPLETE_PROPERTY__IS_VOLATILE:
+				return ((eFlags & IS_VOLATILE_EFLAG) != 0) != IS_VOLATILE_EDEFAULT;
 			case PivotPackage.COMPLETE_PROPERTY__CLASS:
 				return basicGetClass_() != null;
 			case PivotPackage.COMPLETE_PROPERTY__MODEL:

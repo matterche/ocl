@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: CollectionTypeImpl.java,v 1.1.2.6 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -156,6 +156,8 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.COLLECTION_TYPE__OWNED_ATTRIBUTE:
@@ -164,10 +166,12 @@ public class CollectionTypeImpl
 				return getOwnedOperations();
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				return getSuperClasses();
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
+			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
+				return isInterface();
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				return getSubClasses();
+			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
+				return isSerializable();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				if (resolve) return getElementType();
 				return basicGetElementType();
@@ -222,6 +226,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
 				return;
@@ -237,12 +244,15 @@ public class CollectionTypeImpl
 				getSuperClasses().clear();
 				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
+			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
+				setIsInterface((Boolean)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				getSubClasses().clear();
 				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
+				setIsSerializable((Boolean)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)newValue);
@@ -293,6 +303,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
@@ -305,11 +318,14 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				getSuperClasses().clear();
 				return;
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
+				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				getSubClasses().clear();
+				return;
+			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
+				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
 				return;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)null);
@@ -349,6 +365,8 @@ public class CollectionTypeImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.COLLECTION_TYPE__PACKAGE:
 				return basicGetPackage() != null;
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				return isSetInstanceClassName();
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__OWNED_ATTRIBUTE:
@@ -357,10 +375,12 @@ public class CollectionTypeImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				return superClasses != null && !superClasses.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
+				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
+			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
+				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				return elementType != null;
 		}

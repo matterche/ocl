@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EnumerationLiteralImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: EnumerationLiteralImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -42,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumerationLiteralImpl#getEnumeration <em>Enumeration</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumerationLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +52,25 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 public class EnumerationLiteralImpl
 		extends NamedElementImpl
 		implements EnumerationLiteral {
+
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigInteger VALUE_EDEFAULT = new BigInteger("0"); //$NON-NLS-1$
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,6 +142,29 @@ public class EnumerationLiteralImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUMERATION_LITERAL__ENUMERATION, newEnumeration, newEnumeration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BigInteger getValue()
+	{
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(BigInteger newValue)
+	{
+		BigInteger oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUMERATION_LITERAL__VALUE, oldValue, value));
 	}
 
 	/**
@@ -203,6 +247,8 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				if (resolve) return getEnumeration();
 				return basicGetEnumeration();
+			case PivotPackage.ENUMERATION_LITERAL__VALUE:
+				return getValue();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -241,6 +287,9 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				setEnumeration((Enumeration)newValue);
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__VALUE:
+				setValue((BigInteger)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -275,6 +324,9 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				setEnumeration((Enumeration)null);
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -302,8 +354,27 @@ public class EnumerationLiteralImpl
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return basicGetEnumeration() != null;
+			case PivotPackage.ENUMERATION_LITERAL__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: "); //$NON-NLS-1$
+		result.append(value);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override

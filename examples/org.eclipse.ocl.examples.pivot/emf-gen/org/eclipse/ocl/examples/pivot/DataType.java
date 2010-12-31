@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataType.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: DataType.java,v 1.1.2.4 2010/12/31 19:12:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -25,6 +25,12 @@ package org.eclipse.ocl.examples.pivot;
  * DataType is an abstract class that acts as a common superclass for different kinds of data types.
  * <!-- end-model-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.DataType#isSerializable <em>Is Serializable</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDataType()
  * @model
@@ -32,4 +38,31 @@ package org.eclipse.ocl.examples.pivot;
  */
 public interface DataType
 		extends org.eclipse.ocl.examples.pivot.Class {
+
+	/**
+	 * Returns the value of the '<em><b>Is Serializable</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Serializable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Serializable</em>' attribute.
+	 * @see #setIsSerializable(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDataType_IsSerializable()
+	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isSerializable();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.DataType#isSerializable <em>Is Serializable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Serializable</em>' attribute.
+	 * @see #isSerializable()
+	 * @generated
+	 */
+	void setIsSerializable(boolean value);
 } // DataType

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: MessageTypeImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -206,6 +206,8 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
 				if (resolve) return getReferredSignal();
 				return basicGetReferredSignal();
@@ -263,6 +265,9 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
 			case PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
 				setReferredSignal((Signal)newValue);
 				return;
@@ -315,6 +320,9 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
 			case PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
 				setReferredSignal((Signal)null);
 				return;
@@ -356,6 +364,8 @@ public class MessageTypeImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				return basicGetPackage() != null;
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
 				return referredSignal != null;
 			case PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION:

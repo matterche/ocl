@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: PackageImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -461,6 +461,16 @@ public class PackageImpl
 		Type newOwnedType = (Type) create(eClass);
 		getOwnedTypes().add(newOwnedType);
 		return newOwnedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type createOwnedType()
+	{
+		return createOwnedType(PivotPackage.Literals.TYPE);
 	}
 
 	/**

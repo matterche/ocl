@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationImpl.java,v 1.1.2.5 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: EnumerationImpl.java,v 1.1.2.6 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -216,6 +217,8 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.ENUMERATION__OWNED_ATTRIBUTE:
@@ -224,10 +227,12 @@ public class EnumerationImpl
 				return getOwnedOperations();
 			case PivotPackage.ENUMERATION__SUPER_CLASS:
 				return getSuperClasses();
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
+			case PivotPackage.ENUMERATION__IS_INTERFACE:
+				return isInterface();
 			case PivotPackage.ENUMERATION__SUB_CLASS:
 				return getSubClasses();
+			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
+				return isSerializable();
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return getOwnedLiterals();
 		}
@@ -281,6 +286,9 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
 				return;
@@ -296,12 +304,15 @@ public class EnumerationImpl
 				getSuperClasses().clear();
 				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
+			case PivotPackage.ENUMERATION__IS_INTERFACE:
+				setIsInterface((Boolean)newValue);
 				return;
 			case PivotPackage.ENUMERATION__SUB_CLASS:
 				getSubClasses().clear();
 				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
+			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
+				setIsSerializable((Boolean)newValue);
 				return;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiterals().clear();
@@ -353,6 +364,9 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
@@ -365,11 +379,14 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__SUPER_CLASS:
 				getSuperClasses().clear();
 				return;
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+			case PivotPackage.ENUMERATION__IS_INTERFACE:
+				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
 			case PivotPackage.ENUMERATION__SUB_CLASS:
 				getSubClasses().clear();
+				return;
+			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
+				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
 				return;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiterals().clear();
@@ -409,6 +426,8 @@ public class EnumerationImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.ENUMERATION__PACKAGE:
 				return basicGetPackage() != null;
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				return isSetInstanceClassName();
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.ENUMERATION__OWNED_ATTRIBUTE:
@@ -417,14 +436,21 @@ public class EnumerationImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.ENUMERATION__SUPER_CLASS:
 				return superClasses != null && !superClasses.isEmpty();
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.ENUMERATION__IS_INTERFACE:
+				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.ENUMERATION__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
+			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
+				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return ownedLiterals != null && !ownedLiterals.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitEnumeration(this);
 	}
 
 } //EnumerationImpl

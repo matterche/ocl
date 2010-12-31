@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Package.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: Package.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -218,5 +218,15 @@ public interface Package
 	 * @generated
 	 */
 	Type createOwnedType(EClass eClass);
+
+	/**
+	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Type} and appends it to the '<em><b>Owned Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The new {@link org.eclipse.ocl.examples.pivot.Type}.
+	 * @see #getOwnedTypes()
+	 * @generated
+	 */
+	Type createOwnedType();
 
 } // Package

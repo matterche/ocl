@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: Property.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: Property.java,v 1.1.2.4 2010/12/31 19:12:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +40,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isID <em>Is ID</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getKeys <em>Keys</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isTransient <em>Is Transient</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isUnsettable <em>Is Unsettable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}</li>
  * </ul>
  * </p>
@@ -206,6 +213,157 @@ public interface Property
 	 * @generated
 	 */
 	void setAssociation(AssociationClass value);
+
+	/**
+	 * Returns the value of the '<em><b>Is ID</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is ID</em>' attribute.
+	 * @see #setIsID(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsID()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isID();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isID <em>Is ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is ID</em>' attribute.
+	 * @see #isID()
+	 * @generated
+	 */
+	void setIsID(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Keys</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Keys</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Keys</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Keys()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<Property> getKeys();
+
+	/**
+	 * Returns the value of the '<em><b>Is Resolve Proxies</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resolve Proxies</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Resolve Proxies</em>' attribute.
+	 * @see #setIsResolveProxies(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsResolveProxies()
+	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isResolveProxies();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Resolve Proxies</em>' attribute.
+	 * @see #isResolveProxies()
+	 * @generated
+	 */
+	void setIsResolveProxies(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Transient</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transient</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Transient</em>' attribute.
+	 * @see #setIsTransient(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsTransient()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isTransient();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isTransient <em>Is Transient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Transient</em>' attribute.
+	 * @see #isTransient()
+	 * @generated
+	 */
+	void setIsTransient(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Unsettable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unsettable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Unsettable</em>' attribute.
+	 * @see #setIsUnsettable(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsUnsettable()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isUnsettable();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isUnsettable <em>Is Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Unsettable</em>' attribute.
+	 * @see #isUnsettable()
+	 * @generated
+	 */
+	void setIsUnsettable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Volatile</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Volatile</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Volatile</em>' attribute.
+	 * @see #setIsVolatile(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsVolatile()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isVolatile();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isVolatile <em>Is Volatile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Volatile</em>' attribute.
+	 * @see #isVolatile()
+	 * @generated
+	 */
+	void setIsVolatile(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Class</b></em>' container reference.

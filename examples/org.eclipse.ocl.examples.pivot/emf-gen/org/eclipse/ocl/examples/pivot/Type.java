@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Type.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: Type.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -30,11 +30,12 @@ package org.eclipse.ocl.examples.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Type
@@ -66,5 +67,31 @@ public interface Type
 	 * @generated
 	 */
 	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Class Name</em>' attribute.
+	 * @see #setInstanceClassName(String)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_InstanceClassName()
+	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
+	 * @generated
+	 */
+	String getInstanceClassName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance Class Name</em>' attribute.
+	 * @see #getInstanceClassName()
+	 * @generated
+	 */
+	void setInstanceClassName(String value);
 
 } // Type

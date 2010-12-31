@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EnumerationLiteral.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: EnumerationLiteral.java,v 1.1.2.3 2010/12/31 19:12:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
+
+import java.math.BigInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +31,7 @@ package org.eclipse.ocl.examples.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.EnumerationLiteral#getEnumeration <em>Enumeration</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.EnumerationLiteral#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,5 +68,32 @@ public interface EnumerationLiteral
 	 * @generated
 	 */
 	void setEnumeration(Enumeration value);
+
+	/**
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(BigInteger)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getEnumerationLiteral_Value()
+	 * @model default="0" dataType="org.eclipse.ocl.examples.pivot.Integer" ordered="false"
+	 * @generated
+	 */
+	BigInteger getValue();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.EnumerationLiteral#getValue <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @see #getValue()
+	 * @generated
+	 */
+	void setValue(BigInteger value);
 
 } // EnumerationLiteral

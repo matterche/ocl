@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassImpl.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: ClassImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -50,8 +50,9 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedAttributes <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSuperClasses <em>Super Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSubClasses <em>Sub Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,24 +113,24 @@ public class ClassImpl
 	protected EList<org.eclipse.ocl.examples.pivot.Class> superClasses;
 
 	/**
-	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
+	 * The default value of the '{@link #isInterface() <em>Is Interface</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInstanceClassName()
+	 * @see #isInterface()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String INSTANCE_CLASS_NAME_EDEFAULT = null;
+	protected static final boolean IS_INTERFACE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
+	 * The flag representing the value of the '{@link #isInterface() <em>Is Interface</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInstanceClassName()
+	 * @see #isInterface()
 	 * @generated
 	 * @ordered
 	 */
-	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
+	protected static final int IS_INTERFACE_EFLAG = 1 << 10;
 
 	/**
 	 * The cached value of the '{@link #getSubClasses() <em>Sub Class</em>}' reference list.
@@ -186,6 +187,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInstanceClassName() {
 		return instanceClassName;
 	}
@@ -195,11 +197,22 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstanceClassName(String newInstanceClassName) {
 		String oldInstanceClassName = instanceClassName;
 		instanceClassName = newInstanceClassName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInstanceClassName()
+	{
+		return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 	}
 
 	/**
@@ -279,6 +292,29 @@ public class ClassImpl
 			superClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASS);
 		}
 		return superClasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isInterface()
+	{
+		return (eFlags & IS_INTERFACE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsInterface(boolean newIsInterface)
+	{
+		boolean oldIsInterface = (eFlags & IS_INTERFACE_EFLAG) != 0;
+		if (newIsInterface) eFlags |= IS_INTERFACE_EFLAG; else eFlags &= ~IS_INTERFACE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__IS_INTERFACE, oldIsInterface, newIsInterface));
 	}
 
 	/**
@@ -400,6 +436,8 @@ public class ClassImpl
 			case PivotPackage.CLASS__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
@@ -408,8 +446,8 @@ public class ClassImpl
 				return getOwnedOperations();
 			case PivotPackage.CLASS__SUPER_CLASS:
 				return getSuperClasses();
-			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
+			case PivotPackage.CLASS__IS_INTERFACE:
+				return isInterface();
 			case PivotPackage.CLASS__SUB_CLASS:
 				return getSubClasses();
 		}
@@ -463,6 +501,9 @@ public class ClassImpl
 			case PivotPackage.CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
 				return;
@@ -478,8 +519,8 @@ public class ClassImpl
 				getSuperClasses().clear();
 				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
+			case PivotPackage.CLASS__IS_INTERFACE:
+				setIsInterface((Boolean)newValue);
 				return;
 			case PivotPackage.CLASS__SUB_CLASS:
 				getSubClasses().clear();
@@ -531,6 +572,9 @@ public class ClassImpl
 			case PivotPackage.CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
@@ -543,8 +587,8 @@ public class ClassImpl
 			case PivotPackage.CLASS__SUPER_CLASS:
 				getSuperClasses().clear();
 				return;
-			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+			case PivotPackage.CLASS__IS_INTERFACE:
+				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
 			case PivotPackage.CLASS__SUB_CLASS:
 				getSubClasses().clear();
@@ -584,6 +628,8 @@ public class ClassImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.CLASS__PACKAGE:
 				return basicGetPackage() != null;
+			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
+				return isSetInstanceClassName();
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
@@ -592,8 +638,8 @@ public class ClassImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.CLASS__SUPER_CLASS:
 				return superClasses != null && !superClasses.isEmpty();
-			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.CLASS__IS_INTERFACE:
+				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.CLASS__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
 		}

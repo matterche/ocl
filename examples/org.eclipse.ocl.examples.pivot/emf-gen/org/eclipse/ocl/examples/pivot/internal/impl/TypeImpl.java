@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeImpl.java,v 1.1.2.4 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: TypeImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -56,12 +56,13 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TypeOperations;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getTemplateBindings <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class TypeImpl
+public class TypeImpl
 		extends NamedElementImpl
 		implements Type {
 
@@ -94,6 +95,26 @@ public abstract class TypeImpl
 	 * @ordered
 	 */
 	protected TemplateSignature ownedTemplateSignature;
+
+	/**
+	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String INSTANCE_CLASS_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -274,6 +295,29 @@ public abstract class TypeImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE__PACKAGE, newPackage, newPackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getInstanceClassName()
+	{
+		return instanceClassName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstanceClassName(String newInstanceClassName)
+	{
+		String oldInstanceClassName = instanceClassName;
+		instanceClassName = newInstanceClassName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName));
 	}
 
 	/**
@@ -557,6 +601,8 @@ public abstract class TypeImpl
 			case PivotPackage.TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -608,6 +654,9 @@ public abstract class TypeImpl
 			case PivotPackage.TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -654,6 +703,9 @@ public abstract class TypeImpl
 			case PivotPackage.TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -689,6 +741,8 @@ public abstract class TypeImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.TYPE__PACKAGE:
 				return basicGetPackage() != null;
+			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -796,6 +850,16 @@ public abstract class TypeImpl
 				return isTemplate();
 		}
 		return eDynamicInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 } //TypeImpl

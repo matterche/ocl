@@ -13,14 +13,12 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.1.2.2 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: QueryImpl.java,v 1.1.2.3 2010/12/31 19:12:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;

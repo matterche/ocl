@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Moniker.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: Ecore2Moniker.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -145,6 +145,9 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 			appendElement((EModelElement) parent);
 			fullSignature = wasFullSignature;
 		}
+		else if (parent instanceof EGenericType) {
+			appendParent(parent, parentSeparator);
+		}
 		append(parentSeparator);
 	}
 
@@ -160,6 +163,9 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 			assert eGenericType.getETypeArguments().size() == 0;
 		}
 		else {
+			if (s.length() == 0) {
+				appendParent(eGenericType, MONIKER_SCOPE_SEPARATOR);
+			}
 			append(WILDCARD_INDICATOR);
 			assert eGenericType.getETypeArguments().size() == 0;
 		}

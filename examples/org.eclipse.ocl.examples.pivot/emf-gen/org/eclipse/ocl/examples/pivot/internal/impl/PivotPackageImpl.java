@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.10 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.11 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -1071,6 +1071,16 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDataType_IsSerializable()
+	{
+        return (EAttribute)getDataType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBooleanLiteralExp() {
 		if (booleanLiteralExpEClass == null)
 		{
@@ -1529,6 +1539,16 @@ public class PivotPackageImpl
 	 */
 	public EReference getEnumerationLiteral_Enumeration() {
         return (EReference)getEnumerationLiteral().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEnumerationLiteral_Value()
+	{
+        return (EAttribute)getEnumerationLiteral().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2568,8 +2588,9 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_SubClass() {
-        return (EReference)getClass_().getEStructuralFeatures().get(5);
+	public EAttribute getClass_IsInterface()
+	{
+        return (EAttribute)getClass_().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2577,8 +2598,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClass_InstanceClassName() {
-        return (EAttribute)getClass_().getEStructuralFeatures().get(4);
+	public EReference getClass_SubClass() {
+        return (EReference)getClass_().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -2601,6 +2622,16 @@ public class PivotPackageImpl
 	 */
 	public EReference getType_Package() {
         return (EReference)getType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getType_InstanceClassName()
+	{
+        return (EAttribute)getType().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3178,8 +3209,68 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProperty_IsID()
+	{
+        return (EAttribute)getProperty().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProperty_Keys()
+	{
+        return (EReference)getProperty().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProperty_IsResolveProxies()
+	{
+        return (EAttribute)getProperty().getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProperty_IsTransient()
+	{
+        return (EAttribute)getProperty().getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProperty_IsUnsettable()
+	{
+        return (EAttribute)getProperty().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProperty_IsVolatile()
+	{
+        return (EAttribute)getProperty().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getProperty_Class() {
-        return (EReference)getProperty().getEStructuralFeatures().get(6);
+        return (EReference)getProperty().getEStructuralFeatures().get(12);
 	}
 
 	/**

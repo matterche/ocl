@@ -14,14 +14,12 @@
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.1.2.3 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.lang.Class;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;

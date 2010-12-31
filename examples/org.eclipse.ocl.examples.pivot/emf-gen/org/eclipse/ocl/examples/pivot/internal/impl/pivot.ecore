@@ -29,12 +29,12 @@
     <eLiterals name="Sequence" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" ordered="false"
-        upperBound="-1" eType="#//Element" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDetail" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Detail" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" ordered="false"
-        upperBound="-1" eType="#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" upperBound="-1"
+        eType="#//Element" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDetail" upperBound="-1"
+        eType="#//Detail" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" upperBound="-1"
+        eType="#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnyType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationClass" eSuperTypes="#//Class">
@@ -61,6 +61,12 @@
         lowerBound="1" eType="#//Operation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//Namespace">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//Type/instanceClassName"/>
+      </contents>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1"
@@ -69,8 +75,8 @@
         eType="#//Operation" containment="true" eOpposite="#//Operation/class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" ordered="false"
         upperBound="-1" eType="#//Class"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
-        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subClass" ordered="false"
         upperBound="-1" eType="#//Class" transient="true" resolveProxies="false"/>
   </eClassifiers>
@@ -193,7 +199,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" ordered="false"
         eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSerializable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Detail" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//String"/>
@@ -213,6 +222,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteral" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="enumeration" ordered="false"
         eType="#//Enumeration" eOpposite="#//Enumeration/ownedLiteral"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        eType="#//Integer" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOcl" eSuperTypes="#//OpaqueExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" ordered="false"
@@ -360,8 +371,8 @@
         upperBound="-1" eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
         lowerBound="1" eType="#//Boolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" ordered="false"
-        upperBound="-1" eType="#//Annotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Namespace" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="NavigationCallExp" abstract="true" eSuperTypes="#//FeatureCallExp">
@@ -490,6 +501,18 @@
         eType="#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="association" ordered="false"
         eType="#//AssociationClass" eOpposite="#//AssociationClass/unownedAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isID" ordered="false" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" ordered="false" upperBound="-1"
+        eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isResolveProxies" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTransient" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnsettable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVolatile" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
         eType="#//Class" eOpposite="#//Class/ownedAttribute"/>
   </eClassifiers>
@@ -631,7 +654,7 @@
         eType="#//Property" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleType" eSuperTypes="#//DataType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement #//ParameterableElement #//TemplateableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//NamedElement #//ParameterableElement #//TemplateableElement">
     <eAnnotations source="duplicates">
       <contents xsi:type="ecore:EOperation" name="isTemplate" ordered="false" lowerBound="1"
           eType="#//Boolean">
@@ -644,6 +667,8 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="package" ordered="false"
         eType="#//Package" eOpposite="#//Package/ownedType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
+        eType="#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" ordered="false"

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Annotation.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: Annotation.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -51,7 +51,7 @@ public interface Annotation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Content</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_OwnedContent()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Element> getOwnedContents();
@@ -78,7 +78,7 @@ public interface Annotation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_Reference()
-	 * @model ordered="false"
+	 * @model
 	 * @generated
 	 */
 	EList<Element> getReferences();
@@ -94,7 +94,7 @@ public interface Annotation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Detail</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_OwnedDetail()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Detail> getOwnedDetails();

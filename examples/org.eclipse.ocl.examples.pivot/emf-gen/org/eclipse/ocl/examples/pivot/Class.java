@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Class.java,v 1.1.2.4 2010/12/19 15:52:38 ewillink Exp $
+ * $Id: Class.java,v 1.1.2.5 2010/12/31 19:12:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedAttributes <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses <em>Super Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSubClasses <em>Sub Class</em>}</li>
  * </ul>
  * </p>
@@ -72,32 +72,6 @@ public interface Class
 	 * @generated
 	 */
 	void setIsAbstract(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Instance Class Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Class Name</em>' attribute.
-	 * @see #setInstanceClassName(String)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_InstanceClassName()
-	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
-	 * @generated
-	 */
-	String getInstanceClassName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance Class Name</em>' attribute.
-	 * @see #getInstanceClassName()
-	 * @generated
-	 */
-	void setInstanceClassName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -189,6 +163,33 @@ public interface Class
 	 * @generated
 	 */
 	EList<Class> getSuperClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Is Interface</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Interface</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Interface</em>' attribute.
+	 * @see #setIsInterface(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_IsInterface()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isInterface();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Interface</em>' attribute.
+	 * @see #isInterface()
+	 * @generated
+	 */
+	void setIsInterface(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Sub Class</b></em>' reference list.

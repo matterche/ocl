@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.8 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.9 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -92,6 +92,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
@@ -217,6 +218,7 @@ public class PivotFactoryImpl
 			case PivotPackage.TUPLE_LITERAL_EXP: return (EObject)createTupleLiteralExp();
 			case PivotPackage.TUPLE_LITERAL_PART: return (EObject)createTupleLiteralPart();
 			case PivotPackage.TUPLE_TYPE: return (EObject)createTupleType();
+			case PivotPackage.TYPE: return (EObject)createType();
 			case PivotPackage.TYPE_EXP: return (EObject)createTypeExp();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER: return (EObject)createTypeTemplateParameter();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP: return (EObject)createUnlimitedNaturalLiteralExp();
@@ -973,6 +975,17 @@ public class PivotFactoryImpl
 	public TupleType createTupleType() {
 		TupleTypeImpl tupleType = new TupleTypeImpl();
 		return tupleType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type createType()
+	{
+		TypeImpl type = new TypeImpl();
+		return type;
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElement.java,v 1.1.2.3 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: NamedElement.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -56,7 +56,7 @@ public interface NamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Annotation</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_OwnedAnnotation()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Annotation> getOwnedAnnotations();

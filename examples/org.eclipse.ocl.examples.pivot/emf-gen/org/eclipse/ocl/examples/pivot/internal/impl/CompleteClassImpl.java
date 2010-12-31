@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteClassImpl.java,v 1.1.2.6 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: CompleteClassImpl.java,v 1.1.2.7 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -389,6 +389,8 @@ public class CompleteClassImpl
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.COMPLETE_CLASS__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.COMPLETE_CLASS__OWNED_ATTRIBUTE:
@@ -397,8 +399,8 @@ public class CompleteClassImpl
 				return getOwnedOperations();
 			case PivotPackage.COMPLETE_CLASS__SUPER_CLASS:
 				return getSuperClasses();
-			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
+			case PivotPackage.COMPLETE_CLASS__IS_INTERFACE:
+				return isInterface();
 			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
 				return getSubClasses();
 			case PivotPackage.COMPLETE_CLASS__MODEL:
@@ -464,6 +466,9 @@ public class CompleteClassImpl
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
 			case PivotPackage.COMPLETE_CLASS__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
 				return;
@@ -479,8 +484,8 @@ public class CompleteClassImpl
 				getSuperClasses().clear();
 				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
+			case PivotPackage.COMPLETE_CLASS__IS_INTERFACE:
+				setIsInterface((Boolean)newValue);
 				return;
 			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
 				getSubClasses().clear();
@@ -538,6 +543,9 @@ public class CompleteClassImpl
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
 			case PivotPackage.COMPLETE_CLASS__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
@@ -550,8 +558,8 @@ public class CompleteClassImpl
 			case PivotPackage.COMPLETE_CLASS__SUPER_CLASS:
 				getSuperClasses().clear();
 				return;
-			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+			case PivotPackage.COMPLETE_CLASS__IS_INTERFACE:
+				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
 			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
 				getSubClasses().clear();
@@ -597,6 +605,8 @@ public class CompleteClassImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.COMPLETE_CLASS__PACKAGE:
 				return basicGetPackage() != null;
+			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
+				return isSetInstanceClassName();
 			case PivotPackage.COMPLETE_CLASS__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.COMPLETE_CLASS__OWNED_ATTRIBUTE:
@@ -605,8 +615,8 @@ public class CompleteClassImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.COMPLETE_CLASS__SUPER_CLASS:
 				return superClasses != null && !superClasses.isEmpty();
-			case PivotPackage.COMPLETE_CLASS__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.COMPLETE_CLASS__IS_INTERFACE:
+				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.COMPLETE_CLASS__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.COMPLETE_CLASS__MODEL:

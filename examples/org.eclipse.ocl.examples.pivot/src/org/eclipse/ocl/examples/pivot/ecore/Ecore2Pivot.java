@@ -12,14 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.1.2.4 2010/12/28 12:17:31 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,62 +29,35 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.xmi.XMIException;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
-import org.eclipse.ocl.examples.pivot.util.PivotSwitch;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotConstants
@@ -105,480 +76,6 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		adapter = new Ecore2Pivot(resource, pivotManager);
 		eAdapters.add(adapter);
 		return adapter;
-	}
-
-	private final class EcorePass1 extends EcoreSwitch<Object>
-	{
-
-		@Override
-		public Annotation caseEAnnotation(EAnnotation eObject) {
-			Annotation pivotElement = PivotFactory.eINSTANCE.createAnnotation();
-			pivotElement.setName(eObject.getSource());
-			doSwitchAll(pivotElement.getOwnedContents(), eObject.getContents());
-			EMap<String, String> details = eObject.getDetails();
-			for (String key : details.keySet()) {
-				Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
-				pivotDetail.setName(key);
-				pivotDetail.getValues().add(details.get(key));
-				pivotElement.getOwnedDetails().add(pivotDetail);	// FIXME refreshSet
-			}
-			return pivotElement;
-		}
-
-		@Override
-		public Property caseEAttribute(EAttribute eObject) {
-			Property pivotElement = refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, eObject);
-			copyStructuralFeature(pivotElement, eObject, null);
-			if (eObject.eIsSet(EcorePackage.Literals.EATTRIBUTE__ID)) {
-				refreshAnnotation(pivotElement, PIVOT_EATTRIBUTE__ID, Boolean.toString(eObject.isID()));			
-			}
-			return pivotElement;
-		}
-
-		@Override
-		public org.eclipse.ocl.examples.pivot.Class caseEClass(EClass eObject) {
-			org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject);
-			copyClassifier(pivotElement, eObject);
-			if (eObject.eIsSet(EcorePackage.Literals.ECLASS__ABSTRACT)) {
-				pivotElement.setIsAbstract(eObject.isAbstract());			
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.ECLASS__INTERFACE)) {
-				refreshAnnotation(pivotElement, PIVOT_ECLASS__INTERFACE, Boolean.toString(eObject.isInterface()));			
-			}
-			doSwitchAll(eObject.getEGenericSuperTypes());
-			doSwitchAll(pivotElement.getOwnedOperations(), eObject.getEOperations());
-			doSwitchAll(pivotElement.getOwnedAttributes(), eObject.getEStructuralFeatures());
-			referencers.put(pivotElement, eObject);				// For superclasses
-			return pivotElement;
-		}
-
-		@Override
-		public DataType caseEDataType(EDataType eObject) {
-			DataType pivotElement = refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, eObject);
-			copyDataTypeOrEnum(pivotElement, eObject);
-			return pivotElement;
-		}
-
-		@Override
-		public Enumeration caseEEnum(EEnum eObject) {
-			Enumeration pivotElement = refreshNamedElement(Enumeration.class, PivotPackage.Literals.ENUMERATION, eObject);
-			copyDataTypeOrEnum(pivotElement, eObject);
-			doSwitchAll(pivotElement.getOwnedLiterals(), eObject.getELiterals());
-			return pivotElement;
-		}
-
-		@Override
-		public EnumerationLiteral caseEEnumLiteral(EEnumLiteral eObject) {
-			EnumerationLiteral pivotElement = refreshNamedElement(EnumerationLiteral.class, PivotPackage.Literals.ENUMERATION_LITERAL, eObject);
-			copyNamedElement(pivotElement, eObject);
-			copyAnnotatedElement(pivotElement, eObject, null);
-//			pivotElement.setValue(eObject.getValue());
-			String literal = basicGet(eObject, EcorePackage.Literals.EENUM_LITERAL__LITERAL, String.class);
-//			Enumerator instance = eEnumLiteral.getInstance();
-			if (literal != null) {
-/*				AnnotationCS csAnnotation = PivotFactory.eINSTANCE.createAnnotationCS();
-				csAnnotation.setIdSource(EcorePackage.eNS_URI);
-				DetailCS csDetail = PivotFactory.eINSTANCE.createDetailCS();
-				csDetail.setIdName("literal");
-				copyDetailLines(csDetail.getValue(), literal);
-				csAnnotation.getDetails().add(csDetail);
-				pivotElement.getAnnotations().add(csAnnotation); */
-			}
-			return pivotElement;
-		}
-
-		@Override
-		public Object caseEGenericType(EGenericType eObject) {
-			doSwitchAll(eObject.getETypeArguments());
-			genericTypes.add(eObject);		// Wait till all unspecialized types converted
-			return true;
-		}
-
-		@Override
-		public Operation caseEOperation(EOperation eObject) {
-			Operation pivotElement = refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eObject);
-			List<EAnnotation> excludedAnnotations =  null;
-			EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-			if (oclAnnotation != null) {
-				excludedAnnotations = new ArrayList<EAnnotation>();
-				excludedAnnotations.add(oclAnnotation);
-				List<Constraint> constraints = pivotElement.getOwnedRules();
-				for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
-					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-					String key = entry.getKey();
-					if (key.equals("body")) {
-						constraint.setStereotype("body");
-					}
-					else if (key.startsWith("body_")) {
-						constraint.setStereotype("body");
-						constraint.setName(key.substring(5));
-					}
-					else if (key.equals("pre")) {
-						constraint.setStereotype("precondition");
-					}
-					else if (key.startsWith("pre_")) {
-						constraint.setStereotype("precondition");
-						constraint.setName(key.substring(4));
-					}
-					else if (key.equals("post")) {
-						constraint.setStereotype("postcondition");
-					}
-					else if (key.startsWith("post_")) {
-						constraint.setStereotype("postcondition");
-						constraint.setName(key.substring(5));
-					}
-					else
-					{
-						error("Unsupported operation constraint " + key);
-						constraint = null;
-					}
-					if (constraint != null) {
-						String value = entry.getValue();
-						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-						specification.getBodies().add(value);
-						constraint.setSpecification(specification);
-//						constraint.setExprString(entry.getValue());
-						constraints.add(constraint);
-					}
-				}				
-			}
-			copyTypedMultiplicityElement(pivotElement, eObject, excludedAnnotations);
-			doSwitchAll(pivotElement.getOwnedParameters(), eObject.getEParameters());
-			copyTemplateSignature(pivotElement, eObject.getETypeParameters());
-			doSwitchAll(eObject.getEGenericExceptions());
-			referencers.put(pivotElement, eObject);				// For superclasses
-			return pivotElement;
-		}
-
-		@Override
-		public org.eclipse.ocl.examples.pivot.Package caseEPackage(EPackage eObject) {
-			org.eclipse.ocl.examples.pivot.Package pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject);
-			EAnnotation eAnnotation = eObject.getEAnnotation(EcorePackage.eNS_URI);
-			List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
-			copyNamedElement(pivotElement, eObject);
-			copyAnnotatedElement(pivotElement, eObject, exclusions);
-			if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_PREFIX)) {
-				pivotElement.setNsPrefix(eObject.getNsPrefix());
-//				refreshAnnotation(pivotElement, PIVOT_EPACKAGE__NS_PREFIX, eObject.getNsPrefix());			
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_URI)) {
-				pivotElement.setNsURI(eObject.getNsURI());
-//				refreshAnnotation(pivotElement, PIVOT_EPACKAGE__NS_URI, eObject.getNsURI());			
-			}
-			doSwitchAll(pivotElement.getNestedPackages(), eObject.getESubpackages());
-			doSwitchAll(pivotElement.getOwnedTypes(), eObject.getEClassifiers());
-			return pivotElement;
-		}
-
-		@Override
-		public Parameter caseEParameter(EParameter eObject) {
-			Parameter pivotElement = refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, eObject);
-			copyTypedMultiplicityElement(pivotElement, eObject, null);
-			return pivotElement;
-		}
-
-		@Override
-		public Property caseEReference(EReference eObject) {
-			Property pivotElement = refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, eObject);
-			EAnnotation oppositeRole = null; // FIXME eReference.getEAnnotation(EMOFExtendedMetaData.EMOF_PROPERTY_OPPOSITE_ROLE_NAME_ANNOTATION_SOURCE);
-			List<EAnnotation> excludedAnnotations = oppositeRole != null ? Collections.singletonList(oppositeRole) : null;
-			copyStructuralFeature(pivotElement, eObject, excludedAnnotations);
-			if ((eObject.getEOpposite() != null) || (excludedAnnotations != null) || !eObject.getEKeys().isEmpty()) {
-				referencers.put(pivotElement, eObject);	// Defer
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.EREFERENCE__CONTAINMENT)) {
-				pivotElement.setIsComposite(eObject.isContainment());			
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.EREFERENCE__RESOLVE_PROXIES)) {
-				refreshAnnotation(pivotElement, PIVOT_EREFERENCE__RESOLVE_PROXIES, Boolean.toString(eObject.isResolveProxies()));			
-			}
-			return pivotElement;
-		}
-
-		@Override
-		public Element caseETypeParameter(ETypeParameter eObject) {
-			org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject);
-			String name = eObject.getName();
-			pivotElement.setName(name);
-//			allNames.add(name);
-			TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.eContainer();
-			if (typeTemplateParameter == null) {
-				typeTemplateParameter = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-				typeTemplateParameter.setOwnedParameteredElement(pivotElement);
-			}
-			doSwitchAll(eObject.getEBounds());
-			return typeTemplateParameter;
-		}
-
-		protected void copyClassifier(org.eclipse.ocl.examples.pivot.Class pivotElement, EClassifier eClassifier) {
-			List<EAnnotation> excludedAnnotations =  null;
-			EMap<String, String> oclAnnotationDetails = null;
-			EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-			if (oclAnnotation != null) {
-				excludedAnnotations = new ArrayList<EAnnotation>();
-				excludedAnnotations.add(oclAnnotation);
-				List<Constraint> constraints = pivotElement.getOwnedRules();
-				oclAnnotationDetails = oclAnnotation.getDetails();
-				for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
-					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-					constraint.setStereotype("invariant");
-					constraint.setName(entry.getKey());
-					String value = entry.getValue();
-					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-					specification.getBodies().add(value);
-					constraint.setSpecification(specification);
-					constraints.add(constraint);
-				}				
-			}
-			EAnnotation ecoreAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
-			if (ecoreAnnotation != null) {
-				if (excludedAnnotations == null) {
-					excludedAnnotations = new ArrayList<EAnnotation>();
-				}
-				excludedAnnotations.add(ecoreAnnotation);
-				String constraintNameList = ecoreAnnotation.getDetails().get("constraints");
-				if (constraintNameList != null) {
-					List<Constraint> constraints = pivotElement.getOwnedRules();
-					String[] constraintNames = constraintNameList.split(" ");
-					for (String constraintName : constraintNames) {
-						if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
-							Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-							constraint.setStereotype("invariant");
-							constraint.setName(constraintName);
-							OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
-							constraint.setSpecification(specification);
-							constraints.add(constraint);
-						}
-					}
-				}
-			}
-			copyNamedElement(pivotElement, eClassifier);
-			copyAnnotatedElement(pivotElement, eClassifier, excludedAnnotations);
-			pivotElement.setInstanceClassName(eClassifier.getInstanceClassName());
-			copyTemplateSignature(pivotElement, eClassifier.getETypeParameters());
-		}
-
-		protected void copyDataTypeOrEnum(DataType pivotElement, EDataType eDataType) {
-			copyClassifier(pivotElement, eDataType);
-			if (eDataType.eIsSet(EcorePackage.Literals.EDATA_TYPE__SERIALIZABLE)) {
-				refreshAnnotation(pivotElement, PIVOT_EDATA_TYPE__SERIALIZABLE, Boolean.toString(eDataType.isSerializable()));			
-			}
-		}
-
-/*		public void copyDetailLines(List<String> lines, String value) {
-			String[] splitLines = value.split("\n");
-			for (int i = 0; i < splitLines.length-1; i++) {
-				lines.add(splitLines[i] + '\n');
-			}
-			if (splitLines.length > 0) {
-				lines.add(splitLines[splitLines.length-1]);
-			}
-		} */
-
-		protected void copyModelElement(Element pivotElement, EModelElement eModelElement) {
-			setOriginalMapping(pivotElement, eModelElement);
-		}
-
-		protected void copyTemplateSignature(TemplateableElement pivotElement, List<ETypeParameter> eTypeParameters) {
-			if (!eTypeParameters.isEmpty()) {
-				TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
-				pivotElement.setOwnedTemplateSignature(pivotTemplateSignature);
-				doSwitchAll(pivotTemplateSignature.getOwnedParameters(), eTypeParameters);
-			}
-		}
-
-		protected void copyAnnotatedElement(NamedElement pivotElement,
-				EModelElement eModelElement, List<EAnnotation> excludedAnnotations) {
-			List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotations();
-			for (EAnnotation eAnnotation : eModelElement.getEAnnotations()) {
-				if ((excludedAnnotations == null) || !excludedAnnotations.contains(eAnnotation)) {
-					Annotation pivotAnnotation = (Annotation) doSwitch(eAnnotation);
-					pivotAnnotations.add(pivotAnnotation);
-				}
-			}
-		}
-
-		protected void copyNamedElement(NamedElement pivotElement, ENamedElement eNamedElement) {
-			copyModelElement(pivotElement, eNamedElement);
-			String name = eNamedElement.getName();
-			pivotElement.setName(name);
-//			allNames.add(name);
-		}
-
-		protected void copyStructuralFeature(Property pivotElement, EStructuralFeature eObject, List<EAnnotation> excludedAnnotations) {
-			EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-			if (oclAnnotation != null) {
-				excludedAnnotations = new ArrayList<EAnnotation>();
-				excludedAnnotations.add(oclAnnotation);
-				List<Constraint> constraints = pivotElement.getOwnedRules();
-				for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
-					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-					String key = entry.getKey();
-					if (key.equals("derivation")) {
-						constraint.setStereotype("derivation");
-					}
-					else if (key.equals("initial")) {
-						constraint.setStereotype("initial");
-					}
-					else
-					{
-						error("Unsupported feature constraint " + key);
-						constraint = null;
-					}
-					if (constraint != null) {
-						String value = entry.getValue();
-						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-						specification.getBodies().add(value);
-						constraint.setSpecification(specification);
-//						constraint.setExprString(entry.getValue());
-						constraints.add(constraint);
-					}
-				}				
-			}
-			copyTypedMultiplicityElement(pivotElement, eObject, excludedAnnotations);
-			if (eObject.eIsSet(EcorePackage.Literals.ESTRUCTURAL_FEATURE__CHANGEABLE)) {
-				pivotElement.setIsReadOnly(!eObject.isChangeable());			
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.ESTRUCTURAL_FEATURE__DERIVED)) {
-				pivotElement.setIsDerived(eObject.isDerived());			
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.ESTRUCTURAL_FEATURE__TRANSIENT)) {
-				refreshAnnotation(pivotElement, PIVOT_ESTRUCTURAL_FEATURE__TRANSIENT, Boolean.toString(eObject.isTransient()));			
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.ESTRUCTURAL_FEATURE__UNSETTABLE)) {
-				refreshAnnotation(pivotElement, PIVOT_ESTRUCTURAL_FEATURE__UNSETTABLE, Boolean.toString(eObject.isUnsettable()));			
-			}
-			if (eObject.eIsSet(EcorePackage.Literals.ESTRUCTURAL_FEATURE__VOLATILE)) {
-				refreshAnnotation(pivotElement, PIVOT_ESTRUCTURAL_FEATURE__VOLATILE, Boolean.toString(eObject.isVolatile()));			
-			}
-			String defaultValueLiteral = basicGet(eObject, EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL, String.class);
-			if (defaultValueLiteral != null) {
-				refreshAnnotation(pivotElement, PIVOT_ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL, eObject.getDefaultValueLiteral());			
-			}
-		}
-
-		protected void copyTypedMultiplicityElement(TypedMultiplicityElement pivotElement, ETypedElement eTypedElement, List<EAnnotation> excludedAnnotations) {
-			copyNamedElement(pivotElement, eTypedElement);
-			copyAnnotatedElement(pivotElement, eTypedElement, excludedAnnotations);
-			int lower = eTypedElement.getLowerBound();
-			int upper = eTypedElement.getUpperBound();
-			pivotElement.setLower(BigInteger.valueOf(lower));
-			pivotElement.setUpper(BigInteger.valueOf(upper));
-			if (eTypedElement.eIsSet(EcorePackage.Literals.ETYPED_ELEMENT__ORDERED)) {
-				pivotElement.setIsOrdered(eTypedElement.isOrdered());			
-			}
-			if (eTypedElement.eIsSet(EcorePackage.Literals.ETYPED_ELEMENT__UNIQUE)) {
-				pivotElement.setIsUnique(eTypedElement.isUnique());			
-			}
-			EGenericType eGenericType = eTypedElement.getEGenericType();
-			if (eGenericType != null) {
-				doInPackageSwitch(eGenericType);
-//				EClassifier eClassifier = eGenericType.getEClassifier();
-//				if (eClassifier != null) {
-//					allEClassifiers.add(eClassifier);
-//				}
-//				Element csType = doSwitch(eGenericType);
-//				pivotElement.setType((TypedRefCS) csType);
-				referencers.put(pivotElement, eTypedElement);
-			}
-		}
-
-		@Override
-		public Element defaultCase(EObject object) {
-			error("Unsupported " + object + " in pass1");
-			return null;
-		}
-
-		public Object doInPackageSwitch(EObject eObject) {
-			int classifierID = eObject.eClass().getClassifierID();
-			return doSwitch(classifierID, eObject);
-		}
-
-		public <T extends Element> void doSwitchAll(Collection<T> csObjects, List<? extends EObject> eObjects) {
-			for (EObject eObject : eObjects) {
-				@SuppressWarnings("unchecked")
-				T csObject = (T) doSwitch(eObject);
-				csObjects.add(csObject);
-			}
-		}
-
-		public <T extends Element> void doSwitchAll(List<? extends EObject> eObjects) {
-			for (EObject eObject : eObjects) {
-				doSwitch(eObject);
-			}
-		}
-
-		protected void setOriginalMapping(Element pivotElement, EObject eObject) {
-			((PivotObjectImpl)pivotElement).setTarget(eObject);
-/*			csModelElement.setOriginalObject(eModelElement);
-			if (ecoreResource instanceof XMLResource) {
-				String xmiId = ((XMLResource)ecoreResource).getID(eModelElement);
-				if (xmiId != null) {
-					csModelElement.setOriginalXmiId(xmiId);
-				}
-			} */
-			createMap.put(eObject, pivotElement);
-//			pivot2ecoreMap.put(pivotElement, eObject);
-		}
-	}
-
-	private final class Pass2 extends PivotSwitch<Object>
-	{				
-		@Override
-		public Object caseClass(org.eclipse.ocl.examples.pivot.Class pivotElement) {
-			EClass eObject = (EClass) referencers.get(pivotElement);
-			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject.getEGenericSuperTypes());
-			return null;
-		}
-
-		@Override
-		public Object caseOperation(Operation pivotElement) {
-			EOperation eObject = (EOperation) referencers.get(pivotElement);
-			doSwitchAll(Type.class, pivotElement.getRaisedExceptions(), eObject.getEGenericExceptions());
-			return null;
-		}
-
-		@Override
-		public EObject caseTypedElement(TypedElement pivotElement) {
-			ETypedElement eObject = (ETypedElement) referencers.get(pivotElement);
-			EGenericType eType = eObject.getEGenericType();
-			if (eType != null) {
-				Type pivotType = getPivot(eType, Type.class);
-				pivotElement.setType(pivotType);
-			}
-			else {
-				// FIXME Void ???
-			}
-	/*		EClassifier eClassifier = eGenericType.getEClassifier();
-			if (eClassifier != null) {
-				allEClassifiers.add(eClassifier);
-				ClassifierCS csClassifier = getCS(eClassifier, ClassifierCS.class);
-				csTypeRef.setType(csClassifier);
-			}
-			else {
-				ETypeParameter eTypeParameter = eGenericType.getETypeParameter();
-				if (eTypeParameter != null) {
-					TypeParameterCS csTypeParameter = (TypeParameterCS) createMap.get(eTypeParameter);
-					csTypeRef.setType(csTypeParameter);
-				}
-//				else {
-//					error("Unresolved " + eGenericType + " in pass2");
-//				}
-			} */
-			return null;
-		}
-
-		public Object doInPackageSwitch(Element pivotElement) {
-			int classifierID = pivotElement.eClass().getClassifierID();
-			return doSwitch(classifierID, pivotElement);
-		}
-
-		public <T extends Element> void doSwitchAll(Class<T> pivotClass, Collection<T> pivotElements, List<? extends EObject> eObjects) {
-			for (EObject eObject : eObjects) {
-				T pivotElement = getPivot(eObject, pivotClass);
-				pivotElements.add(pivotElement);
-			}
-		}
 	}
 
 	/**
@@ -628,19 +125,14 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	}
 
 	/**
-	 * Mapping of all created E elements to the resulting pivot elements.
+	 * Mapping of source Ecore objects to their resulting pivot element.
 	 */
 	private Map<EObject, Element> createMap = new HashMap<EObject, Element>();
 
 	/**
-	 * Mapping of all created pivot elements to their original elements.
+	 * Set of all Ecore objects requiring further work during the reference pass.
 	 */
-//	private Map<Element, EObject> pivot2ecoreMap = new HashMap<Element, EObject>();
-
-	/**
-	 * Set of all CS elements created during pass 1 that require further work in pass 2.
-	 */
-	private Map<Element, EObject> referencers = new HashMap<Element, EObject>();
+	private Set<EObject> referencers = new HashSet<EObject>();
 	
 	/**
 	 * Set of all converters used during session.
@@ -648,30 +140,14 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	private Set<Ecore2Pivot> allConverters = new HashSet<Ecore2Pivot>();
 	
 	/**
-	 * Set of all targets for EClassifierRef during session.
-	 */
-//	private Set<EClassifier> allEClassifiers = new HashSet<EClassifier>();
-	
-	/**
-	 * Set of all names during session.
-	 */
-//	private Set<String> allNames = new HashSet<String>();
-	
-	/**
 	 * List of all generic types.
 	 */
 	private List<EGenericType> genericTypes = new ArrayList<EGenericType>();
 	
 	/**
-	 * List of all generic types.
+	 * List of all specializations for each specializable type.
 	 */
 	private Map<TemplateableElement, List<TemplateableElement>> specializations = new HashMap<TemplateableElement, List<TemplateableElement>>();
-
-	/**
-	 * Set of all aliases.
-	 */
-//	private Map<String, EPackage> alias2ePackage = new HashMap<String, EPackage>();
-//	private Map<EPackage, String> ePackage2alias = new HashMap<EPackage, String>();
 	
 	private List<Resource.Diagnostic> errors = null;
 	
@@ -679,14 +155,22 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	protected final Resource ecoreResource;					// Set via eAdapters.add()
 	
 	protected org.eclipse.ocl.examples.pivot.Package pivotRoot = null;	// Set by importResource
-	protected final EcorePass1 ecorePass1 = new EcorePass1();	
-	protected final Pass2 pass2 = new Pass2();
+	protected final Ecore2PivotDeclarationSwitch declarationPass = new Ecore2PivotDeclarationSwitch(this);	
+	protected final Ecore2PivotReferenceSwitch referencePass = new Ecore2PivotReferenceSwitch(this);
 	
 //	private Map<String, MonikeredElement> moniker2PivotMap = null;
 	
 	public Ecore2Pivot(Resource ecoreResource, PivotManager pivotManager) {
 		this.ecoreResource = ecoreResource;
 		this.pivotManager = pivotManager;
+	}
+	
+	public void addCreated(EObject eObject, Element pivotElement) {
+		createMap.put(eObject, pivotElement);
+	}
+
+	public void addGenericType(EGenericType eObject) {
+		genericTypes.add(eObject);
 	}
 
 	public Map<String, MonikeredElement> computeMoniker2PivotMap() {
@@ -715,6 +199,20 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		errors.add(new XMIException(message));
 	}
 
+	public <T extends Element> T getCreated(Class<T> requiredClass, EObject eObject) {
+		Element element = createMap.get(eObject);
+		if (element == null) {
+			return null;
+		}
+		if (!requiredClass.isAssignableFrom(element.getClass())) {
+			logger.error("Ecore " + element.getClass().getName() + "' element is not a '" + requiredClass.getName() + "'"); //$NON-NLS-1$
+			return null;
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) element;
+		return castElement;
+	}
+
 /*	public MonikeredElement getMoniker(String moniker) {
 		if (moniker2PivotMap == null) {
 			moniker2PivotMap = computeMoniker2PivotMap();
@@ -729,7 +227,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		return moniker2PivotMap;
 	} */
 	
-	public <T extends Element> T getPivot(EObject eObject, Class<T> pivotClass) {
+	public Type getPivotType(EObject eObject) {
 		Element pivotElement = createMap.get(eObject);
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
@@ -749,13 +247,11 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		if (pivotElement == null) {
 			error("Unresolved " + eObject);
 		}
-		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
+		else if (!(pivotElement instanceof Type)) {
 			error("Incompatible " + eObject);
 		}
 		else {
-			@SuppressWarnings("unchecked")
-			T castPivotElement = (T) pivotElement;
-			return castPivotElement;
+			return (Type) pivotElement;
 		}
 		return null;
 	}
@@ -800,7 +296,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {
-			Object pivotElement = ecorePass1.doInPackageSwitch(eObject);
+			Object pivotElement = declarationPass.doInPackageSwitch(eObject);
 			if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
 				packages.add((org.eclipse.ocl.examples.pivot.Package) pivotElement);
 			}
@@ -818,8 +314,8 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 				pivotManager.addOrphanType((Type)pivotElement);
 			}
 		}
-		for (Element pivotElement : referencers.keySet()) {
-			pass2.doInPackageSwitch(pivotElement);
+		for (EObject eObject : referencers) {
+			referencePass.doInPackageSwitch(eObject);
 		}
 		if (errors != null) {
 			pivotResource.getErrors().addAll(errors);
@@ -833,7 +329,11 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 
 	public void notifyChanged(Notification notification) {}
 
-	protected void refreshAnnotation(NamedElement pivotElement, String key, String value) {
+	public void queueReference(EModelElement eObject) {
+		referencers.add(eObject);
+	}
+
+/*	protected void refreshAnnotation(NamedElement pivotElement, String key, String value) {
 		String source = PIVOT_URI;
 		Annotation pivotAnnotation = null;
 		for (Annotation annotation : pivotElement.getOwnedAnnotations()) {
@@ -851,7 +351,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		pivotDetail.setName(key);
 		pivotDetail.getValues().add(value);
 		pivotAnnotation.getOwnedDetails().add(pivotDetail);
-	}
+	} */
 
 	protected <T extends NamedElement> T refreshNamedElement(Class<T> pivotClass,
 			EClass pivotEClass, ENamedElement eNamedElement) {
@@ -890,7 +390,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 //			}
 		}
 		if (pivotType == null) {
-			pivotType = getPivot(eClassifier, Type.class);
+			pivotType = getPivotType(eClassifier);
 		}
 		return pivotType;
 	}
@@ -899,10 +399,16 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		List<EGenericType> eTypeArguments = eGenericType.getETypeArguments();
 		assert !eGenericType.getETypeArguments().isEmpty();
 		EClassifier eClassifier = eGenericType.getEClassifier();
-		EList<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
+		List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		assert eTypeParameters.size() == eTypeArguments.size();
-		Type unspecializedPivotType = getPivot(eClassifier, Type.class);
-		org.eclipse.ocl.examples.pivot.Class specializedPivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, null);
+		Type specializedPivotElement;
+		Type unspecializedPivotType = getPivotType(eClassifier);
+		if (unspecializedPivotType instanceof DataType) {
+			specializedPivotElement = refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, null);
+		}
+		else {
+			specializedPivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, null);
+		}
 		specializedPivotElement.setName(unspecializedPivotType.getName());
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		TemplateSignature templateSignature = unspecializedPivotType.getOwnedTemplateSignature();
@@ -913,7 +419,12 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 			templateParameterSubstitution.setFormal(templateSignature.getParameters().get(i));
 			EGenericType eTypeArgument = eTypeArguments.get(i);
 			Type typeArgument = resolveType(resolvedSpecializations, eTypeArgument);
-			templateParameterSubstitution.setActual(typeArgument);
+			if (typeArgument.eContainer() == null) {
+				templateParameterSubstitution.setOwnedActual(typeArgument);
+			}
+			else {
+				templateParameterSubstitution.setActual(typeArgument);
+			}
 			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
 		}
 		//
@@ -931,7 +442,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	protected Type resolveSimpleType(EGenericType eGenericType) {
 		assert eGenericType.getETypeArguments().isEmpty();
 		EClassifier eClassifier = eGenericType.getEClassifier();
-		Type pivotType = getPivot(eClassifier, Type.class);
+		Type pivotType = getPivotType(eClassifier);
 		if (eClassifier != null) {
 /*			TypedTypeRefCS csTypeRef = BaseCSTFactory.eINSTANCE.createTypedTypeRefCS();
 			setOriginalMapping(csTypeRef, eObject);
@@ -959,10 +470,17 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	}
 
 	protected Type resolveType(Map<String, Type> resolvedSpecializations, EGenericType eGenericType) {
-		Type pivotType = null;
+		Type pivotType = getCreated(Type.class, eGenericType);
+		if (pivotType != null) {
+			return pivotType;
+		}
 		EClassifier eClassifier = eGenericType.getEClassifier();
+		ETypeParameter eTypeParameter = eGenericType.getETypeParameter();
 		List<EGenericType> eTypeArguments = eGenericType.getETypeArguments();
-		if (eClassifier == null) {
+		if (eTypeParameter != null) {
+			pivotType = resolveTypeParameter(eGenericType);
+		}
+		else if (eClassifier == null) {
 			pivotType = resolveWildcardType(eGenericType);
 		}
 		else if (!eTypeArguments.isEmpty()) {
@@ -979,6 +497,17 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		else { 
 			pivotType = resolveSimpleType(eGenericType);
 		}
+		createMap.put(eGenericType, pivotType);
+		return pivotType;
+	}
+
+	protected Type resolveTypeParameter(EGenericType eGenericType) {
+		EClassifier eClassifier = eGenericType.getEClassifier();
+		ETypeParameter eTypeParameter = eGenericType.getETypeParameter();
+		List<EGenericType> eTypeArguments = eGenericType.getETypeArguments();
+		assert eClassifier == null;
+		assert eTypeArguments.isEmpty();
+		Type pivotType = getCreated(Type.class, eTypeParameter);
 		return pivotType;
 	}
 
@@ -992,7 +521,19 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 //			csTypeRef.setExtends(doSwitchAll(eGenericType.getExtends()));
 //			csTypeRef.setSuper(doSwitchAll(eGenericType.getSuper()));
 			return csTypeRef; */
-		return null;
+		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotFactory.eINSTANCE.createClass();
+		String name = "wildcard";
+		EStructuralFeature eFeature = eGenericType.eContainmentFeature();
+		if ((eFeature != null) && eFeature.isMany()) {
+			EObject eContainer = eGenericType.eContainer();
+			List<?> list = (List<?>)eContainer.eGet(eGenericType.eContainingFeature());
+			int index = list.indexOf(eGenericType);
+			if (index != 0) {
+				name += index;
+			}
+		}
+		pivotElement.setName(name);		
+		return pivotElement;
 	}
 
 	public void setTarget(Notifier newTarget) {
