@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.1.2.2 2010/12/31 19:11:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -47,8 +47,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
@@ -220,33 +220,11 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		if (ownedTemplateSignature != null) {
 			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		}
-//		csElement.setInstanceClassName(object.getName());
-		List<AnnotationElementCS> csPivotAnnotations =  null;
-		List<AnnotationElementCS> csAnnotations = csElement.getOwnedAnnotation();
-		for (AnnotationElementCS csAnnotation : csAnnotations) {
-			if (PIVOT_URI.equals(csAnnotation.getName())) {
-				if (csPivotAnnotations == null) {
-					csPivotAnnotations = new ArrayList<AnnotationElementCS>();
-				}
-				csPivotAnnotations.add(csAnnotation);
-				for (DetailCS csDetail : csAnnotation.getOwnedDetail()) {
-/*					if (PIVOT_ECLASSIFIER__INSTANCE_CLASS_NAME(csDetail.getName())) {
-//						addBooleanQualifier(csElement, csDetail, "transient");
-					}
-					else*/ if (PIVOT_ECLASS__INTERFACE.equals(csDetail.getName())) {
-						addBooleanQualifier(csElement.getQualifier(), csDetail, "interface");
-					}
-					else if (PIVOT_EDATA_TYPE__SERIALIZABLE.equals(csDetail.getName())) {
-						addBooleanQualifier(csElement.getQualifier(), csDetail, "serializable");
-					}
-					else {
-						logger.warn("Unsupported pivot2cs for '" + csDetail.getName() + "' detail");
-					}
-				}
-			}
+		if (object.eIsSet(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME)) {
+			csElement.setInstanceClassName(object.getInstanceClassName());
 		}
-		if (csPivotAnnotations != null) {
-			csAnnotations.removeAll(csPivotAnnotations);
+		else {
+			csElement.eUnset(BaseCSTPackage.Literals.CLASSIFIER_CS__INSTANCE_CLASS_NAME);
 		}
 		return csElement;
 	}
@@ -274,43 +252,30 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return csElement;
 	}
 
-	public <T extends StructuralFeatureCS> T refreshStructuralFeature(Class<T> csClass, EClass csEClass, Property object) {
-		T csElement = refreshTypedMultiplicityElement(csClass, csEClass, object);
-		List<AnnotationElementCS> csPivotAnnotations =  null;
-		List<AnnotationElementCS> csAnnotations = csElement.getOwnedAnnotation();
-		for (AnnotationElementCS csAnnotation : csAnnotations) {
-			if (PIVOT_URI.equals(csAnnotation.getName())) {
-				if (csPivotAnnotations == null) {
-					csPivotAnnotations = new ArrayList<AnnotationElementCS>();
+	public void refreshQualifiers(List<String> qualifiers, String string, boolean polarity) {
+		for (String qualifier : qualifiers) {
+			if (qualifier.equals(string)) {
+				if (!polarity) {
+					qualifiers.remove(qualifier);
 				}
-				csPivotAnnotations.add(csAnnotation);
-				for (DetailCS csDetail : csAnnotation.getOwnedDetail()) {
-					if (PIVOT_ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL.equals(csDetail.getName())) {
-						csElement.setDefault(csDetail.getValue().get(0));
-					}
-					else if (PIVOT_ESTRUCTURAL_FEATURE__TRANSIENT.equals(csDetail.getName())) {
-						addBooleanQualifier(csElement.getQualifier(), csDetail, "transient");
-					}
-					else if (PIVOT_ESTRUCTURAL_FEATURE__UNSETTABLE.equals(csDetail.getName())) {
-						addBooleanQualifier(csElement.getQualifier(), csDetail, "unsettable");
-					}
-					else if (PIVOT_ESTRUCTURAL_FEATURE__VOLATILE.equals(csDetail.getName())) {
-						addBooleanQualifier(csElement.getQualifier(), csDetail, "volatile");
-					}
-					else if (PIVOT_EREFERENCE__RESOLVE_PROXIES.equals(csDetail.getName())) {
-						addBooleanQualifier(csElement.getQualifier(), csDetail, "resolve");
-					}
-					else if (PIVOT_EATTRIBUTE__ID.equals(csDetail.getName())) {
-//						addBooleanQualifier(csElement.getQualifier(), csDetail, "resolve");
-					}
-					else {
-						logger.warn("Unsupported pivot2cs for '" + csDetail.getName() + "' detail");
-					}
-				}
+				return;		
 			}
 		}
-		if (csPivotAnnotations != null) {
-			csAnnotations.removeAll(csPivotAnnotations);
+		if (polarity) {
+			qualifiers.add(string);
+		}
+	}
+
+	public <T extends StructuralFeatureCS> T refreshStructuralFeature(Class<T> csClass, EClass csEClass, Property object) {
+		T csElement = refreshTypedMultiplicityElement(csClass, csEClass, object);
+		refreshQualifiers(csElement.getQualifier(), "transient", object.isTransient());
+		refreshQualifiers(csElement.getQualifier(), "unsettable", object.isUnsettable());
+		refreshQualifiers(csElement.getQualifier(), "volatile", object.isVolatile());
+		if (object.eIsSet(PivotPackage.Literals.PROPERTY__DEFAULT)) {
+			csElement.setDefault(object.getDefault());
+		}
+		else {
+			csElement.eUnset(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS__DEFAULT);
 		}
 		return csElement;
 	}
@@ -427,6 +392,13 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			return null;
 		}
 		ElementCS csElement = ((Visitable)eObject).accept(referenceVisitor);
+		if (csElement == null) {
+			return null;
+		}
+		if (!csClass.isAssignableFrom(csElement.getClass())) {
+			logger.error("CS " + csElement.getClass().getName() + "' element is not a '" + csClass.getName() + "'"); //$NON-NLS-1$
+			return null;
+		}
 		@SuppressWarnings("unchecked")
 		T castElement = (T) csElement;
 		return castElement;

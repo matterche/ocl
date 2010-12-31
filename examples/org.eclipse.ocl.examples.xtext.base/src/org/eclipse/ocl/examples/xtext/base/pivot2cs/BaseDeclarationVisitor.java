@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.4 2010/12/28 12:18:28 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.5 2010/12/31 19:11:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -33,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -82,6 +84,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		context.refreshList(csElement.getOwnedProperty(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedAttributes()));
 		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations()));
 		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses()));
+		context.refreshQualifiers(csElement.getQualifier(), "abstract", object.isAbstract());
+		context.refreshQualifiers(csElement.getQualifier(), "interface", object.isInterface());
 		context.setScope(savedScope);
 		return csElement;
 	}
@@ -102,6 +106,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitDataType(DataType object) {
 		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSTPackage.Literals.DATA_TYPE_CS, object);
+		context.refreshQualifiers(csElement.getQualifier(), "serailazable", object.isSerializable());
 		return csElement;
 	}
 
@@ -117,12 +122,20 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitEnumeration(org.eclipse.ocl.examples.pivot.Enumeration object) {
 		EnumerationCS csElement = context.refreshClassifier(EnumerationCS.class, BaseCSTPackage.Literals.ENUMERATION_CS, object);
 		context.refreshList(csElement.getOwnedLiterals(), context.visitDeclarations(EnumerationLiteralCS.class, object.getOwnedLiterals()));
+		context.refreshQualifiers(csElement.getQualifier(), "serailazable", object.isSerializable());
 		return csElement;
 	}
 
 	@Override
 	public ElementCS visitEnumerationLiteral(EnumerationLiteral object) {
-		EnumerationLiteralCS csElement = context.refreshNamedElement(EnumerationLiteralCS.class, BaseCSTPackage.Literals.ENUMERATION_LITERAL_CS, object);
+		EnumerationLiteralCS csElement = context.refreshNamedElement(EnumerationLiteralCS.class,
+			BaseCSTPackage.Literals.ENUMERATION_LITERAL_CS, object);
+		if (object.eIsSet(PivotPackage.Literals.ENUMERATION_LITERAL__VALUE)) {
+			csElement.setValue(object.getValue().intValue());
+		}
+		else {
+			csElement.eUnset(BaseCSTPackage.Literals.ENUMERATION_LITERAL_CS__VALUE);
+		}
 		return csElement;
 	}
 
@@ -163,13 +176,17 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		Type type = object.getType();
 		if (type instanceof DataType) {
 			AttributeCS csElement = context.refreshStructuralFeature(AttributeCS.class, BaseCSTPackage.Literals.ATTRIBUTE_CS, object);
+			context.refreshQualifiers(csElement.getQualifier(), "id", object.isID());
 			return csElement;
 		}
 		else {
 			ReferenceCS csElement = context.refreshStructuralFeature(ReferenceCS.class, BaseCSTPackage.Literals.REFERENCE_CS, object);
+			context.refreshQualifiers(csElement.getQualifier(), "composes", object.isComposite());
+			context.refreshQualifiers(csElement.getQualifier(), "resolve", object.isResolveProxies());
 			Property opposite = object.getOpposite();
 			if (opposite != null) {
-				ReferenceCSRef referenceRef = context.visitReference(ReferenceCSRef.class, opposite);
+				ReferenceCSRef referenceRef = BaseCSTFactory.eINSTANCE.createReferenceCSRef();
+				referenceRef.setRef(opposite);
 				csElement.setOpposite(referenceRef);
 			}
 			return csElement;

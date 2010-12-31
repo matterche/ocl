@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.6 2010/12/28 12:18:28 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.7 2010/12/31 19:11:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
@@ -364,6 +365,12 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	protected BasicContinuation<?> refreshClassifier(ClassifierCS csClassifier, org.eclipse.ocl.examples.pivot.Class pivotElement) {
+		if (csClassifier.eIsSet(BaseCSTPackage.Literals.CLASSIFIER_CS__INSTANCE_CLASS_NAME)) {
+			pivotElement.setInstanceClassName(csClassifier.getInstanceClassName());
+		}
+		else {
+			pivotElement.eUnset(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME);
+		}
 		String newInstanceClassName = csClassifier.getInstanceClassName();
 		String oldInstanceClassName = pivotElement.getInstanceClassName();
 		if ((newInstanceClassName != oldInstanceClassName) && ((newInstanceClassName == null) || !newInstanceClassName.equals(oldInstanceClassName))) {
@@ -411,20 +418,12 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitClassCS(ClassCS csClass) {
-		List<String> qualifiers = csClass.getQualifier();
-		@SuppressWarnings("unused")
-		boolean isInterface = qualifiers.contains("interface");
 		org.eclipse.ocl.examples.pivot.Class pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
 			PivotPackage.Literals.CLASS, csClass);
-		if (qualifiers.contains("abstract")) {
-			pivotElement.setIsAbstract(true);
-		}
-//		if (qualifiers.contains("interface")) {
-//			pivotElement.setIsInterface(true);
-//		}
-		if (qualifiers.contains("static")) {
-			pivotElement.setIsStatic(true);
-		}
+		List<String> qualifiers = csClass.getQualifier();
+		pivotElement.setIsAbstract(qualifiers.contains("abstract"));
+		pivotElement.setIsInterface(qualifiers.contains("interface"));
+		pivotElement.setIsStatic(qualifiers.contains("static"));
 		refreshProperties(csClass, pivotElement);
 		Continuations continuations = new Continuations();
 		continuations.add(refreshClassifier(csClass, pivotElement));
@@ -444,6 +443,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	public Continuation<?> visitDataTypeCS(DataTypeCS csDataType) {
 		DataType pivotElement = context.refreshNamedElement(DataType.class,
 			PivotPackage.Literals.DATA_TYPE, csDataType);
+		List<String> qualifiers = csDataType.getQualifier();
+		pivotElement.setIsSerializable(qualifiers.contains("serializable"));
 		return refreshClassifier(csDataType, pivotElement);
 	}
 
@@ -457,6 +458,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		org.eclipse.ocl.examples.pivot.Enumeration pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Enumeration.class,
 			PivotPackage.Literals.ENUMERATION, csEnumeration);
 		refreshEnumerationLiterals(csEnumeration, pivotElement);
+		List<String> qualifiers = csEnumeration.getQualifier();
+		pivotElement.setIsSerializable(qualifiers.contains("serializable"));
 		return refreshClassifier(csEnumeration, pivotElement);
 	}
 
@@ -506,10 +509,18 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	@Override
 	public Continuation<?> visitStructuralFeatureCS(StructuralFeatureCS csStructuralFeature) {
 		Property pivotElement = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csStructuralFeature);
-		String newDefault = csStructuralFeature.getDefault();
-		String oldDefault = pivotElement.getDefault();
-		if ((newDefault != oldDefault) && ((newDefault == null) || !newDefault.equals(oldDefault))) {
-			pivotElement.setDefault(newDefault);
+		List<String> qualifiers = csStructuralFeature.getQualifier();
+		pivotElement.setIsComposite(qualifiers.contains("composes"));
+		pivotElement.setIsID(qualifiers.contains("id"));
+		pivotElement.setIsResolveProxies(qualifiers.contains("resolve"));
+		pivotElement.setIsTransient(qualifiers.contains("transient"));
+		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
+		pivotElement.setIsVolatile(qualifiers.contains("volatile"));
+		if (csStructuralFeature.eIsSet(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS__DEFAULT)) {
+			pivotElement.setDefault(csStructuralFeature.getDefault());
+		}
+		else {
+			pivotElement.eUnset(PivotPackage.Literals.PROPERTY__DEFAULT);
 		}
 		return null;
 	}

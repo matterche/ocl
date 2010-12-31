@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CS.java,v 1.1.2.3 2010/12/28 12:18:28 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.1.2.4 2010/12/31 19:11:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -125,13 +125,13 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	/**
 	 * The pivot element for CS monikers
 	 */
-	protected Map<String, MonikeredElementCS> moniker2PivotCSMap = null;
+	protected Map<String, MonikeredElementCS> moniker2PivotCSMap1 = null;
 	
 	/**
 	 * The new pivot element to alias map.
 	 */
 	protected final Map<EObject, String> aliasMap = new HashMap<EObject, String>();
-
+	
 	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, PivotManager pivotManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
 		this.pivotManager = pivotManager;
@@ -145,12 +145,12 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		moniker2PivotMap = pivotManager.computeMoniker2PivotMap(getPivotResources());
 	}
 
-	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
-		if (moniker2PivotCSMap == null) {
-			moniker2PivotCSMap = computeMoniker2CSMap(getCSResources());
-		}
-		return moniker2PivotCSMap;
-	}
+//	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
+//		if (moniker2PivotCSMap == null) {
+//			moniker2PivotCSMap = computeMoniker2CSMap(getCSResources());
+//		}
+//		return moniker2PivotCSMap;
+//	}
 
 	public Map<String, MonikeredElementCS> computeMoniker2CSMap(Collection<? extends Resource> csResources) {
 		Map<String, MonikeredElementCS> map = new HashMap<String, MonikeredElementCS>();
