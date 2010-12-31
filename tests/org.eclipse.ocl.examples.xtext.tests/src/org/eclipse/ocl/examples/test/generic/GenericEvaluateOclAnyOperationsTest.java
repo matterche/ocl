@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.3 2010/12/28 12:26:35 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.4 2010/12/31 19:11:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -39,8 +39,6 @@ public abstract class GenericEvaluateOclAnyOperationsTest
     @Override
     protected void setUp() {
         super.setUp();
-//        org.eclipse.ocl.examples.pivot.Package rootPackage = (org.eclipse.ocl.examples.pivot.Package) OCL.INSTANCE.getContents().get(0);
-//        org.eclipse.ocl.examples.pivot.Package pivotPackage = PivotUtil.getNamedElement(rootPackage.getNestedPackages(), "pivot");
 		pivotManager.addPackage("pivot", pivotManager.getPivotPackage());
 
         // need a metamodel that has a reflexive EReference.

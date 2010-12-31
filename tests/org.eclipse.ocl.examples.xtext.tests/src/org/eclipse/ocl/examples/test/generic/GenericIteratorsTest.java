@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.2 2010/12/23 19:26:11 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.3 2010/12/31 19:11:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -60,6 +60,7 @@ public abstract class GenericIteratorsTest
     @Override
     protected void setUp() {
         super.setUp();
+		pivotManager.addPackage("pivot", pivotManager.getPivotPackage());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
@@ -80,7 +81,7 @@ public abstract class GenericIteratorsTest
         pkg4 = reflection.createNestedPackage(pkg3, "pkg4");
         pkg5 = reflection.createNestedPackage(pkg3, "pkg5");
         george = reflection.createNestedPackage(pkg5, "george");
-        helper.setContext(getMetaclass(denormalize("%Package")));
+        helper.setContext(pivotManager.getPivotType("Package"));
     }
 
     /**
@@ -106,16 +107,16 @@ public abstract class GenericIteratorsTest
 		CollectionValue expected = createOrderedSet(pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->select(p : %Package | p.name <> 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->select(p : pivot::Package | p.name <> 'bob')");
 
         // shorter form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->select(p | p.name <> 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->select(p | p.name <> 'bob')");
 
         // shortest form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->select(name <> 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->select(name <> 'bob')");
 
         expected = createSet(reflection.getNestedPackages(pkg1));
-        assertQueryEquals(pkg1, expected, "%nestedPackage->select(true)");
+        assertQueryEquals(pkg1, expected, "nestedPackage->select(true)");
     }
 
     /**

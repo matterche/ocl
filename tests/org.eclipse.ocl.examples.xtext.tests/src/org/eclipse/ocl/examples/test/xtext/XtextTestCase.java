@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.diff.service.DiffService;
+import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
 import org.eclipse.emf.compare.match.service.MatchService;
@@ -205,7 +206,9 @@ public class XtextTestCase extends TestCase
 	}
 	
 	public static void assertSameModel(Resource resource1, Resource resource2) throws IOException, InterruptedException {
-        MatchModel match = MatchService.doResourceMatch(resource1, resource2, Collections.<String, Object> emptyMap());
+		Map<String,Object> options = new HashMap<String,Object>();
+		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+        MatchModel match = MatchService.doResourceMatch(resource1, resource2, options);
         List<UnmatchElement> unmatchedElements = match.getUnmatchedElements();
         int unmatchedSize = unmatchedElements.size();
 		if (unmatchedSize > 0) {

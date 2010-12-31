@@ -13,23 +13,22 @@
  *
  * </copyright>
  *
- * $Id: AllXtextTests.java,v 1.1.6.2 2010/12/28 12:26:35 ewillink Exp $
+ * $Id: AllXtextTests.java,v 1.1.6.3 2010/12/31 19:11:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.util.Arrays;
 
-import org.eclipse.ocl.examples.test.ecore.EvaluateBooleanOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateCollectionOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateNumericOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateOclAnyOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateStringOperationsTest;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
+
+import org.eclipse.ocl.examples.test.ecore.EvaluateBooleanOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.EvaluateNumericOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.EvaluateOclAnyOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.EvaluateStringOperationsTest;
 
 /**
  * Tests for the Xtext editor support.
@@ -60,7 +59,7 @@ public class AllXtextTests
 		result.addTestSuite(EvaluateStringOperationsTest.class);
 //		result.addTestSuite(LoadTests.class);
 //		result.addTestSuite(SerializeTests.class);
-//		result.addTestSuite(RoundTripTests.class);
+		result.addTestSuite(RoundTripTests.class);
 		return result;
 	}
 
