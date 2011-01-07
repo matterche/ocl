@@ -12,19 +12,48 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcorePostOrderVisitor.java,v 1.1.2.1 2010/12/06 18:28:15 ewillink Exp $
+ * $Id: OCLinEcorePostOrderVisitor.java,v 1.1.2.2 2011/01/07 12:13:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPostOrderVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcorePostOrderVisitor
 	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPostOrderVisitor>
 {
+	protected static class ConstraintCSCompletion extends SingleContinuation<OCLinEcoreConstraintCS>
+	{
+		public ConstraintCSCompletion(CS2PivotConversion context, OCLinEcoreConstraintCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			context.visitLeft2Right(csElement);
+			return null;
+		}
+	}
+
 	public OCLinEcorePostOrderVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLPostOrderVisitor(context), context);
+	}
+
+	@Override
+	public Continuation<?> visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS csConstraint) {
+		super.visitOCLinEcoreConstraintCS(csConstraint);
+		ExpCS ownedExpression = csConstraint.getOwnedExpression();
+		if (ownedExpression != null) {
+			return new ConstraintCSCompletion(context, csConstraint);
+		}
+		else {
+			return null;
+		}
 	}		  
 }

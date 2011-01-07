@@ -12,13 +12,29 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.1.2.1 2010/12/13 08:15:04 ewillink Exp $
+ * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.1.2.2 2011/01/07 12:13:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLLeft2RightVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcoreLeft2RightVisitor
@@ -26,5 +42,52 @@ public class OCLinEcoreLeft2RightVisitor
 {
 	public OCLinEcoreLeft2RightVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLLeft2RightVisitor(context), context);
+	}
+
+	@Override
+	public MonikeredElement visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS csConstraint) {
+		Constraint pivotConstraint = context.refreshMonikeredElement(Constraint.class,
+			PivotPackage.Literals.CONSTRAINT, csConstraint);
+		pivotConstraint.setStereotype(csConstraint.getStereotype());
+		context.installPivotElement(csConstraint, pivotConstraint);
+		ExpressionInOcl pivotElement = context.refreshMonikeredElement(ExpressionInOcl.class,
+			PivotPackage.Literals.EXPRESSION_IN_OCL, csConstraint.getMoniker() + "/xyzzy");
+		pivotConstraint.setSpecification(pivotElement);
+		Variable contextVariable = pivotElement.getContextVariable();
+		if (contextVariable == null) {
+			contextVariable = PivotFactory.eINSTANCE.createVariable();
+			pivotElement.setContextVariable(contextVariable);
+		}
+		EObject eContainer = csConstraint.eContainer();
+		if (eContainer instanceof OperationCS) {
+			Operation contextOperation = PivotUtil.getPivot(Operation.class, (OperationCS)eContainer);
+			context.setType(contextVariable, contextOperation.getClass_());
+		}
+		else if (eContainer instanceof StructuralFeatureCS) {
+			Property contextProperty = PivotUtil.getPivot(Property.class, (StructuralFeatureCS)eContainer);
+			context.setType(contextVariable, contextProperty.getClass_());
+		}
+		else if (eContainer instanceof TypeCS) {
+			Type contextType = PivotUtil.getPivot(Type.class, (TypeCS)eContainer);
+			context.setType(contextVariable, contextType);
+		}
+//		if (resource instanceof EvaluationContext) {			
+//			PivotEnvironment environment = ((EvaluationContext)resource).getEnvironment();
+//			if (environment != null) {
+//				Type contextType = environment.getContextClassifier();
+//				Feature contextFeature = ((EvaluationContext)resource).getContextFeature();
+//				context.setType(contextVariable, contextType);
+//			}
+//		}
+		context.refreshName(contextVariable, "self");
+		context.putPivotElement(contextVariable);
+				
+		ExpCS csExpression = csConstraint.getOwnedExpression();
+		OclExpression expression = context.refreshExpTree(OclExpression.class, csExpression);
+		if (expression != null) {
+			pivotElement.setBodyExpression(expression);
+			context.setType(pivotElement, expression.getType());
+		}
+		return pivotElement;
 	}
 }
