@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreReferenceVisitor.java,v 1.1.2.1 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Pivot2EcoreReferenceVisitor.java,v 1.1.2.2 2011/01/07 12:14:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -87,7 +87,9 @@ public class Pivot2EcoreReferenceVisitor
 					eGenericTypes.add((EGenericType)superEClass);
 				}
 				else {
-					eTypes.add((T)superEClass);
+					@SuppressWarnings("unchecked")
+					T castSuperEClass = (T)superEClass;
+					eTypes.add(castSuperEClass);
 				}
 			}
 		}

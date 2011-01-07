@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePackage.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: CompletePackage.java,v 1.1.2.3 2011/01/07 12:14:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getModel <em>Model</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteEnvironment <em>Complete Environment</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteClasses <em>Complete Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes <em>Complete Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompletePackages <em>Complete Package</em>}</li>
  * </ul>
  * </p>
@@ -93,20 +93,20 @@ public interface CompletePackage
 	void setCompleteEnvironment(CompleteEnvironment value);
 
 	/**
-	 * Returns the value of the '<em><b>Complete Class</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteClass}.
+	 * Returns the value of the '<em><b>Complete Type</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Complete Class</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Complete Type</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Complete Class</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_CompleteClass()
+	 * @return the value of the '<em>Complete Type</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_CompleteType()
 	 * @model changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<CompleteClass> getCompleteClasses();
+	EList<CompleteType> getCompleteTypes();
 
 	/**
 	 * Returns the value of the '<em><b>Complete Package</b></em>' reference list.

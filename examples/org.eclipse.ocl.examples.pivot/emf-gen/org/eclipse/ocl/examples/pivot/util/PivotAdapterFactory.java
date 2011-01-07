@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.1.2.7 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.1.2.8 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
@@ -252,11 +252,6 @@ public class PivotAdapterFactory
 				return createCommentAdapter();
 			}
 			@Override
-			public Adapter caseCompleteClass(CompleteClass object)
-			{
-				return createCompleteClassAdapter();
-			}
-			@Override
 			public Adapter caseCompleteEnvironment(CompleteEnvironment object)
 			{
 				return createCompleteEnvironmentAdapter();
@@ -275,6 +270,11 @@ public class PivotAdapterFactory
 			public Adapter caseCompleteProperty(CompleteProperty object)
 			{
 				return createCompletePropertyAdapter();
+			}
+			@Override
+			public Adapter caseCompleteType(CompleteType object)
+			{
+				return createCompleteTypeAdapter();
 			}
 			@Override
 			public Adapter caseConstraint(Constraint object)
@@ -902,20 +902,6 @@ public class PivotAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.CompleteClass <em>Complete Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass
-	 * @generated
-	 */
-	public Adapter createCompleteClassAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment <em>Complete Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -968,6 +954,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCompletePropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.CompleteType <em>Complete Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType
+	 * @generated
+	 */
+	public Adapter createCompleteTypeAdapter()
+	{
 		return null;
 	}
 

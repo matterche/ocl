@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.9 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.10 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
@@ -166,11 +166,11 @@ public class PivotFactoryImpl
 			case PivotPackage.COLLECTION_RANGE: return (EObject)createCollectionRange();
 			case PivotPackage.COLLECTION_TYPE: return (EObject)createCollectionType();
 			case PivotPackage.COMMENT: return (EObject)createComment();
-			case PivotPackage.COMPLETE_CLASS: return (EObject)createCompleteClass();
 			case PivotPackage.COMPLETE_ENVIRONMENT: return (EObject)createCompleteEnvironment();
 			case PivotPackage.COMPLETE_OPERATION: return (EObject)createCompleteOperation();
 			case PivotPackage.COMPLETE_PACKAGE: return (EObject)createCompletePackage();
 			case PivotPackage.COMPLETE_PROPERTY: return (EObject)createCompleteProperty();
+			case PivotPackage.COMPLETE_TYPE: return (EObject)createCompleteType();
 			case PivotPackage.CONSTRAINT: return (EObject)createConstraint();
 			case PivotPackage.DATA_TYPE: return (EObject)createDataType();
 			case PivotPackage.DETAIL: return (EObject)createDetail();
@@ -588,16 +588,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteClass createCompleteClass() {
-		CompleteClassImpl completeClass = new CompleteClassImpl();
-		return completeClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public CompleteEnvironment createCompleteEnvironment() {
 		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
 		return completeEnvironment;
@@ -631,6 +621,17 @@ public class PivotFactoryImpl
 	public CompleteProperty createCompleteProperty() {
 		CompletePropertyImpl completeProperty = new CompletePropertyImpl();
 		return completeProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteType createCompleteType()
+	{
+		CompleteTypeImpl completeType = new CompleteTypeImpl();
+		return completeType;
 	}
 
 	/**

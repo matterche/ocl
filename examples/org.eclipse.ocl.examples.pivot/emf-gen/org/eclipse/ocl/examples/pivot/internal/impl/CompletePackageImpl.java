@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePackageImpl.java,v 1.1.2.4 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: CompletePackageImpl.java,v 1.1.2.5 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getModel <em>Model</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompleteEnvironment <em>Complete Environment</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompleteClasses <em>Complete Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompleteTypes <em>Complete Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompletePackages <em>Complete Package</em>}</li>
  * </ul>
  * </p>
@@ -181,8 +181,9 @@ public class CompletePackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CompleteClass> getCompleteClasses() {
-		// TODO: implement this method to return the 'Complete Class' reference list
+	public EList<CompleteType> getCompleteTypes()
+	{
+		// TODO: implement this method to return the 'Complete Type' reference list
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
@@ -243,8 +244,8 @@ public class CompletePackageImpl
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT:
 				if (resolve) return getCompleteEnvironment();
 				return basicGetCompleteEnvironment();
-			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_CLASS:
-				return getCompleteClasses();
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
+				return getCompleteTypes();
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_PACKAGE:
 				return getCompletePackages();
 		}
@@ -422,8 +423,8 @@ public class CompletePackageImpl
 				return model != null;
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT:
 				return completeEnvironment != null;
-			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_CLASS:
-				return !getCompleteClasses().isEmpty();
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
+				return !getCompleteTypes().isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_PACKAGE:
 				return !getCompletePackages().isEmpty();
 		}

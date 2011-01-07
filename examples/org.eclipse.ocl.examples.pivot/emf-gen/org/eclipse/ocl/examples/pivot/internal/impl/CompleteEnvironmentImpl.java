@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: CompleteEnvironmentImpl.java,v 1.1.2.6 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,7 +20,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.operations.CompleteEnvironmentOperations;
 
 /**
@@ -67,9 +68,8 @@ public class CompleteEnvironmentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteClass getCompleteClass(
-			org.eclipse.ocl.examples.pivot.Class model) {
-		return CompleteEnvironmentOperations.getCompleteClass(this, model);
+	public CompleteType getCompleteType(Type model) {
+		return CompleteEnvironmentOperations.getCompleteType(this, model);
 	}
 
 	/**
@@ -116,14 +116,14 @@ public class CompleteEnvironmentImpl
 				return parameterableElements();
 			case PivotPackage.COMPLETE_ENVIRONMENT___IS_TEMPLATE:
 				return isTemplate();
-			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_CLASS__CLASS:
-				return getCompleteClass((org.eclipse.ocl.examples.pivot.Class)arguments.get(0));
 			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION:
 				return getCompleteOperation((Operation)arguments.get(0));
 			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE:
 				return getCompletePackage((org.eclipse.ocl.examples.pivot.Package)arguments.get(0));
 			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY:
 				return getCompleteProperty((Property)arguments.get(0));
+			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE:
+				return getCompleteType((Type)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteClass.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: CompleteType.java,v 1.1.2.1 2011/01/07 12:14:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -26,19 +26,19 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteClass#getModel <em>Model</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteEnvironment <em>Complete Environment</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteOperations <em>Complete Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteProperties <em>Complete Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteSuperClasses <em>Complete Super Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment <em>Complete Environment</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations <em>Complete Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteProperties <em>Complete Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteSuperTypes <em>Complete Super Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteClass()
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType()
  * @model
  * @generated
  */
-public interface CompleteClass
+public interface CompleteType
 		extends org.eclipse.ocl.examples.pivot.Class {
 
 	/**
@@ -50,22 +50,22 @@ public interface CompleteClass
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
-	 * @see #setModel(org.eclipse.ocl.examples.pivot.Class)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteClass_Model()
+	 * @see #setModel(Type)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_Model()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Class getModel();
+	Type getModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getModel <em>Model</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getModel <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Model</em>' reference.
 	 * @see #getModel()
 	 * @generated
 	 */
-	void setModel(org.eclipse.ocl.examples.pivot.Class value);
+	void setModel(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Complete Environment</b></em>' reference.
@@ -77,14 +77,14 @@ public interface CompleteClass
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Environment</em>' reference.
 	 * @see #setCompleteEnvironment(CompleteEnvironment)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteClass_CompleteEnvironment()
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_CompleteEnvironment()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	CompleteEnvironment getCompleteEnvironment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteEnvironment <em>Complete Environment</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment <em>Complete Environment</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Complete Environment</em>' reference.
@@ -103,7 +103,7 @@ public interface CompleteClass
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Operation</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteClass_CompleteOperation()
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_CompleteOperation()
 	 * @model changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
@@ -119,35 +119,35 @@ public interface CompleteClass
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Property</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteClass_CompleteProperty()
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_CompleteProperty()
 	 * @model changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<CompleteProperty> getCompleteProperties();
 
 	/**
-	 * Returns the value of the '<em><b>Complete Super Class</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteClass}.
+	 * Returns the value of the '<em><b>Complete Super Type</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Complete Super Class</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Complete Super Type</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Complete Super Class</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteClass_CompleteSuperClass()
+	 * @return the value of the '<em>Complete Super Type</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_CompleteSuperType()
 	 * @model changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<CompleteClass> getCompleteSuperClasses();
+	EList<CompleteType> getCompleteSuperTypes();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false" aClassRequired="true" aClassOrdered="false"
+	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false" aTypeRequired="true" aTypeOrdered="false"
 	 * @generated
 	 */
-	boolean conformsTo(CompleteClass aClass);
+	boolean conformsTo(CompleteType aType);
 
 	/**
 	 * <!-- begin-user-doc -->

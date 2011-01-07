@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.12 2010/12/28 12:17:30 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.13 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
@@ -43,8 +44,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -388,6 +390,18 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return pivotResource;
 	}
 
+	protected <T extends Type> T findSpecializedType(T unspecializedType, String moniker) {
+		List<Type> ownedSpecializations = getOrphanPackage().getOwnedTypes();
+		for (Type ownedSpecialization : ownedSpecializations) {
+			if (ownedSpecialization.getMoniker().equals(moniker)) {
+				@SuppressWarnings("unchecked")
+				T castSpecialization = (T)ownedSpecialization;
+				return castSpecialization;
+			}
+		}
+		return null;
+	}
+
 	public Type getCollectionType(String collectionTypeName, Type elementType) {
 		return getLibraryType(collectionTypeName, Collections.singletonList(elementType));
 	}
@@ -396,9 +410,8 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return TypeUtil.getCommonSuperType(firstType, secondType);
 	}
 
-	public CompleteClass getCompleteClass(
-			org.eclipse.ocl.examples.pivot.Class type) {
-		return completeEnvironmentManager.getCompleteClass(type);
+	public CompleteType getCompleteType(Type type) {
+		return completeEnvironmentManager.getCompleteType(type);
 	}
 
 	public CompleteEnvironmentManager getCompleteEnvironmentManager() {
@@ -447,6 +460,10 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		if (libraryType == null) {
 			return null;
 		}
+		return getLibraryType(libraryType, templateArguments, true);
+	}
+
+	public <T extends Type> T getLibraryType(T libraryType, List<? extends ParameterableElement> templateArguments, boolean resolveSuperClasses) {
 		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameters() : Collections.<TemplateParameter>emptyList();
 		if (templateParameters.isEmpty()) {
@@ -461,35 +478,38 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			throw new IllegalArgumentException(
 				"Incorrect template bindings for template type");
 		}
-		Pivot2Moniker s = new Pivot2Moniker(null);
-		s.appendElement((Element) libraryType.eContainer());
-		s.append(PivotConstants.MONIKER_SCOPE_SEPARATOR);
-		s.append(libraryType.getName());
-		s.appendTemplateArguments(templateArguments);
-		String moniker = s.toString();
-		List<Type> ownedSpecializations = getOrphanPackage().getOwnedTypes();
-		for (Type ownedSpecialization : ownedSpecializations) {
-			if (ownedSpecialization.getMoniker().equals(moniker)) {
-				return ownedSpecialization;
-			}
+		String moniker = getSpecializedMoniker(libraryType, templateArguments);
+		T existingSpecializedType = findSpecializedType(libraryType, moniker);
+		if (existingSpecializedType != null) {
+			return existingSpecializedType;
 		}
 		EClass eClass = libraryType.eClass();
-		Type specialization = (Type) eClass.getEPackage().getEFactoryInstance().create(eClass);
-//		Type specialization = PivotFactory.eINSTANCE.createClass();
-		specialization.setName(string);
+		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
+		@SuppressWarnings("unchecked")
+		T specializedType = (T) eFactoryInstance.create(eClass);
+		specializedType.setName(libraryType.getName());
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);
+		Map<TemplateParameter, ParameterableElement> allBindings = new HashMap<TemplateParameter, ParameterableElement>();
 		for (int i = 0; i < iMax; i++) {
+			TemplateParameter formalParameter = templateParameters.get(i);
+			ParameterableElement actualType = templateArguments.get(i);
+			allBindings.put(formalParameter, templateArguments.get(i));
 			TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-			templateParameterSubstitution.setFormal(templateParameters.get(i));
-			templateParameterSubstitution.setActual(templateArguments.get(i));
+			templateParameterSubstitution.setFormal(formalParameter);
+			templateParameterSubstitution.setActual(actualType);
 			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
 		}
-		specialization.getTemplateBindings().add(templateBinding);
-		ownedSpecializations.add(specialization);
-		String specializedMoniker = specialization.getMoniker();
+		specializedType.getTemplateBindings().add(templateBinding);
+		if (resolveSuperClasses && (libraryType instanceof org.eclipse.ocl.examples.pivot.Class)) {
+			org.eclipse.ocl.examples.pivot.Class libraryClass = (org.eclipse.ocl.examples.pivot.Class)libraryType;
+			org.eclipse.ocl.examples.pivot.Class specializedClass = (org.eclipse.ocl.examples.pivot.Class)specializedType;
+			resolveSuperClasses(specializedClass, libraryClass, allBindings);
+		}
+		addOrphanType(specializedType);
+		String specializedMoniker = specializedType.getMoniker();
 		assert moniker.equals(specializedMoniker);
-		return specialization;
+		return specializedType;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Package getOrphanPackage() {
@@ -529,6 +549,16 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	// public String getPrefixPrecedenceName(String operatorName) {
 	// return prefixToPrecedenceNameMap.get(operatorName);
 	// }
+
+	protected String getSpecializedMoniker(Type libraryType, List<? extends ParameterableElement> templateArguments) {
+		Pivot2Moniker s = new Pivot2Moniker(null);
+		s.appendElement((Element) libraryType.eContainer());
+		s.append(PivotConstants.MONIKER_SCOPE_SEPARATOR);
+		s.append(libraryType.getName());
+		s.appendTemplateArguments(templateArguments);
+		String moniker = s.toString();
+		return moniker;
+	}
 
 	public ResourceSet getTarget() {
 		return pivotResourceSet;
@@ -735,6 +765,90 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	public void notifyChanged(Notification msg) {
 		// Do nothing.
+	}
+
+	public void resolveSpecializationBaseClasses() {
+		List<Type> orphanTypes = getOrphanPackage().getOwnedTypes();
+		for (int i = 0; i < orphanTypes.size(); i++) {	// Avoids CMEs from new bases
+			Type orphanType = orphanTypes.get(i);
+			if (orphanType instanceof org.eclipse.ocl.examples.pivot.Class) {
+				resolveSuperClasses((org.eclipse.ocl.examples.pivot.Class)orphanType);
+				if (orphanType instanceof CollectionType) {
+					((CollectionType)orphanType).setElementType((Type) orphanType.getTemplateBindings().get(0).getParameterSubstitutions().get(0).getActual());
+				}
+			}
+		}
+	}
+
+	/**
+	 * Update a specializedClass so that its superclasses correspond to the specializations
+	 * of the specializations of the superclasses of the class that specializedClass specializes. 
+
+	 * @param specializedClass to update superclasses of
+	 */
+	public void resolveSuperClasses(org.eclipse.ocl.examples.pivot.Class specializedClass) {
+		org.eclipse.ocl.examples.pivot.Class unboundType = PivotUtil.getUnspecializedTemplateableElement(specializedClass);
+		Map<TemplateParameter, ParameterableElement> specializedBindings = PivotUtil.getAllTemplateParameterSubstitutions(specializedClass);
+		List<org.eclipse.ocl.examples.pivot.Class> newSuperClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
+		for (org.eclipse.ocl.examples.pivot.Class unboundSuper : unboundType.getSuperClasses()) {
+			List<ParameterableElement> templateArguments = null;
+			List<TemplateBinding> unboundSuperTemplateBindings = unboundSuper.getTemplateBindings();
+			if (unboundSuperTemplateBindings.size() > 0) {					
+				Map<TemplateParameter, ParameterableElement> superBindings = PivotUtil.getAllTemplateParameterSubstitutions(unboundSuper);
+				List<TemplateParameter> unspecializedSuperTemplateParameters = PivotUtil.getAllTemplateParameters(unboundSuperTemplateBindings);
+				templateArguments = new ArrayList<ParameterableElement>(unspecializedSuperTemplateParameters.size());
+				for (TemplateParameter unspecializedSuperTemplateParameter : unspecializedSuperTemplateParameters) {
+					ParameterableElement unboundActual = superBindings.get(unspecializedSuperTemplateParameter);
+					TemplateParameter unboundFormal = unboundActual.getOwningTemplateParameter();
+					ParameterableElement specializedActual = specializedBindings.get(unboundFormal);	// FIXME null checks
+					templateArguments.add(specializedActual);
+				}								
+			}
+			org.eclipse.ocl.examples.pivot.Class unspecializedSuperType = PivotUtil.getUnspecializedTemplateableElement(unboundSuper);
+			org.eclipse.ocl.examples.pivot.Class specializedSuperType = getLibraryType(unspecializedSuperType, templateArguments, false);
+			if ((specializedSuperType != null) && !newSuperClasses.contains(specializedSuperType)) {
+				newSuperClasses.add(specializedSuperType);
+			}
+		}
+		List<org.eclipse.ocl.examples.pivot.Class> oldSuperClasses = specializedClass.getSuperClasses();
+		int iMin = Math.min(newSuperClasses.size(), oldSuperClasses.size());
+		int i = 0;
+		for ( ; i < iMin; i++) {
+			org.eclipse.ocl.examples.pivot.Class oldSuperClass = oldSuperClasses.get(i);
+			org.eclipse.ocl.examples.pivot.Class newSuperClass = newSuperClasses.get(i);
+			if (oldSuperClass != newSuperClass) {
+				oldSuperClasses.remove(oldSuperClass);
+				oldSuperClasses.set(i, newSuperClass);
+			}
+		}
+		for ( ; i < newSuperClasses.size(); i++) {
+			oldSuperClasses.add(newSuperClasses.get(i)); 
+		}
+		for ( ; i < oldSuperClasses.size(); i++) {
+			oldSuperClasses.remove(i); 
+		}
+		assert oldSuperClasses.equals(newSuperClasses);
+	}
+
+	// FIXME Lose this duplication
+	public void resolveSuperClasses(org.eclipse.ocl.examples.pivot.Class specializedClass,
+			org.eclipse.ocl.examples.pivot.Class libraryClass, Map<TemplateParameter, ParameterableElement> allBindings) {
+		for (org.eclipse.ocl.examples.pivot.Class superClass : libraryClass.getSuperClasses()) {
+			List<ParameterableElement> superTemplateArguments = null;
+			List<TemplateBinding> superTemplateBindings = superClass.getTemplateBindings();
+			if (superTemplateBindings.size() > 0) {
+				superTemplateArguments = new ArrayList<ParameterableElement>();
+				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
+					for (TemplateParameterSubstitution superTemplateParameterSubstitution : superTemplateBinding.getParameterSubstitutions()) {
+						ParameterableElement superActual = superTemplateParameterSubstitution.getActual();
+						ParameterableElement actualActual = allBindings.get(superActual.getTemplateParameter());
+						superTemplateArguments.add(actualActual);
+					}
+				}
+			}
+			org.eclipse.ocl.examples.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
+			specializedClass.getSuperClasses().add(getLibraryType(unspecializedSuperClass, superTemplateArguments, true));
+		}
 	}
 
 	public Operation resolveOperation(Type leftType, String operationName, Type... rightTypes) {

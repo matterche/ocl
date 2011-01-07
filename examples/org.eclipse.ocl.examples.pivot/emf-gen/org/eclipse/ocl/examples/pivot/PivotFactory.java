@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.1.2.7 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.1.2.8 2011/01/07 12:14:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -290,15 +290,6 @@ public interface PivotFactory
 	CollectionRange createCollectionRange();
 
 	/**
-	 * Returns a new object of class '<em>Complete Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Class</em>'.
-	 * @generated
-	 */
-	CompleteClass createCompleteClass();
-
-	/**
 	 * Returns a new object of class '<em>Complete Environment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -333,6 +324,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	CompleteProperty createCompleteProperty();
+
+	/**
+	 * Returns a new object of class '<em>Complete Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete Type</em>'.
+	 * @generated
+	 */
+	CompleteType createCompleteType();
 
 	/**
 	 * Returns a new object of class '<em>Enum Literal Exp</em>'.

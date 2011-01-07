@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.7 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.8 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
@@ -141,7 +142,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			context.appendName(object);
 		}
 		else if (!object.getTemplateBindings().isEmpty()) {
-			org.eclipse.ocl.examples.pivot.Class templateableClass = PivotUtil.getTemplateableClass(object);
+			org.eclipse.ocl.examples.pivot.Class templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
 //			context.append(((MonikeredElement) templateableClass.eContainer()).getMoniker());
 //			context.append(SCOPE_SEPARATOR);
@@ -265,7 +266,9 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		if (!templateBindings.isEmpty()) {
 			context.appendElement((Element) object.eContainer());
 			TemplateSignature signature = templateBindings.get(0).getSignature();
-			context.appendSignature(signature, object);
+			if (signature != null) {
+				context.appendElement(signature.getTemplate());
+			}
 			return true;
 		}
 		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
@@ -303,6 +306,12 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	}
 
 	@Override
+	public Object visitPrimitiveType(PrimitiveType object) {
+		context.appendName(object);
+		return true;
+	}
+
+	@Override
 	public Object visitRealLiteralExp(RealLiteralExp object) {
 		appendExpPrefix(object);
 		context.append(object.getRealSymbol().toString());
@@ -319,7 +328,9 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	@Override
 	public Object visitTemplateBinding(TemplateBinding object) {
 		TemplateSignature signature = object.getSignature();
-		context.appendSignature(signature, object);
+		if (signature != null) {
+			context.appendElement(signature.getTemplate());
+		}
 		context.append(BINDINGS_PREFIX);
 		return true;
 	}

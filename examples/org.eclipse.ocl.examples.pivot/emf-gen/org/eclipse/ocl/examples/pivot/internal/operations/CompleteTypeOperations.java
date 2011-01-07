@@ -2,17 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompleteClassOperations.java,v 1.1.2.3 2011/01/07 12:14:08 ewillink Exp $
+ * $Id: CompleteTypeOperations.java,v 1.1.2.1 2011/01/07 12:14:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.CompleteType;
+
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 
 /**
  * <!-- begin-user-doc -->
- * A static utility class that provides operations related to '<em><b>Complete Class</b></em>' model objects.
+ * A static utility class that provides operations related to '<em><b>Complete Type</b></em>' model objects.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -26,15 +27,14 @@ import org.eclipse.ocl.examples.pivot.CompleteOperation;
  *
  * @generated
  */
-public class CompleteClassOperations
-		extends TypeOperations {
-
+public class CompleteTypeOperations extends TypeOperations
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompleteClassOperations() {
+	protected CompleteTypeOperations() {
 		super();
 	}
 
@@ -43,8 +43,8 @@ public class CompleteClassOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static boolean conformsTo(CompleteType completeClass,
-			CompleteType aClass) {
+	public static  boolean conformsTo(CompleteType completeType, CompleteType aType)
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -55,8 +55,8 @@ public class CompleteClassOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CompleteOperation getDynamicOperation(
-			CompleteType completeClass, CompleteOperation staticOperation) {
+	public static  CompleteOperation getDynamicOperation(CompleteType completeType, CompleteOperation staticOperation)
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -67,11 +67,11 @@ public class CompleteClassOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static EList<CompleteOperation> getCompleteOperations(
-			CompleteType completeClass, String name) {
+	public static  EList<CompleteOperation> getCompleteOperations(CompleteType completeType, String name)
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
-} // CompleteClassOperations
+} // CompleteTypeOperations

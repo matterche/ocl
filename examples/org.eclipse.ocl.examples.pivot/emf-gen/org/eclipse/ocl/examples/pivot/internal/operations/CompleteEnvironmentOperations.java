@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentOperations.java,v 1.1.2.2 2010/10/05 17:40:45 ewillink Exp $
+ * $Id: CompleteEnvironmentOperations.java,v 1.1.2.3 2011/01/07 12:14:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +33,10 @@ import org.eclipse.ocl.examples.pivot.Property;
  * <p>
  * The following operations are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteClass(org.eclipse.ocl.examples.pivot.Class) <em>Get Complete Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteOperation(org.eclipse.ocl.examples.pivot.Operation) <em>Get Complete Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompletePackage(org.eclipse.ocl.examples.pivot.Package) <em>Get Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteProperty(org.eclipse.ocl.examples.pivot.Property) <em>Get Complete Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteType(org.eclipse.ocl.examples.pivot.Type) <em>Get Complete Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,9 +59,9 @@ public class CompleteEnvironmentOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CompleteClass getCompleteClass(
+	public static CompleteType getCompleteType(
 			CompleteEnvironment completeEnvironment,
-			org.eclipse.ocl.examples.pivot.Class model) {
+			Type model) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

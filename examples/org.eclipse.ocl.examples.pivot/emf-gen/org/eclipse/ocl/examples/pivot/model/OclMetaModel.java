@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OclMetaModel.java,v 1.1.2.2 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: OclMetaModel.java,v 1.1.2.3 2011/01/07 12:14:08 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.model;
 
@@ -83,15 +83,15 @@ public class OclMetaModel extends XMLResourceImpl
 		
 		Class symbol_20 = PivotFactory.eINSTANCE.createClass(); // pivot|Comment
 		
-		Class symbol_21 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteClass
+		Class symbol_21 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteEnvironment
 		
-		Class symbol_22 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteEnvironment
+		Class symbol_22 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteOperation
 		
-		Class symbol_23 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteOperation
+		Class symbol_23 = PivotFactory.eINSTANCE.createClass(); // pivot|CompletePackage
 		
-		Class symbol_24 = PivotFactory.eINSTANCE.createClass(); // pivot|CompletePackage
+		Class symbol_24 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteProperty
 		
-		Class symbol_25 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteProperty
+		Class symbol_25 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteType
 		
 		Class symbol_26 = PivotFactory.eINSTANCE.createClass(); // pivot|Constraint
 		
@@ -396,8 +396,8 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::Class pivot|Class
 		//
 		symbol_13.setName("Class");
-		symbol_13.getSuperClasses().add(symbol_56);
 		symbol_13.getSuperClasses().add(symbol_97);
+		symbol_13.getSuperClasses().add(symbol_56);
 		{ // pivot.ecore::pivot::Class::isAbstract pivot|Class|isAbstract
 			Property symbol_126 = PivotFactory.eINSTANCE.createProperty();
 			symbol_126.setName("isAbstract");
@@ -525,187 +525,187 @@ public class OclMetaModel extends XMLResourceImpl
 		}
 		symbol_1.getOwnedTypes().add(symbol_20);
 		//
-		// pivot.ecore::pivot::CompleteClass pivot|CompleteClass
+		// pivot.ecore::pivot::CompleteEnvironment pivot|CompleteEnvironment
 		//
-		symbol_21.setName("CompleteClass");
-		symbol_21.getSuperClasses().add(symbol_13);
-		{ // pivot.ecore::pivot::CompleteClass::completeEnvironment pivot|CompleteClass|completeEnvironment
-			Property symbol_140 = PivotFactory.eINSTANCE.createProperty();
-			symbol_140.setName("completeEnvironment");
-			symbol_140.setType(symbol_22);  // pivot|CompleteEnvironment
-			symbol_21.getOwnedAttributes().add(symbol_140);
+		symbol_21.setName("CompleteEnvironment");
+		symbol_21.getSuperClasses().add(symbol_67);
+		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteOperation() pivot|CompleteEnvironment|getCompleteOperation(pivot|Operation)
+			Operation symbol_140 = PivotFactory.eINSTANCE.createOperation();
+			symbol_140.setName("getCompleteOperation");
+			symbol_140.setType(symbol_22);  // pivot|CompleteOperation
+			Parameter symbol_141 = PivotFactory.eINSTANCE.createParameter();
+			symbol_141.setName("model");
+			symbol_141.setType(symbol_63);  // pivot|Operation
+			symbol_140.getOwnedParameters().add(symbol_141);
+			symbol_21.getOwnedOperations().add(symbol_140);
 		}
-		{ // pivot.ecore::pivot::CompleteClass::completeOperation pivot|CompleteClass|completeOperation
-			Property symbol_141 = PivotFactory.eINSTANCE.createProperty();
-			symbol_141.setName("completeOperation");
-			symbol_141.setType(symbol_23);  // pivot|CompleteOperation
-			symbol_21.getOwnedAttributes().add(symbol_141);
+		{	// pivot.ecore::pivot::CompleteEnvironment::getCompletePackage() pivot|CompleteEnvironment|getCompletePackage(pivot|Package)
+			Operation symbol_142 = PivotFactory.eINSTANCE.createOperation();
+			symbol_142.setName("getCompletePackage");
+			symbol_142.setType(symbol_23);  // pivot|CompletePackage
+			Parameter symbol_143 = PivotFactory.eINSTANCE.createParameter();
+			symbol_143.setName("model");
+			symbol_143.setType(symbol_67);  // pivot|Package
+			symbol_142.getOwnedParameters().add(symbol_143);
+			symbol_21.getOwnedOperations().add(symbol_142);
 		}
-		{ // pivot.ecore::pivot::CompleteClass::completeProperty pivot|CompleteClass|completeProperty
-			Property symbol_142 = PivotFactory.eINSTANCE.createProperty();
-			symbol_142.setName("completeProperty");
-			symbol_142.setType(symbol_25);  // pivot|CompleteProperty
-			symbol_21.getOwnedAttributes().add(symbol_142);
+		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteProperty() pivot|CompleteEnvironment|getCompleteProperty(pivot|Property)
+			Operation symbol_144 = PivotFactory.eINSTANCE.createOperation();
+			symbol_144.setName("getCompleteProperty");
+			symbol_144.setType(symbol_24);  // pivot|CompleteProperty
+			Parameter symbol_145 = PivotFactory.eINSTANCE.createParameter();
+			symbol_145.setName("model");
+			symbol_145.setType(symbol_75);  // pivot|Property
+			symbol_144.getOwnedParameters().add(symbol_145);
+			symbol_21.getOwnedOperations().add(symbol_144);
 		}
-		{ // pivot.ecore::pivot::CompleteClass::completeSuperClass pivot|CompleteClass|completeSuperClass
-			Property symbol_143 = PivotFactory.eINSTANCE.createProperty();
-			symbol_143.setName("completeSuperClass");
-			symbol_143.setType(symbol_21);  // pivot|CompleteClass
-			symbol_21.getOwnedAttributes().add(symbol_143);
-		}
-		{ // pivot.ecore::pivot::CompleteClass::model pivot|CompleteClass|model
-			Property symbol_144 = PivotFactory.eINSTANCE.createProperty();
-			symbol_144.setName("model");
-			symbol_144.setType(symbol_13);  // pivot|Class
-			symbol_21.getOwnedAttributes().add(symbol_144);
-		}
-		{	// pivot.ecore::pivot::CompleteClass::conformsTo() pivot|CompleteClass|conformsTo(pivot|CompleteClass)
-			Operation symbol_145 = PivotFactory.eINSTANCE.createOperation();
-			symbol_145.setName("conformsTo");
-			symbol_145.setType(symbol_8);  // pivot|Boolean
-			Parameter symbol_146 = PivotFactory.eINSTANCE.createParameter();
-			symbol_146.setName("aClass");
-			symbol_146.setType(symbol_21);  // pivot|CompleteClass
-			symbol_145.getOwnedParameters().add(symbol_146);
-			symbol_21.getOwnedOperations().add(symbol_145);
-		}
-		{	// pivot.ecore::pivot::CompleteClass::getCompleteOperations() pivot|CompleteClass|getCompleteOperations(pivot|String)
-			Operation symbol_147 = PivotFactory.eINSTANCE.createOperation();
-			symbol_147.setName("getCompleteOperations");
-			symbol_147.setType(symbol_23);  // pivot|CompleteOperation
-			Parameter symbol_148 = PivotFactory.eINSTANCE.createParameter();
-			symbol_148.setName("name");
-			symbol_148.setType(symbol_85);  // pivot|String
-			symbol_147.getOwnedParameters().add(symbol_148);
-			symbol_21.getOwnedOperations().add(symbol_147);
-		}
-		{	// pivot.ecore::pivot::CompleteClass::getDynamicOperation() pivot|CompleteClass|getDynamicOperation(pivot|CompleteOperation)
-			Operation symbol_149 = PivotFactory.eINSTANCE.createOperation();
-			symbol_149.setName("getDynamicOperation");
-			symbol_149.setType(symbol_23);  // pivot|CompleteOperation
-			Parameter symbol_150 = PivotFactory.eINSTANCE.createParameter();
-			symbol_150.setName("staticOperation");
-			symbol_150.setType(symbol_23);  // pivot|CompleteOperation
-			symbol_149.getOwnedParameters().add(symbol_150);
-			symbol_21.getOwnedOperations().add(symbol_149);
+		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteType() pivot|CompleteEnvironment|getCompleteType(pivot|Type)
+			Operation symbol_146 = PivotFactory.eINSTANCE.createOperation();
+			symbol_146.setName("getCompleteType");
+			symbol_146.setType(symbol_25);  // pivot|CompleteType
+			Parameter symbol_147 = PivotFactory.eINSTANCE.createParameter();
+			symbol_147.setName("model");
+			symbol_147.setType(symbol_97);  // pivot|Type
+			symbol_146.getOwnedParameters().add(symbol_147);
+			symbol_21.getOwnedOperations().add(symbol_146);
 		}
 		symbol_1.getOwnedTypes().add(symbol_21);
 		//
-		// pivot.ecore::pivot::CompleteEnvironment pivot|CompleteEnvironment
+		// pivot.ecore::pivot::CompleteOperation pivot|CompleteOperation
 		//
-		symbol_22.setName("CompleteEnvironment");
-		symbol_22.getSuperClasses().add(symbol_67);
-		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteClass() pivot|CompleteEnvironment|getCompleteClass(pivot|Class)
-			Operation symbol_151 = PivotFactory.eINSTANCE.createOperation();
-			symbol_151.setName("getCompleteClass");
-			symbol_151.setType(symbol_21);  // pivot|CompleteClass
-			Parameter symbol_152 = PivotFactory.eINSTANCE.createParameter();
-			symbol_152.setName("model");
-			symbol_152.setType(symbol_13);  // pivot|Class
-			symbol_151.getOwnedParameters().add(symbol_152);
-			symbol_22.getOwnedOperations().add(symbol_151);
+		symbol_22.setName("CompleteOperation");
+		symbol_22.getSuperClasses().add(symbol_63);
+		{ // pivot.ecore::pivot::CompleteOperation::completeEnvironment pivot|CompleteOperation|completeEnvironment
+			Property symbol_148 = PivotFactory.eINSTANCE.createProperty();
+			symbol_148.setName("completeEnvironment");
+			symbol_148.setType(symbol_21);  // pivot|CompleteEnvironment
+			symbol_22.getOwnedAttributes().add(symbol_148);
 		}
-		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteOperation() pivot|CompleteEnvironment|getCompleteOperation(pivot|Operation)
-			Operation symbol_153 = PivotFactory.eINSTANCE.createOperation();
-			symbol_153.setName("getCompleteOperation");
-			symbol_153.setType(symbol_23);  // pivot|CompleteOperation
-			Parameter symbol_154 = PivotFactory.eINSTANCE.createParameter();
-			symbol_154.setName("model");
-			symbol_154.setType(symbol_63);  // pivot|Operation
-			symbol_153.getOwnedParameters().add(symbol_154);
-			symbol_22.getOwnedOperations().add(symbol_153);
+		{ // pivot.ecore::pivot::CompleteOperation::completeParameter pivot|CompleteOperation|completeParameter
+			Property symbol_149 = PivotFactory.eINSTANCE.createProperty();
+			symbol_149.setName("completeParameter");
+			symbol_149.setType(symbol_69);  // pivot|Parameter
+			symbol_22.getOwnedAttributes().add(symbol_149);
 		}
-		{	// pivot.ecore::pivot::CompleteEnvironment::getCompletePackage() pivot|CompleteEnvironment|getCompletePackage(pivot|Package)
-			Operation symbol_155 = PivotFactory.eINSTANCE.createOperation();
-			symbol_155.setName("getCompletePackage");
-			symbol_155.setType(symbol_24);  // pivot|CompletePackage
-			Parameter symbol_156 = PivotFactory.eINSTANCE.createParameter();
-			symbol_156.setName("model");
-			symbol_156.setType(symbol_67);  // pivot|Package
-			symbol_155.getOwnedParameters().add(symbol_156);
-			symbol_22.getOwnedOperations().add(symbol_155);
-		}
-		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteProperty() pivot|CompleteEnvironment|getCompleteProperty(pivot|Property)
-			Operation symbol_157 = PivotFactory.eINSTANCE.createOperation();
-			symbol_157.setName("getCompleteProperty");
-			symbol_157.setType(symbol_25);  // pivot|CompleteProperty
-			Parameter symbol_158 = PivotFactory.eINSTANCE.createParameter();
-			symbol_158.setName("model");
-			symbol_158.setType(symbol_75);  // pivot|Property
-			symbol_157.getOwnedParameters().add(symbol_158);
-			symbol_22.getOwnedOperations().add(symbol_157);
+		{ // pivot.ecore::pivot::CompleteOperation::model pivot|CompleteOperation|model
+			Property symbol_150 = PivotFactory.eINSTANCE.createProperty();
+			symbol_150.setName("model");
+			symbol_150.setType(symbol_63);  // pivot|Operation
+			symbol_22.getOwnedAttributes().add(symbol_150);
 		}
 		symbol_1.getOwnedTypes().add(symbol_22);
 		//
-		// pivot.ecore::pivot::CompleteOperation pivot|CompleteOperation
+		// pivot.ecore::pivot::CompletePackage pivot|CompletePackage
 		//
-		symbol_23.setName("CompleteOperation");
-		symbol_23.getSuperClasses().add(symbol_63);
-		{ // pivot.ecore::pivot::CompleteOperation::completeEnvironment pivot|CompleteOperation|completeEnvironment
-			Property symbol_159 = PivotFactory.eINSTANCE.createProperty();
-			symbol_159.setName("completeEnvironment");
-			symbol_159.setType(symbol_22);  // pivot|CompleteEnvironment
-			symbol_23.getOwnedAttributes().add(symbol_159);
+		symbol_23.setName("CompletePackage");
+		symbol_23.getSuperClasses().add(symbol_67);
+		{ // pivot.ecore::pivot::CompletePackage::completeEnvironment pivot|CompletePackage|completeEnvironment
+			Property symbol_151 = PivotFactory.eINSTANCE.createProperty();
+			symbol_151.setName("completeEnvironment");
+			symbol_151.setType(symbol_21);  // pivot|CompleteEnvironment
+			symbol_23.getOwnedAttributes().add(symbol_151);
 		}
-		{ // pivot.ecore::pivot::CompleteOperation::completeParameter pivot|CompleteOperation|completeParameter
-			Property symbol_160 = PivotFactory.eINSTANCE.createProperty();
-			symbol_160.setName("completeParameter");
-			symbol_160.setType(symbol_69);  // pivot|Parameter
-			symbol_23.getOwnedAttributes().add(symbol_160);
+		{ // pivot.ecore::pivot::CompletePackage::completePackage pivot|CompletePackage|completePackage
+			Property symbol_152 = PivotFactory.eINSTANCE.createProperty();
+			symbol_152.setName("completePackage");
+			symbol_152.setType(symbol_23);  // pivot|CompletePackage
+			symbol_23.getOwnedAttributes().add(symbol_152);
 		}
-		{ // pivot.ecore::pivot::CompleteOperation::model pivot|CompleteOperation|model
-			Property symbol_161 = PivotFactory.eINSTANCE.createProperty();
-			symbol_161.setName("model");
-			symbol_161.setType(symbol_63);  // pivot|Operation
-			symbol_23.getOwnedAttributes().add(symbol_161);
+		{ // pivot.ecore::pivot::CompletePackage::completeType pivot|CompletePackage|completeType
+			Property symbol_153 = PivotFactory.eINSTANCE.createProperty();
+			symbol_153.setName("completeType");
+			symbol_153.setType(symbol_25);  // pivot|CompleteType
+			symbol_23.getOwnedAttributes().add(symbol_153);
+		}
+		{ // pivot.ecore::pivot::CompletePackage::model pivot|CompletePackage|model
+			Property symbol_154 = PivotFactory.eINSTANCE.createProperty();
+			symbol_154.setName("model");
+			symbol_154.setType(symbol_67);  // pivot|Package
+			symbol_23.getOwnedAttributes().add(symbol_154);
 		}
 		symbol_1.getOwnedTypes().add(symbol_23);
 		//
-		// pivot.ecore::pivot::CompletePackage pivot|CompletePackage
+		// pivot.ecore::pivot::CompleteProperty pivot|CompleteProperty
 		//
-		symbol_24.setName("CompletePackage");
-		symbol_24.getSuperClasses().add(symbol_67);
-		{ // pivot.ecore::pivot::CompletePackage::completeClass pivot|CompletePackage|completeClass
-			Property symbol_162 = PivotFactory.eINSTANCE.createProperty();
-			symbol_162.setName("completeClass");
-			symbol_162.setType(symbol_21);  // pivot|CompleteClass
-			symbol_24.getOwnedAttributes().add(symbol_162);
+		symbol_24.setName("CompleteProperty");
+		symbol_24.getSuperClasses().add(symbol_75);
+		{ // pivot.ecore::pivot::CompleteProperty::completeEnvironment pivot|CompleteProperty|completeEnvironment
+			Property symbol_155 = PivotFactory.eINSTANCE.createProperty();
+			symbol_155.setName("completeEnvironment");
+			symbol_155.setType(symbol_21);  // pivot|CompleteEnvironment
+			symbol_24.getOwnedAttributes().add(symbol_155);
 		}
-		{ // pivot.ecore::pivot::CompletePackage::completeEnvironment pivot|CompletePackage|completeEnvironment
-			Property symbol_163 = PivotFactory.eINSTANCE.createProperty();
-			symbol_163.setName("completeEnvironment");
-			symbol_163.setType(symbol_22);  // pivot|CompleteEnvironment
-			symbol_24.getOwnedAttributes().add(symbol_163);
-		}
-		{ // pivot.ecore::pivot::CompletePackage::completePackage pivot|CompletePackage|completePackage
-			Property symbol_164 = PivotFactory.eINSTANCE.createProperty();
-			symbol_164.setName("completePackage");
-			symbol_164.setType(symbol_24);  // pivot|CompletePackage
-			symbol_24.getOwnedAttributes().add(symbol_164);
-		}
-		{ // pivot.ecore::pivot::CompletePackage::model pivot|CompletePackage|model
-			Property symbol_165 = PivotFactory.eINSTANCE.createProperty();
-			symbol_165.setName("model");
-			symbol_165.setType(symbol_67);  // pivot|Package
-			symbol_24.getOwnedAttributes().add(symbol_165);
+		{ // pivot.ecore::pivot::CompleteProperty::model pivot|CompleteProperty|model
+			Property symbol_156 = PivotFactory.eINSTANCE.createProperty();
+			symbol_156.setName("model");
+			symbol_156.setType(symbol_75);  // pivot|Property
+			symbol_24.getOwnedAttributes().add(symbol_156);
 		}
 		symbol_1.getOwnedTypes().add(symbol_24);
 		//
-		// pivot.ecore::pivot::CompleteProperty pivot|CompleteProperty
+		// pivot.ecore::pivot::CompleteType pivot|CompleteType
 		//
-		symbol_25.setName("CompleteProperty");
-		symbol_25.getSuperClasses().add(symbol_75);
-		{ // pivot.ecore::pivot::CompleteProperty::completeEnvironment pivot|CompleteProperty|completeEnvironment
-			Property symbol_166 = PivotFactory.eINSTANCE.createProperty();
-			symbol_166.setName("completeEnvironment");
-			symbol_166.setType(symbol_22);  // pivot|CompleteEnvironment
-			symbol_25.getOwnedAttributes().add(symbol_166);
+		symbol_25.setName("CompleteType");
+		symbol_25.getSuperClasses().add(symbol_13);
+		{ // pivot.ecore::pivot::CompleteType::completeEnvironment pivot|CompleteType|completeEnvironment
+			Property symbol_157 = PivotFactory.eINSTANCE.createProperty();
+			symbol_157.setName("completeEnvironment");
+			symbol_157.setType(symbol_21);  // pivot|CompleteEnvironment
+			symbol_25.getOwnedAttributes().add(symbol_157);
 		}
-		{ // pivot.ecore::pivot::CompleteProperty::model pivot|CompleteProperty|model
-			Property symbol_167 = PivotFactory.eINSTANCE.createProperty();
-			symbol_167.setName("model");
-			symbol_167.setType(symbol_75);  // pivot|Property
-			symbol_25.getOwnedAttributes().add(symbol_167);
+		{ // pivot.ecore::pivot::CompleteType::completeOperation pivot|CompleteType|completeOperation
+			Property symbol_158 = PivotFactory.eINSTANCE.createProperty();
+			symbol_158.setName("completeOperation");
+			symbol_158.setType(symbol_22);  // pivot|CompleteOperation
+			symbol_25.getOwnedAttributes().add(symbol_158);
+		}
+		{ // pivot.ecore::pivot::CompleteType::completeProperty pivot|CompleteType|completeProperty
+			Property symbol_159 = PivotFactory.eINSTANCE.createProperty();
+			symbol_159.setName("completeProperty");
+			symbol_159.setType(symbol_24);  // pivot|CompleteProperty
+			symbol_25.getOwnedAttributes().add(symbol_159);
+		}
+		{ // pivot.ecore::pivot::CompleteType::completeSuperType pivot|CompleteType|completeSuperType
+			Property symbol_160 = PivotFactory.eINSTANCE.createProperty();
+			symbol_160.setName("completeSuperType");
+			symbol_160.setType(symbol_25);  // pivot|CompleteType
+			symbol_25.getOwnedAttributes().add(symbol_160);
+		}
+		{ // pivot.ecore::pivot::CompleteType::model pivot|CompleteType|model
+			Property symbol_161 = PivotFactory.eINSTANCE.createProperty();
+			symbol_161.setName("model");
+			symbol_161.setType(symbol_97);  // pivot|Type
+			symbol_25.getOwnedAttributes().add(symbol_161);
+		}
+		{	// pivot.ecore::pivot::CompleteType::conformsTo() pivot|CompleteType|conformsTo(pivot|CompleteType)
+			Operation symbol_162 = PivotFactory.eINSTANCE.createOperation();
+			symbol_162.setName("conformsTo");
+			symbol_162.setType(symbol_8);  // pivot|Boolean
+			Parameter symbol_163 = PivotFactory.eINSTANCE.createParameter();
+			symbol_163.setName("aType");
+			symbol_163.setType(symbol_25);  // pivot|CompleteType
+			symbol_162.getOwnedParameters().add(symbol_163);
+			symbol_25.getOwnedOperations().add(symbol_162);
+		}
+		{	// pivot.ecore::pivot::CompleteType::getCompleteOperations() pivot|CompleteType|getCompleteOperations(pivot|String)
+			Operation symbol_164 = PivotFactory.eINSTANCE.createOperation();
+			symbol_164.setName("getCompleteOperations");
+			symbol_164.setType(symbol_22);  // pivot|CompleteOperation
+			Parameter symbol_165 = PivotFactory.eINSTANCE.createParameter();
+			symbol_165.setName("name");
+			symbol_165.setType(symbol_85);  // pivot|String
+			symbol_164.getOwnedParameters().add(symbol_165);
+			symbol_25.getOwnedOperations().add(symbol_164);
+		}
+		{	// pivot.ecore::pivot::CompleteType::getDynamicOperation() pivot|CompleteType|getDynamicOperation(pivot|CompleteOperation)
+			Operation symbol_166 = PivotFactory.eINSTANCE.createOperation();
+			symbol_166.setName("getDynamicOperation");
+			symbol_166.setType(symbol_22);  // pivot|CompleteOperation
+			Parameter symbol_167 = PivotFactory.eINSTANCE.createParameter();
+			symbol_167.setName("staticOperation");
+			symbol_167.setType(symbol_22);  // pivot|CompleteOperation
+			symbol_166.getOwnedParameters().add(symbol_167);
+			symbol_25.getOwnedOperations().add(symbol_166);
 		}
 		symbol_1.getOwnedTypes().add(symbol_25);
 		//
@@ -1196,8 +1196,8 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::NamedElement pivot|NamedElement
 		//
 		symbol_55.setName("NamedElement");
-		symbol_55.getSuperClasses().add(symbol_52);
 		symbol_55.getSuperClasses().add(symbol_54);
+		symbol_55.getSuperClasses().add(symbol_52);
 		{ // pivot.ecore::pivot::NamedElement::isStatic pivot|NamedElement|isStatic
 			Property symbol_221 = PivotFactory.eINSTANCE.createProperty();
 			symbol_221.setName("isStatic");
@@ -1292,12 +1292,12 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::Operation pivot|Operation
 		//
 		symbol_63.setName("Operation");
-		symbol_63.getSuperClasses().add(symbol_34);
-		symbol_63.getSuperClasses().add(symbol_92);
-		symbol_63.getSuperClasses().add(symbol_56);
 		symbol_63.getSuperClasses().add(symbol_37);
 		symbol_63.getSuperClasses().add(symbol_101);
+		symbol_63.getSuperClasses().add(symbol_92);
+		symbol_63.getSuperClasses().add(symbol_56);
 		symbol_63.getSuperClasses().add(symbol_70);
+		symbol_63.getSuperClasses().add(symbol_34);
 		{ // pivot.ecore::pivot::Operation::class pivot|Operation|class
 			Property symbol_229 = PivotFactory.eINSTANCE.createProperty();
 			symbol_229.setName("class");
@@ -1478,10 +1478,10 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::Property pivot|Property
 		//
 		symbol_75.setName("Property");
-		symbol_75.getSuperClasses().add(symbol_34);
 		symbol_75.getSuperClasses().add(symbol_37);
 		symbol_75.getSuperClasses().add(symbol_101);
 		symbol_75.getSuperClasses().add(symbol_70);
+		symbol_75.getSuperClasses().add(symbol_34);
 		{ // pivot.ecore::pivot::Property::association pivot|Property|association
 			Property symbol_247 = PivotFactory.eINSTANCE.createProperty();
 			symbol_247.setName("association");
@@ -1912,8 +1912,8 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::TypedMultiplicityElement pivot|TypedMultiplicityElement
 		//
 		symbol_101.setName("TypedMultiplicityElement");
-		symbol_101.getSuperClasses().add(symbol_53);
 		symbol_101.getSuperClasses().add(symbol_100);
+		symbol_101.getSuperClasses().add(symbol_53);
 		symbol_1.getOwnedTypes().add(symbol_101);
 		//
 		// pivot.ecore::pivot::UnlimitedNatural pivot|UnlimitedNatural
@@ -1942,8 +1942,8 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::ValueSpecification pivot|ValueSpecification
 		//
 		symbol_105.setName("ValueSpecification");
-		symbol_105.getSuperClasses().add(symbol_70);
 		symbol_105.getSuperClasses().add(symbol_100);
+		symbol_105.getSuperClasses().add(symbol_70);
 		{	// pivot.ecore::pivot::ValueSpecification::booleanValue() pivot|ValueSpecification|booleanValue()
 			Operation symbol_294 = PivotFactory.eINSTANCE.createOperation();
 			symbol_294.setName("booleanValue");

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.11 2010/12/31 19:12:30 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.12 2011/01/07 12:14:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -245,16 +245,6 @@ public interface PivotPackage
 	int COLLECTION_RANGE = 12;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl <em>Complete Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteClass()
-	 * @generated
-	 */
-	int COMPLETE_CLASS = 15;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteEnvironmentImpl <em>Complete Environment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -262,7 +252,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteEnvironment()
 	 * @generated
 	 */
-	int COMPLETE_ENVIRONMENT = 16;
+	int COMPLETE_ENVIRONMENT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl <em>Complete Operation</em>}' class.
@@ -272,7 +262,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteOperation()
 	 * @generated
 	 */
-	int COMPLETE_OPERATION = 17;
+	int COMPLETE_OPERATION = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl <em>Complete Package</em>}' class.
@@ -282,7 +272,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompletePackage()
 	 * @generated
 	 */
-	int COMPLETE_PACKAGE = 18;
+	int COMPLETE_PACKAGE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl <em>Complete Property</em>}' class.
@@ -292,7 +282,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteProperty()
 	 * @generated
 	 */
-	int COMPLETE_PROPERTY = 19;
+	int COMPLETE_PROPERTY = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -4375,294 +4365,6 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_CLASS__OWNED_COMMENT = CLASS__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__MONIKER = CLASS__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__NAME = CLASS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__PACKAGE = CLASS__PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__OWNED_OPERATION = CLASS__OWNED_OPERATION;
-
-	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__SUPER_CLASS = CLASS__SUPER_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__IS_INTERFACE = CLASS__IS_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__SUB_CLASS = CLASS__SUB_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__MODEL = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__COMPLETE_ENVIRONMENT = CLASS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Complete Operation</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__COMPLETE_OPERATION = CLASS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Complete Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__COMPLETE_PROPERTY = CLASS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Complete Super Class</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS__COMPLETE_SUPER_CLASS = CLASS_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Complete Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___HAS_MONIKER = CLASS___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Conforms To</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___CONFORMS_TO__COMPLETECLASS = CLASS_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Dynamic Operation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = CLASS_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Complete Operations</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS___GET_COMPLETE_OPERATIONS__STRING = CLASS_OPERATION_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Complete Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int NAMESPACE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
@@ -5071,22 +4773,13 @@ public interface PivotPackage
 	int COMPLETE_ENVIRONMENT___IS_TEMPLATE = PACKAGE___IS_TEMPLATE;
 
 	/**
-	 * The operation id for the '<em>Get Complete Class</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_CLASS__CLASS = PACKAGE_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Get Complete Operation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION = PACKAGE_OPERATION_COUNT + 1;
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION = PACKAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Complete Package</em>' operation.
@@ -5095,7 +4788,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE = PACKAGE_OPERATION_COUNT + 2;
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE = PACKAGE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Complete Property</em>' operation.
@@ -5104,7 +4797,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY = PACKAGE_OPERATION_COUNT + 3;
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY = PACKAGE_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Complete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE = PACKAGE_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Complete Environment</em>' class.
@@ -6106,13 +5808,13 @@ public interface PivotPackage
 	int COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT = PACKAGE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Complete Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Complete Type</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_PACKAGE__COMPLETE_CLASS = PACKAGE_FEATURE_COUNT + 2;
+	int COMPLETE_PACKAGE__COMPLETE_TYPE = PACKAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Complete Package</b></em>' reference list.
@@ -6905,6 +6607,304 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COMPLETE_PROPERTY_OPERATION_COUNT = PROPERTY_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl <em>Complete Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteType()
+	 * @generated
+	 */
+	int COMPLETE_TYPE = 19;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__MONIKER = CLASS__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__NAME = CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__IS_STATIC = CLASS__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__PACKAGE = CLASS__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__SUB_CLASS = CLASS__SUB_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__MODEL = CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__COMPLETE_ENVIRONMENT = CLASS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Complete Operation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__COMPLETE_OPERATION = CLASS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Complete Property</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__COMPLETE_PROPERTY = CLASS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Complete Super Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__COMPLETE_SUPER_TYPE = CLASS_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Complete Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE___HAS_MONIKER = CLASS___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
+
+	/**
+	 * The operation id for the '<em>Conforms To</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE___CONFORMS_TO__COMPLETETYPE = CLASS_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Dynamic Operation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = CLASS_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Complete Operations</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE___GET_COMPLETE_OPERATIONS__STRING = CLASS_OPERATION_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Complete Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -15173,101 +15173,6 @@ public interface PivotPackage
 	EReference getCollectionRange_Last();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteClass <em>Complete Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complete Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass
-	 * @generated
-	 */
-	EClass getCompleteClass();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getModel()
-	 * @see #getCompleteClass()
-	 * @generated
-	 */
-	EReference getCompleteClass_Model();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteEnvironment <em>Complete Environment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Complete Environment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteEnvironment()
-	 * @see #getCompleteClass()
-	 * @generated
-	 */
-	EReference getCompleteClass_CompleteEnvironment();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteOperations <em>Complete Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Operation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteOperations()
-	 * @see #getCompleteClass()
-	 * @generated
-	 */
-	EReference getCompleteClass_CompleteOperation();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteProperties <em>Complete Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Property</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteProperties()
-	 * @see #getCompleteClass()
-	 * @generated
-	 */
-	EReference getCompleteClass_CompleteProperty();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteSuperClasses <em>Complete Super Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Super Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteSuperClasses()
-	 * @see #getCompleteClass()
-	 * @generated
-	 */
-	EReference getCompleteClass_CompleteSuperClass();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteClass#conformsTo(org.eclipse.ocl.examples.pivot.CompleteClass) <em>Conforms To</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Conforms To</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#conformsTo(org.eclipse.ocl.examples.pivot.CompleteClass)
-	 * @generated
-	 */
-	EOperation getCompleteClass__ConformsTo__CompleteClass();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteOperation) <em>Get Dynamic Operation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Dynamic Operation</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteOperation)
-	 * @generated
-	 */
-	EOperation getCompleteClass__GetDynamicOperation__CompleteOperation();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteOperations(java.lang.String) <em>Get Complete Operations</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Operations</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getCompleteOperations(java.lang.String)
-	 * @generated
-	 */
-	EOperation getCompleteClass__GetCompleteOperations__String();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment <em>Complete Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15276,16 +15181,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getCompleteEnvironment();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteClass(org.eclipse.ocl.examples.pivot.Class) <em>Get Complete Class</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Class</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteClass(org.eclipse.ocl.examples.pivot.Class)
-	 * @generated
-	 */
-	EOperation getCompleteEnvironment__GetCompleteClass__Class();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteOperation(org.eclipse.ocl.examples.pivot.Operation) <em>Get Complete Operation</em>}' operation.
@@ -15316,6 +15211,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getCompleteEnvironment__GetCompleteProperty__Property();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteType(org.eclipse.ocl.examples.pivot.Type) <em>Get Complete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Complete Type</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteType(org.eclipse.ocl.examples.pivot.Type)
+	 * @generated
+	 */
+	EOperation getCompleteEnvironment__GetCompleteType__Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteOperation <em>Complete Operation</em>}'.
@@ -15393,15 +15298,15 @@ public interface PivotPackage
 	EReference getCompletePackage_CompleteEnvironment();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteClasses <em>Complete Class</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes <em>Complete Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteClasses()
+	 * @return the meta object for the reference list '<em>Complete Type</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes()
 	 * @see #getCompletePackage()
 	 * @generated
 	 */
-	EReference getCompletePackage_CompleteClass();
+	EReference getCompletePackage_CompleteType();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompletePackages <em>Complete Package</em>}'.
@@ -15445,6 +15350,101 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCompleteProperty_CompleteEnvironment();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteType <em>Complete Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complete Type</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType
+	 * @generated
+	 */
+	EClass getCompleteType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteType#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getModel()
+	 * @see #getCompleteType()
+	 * @generated
+	 */
+	EReference getCompleteType_Model();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment <em>Complete Environment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Complete Environment</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment()
+	 * @see #getCompleteType()
+	 * @generated
+	 */
+	EReference getCompleteType_CompleteEnvironment();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations <em>Complete Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Complete Operation</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations()
+	 * @see #getCompleteType()
+	 * @generated
+	 */
+	EReference getCompleteType_CompleteOperation();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteProperties <em>Complete Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Complete Property</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteProperties()
+	 * @see #getCompleteType()
+	 * @generated
+	 */
+	EReference getCompleteType_CompleteProperty();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteSuperTypes <em>Complete Super Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Complete Super Type</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteSuperTypes()
+	 * @see #getCompleteType()
+	 * @generated
+	 */
+	EReference getCompleteType_CompleteSuperType();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#conformsTo(org.eclipse.ocl.examples.pivot.CompleteType) <em>Conforms To</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Conforms To</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#conformsTo(org.eclipse.ocl.examples.pivot.CompleteType)
+	 * @generated
+	 */
+	EOperation getCompleteType__ConformsTo__CompleteType();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteOperation) <em>Get Dynamic Operation</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Dynamic Operation</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteOperation)
+	 * @generated
+	 */
+	EOperation getCompleteType__GetDynamicOperation__CompleteOperation();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations(java.lang.String) <em>Get Complete Operations</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Complete Operations</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations(java.lang.String)
+	 * @generated
+	 */
+	EOperation getCompleteType__GetCompleteOperations__String();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.EnumLiteralExp <em>Enum Literal Exp</em>}'.
@@ -18323,80 +18323,6 @@ public interface PivotPackage
 		EReference COLLECTION_RANGE__LAST = eINSTANCE.getCollectionRange_Last();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl <em>Complete Class</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteClass()
-		 * @generated
-		 */
-		EClass COMPLETE_CLASS = eINSTANCE.getCompleteClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_CLASS__MODEL = eINSTANCE.getCompleteClass_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_CLASS__COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteClass_CompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Operation</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_CLASS__COMPLETE_OPERATION = eINSTANCE.getCompleteClass_CompleteOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Property</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_CLASS__COMPLETE_PROPERTY = eINSTANCE.getCompleteClass_CompleteProperty();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Super Class</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_CLASS__COMPLETE_SUPER_CLASS = eINSTANCE.getCompleteClass_CompleteSuperClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Conforms To</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_CLASS___CONFORMS_TO__COMPLETECLASS = eINSTANCE.getCompleteClass__ConformsTo__CompleteClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Dynamic Operation</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_CLASS___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = eINSTANCE.getCompleteClass__GetDynamicOperation__CompleteOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Operations</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_CLASS___GET_COMPLETE_OPERATIONS__STRING = eINSTANCE.getCompleteClass__GetCompleteOperations__String();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteEnvironmentImpl <em>Complete Environment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18405,14 +18331,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Class</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_CLASS__CLASS = eINSTANCE.getCompleteEnvironment__GetCompleteClass__Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Complete Operation</b></em>' operation.
@@ -18437,6 +18355,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY = eINSTANCE.getCompleteEnvironment__GetCompleteProperty__Property();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Complete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE = eINSTANCE.getCompleteEnvironment__GetCompleteType__Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl <em>Complete Operation</em>}' class.
@@ -18499,12 +18425,12 @@ public interface PivotPackage
 		EReference COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT = eINSTANCE.getCompletePackage_CompleteEnvironment();
 
 		/**
-		 * The meta object literal for the '<em><b>Complete Class</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Complete Type</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPLETE_PACKAGE__COMPLETE_CLASS = eINSTANCE.getCompletePackage_CompleteClass();
+		EReference COMPLETE_PACKAGE__COMPLETE_TYPE = eINSTANCE.getCompletePackage_CompleteType();
 
 		/**
 		 * The meta object literal for the '<em><b>Complete Package</b></em>' reference list feature.
@@ -18539,6 +18465,80 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteProperty_CompleteEnvironment();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl <em>Complete Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteType()
+		 * @generated
+		 */
+		EClass COMPLETE_TYPE = eINSTANCE.getCompleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_TYPE__MODEL = eINSTANCE.getCompleteType_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_TYPE__COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteType_CompleteEnvironment();
+
+		/**
+		 * The meta object literal for the '<em><b>Complete Operation</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_TYPE__COMPLETE_OPERATION = eINSTANCE.getCompleteType_CompleteOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Complete Property</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_TYPE__COMPLETE_PROPERTY = eINSTANCE.getCompleteType_CompleteProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Complete Super Type</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_TYPE__COMPLETE_SUPER_TYPE = eINSTANCE.getCompleteType_CompleteSuperType();
+
+		/**
+		 * The meta object literal for the '<em><b>Conforms To</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLETE_TYPE___CONFORMS_TO__COMPLETETYPE = eINSTANCE.getCompleteType__ConformsTo__CompleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Dynamic Operation</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = eINSTANCE.getCompleteType__GetDynamicOperation__CompleteOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Complete Operations</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLETE_TYPE___GET_COMPLETE_OPERATIONS__STRING = eINSTANCE.getCompleteType__GetCompleteOperations__String();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.

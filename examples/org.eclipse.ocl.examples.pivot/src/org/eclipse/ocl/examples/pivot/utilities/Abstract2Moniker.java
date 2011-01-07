@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.1.2.5 2010/12/28 12:17:30 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.1.2.6 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -23,6 +23,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -39,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 public abstract class Abstract2Moniker implements PivotConstants
 {			
 	private static final Logger logger = Logger.getLogger(Abstract2Moniker.class);
+	public static final TracingOption TRACE_MONIKERS = new TracingOption("org.eclipse.ocl.examples.pivot", "traceMonikers");  //$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The CS element for which a moniker is required.
@@ -116,7 +118,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 		if (monikeredElement instanceof TemplateableElement) {
 			List<TemplateBinding> templateBindings = ((TemplateableElement)monikeredElement).getTemplateBindings();
 			if (!templateBindings.isEmpty()) {
-				appendName(templateBindings.get(0).getSignature().getTemplate());
+				appendName(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)monikeredElement));
 				return;
 			}
 		}
@@ -199,33 +201,6 @@ public abstract class Abstract2Moniker implements PivotConstants
 				if (index != 0) {
 					append(index);
 				}
-			}
-		}
-	}
-	
-	public void appendSignature(TemplateSignature signature, TemplateableElement object) {
-		if (signature != null) {
-			TemplateableElement template = signature.getTemplate();
-//			assert template != object;			// Infinite recursion
-//			int savedContext = pushBindings(object);
-			try {
-				appendElement(template);
-			}
-			finally {
-//				popBindings(savedContext);
-			}
-		}
-	}
-
-	public void appendSignature(TemplateSignature signature, TemplateBinding object) {
-		if (signature != null) {
-			TemplateableElement template = signature.getTemplate();
-//			int savedContext = pushBindings(object);
-			try {
-				appendElement(template);
-			}
-			finally {
-//				popBindings(savedContext);
 			}
 		}
 	}

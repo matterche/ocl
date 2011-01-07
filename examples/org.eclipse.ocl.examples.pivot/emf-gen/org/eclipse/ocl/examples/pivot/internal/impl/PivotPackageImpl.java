@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.11 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.12 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -164,13 +164,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass completeClassEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass completeEnvironmentEClass = null;
 
 	/**
@@ -193,6 +186,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass completePropertyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass completeTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1248,95 +1248,10 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompleteClass() {
-		if (completeClassEClass == null)
-		{
-			completeClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(26);
-		}
-		return completeClassEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteClass_Model() {
-        return (EReference)getCompleteClass().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteClass_CompleteEnvironment() {
-        return (EReference)getCompleteClass().getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteClass_CompleteOperation() {
-        return (EReference)getCompleteClass().getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteClass_CompleteProperty() {
-        return (EReference)getCompleteClass().getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteClass_CompleteSuperClass() {
-        return (EReference)getCompleteClass().getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteClass__ConformsTo__CompleteClass() {
-        return getCompleteClass().getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteClass__GetDynamicOperation__CompleteOperation() {
-        return getCompleteClass().getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteClass__GetCompleteOperations__String() {
-        return getCompleteClass().getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getCompleteEnvironment() {
 		if (completeEnvironmentEClass == null)
 		{
-			completeEnvironmentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(27);
+			completeEnvironmentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(26);
 		}
 		return completeEnvironmentEClass;
 	}
@@ -1346,7 +1261,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompleteClass__Class() {
+	public EOperation getCompleteEnvironment__GetCompleteOperation__Operation() {
         return getCompleteEnvironment().getEOperations().get(0);
 	}
 
@@ -1355,7 +1270,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompleteOperation__Operation() {
+	public EOperation getCompleteEnvironment__GetCompletePackage__Package() {
         return getCompleteEnvironment().getEOperations().get(1);
 	}
 
@@ -1364,7 +1279,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompletePackage__Package() {
+	public EOperation getCompleteEnvironment__GetCompleteProperty__Property() {
         return getCompleteEnvironment().getEOperations().get(2);
 	}
 
@@ -1373,7 +1288,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCompleteEnvironment__GetCompleteProperty__Property() {
+	public EOperation getCompleteEnvironment__GetCompleteType__Type()
+	{
         return getCompleteEnvironment().getEOperations().get(3);
 	}
 
@@ -1385,7 +1301,7 @@ public class PivotPackageImpl
 	public EClass getCompleteOperation() {
 		if (completeOperationEClass == null)
 		{
-			completeOperationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(28);
+			completeOperationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(27);
 		}
 		return completeOperationEClass;
 	}
@@ -1425,7 +1341,7 @@ public class PivotPackageImpl
 	public EClass getCompletePackage() {
 		if (completePackageEClass == null)
 		{
-			completePackageEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(29);
+			completePackageEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(28);
 		}
 		return completePackageEClass;
 	}
@@ -1453,7 +1369,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompletePackage_CompleteClass() {
+	public EReference getCompletePackage_CompleteType()
+	{
         return (EReference)getCompletePackage().getEStructuralFeatures().get(2);
 	}
 
@@ -1474,7 +1391,7 @@ public class PivotPackageImpl
 	public EClass getCompleteProperty() {
 		if (completePropertyEClass == null)
 		{
-			completePropertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(30);
+			completePropertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(29);
 		}
 		return completePropertyEClass;
 	}
@@ -1495,6 +1412,100 @@ public class PivotPackageImpl
 	 */
 	public EReference getCompleteProperty_CompleteEnvironment() {
         return (EReference)getCompleteProperty().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompleteType()
+	{
+		if (completeTypeEClass == null)
+		{
+			completeTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI).getEClassifiers().get(30);
+		}
+		return completeTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteType_Model()
+	{
+        return (EReference)getCompleteType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteType_CompleteEnvironment()
+	{
+        return (EReference)getCompleteType().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteType_CompleteOperation()
+	{
+        return (EReference)getCompleteType().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteType_CompleteProperty()
+	{
+        return (EReference)getCompleteType().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteType_CompleteSuperType()
+	{
+        return (EReference)getCompleteType().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCompleteType__ConformsTo__CompleteType()
+	{
+        return getCompleteType().getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCompleteType__GetDynamicOperation__CompleteOperation()
+	{
+        return getCompleteType().getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCompleteType__GetCompleteOperations__String()
+	{
+        return getCompleteType().getEOperations().get(2);
 	}
 
 	/**

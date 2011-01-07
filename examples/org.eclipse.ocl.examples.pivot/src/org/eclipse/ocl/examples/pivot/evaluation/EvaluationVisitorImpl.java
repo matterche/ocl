@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.9 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.10 2011/01/07 12:14:06 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -37,8 +37,8 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
@@ -540,7 +540,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitOperationCallExp(OperationCallExp operationCallExp) {
-		OclExpression source = operationCallExp.getSource();	// FIXME self
+		OclExpression source = operationCallExp.getSource();
 		Value sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
 /*		if (sourceValue instanceof TypeValue) {
 			Type dynamicSourceType = ((TypeValue)sourceValue).getType();
@@ -556,7 +556,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			Operation staticOperation = operationCallExp.getReferredOperation();
 			CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
 			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-			CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
+			CompleteType dynamicCompleteClass = completeManager.getCompleteType(dynamicSourceType);
 			CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
 			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
 //		}

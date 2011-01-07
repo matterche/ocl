@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.1.2.5 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -26,6 +26,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -64,6 +65,15 @@ public class PivotSaver
 				}
 			}
 			return null;
+		}
+
+		@Override
+		public Object visitCollectionType(CollectionType object) {
+			Type referredType = object.getElementType();
+			if ((referredType != null) && (isOrphanType(referredType))) {
+				specializingElements.add(object);
+			}
+			return super.visitCollectionType(object);
 		}
 
 		@Override
@@ -135,7 +145,7 @@ public class PivotSaver
 			String moniker = referredType.getMoniker();
 			Type type = types.get(moniker);
 			if (type != null) {
-				@SuppressWarnings("unchecked")
+				@SuppressWarnings("unchecked") 
 				T castType = (T) type;
 				return castType;
 			}
@@ -159,6 +169,16 @@ public class PivotSaver
 				}
 			}
 			return null;
+		}
+
+		@Override
+		public Object visitCollectionType(CollectionType object) {
+			Type referredType = object.getElementType();
+			Type resolvedType = resolveType(referredType);
+			if (resolvedType != null) {
+				object.setElementType(resolvedType);
+			}
+			return super.visitCollectionType(object);
 		}
 
 		@Override

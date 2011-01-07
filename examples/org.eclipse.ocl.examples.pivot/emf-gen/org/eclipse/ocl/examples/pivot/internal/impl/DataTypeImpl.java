@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataTypeImpl.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: DataTypeImpl.java,v 1.1.2.5 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -372,18 +372,12 @@ public class DataTypeImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isSerializable: "); //$NON-NLS-1$
-		result.append((eFlags & IS_SERIALIZABLE_EFLAG) != 0);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 	@Override

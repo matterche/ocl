@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: InvalidTypeImpl.java,v 1.1.2.5 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,4 +53,8 @@ public class InvalidTypeImpl
 		return PivotPackage.Literals.INVALID_TYPE;
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitInvalidType(this);
+	}
 } //InvalidTypeImpl

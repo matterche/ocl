@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.1.2.1 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.1.2.2 2011/01/07 12:14:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Pivot2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
@@ -130,7 +131,7 @@ public class Pivot2EcoreTypeRefVisitor
 			return ((TypeImpl)pivotType).getTarget();
 		}
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
-		EObject rawType = safeVisit(templateBindings.get(0).getSignature().getTemplate());
+		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement(pivotType));
 		eGenericType.setEClassifier((EClassifier) rawType);
 		// FIXME signature ordering, multiple bindings
 		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitutions());

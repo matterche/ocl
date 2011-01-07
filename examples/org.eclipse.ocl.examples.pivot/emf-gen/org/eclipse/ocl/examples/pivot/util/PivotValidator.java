@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.8 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.9 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -41,7 +41,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
@@ -333,8 +333,6 @@ public class PivotValidator
 				return validateCollectionType((CollectionType)value, diagnostics, context);
 			case PivotPackage.COMMENT:
 				return validateComment((Comment)value, diagnostics, context);
-			case PivotPackage.COMPLETE_CLASS:
-				return validateCompleteClass((CompleteClass)value, diagnostics, context);
 			case PivotPackage.COMPLETE_ENVIRONMENT:
 				return validateCompleteEnvironment((CompleteEnvironment)value, diagnostics, context);
 			case PivotPackage.COMPLETE_OPERATION:
@@ -343,6 +341,8 @@ public class PivotValidator
 				return validateCompletePackage((CompletePackage)value, diagnostics, context);
 			case PivotPackage.COMPLETE_PROPERTY:
 				return validateCompleteProperty((CompleteProperty)value, diagnostics, context);
+			case PivotPackage.COMPLETE_TYPE:
+				return validateCompleteType((CompleteType)value, diagnostics, context);
 			case PivotPackage.CONSTRAINT:
 				return validateConstraint((Constraint)value, diagnostics, context);
 			case PivotPackage.DATA_TYPE:
@@ -1029,16 +1029,6 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCompleteClass(CompleteClass completeClass,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)completeClass, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateCompleteEnvironment(
 			CompleteEnvironment completeEnvironment,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -1098,6 +1088,16 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(completeProperty, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProperty_validateBindingToAttribute(completeProperty, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompleteType(CompleteType completeType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)completeType, diagnostics, context);
 	}
 
 	/**

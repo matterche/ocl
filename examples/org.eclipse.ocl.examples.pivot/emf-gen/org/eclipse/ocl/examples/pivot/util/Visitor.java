@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: Visitor.java,v 1.1.2.9 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Visitor.java,v 1.1.2.10 2011/01/07 12:14:05 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -62,11 +62,11 @@ public interface Visitor<R, C>
 	R visitCollectionRange(org.eclipse.ocl.examples.pivot.CollectionRange object);
 	R visitCollectionType(org.eclipse.ocl.examples.pivot.CollectionType object);
 	R visitComment(org.eclipse.ocl.examples.pivot.Comment object);
-	R visitCompleteClass(org.eclipse.ocl.examples.pivot.CompleteClass object);
 	R visitCompleteEnvironment(org.eclipse.ocl.examples.pivot.CompleteEnvironment object);
 	R visitCompleteOperation(org.eclipse.ocl.examples.pivot.CompleteOperation object);
 	R visitCompletePackage(org.eclipse.ocl.examples.pivot.CompletePackage object);
 	R visitCompleteProperty(org.eclipse.ocl.examples.pivot.CompleteProperty object);
+	R visitCompleteType(org.eclipse.ocl.examples.pivot.CompleteType object);
 	R visitConstraint(org.eclipse.ocl.examples.pivot.Constraint object);
 	R visitDataType(org.eclipse.ocl.examples.pivot.DataType object);
 	R visitDetail(org.eclipse.ocl.examples.pivot.Detail object);

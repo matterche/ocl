@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullVisitor.java,v 1.1.2.9 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: AbstractNullVisitor.java,v 1.1.2.10 2011/01/07 12:14:05 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -101,10 +101,6 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
-	public R visitCompleteClass(org.eclipse.ocl.examples.pivot.CompleteClass object) {
-		return null;
-	}
-
 	public R visitCompleteEnvironment(org.eclipse.ocl.examples.pivot.CompleteEnvironment object) {
 		return null;
 	}
@@ -118,6 +114,10 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public R visitCompleteProperty(org.eclipse.ocl.examples.pivot.CompleteProperty object) {
+		return null;
+	}
+
+	public R visitCompleteType(org.eclipse.ocl.examples.pivot.CompleteType object) {
 		return null;
 	}
 

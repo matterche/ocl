@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: BagTypeImpl.java,v 1.1.2.4 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,4 +53,8 @@ public class BagTypeImpl
 		return PivotPackage.Literals.BAG_TYPE;
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitBagType(this);
+	}
 } //BagTypeImpl

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.6 2010/12/28 12:17:30 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.7 2011/01/07 12:14:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
@@ -131,6 +133,52 @@ public class PivotUtil
 		return castAdapter;
 	}
 
+	public static List<TemplateParameter> getAllTemplateParameters(Collection<TemplateBinding> templateBindings) {
+		List<TemplateParameter> list = null;
+		for (TemplateBinding templateBinding : templateBindings) {	// FIXME Establish ordering
+			TemplateSignature templateSignature = templateBinding.getSignature();
+			if (templateSignature != null) {
+				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				if (templateParameters.size() > 0) {
+					if (list == null) {
+						list = new ArrayList<TemplateParameter>();
+					}
+					list.addAll(templateParameters);
+				}
+			}
+		}
+		return list != null ? list : Collections.<TemplateParameter>emptyList();
+	}
+
+/*	public static List<TemplateParameter> getAllTemplateParameters(TemplateableElement templateableElement) {
+		List<TemplateParameter> list = null;
+		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof TemplateableElement) {
+				TemplateSignature ownedTemplateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
+				if (ownedTemplateSignature != null) {
+					List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
+					if (templateParameters.size() > 0) {
+						if (list == null) {
+							list = new ArrayList<TemplateParameter>();
+						}
+						list.addAll(templateParameters);
+					}
+				}
+			}
+		}
+		return list != null ? list : Collections.<TemplateParameter>emptyList();
+	} */
+
+	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(TemplateableElement templateableElement) {
+		Map<TemplateParameter, ParameterableElement> map = new HashMap<TemplateParameter, ParameterableElement>();
+		for (TemplateBinding templateBinding : templateableElement.getTemplateBindings()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
+			}
+		}
+		return map;
+	}
+
 	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {
 		if (elements == null)
 			return null;
@@ -231,11 +279,23 @@ public class PivotUtil
 		return results;
 	}
 
-	public static org.eclipse.ocl.examples.pivot.Class getTemplateableClass(org.eclipse.ocl.examples.pivot.Class object) {
-		TemplateBinding templateBinding = object.getTemplateBindings().get(0);
+//	public static org.eclipse.ocl.examples.pivot.Class getTemplateableClass(org.eclipse.ocl.examples.pivot.Class object) {
+//		TemplateBinding templateBinding = object.getTemplateBindings().get(0);
+//		TemplateSignature templateSignature = templateBinding.getSignature();
+//		TemplateableElement unspecializedClass = templateSignature.getTemplate();
+//		return (org.eclipse.ocl.examples.pivot.Class)unspecializedClass;
+//	}
+
+	public static <T extends TemplateableElement> T getUnspecializedTemplateableElement(T templateableElement) {
+		List<TemplateBinding> templateBindings = templateableElement.getTemplateBindings();
+		if (templateBindings.size() <= 0) {
+			return templateableElement;			
+		}
+		TemplateBinding templateBinding = templateBindings.get(templateBindings.size()-1);		// FIXME ordering so that most derived is last
 		TemplateSignature templateSignature = templateBinding.getSignature();
-		TemplateableElement unspecializedClass = templateSignature.getTemplate();
-		return (org.eclipse.ocl.examples.pivot.Class)unspecializedClass;
+		@SuppressWarnings("unchecked")
+		T unspecializedTemplateableElement = (T) templateSignature.getTemplate();
+		return unspecializedTemplateableElement;
 	}
 
 	public static <T extends MonikeredElement> List<T> sortByMoniker(List<T> list) {
