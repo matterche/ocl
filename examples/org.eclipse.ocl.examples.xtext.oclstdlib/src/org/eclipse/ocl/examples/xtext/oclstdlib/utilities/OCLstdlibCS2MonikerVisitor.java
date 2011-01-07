@@ -12,16 +12,18 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.1.2.1 2010/12/19 18:33:48 ewillink Exp $
+ * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.1.2.2 2011/01/07 12:13:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
+import org.eclipse.ocl.ecore.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
@@ -48,6 +50,15 @@ public class OCLstdlibCS2MonikerVisitor
 	@SuppressWarnings("unchecked")
 	public OCLstdlibCS2MonikerVisitor(CS2Moniker context) {
 		super((EssentialOCLCSVisitor<Object, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+	}
+
+	@Override
+	public Object visitLibClassCS(LibClassCS object) {
+		if (PrimitiveType.class.getSimpleName().equals(object.getMetaTypeName())) {
+			context.appendNameCS(object);
+			return true;
+		}
+		return super.visitLibClassCS(object);
 	}
 
 	@Override
