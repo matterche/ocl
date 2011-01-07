@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.8.6.5 2010/12/06 18:47:46 ewillink Exp $
+ * $Id: LoadTests.java,v 1.8.6.6 2011/01/07 12:16:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -48,6 +49,7 @@ public class LoadTests extends XtextTestCase
 	@Override
 	protected void tearDown() throws Exception {
 		pivotManager = null;
+		StandardLibraryContribution.REGISTRY.put(PivotManager.DEFAULT_OCL_STDLIB_URI, null);
 		super.tearDown();
 	}
 
@@ -191,6 +193,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
+		StandardLibraryContribution.REGISTRY.put(PivotManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource resource = doLoad_Concrete("oclstdlib", "oclstdlib");
 		checkSignatures(resource);
 	}

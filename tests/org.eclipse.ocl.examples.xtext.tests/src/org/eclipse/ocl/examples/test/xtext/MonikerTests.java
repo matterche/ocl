@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.1.2.5 2010/12/19 17:47:05 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.1.2.6 2011/01/07 12:16:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -252,6 +252,7 @@ public class MonikerTests extends XtextTestCase
 
 //	public void testMoniker_midi_oclstdlib() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 //		doMonikerTestOCLstdlib("midi");
 //	}
 
