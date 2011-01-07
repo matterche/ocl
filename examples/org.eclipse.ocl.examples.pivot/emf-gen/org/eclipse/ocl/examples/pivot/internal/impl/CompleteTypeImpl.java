@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteTypeImpl.java,v 1.1.2.1 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: CompleteTypeImpl.java,v 1.1.2.2 2011/01/07 13:45:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -250,14 +251,12 @@ public class CompleteTypeImpl
 		CompleteOperation dynamicOperation = dynamicOperationMap.get(staticOperation);
 		if ((dynamicOperation == null)
 			&& !dynamicOperationMap.containsKey(staticOperation)) {
-			List<CompleteType> staticClasses = new ArrayList<CompleteType>();
+			List<CompleteType> staticCompleteTypes = new ArrayList<CompleteType>();
 			for (Parameter staticParameter : staticOperation.getCompleteParameters()) {
-				Type staticType = staticParameter.getType();
-				CompleteType staticClass = completeEnvironment.getCompleteType(staticType);
-				staticClasses.add(staticClass);
+				staticCompleteTypes.add(resolveType(staticParameter.getType()));
 			}
 			Set<CompleteOperation> dynamicOperations = findOperationsOrNull(
-				this, staticOperation.getName(), staticClasses);
+				this, staticOperation.getName(), staticCompleteTypes);
 			if ((dynamicOperations != null) && (dynamicOperations.size() == 1)) {
 				dynamicOperation = dynamicOperations.iterator().next();
 			}
@@ -266,20 +265,28 @@ public class CompleteTypeImpl
 		return dynamicOperation;
 	}
 
-	private Set<CompleteOperation> findOperationsOrNull(CompleteType completeClass,
-			String staticName, List<CompleteType> staticClasses) {
-		int staticSize = staticClasses.size();
+	private CompleteType resolveType(Type type) {
+		TemplateParameter templateParameter = type.getOwningTemplateParameter();
+		if (templateParameter != null) {
+			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(model);
+			type = (Type) templateParameterSubstitutions.get(templateParameter);
+		}
+		return completeEnvironment.getCompleteType(type);
+	}
+
+	private Set<CompleteOperation> findOperationsOrNull(CompleteType completeType,
+			String operationName, List<CompleteType> staticCompleteTypes) {
+		int staticParametersSize = staticCompleteTypes.size();
 		Set<CompleteOperation> list = null;
-		for (CompleteOperation dynamicOperation : completeClass.getCompleteOperations(staticName)) {
+		for (CompleteOperation dynamicOperation : completeType.getCompleteOperations(operationName)) {
 			List<Parameter> dynamicParameters = dynamicOperation.getCompleteParameters();
-			if (staticSize == dynamicParameters.size()) {
+			if (staticParametersSize == dynamicParameters.size()) {
 				boolean gotIt = true;
-				for (int i = 0; i < staticSize; i++) {
-					CompleteType staticClass = staticClasses.get(i);
+				for (int i = 0; i < staticParametersSize; i++) {
+					CompleteType staticCompleteType = staticCompleteTypes.get(i);
 					Parameter dynamicParameter = dynamicParameters.get(i);
-					Type dynamicType = dynamicParameter.getType();
-					CompleteType dynamicClass = completeEnvironment.getCompleteType(dynamicType);
-					if (!dynamicClass.conformsTo(staticClass)) {
+					CompleteType dynamicCompleteType = resolveType(dynamicParameter.getType());
+					if (!dynamicCompleteType.conformsTo(staticCompleteType)) {
 						gotIt = false;
 					}
 				}
@@ -292,9 +299,9 @@ public class CompleteTypeImpl
 			}
 		}
 		if (list == null) {
-			for (CompleteType completeSuperClass : completeClass.getCompleteSuperTypes()) {
+			for (CompleteType completeSuperType : completeType.getCompleteSuperTypes()) {
 				Set<CompleteOperation> superOperations = findOperationsOrNull(
-					completeSuperClass, staticName, staticClasses);
+					completeSuperType, operationName, staticCompleteTypes);
 				if (superOperations != null) {
 					if (list == null) {
 						list = superOperations;
