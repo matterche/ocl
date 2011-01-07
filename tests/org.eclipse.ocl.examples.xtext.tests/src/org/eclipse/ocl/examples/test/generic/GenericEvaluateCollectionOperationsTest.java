@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.3 2010/12/26 15:23:27 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.4 2011/01/07 13:44:34 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -759,6 +759,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionInsertAt() {
+		// For now resolve Issue 14980 semantics by by first removing an existing content
 		assertQueryResults(null, "Sequence{'c', 'a', 'b'}", "Sequence{'a', 'b'}->insertAt(1, 'c')");
 		assertQueryResults(null, "OrderedSet{'a', 'c', 'b'}", "OrderedSet{'a', 'b'}->insertAt(2, 'c')");
 
@@ -782,13 +783,16 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryInvalid(null, "OrderedSet{'a'}->insertAt(0, 'b')");
 		assertQueryInvalid(null, "Sequence{'a'}->insertAt(3, 'b')");
 		assertQueryInvalid(null, "OrderedSet{'a'}->insertAt(3, 'b')");
+		assertQueryInvalid(null, "OrderedSet{'a'}->insertAt(2, 'a')");
 		// duplicates
 		assertQueryResults(null, "Sequence{'b', 'a', 'b', 'c'}", "Sequence{'a', 'b', 'c'}->insertAt(1, 'b')");
 		assertQueryResults(null, "Sequence{'a', 'b', 'c', 'b'}", "Sequence{'a', 'b', 'c'}->insertAt(4, 'b')");
 		assertQueryResults(null, "OrderedSet{'b', 'a', 'c'}", "OrderedSet{'a', 'b', 'c'}->insertAt(1, 'b')");
 		assertQueryResults(null, "OrderedSet{'a', 'b', 'c'}", "OrderedSet{'a', 'b', 'c'}->insertAt(2, 'b')");
-		assertQueryResults(null, "OrderedSet{'a', 'b', 'c'}", "OrderedSet{'a', 'b', 'c'}->insertAt(3, 'b')");
-		assertQueryResults(null, "OrderedSet{'a', 'c', 'b'}", "OrderedSet{'a', 'b', 'c'}->insertAt(4, 'b')");
+//		assertQueryResults(null, "OrderedSet{'a', 'b', 'c'}", "OrderedSet{'a', 'b', 'c'}->insertAt(3, 'b')");
+		assertQueryResults(null, "OrderedSet{'a', 'c', 'b'}", "OrderedSet{'a', 'b', 'c'}->insertAt(3, 'b')");
+//		assertQueryResults(null, "OrderedSet{'a', 'c', 'b'}", "OrderedSet{'a', 'b', 'c'}->insertAt(4, 'b')");
+		assertQueryInvalid(null, "OrderedSet{'a', 'b', 'c'}->insertAt(4, 'b')");
 	}
 
 	public void testCollectionIntersection() {
