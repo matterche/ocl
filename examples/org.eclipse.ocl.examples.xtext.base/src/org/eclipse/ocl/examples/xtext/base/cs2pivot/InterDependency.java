@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id: InterDependency.java,v 1.1.2.1 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: InterDependency.java,v 1.1.2.2 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InterDependency<T> extends Dependency<Object>
+public class InterDependency<T> extends AbstractDependency<Object>
 {
-	private Dependency<?> dependency;
+	private Dependency dependency;
 	private List<T> dependencies = new ArrayList<T>();
 	private List<T> satisfied = new ArrayList<T>();
 	
-	public InterDependency(String reason, Dependency<?> dependency) {
+	public InterDependency(String reason, Dependency dependency) {
 		super(reason);
 		this.dependency = dependency;
 	}

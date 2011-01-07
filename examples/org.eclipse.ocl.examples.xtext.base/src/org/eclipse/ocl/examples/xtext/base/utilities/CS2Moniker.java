@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.1.2.5 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -61,7 +61,9 @@ public class CS2Moniker
 		CS2Moniker moniker = new CS2Moniker(csElement);
 		moniker.appendElementCS(csElement);
 		String string = moniker.toString();
-//		System.out.println(csElement.eClass().getName() + " ==> " + string);
+		if (TRACE_MONIKERS.isActive()) {
+			TRACE_MONIKERS.println(csElement.eClass().getName() + " ==> " + string);
+		}
 		assert !"".equals(string);
 		return string;
 	}
@@ -139,9 +141,7 @@ public class CS2Moniker
 	}
 
 	public void appendParentCS(ElementCS csElement, String parentSeparator) {
-		EObject parent = csElement != null
-			? csElement.eContainer()
-			: null;
+		EObject parent = csElement != null ? csElement.eContainer() : null;
 		appendParentElementCS(parent, parentSeparator);
 	}
 

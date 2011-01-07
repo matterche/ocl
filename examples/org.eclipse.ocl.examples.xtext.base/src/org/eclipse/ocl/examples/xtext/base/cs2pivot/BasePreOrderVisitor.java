@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.7 2010/12/31 19:11:44 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.8 2011/01/07 12:13:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -60,6 +61,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -146,31 +148,18 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 	}
 	
-/*	protected static class QualifiedRefContinuation extends SingleContinuation<QualifiedRefCS<?>>
-	{
-		public QualifiedRefContinuation(CS2Pivot context, QualifiedRefCS<?> csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			context.installPivotElement(csElement, csElement.getNamespace());
-			return null;
-		}
-	} */
-	
 	protected static class QualifiedTypeRefContinuation extends SingleContinuation<QualifiedTypeRefCS>
 	{
-		private static Dependency<?>[] computeDependencies(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
-			Dependency<?> typeDependency = ElementUtil.isInOperation(csElement)
+		private static Dependency[] computeDependencies(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
+			Dependency typeDependency = ElementUtil.isInOperation(csElement)
 				? context.getOperationsHaveTemplateParametersInterDependency()
 				: context.getPackagesHaveTypesInterDependency();
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 			if (csTemplateBinding == null) {
-				return new Dependency<?>[] {typeDependency, new PivotDependency(csElement.getElement())};
+				return new Dependency[] {typeDependency, new PivotDependency(csElement.getElement())};
 			}
 			else {
-				return new Dependency<?>[] {typeDependency, new PivotDependency(csElement.getElement()), new PivotDependency(csTemplateBinding)};
+				return new Dependency[] {typeDependency, new PivotDependency(csElement.getElement()), new PivotDependency(csTemplateBinding)};
 			}
 		}
 		
@@ -185,42 +174,58 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 	}
 
-/*	protected static class RootPackageContentContinuation extends SingleContinuation<RootPackageCS>
+/*	protected static class SpecializationSupersContinuation extends SingleContinuation<TemplateBindingCS>
 	{
-		protected RootPackageContentContinuation(CS2PivotConversion context, RootPackageCS csElement) {
-			super(context, null, null, csElement);
+		public SpecializationSupersContinuation(CS2PivotConversion context, org.eclipse.ocl.examples.pivot.Class pivotParent, TemplateBindingCS csElement) {
+			super(context, pivotParent, null, csElement, context.getTypesHaveSpecializationsInterDependency());
+		}
+
+		@Override
+		public boolean canExecute() {
+			boolean superCanExecute = super.canExecute();
+			if (!superCanExecute) {
+				return false;
+			}
+			TemplateBinding pivotElement = PivotUtil.getPivot(TemplateBinding.class, csElement);
+			TemplateableElement boundElement = pivotElement.getBoundElement();
+			org.eclipse.ocl.examples.pivot.Class unboundType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)boundElement);
+			List<org.eclipse.ocl.examples.pivot.Class> unboundSuperClasses = unboundType.getSuperClasses();
+			if (unboundSuperClasses.size() <= 0) {	// Only OclAny has no sperClasses and OclAny is not templateable.
+				return false;
+			}
+			return true;
 		}
 
 		@Override
 		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
-			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackages(), csElement.getOwnedNestedPackage());
+			TemplateBinding pivotElement = PivotUtil.getPivot(TemplateBinding.class, csElement);
+			TemplateableElement boundElement = pivotElement.getBoundElement();
+			context.getPivotManager().resolveSuperClasses((org.eclipse.ocl.examples.pivot.Class)boundElement);
 			return null;
 		}
 	} */
 
 	protected static class TemplateBindingContinuation extends SingleContinuation<TemplateBindingCS>
-	{
-/*		private static Dependency<?>[] computeDependencies(CS2PivotConversion context, TemplateBindingCS csElement) {
-			Dependency<?> typeDependency = ElementUtil.isInOperation(csElement)
-				? context.getOperationsHaveTemplateParametersInterDependency()
-				: context.getPackagesHaveTypesInterDependency();
-//			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
-//			if (csTemplateBinding == null) {
-				return new Dependency<?>[] {typeDependency};
-//			}
-//			else {
-//				return new Dependency<?>[] {typeDependency, new PivotDependency(csTemplateBinding)};
-//			}
-		} */
-		
+	{		
 		public TemplateBindingContinuation(CS2PivotConversion context, TemplateBindingCS csElement) {
-			super(context, csElement.getOwningTemplateBindableElement().getPivot(), PivotPackage.Literals.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, csElement, context.getPackagesHaveTypesInterDependency());
+			super(context, csElement.getOwningTemplateBindableElement().getPivot(),
+				PivotPackage.Literals.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, csElement,
+				context.getPackagesHaveTypesInterDependency());
 			context.getTypesHaveSpecializationsInterDependency().addDependency(this);
 		}
 
 		@Override
 		public boolean canExecute() {
+			ParameterizedTypeRefCS csParameterizedTypeRef = csElement.getOwningTemplateBindableElement();
+			if (csParameterizedTypeRef instanceof TypedTypeRefCSImpl) {
+				Type unspecializedPivotElement = ((TypedTypeRefCSImpl)csParameterizedTypeRef).basicGetType();
+				if (unspecializedPivotElement == null) {
+					return false;
+				}
+//				if (unspecializedPivotElement.eIsProxy()) {
+//					return false;
+//				}
+			}
 			for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csElement.getOwnedParameterSubstitution()) {
 				ParameterableElementCS csTemplateParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 				Element pivot = csTemplateParameter.getPivot();
@@ -236,8 +241,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			boolean isSpecialization = ElementUtil.isSpecialization(csElement);
 			if (isSpecialization) {
 				ParameterizedTypeRefCS csParameterizedTypeRef = csElement.getOwningTemplateBindableElement();
+				
+				
+				TypedTypeRefCS csTypedTypeRef = (TypedTypeRefCS)csParameterizedTypeRef;
 				@SuppressWarnings("unused")
-				Type pivotType = (Type) context.specializeTemplates((TypedTypeRefCS) csParameterizedTypeRef);
+				Type pivotType = (Type) context.specializeTemplates(csTypedTypeRef);
 			}
 			context.getTypesHaveSpecializationsInterDependency().setSatisfied(this);
 			return null;
@@ -283,7 +291,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	protected static class TypeRefContinuation extends SingleContinuation<TypedTypeRefCS>
 	{
-		protected static final class TemplateBindingPivotDependency extends Dependency<TemplateBindingCS>
+		protected static final class TemplateBindingPivotDependency extends AbstractDependency<TemplateBindingCS>
 		{
 			protected TemplateBindingPivotDependency(TemplateBindingCS csElement) {
 				super(csElement);
@@ -319,19 +327,19 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			}
 		}
 
-		private static Dependency<?>[] computeDependencies(CS2PivotConversion context, TypedTypeRefCS csElement) {
-			Dependency<?> typeDependency = ElementUtil.isInOperation(csElement)
+		private static Dependency[] computeDependencies(CS2PivotConversion context, TypedTypeRefCS csElement) {
+			Dependency typeDependency = ElementUtil.isInOperation(csElement)
 				? context.getOperationsHaveTemplateParametersInterDependency()
 				: context.getPackagesHaveTypesInterDependency();
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 			if (csTemplateBinding == null) {
-				return new Dependency<?>[] {typeDependency};
+				return new Dependency[] {typeDependency};
 			}
 			else if (csTemplateBinding.getOwningTemplateBindableElement() instanceof QualifiedRefCS) {
-				return new Dependency<?>[] {typeDependency};
+				return new Dependency[] {typeDependency};
 			}
 			else {
-				return new Dependency<?>[] {typeDependency, new TemplateBindingPivotDependency(csTemplateBinding)};
+				return new Dependency[] {typeDependency, new TemplateBindingPivotDependency(csTemplateBinding)};
 			}
 		}
 		
@@ -507,6 +515,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
+	public Continuation<?> visitReferenceCSRef(ReferenceCSRef object) {
+		return null;
+	}
+
+	@Override
 	public Continuation<?> visitStructuralFeatureCS(StructuralFeatureCS csStructuralFeature) {
 		Property pivotElement = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csStructuralFeature);
 		List<String> qualifiers = csStructuralFeature.getQualifier();
@@ -531,7 +544,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			return null;
 		}
 		else if (csTemplateBinding.getOwningTemplateBindableElement() instanceof QualifiedRefCS) {
-			return null;		// Only leaf bindings need specialization (of all hierachical bindings)
+			return null;		// Only leaf bindings need specialization (of all hierarchical bindings)
 		}
 		else {
 			return new TemplateBindingContinuation(context, csTemplateBinding);

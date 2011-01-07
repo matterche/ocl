@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1.2.5 2010/12/28 12:18:29 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.1.2.6 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -52,7 +52,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 		org.eclipse.ocl.examples.pivot.Class pivot = getTarget();
 		org.eclipse.ocl.examples.pivot.Class unspecializedPivot;
 		if (pivot.getTemplateBindings().size() > 0) {
-			unspecializedPivot = PivotUtil.getTemplateableClass(pivot);
+			unspecializedPivot = PivotUtil.getUnspecializedTemplateableElement(pivot);
 		}
 		else {
 			unspecializedPivot = pivot;

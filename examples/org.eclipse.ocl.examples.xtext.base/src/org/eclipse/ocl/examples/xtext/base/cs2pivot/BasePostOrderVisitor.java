@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.1.2.6 2010/12/28 12:18:28 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.1.2.7 2011/01/07 12:13:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -197,6 +198,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		Property pivotElement = PivotUtil.getPivot(Property.class, csReference);
 		// FIXME opposite
 		return visitTypedElementCS(csReference);
+	}
+
+	@Override
+	public Continuation<?> visitReferenceCSRef(ReferenceCSRef object) {
+		return null;
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Continuation.java,v 1.1.2.2 2010/12/09 22:15:44 ewillink Exp $
+ * $Id: Continuation.java,v 1.1.2.3 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -22,4 +22,6 @@ import java.util.List;
 public interface Continuation<T>
 {
 	void addTo(List<BasicContinuation<?>> simpleContinuations);
+//	boolean canExecute();
+//	BasicContinuation<?> execute();
 }

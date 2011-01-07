@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PivotDependency.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: PivotDependency.java,v 1.1.2.2 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
-public class PivotDependency extends Dependency<ModelElementCS>
+public class PivotDependency extends AbstractDependency<ModelElementCS>
 {
 	public PivotDependency(ModelElementCS csElement) {
 		super(csElement);

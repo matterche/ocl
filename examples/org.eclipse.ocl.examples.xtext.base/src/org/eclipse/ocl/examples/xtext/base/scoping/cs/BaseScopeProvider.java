@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.1.2.5 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -39,7 +39,7 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 
 	@Override
 	public ScopeView getScope(EObject context, EReference reference) {
-		ModelElementCS csElement = (ModelElementCS)context;
+		ElementCS csElement = (ElementCS)context;
 		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
 		if (scopeAdapter == null) {
 			return null;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.7 2010/12/28 12:18:28 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.8 2011/01/07 12:13:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -87,34 +86,6 @@ import org.eclipse.xtext.parsetree.NodeUtil;
 
 public class CS2PivotConversion extends AbstractConversion
 {	
-	private static class CSDiagnostic implements Diagnostic
-	{
-		protected final String message;
-		
-		public CSDiagnostic(String message) {
-			this.message = message;
-		}
-
-		public String getMessage() {
-			return message;
-		}
-
-		public String getLocation() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public int getLine() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		public int getColumn() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-	}
-
 	private static final Logger logger = Logger.getLogger(CS2PivotConversion.class);
 
 	protected final CS2Pivot converter;
@@ -131,6 +102,7 @@ public class CS2PivotConversion extends AbstractConversion
 
 	private Map<TemplateableElement, Set<TemplateableElement>> specializations = new HashMap<TemplateableElement, Set<TemplateableElement>>();
 
+//	private Map<ClassCS, ClassSupersContinuation> classesHaveSuperClasses = new HashMap<ClassCS, ClassSupersContinuation>();
 	private InterDependency<PackageContentContinuation> packagesHaveTypes = new InterDependency<PackageContentContinuation>("All unspecialized types defined", null);
 	private InterDependency<TemplateSignatureContinuation> typesHaveSignatures = new InterDependency<TemplateSignatureContinuation>("All unspecialized signatures defined", packagesHaveTypes);
 	private InterDependency<TemplateBindingContinuation> typesHaveSpecializations = new InterDependency<TemplateBindingContinuation>("All specialized types defined", typesHaveSignatures);
@@ -189,7 +161,7 @@ public class CS2PivotConversion extends AbstractConversion
 		for (BasicContinuation<?> continuation : continuations) {
 			s.append("\n  ");
 			s.append(continuation);
-			for (Dependency<?> dependency : continuation.getDependencies()) {
+			for (Dependency dependency : continuation.getDependencies()) {
 				s.append("\n    ");
 				if (!dependency.canExecute()) {
 					s.append("BLOCKED ");
@@ -858,7 +830,9 @@ public class CS2PivotConversion extends AbstractConversion
 				refreshName(pivotClass, ((Type)unspecializedPivotElement).getName());
 				specializedPivotElement = pivotClass;
 				if (pivotClass instanceof CollectionType) {
-					((CollectionType)pivotClass).setElementType(pivotManager.getOclVoidType());
+					Type elementType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());
+					((CollectionType)pivotClass).setElementType(elementType);
+//					((CollectionType)pivotClass).setElementType(pivotManager.getOclVoidType());
 				}
 			}
 			else {							// FIXME Non-Type TemplateParameters
@@ -978,6 +952,10 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			continuations = moreContinuations;
 		}
+		//
+		//	Finally resolve the base classes of template specializations
+		//
+		pivotManager.resolveSpecializationBaseClasses();
 		hasNoErrors = checkForNoErrors(csResources);
 		if (!hasNoErrors) {
 			return false;

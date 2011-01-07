@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MultipleContinuation.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: MultipleContinuation.java,v 1.1.2.2 2011/01/07 12:13:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -26,7 +26,7 @@ public abstract class MultipleContinuation<T extends EObject> extends BasicConti
 {
 	public MultipleContinuation(CS2PivotConversion context,
 			NamedElement pivotParent, EStructuralFeature pivotFeature,
-			List<? extends T> csElements, Dependency<?>... dependencies) {
+			List<? extends T> csElements, Dependency... dependencies) {
 		super(context, pivotParent, pivotFeature, csElements, dependencies);
 	}
 }

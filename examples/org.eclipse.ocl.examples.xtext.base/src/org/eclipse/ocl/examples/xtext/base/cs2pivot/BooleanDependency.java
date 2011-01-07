@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BooleanDependency.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BooleanDependency.java,v 1.1.2.2 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-public class BooleanDependency extends Dependency<Object>
+public class BooleanDependency extends AbstractDependency<Object>
 {
 	private Boolean satisfied = false;
 	

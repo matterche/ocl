@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SingleContinuation.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: SingleContinuation.java,v 1.1.2.2 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 public abstract class SingleContinuation<T extends EObject> extends BasicContinuation<T>
 {
 	public SingleContinuation(CS2PivotConversion context, Element pivotParent, EStructuralFeature pivotFeature,
-			T csElement, Dependency<?>... dependencies) {
+			T csElement, Dependency... dependencies) {
 		super(context, pivotParent, pivotFeature, csElement, dependencies);
 	}
 }

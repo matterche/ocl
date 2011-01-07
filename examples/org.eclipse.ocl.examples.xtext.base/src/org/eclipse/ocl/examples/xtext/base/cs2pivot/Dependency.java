@@ -12,46 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Dependency.java,v 1.1.2.2 2010/12/09 22:15:44 ewillink Exp $
+ * $Id: Dependency.java,v 1.1.2.3 2011/01/07 12:13:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-public abstract class Dependency<T>
+public interface Dependency
 {
-	protected final T element;
-	
-	public Dependency(T element) {
-		this.element = element;
-		assert element != null;
-	}
-
-	public abstract boolean canExecute();
-
-	public T getElement() {
-		return element;
-	}		
-	
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + '(' + element + ')';
-	}
-
-	public static Dependency<?>[] combine(Dependency<?> dependency1, Dependency<?> dependency2) {
-		if (dependency1 != null) {
-			if (dependency2 != null) {
-				return new Dependency<?>[] {dependency1, dependency2};
-			}
-			else {
-				return new Dependency<?>[] {dependency1};
-			}
-		}
-		else {
-			if (dependency2 != null) {
-				return new Dependency<?>[] {dependency2};
-			}
-			else {
-				return new Dependency<?>[] {};
-			}
-		}
-	}		
+	boolean canExecute();
 }

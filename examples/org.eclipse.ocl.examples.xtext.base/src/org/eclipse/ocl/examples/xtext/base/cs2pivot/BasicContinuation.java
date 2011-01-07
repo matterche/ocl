@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicContinuation.java,v 1.1.2.2 2010/12/09 22:15:44 ewillink Exp $
+ * $Id: BasicContinuation.java,v 1.1.2.3 2011/01/07 12:13:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -40,11 +40,11 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 	protected final Element pivotParent;
 	protected final EStructuralFeature pivotFeature;	
 	protected final T csElement;
-	protected final Dependency<?>[] dependencies;
+	protected final Dependency[] dependencies;
 	
 	public BasicContinuation(CS2PivotConversion context,
 			Element pivotParent, EStructuralFeature pivotFeature,
-			T csElement, Dependency<?>... dependencies) {
+			T csElement, Dependency... dependencies) {
 		this.context = context;
 		this.pivotParent = pivotParent;
 		this.pivotFeature = pivotFeature;
@@ -66,7 +66,7 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 	}
 
 	public boolean canExecute() {
-		for (Dependency<?> dependency : dependencies) {
+		for (Dependency dependency : dependencies) {
 			if (!dependency.canExecute()) {
 				return false;
 			}
@@ -76,7 +76,7 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 
 	public abstract BasicContinuation<?> execute();
 
-	public Dependency<?>[] getDependencies() {
+	public Dependency[] getDependencies() {
 		return dependencies;
 	}
 	

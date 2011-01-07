@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotDependencies.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: PivotDependencies.java,v 1.1.2.2 2011/01/07 12:13:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
-public class PivotDependencies extends Dependency<Collection<? extends ModelElementCS>>
+public class PivotDependencies extends AbstractDependency<Collection<? extends ModelElementCS>>
 {
 	public PivotDependencies(Collection<? extends ModelElementCS> csElements) {
 		super(csElements);
