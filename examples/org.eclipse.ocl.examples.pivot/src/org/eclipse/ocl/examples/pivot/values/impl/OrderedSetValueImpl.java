@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: OrderedSetValueImpl.java,v 1.1.2.2 2011/01/07 13:44:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -184,8 +184,9 @@ public class OrderedSetValueImpl
 
     public OrderedSetValue insertAt(int index, Value object) {
         index = index - 1;
-        
-        if (index < 0 || index > elements.size()) {
+        boolean isContained = elements.contains(object);
+        int effectiveSize = elements.size() - (isContained ? 1 : 0);
+        if ((index < 0) || (effectiveSize < index)) {
 			throw new IndexOutOfBoundsException(
 				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
 					+ size());
@@ -197,11 +198,14 @@ public class OrderedSetValueImpl
             if (curr == index) {
                 result.add(object);
             }
-            result.add(it.next());
-            curr++;
+            Value next = it.next();
+            if (!next.equals(object)) {
+				result.add(next);
+	            curr++;
+            }
         }
         
-        if (index == elements.size()) {
+        if (index == effectiveSize) {
         	// the loop finished before we could add the object
         	result.add(object);
         }
