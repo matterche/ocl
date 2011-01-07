@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.5 2010/12/28 12:21:49 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.6 2011/01/07 12:14:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
