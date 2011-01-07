@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.5 2010/12/28 12:19:24 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.6 2011/01/07 12:13:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
+import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
@@ -52,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -60,6 +62,8 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
@@ -604,20 +608,26 @@ public class EssentialOCLLeft2RightVisitor
 		if (ownedElementType != null) {
 			commonType = (Type) ownedElementType.getPivot();
 		}
+		if (commonType == null) {
+			commonType = pivotManager.getNullType();			// FIXME Use a clearer unspecified type
+		}
 		String collectionTypeName = ownedCollectionType.getName();
 		Type type = pivotManager.getLibraryType(collectionTypeName, Collections.singletonList(commonType));
 		context.setType(expression, type);
-		if (pivotManager.conformsTo(type, pivotManager.getBagType())) {
+		if (type instanceof BagType) {
 			expression.setKind(CollectionKind.BAG);
 		}
-		else if (pivotManager.conformsTo(type, pivotManager.getOrderedSetType())) {
+		else if (type instanceof OrderedSetType) {
 			expression.setKind(CollectionKind.ORDERED_SET);
 		}
-		else if (pivotManager.conformsTo(type, pivotManager.getSequenceType())) {
+		else if (type instanceof SequenceType) {
 			expression.setKind(CollectionKind.SEQUENCE);
 		}
-		else if (pivotManager.conformsTo(type, pivotManager.getSetType())) {
+		else if (type instanceof SetType) {
 			expression.setKind(CollectionKind.SET);
+		}
+		else {
+			expression.setKind(CollectionKind.COLLECTION);
 		}
 		return expression;
 	}

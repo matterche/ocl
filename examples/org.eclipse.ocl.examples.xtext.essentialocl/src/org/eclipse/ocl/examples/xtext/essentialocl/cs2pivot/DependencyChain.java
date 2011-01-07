@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DependencyChain.java,v 1.1.2.1 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: DependencyChain.java,v 1.1.2.2 2011/01/07 12:13:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -22,9 +22,9 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.Dependency;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.AbstractDependency;
 
-public class DependencyChain extends Dependency<ElementCS>
+public class DependencyChain extends AbstractDependency<ElementCS>
 {
 	static final Logger logger = Logger.getLogger(DependencyChain.class);
 

@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: TypeOfDependency.java,v 1.1.2.1 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: TypeOfDependency.java,v 1.1.2.2 2011/01/07 12:13:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.Dependency;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.AbstractDependency;
 
-public class TypeOfDependency extends Dependency<TypedElement>
+public class TypeOfDependency extends AbstractDependency<TypedElement>
 {
 	public TypeOfDependency(TypedElement element) {
 		super(element);
