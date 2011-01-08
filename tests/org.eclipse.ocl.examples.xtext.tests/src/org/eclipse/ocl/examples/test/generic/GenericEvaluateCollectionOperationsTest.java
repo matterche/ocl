@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.4 2011/01/07 13:44:34 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.5 2011/01/08 11:42:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -1130,6 +1130,7 @@ public void testCollectionNotEqualOrderedXUnordered() {
 	}
 
 	public void testCollectionProduct() {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		String expectedResultExpression = "Set{Tuple{first = 3, second = 3.0}, Tuple{first = 3, second = 4.0}, Tuple{first = 4, second = 3.0}, Tuple{first = 4, second = 4.0}}";
 
 		// Sequence::product(Collection)
@@ -1156,7 +1157,8 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		assertQueryResults(null, expectedResultExpression, "OrderedSet{3, 4}->product(Set{3.0, 4.0})");
 		assertQueryResults(null, expectedResultExpression, "OrderedSet{3, 4}->product(OrderedSet{3.0, 4.0})");
 		// bug284129
-		assertQueryResults(null, "Set{Tuple{first = 3, second = 3.0}, Tuple{first = 3, second = 4}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
+//		assertQueryResults(null, "Set{Tuple{first = 3, second = 3.0}, Tuple{first = 3, second = 4}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
+		assertQueryResults(null, "Set{Tuple{first = 3.0, second = 3.0}, Tuple{first = 3.0, second = 4.0}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4.0}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
 		// empty
 		assertQueryEquals(null, Value.EMPTY_SET, "Sequence{3, 4}->product(OrderedSet{})");
 		assertQueryEquals(null, Value.EMPTY_SET, "Bag{3, 4}->product(Set{})");
@@ -1207,10 +1209,15 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		assertQueryResults(null, "Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Set{3, 4}->product(Bag{null})");
 		assertQueryResults(null, "Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "OrderedSet{3, 4}->product(Sequence{null})");
 
-		assertQueryResults(null, "Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
-		assertQueryResults(null, "Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Bag{null, 4}->product(Set{3})");
-		assertQueryResults(null, "Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Set{null, 4}->product(Bag{3})");
-		assertQueryResults(null, "Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "OrderedSet{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "Set{Tuple{first = null, second = 3}, Tuple{first = null, second = 4}}", "Sequence{null}->product(OrderedSet{3, 4})");
+		assertQueryResults(null, "Set{Tuple{first = null, second = 3}, Tuple{first = null, second = 4}}", "Bag{null}->product(Set{3, 4})");
+		assertQueryResults(null, "Set{Tuple{first = null, second = 3}, Tuple{first = null, second = 4}}", "Set{null}->product(Bag{3, 4})");
+		assertQueryResults(null, "Set{Tuple{first = null, second = 3}, Tuple{first = null, second = 4}}", "OrderedSet{null}->product(Sequence{3, 4})");
+
+		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Set{3})");
+		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
+		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
 	}
 
 	public void testCollectionReverse() {

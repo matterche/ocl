@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.8 2010/12/28 12:26:35 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.9 2011/01/08 11:42:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -1238,7 +1238,7 @@ public abstract class GenericTestSuite
 		if (resourceSet == null) {
 			initializeResourceSet();
 		}
-		debugPrintln("==> Start  " + getName());
+//		debugPrintln("==> Start  " + getName());
 		ocl = createOCL();
 		environment = ocl.getEnvironment();
 		reflection = staticReflection.createReflection(environment);
@@ -1303,7 +1303,7 @@ public abstract class GenericTestSuite
 			}
 		}
 		
-		debugPrintln("==> Finish " + getName());
+//		debugPrintln("==> Finish " + getName());
 	}
 
 	protected void tearDownField(Field field) throws IllegalAccessException {

@@ -60,7 +60,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	operation max() : T => 'org.eclipse.ocl.examples.library.collection.CollectionMaxOperation';
 	operation min() : T => 'org.eclipse.ocl.examples.library.collection.CollectionMinOperation';
 	operation notEmpty() : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionNotEmptyOperation';
-	operation product<T2>(c2 : Collection<T2>) : Set<Tuple<T,T2>> => 'org.eclipse.ocl.examples.library.collection.CollectionProductOperation';
+	operation product<T2>(c2 : Collection<T2>) : Set<Tuple<first:T,second:T2>> => 'org.eclipse.ocl.examples.library.collection.CollectionProductOperation';
 	operation size() : Integer => 'org.eclipse.ocl.examples.library.collection.CollectionSizeOperation';
 	operation sum() : T => 'org.eclipse.ocl.examples.library.collection.CollectionSumOperation';
 --	operation "->"<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
@@ -248,10 +248,10 @@ type String : PrimitiveType conformsTo OclAny {
 	operation ">="(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
 }
 
-type Tuple<T1, T2> conformsTo OclTuple {
-	property first : T1 => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
-	property second : T2 => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
-}
+--type Tuple<T1, T2> conformsTo OclTuple {
+--	property first : T1 => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+--	property second : T2 => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+--}
 
 type UniqueCollection<T> : CollectionType conformsTo Collection<T> {
 	iteration sortedBy(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';

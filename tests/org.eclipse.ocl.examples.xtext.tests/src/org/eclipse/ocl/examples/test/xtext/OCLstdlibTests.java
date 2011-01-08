@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.1.2.5 2010/12/19 17:47:05 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.1.2.6 2011/01/08 11:42:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -83,13 +83,13 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Check similar content
 		//
 		Map<String,MonikeredElement> fileMoniker2PivotMap = new PivotManager().computeMoniker2PivotMap(Collections.singletonList(fileResource));
-		for (String moniker : fileMoniker2PivotMap.keySet()) {
-			System.out.println("File : " + moniker);
-		}
+//		for (String moniker : fileMoniker2PivotMap.keySet()) {
+//			System.out.println("File : " + moniker);
+//		}
 		Map<String,MonikeredElement> javaMoniker2PivotMap = new PivotManager().computeMoniker2PivotMap(Collections.singletonList(javaResource));
-		for (String moniker : javaMoniker2PivotMap.keySet()) {
-			System.out.println("Java : " + moniker);
-		}
+//		for (String moniker : javaMoniker2PivotMap.keySet()) {
+//			System.out.println("Java : " + moniker);
+//		}
 //		assertEquals(fileMoniker2PivotMap.size(), javaMoniker2PivotMap.size());
 		for (String moniker : fileMoniker2PivotMap.keySet()) {
 			MonikeredElement fileElement = fileMoniker2PivotMap.get(moniker);
