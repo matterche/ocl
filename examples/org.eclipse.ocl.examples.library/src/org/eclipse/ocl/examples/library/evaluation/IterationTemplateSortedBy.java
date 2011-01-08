@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateSortedBy.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: IterationTemplateSortedBy.java,v 1.1.2.6 2011/01/08 18:22:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -20,6 +20,8 @@ package org.eclipse.ocl.examples.library.evaluation;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
@@ -39,6 +41,10 @@ public class IterationTemplateSortedBy extends IterationTemplate
 		public SortingValue(ValueFactory valueFactory, Map<Object, Value> content) {
 			super(valueFactory);
 			this.content = content;
+		}
+
+		public Type getType(StandardLibrary standardLibrary, Type staticType) {
+			return staticType;
 		}
 
 		public void put(Value iterVal, Value comparable) {

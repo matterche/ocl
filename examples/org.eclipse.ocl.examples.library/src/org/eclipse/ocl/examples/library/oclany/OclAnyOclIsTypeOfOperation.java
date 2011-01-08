@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: OclAnyOclIsTypeOfOperation.java,v 1.1.2.7 2011/01/08 18:22:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -37,7 +37,7 @@ public class OclAnyOclIsTypeOfOperation extends AbstractOperation
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
+		Type sourceType = sourceVal.getType(stdlib, operationCall.getSource().getType());
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue argTypeValue = argVal.asTypeValue();
 		if (argTypeValue == null) {

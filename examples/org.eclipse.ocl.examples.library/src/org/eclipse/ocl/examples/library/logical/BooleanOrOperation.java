@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanOrOperation.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: BooleanOrOperation.java,v 1.1.2.6 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -35,22 +35,22 @@ public class BooleanOrOperation extends AbstractBinaryOperation
 	@Override
 	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		if (sourceVal == valueFactory.TRUE) {
-			return valueFactory.TRUE;
+		if (sourceVal == valueFactory.getTrue()) {
+			return valueFactory.getTrue();
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		return evaluate(valueFactory, sourceVal, argVal);
 	}
 
 	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
-		if (left == valueFactory.TRUE) {
-			return valueFactory.TRUE;
+		if (left == valueFactory.getTrue()) {
+			return valueFactory.getTrue();
 		}
-		if (right == valueFactory.TRUE) {
-			return valueFactory.TRUE;
+		if (right == valueFactory.getTrue()) {
+			return valueFactory.getTrue();
 		}
-		if ((left == valueFactory.FALSE) && (right == valueFactory.FALSE)) {
-			return valueFactory.FALSE;
+		if ((left == valueFactory.getFalse()) && (right == valueFactory.getFalse())) {
+			return valueFactory.getFalse();
 		}
 		return null;
 	}

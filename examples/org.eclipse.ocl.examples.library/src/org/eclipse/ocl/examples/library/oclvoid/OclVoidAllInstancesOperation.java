@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclVoidAllInstancesOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: OclVoidAllInstancesOperation.java,v 1.1.2.6 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
@@ -35,6 +35,6 @@ public class OclVoidAllInstancesOperation extends AbstractOperation
 	public SetValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		// OclVoid has a single instance: null
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		return valueFactory.createSetValue(valueFactory.NULL);
+		return valueFactory.createSetValue(valueFactory.getNull());
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateOne.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: IterationTemplateOne.java,v 1.1.2.6 2011/01/08 18:22:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  *
@@ -44,20 +45,21 @@ public class IterationTemplateOne extends IterationTemplate {
 		//		String iterName = ((VariableDeclaration)iterators.get(0)).getVarName();
 		//		Object currObj = env.getValueOf(iterName);
 		Value resultVal = env.getValueOf(resultName);
+		ValueFactory valueFactory = getValueFactory();
 		if (bodyVal.isTrue()) {
 			if (!foundOne) {
 				// if this is the first element satisfying the body condition
 				// make a note of it.
 				foundOne = true;
-				return getValueFactory().TRUE;
+				return valueFactory.getTrue();
 			} else {
 				// this is the second satisfying element.  The result is false
 				// and we can stop iterating.
 				setDone(true);
-				return getValueFactory().FALSE;
+				return valueFactory.getFalse();
 			}
 		}
-		return getValueFactory().booleanValueOf(resultVal.isTrue());
+		return valueFactory.booleanValueOf(resultVal.isTrue());
 	}
 
 	private boolean foundOne = false;

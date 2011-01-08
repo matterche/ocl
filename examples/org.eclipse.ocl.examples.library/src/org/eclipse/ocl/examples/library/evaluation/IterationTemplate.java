@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.1.2.6 2011/01/08 18:22:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -92,7 +91,7 @@ public class IterationTemplate {
 				Value resultVal; 
 				if (bodyVal.isInvalid()) {
 					setDone(true);
-					resultVal = createInvalidValue("undefined body");
+					resultVal = getValueFactory().createInvalidValue("undefined body");
 				}
 				else {
 					// get the new result value
@@ -195,17 +194,17 @@ public class IterationTemplate {
 //		return evalVisitor.getEnvironment().getMergedLibrary();
 //	}
 
-	public InvalidValue createInvalidValue(String reason) {
-		return createInvalidValue(null, null, reason, null);
-	}
+//	public InvalidValue createInvalidValue(String reason) {
+//		return createInvalidValue(null, null, reason, null);
+//	}
 
-	public InvalidValue createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
-		return createInvalidValue(object, expression, reason, throwable);
-	}
+//	public InvalidValue createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
+//		return createInvalidValue(object, expression, reason, throwable);
+//	}
 	
-	protected Object getInvalid() {
-		return evaluationVisitor.getStandardLibrary().getInvalidValue();
-	}
+//	protected Object getInvalid() {
+//		return evaluationVisitor.getStandardLibrary().getInvalidValue();
+//	}
 
 	@Deprecated
 	protected boolean isInvalid(Object bodyVal) {

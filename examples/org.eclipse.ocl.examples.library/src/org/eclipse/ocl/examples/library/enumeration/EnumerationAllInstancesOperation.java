@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.6 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
 
@@ -41,7 +41,7 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-		Type sourceType = stdlib.getTypeOfType(sourceVal);
+		Type sourceType = sourceVal.getType(stdlib, null);
 		// the instances are the literals
 //		for (EnumerationLiteral oclLiteral : ((Enumeration)sourceType).getOwnedLiterals()) {
 //			EObject metaModelElement = oclLiteral.getMetaModelElement();

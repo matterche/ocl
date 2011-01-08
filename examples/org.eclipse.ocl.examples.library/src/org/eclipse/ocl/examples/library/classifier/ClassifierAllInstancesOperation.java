@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.7 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.8 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
@@ -46,7 +46,7 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 		Set<Value> results = new HashSet<Value>();
 		Set<?> instances = modelManager.get(typeVal.getType());
 		if (instances == null) {
-			return valueFactory.EMPTY_SET;
+			return valueFactory.getEmptySetValue();
 		}
 		for (Object instance : instances) {
 			results.add(valueFactory.createObjectValue(instance));

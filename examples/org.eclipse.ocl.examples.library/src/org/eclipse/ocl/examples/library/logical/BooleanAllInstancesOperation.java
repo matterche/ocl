@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanAllInstancesOperation.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: BooleanAllInstancesOperation.java,v 1.1.2.6 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -38,7 +38,7 @@ public class BooleanAllInstancesOperation extends AbstractOperation
 		// Boolean has two instances: false, true
 		if (allInstances == null) {
 			ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-			allInstances = valueFactory.createSetValue(valueFactory.FALSE, valueFactory.TRUE);
+			allInstances = valueFactory.createSetValue(valueFactory.getFalse(), valueFactory.getTrue());
 		}
 		return allInstances;
 	}

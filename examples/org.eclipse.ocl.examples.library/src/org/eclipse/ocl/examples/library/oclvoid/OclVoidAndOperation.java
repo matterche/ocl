@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclVoidAndOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: OclVoidAndOperation.java,v 1.1.2.5 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
@@ -31,8 +31,8 @@ public class OclVoidAndOperation extends AbstractBinaryOperation
 	public static final OclVoidAndOperation INSTANCE = new OclVoidAndOperation();
 
 	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
-		if (right == valueFactory.FALSE) {
-			return valueFactory.FALSE;
+		if (right == valueFactory.getFalse()) {
+			return valueFactory.getFalse();
 		}
 		return null;
 	}

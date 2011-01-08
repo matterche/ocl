@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionSumOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: CollectionSumOperation.java,v 1.1.2.5 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -40,7 +40,7 @@ public class CollectionSumOperation extends AbstractOperation
 			// FIXME Bug 301351 Look for user-defined zero
 //			Type resultType = operationCall.getType();	
 //			resultType.getZero();
-			return collectionValue.sum(NumericPlusOperation.INSTANCE, valueFactory.ZERO);
+			return collectionValue.sum(NumericPlusOperation.INSTANCE, valueFactory.getZero());
 		}
 		else {
 			return valueFactory.createInvalidValue(sourceVal, null, "non-collection", null);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: JavaEqualOperation.java,v 1.1.2.4 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: JavaEqualOperation.java,v 1.1.2.5 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.java;
 
@@ -35,11 +35,11 @@ public class JavaEqualOperation extends AbstractBinaryOperation
 			return valueFactory.booleanValueOf(leftString.equals(rightString));
 		}
 		if (left.isInvalid() && right.isInvalid()) {
-			return valueFactory.TRUE;
+			return valueFactory.getTrue();
 		}
 		if (left.isNull() && right.isNull()) {
-			return valueFactory.TRUE;
+			return valueFactory.getTrue();
 		}			
-		return valueFactory.FALSE;
+		return valueFactory.getFalse();
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsInvalidOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: OclAnyOclIsInvalidOperation.java,v 1.1.2.5 2011/01/08 18:22:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -32,8 +32,8 @@ public class OclAnyOclIsInvalidOperation extends AbstractUnaryOperation
 
 	public BooleanValue evaluate(ValueFactory valueFactory, Value argument) {
 		if (argument.isInvalid()) {
-			return valueFactory.TRUE;
+			return valueFactory.getTrue();
 		}
-		return valueFactory.FALSE;
+		return valueFactory.getFalse();
 	}
 }

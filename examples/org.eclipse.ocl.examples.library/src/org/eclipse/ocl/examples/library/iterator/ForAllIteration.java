@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ForAllIteration.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: ForAllIteration.java,v 1.1.2.7 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -47,7 +47,7 @@ public class ForAllIteration extends AbstractIteration
 		IterationTemplate is = IterationTemplateForAll.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationEnvironment.add(resultName, evaluationEnvironment.getValueFactory().TRUE);		
+		evaluationEnvironment.add(resultName, evaluationEnvironment.getValueFactory().getTrue());		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);

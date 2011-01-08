@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.7 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -92,7 +92,7 @@ public class SortedByIteration extends AbstractIteration
 		// type is Sequence if source is a sequence or a Bag,
 		// SortedSet if source is a SortedSet or a Set
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
+		Type sourceType = iteratorExp.getSource().getType();
 		boolean isUnique = stdlib.isUnique(sourceType);
 		
 		if (isUnique) {

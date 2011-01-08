@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanXorOperation.java,v 1.1.2.4 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: BooleanXorOperation.java,v 1.1.2.5 2011/01/08 18:22:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -31,20 +31,20 @@ public class BooleanXorOperation extends AbstractBinaryOperation
 	public static final BooleanXorOperation INSTANCE = new BooleanXorOperation();
 
 	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
-		if (left == valueFactory.TRUE) {
-			if (right == valueFactory.TRUE) {
-				return valueFactory.FALSE;
+		if (left == valueFactory.getTrue()) {
+			if (right == valueFactory.getTrue()) {
+				return valueFactory.getFalse();
 			}
-			else if (right == valueFactory.FALSE) {
-				return valueFactory.TRUE;
+			else if (right == valueFactory.getFalse()) {
+				return valueFactory.getTrue();
 			}
 		}
-		else if (left == valueFactory.FALSE) {
-			if (right == valueFactory.TRUE) {
-				return valueFactory.TRUE;
+		else if (left == valueFactory.getFalse()) {
+			if (right == valueFactory.getTrue()) {
+				return valueFactory.getTrue();
 			}
-			else if (right == valueFactory.FALSE) {
-				return valueFactory.FALSE;
+			else if (right == valueFactory.getFalse()) {
+				return valueFactory.getFalse();
 			}
 		}
 		return null;
