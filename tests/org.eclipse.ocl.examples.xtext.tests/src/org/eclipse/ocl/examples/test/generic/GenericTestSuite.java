@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.9 2011/01/08 11:42:53 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.10 2011/01/08 15:34:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -142,74 +142,74 @@ public abstract class GenericTestSuite
 
 	private static boolean initialized = false;
 
-    public static BagValue createBag(Object... objects) {
+    public BagValue createBag(Object... objects) {
     	Bag<ObjectValue> collection = new BagImpl<ObjectValue>();
     	if (objects != null) {
     		for (Object object : objects) {
-    			collection.add(ValueFactory.createObjectValue(object));
+    			collection.add(getValueFactory().createObjectValue(object));
     		}
     	}
-    	return ValueFactory.createBagValue(collection);
+    	return getValueFactory().createBagValue(collection);
     }
 
-    public static BagValue createBag(String... elements) {
+    public BagValue createBag(String... elements) {
     	Bag<StringValue> collection = new BagImpl<StringValue>();
     	if (elements != null) {
     		for (String element : elements) {
-    			collection.add(ValueFactory.createStringValue(element));
+    			collection.add(getValueFactory().stringValueOf(element));
     		}
     	}
-    	return ValueFactory.createBagValue(collection);
+    	return getValueFactory().createBagValue(collection);
     }
 
-    public static OrderedSetValue createOrderedSet(Object... objects) {
+    public OrderedSetValue createOrderedSet(Object... objects) {
     	LinkedHashSet<ObjectValue> collection = new LinkedHashSet<ObjectValue>();
     	if (objects != null) {
     		for (Object object : objects) {
-    			collection.add(ValueFactory.createObjectValue(object));
+    			collection.add(getValueFactory().createObjectValue(object));
     		}
     	}
-    	return ValueFactory.createOrderedSetValue(collection);
+    	return getValueFactory().createOrderedSetValue(collection);
     }
 
-    public static SetValue createSet(Collection<Object> objects) {
+    public SetValue createSet(Collection<Object> objects) {
     	Set<ObjectValue> collection = new HashSet<ObjectValue>();
     	if (objects != null) {
     		for (Object object : objects) {
-    			collection.add(ValueFactory.createObjectValue(object));
+    			collection.add(getValueFactory().createObjectValue(object));
     		}
     	}
-    	return ValueFactory.createSetValue(collection);
+    	return getValueFactory().createSetValue(collection);
     }
 
-    public static SequenceValue createSequence(String... elements) {
+    public SequenceValue createSequence(String... elements) {
     	List<StringValue> collection = new ArrayList<StringValue>();
     	if (elements != null) {
     		for (String element : elements) {
-    			collection.add(ValueFactory.createStringValue(element));
+    			collection.add(getValueFactory().stringValueOf(element));
     		}
     	}
-    	return ValueFactory.createSequenceValue(collection);
+    	return getValueFactory().createSequenceValue(collection);
     }
 
-    public static SetValue createSet(Object... objects) {
+    public SetValue createSet(Object... objects) {
     	Set<ObjectValue> collection = new HashSet<ObjectValue>();
     	if (objects != null) {
     		for (Object object : objects) {
-    			collection.add(ValueFactory.createObjectValue(object));
+    			collection.add(getValueFactory().createObjectValue(object));
     		}
     	}
-    	return ValueFactory.createSetValue(collection);
+    	return getValueFactory().createSetValue(collection);
     }
 
-    public static SetValue createSet(String... elements) {
+    public SetValue createSet(String... elements) {
     	Set<StringValue> collection = new HashSet<StringValue>();
     	if (elements != null) {
     		for (String element : elements) {
-    			collection.add(ValueFactory.createStringValue(element));
+    			collection.add(getValueFactory().stringValueOf(element));
     		}
     	}
-    	return ValueFactory.createSetValue(collection);
+    	return getValueFactory().createSetValue(collection);
     }
 	
 	public static void debugPrintln(String string) {
@@ -489,7 +489,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, Value.FALSE, value);
+			assertEquals(denormalized, getValueFactory().FALSE, value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -574,7 +574,7 @@ public abstract class GenericTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			if (!value.isNull()) {
-				assertEquals(denormalized, Value.NULL, value);
+				assertEquals(denormalized, getValueFactory().NULL, value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -582,6 +582,7 @@ public abstract class GenericTestSuite
 			return null;
 		}
 	}
+
 	/**
 	 * Creates a query given the expression that is to be evaluated, then
 	 * asserts its result is equal to the evaluation of the given
@@ -683,7 +684,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, Value.TRUE, value);
+			assertEquals(denormalized, getValueFactory().TRUE, value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -801,9 +802,9 @@ public abstract class GenericTestSuite
 	 */
 	protected CollectionValue createCollection(boolean isOrdered, boolean isUnique, Value... args) {
 		if (isOrdered)
-			return isUnique ? ValueFactory.createOrderedSetValue(args) : ValueFactory.createSequenceValue(args);
+			return isUnique ? getValueFactory().createOrderedSetValue(args) : getValueFactory().createSequenceValue(args);
 		else
-			return isUnique ? ValueFactory.createSetValue(args) : ValueFactory.createBagValue(args);
+			return isUnique ? getValueFactory().createSetValue(args) : getValueFactory().createBagValue(args);
 	}
 
 	protected void createDocument(String text) {
@@ -1040,6 +1041,10 @@ public abstract class GenericTestSuite
 	
 	protected StandardLibrary getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();
+	}
+	
+	protected ValueFactory getValueFactory() {
+		return ValueFactory.INSTANCE;
 	}
 
 	abstract protected TestReflection.Static getStaticReflection();
