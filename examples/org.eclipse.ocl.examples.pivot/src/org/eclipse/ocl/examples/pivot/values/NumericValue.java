@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: NumericValue.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -21,13 +21,10 @@ import java.math.BigDecimal;
 
 public interface NumericValue extends Value, Comparable<NumericValue>
 {
-	Value ZERO = ValueFactory.createIntegerValue(0);
-
 	NumericValue abs();
 	BigDecimal bigDecimalValue();
 	NumericValue negate();
 	double doubleValue();
 	int signum();
 	IntegerValue toIntegerValue();
-//	<T extends NumericValue> T toValue(Class<T> numericClass);
 }

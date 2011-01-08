@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RealValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: RealValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -23,58 +23,44 @@ import java.math.RoundingMode;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class RealValueImpl extends AbstractValue implements RealValue
 {
 	private static final int MINIMUM_SCALE = Double.SIZE/2;		// Gives nearly twice the precision of Double
 
-	protected static RealValue divideBigDecimal(BigDecimal left, BigDecimal right) {
+	protected static RealValue divideBigDecimal(ValueFactory valueFactory, BigDecimal left, BigDecimal right) {
 		try {
 			if (right.signum() == 0) {
 				return null;
 			}
 			int scale = Math.max(left.scale() - right.scale(), MINIMUM_SCALE);
 			BigDecimal result = left.divide(right, scale, RoundingMode.HALF_EVEN);
-			return valueOf(result);
+			return valueFactory.realValueOf(result);
 		} catch (ArithmeticException e) {
-			return new InvalidValueImpl(null, null, "Divide failure", e);
+			return valueFactory.createInvalidValue(null, null, "Divide failure", e);
 		}
-	}
-
-	public static RealValue valueOf(double value) {
-		return new RealValueImpl(value);
-	}
-
-	public static RealValue valueOf(BigDecimal value) {
-		return new RealValueImpl(value);
-	}
-
-//	public static RealValue valueOf(IntegerValue value) {
-//		return new RealValueImpl(value.bigDecimalValue());
-//	}
-	
-	public static RealValue valueOf(String aValue) {
-		return new RealValueImpl(new BigDecimal(aValue.trim()));
 	}
 
 	private final BigDecimal value;
 	private IntegerValue integerValue = null;	// Lazily computed exact IntegerValue or InvalidValue
 	
-	private RealValueImpl(double value) {
-		this(BigDecimal.valueOf(value));
+	public RealValueImpl(ValueFactory valueFactory, double value) {
+		this(valueFactory, BigDecimal.valueOf(value));
 	}
 
-	private RealValueImpl(BigDecimal value) {
+	public RealValueImpl(ValueFactory valueFactory, BigDecimal value) {
+		super(valueFactory);
 		this.value = value;
 		assert value != null;
 	}
 
 	public RealValue abs() {
-		return valueOf(value.abs());
+		return valueFactory.realValueOf(value.abs());
 	}
 
 	public RealValue add(RealValue right) {
-		return valueOf(value.add(right.bigDecimalValue()));
+		return valueFactory.realValueOf(value.add(right.bigDecimalValue()));
 	}
 
 	@Override
@@ -97,7 +83,7 @@ public class RealValueImpl extends AbstractValue implements RealValue
 	}
 
 	public RealValue divide(RealValue right) {
-		return divideBigDecimal(value, right.bigDecimalValue());
+		return divideBigDecimal(valueFactory, value, right.bigDecimalValue());
 	}
 
 	public double doubleValue() {
@@ -124,7 +110,7 @@ public class RealValueImpl extends AbstractValue implements RealValue
 	}
 
 	public IntegerValue floor() {
-		return IntegerValueImpl.valueOf(value.setScale(0, RoundingMode.FLOOR).toBigInteger());
+		return valueFactory.integerValueOf(value.setScale(0, RoundingMode.FLOOR).toBigInteger());
 	}
 
 	@Override
@@ -134,19 +120,19 @@ public class RealValueImpl extends AbstractValue implements RealValue
 	}
 
 	public RealValue max(RealValue right) {
-		return valueOf(value.max(right.bigDecimalValue()));
+		return valueFactory.realValueOf(value.max(right.bigDecimalValue()));
 	}
 
 	public RealValue min(RealValue right) {
-		return valueOf(value.min(right.bigDecimalValue()));
+		return valueFactory.realValueOf(value.min(right.bigDecimalValue()));
 	}
 
 	public RealValue multiply(RealValue right) {
-		return valueOf(value.multiply(right.bigDecimalValue()));
+		return valueFactory.realValueOf(value.multiply(right.bigDecimalValue()));
 	}
 
 	public RealValue negate() {
-		return valueOf(value.negate());
+		return valueFactory.realValueOf(value.negate());
 	}
 	
 	public IntegerValue round() {
@@ -157,7 +143,7 @@ public class RealValueImpl extends AbstractValue implements RealValue
 		else {
 			rounded = value.negate().setScale(0, RoundingMode.HALF_DOWN).negate();
 		}
-		return IntegerValueImpl.valueOf(rounded.toBigInteger());
+		return valueFactory.integerValueOf(rounded.toBigInteger());
 	}
 
 	public int signum() {
@@ -165,17 +151,17 @@ public class RealValueImpl extends AbstractValue implements RealValue
 	}
 
 	public RealValue subtract(RealValue right) {
-		return valueOf(value.subtract(right.bigDecimalValue()));
+		return valueFactory.realValueOf(value.subtract(right.bigDecimalValue()));
 	}
 
 	public IntegerValue toIntegerValue() {
 		if (integerValue == null) {
 			try {
 				BigInteger intValue = value.toBigIntegerExact();
-				integerValue = IntegerValueImpl.valueOf(intValue);
+				integerValue = valueFactory.integerValueOf(intValue);
 			}
 			catch (ArithmeticException e) {
-				integerValue = new InvalidValueImpl(this, null, "not integer", e);			
+				integerValue = valueFactory.createInvalidValue(this, null, "not integer", e);			
 			}
 		}
 		return integerValue;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: IntegerValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -22,55 +22,29 @@ import java.math.BigInteger;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 public class IntegerValueImpl extends AbstractValue implements IntegerValue
 {
-	private static final String maxLongValue = Long.toString(Long.MAX_VALUE);
-	private static final int maxLongSize = maxLongValue.length();
-
-	public static IntegerValueImpl valueOf(long value) {
-		return new IntegerValueImpl(value);
-	}
-	
-	public static IntegerValueImpl valueOf(BigInteger value) {
-		return new IntegerValueImpl(value);
-	}
-	
-	/**
-	 * Creates a BigInteger representation for aValue.
-	 * @param aValue the string representation of a (non-negative) integer number
-	 * @return the numeric representation
-	 * @throws NumberFormatException if representation cannot be created
-	 * @since 3.1
-	 */
-	public static IntegerValueImpl valueOf(String aValue) {
-		int len = aValue.length();
-		if ((len < maxLongSize) || ((len == maxLongSize) && (maxLongValue.compareTo(aValue) >= 0))) {
-			return new IntegerValueImpl(BigInteger.valueOf(Long.parseLong(aValue)));
-		}
-		else {
-			return new IntegerValueImpl(new BigInteger(aValue));
-		}
-	}
-
 	private final BigInteger value;
 	
-	private IntegerValueImpl(long value) {
-		this(BigInteger.valueOf(value));
+	public IntegerValueImpl(ValueFactory valueFactory, long value) {
+		this(valueFactory, BigInteger.valueOf(value));
 	}
 
-	private IntegerValueImpl(BigInteger value) {
+	public IntegerValueImpl(ValueFactory valueFactory, BigInteger value) {
+		super(valueFactory);
 		this.value = value;
 		assert value != null;
 	}
 
 	public IntegerValue abs() {
-		return valueOf(value.abs());
+		return valueFactory.integerValueOf(value.abs());
 	}
 
 	public IntegerValue add(IntegerValue right) {
-		return valueOf(value.add(right.bigIntegerValue()));
+		return valueFactory.integerValueOf(value.add(right.bigIntegerValue()));
 	}
 	
 	@Override
@@ -104,13 +78,13 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 		if (right.bigIntegerValue().signum() == 0) {
 			return null;
 		}
-		return valueOf(value.divide(right.bigIntegerValue()));
+		return valueFactory.integerValueOf(value.divide(right.bigIntegerValue()));
 	}
 
 	public RealValue divide(IntegerValue right) {
 		BigDecimal bigLeft = bigDecimalValue();
 		BigDecimal bigRight = right.bigDecimalValue();
-		return RealValueImpl.divideBigDecimal(bigLeft, bigRight);
+		return RealValueImpl.divideBigDecimal(valueFactory, bigLeft, bigRight);
 	}
 
 	public double doubleValue() {
@@ -139,26 +113,26 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 	}
 
 	public IntegerValue max(IntegerValue right) {
-		return valueOf(value.max(right.bigIntegerValue()));
+		return valueFactory.integerValueOf(value.max(right.bigIntegerValue()));
 	}
 
 	public IntegerValue min(IntegerValue right) {
-		return valueOf(value.min(right.bigIntegerValue()));
+		return valueFactory.integerValueOf(value.min(right.bigIntegerValue()));
 	}
 
 	public IntegerValue mod(IntegerValue right) {
 		if (right.bigIntegerValue().signum() == 0) {
 			return null;
 		}
-		return valueOf(value.remainder(right.bigIntegerValue()));
+		return valueFactory.integerValueOf(value.remainder(right.bigIntegerValue()));
 	}
 
 	public IntegerValue multiply(IntegerValue right) {
-		return valueOf(value.multiply(right.bigIntegerValue()));
+		return valueFactory.integerValueOf(value.multiply(right.bigIntegerValue()));
 	}
 
 	public IntegerValue negate() {
-		return valueOf(value.negate());
+		return valueFactory.integerValueOf(value.negate());
 	}
 
 	public int signum() {
@@ -166,7 +140,7 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 	}
 
 	public IntegerValue subtract(IntegerValue right) {
-		return valueOf(value.subtract(right.bigIntegerValue()));
+		return valueFactory.integerValueOf(value.subtract(right.bigIntegerValue()));
 	}
 
 	public IntegerValue toIntegerValue() {
@@ -175,7 +149,7 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 
 	@Override
 	public RealValue toRealValue() {
-		return createRealValue(this);
+		return valueFactory.realValueOf(this);
 	}
 
 	@Override

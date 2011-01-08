@@ -12,17 +12,9 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.1.2.3 2010/12/26 16:56:23 ewillink Exp $
+ * $Id: Value.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
-
-import org.eclipse.ocl.examples.pivot.values.impl.BagValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.BooleanValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.NullValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.OrderedSetValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.SequenceValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.SetValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.UnlimitedValueImpl;
 
 /**
  * isXXX returns true if self is an XXX and is not Null and is not Invalid.
@@ -31,15 +23,6 @@ import org.eclipse.ocl.examples.pivot.values.impl.UnlimitedValueImpl;
  */
 public interface Value //extends Comparable<Value>
 {
-	BagValue EMPTY_BAG = new BagValueImpl();
-	OrderedSetValue EMPTY_ORDERED_SET = new OrderedSetValueImpl();
-	SequenceValue EMPTY_SEQUENCE = new SequenceValueImpl();	
-	SetValue EMPTY_SET = new SetValueImpl();
-	BooleanValue FALSE = BooleanValueImpl.FALSE; 
-	NullValue NULL = NullValueImpl.INSTANCE; 
-	BooleanValue TRUE = BooleanValueImpl.TRUE;
-	UnlimitedValue UNLIMITED = new UnlimitedValueImpl(); 
-
 	BagValue asBagValue();
 	BooleanValue asBooleanValue();
 	CollectionValue asCollectionValue();

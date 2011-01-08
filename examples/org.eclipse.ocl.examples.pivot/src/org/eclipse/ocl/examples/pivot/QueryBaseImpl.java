@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.1.2.6 2011/01/08 15:35:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.util.ProblemAware;
 
 /**
@@ -111,7 +110,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
-		myEnv.add(SELF_VARIABLE_NAME, ValueFactory.createObjectValue(obj));
+		myEnv.add(SELF_VARIABLE_NAME, myEnv.getValueFactory().createObjectValue(obj));
 		
 		EvaluationVisitor ev =
 			environment.getFactory().createEvaluationVisitor(

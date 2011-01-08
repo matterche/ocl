@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.4 2010/12/28 12:17:30 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.5 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -24,7 +24,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
@@ -66,7 +69,6 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	
 	org.eclipse.ocl.examples.pivot.Package pivotPackage = null;
 	
-//	private boolean allowExplanatoryInvalids = false;
 	private Map<String, Type> nameToLibraryTypeMap = null;
 
 	public InvalidLiteralExp createInvalidValue(Object object,
@@ -288,13 +290,25 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return unlimitedValue;
 	}
 
-//	public boolean isAllowExplanatoryInvalids() {
-//		return allowExplanatoryInvalids;
-//	}
+	public boolean isOrdered(Type sourceType) {
+		if (sourceType instanceof OrderedSetType) {
+			return true;
+		}
+		if (sourceType instanceof SequenceType) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isUnique(Type sourceType) {
+		if (sourceType instanceof OrderedSetType) {
+			return true;
+		}
+		if (sourceType instanceof SetType) {
+			return true;
+		}
+		return false;
+	}
 	
 	protected abstract Resource loadDefaultLibrary(String uri);
-
-//	public void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids) {
-//		this.allowExplanatoryInvalids = allowExplanatoryInvalids;
-//	}
 }

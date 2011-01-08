@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.1.2.5 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: OCLBase.java,v 1.1.2.6 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -457,7 +456,7 @@ public abstract class OCLBase {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
 		if (result == null) {
-			result = ValueFactory.createInvalidValue("Java-Null value");
+			result = localEvalEnv.getValueFactory().createInvalidValue("Java-Null value");
 		}
 		return result;
 	}
@@ -494,7 +493,7 @@ public abstract class OCLBase {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
 		if (result == null) {
-			result = ValueFactory.createInvalidValue("Java-Null value");
+			result = localEvalEnv.getValueFactory().createInvalidValue("Java-Null value");
 		}
 		return result;
 	}

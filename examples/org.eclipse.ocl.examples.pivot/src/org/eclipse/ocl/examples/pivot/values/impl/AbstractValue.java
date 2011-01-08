@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractValue.java,v 1.1.2.2 2010/12/26 16:56:23 ewillink Exp $
+ * $Id: AbstractValue.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -32,8 +32,14 @@ import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
-public abstract class AbstractValue extends ValueFactory implements Value
+public abstract class AbstractValue implements Value
 {
+	protected final ValueFactory valueFactory;
+
+	protected AbstractValue(ValueFactory valueFactory) {
+		this.valueFactory = valueFactory;
+	}
+
 //	public boolean and(Value v) {
 //		return false;
 //	}
@@ -51,7 +57,7 @@ public abstract class AbstractValue extends ValueFactory implements Value
 	}
 
 	public BooleanValue asFalse() {
-		return Value.FALSE;
+		return valueFactory.FALSE;
 	}
 
 	public Integer asInteger() {
@@ -95,7 +101,7 @@ public abstract class AbstractValue extends ValueFactory implements Value
 	}
 
 	public BooleanValue asTrue() {
-		return Value.FALSE;
+		return valueFactory.FALSE;
 	}
 
 	public TypeValue asTypeValue() {
@@ -104,6 +110,10 @@ public abstract class AbstractValue extends ValueFactory implements Value
 
 	public UniqueCollectionValue asUniqueCollectionValue() {
 		return null;
+	}
+	
+	public ValueFactory getValueFactory() {
+		return valueFactory;
 	}
 
 	public boolean isFalse() {
@@ -139,7 +149,7 @@ public abstract class AbstractValue extends ValueFactory implements Value
 	}
 
 	public InvalidValue toInvalidValue() {
-		return createInvalidValue(this, null, "bad value", null);
+		return valueFactory.createInvalidValue(this, null, "bad value", null);
 	}
 
 	public RealValue toRealValue() {

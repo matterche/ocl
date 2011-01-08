@@ -12,21 +12,19 @@
  *
  * </copyright>
  *
- * $Id: BooleanValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: BooleanValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class BooleanValueImpl extends AbstractValue implements BooleanValue
 {
-	public final static BooleanValueImpl FALSE = new BooleanValueImpl(false); 
-	public final static BooleanValueImpl TRUE = new BooleanValueImpl(true); 
-
 	private final boolean value;
 	
-	private BooleanValueImpl(boolean value) {
+	public BooleanValueImpl(ValueFactory valueFactory, boolean value) {
+		super(valueFactory);
 		this.value = value;
 	}
 
@@ -42,7 +40,7 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 
 	@Override
 	public BooleanValue asFalse() {
-		return value ? Value.FALSE : Value.TRUE;
+		return valueFactory.booleanValueOf(!value);
 	}
 
 	@Override

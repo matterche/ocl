@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NullValueImpl.java,v 1.1.2.3 2011/01/08 11:39:38 ewillink Exp $
+ * $Id: NullValueImpl.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class NullValueImpl extends AbstractUndefinedCollectionValue implements NullValue
 {
-	public final static NullValueImpl INSTANCE = new NullValueImpl(); 
-	
-	private NullValueImpl() {}
+	public NullValueImpl(ValueFactory valueFactory) {
+		super(valueFactory);
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -53,7 +53,7 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 	}
 
 	public InvalidValue toInvalidValue() {
-		return ValueFactory.createInvalidValue(this, null, "null", null);
+		return valueFactory.createInvalidValue(this, null, "null", null);
 	}
 
 	@Override

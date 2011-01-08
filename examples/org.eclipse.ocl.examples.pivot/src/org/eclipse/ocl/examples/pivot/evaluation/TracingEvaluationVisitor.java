@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TracingEvaluationVisitor.java,v 1.1.2.4 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: TracingEvaluationVisitor.java,v 1.1.2.5 2011/01/08 15:35:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -67,6 +68,10 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 	@Override
 	public EvaluationVisitor createNestedVisitor() {
 		return new TracingEvaluationVisitor(super.createNestedVisitor());
+	}
+
+	public ValueFactory getValueFactory() {
+		return getDelegate().getValueFactory();
 	}
 
     private boolean isInvalid(Object value) {

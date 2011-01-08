@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.1.2.3 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class InvalidValueImpl extends AbstractUndefinedCollectionValue implements InvalidValue
 {	
@@ -27,15 +28,16 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	protected final Throwable throwable;
 	private String message = null;
 
-	protected InvalidValueImpl(String reason) {
-		this(null, null, reason, null);
+	protected InvalidValueImpl(ValueFactory valueFactory, String reason) {
+		this(valueFactory, null, null, reason, null);
 	}
 
-	protected InvalidValueImpl(InvalidValue invalidValue) {
-		this(invalidValue, null, invalidValue.getReason(), null);
+	protected InvalidValueImpl(ValueFactory valueFactory, InvalidValue invalidValue) {
+		this(valueFactory, invalidValue, null, invalidValue.getReason(), null);
 	}
 
-	public InvalidValueImpl(Object value, OclExpression expression, String reason, Throwable throwable) {
+	public InvalidValueImpl(ValueFactory valueFactory, Object value, OclExpression expression, String reason, Throwable throwable) {
+		super(valueFactory);
 		this.value = value;
 		this.expression = expression;
 		this.reason = reason;

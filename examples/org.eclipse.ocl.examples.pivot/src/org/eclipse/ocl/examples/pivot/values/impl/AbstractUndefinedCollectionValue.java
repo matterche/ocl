@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedCollectionValue.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: AbstractUndefinedCollectionValue.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.TupleType;
@@ -31,8 +32,10 @@ import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public abstract class AbstractUndefinedCollectionValue extends AbstractUndefinedValue
 {	
@@ -48,6 +51,10 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 
 		public void remove() {
 		}
+	}
+	
+	protected AbstractUndefinedCollectionValue(ValueFactory valueFactory) {
+		super(valueFactory);
 	}
 
 	public OrderedCollectionValue append(Value object) {
@@ -188,8 +195,8 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		return toInvalidValue();
 	}
 
-	public SetValue product(CollectionValue c, TupleType tupleType) {
-		return toInvalidValue();
+	public Set<TupleValue> product(CollectionValue c, TupleType tupleType) {
+		return null;
 	}
 
 	public OrderedCollectionValue reverse() {

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.7 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.8 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.impl.InvalidValueImpl;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -126,7 +125,7 @@ public abstract class AbstractEvaluationVisitor
     }
 
 	public Value createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
-        return new InvalidValueImpl(object, expression, reason, throwable);
+        return getValueFactory().createInvalidValue(object, expression, reason, throwable);
 	}
    
     /**

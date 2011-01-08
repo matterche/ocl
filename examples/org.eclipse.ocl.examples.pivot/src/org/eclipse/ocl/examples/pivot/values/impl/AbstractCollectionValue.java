@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.1.2.2 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -43,10 +43,11 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 {
 	protected final C elements;
 	
-	protected AbstractCollectionValue(C elements) {
+	protected AbstractCollectionValue(ValueFactory valueFactory, C elements) {
+		super(valueFactory);
 		this.elements = elements;
 		assert elements != null;
-		assert isValid(elements);		// FIXME Debugging
+		assert valueFactory.isValid(elements);		// FIXME Debugging
 	}
 	
 	/**
@@ -62,7 +63,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
     @Override
     public BagValue asBagValue() {
-        return new BagValueImpl(elements);
+        return new BagValueImpl(valueFactory, elements);
     }
 
 	public Collection<Value> asCollection() {
@@ -80,17 +81,17 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
     @Override
 	public OrderedSetValue asOrderedSetValue() {
-        return new OrderedSetValueImpl(elements);
+        return new OrderedSetValueImpl(valueFactory, elements);
     }
 
     @Override
     public SequenceValue asSequenceValue() {
-        return new SequenceValueImpl(elements);
+        return new SequenceValueImpl(valueFactory, elements);
     }
 
     @Override
     public SetValue asSetValue() {
-        return new SetValueImpl(elements);
+        return new SetValueImpl(valueFactory, elements);
     }
 
     /**
@@ -109,7 +110,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
                 count++;
             }
         }        
-        return createIntegerValue(count);
+        return valueFactory.integerValueOf(count);
     }
 
 	@Override
@@ -127,7 +128,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
      * @return whether the collection does not include the object
      */
     public BooleanValue excludes(Value value) {
-    	return createBooleanValue(!elements.contains(value));
+    	return valueFactory.booleanValueOf(!elements.contains(value));
     }
 
 	/**
@@ -143,10 +144,10 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
     public BooleanValue excludesAll(CollectionValue c) {
         for (Value next : c) {
             if (elements.contains(next)) {
-                return Value.FALSE;
+                return valueFactory.FALSE;
             }
         }
-        return Value.TRUE;
+        return valueFactory.TRUE;
     }
 
     /**
@@ -168,7 +169,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 	}
 
     public BooleanValue includes(Value value) {
-		return createBooleanValue(elements.contains(value));
+		return valueFactory.booleanValueOf(elements.contains(value));
     }
 
     /**
@@ -184,14 +185,14 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
     public BooleanValue includesAll(CollectionValue c) {
     	for (Value next : c) {
     		if (!elements.contains(next)) {
-    			return Value.FALSE;
+    			return valueFactory.FALSE;
     		}
     	}   	
-        return Value.TRUE;
+        return valueFactory.TRUE;
     }
 
 	public BooleanValue isEmpty() {
-		return createBooleanValue(elements.size() == 0);
+		return valueFactory.booleanValueOf(elements.size() == 0);
 	}
 
 	public Iterator<Value> iterator() {
@@ -205,9 +206,9 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         		result = element;
         	}
         	else {
-        		result = binaryOperation.evaluate(result, element);
+        		result = binaryOperation.evaluate(valueFactory, result, element);
         		if (result == null) {
-        			return createInvalidValue(element, null, "max/min evaluation failure", null);
+        			return valueFactory.createInvalidValue(element, null, "max/min evaluation failure", null);
         		}
         		if (result.isUndefined()) {
         			return result.toInvalidValue();
@@ -215,7 +216,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         	}
         }
 		if (result == null) {
-			return createInvalidValue(this, null, "max/min or empty collection", null);
+			return valueFactory.createInvalidValue(this, null, "max/min or empty collection", null);
 		}
 		else {
 			return result;
@@ -223,27 +224,27 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
     }
 
 	public BooleanValue notEmpty() {
-		return createBooleanValue(elements.size() != 0);
+		return valueFactory.booleanValueOf(elements.size() != 0);
 	}
 
-    public SetValue product(CollectionValue c, TupleType tupleType) {   	
+    public Set<TupleValue> product(CollectionValue c, TupleType tupleType) {   	
     	Set<TupleValue> result = new HashSet<TupleValue>();		
         for (Value next1 : this) {
         	for (Value next2 : c) {
-        		result.add(new TupleValueImpl(tupleType, next1, next2));
+        		result.add(new TupleValueImpl(valueFactory, tupleType, next1, next2));
         	}
         }
-        return ValueFactory.createSetValue(result);
+        return result;
     }
 
 	public IntegerValue size() {
-		return createIntegerValue(elements.size());
+		return valueFactory.integerValueOf(elements.size());
 	}
 
 	public Value sum(BinaryOperation binaryOperation, Value zero) {
 		Value result = zero;
         for (Value element : elements) {
-        	result = binaryOperation.evaluate(result, element);
+        	result = binaryOperation.evaluate(valueFactory, result, element);
         }
         return result;
     }
@@ -277,25 +278,25 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
     public CollectionValue union(CollectionValue c) {
         if (this instanceof BagValue || c instanceof BagValue) {
-            return BagValueImpl.union(this, c);
+            return BagValueImpl.union(valueFactory, this, c);
         }
         else if (this instanceof SequenceValue || c instanceof SequenceValue) {
-            return SequenceValueImpl.union(this, c);
+            return SequenceValueImpl.union(valueFactory, this, c);
         }
         else if (this instanceof OrderedSetValue || c instanceof OrderedSetValue) {
-            return OrderedSetValueImpl.union(this, c);
+            return OrderedSetValueImpl.union(valueFactory, this, c);
         }
         else {
-            return SetValueImpl.union(this, c);
+            return SetValueImpl.union(valueFactory, this, c);
         }
     }
 
 	public CollectionValue intersection(CollectionValue c) {
         if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
-            return SetValueImpl.intersection(this, c);
+            return SetValueImpl.intersection(valueFactory, this, c);
         }
         else {
-            return BagValueImpl.intersection(this, c);
+            return BagValueImpl.intersection(valueFactory, this, c);
         }
 	}
 }

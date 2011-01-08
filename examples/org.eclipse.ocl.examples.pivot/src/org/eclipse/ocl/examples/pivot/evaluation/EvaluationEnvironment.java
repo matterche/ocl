@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.1.2.5 2011/01/08 11:39:37 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.1.2.6 2011/01/08 15:35:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.util.Adaptable;
 
@@ -244,4 +245,6 @@ public interface EvaluationEnvironment {
 	VariableDeclaration getVariable(VariableDeclaration variableDeclaration);
 
 	PivotManager getPivotManager();
+
+	ValueFactory getValueFactory();
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: BagValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -32,12 +32,13 @@ import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class BagValueImpl
 	extends AbstractCollectionValue<Bag<Value>>
 	implements BagValue
 {
-    public static BagValue intersection(CollectionValue left, CollectionValue right)
+    public static BagValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right)
     {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
@@ -45,7 +46,7 @@ public class BagValueImpl
         int leftSize = leftElements.size();
         int rightSize = rightElements.size();
     	if ((leftSize == 0) || (rightSize == 0)) {
-            return EMPTY_BAG;
+            return valueFactory.EMPTY_BAG;
         }    	
         Bag<Value> results = new BagImpl<Value>();
         // loop over the smaller collection and add only elements
@@ -58,10 +59,10 @@ public class BagValueImpl
         		results.add(e);
         	}
         }
-    	return results.size() > 0 ? new BagValueImpl(results) : EMPTY_BAG;
+    	return results.size() > 0 ? new BagValueImpl(valueFactory, results) : valueFactory.EMPTY_BAG;
     }
 
-    public static BagValue union(CollectionValue left, CollectionValue right) {
+    public static BagValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -74,19 +75,23 @@ public class BagValueImpl
     	else {
 			Bag<Value> result = new BagImpl<Value>(leftElements);
 			result.addAll(rightElements);
-    		return new BagValueImpl(result);
+    		return new BagValueImpl(valueFactory, result);
         } 
     }
 	
 	public static class Accumulator extends BagValueImpl implements CollectionValue.Accumulator
 	{
+		public Accumulator(ValueFactory valueFactory) {
+			super(valueFactory);
+		}
+
 		public boolean add(Value value) {
 			return elements.add(value);			
 		}		
 	}
 	
-	public BagValueImpl(Value... elements) {
-		super(new BagImpl<Value>());
+	public BagValueImpl(ValueFactory valueFactory, Value... elements) {
+		super(valueFactory, new BagImpl<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
 				this.elements.add(element);
@@ -94,16 +99,16 @@ public class BagValueImpl
 		}
 	}
 
-	public BagValueImpl(Collection<? extends Value> elements) {
-		super(new BagImpl<Value>(elements));
+	public BagValueImpl(ValueFactory valueFactory, Collection<? extends Value> elements) {
+		super(valueFactory, new BagImpl<Value>(elements));
 	}
 
 //	public BagValue(CollectionValue c) {
 //		this(c.asCollection());
 //	}
 
-	public BagValueImpl(Bag<Value> elements) {
-		super(elements);
+	public BagValueImpl(ValueFactory valueFactory, Bag<Value> elements) {
+		super(valueFactory, elements);
 	}
 
     @Override
@@ -112,7 +117,7 @@ public class BagValueImpl
     }
 
 	public BagValue createNew() {
-		return new BagValueImpl();
+		return new BagValueImpl(valueFactory);
 	}
 
 	@Override
@@ -131,7 +136,7 @@ public class BagValueImpl
 			}
 		}
 		if (result.size() < elements.size()) {
-			return new BagValueImpl(result);
+			return new BagValueImpl(valueFactory, result);
 		}
 		else {
 			return this;
@@ -141,7 +146,7 @@ public class BagValueImpl
     public BagValue flatten() {
     	Bag<Value> flattened = new BagImpl<Value>();
     	if (flatten(flattened)) {
-    		return new BagValueImpl(flattened);
+    		return new BagValueImpl(valueFactory, flattened);
     	}
     	else {
     		return this;
@@ -155,17 +160,17 @@ public class BagValueImpl
 	public BagValue including(Value value) {
 		Bag<Value> result = new BagImpl<Value>(elements);
 		result.add(value);
-		return new BagValueImpl(result);
+		return new BagValueImpl(valueFactory, result);
 	}
 	   
     public SequenceValue sort(Comparator<Value> comparator) {
     	List<Value> values = new ArrayList<Value>(elements);
     	Collections.sort(values, comparator);
-    	return new SequenceValueImpl(values);
+    	return new SequenceValueImpl(valueFactory, values);
     }
     
 	public OrderedCollectionValue toOrderedCollectionValue() {
-		return new SequenceValueImpl(elements);
+		return new SequenceValueImpl(valueFactory, elements);
 	}
 
 	@Override

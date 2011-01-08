@@ -12,23 +12,21 @@
  *
  * </copyright>
  *
- * $Id: StringValueImpl.java,v 1.1.2.2 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: StringValueImpl.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.values.StringValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
 
 
 public class StringValueImpl extends AbstractValue implements StringValue
 {
-	public static StringValueImpl valueOf(String value) {
-		return new StringValueImpl(value);
-	}
-
 	private final String value;
 	
-	private StringValueImpl(String value) {
+	public StringValueImpl(ValueFactory valueFactory, String value) {
+		super(valueFactory);
 		this.value = value;
 	}
 

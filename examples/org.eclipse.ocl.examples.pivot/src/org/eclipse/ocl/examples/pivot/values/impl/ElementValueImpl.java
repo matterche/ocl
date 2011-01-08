@@ -12,18 +12,20 @@
  *
  * </copyright>
  *
- * $Id: ElementValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: ElementValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.values.ElementValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class ElementValueImpl<E extends Element> extends AbstractValue implements ElementValue<E>
 {
 	protected final E element;
 	
-	public ElementValueImpl(E element) {
+	public ElementValueImpl(ValueFactory valueFactory, E element) {
+		super(valueFactory);
 		this.element = element;
 	}
 

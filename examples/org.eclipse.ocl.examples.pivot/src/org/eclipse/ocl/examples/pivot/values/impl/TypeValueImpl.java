@@ -12,17 +12,18 @@
  *
  * </copyright>
  *
- * $Id: TypeValueImpl.java,v 1.1.2.2 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: TypeValueImpl.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 {
-	public TypeValueImpl(Type type) {
-		super(type);
+	public TypeValueImpl(ValueFactory valueFactory, Type type) {
+		super(valueFactory, type);
 	}
 
 	@Override

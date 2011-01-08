@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEvaluationEnvironment.java,v 1.1.2.4 2011/01/08 11:39:37 ewillink Exp $
+ * $Id: PivotEvaluationEnvironment.java,v 1.1.2.5 2011/01/08 15:35:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.util.UnicodeSupport;
 
 /**
@@ -426,5 +427,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     	throw new UnsupportedOperationException(getClass().getName() + ".getInvalidResult");
     }
 
-
+	public ValueFactory getValueFactory() {
+		return pivotManager.getValueFactory();
+	}
 }

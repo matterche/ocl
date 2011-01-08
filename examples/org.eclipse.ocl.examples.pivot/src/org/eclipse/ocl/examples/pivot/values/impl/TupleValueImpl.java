@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.1.2.1 2011/01/08 11:39:38 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * UML implementation of a tuple value.
@@ -45,7 +46,8 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
      * @param type my type
      * @param values my parts
      */
-    public TupleValueImpl(TupleType type, Map<? extends TypedElement, Value> values) {
+    public TupleValueImpl(ValueFactory valueFactory, TupleType type, Map<? extends TypedElement, Value> values) {
+		super(valueFactory);
         this.type = type;
 
         for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
@@ -61,7 +63,8 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
      * @param firstValue my first value
      * @param secondValue my second value
      */
-    public TupleValueImpl(TupleType type, Value firstValue, Value secondValue) {
+    public TupleValueImpl(ValueFactory valueFactory, TupleType type, Value firstValue, Value secondValue) {
+		super(valueFactory);
         this.type = type;						// FIXME use optimised ProductTupleImpl
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);

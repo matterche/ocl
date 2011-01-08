@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.14 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.15 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -791,36 +791,41 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return type;
 	}
 
+	public ValueFactory getValueFactory() {
+		return ValueFactory.INSTANCE;
+	}
+
 	public Value getValueOfValue(Object value) {
+		ValueFactory valueFactory = getValueFactory();
 		if (value instanceof Number) {
 			if ((value instanceof Integer) || (value instanceof Long)
 					|| (value instanceof Short)) {
-				return ValueFactory.createIntegerValue(((Number) value).longValue());
+				return valueFactory.integerValueOf(((Number) value).longValue());
 			}
 			if ((value instanceof Float) || (value instanceof Double)) {
-				return ValueFactory.createRealValue(((Number) value).doubleValue());
+				return valueFactory.realValueOf(((Number) value).doubleValue());
 			}
 			if (value instanceof BigDecimal) {
-				return ValueFactory.createRealValue((BigDecimal) value);
+				return valueFactory.realValueOf((BigDecimal) value);
 			}
 			if (value instanceof BigInteger) {
-				return ValueFactory.createIntegerValue((BigInteger) value);
+				return valueFactory.integerValueOf((BigInteger) value);
 			}			
 		}
 		if (value instanceof String) {
-			return ValueFactory.createStringValue((String) value);
+			return valueFactory.stringValueOf((String) value);
 		}
 		if (value instanceof Boolean) {
-			return ValueFactory.createBooleanValue((Boolean) value);
+			return valueFactory.booleanValueOf((Boolean) value);
 		}
 		if (value instanceof Element) {
 			if (value instanceof Type) {
-				return ValueFactory.createTypeValue((Type) value);
+				return valueFactory.createTypeValue((Type) value);
 			}
-			return ValueFactory.createElementValue((Element) value);
+			return valueFactory.createElementValue((Element) value);
 		}
 		if (value == null) {
-			return Value.NULL;
+			return valueFactory.NULL;
 		}
 		if (value.getClass().isArray()) {
 			try {
@@ -830,11 +835,11 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 					Value v = getValueOfValue(Array.get(value, i));
 					values.add(v);
 				}
-				return ValueFactory.createSequenceValue(values);
+				return valueFactory.createSequenceValue(values);
 			} 
 			catch (IllegalArgumentException e) {}
 		}
-		return ValueFactory.createObjectValue(value);
+		return valueFactory.createObjectValue(value);
 	}
 
 	public boolean isAdapterForType(Object type) {

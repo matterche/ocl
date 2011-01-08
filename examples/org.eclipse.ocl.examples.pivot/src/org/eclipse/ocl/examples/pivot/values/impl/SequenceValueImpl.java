@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SequenceValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: SequenceValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -29,12 +29,13 @@ import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class SequenceValueImpl
 	extends AbstractCollectionValue<List<Value>>
 	implements SequenceValue
 {
-	public static SequenceValue union(CollectionValue left, CollectionValue right) {
+	public static SequenceValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -47,19 +48,23 @@ public class SequenceValueImpl
     	else {
     		List<Value> result = new ArrayList<Value>(leftElements);
 			result.addAll(rightElements);
-    		return new SequenceValueImpl(result);
+    		return new SequenceValueImpl(valueFactory, result);
         } 
     }
 	
 	public static class Accumulator extends SequenceValueImpl implements CollectionValue.Accumulator
 	{
+		public Accumulator(ValueFactory valueFactory) {
+			super(valueFactory);
+		}
+
 		public boolean add(Value value) {
 			return elements.add(value);			
 		}		
 	}
     
-	public SequenceValueImpl(Value... elements) {
-		super(new ArrayList<Value>());
+	public SequenceValueImpl(ValueFactory valueFactory, Value... elements) {
+		super(valueFactory, new ArrayList<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
 				this.elements.add(element);
@@ -67,12 +72,12 @@ public class SequenceValueImpl
 		}
 	}
 
-	public SequenceValueImpl(Collection<? extends Value> elements) {
-		super(new ArrayList<Value>(elements));
+	public SequenceValueImpl(ValueFactory valueFactory, Collection<? extends Value> elements) {
+		super(valueFactory, new ArrayList<Value>(elements));
 	}
 
-	public SequenceValueImpl(List<Value> elements) {
-		super(elements);
+	public SequenceValueImpl(ValueFactory valueFactory, List<Value> elements) {
+		super(valueFactory, elements);
 	}
 	
 	@Override
@@ -93,7 +98,7 @@ public class SequenceValueImpl
     public SequenceValue append(Value object) {
     	List<Value> result = new ArrayList<Value>(elements);
         result.add(object);
-        return new SequenceValueImpl(result);
+        return new SequenceValueImpl(valueFactory, result);
     }
 
     public Value at(int index) {
@@ -110,7 +115,7 @@ public class SequenceValueImpl
     }
 
 	public SequenceValue createNew() {
-		return new SequenceValueImpl();
+		return new SequenceValueImpl(valueFactory);
 	}
 
 	@Override
@@ -129,7 +134,7 @@ public class SequenceValueImpl
 			}
 		}
 		if (result.size() < elements.size()) {
-			return new SequenceValueImpl(result);
+			return new SequenceValueImpl(valueFactory, result);
 		}
 		else {
 			return this;
@@ -146,7 +151,7 @@ public class SequenceValueImpl
     public SequenceValue flatten() {
     	List<Value> flattened = new ArrayList<Value>();
     	if (flatten(flattened)) {
-    		return new SequenceValueImpl(flattened);
+    		return new SequenceValueImpl(valueFactory, flattened);
     	}
     	else {
     		return this;
@@ -160,12 +165,12 @@ public class SequenceValueImpl
 	public SequenceValue including(Value value) {
 		List<Value> result = new ArrayList<Value>(elements);
 		result.add(value);
-		return new SequenceValueImpl(result);
+		return new SequenceValueImpl(valueFactory, result);
 	}
 
     public IntegerValue indexOf(Value object) {
         int index = elements.indexOf(object);
-        return index >= 0 ? createIntegerValue(index+1) : createInvalidValue("missing object");
+        return index >= 0 ? valueFactory.integerValueOf(index+1) : valueFactory.createInvalidValue("missing object");
     }
 
     public SequenceValue insertAt(int index, Value object) {
@@ -177,7 +182,7 @@ public class SequenceValueImpl
         }        
 		List<Value> result = new ArrayList<Value>(elements);
 		result.add(index, object);
-		return new SequenceValueImpl(result);
+		return new SequenceValueImpl(valueFactory, result);
     }
 
   
@@ -196,19 +201,19 @@ public class SequenceValueImpl
     	List<Value> result = new ArrayList<Value>();
         result.add(object);
         result.addAll(elements);
-        return new SequenceValueImpl(result);
+        return new SequenceValueImpl(valueFactory, result);
     }
 
 	public SequenceValue reverse() {
 		List<Value> elements = new ArrayList<Value>(this.elements);
 		Collections.reverse(elements);
-        return new SequenceValueImpl(elements);
+        return new SequenceValueImpl(valueFactory, elements);
     }
 	   
     public SequenceValue sort(Comparator<Value> comparator) {
     	List<Value> values = new ArrayList<Value>(elements);
     	Collections.sort(values, comparator);
-    	return new SequenceValueImpl(values);
+    	return new SequenceValueImpl(valueFactory, values);
     }
 	
     /**
@@ -249,7 +254,7 @@ public class SequenceValueImpl
             }
             curr++;
         }
-        return new SequenceValueImpl(result);
+        return new SequenceValueImpl(valueFactory, result);
     }
 
 	public OrderedCollectionValue toOrderedCollectionValue() {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SetValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: SetValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 //
 //	Note that it is not necessary to adjust set uniqueness for OCL value equivalence
@@ -41,7 +42,7 @@ import org.eclipse.ocl.examples.pivot.values.Value;
 public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	implements SetValue
 {
-    public static SetValue intersection(CollectionValue left, CollectionValue right)
+    public static SetValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right)
     {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
@@ -49,7 +50,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
         int leftSize = leftElements.size();
         int rightSize = rightElements.size();
     	if ((leftSize == 0) || (rightSize == 0)) {
-            return EMPTY_SET;
+            return valueFactory.EMPTY_SET;
         }    	
         Set<Value> results = new HashSet<Value>();
         // loop over the smaller collection and add only elements
@@ -62,10 +63,10 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
             results = new HashSet<Value>(rightElements);
         	results.retainAll(leftElements);
         }
-    	return results.size() > 0 ? new SetValueImpl(results) : EMPTY_SET;
+    	return results.size() > 0 ? new SetValueImpl(valueFactory, results) : valueFactory.EMPTY_SET;
     }
 
-	public static SetValue union(CollectionValue left, CollectionValue right) {
+	public static SetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -78,35 +79,39 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     	else {
 			Set<Value> result = new HashSet<Value>(leftElements);
 			result.addAll(rightElements);
-    		return new SetValueImpl(result);
+    		return new SetValueImpl(valueFactory, result);
         } 
     }   
 
-	public static SetValue valueOfElements(Collection<? extends Element> elements) {
+	public static SetValue valueOfElements(ValueFactory valueFactory, Collection<? extends Element> elements) {
 		Set<Value> results = new HashSet<Value>();
 		for (Element element : elements) {
-			results.add(createElementValue(element));
+			results.add(valueFactory.createElementValue(element));
 		}
-		return new SetValueImpl(results);
+		return new SetValueImpl(valueFactory, results);
 	}
 
-	public static SetValue valueOfObjects(Collection<? extends Object> objects) {
+	public static SetValue valueOfObjects(ValueFactory valueFactory, Collection<? extends Object> objects) {
 		Set<Value> results = new HashSet<Value>();
 		for (Object object : objects) {
-			results.add(createObjectValue(object));
+			results.add(valueFactory.createObjectValue(object));
 		}
-		return new SetValueImpl(results);
+		return new SetValueImpl(valueFactory, results);
 	}
 	
 	public static class Accumulator extends SetValueImpl implements CollectionValue.Accumulator
 	{
+		public Accumulator(ValueFactory valueFactory) {
+			super(valueFactory);
+		}
+
 		public boolean add(Value value) {
 			return elements.add(value);			
 		}		
 	}
 	
-	public SetValueImpl(Value... elements) {
-		super(new HashSet<Value>());
+	public SetValueImpl(ValueFactory valueFactory, Value... elements) {
+		super(valueFactory, new HashSet<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
 				this.elements.add(element);			// FIXME equals
@@ -114,16 +119,16 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 		}
 	}
 
-	public SetValueImpl(Collection<? extends Value> elements) {
-		super(new HashSet<Value>(elements));
+	public SetValueImpl(ValueFactory valueFactory, Collection<? extends Value> elements) {
+		super(valueFactory, new HashSet<Value>(elements));
 	}
 
 //	public SetValue(CollectionValue c) {
 //		this(c.asCollection());
 //	}
 
-	public SetValueImpl(Set<Value> elements) {
-		super(elements);
+	public SetValueImpl(ValueFactory valueFactory, Set<Value> elements) {
+		super(valueFactory, elements);
 	}
 
     @Override
@@ -137,7 +142,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     }
 
 	public SetValue createNew() {
-		return new SetValueImpl();
+		return new SetValueImpl(valueFactory);
 	}
 
 	@Override
@@ -156,7 +161,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 			}
 		}
 		if (result.size() < elements.size()) {
-			return new SetValueImpl(result);
+			return new SetValueImpl(valueFactory, result);
 		}
 		else {
 			return this;
@@ -166,7 +171,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     public SetValue flatten() {
     	Set<Value> flattened = new HashSet<Value>();
     	if (flatten(flattened)) {
-    		return new SetValueImpl(flattened);
+    		return new SetValueImpl(valueFactory, flattened);
     	}
     	else {
     		return this;
@@ -180,7 +185,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	public SetValue including(Value value) {
 		Set<Value> result = new HashSet<Value>(elements);
 		result.add(value);
-		return new SetValueImpl(result);
+		return new SetValueImpl(valueFactory, result);
 	}
 
     /**
@@ -195,13 +200,13 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     public SetValue minus(SetValue set) {
     	Set<Value> result = new HashSet<Value>(elements);
         result.removeAll(set.asCollection());
-        return new SetValueImpl(result);
+        return new SetValueImpl(valueFactory, result);
     }
     
     public OrderedSetValue sort(Comparator<Value> comparator) {
     	List<Value> values = new ArrayList<Value>(elements);
     	Collections.sort(values, comparator);
-    	return new OrderedSetValueImpl(values);
+    	return new OrderedSetValueImpl(valueFactory, values);
     }
 
     /**
@@ -223,11 +228,11 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
                 result.add(e);
             }
         }        
-        return new SetValueImpl(result);
+        return new SetValueImpl(valueFactory, result);
     }
     
 	public OrderedCollectionValue toOrderedCollectionValue() {
-		return new OrderedSetValueImpl(elements);
+		return new OrderedSetValueImpl(valueFactory, elements);
 	}
 
 	@Override

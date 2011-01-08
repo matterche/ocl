@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 
@@ -24,7 +25,8 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 {
 	protected final Object object;
 	
-	public ObjectValueImpl(Object object) {
+	public ObjectValueImpl(ValueFactory valueFactory, Object object) {
+		super(valueFactory);
 		this.object = object;
 	}
 

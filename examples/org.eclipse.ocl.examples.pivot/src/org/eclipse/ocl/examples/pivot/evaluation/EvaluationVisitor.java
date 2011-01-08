@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.1.2.6 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.1.2.7 2011/01/08 15:35:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * A specialized visitor that is used for evaluation an
@@ -62,6 +63,8 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
 	public ModelManager getModelManager();
 
 	public StandardLibrary getStandardLibrary();
+
+	public ValueFactory getValueFactory();
 
 	/**
 	 * Load the implementation class that realises a feature.

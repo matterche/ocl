@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 /**
  * <copyright>
@@ -28,7 +28,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -37,10 +37,13 @@ import java.math.BigDecimal;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.UnlimitedValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 {
-	public UnlimitedValueImpl() {}
+	public UnlimitedValueImpl(ValueFactory valueFactory) {
+		super(valueFactory);
+	}
 
 	public UnlimitedValueImpl abs() {
 		return this;
@@ -71,7 +74,7 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 	}
 
 	public UnlimitedValue negate() {
-		return createInvalidValue("negated UnlimitedValue");
+		return getValueFactory().createInvalidValue("negated UnlimitedValue");
 	}
 
 	public int signum() {
@@ -79,7 +82,7 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 	}
 
 	public IntegerValue toIntegerValue() {
-		return createInvalidValue("non-integer UnlimitedValue");
+		return getValueFactory().createInvalidValue("non-integer UnlimitedValue");
 	}
 
 	@Override

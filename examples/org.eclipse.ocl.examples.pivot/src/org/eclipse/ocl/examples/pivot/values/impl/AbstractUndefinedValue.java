@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedValue.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: AbstractUndefinedValue.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -28,9 +28,16 @@ import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public abstract class AbstractUndefinedValue implements NullValue
-{
+{	
+	protected final ValueFactory valueFactory;
+	
+	protected AbstractUndefinedValue(ValueFactory valueFactory) {
+		this.valueFactory = valueFactory;
+	}
+
 	public InvalidValue abs() {
 		return toInvalidValue();
 	}

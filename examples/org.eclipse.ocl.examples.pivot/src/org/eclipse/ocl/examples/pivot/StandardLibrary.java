@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.1.2.3 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -240,12 +240,7 @@ public interface StandardLibrary {
 
 	Object getValueOfValue(Object value);
 	
-	/**
-	 * Configure creation of invalids to allow the context and explanation
-	 * to be captured. Note that this allows multiple invalid objects to exist
-	 * and so any tests for invalid should use instanceof InvalidLiteralExp
-	 * or compare the type to getInvalidType().
-	 * @param allowExplanatoryInvalids
-	 */
-//	void setAllowExplanatoryInvalids(boolean allowExplanatoryInvalids);
+	boolean isOrdered(Type sourceType);
+
+	boolean isUnique(Type sourceType);
 }

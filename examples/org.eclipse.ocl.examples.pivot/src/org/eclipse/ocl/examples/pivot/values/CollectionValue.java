@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: CollectionValue.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.TupleType;
@@ -31,7 +32,7 @@ public interface CollectionValue extends Value, Iterable<Value>
 	}
 	
 	interface BinaryOperation {
-		Value evaluate(Value result, Value element);
+		Value evaluate(ValueFactory valueFactory, Value result, Value element);
 	}
 
 	Collection<Value> asCollection();	
@@ -52,7 +53,7 @@ public interface CollectionValue extends Value, Iterable<Value>
 	Iterator<Value> iterator();
 	Value maxMin(BinaryOperation binaryOperation);
 	BooleanValue notEmpty();
-    SetValue product(CollectionValue c, TupleType tupleType);   	
+	Set<TupleValue> product(CollectionValue c, TupleType tupleType);   	
 	IntegerValue size();
     OrderedCollectionValue sort(Comparator<Value> comparator);
 	Value sum(BinaryOperation binaryOperation, Value zero);
