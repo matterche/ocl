@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: StateImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: StateImpl.java,v 1.1.2.4 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.State;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,4 +53,8 @@ public class StateImpl
 		return PivotPackage.Literals.STATE;
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitState(this);
+	}
 } //StateImpl

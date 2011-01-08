@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NumericLiteralExpImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: NumericLiteralExpImpl.java,v 1.1.2.4 2011/01/08 12:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,4 +53,8 @@ public abstract class NumericLiteralExpImpl
 		return PivotPackage.Literals.NUMERIC_LITERAL_EXP;
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitNumericLiteralExp(this);
+	}
 } //NumericLiteralExpImpl

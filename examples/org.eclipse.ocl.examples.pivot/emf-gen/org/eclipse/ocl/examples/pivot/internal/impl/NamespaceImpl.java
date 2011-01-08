@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NamespaceImpl.java,v 1.1.2.2 2010/10/05 17:40:44 ewillink Exp $
+ * $Id: NamespaceImpl.java,v 1.1.2.3 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,4 +53,8 @@ public abstract class NamespaceImpl
 		return PivotPackage.Literals.NAMESPACE;
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitNamespace(this);
+	}
 } //NamespaceImpl

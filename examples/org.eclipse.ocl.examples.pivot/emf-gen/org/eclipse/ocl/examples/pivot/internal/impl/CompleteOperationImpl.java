@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperationImpl.java,v 1.1.2.4 2010/12/08 10:25:27 ewillink Exp $
+ * $Id: CompleteOperationImpl.java,v 1.1.2.5 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -489,4 +490,8 @@ public class CompleteOperationImpl
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitCompleteOperation(this);
+	}
 } //CompleteOperationImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedMultiplicityElementImpl.java,v 1.1.2.5 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: TypedMultiplicityElementImpl.java,v 1.1.2.6 2011/01/08 12:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.internal.operations.MultiplicityElementOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -578,4 +579,8 @@ public abstract class TypedMultiplicityElementImpl
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitTypedMultiplicityElement(this);
+	}
 } //TypedMultiplicityElementImpl

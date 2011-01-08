@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentImpl.java,v 1.1.2.6 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: CompleteEnvironmentImpl.java,v 1.1.2.7 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.operations.CompleteEnvironmentOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -126,6 +127,11 @@ public class CompleteEnvironmentImpl
 				return getCompleteType((Type)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
+	}
+
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitCompleteEnvironment(this);
 	}
 
 } //CompleteEnvironmentImpl

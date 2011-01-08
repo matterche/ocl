@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SendSignalActionImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: SendSignalActionImpl.java,v 1.1.2.4 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.Signal;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -243,4 +244,8 @@ public class SendSignalActionImpl
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitSendSignalAction(this);
+	}
 } //SendSignalActionImpl

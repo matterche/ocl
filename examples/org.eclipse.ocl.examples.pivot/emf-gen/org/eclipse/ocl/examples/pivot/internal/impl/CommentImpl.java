@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CommentImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: CommentImpl.java,v 1.1.2.5 2011/01/08 12:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -221,6 +222,11 @@ public class CommentImpl
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitComment(this);
 	}
 
 } //CommentImpl

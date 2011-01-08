@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.1.2.6 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: CallExpImpl.java,v 1.1.2.7 2011/01/08 12:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -393,6 +394,11 @@ public abstract class CallExpImpl
 	public String toString()
 	{
 		return super.toString();
+	}
+
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitCallExp(this);
 	}
 
 } //CallExpImpl

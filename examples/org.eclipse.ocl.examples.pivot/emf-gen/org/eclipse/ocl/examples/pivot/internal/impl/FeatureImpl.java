@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureImpl.java,v 1.1.2.1 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: FeatureImpl.java,v 1.1.2.2 2011/01/08 12:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,4 +91,8 @@ public abstract class FeatureImpl
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitFeature(this);
+	}
 } //FeatureImpl

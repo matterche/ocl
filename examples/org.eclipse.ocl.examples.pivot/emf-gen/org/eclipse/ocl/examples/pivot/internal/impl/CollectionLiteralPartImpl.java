@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.1.2.3 2010/10/09 20:09:23 ewillink Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.1.2.4 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,6 +51,11 @@ public abstract class CollectionLiteralPartImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.COLLECTION_LITERAL_PART;
+	}
+
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitCollectionLiteralPart(this);
 	}
 
 } //CollectionLiteralPartImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: MessageTypeImpl.java,v 1.1.2.6 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.Signal;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -374,4 +375,8 @@ public class MessageTypeImpl
 		return eDynamicIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitMessageType(this);
+	}
 } //MessageTypeImpl

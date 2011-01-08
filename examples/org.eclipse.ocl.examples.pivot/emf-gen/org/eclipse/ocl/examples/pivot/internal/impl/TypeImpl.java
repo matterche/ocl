@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeImpl.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: TypeImpl.java,v 1.1.2.6 2011/01/08 12:37:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.TypeOperations;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -862,4 +863,8 @@ public class TypeImpl
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(Visitor<R, C> visitor) {
+		return visitor.visitType(this);
+	}
 } //TypeImpl
