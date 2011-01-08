@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.6 2011/01/08 15:34:56 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.7 2011/01/08 18:22:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -52,10 +52,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsBag() {
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "Sequence{}->asBag()");
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "Bag{}->asBag()");
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "Set{}->asBag()");
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "OrderedSet{}->asBag()");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "Sequence{}->asBag()");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "Bag{}->asBag()");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "Set{}->asBag()");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "OrderedSet{}->asBag()");
 
 		assertQueryResults(null, "Bag{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asBag()");
 		assertQueryResults(null, "Bag{1, 2.0, '3'}", "Bag{1, 2.0, '3'}->asBag()");
@@ -74,10 +74,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsOrderedSet() {
-		assertQueryEquals(null, getValueFactory().EMPTY_ORDERED_SET, "Sequence{}->asOrderedSet()");
-		assertQueryEquals(null, getValueFactory().EMPTY_ORDERED_SET, "Bag{}->asOrderedSet()");
-		assertQueryEquals(null, getValueFactory().EMPTY_ORDERED_SET, "Set{}->asOrderedSet()");
-		assertQueryEquals(null, getValueFactory().EMPTY_ORDERED_SET, "OrderedSet{}->asOrderedSet()");
+		assertQueryEquals(null, getValueFactory().getEmptyOrderedSetValue(), "Sequence{}->asOrderedSet()");
+		assertQueryEquals(null, getValueFactory().getEmptyOrderedSetValue(), "Bag{}->asOrderedSet()");
+		assertQueryEquals(null, getValueFactory().getEmptyOrderedSetValue(), "Set{}->asOrderedSet()");
+		assertQueryEquals(null, getValueFactory().getEmptyOrderedSetValue(), "OrderedSet{}->asOrderedSet()");
 
 		assertQueryResults(null, "OrderedSet{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asOrderedSet()");
 		assertQueryResults(null, "OrderedSet{1, 2.0, '3'}", "OrderedSet{1, 2.0, '3'}->asOrderedSet()");
@@ -101,10 +101,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsSequence() {
-		assertQueryEquals(null, getValueFactory().EMPTY_SEQUENCE, "Sequence{}->asSequence()");
-		assertQueryEquals(null, getValueFactory().EMPTY_SEQUENCE, "Bag{}->asSequence()");
-		assertQueryEquals(null, getValueFactory().EMPTY_SEQUENCE, "Set{}->asSequence()");
-		assertQueryEquals(null, getValueFactory().EMPTY_SEQUENCE, "OrderedSet{}->asSequence()");
+		assertQueryEquals(null, getValueFactory().getEmptySequenceValue(), "Sequence{}->asSequence()");
+		assertQueryEquals(null, getValueFactory().getEmptySequenceValue(), "Bag{}->asSequence()");
+		assertQueryEquals(null, getValueFactory().getEmptySequenceValue(), "Set{}->asSequence()");
+		assertQueryEquals(null, getValueFactory().getEmptySequenceValue(), "OrderedSet{}->asSequence()");
 
 		assertQueryResults(null, "Sequence{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asSequence()");
 		assertQueryResults(null, "Sequence{1, 2.0, '3'}", "OrderedSet{1, 2.0, '3'}->asSequence()");
@@ -129,10 +129,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionAsSet() {
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Sequence{}->asSet()");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Bag{}->asSet()");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{}->asSet()");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "OrderedSet{}->asSet()");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Sequence{}->asSet()");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Bag{}->asSet()");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{}->asSet()");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "OrderedSet{}->asSet()");
 
 		assertQueryResults(null, "Set{1, 2.0, '3'}", "Sequence{1, 2.0, '3'}->asSet()");
 		assertResultContainsAll(null, "Set{1, 2.0, '3'}", "Bag{1, 2.0, '3'}->asSet()");
@@ -518,10 +518,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionFlatten() {
-		assertQueryEquals(null, getValueFactory().EMPTY_SEQUENCE, "Sequence{}->flatten()");
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "Bag{}->flatten()");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{}->flatten()");
-		assertQueryEquals(null, getValueFactory().EMPTY_ORDERED_SET, "OrderedSet{}->flatten()");
+		assertQueryEquals(null, getValueFactory().getEmptySequenceValue(), "Sequence{}->flatten()");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "Bag{}->flatten()");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{}->flatten()");
+		assertQueryEquals(null, getValueFactory().getEmptyOrderedSetValue(), "OrderedSet{}->flatten()");
 
 		String expression = "Sequence{Set{1,2,3}, Sequence{2.0, 3.0}, Bag{'test'}}->flatten()";
 		String expectedResultExpression = "Sequence{1, 2, 3, 2.0, 3.0, 'test'}";
@@ -796,10 +796,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 
 	public void testCollectionIntersection() {
 		// No duplicates
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{'a', 'b'}->intersection(Set{'c', 'd'})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{'a', 'b'}->intersection(Bag{'c', 'd'})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Bag{'a', 'b'}->intersection(Set{'c', 'd'})");
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "Bag{'a', 'b'}->intersection(Bag{'c', 'd'})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{'a', 'b'}->intersection(Bag{'c', 'd'})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Bag{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "Bag{'a', 'b'}->intersection(Bag{'c', 'd'})");
 		// Duplicates
 		assertQueryResults(null, "Set{'a', 'b'}", "Set{'a', 'b', 'a'}->intersection(Set{'a', 'b', 'c'})");
 		assertQueryResults(null, "Set{'a', 'b'}", "Set{'a', 'b', 'a'}->intersection(Bag{'a', 'b', 'c'})");
@@ -828,22 +828,22 @@ public abstract class GenericEvaluateCollectionOperationsTest
 
 		
 		// empty collection
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{3, 4}->intersection(Set{})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{3, 4}->intersection(Bag{})");
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "Bag{3, 4}->intersection(Bag{})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Bag{3, 4}->intersection(Set{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{3, 4}->intersection(Set{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{3, 4}->intersection(Bag{})");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "Bag{3, 4}->intersection(Bag{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Bag{3, 4}->intersection(Set{})");
 		// implicit collection
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "1->intersection(Set{})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "2->intersection(Bag{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "1->intersection(Set{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "2->intersection(Bag{})");
 
 //        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
 //        	"Set{}->intersection(Set{3, 4})",
 //        	OCLMessages.OperationNotFound_ERROR_, "intersection(Set(Integer))", "Set(OclVoid)");	
 		
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{}->intersection(Set{3, 4})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{}->intersection(Bag{3, 4})");
-		assertQueryEquals(null, getValueFactory().EMPTY_BAG, "Bag{}->intersection(Bag{3, 4})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Bag{}->intersection(Set{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{}->intersection(Set{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{}->intersection(Bag{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptyBagValue(), "Bag{}->intersection(Bag{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Bag{}->intersection(Set{3, 4})");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->intersection(Set{4})");
 		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s->intersection(Bag{4})");
@@ -1159,15 +1159,15 @@ public void testCollectionNotEqualOrderedXUnordered() {
 //		assertQueryResults(null, "Set{Tuple{first = 3, second = 3.0}, Tuple{first = 3, second = 4}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
 		assertQueryResults(null, "Set{Tuple{first = 3.0, second = 3.0}, Tuple{first = 3.0, second = 4.0}, Tuple{first = 4.0, second = 3.0}, Tuple{first = 4.0, second = 4.0}}", "Sequence{3, 4.0}->product(Sequence{3.0, 4})");
 		// empty
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Sequence{3, 4}->product(OrderedSet{})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Bag{3, 4}->product(Set{})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{3, 4}->product(Bag{})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "OrderedSet{3, 4}->product(Sequence{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Sequence{3, 4}->product(OrderedSet{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Bag{3, 4}->product(Set{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{3, 4}->product(Bag{})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "OrderedSet{3, 4}->product(Sequence{})");
 
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Sequence{}->product(OrderedSet{3, 4})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Bag{}->product(Set{3, 4})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "Set{}->product(Bag{3, 4})");
-		assertQueryEquals(null, getValueFactory().EMPTY_SET, "OrderedSet{}->product(Sequence{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Sequence{}->product(OrderedSet{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Bag{}->product(Set{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "Set{}->product(Bag{3, 4})");
+		assertQueryEquals(null, getValueFactory().getEmptySetValue(), "OrderedSet{}->product(Sequence{3, 4})");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Sequence(Integer) = invalid in OrderedSet{3, 4}->product(s)");
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Set{3, 4}->product(b)");

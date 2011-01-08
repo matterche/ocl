@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.10 2011/01/08 15:34:56 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.11 2011/01/08 18:22:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -304,8 +304,8 @@ public abstract class GenericTestSuite
 			findChoice(choices, kind, name));
 	}
 	
-	protected void assertInvalid(Object value) {
-		assertTrue("Expected invalid", ocl.isInvalid(value));
+	protected void assertInvalid(Value value) {
+		assertTrue("Expected invalid", value.isInvalid());
 	}
 	
 	/**
@@ -409,7 +409,7 @@ public abstract class GenericTestSuite
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
 		String denormalized = denormalize(expression);
 		try {
-			Value expectedValue = expected instanceof Value ? (Value)expected : pivotManager.getValueOfValue(expected);
+			Value expectedValue = expected instanceof Value ? (Value)expected : getValueFactory().getValueOfValue(expected);
 			Value value = evaluate(helper, context, denormalized);
 			assertEquals(denormalized, expectedValue, value);
 			if (expectedValue instanceof OrderedSetValue) {
@@ -452,7 +452,7 @@ public abstract class GenericTestSuite
 	protected Object assertQueryEquals(Object context, Number expected, String expression, double tolerance) {
 		String denormalized = denormalize(expression);
 		try {
-			Value expectedValue = pivotManager.getValueOfValue(expected);
+			Value expectedValue = getValueFactory().getValueOfValue(expected);
 			Value value = evaluate(helper, context, denormalized);
 			BigDecimal expectedVal = ((RealValue)expectedValue).bigDecimalValue();
 			BigDecimal val = ((RealValue)value).bigDecimalValue();
@@ -489,7 +489,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, getValueFactory().FALSE, value);
+			assertEquals(denormalized, getValueFactory().getFalse(), value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -521,7 +521,7 @@ public abstract class GenericTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			if (!value.isInvalid()) {
-				assertEquals(denormalized, environment.getPivotManager().getInvalidValue(), value);
+				assertEquals(denormalized, getValueFactory().createInvalidValue("bad value"), value);
 			}
 			InvalidValue invalidValue = (InvalidValue)value;
 			assertEquals("Invalid Value Reason", reason, invalidValue.getReason());
@@ -574,7 +574,7 @@ public abstract class GenericTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			if (!value.isNull()) {
-				assertEquals(denormalized, getValueFactory().NULL, value);
+				assertEquals(denormalized, getValueFactory().getNull(), value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -684,7 +684,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, getValueFactory().TRUE, value);
+			assertEquals(denormalized, getValueFactory().getTrue(), value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -701,7 +701,7 @@ public abstract class GenericTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			if (!value.isUnlimited()) {
-				assertEquals(denormalized, environment.getPivotManager().getUnlimitedValue(), value);
+				assertEquals(denormalized, getValueFactory().getUnlimited(), value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -1027,16 +1027,16 @@ public abstract class GenericTestSuite
 //    	return reflection.getEcoreLong();
 //    }
 	
-	protected Object getInvalid() {
-		return environment.getPivotManager().getInvalidValue();
-	}
+//	protected Object getInvalid() {
+//		return environment.getPivotManager().getInvalidValue();
+//	}
     
 	protected Type getMetaclass(String name) {
 		return reflection.getMetaclass(name);
 	}
 	
 	protected Object getNull() {
-		return environment.getPivotManager().getNullValue();
+		return getValueFactory().getNull();
 	}
 	
 	protected StandardLibrary getOCLStandardLibrary() {
