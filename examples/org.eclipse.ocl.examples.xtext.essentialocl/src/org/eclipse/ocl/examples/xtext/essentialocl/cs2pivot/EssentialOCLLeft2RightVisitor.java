@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.7 2011/01/08 11:38:57 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.8 2011/01/08 18:22:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -976,7 +976,12 @@ public class EssentialOCLLeft2RightVisitor
 
 	@Override
 	public MonikeredElement visitInvalidLiteralExpCS(InvalidLiteralExpCS csInvalidLiteralExp) {
-		InvalidLiteralExp expression = pivotManager.createInvalidValue(csInvalidLiteralExp, null, "invalid literal", null);
+		InvalidLiteralExp expression = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+		expression.setType(pivotManager.getInvalidType());
+		expression.setObject(csInvalidLiteralExp);
+		expression.setExpression(null);
+		expression.setReason("invalid literal");
+		expression.setThrowable(null);
 		context.installPivotElement(csInvalidLiteralExp, expression);
 		return expression;
 	}
