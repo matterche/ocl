@@ -12,10 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.4 2010/12/28 12:19:24 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.5 2011/01/08 11:38:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -57,6 +60,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
@@ -515,6 +520,40 @@ public class EssentialOCLCS2MonikerVisitor
 	public Object visitStringLiteralExpCS(StringLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_STRING_LITERAL_EXP);
+		return true;
+	}
+
+	@Override
+	public Object visitTupleLiteralExpCS(TupleLiteralExpCS object) {
+		appendExpPrefix(object);
+		List<TupleLiteralPartCS> parts = new ArrayList<TupleLiteralPartCS>(object.getOwnedParts());
+		Collections.sort(parts, new Comparator<TupleLiteralPartCS>()
+		{
+			public int compare(TupleLiteralPartCS o1, TupleLiteralPartCS o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+/*		context.append(TUPLE_SIGNATURE_PREFIX);
+		String prefix = "";
+		for (TupleLiteralPartCS part : parts) {
+			context.append(prefix);
+			context.appendNameCS(part);
+			context.append(TUPLE_SIGNATURE_TYPE_SEPARATOR);
+			TypeRefCS type = part.getOwnedType();
+			if (type != null) {
+				context.appendElementCS(type);
+			}
+			prefix = TUPLE_SIGNATURE_PART_SEPARATOR;
+		}
+		context.append(TUPLE_SIGNATURE_SUFFIX); */
+		context.append(MONIKER_TUPLE_LITERAL_EXP);		
+		return true;
+	}
+
+	@Override
+	public Object visitTupleLiteralPartCS(TupleLiteralPartCS object) {
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+		context.appendNameCS(object);
 		return true;
 	}
 

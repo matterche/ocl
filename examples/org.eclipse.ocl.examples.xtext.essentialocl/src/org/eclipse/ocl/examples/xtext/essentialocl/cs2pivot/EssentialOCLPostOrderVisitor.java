@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.6 2010/12/23 19:25:42 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.7 2011/01/08 11:38:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteral
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
@@ -219,6 +220,11 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitStringLiteralExpCS(StringLiteralExpCS csStringLiteralExp) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTupleLiteralExpCS(TupleLiteralExpCS object) {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.6 2011/01/07 12:13:12 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.7 2011/01/08 11:38:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -55,6 +55,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -65,8 +66,17 @@ import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
@@ -113,6 +123,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
@@ -383,7 +395,6 @@ public class EssentialOCLLeft2RightVisitor
 		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNamedExp);
 		expression.setSource(source);
 		expression.setReferredOperation(operation);
-		expression.setType(operation.getType());
 //		if (csNavigatingExp.getAccs().size() > 0) {
 //			addError(csNavigatingExp, "Operation calls cannot specify accumulators");			
 //		}
@@ -417,8 +428,202 @@ public class EssentialOCLLeft2RightVisitor
 			addError(csNavigatingExp, "Operation call has too many parameters");			
 		}
 		context.refreshList(expression.getArguments(), pivotArguments);
+		Type returnType = operation.getType();
+		Map<TemplateParameter, ParameterableElement> substitutions = getTemplateParameters(operation);
+		updateSubstitutions(substitutions, operation.getClass_(), expression.getSource().getType());
+		for (int i = 0; i < expression.getArguments().size(); i++) {
+			Parameter parameter = operation.getOwnedParameters().get(i);
+			OclExpression argument = expression.getArguments().get(i);
+			updateSubstitutions(substitutions, parameter.getType(), argument.getType());
+		}
+		if (substitutions != null) {
+			returnType = resolveReturnType(returnType, substitutions);
+		}
+		expression.setType(returnType);
 		context.reusePivotElement(csNavigatingExp, expression);
 		return expression;
+	}
+
+	private Type resolveReturnType(Type type, Map<TemplateParameter, ParameterableElement> substitutions) {
+		TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
+		if (owningTemplateParameter != null) {
+			ParameterableElement parameterableElement = substitutions.get(owningTemplateParameter);
+			return parameterableElement != null ? (Type) parameterableElement : type;
+		}
+		if (type instanceof TupleType) {
+			TupleType tupleType = (TupleType) type;
+			Map<String, Type> resolutions =  null;
+			for (Property property : tupleType.getOwnedAttributes()) {
+				Type propertyType = property.getType();
+				Type resolvedPropertyType = resolveReturnType(propertyType, substitutions);
+				if (resolvedPropertyType != propertyType) {
+					if (resolutions == null) {
+						resolutions = new HashMap<String, Type>();
+					}
+					resolutions.put(property.getName(), resolvedPropertyType);
+				}
+			}
+			if (resolutions != null) {
+				List<TypedElement> parts = new ArrayList<TypedElement>();
+				for (Property property : tupleType.getOwnedAttributes()) {
+					TypedElement part = property;
+					Type resolvedPropertyType = resolutions.get(property.getName());
+					if (resolvedPropertyType != null) {
+						part = new PivotManager.TuplePart(property.getName(), resolvedPropertyType);
+					}
+					parts.add(part);
+				}
+				tupleType = pivotManager.getTupleType(type.getName(), parts);
+			}
+			return tupleType;
+		}
+		List<TemplateParameter> templateParameters = PivotUtil.getAllTemplateParameters(type);
+		if ((templateParameters != null) && !templateParameters.isEmpty()) {
+			List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
+			boolean isSubstituted = false;
+			for (TemplateParameter templateParameter : templateParameters) {
+				ParameterableElement templateArgument = substitutions.get(templateParameter);
+				if (templateArgument != null) {
+					isSubstituted = true;
+				}
+				else {
+					templateArgument = (ParameterableElement) templateParameter;
+				}
+				templateArguments.add(templateArgument);
+			}
+			if (!isSubstituted) {
+				return type;
+			}
+			return pivotManager.getLibraryType(type, templateArguments, true);
+		}
+		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(type);
+		if ((templateParameterSubstitutions != null) && !templateParameterSubstitutions.isEmpty()) {
+			Map<TemplateParameter, ParameterableElement> substituteTemplateParameterSubstitutions = new HashMap<TemplateParameter, ParameterableElement>();
+			boolean isSubstituted = false;
+			for (TemplateBinding templateBinding : type.getTemplateBindings()) {
+				for (TemplateParameterSubstitution templateParameterSubstutution : templateBinding.getParameterSubstitutions()) {
+					ParameterableElement actual = templateParameterSubstutution.getActual();
+					if (actual instanceof Type) {
+						Type substitutedActual = resolveReturnType((Type)actual, substitutions);
+						if (substitutedActual != actual) {
+							isSubstituted = true;						
+						}
+						substituteTemplateParameterSubstitutions.put(templateParameterSubstutution.getFormal(), substitutedActual);
+					}
+				}
+			}
+			if (!isSubstituted) {
+				return type;
+			}
+			List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
+			Type unspecializedType = PivotUtil.getUnspecializedTemplateableElement(type);
+			for (TemplateParameter templateParameter : PivotUtil.getAllTemplateParameters(unspecializedType)) {
+				ParameterableElement parameterableElement = substituteTemplateParameterSubstitutions.get(templateParameter);
+				if (parameterableElement == null) {
+					parameterableElement = templateParameter.getParameteredElement();
+				}
+				templateArguments.add(parameterableElement);
+			}
+			return pivotManager.getLibraryType(unspecializedType, templateArguments, true);
+		}
+		return type;
+	}
+
+	private void updateSubstitutions(Map<TemplateParameter, ParameterableElement> substitutions, Type formalType, Type actualType) {		
+		TemplateParameter formalTemplateParameter = formalType.getOwningTemplateParameter();
+		if (formalTemplateParameter != null) {
+			substitutions.put(formalTemplateParameter, actualType);
+		}
+		else {
+			List<TemplateBinding> templateBindings = formalType.getTemplateBindings();
+			TemplateSignature formalTemplateSignature = PivotUtil.getUnspecializedTemplateableElement(formalType).getOwnedTemplateSignature();
+			if (formalTemplateSignature != null) {
+				for (TemplateParameter formalNestedTemplateParameter : formalTemplateSignature.getParameters()) {
+					TemplateParameterSubstitution actualTemplateParameterSubstitution = findFormalParameter(formalNestedTemplateParameter, actualType);
+					if (actualTemplateParameterSubstitution != null) {
+						TemplateParameter formal = getFormal(templateBindings, actualTemplateParameterSubstitution.getFormal());
+						if (formal == null) {	// FIXME Make this work at arbitrary depth
+							formal = formalNestedTemplateParameter;
+						}
+						substitutions.put(formal, actualTemplateParameterSubstitution.getActual());
+					}
+				}
+			}
+		}
+	}
+
+	private TemplateParameter getFormal(List<TemplateBinding> templateBindings, TemplateParameter templateParameter) {
+		for (TemplateBinding templateBinding : templateBindings) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				if (templateParameter == templateParameterSubstitution.getFormal()) {
+					return templateParameterSubstitution.getActual().getOwningTemplateParameter();
+				}
+			}
+		}
+		return null;
+	}
+
+	public TemplateParameterSubstitution findFormalParameter(TemplateParameter formalTemplateParameter, Type actualType) {
+		for (TemplateBinding actualTemplateBinding : actualType.getTemplateBindings()) {
+			for (TemplateParameterSubstitution actualTemplateParameterSubstitution : actualTemplateBinding.getParameterSubstitutions()) {
+				TemplateParameter actualFormal = actualTemplateParameterSubstitution.getFormal();
+				if (actualFormal == formalTemplateParameter) {
+					return actualTemplateParameterSubstitution;
+				}
+			}
+		}
+		if (actualType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class)actualType).getSuperClasses()) {
+				TemplateParameterSubstitution actualTemplateParameterSubstitution = findFormalParameter(formalTemplateParameter, superClass);
+				if (actualTemplateParameterSubstitution != null) {
+					return actualTemplateParameterSubstitution;
+				}
+			}
+		}
+		return null;
+	}
+
+/*	private Map<TemplateParameter, ParameterableElement> getParameterSubstitutions(OperationCallExp callExpression) {
+		Map<TemplateParameter, ParameterableElement> result = null;
+		result = gatherParameterSubstitutions(result, callExpression.getSource().getType());
+		for (OclExpression argument : callExpression.getArguments()) {
+			result = gatherParameterSubstitutions(result, argument.getType());
+		}
+		return result;
+	}
+
+	private Map<TemplateParameter, ParameterableElement> gatherParameterSubstitutions(
+			Map<TemplateParameter, ParameterableElement> result, Type sourceType) {
+		for (TemplateBinding templateBinding : sourceType.getTemplateBindings()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				if (result == null) {
+					result = new HashMap<TemplateParameter, ParameterableElement>();
+				}
+				result.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
+			}
+		}
+		return result;
+	} */
+
+	private Map<TemplateParameter, ParameterableElement> getTemplateParameters(EObject eObject) {
+		Map<TemplateParameter, ParameterableElement> result = null;
+		EObject eContainer = eObject.eContainer();
+		if (eContainer != null) {
+			result = getTemplateParameters(eContainer);
+		}
+		if (eObject instanceof TemplateableElement) {
+			TemplateableElement unspecializedTemplateableElement = PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)eObject);
+			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
+			if (templateSignature != null) {
+				if (result == null) {
+					result = new HashMap<TemplateParameter, ParameterableElement>();
+				}
+				for (TemplateParameter templateParameter : templateSignature.getParameters()) {
+					result.put(templateParameter, null);
+				}
+			}
+		}
+		return result;
 	}
 
 	protected PropertyCallExp handlePropertyCall(NameExpCS csNameExp, Property property) {
@@ -594,7 +799,7 @@ public class EssentialOCLLeft2RightVisitor
 				commonType = type;
 			}
 			else {
-				commonType = pivotManager.getCommonSuperType(commonType, type);
+				commonType = pivotManager.getCommonType(commonType, type);
 			}
 		}
 //		if (invalidValue != null) {
@@ -653,7 +858,7 @@ public class EssentialOCLLeft2RightVisitor
 		if (csLast != null) {
 			OclExpression pivotLast = PivotUtil.getPivot(OclExpression.class, csLast);
 			Type secondType = pivotLast.getType();
-			type = pivotManager.getCommonSuperType(type, secondType);
+			type = pivotManager.getCommonType(type, secondType);
 		}
 		CollectionLiteralPart expression = PivotUtil.getPivot(CollectionLiteralPart.class, csCollectionLiteralPart);
 		context.setType(expression, type);
@@ -1024,6 +1229,31 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		expression.setType(pivotManager.getStringType());
 		return expression;
+	}
+
+	@Override
+	public MonikeredElement visitTupleLiteralExpCS(TupleLiteralExpCS csTupleLiteralExp) {
+		TupleLiteralExp expression = context.refreshMonikeredElement(TupleLiteralExp.class, PivotPackage.Literals.TUPLE_LITERAL_EXP, csTupleLiteralExp);	
+		for (TupleLiteralPartCS csPart : csTupleLiteralExp.getOwnedParts()) {
+			@SuppressWarnings("unused")
+			TupleLiteralPart pivotPart = context.refreshExpTree(TupleLiteralPart.class, csPart);
+		}
+		context.refreshPivotList(TupleLiteralPart.class, expression.getParts(), csTupleLiteralExp.getOwnedParts());
+		String tupleTypeName = "Tuple"; //ownedCollectionType.getName();
+		Type type = pivotManager.getTupleType(tupleTypeName, expression.getParts());
+		context.setType(expression, type);
+		return expression;
+	}
+
+	@Override
+	public MonikeredElement visitTupleLiteralPartCS(TupleLiteralPartCS csTupleLiteralPart) {
+		TupleLiteralPart pivotElement = context.refreshNamedElement(TupleLiteralPart.class, PivotPackage.Literals.TUPLE_LITERAL_PART, csTupleLiteralPart);	
+		OclExpression initExpression = context.refreshExpTree(OclExpression.class, csTupleLiteralPart.getInitExpression());
+		pivotElement.setInitExpression(initExpression);
+		TypedRefCS csType = csTupleLiteralPart.getOwnedType();
+		Type type = csType != null ? PivotUtil.getPivot(Type.class, csType) : initExpression.getType();
+		context.setType(pivotElement, type);
+		return pivotElement;
 	}
 
 	@Override
