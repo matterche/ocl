@@ -204,9 +204,7 @@
       </ownedAttribute>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0iYgHEd-aGOJuUCcZBA" name="TupleLiteralPart">
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0i4gHEd-aGOJuUCcZBA" name="attribute" lower="0" isComposite="true">
-        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Property"/>
-      </ownedAttribute>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_sMi9wBpwEeCdGdHzUz2ZBw" name="initExpression" type="_IPg0HogHEd-aGOJuUCcZBA" lower="0" isComposite="true"/>
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-TypedElement"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0jYgHEd-aGOJuUCcZBA" name="NavigationCallExp" isAbstract="true" superClass="_IPg0h4gHEd-aGOJuUCcZBA">
@@ -301,6 +299,7 @@
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="_ad68EMowEd-ZL8lMORCEkg" name="OCL_Variables">
     <ownedMember xmi:type="cmof:Class" xmi:id="_c2jnYMowEd-ZL8lMORCEkg" name="Parameter" superClass="_eqwI4MowEd-ZL8lMORCEkg"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_wKgBEBpwEeCdGdHzUz2ZBw" name="TupleLiteralPart" superClass="_eqwI4MowEd-ZL8lMORCEkg"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_ejKTIMowEd-ZL8lMORCEkg" name="TypedElement" isAbstract="true"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_eqwI4MowEd-ZL8lMORCEkg" name="VariableDeclaration" isAbstract="true" superClass="_ejKTIMowEd-ZL8lMORCEkg"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_ez0lUMowEd-ZL8lMORCEkg" name="Variable" superClass="_eqwI4MowEd-ZL8lMORCEkg">

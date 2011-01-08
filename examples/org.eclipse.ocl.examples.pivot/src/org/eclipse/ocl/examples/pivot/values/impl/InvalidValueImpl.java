@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.1.2.2 2010/12/26 16:56:23 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.1.2.3 2011/01/08 11:39:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -25,6 +25,7 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	protected final OclExpression expression;
 	protected final String reason;
 	protected final Throwable throwable;
+	private String message = null;
 
 	protected InvalidValueImpl(String reason) {
 		this(null, null, reason, null);
@@ -52,6 +53,20 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	
 	public OclExpression getExpression() {
 		return expression;
+	}
+	
+	public String getMessage() {
+		if (message == null) {
+			StringBuffer s =  new StringBuffer();
+			s.append("Invalid: ");
+			s.append(reason);
+			if (throwable != null) {
+				s.append(" : ");
+				s.append(throwable);
+			}
+			message = s.toString();
+		}
+		return message;
 	}
 	
 	public String getReason() {
@@ -89,6 +104,6 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 
 	@Override
 	public String toString() {
-		return "Invalid: " + reason;
+		return getMessage();
 	}
 }

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.10 2011/01/07 12:14:06 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.11 2011/01/08 11:39:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -60,8 +60,10 @@ import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -618,22 +620,18 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
     public Value visitTupleLiteralExp(TupleLiteralExp tl) {
 		Type type = tl.getType();
-		List<TupleLiteralPart> tp = tl.getParts();
-		
-		Map<Property, Object> propertyValues = new HashMap<Property, Object>();
-		
-		for (TupleLiteralPart part : tp) {
+		Map<TypedElement, Value> propertyValues = new HashMap<TypedElement, Value>();		
+		for (TupleLiteralPart part : tl.getParts()) {
 			// Set the tuple field with the value of the init expression
-			propertyValues.put(part.getAttribute(), part.accept(getUndecoratedVisitor()));
+			propertyValues.put(part, part.accept(getUndecoratedVisitor()));
 		}
-
-		return getEvaluationEnvironment().createTuple(type, propertyValues);
-
+//		TupleType tupleType = getEvaluationEnvironment().getPivotManager().getTupleType(type.getName(), propertyValues.keySet());
+		return ValueFactory.createTupleValue((TupleType) type, propertyValues);
 	}
 	
 	@Override
     public Value visitTupleLiteralPart(TupleLiteralPart tp) {
-		return tp.getAttribute().accept(getUndecoratedVisitor());
+		return tp.getInitExpression().accept(getUndecoratedVisitor());
 	}
 
 	/**

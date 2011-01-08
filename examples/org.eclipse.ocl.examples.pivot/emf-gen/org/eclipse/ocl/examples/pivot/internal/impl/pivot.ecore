@@ -649,9 +649,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//TupleLiteralPart"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralPart" eSuperTypes="#//TypedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" ordered="false"
-        eType="#//Property" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralPart" eSuperTypes="#//VariableDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" ordered="false"
+        eType="#//OclExpression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleType" eSuperTypes="#//DataType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//NamedElement #//ParameterableElement #//TemplateableElement">

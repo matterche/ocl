@@ -16,14 +16,13 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.1.2.5 2011/01/07 12:14:06 ewillink Exp $
+ * $Id: TypeUtil.java,v 1.1.2.6 2011/01/08 11:39:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import static org.eclipse.ocl.examples.pivot.UMLReflection.SAME_TYPE;
 import static org.eclipse.ocl.examples.pivot.UMLReflection.STRICT_SUBTYPE;
 import static org.eclipse.ocl.examples.pivot.UMLReflection.STRICT_SUPERTYPE;
-import static org.eclipse.ocl.examples.pivot.UMLReflection.UNRELATED_TYPE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -565,7 +564,7 @@ public class TypeUtil {
 	}
 	
 
-	public static boolean conformsToClass(org.eclipse.ocl.examples.pivot.Class actualType,
+/*	public static boolean conformsToClass(org.eclipse.ocl.examples.pivot.Class actualType,
 			org.eclipse.ocl.examples.pivot.Class requiredType) {
 		if (actualType == requiredType) {
 			return true;
@@ -575,6 +574,23 @@ public class TypeUtil {
 				return false;
 			}
 			return conformsToType(((CollectionType)actualType).getElementType(), ((CollectionType)requiredType).getElementType());
+		}
+		if ((actualType instanceof TupleType) && (requiredType instanceof TupleType)) {
+			List<Property> actualProperties = ((TupleType)actualType).getOwnedAttributes();
+			List<Property> requiredProperties = ((TupleType)requiredType).getOwnedAttributes();
+			if (actualProperties.size() != requiredProperties.size()) {
+				return false;
+			}
+			for (Property actualProperty : actualProperties) {
+				Property requiredProperty = PivotUtil.getNamedElement(requiredProperties, actualProperty.getName());
+				if (requiredProperty == null) {
+					return false;
+				}
+				if (!conformsToType(actualProperty.getType(), requiredProperty.getType())) {
+					return false;
+				}
+			}
+			return true;
 		}
 		for (org.eclipse.ocl.examples.pivot.Class superClass : actualType.getSuperClasses()) {
 			if (conformsToClass(superClass, requiredType)) {
@@ -601,9 +617,9 @@ public class TypeUtil {
 		}
 		return conformsToClass((org.eclipse.ocl.examples.pivot.Class)actualType,
 			(org.eclipse.ocl.examples.pivot.Class)requiredType);
-	}
+	} */
 
-	public static List<Class> getCommonClasses(org.eclipse.ocl.examples.pivot.Class leftClass,
+/*	public static List<Class> getCommonClasses(org.eclipse.ocl.examples.pivot.Class leftClass,
 		org.eclipse.ocl.examples.pivot.Class rightClass) {
 		List<Class> commonClasses = null;
 		for (org.eclipse.ocl.examples.pivot.Class superClass : leftClass.getSuperClasses()) {
@@ -618,19 +634,21 @@ public class TypeUtil {
 			}
 		}
 		return commonClasses;
-	}
+	} */
 
 	public static Type getCommonSuperType(Type leftType, Type rightType) {
-		if (conformsToType(leftType, rightType)) {
+        throw new UnsupportedOperationException();
+/*		if (conformsToType(leftType, rightType)) {
 			return rightType;
 		}
 		if (conformsToType(rightType, leftType)) {
 			return leftType;
 		}
-		if (!(leftType instanceof org.eclipse.ocl.examples.pivot.Class)) {
-			return null;
+		if ((leftType instanceof TupleType) && (rightType instanceof TupleType)) {
+			return getCommonTupleType((TupleType)leftType, (TupleType)rightType);
 		}
-		if (!(rightType instanceof org.eclipse.ocl.examples.pivot.Class)) {
+		if (!(leftType instanceof org.eclipse.ocl.examples.pivot.Class)
+		 || !(rightType instanceof org.eclipse.ocl.examples.pivot.Class)) {
 			return null;
 		}
 		List<org.eclipse.ocl.examples.pivot.Class> commonClasses = getCommonClasses((org.eclipse.ocl.examples.pivot.Class)leftType, (org.eclipse.ocl.examples.pivot.Class)rightType);
@@ -647,10 +665,10 @@ public class TypeUtil {
 				mostConformant = commonClass;
 			}
 		}
-		return mostConformant;
+		return mostConformant; */
 	}
 
-    /**
+	/**
      * Computes the relationship between two types.
      * 
      * @param type1 a type
@@ -661,7 +679,8 @@ public class TypeUtil {
      *    relationship between the types
      */
     public static int getTypeRelationship(Type type1, Type type2) {
-        if (type1 == type2) {
+        throw new UnsupportedOperationException();
+/*        if (type1 == type2) {
             return SAME_TYPE;
         }
         
@@ -676,7 +695,7 @@ public class TypeUtil {
             }
         }
     
-        return UNRELATED_TYPE;
+        return UNRELATED_TYPE; */
     }
 
 	/**

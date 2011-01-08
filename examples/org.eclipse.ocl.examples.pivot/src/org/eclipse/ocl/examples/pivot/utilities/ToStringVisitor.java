@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1.2.4 2010/12/19 15:52:40 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.1.2.5 2011/01/08 11:39:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -62,6 +62,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -357,6 +358,20 @@ public class ToStringVisitor extends AbstractVisitor2<String>
         result.append(" endif"); //$NON-NLS-1$
         
         return result.toString();
+	}
+
+	@Override
+	public String visitTupleType(TupleType object) {
+		super.visitTupleType(object);
+		result.append("{");
+		String prefix = "";
+		for (TypedElement part : object.getOwnedAttributes()) {
+			result.append(prefix);
+			result.append(getName(part));
+			prefix = ",";
+		}
+		result.append("}");
+		return result.toString();
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.1.2.12 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.1.2.13 2011/01/08 11:39:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -2409,7 +2409,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTupleLiteralPart_Attribute() {
+	public EReference getTupleLiteralPart_InitExpression()
+	{
         return (EReference)getTupleLiteralPart().getEStructuralFeatures().get(0);
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.1.2.4 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.1.2.5 2011/01/08 11:39:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -41,26 +41,25 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl#getInitExpression <em>Init Expression</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class TupleLiteralPartImpl
-		extends TypedElementImpl
+		extends VariableDeclarationImpl
 		implements TupleLiteralPart {
 
 	/**
-	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
+	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttribute()
+	 * @see #getInitExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected Property attribute;
-
+	protected OclExpression initExpression;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,25 +84,26 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getAttribute() {
-		if (attribute != null && ((EObject)attribute).eIsProxy())
+	public OclExpression getInitExpression()
+	{
+		if (initExpression != null && ((EObject)initExpression).eIsProxy())
 		{
-			InternalEObject oldAttribute = (InternalEObject)attribute;
-			attribute = (Property)eResolveProxy(oldAttribute);
-			if (attribute != oldAttribute)
+			InternalEObject oldInitExpression = (InternalEObject)initExpression;
+			initExpression = (OclExpression)eResolveProxy(oldInitExpression);
+			if (initExpression != oldInitExpression)
 			{
-				InternalEObject newAttribute = (InternalEObject)attribute;
-				NotificationChain msgs = oldAttribute.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, null);
-				if (newAttribute.eInternalContainer() == null)
+				InternalEObject newInitExpression = (InternalEObject)initExpression;
+				NotificationChain msgs = oldInitExpression.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, null);
+				if (newInitExpression.eInternalContainer() == null)
 				{
-					msgs = newAttribute.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, msgs);
+					msgs = newInitExpression.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, oldInitExpression, initExpression));
 			}
 		}
-		return attribute;
+		return initExpression;
 	}
 
 	/**
@@ -111,8 +111,9 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetAttribute() {
-		return attribute;
+	public OclExpression basicGetInitExpression()
+	{
+		return initExpression;
 	}
 
 	/**
@@ -120,13 +121,13 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAttribute(Property newAttribute,
-			NotificationChain msgs) {
-		Property oldAttribute = attribute;
-		attribute = newAttribute;
+	public NotificationChain basicSetInitExpression(OclExpression newInitExpression, NotificationChain msgs)
+	{
+		OclExpression oldInitExpression = initExpression;
+		initExpression = newInitExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, newAttribute);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, oldInitExpression, newInitExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -137,19 +138,20 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAttribute(Property newAttribute) {
-		if (newAttribute != attribute)
+	public void setInitExpression(OclExpression newInitExpression)
+	{
+		if (newInitExpression != initExpression)
 		{
 			NotificationChain msgs = null;
-			if (attribute != null)
-				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, msgs);
-			if (newAttribute != null)
-				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, null, msgs);
-			msgs = basicSetAttribute(newAttribute, msgs);
+			if (initExpression != null)
+				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, msgs);
+			if (newInitExpression != null)
+				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, msgs);
+			msgs = basicSetInitExpression(newInitExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE, newAttribute, newAttribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, newInitExpression, newInitExpression));
 	}
 
 	/**
@@ -157,10 +159,11 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property createAttribute(EClass eClass) {
-		Property newAttribute = (Property) create(eClass);
-		setAttribute(newAttribute);
-		return newAttribute;
+	public OclExpression createInitExpression(EClass eClass)
+	{
+		OclExpression newInitExpression = (OclExpression) create(eClass);
+		setInitExpression(newInitExpression);
+		return newInitExpression;
 	}
 
 	/**
@@ -168,8 +171,9 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property createAttribute() {
-		return createAttribute(PivotPackage.Literals.PROPERTY);
+	public OclExpression createInitExpression()
+	{
+		return createInitExpression(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**
@@ -188,8 +192,8 @@ public class TupleLiteralPartImpl
 				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
 				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				return basicSetAttribute(null, msgs);
+			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
+				return basicSetInitExpression(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -218,9 +222,9 @@ public class TupleLiteralPartImpl
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				if (resolve) return getAttribute();
-				return basicGetAttribute();
+			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
+				if (resolve) return getInitExpression();
+				return basicGetInitExpression();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -259,8 +263,8 @@ public class TupleLiteralPartImpl
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				setType((Type)newValue);
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				setAttribute((Property)newValue);
+			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
+				setInitExpression((OclExpression)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -296,8 +300,8 @@ public class TupleLiteralPartImpl
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				setAttribute((Property)null);
+			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
+				setInitExpression((OclExpression)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -326,8 +330,8 @@ public class TupleLiteralPartImpl
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				return type != null;
-			case PivotPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				return attribute != null;
+			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
+				return initExpression != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

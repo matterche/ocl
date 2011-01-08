@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.1.2.4 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.1.2.5 2011/01/08 11:39:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -28,10 +28,8 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.values.Tuple;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.options.Customizable;
-import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.Adaptable;
 
 /**
@@ -232,7 +230,7 @@ public interface EvaluationEnvironment {
      * @param values a mapping of the tuple parts
      * @return the new tuple instance
      */
-    Tuple createTuple(Type type, Map<Property, Object> values);
+//    Tuple createTuple(Type type, Map<TypedElement, Object> values);
 
 	/**
 	 * Obtains the Java-language value of the specified enumeration literal.

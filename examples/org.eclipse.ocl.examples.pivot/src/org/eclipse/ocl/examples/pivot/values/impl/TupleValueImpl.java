@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleImpl.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.1.2.1 2011/01/08 11:39:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -22,8 +22,10 @@ import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Tuple;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
+import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -31,7 +33,7 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public class TupleImpl extends AbstractValue implements Tuple
+public class TupleValueImpl extends AbstractValue implements TupleValue
 {
     private final TupleType type;
 
@@ -43,10 +45,10 @@ public class TupleImpl extends AbstractValue implements Tuple
      * @param type my type
      * @param values my parts
      */
-    public TupleImpl(TupleType type, Map<Property, Value> values) {
+    public TupleValueImpl(TupleType type, Map<? extends TypedElement, Value> values) {
         this.type = type;
 
-        for (Map.Entry<Property, Value> entry : values.entrySet()) {
+        for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
     }
@@ -59,7 +61,7 @@ public class TupleImpl extends AbstractValue implements Tuple
      * @param firstValue my first value
      * @param secondValue my second value
      */
-    public TupleImpl(TupleType type, Value firstValue, Value secondValue) {
+    public TupleValueImpl(TupleType type, Value firstValue, Value secondValue) {
         this.type = type;						// FIXME use optimised ProductTupleImpl
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
@@ -83,10 +85,10 @@ public class TupleImpl extends AbstractValue implements Tuple
     // overrides the inherited implementation
     @Override
     public boolean equals(Object o) {
-        boolean result = o instanceof TupleImpl;
+        boolean result = o instanceof TupleValueImpl;
 
         if (result) {
-            TupleImpl other = (TupleImpl) o;
+            TupleValueImpl other = (TupleValueImpl) o;
 
             result &= other.type.equals(type);
             result &= other.parts.equals(parts);
@@ -98,7 +100,9 @@ public class TupleImpl extends AbstractValue implements Tuple
     // overrides the inherited implementation
     @Override
     public int hashCode() {
-        return 37 * type.hashCode() + 17 * parts.hashCode();
+        int typeHashCode = type.hashCode();
+		int partsHashCode = parts.hashCode();
+		return 37 * typeHashCode + 17 * partsHashCode;
     }
     
     @Override
@@ -137,6 +141,8 @@ public class TupleImpl extends AbstractValue implements Tuple
     private String toString(Object o) {
         if (o instanceof String) {
             return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
+        } else if (o instanceof NullValue) {
+            return o.toString();
         } else if (o instanceof CollectionValue) {
             return toString((CollectionValue) o);
         } else if (o == null) {

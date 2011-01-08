@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.12 2011/01/07 12:14:06 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.13 2011/01/08 11:39:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -13474,7 +13474,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
+	int VARIABLE_DECLARATION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -13483,7 +13483,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__MONIKER = TYPED_ELEMENT__MONIKER;
+	int VARIABLE_DECLARATION__MONIKER = TYPED_ELEMENT__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -13492,7 +13492,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__NAME = TYPED_ELEMENT__NAME;
+	int VARIABLE_DECLARATION__NAME = TYPED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -13501,7 +13501,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
+	int VARIABLE_DECLARATION__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -13510,7 +13510,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
+	int VARIABLE_DECLARATION__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -13519,7 +13519,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
+	int VARIABLE_DECLARATION__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -13528,25 +13528,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE = TYPED_ELEMENT__TYPE;
+	int VARIABLE_DECLARATION__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' containment reference.
+	 * The number of structural features of the '<em>Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__ATTRIBUTE = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -13555,7 +13546,106 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
+	int VARIABLE_DECLARATION___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The number of operations of the '<em>Variable Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__OWNED_COMMENT = VARIABLE_DECLARATION__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__MONIKER = VARIABLE_DECLARATION__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__OWNED_RULE = VARIABLE_DECLARATION__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__IS_STATIC = VARIABLE_DECLARATION__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__OWNED_ANNOTATION = VARIABLE_DECLARATION__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__TYPE = VARIABLE_DECLARATION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__INIT_EXPRESSION = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART___HAS_MONIKER = VARIABLE_DECLARATION___HAS_MONIKER;
 
 	/**
 	 * The number of operations of the '<em>Tuple Literal Part</em>' class.
@@ -13564,7 +13654,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
+	int TUPLE_LITERAL_PART_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -14186,96 +14276,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__MONIKER = TYPED_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__NAME = TYPED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__TYPE = TYPED_ELEMENT__TYPE;
-
-	/**
-	 * The number of structural features of the '<em>Variable Declaration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The number of operations of the '<em>Variable Declaration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -16311,15 +16311,15 @@ public interface PivotPackage
 	EClass getTupleLiteralPart();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.TupleLiteralPart#getAttribute <em>Attribute</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.TupleLiteralPart#getInitExpression <em>Init Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Attribute</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TupleLiteralPart#getAttribute()
+	 * @return the meta object for the containment reference '<em>Init Expression</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TupleLiteralPart#getInitExpression()
 	 * @see #getTupleLiteralPart()
 	 * @generated
 	 */
-	EReference getTupleLiteralPart_Attribute();
+	EReference getTupleLiteralPart_InitExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TupleType <em>Tuple Type</em>}'.
@@ -19271,12 +19271,12 @@ public interface PivotPackage
 		EClass TUPLE_LITERAL_PART = eINSTANCE.getTupleLiteralPart();
 
 		/**
-		 * The meta object literal for the '<em><b>Attribute</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Init Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TUPLE_LITERAL_PART__ATTRIBUTE = eINSTANCE.getTupleLiteralPart_Attribute();
+		EReference TUPLE_LITERAL_PART__INIT_EXPRESSION = eINSTANCE.getTupleLiteralPart_InitExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.

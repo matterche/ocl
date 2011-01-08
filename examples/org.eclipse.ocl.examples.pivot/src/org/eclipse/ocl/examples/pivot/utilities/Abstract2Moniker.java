@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.1.2.6 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.1.2.7 2011/01/08 11:39:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -36,6 +38,8 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 
 public abstract class Abstract2Moniker implements PivotConstants
 {			
@@ -243,6 +247,29 @@ public abstract class Abstract2Moniker implements PivotConstants
 				s.append(TEMPLATE_SIGNATURE_SUFFIX);
 			}
 		}
+	}
+
+	public void appendTupleType(Collection<? extends TypedElement> tupleParts) {
+		List<TypedElement> parts = new ArrayList<TypedElement>(tupleParts);
+		Collections.sort(parts, new Comparator<TypedElement>()
+		{
+			public int compare(TypedElement o1, TypedElement o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		append(TUPLE_SIGNATURE_PREFIX);
+		String prefix = "";
+		for (TypedElement part : parts) {
+			append(prefix);
+			appendName(part);
+			append(TUPLE_SIGNATURE_TYPE_SEPARATOR);
+			Type type = part.getType();
+			if (type != null) {
+				appendElement(type);
+			}
+			prefix = TUPLE_SIGNATURE_PART_SEPARATOR;
+		}
+		append(TUPLE_SIGNATURE_SUFFIX);
 	}
 
 	protected void emittedTemplateParameter(TemplateParameter templateParameter) {

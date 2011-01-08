@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingVisitor.java,v 1.1.2.10 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: AbstractExtendingVisitor.java,v 1.1.2.11 2011/01/08 11:39:37 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -366,7 +366,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitTupleLiteralPart(org.eclipse.ocl.examples.pivot.TupleLiteralPart object) {
-		return visitTypedElement(object);
+		return visitVariableDeclaration(object);
 	}
 
 	public R visitTupleType(org.eclipse.ocl.examples.pivot.TupleType object) {

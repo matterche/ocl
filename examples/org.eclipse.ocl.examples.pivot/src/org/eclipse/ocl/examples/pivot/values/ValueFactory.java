@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactory.java,v 1.1.2.1 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: ValueFactory.java,v 1.1.2.2 2011/01/08 11:39:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -21,12 +21,15 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.values.impl.BagValueImpl;
@@ -40,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.values.impl.RealValueImpl;
 import org.eclipse.ocl.examples.pivot.values.impl.SequenceValueImpl;
 import org.eclipse.ocl.examples.pivot.values.impl.SetValueImpl;
 import org.eclipse.ocl.examples.pivot.values.impl.StringValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.TupleValueImpl;
 import org.eclipse.ocl.examples.pivot.values.impl.TypeValueImpl;
 
 public class ValueFactory
@@ -231,6 +235,10 @@ public class ValueFactory
 
 	public static StringValue createStringValue(String value) {
 		return StringValueImpl.valueOf(value);
+	}
+
+	public static Value createTupleValue(TupleType type, Map<? extends TypedElement, Value> values) {
+		return new TupleValueImpl(type, values);
 	}
 
 	public static Value createTypeValue(Type type) {

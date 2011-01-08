@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.1.2.8 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.1.2.9 2011/01/08 11:39:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -1367,6 +1367,7 @@ public class PivotSwitch<T> {
 			{
 				TupleLiteralPart tupleLiteralPart = (TupleLiteralPart)theEObject;
 				T result = caseTupleLiteralPart(tupleLiteralPart);
+				if (result == null) result = caseVariableDeclaration(tupleLiteralPart);
 				if (result == null) result = caseTypedElement(tupleLiteralPart);
 				if (result == null) result = caseNamedElement(tupleLiteralPart);
 				if (result == null) result = caseMonikeredElement(tupleLiteralPart);

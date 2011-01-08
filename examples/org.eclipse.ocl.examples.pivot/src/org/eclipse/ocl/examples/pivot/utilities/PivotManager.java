@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.13 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.14 2011/01/08 11:39:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -44,10 +44,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -58,14 +60,18 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeUtil;
+import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.ElementValue;
@@ -103,6 +109,15 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			StandardLibraryContribution.REGISTRY.put(DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		}
 	}
+	
+	public static class TuplePart extends TypedElementImpl
+	{
+		public TuplePart(String name, Type type) {
+			setName(name);
+			setType(type);
+		}
+	}
+
 
 	private static final Logger logger = Logger.getLogger(PivotManager.class);
 
@@ -377,8 +392,77 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			return secondType != oclInvalidType;
 		}
 		else {
-			return TypeUtil.conformsToType(firstType, secondType);
+			return conformsToType(firstType, secondType);
 		}
+	}
+
+	public boolean conformsToClass(org.eclipse.ocl.examples.pivot.Class actualType,
+			org.eclipse.ocl.examples.pivot.Class requiredType) {
+		if (actualType == requiredType) {
+			return true;
+		}
+		if ((actualType instanceof CollectionType) && (requiredType instanceof CollectionType)) {
+			return conformsToCollectionType((CollectionType)actualType, (CollectionType)requiredType);
+		}
+		if ((actualType instanceof TupleType) && (requiredType instanceof TupleType)) {
+			return conformsToTupleType((TupleType)actualType, (TupleType)requiredType);
+		}
+		if (actualType instanceof VoidType) {
+			return !(requiredType instanceof InvalidType);
+		}
+		if (actualType instanceof InvalidType) {
+			return true;
+		}
+		for (org.eclipse.ocl.examples.pivot.Class superClass : actualType.getSuperClasses()) {
+			if (conformsToClass(superClass, requiredType)) {
+				return true;
+			}
+		}
+//		List<TemplateBinding> templateBindings = actualType.getTemplateBindings();
+//		if (templateBindings.size() > 0) {
+//			TemplateableElement template = PivotUtil.getUnspecializedTemplateableElement(actualType);
+//			return conformsToClass((org.eclipse.ocl.examples.pivot.Class)template, requiredType);
+//		}
+		return false;
+	}
+
+	public boolean conformsToCollectionType(CollectionType actualType, CollectionType requiredType) {
+		if (actualType.eClass() != requiredType.eClass()) {
+			return false;
+		}
+		return conformsToType(actualType.getElementType(), requiredType.getElementType());
+	}
+
+	public boolean conformsToTupleType(TupleType actualType, TupleType requiredType) {
+		List<Property> actualProperties = actualType.getOwnedAttributes();
+		List<Property> requiredProperties = requiredType.getOwnedAttributes();
+		if (actualProperties.size() != requiredProperties.size()) {
+			return false;
+		}
+		for (Property actualProperty : actualProperties) {
+			Property requiredProperty = PivotUtil.getNamedElement(requiredProperties, actualProperty.getName());
+			if (requiredProperty == null) {
+				return false;
+			}
+			if (!conformsToType(actualProperty.getType(), requiredProperty.getType())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean conformsToType(Type actualType, Type requiredType) {
+		if (actualType == requiredType) {
+			return true;
+		}
+		if (!(actualType instanceof org.eclipse.ocl.examples.pivot.Class)) {
+			return false;
+		}
+		if (!(requiredType instanceof org.eclipse.ocl.examples.pivot.Class)) {
+			return false;
+		}
+		return conformsToClass((org.eclipse.ocl.examples.pivot.Class)actualType,
+			(org.eclipse.ocl.examples.pivot.Class)requiredType);
 	}
 
 	public Resource createResource(URI uri, String contentType) {
@@ -390,12 +474,12 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return pivotResource;
 	}
 
-	protected <T extends Type> T findSpecializedType(T unspecializedType, String moniker) {
+	protected <T extends Type> T findOrphanType(Class<T> unspecializedType, String moniker) {
 		List<Type> ownedSpecializations = getOrphanPackage().getOwnedTypes();
 		for (Type ownedSpecialization : ownedSpecializations) {
 			if (ownedSpecialization.getMoniker().equals(moniker)) {
 				@SuppressWarnings("unchecked")
-				T castSpecialization = (T)ownedSpecialization;
+				T castSpecialization = (T)ownedSpecialization;	// FIXME validate
 				return castSpecialization;
 			}
 		}
@@ -405,9 +489,99 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	public Type getCollectionType(String collectionTypeName, Type elementType) {
 		return getLibraryType(collectionTypeName, Collections.singletonList(elementType));
 	}
+	
+	public List<org.eclipse.ocl.examples.pivot.Class> getCommonClasses(org.eclipse.ocl.examples.pivot.Class leftClass,
+		org.eclipse.ocl.examples.pivot.Class rightClass) {
+		List<org.eclipse.ocl.examples.pivot.Class> commonClasses = null;
+		for (org.eclipse.ocl.examples.pivot.Class superClass : leftClass.getSuperClasses()) {
+			List<org.eclipse.ocl.examples.pivot.Class> commonSuperClasses = getCommonClasses(superClass, rightClass);
+			if (commonSuperClasses != null) {
+				if (commonClasses == null) {
+					commonClasses = commonSuperClasses;
+				}
+				else {
+					commonClasses.addAll(commonSuperClasses);
+				}
+			}
+		}
+		return commonClasses;
+	}
 
-	public Type getCommonSuperType(Type firstType, Type secondType) {
-		return TypeUtil.getCommonSuperType(firstType, secondType);
+    public Type getCommonTupleType(TupleType leftType, TupleType rightType) {
+		List<Property> leftProperties = leftType.getOwnedAttributes();
+		List<Property> rightProperties = rightType.getOwnedAttributes();
+		if (leftProperties.size() != rightProperties.size()) {
+			return null;
+		}
+		boolean isLeft = true;
+		boolean isRight = true;
+		List<TypedElement> commonProperties = new ArrayList<TypedElement>(leftProperties.size());
+		for (Property leftProperty : leftProperties) {
+			Property rightProperty = PivotUtil.getNamedElement(rightProperties, leftProperty.getName());
+			Type leftPropertyType = leftProperty.getType();
+			Type rightPropertyType = rightProperty.getType();
+			TypedElement commonProperty = null;
+			Type commonType = getCommonType(leftPropertyType, rightPropertyType);
+			if (commonType == null) {
+				return null;
+			}
+			if (commonType != leftPropertyType) {
+				isLeft = false;
+			}
+			else {
+				commonProperty = leftProperty;
+			}
+			if (commonType != rightPropertyType) {
+				isRight = false;
+			}
+			else {
+				commonProperty = rightProperty;
+			}
+			if (commonProperty == null) {
+				commonProperty = new PivotManager.TuplePart(leftProperty.getName(), commonType);
+			}
+			commonProperties.add(commonProperty);
+		}
+		if (isLeft) {
+			return leftType;
+		}
+		else if (isRight) {
+			return rightType;
+		}
+		else {
+			return getTupleType(leftType.getName(), commonProperties);
+		}
+	}
+
+	public Type getCommonType(Type leftType, Type rightType) {
+		if ((leftType instanceof TupleType) && (rightType instanceof TupleType)) {
+			return getCommonTupleType((TupleType)leftType, (TupleType)rightType);
+		}
+		if (conformsToType(leftType, rightType)) {
+			return rightType;
+		}
+		if (conformsToType(rightType, leftType)) {
+			return leftType;
+		}
+		if (!(leftType instanceof org.eclipse.ocl.examples.pivot.Class)
+		 || !(rightType instanceof org.eclipse.ocl.examples.pivot.Class)) {
+			return null;
+		}
+		List<org.eclipse.ocl.examples.pivot.Class> commonClasses = getCommonClasses((org.eclipse.ocl.examples.pivot.Class)leftType, (org.eclipse.ocl.examples.pivot.Class)rightType);
+		if (commonClasses == null) {
+			return null;
+		}
+		// FIXME If there are two different common types neither is inherently better
+		org.eclipse.ocl.examples.pivot.Class mostConformant = null;
+		for (org.eclipse.ocl.examples.pivot.Class commonClass : commonClasses) {
+			if (mostConformant == null) {
+				mostConformant = commonClass;
+			}
+			else if (conformsToClass(commonClass, mostConformant)) {
+				mostConformant = commonClass;
+			}
+		}
+		return mostConformant;
 	}
 
 	public CompleteType getCompleteType(Type type) {
@@ -479,7 +653,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 				"Incorrect template bindings for template type");
 		}
 		String moniker = getSpecializedMoniker(libraryType, templateArguments);
-		T existingSpecializedType = findSpecializedType(libraryType, moniker);
+		T existingSpecializedType = findOrphanType(ClassUtils.getClass(libraryType), moniker);
 		if (existingSpecializedType != null) {
 			return existingSpecializedType;
 		}
@@ -798,14 +972,24 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 				List<TemplateParameter> unspecializedSuperTemplateParameters = PivotUtil.getAllTemplateParameters(unboundSuperTemplateBindings);
 				templateArguments = new ArrayList<ParameterableElement>(unspecializedSuperTemplateParameters.size());
 				for (TemplateParameter unspecializedSuperTemplateParameter : unspecializedSuperTemplateParameters) {
-					ParameterableElement unboundActual = superBindings.get(unspecializedSuperTemplateParameter);
-					TemplateParameter unboundFormal = unboundActual.getOwningTemplateParameter();
-					ParameterableElement specializedActual = specializedBindings.get(unboundFormal);	// FIXME null checks
-					templateArguments.add(specializedActual);
+					ParameterableElement templateArgument = null;
+					if (superBindings != null) {
+						ParameterableElement unboundActual = superBindings.get(unspecializedSuperTemplateParameter);
+						if (unboundActual != null) {
+							TemplateParameter unboundFormal = unboundActual.getOwningTemplateParameter();
+							if ((unboundFormal != null) && (specializedBindings != null)) {
+								templateArgument = specializedBindings.get(unboundFormal);
+							}
+						}
+					}
+					if (templateArgument == null) {
+						templateArgument = unspecializedSuperTemplateParameter.getParameteredElement();
+					}
+					templateArguments.add(templateArgument);
 				}								
 			}
 			org.eclipse.ocl.examples.pivot.Class unspecializedSuperType = PivotUtil.getUnspecializedTemplateableElement(unboundSuper);
-			org.eclipse.ocl.examples.pivot.Class specializedSuperType = getLibraryType(unspecializedSuperType, templateArguments, false);
+			org.eclipse.ocl.examples.pivot.Class specializedSuperType = getLibraryType(unspecializedSuperType, templateArguments, false);	// FIXME This is sole false call
 			if ((specializedSuperType != null) && !newSuperClasses.contains(specializedSuperType)) {
 				newSuperClasses.add(specializedSuperType);
 			}
@@ -914,7 +1098,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 						Type argumentType = pivotArguments[i];
 						Parameter pivotParameter = pivotParameters.get(i);
 						Type parameterType = pivotParameter.getType();
-						if (!TypeUtil.conformsToType(argumentType, parameterType)) {
+						if (!conformsToType(argumentType, parameterType)) {
 							typesConform = false;
 							break;
 						}
@@ -937,5 +1121,35 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == pivotResourceSet;
+	}
+	   
+    /**
+     * Creates a new tuple instance.
+     * 
+     * @param type the type (a {@link TupleType}) of the tuple to be created
+     * @param values a mapping of the tuple parts
+     * @return the new tuple instance
+     */
+	public TupleType getTupleType(String typeName, Collection<? extends TypedElement> parts) {
+		Pivot2Moniker s = new Pivot2Moniker(null);
+		s.append(typeName);
+		s.appendTupleType(parts);
+		String moniker = s.toString();
+		TupleType existingTupleType = findOrphanType(TupleType.class, moniker);
+		if (existingTupleType != null) {
+			return existingTupleType;
+		}
+		TupleType tupleType = PivotFactory.eINSTANCE.createTupleType();
+		tupleType.setName(typeName);
+		for (TypedElement part : parts) {
+			Property tuplePart = PivotFactory.eINSTANCE.createProperty();
+			tuplePart.setName(part.getName());
+			tuplePart.setType(part.getType());
+			tupleType.getOwnedAttributes().add(tuplePart);
+		}
+		addOrphanType(tupleType);
+		String tupleMoniker = tupleType.getMoniker();
+		assert moniker.equals(tupleMoniker);
+		return tupleType;
 	}
 }

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.7 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.8 2011/01/08 11:39:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -150,7 +150,7 @@ public class PivotUtil
 		return list != null ? list : Collections.<TemplateParameter>emptyList();
 	}
 
-/*	public static List<TemplateParameter> getAllTemplateParameters(TemplateableElement templateableElement) {
+	public static List<TemplateParameter> getAllTemplateParameters(TemplateableElement templateableElement) {
 		List<TemplateParameter> list = null;
 		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
@@ -166,8 +166,8 @@ public class PivotUtil
 				}
 			}
 		}
-		return list != null ? list : Collections.<TemplateParameter>emptyList();
-	} */
+		return list;
+	}
 
 	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(TemplateableElement templateableElement) {
 		Map<TemplateParameter, ParameterableElement> map = new HashMap<TemplateParameter, ParameterableElement>();

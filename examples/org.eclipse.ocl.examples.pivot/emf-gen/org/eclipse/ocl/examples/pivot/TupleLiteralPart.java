@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPart.java,v 1.1.2.2 2010/10/05 17:39:52 ewillink Exp $
+ * $Id: TupleLiteralPart.java,v 1.1.2.3 2011/01/08 11:39:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TupleLiteralPart#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TupleLiteralPart#getInitExpression <em>Init Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,53 +35,53 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface TupleLiteralPart
-		extends TypedElement {
+		extends VariableDeclaration {
 
 	/**
-	 * Returns the value of the '<em><b>Attribute</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Attribute</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attribute</em>' containment reference.
-	 * @see #setAttribute(Property)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTupleLiteralPart_Attribute()
+	 * @return the value of the '<em>Init Expression</em>' containment reference.
+	 * @see #setInitExpression(OclExpression)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTupleLiteralPart_InitExpression()
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-	Property getAttribute();
+	OclExpression getInitExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TupleLiteralPart#getAttribute <em>Attribute</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TupleLiteralPart#getInitExpression <em>Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attribute</em>' containment reference.
-	 * @see #getAttribute()
+	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
+	 * @see #getInitExpression()
 	 * @generated
 	 */
-	void setAttribute(Property value);
+	void setInitExpression(OclExpression value);
 
 	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and sets the '<em><b>Attribute</b></em>' containment reference.
+	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Property} to create.
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
-	 * @see #getAttribute()
+	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
+	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
+	 * @see #getInitExpression()
 	 * @generated
 	 */
-	Property createAttribute(EClass eClass);
+	OclExpression createInitExpression(EClass eClass);
 
 	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and sets the '<em><b>Attribute</b></em>' containment reference.
+	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
-	 * @see #getAttribute()
+	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
+	 * @see #getInitExpression()
 	 * @generated
 	 */
-	Property createAttribute();
+	OclExpression createInitExpression();
 
 } // TupleLiteralPart

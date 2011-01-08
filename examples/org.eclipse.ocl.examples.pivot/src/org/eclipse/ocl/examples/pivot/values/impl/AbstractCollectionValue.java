@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.1.2.1 2010/12/26 15:21:27 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.1.2.2 2011/01/08 11:39:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
-import org.eclipse.ocl.examples.pivot.values.Tuple;
+import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -227,13 +227,13 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 	}
 
     public SetValue product(CollectionValue c, TupleType tupleType) {   	
-    	Set<Tuple> result = new HashSet<Tuple>();		
+    	Set<TupleValue> result = new HashSet<TupleValue>();		
         for (Value next1 : this) {
         	for (Value next2 : c) {
-        		result.add(new TupleImpl(tupleType, next1, next2));
+        		result.add(new TupleValueImpl(tupleType, next1, next2));
         	}
         }
-        return ValueFactory.createSetValue();
+        return ValueFactory.createSetValue(result);
     }
 
 	public IntegerValue size() {

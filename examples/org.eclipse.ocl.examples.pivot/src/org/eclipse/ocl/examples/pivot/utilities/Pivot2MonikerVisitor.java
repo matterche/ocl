@@ -12,14 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.8 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.9 2011/01/08 11:39:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -46,7 +43,6 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -56,7 +52,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -367,26 +362,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	@Override
 	public Object visitTupleType(TupleType object) {
 		context.appendName(object);
-		List<Property> parts = new ArrayList<Property>(object.getOwnedAttributes());
-		Collections.sort(parts, new Comparator<Property>()
-		{
-			public int compare(Property o1, Property o2) {
-				return o1.getName().compareTo(o2.getName());
-			}
-		});
-		context.append('(');
-		String prefix = "";
-		for (Property part : parts) {
-			context.append(prefix);
-			context.appendName(part);
-			context.append(':');
-			Type type = part.getType();
-			if (type != null) {
-				context.appendElement(type);
-			}
-			prefix = ",";
-		}
-		context.append(')');
+		context.appendTupleType(object.getOwnedAttributes());
 		return true;
 	}
 

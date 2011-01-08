@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteTypeImpl.java,v 1.1.2.2 2011/01/07 13:45:07 ewillink Exp $
+ * $Id: CompleteTypeImpl.java,v 1.1.2.3 2011/01/08 11:39:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -269,7 +269,15 @@ public class CompleteTypeImpl
 		TemplateParameter templateParameter = type.getOwningTemplateParameter();
 		if (templateParameter != null) {
 			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(model);
-			type = (Type) templateParameterSubstitutions.get(templateParameter);
+			if (templateParameterSubstitutions != null) {
+				ParameterableElement parameterableElement = templateParameterSubstitutions.get(templateParameter);
+				if (parameterableElement instanceof Type) {
+					type = (Type) parameterableElement;
+				}
+				else if (parameterableElement != null) {
+					type = (Type) templateParameter.getParameteredElement();
+				}
+			}
 		}
 		return completeEnvironment.getCompleteType(type);
 	}

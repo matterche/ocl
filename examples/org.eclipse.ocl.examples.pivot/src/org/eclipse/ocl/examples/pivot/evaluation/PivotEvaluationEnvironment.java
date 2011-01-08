@@ -13,14 +13,13 @@
  *
  * </copyright>
  *
- * $Id: PivotEvaluationEnvironment.java,v 1.1.2.3 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: PivotEvaluationEnvironment.java,v 1.1.2.4 2011/01/08 11:39:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -29,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.values.Tuple;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.util.UnicodeSupport;
 
@@ -412,10 +410,6 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
 
     public Type getType(Object object) {
     	throw new UnsupportedOperationException(getClass().getName() + ".getType");
-    }
-
-    public Tuple createTuple(Type type, Map<Property, Object> values) {
-    	throw new UnsupportedOperationException(getClass().getName() + ".createTuple");
     }
 
     public Value getValue(EnumerationLiteral enumerationLiteral) {

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor2.java,v 1.1.2.1 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: AbstractVisitor2.java,v 1.1.2.2 2011/01/08 11:39:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -446,7 +446,7 @@ public abstract class AbstractVisitor2<T> extends AbstractExtendingVisitor<T, T>
      */
 	@Override
 	public T visitTupleLiteralPart(TupleLiteralPart part) {
-        T valueResult = safeVisit(part.getAttribute());
+        T valueResult = safeVisit(part.getInitExpression());
 		
 		return handleTupleLiteralPart(part, valueResult);
 	}
