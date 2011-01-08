@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BooleanValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: BooleanValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -51,6 +53,10 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 //	public boolean booleanValue() {
 //		return value;
 //	}
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return standardLibrary.getBooleanType();
+	}
 
 	@Override
 	public boolean isFalse() {

@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringValueImpl.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: StringValueImpl.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
@@ -46,6 +48,10 @@ public class StringValueImpl extends AbstractValue implements StringValue
 			return false;
 		}
 		return value.equals(((StringValue)obj).asString());
+	}
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return standardLibrary.getStringType();
 	}
 
 	@Override

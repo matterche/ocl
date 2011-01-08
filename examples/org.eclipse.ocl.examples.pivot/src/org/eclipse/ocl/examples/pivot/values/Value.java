@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: Value.java,v 1.1.2.5 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
+
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * isXXX returns true if self is an XXX and is not Null and is not Invalid.
@@ -40,6 +43,7 @@ public interface Value //extends Comparable<Value>
 	BooleanValue asTrue();
 	TypeValue asTypeValue();
 	UniqueCollectionValue asUniqueCollectionValue();
+	Type getType(StandardLibrary standardLibrary, Type staticType);
 	boolean isFalse();
 	boolean isInvalid();
 	boolean isNull();

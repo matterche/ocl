@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.1.2.5 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -77,6 +79,10 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	
 	public Throwable getThrowable() {
 		return throwable;
+	}
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return staticType; // standardLibrary.getInvalidType();
 	}
 
 	public Object getValue() {

@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.1.2.6 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: OCLBase.java,v 1.1.2.7 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -433,7 +434,8 @@ public abstract class OCLBase {
 			expression);
 
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
-		Value contextValue = getEnvironment().getPivotManager().getValueOfValue(context);
+		ValueFactory valueFactory = localEvalEnv.getValueFactory();
+		Value contextValue = valueFactory.getValueOfValue(context);
 		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, contextValue);
 
 		ModelManager extents = getModelManager();
@@ -456,7 +458,7 @@ public abstract class OCLBase {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
 		if (result == null) {
-			result = localEvalEnv.getValueFactory().createInvalidValue("Java-Null value");
+			result = valueFactory.createInvalidValue("Java-Null value");
 		}
 		return result;
 	}
@@ -467,7 +469,8 @@ public abstract class OCLBase {
 		// variable of the expression, to account for stereotype constraints
 		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
-		Value value = getEnvironment().getPivotManager().getValueOfValue(context);
+		ValueFactory valueFactory = localEvalEnv.getValueFactory();
+		Value value = valueFactory.getValueOfValue(context);
 		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
 //		localEvalEnv.addVariable(expression.getContextVariable(), value);
 //		if ((value != null) && !value.isUndefined()) {
@@ -493,7 +496,7 @@ public abstract class OCLBase {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
 		if (result == null) {
-			result = localEvalEnv.getValueFactory().createInvalidValue("Java-Null value");
+			result = valueFactory.createInvalidValue("Java-Null value");
 		}
 		return result;
 	}
@@ -510,9 +513,9 @@ public abstract class OCLBase {
 	 * 
 	 * @see #evaluate(Object, OCLExpression)
 	 */
-	public boolean isInvalid(Object value) {
-		return getEnvironment().getOCLStandardLibrary().getInvalidValue() == value;
-	}
+//	public boolean isInvalid(Object value) {
+//		return getEnvironment().getOCLStandardLibrary().getInvalidValue() == value;
+//	}
 
 	/**
 	 * Checks whether a constraint is satisfied by an object. If the constraint

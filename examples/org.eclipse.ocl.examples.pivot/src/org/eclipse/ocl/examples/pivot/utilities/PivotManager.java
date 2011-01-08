@@ -12,12 +12,10 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.15 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.16 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +23,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -52,7 +49,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -73,11 +69,6 @@ import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-import org.eclipse.ocl.examples.pivot.values.Bag;
-import org.eclipse.ocl.examples.pivot.values.ElementValue;
-import org.eclipse.ocl.examples.pivot.values.NullValue;
-import org.eclipse.ocl.examples.pivot.values.TypeValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
@@ -738,108 +729,8 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return pivotResourceSet;
 	}
 
-	public Type getTypeOfType(Object type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Type getTypeOfValue(Object value, Type type) {
-		if (value instanceof OclExpression) {
-			return ((OclExpression) value).getType();
-		}
-		if (value instanceof Boolean) {
-			return getBooleanType();
-		}
-		if (value instanceof String) {
-			return getStringType();
-		}
-		if (value instanceof BigDecimal) {
-			return getRealType();
-		}
-		if (value instanceof BigInteger) {
-			return ((BigInteger) value).signum() >= 0
-				? getUnlimitedNaturalType()
-				: getIntegerType();
-		}
-		if (value instanceof Collection) {
-			if (value instanceof Bag<?>) {
-				return getBagType();
-			}
-			if (value instanceof LinkedHashSet<?>) {
-				return getOrderedSetType();
-			}
-			if (value instanceof List<?>) {
-				return getSequenceType();
-			}
-			if (value instanceof Set<?>) {
-				return getSetType();
-			}
-			return getCollectionType();
-		}
-		if (value instanceof ElementValue<?>) {
-			if (value instanceof NullValue) {
-				return type;
-			}
-			else if (value instanceof TypeValue) {
-				return ((TypeValue)value).getElement();
-			}
-			else {
-				EClass eClass = ((ElementValue<?>) value).getElement().eClass();
-				return getPivotType(eClass.getName());
-			}
-		}
-		return type;
-	}
-
 	public ValueFactory getValueFactory() {
 		return ValueFactory.INSTANCE;
-	}
-
-	public Value getValueOfValue(Object value) {
-		ValueFactory valueFactory = getValueFactory();
-		if (value instanceof Number) {
-			if ((value instanceof Integer) || (value instanceof Long)
-					|| (value instanceof Short)) {
-				return valueFactory.integerValueOf(((Number) value).longValue());
-			}
-			if ((value instanceof Float) || (value instanceof Double)) {
-				return valueFactory.realValueOf(((Number) value).doubleValue());
-			}
-			if (value instanceof BigDecimal) {
-				return valueFactory.realValueOf((BigDecimal) value);
-			}
-			if (value instanceof BigInteger) {
-				return valueFactory.integerValueOf((BigInteger) value);
-			}			
-		}
-		if (value instanceof String) {
-			return valueFactory.stringValueOf((String) value);
-		}
-		if (value instanceof Boolean) {
-			return valueFactory.booleanValueOf((Boolean) value);
-		}
-		if (value instanceof Element) {
-			if (value instanceof Type) {
-				return valueFactory.createTypeValue((Type) value);
-			}
-			return valueFactory.createElementValue((Element) value);
-		}
-		if (value == null) {
-			return valueFactory.NULL;
-		}
-		if (value.getClass().isArray()) {
-			try {
-				int length = Array.getLength(value);
-				List<Value> values = new ArrayList<Value>();
-				for (int i = 0; i < length; i++) {
-					Value v = getValueOfValue(Array.get(value, i));
-					values.add(v);
-				}
-				return valueFactory.createSequenceValue(values);
-			} 
-			catch (IllegalArgumentException e) {}
-		}
-		return valueFactory.createObjectValue(value);
 	}
 
 	public boolean isAdapterForType(Object type) {

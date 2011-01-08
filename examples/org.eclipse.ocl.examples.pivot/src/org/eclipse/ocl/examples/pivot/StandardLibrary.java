@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.1.2.5 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,21 +34,6 @@ import org.eclipse.ocl.Environment;
 public interface StandardLibrary {
 
 	boolean conformsTo(Type firstType, Type secondType);
-
-	/**
-	 * Create an explanatory invalid value arising for evaluation of an expression for an object,
-	 * typically the source value of an operation call.
-	 * Optionally a reason and a throwable provide further explanation of the cause of invalidity.
-	 * <p>
-	 * Unless explanatory invalid behaviour has been enabled, the context and
-	 * explanation are discarded and the singleton invalid value is returned instead.
-	 * @param object
-	 * @param expression
-	 * @param reason
-	 * @param throwable
-	 * @return
-	 */
-	Object createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable);
 	
     /**
      * Obtains the single instance of the {@link AnyType} metatype, named
@@ -57,6 +42,14 @@ public interface StandardLibrary {
      * @return the <tt>OclAny</tt> type (an instance of {@link AnyType})
      */
 	Type getOclAnyType();
+	
+    /**
+     * Obtains the single instance of the {@link ClassifierType} metatype, named
+     * <tt>Classifier</tt>.
+     * 
+     * @return the <tt>Classifier</tt> type (an instance of {@link Classifoer})
+     */
+	Type getClassifierType();
 	
     /**
      * Obtains the single instance of the {@link VoidType} metatype, named
@@ -73,24 +66,6 @@ public interface StandardLibrary {
      * @return the <tt>OclInvalid</tt> type (an instance of {@link InvalidType})
      */
 	Type getInvalidType();
-	
-    /**
-     * Obtains the single instance of the {@link #getOclInvalid() OclInvalid} type,
-     * identified by the token <tt>invalid</tt>.
-     * 
-     * @return the <tt>invalid</tt> instance
-     *     (an instance of {@link #getOclInvalid() invalid})
-     */
-	Object getInvalidValue();
-	
-    /**
-     * Obtains the single instance of the {@link #getOclVoid() OclVoid} type,
-     * identified by the token <tt>null</tt>.
-     * 
-     * @return the <tt>invalid</tt> instance
-     *     (an instance of {@link #getOclVoid() null})
-     */
-	Object getNullValue();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -132,24 +107,6 @@ public interface StandardLibrary {
      *     {@link PrimitiveType})
      */
     Type getUnlimitedNaturalType();
-
-	Object getUnlimitedValue();
-	
-    /**
-     * Obtains the generic instance of the {@link TypeType} metatype, named
-     * <tt>OclType</tt>.
-     * 
-     * @return the <tt>OclType</tt> type (an instance of {@link TypeType})
-     */
-//	Type getOclType();
-	
-    /**
-     * Obtains the generic instance of the {@link ElementType} metatype, named
-     * <tt>OclElement</tt>.
-     * 
-     * @return the <tt>OclElement</tt> type (an instance of {@link ElementType})
-     */
-//	Type getOclElement();
 	
     /**
      * Obtains the generic instance of the {@link MessageType} metatype, named
@@ -198,22 +155,8 @@ public interface StandardLibrary {
      * @return the <tt>Collection(T)</tt> type (an instance of {@link CollectionType})
      */
 	Type getCollectionType();
-    
-    /**
-     * Obtains the instance of the {@link ElementType} metatype that represents
-     * the type of states in the model, named <tt>State</tt>.
-     * 
-     * @return the <tt>State</tt> type (an instance of {@link ElementType})
-     */
-//    Type getState();
-    
-    /**
-     * Obtains the instance of the {@link ElementType} metatype that represents
-     * the type of OCL expressions in the model, named <tt>OclExpression</tt>.
-     * 
-     * @return the <tt>OclExpression</tt> type (an instance of {@link ElementType})
-     */
-//    Type getOclExpression();
+	
+	Type getPivotType(String className);
     
     /**
      * Obtains a generic instance of the {@link AnyType} metatype that represents
@@ -233,12 +176,6 @@ public interface StandardLibrary {
      */
 	@Deprecated
     Type getT2();
-
-	Type getTypeOfType(Object type);
-
-	Type getTypeOfValue(Object value, Type type);
-
-	Object getValueOfValue(Object value);
 	
 	boolean isOrdered(Type sourceType);
 

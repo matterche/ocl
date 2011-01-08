@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SetValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: SetValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -26,6 +26,8 @@ import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
@@ -50,7 +52,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
         int leftSize = leftElements.size();
         int rightSize = rightElements.size();
     	if ((leftSize == 0) || (rightSize == 0)) {
-            return valueFactory.EMPTY_SET;
+            return valueFactory.getEmptySetValue();
         }    	
         Set<Value> results = new HashSet<Value>();
         // loop over the smaller collection and add only elements
@@ -63,7 +65,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
             results = new HashSet<Value>(rightElements);
         	results.retainAll(leftElements);
         }
-    	return results.size() > 0 ? new SetValueImpl(valueFactory, results) : valueFactory.EMPTY_SET;
+    	return results.size() > 0 ? new SetValueImpl(valueFactory, results) : valueFactory.getEmptySetValue();
     }
 
 	public static SetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
@@ -180,6 +182,10 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	
 	public CollectionKind getKind() {
 	    return CollectionKind.SET;
+	}
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return staticType; // standardLibrary.getSetType();
 	}
 
 	public SetValue including(Value value) {

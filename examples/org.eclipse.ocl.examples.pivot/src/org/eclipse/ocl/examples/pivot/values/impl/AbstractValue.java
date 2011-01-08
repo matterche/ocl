@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractValue.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: AbstractValue.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -57,7 +57,7 @@ public abstract class AbstractValue implements Value
 	}
 
 	public BooleanValue asFalse() {
-		return valueFactory.FALSE;
+		return valueFactory.getFalse();
 	}
 
 	public Integer asInteger() {
@@ -101,7 +101,7 @@ public abstract class AbstractValue implements Value
 	}
 
 	public BooleanValue asTrue() {
-		return valueFactory.FALSE;
+		return valueFactory.getFalse();
 	}
 
 	public TypeValue asTypeValue() {

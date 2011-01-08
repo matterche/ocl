@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.12 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.13 2011/01/08 18:23:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -56,6 +56,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
@@ -169,7 +170,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return new Integer(first + index);
 		}
 
-//		@Override
+        public Type getType(StandardLibrary standardLibrary, Type staticType) {
+    		return (first >= 0) && (last >= 0) ? standardLibrary.getUnlimitedNaturalType() : standardLibrary.getIntegerType();
+		}
+
+		//		@Override
         public java.util.Iterator<Integer> iterator() {
 			// local iterator class that provides
 			// hasNext() and next() methods appropriate
@@ -538,18 +543,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	@Override
     public Value visitNullLiteralExp(NullLiteralExp nullLiteralExp) {
-		return valueFactory.NULL;
+		return valueFactory.getNull();
 	}
 
 	/**
-	 * 
 	 * Callback for an OperationCallExp visit.
-	 *  
 	 */
 	@Override
     public Value visitOperationCallExp(OperationCallExp operationCallExp) {
 		OclExpression source = operationCallExp.getSource();
-		Value sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
+		Value sourceValue = source.accept(getUndecoratedVisitor());
 /*		if (sourceValue instanceof TypeValue) {
 			Type dynamicSourceType = ((TypeValue)sourceValue).getType();
 			Operation staticOperation = operationCallExp.getReferredOperation();
@@ -560,15 +563,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
 		}
 		else {
-*/			Operation staticOperation = operationCallExp.getReferredOperation();
-			Type staticSourceType = source != null ? source.getType() : staticOperation.getClass_();
-			Type dynamicSourceType = getStandardLibrary().getTypeOfValue(sourceValue, staticSourceType);
-			CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
-			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-			CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-			CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
-			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
-//		}
+*/
+		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+		Operation staticOperation = operationCallExp.getReferredOperation();
+		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
+		Type staticSourceType = source.getType();
+		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
+		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
+		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
+		return callImplementation(dynamicOperation, sourceValue, operationCallExp);
 	}
 
 	/**
@@ -659,7 +662,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return valueFactory.createInvalidValue(null, unlimitedNaturalLiteralExp, "Invalid Unlimited Natural Value", null);
 		}
 		if (value.signum() < 0) {
-			return valueFactory.UNLIMITED;
+			return valueFactory.getUnlimited();
 		}
 		return valueFactory.integerValueOf(value);
 	}

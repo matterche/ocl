@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TracingEvaluationVisitor.java,v 1.1.2.5 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: TracingEvaluationVisitor.java,v 1.1.2.6 2011/01/08 18:23:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -74,15 +74,15 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 		return getDelegate().getValueFactory();
 	}
 
-    private boolean isInvalid(Object value) {
-        return value == getEnvironment().getOCLStandardLibrary().getInvalidValue();
-    }
+//    private boolean isInvalid(Object value) {
+//        return value == getEnvironment().getOCLStandardLibrary().getInvalidValue();
+//    }
     
     private Value trace(Object expression, Value value) {
         try {
             PivotPlugin.trace("Evaluate: " + expression); //$NON-NLS-1$
             PivotPlugin.trace("Result  : " + //$NON-NLS-1$
-                (isInvalid(value)? "OclInvalid" : String.valueOf(value))); //$NON-NLS-1$
+                (value.isInvalid() ? "OclInvalid" : String.valueOf(value))); //$NON-NLS-1$
         } catch (Exception e) {
             // tracing must not interfere with evaluation
         }

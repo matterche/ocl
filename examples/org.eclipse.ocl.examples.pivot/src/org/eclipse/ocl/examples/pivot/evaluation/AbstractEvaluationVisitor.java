@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.8 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.9 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -35,7 +34,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
@@ -174,16 +172,6 @@ public abstract class AbstractEvaluationVisitor
     }
 	
     /**
-     * Obtains my environment's implementation of the <tt>OclInvalid</tt> value.
-     * 
-     * @return the invalid result
-     * @since 3.0
-     */
-	public final Object getInvalidValue() {
-		return getStandardLibrary().getInvalidValue();
-	}
-	
-    /**
      * Obtains the name of the specified element, if it has one.
      * 
      * @param namedElement a named element
@@ -196,10 +184,6 @@ public abstract class AbstractEvaluationVisitor
     public final Type getNullType() {
         return getStandardLibrary().getNullType();
     }
-
-	public Object getNullValue() {
-		return getStandardLibrary().getNullValue();
-	}
     
     /**
      * Obtains the body of the specified operation's def or body expression,
@@ -369,11 +353,11 @@ public abstract class AbstractEvaluationVisitor
 	 * 
 	 * @return whether it is undefined
 	 */
-	@Deprecated
-	protected boolean isUndefined(Object value) {
-		return (value == null) || 
-			(value == getEnvironment().getOCLStandardLibrary().getInvalidValue());
-	}
+//	@Deprecated
+//	protected boolean isUndefined(Object value) {
+//		return (value == null) || 
+//			(value == getEnvironment().getOCLStandardLibrary().getInvalidValue());
+//	}
 
     /**
      * Obtains an object's value of the specified additional property.
@@ -400,7 +384,7 @@ public abstract class AbstractEvaluationVisitor
 	 * @param value the value to check
 	 * @param typeArg the type to check
 	 * @return true iff the value is of the type or one of its super types.
-	 */
+	 *
 	protected Boolean oclIsKindOf(Object value, Object typeArg) {
 		Type type = (Type) typeArg;
 		
@@ -421,7 +405,7 @@ public abstract class AbstractEvaluationVisitor
 		}
 
 		return Boolean.valueOf(getEvaluationEnvironment().isKindOf(value, type));
-	}
+	} */
 
 	/**
 	 * Checks whether the supplied object is an instance of the supplied type.
@@ -429,7 +413,7 @@ public abstract class AbstractEvaluationVisitor
 	 * @param value the value to check
 	 * @param typeArg the type to check
 	 * @return true if the object is an instance of the type, false otherwise.
-	 */
+	 *
 	protected Boolean oclIsTypeOf(Object value, Object typeArg) {
 		Type type = (Type) typeArg;
 		
@@ -456,7 +440,7 @@ public abstract class AbstractEvaluationVisitor
 		}
 
 		return Boolean.valueOf(getEvaluationEnvironment().isTypeOf(value, type));
-	}
+	} */
 
 	/**
 	 * Sets the evaluation environment to be used by this visitor during

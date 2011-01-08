@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NullValueImpl.java,v 1.1.2.4 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: NullValueImpl.java,v 1.1.2.5 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -29,6 +31,10 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof NullValue;
+	}
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return staticType; // standardLibrary.getNullType();
 	}
 
 	@Override

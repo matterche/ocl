@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.5 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.6 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -21,16 +21,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 
 public abstract class PivotStandardLibrary implements StandardLibrary
@@ -56,31 +51,17 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private Type classifierType = null;
 	private Type integerType = null;
 	private Type invalidType = null;
-	private InvalidLiteralExp invalidValue = null;
 	private Type nullType = null;
-	private NullLiteralExp nullValue = null;
 	private Type realType = null;
 	private Type stringType = null;
 	private Type tupleType = null;
 	private Type unlimitedNaturalType = null;
-	private UnlimitedNaturalLiteralExp unlimitedValue = null;
 	private Type oclInvalidType = null;
 	private Type oclVoidType = null;
 	
 	org.eclipse.ocl.examples.pivot.Package pivotPackage = null;
 	
 	private Map<String, Type> nameToLibraryTypeMap = null;
-
-	public InvalidLiteralExp createInvalidValue(Object object,
-			OclExpression expression, String reason, Throwable throwable) {
-		InvalidLiteralExp invalidValue = PivotFactory.eINSTANCE.createInvalidLiteralExp();
-		invalidValue.setType(getInvalidType());
-		invalidValue.setObject(object);
-		invalidValue.setExpression(expression);
-		invalidValue.setReason(reason);
-		invalidValue.setThrowable(throwable);
-		return invalidValue;
-	}
 
 	protected void defineLibraryType(Type pivotType) {
 		if (nameToLibraryTypeMap == null) {
@@ -137,14 +118,6 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return invalidType;
 	}
 
-	public InvalidLiteralExp getInvalidValue() {
-		if (invalidValue == null) {
-			invalidValue = PivotFactory.eINSTANCE.createInvalidLiteralExp();
-			invalidValue.setType(getInvalidType());
-		}
-		return invalidValue;
-	}
-
 	public Type getLibraryType(String typeName) {
 		if (nameToLibraryTypeMap == null) {
 			nameToLibraryTypeMap = new HashMap<String, Type>();
@@ -158,14 +131,6 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			nullType = getRequiredLibraryType("OclVoid");
 		}
 		return nullType;
-	}
-
-	public Object getNullValue() {
-		if (nullValue == null) {
-			nullValue = PivotFactory.eINSTANCE.createNullLiteralExp();
-			nullValue.setType(getNullType());
-		}
-		return nullValue;
 	}
 
 	public Type getOclAnyType() {
@@ -281,13 +246,6 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			unlimitedNaturalType = getRequiredLibraryType("UnlimitedNatural");
 		}
 		return unlimitedNaturalType;
-	}
-
-	public Object getUnlimitedValue() {
-		if (unlimitedValue == null) {
-			unlimitedValue = PivotFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
-		}
-		return unlimitedValue;
 	}
 
 	public boolean isOrdered(Type sourceType) {

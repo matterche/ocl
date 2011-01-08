@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -37,6 +39,10 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 
 	public Object getObject() {
 		return object;
+	}
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return standardLibrary.getClassifierType();
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -21,7 +21,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
@@ -99,6 +101,10 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
 
         return result;
     }
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return type;
+	}
 
     // overrides the inherited implementation
     @Override

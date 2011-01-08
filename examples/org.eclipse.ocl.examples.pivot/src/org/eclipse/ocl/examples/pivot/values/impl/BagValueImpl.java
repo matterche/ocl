@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagValueImpl.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: BagValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -46,7 +48,7 @@ public class BagValueImpl
         int leftSize = leftElements.size();
         int rightSize = rightElements.size();
     	if ((leftSize == 0) || (rightSize == 0)) {
-            return valueFactory.EMPTY_BAG;
+            return valueFactory.getEmptyBagValue();
         }    	
         Bag<Value> results = new BagImpl<Value>();
         // loop over the smaller collection and add only elements
@@ -59,7 +61,7 @@ public class BagValueImpl
         		results.add(e);
         	}
         }
-    	return results.size() > 0 ? new BagValueImpl(valueFactory, results) : valueFactory.EMPTY_BAG;
+    	return results.size() > 0 ? new BagValueImpl(valueFactory, results) : valueFactory.getEmptyBagValue();
     }
 
     public static BagValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
@@ -155,6 +157,10 @@ public class BagValueImpl
 	
 	public CollectionKind getKind() {
 	    return CollectionKind.BAG;
+	}
+
+	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		return staticType; // standardLibrary.getBagType();
 	}
 
 	public BagValue including(Value value) {

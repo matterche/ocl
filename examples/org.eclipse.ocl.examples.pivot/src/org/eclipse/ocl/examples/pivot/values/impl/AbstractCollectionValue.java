@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -144,10 +144,10 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
     public BooleanValue excludesAll(CollectionValue c) {
         for (Value next : c) {
             if (elements.contains(next)) {
-                return valueFactory.FALSE;
+                return valueFactory.getFalse();
             }
         }
-        return valueFactory.TRUE;
+        return valueFactory.getTrue();
     }
 
     /**
@@ -185,10 +185,10 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
     public BooleanValue includesAll(CollectionValue c) {
     	for (Value next : c) {
     		if (!elements.contains(next)) {
-    			return valueFactory.FALSE;
+    			return valueFactory.getFalse();
     		}
     	}   	
-        return valueFactory.TRUE;
+        return valueFactory.getTrue();
     }
 
 	public BooleanValue isEmpty() {

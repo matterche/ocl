@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.1.2.6 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.1.2.7 2011/01/08 18:23:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -122,7 +122,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			result = ev.visitExpression(expression);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = environment.getOCLStandardLibrary().getInvalidValue(); 			
+			result = myEnv.getValueFactory().createInvalidValue(obj, null, evalProblems.toString(), e); 			
 		} finally {
 			myEnv.remove(SELF_VARIABLE_NAME);
 		}
@@ -145,7 +145,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			result = ev.visitExpression(expression);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = environment.getOCLStandardLibrary().getInvalidValue();
+			result = environment.getPivotManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
 		}
 		
 		return result;
