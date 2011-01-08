@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionProductOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: CollectionProductOperation.java,v 1.1.2.5 2011/01/08 11:40:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -35,32 +34,24 @@ public class CollectionProductOperation extends AbstractOperation // FIXME Make 
 	public static final CollectionProductOperation INSTANCE = new CollectionProductOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		if (sourceVal.isInvalid()) {
-			return null;
+		if (sourceVal.isUndefined()) {
+			return createInvalidValue(sourceVal, operationCall, "Undefined source", null);
+		}
+		CollectionValue sourceValue = sourceVal.asCollectionValue();
+		if (sourceValue == null) {
+//			sourceValue = createSetValue(sourceVal);
+			return createInvalidValue(sourceVal, operationCall, "Non-collection source", null);
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		if (sourceVal.isInvalid() || argVal.isInvalid()) {
-			return null;
+		if (argVal.isUndefined()) {
+			return createInvalidValue(argVal, operationCall, "Undefined argument", null);
 		}		
 		CollectionValue argumentValue = argVal.asCollectionValue();
 		if (argumentValue == null) {
-			return null;
+			return createInvalidValue(argVal, operationCall, "Non-collection argumrnt", null);
 		}
-		if (sourceVal.isNull()) {
-			return evaluateCollection(evaluationVisitor, createBagValue(), operationCall, argumentValue);
-		}
-		else if (sourceVal instanceof CollectionValue) {
-			return evaluateCollection(evaluationVisitor, (CollectionValue)sourceVal, operationCall, argumentValue);
-		}
-		else {
-			SetValue sourceSet = createSetValue(sourceVal);
-			return evaluateCollection(evaluationVisitor, sourceSet, operationCall, argumentValue);
-		}
-	}
-
-	protected Value evaluateCollection(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, OperationCallExp operationCall, CollectionValue argVal) {
 		CollectionType collType = (CollectionType) operationCall.getType();
 		TupleType tupleType = (TupleType) collType.getElementType();
-		return sourceVal.product(argVal, tupleType);
+		return sourceValue.product(argumentValue, tupleType);
 	}
 }
