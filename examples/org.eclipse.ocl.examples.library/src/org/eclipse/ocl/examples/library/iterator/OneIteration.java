@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OneIteration.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OneIteration.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.library.evaluation.IterationTemplateOne;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -38,6 +39,7 @@ public class OneIteration extends AbstractIteration
 	public static final OneIteration INSTANCE = new OneIteration();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
+		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
 		List<Variable> iterators = getIterators(iteratorExp);
 		OclExpression body = getBody(iteratorExp);		
 		CollectionValue coll = (CollectionValue) sourceVal;
@@ -45,13 +47,13 @@ public class OneIteration extends AbstractIteration
 		IterationTemplate is = IterationTemplateOne.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, Value.FALSE);		
+		evaluationEnvironment.add(resultName, evaluationEnvironment.getValueFactory().FALSE);		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);
 		} finally {
 			// remove result name from environment
-			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
+			evaluationEnvironment.remove(resultName);
 		}
 	}
 }

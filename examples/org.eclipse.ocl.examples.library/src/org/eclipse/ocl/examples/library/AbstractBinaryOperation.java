@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractBinaryOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: AbstractBinaryOperation.java,v 1.1.2.4 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -30,6 +30,6 @@ public abstract class AbstractBinaryOperation extends AbstractOperation implemen
 {
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		return evaluate(sourceVal, argVal);
+		return evaluate(evaluationVisitor.getValueFactory(), sourceVal, argVal);
 	}
 }

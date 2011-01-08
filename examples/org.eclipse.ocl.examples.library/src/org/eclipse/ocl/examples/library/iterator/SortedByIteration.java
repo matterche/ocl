@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * SelectIteration realises the Collection::select() library iteration.
@@ -43,6 +44,7 @@ public class SortedByIteration extends AbstractIteration
 	public static final SortedByIteration INSTANCE = new SortedByIteration();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 //		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = evaluationVisitor.getEnvironment();
 //		MergedLibrary library = environment.getMergedLibrary();
 //		OCLType sourceType = library.getLibraryTypeOfType(iteratorExp.getSource().getType());
@@ -57,7 +59,7 @@ public class SortedByIteration extends AbstractIteration
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
 		final Map<Object, Value> map = new HashMap<Object, Value>();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, new IterationTemplateSortedBy.SortingValue(map));		
+		evaluationVisitor.getEvaluationEnvironment().add(resultName, new IterationTemplateSortedBy.SortingValue(evaluationVisitor.getValueFactory(), map));		
 		try {
 			// evaluate
 			// TODO: find an efficient way to do this.
@@ -75,7 +77,7 @@ public class SortedByIteration extends AbstractIteration
 		}
 		// sort the source collection based on the natural ordering of the
 		// body expression evaluations
-		SequenceValue result = createSequenceValue(coll);
+		SequenceValue result = valueFactory.createSequenceValue(coll);
 
 //		Collections.sort(result, new Comparator<Object>() {
 //
@@ -91,13 +93,13 @@ public class SortedByIteration extends AbstractIteration
 		// SortedSet if source is a SortedSet or a Set
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfType(iteratorExp.getSource().getType());
-		boolean isUnique = isUnique(sourceType);
+		boolean isUnique = stdlib.isUnique(sourceType);
 		
 		if (isUnique) {
-			return createOrderedSetValue(result);
+			return valueFactory.createOrderedSetValue(result);
 		}
 		else {
-			return createSequenceValue(result);
+			return valueFactory.createSequenceValue(result);
 		}
 				
 //		CollectionValue initResultVal = CollectionUtil2.createNewCollection(true, isUnique);

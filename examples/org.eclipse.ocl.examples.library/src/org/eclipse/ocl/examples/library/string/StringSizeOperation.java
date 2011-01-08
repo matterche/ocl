@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringSizeOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: StringSizeOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * StringSizeOperation realises the String::size() library operation.
@@ -28,7 +29,7 @@ public class StringSizeOperation extends AbstractStringUnaryOperation
 	public static final StringSizeOperation INSTANCE = new StringSizeOperation();
 
 	@Override
-	public Value evaluateString(String sourceVal) {
-		return createIntegerValue(sourceVal.length());
+	public Value evaluateString(ValueFactory valueFactory, String sourceVal) {
+		return valueFactory.integerValueOf(sourceVal.length());
 	}
 }

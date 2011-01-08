@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanAndOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: BooleanAndOperation.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AndOperation realises the and() library operation.
@@ -33,22 +34,23 @@ public class BooleanAndOperation extends AbstractBinaryOperation
 
 	@Override
 	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		if (sourceVal == Value.FALSE) {
-			return Value.FALSE;
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
+		if (sourceVal == valueFactory.FALSE) {
+			return valueFactory.FALSE;
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		return evaluate(sourceVal, argVal);
+		return evaluate(valueFactory, sourceVal, argVal);
 	}
 
-	public BooleanValue evaluate(Value left, Value right) {
-		if (left == Value.FALSE) {
-			return Value.FALSE;
+	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
+		if (left == valueFactory.FALSE) {
+			return valueFactory.FALSE;
 		}
-		if (right == Value.FALSE) {
-			return Value.FALSE;
+		if (right == valueFactory.FALSE) {
+			return valueFactory.FALSE;
 		}
-		if ((left == Value.TRUE) && (right == Value.TRUE)) {
-			return Value.TRUE;
+		if ((left == valueFactory.TRUE) && (right == valueFactory.TRUE)) {
+			return valueFactory.TRUE;
 		}
 		return null;
 	}

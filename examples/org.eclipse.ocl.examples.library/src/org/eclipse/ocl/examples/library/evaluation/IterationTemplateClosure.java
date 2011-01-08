@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: IterationTemplateClosure.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * Instantiation of the iteration template for the <code>closure</code>
@@ -71,7 +70,7 @@ public class IterationTemplateClosure extends IterationTemplate
 					bodyColl = (CollectionValue) bodyVal;
 				}
 				else {
-					bodyColl = ValueFactory.createSequenceValue(bodyVal);
+					bodyColl = getValueFactory().createSequenceValue(bodyVal);
 				}
 				Value[] iteratorValues = pauseIterators(iterators);
 				evaluate(bodyColl, iterators, body, resultName);

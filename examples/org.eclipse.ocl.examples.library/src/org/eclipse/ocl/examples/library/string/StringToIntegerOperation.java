@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringToIntegerOperation.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: StringToIntegerOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * StringToIntegerOperation realises the String::toInteger() library operation.
@@ -31,8 +32,8 @@ public class StringToIntegerOperation extends AbstractStringUnaryOperation
 	public static final StringToIntegerOperation INSTANCE = new StringToIntegerOperation();
 
 	@Override
-	public IntegerValue evaluateString(String sourceVal) {
-		return createIntegerValue(sourceVal.trim());
+	public IntegerValue evaluateString(ValueFactory valueFactory, String sourceVal) {
+		return valueFactory.integerValueOf(sourceVal.trim());
 	}
 
 	@Override
@@ -42,7 +43,7 @@ public class StringToIntegerOperation extends AbstractStringUnaryOperation
 			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
 		}
 		catch (NumberFormatException e) {
-			return createInvalidValue(sourceVal, operationCall, "Not an Integer", e);
+			return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, operationCall, "Not an Integer", e);
 		}
 	}
 }

@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: StringIndexOfOperation.java,v 1.1.2.1 2010/12/26 16:56:29 ewillink Exp $
+ * $Id: StringIndexOfOperation.java,v 1.1.2.2 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedSetSubOrderedSetOperation realises the OrderedSet::subOrderedSet() library operation.
@@ -28,19 +29,19 @@ public class StringIndexOfOperation extends AbstractBinaryOperation
 {
 	public static final StringIndexOfOperation INSTANCE = new StringIndexOfOperation();
 
-	public Value evaluate(Value left, Value right) {
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) {
 		String leftString = left.asString();
 		if (leftString == null) {
-			return createInvalidValue(left, null, "non-string indexOf source", null);
+			return valueFactory.createInvalidValue(left, null, "non-string indexOf source", null);
 		}
 		Integer rightInteger = right.asInteger();
 		if (rightInteger == null) {
-			return createInvalidValue(right, null, "non-integer indexOf argument", null);
+			return valueFactory.createInvalidValue(right, null, "non-integer indexOf argument", null);
 		}
 		int index = rightInteger -1;
 		if ((index < 0) || (leftString.length() <= index)) {
-			return createInvalidValue(right, null, "out of range indexOf argument", null);
+			return valueFactory.createInvalidValue(right, null, "out of range indexOf argument", null);
 		}
-		return createStringValue(leftString.substring(index, index+1));
+		return valueFactory.stringValueOf(leftString.substring(index, index+1));
 	}
 }

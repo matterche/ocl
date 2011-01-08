@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionAppendOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OrderedCollectionAppendOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedCollectionAppendOperation realises the OrderedCollection::append() library operation.
@@ -29,7 +30,7 @@ public class OrderedCollectionAppendOperation extends AbstractOrderedCollectionB
 	public static final OrderedCollectionAppendOperation INSTANCE = new OrderedCollectionAppendOperation();
 
 	@Override
-	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal) {
+	protected Value evaluateCollection(ValueFactory valueFactory, OrderedCollectionValue sourceVal, Value argVal) {
 		return sourceVal.append(argVal);
 	}
 }

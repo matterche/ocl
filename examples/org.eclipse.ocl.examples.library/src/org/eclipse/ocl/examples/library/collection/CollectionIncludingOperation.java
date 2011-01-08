@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionIncludingOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: CollectionIncludingOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectionIncludingOperation realises the Collection::including() library operation.
@@ -29,7 +30,7 @@ public class CollectionIncludingOperation extends AbstractCollectionBinaryOperat
 	public static final CollectionIncludingOperation INSTANCE = new CollectionIncludingOperation();
 
 	@Override
-	protected Value evaluateCollection(CollectionValue sourceVal, Value argVal) {
+	protected Value evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, Value argVal) {
 		return sourceVal.including(argVal);
 	}
 }

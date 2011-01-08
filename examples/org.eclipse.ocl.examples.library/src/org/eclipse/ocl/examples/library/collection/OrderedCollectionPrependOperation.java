@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionPrependOperation.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: OrderedCollectionPrependOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedCollectionPrependOperation realises the OrderedCollection::prepend() library operation.
@@ -29,7 +30,7 @@ public class OrderedCollectionPrependOperation extends AbstractOrderedCollection
 	public static final OrderedCollectionPrependOperation INSTANCE = new OrderedCollectionPrependOperation();
 
 	@Override
-	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal) {
+	protected Value evaluateCollection(ValueFactory valueFactory, OrderedCollectionValue sourceVal, Value argVal) {
 		return sourceVal.prepend(argVal);
 	}
 }

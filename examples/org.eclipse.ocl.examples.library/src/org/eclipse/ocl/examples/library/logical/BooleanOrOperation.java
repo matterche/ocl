@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanOrOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: BooleanOrOperation.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrOperation realises the or() library operation.
@@ -33,22 +34,23 @@ public class BooleanOrOperation extends AbstractBinaryOperation
 
 	@Override
 	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		if (sourceVal == Value.TRUE) {
-			return Value.TRUE;
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
+		if (sourceVal == valueFactory.TRUE) {
+			return valueFactory.TRUE;
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		return evaluate(sourceVal, argVal);
+		return evaluate(valueFactory, sourceVal, argVal);
 	}
 
-	public BooleanValue evaluate(Value left, Value right) {
-		if (left == Value.TRUE) {
-			return Value.TRUE;
+	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
+		if (left == valueFactory.TRUE) {
+			return valueFactory.TRUE;
 		}
-		if (right == Value.TRUE) {
-			return Value.TRUE;
+		if (right == valueFactory.TRUE) {
+			return valueFactory.TRUE;
 		}
-		if ((left == Value.FALSE) && (right == Value.FALSE)) {
-			return Value.FALSE;
+		if ((left == valueFactory.FALSE) && (right == valueFactory.FALSE)) {
+			return valueFactory.FALSE;
 		}
 		return null;
 	}

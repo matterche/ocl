@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateOne.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: IterationTemplateOne.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -23,7 +23,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  *
@@ -50,15 +49,15 @@ public class IterationTemplateOne extends IterationTemplate {
 				// if this is the first element satisfying the body condition
 				// make a note of it.
 				foundOne = true;
-				return Value.TRUE;
+				return getValueFactory().TRUE;
 			} else {
 				// this is the second satisfying element.  The result is false
 				// and we can stop iterating.
 				setDone(true);
-				return Value.FALSE;
+				return getValueFactory().FALSE;
 			}
 		}
-		return ValueFactory.createBooleanValue(resultVal.isTrue());
+		return getValueFactory().booleanValueOf(resultVal.isTrue());
 	}
 
 	private boolean foundOne = false;

@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractFeature.java,v 1.1.2.5 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: AbstractFeature.java,v 1.1.2.6 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
-
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * @since 3.1
  */
-public abstract class AbstractFeature extends ValueFactory implements LibraryFeature
+public abstract class AbstractFeature implements LibraryFeature
 {
 }

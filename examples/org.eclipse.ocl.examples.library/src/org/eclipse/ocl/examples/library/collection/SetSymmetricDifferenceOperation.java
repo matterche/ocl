@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * SetSymmetricDifferenceOperation realises the Set::symmetricDifference() library operation.
@@ -30,14 +31,14 @@ public class SetSymmetricDifferenceOperation extends AbstractCollectionPairedOpe
 	public static final SetSymmetricDifferenceOperation INSTANCE = new SetSymmetricDifferenceOperation();
 
 	@Override
-	protected Value evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
+	protected Value evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, CollectionValue argVal) {
 		SetValue leftSetValue = sourceVal.asSetValue();
 		if (leftSetValue == null) {
-			return createInvalidValue(sourceVal, null, "non-set symmetricDifference source", null);
+			return valueFactory.createInvalidValue(sourceVal, null, "non-set symmetricDifference source", null);
 		}
 		SetValue rightSetValue = argVal.asSetValue();
 		if (rightSetValue == null) {
-			return createInvalidValue(sourceVal, null, "non-set symmetricDifference argument", null);
+			return valueFactory.createInvalidValue(sourceVal, null, "non-set symmetricDifference argument", null);
 		}
 		else if (rightSetValue.isInvalid()) {
 			return rightSetValue;

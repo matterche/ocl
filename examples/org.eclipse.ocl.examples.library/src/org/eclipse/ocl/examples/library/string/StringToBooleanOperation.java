@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringToBooleanOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: StringToBooleanOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * StringToBooleanOperation realises the String::toBoolean() library operation.
@@ -28,7 +29,7 @@ public class StringToBooleanOperation extends AbstractStringUnaryOperation
 	public static final StringToBooleanOperation INSTANCE = new StringToBooleanOperation();
 
 	@Override
-	public BooleanValue evaluateString(String sourceVal) {
-		return createBooleanValue("true".equals(sourceVal)); //$NON-NLS-1$
+	public BooleanValue evaluateString(ValueFactory valueFactory, String sourceVal) {
+		return valueFactory.booleanValueOf("true".equals(sourceVal)); //$NON-NLS-1$
 	}
 }

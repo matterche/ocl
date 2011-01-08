@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionBinaryOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: AbstractCollectionBinaryOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AbstractCollectionBinaryOperation provides the standard null to Bag{}
@@ -28,25 +29,25 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  */
 public abstract class AbstractCollectionBinaryOperation extends AbstractBinaryOperation
 {
-	public Value evaluate(Value left, Value right) {
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) {
 		if (left.isInvalid() || right.isInvalid()) {
-			return evaluateInvalid(left, right);
+			return evaluateInvalid(valueFactory,left, right);
 		}		
 		if (left.isNull()) {
-			return evaluateNull(left, right);
+			return evaluateNull(valueFactory,left, right);
 		}		
 		CollectionValue leftCollectionValue = left.asCollectionValue();
 		if (leftCollectionValue != null) {
-			return evaluateCollection(leftCollectionValue, right);
+			return evaluateCollection(valueFactory,leftCollectionValue, right);
 		}
 		else {
-			return evaluateNonCollection(left, right);
+			return evaluateNonCollection(valueFactory,left, right);
 		}
 	}
 	
-	protected abstract Value evaluateCollection(CollectionValue sourceVal, Value argVal);
+	protected abstract Value evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, Value argVal);
 	
-	protected Value evaluateInvalid(Value sourceVal, Value argVal) {
+	protected Value evaluateInvalid(ValueFactory valueFactory, Value sourceVal, Value argVal) {
 		if (sourceVal.isInvalid()) {
 			return sourceVal;
 		}
@@ -55,21 +56,21 @@ public abstract class AbstractCollectionBinaryOperation extends AbstractBinaryOp
 		}
 	}
 	
-	protected Value evaluateNonCollection(Value sourceVal, Value argVal) {
+	protected Value evaluateNonCollection(ValueFactory valueFactory, Value sourceVal, Value argVal) {
 		if (sourceVal.asCollectionValue() == null) {
-			return createInvalidValue(sourceVal, null, "non-collection", null);
+			return valueFactory.createInvalidValue(sourceVal, null, "non-collection", null);
 		}
 		else {
-			return createInvalidValue(argVal, null, "non-collection", null);
+			return valueFactory.createInvalidValue(argVal, null, "non-collection", null);
 		}
 	}
 	
-	protected Value evaluateNull(Value sourceVal, Value argVal) {
+	protected Value evaluateNull(ValueFactory valueFactory, Value sourceVal, Value argVal) {
 		if (sourceVal.isNull()) {
-			return createInvalidValue(sourceVal, null, "non-collection", null);
+			return valueFactory.createInvalidValue(sourceVal, null, "non-collection", null);
 		}
 		else {
-			return createInvalidValue(argVal, null, "non-collection", null);
+			return valueFactory.createInvalidValue(argVal, null, "non-collection", null);
 		}
 	}
 }

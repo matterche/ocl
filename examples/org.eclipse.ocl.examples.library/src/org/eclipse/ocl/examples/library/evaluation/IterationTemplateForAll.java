@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateForAll.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: IterationTemplateForAll.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -23,7 +23,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  *
@@ -45,6 +44,6 @@ public final class IterationTemplateForAll extends IterationTemplate {
 		boolean resultVal = currVal.isTrue() && bodyVal.isTrue();
 		if (!resultVal)
 			setDone(true);
-		return ValueFactory.createBooleanValue(resultVal);
+		return getValueFactory().booleanValueOf(resultVal);
 	}
 }

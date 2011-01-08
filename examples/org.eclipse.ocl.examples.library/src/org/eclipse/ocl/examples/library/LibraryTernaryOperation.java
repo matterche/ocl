@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: LibraryTernaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: LibraryTernaryOperation.java,v 1.1.2.3 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * @since 3.1
@@ -31,5 +32,5 @@ public interface LibraryTernaryOperation extends LibraryOperation {
 	 * @param arg2 second argument
 	 * @return the evaluated value
 	 */
-	Value evaluate(Value source, Value arg1, Value arg2);
+	Value evaluate(ValueFactory valueFactory, Value source, Value arg1, Value arg2);
 }

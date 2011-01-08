@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTernaryOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: AbstractTernaryOperation.java,v 1.1.2.4 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -40,6 +40,6 @@ public abstract class AbstractTernaryOperation extends AbstractOperation impleme
 		if (argVal2.isInvalid()) {
 			return null;
 		}
-		return evaluate(sourceVal, argVal1, argVal2);
+		return evaluate(evaluationVisitor.getValueFactory(), sourceVal, argVal1, argVal2);
 	}
 }

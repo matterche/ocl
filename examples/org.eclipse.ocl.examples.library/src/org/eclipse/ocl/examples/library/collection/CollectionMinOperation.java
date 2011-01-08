@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionMinOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: CollectionMinOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -39,7 +39,7 @@ public class CollectionMinOperation extends AbstractOperation
 			return collectionValue.maxMin(NumericMinOperation.INSTANCE);
 		}
 		else {
-			return createInvalidValue(sourceVal, operationCall, "non-collection source for max", null);
+			return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, operationCall, "non-collection source for max", null);
 		}
 	}
 }

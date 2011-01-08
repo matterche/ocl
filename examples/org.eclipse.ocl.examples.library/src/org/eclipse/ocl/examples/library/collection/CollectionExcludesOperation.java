@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: CollectionExcludesOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: CollectionExcludesOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectionExcludesOperation realises the Collection::excludes() library operation.
@@ -30,7 +31,7 @@ public class CollectionExcludesOperation extends AbstractCollectionBinaryOperati
 	public static final CollectionExcludesOperation INSTANCE = new CollectionExcludesOperation();
 
 	@Override
-	protected BooleanValue evaluateCollection(CollectionValue sourceVal, Value argVal) {
+	protected BooleanValue evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, Value argVal) {
 		return sourceVal.excludes(argVal);
 	}
 }

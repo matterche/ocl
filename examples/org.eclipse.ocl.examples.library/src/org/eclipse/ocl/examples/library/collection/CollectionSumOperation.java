@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionSumOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: CollectionSumOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectionSumOperation realises the Collection::sum() library operation.
@@ -35,14 +35,15 @@ public class CollectionSumOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		CollectionValue collectionValue = sourceVal.asCollectionValue();
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		if (collectionValue != null) {
 			// FIXME Bug 301351 Look for user-defined zero
 //			Type resultType = operationCall.getType();	
 //			resultType.getZero();
-			return collectionValue.sum(NumericPlusOperation.INSTANCE, IntegerValue.ZERO);
+			return collectionValue.sum(NumericPlusOperation.INSTANCE, valueFactory.ZERO);
 		}
 		else {
-			return createInvalidValue(sourceVal, null, "non-collection", null);
+			return valueFactory.createInvalidValue(sourceVal, null, "non-collection", null);
 		}
 	}
 }

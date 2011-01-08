@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: UniqueCollectionIntersectionOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: UniqueCollectionIntersectionOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * UniqueCollectionIntersectionOperation realises the UniqueCollection::intersection() library operation.
@@ -28,7 +29,7 @@ public class UniqueCollectionIntersectionOperation extends AbstractCollectionPai
 	public static final UniqueCollectionIntersectionOperation INSTANCE = new UniqueCollectionIntersectionOperation();
 
 	@Override
-	protected CollectionValue evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
+	protected CollectionValue evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, CollectionValue argVal) {
 		return sourceVal.intersection(argVal);
 	}
 }

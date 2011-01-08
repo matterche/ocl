@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OclAnyOclAsTypeOperation realises the OclAny::oclAsType() library operation.
@@ -34,6 +35,7 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 	public static final OclAnyOclAsTypeOperation INSTANCE = new OclAnyOclAsTypeOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
 		if (sourceType == null) {
@@ -42,7 +44,7 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0); // FIXME cast
 		TypeValue typeVal = argVal.asTypeValue();
 		if (typeVal == null) {
-			return createInvalidValue(argVal, operationCall, "Type required", null);
+			return valueFactory.createInvalidValue(argVal, operationCall, "Type required", null);
 		}
 		Type argType = typeVal.getType();
 		if (stdlib.conformsTo(sourceType, argType)) {

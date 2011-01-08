@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: SequenceSubSequenceOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: SequenceSubSequenceOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * SequenceSubSequenceOperation realises the OrderedSet::subSequence() library operation.
@@ -30,18 +31,18 @@ public class SequenceSubSequenceOperation extends AbstractOrderedCollectionTerna
 	public static final SequenceSubSequenceOperation INSTANCE = new SequenceSubSequenceOperation();
 
 	@Override
-	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal1, Value argVal2) {
+	protected Value evaluateCollection(ValueFactory valueFactory, OrderedCollectionValue sourceVal, Value argVal1, Value argVal2) {
 		SequenceValue selfValue = sourceVal.asSequenceValue();
 		if (selfValue == null) {
-			return createInvalidValue(sourceVal, null, "subsequence self", null);
+			return valueFactory.createInvalidValue(sourceVal, null, "subsequence self", null);
 		}
 		Integer fromValue = argVal1.asInteger();
 		if (fromValue == null) {
-			return createInvalidValue(argVal1, null, "subsequence from", null);
+			return valueFactory.createInvalidValue(argVal1, null, "subsequence from", null);
 		}
 		Integer toValue = argVal2.asInteger();
 		if (toValue == null) {
-			return createInvalidValue(argVal2, null, "subsequence to", null);
+			return valueFactory.createInvalidValue(argVal2, null, "subsequence to", null);
 		}
 		return selfValue.subSequence(fromValue, toValue);
 	}

@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OclVoidAndOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclVoidAndOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OclVoidAndOperation realises the OclVoid::and() library operation.
@@ -29,9 +30,9 @@ public class OclVoidAndOperation extends AbstractBinaryOperation
 {
 	public static final OclVoidAndOperation INSTANCE = new OclVoidAndOperation();
 
-	public BooleanValue evaluate(Value left, Value right) {
-		if (right == Value.FALSE) {
-			return Value.FALSE;
+	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
+		if (right == valueFactory.FALSE) {
+			return valueFactory.FALSE;
 		}
 		return null;
 	}

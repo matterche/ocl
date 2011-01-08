@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NumericMaxOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: NumericMaxOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -31,17 +32,17 @@ public class NumericMaxOperation extends AbstractNumericBinaryOperation
 	public static final NumericMaxOperation INSTANCE = new NumericMaxOperation();
 
 	@Override
-	protected IntegerValue evaluateInteger(IntegerValue left, IntegerValue right) {
+	protected IntegerValue evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) {
 		return left.max(right);
 	}
 
 	@Override
-	protected RealValue evaluateReal(RealValue left, RealValue right) {
+	protected RealValue evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) {
 		return left.max(right);
 	}
 
 	@Override
-	protected Value evaluateUnlimited(Value left, Value right) {
+	protected Value evaluateUnlimited(ValueFactory valueFactory, Value left, Value right) {
 		if (!left.isUnlimitedNatural() || !right.isUnlimitedNatural()) {
 			return null;
 		}

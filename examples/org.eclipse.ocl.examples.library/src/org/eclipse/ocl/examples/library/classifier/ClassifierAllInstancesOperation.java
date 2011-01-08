@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.6 2011/01/07 12:14:53 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.1.2.7 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * ClassifierAllInstancesOperation realises the Classifier::allInstances() library operation.
@@ -36,19 +37,20 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 	public static final ClassifierAllInstancesOperation INSTANCE = new ClassifierAllInstancesOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		TypeValue typeVal = sourceVal.asTypeValue();
 		if ((typeVal == null) || typeVal.isNull()) {
-			return createInvalidValue(sourceVal, operationCall, "Type value expected", null);
+			return valueFactory.createInvalidValue(sourceVal, operationCall, "Type value expected", null);
 		}
 		ModelManager modelManager = evaluationVisitor.getModelManager();
 		Set<Value> results = new HashSet<Value>();
 		Set<?> instances = modelManager.get(typeVal.getType());
 		if (instances == null) {
-			return Value.EMPTY_SET;
+			return valueFactory.EMPTY_SET;
 		}
 		for (Object instance : instances) {
-			results.add(createObjectValue(instance));
+			results.add(valueFactory.createObjectValue(instance));
 		}
-		return createSetValue(results);
+		return valueFactory.createSetValue(results);
 	}
 }

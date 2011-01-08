@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionIndexOfOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OrderedCollectionIndexOfOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedCollectionIndexOfOperation realises the OrderedCollection::indexOf() library operation.
@@ -30,7 +31,7 @@ public class OrderedCollectionIndexOfOperation extends AbstractOrderedCollection
 	public static final OrderedCollectionIndexOfOperation INSTANCE = new OrderedCollectionIndexOfOperation();
 
 	@Override
-	protected IntegerValue evaluateCollection(OrderedCollectionValue sourceVal, Value argVal) {
+	protected IntegerValue evaluateCollection(ValueFactory valueFactory, OrderedCollectionValue sourceVal, Value argVal) {
 		return sourceVal.indexOf(argVal);
 	}
 }

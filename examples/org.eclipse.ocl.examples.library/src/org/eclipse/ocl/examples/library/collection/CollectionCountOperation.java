@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: CollectionCountOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: CollectionCountOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectionCountOperation realises the Collection::count() library operation.
@@ -30,7 +31,7 @@ public class CollectionCountOperation extends AbstractCollectionBinaryOperation
 	public static final CollectionCountOperation INSTANCE = new CollectionCountOperation();
 
 	@Override
-	protected IntegerValue evaluateCollection(CollectionValue sourceVal, Value argVal) {
+	protected IntegerValue evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, Value argVal) {
 		return sourceVal.count(argVal);
 	}
 }

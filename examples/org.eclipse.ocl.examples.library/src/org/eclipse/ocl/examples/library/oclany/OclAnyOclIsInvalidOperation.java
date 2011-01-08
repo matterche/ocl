@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsInvalidOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclAnyOclIsInvalidOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OclAnyOclIsInvalidOperation realises the OclAny::oclIsInvalid() library operation.
@@ -29,10 +30,10 @@ public class OclAnyOclIsInvalidOperation extends AbstractUnaryOperation
 {
 	public static final OclAnyOclIsInvalidOperation INSTANCE = new OclAnyOclIsInvalidOperation();
 
-	public BooleanValue evaluate(Value argument) {
+	public BooleanValue evaluate(ValueFactory valueFactory, Value argument) {
 		if (argument.isInvalid()) {
-			return Value.TRUE;
+			return valueFactory.TRUE;
 		}
-		return Value.FALSE;
+		return valueFactory.FALSE;
 	}
 }

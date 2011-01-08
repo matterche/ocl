@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionAtOperation.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OrderedCollectionAtOperation.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedCollectionAtOperation realises the OrderedCollection::at() library operation.
@@ -31,10 +32,10 @@ public class OrderedCollectionAtOperation extends AbstractOrderedCollectionBinar
 	public static final OrderedCollectionAtOperation INSTANCE = new OrderedCollectionAtOperation();
 
 	@Override
-	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal) {
+	protected Value evaluateCollection(ValueFactory valueFactory, OrderedCollectionValue sourceVal, Value argVal) {
 		Integer atValue = argVal.asInteger();
 		if (atValue == null) {
-			return createInvalidValue(argVal, null, "at", null);
+			return valueFactory.createInvalidValue(argVal, null, "at", null);
 		}
 		return sourceVal.at(atValue.intValue());
 	}
@@ -45,7 +46,7 @@ public class OrderedCollectionAtOperation extends AbstractOrderedCollectionBinar
 			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
 		}
 		catch (IndexOutOfBoundsException e) {
-			return createInvalidValue(sourceVal, operationCall, "Bad Index", e);
+			return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, operationCall, "Bad Index", e);
 		}
 	}
 }

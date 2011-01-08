@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringEqualsIgnoreCaseOperation.java,v 1.1.2.1 2010/12/26 16:56:29 ewillink Exp $
+ * $Id: StringEqualsIgnoreCaseOperation.java,v 1.1.2.2 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedSetSubOrderedSetOperation realises the OrderedSet::subOrderedSet() library operation.
@@ -28,7 +29,7 @@ public class StringEqualsIgnoreCaseOperation extends AbstractStringBinaryOperati
 	public static final StringEqualsIgnoreCaseOperation INSTANCE = new StringEqualsIgnoreCaseOperation();
 
 	@Override
-	protected Value evaluateString(String left, String right) {
-		return createBooleanValue(left.equalsIgnoreCase(right));
+	protected Value evaluateString(ValueFactory valueFactory, String left, String right) {
+		return valueFactory.booleanValueOf(left.equalsIgnoreCase(right));
 	}
 }

@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: NumericMinOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: NumericMinOperation.java,v 1.1.2.3 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * MinOperation realises the min() library operation.
@@ -30,17 +31,17 @@ public class NumericMinOperation extends AbstractNumericBinaryOperation
 	public static final NumericMinOperation INSTANCE = new NumericMinOperation();
 
 	@Override
-	protected Value evaluateInteger(IntegerValue left, IntegerValue right) {
+	protected Value evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) {
 		return left.min(right);
 	}
 
 	@Override
-	protected Value evaluateReal(RealValue left, RealValue right) {
+	protected Value evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) {
 		return left.min(right);
 	}
 
 	@Override
-	protected Value evaluateUnlimited(Value left, Value right) {
+	protected Value evaluateUnlimited(ValueFactory valueFactory, Value left, Value right) {
 		if (!left.isUnlimitedNatural() || !right.isUnlimitedNatural()) {
 			return null;
 		}

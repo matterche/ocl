@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: NumericPlusOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: NumericPlusOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -30,12 +31,12 @@ public class NumericPlusOperation extends AbstractNumericBinaryOperation
 	public static final NumericPlusOperation INSTANCE = new NumericPlusOperation();
 
 	@Override
-	protected IntegerValue evaluateInteger(IntegerValue left, IntegerValue right) {
+	protected IntegerValue evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) {
 		return left.add(right);
 	}
 
 	@Override
-	protected RealValue evaluateReal(RealValue left, RealValue right) {
+	protected RealValue evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) {
 		return left.add(right);
 	}
 }

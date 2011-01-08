@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringLessThanEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: StringLessThanEqualOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -29,7 +30,7 @@ public class StringLessThanEqualOperation extends AbstractStringBinaryOperation
 	public static final StringLessThanEqualOperation INSTANCE = new StringLessThanEqualOperation();
 
 	@Override
-	protected BooleanValue evaluateString(String left, String right) {
-		return createBooleanValue(left.compareTo(right) <= 0);
+	protected BooleanValue evaluateString(ValueFactory valueFactory, String left, String right) {
+		return valueFactory.booleanValueOf(left.compareTo(right) <= 0);
 	}
 }

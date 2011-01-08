@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericOclAsTypeOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: NumericOclAsTypeOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -54,7 +54,7 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 		if (realValue != null) {
 			if (argType == stdlib.getUnlimitedNaturalType()) {
 				if (realValue.signum() < 0) {
-					return createInvalidValue(sourceVal, null, "not positive", null);
+					return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, null, "not positive", null);
 				}
 				return realValue.toIntegerValue();
 			}
@@ -67,7 +67,7 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 		if (integerValue != null) {
 			if (argType == stdlib.getUnlimitedNaturalType()) {
 				if (integerValue.signum() < 0) {
-					return createInvalidValue(sourceVal, null, "not positive", null);
+					return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, null, "not positive", null);
 				}
 				return integerValue;
 			}

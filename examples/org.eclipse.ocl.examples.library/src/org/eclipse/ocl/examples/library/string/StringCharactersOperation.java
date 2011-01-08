@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringCharactersOperation.java,v 1.1.2.1 2010/12/26 16:56:29 ewillink Exp $
+ * $Id: StringCharactersOperation.java,v 1.1.2.2 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedSetSubOrderedSetOperation realises the OrderedSet::subOrderedSet() library operation.
@@ -32,12 +33,12 @@ public class StringCharactersOperation extends AbstractStringUnaryOperation
 	public static final StringCharactersOperation INSTANCE = new StringCharactersOperation();
 
 	@Override
-	protected Value evaluateString(String string) {
+	protected Value evaluateString(ValueFactory valueFactory, String string) {
 		List<StringValue> results = new ArrayList<StringValue>(string.length());
 		for (int i = 0; i < string.length(); i++) {
 			String s = string.substring(i, i+1);
-			results.add(createStringValue(s));
+			results.add(valueFactory.stringValueOf(s));
 		}
-		return createSequenceValue(results);
+		return valueFactory.createSequenceValue(results);
 	}
 }

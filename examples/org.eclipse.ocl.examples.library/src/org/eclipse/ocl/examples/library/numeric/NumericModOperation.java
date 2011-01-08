@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: NumericModOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: NumericModOperation.java,v 1.1.2.3 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -30,7 +31,7 @@ public class NumericModOperation extends AbstractNumericBinaryOperation
 	public static final NumericModOperation INSTANCE = new NumericModOperation();
 
 	@Override
-	protected Value evaluateInteger(IntegerValue left, IntegerValue right) {
+	protected Value evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) {
 		return left.mod(right);
 	}
 }

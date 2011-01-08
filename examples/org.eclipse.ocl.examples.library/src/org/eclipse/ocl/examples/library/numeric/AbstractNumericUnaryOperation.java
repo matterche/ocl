@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: AbstractNumericUnaryOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AbstractNumericUnaryOperation dispatches a unary library operation to
@@ -30,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  */
 public abstract class AbstractNumericUnaryOperation extends AbstractUnaryOperation
 {
-	public Value evaluate(Value sourceVal) {
+	public Value evaluate(ValueFactory valueFactory, Value sourceVal) {
 		if (sourceVal.isUnlimited()) {
 			return evaluateUnlimited(sourceVal);			
 		}

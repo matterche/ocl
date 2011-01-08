@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CollectionProductOperation.java,v 1.1.2.5 2011/01/08 11:40:13 ewillink Exp $
+ * $Id: CollectionProductOperation.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
+
+import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -22,7 +24,9 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectionProductOperation realises the Collection::product() library operation.
@@ -34,24 +38,26 @@ public class CollectionProductOperation extends AbstractOperation // FIXME Make 
 	public static final CollectionProductOperation INSTANCE = new CollectionProductOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		if (sourceVal.isUndefined()) {
-			return createInvalidValue(sourceVal, operationCall, "Undefined source", null);
+			return valueFactory.createInvalidValue(sourceVal, operationCall, "Undefined source", null);
 		}
 		CollectionValue sourceValue = sourceVal.asCollectionValue();
 		if (sourceValue == null) {
 //			sourceValue = createSetValue(sourceVal);
-			return createInvalidValue(sourceVal, operationCall, "Non-collection source", null);
+			return valueFactory.createInvalidValue(sourceVal, operationCall, "Non-collection source", null);
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		if (argVal.isUndefined()) {
-			return createInvalidValue(argVal, operationCall, "Undefined argument", null);
+			return valueFactory.createInvalidValue(argVal, operationCall, "Undefined argument", null);
 		}		
 		CollectionValue argumentValue = argVal.asCollectionValue();
 		if (argumentValue == null) {
-			return createInvalidValue(argVal, operationCall, "Non-collection argumrnt", null);
+			return valueFactory.createInvalidValue(argVal, operationCall, "Non-collection argumrnt", null);
 		}
 		CollectionType collType = (CollectionType) operationCall.getType();
 		TupleType tupleType = (TupleType) collType.getElementType();
-		return sourceValue.product(argumentValue, tupleType);
+		Set<TupleValue> product = sourceValue.product(argumentValue, tupleType);
+        return valueFactory.createSetValue(product);
 	}
 }

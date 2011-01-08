@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractOrderedCollectionTernaryOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: AbstractOrderedCollectionTernaryOperation.java,v 1.1.2.3 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AbstractOrderedCollectionTernaryOperation provides the standard null to Bag{}
@@ -28,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  */
 public abstract class AbstractOrderedCollectionTernaryOperation extends AbstractTernaryOperation
 {
-	public Value evaluate(Value source, Value arg1, Value arg2) {
+	public Value evaluate(ValueFactory valueFactory, Value source, Value arg1, Value arg2) {
 		OrderedCollectionValue orderedCollectionValue = source.asOrderedCollectionValue();
 		if (orderedCollectionValue == null) {
 			return null;
@@ -36,8 +37,8 @@ public abstract class AbstractOrderedCollectionTernaryOperation extends Abstract
 		if (arg1.isInvalid() || arg2.isInvalid()) {
 			return null;
 		}		
-		return evaluateCollection(orderedCollectionValue, arg1, arg2);
+		return evaluateCollection(valueFactory, orderedCollectionValue, arg1, arg2);
 	}
 	
-	protected abstract Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal1, Value argVal2);
+	protected abstract Value evaluateCollection(ValueFactory valueFactory, OrderedCollectionValue sourceVal, Value argVal1, Value argVal2);
 }

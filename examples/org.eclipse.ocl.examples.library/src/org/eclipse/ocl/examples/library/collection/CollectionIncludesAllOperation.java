@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionIncludesAllOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: CollectionIncludesAllOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectionIncludesAllOperation realises the Collection::includesAll() library operation.
@@ -29,7 +30,7 @@ public class CollectionIncludesAllOperation extends AbstractCollectionPairedOper
 	public static final CollectionIncludesAllOperation INSTANCE = new CollectionIncludesAllOperation();
 
 	@Override
-	protected BooleanValue evaluateCollection(CollectionValue sourceVal, CollectionValue argVal) {
+	protected BooleanValue evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, CollectionValue argVal) {
 		return sourceVal.includesAll(argVal);
 	}
 }

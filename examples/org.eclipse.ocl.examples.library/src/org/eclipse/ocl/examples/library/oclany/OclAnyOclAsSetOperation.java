@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsSetOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclAnyOclAsSetOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OclAnyOclAsSetOperation realises the OclAny::oclAsSet() library operation.
@@ -30,16 +31,16 @@ public class OclAnyOclAsSetOperation extends AbstractUnaryOperation
 {
 	public static final OclAnyOclAsSetOperation INSTANCE = new OclAnyOclAsSetOperation();
 
-	public SetValue evaluate(Value argument) {
+	public SetValue evaluate(ValueFactory valueFactory, Value argument) {
 		InvalidValue invalidValue = argument.asInvalidValue();
 		if (invalidValue != null) {
 			return invalidValue;
 		}
 		else if (argument.isNull()) {
-			return createSetValue();
+			return valueFactory.createSetValue();
 		}
 		else {
-			return createSetValue(argument);
+			return valueFactory.createSetValue(argument);
 		}
 	}
 }

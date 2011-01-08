@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringConcatOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: StringConcatOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.pivot.values.StringValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -29,7 +30,7 @@ public class StringConcatOperation extends AbstractStringBinaryOperation
 	public static final StringConcatOperation INSTANCE = new StringConcatOperation();
 
 	@Override
-	protected StringValue evaluateString(String left, String right) {
-		return createStringValue(left.concat(right));
+	protected StringValue evaluateString(ValueFactory valueFactory, String left, String right) {
+		return valueFactory.stringValueOf(left.concat(right));
 	}
 }

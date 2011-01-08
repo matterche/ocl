@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OrderedCollectionInsertAtOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OrderedCollectionInsertAtOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OrderedCollectionInsertAtOperation realises the OrderedCollection::insertAt() library operation.
@@ -29,14 +30,14 @@ public class OrderedCollectionInsertAtOperation extends AbstractOrderedCollectio
 	public static final OrderedCollectionInsertAtOperation INSTANCE = new OrderedCollectionInsertAtOperation();
 
 	@Override
-	protected Value evaluateCollection(OrderedCollectionValue sourceVal, Value argVal1, Value argVal2) {
+	protected Value evaluateCollection(ValueFactory valueFactory, OrderedCollectionValue sourceVal, Value argVal1, Value argVal2) {
 		OrderedCollectionValue selfValue = sourceVal.asOrderedCollectionValue();
 		if (selfValue == null) {
-			return createInvalidValue(sourceVal, null, "Invalid self for insertAt", null);
+			return valueFactory.createInvalidValue(sourceVal, null, "Invalid self for insertAt", null);
 		}
 		Integer indexValue = argVal1.asInteger();
 		if (indexValue == null) {
-			return createInvalidValue(argVal1, null, "Invalid index for insertAt", null);
+			return valueFactory.createInvalidValue(argVal1, null, "Invalid index for insertAt", null);
 		}
 		if (argVal2.isInvalid()) {
 			return null;

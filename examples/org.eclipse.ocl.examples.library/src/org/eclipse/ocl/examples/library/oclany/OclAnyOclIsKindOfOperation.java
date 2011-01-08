@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsKindOfOperation.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclAnyOclIsKindOfOperation.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OclAnyOclIsKindOfOperation realises the OclAny::oclIsKindOf() library operation.
@@ -34,14 +35,15 @@ public class OclAnyOclIsKindOfOperation extends AbstractOperation
 	public static final OclAnyOclIsKindOfOperation INSTANCE = new OclAnyOclIsKindOfOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfValue(sourceVal, operationCall.getSource().getType());
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue argTypeValue = argVal.asTypeValue();
 		if (argTypeValue == null) {
-			return createInvalidValue(argVal, operationCall, "Type required", null);
+			return valueFactory.createInvalidValue(argVal, operationCall, "Type required", null);
 		}
 		Type argType = argTypeValue.getType();
-		return createBooleanValue(stdlib.conformsTo(sourceType, argType));
+		return valueFactory.booleanValueOf(stdlib.conformsTo(sourceType, argType));
 	}
 }

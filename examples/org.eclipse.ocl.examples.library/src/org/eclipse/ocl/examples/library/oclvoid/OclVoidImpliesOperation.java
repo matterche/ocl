@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OclVoidImpliesOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclVoidImpliesOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OclVoidImpliesOperation realises the OclVoid::implies() library operation.
@@ -29,9 +30,9 @@ public class OclVoidImpliesOperation extends AbstractBinaryOperation
 {
 	public static final OclVoidImpliesOperation INSTANCE = new OclVoidImpliesOperation();
 
-	public BooleanValue evaluate(Value left, Value right) {
-		if (right == Value.TRUE) {
-			return Value.TRUE;
+	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
+		if (right == valueFactory.TRUE) {
+			return valueFactory.TRUE;
 		}
 		return null;
 	}

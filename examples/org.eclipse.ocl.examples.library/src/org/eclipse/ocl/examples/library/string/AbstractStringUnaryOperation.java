@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractStringUnaryOperation.java,v 1.1.2.2 2010/12/23 19:24:50 ewillink Exp $
+ * $Id: AbstractStringUnaryOperation.java,v 1.1.2.3 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AbstractStringBinaryOperation dispatches a binary string library operation to
@@ -27,18 +28,18 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  */
 public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperation
 {
-	public Value evaluate(Value sourceVal) {
+	public Value evaluate(ValueFactory valueFactory, Value sourceVal) {
 		if (sourceVal.isInvalid()) {
-			return evaluateInvalid(sourceVal);
+			return evaluateInvalid(valueFactory, sourceVal);
 		}
 		else if (sourceVal.isNull()) {
-			return evaluateNull(sourceVal);
+			return evaluateNull(valueFactory, sourceVal);
 		}
 		String sourceString = sourceVal.asString();
 		if (sourceString == null) {
 			return null;
 		}
-		return evaluateString(sourceString);
+		return evaluateString(valueFactory, sourceString);
 	}
 	
 	/**
@@ -46,7 +47,7 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 	 * @param left argument
 	 * @return result
 	 */
-	protected Value evaluateInvalid(Value left) {
+	protected Value evaluateInvalid(ValueFactory valueFactory, Value left) {
 		return null;
 	}
 	
@@ -55,7 +56,7 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 	 * @param left argument
 	 * @return result
 	 */
-	protected Value evaluateNull(Value left) {
+	protected Value evaluateNull(ValueFactory valueFactory, Value left) {
 		return null;
 	}
 	
@@ -64,5 +65,5 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 	 * @param left argument
 	 * @return result
 	 */
-	protected abstract Value evaluateString(String left);
+	protected abstract Value evaluateString(ValueFactory valueFactory, String left);
 }

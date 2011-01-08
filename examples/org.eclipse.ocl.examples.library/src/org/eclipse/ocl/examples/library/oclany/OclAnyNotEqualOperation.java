@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclAnyNotEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: OclAnyNotEqualOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -32,7 +33,7 @@ public class OclAnyNotEqualOperation extends OclAnyEqualOperation
 	public static final OclAnyNotEqualOperation INSTANCE = new OclAnyNotEqualOperation();
 
 	@Override
-	public BooleanValue evaluate(Value left, Value right) {
-		return super.evaluate(left, right).asFalse();
+	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
+		return super.evaluate(valueFactory, left, right).asFalse();
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.2 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: AbstractNumericBinaryOperation.java,v 1.1.2.3 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AbstractNumericBinaryOperation dispatches a binary library operation to
@@ -29,27 +30,27 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  */
 public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOperation
 {
-	public Value evaluate(Value left, Value right) {
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) {
 		if (left.isInvalid() || right.isInvalid()) {
-			return evaluateInvalid(left, right);
+			return evaluateInvalid(valueFactory, left, right);
 		}
 		else if (left.isNull() || right.isNull()) {
-			return evaluateNull(left, right);
+			return evaluateNull(valueFactory, left, right);
 		}
 		else if (left.isUnlimited() || right.isUnlimited()) {
-			return evaluateUnlimited(left, right);
+			return evaluateUnlimited(valueFactory, left, right);
 		}
 		IntegerValue leftInteger = left.asIntegerValue();
 		IntegerValue rightInteger = right.asIntegerValue();
 		if ((leftInteger != null) && (rightInteger != null)) {
-			return evaluateInteger(leftInteger, rightInteger);
+			return evaluateInteger(valueFactory, leftInteger, rightInteger);
 		}
 		RealValue leftReal = left.toRealValue();
 		RealValue rightReal = right.toRealValue();
 		if ((leftReal != null) && (rightReal != null)) {
-			return evaluateReal(leftReal, rightReal);
+			return evaluateReal(valueFactory, leftReal, rightReal);
 		}
-		return evaluateNonNumeric(left, right);
+		return evaluateNonNumeric(valueFactory, left, right);
 	}
 	
 	/**
@@ -58,8 +59,8 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Value evaluateInteger(IntegerValue left, IntegerValue right) {
-		return evaluate(left, right);
+	protected Value evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) {
+		return evaluate(valueFactory, left, right);
 	}
 	
 	/**
@@ -68,7 +69,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Value evaluateInvalid(Value left, Value right) {
+	protected Value evaluateInvalid(ValueFactory valueFactory, Value left, Value right) {
 		return null;
 	}
 	
@@ -79,7 +80,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Value evaluateNonNumeric(Value left, Value right) {
+	protected Value evaluateNonNumeric(ValueFactory valueFactory, Value left, Value right) {
 		return null;
 	}
 	
@@ -90,7 +91,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Value evaluateNull(Value left, Value right) {
+	protected Value evaluateNull(ValueFactory valueFactory, Value left, Value right) {
 		return null;
 	}
 
@@ -100,8 +101,8 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Value evaluateReal(RealValue left, RealValue right) {
-		return evaluate(left, right);
+	protected Value evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) {
+		return evaluate(valueFactory, left, right);
 	}
 	
 	/**
@@ -111,7 +112,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Value evaluateUnlimited(Value left, Value right) {
+	protected Value evaluateUnlimited(ValueFactory valueFactory, Value left, Value right) {
 		return null;
 	}
 	
@@ -120,7 +121,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * of the same derived Number type. 
 	 * A null return or an exception may be used for invalid.
 	 */
-	protected <T extends Number & Comparable<T>> Object evaluate(T left, T right) {
+	protected <T extends Number & Comparable<T>> Object evaluate(ValueFactory valueFactory, T left, T right) {
 		return null;
 	}
 }

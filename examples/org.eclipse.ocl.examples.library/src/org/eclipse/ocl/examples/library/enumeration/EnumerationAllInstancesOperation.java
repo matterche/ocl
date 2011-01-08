@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * EnumerationAllInstancesOperation realises the Enumeration::allInstances() library operation.
@@ -38,6 +39,7 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 	public static final EnumerationAllInstancesOperation INSTANCE = new EnumerationAllInstancesOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = stdlib.getTypeOfType(sourceVal);
 		// the instances are the literals
@@ -47,8 +49,8 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 //		}
 		Set<Value> results = new HashSet<Value>();
 		for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiterals()) {
-			results.add(createObjectValue(instance));
+			results.add(valueFactory.createObjectValue(instance));
 		}
-		return createSetValue(results);
+		return valueFactory.createSetValue(results);
 	}
 }

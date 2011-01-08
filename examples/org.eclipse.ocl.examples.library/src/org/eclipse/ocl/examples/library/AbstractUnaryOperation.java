@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUnaryOperation.java,v 1.1.2.3 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: AbstractUnaryOperation.java,v 1.1.2.4 2011/01/08 15:34:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -29,6 +29,6 @@ import org.eclipse.ocl.examples.pivot.values.Value;
 public abstract class AbstractUnaryOperation extends AbstractOperation implements LibraryUnaryOperation
 {
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		return evaluate(sourceVal);
+		return evaluate(evaluationVisitor.getValueFactory(), sourceVal);
 	}
 }

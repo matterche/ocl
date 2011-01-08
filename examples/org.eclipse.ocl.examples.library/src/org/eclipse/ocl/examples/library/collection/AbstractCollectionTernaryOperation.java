@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.4 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: AbstractCollectionTernaryOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AbstractCollectionTernaryOperation provides the standard null to Bag{}
@@ -28,21 +29,21 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  */
 public abstract class AbstractCollectionTernaryOperation extends AbstractTernaryOperation
 {
-	public Value evaluate(Value source, Value arg1, Value arg2) {
+	public Value evaluate(ValueFactory valueFactory, Value source, Value arg1, Value arg2) {
 		if (source.isInvalid() || arg1.isInvalid() || arg2.isInvalid()) {
 			return null;
 		}		
 		if (source.isNull()) {
-			return evaluateCollection(createSetValue(), arg1, arg2);
+			return evaluateCollection(valueFactory, valueFactory.createSetValue(), arg1, arg2);
 		}
 		CollectionValue collectionValue = source.asCollectionValue();
 		if (collectionValue != null) {
-			return evaluateCollection(collectionValue, arg1, arg2);
+			return evaluateCollection(valueFactory, collectionValue, arg1, arg2);
 		}
 		else {
-			return evaluateCollection(createSetValue(source), arg1, arg2);
+			return evaluateCollection(valueFactory, valueFactory.createSetValue(source), arg1, arg2);
 		}
 	}
 	
-	protected abstract Value evaluateCollection(CollectionValue sourceVal, Value argVal1, Object argVal2);
+	protected abstract Value evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, Value argVal1, Object argVal2);
 }

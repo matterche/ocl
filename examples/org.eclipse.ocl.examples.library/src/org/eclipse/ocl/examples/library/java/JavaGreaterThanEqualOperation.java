@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: JavaGreaterThanEqualOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: JavaGreaterThanEqualOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.java;
 
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 
@@ -28,11 +29,11 @@ import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 public class JavaGreaterThanEqualOperation extends AbstractJavaBinaryOperation
 {
 	@Override
-	protected BooleanValue evaluateJava(Comparable<?> left, Comparable<?> right) {
+	protected BooleanValue evaluateJava(ValueFactory valueFactory, Comparable<?> left, Comparable<?> right) {
 		@SuppressWarnings("unchecked")
 		Comparable<Object> comparableLeft = (Comparable<Object>)left;
 		@SuppressWarnings("unchecked")
 		Comparable<Object> comparableRight = (Comparable<Object>)right;
-		return createBooleanValue(comparableLeft.compareTo(comparableRight) >= 0);
+		return valueFactory.booleanValueOf(comparableLeft.compareTo(comparableRight) >= 0);
 	}
 }

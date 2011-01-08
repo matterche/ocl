@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractOrderedCollectionUnaryOperation.java,v 1.1.2.2 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: AbstractOrderedCollectionUnaryOperation.java,v 1.1.2.3 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * AbstractOrderedCollectionUnaryOperation provides the standard null to Bag{}
@@ -28,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  */
 public abstract class AbstractOrderedCollectionUnaryOperation extends AbstractUnaryOperation
 {
-	public Value evaluate(Value argument) {
+	public Value evaluate(ValueFactory valueFactory, Value argument) {
 		OrderedCollectionValue orderedCollectionValue = argument.asOrderedCollectionValue();
 		if (orderedCollectionValue == null) {
 			return null;

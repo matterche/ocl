@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.1.2.4 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class IterationTemplate {
 	
@@ -53,6 +54,10 @@ public class IterationTemplate {
 	
 	public EvaluationEnvironment getEvalEnvironment() {
 		return env;
+	}
+
+	public ValueFactory getValueFactory() {
+		return env.getValueFactory();
 	}
 	
 	public final void setDone(boolean done) {

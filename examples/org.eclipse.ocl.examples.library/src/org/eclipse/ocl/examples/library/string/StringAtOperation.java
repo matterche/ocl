@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: StringAtOperation.java,v 1.1.2.3 2010/12/26 15:20:29 ewillink Exp $
+ * $Id: StringAtOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * StringAtOperation realises the String::at() library operation.
@@ -28,7 +29,7 @@ public class StringAtOperation extends AbstractBinaryOperation
 {
 	public static final StringAtOperation INSTANCE = new StringAtOperation();
 
-	public Value evaluate(Value left, Value right) {
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) {
 		String leftString = left.asString();
 		Integer rightInteger = right.asInteger();
 		if ((leftString != null) && (rightInteger != null)) {
@@ -36,7 +37,7 @@ public class StringAtOperation extends AbstractBinaryOperation
 			int index = rightInteger.intValue();
 			if ((0 < index) && (index <= size)) {
 				char c = leftString.charAt(index-1);
-				return createStringValue(String.valueOf(c));
+				return valueFactory.stringValueOf(String.valueOf(c));
 			}
 		}			
 		return null;

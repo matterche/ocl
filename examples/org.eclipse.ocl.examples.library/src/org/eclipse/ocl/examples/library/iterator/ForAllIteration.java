@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ForAllIteration.java,v 1.1.2.5 2010/12/26 15:20:28 ewillink Exp $
+ * $Id: ForAllIteration.java,v 1.1.2.6 2011/01/08 15:34:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.library.evaluation.IterationTemplateForAll;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -38,6 +39,7 @@ public class ForAllIteration extends AbstractIteration
 	public static final ForAllIteration INSTANCE = new ForAllIteration();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
+		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
 		List<Variable> iterators = getIterators(iteratorExp);
 		OclExpression body = getBody(iteratorExp);		
 		CollectionValue coll = (CollectionValue) sourceVal;
@@ -45,13 +47,13 @@ public class ForAllIteration extends AbstractIteration
 		IterationTemplate is = IterationTemplateForAll.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, Value.TRUE);		
+		evaluationEnvironment.add(resultName, evaluationEnvironment.getValueFactory().TRUE);		
 		try {
 			// evaluate
 			return is.evaluate(coll, iterators, body, resultName);
 		} finally {
 			// remove result name from environment
-			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
+			evaluationEnvironment.remove(resultName);
 		}
 	}
 }
