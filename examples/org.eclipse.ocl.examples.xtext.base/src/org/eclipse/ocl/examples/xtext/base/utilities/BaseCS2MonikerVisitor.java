@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.2 2011/01/07 12:13:18 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.3 2011/01/08 11:39:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -364,19 +364,19 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
-		context.append('(');
+		context.append(TUPLE_SIGNATURE_PREFIX);
 		String prefix = "";
 		for (TuplePartCS part : parts) {
 			context.append(prefix);
 			context.appendNameCS(part);
-			context.append(':');
+			context.append(TUPLE_SIGNATURE_TYPE_SEPARATOR);
 			TypeRefCS type = part.getOwnedType();
 			if (type != null) {
 				context.appendElementCS(type);
 			}
-			prefix = ",";
+			prefix = TUPLE_SIGNATURE_PART_SEPARATOR;
 		}
-		context.append(')');
+		context.append(TUPLE_SIGNATURE_SUFFIX);
 		return true;
 	}
 
