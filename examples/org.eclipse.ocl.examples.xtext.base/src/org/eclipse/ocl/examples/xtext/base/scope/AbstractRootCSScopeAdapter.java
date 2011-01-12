@@ -12,11 +12,16 @@
  *
  * </copyright>
  *
- * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.4 2010/12/28 12:18:29 ewillink Exp $
+ * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.5 2011/01/12 10:28:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
+import java.util.Map;
+
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -32,6 +37,21 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 
 	public AbstractRootCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
 		super(pivotManager, csElement, pivotClass);
+	}
+
+	@Override
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
+			for (Type type : pivotManager.getGlobalTypes()) {
+				environmentView.addNamedElement(type);
+			}
+		}
+		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
+			for (Map.Entry<String, Namespace> entry : pivotManager.getGlobalNamespaces()) {
+				environmentView.addElement(entry.getKey(), entry.getValue());
+			}
+		}
+		return super.computeLookup(environmentView, scopeView);
 	}
 
 	public void endModification() {}

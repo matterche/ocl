@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.4 2010/12/28 12:18:29 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.5 2011/01/12 10:28:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -87,6 +87,7 @@ public class EnvironmentView
 				if (value instanceof EObject) {
 					values = new ArrayList<EObject>();
 					values.add((EObject) value);
+					contentsByName.put(elementName, values);
 				}
 				else {
 					@SuppressWarnings("unchecked")

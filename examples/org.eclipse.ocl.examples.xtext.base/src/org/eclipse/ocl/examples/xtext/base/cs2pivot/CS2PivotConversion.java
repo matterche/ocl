@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.8 2011/01/07 12:13:17 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.9 2011/01/12 10:28:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -79,10 +80,10 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.lpg.ProblemHandler.Severity;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
-
 
 public class CS2PivotConversion extends AbstractConversion
 {	
@@ -119,6 +120,28 @@ public class CS2PivotConversion extends AbstractConversion
 		this.pivotManager = converter.getPivotManager();
 	}
 
+//	public void addError(ModelElementCS csElement, String message) {
+//		csElement.getError().add(message);
+//	}
+
+	public OclExpression addError(ModelElementCS csElement, String message, Object... bindings) {
+		String boundMessage = NLS.bind(message, bindings);
+		csElement.getError().add(boundMessage);
+		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+		invalidLiteralExp.setObject(csElement);
+		invalidLiteralExp.setReason(boundMessage);
+		installPivotElementInternal(csElement, invalidLiteralExp);
+		return invalidLiteralExp;
+	}
+
+//	public void addWarning(ModelElementCS csElement, String message) {
+//		csElement.getError().add(message);
+//	}
+
+	public void addWarning(ModelElementCS csElement, String message, Object... bindings) {
+		csElement.getError().add(NLS.bind(message, bindings));
+	}
+
 	public boolean checkForNoErrors(Collection<? extends Resource> csResources) {
 		boolean hasNoErrors = true;
 		for (Resource csResource : csResources) {
@@ -131,7 +154,7 @@ public class CS2PivotConversion extends AbstractConversion
 						hasNoErrors = false;
 						int offset = node.getOffset();
 						int length = node.getLength();
-						problemHandler.analyzerProblem(Severity.ERROR, error, "xx", offset, offset+length);
+						problemHandler.analyzerProblem(Severity.ERROR, error, "CS2Pivot", offset, offset+length);
 					}
 				}
 			}
