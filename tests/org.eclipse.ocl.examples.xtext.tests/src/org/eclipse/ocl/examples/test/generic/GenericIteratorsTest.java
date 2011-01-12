@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.3 2010/12/31 19:11:49 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.4 2011/01/12 10:31:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -29,15 +29,16 @@ import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * Tests for iterator expressions.
@@ -60,7 +61,7 @@ public abstract class GenericIteratorsTest
     @Override
     protected void setUp() {
         super.setUp();
-		pivotManager.addPackage("pivot", pivotManager.getPivotPackage());
+		pivotManager.addGlobalNamespace("pivot", pivotManager.getPivotPackage());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
@@ -88,7 +89,7 @@ public abstract class GenericIteratorsTest
      * Tests the generic iterate() iterator.
      */
     public void test_iterate_143996() {
-    	SetValue expected = createSet("pkg2", "bob", "pkg3");
+    	SetValue expected = valueFactory.createSetOf("pkg2", "bob", "pkg3");
 
         // complete form
         assertQueryEquals(pkg1, expected, "%nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
@@ -104,7 +105,7 @@ public abstract class GenericIteratorsTest
      * Tests the select() iterator.
      */
 	public void test_select() {
-		CollectionValue expected = createOrderedSet(pkg2, pkg3);
+		CollectionValue expected = valueFactory.createSetOf(pkg2, pkg3);
 
         // complete form
         assertQueryEquals(pkg1, expected, "nestedPackage->select(p : pivot::Package | p.name <> 'bob')");
@@ -115,27 +116,27 @@ public abstract class GenericIteratorsTest
         // shortest form
         assertQueryEquals(pkg1, expected, "nestedPackage->select(name <> 'bob')");
 
-        expected = createSet(reflection.getNestedPackages(pkg1));
-        assertQueryEquals(pkg1, expected, "nestedPackage->select(true)");
+        Value expected2 = valueFactory.valueOf(reflection.getNestedPackages(pkg1));
+        assertQueryEquals(pkg1, expected2, "nestedPackage->select(true)");
     }
 
     /**
      * Tests the reject() iterator.
      */
     public void test_reject() {
-		CollectionValue expected = createSet(pkg2, pkg3);
+		CollectionValue expected = valueFactory.createSetOf(pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->reject(p : %Package | p.name = 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->reject(p : pivot::Package | p.name = 'bob')");
 
         // shorter form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->reject(p | p.name = 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->reject(p | p.name = 'bob')");
 
         // shortest form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->reject(name = 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->reject(name = 'bob')");
 
-        expected = createSet();
-        assertQueryEquals(pkg1, expected, "%nestedPackage->reject(true)");
+        expected = valueFactory.getEmptySetValue();
+        assertQueryEquals(pkg1, expected, "nestedPackage->reject(true)");
     }
 
     /**
@@ -143,24 +144,26 @@ public abstract class GenericIteratorsTest
      */
     public void test_any() {
         // complete form
-    	assertQuerySame(pkg1, bob, "%nestedPackage->any(p : %Package | p.name = 'bob')");
+    	assertQueryEquals(pkg1, bob, "nestedPackage->any(p : pivot::Package | p.name = 'bob')");
 
         // shorter form
-    	assertQuerySame(pkg1, bob, "%nestedPackage->any(p | p.name = 'bob')");
+    	assertQueryEquals(pkg1, bob, "nestedPackage->any(p | p.name = 'bob')");
 
         // shortest form
-    	assertQuerySame(pkg1, bob, "%nestedPackage->any(name = 'bob')");
+    	assertQueryEquals(pkg1, bob, "nestedPackage->any(name = 'bob')");
 
         // negative
-        assertQueryNotSame(pkg1, bob, "%nestedPackage->any(name = 'pkg2')");
+        assertQueryNotSame(pkg1, bob, "nestedPackage->any(name = 'pkg2')");
 
-        assertQueryNotJavaNull(pkg1, "%nestedPackage->any(true)");
+        assertQueryDefined(pkg1, "nestedPackage->any(true)");
+        assertQueryNull(pkg1, "nestedPackage->any(false)");
     }
 
     /**
      * Tests the isUnique() iterator.
      */
     public void test_isUnique_126861() {
+//    	Abstract2Moniker.TRACE_MONIKERS.setState(true);
         assertQueryTrue(pkg1, "Sequence{'a', 'b', 'c', 'd', 'e'}->isUnique(e | e)");
 
         assertQueryFalse(pkg1, "Sequence{'a', 'b', 'c', 'c', 'e'}->isUnique(e | e)");
@@ -169,7 +172,7 @@ public abstract class GenericIteratorsTest
         // different result
         assertQueryTrue(pkg1, "Sequence{}->isUnique(e | e)");
 
-        assertQueryNotJavaNull(pkg1, "%nestedPackage->isUnique(name)");
+        assertQueryTrue(pkg1, "%nestedPackage->isUnique(name)");
     }
 
     /**
@@ -225,24 +228,24 @@ public abstract class GenericIteratorsTest
      * Tests the collect() iterator.
      */
     public void test_collect() {
-        CollectionValue expected1 = createBag("pkg2", "bob", "pkg3");
+        CollectionValue expected1 = valueFactory.createBagOf("pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected1, "%nestedPackage->collect(p : %Package | p.name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(p : pivot::Package | p.name)");
 
         // shorter form
-        assertQueryEquals(pkg1, expected1, "%nestedPackage->collect(p | p.name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(p | p.name)");
 
         // yet shorter form
-        assertQueryEquals(pkg1, expected1, "%nestedPackage->collect(name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(name)");
 
         // shortest form
-        assertQueryEquals(pkg1, expected1, "%nestedPackage.name");
+        assertQueryEquals(pkg1, expected1, "nestedPackage.name");
 
         // flattening of nested collections
-        CollectionValue expected2 = createBag(jim, pkg4, pkg5);
+        CollectionValue expected2 = valueFactory.createBagOf(jim, pkg4, pkg5);
 
-        assertQueryEquals(pkg1, expected2, "%nestedPackage.%nestedPackage");
+        assertQueryEquals(pkg1, expected2, "nestedPackage.nestedPackage");
     }
 
 	/**
@@ -252,7 +255,7 @@ public abstract class GenericIteratorsTest
      */
     public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-    		"%nestedPackage.unknownAttribute",
+    		"nestedPackage.unknownAttribute",
         	OCLMessages.UnrecognizedVar_ERROR_, "unknownAttribute");
    }
 
@@ -272,7 +275,7 @@ public abstract class GenericIteratorsTest
      */
     public void test_collect_flattens_217461() {
         String self = "foo";
-        SequenceValue expected = createSequence("THIS AND", "THAT", "THE OTHER");
+        SequenceValue expected = valueFactory.createSequenceOf("THIS AND", "THAT", "THE OTHER");
 
         assertQueryEquals(self, expected, "Sequence{Sequence{'this and', 'that'}, Sequence{'the other'}}->collect(s : Sequence(String) | s.toUpperCase())");
     }
@@ -291,7 +294,7 @@ public abstract class GenericIteratorsTest
      * Tests the collectNested() iterator.
      */
     public void test_collectNested() {
-        CollectionValue expected1 = createBag("pkg2", "bob", "pkg3");
+        CollectionValue expected1 = valueFactory.createBagOf("pkg2", "bob", "pkg3");
 
         // complete form
         assertQueryEquals(pkg1, expected1, "%nestedPackage->collectNested(p : %Package | p.name)");
@@ -306,7 +309,7 @@ public abstract class GenericIteratorsTest
 		Set<org.eclipse.ocl.examples.pivot.Package> e1 = Collections.singleton(jim);
         Set<?> e2 = Collections.EMPTY_SET;
         HashSet<Object> e3 = new HashSet<Object>(Arrays.asList(new Object[] {pkg4, pkg5}));
-		CollectionValue expected2 = createBag(e1, e2, e3);
+		CollectionValue expected2 = valueFactory.createBagOf(e1, e2, e3);
 
         assertQueryEquals(pkg1, expected2, "%nestedPackage->collectNested(%nestedPackage)");
     }
@@ -315,18 +318,18 @@ public abstract class GenericIteratorsTest
      * Tests the sortedBy() iterator.
      */
     public void test_sortedBy() {
-    	SetValue expectedSet = createSet(bob, pkg2, pkg3);
+    	OrderedSetValue expectedSet = valueFactory.createOrderedSetOf(bob, pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expectedSet, "%nestedPackage->sortedBy(p : %Package | p.name)");
+        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p : pivot::Package | p.name)");
 
         // shorter form
-        assertQueryEquals(pkg1, expectedSet, "%nestedPackage->sortedBy(p | p.name)");
+        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p | p.name)");
 
         // shortest form
-        assertQueryEquals(pkg1, expectedSet, "%nestedPackage->sortedBy(name)");
+        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(name)");
 
-        SequenceValue expected = createSequence("a", "b", "c", "d", "e");
+        SequenceValue expected = valueFactory.createSequenceOf("a", "b", "c", "d", "e");
         assertQueryEquals(pkg1, expected, "Bag{'d', 'b', 'e', 'a', 'c'}->sortedBy(e | e)");
     }
 
@@ -334,19 +337,19 @@ public abstract class GenericIteratorsTest
      * Tests the closure() iterator.
      */
     public void test_closure() {
-    	CollectionValue expected1 = createSet(pkg1, pkg3, pkg5); // closure does not include self (george)
+    	CollectionValue expected1 = valueFactory.createSetOf(pkg1, pkg3, pkg5); // closure does not include self (george)
         assertQueryEquals(george, expected1, "self->closure(%nestingPackage)");
 
-        CollectionValue expected2 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        CollectionValue expected2 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage->asSequence())");
-	    SetValue expected3 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+	    SetValue expected3 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
-        CollectionValue expected4 = createSet();
+        CollectionValue expected4 = valueFactory.createSetOf();
         assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
         // empty closure
         assertQueryEquals(pkg1, expected4, "self->asSequence()->closure(%nestingPackage)");
@@ -362,7 +365,7 @@ public abstract class GenericIteratorsTest
 
         helper.setContext(getMetaclass(denormalize("%Reference")));
 
-        SetValue expected = createSet(nestedPackage, nestingPackage); // cyclic closure *does* include self
+        SetValue expected = valueFactory.createSetOf(nestedPackage, nestingPackage); // cyclic closure *does* include self
         assertQueryEquals(nestingPackage, expected, "self->closure(%opposite)");
         assertQueryEquals(nestedPackage, expected, "self->closure(%opposite)");
     }
@@ -528,7 +531,7 @@ public abstract class GenericIteratorsTest
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
-        BagValue expected = createBag(getNull(), getNull(), getNull());
+        BagValue expected = valueFactory.createBagOf(getNull(), getNull(), getNull());
         assertQueryEquals(EcorePackage.eINSTANCE, expected,
             "let b:Boolean = null in Bag{1, 2, 3}->collect(null)");
     }
@@ -546,7 +549,7 @@ public abstract class GenericIteratorsTest
     	Set<BigInteger> e1 = Collections.singleton(BigInteger.valueOf(1));
     	Object e2 = getNull();
     	Set<BigInteger> e3 = Collections.singleton(BigInteger.valueOf(3));
-        BagValue expected = createBag(e1, e2, e3);
+        BagValue expected = valueFactory.createBagOf(e1, e2, e3);
         assertQueryEquals(EcorePackage.eINSTANCE, expected,
             "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)");
     }
@@ -607,12 +610,12 @@ public abstract class GenericIteratorsTest
      */
     public void test_existsWithNullSource_143996() {
     	assertQueryInvalid(pkg1,
-            "let e : Collection(%Package) = null in e->exists(" +
-                "p : %Package | p.name = 'bob')");
+            "let e : Collection(pivot::Package) = null in e->exists(" +
+                "p : pivot::Package | p.name = 'bob')");
 
     	assertQueryInvalid(pkg1,
-            "let e : Collection(%Package) = invalid in e->exists(" +
-                "p : %Package | p.name = 'bob')");
+            "let e : Collection(pivot::Package) = invalid in e->exists(" +
+                "p : pivot::Package | p.name = 'bob')");
     }
 
     /**
@@ -645,37 +648,37 @@ public abstract class GenericIteratorsTest
      * do not support multiple variables.
      */
     public void test_invalidMultipleIteratorVariables() {
-        assertBadQuery(SyntaxException.class, Diagnostic.ERROR,		// FIXME Bug 296990
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.OCLParseErrorCodes_SUBSTITUTION_SECONDARY, "2:44:2:44", "\",\"", "\"|\"");
+        	OCLMessages.WarningExtraIteratorIgnored, "exists");
 
-        assertBadQuery(SyntaxException.class, Diagnostic.ERROR,		// FIXME Bug 296990
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.OCLParseErrorCodes_SUBSTITUTION_SECONDARY, "1:44:1:44", "\",\"", "\"|\"");
+        	OCLMessages.WarningExtraIteratorIgnored, "forAll");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.TooManyIteratorVariables_ERROR_, "collect");
+        	OCLMessages.WarningExtraIteratorIgnored, "collect");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.TooManyIteratorVariables_ERROR_, "any");
+        	OCLMessages.WarningExtraIteratorIgnored, "any");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.TooManyIteratorVariables_ERROR_, "one");
+        	OCLMessages.WarningExtraIteratorIgnored, "one");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.TooManyIteratorVariables_ERROR_, "select");
+        	OCLMessages.WarningExtraIteratorIgnored, "select");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.TooManyIteratorVariables_ERROR_, "reject");
+        	OCLMessages.WarningExtraIteratorIgnored, "reject");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.TooManyIteratorVariables_ERROR_, "isUnique");
+        	OCLMessages.WarningExtraIteratorIgnored, "isUnique");
     }
 
 	/**

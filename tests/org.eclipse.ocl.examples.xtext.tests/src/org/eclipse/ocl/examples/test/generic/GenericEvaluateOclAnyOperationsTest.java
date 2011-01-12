@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.5 2011/01/08 11:42:53 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.6 2011/01/12 10:31:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -39,7 +39,7 @@ public abstract class GenericEvaluateOclAnyOperationsTest
     @Override
     protected void setUp() {
         super.setUp();
-		pivotManager.addPackage("pivot", pivotManager.getPivotPackage());
+		pivotManager.addGlobalNamespace("pivot", pivotManager.getPivotPackage());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:

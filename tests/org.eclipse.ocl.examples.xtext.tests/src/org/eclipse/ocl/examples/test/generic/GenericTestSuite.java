@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.11 2011/01/08 18:22:58 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.12 2011/01/12 10:31:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -28,12 +28,9 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Set;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -70,20 +67,13 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.values.Bag;
-import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
-import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.SequenceValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
-import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.impl.BagImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -141,76 +131,6 @@ public abstract class GenericTestSuite
 	private static ArrayList<Resource> standardResources;
 
 	private static boolean initialized = false;
-
-    public BagValue createBag(Object... objects) {
-    	Bag<ObjectValue> collection = new BagImpl<ObjectValue>();
-    	if (objects != null) {
-    		for (Object object : objects) {
-    			collection.add(getValueFactory().createObjectValue(object));
-    		}
-    	}
-    	return getValueFactory().createBagValue(collection);
-    }
-
-    public BagValue createBag(String... elements) {
-    	Bag<StringValue> collection = new BagImpl<StringValue>();
-    	if (elements != null) {
-    		for (String element : elements) {
-    			collection.add(getValueFactory().stringValueOf(element));
-    		}
-    	}
-    	return getValueFactory().createBagValue(collection);
-    }
-
-    public OrderedSetValue createOrderedSet(Object... objects) {
-    	LinkedHashSet<ObjectValue> collection = new LinkedHashSet<ObjectValue>();
-    	if (objects != null) {
-    		for (Object object : objects) {
-    			collection.add(getValueFactory().createObjectValue(object));
-    		}
-    	}
-    	return getValueFactory().createOrderedSetValue(collection);
-    }
-
-    public SetValue createSet(Collection<Object> objects) {
-    	Set<ObjectValue> collection = new HashSet<ObjectValue>();
-    	if (objects != null) {
-    		for (Object object : objects) {
-    			collection.add(getValueFactory().createObjectValue(object));
-    		}
-    	}
-    	return getValueFactory().createSetValue(collection);
-    }
-
-    public SequenceValue createSequence(String... elements) {
-    	List<StringValue> collection = new ArrayList<StringValue>();
-    	if (elements != null) {
-    		for (String element : elements) {
-    			collection.add(getValueFactory().stringValueOf(element));
-    		}
-    	}
-    	return getValueFactory().createSequenceValue(collection);
-    }
-
-    public SetValue createSet(Object... objects) {
-    	Set<ObjectValue> collection = new HashSet<ObjectValue>();
-    	if (objects != null) {
-    		for (Object object : objects) {
-    			collection.add(getValueFactory().createObjectValue(object));
-    		}
-    	}
-    	return getValueFactory().createSetValue(collection);
-    }
-
-    public SetValue createSet(String... elements) {
-    	Set<StringValue> collection = new HashSet<StringValue>();
-    	if (elements != null) {
-    		for (String element : elements) {
-    			collection.add(getValueFactory().stringValueOf(element));
-    		}
-    	}
-    	return getValueFactory().createSetValue(collection);
-    }
 	
 	public static void debugPrintln(String string) {
 		if (!noDebug) {
@@ -235,6 +155,7 @@ public abstract class GenericTestSuite
 	}
 
 	protected PivotManager pivotManager;
+	protected ValueFactory valueFactory;
 	protected TestReflection.Static staticReflection;
 	protected OCL ocl;
 	protected Environment environment;
@@ -403,15 +324,32 @@ public abstract class GenericTestSuite
 	}
 
 	/**
+	 * Assert that the result of evaluating an expression as a query is not undefined.
+	 * @return the evaluation result
+	 */
+	protected Value assertQueryDefined(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Value value = evaluate(helper, context, denormalized);
+			assertFalse(denormalized + " expected defined: ", value.isUndefined());
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
 	 * Assert that the result of evaluating an expression as a query is equal to expected.
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
 		String denormalized = denormalize(expression);
 		try {
-			Value expectedValue = expected instanceof Value ? (Value)expected : getValueFactory().getValueOfValue(expected);
+			Value expectedValue = expected instanceof Value ? (Value)expected : valueFactory.valueOf(expected);
 			Value value = evaluate(helper, context, denormalized);
 			assertEquals(denormalized, expectedValue, value);
+			// FIXME Following is probably redundant
 			if (expectedValue instanceof OrderedSetValue) {
 				assertTrue(denormalized, value instanceof OrderedSetValue);
 				Iterator<?> es = ((OrderedSetValue)expectedValue).iterator();
@@ -452,7 +390,7 @@ public abstract class GenericTestSuite
 	protected Object assertQueryEquals(Object context, Number expected, String expression, double tolerance) {
 		String denormalized = denormalize(expression);
 		try {
-			Value expectedValue = getValueFactory().getValueOfValue(expected);
+			Value expectedValue = valueFactory.valueOf(expected);
 			Value value = evaluate(helper, context, denormalized);
 			BigDecimal expectedVal = ((RealValue)expectedValue).bigDecimalValue();
 			BigDecimal val = ((RealValue)value).bigDecimalValue();
@@ -489,7 +427,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, getValueFactory().getFalse(), value);
+			assertEquals(denormalized, valueFactory.getFalse(), value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -521,7 +459,7 @@ public abstract class GenericTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			if (!value.isInvalid()) {
-				assertEquals(denormalized, getValueFactory().createInvalidValue("bad value"), value);
+				assertEquals(denormalized, valueFactory.createInvalidValue("bad value"), value);
 			}
 			InvalidValue invalidValue = (InvalidValue)value;
 			assertEquals("Invalid Value Reason", reason, invalidValue.getReason());
@@ -548,7 +486,7 @@ public abstract class GenericTestSuite
 			return null;
 		}
 	}
-
+	
 	/**
 	 * Assert that the result of evaluating an expression as a query is not the same as expected.
 	 * @return the evaluation result
@@ -574,7 +512,7 @@ public abstract class GenericTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			if (!value.isNull()) {
-				assertEquals(denormalized, getValueFactory().getNull(), value);
+				assertEquals(denormalized, valueFactory.getNull(), value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -663,7 +601,7 @@ public abstract class GenericTestSuite
 	/**
 	 * Assert that the result of evaluating an expression as a query is the same as expected.
 	 * @return the evaluation result
-	 */
+	 *
 	protected Object assertQuerySame(Object context, Object expected, String expression) {
 		String denormalized = denormalize(expression);
 		try {
@@ -674,7 +612,7 @@ public abstract class GenericTestSuite
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
 			return null;
 		}
-	}
+	} */
 
 	/**
 	 * Assert that the result of evaluating an expression as a query is true.
@@ -684,7 +622,7 @@ public abstract class GenericTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, getValueFactory().getTrue(), value);
+			assertEquals(denormalized, valueFactory.getTrue(), value);
 			return value;
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
@@ -701,7 +639,7 @@ public abstract class GenericTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			if (!value.isUnlimited()) {
-				assertEquals(denormalized, getValueFactory().getUnlimited(), value);
+				assertEquals(denormalized, valueFactory.getUnlimited(), value);
 			}
 			return value;
 		} catch (ParserException e) {
@@ -802,9 +740,9 @@ public abstract class GenericTestSuite
 	 */
 	protected CollectionValue createCollection(boolean isOrdered, boolean isUnique, Value... args) {
 		if (isOrdered)
-			return isUnique ? getValueFactory().createOrderedSetValue(args) : getValueFactory().createSequenceValue(args);
+			return isUnique ? valueFactory.createOrderedSetValue(args) : valueFactory.createSequenceValue(args);
 		else
-			return isUnique ? getValueFactory().createSetValue(args) : getValueFactory().createBagValue(args);
+			return isUnique ? valueFactory.createSetValue(args) : valueFactory.createBagValue(args);
 	}
 
 	protected void createDocument(String text) {
@@ -1036,15 +974,11 @@ public abstract class GenericTestSuite
 	}
 	
 	protected Object getNull() {
-		return getValueFactory().getNull();
+		return valueFactory.getNull();
 	}
 	
 	protected StandardLibrary getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();
-	}
-	
-	protected ValueFactory getValueFactory() {
-		return ValueFactory.INSTANCE;
 	}
 
 	abstract protected TestReflection.Static getStaticReflection();
@@ -1229,6 +1163,7 @@ public abstract class GenericTestSuite
 //		rootLogger.removeAppender("default");
 		EssentialOCLStandaloneSetup.doSetup();
 		pivotManager = new PivotManager();
+		valueFactory = pivotManager.getValueFactory();
 		pivotManager.loadLibrary(OCLstdlib.INSTANCE);
 		staticReflection = getStaticReflection();
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
