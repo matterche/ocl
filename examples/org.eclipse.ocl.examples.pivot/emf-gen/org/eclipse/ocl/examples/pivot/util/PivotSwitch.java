@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.1.2.9 2011/01/08 11:39:37 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.1.2.10 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
+import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
@@ -429,6 +430,28 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseNameable(completeEnvironment);
 				if (result == null) result = caseElement(completeEnvironment);
 				if (result == null) result = caseVisitable(completeEnvironment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.COMPLETE_ITERATION:
+			{
+				CompleteIteration completeIteration = (CompleteIteration)theEObject;
+				T result = caseCompleteIteration(completeIteration);
+				if (result == null) result = caseIteration(completeIteration);
+				if (result == null) result = caseOperation(completeIteration);
+				if (result == null) result = caseTypedMultiplicityElement(completeIteration);
+				if (result == null) result = caseFeature(completeIteration);
+				if (result == null) result = caseNamespace(completeIteration);
+				if (result == null) result = caseParameterableElement(completeIteration);
+				if (result == null) result = caseTemplateableElement(completeIteration);
+				if (result == null) result = caseImplementableElement(completeIteration);
+				if (result == null) result = caseTypedElement(completeIteration);
+				if (result == null) result = caseMultiplicityElement(completeIteration);
+				if (result == null) result = caseNamedElement(completeIteration);
+				if (result == null) result = caseMonikeredElement(completeIteration);
+				if (result == null) result = caseNameable(completeIteration);
+				if (result == null) result = caseElement(completeIteration);
+				if (result == null) result = caseVisitable(completeIteration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1803,6 +1826,22 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseCompleteEnvironment(CompleteEnvironment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complete Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complete Iteration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompleteIteration(CompleteIteration object)
+	{
 		return null;
 	}
 

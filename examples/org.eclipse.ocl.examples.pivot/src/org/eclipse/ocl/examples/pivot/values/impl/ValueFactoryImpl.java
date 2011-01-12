@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.1.2.1 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.1.2.2 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,9 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class ValueFactoryImpl implements ValueFactory
 {
+	private static final String maxLongValue = Long.toString(Long.MAX_VALUE);
+	private static final int maxLongSize = maxLongValue.length();	
+	
 	public final BagValue emptyBagValue = new BagValueImpl(this);
 	public final OrderedSetValue emptyOrderedSetValue = new OrderedSetValueImpl(this);
 	public final SequenceValue emptySequenceValue = new SequenceValueImpl(this);	
@@ -65,12 +69,25 @@ public class ValueFactoryImpl implements ValueFactory
 	public final UnlimitedValue unlimitedValue = new UnlimitedValueImpl(this); 
 	public final NumericValue zeroValue = integerValueOf(0);
 
-	private static final String maxLongValue = Long.toString(Long.MAX_VALUE);
-	private static final int maxLongSize = maxLongValue.length();	
+	protected final String name;
 	
+	public ValueFactoryImpl(String name) {
+		this.name = name;
+	}
+
 	public BooleanValue booleanValueOf(boolean value) {
 		return value ? trueValue : falseValue;
 	}
+
+    public BagValue createBagOf(Object... objects) {
+    	Bag<Value> collection = new BagImpl<Value>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(valueOf(object));
+    		}
+    	}
+    	return createBagValue(collection);
+    }
 	
 	public BagValue createBagValue(Value... values) {
 		if (!isValid(values)) {
@@ -98,27 +115,58 @@ public class ValueFactoryImpl implements ValueFactory
      * 
 	 * @param isOrdered the required collection ordering
 	 * @param isUnique the required collection uniqueness
+	 * @param values the required collection contents
 	 * @return the new collection
 	 * @since 3.1
 	 */
-	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique) {
+	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Value... values) {
 		if (isOrdered) {
 			if (isUnique) {
-				return createOrderedSetValue();
+				return createOrderedSetValue(values);
 			}
 			else {
-				return createSequenceValue();
+				return createSequenceValue(values);
 			}
 		}
 		else {
 			if (isUnique) {
-				return createSetValue();
+				return createSetValue(values);
 			}
 			else {
-				return createBagValue();
+				return createBagValue(values);
 			}
 		}
 	}
+
+    
+	/**
+	 * Creates a new OCL <tt>Collection</tt> of the specified ordering and uniqueness.
+     * 
+	 * @param isOrdered the required collection ordering
+	 * @param isUnique the required collection uniqueness
+	 * @param values the required collection contents
+	 * @return the new collection
+	 * @since 3.1
+	 */
+	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Collection<Value> values) {
+		if (isOrdered) {
+			if (isUnique) {
+				return createOrderedSetValue(values);
+			}
+			else {
+				return createSequenceValue(values);
+			}
+		}
+		else {
+			if (isUnique) {
+				return createSetValue(values);
+			}
+			else {
+				return createBagValue(values);
+			}
+		}
+	}
+	
 	public CollectionValue createCollectionValue(CollectionKind kind, Value... values) {
 		switch (kind) {
 			case BAG: return createBagValue(values);
@@ -162,6 +210,16 @@ public class ValueFactoryImpl implements ValueFactory
 		return new ObjectValueImpl(this, object);
 	}
 
+    public OrderedSetValue createOrderedSetOf(Object... objects) {
+    	LinkedHashSet<Value> collection = new LinkedHashSet<Value>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(valueOf(object));
+    		}
+    	}
+    	return createOrderedSetValue(collection);
+    }
+
 	public OrderedSetValue createOrderedSetValue(Value... values) {
 		if (!isValid(values)) {
 			return createInvalidValue("ordered-set-of-invalid");
@@ -183,6 +241,16 @@ public class ValueFactoryImpl implements ValueFactory
 		return new OrderedSetValueImpl(this, values);
 	}
 
+    public SequenceValue createSequenceOf(Object... objects) {
+    	List<Value> collection = new ArrayList<Value>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(valueOf(object));
+    		}
+    	}
+    	return createSequenceValue(collection);
+    }
+
 	public SequenceValue createSequenceValue(Value... values) {
 		if (!isValid(values)) {
 			return createInvalidValue("sequence-of-invalid");
@@ -203,6 +271,16 @@ public class ValueFactoryImpl implements ValueFactory
 		}
 		return new SequenceValueImpl(this, values);
 	}
+
+    public SetValue createSetOf(Object... objects) {
+    	Set<Value> collection = new HashSet<Value>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+    			collection.add(valueOf(object));
+    		}
+    	}
+    	return createSetValue(collection);
+    }
 
 	public SetValue createSetValue(Value... values) {
 		if (!isValid(values)) {
@@ -267,52 +345,6 @@ public class ValueFactoryImpl implements ValueFactory
 
 	public NumericValue getZero() {
 		return zeroValue;
-	}
-
-	public Value getValueOfValue(Object value) {
-		if (value instanceof Number) {
-			if ((value instanceof Integer) || (value instanceof Long)
-					|| (value instanceof Short)) {
-				return integerValueOf(((Number) value).longValue());
-			}
-			if ((value instanceof Float) || (value instanceof Double)) {
-				return realValueOf(((Number) value).doubleValue());
-			}
-			if (value instanceof BigDecimal) {
-				return realValueOf((BigDecimal) value);
-			}
-			if (value instanceof BigInteger) {
-				return integerValueOf((BigInteger) value);
-			}			
-		}
-		if (value instanceof String) {
-			return stringValueOf((String) value);
-		}
-		if (value instanceof Boolean) {
-			return booleanValueOf((Boolean) value);
-		}
-		if (value instanceof Element) {
-			if (value instanceof Type) {
-				return createTypeValue((Type) value);
-			}
-			return createElementValue((Element) value);
-		}
-		if (value == null) {
-			return nullValue;
-		}
-		if (value.getClass().isArray()) {
-			try {
-				int length = Array.getLength(value);
-				List<Value> values = new ArrayList<Value>();
-				for (int i = 0; i < length; i++) {
-					Value v = getValueOfValue(Array.get(value, i));
-					values.add(v);
-				}
-				return createSequenceValue(values);
-			} 
-			catch (IllegalArgumentException e) {}
-		}
-		return createObjectValue(value);
 	}
 
 	public IntegerValue integerValueOf(long value) {
@@ -386,6 +418,76 @@ public class ValueFactoryImpl implements ValueFactory
 	
 	public StringValue stringValueOf(String value) {
 		return new StringValueImpl(this, value);
+	}
+
+	@Override
+	public String toString() {
+		return "ValueFactory : " + name;
+	}
+
+	public Value valueOf(Object object) {
+		if (object instanceof Number) {
+			if ((object instanceof Integer) || (object instanceof Long)
+					|| (object instanceof Short)) {
+				return integerValueOf(((Number) object).longValue());
+			}
+			if ((object instanceof Float) || (object instanceof Double)) {
+				return realValueOf(((Number) object).doubleValue());
+			}
+			if (object instanceof BigDecimal) {
+				return realValueOf((BigDecimal) object);
+			}
+			if (object instanceof BigInteger) {
+				return integerValueOf((BigInteger) object);
+			}			
+		}
+		if (object instanceof String) {
+			return stringValueOf((String) object);
+		}
+		if (object instanceof Boolean) {
+			return booleanValueOf((Boolean) object);
+		}
+		if (object instanceof Element) {
+			if (object instanceof Type) {
+				return createTypeValue((Type) object);
+			}
+			return createElementValue((Element) object);
+		}
+		if (object == null) {
+			return nullValue;
+		}
+		if (object.getClass().isArray()) {
+			try {
+				int length = Array.getLength(object);
+				List<Value> values = new ArrayList<Value>();
+				for (int i = 0; i < length; i++) {
+					Value v = valueOf(Array.get(object, i));
+					values.add(v);
+				}
+				return createSequenceValue(values);
+			} 
+			catch (IllegalArgumentException e) {}
+		}
+		if (object instanceof Collection) {
+			Collection<?> objects = (Collection<?>) object;
+			List<Value> values = new ArrayList<Value>(objects.size());
+			for (Object obj : objects) {
+				values.add(valueOf(obj));
+			}
+			if (object instanceof LinkedHashSet) {
+				return createOrderedSetValue(values);
+			}
+			else if (object instanceof Bag) {
+				return createBagValue(values);
+			}
+			else if (object instanceof Set) {
+				return createSetValue(values);
+			}
+			else {
+				return createSequenceValue(values);
+			}
+		}
+		return createObjectValue(object);
 	}
 }
  

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1.2.4 2010/12/28 12:17:30 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.1.2.5 2011/01/12 10:29:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -34,7 +34,9 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.PivotEnvironment;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
+import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
@@ -93,11 +95,15 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 	}
 
 	public Constraint createInvariant(String expression) throws ParserException {
-		PivotManager pivotManager = getEnvironment().getPivotManager();
+		PivotEnvironment environment = (PivotEnvironment) getEnvironment();
+		PivotManager pivotManager = environment.getPivotManager();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 		URI uri = URI.createURI("test.essentialocl");
 		Resource resource = resourceSet.createResource(uri);
+		if (resource instanceof EvaluationContext) {
+			((EvaluationContext)resource).setEnvironment(environment);
+		}
 		String string = "inv:\n" + expression + "\n;";
 		InputStream inputStream = new ByteArrayInputStream(string.getBytes());
 		try {
@@ -118,7 +124,10 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		if (csObject instanceof Pivotable) {
 			Element pivotElement = ((Pivotable)csObject).getPivot();
 			if (pivotElement instanceof ExpressionInOcl) {
-//				return ((ExpressionInOcl) pivotElement).getBodyExpression();
+				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+				constraint.setStereotype("inv");
+				constraint.setSpecification((ExpressionInOcl) pivotElement);
+				return constraint;
 			}
 		}
 		logger.warn("Non-expression ignored");

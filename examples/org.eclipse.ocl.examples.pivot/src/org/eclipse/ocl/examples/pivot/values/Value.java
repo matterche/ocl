@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.1.2.5 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: Value.java,v 1.1.2.6 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 
@@ -24,11 +25,16 @@ import org.eclipse.ocl.examples.pivot.Type;
  * asXXX returns an XXX if self is an XXX, null otherwise; note Null, Invalid are an XXX.
  * toXXX returns an XXX if self is or can be converted to an XXX; Invalid otherwise.
  */
-public interface Value //extends Comparable<Value>
-{
+public interface Value
+{	
+	interface BinaryOperation {
+		Value evaluate(ValueFactory valueFactory, Value result, Value element);
+	}
+
 	BagValue asBagValue();
 	BooleanValue asBooleanValue();
 	CollectionValue asCollectionValue();
+	Element asElement(); 
 	BooleanValue asFalse(); 
 	Integer asInteger();
 	IntegerValue asIntegerValue();

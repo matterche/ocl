@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableExp.java,v 1.1.2.2 2010/10/05 17:39:51 ewillink Exp $
+ * $Id: VariableExp.java,v 1.1.2.3 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -25,6 +25,7 @@ package org.eclipse.ocl.examples.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.VariableExp#getReferredVariable <em>Referred Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.VariableExp#isImplicit <em>Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,5 +61,32 @@ public interface VariableExp
 	 * @generated
 	 */
 	void setReferredVariable(VariableDeclaration value);
+
+	/**
+	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Implicit</em>' attribute.
+	 * @see #setImplicit(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getVariableExp_Implicit()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
+	 * @generated
+	 */
+	boolean isImplicit();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.VariableExp#isImplicit <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Implicit</em>' attribute.
+	 * @see #isImplicit()
+	 * @generated
+	 */
+	void setImplicit(boolean value);
 
 } // VariableExp

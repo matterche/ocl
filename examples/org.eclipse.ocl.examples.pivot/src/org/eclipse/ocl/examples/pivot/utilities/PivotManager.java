@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.16 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.17 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,8 +50,8 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -65,8 +66,10 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -175,7 +178,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	protected final ResourceSet pivotResourceSet;
 	protected org.eclipse.ocl.examples.pivot.Package pivotOrphans = null;
-	protected Map<String, org.eclipse.ocl.examples.pivot.Package> packageMap = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
+	protected Map<String, org.eclipse.ocl.examples.pivot.Package> packageMap1 = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 
 
 	protected final CompleteEnvironmentManager completeEnvironmentManager = new CompleteEnvironmentManager(this);
@@ -198,6 +201,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	private Map<String, String> infixToPrecedenceNameMap = null;
 
 	private Map<String, String> prefixToPrecedenceNameMap = null;
+	
+	private Map<String, Namespace> globalNamespaces = new HashMap<String, Namespace>();
+	private Set<Type> globalTypes = new HashSet<Type>();
 
 	public PivotManager() {
 		this(new ResourceSetImpl());
@@ -209,14 +215,22 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		pivotResourceSet.eAdapters().add(this);
 	}
 
+	public Namespace addGlobalNamespace(String name, Namespace namespace) {
+		return globalNamespaces.put(name, namespace);
+	}
+
+	public boolean addGlobalTypes(Collection<Type> types) {
+		return globalTypes.addAll(types);
+	}
+	
 	public void addOrphanType(Type pivotElement) {
 		org.eclipse.ocl.examples.pivot.Package orphans = getOrphanPackage();
 		orphans.getOwnedTypes().add(pivotElement);
 	}
 
-	public void addPackage(String key, Package pivotPackage) {
-		packageMap.put(key, pivotPackage);
-	}
+//	public void addPackage(String key, Package pivotPackage) {
+//		packageMap.put(key, pivotPackage);
+//	}
 
 	/**
 	 * Interleave the ownedPrecedences of the rootPackages to establish a merged
@@ -605,6 +619,14 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			: Collections.<Resource> emptySet();
 	}
 
+	public Set<Map.Entry<String, Namespace>> getGlobalNamespaces() {
+		return globalNamespaces.entrySet();
+	}
+
+	public Iterable<Type> getGlobalTypes() {
+		return globalTypes;
+	}
+
 	public Precedence getInfixPrecedence(String operatorName) {
 		if (infixToPrecedenceNameMap == null) {
 			compilePrecedences(computePivotRootPackages());
@@ -671,6 +693,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			org.eclipse.ocl.examples.pivot.Class specializedClass = (org.eclipse.ocl.examples.pivot.Class)specializedType;
 			resolveSuperClasses(specializedClass, libraryClass, allBindings);
 		}
+		if (specializedType instanceof CollectionType) {
+			((CollectionType)specializedType).setElementType((Type) templateArguments.get(0));
+		}
 		addOrphanType(specializedType);
 		String specializedMoniker = specializedType.getMoniker();
 		assert moniker.equals(specializedMoniker);
@@ -688,9 +713,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return pivotOrphans;
 	}
 	
-	public Set<Map.Entry<String, org.eclipse.ocl.examples.pivot.Package>> getPackages() {
-		return packageMap.entrySet();
-	}
+//	public Set<Map.Entry<String, org.eclipse.ocl.examples.pivot.Package>> getPackages1() {
+//		return packageMap.entrySet();
+//	}
 
 	public ResourceSet getPivotResourceSet() {
 		return pivotResourceSet;
@@ -729,6 +754,35 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return pivotResourceSet;
 	}
 
+	public Type getTypeWithMultiplicity(TypedMultiplicityElement element) {
+		Type elementType = element.getType();
+		int upperBound = element.getUpper().intValue();
+		boolean isMany = (upperBound < 0) || (1 < upperBound);
+		if (!isMany) {
+			return elementType;
+		}
+		boolean isOrdered = element.isOrdered();
+		boolean isUnique = element.isUnique();
+		Type collectionType;
+		if (isOrdered) {
+			if (isUnique) {
+				collectionType = getOrderedSetType();
+			}
+			else {
+				collectionType = getSequenceType();
+			}
+		}
+		else {
+			if (isUnique) {
+				collectionType = getSetType();
+			}
+			else {
+				collectionType = getBagType();
+			}
+		}
+		return getLibraryType(collectionType, Collections.singletonList(elementType), true);
+	}
+
 	public ValueFactory getValueFactory() {
 		return ValueFactory.INSTANCE;
 	}
@@ -761,6 +815,13 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 //		}
 		loadLibrary(resource);
 		return resource;
+	}
+
+	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception {
+		Class<?> theClass = Class.forName(implementationClass);
+		Field field = theClass.getField("INSTANCE");
+		Object object = field.get(null);
+		return (CallableImplementation) object;
 	}
 
 	public void loadLibrary(Resource pivotResource) {

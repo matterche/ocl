@@ -108,6 +108,9 @@
         upperBound="-1" eType="#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteEnvironment" eSuperTypes="#//Package">
+    <eOperations name="getCompleteIteration" ordered="false" lowerBound="1" eType="#//CompleteIteration">
+      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Iteration"/>
+    </eOperations>
     <eOperations name="getCompleteOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
       <eParameters name="model" ordered="false" lowerBound="1" eType="#//Operation"/>
     </eOperations>
@@ -120,6 +123,18 @@
     <eOperations name="getCompleteType" ordered="false" lowerBound="1" eType="#//CompleteType">
       <eParameters name="model" ordered="false" lowerBound="1" eType="#//Type"/>
     </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompleteIteration" eSuperTypes="#//Iteration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
+        lowerBound="1" eType="#//Iteration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeIterator" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeAccumulator" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeParameter" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteOperation" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
@@ -151,8 +166,14 @@
     <eOperations name="conformsTo" ordered="false" lowerBound="1" eType="#//Boolean">
       <eParameters name="aType" ordered="false" lowerBound="1" eType="#//CompleteType"/>
     </eOperations>
+    <eOperations name="getDynamicIteration" ordered="false" lowerBound="1" eType="#//CompleteIteration">
+      <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteIteration"/>
+    </eOperations>
     <eOperations name="getDynamicOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
       <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation"/>
+    </eOperations>
+    <eOperations name="getCompleteIterations" ordered="false" upperBound="-1" eType="#//CompleteIteration">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
     </eOperations>
     <eOperations name="getCompleteOperations" ordered="false" upperBound="-1" eType="#//CompleteOperation">
       <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
@@ -242,6 +263,9 @@
         <eAnnotations source="redefines" references="#//NamedElement/isStatic"/>
       </contents>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClass" ordered="false"
+        lowerBound="1" eType="#//Class" changeable="false" volatile="true" transient="true"
+        derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"
@@ -727,6 +751,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="VariableExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" ordered="false"
         eType="#//VariableDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable"
       abstract="true" interface="true"/>

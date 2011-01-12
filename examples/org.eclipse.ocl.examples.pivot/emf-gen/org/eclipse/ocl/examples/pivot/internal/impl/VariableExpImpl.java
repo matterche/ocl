@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableExpImpl.java,v 1.1.2.3 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: VariableExpImpl.java,v 1.1.2.4 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl#getReferredVariable <em>Referred Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl#isImplicit <em>Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,6 +59,25 @@ public class VariableExpImpl
 	 * @ordered
 	 */
 	protected VariableDeclaration referredVariable;
+
+	/**
+	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMPLICIT_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IMPLICIT_EFLAG = 1 << 9;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,6 +143,29 @@ public class VariableExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isImplicit()
+	{
+		return (eFlags & IMPLICIT_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImplicit(boolean newImplicit)
+	{
+		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
+		if (newImplicit) eFlags |= IMPLICIT_EFLAG; else eFlags &= ~IMPLICIT_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE_EXP__IMPLICIT, oldImplicit, newImplicit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
@@ -145,6 +188,8 @@ public class VariableExpImpl
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				if (resolve) return getReferredVariable();
 				return basicGetReferredVariable();
+			case PivotPackage.VARIABLE_EXP__IMPLICIT:
+				return isImplicit();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -186,6 +231,9 @@ public class VariableExpImpl
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				setReferredVariable((VariableDeclaration)newValue);
 				return;
+			case PivotPackage.VARIABLE_EXP__IMPLICIT:
+				setImplicit((Boolean)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -223,6 +271,9 @@ public class VariableExpImpl
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				setReferredVariable((VariableDeclaration)null);
 				return;
+			case PivotPackage.VARIABLE_EXP__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -252,8 +303,21 @@ public class VariableExpImpl
 				return type != null;
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				return referredVariable != null;
+			case PivotPackage.VARIABLE_EXP__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString()
+	{
+		return super.toString();
 	}
 
 	@Override

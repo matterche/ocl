@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.1.2.7 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: OCLBase.java,v 1.1.2.8 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -435,7 +435,7 @@ public abstract class OCLBase {
 
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
 		ValueFactory valueFactory = localEvalEnv.getValueFactory();
-		Value contextValue = valueFactory.getValueOfValue(context);
+		Value contextValue = valueFactory.valueOf(context);
 		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, contextValue);
 
 		ModelManager extents = getModelManager();
@@ -470,7 +470,7 @@ public abstract class OCLBase {
 		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
 		ValueFactory valueFactory = localEvalEnv.getValueFactory();
-		Value value = valueFactory.getValueOfValue(context);
+		Value value = valueFactory.valueOf(context);
 		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
 //		localEvalEnv.addVariable(expression.getContextVariable(), value);
 //		if ((value != null) && !value.isUndefined()) {
@@ -569,9 +569,8 @@ public abstract class OCLBase {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 
-		Object result = evaluate(context, constraint);
-
-		return Boolean.TRUE.equals(result);
+		Value result = evaluate(context, constraint);
+		return result.isTrue();
 	}
 
 	/**

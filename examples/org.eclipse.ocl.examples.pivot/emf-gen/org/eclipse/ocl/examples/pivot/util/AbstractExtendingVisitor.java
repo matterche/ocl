@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingVisitor.java,v 1.1.2.11 2011/01/08 11:39:37 ewillink Exp $
+ * $Id: AbstractExtendingVisitor.java,v 1.1.2.12 2011/01/12 10:29:50 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -107,6 +107,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public R visitCompleteEnvironment(org.eclipse.ocl.examples.pivot.CompleteEnvironment object) {
 		return visitPackage(object);
+	}
+
+	public R visitCompleteIteration(org.eclipse.ocl.examples.pivot.CompleteIteration object) {
+		return visitIteration(object);
 	}
 
 	public R visitCompleteOperation(org.eclipse.ocl.examples.pivot.CompleteOperation object) {

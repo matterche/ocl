@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor2.java,v 1.1.2.2 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: AbstractVisitor2.java,v 1.1.2.3 2011/01/12 10:29:50 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -33,6 +33,8 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
@@ -602,7 +604,8 @@ public abstract class AbstractVisitor2<T> extends AbstractExtendingVisitor<T, T>
      * Visits the iterator's source, then its variables, followed by its body
      * expression.
      * Returns the result of {@link #handleIteratorExp(IteratorExp, Object, List, Object)}.
-     *
+     */
+	@Override
 	public T visitIteratorExp(IteratorExp callExp) {
         T sourceResult = safeVisit(callExp.getSource());
         
@@ -621,7 +624,7 @@ public abstract class AbstractVisitor2<T> extends AbstractExtendingVisitor<T, T>
         T bodyResult = safeVisit(callExp.getBody());
         
         return handleIteratorExp(callExp, sourceResult, variableResults, bodyResult);
-	} */
+	}
     
     /**
      * Visits the specified iterator expression with the results of visiting
@@ -636,17 +639,18 @@ public abstract class AbstractVisitor2<T> extends AbstractExtendingVisitor<T, T>
      * @return the accumulated {@link #result}, by default
      * 
      * @see #visitIteratorExp(IteratorExp)
-     *
+     */
     protected T handleIteratorExp(IteratorExp callExp,
             T sourceResult, List<T> variableResults, T bodyResult) {
         return result;
-    } */
+    }
 
     /**
      * Visits the iterate's source, then its iterator variables,
      * result variable, and body expression.
      * Returns the result of {@link #handleIterateExp(IterateExp, Object, List, Object, Object)}.
-     *
+     */
+	@Override
 	public T visitIterateExp(IterateExp callExp) {
         T sourceResult = safeVisit(callExp.getSource());
         
@@ -667,7 +671,7 @@ public abstract class AbstractVisitor2<T> extends AbstractExtendingVisitor<T, T>
         
         return handleIterateExp(callExp, sourceResult, variableResults,
             resultResult, bodyResult);
-	} */
+	}
     
     /**
      * Visits the specified iterate expression with the results of visiting
@@ -684,11 +688,11 @@ public abstract class AbstractVisitor2<T> extends AbstractExtendingVisitor<T, T>
      * @return the accumulated {@link #result}, by default
      * 
      * @see #visitIterateExp(IterateExp)
-     *
+     */
     protected T handleIterateExp(IterateExp callExp,
             T sourceResult, List<T> variableResults, T resultResult, T bodyResult) {
         return result;
-    } */
+    }
 
     /**
      * Visits the expressions context variable, its parameter variables (if any),

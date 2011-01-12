@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.1.2.5 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.1.2.6 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -49,7 +49,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Classifier</tt> type (an instance of {@link Classifoer})
      */
-	Type getClassifierType();
+	org.eclipse.ocl.examples.pivot.Class getClassifierType();
 	
     /**
      * Obtains the single instance of the {@link VoidType} metatype, named
@@ -73,7 +73,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Boolean</tt> type (an instance of {@link PrimitiveType})
      */
-	Type getBooleanType();
+	PrimitiveType getBooleanType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -81,7 +81,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>String</tt> type (an instance of {@link PrimitiveType})
      */
-	Type getStringType();
+	PrimitiveType getStringType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -89,7 +89,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Real</tt> type (an instance of {@link PrimitiveType})
      */
-	Type getRealType();
+	PrimitiveType getRealType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -97,7 +97,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Integer</tt> type (an instance of {@link PrimitiveType})
      */
-	Type getIntegerType();
+	PrimitiveType getIntegerType();
     
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype,
@@ -106,7 +106,7 @@ public interface StandardLibrary {
      * @return the <tt>UnlimitedNatural</tt> type (an instance of
      *     {@link PrimitiveType})
      */
-    Type getUnlimitedNaturalType();
+	PrimitiveType getUnlimitedNaturalType();
 	
     /**
      * Obtains the generic instance of the {@link MessageType} metatype, named

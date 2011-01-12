@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.9 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.10 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -198,10 +199,8 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendRole(object);		
 		}
-		else {		// Match moniker of root ContextCS
-			context.append("body");
-//			context.append(MONIKER_SCOPE_SEPARATOR);
-//			context.append("ownedExpression");
+		else {
+			context.append(MONIKER_ROOT_EXP);
 		}
 		return true;
 	}
@@ -303,6 +302,14 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	@Override
 	public Object visitPrimitiveType(PrimitiveType object) {
 		context.appendName(object);
+		return true;
+	}
+
+	@Override
+	public Object visitPropertyCallExp(PropertyCallExp object) {
+//		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
+		appendExpPrefix(object);
+		context.appendName(object.getReferredProperty());
 		return true;
 	}
 

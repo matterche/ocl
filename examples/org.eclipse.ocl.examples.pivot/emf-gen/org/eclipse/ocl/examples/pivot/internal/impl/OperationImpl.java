@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.1.2.6 2010/12/28 12:17:27 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.1.2.7 2011/01/12 10:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
@@ -201,6 +202,16 @@ public class OperationImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.OPERATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public org.eclipse.ocl.examples.pivot.Class getFeaturingClass()
+	{
+		return getClass_();
 	}
 
 	/**
@@ -808,6 +819,8 @@ public class OperationImpl
 				return getLower();
 			case PivotPackage.OPERATION__UPPER:
 				return getUpper();
+			case PivotPackage.OPERATION__FEATURING_CLASS:
+				return getFeaturingClass();
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -1027,6 +1040,8 @@ public class OperationImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.OPERATION__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
+			case PivotPackage.OPERATION__FEATURING_CLASS:
+				return getFeaturingClass() != null;
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.OPERATION__TEMPLATE_PARAMETER:
@@ -1062,6 +1077,7 @@ public class OperationImpl
 		{
 			switch (derivedFeatureID)
 			{
+				case PivotPackage.OPERATION__FEATURING_CLASS: return PivotPackage.FEATURE__FEATURING_CLASS;
 				default: return -1;
 			}
 		}
@@ -1113,6 +1129,7 @@ public class OperationImpl
 		{
 			switch (baseFeatureID)
 			{
+				case PivotPackage.FEATURE__FEATURING_CLASS: return PivotPackage.OPERATION__FEATURING_CLASS;
 				default: return -1;
 			}
 		}

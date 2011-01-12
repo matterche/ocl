@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.1.2.5 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -113,11 +113,6 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         return valueFactory.integerValueOf(count);
     }
 
-	@Override
-	public int hashCode() {
-		return elements.hashCode();
-	}
-
     /**
      * Implementation of the OCL
      * <tt>Collection::excludes(object : T) : Boolean</tt>
@@ -166,6 +161,11 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 			}
 		}
 		return flattened;
+	}
+
+	@Override
+	public int hashCode() {
+		return elements.hashCode();
 	}
 
     public BooleanValue includes(Value value) {

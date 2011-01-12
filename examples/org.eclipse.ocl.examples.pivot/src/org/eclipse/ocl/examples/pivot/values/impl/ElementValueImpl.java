@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: ElementValueImpl.java,v 1.1.2.4 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -32,10 +32,18 @@ public class ElementValueImpl<E extends Element> extends AbstractValue implement
 		this.element = element;
 	}
 
-//	@Override
-//	public ElementValue<E> asElementValue() {
-//		return this;
-//	}
+	@Override
+	public Element asElement() {
+		return element;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof ElementValue)) {
+			return false;
+		}
+		return element.equals(((ElementValue<?>)obj).getElement());
+	}
 
 	public E getElement() {
 		return element;
@@ -45,6 +53,11 @@ public class ElementValueImpl<E extends Element> extends AbstractValue implement
 		EClass eClass = element.eClass();
 		return standardLibrary.getPivotType(eClass.getName());
 //		return standardLibrary.getClassifierType();
+	}
+
+	@Override
+	public int hashCode() {
+		return element.hashCode();
 	}
 
 	@Override

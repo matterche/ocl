@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactory.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: ValueFactory.java,v 1.1.2.5 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -34,10 +34,11 @@ import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
 
 public interface ValueFactory
 {
-	public static final ValueFactory INSTANCE = new ValueFactoryImpl();
+	public static final ValueFactory INSTANCE = new ValueFactoryImpl("Default");
 	
 	public BooleanValue booleanValueOf(boolean value);
 	
+    public BagValue createBagOf(Object... objects);
 	public BagValue createBagValue(Value... values);
 	public BagValue createBagValue(Bag<? extends Value> values);
 	public BagValue createBagValue(Collection<? extends Value> values);
@@ -50,7 +51,8 @@ public interface ValueFactory
 	 * @return the new collection
 	 * @since 3.1
 	 */
-	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique);
+	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Value... values);
+	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Collection<Value> values);
 	public CollectionValue createCollectionValue(CollectionKind kind, Value... values);
 	public CollectionValue createCollectionValue(CollectionKind kind, Collection<Value> values);
 	
@@ -61,14 +63,17 @@ public interface ValueFactory
 	
 	public ObjectValue createObjectValue(Object object);
 
+    public OrderedSetValue createOrderedSetOf(Object... objects);
 	public OrderedSetValue createOrderedSetValue(Value... values);
 	public OrderedSetValue createOrderedSetValue(LinkedHashSet<? extends Value> values);
 	public OrderedSetValue createOrderedSetValue(Collection<? extends Value> values);
 
+    public SequenceValue createSequenceOf(Object... objects);
 	public SequenceValue createSequenceValue(Value... values);
 	public SequenceValue createSequenceValue(List<? extends Value> values);
 	public SequenceValue createSequenceValue(Collection<? extends Value> values);
 	
+    public SetValue createSetOf(Object... objects);
 	public SetValue createSetValue(Value... values);
 	public SetValue createSetValue(Set<? extends Value> values);
 	public SetValue createSetValue(Collection<? extends Value> values);
@@ -86,8 +91,6 @@ public interface ValueFactory
 	public BooleanValue getTrue();
 	public UnlimitedValue getUnlimited();
 	public NumericValue getZero();
-
-	public Value getValueOfValue(Object value);
 	
 	public IntegerValue integerValueOf(long value);
 	public IntegerValue integerValueOf(BigInteger value);
@@ -102,5 +105,7 @@ public interface ValueFactory
 	public RealValue realValueOf(String aValue) throws NumberFormatException;
 	
 	public StringValue stringValueOf(String value) ;
+
+	public Value valueOf(Object object);
 }
  

@@ -15,20 +15,22 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.13 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.14 2011/01/12 10:29:50 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
@@ -37,8 +39,10 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompleteType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
@@ -47,12 +51,15 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -231,7 +238,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		if (implementation == null) {
 			String implementationClassName = implementableElement.getImplementationClass();
 			try {
-				implementation = loadImplementationClass(implementationClassName);
+				implementation = pivotManager.loadImplementationClass(implementationClassName);
 			} catch (Exception e) {
 				return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", e);
 			}
@@ -240,7 +247,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 		}
 		try {
-			return implementation.evaluate(getUndecoratedVisitor(), sourceValue, callExp);
+			EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
+			Value result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
+			return result;
 		}
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
@@ -257,6 +266,45 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return new EvaluationVisitorImpl(env, nestedEvalEnv, getModelManager());
 	}
 
+	protected Value defaultPropertyCallExp(Value sourceValue, PropertyCallExp propertyCallExp) {
+		Element element = sourceValue.asElement();
+		EClass eClass = element.eClass();
+		Property referredProperty = propertyCallExp.getReferredProperty();
+		EStructuralFeature eFeature = eClass.getEStructuralFeature(referredProperty.getName());
+		Object eValue = element.eGet(eFeature);
+		if (eFeature.isMany()) {
+			Collection<?> eValues = (Collection<?>) eValue;
+			ArrayList<Value> values = new ArrayList<Value>(eValues.size());
+			for (Object eVal : eValues) {
+				values.add(valueFactory.valueOf(eVal));
+			}
+			boolean isOrdered = eFeature.isOrdered();
+			boolean isUnique = eFeature.isUnique();
+			if (isOrdered) {
+				if (isUnique) {
+					return valueFactory.createOrderedSetValue(values);
+				}
+				else {
+					return valueFactory.createSequenceValue(values);
+				}
+			}
+			else {
+				if (isUnique) {
+					return valueFactory.createSetValue(values);
+				}
+				else {
+					return valueFactory.createBagValue(values);
+				}
+			}
+		}
+		else if (eValue instanceof Value) {
+			return (Value) eValue;		
+		}
+		else {
+			return valueFactory.valueOf(eValue);
+		}
+	}
+
 	public ValueFactory getValueFactory() {
 		return valueFactory;
 	}
@@ -270,13 +318,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return ((Visitable) value).accept(getUndecoratedVisitor());
 		}
 		return value;
-	}
-
-	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception {
-		Class<?> theClass = Class.forName(implementationClass);
-		Field field = theClass.getField("INSTANCE");
-		Object object = field.get(null);
-		return (CallableImplementation) object;
 	}
 
 	/**
@@ -504,6 +545,23 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	} */
 
 	/**
+	 * Callback for an IteratorExp visit.
+	 */
+	@Override
+    public Value visitIteratorExp(IteratorExp iteratorExp) {
+		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+		Iteration staticIteration = iteratorExp.getReferredIteration();
+		CompleteIteration staticCompleteIteration = completeManager.getCompleteIteration(staticIteration);
+		OclExpression source = iteratorExp.getSource();
+		Value sourceValue = source.accept(getUndecoratedVisitor());
+		Type staticSourceType = source.getType();
+		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
+		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
+		CompleteIteration dynamicIteration = dynamicCompleteType.getDynamicIteration(staticCompleteIteration);
+		return callImplementation(dynamicIteration, sourceValue, iteratorExp);
+	}
+
+	/**
 	 * Callback for LetExp visit.
 	 */
 	@Override
@@ -575,6 +633,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	/**
+	 * Callback for a Parameter visit.
+	 *
+	@Override
+    public Value visitParameter(Parameter parameter) {
+		Value value = getEvaluationEnvironment().getValueOf(parameter.getName());
+		return value;
+	} */
+
+	/**
 	 * Callback for a PropertyCallExp visit.
 	 */
 	@Override
@@ -582,7 +649,34 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		OclExpression source = propertyCallExp.getSource();	// FIXME self
 		Value sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
 		Property property = propertyCallExp.getReferredProperty();
-		return callImplementation(property, sourceValue, propertyCallExp);
+		if (property == null) {
+			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "No referredProperty", null);
+		}
+		CallableImplementation implementation = property.getImplementation();
+		if (implementation == null) {
+			String implementationClassName = property.getImplementationClass();
+			if (implementationClassName == null) {
+				return defaultPropertyCallExp(sourceValue, propertyCallExp);
+			}
+			else {
+				try {
+					implementation = pivotManager.loadImplementationClass(implementationClassName);
+				} catch (Exception e) {
+					return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Failed to load '" + implementationClassName + "'", e);
+				}
+				if (implementation == null) {
+					return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Failed to load '" + implementationClassName + "'", null);
+				}
+			}
+		}
+		try {
+			return implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
+		}
+		catch (Exception e) {
+			// This is a backstop. Library operations should catch their own exceptions
+			//  and produce a better reason as a result.
+			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Evaluation failure", e);
+		}
 	}
 
 	/**
@@ -706,6 +800,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		getValueOfVariable(getReferredVariable())
 		// get the referred variable name
 		VariableDeclaration variableDeclaration = variableExp.getReferredVariable();
+		if (variableDeclaration instanceof Variable) {
+			Parameter representedParameter = ((Variable)variableDeclaration).getRepresentedParameter();
+			if (representedParameter != null) {		// FIXME Why null sometimes?
+				variableDeclaration = representedParameter;
+			}
+		}
 		VariableDeclaration variable = getEvaluationEnvironment().getVariable(variableDeclaration);
 //		String varName = vd.getName();
 

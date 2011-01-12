@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.6 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.7 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -22,6 +22,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
@@ -47,15 +48,15 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	 */
 	protected String defaultStandardLibraryURI = DEFAULT_OCL_STDLIB_URI;
 
-	private Type booleanType = null;
-	private Type classifierType = null;
-	private Type integerType = null;
+	private PrimitiveType booleanType = null;
+	private org.eclipse.ocl.examples.pivot.Class classifierType = null;
+	private PrimitiveType integerType = null;
 	private Type invalidType = null;
 	private Type nullType = null;
-	private Type realType = null;
-	private Type stringType = null;
+	private PrimitiveType realType = null;
+	private PrimitiveType stringType = null;
 	private Type tupleType = null;
-	private Type unlimitedNaturalType = null;
+	private PrimitiveType unlimitedNaturalType = null;
 	private Type oclInvalidType = null;
 	private Type oclVoidType = null;
 	
@@ -82,16 +83,16 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("BagType");
 	}
 
-	public Type getBooleanType() {
+	public PrimitiveType getBooleanType() {
 		if (booleanType == null) {
-			booleanType = getRequiredLibraryType("Boolean");
+			booleanType = (PrimitiveType) getRequiredLibraryType("Boolean");
 		}
 		return booleanType;
 	}
 
-	public Type getClassifierType() {
+	public org.eclipse.ocl.examples.pivot.Class getClassifierType() {
 		if (classifierType == null) {
-			classifierType = getRequiredLibraryType("Classifier");
+			classifierType = (org.eclipse.ocl.examples.pivot.Class) getRequiredLibraryType("Classifier");
 		}
 		return classifierType;
 	}
@@ -104,9 +105,9 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("CollectionType");
 	}
 
-	public Type getIntegerType() {
+	public PrimitiveType getIntegerType() {
 		if (integerType == null) {
-			integerType = getRequiredLibraryType("Integer");
+			integerType = (PrimitiveType) getRequiredLibraryType("Integer");
 		}
 		return integerType;
 	}
@@ -165,7 +166,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
 		if (pivotPackage == null) {
-			pivotPackage = OclMetaModel.create((org.eclipse.ocl.examples.pivot.Class)getClassifierType());
+			pivotPackage = OclMetaModel.create(this);
 		}
 		return pivotPackage;
 	}
@@ -181,9 +182,9 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("PrimitiveType");
 	}
 
-	public Type getRealType() {
+	public PrimitiveType getRealType() {
 		if (realType == null) {
-			realType = getRequiredLibraryType("Real");
+			realType = (PrimitiveType) getRequiredLibraryType("Real");
 		}
 		return realType;
 	}
@@ -217,9 +218,9 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("SetType");
 	}
 
-	public Type getStringType() {
+	public PrimitiveType getStringType() {
 		if (stringType == null) {
-			stringType = getRequiredLibraryType("String");
+			stringType = (PrimitiveType) getRequiredLibraryType("String");
 		}
 		return stringType;
 	}
@@ -241,9 +242,9 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return tupleType;
 	}
 
-	public Type getUnlimitedNaturalType() {
+	public PrimitiveType getUnlimitedNaturalType() {
 		if (unlimitedNaturalType == null) {
-			unlimitedNaturalType = getRequiredLibraryType("UnlimitedNatural");
+			unlimitedNaturalType = (PrimitiveType) getRequiredLibraryType("UnlimitedNatural");
 		}
 		return unlimitedNaturalType;
 	}

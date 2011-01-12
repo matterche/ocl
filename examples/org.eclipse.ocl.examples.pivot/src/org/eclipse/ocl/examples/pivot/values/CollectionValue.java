@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionValue.java,v 1.1.2.3 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: CollectionValue.java,v 1.1.2.4 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -29,10 +29,6 @@ public interface CollectionValue extends Value, Iterable<Value>
 {
 	interface Accumulator extends CollectionValue {
 		boolean add(Value value);	
-	}
-	
-	interface BinaryOperation {
-		Value evaluate(ValueFactory valueFactory, Value result, Value element);
 	}
 
 	Collection<Value> asCollection();	

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteType.java,v 1.1.2.1 2011/01/07 12:14:08 ewillink Exp $
+ * $Id: CompleteType.java,v 1.1.2.2 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -155,7 +155,23 @@ public interface CompleteType
 	 * @model required="true" ordered="false" staticOperationRequired="true" staticOperationOrdered="false"
 	 * @generated
 	 */
+	CompleteIteration getDynamicIteration(CompleteIteration staticOperation);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" staticOperationRequired="true" staticOperationOrdered="false"
+	 * @generated
+	 */
 	CompleteOperation getDynamicOperation(CompleteOperation staticOperation);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" nameDataType="org.eclipse.ocl.examples.pivot.String" nameRequired="true" nameOrdered="false"
+	 * @generated
+	 */
+	EList<CompleteIteration> getCompleteIterations(String name);
 
 	/**
 	 * <!-- begin-user-doc -->

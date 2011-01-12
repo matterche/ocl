@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringValueImpl.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: StringValueImpl.java,v 1.1.2.5 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -20,8 +20,6 @@ import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
-
 
 public class StringValueImpl extends AbstractValue implements StringValue
 {
@@ -40,6 +38,10 @@ public class StringValueImpl extends AbstractValue implements StringValue
 	@Override
 	public StringValue asStringValue() {
 		return this;
+	}
+
+	public int compareTo(StringValue o) {
+		return value.compareTo(o.asString());
 	}
 
 	@Override

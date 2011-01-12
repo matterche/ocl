@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentManager.java,v 1.1.2.2 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: CompleteEnvironmentManager.java,v 1.1.2.3 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -20,10 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.CompleteType;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -37,6 +39,7 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 
 	protected final PivotManager pivotManager;
 
+	private Map<Iteration, CompleteIteration> completeIterationMap = new HashMap<Iteration, CompleteIteration>();
 	private Map<org.eclipse.ocl.examples.pivot.Package, CompletePackage> completePackageMap = new HashMap<org.eclipse.ocl.examples.pivot.Package, CompletePackage>();
 	private Map<Operation, CompleteOperation> completeOperationMap = new HashMap<Operation, CompleteOperation>();
 	private Map<Property, CompleteProperty> completePropertyMap = new HashMap<Property, CompleteProperty>();
@@ -55,6 +58,19 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 		completeType.setName(type.getName());
 		completeType.setPackage(getCompletePackage(type.getPackage()));
 		return completeType;
+	}
+	
+	protected CompleteIteration createCompleteIteration(Iteration iteration) {
+		CompleteIteration completeIteration;
+		completeIteration = PivotFactory.eINSTANCE.createCompleteIteration();
+		completeIteration.setModel(iteration);
+		completeIteration.setCompleteEnvironment(this);
+		completeIterationMap.put(iteration, completeIteration);
+		completeIteration.setClass_(getCompleteType(iteration.getClass_()));
+		completeIteration.setName(iteration.getName());
+		completeIteration.setImplementation(iteration.getImplementation());
+		completeIteration.setImplementationClass(iteration.getImplementationClass());
+		return completeIteration;
 	}
 	
 	protected CompleteOperation createCompleteOperation(Operation operation) {
@@ -114,6 +130,27 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 			completeType = createCompleteType(type);
 		}
 		return completeType;
+	}
+
+	@Override
+	public CompleteIteration getCompleteIteration(Iteration iteration) {
+		if (iteration == null) {
+			logger.warn("getCompleteIteration for null");
+			return null;
+		}
+		if (iteration instanceof CompleteIteration) {
+			CompleteIteration completeIteration = (CompleteIteration) iteration;
+			if (completeIteration.getCompleteEnvironment() == this) {
+				return completeIteration;
+			}
+			logger.warn("getCompleteIteration for a CompleteIteration " + iteration);
+			return getCompleteIteration(((CompleteIteration)iteration).getModel());
+		}
+		CompleteIteration completeIteration = completeIterationMap.get(iteration);
+		if (completeIteration == null) {
+			completeIteration = createCompleteIteration(iteration);
+		}
+		return completeIteration;
 	}
 
 	@Override

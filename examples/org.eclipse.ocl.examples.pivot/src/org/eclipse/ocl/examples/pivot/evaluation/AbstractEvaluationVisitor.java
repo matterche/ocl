@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.9 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.10 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -56,12 +58,14 @@ import org.eclipse.ocl.examples.pivot.values.Value;
 public abstract class AbstractEvaluationVisitor
 	extends AbstractVisitor2<Value> implements EvaluationVisitor {
 
+	public static final Logger logger = Logger.getLogger(AbstractEvaluationVisitor.class);
+
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;
 	
 	private EvaluationEnvironment evalEnv;
 	private Environment env;
-	private StandardLibrary stdlib;
+	protected final PivotManager pivotManager;
 	
 	private ModelManager modelManager;
 
@@ -88,7 +92,7 @@ public abstract class AbstractEvaluationVisitor
         super(null);
         this.evalEnv = evalEnv;
         this.env = env;
-        stdlib = env.getOCLStandardLibrary();
+        this.pivotManager = env.getPivotManager();
         this.modelManager = modelManager;
         
         this.undecoratedVisitor = this;  // assume I have no decorator
@@ -256,7 +260,7 @@ public abstract class AbstractEvaluationVisitor
      * @return the OCL standard library
      */
 	public StandardLibrary getStandardLibrary() {
-		return stdlib;
+		return pivotManager;
 	}
     
     /**
@@ -560,7 +564,8 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	public Value visiting(Visitable visitable) {
-		throw new UnsupportedOperationException();
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
+		return null;
 	}
 
 } //EvaluationVisitorImpl

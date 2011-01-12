@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.1.2.7 2011/01/08 12:37:51 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.1.2.8 2011/01/12 10:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -207,6 +207,8 @@ public class CompletePropertyImpl
 				return getLower();
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				return getUpper();
+			case PivotPackage.COMPLETE_PROPERTY__FEATURING_CLASS:
+				return getFeaturingClass();
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -498,6 +500,8 @@ public class CompletePropertyImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
+			case PivotPackage.COMPLETE_PROPERTY__FEATURING_CLASS:
+				return getFeaturingClass() != null;
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:

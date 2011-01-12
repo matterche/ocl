@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.1.2.5 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.1.2.6 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -44,6 +45,10 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 		this.expression = expression;
 		this.reason = reason;
 		this.throwable = throwable;
+	}
+
+	public Element asElement() {
+		return null;
 	}
 
 	public InvalidValue asInvalidValue() {

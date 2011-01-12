@@ -13,12 +13,13 @@
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.1.2.2 2010/10/05 17:38:47 ewillink Exp $
+ * $Id: UMLReflection.java,v 1.1.2.3 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -207,7 +208,7 @@ public interface UMLReflection {
      * 
      * @see #getNestingPackage
      */
-    List<org.eclipse.ocl.examples.pivot.Package> getNestedPackages(org.eclipse.ocl.examples.pivot.Package pkg);
+    Set<org.eclipse.ocl.examples.pivot.Package> getNestedPackages(org.eclipse.ocl.examples.pivot.Package pkg);
     
     /**
      * Obtains the package containing (or nearest package of) the specified

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.1.2.8 2011/01/07 12:14:08 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.1.2.9 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -297,6 +297,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	CompleteEnvironment createCompleteEnvironment();
+
+	/**
+	 * Returns a new object of class '<em>Complete Iteration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete Iteration</em>'.
+	 * @generated
+	 */
+	CompleteIteration createCompleteIteration();
 
 	/**
 	 * Returns a new object of class '<em>Complete Operation</em>'.

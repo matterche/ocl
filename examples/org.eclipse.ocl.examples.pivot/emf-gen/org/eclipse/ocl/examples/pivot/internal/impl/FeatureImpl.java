@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureImpl.java,v 1.1.2.2 2011/01/08 12:37:52 ewillink Exp $
+ * $Id: FeatureImpl.java,v 1.1.2.3 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#isStatic <em>Is Static</em>}</li>
  * </ul>
  * </p>
@@ -64,6 +65,18 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public org.eclipse.ocl.examples.pivot.Class getFeaturingClass()
+	{
+		// TODO: implement this method to return the 'Featuring Class' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public boolean isStatic() {
 		return (eFlags & IS_STATIC_EFLAG) != 0;
@@ -89,6 +102,62 @@ public abstract class FeatureImpl
 	 */
 	public boolean isSetIsStatic() {
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.FEATURE__OWNED_COMMENT:
+				return getOwnedComments();
+			case PivotPackage.FEATURE__MONIKER:
+				return getMoniker();
+			case PivotPackage.FEATURE__NAME:
+				return getName();
+			case PivotPackage.FEATURE__OWNED_RULE:
+				return getOwnedRules();
+			case PivotPackage.FEATURE__IS_STATIC:
+				return isStatic();
+			case PivotPackage.FEATURE__OWNED_ANNOTATION:
+				return getOwnedAnnotations();
+			case PivotPackage.FEATURE__FEATURING_CLASS:
+				return getFeaturingClass();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.FEATURE__OWNED_COMMENT:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.FEATURE__MONIKER:
+				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
+			case PivotPackage.FEATURE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.FEATURE__OWNED_RULE:
+				return ownedRules != null && !ownedRules.isEmpty();
+			case PivotPackage.FEATURE__IS_STATIC:
+				return isSetIsStatic();
+			case PivotPackage.FEATURE__OWNED_ANNOTATION:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.FEATURE__FEATURING_CLASS:
+				return getFeaturingClass() != null;
+		}
+		return eDynamicIsSet(featureID);
 	}
 
 	@Override

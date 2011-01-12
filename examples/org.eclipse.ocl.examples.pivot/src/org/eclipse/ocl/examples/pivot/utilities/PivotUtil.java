@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.8 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.9 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -176,7 +176,22 @@ public class PivotUtil
 				map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
 			}
 		}
+		if (templateableElement instanceof org.eclipse.ocl.examples.pivot.Class) {
+			getAllSuperTemplateParameterSubstitutions(map, (org.eclipse.ocl.examples.pivot.Class) templateableElement);
+		}
 		return map;
+	}
+
+	private static void getAllSuperTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> map,
+			org.eclipse.ocl.examples.pivot.Class type) {
+		for (org.eclipse.ocl.examples.pivot.Class superType : type.getSuperClasses()) {
+			for (TemplateBinding templateBinding : superType.getTemplateBindings()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+					map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
+				}
+			}
+			getAllSuperTemplateParameterSubstitutions(map, superType);
+		}		
 	}
 
 	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {

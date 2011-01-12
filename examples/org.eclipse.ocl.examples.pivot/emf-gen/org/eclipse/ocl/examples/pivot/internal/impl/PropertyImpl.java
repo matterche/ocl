@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.1.2.7 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.1.2.8 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
@@ -362,6 +363,16 @@ public class PropertyImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PROPERTY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public org.eclipse.ocl.examples.pivot.Class getFeaturingClass()
+	{
+		return getClass_();
 	}
 
 	/**
@@ -1074,6 +1085,8 @@ public class PropertyImpl
 				return getLower();
 			case PivotPackage.PROPERTY__UPPER:
 				return getUpper();
+			case PivotPackage.PROPERTY__FEATURING_CLASS:
+				return getFeaturingClass();
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -1347,6 +1360,8 @@ public class PropertyImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.PROPERTY__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
+			case PivotPackage.PROPERTY__FEATURING_CLASS:
+				return getFeaturingClass() != null;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
@@ -1396,6 +1411,7 @@ public class PropertyImpl
 		{
 			switch (derivedFeatureID)
 			{
+				case PivotPackage.PROPERTY__FEATURING_CLASS: return PivotPackage.FEATURE__FEATURING_CLASS;
 				default: return -1;
 			}
 		}
@@ -1431,6 +1447,7 @@ public class PropertyImpl
 		{
 			switch (baseFeatureID)
 			{
+				case PivotPackage.FEATURE__FEATURING_CLASS: return PivotPackage.PROPERTY__FEATURING_CLASS;
 				default: return -1;
 			}
 		}

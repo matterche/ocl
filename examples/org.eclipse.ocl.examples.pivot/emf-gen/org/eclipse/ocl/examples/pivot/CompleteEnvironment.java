@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironment.java,v 1.1.2.3 2011/01/07 12:14:08 ewillink Exp $
+ * $Id: CompleteEnvironment.java,v 1.1.2.4 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -28,6 +28,14 @@ package org.eclipse.ocl.examples.pivot;
  */
 public interface CompleteEnvironment
 		extends org.eclipse.ocl.examples.pivot.Package {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" modelRequired="true" modelOrdered="false"
+	 * @generated
+	 */
+	CompleteIteration getCompleteIteration(Iteration model);
 
 	/**
 	 * <!-- begin-user-doc -->

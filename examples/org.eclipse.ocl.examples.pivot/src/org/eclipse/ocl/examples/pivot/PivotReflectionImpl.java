@@ -15,14 +15,16 @@
  *
  * </copyright>
  *
- * $Id: PivotReflectionImpl.java,v 1.1.2.1 2010/10/01 13:51:56 ewillink Exp $
+ * $Id: PivotReflectionImpl.java,v 1.1.2.2 2011/01/12 10:29:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
@@ -146,8 +148,8 @@ public class PivotReflectionImpl implements UMLReflection {
         return pkg.getNestingPackage();
     }
     
-    public List<org.eclipse.ocl.examples.pivot.Package> getNestedPackages(org.eclipse.ocl.examples.pivot.Package pkg) {
-        return pkg.getNestedPackages();
+    public Set<org.eclipse.ocl.examples.pivot.Package> getNestedPackages(org.eclipse.ocl.examples.pivot.Package pkg) {
+        return new HashSet<org.eclipse.ocl.examples.pivot.Package>(pkg.getNestedPackages());
     }
     
     public org.eclipse.ocl.examples.pivot.Package getPackage(Type classifier) {
@@ -159,10 +161,8 @@ public class PivotReflectionImpl implements UMLReflection {
     }
     
     public Type getOwningClassifier(Object feature) {
-        if (feature instanceof Operation) {
-            return ((Operation) feature).getClass_();
-        } else if (feature instanceof Property) {
-            return ((Property) feature).getClass_();
+        if (feature instanceof Feature) {
+            return ((Feature) feature).getFeaturingClass();
         }
         return null;
     }

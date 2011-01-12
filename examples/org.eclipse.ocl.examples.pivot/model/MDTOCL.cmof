@@ -75,6 +75,9 @@
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_Y4z6QMpCEd-ZL8lMORCEkg" name="instanceClassName" type="_-0G3sMpAEd-ZL8lMORCEkg" lower="0"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_OD6CsMpBEd-ZL8lMORCEkg" name="Element" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_LhCA0B1EEeCzDcYDg75xng" name="Feature" isAbstract="true">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_SqvOcB1EEeCzDcYDg75xng" name="featuringClass" type="_V3s5sMpCEd-ZL8lMORCEkg" isReadOnly="true" isDerived="true"/>
+      </ownedMember>
       <ownedMember xmi:type="cmof:Interface" xmi:id="_gp2QsN9WEd-5RuvZBdnt0A" name="Nameable" isAbstract="true"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_P4PuIMpBEd-ZL8lMORCEkg" name="NamedElement" clientDependency="#_yvKQQN9WEd-5RuvZBdnt0A" isAbstract="true">
         <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -258,11 +261,14 @@
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EReference xmi:id="_PafA0BEeEeCsy5gumoi3HA" isTransient="true"/>
   </xmi:Extension>
-  <cmof:Tag xmi:id="_28" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_rfGIcBNKEeCpr6XKiuQP7w"/>
-  <cmof:Tag xmi:id="_29" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_BIn1oBNLEeCpr6XKiuQP7w"/>
-  <cmof:Tag xmi:id="_30" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
-  <cmof:Tag xmi:id="_31" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>
-  <cmof:Tag xmi:id="_32" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_XXNRYMlBEd-bx742yyafXQ"/>
-  <cmof:Tag xmi:id="_33" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
-  <cmof:Tag xmi:id="_34" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_SUQk8Mo-Ed-ZL8lMORCEkg"/>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EReference xmi:id="_aRlrEB1EEeCzDcYDg75xng" isTransient="true" base_Property="_SqvOcB1EEeCzDcYDg75xng" isResolveProxies="false"/>
+  </xmi:Extension>
+  <cmof:Tag xmi:id="_29" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_rfGIcBNKEeCpr6XKiuQP7w"/>
+  <cmof:Tag xmi:id="_30" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_BIn1oBNLEeCpr6XKiuQP7w"/>
+  <cmof:Tag xmi:id="_31" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
+  <cmof:Tag xmi:id="_32" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>
+  <cmof:Tag xmi:id="_33" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_XXNRYMlBEd-bx742yyafXQ"/>
+  <cmof:Tag xmi:id="_34" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
+  <cmof:Tag xmi:id="_35" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_SUQk8Mo-Ed-ZL8lMORCEkg"/>
 </xmi:XMI>

@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: AbstractValue.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: AbstractValue.java,v 1.1.2.5 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -53,6 +54,10 @@ public abstract class AbstractValue implements Value
 	}
 
 	public CollectionValue asCollectionValue() {
+		return null;
+	}
+
+	public Element asElement() {
 		return null;
 	}
 

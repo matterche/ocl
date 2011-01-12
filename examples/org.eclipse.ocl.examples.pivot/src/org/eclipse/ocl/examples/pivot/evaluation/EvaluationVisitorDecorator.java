@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.1.2.6 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.1.2.7 2011/01/12 10:29:50 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -133,9 +133,9 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Value>
      * Delegates to my decorated visitor.
      * @throws Exception 
      */
-	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception {
-        return getDelegate().loadImplementationClass(implementationClass);
-	}
+//	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception {
+//        return getDelegate().loadImplementationClass(implementationClass);
+//	}
 
     /**
      * Delegates to my decorated visitor.

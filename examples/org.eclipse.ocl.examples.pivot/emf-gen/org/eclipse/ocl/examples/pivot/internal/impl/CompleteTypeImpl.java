@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteTypeImpl.java,v 1.1.2.3 2011/01/08 11:39:38 ewillink Exp $
+ * $Id: CompleteTypeImpl.java,v 1.1.2.4 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -36,10 +36,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
+import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -237,6 +239,75 @@ public class CompleteTypeImpl
 		return false;
 	}
 
+	private Map<CompleteIteration, CompleteIteration> dynamicIterationMap = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public CompleteIteration getDynamicIteration(CompleteIteration staticIteration)
+	{
+		if (dynamicIterationMap == null) {
+			dynamicIterationMap = new HashMap<CompleteIteration, CompleteIteration>();
+		}
+		CompleteIteration dynamicIteration = dynamicIterationMap.get(staticIteration);
+		if ((dynamicIteration == null)
+			&& !dynamicIterationMap.containsKey(staticIteration)) {
+			List<CompleteType> staticCompleteIteratorTypes = new ArrayList<CompleteType>();
+			for (Parameter staticIterator : staticIteration.getCompleteIterators()) {
+				staticCompleteIteratorTypes.add(resolveType(staticIterator.getType()));
+			}
+			List<CompleteType> staticCompleteAccumulatorTypes = new ArrayList<CompleteType>();
+			for (Parameter staticAccumulator : staticIteration.getCompleteAccumulators()) {
+				staticCompleteAccumulatorTypes.add(resolveType(staticAccumulator.getType()));
+			}
+			List<CompleteType> staticCompleteParameterTypes = new ArrayList<CompleteType>();
+			for (Parameter staticParameter : staticIteration.getCompleteParameters()) {
+				staticCompleteParameterTypes.add(resolveType(staticParameter.getType()));
+			}
+			Set<CompleteIteration> dynamicIterations = findIterationsOrNull(
+				this, staticIteration.getName(), staticCompleteIteratorTypes, staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
+			if (dynamicIterations != null) {
+				if (dynamicIterations.size() == 1) {
+					dynamicIteration = dynamicIterations.iterator().next();
+				}
+				else if (dynamicIterations.size() > 1) {
+					CompleteIteration conformantIteration = null;
+					boolean ok = true;
+					for (CompleteIteration completeIteration : dynamicIterations) {
+						if (conformantIteration == null) {
+							conformantIteration = completeIteration;
+						}
+						else if (conformsTo(completeIteration.getModel().getFeaturingClass(), conformantIteration.getModel().getFeaturingClass())) {
+							conformantIteration = completeIteration;
+						}
+						else if (!conformsTo(conformantIteration.getModel().getFeaturingClass(), completeIteration.getModel().getFeaturingClass())) {
+							ok = false;
+						}
+					}
+					if (ok) {
+						dynamicIteration = conformantIteration;
+					}
+				}
+			}
+			dynamicIterationMap.put(staticIteration, dynamicIteration);
+		}
+		return dynamicIteration;
+	}
+
+	private boolean conformsTo(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class requiredClass) {
+		if (aClass == requiredClass) {
+			return true;
+		}
+		for (org.eclipse.ocl.examples.pivot.Class superClass : aClass.getSuperClasses()) {
+			if (conformsTo(PivotUtil.getUnspecializedTemplateableElement(superClass), requiredClass)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private Map<CompleteOperation, CompleteOperation> dynamicOperationMap = null;
 
 	/**
@@ -282,6 +353,48 @@ public class CompleteTypeImpl
 		return completeEnvironment.getCompleteType(type);
 	}
 
+	private Set<CompleteIteration> findIterationsOrNull(CompleteType completeType,
+			String operationName, List<CompleteType> staticCompleteIteratorTypes,
+			List<CompleteType> staticCompleteAccumulatorTypes, List<CompleteType> staticCompleteParameterTypes) {
+		int staticIteratorsSize = staticCompleteIteratorTypes.size();
+		Set<CompleteIteration> list = null;
+		for (CompleteIteration dynamicIteration : completeType.getCompleteIterations(operationName)) {
+			List<Parameter> dynamicIterators = dynamicIteration.getCompleteIterators();
+			if (staticIteratorsSize == dynamicIterators.size()) {
+				boolean gotIt = true;
+				for (int i = 0; i < staticIteratorsSize; i++) {
+					CompleteType staticCompleteIteratorType = staticCompleteIteratorTypes.get(i);
+					Parameter dynamicIterator = dynamicIterators.get(i);
+					CompleteType dynamicCompleteIteratorType = resolveType(dynamicIterator.getType());
+					if (!dynamicCompleteIteratorType.conformsTo(staticCompleteIteratorType)) {
+						gotIt = false;
+					}
+				}
+				if (gotIt) {
+					if (list == null) {
+						list = new HashSet<CompleteIteration>();
+					}
+					list.add(dynamicIteration);
+				}
+			}
+		}
+		if (list == null) {
+			for (CompleteType completeSuperType : completeType.getCompleteSuperTypes()) {
+				Set<CompleteIteration> superIterations = findIterationsOrNull(
+					completeSuperType, operationName, staticCompleteIteratorTypes,
+					staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
+				if (superIterations != null) {
+					if (list == null) {
+						list = superIterations;
+					} else {
+						list.addAll(superIterations);
+					}
+				}
+			}
+		}
+		return list;
+	}
+
 	private Set<CompleteOperation> findOperationsOrNull(CompleteType completeType,
 			String operationName, List<CompleteType> staticCompleteTypes) {
 		int staticParametersSize = staticCompleteTypes.size();
@@ -320,6 +433,37 @@ public class CompleteTypeImpl
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<CompleteIteration> getCompleteIterations(String name) {
+		EList<CompleteIteration> completeIterations = new BasicEList<CompleteIteration>();
+		for (Operation operation : getOwnedOperations()) {
+			if ((operation instanceof Iteration) && name.equals(operation.getName())) {
+				completeIterations.add(completeEnvironment
+					.getCompleteIteration((Iteration)operation));
+			}
+		}
+		Type thisModel = model;
+		if (thisModel.getTemplateBindings().size() > 0) {
+			thisModel = PivotUtil.getUnspecializedTemplateableElement(thisModel);
+		}
+		if (thisModel instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (Operation operation : ((org.eclipse.ocl.examples.pivot.Class)thisModel).getOwnedOperations()) {
+				if ((operation instanceof Iteration) && name.equals(operation.getName())) {
+					CompleteIteration completeIteration = completeEnvironment
+						.getCompleteIteration((Iteration)operation);
+					if (!completeIterations.contains(completeIteration)) {
+						completeIterations.add(completeIteration);
+					}
+				}
+			}
+		}
+		return completeIterations;
 	}
 
 	/**
@@ -676,8 +820,12 @@ public class CompleteTypeImpl
 				return isTemplate();
 			case PivotPackage.COMPLETE_TYPE___CONFORMS_TO__COMPLETETYPE:
 				return conformsTo((CompleteType)arguments.get(0));
+			case PivotPackage.COMPLETE_TYPE___GET_DYNAMIC_ITERATION__COMPLETEITERATION:
+				return getDynamicIteration((CompleteIteration)arguments.get(0));
 			case PivotPackage.COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION:
 				return getDynamicOperation((CompleteOperation)arguments.get(0));
+			case PivotPackage.COMPLETE_TYPE___GET_COMPLETE_ITERATIONS__STRING:
+				return getCompleteIterations((String)arguments.get(0));
 			case PivotPackage.COMPLETE_TYPE___GET_COMPLETE_OPERATIONS__STRING:
 				return getCompleteOperations((String)arguments.get(0));
 		}

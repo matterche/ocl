@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.1.2.10 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.1.2.11 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
+import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
@@ -167,6 +168,7 @@ public class PivotFactoryImpl
 			case PivotPackage.COLLECTION_TYPE: return (EObject)createCollectionType();
 			case PivotPackage.COMMENT: return (EObject)createComment();
 			case PivotPackage.COMPLETE_ENVIRONMENT: return (EObject)createCompleteEnvironment();
+			case PivotPackage.COMPLETE_ITERATION: return (EObject)createCompleteIteration();
 			case PivotPackage.COMPLETE_OPERATION: return (EObject)createCompleteOperation();
 			case PivotPackage.COMPLETE_PACKAGE: return (EObject)createCompletePackage();
 			case PivotPackage.COMPLETE_PROPERTY: return (EObject)createCompleteProperty();
@@ -591,6 +593,17 @@ public class PivotFactoryImpl
 	public CompleteEnvironment createCompleteEnvironment() {
 		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
 		return completeEnvironment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteIteration createCompleteIteration()
+	{
+		CompleteIterationImpl completeIteration = new CompleteIterationImpl();
+		return completeIteration;
 	}
 
 	/**

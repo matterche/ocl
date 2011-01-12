@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1.2.5 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.1.2.6 2011/01/12 10:29:50 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -41,6 +41,8 @@ import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -487,7 +489,7 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 	 *  Callback for an IterateExp visit.
 	 * @param callExp an iterate expression
      * @return the string representation
-	 *
+	 */
     @Override
     protected String handleIterateExp(IterateExp callExp,
             String sourceResult, List<String> variableResults,
@@ -495,7 +497,8 @@ public class ToStringVisitor extends AbstractVisitor2<String>
         
         StringBuffer result = new StringBuffer();
         
-        result.append(sourceResult).append("->iterate("); //$NON-NLS-1$
+        String name = callExp.getReferredIteration().getName();
+        result.append(sourceResult).append("->").append(name).append("("); //$NON-NLS-1$
         
 		for (Iterator<String> iter = variableResults.iterator(); iter.hasNext();) {
 			result.append(iter.next());
@@ -509,20 +512,20 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 		result.append(bodyResult).append(')');
 
 		return result.toString();
-	} */
+	}
 
 	/**
 	 * Callback for an IteratorExp visit.
 	 * @param callExp an iterator expression
      * @return the string representation
-	 *
+	 */
     @Override
     protected String handleIteratorExp(IteratorExp callExp,
             String sourceResult, List<String> variableResults, String bodyResult) {
         
         StringBuffer result = new StringBuffer();
 
-        String name = callExp.getName();
+        String name = callExp.getReferredIteration().getName();
         result.append(sourceResult).append("->").append(name).append('('); //$NON-NLS-1$
         
         for (Iterator<String> iter = variableResults.iterator(); iter.hasNext();) {
@@ -535,7 +538,7 @@ public class ToStringVisitor extends AbstractVisitor2<String>
         result.append(" | ").append(bodyResult).append(')');//$NON-NLS-1$
 
         return result.toString();
-	} */
+	}
 
 	/**
 	 * Callback for a CollectionLiteralExp visit.

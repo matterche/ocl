@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Feature.java,v 1.1.2.1 2010/12/06 17:20:44 ewillink Exp $
+ * $Id: Feature.java,v 1.1.2.2 2011/01/12 10:29:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -21,6 +21,12 @@ package org.eclipse.ocl.examples.pivot;
  * A representation of the model object '<em><b>Feature</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Feature#getFeaturingClass <em>Featuring Class</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getFeature()
  * @model abstract="true"
@@ -28,5 +34,20 @@ package org.eclipse.ocl.examples.pivot;
  */
 public interface Feature
 		extends NamedElement {
+
+	/**
+	 * Returns the value of the '<em><b>Featuring Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Featuring Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Featuring Class</em>' reference.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getFeature_FeaturingClass()
+	 * @model resolveProxies="false" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	org.eclipse.ocl.examples.pivot.Class getFeaturingClass();
 
 } // Feature

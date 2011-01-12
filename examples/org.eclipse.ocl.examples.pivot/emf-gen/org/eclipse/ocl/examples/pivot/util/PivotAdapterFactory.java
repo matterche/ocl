@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.1.2.8 2011/01/07 12:14:05 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.1.2.9 2011/01/12 10:29:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
+import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
@@ -255,6 +256,11 @@ public class PivotAdapterFactory
 			public Adapter caseCompleteEnvironment(CompleteEnvironment object)
 			{
 				return createCompleteEnvironmentAdapter();
+			}
+			@Override
+			public Adapter caseCompleteIteration(CompleteIteration object)
+			{
+				return createCompleteIterationAdapter();
 			}
 			@Override
 			public Adapter caseCompleteOperation(CompleteOperation object)
@@ -912,6 +918,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCompleteEnvironmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.CompleteIteration <em>Complete Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteIteration
+	 * @generated
+	 */
+	public Adapter createCompleteIterationAdapter()
+	{
 		return null;
 	}
 

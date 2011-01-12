@@ -518,6 +518,9 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="pivot.ecore#//Feature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Feature/featuringClass"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="pivot.ecore#//TypedMultiplicityElement"/>
@@ -669,6 +672,12 @@
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//CompleteEnvironment"/>
       <genOperations xsi:type="genmodel:GenOperation">
+        <ecoreOperation href="pivot.ecore#//CompleteEnvironment/getCompleteIteration"/>
+        <genParameters xsi:type="genmodel:GenParameter">
+          <ecoreParameter href="pivot.ecore#//CompleteEnvironment/getCompleteIteration/model"/>
+        </genParameters>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation">
         <ecoreOperation href="pivot.ecore#//CompleteEnvironment/getCompleteOperation"/>
         <genParameters xsi:type="genmodel:GenParameter">
           <ecoreParameter href="pivot.ecore#//CompleteEnvironment/getCompleteOperation/model"/>
@@ -692,6 +701,33 @@
           <ecoreParameter href="pivot.ecore#//CompleteEnvironment/getCompleteType/model"/>
         </genParameters>
       </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//CompleteIteration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//CompleteIteration/model"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//CompleteIteration/completeEnvironment"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//CompleteIteration/completeIterator"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//CompleteIteration/completeAccumulator"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//CompleteIteration/completeParameter"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//Iteration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Iteration/ownedIterator"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Iteration/ownedAccumulator"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//CompleteOperation"/>
@@ -744,9 +780,21 @@
         </genParameters>
       </genOperations>
       <genOperations xsi:type="genmodel:GenOperation">
+        <ecoreOperation href="pivot.ecore#//CompleteType/getDynamicIteration"/>
+        <genParameters xsi:type="genmodel:GenParameter">
+          <ecoreParameter href="pivot.ecore#//CompleteType/getDynamicIteration/staticOperation"/>
+        </genParameters>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation">
         <ecoreOperation href="pivot.ecore#//CompleteType/getDynamicOperation"/>
         <genParameters xsi:type="genmodel:GenParameter">
           <ecoreParameter href="pivot.ecore#//CompleteType/getDynamicOperation/staticOperation"/>
+        </genParameters>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation">
+        <ecoreOperation href="pivot.ecore#//CompleteType/getCompleteIterations"/>
+        <genParameters xsi:type="genmodel:GenParameter">
+          <ecoreParameter href="pivot.ecore#//CompleteType/getCompleteIterations/name"/>
         </genParameters>
       </genOperations>
       <genOperations xsi:type="genmodel:GenOperation">
@@ -886,15 +934,6 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//LoopExp/referredIteration"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="pivot.ecore#//Iteration"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Iteration/ownedIterator"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Iteration/ownedAccumulator"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
@@ -1039,6 +1078,9 @@
       <ecoreClass href="pivot.ecore#//VariableExp"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//VariableExp/referredVariable"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//VariableExp/implicit"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
