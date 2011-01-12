@@ -102,6 +102,21 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 [parameter.eContainer().getSymbolName()/].getOwnedIterators().add([parameter.getSymbolName()/]);
 [/template]
 
+[template public emitMultiplicityElement(multiplicityElement : MultiplicityElement)]
+[if (multiplicityElement.lower <> 1)]
+[multiplicityElement.getSymbolName()/].setLower(BigInteger.valueOf([multiplicityElement.lower/]));
+[/if]
+[if (multiplicityElement.upper <> 1)]
+[multiplicityElement.getSymbolName()/].setUpper(BigInteger.valueOf([multiplicityElement.upper/]));
+[/if]
+[if (multiplicityElement.isOrdered)]
+[multiplicityElement.getSymbolName()/].setIsOrdered(true);
+[/if]
+[if (not multiplicityElement.isUnique)]
+[multiplicityElement.getSymbolName()/].setIsUnique(false);
+[/if]
+[/template]
+
 [template public emitOperation(iteration : Iteration)]
 Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration();
 [if (iteration.ownedTemplateSignature->notEmpty())]
@@ -110,6 +125,7 @@ Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration(
 [/if]
 [iteration.getSymbolName()/].setName("[iteration.name/]");
 [iteration.getSymbolName()/].setType([iteration.type.getSymbolName()/]);  // [iteration.type.moniker/]
+[emitMultiplicityElement(iteration)/]
 [for (parameter : Parameter | iteration.ownedIterator)]
 [emitIterator(parameter)/]
 [/for]
@@ -136,6 +152,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [/if]
 [operation.getSymbolName()/].setName("[operation.name/]");
 [operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);  // [operation.type.moniker/]
+[emitMultiplicityElement(operation)/]
 [for (parameter : Parameter | operation.ownedParameter)]
 [emitParameter(parameter)/]
 [/for]
@@ -172,6 +189,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
 [parameter.getSymbolName()/].setName("[parameter.name/]");
 [parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);  // [parameter.type.moniker/]
+[emitMultiplicityElement(parameter)/]
 [parameter.eContainer().getSymbolName()/].getOwnedParameters().add([parameter.getSymbolName()/]);
 [/template]
 
@@ -185,6 +203,34 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
 [property.getSymbolName()/].setName("[property.name/]");
 [property.getSymbolName()/].setType([property.type.getSymbolName()/]);  // [property.type.moniker/]
+[emitMultiplicityElement(property)/]
+[if (property.isComposite)]
+[property.getSymbolName()/].setIsComposite(true);
+[/if]
+[if (property.isDerived)]
+[property.getSymbolName()/].setIsDerived(true);
+[/if]
+[if (property.isID)]
+[property.getSymbolName()/].setIsID(true);
+[/if]
+[if (property.isReadOnly)]
+[property.getSymbolName()/].setIsReadOnly(true);
+[/if]
+[if (property.isResolveProxies)]
+[property.getSymbolName()/].setIsResolveProxies(true);
+[/if]
+[if (property.isStatic)]
+[property.getSymbolName()/].setIsStatic(true);
+[/if]
+[if (property.isTransient)]
+[property.getSymbolName()/].setIsTransient(true);
+[/if]
+[if (property.isUnsettable)]
+[property.getSymbolName()/].setIsUnsettable(true);
+[/if]
+[if (property.isVolatile)]
+[property.getSymbolName()/].setIsVolatile(true);
+[/if]
 [if (property.implementationClass->notEmpty())]
 [property.getSymbolName()/].setImplementation([property.implementationClass/].INSTANCE);
 [/if]
