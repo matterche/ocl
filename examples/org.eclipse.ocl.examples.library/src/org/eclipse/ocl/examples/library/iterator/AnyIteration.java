@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyIteration.java,v 1.1.2.4 2010/12/23 19:24:49 ewillink Exp $
+ * $Id: AnyIteration.java,v 1.1.2.5 2011/01/12 10:28:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -21,9 +21,9 @@ import java.util.List;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateAny;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -37,9 +37,9 @@ public class AnyIteration extends AbstractIteration
 {
 	public static final AnyIteration INSTANCE = new AnyIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
-		List<Variable> iterators = getIterators(iteratorExp);
-		OclExpression body = getBody(iteratorExp);		
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
+		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
+		OclExpression body = iteratorExp.getBody();		
 		CollectionValue coll = (CollectionValue) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateAny.getInstance(evaluationVisitor);

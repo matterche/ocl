@@ -12,10 +12,13 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.7 2011/01/08 18:22:48 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.8 2011/01/12 10:28:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,87 +26,132 @@ import java.util.Map;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateSortedBy;
+import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.Value.BinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
- * SelectIteration realises the Collection::select() library iteration.
+ * SelectIteration realises the Collection::sortedBy() library iteration.
  * 
  * @since 3.1
  */
 public class SortedByIteration extends AbstractIteration
 {
+	private static class SortedByComparator implements Comparator<Object>
+	{	// FIXME faster version for when binaryImplementation has a compareTo sibling
+		private final ValueFactory valueFactory;
+		private final BinaryOperation binaryImplementation;
+		private final Map<Object, Value> map;
+
+		private SortedByComparator(ValueFactory valueFactory,
+				BinaryOperation binaryImplementation, Map<Object, Value> map) {
+			this.valueFactory = valueFactory;
+			this.binaryImplementation = binaryImplementation;
+			this.map = map;
+		}
+
+		public int compare(Object o1, Object o2) {
+			if (o1 == o2) {
+				return 0;
+			}
+			Value v1 = map.get(o1);
+			Value v2 = map.get(o2);
+			if (v1 == v2) {
+				return 0;
+			}
+			Value lessThan = binaryImplementation.evaluate(valueFactory, v1, v2);
+			if (lessThan.isTrue()) {
+				return -1;
+			}
+			if (!lessThan.isFalse()) {
+				throw new IllegalArgumentException();
+			}
+			Value greaterThan = binaryImplementation.evaluate(valueFactory, v2, v1);
+			if (greaterThan.isTrue()) {
+				return 1;
+			}
+			if (!greaterThan.isFalse()) {
+				throw new IllegalArgumentException();
+			}
+			return 0;
+		}
+	}
+
 	public static final SortedByIteration INSTANCE = new SortedByIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-//		Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment = evaluationVisitor.getEnvironment();
-//		MergedLibrary library = environment.getMergedLibrary();
-//		OCLType sourceType = library.getLibraryTypeOfType(iteratorExp.getSource().getType());
-//		boolean isOrdered = sourceType.isOrdered();
-//		boolean isUnique = sourceType.isUnique();
-//		Object initResultVal = CollectionUtil.createNewCollection(isOrdered, isUnique);
-		List<Variable> iterators = getIterators(iteratorExp);
-		OclExpression body = getBody(iteratorExp);		
+	public Value evaluate(final EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
+		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();		
+		PivotManager pivotManager = evaluationEnvironment.getPivotManager();
+		CompleteEnvironmentManager completeManager = pivotManager.getCompleteEnvironmentManager();
+		OclExpression body = iteratorExp.getBody();		
+		Type staticValueType = body.getType();
+//		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
+		Operation staticLessThanOperation = pivotManager.resolveOperation(staticValueType, "<", staticValueType);
+		if (staticLessThanOperation == null) {
+			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "No '<' operation defined", null);
+		}
+		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticLessThanOperation);
+//		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
+//		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
+//		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
+		CallableImplementation implementation = staticCompleteOperation.getImplementation();
+		if (implementation == null) {
+			String implementationClassName = staticCompleteOperation.getImplementationClass();
+			try {
+				implementation = pivotManager.loadImplementationClass(implementationClassName);
+			} catch (Exception e) {
+				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + implementationClassName + "'", e);
+			}
+			if (implementation == null) {
+				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + implementationClassName + "'", null);
+			}
+		}
+		if (!(implementation instanceof Value.BinaryOperation)) {
+			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' is not a binary operation", null);
+		}
+		Value.BinaryOperation binaryImplementation = (BinaryOperation) implementation;
+		
+		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
 		CollectionValue coll = (CollectionValue) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateSortedBy.getInstance(evaluationVisitor);
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
-		final Map<Object, Value> map = new HashMap<Object, Value>();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, new IterationTemplateSortedBy.SortingValue(evaluationVisitor.getValueFactory(), map));		
+		Map<Object, Value> map = new HashMap<Object, Value>();
+		IterationTemplateSortedBy.SortingValue workingValue = new IterationTemplateSortedBy.SortingValue(valueFactory, map);
+		evaluationEnvironment.add(resultName, workingValue);		
 		try {
-			// evaluate
-			// TODO: find an efficient way to do this.
-			Value evaluationResult = is.evaluate(coll, iterators, body, resultName);
-			
-			if (evaluationResult.isInvalid()) {
-				// handle the OclInvalid result
-				return evaluationResult;
-			}
-			
+			// evaluate to populate the element to body expression value map
 			is.evaluate(coll, iterators, body, resultName);
 		} finally {
 			// remove result name from environment
-			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
+			evaluationEnvironment.remove(resultName);
 		}
-		// sort the source collection based on the natural ordering of the
-		// body expression evaluations
-		SequenceValue result = valueFactory.createSequenceValue(coll);
-
-//		Collections.sort(result, new Comparator<Object>() {
-//
-//			public int compare(Object o1, Object o2) {
-//				Comparable<Object> b1 = map.get(o1);
-//				Comparable<Object> b2 = map.get(o2);
-//				return (b1.compareTo(b2));
-//			}
-//		});
-
-		// create result
-		// type is Sequence if source is a sequence or a Bag,
-		// SortedSet if source is a SortedSet or a Set
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		// put values in a sortable collection
+		List<Value> result = new ArrayList<Value>(coll.asCollection());
+		// sort based on the body expression values
+		try {
+			Collections.sort(result, new SortedByComparator(valueFactory, binaryImplementation, map));
+		}
+		catch (Exception e) {
+			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' evaluation failed", null);
+		}
+		// create result from the sorted collection
 		Type sourceType = iteratorExp.getSource().getType();
-		boolean isUnique = stdlib.isUnique(sourceType);
-		
-		if (isUnique) {
-			return valueFactory.createOrderedSetValue(result);
-		}
-		else {
-			return valueFactory.createSequenceValue(result);
-		}
-				
-//		CollectionValue initResultVal = CollectionUtil2.createNewCollection(true, isUnique);
-//		initResultVal.addAll(result);
-//		return result.sort(comparator);
+		boolean isUnique = pivotManager.isUnique(sourceType);
+		return valueFactory.createCollectionValue(true, isUnique, result);
 	}
 }

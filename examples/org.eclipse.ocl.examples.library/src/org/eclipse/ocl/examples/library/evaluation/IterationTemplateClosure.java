@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: IterationTemplateClosure.java,v 1.1.2.6 2011/01/12 10:28:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -21,7 +21,7 @@ package org.eclipse.ocl.examples.library.evaluation;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -51,7 +51,7 @@ public class IterationTemplateClosure extends IterationTemplate
 	 * Recursively evaluates the iterator body expression.
 	 */
 	@Override
-    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+    protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();		
 		CollectionValue.Accumulator resultVal = (CollectionValue.Accumulator) env.getValueOf(resultName);
 		if (depth > 0) {
@@ -93,11 +93,11 @@ public class IterationTemplateClosure extends IterationTemplate
 	 * 
 	 * @return the current values of the <code>iterators</code>
 	 */
-	private Value[] pauseIterators(List<Variable> iterators) {
+	private Value[] pauseIterators(List<? extends VariableDeclaration> iterators) {
 		Value[] result = new Value[iterators.size()];
 		EvaluationEnvironment env = getEvalEnvironment();		
 		for (int i = 0, n = result.length; i < n; i++) {
-			Variable iterDecl = iterators.get(i);			
+			VariableDeclaration iterDecl = iterators.get(i);			
 			result[i] = env.remove(iterDecl.getName());
 		}		
 		return result;
@@ -110,10 +110,10 @@ public class IterationTemplateClosure extends IterationTemplate
 	 * @param iterators the iterators to resume
 	 * @param values the iterator values to restore
 	 */
-	private void resumeIterators(List<Variable> iterators, Value[] values) {
+	private void resumeIterators(List<? extends VariableDeclaration> iterators, Value[] values) {
 		EvaluationEnvironment env = getEvalEnvironment();		
 		for (int i = 0, n = values.length; i < n; i++) {
-			Variable iterDecl = iterators.get(i);			
+			VariableDeclaration iterDecl = iterators.get(i);			
 			env.add(iterDecl.getName(), values[i]);
 		}
 	}

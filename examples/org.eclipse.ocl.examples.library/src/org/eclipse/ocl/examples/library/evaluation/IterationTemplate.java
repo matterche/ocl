@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.1.2.6 2011/01/08 18:22:47 ewillink Exp $
+ * $Id: IterationTemplate.java,v 1.1.2.7 2011/01/12 10:28:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -24,7 +24,7 @@ import java.util.List;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -67,7 +67,8 @@ public class IterationTemplate {
 		return done;
 	}
 	
-	public Value evaluate(CollectionValue coll, List<Variable> iterators,
+	// FIXME Make resultName a non-environment working variable
+	public Value evaluate(CollectionValue coll, List<? extends VariableDeclaration> iterators,
 							OclExpression body, String resultName) {
 
 		// if the collection is empty, then nothing to do
@@ -125,14 +126,15 @@ public class IterationTemplate {
 	}
 		
 	protected void initializeIterators(
-			List<Variable> iterators,
+			List<? extends VariableDeclaration> iterators,
 			Iterator<?>[] javaIters,
 			CollectionValue c) {
 		
 		for (int i = 0, n = javaIters.length; i < n; i++) {
 			javaIters[i] = c.iterator();
-			Variable iterDecl = iterators.get(i);
-			String iterName = iterDecl.accept(evaluationVisitor).toString(); // FIXME
+			VariableDeclaration iterDecl = iterators.get(i);
+//			String iterName = iterDecl.accept(evaluationVisitor).toString(); // FIXME
+			String iterName = iterDecl.getName(); // FIXME
 			Value value = (Value) javaIters[i].next();
 			env.replace(iterName, value);
 		}
@@ -148,7 +150,7 @@ public class IterationTemplate {
 	}
 	
 	protected void advanceIterators(
-			List<Variable> iterators,
+			List<? extends VariableDeclaration> iterators,
 			Iterator<?>[] javaIters,
 			CollectionValue c,
 			int curr) {
@@ -156,7 +158,7 @@ public class IterationTemplate {
 		// assumes all the iterators have been added to the environment
 		// already by initializeIterators().
 		for (int i = 0, n = curr; i <= n; i++) {
-			Variable iterDecl = iterators.get(i);
+			VariableDeclaration iterDecl = iterators.get(i);
 			String iterName = iterDecl.getName();
 			if (i != curr)
 				javaIters[i] = c.iterator();
@@ -165,10 +167,10 @@ public class IterationTemplate {
 		}
 	}
 
-	protected void removeIterators(List<Variable> iterators) {
+	protected void removeIterators(List<? extends VariableDeclaration> iterators) {
 		// remove the iterators from the environment
 		for (int i = 0, n = iterators.size(); i < n; i++) {
-			 Variable iterDecl = iterators.get(i);
+			VariableDeclaration iterDecl = iterators.get(i);
 			 String iterName = iterDecl.getName();
 			 env.remove(iterName);
 		 }
@@ -181,7 +183,7 @@ public class IterationTemplate {
 	}
 	
 	// override this method for different iterator behaviors
-	protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+	protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		return bodyVal;
 	}
 	

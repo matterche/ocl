@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanNotOperation.java,v 1.1.2.5 2011/01/08 18:22:48 ewillink Exp $
+ * $Id: BooleanNotOperation.java,v 1.1.2.6 2011/01/12 10:28:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -37,6 +37,6 @@ public class BooleanNotOperation extends AbstractUnaryOperation
 		else if (argument == valueFactory.getFalse()) {
 			return valueFactory.getTrue();
 		}
-		return null;
+		return valueFactory.createInvalidValue("non-Boolean 'not' term");
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateSortedBy.java,v 1.1.2.6 2011/01/08 18:22:47 ewillink Exp $
+ * $Id: IterationTemplateSortedBy.java,v 1.1.2.7 2011/01/12 10:28:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -22,9 +22,9 @@ import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
@@ -50,7 +50,13 @@ public class IterationTemplateSortedBy extends IterationTemplate
 		public void put(Value iterVal, Value comparable) {
 			content.put(iterVal, comparable);
 		}
+
+		@Override
+		public String toString() {
+			return content.toString();
+		}
 	}
+	
 	private IterationTemplateSortedBy(EvaluationVisitor evaluationVisitor) {
 		super(evaluationVisitor);
 	}
@@ -60,7 +66,7 @@ public class IterationTemplateSortedBy extends IterationTemplate
 	}
 	
 	@Override
-    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+    protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		SortingValue resultVal = (SortingValue) env.getValueOf(resultName);
 		

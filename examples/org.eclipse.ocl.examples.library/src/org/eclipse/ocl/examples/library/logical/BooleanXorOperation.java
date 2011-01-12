@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanXorOperation.java,v 1.1.2.5 2011/01/08 18:22:48 ewillink Exp $
+ * $Id: BooleanXorOperation.java,v 1.1.2.6 2011/01/12 10:28:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -47,6 +47,6 @@ public class BooleanXorOperation extends AbstractBinaryOperation
 				return valueFactory.getFalse();
 			}
 		}
-		return null;
+		return valueFactory.createInvalidValue("non-Boolean 'xor' term");
 	}
 }

@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateForAll.java,v 1.1.2.5 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: IterationTemplateForAll.java,v 1.1.2.6 2011/01/12 10:28:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -38,7 +38,7 @@ public final class IterationTemplateForAll extends IterationTemplate {
 	}
 	
 	@Override
-    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+    protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		Value currVal = env.getValueOf(resultName);		
 		boolean resultVal = currVal.isTrue() && bodyVal.isTrue();

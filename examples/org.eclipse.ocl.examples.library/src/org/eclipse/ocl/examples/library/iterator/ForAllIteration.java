@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ForAllIteration.java,v 1.1.2.7 2011/01/08 18:22:48 ewillink Exp $
+ * $Id: ForAllIteration.java,v 1.1.2.8 2011/01/12 10:28:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -21,9 +21,9 @@ import java.util.List;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
 import org.eclipse.ocl.examples.library.evaluation.IterationTemplateForAll;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -38,10 +38,10 @@ public class ForAllIteration extends AbstractIteration
 {
 	public static final ForAllIteration INSTANCE = new ForAllIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp iteratorExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
 		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
-		List<Variable> iterators = getIterators(iteratorExp);
-		OclExpression body = getBody(iteratorExp);		
+		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
+		OclExpression body = iteratorExp.getBody();		
 		CollectionValue coll = (CollectionValue) sourceVal;
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateForAll.getInstance(evaluationVisitor);

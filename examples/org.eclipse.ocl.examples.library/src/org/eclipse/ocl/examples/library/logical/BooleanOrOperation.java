@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanOrOperation.java,v 1.1.2.6 2011/01/08 18:22:48 ewillink Exp $
+ * $Id: BooleanOrOperation.java,v 1.1.2.7 2011/01/12 10:28:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
@@ -52,6 +52,6 @@ public class BooleanOrOperation extends AbstractBinaryOperation
 		if ((left == valueFactory.getFalse()) && (right == valueFactory.getFalse())) {
 			return valueFactory.getFalse();
 		}
-		return null;
+		return valueFactory.createInvalidValue("non-Boolean 'or' term");
 	}
 }

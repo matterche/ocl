@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollect.java,v 1.1.2.3 2010/12/23 19:24:48 ewillink Exp $
+ * $Id: IterationTemplateCollect.java,v 1.1.2.4 2011/01/12 10:28:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -38,7 +38,7 @@ public class IterationTemplateCollect extends IterationTemplate {
 	}
 	
 	@Override
-    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+    protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();		
 		CollectionValue.Accumulator currVal = (CollectionValue.Accumulator) env.getValueOf(resultName);		
 		if (bodyVal instanceof CollectionValue) {

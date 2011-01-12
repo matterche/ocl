@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateOne.java,v 1.1.2.6 2011/01/08 18:22:47 ewillink Exp $
+ * $Id: IterationTemplateOne.java,v 1.1.2.7 2011/01/12 10:28:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -39,13 +39,16 @@ public class IterationTemplateOne extends IterationTemplate {
 	}
 
 	@Override
-    protected Value evaluateResult(List<Variable> iterators, String resultName, Value bodyVal) {
+    protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		// should be exactly one iterator
 		//		String iterName = ((VariableDeclaration)iterators.get(0)).getVarName();
 		//		Object currObj = env.getValueOf(iterName);
 		Value resultVal = env.getValueOf(resultName);
 		ValueFactory valueFactory = getValueFactory();
+		if (bodyVal.isUndefined()) {
+			return bodyVal.toInvalidValue();
+		}
 		if (bodyVal.isTrue()) {
 			if (!foundOne) {
 				// if this is the first element satisfying the body condition
