@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.3 2010/12/31 19:11:52 ewillink Exp $
+ * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.4 2011/01/12 10:30:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -68,6 +69,11 @@ public class EssentialOCLScopeVisitor
 	@Override
 	public ScopeCSAdapter visitCollectionLiteralPartCS(CollectionLiteralPartCS eObject) {
 		return new EmptyCSScopeAdapter(context, eObject);
+	}
+
+	@Override
+	public ScopeCSAdapter visitCollectionTypeCS(CollectionTypeCS object) {
+		return new EmptyCSScopeAdapter(context, object);
 	}
 
 	@Override

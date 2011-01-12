@@ -12,11 +12,9 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.1.2.3 2010/12/28 12:19:24 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.1.2.4 2011/01/12 10:30:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
-
-import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -47,12 +45,8 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 			if (resultVariable != null) {
 				environmentView.addNamedElement(resultVariable);
 			}
-			environmentView.addElementsOfScope(pivotManager, pivotManager.getOclAnyType().getPackage(), scopeView);
-			for (Map.Entry<String, org.eclipse.ocl.examples.pivot.Package> entry :pivotManager.getPackages()) {
-				environmentView.addElement(entry.getKey(), entry.getValue());
-			}
-		
 		}
+		environmentView.addElementsOfScope(pivotManager, pivotManager.getOclAnyType().getPackage(), scopeView);
 		return super.computeLookup(environmentView, scopeView);
 	}
 }

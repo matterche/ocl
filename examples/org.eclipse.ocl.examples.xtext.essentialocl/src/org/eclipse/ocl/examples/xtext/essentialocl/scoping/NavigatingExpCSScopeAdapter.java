@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.5 2010/12/19 15:54:35 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.6 2011/01/12 10:30:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -52,7 +52,9 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			}
 			Element pivot = csArgument.getPivot();
 			if (pivot instanceof Variable) {
-				environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Variable) pivot);
+				if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Variable) pivot) > 0) {
+					return null;
+				}
 			}
 			if (csArgument == fromArgument) {
 				break;

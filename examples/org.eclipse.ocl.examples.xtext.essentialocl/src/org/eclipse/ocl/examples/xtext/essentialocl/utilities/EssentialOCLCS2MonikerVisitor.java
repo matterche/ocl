@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.5 2011/01/08 11:38:57 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.6 2011/01/12 10:30:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -41,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLit
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
@@ -99,15 +97,20 @@ public class EssentialOCLCS2MonikerVisitor
 	}
 
 	protected void appendExpPrefix(ElementCS object) {
-		ElementCS child = getChildCS(object);
-		MonikeredElementCS parent = getParentCS(child);
-		EReference feature = getParentChildFeature(object);
-		assert feature.getEContainingClass().isInstance(parent);
-		assert feature.getEReferenceType().isInstance(child);
-		context.append(getPivotedCS(parent).getMoniker());
+		if (context.toString().length() >= MONIKER_OVERFLOW_LIMIT) {
+			context.append(OVERFLOW_MARKER);
+			return;
+		}
+		MonikeredElementCS pivotedChild = EssentialOCLUtils.getPivotedCS(object);
+		ElementCS pivotingChild = EssentialOCLUtils.getPivotingChildCS(pivotedChild);
+		MonikeredElementCS pivotingParent = EssentialOCLUtils.getPivotingParentCS(pivotingChild);
+		EReference pivotingFeature = EssentialOCLUtils.getPivotingFeature(pivotingChild, pivotingParent);
+		assert pivotingFeature.getEContainingClass().isInstance(pivotingParent);
+		assert pivotingFeature.getEReferenceType().isInstance(pivotingChild);
+		context.append(EssentialOCLUtils.getPivotedCS(pivotingParent).getMoniker());
 		context.append(MONIKER_SCOPE_SEPARATOR);
-		if (feature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
-			int iMax = ((LetExpCS) parent).getVariable().size();
+		if (pivotingFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
+			int iMax = ((LetExpCS) pivotingParent).getVariable().size();
 			for (int i = 1; i < iMax; i++) {
 				context.append(EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN.getName());
 				context.append(MONIKER_OPERATOR_SEPARATOR);
@@ -116,10 +119,10 @@ public class EssentialOCLCS2MonikerVisitor
 			}
 		}
 		int index = 0;
-		if (feature.isMany()) {
-			index = ((List<?>)parent.eGet(feature)).indexOf(child);
-			if (feature == EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT) {
-				NavigatingExpCS csNavigatingExp = (NavigatingExpCS)parent;
+		if (pivotingFeature.isMany()) {
+			index = ((List<?>)pivotingParent.eGet(pivotingFeature)).indexOf(pivotingChild);
+			if (pivotingFeature == EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT) {
+				NavigatingExpCS csNavigatingExp = (NavigatingExpCS)pivotingParent;
 				int argsOrBodies = 0;
 				int accs = 0;
 				int bodies = 0;
@@ -140,24 +143,24 @@ public class EssentialOCLCS2MonikerVisitor
 				if (index < 0) {
 					index += accs;
 					if (index >= 0) {
-						feature = PivotPackage.Literals.ITERATE_EXP__RESULT;
+						pivotingFeature = PivotPackage.Literals.ITERATE_EXP__RESULT;
 					}
 					else {
 						index += argsOrBodies;
-						feature = PivotPackage.Literals.LOOP_EXP__ITERATOR;
+						pivotingFeature = PivotPackage.Literals.LOOP_EXP__ITERATOR;
 					}
 				}
 			}
 		}
-		else if (feature == EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS) {
-			if (((CollectionLiteralPartCS)parent).getLastExpressionCS() != null) {
-				feature = PivotPackage.Literals.COLLECTION_RANGE__FIRST;
+		else if (pivotingFeature == EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS) {
+			if (((CollectionLiteralPartCS)pivotingParent).getLastExpressionCS() != null) {
+				pivotingFeature = PivotPackage.Literals.COLLECTION_RANGE__FIRST;
 			}
 			else {
-				feature = PivotPackage.Literals.COLLECTION_ITEM__ITEM;
+				pivotingFeature = PivotPackage.Literals.COLLECTION_ITEM__ITEM;
 			}
 		}
-		context.appendRoleCS(feature);
+		context.appendRoleCS(pivotingFeature);
 		if (index != 0) {
 			assert index > 0;
 			context.append(index);
@@ -184,161 +187,6 @@ public class EssentialOCLCS2MonikerVisitor
 				}
 			}
 		} */
-	}
-
-	/**
-	 * Return the CS element from the CS elements associated with the
-	 * same pivot element as csElement, whose child-parent relationship
-	 * corresponds to the child-parent relationship of the pivot element.
-	 * 
-	 * @param csElement for which the child counterpart is required
-	 * @return the child counterpart
-	 */
-	protected ElementCS getChildCS(ElementCS csElement) {
-		if (csElement instanceof ExpCS) {
-			OperatorCS operator = ((ExpCS) csElement).getParent();
-			if (operator != null) {
-				return csElement;
-			}
-		}
-		EObject csParent = csElement.eContainer();
-		if (csParent instanceof InfixExpCS) {
-			return getChildCS((InfixExpCS) csParent);
-		}
-		else if (csParent instanceof NavigatingArgCS) {
-			return getChildCS((NavigatingArgCS) csParent);
-		}
-		else if (csParent instanceof NavigatingExpCS) {
-			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
-			if (csElement == csNavigatingExp.getNamedExp()) {
-				return getChildCS(csNavigatingExp.getParent());
-			}
-			else {
-				return csElement;
-			}
-		}
-		else if (csParent instanceof NestedExpCS) {
-			return getChildCS((NestedExpCS) csParent);
-		}
-		else if (csParent instanceof PrefixExpCS) {
-			return getChildCS((PrefixExpCS) csParent);
-		}
-		else {
-			return csElement;
-		}
-	}
-
-	// FIXME Simplify since csElement is the immediate child
-	protected MonikeredElementCS getParentCS(EObject csElement) {
-		if (csElement instanceof ExpCS) {
-			OperatorCS operator = ((ExpCS) csElement).getParent();
-			if (operator != null) {
-				return operator;
-			}
-		}
-		EObject csParent = csElement.eContainer();
-		if (csParent instanceof InfixExpCS) {
-			return getParentCS(csParent);
-		}
-		else if (csParent instanceof NavigatingArgCS) {
-			return getParentCS(csParent);
-		}
-		else if (csParent instanceof NavigatingExpCS) {
-			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
-			if (csElement == csNavigatingExp.getNamedExp()) {
-				return getParentCS(csNavigatingExp.getParent());
-			}
-			else {
-				return (MonikeredElementCS) csParent;
-//				return getParent(csNavigatingExp);
-			}
-		}
-		else if (csParent instanceof NestedExpCS) {
-			return getParentCS(csParent);
-		}
-		else if (csParent instanceof PrefixExpCS) {
-			return getParentCS(csParent);
-		}
-		else if (csParent instanceof MonikeredElementCS) {
-			return (MonikeredElementCS) csParent;
-		}
-		else {
-			return null;
-		}
-	}
-
-	// FIXME Simplify since csElement is the immediate child
-	protected EReference getParentChildFeature(ElementCS csElement) {
-		if (csElement instanceof ExpCS) {
-			OperatorCS operator = ((ExpCS) csElement).getParent();
-			if (operator != null) {
-				if (operator.getSource() == csElement) {
-					return EssentialOCLCSTPackage.Literals.OPERATOR_CS__SOURCE;
-				}
-				else {
-					return EssentialOCLCSTPackage.Literals.BINARY_OPERATOR_CS__ARGUMENT;
-				}
-			}
-		}
-		EObject csParent = csElement.eContainer();
-		if (csParent instanceof InfixExpCS) {
-			return getParentChildFeature((InfixExpCS) csParent);
-		}
-		else if (csParent instanceof NavigatingArgCS) {
-//			return EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGS; //getParentChildFeature((NavigatingArgCS) csParent);
-			return getParentChildFeature((NavigatingArgCS) csParent);
-		}
-		else if (csParent instanceof NavigatingExpCS) {
-			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
-			if (csElement == csNavigatingExp.getNamedExp()) {
-				return getParentChildFeature(csNavigatingExp.getParent());
-			}
-			else {
-				return EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT;
-			}
-		}
-		else if (csParent instanceof NestedExpCS) {
-			return getParentChildFeature((NestedExpCS) csParent);
-		}
-		else if (csParent instanceof PrefixExpCS) {
-			return getParentChildFeature((PrefixExpCS) csParent);
-		}
-		else {
-			return (EReference) csElement.eContainingFeature();
-		}
-	}
-
-	/**
-	 * Return the element associated with csElement for which there is a
-	 * pivot element with an identical moniker.
-	 * @param csElement
-	 * @return the csElement with a matching pivot element
-	 */
-	protected MonikeredElementCS getPivotedCS(EObject csElement) {
-		if (csElement instanceof InfixExpCS) {
-			return getPivotedCS(((InfixExpCS)csElement).getOwnedOperator().get(0));
-		}
-		else if (csElement instanceof NavigatingArgCS) {
-			return getPivotedCS(((NavigatingArgCS)csElement).getName());
-		}
-		else if (csElement instanceof NavigatingExpCS) {
-			return getPivotedCS(((NavigatingExpCS)csElement).getNamedExp());
-		}
-		else if (csElement instanceof NavigationOperatorCS) {
-			return getPivotedCS(((NavigationOperatorCS)csElement).getArgument());
-		}
-		else if (csElement instanceof NestedExpCS) {
-			return getPivotedCS(((NestedExpCS)csElement).getSource());
-		}
-		else if (csElement instanceof PrefixExpCS) {
-			return getPivotedCS(((PrefixExpCS)csElement).getOwnedOperator().get(0));
-		}
-		else if (csElement instanceof MonikeredElementCS) {
-			return (MonikeredElementCS) csElement;
-		}
-		else {
-			return null;
-		}
 	}
 
 	@Override
@@ -387,7 +235,7 @@ public class EssentialOCLCS2MonikerVisitor
 
 	@Override
 	public Object visitContextCS(ContextCS object) {
-		context.appendNameCS(object);
+		context.append(MONIKER_ROOT_EXP);
 		return true;
 	}
 

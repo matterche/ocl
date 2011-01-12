@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.7 2011/01/08 11:38:57 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.8 2011/01/12 10:30:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.Collections;
 
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -235,6 +236,10 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS csTypeNameExp) {
+		for (Namespace namespace : csTypeNameExp.getNamespace()) {
+			@SuppressWarnings("unused")
+			Namespace dummy = namespace;	// Resolves the proxies from the outside.
+		}
 		context.installPivotElement(csTypeNameExp, csTypeNameExp.getElement());
 		return null;
 	}
