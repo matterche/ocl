@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.3 2010/12/26 16:56:18 ewillink Exp $
+ * $Id: GenericEvaluateNumericOperationsTest.java,v 1.1.2.4 2011/01/13 19:17:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -123,13 +123,13 @@ public abstract class GenericEvaluateNumericOperationsTest
 		assertQueryTrue(null, "1.0 = 1");
 		assertQueryTrue(null, "1.0 = 1.0");
 		// invalid
-		assertQueryFalse(null, "let i : Integer = invalid in i = 0");
-		assertQueryFalse(null, "let i : Integer = invalid in -1 = i");
-		assertQueryFalse(null, "let r : Real = invalid in r = 0.0");
-		assertQueryFalse(null, "let r : Real = invalid in -1.0 = r");
+		assertQueryInvalid(null, "let i : Integer = invalid in i = 0");
+		assertQueryInvalid(null, "let i : Integer = invalid in -1 = i");
+		assertQueryInvalid(null, "let r : Real = invalid in r = 0.0");
+		assertQueryInvalid(null, "let r : Real = invalid in -1.0 = r");
 
-		assertQueryTrue(null, "let i1 : Integer = invalid, i2 : Integer = invalid in i1 = i2");
-		assertQueryTrue(null, "let r1 : Real = invalid, r2 : Real = invalid in r1 = r2");
+		assertQueryInvalid(null, "let i1 : Integer = invalid, i2 : Integer = invalid in i1 = i2");
+		assertQueryInvalid(null, "let r1 : Real = invalid, r2 : Real = invalid in r1 = r2");
 		// null
 		assertQueryFalse(null, "let i : Integer = null in i = 0");
 		assertQueryFalse(null, "let i : Integer = null in -1 = i");
@@ -501,13 +501,13 @@ public abstract class GenericEvaluateNumericOperationsTest
 		assertQueryFalse(null, "1.0 <> 1");
 		assertQueryFalse(null, "1.0 <> 1.0");
 		// invalid
-		assertQueryTrue(null, "let i : Integer = invalid in i <> 0");
-		assertQueryTrue(null, "let i : Integer = invalid in -1 <> i");
-		assertQueryTrue(null, "let r : Real = invalid in r <> 0.0");
-		assertQueryTrue(null, "let r : Real = invalid in -1.0 <> r");
+		assertQueryInvalid(null, "let i : Integer = invalid in i <> 0");
+		assertQueryInvalid(null, "let i : Integer = invalid in -1 <> i");
+		assertQueryInvalid(null, "let r : Real = invalid in r <> 0.0");
+		assertQueryInvalid(null, "let r : Real = invalid in -1.0 <> r");
 
-		assertQueryFalse(null, "let i1 : Integer = invalid, i2 : Integer = invalid in i1 <> i2");
-		assertQueryFalse(null, "let r1 : Real = invalid, r2 : Real = invalid in r1 <> r2");
+		assertQueryInvalid(null, "let i1 : Integer = invalid, i2 : Integer = invalid in i1 <> i2");
+		assertQueryInvalid(null, "let r1 : Real = invalid, r2 : Real = invalid in r1 <> r2");
 		// null
 		assertQueryTrue(null, "let i : Integer = null in i <> 0");
 		assertQueryTrue(null, "let i : Integer = null in -1 <> i");
@@ -681,9 +681,9 @@ public abstract class GenericEvaluateNumericOperationsTest
 
 		assertQueryTrue(null, "* = *");
 		// invalid
-		assertQueryFalse(null, "let u : UnlimitedNatural = invalid in u = *");
+		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u = *");
 
-		assertQueryTrue(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 = u2");
+		assertQueryInvalid(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 = u2");
 		// null
 		assertQueryFalse(null, "let u : UnlimitedNatural = null in u = *");
 
@@ -889,9 +889,9 @@ public abstract class GenericEvaluateNumericOperationsTest
 
 		assertQueryFalse(null, "* <> *");
 		// invalid
-		assertQueryTrue(null, "let u : UnlimitedNatural = invalid in u <> *");
+		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u <> *");
 
-		assertQueryFalse(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 <> u2");
+		assertQueryInvalid(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 <> u2");
 		// null
 		assertQueryTrue(null, "let u : UnlimitedNatural = null in u <> *");
 

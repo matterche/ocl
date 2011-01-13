@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.6 2010/12/26 16:56:18 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.1.2.7 2011/01/13 19:17:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -57,9 +57,9 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryTrue(null, "'test' = 'test'");
 		assertQueryFalse(null, "'tESt' = 'TesT'");
 		// invalid
-		assertQueryFalse(null, "let s : String = invalid in s = 'se'");
-		assertQueryFalse(null, "let s : String = invalid in 'test' = s");
-		assertQueryTrue(null, "let s1 : String = invalid, s2 : String = invalid in s1 = s2");
+		assertQueryInvalid(null, "let s : String = invalid in s = 'se'");
+		assertQueryInvalid(null, "let s : String = invalid in 'test' = s");
+		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 = s2");
 		// null
 		assertQueryFalse(null, "let s : String = null in s = 'se'");
 		assertQueryFalse(null, "let s : String = null in 'test' = s");
@@ -185,9 +185,9 @@ public abstract class GenericEvaluateStringOperationsTest
 		assertQueryTrue(null, "'test' <> 'se'");
 		assertQueryFalse(null, "'test' <> 'test'");
 		// invalid
-		assertQueryTrue(null, "let s : String = invalid in s <> 'se'");
-		assertQueryTrue(null, "let s : String = invalid in 'test' <> s");
-		assertQueryFalse(null, "let s1 : String = invalid, s2 : String = invalid in s1 <> s2");
+		assertQueryInvalid(null, "let s : String = invalid in s <> 'se'");
+		assertQueryInvalid(null, "let s : String = invalid in 'test' <> s");
+		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 <> s2");
 		// null
 		assertQueryTrue(null, "let s : String = null in s <> 'se'");
 		assertQueryTrue(null, "let s : String = null in 'test' <> s");

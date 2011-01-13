@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.6 2011/01/12 10:31:42 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.7 2011/01/13 19:17:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -65,19 +65,19 @@ public abstract class GenericEvaluateOclAnyOperationsTest
     }
 
 	public void testEqualInvalid() {
-		assertQueryFalse(null, "invalid = 3");
-		assertQueryFalse(null, "3 = invalid");
-		assertQueryFalse(null, "invalid = 3.0");
-		assertQueryFalse(null, "3.0 = invalid");
+		assertQueryInvalid(null, "invalid = 3");
+		assertQueryInvalid(null, "3 = invalid");
+		assertQueryInvalid(null, "invalid = 3.0");
+		assertQueryInvalid(null, "3.0 = invalid");
 
-		assertQueryFalse(null, "invalid = 'test'");
-		assertQueryFalse(null, "'test' = invalid");
-		assertQueryFalse(null, "invalid = true");
-		assertQueryFalse(null, "false = invalid");
-		assertQueryFalse(null, "invalid = Sequence{}");
-		assertQueryFalse(null, "Sequence{} = invalid");
+		assertQueryInvalid(null, "invalid = 'test'");
+		assertQueryInvalid(null, "'test' = invalid");
+		assertQueryInvalid(null, "invalid = true");
+		assertQueryInvalid(null, "false = invalid");
+		assertQueryInvalid(null, "invalid = Sequence{}");
+		assertQueryInvalid(null, "Sequence{} = invalid");
 
-		assertQueryTrue(null, "invalid = invalid");
+		assertQueryInvalid(null, "invalid = invalid");
 	}
 
 	public void testEqualNull() {
@@ -174,19 +174,19 @@ public abstract class GenericEvaluateOclAnyOperationsTest
 	}
 
 	public void testNotEqualInvalid() {
-		assertQueryTrue(null, "invalid <> 3");
-		assertQueryTrue(null, "3 <> invalid");
-		assertQueryTrue(null, "invalid <> 3.0");
-		assertQueryTrue(null, "3.0 <> invalid");
+		assertQueryInvalid(null, "invalid <> 3");
+		assertQueryInvalid(null, "3 <> invalid");
+		assertQueryInvalid(null, "invalid <> 3.0");
+		assertQueryInvalid(null, "3.0 <> invalid");
 
-		assertQueryTrue(null, "invalid <> 'test'");
-		assertQueryTrue(null, "'test' <> invalid");
-		assertQueryTrue(null, "invalid <> true");
-		assertQueryTrue(null, "false <> invalid");
-		assertQueryTrue(null, "invalid <> Sequence{}");
-		assertQueryTrue(null, "Sequence{} <> invalid");
+		assertQueryInvalid(null, "invalid <> 'test'");
+		assertQueryInvalid(null, "'test' <> invalid");
+		assertQueryInvalid(null, "invalid <> true");
+		assertQueryInvalid(null, "false <> invalid");
+		assertQueryInvalid(null, "invalid <> Sequence{}");
+		assertQueryInvalid(null, "Sequence{} <> invalid");
 
-		assertQueryFalse(null, "invalid <> invalid");
+		assertQueryInvalid(null, "invalid <> invalid");
 	}
 
 	public void testNotEqualNull() {

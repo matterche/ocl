@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.4 2011/01/12 10:31:42 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.5 2011/01/13 19:17:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -92,13 +92,13 @@ public abstract class GenericIteratorsTest
     	SetValue expected = valueFactory.createSetOf("pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
+        assertQueryEquals(pkg1, expected, "nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
 
         // shorter form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
+        assertQueryEquals(pkg1, expected, "nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
 
         // shortest form
-        assertQueryEquals(pkg1, expected, "%nestedPackage->iterate(s : Set(String) = Set{} | s->including(name))");
+        assertQueryEquals(pkg1, expected, "nestedPackage->iterate(s : Set(String) = Set{} | s->including(name))");
     }
     
     /**
@@ -228,6 +228,7 @@ public abstract class GenericIteratorsTest
      * Tests the collect() iterator.
      */
     public void test_collect() {
+//    	Abstract2Moniker.TRACE_MONIKERS.setState(true);
         CollectionValue expected1 = valueFactory.createBagOf("pkg2", "bob", "pkg3");
 
         // complete form
@@ -256,7 +257,7 @@ public abstract class GenericIteratorsTest
     public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownAttribute",
-        	OCLMessages.UnrecognizedVar_ERROR_, "unknownAttribute");
+        	OCLMessages.ErrorUnresolvedPropertyName, "unknownAttribute");
    }
 
     /**
@@ -266,8 +267,8 @@ public abstract class GenericIteratorsTest
      */
     public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-    		"%nestedPackage.unknownOperation(self)",
-        	OCLMessages.OperationNotFound_ERROR_, denormalize("unknownOperation(%Package)"), denormalize("%Package"));
+    		"nestedPackage.unknownOperation(self)",
+        	OCLMessages.ErrorUnresolvedOperationName, "unknownOperation");
    }
 
     /**
@@ -287,7 +288,7 @@ public abstract class GenericIteratorsTest
         String self = "foo";
         List<String> expected = Collections.emptyList();
 
-        assertQueryEquals(self, expected, "let c : Sequence(OrderedSet(String)) = Sequence{} in c->collect(s : OrderedSet(String) | s.toUpper())");
+        assertQueryEquals(self, expected, "let c : Sequence(OrderedSet(String)) = Sequence{} in c->collect(s : OrderedSet(String) | s.toUpperCase())");
     }
 
     /**
@@ -297,13 +298,13 @@ public abstract class GenericIteratorsTest
         CollectionValue expected1 = valueFactory.createBagOf("pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected1, "%nestedPackage->collectNested(p : %Package | p.name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(p : pivot::Package | p.name)");
 
         // shorter form
-        assertQueryEquals(pkg1, expected1, "%nestedPackage->collectNested(p | p.name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(p | p.name)");
 
         // shortest form
-        assertQueryEquals(pkg1, expected1, "%nestedPackage->collectNested(name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(name)");
 
         // nested collections not flattened
 		Set<org.eclipse.ocl.examples.pivot.Package> e1 = Collections.singleton(jim);
@@ -311,7 +312,7 @@ public abstract class GenericIteratorsTest
         HashSet<Object> e3 = new HashSet<Object>(Arrays.asList(new Object[] {pkg4, pkg5}));
 		CollectionValue expected2 = valueFactory.createBagOf(e1, e2, e3);
 
-        assertQueryEquals(pkg1, expected2, "%nestedPackage->collectNested(%nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "nestedPackage->collectNested(nestedPackage)");
     }
 
     /**
@@ -338,12 +339,12 @@ public abstract class GenericIteratorsTest
      */
     public void test_closure() {
     	CollectionValue expected1 = valueFactory.createSetOf(pkg1, pkg3, pkg5); // closure does not include self (george)
-        assertQueryEquals(george, expected1, "self->closure(%nestingPackage)");
+        assertQueryEquals(george, expected1, "self->closure(nestingPackage)");
 
         CollectionValue expected2 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage)");
-        assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(%nestedPackage)");
-        assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage->asSequence())");
+        assertQueryEquals(pkg1, expected2, "self->closure(nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self->closure(nestedPackage->asSequence())");
 	    SetValue expected3 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
@@ -359,15 +360,15 @@ public abstract class GenericIteratorsTest
      * Tests that the closure() iterator handles cycles.
      */
     public void test_closure_cycles() {
-        Type packageMetaclass = getMetaclass(denormalize("%Package"));
-        Property nestedPackage = reflection.getAttribute(packageMetaclass, denormalize("%nestedPackage"), packageMetaclass);
-        Property nestingPackage = reflection.getAttribute(packageMetaclass, denormalize("%nestingPackage"), packageMetaclass);
+        Type packageMetaclass = pivotManager.getPivotType("Package");
+        Property nestedPackage = reflection.getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
+        Property nestingPackage = reflection.getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
 
         helper.setContext(getMetaclass(denormalize("%Reference")));
 
         SetValue expected = valueFactory.createSetOf(nestedPackage, nestingPackage); // cyclic closure *does* include self
-        assertQueryEquals(nestingPackage, expected, "self->closure(%opposite)");
-        assertQueryEquals(nestedPackage, expected, "self->closure(%opposite)");
+        assertQueryEquals(nestingPackage, expected, "self->closure(opposite)");
+        assertQueryEquals(nestedPackage, expected, "self->closure(opposite)");
     }
 
     /**
@@ -596,12 +597,12 @@ public abstract class GenericIteratorsTest
      */
     public void test_iterateWithNullSource_143996() {
         assertQueryInvalid(pkg1,
-            "let e : Collection(%Package) = null in e->iterate(" +
-                "p : %Package; s : String = '' | s.concat(p.name))");
+            "let e : Collection(pivot::Package) = null in e->iterate(" +
+                "p : pivot::Package; s : String = '' | s.concat(p.name))");
 
         assertQueryInvalid(pkg1,
-            "let e : Collection(%Package) = invalid in e->iterate(" +
-                "p : %Package; s : String = '' | s.concat(p.name))");
+            "let e : Collection(pivot::Package) = invalid in e->iterate(" +
+                "p : pivot::Package; s : String = '' | s.concat(p.name))");
     }
 
     /**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.8 2011/01/12 10:31:42 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.9 2011/01/13 19:17:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -279,15 +279,15 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionEqualInvalid() {
-		assertQueryFalse(null, "let s : Sequence(Integer) = invalid in s = Sequence{5}");
-		assertQueryFalse(null, "let b : Bag(Integer) = invalid in Bag{5} = b");
-		assertQueryFalse(null, "let s : Set(Integer) = invalid in s = Set{5}");
-		assertQueryFalse(null, "let o : OrderedSet(Integer) = invalid in OrderedSet{5} = o");
+		assertQueryInvalid(null, "let s : Sequence(Integer) = invalid in s = Sequence{5}");
+		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Bag{5} = b");
+		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s = Set{5}");
+		assertQueryInvalid(null, "let o : OrderedSet(Integer) = invalid in OrderedSet{5} = o");
 
-		assertQueryTrue(null, "let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 = s2");
-		assertQueryTrue(null, "let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 = b2");
-		assertQueryTrue(null, "let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 = s2");
-		assertQueryTrue(null, "let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 = o2");
+		assertQueryInvalid(null, "let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 = s2");
+		assertQueryInvalid(null, "let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 = b2");
+		assertQueryInvalid(null, "let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 = s2");
+		assertQueryInvalid(null, "let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 = o2");
 	}
 
 	public void testCollectionEqualNull() {		
@@ -987,7 +987,7 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		 * "OrderedSet::-(Set) : OrderedSet". revisit all "testCollectionMinus*"
 		 * to add the new
 		 */
-		assertQueryResults(null, "Set{'b'}", "OrderedSet{'a', 'b', 'c'} - Set{'c', 'a'}");
+		assertQueryResults(null, "OrderedSet{'b'}", "OrderedSet{'a', 'b', 'c'} - Set{'c', 'a'}");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Set(String) = invalid in s - Set{'c'}");
 		assertQueryInvalid(null, "let s : Set(String) = invalid in Set{'a'} - s");
@@ -1041,15 +1041,15 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	}
 
 	public void testCollectionNotEqualInvalid() {
-		assertQueryTrue(null, "let s : Sequence(Integer) = invalid in s <> Sequence{5}");
-		assertQueryTrue(null, "let b : Bag(Integer) = invalid in Bag{5} <> b");
-		assertQueryTrue(null, "let s : Set(Integer) = invalid in s <> Set{5}");
-		assertQueryTrue(null, "let o : OrderedSet(Integer) = invalid in OrderedSet{5} <> o");
+		assertQueryInvalid(null, "let s : Sequence(Integer) = invalid in s <> Sequence{5}");
+		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Bag{5} <> b");
+		assertQueryInvalid(null, "let s : Set(Integer) = invalid in s <> Set{5}");
+		assertQueryInvalid(null, "let o : OrderedSet(Integer) = invalid in OrderedSet{5} <> o");
 
-		assertQueryFalse(null, "let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 <> s2");
-		assertQueryFalse(null, "let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 <> b2");
-		assertQueryFalse(null, "let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 <> s2");
-		assertQueryFalse(null, "let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 <> o2");
+		assertQueryInvalid(null, "let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 <> s2");
+		assertQueryInvalid(null, "let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 <> b2");
+		assertQueryInvalid(null, "let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 <> s2");
+		assertQueryInvalid(null, "let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 <> o2");
 	}
 
 	public void testCollectionNotEqualNull() {

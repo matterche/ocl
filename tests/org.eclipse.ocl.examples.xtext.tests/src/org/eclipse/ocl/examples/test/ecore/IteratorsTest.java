@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.1.2.1 2010/10/01 15:33:23 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.1.2.2 2011/01/13 19:17:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;
@@ -42,7 +42,7 @@ public class IteratorsTest extends GenericIteratorsTest
 	@Override
 	public void test_sortedByRequiresComparability_192729() {
     	super.test_sortedByRequiresComparability_192729();
-    	Type context = getMetaclass("Package");
+    	Type context = pivotManager.getPivotType("Package");
         
         // EDate defines '<' by having a Comparable instance class
         assertQuery(context, "let dates : Sequence(Date) = Sequence{} in dates->sortedBy(e | e)");

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateBooleanOperationsTest.java,v 1.1.2.2 2010/12/26 16:56:18 ewillink Exp $
+ * $Id: GenericEvaluateBooleanOperationsTest.java,v 1.1.2.3 2011/01/13 19:17:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -56,10 +56,10 @@ public abstract class GenericEvaluateBooleanOperationsTest
 		assertQueryTrue(null, "true = true");
 		assertQueryTrue(null, "false = false");
 		// invalid
-		assertQueryFalse(null, "let b : Boolean = invalid in b = true");
-		assertQueryFalse(null, "let b : Boolean = invalid in false = b");
+		assertQueryInvalid(null, "let b : Boolean = invalid in b = true");
+		assertQueryInvalid(null, "let b : Boolean = invalid in false = b");
 
-		assertQueryTrue(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 = b2");
+		assertQueryInvalid(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 = b2");
 		// null
 		assertQueryFalse(null, "let b : Boolean = null in b = true");
 		assertQueryFalse(null, "let b : Boolean = null in false = b");
@@ -101,10 +101,10 @@ public abstract class GenericEvaluateBooleanOperationsTest
 		assertQueryFalse(null, "true <> true");
 		assertQueryFalse(null, "false <> false");
 		// invalid
-		assertQueryTrue(null, "let b : Boolean = invalid in b <> true");
-		assertQueryTrue(null, "let b : Boolean = invalid in false <> b");
+		assertQueryInvalid(null, "let b : Boolean = invalid in b <> true");
+		assertQueryInvalid(null, "let b : Boolean = invalid in false <> b");
 
-		assertQueryFalse(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 <> b2");
+		assertQueryInvalid(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 <> b2");
 		// null
 		assertQueryTrue(null, "let b : Boolean = null in b <> true");
 		assertQueryTrue(null, "let b : Boolean = null in false <> b");
