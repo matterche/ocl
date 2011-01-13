@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollect.java,v 1.1.2.4 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: IterationTemplateCollect.java,v 1.1.2.5 2011/01/13 19:16:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -41,7 +41,13 @@ public class IterationTemplateCollect extends IterationTemplate {
     protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();		
 		CollectionValue.Accumulator currVal = (CollectionValue.Accumulator) env.getValueOf(resultName);		
-		if (bodyVal instanceof CollectionValue) {
+		if (bodyVal.isInvalid()) {
+			return bodyVal;
+		}
+		else if (bodyVal.isNull()) {
+			currVal.add(bodyVal);
+		}
+		else if (bodyVal instanceof CollectionValue) {
 			CollectionValue bodyColl = (CollectionValue) bodyVal;
 			for (Value value : bodyColl.flatten()) {
 				currVal.add(value);

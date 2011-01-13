@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClosureIteration.java,v 1.1.2.8 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: ClosureIteration.java,v 1.1.2.9 2011/01/13 19:16:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -44,7 +44,7 @@ public class ClosureIteration extends AbstractIteration
 		Type sourceType = iteratorExp.getSource().getType();
 		boolean isOrdered = stdlib.isOrdered(sourceType);
 //		boolean isUnique = sourceType.isUnique();
-		Value initResultVal = evaluationVisitor.getValueFactory().createCollectionValue(isOrdered, true);
+		Value initResultVal = createAccumulationValue(evaluationVisitor.getValueFactory(), isOrdered, true);
 		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
 		OclExpression body = iteratorExp.getBody();		
 		CollectionValue coll = (CollectionValue) sourceVal;

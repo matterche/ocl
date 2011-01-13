@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollectNested.java,v 1.1.2.4 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: IterationTemplateCollectNested.java,v 1.1.2.5 2011/01/13 19:16:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -41,7 +41,12 @@ public final class IterationTemplateCollectNested extends IterationTemplate {
     protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		CollectionValue.Accumulator currVal = (CollectionValue.Accumulator) env.getValueOf(resultName);
-		currVal.add(bodyVal);
+		if (bodyVal.isInvalid()) {
+			return bodyVal;
+		}
+		else {
+			currVal.add(bodyVal);
+		}
 		return currVal;
 	}
 }

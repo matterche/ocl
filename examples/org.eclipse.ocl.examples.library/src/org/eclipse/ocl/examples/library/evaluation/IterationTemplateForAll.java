@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateForAll.java,v 1.1.2.6 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: IterationTemplateForAll.java,v 1.1.2.7 2011/01/13 19:16:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.library.evaluation;
@@ -39,6 +39,9 @@ public final class IterationTemplateForAll extends IterationTemplate {
 	
 	@Override
     protected Value evaluateResult(List<? extends VariableDeclaration> iterators, String resultName, Value bodyVal) {
+		if (bodyVal.isUndefined()) {
+			return bodyVal.toInvalidValue();
+		}
 		EvaluationEnvironment env = getEvalEnvironment();
 		Value currVal = env.getValueOf(resultName);		
 		boolean resultVal = currVal.isTrue() && bodyVal.isTrue();

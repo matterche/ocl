@@ -37,7 +37,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	iteration forAll(i : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
 	iteration forAll(i : T, j : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
 	iteration isUnique(i : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.IsUniqueIteration';
-	iteration iterate<Tacc>(i : T; acc : Tacc) : Tacc => 'org.eclipse.ocl.examples.library.iterator.IsUniqueIteration';
+	iteration iterate<Tacc>(i : T; acc : Tacc) : Tacc => 'org.eclipse.ocl.examples.library.iterator.IterateIteration';
 	iteration one(i : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.OneIteration';
 	iteration reject(i : T) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	iteration select(i : T) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
@@ -161,7 +161,7 @@ type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection<T>,UniqueCollec
 	iteration select(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
-	operation "-"(s : Set<T>) : OrderedSet<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
+	operation "-"(s : Set<OclAny>) : OrderedSet<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	operation append(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
 	operation excluding(object : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	operation including(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
@@ -170,7 +170,7 @@ type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection<T>,UniqueCollec
 	operation prepend(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation';
 	operation reverse() : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
 	operation subOrderedSet(lower : Integer, upper : Integer) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation';
-	operation symmetricDifference(s : Set<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation';
+	operation symmetricDifference(s : Set<OclAny>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation';
 	operation union(o : OrderedSet<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 	operation union(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }

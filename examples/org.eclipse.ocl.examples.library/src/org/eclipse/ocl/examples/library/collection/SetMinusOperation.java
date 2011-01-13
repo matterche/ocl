@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: SetMinusOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: SetMinusOperation.java,v 1.1.2.5 2011/01/13 19:16:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -32,12 +32,14 @@ public class SetMinusOperation extends AbstractCollectionPairedOperation
 
 	@Override
 	protected Value evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, CollectionValue argVal) {
-		if (!(sourceVal instanceof SetValue)) {
-			return null;
+		UniqueCollectionValue leftValue = sourceVal.asUniqueCollectionValue();
+		if (leftValue == null) {
+			return valueFactory.createInvalidValue(sourceVal, null, "non-unique-collection '-' source", null);
 		}
-		if (!(argVal instanceof SetValue)) {
-			return null;
+		UniqueCollectionValue rightValue = argVal.asUniqueCollectionValue();
+		if (rightValue == null) {
+			return valueFactory.createInvalidValue(sourceVal, null, "non-unique-collection '-' argument", null);
 		}
-		return ((SetValue)sourceVal).minus((SetValue)argVal);
+		return leftValue.minus(rightValue);
 	}
 }

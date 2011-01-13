@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclAnyEqualOperation.java,v 1.1.2.4 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: OclAnyEqualOperation.java,v 1.1.2.5 2011/01/13 19:16:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -33,6 +34,17 @@ public class OclAnyEqualOperation extends AbstractBinaryOperation
 	public static final OclAnyEqualOperation INSTANCE = new OclAnyEqualOperation();
 
 	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
+		//
+		//	A.2.2 is clear. 11.3.1 is vague.
+		//
+		InvalidValue invalidLeft = left.asInvalidValue();
+		if (invalidLeft != null) {
+			return invalidLeft;
+		}
+		InvalidValue invalidRight = right.asInvalidValue();
+		if (invalidRight != null) {
+			return invalidRight;
+		}
 		return valueFactory.booleanValueOf(left.equals(right));
 	}
 }

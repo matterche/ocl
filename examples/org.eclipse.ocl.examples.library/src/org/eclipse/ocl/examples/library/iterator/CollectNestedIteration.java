@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectNestedIteration.java,v 1.1.2.8 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: CollectNestedIteration.java,v 1.1.2.9 2011/01/13 19:16:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -44,7 +44,7 @@ public class CollectNestedIteration extends AbstractIteration
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = iteratorExp.getSource().getType();
 		boolean isOrdered = stdlib.isOrdered(sourceType);
-		Value initResultVal = evaluationVisitor.getValueFactory().createCollectionValue(isOrdered, false);
+		Value initResultVal = createAccumulationValue(evaluationVisitor.getValueFactory(), isOrdered, false);
 		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
 		OclExpression body = iteratorExp.getBody();		
 		CollectionValue coll = (CollectionValue) sourceVal;

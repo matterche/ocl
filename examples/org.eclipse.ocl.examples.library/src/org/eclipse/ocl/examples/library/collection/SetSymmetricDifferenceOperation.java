@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.5 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: SetSymmetricDifferenceOperation.java,v 1.1.2.6 2011/01/13 19:16:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
+import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -32,17 +32,14 @@ public class SetSymmetricDifferenceOperation extends AbstractCollectionPairedOpe
 
 	@Override
 	protected Value evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, CollectionValue argVal) {
-		SetValue leftSetValue = sourceVal.asSetValue();
-		if (leftSetValue == null) {
-			return valueFactory.createInvalidValue(sourceVal, null, "non-set symmetricDifference source", null);
+		UniqueCollectionValue leftValue = sourceVal.asUniqueCollectionValue();
+		if (leftValue == null) {
+			return valueFactory.createInvalidValue(sourceVal, null, "non-unique-collection 'symmetricDifference' source", null);
 		}
-		SetValue rightSetValue = argVal.asSetValue();
-		if (rightSetValue == null) {
-			return valueFactory.createInvalidValue(sourceVal, null, "non-set symmetricDifference argument", null);
+		UniqueCollectionValue rightValue = argVal.asUniqueCollectionValue();
+		if (rightValue == null) {
+			return valueFactory.createInvalidValue(sourceVal, null, "non-unique-collection 'symmetricDifference' argument", null);
 		}
-		else if (rightSetValue.isInvalid()) {
-			return rightSetValue;
-		}		
-		return leftSetValue.symmetricDifference((SetValue)argVal);
+		return leftValue.symmetricDifference(rightValue);
 	}
 }
