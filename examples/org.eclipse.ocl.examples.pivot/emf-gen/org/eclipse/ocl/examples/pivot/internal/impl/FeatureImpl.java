@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureImpl.java,v 1.1.2.3 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: FeatureImpl.java,v 1.1.2.4 2011/01/13 19:15:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public abstract class FeatureImpl
-		extends NamedElementImpl
+		extends TypedMultiplicityElementImpl
 		implements Feature {
 
 	/**
@@ -126,6 +126,17 @@ public abstract class FeatureImpl
 				return isStatic();
 			case PivotPackage.FEATURE__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
+			case PivotPackage.FEATURE__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+			case PivotPackage.FEATURE__IS_ORDERED:
+				return isOrdered();
+			case PivotPackage.FEATURE__IS_UNIQUE:
+				return isUnique();
+			case PivotPackage.FEATURE__LOWER:
+				return getLower();
+			case PivotPackage.FEATURE__UPPER:
+				return getUpper();
 			case PivotPackage.FEATURE__FEATURING_CLASS:
 				return getFeaturingClass();
 		}
@@ -154,6 +165,16 @@ public abstract class FeatureImpl
 				return isSetIsStatic();
 			case PivotPackage.FEATURE__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.FEATURE__TYPE:
+				return type != null;
+			case PivotPackage.FEATURE__IS_ORDERED:
+				return ((eFlags & IS_ORDERED_EFLAG) != 0) != IS_ORDERED_EDEFAULT;
+			case PivotPackage.FEATURE__IS_UNIQUE:
+				return ((eFlags & IS_UNIQUE_EFLAG) != 0) != IS_UNIQUE_EDEFAULT;
+			case PivotPackage.FEATURE__LOWER:
+				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
+			case PivotPackage.FEATURE__UPPER:
+				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
 			case PivotPackage.FEATURE__FEATURING_CLASS:
 				return getFeaturingClass() != null;
 		}

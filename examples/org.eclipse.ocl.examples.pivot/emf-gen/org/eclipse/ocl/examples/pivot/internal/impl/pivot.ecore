@@ -256,7 +256,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
         eType="#//Variable" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement #//NamedElement">
     <eAnnotations source="duplicates">
       <contents xsi:type="ecore:EAttribute" name="isStatic" ordered="false" lowerBound="1"
           eType="#//Boolean">
@@ -264,8 +264,8 @@
       </contents>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClass" ordered="false"
-        lowerBound="1" eType="#//Class" changeable="false" volatile="true" transient="true"
-        derived="true" resolveProxies="false"/>
+        eType="#//Class" changeable="false" volatile="true" transient="true" derived="true"
+        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"
@@ -422,7 +422,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" upperBound="-1"
         eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedMultiplicityElement #//Feature #//Namespace #//ParameterableElement #//TemplateableElement #//ImplementableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedElement #//Feature #//MultiplicityElement #//Namespace #//ParameterableElement #//TemplateableElement #//ImplementableElement">
     <eAnnotations source="duplicates">
       <contents xsi:type="ecore:EReference" name="templateParameter" ordered="false"
           eType="#//TemplateParameter" eOpposite="#//OperationTemplateParameter/%duplicates%/parameteredElement">
@@ -503,7 +503,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExp" abstract="true"
       eSuperTypes="#//LiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//DataType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//TypedMultiplicityElement #//Feature #//ParameterableElement #//ImplementableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//TypedElement #//Feature #//MultiplicityElement #//ParameterableElement #//ImplementableElement">
     <eOperations name="binding_to_attribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.10 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.11 2011/01/13 19:15:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -1461,7 +1461,18 @@ public class PivotValidator
 	 */
 	public boolean validateFeature(Feature feature,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)feature, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)feature, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(feature, diagnostics, context);
+		return result;
 	}
 
 	/**

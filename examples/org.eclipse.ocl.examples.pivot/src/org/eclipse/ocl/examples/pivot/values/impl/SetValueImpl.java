@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SetValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: SetValueImpl.java,v 1.1.2.4 2011/01/13 19:15:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -194,16 +194,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 		return new SetValueImpl(valueFactory, result);
 	}
 
-    /**
-     * Implementation of the OCL
-     * <tt>Set::-(set : Set(T)) : Set(T)</tt>
-     * operation.
-     * 
-     * @param self the source set
-     * @param set another set
-     * @return the subtraction of the other set from the source set
-     */
-    public SetValue minus(SetValue set) {
+    public SetValue minus(UniqueCollectionValue set) {
     	Set<Value> result = new HashSet<Value>(elements);
         result.removeAll(set.asCollection());
         return new SetValueImpl(valueFactory, result);
@@ -215,17 +206,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     	return new OrderedSetValueImpl(valueFactory, values);
     }
 
-    /**
-     * Implementation of the OCL
-     * <tt>Set::symmetricDifference(set : Set(T)) : Set(T)</tt>
-     * operation.
-     * 
-     * @param self the source set
-     * @param set another set
-     * @return the set of elements in either the source or the other set but not
-     *     in both
-     */
-    public SetValue symmetricDifference(SetValue set) {       
+    public SetValue symmetricDifference(UniqueCollectionValue set) {       
     	Set<Value> result = new HashSet<Value>(elements);       
         for (Value e : set) {
             if (result.contains(e)) {

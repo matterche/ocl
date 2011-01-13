@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1.2.5 2011/01/12 10:29:52 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.1.2.6 2011/01/13 19:15:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -161,7 +162,7 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 				s.append("\n");
 				s.append(conversionError.getMessage());
 			}
-			throw new ParserException(s.toString());
+			throw new SemanticException(s.toString());
 		}
 	}
 }

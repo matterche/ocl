@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.17 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.18 2011/01/13 19:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteType;
@@ -52,12 +53,15 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -432,10 +436,13 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	}
 
 	public boolean conformsToCollectionType(CollectionType actualType, CollectionType requiredType) {
-		if (actualType.eClass() != requiredType.eClass()) {
-			return false;
+		if (((actualType instanceof BagType) && (requiredType instanceof BagType))
+		 || ((actualType instanceof OrderedSetType) && (requiredType instanceof OrderedSetType))
+		 || ((actualType instanceof SequenceType) && (requiredType instanceof SequenceType))
+		 || ((actualType instanceof SetType) && (requiredType instanceof SetType))) {
+			return conformsToType(actualType.getElementType(), requiredType.getElementType());
 		}
-		return conformsToType(actualType.getElementType(), requiredType.getElementType());
+		return false;
 	}
 
 	public boolean conformsToTupleType(TupleType actualType, TupleType requiredType) {
@@ -489,6 +496,29 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			}
 		}
 		return null;
+	}
+
+	public CollectionType getCollectionType(boolean isOrdered, boolean isUnique) {
+		if (isOrdered) {
+			if (isUnique) {
+				return getOrderedSetType();
+			}
+			else {
+				return getSequenceType();
+			}
+		}
+		else {
+			if (isUnique) {
+				return getSetType();
+			}
+			else {
+				return getBagType();
+			}
+		}
+	}
+
+	public CollectionType getCollectionType(boolean isOrdered, boolean isUnique, Type elementType) {
+		return getLibraryType(getCollectionType(isOrdered, isUnique), Collections.singletonList(elementType), true);
 	}
 
 	public Type getCollectionType(String collectionTypeName, Type elementType) {
@@ -740,6 +770,10 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	// return prefixToPrecedenceNameMap.get(operatorName);
 	// }
 
+	public SetType getSetType(Type elementType) {
+		return getLibraryType(getSetType(), Collections.singletonList(elementType), true);
+	}
+
 	protected String getSpecializedMoniker(Type libraryType, List<? extends ParameterableElement> templateArguments) {
 		Pivot2Moniker s = new Pivot2Moniker(null);
 		s.appendElement((Element) libraryType.eContainer());
@@ -919,13 +953,13 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	 */
 	public void resolveSuperClasses(org.eclipse.ocl.examples.pivot.Class specializedClass) {
 		org.eclipse.ocl.examples.pivot.Class unboundType = PivotUtil.getUnspecializedTemplateableElement(specializedClass);
-		Map<TemplateParameter, ParameterableElement> specializedBindings = PivotUtil.getAllTemplateParameterSubstitutions(specializedClass);
+		Map<TemplateParameter, ParameterableElement> specializedBindings = PivotUtil.getAllTemplateParameterSubstitutions(null, specializedClass);
 		List<org.eclipse.ocl.examples.pivot.Class> newSuperClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
 		for (org.eclipse.ocl.examples.pivot.Class unboundSuper : unboundType.getSuperClasses()) {
 			List<ParameterableElement> templateArguments = null;
 			List<TemplateBinding> unboundSuperTemplateBindings = unboundSuper.getTemplateBindings();
 			if (unboundSuperTemplateBindings.size() > 0) {					
-				Map<TemplateParameter, ParameterableElement> superBindings = PivotUtil.getAllTemplateParameterSubstitutions(unboundSuper);
+				Map<TemplateParameter, ParameterableElement> superBindings = PivotUtil.getAllTemplateParameterSubstitutions(null, unboundSuper);
 				List<TemplateParameter> unspecializedSuperTemplateParameters = PivotUtil.getAllTemplateParameters(unboundSuperTemplateBindings);
 				templateArguments = new ArrayList<ParameterableElement>(unspecializedSuperTemplateParameters.size());
 				for (TemplateParameter unspecializedSuperTemplateParameter : unspecializedSuperTemplateParameters) {
@@ -1010,6 +1044,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	public Set<Operation> resolveOperations(org.eclipse.ocl.examples.pivot.Class pivotClass,
 			String operationName, Type... pivotArguments) {
+		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, pivotClass);
 		Set<Operation> pivotOperations = resolveLocalOperation(pivotClass, operationName, pivotArguments);
 		for (TemplateBinding templateBinding : pivotClass.getTemplateBindings()) {
 			TemplateSignature signature = templateBinding.getSignature();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.7 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.8 2011/01/13 19:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -75,8 +76,8 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		}
 	}
 
-	public Type getBagType() {
-		return getRequiredLibraryType("Bag");
+	public BagType getBagType() {
+		return (BagType) getRequiredLibraryType("Bag");
 	}
 
 	public Type getBagTypeType() {
@@ -156,8 +157,8 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return oclVoidType;
 	}
 
-	public Type getOrderedSetType() {
-		return getRequiredLibraryType("OrderedSet");
+	public OrderedSetType getOrderedSetType() {
+		return (OrderedSetType) getRequiredLibraryType("OrderedSet");
 	}
 
 	public Type getOrderedSetTypeType() {
@@ -202,16 +203,16 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return type;
 	}
 
-	public Type getSequenceType() {
-		return getRequiredLibraryType("Sequence");
+	public SequenceType getSequenceType() {
+		return (SequenceType) getRequiredLibraryType("Sequence");
 	}
 
 	public Type getSequenceTypeType() {
 		return getRequiredLibraryType("SequenceType");
 	}
 
-	public Type getSetType() {
-		return getRequiredLibraryType("Set");
+	public SetType getSetType() {
+		return (SetType) getRequiredLibraryType("Set");
 	}
 
 	public Type getSetTypeType() {

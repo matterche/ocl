@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: UniqueCollectionValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: UniqueCollectionValue.java,v 1.1.2.3 2011/01/13 19:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
-public interface UniqueCollectionValue extends CollectionValue {
+public interface UniqueCollectionValue extends CollectionValue
+{
+	UniqueCollectionValue minus(UniqueCollectionValue set);
+	UniqueCollectionValue symmetricDifference(UniqueCollectionValue set);       
 }

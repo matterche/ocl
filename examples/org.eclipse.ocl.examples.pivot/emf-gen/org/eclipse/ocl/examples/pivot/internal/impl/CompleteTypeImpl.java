@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteTypeImpl.java,v 1.1.2.4 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: CompleteTypeImpl.java,v 1.1.2.5 2011/01/13 19:15:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -254,17 +254,19 @@ public class CompleteTypeImpl
 		CompleteIteration dynamicIteration = dynamicIterationMap.get(staticIteration);
 		if ((dynamicIteration == null)
 			&& !dynamicIterationMap.containsKey(staticIteration)) {
-			List<CompleteType> staticCompleteIteratorTypes = new ArrayList<CompleteType>();
+			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
+			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, staticIteration.getModel());
+			List<Type> staticCompleteIteratorTypes = new ArrayList<Type>();
 			for (Parameter staticIterator : staticIteration.getCompleteIterators()) {
-				staticCompleteIteratorTypes.add(resolveType(staticIterator.getType()));
+				staticCompleteIteratorTypes.add(resolveType(staticIterator.getType(), templateParameterSubstitutions));
 			}
-			List<CompleteType> staticCompleteAccumulatorTypes = new ArrayList<CompleteType>();
+			List<Type> staticCompleteAccumulatorTypes = new ArrayList<Type>();
 			for (Parameter staticAccumulator : staticIteration.getCompleteAccumulators()) {
-				staticCompleteAccumulatorTypes.add(resolveType(staticAccumulator.getType()));
+				staticCompleteAccumulatorTypes.add(resolveType(staticAccumulator.getType(), templateParameterSubstitutions));
 			}
-			List<CompleteType> staticCompleteParameterTypes = new ArrayList<CompleteType>();
+			List<Type> staticCompleteParameterTypes = new ArrayList<Type>();
 			for (Parameter staticParameter : staticIteration.getCompleteParameters()) {
-				staticCompleteParameterTypes.add(resolveType(staticParameter.getType()));
+				staticCompleteParameterTypes.add(resolveType(staticParameter.getType(), templateParameterSubstitutions));
 			}
 			Set<CompleteIteration> dynamicIterations = findIterationsOrNull(
 				this, staticIteration.getName(), staticCompleteIteratorTypes, staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
@@ -296,7 +298,11 @@ public class CompleteTypeImpl
 		return dynamicIteration;
 	}
 
-	private boolean conformsTo(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class requiredClass) {
+	private static boolean conformsTo(Type aClass, Type requiredClass) {
+		return conformsTo((org.eclipse.ocl.examples.pivot.Class)aClass, (org.eclipse.ocl.examples.pivot.Class)requiredClass);
+	}
+
+	private static boolean conformsTo(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class requiredClass) {
 		if (aClass == requiredClass) {
 			return true;
 		}
@@ -322,9 +328,10 @@ public class CompleteTypeImpl
 		CompleteOperation dynamicOperation = dynamicOperationMap.get(staticOperation);
 		if ((dynamicOperation == null)
 			&& !dynamicOperationMap.containsKey(staticOperation)) {
-			List<CompleteType> staticCompleteTypes = new ArrayList<CompleteType>();
+			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
+			List<Type> staticCompleteTypes = new ArrayList<Type>();
 			for (Parameter staticParameter : staticOperation.getCompleteParameters()) {
-				staticCompleteTypes.add(resolveType(staticParameter.getType()));
+				staticCompleteTypes.add(resolveType(staticParameter.getType(), templateParameterSubstitutions));
 			}
 			Set<CompleteOperation> dynamicOperations = findOperationsOrNull(
 				this, staticOperation.getName(), staticCompleteTypes);
@@ -336,37 +343,39 @@ public class CompleteTypeImpl
 		return dynamicOperation;
 	}
 
-	private CompleteType resolveType(Type type) {
+	private Type resolveType(Type type, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
 		TemplateParameter templateParameter = type.getOwningTemplateParameter();
-		if (templateParameter != null) {
-			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(model);
-			if (templateParameterSubstitutions != null) {
-				ParameterableElement parameterableElement = templateParameterSubstitutions.get(templateParameter);
-				if (parameterableElement instanceof Type) {
-					type = (Type) parameterableElement;
-				}
-				else if (parameterableElement != null) {
-					type = (Type) templateParameter.getParameteredElement();
-				}
+		if ((templateParameter != null) && (templateParameterSubstitutions != null)) {
+			ParameterableElement parameterableElement = templateParameterSubstitutions.get(templateParameter);
+			if (parameterableElement instanceof Type) {
+				type = (Type) parameterableElement;
+			}
+			else if (parameterableElement != null) {
+				type = (Type) templateParameter.getParameteredElement();
+			}
+			else {
+				return type;
 			}
 		}
 		return completeEnvironment.getCompleteType(type);
 	}
 
 	private Set<CompleteIteration> findIterationsOrNull(CompleteType completeType,
-			String operationName, List<CompleteType> staticCompleteIteratorTypes,
-			List<CompleteType> staticCompleteAccumulatorTypes, List<CompleteType> staticCompleteParameterTypes) {
+			String operationName, List<Type> staticCompleteIteratorTypes,
+			List<Type> staticCompleteAccumulatorTypes, List<Type> staticCompleteParameterTypes) {
+		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
 		int staticIteratorsSize = staticCompleteIteratorTypes.size();
 		Set<CompleteIteration> list = null;
 		for (CompleteIteration dynamicIteration : completeType.getCompleteIterations(operationName)) {
+			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicIteration.getModel());
 			List<Parameter> dynamicIterators = dynamicIteration.getCompleteIterators();
 			if (staticIteratorsSize == dynamicIterators.size()) {
 				boolean gotIt = true;
 				for (int i = 0; i < staticIteratorsSize; i++) {
-					CompleteType staticCompleteIteratorType = staticCompleteIteratorTypes.get(i);
+					Type staticCompleteIteratorType = staticCompleteIteratorTypes.get(i);
 					Parameter dynamicIterator = dynamicIterators.get(i);
-					CompleteType dynamicCompleteIteratorType = resolveType(dynamicIterator.getType());
-					if (!dynamicCompleteIteratorType.conformsTo(staticCompleteIteratorType)) {
+					Type dynamicCompleteIteratorType = resolveType(dynamicIterator.getType(), templateParameterSubstitutions);
+					if (!conformsTo(dynamicCompleteIteratorType, staticCompleteIteratorType)) {
 						gotIt = false;
 					}
 				}
@@ -396,18 +405,19 @@ public class CompleteTypeImpl
 	}
 
 	private Set<CompleteOperation> findOperationsOrNull(CompleteType completeType,
-			String operationName, List<CompleteType> staticCompleteTypes) {
+			String operationName, List<Type> staticCompleteTypes) {
 		int staticParametersSize = staticCompleteTypes.size();
+		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
 		Set<CompleteOperation> list = null;
 		for (CompleteOperation dynamicOperation : completeType.getCompleteOperations(operationName)) {
 			List<Parameter> dynamicParameters = dynamicOperation.getCompleteParameters();
 			if (staticParametersSize == dynamicParameters.size()) {
 				boolean gotIt = true;
 				for (int i = 0; i < staticParametersSize; i++) {
-					CompleteType staticCompleteType = staticCompleteTypes.get(i);
+					Type staticCompleteType = staticCompleteTypes.get(i);
 					Parameter dynamicParameter = dynamicParameters.get(i);
-					CompleteType dynamicCompleteType = resolveType(dynamicParameter.getType());
-					if (!dynamicCompleteType.conformsTo(staticCompleteType)) {
+					Type dynamicCompleteType = resolveType(dynamicParameter.getType(), templateParameterSubstitutions);
+					if (!conformsTo(dynamicCompleteType, staticCompleteType)) {
 						gotIt = false;
 					}
 				}

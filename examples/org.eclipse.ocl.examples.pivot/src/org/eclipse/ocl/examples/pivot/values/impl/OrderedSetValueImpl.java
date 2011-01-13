@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetValueImpl.java,v 1.1.2.4 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: OrderedSetValueImpl.java,v 1.1.2.5 2011/01/13 19:15:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -234,6 +234,12 @@ public class OrderedSetValueImpl
         return result;
     }
 
+    public OrderedSetValue minus(UniqueCollectionValue set) {
+    	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
+        result.removeAll(set.asCollection());
+        return new OrderedSetValueImpl(valueFactory, result);
+    }
+
     public OrderedSetValue prepend(Value object) {
     	OrderedSet<Value> result = new OrderedSetImpl<Value>();
         result.add(object);
@@ -278,6 +284,18 @@ public class OrderedSetValueImpl
             }
             curr++;
         }
+        return new OrderedSetValueImpl(valueFactory, result);
+    }
+
+    public OrderedSetValue symmetricDifference(UniqueCollectionValue set) {       
+    	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);       
+        for (Value e : set) {
+            if (result.contains(e)) {
+                result.remove(e);
+            } else {
+                result.add(e);
+            }
+        }        
         return new OrderedSetValueImpl(valueFactory, result);
     }
 

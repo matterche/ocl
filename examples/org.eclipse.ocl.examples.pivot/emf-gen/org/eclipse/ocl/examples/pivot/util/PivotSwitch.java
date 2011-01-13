@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.1.2.10 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.1.2.11 2011/01/13 19:15:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -439,17 +439,17 @@ public class PivotSwitch<T> {
 				T result = caseCompleteIteration(completeIteration);
 				if (result == null) result = caseIteration(completeIteration);
 				if (result == null) result = caseOperation(completeIteration);
-				if (result == null) result = caseTypedMultiplicityElement(completeIteration);
 				if (result == null) result = caseFeature(completeIteration);
 				if (result == null) result = caseNamespace(completeIteration);
 				if (result == null) result = caseParameterableElement(completeIteration);
 				if (result == null) result = caseTemplateableElement(completeIteration);
 				if (result == null) result = caseImplementableElement(completeIteration);
-				if (result == null) result = caseTypedElement(completeIteration);
-				if (result == null) result = caseMultiplicityElement(completeIteration);
 				if (result == null) result = caseNamedElement(completeIteration);
-				if (result == null) result = caseMonikeredElement(completeIteration);
+				if (result == null) result = caseTypedMultiplicityElement(completeIteration);
+				if (result == null) result = caseTypedElement(completeIteration);
 				if (result == null) result = caseNameable(completeIteration);
+				if (result == null) result = caseMultiplicityElement(completeIteration);
+				if (result == null) result = caseMonikeredElement(completeIteration);
 				if (result == null) result = caseElement(completeIteration);
 				if (result == null) result = caseVisitable(completeIteration);
 				if (result == null) result = defaultCase(theEObject);
@@ -460,17 +460,17 @@ public class PivotSwitch<T> {
 				CompleteOperation completeOperation = (CompleteOperation)theEObject;
 				T result = caseCompleteOperation(completeOperation);
 				if (result == null) result = caseOperation(completeOperation);
-				if (result == null) result = caseTypedMultiplicityElement(completeOperation);
 				if (result == null) result = caseFeature(completeOperation);
 				if (result == null) result = caseNamespace(completeOperation);
 				if (result == null) result = caseParameterableElement(completeOperation);
 				if (result == null) result = caseTemplateableElement(completeOperation);
 				if (result == null) result = caseImplementableElement(completeOperation);
-				if (result == null) result = caseTypedElement(completeOperation);
-				if (result == null) result = caseMultiplicityElement(completeOperation);
 				if (result == null) result = caseNamedElement(completeOperation);
-				if (result == null) result = caseMonikeredElement(completeOperation);
+				if (result == null) result = caseTypedMultiplicityElement(completeOperation);
+				if (result == null) result = caseTypedElement(completeOperation);
 				if (result == null) result = caseNameable(completeOperation);
+				if (result == null) result = caseMultiplicityElement(completeOperation);
+				if (result == null) result = caseMonikeredElement(completeOperation);
 				if (result == null) result = caseElement(completeOperation);
 				if (result == null) result = caseVisitable(completeOperation);
 				if (result == null) result = defaultCase(theEObject);
@@ -496,15 +496,15 @@ public class PivotSwitch<T> {
 				CompleteProperty completeProperty = (CompleteProperty)theEObject;
 				T result = caseCompleteProperty(completeProperty);
 				if (result == null) result = caseProperty(completeProperty);
-				if (result == null) result = caseTypedMultiplicityElement(completeProperty);
 				if (result == null) result = caseFeature(completeProperty);
 				if (result == null) result = caseParameterableElement(completeProperty);
 				if (result == null) result = caseImplementableElement(completeProperty);
-				if (result == null) result = caseTypedElement(completeProperty);
-				if (result == null) result = caseMultiplicityElement(completeProperty);
 				if (result == null) result = caseNamedElement(completeProperty);
-				if (result == null) result = caseMonikeredElement(completeProperty);
+				if (result == null) result = caseTypedMultiplicityElement(completeProperty);
+				if (result == null) result = caseTypedElement(completeProperty);
 				if (result == null) result = caseNameable(completeProperty);
+				if (result == null) result = caseMultiplicityElement(completeProperty);
+				if (result == null) result = caseMonikeredElement(completeProperty);
 				if (result == null) result = caseElement(completeProperty);
 				if (result == null) result = caseVisitable(completeProperty);
 				if (result == null) result = defaultCase(theEObject);
@@ -641,6 +641,9 @@ public class PivotSwitch<T> {
 			{
 				Feature feature = (Feature)theEObject;
 				T result = caseFeature(feature);
+				if (result == null) result = caseTypedMultiplicityElement(feature);
+				if (result == null) result = caseTypedElement(feature);
+				if (result == null) result = caseMultiplicityElement(feature);
 				if (result == null) result = caseNamedElement(feature);
 				if (result == null) result = caseMonikeredElement(feature);
 				if (result == null) result = caseNameable(feature);
@@ -755,17 +758,17 @@ public class PivotSwitch<T> {
 				Iteration iteration = (Iteration)theEObject;
 				T result = caseIteration(iteration);
 				if (result == null) result = caseOperation(iteration);
-				if (result == null) result = caseTypedMultiplicityElement(iteration);
 				if (result == null) result = caseFeature(iteration);
 				if (result == null) result = caseNamespace(iteration);
 				if (result == null) result = caseParameterableElement(iteration);
 				if (result == null) result = caseTemplateableElement(iteration);
 				if (result == null) result = caseImplementableElement(iteration);
-				if (result == null) result = caseTypedElement(iteration);
-				if (result == null) result = caseMultiplicityElement(iteration);
 				if (result == null) result = caseNamedElement(iteration);
-				if (result == null) result = caseMonikeredElement(iteration);
+				if (result == null) result = caseTypedMultiplicityElement(iteration);
+				if (result == null) result = caseTypedElement(iteration);
 				if (result == null) result = caseNameable(iteration);
+				if (result == null) result = caseMultiplicityElement(iteration);
+				if (result == null) result = caseMonikeredElement(iteration);
 				if (result == null) result = caseElement(iteration);
 				if (result == null) result = caseVisitable(iteration);
 				if (result == null) result = defaultCase(theEObject);
@@ -996,17 +999,17 @@ public class PivotSwitch<T> {
 			{
 				Operation operation = (Operation)theEObject;
 				T result = caseOperation(operation);
-				if (result == null) result = caseTypedMultiplicityElement(operation);
 				if (result == null) result = caseFeature(operation);
 				if (result == null) result = caseNamespace(operation);
 				if (result == null) result = caseParameterableElement(operation);
 				if (result == null) result = caseTemplateableElement(operation);
 				if (result == null) result = caseImplementableElement(operation);
-				if (result == null) result = caseTypedElement(operation);
-				if (result == null) result = caseMultiplicityElement(operation);
 				if (result == null) result = caseNamedElement(operation);
-				if (result == null) result = caseMonikeredElement(operation);
+				if (result == null) result = caseTypedMultiplicityElement(operation);
+				if (result == null) result = caseTypedElement(operation);
 				if (result == null) result = caseNameable(operation);
+				if (result == null) result = caseMultiplicityElement(operation);
+				if (result == null) result = caseMonikeredElement(operation);
 				if (result == null) result = caseElement(operation);
 				if (result == null) result = caseVisitable(operation);
 				if (result == null) result = defaultCase(theEObject);
@@ -1157,15 +1160,15 @@ public class PivotSwitch<T> {
 			{
 				Property property = (Property)theEObject;
 				T result = caseProperty(property);
-				if (result == null) result = caseTypedMultiplicityElement(property);
 				if (result == null) result = caseFeature(property);
 				if (result == null) result = caseParameterableElement(property);
 				if (result == null) result = caseImplementableElement(property);
-				if (result == null) result = caseTypedElement(property);
-				if (result == null) result = caseMultiplicityElement(property);
 				if (result == null) result = caseNamedElement(property);
-				if (result == null) result = caseMonikeredElement(property);
+				if (result == null) result = caseTypedMultiplicityElement(property);
+				if (result == null) result = caseTypedElement(property);
 				if (result == null) result = caseNameable(property);
+				if (result == null) result = caseMultiplicityElement(property);
+				if (result == null) result = caseMonikeredElement(property);
 				if (result == null) result = caseElement(property);
 				if (result == null) result = caseVisitable(property);
 				if (result == null) result = defaultCase(theEObject);

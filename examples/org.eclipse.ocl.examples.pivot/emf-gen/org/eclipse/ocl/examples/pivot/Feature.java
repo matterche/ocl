@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Feature.java,v 1.1.2.2 2011/01/12 10:29:52 ewillink Exp $
+ * $Id: Feature.java,v 1.1.2.3 2011/01/13 19:15:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -33,7 +33,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface Feature
-		extends NamedElement {
+		extends TypedMultiplicityElement, NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Featuring Class</b></em>' reference.
@@ -45,7 +45,7 @@ public interface Feature
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Featuring Class</em>' reference.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getFeature_FeaturingClass()
-	 * @model resolveProxies="false" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Class getFeaturingClass();

@@ -12,12 +12,10 @@
  *
  * </copyright>
  *
- * $Id: SetValue.java,v 1.1.2.2 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: SetValue.java,v 1.1.2.3 2011/01/13 19:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
 public interface SetValue extends NonOrderedCollectionValue, UniqueCollectionValue
 {
-	SetValue minus(SetValue set);
-    SetValue symmetricDifference(SetValue set);       
 }

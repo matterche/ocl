@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.1.2.2 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.1.2.3 2011/01/13 19:15:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -426,6 +426,9 @@ public class ValueFactoryImpl implements ValueFactory
 	}
 
 	public Value valueOf(Object object) {
+		if (object instanceof Value) {
+			return (Value) object;
+		}
 		if (object instanceof Number) {
 			if ((object instanceof Integer) || (object instanceof Long)
 					|| (object instanceof Short)) {

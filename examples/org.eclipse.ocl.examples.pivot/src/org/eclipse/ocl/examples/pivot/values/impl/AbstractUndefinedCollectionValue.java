@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedCollectionValue.java,v 1.1.2.2 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: AbstractUndefinedCollectionValue.java,v 1.1.2.3 2011/01/13 19:15:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -183,7 +183,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
     	return toInvalidValue();
 	}
 
-	public InvalidValue minus(SetValue set) {
+	public InvalidValue minus(UniqueCollectionValue set) {
 		return toInvalidValue();
 	}
 
@@ -223,7 +223,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
     	return toInvalidValue();
 	}
 
-	public InvalidValue symmetricDifference(SetValue set) {
+	public InvalidValue symmetricDifference(UniqueCollectionValue set) {
 		return toInvalidValue();
 	}
     

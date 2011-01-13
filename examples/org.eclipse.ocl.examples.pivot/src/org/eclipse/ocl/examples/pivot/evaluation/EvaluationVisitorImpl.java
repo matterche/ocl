@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.14 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.15 2011/01/13 19:15:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
@@ -268,6 +269,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	protected Value defaultPropertyCallExp(Value sourceValue, PropertyCallExp propertyCallExp) {
 		Element element = sourceValue.asElement();
+		if (element == null) {
+			return sourceValue.toInvalidValue();
+		}
 		EClass eClass = element.eClass();
 		Property referredProperty = propertyCallExp.getReferredProperty();
 		EStructuralFeature eFeature = eClass.getEStructuralFeature(referredProperty.getName());
@@ -487,18 +491,18 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
     public Value visitIfExp(IfExp ifExp) {
 		OclExpression condition = ifExp.getCondition();
-		if (condition == null) {
-			return null;
-		}
-		Object evaluatedCondition = condition.accept(getUndecoratedVisitor());
+//		if (condition == null) {
+//			return null;
+//		}
+		Value evaluatedCondition = condition.accept(getUndecoratedVisitor());
 		OclExpression expression = null;
-		if (evaluatedCondition == Boolean.TRUE) {
+		if (evaluatedCondition.isTrue()) {
 			expression = ifExp.getThenExpression();
-		} else if (evaluatedCondition == Boolean.FALSE) {
+		} else if (evaluatedCondition.isFalse()) {
 			expression = ifExp.getElseExpression();
 		}
-		if (expression == null) {
-			return null;
+		else {
+			return evaluatedCondition.toInvalidValue();
 		}
 		return expression.accept(getUndecoratedVisitor());
 	}
@@ -543,6 +547,23 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Iterator iterator = iteratorExp.getReferredIterator();
 		return callImplementation(iterator, sourceValue, iteratorExp);
 	} */
+
+	/**
+	 * Callback for an IteratorExp visit.
+	 */
+	@Override
+    public Value visitIterateExp(IterateExp iterateExp) {
+		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+		Iteration staticIteration = iterateExp.getReferredIteration();
+		CompleteIteration staticCompleteIteration = completeManager.getCompleteIteration(staticIteration);
+		OclExpression source = iterateExp.getSource();
+		Value sourceValue = source.accept(getUndecoratedVisitor());
+		Type staticSourceType = source.getType();
+		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
+		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
+		CompleteIteration dynamicIteration = dynamicCompleteType.getDynamicIteration(staticCompleteIteration);
+		return callImplementation(dynamicIteration, sourceValue, iterateExp);
+	}
 
 	/**
 	 * Callback for an IteratorExp visit.
@@ -646,12 +667,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitPropertyCallExp(PropertyCallExp propertyCallExp) {
-		OclExpression source = propertyCallExp.getSource();	// FIXME self
-		Value sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
+		OclExpression source = propertyCallExp.getSource();
+		Value sourceValue = source.accept(getUndecoratedVisitor());
 		Property property = propertyCallExp.getReferredProperty();
-		if (property == null) {
-			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "No referredProperty", null);
-		}
+//		if (property == null) {
+//			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "No referredProperty", null);
+//		}
 		CallableImplementation implementation = property.getImplementation();
 		if (implementation == null) {
 			String implementationClassName = property.getImplementationClass();

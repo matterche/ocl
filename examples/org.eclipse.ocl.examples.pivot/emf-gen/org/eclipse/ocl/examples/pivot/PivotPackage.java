@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.1.2.14 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.1.2.15 2011/01/13 19:15:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -4833,7 +4833,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
+	int OPERATION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -4842,7 +4842,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__MONIKER = TYPED_ELEMENT__MONIKER;
+	int OPERATION__MONIKER = TYPED_ELEMENT__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4851,7 +4851,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__NAME = TYPED_ELEMENT__NAME;
+	int OPERATION__NAME = TYPED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -4860,7 +4860,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
+	int OPERATION__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -4869,7 +4869,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
+	int OPERATION__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -4878,7 +4878,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
+	int OPERATION__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4887,7 +4887,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__TYPE = TYPED_ELEMENT__TYPE;
+	int OPERATION__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -4896,7 +4896,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED = TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATION__IS_ORDERED = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -4905,7 +4905,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE = TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATION__IS_UNIQUE = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
@@ -4914,7 +4914,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__LOWER = TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATION__LOWER = TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -4923,196 +4923,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__UPPER = TYPED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Typed Multiplicity Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 6;
-
-	/**
-	 * The number of operations of the '<em>Typed Multiplicity Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__MONIKER = TYPED_MULTIPLICITY_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__NAME = TYPED_MULTIPLICITY_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_RULE = TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_ANNOTATION = TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__TYPE = TYPED_MULTIPLICITY_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_ORDERED = TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_UNIQUE = TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__LOWER = TYPED_MULTIPLICITY_ELEMENT__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__UPPER = TYPED_MULTIPLICITY_ELEMENT__UPPER;
+	int OPERATION__UPPER = TYPED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Featuring Class</b></em>' reference.
@@ -5121,7 +4932,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__FEATURING_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATION__FEATURING_CLASS = TYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -5130,7 +4941,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNING_TEMPLATE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATION__OWNING_TEMPLATE_PARAMETER = TYPED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
@@ -5139,7 +4950,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__TEMPLATE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATION__TEMPLATE_PARAMETER = TYPED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -5148,7 +4959,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__TEMPLATE_BINDING = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 3;
+	int OPERATION__TEMPLATE_BINDING = TYPED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -5157,7 +4968,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_TEMPLATE_SIGNATURE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 4;
+	int OPERATION__OWNED_TEMPLATE_SIGNATURE = TYPED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
@@ -5166,7 +4977,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__IMPLEMENTATION_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 5;
+	int OPERATION__IMPLEMENTATION_CLASS = TYPED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
@@ -5175,7 +4986,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__IMPLEMENTATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 6;
+	int OPERATION__IMPLEMENTATION = TYPED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
@@ -5184,7 +4995,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__RAISED_EXCEPTION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 7;
+	int OPERATION__RAISED_EXCEPTION = TYPED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
@@ -5193,7 +5004,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_PARAMETER = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 8;
+	int OPERATION__OWNED_PARAMETER = TYPED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -5202,7 +5013,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__PRECEDENCE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 9;
+	int OPERATION__PRECEDENCE = TYPED_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' container reference.
@@ -5211,7 +5022,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 10;
+	int OPERATION__CLASS = TYPED_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
@@ -5220,7 +5031,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 11;
+	int OPERATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -5229,7 +5040,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___HAS_MONIKER = TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER;
+	int OPERATION___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
 
 	/**
 	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
@@ -5238,7 +5049,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+	int OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
@@ -5247,7 +5058,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+	int OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -5256,7 +5067,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___LOWER_BOUND = TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND;
+	int OPERATION___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Upper Bound</em>' operation.
@@ -5265,7 +5076,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___UPPER_BOUND = TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND;
+	int OPERATION___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Multivalued</em>' operation.
@@ -5274,7 +5085,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___IS_MULTIVALUED = TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED;
+	int OPERATION___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Includes Cardinality</em>' operation.
@@ -5283,7 +5094,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER;
+	int OPERATION___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
@@ -5292,7 +5103,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+	int OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -5301,7 +5112,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___IS_TEMPLATE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
+	int OPERATION___IS_TEMPLATE_PARAMETER = TYPED_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
@@ -5310,7 +5121,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___PARAMETERABLE_ELEMENTS = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 1;
+	int OPERATION___PARAMETERABLE_ELEMENTS = TYPED_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Is Template</em>' operation.
@@ -5319,7 +5130,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___IS_TEMPLATE = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 2;
+	int OPERATION___IS_TEMPLATE = TYPED_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
@@ -5328,7 +5139,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -5337,7 +5148,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 4;
+	int OPERATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl <em>Complete Type</em>}' class.
@@ -6653,7 +6464,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
+	int PROPERTY__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -6662,7 +6473,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__MONIKER = TYPED_MULTIPLICITY_ELEMENT__MONIKER;
+	int PROPERTY__MONIKER = TYPED_ELEMENT__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6671,7 +6482,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__NAME = TYPED_MULTIPLICITY_ELEMENT__NAME;
+	int PROPERTY__NAME = TYPED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -6680,7 +6491,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OWNED_RULE = TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE;
+	int PROPERTY__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -6689,7 +6500,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT__IS_STATIC;
+	int PROPERTY__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -6698,7 +6509,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OWNED_ANNOTATION = TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION;
+	int PROPERTY__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -6707,7 +6518,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__TYPE = TYPED_MULTIPLICITY_ELEMENT__TYPE;
+	int PROPERTY__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -6716,7 +6527,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_ORDERED = TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED;
+	int PROPERTY__IS_ORDERED = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -6725,7 +6536,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_UNIQUE = TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE;
+	int PROPERTY__IS_UNIQUE = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
@@ -6734,7 +6545,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__LOWER = TYPED_MULTIPLICITY_ELEMENT__LOWER;
+	int PROPERTY__LOWER = TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -6743,7 +6554,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__UPPER = TYPED_MULTIPLICITY_ELEMENT__UPPER;
+	int PROPERTY__UPPER = TYPED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Featuring Class</b></em>' reference.
@@ -6752,7 +6563,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__FEATURING_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
+	int PROPERTY__FEATURING_CLASS = TYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -6761,7 +6572,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OWNING_TEMPLATE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
+	int PROPERTY__OWNING_TEMPLATE_PARAMETER = TYPED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
@@ -6770,7 +6581,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__TEMPLATE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
+	int PROPERTY__TEMPLATE_PARAMETER = TYPED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
@@ -6779,7 +6590,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IMPLEMENTATION_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 3;
+	int PROPERTY__IMPLEMENTATION_CLASS = TYPED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
@@ -6788,7 +6599,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IMPLEMENTATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 4;
+	int PROPERTY__IMPLEMENTATION = TYPED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
@@ -6797,7 +6608,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_READ_ONLY = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 5;
+	int PROPERTY__IS_READ_ONLY = TYPED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -6806,7 +6617,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__DEFAULT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 6;
+	int PROPERTY__DEFAULT = TYPED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -6815,7 +6626,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_COMPOSITE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 7;
+	int PROPERTY__IS_COMPOSITE = TYPED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -6824,7 +6635,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_DERIVED = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 8;
+	int PROPERTY__IS_DERIVED = TYPED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Opposite</b></em>' reference.
@@ -6833,7 +6644,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OPPOSITE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 9;
+	int PROPERTY__OPPOSITE = TYPED_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Association</b></em>' reference.
@@ -6842,7 +6653,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__ASSOCIATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 10;
+	int PROPERTY__ASSOCIATION = TYPED_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
@@ -6851,7 +6662,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_ID = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 11;
+	int PROPERTY__IS_ID = TYPED_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Keys</b></em>' reference list.
@@ -6860,7 +6671,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__KEYS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 12;
+	int PROPERTY__KEYS = TYPED_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
@@ -6869,7 +6680,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_RESOLVE_PROXIES = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 13;
+	int PROPERTY__IS_RESOLVE_PROXIES = TYPED_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
@@ -6878,7 +6689,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_TRANSIENT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 14;
+	int PROPERTY__IS_TRANSIENT = TYPED_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
@@ -6887,7 +6698,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_UNSETTABLE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 15;
+	int PROPERTY__IS_UNSETTABLE = TYPED_ELEMENT_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
@@ -6896,7 +6707,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_VOLATILE = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 16;
+	int PROPERTY__IS_VOLATILE = TYPED_ELEMENT_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' container reference.
@@ -6905,7 +6716,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 17;
+	int PROPERTY__CLASS = TYPED_ELEMENT_FEATURE_COUNT + 21;
 
 	/**
 	 * The number of structural features of the '<em>Property</em>' class.
@@ -6914,7 +6725,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 18;
+	int PROPERTY_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 22;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -6923,7 +6734,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___HAS_MONIKER = TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER;
+	int PROPERTY___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
 
 	/**
 	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
@@ -6932,7 +6743,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+	int PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
@@ -6941,7 +6752,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+	int PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -6950,7 +6761,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___LOWER_BOUND = TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND;
+	int PROPERTY___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Upper Bound</em>' operation.
@@ -6959,7 +6770,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___UPPER_BOUND = TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND;
+	int PROPERTY___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Multivalued</em>' operation.
@@ -6968,7 +6779,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___IS_MULTIVALUED = TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED;
+	int PROPERTY___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Includes Cardinality</em>' operation.
@@ -6977,7 +6788,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER;
+	int PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
@@ -6986,7 +6797,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+	int PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -6995,7 +6806,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___IS_TEMPLATE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
+	int PROPERTY___IS_TEMPLATE_PARAMETER = TYPED_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Validate Binding To Attribute</em>' operation.
@@ -7004,7 +6815,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 1;
+	int PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Property</em>' class.
@@ -7013,7 +6824,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 2;
+	int PROPERTY_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -8975,7 +8786,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+	int TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -8984,7 +8795,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__MONIKER = NAMED_ELEMENT__MONIKER;
+	int TYPED_MULTIPLICITY_ELEMENT__MONIKER = TYPED_ELEMENT__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8993,7 +8804,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__NAME = NAMED_ELEMENT__NAME;
+	int TYPED_MULTIPLICITY_ELEMENT__NAME = TYPED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -9002,7 +8813,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_RULE = NAMED_ELEMENT__OWNED_RULE;
+	int TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -9011,7 +8822,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
+	int TYPED_MULTIPLICITY_ELEMENT__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -9020,25 +8831,61 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+	int TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
-	 * The feature id for the '<em><b>Featuring Class</b></em>' reference.
+	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__FEATURING_CLASS = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int TYPED_MULTIPLICITY_ELEMENT__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
-	 * The number of structural features of the '<em>Feature</em>' class.
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED = TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE = TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__LOWER = TYPED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__UPPER = TYPED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Typed Multiplicity Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9047,7 +8894,268 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE___HAS_MONIKER = NAMED_ELEMENT___HAS_MONIKER;
+	int TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Lower Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Upper Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Is Multivalued</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Includes Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Typed Multiplicity Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__MONIKER = TYPED_MULTIPLICITY_ELEMENT__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__NAME = TYPED_MULTIPLICITY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_RULE = TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_ANNOTATION = TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__TYPE = TYPED_MULTIPLICITY_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_ORDERED = TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_UNIQUE = TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__LOWER = TYPED_MULTIPLICITY_ELEMENT__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__UPPER = TYPED_MULTIPLICITY_ELEMENT__UPPER;
+
+	/**
+	 * The feature id for the '<em><b>Featuring Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__FEATURING_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___HAS_MONIKER = TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Lower Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___LOWER_BOUND = TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Upper Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___UPPER_BOUND = TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Is Multivalued</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___IS_MULTIVALUED = TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED;
+
+	/**
+	 * The operation id for the '<em>Includes Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER;
+
+	/**
+	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -9056,7 +9164,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int FEATURE_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.

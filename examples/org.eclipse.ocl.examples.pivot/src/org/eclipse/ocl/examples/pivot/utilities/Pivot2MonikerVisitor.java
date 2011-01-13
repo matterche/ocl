@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.10 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.11 2011/01/13 19:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -96,8 +97,22 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		EObject parent = object.eContainer();
 		if (parent instanceof CallExp) {
 			CallExp callExpParent = (CallExp)parent;
-			if (callExpParent.isImplicit() && (callExpParent.getSource() == object)) {
-				object = callExpParent;
+			if (callExpParent.isImplicit()) {
+				if (callExpParent instanceof IteratorExp) {		// Bypass implicit collect
+					if (callExpParent.getSource() == object) {
+						context.appendElement(((IteratorExp)callExpParent).getBody());
+						context.append(MONIKER_SCOPE_SEPARATOR);
+						context.appendRole(object);
+						context.append(MONIKER_OPERATOR_SEPARATOR);
+						return;
+					}
+					else {
+						object = callExpParent;
+					}
+				}
+				else if (callExpParent.getSource() == object) {
+					object = callExpParent;
+				}
 			}
 		}
 		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
@@ -307,7 +322,6 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 
 	@Override
 	public Object visitPropertyCallExp(PropertyCallExp object) {
-//		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 		appendExpPrefix(object);
 		context.appendName(object.getReferredProperty());
 		return true;

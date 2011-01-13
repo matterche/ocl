@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.1.2.8 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.1.2.9 2011/01/13 19:15:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -45,7 +45,9 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
+import org.eclipse.ocl.examples.pivot.internal.operations.MultiplicityElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.PropertyOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -57,6 +59,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isOrdered <em>Is Ordered</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isUnique <em>Is Unique</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getLower <em>Lower</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
@@ -82,8 +88,88 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public class PropertyImpl
-		extends TypedMultiplicityElementImpl
+		extends TypedElementImpl
 		implements Property {
+
+	/**
+	 * The default value of the '{@link #isOrdered() <em>Is Ordered</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOrdered()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ORDERED_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isOrdered() <em>Is Ordered</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOrdered()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_ORDERED_EFLAG = 1 << 9;
+
+	/**
+	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_UNIQUE_EDEFAULT = true;
+
+	/**
+	 * The flag representing the value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_UNIQUE_EFLAG = 1 << 10;
+
+	/**
+	 * The default value of the '{@link #getLower() <em>Lower</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLower()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigInteger LOWER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
+
+	/**
+	 * The cached value of the '{@link #getLower() <em>Lower</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLower()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger lower = LOWER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUpper() <em>Upper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUpper()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigInteger UPPER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
+
+	/**
+	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUpper()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger upper = UPPER_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
@@ -352,6 +438,7 @@ public class PropertyImpl
 	 */
 	protected PropertyImpl() {
 		super();
+		eFlags |= IS_UNIQUE_EFLAG;
 		eFlags |= IS_RESOLVE_PROXIES_EFLAG;
 	}
 
@@ -363,6 +450,98 @@ public class PropertyImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PROPERTY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isOrdered()
+	{
+		return (eFlags & IS_ORDERED_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsOrdered(boolean newIsOrdered)
+	{
+		boolean oldIsOrdered = (eFlags & IS_ORDERED_EFLAG) != 0;
+		if (newIsOrdered) eFlags |= IS_ORDERED_EFLAG; else eFlags &= ~IS_ORDERED_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_ORDERED, oldIsOrdered, newIsOrdered));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isUnique()
+	{
+		return (eFlags & IS_UNIQUE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsUnique(boolean newIsUnique)
+	{
+		boolean oldIsUnique = (eFlags & IS_UNIQUE_EFLAG) != 0;
+		if (newIsUnique) eFlags |= IS_UNIQUE_EFLAG; else eFlags &= ~IS_UNIQUE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_UNIQUE, oldIsUnique, newIsUnique));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BigInteger getLower()
+	{
+		return lower;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLower(BigInteger newLower)
+	{
+		BigInteger oldLower = lower;
+		lower = newLower;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__LOWER, oldLower, lower));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BigInteger getUpper()
+	{
+		return upper;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUpper(BigInteger newUpper)
+	{
+		BigInteger oldUpper = upper;
+		upper = newUpper;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__UPPER, oldUpper, upper));
 	}
 
 	/**
@@ -963,6 +1142,76 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLowerGe0(DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return MultiplicityElementOperations.validateLowerGe0(this, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUpperGeLower(DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return MultiplicityElementOperations.validateUpperGeLower(this, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BigInteger lowerBound()
+	{
+		return MultiplicityElementOperations.lowerBound(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BigInteger upperBound()
+	{
+		return MultiplicityElementOperations.upperBound(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isMultivalued()
+	{
+		return MultiplicityElementOperations.isMultivalued(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean includesCardinality(BigInteger C)
+	{
+		return MultiplicityElementOperations.includesCardinality(this, C);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean includesMultiplicity(MultiplicityElement M)
+	{
+		return MultiplicityElementOperations.includesMultiplicity(this, M);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isTemplateParameter() {
 		return ParameterableElementOperations.isTemplateParameter(this);
 	}
@@ -1407,6 +1656,24 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == MultiplicityElement.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case PivotPackage.PROPERTY__IS_ORDERED: return PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED;
+				case PivotPackage.PROPERTY__IS_UNIQUE: return PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE;
+				case PivotPackage.PROPERTY__LOWER: return PivotPackage.MULTIPLICITY_ELEMENT__LOWER;
+				case PivotPackage.PROPERTY__UPPER: return PivotPackage.MULTIPLICITY_ELEMENT__UPPER;
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedMultiplicityElement.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
 		if (baseClass == Feature.class)
 		{
 			switch (derivedFeatureID)
@@ -1443,6 +1710,24 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == MultiplicityElement.class)
+		{
+			switch (baseFeatureID)
+			{
+				case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED: return PivotPackage.PROPERTY__IS_ORDERED;
+				case PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE: return PivotPackage.PROPERTY__IS_UNIQUE;
+				case PivotPackage.MULTIPLICITY_ELEMENT__LOWER: return PivotPackage.PROPERTY__LOWER;
+				case PivotPackage.MULTIPLICITY_ELEMENT__UPPER: return PivotPackage.PROPERTY__UPPER;
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedMultiplicityElement.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
 		if (baseClass == Feature.class)
 		{
 			switch (baseFeatureID)
@@ -1479,6 +1764,27 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == MultiplicityElement.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP: return PivotPackage.PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+				case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP: return PivotPackage.PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+				case PivotPackage.MULTIPLICITY_ELEMENT___LOWER_BOUND: return PivotPackage.PROPERTY___LOWER_BOUND;
+				case PivotPackage.MULTIPLICITY_ELEMENT___UPPER_BOUND: return PivotPackage.PROPERTY___UPPER_BOUND;
+				case PivotPackage.MULTIPLICITY_ELEMENT___IS_MULTIVALUED: return PivotPackage.PROPERTY___IS_MULTIVALUED;
+				case PivotPackage.MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER: return PivotPackage.PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER;
+				case PivotPackage.MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT: return PivotPackage.PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedMultiplicityElement.class)
+		{
+			switch (baseOperationID)
+			{
+				default: return -1;
+			}
+		}
 		if (baseClass == Feature.class)
 		{
 			switch (baseOperationID)

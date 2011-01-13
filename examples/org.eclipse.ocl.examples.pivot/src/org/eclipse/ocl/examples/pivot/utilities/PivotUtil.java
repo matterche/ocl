@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.9 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.10 2011/01/13 19:15:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -169,29 +169,26 @@ public class PivotUtil
 		return list;
 	}
 
-	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(TemplateableElement templateableElement) {
-		Map<TemplateParameter, ParameterableElement> map = new HashMap<TemplateParameter, ParameterableElement>();
-		for (TemplateBinding templateBinding : templateableElement.getTemplateBindings()) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
-				map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
-			}
-		}
-		if (templateableElement instanceof org.eclipse.ocl.examples.pivot.Class) {
-			getAllSuperTemplateParameterSubstitutions(map, (org.eclipse.ocl.examples.pivot.Class) templateableElement);
-		}
-		return map;
-	}
-
-	private static void getAllSuperTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> map,
-			org.eclipse.ocl.examples.pivot.Class type) {
-		for (org.eclipse.ocl.examples.pivot.Class superType : type.getSuperClasses()) {
-			for (TemplateBinding templateBinding : superType.getTemplateBindings()) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
-					map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
+	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> map,
+			TemplateableElement templateableElement) {
+		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof TemplateableElement) {
+				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getTemplateBindings()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+						if (map == null) {
+							map = new HashMap<TemplateParameter, ParameterableElement>();
+						}
+						map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
+					}
 				}
 			}
-			getAllSuperTemplateParameterSubstitutions(map, superType);
-		}		
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+				for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class)eObject).getSuperClasses()) {
+					map = getAllTemplateParameterSubstitutions(map, superType);
+				}		
+			}
+		}
+		return map;
 	}
 
 	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {

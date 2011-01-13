@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingVisitor.java,v 1.1.2.12 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: AbstractExtendingVisitor.java,v 1.1.2.13 2011/01/13 19:15:38 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -162,7 +162,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitFeature(org.eclipse.ocl.examples.pivot.Feature object) {
-		return visitNamedElement(object);
+		return visitTypedMultiplicityElement(object);
 	}
 
 	public R visitFeatureCallExp(org.eclipse.ocl.examples.pivot.FeatureCallExp object) {
@@ -258,7 +258,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitOperation(org.eclipse.ocl.examples.pivot.Operation object) {
-		return visitTypedMultiplicityElement(object);
+		return visitTypedElement(object);
 	}
 
 	public R visitOperationCallExp(org.eclipse.ocl.examples.pivot.OperationCallExp object) {
@@ -302,7 +302,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitProperty(org.eclipse.ocl.examples.pivot.Property object) {
-		return visitTypedMultiplicityElement(object);
+		return visitTypedElement(object);
 	}
 
 	public R visitPropertyCallExp(org.eclipse.ocl.examples.pivot.PropertyCallExp object) {
