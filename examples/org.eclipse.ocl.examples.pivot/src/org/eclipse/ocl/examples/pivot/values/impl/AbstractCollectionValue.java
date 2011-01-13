@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.1.2.5 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.1.2.6 2011/01/13 20:19:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -63,7 +63,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
     @Override
     public BagValue asBagValue() {
-        return new BagValueImpl(valueFactory, elements);
+        return valueFactory.createBagValue(elements);
     }
 
 	public Collection<Value> asCollection() {
@@ -81,17 +81,17 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
     @Override
 	public OrderedSetValue asOrderedSetValue() {
-        return new OrderedSetValueImpl(valueFactory, elements);
+        return valueFactory.createOrderedSetValue(elements);
     }
 
     @Override
     public SequenceValue asSequenceValue() {
-        return new SequenceValueImpl(valueFactory, elements);
+        return valueFactory.createSequenceValue(elements);
     }
 
     @Override
     public SetValue asSetValue() {
-        return new SetValueImpl(valueFactory, elements);
+        return valueFactory.createSetValue(elements);
     }
 
     /**
