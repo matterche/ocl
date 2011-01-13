@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.5 2011/01/12 10:28:49 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.6 2011/01/13 20:18:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -73,11 +73,6 @@ public class EnvironmentView
 	 */
 	public int addElement(String elementName, EObject element) {
 		if ((element != null) && ((name == null) || name.equals(elementName))) {
-/*			if (!bindings.getBindings().isEmpty()) {
-				if (element instanceof OperationCS) {
-					element = ElementUtil.specializeOperation((OperationCS) element);
-				}
-			} */
 			Object value = contentsByName.get(elementName);
 			if (value == null) {
 				contentsByName.put(elementName, element);
