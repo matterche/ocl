@@ -34,6 +34,10 @@ Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg
 Precedence [precedence.getSymbolName()/] = PivotFactory.eINSTANCE.createPrecedence(); // [precedence.name/]
 [/template]
 
+[template public declareProperty(property : Property)]
+Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
+[/template]
+
 [template public declareTemplateParameter(templateParameter : TemplateParameter)]
 [/template]
 
@@ -81,6 +85,9 @@ Class [type.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [type.m
 [if (type.ownedTemplateSignature->notEmpty())]
 [declareTemplateSignature(type.ownedTemplateSignature)/]
 [/if]
+[for (property : Property | type.ownedAttribute->sortedBy(name))]
+[declareProperty(property)/] // [property.getSignature()/] [property.moniker/]
+[/for]
 [for (operation : Operation | type.ownedOperation->sortedBy(name))]
 [if (operation.ownedTemplateSignature->notEmpty())]
 [declareTemplateSignature(operation.ownedTemplateSignature)/]
@@ -200,7 +207,6 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 [/template]
 
 [template public emitProperty(property : Property)]
-Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
 [property.getSymbolName()/].setName("[property.name/]");
 [property.getSymbolName()/].setType([property.type.getSymbolName()/]);  // [property.type.moniker/]
 [emitMultiplicityElement(property)/]
@@ -230,6 +236,9 @@ Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
 [/if]
 [if (property.isVolatile)]
 [property.getSymbolName()/].setIsVolatile(true);
+[/if]
+[if (property.opposite->notEmpty())]
+[property.getSymbolName()/].setOpposite([property.opposite.getSymbolName()/]);
 [/if]
 [if (property.implementationClass->notEmpty())]
 [property.getSymbolName()/].setImplementation([property.implementationClass/].INSTANCE);
