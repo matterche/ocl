@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.4 2010/12/28 12:19:24 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.5 2011/01/13 19:16:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -46,7 +48,20 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 				environmentView.addElementsOfScope(pivotManager, ((TypeExp)csSource).getReferredType(), scopeView);
 			}
 			else {
-				environmentView.addElementsOfScope(pivotManager, csSource.getType(), scopeView);
+				Type type = csSource.getType();
+				if (target.getName().equals("->")) {
+					environmentView.addElementsOfScope(pivotManager, type, scopeView);					
+					if (!(type instanceof CollectionType)) {
+						Type setType = pivotManager.getSetType(type);
+						environmentView.addElementsOfScope(pivotManager, setType, scopeView);
+					}
+				}
+				else {
+					environmentView.addElementsOfScope(pivotManager, type, scopeView);					
+					if (type instanceof CollectionType) {
+						environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+					}
+				}
 			}
 //			return typeScopeAdapter.compute Lookup(environmentView, typeScopeAdapter.getInnerScopeView(null));
 //			return getScopeCSAdapter(parent).getOuterScopeView(null);

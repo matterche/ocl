@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.6 2011/01/12 10:30:52 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.7 2011/01/13 19:16:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -166,6 +166,12 @@ public class EssentialOCLCS2MonikerVisitor
 			context.append(index);
 		}
 		context.append(MONIKER_OPERATOR_SEPARATOR);
+		if ((pivotingChild instanceof NavigatingAccCS) && (object == ((NavigatingAccCS)pivotingChild).getInit())) {
+			appendNameExpCSName((NameExpCS) ((NavigatingAccCS)pivotingChild).getName());
+			context.append(MONIKER_SCOPE_SEPARATOR);
+			context.append(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION.getName());
+			context.append(MONIKER_OPERATOR_SEPARATOR);
+		}
 /*		if (parent instanceof NavigationOperatorCS) {
 			NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)parent;
 			if (object == csNavigationOperator.getSource()) {
@@ -187,6 +193,17 @@ public class EssentialOCLCS2MonikerVisitor
 				}
 			}
 		} */
+	}
+
+	protected void appendNameExpCSName(NameExpCS object) {
+		NamedElement element = ((NameExpCSImpl)object).basicGetElement();
+		if (!element.eIsProxy()) {
+			context.appendName(element);
+		}
+		else {
+			CompositeNode node = NodeUtil.getNode(object);
+			context.append(node.serialize().trim());
+		}
 	}
 
 	@Override
@@ -290,14 +307,7 @@ public class EssentialOCLCS2MonikerVisitor
 	@Override
 	public Object visitNameExpCS(NameExpCS object) {
 		appendExpPrefix(object);
-		NamedElement element = ((NameExpCSImpl)object).basicGetElement();
-		if (!element.eIsProxy()) {
-			context.appendName(element);
-		}
-		else {
-			CompositeNode node = NodeUtil.getNode(object);
-			context.append(node.serialize().trim());
-		}
+		appendNameExpCSName(object);
 		return true;
 	}
 
