@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.8 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.9 2011/01/14 14:54:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,51 +23,60 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
-import org.eclipse.ocl.examples.library.evaluation.IterationTemplateSortedBy;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.Value.BinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * SelectIteration realises the Collection::sortedBy() library iteration.
  * 
  * @since 3.1
  */
-public class SortedByIteration extends AbstractIteration
+public class SortedByIteration extends AbstractIteration<SortedByIteration.SortingValue>
 {
-	private static class SortedByComparator implements Comparator<Object>
-	{	// FIXME faster version for when binaryImplementation has a compareTo sibling
-		private final ValueFactory valueFactory;
-		private final BinaryOperation binaryImplementation;
-		private final Map<Object, Value> map;
+	protected static class SortingValue extends AbstractValue implements Comparator<Value>
+	{
+		private final EvaluationEnvironment env;
+		private final Value sourceVal;
+		private final Map<Value, Value> content = new HashMap<Value, Value>();	// User object to sortedBy value
+		private final LoopExp iteratorExp;
+		private final Value.BinaryOperation binaryImplementation;
 
-		private SortedByComparator(ValueFactory valueFactory,
-				BinaryOperation binaryImplementation, Map<Object, Value> map) {
-			this.valueFactory = valueFactory;
+		public SortingValue(EvaluationEnvironment env, Value sourceVal, LoopExp iteratorExp, Value.BinaryOperation binaryImplementation) {
+			super(env.getValueFactory());
+			this.env = env;
+			this.sourceVal = sourceVal;
+			this.iteratorExp = iteratorExp;
 			this.binaryImplementation = binaryImplementation;
-			this.map = map;
 		}
-
-		public int compare(Object o1, Object o2) {
+		
+		public int compare(Value o1, Value o2) {
 			if (o1 == o2) {
 				return 0;
 			}
-			Value v1 = map.get(o1);
-			Value v2 = map.get(o2);
+			Value v1 = content.get(o1);
+			Value v2 = content.get(o2);
 			if (v1 == v2) {
 				return 0;
 			}
@@ -86,6 +95,33 @@ public class SortedByIteration extends AbstractIteration
 				throw new IllegalArgumentException();
 			}
 			return 0;
+		}
+
+		public Value createSortedValue() {
+			List<Value> result = new ArrayList<Value>(content.keySet());
+			try {
+				Collections.sort(result, this);
+			}
+			catch (Exception e) {
+				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' evaluation failed", e);
+			}
+			// create result from the sorted collection
+			Type sourceType = iteratorExp.getSource().getType();
+			boolean isUnique = env.getPivotManager().isUnique(sourceType);
+			return valueFactory.createCollectionValue(true, isUnique, result);
+		}
+
+		public Type getType(StandardLibrary standardLibrary, Type staticType) {
+			return staticType;
+		}
+
+		public void put(Value iterVal, Value comparable) {
+			content.put(iterVal, comparable);
+		}
+
+		@Override
+		public String toString() {
+			return content.toString();
 		}
 	}
 
@@ -107,51 +143,71 @@ public class SortedByIteration extends AbstractIteration
 //		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
 //		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
 //		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
-		CallableImplementation implementation = staticCompleteOperation.getImplementation();
-		if (implementation == null) {
-			String implementationClassName = staticCompleteOperation.getImplementationClass();
-			try {
-				implementation = pivotManager.loadImplementationClass(implementationClassName);
-			} catch (Exception e) {
-				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + implementationClassName + "'", e);
-			}
+		Value.BinaryOperation binaryImplementation;
+		try {
+			CallableImplementation implementation = pivotManager.getImplementation(staticCompleteOperation);
 			if (implementation == null) {
-				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + implementationClassName + "'", null);
+				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", null);
 			}
+			if (!(implementation instanceof Value.BinaryOperation)) {
+				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' is not a binary operation", null);
+			}
+			binaryImplementation = (BinaryOperation) implementation;
+		} catch (Exception e) {
+			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", e);
 		}
-		if (!(implementation instanceof Value.BinaryOperation)) {
-			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' is not a binary operation", null);
+		SortingValue accumulatorValue = new SortingValue(evaluationEnvironment, sourceVal, iteratorExp, binaryImplementation);
+		return evaluateIteration(evaluationVisitor, (CollectionValue) sourceVal, iteratorExp, accumulatorValue);
+	}
+	
+	@Override
+	protected Value resolveTerminalValue(EvaluationEnvironment env, SortingValue accumulatorValue) {
+		return accumulatorValue.createSortedValue();
+	}
+
+	@Override
+    protected Value updateAccumulator(EvaluationVisitor evaluationVisitor, List<? extends VariableDeclaration> iterators,
+    		OclExpression body, SortingValue accumulatorValue) {
+		Value bodyVal = body.accept(evaluationVisitor);		
+		if (bodyVal.isUndefined()) {
+			return bodyVal.toInvalidValue();				// Null body is invalid
 		}
-		Value.BinaryOperation binaryImplementation = (BinaryOperation) implementation;
-		
-		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
-		CollectionValue coll = (CollectionValue) sourceVal;
-		// get an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplateSortedBy.getInstance(evaluationVisitor);
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		Map<Object, Value> map = new HashMap<Object, Value>();
-		IterationTemplateSortedBy.SortingValue workingValue = new IterationTemplateSortedBy.SortingValue(valueFactory, map);
-		evaluationEnvironment.add(resultName, workingValue);		
+		// must have exactly one iterator
+		EvaluationEnvironment env = evaluationVisitor.getEvaluationEnvironment();
+		String iterName = iterators.get(0).getName();
+		Value iterVal = env.getValueOf(iterName);
+		accumulatorValue.put(iterVal, bodyVal);
+		return null;										// Carry on
+	}
+
+	@Override
+	public Diagnostic validate(PivotManager pivotManager, CallExp callExp) {
+		Iteration iteration = ((LoopExp)callExp).getReferredIteration();
+		Type type = ((LoopExp)callExp).getBody().getType();
+		Operation operation = pivotManager.resolveOperation(type, "<", type);
 		try {
-			// evaluate to populate the element to body expression value map
-			is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			evaluationEnvironment.remove(resultName);
+			if (operation == null) {
+				return new Warning(OCLMessages.WarningUndefinedOperation, "<", type);
+			}
+			CallableImplementation implementation = pivotManager.getImplementation(operation);
+			if (implementation == null) {
+				return new Warning("Failed to load '" + operation.getImplementationClass() + "'");
+			}
+			else if (!(implementation instanceof Value.BinaryOperation)) {
+				return new Warning(type.toString() + "::_'<'(" + type.toString() + ") is not a binary operation");
+			}
+			else {
+				return null;
+			}
+		} catch (Exception e) {
+			return new Warning("Failed to load '" + operation.getImplementationClass() + "'");  //, e);
 		}
-		// put values in a sortable collection
-		List<Value> result = new ArrayList<Value>(coll.asCollection());
-		// sort based on the body expression values
-		try {
-			Collections.sort(result, new SortedByComparator(valueFactory, binaryImplementation, map));
+	}
+	
+	public static class Warning extends BasicDiagnostic
+	{
+		public Warning(String messageTemplate, Object... bindings) {
+			super("Validation", WARNING, NLS.bind(messageTemplate, bindings), null);
 		}
-		catch (Exception e) {
-			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' evaluation failed", null);
-		}
-		// create result from the sorted collection
-		Type sourceType = iteratorExp.getSource().getType();
-		boolean isUnique = pivotManager.isUnique(sourceType);
-		return valueFactory.createCollectionValue(true, isUnique, result);
 	}
 }

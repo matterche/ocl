@@ -12,53 +12,66 @@
  *
  * </copyright>
  *
- * $Id: CollectIteration.java,v 1.1.2.9 2011/01/13 19:16:20 ewillink Exp $
+ * $Id: CollectIteration.java,v 1.1.2.10 2011/01/14 14:54:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
 import java.util.List;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
-import org.eclipse.ocl.examples.library.evaluation.IterationTemplateCollect;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue.Accumulator;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectIteration realises the Collection::collect() library iteration.
  * 
  * @since 3.1
  */
-public class CollectIteration extends AbstractIteration
+public class CollectIteration extends AbstractIteration<CollectionValue.Accumulator>
 {
 	public static final CollectIteration INSTANCE = new CollectIteration();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
-		// get initial result value based on the source type
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = iteratorExp.getSource().getType();
 		boolean isOrdered = stdlib.isOrdered(sourceType);
-		Value initResultVal = createAccumulationValue(evaluationVisitor.getValueFactory(), isOrdered, false);
-		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
-		OclExpression body = iteratorExp.getBody();		
-		CollectionValue coll = (CollectionValue) sourceVal;
-		// get an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplateCollect.getInstance(evaluationVisitor);
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		evaluationVisitor.getEvaluationEnvironment().add(resultName, initResultVal);		
-		try {
-			// evaluate
-			return is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			evaluationVisitor.getEvaluationEnvironment().remove(resultName);
+		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, false);
+		return evaluateIteration(evaluationVisitor, (CollectionValue) sourceVal, iteratorExp, accumulatorValue);
+	}
+	
+	@Override
+	protected Value resolveTerminalValue(EvaluationEnvironment env, Accumulator accumulatorValue) {
+		return accumulatorValue;
+	}
+
+	@Override
+    protected Value updateAccumulator(EvaluationVisitor evaluationVisitor, List<? extends VariableDeclaration> iterators,
+    		OclExpression body, CollectionValue.Accumulator accumulatorValue) {
+		Value bodyVal = body.accept(evaluationVisitor);		
+		if (bodyVal.isInvalid()) {
+			return bodyVal;				// invalid body is invalid
 		}
+		else if (bodyVal.isNull()) {
+			accumulatorValue.add(bodyVal);
+		}
+		else if (bodyVal instanceof CollectionValue) {
+			CollectionValue bodyColl = (CollectionValue) bodyVal;
+			for (Value value : bodyColl.flatten()) {
+				accumulatorValue.add(value);
+			}
+		}
+		else
+			accumulatorValue.add(bodyVal);
+		return null;										// Carry on
 	}
 }

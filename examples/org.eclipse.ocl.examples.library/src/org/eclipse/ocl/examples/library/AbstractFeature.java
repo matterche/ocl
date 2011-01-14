@@ -12,13 +12,20 @@
  *
  * </copyright>
  *
- * $Id: AbstractFeature.java,v 1.1.2.6 2011/01/08 15:34:43 ewillink Exp $
+ * $Id: AbstractFeature.java,v 1.1.2.7 2011/01/14 14:54:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
+
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 
 /**
  * @since 3.1
  */
 public abstract class AbstractFeature implements LibraryFeature
 {
+	public Diagnostic validate(PivotManager pivotManager, CallExp callExp) {
+		return null;
+	}
 }

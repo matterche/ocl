@@ -12,52 +12,56 @@
  *
  * </copyright>
  *
- * $Id: IsUniqueIteration.java,v 1.1.2.7 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: IsUniqueIteration.java,v 1.1.2.8 2011/01/14 14:54:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
 import java.util.List;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.evaluation.IterationTemplate;
-import org.eclipse.ocl.examples.library.evaluation.IterationTemplateIsUnique;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue.Accumulator;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.impl.SetValueImpl;
 
 /**
  * IsUniqueIteration realises the Collection::isUnique() library iteration.
  * 
  * @since 3.1
  */
-public class IsUniqueIteration extends AbstractIteration
+public class IsUniqueIteration extends AbstractIteration<CollectionValue.Accumulator>
 {
 	public static final IsUniqueIteration INSTANCE = new IsUniqueIteration();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		List<? extends VariableDeclaration> iterators = iteratorExp.getReferredIteration().getOwnedIterators();
-		OclExpression body = iteratorExp.getBody();		
-		CollectionValue coll = (CollectionValue) sourceVal;
-		// get an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplateIsUnique.getInstance(evaluationVisitor);
-		// generate a name for the result variable and add it to the environment
-		String resultName = generateName();
-		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
-		evaluationEnvironment.add(resultName, new SetValueImpl.Accumulator(valueFactory));		
-		try {
-			// evaluate
-			is.evaluate(coll, iterators, body, resultName);
-		} finally {
-			// remove result name from environment
-			evaluationEnvironment.remove(resultName);
+		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, true, false);
+		return evaluateIteration(evaluationVisitor, (CollectionValue) sourceVal, iteratorExp, accumulatorValue);
+	}
+	
+	@Override
+	protected Value resolveTerminalValue(EvaluationEnvironment env, Accumulator accumulatorValue) {
+		return env.getValueFactory().getTrue();
+	}
+	
+	@Override
+    protected Value updateAccumulator(EvaluationVisitor evaluationVisitor, List<? extends VariableDeclaration> iterators,
+    		OclExpression body, CollectionValue.Accumulator accumulatorValue) {
+		Value bodyVal = body.accept(evaluationVisitor);		
+		if (bodyVal.isInvalid()) {
+			return bodyVal;				// invalid body is invalid
 		}
-		return valueFactory.booleanValueOf(!is.isDone());
+		else if (accumulatorValue.includes(bodyVal).isTrue()) {
+			return evaluationVisitor.getValueFactory().getFalse();		// Abort after second find
+		}
+		else {
+			accumulatorValue.add(bodyVal);
+			return null;									// Carry on after first find
+		}
 	}
 }

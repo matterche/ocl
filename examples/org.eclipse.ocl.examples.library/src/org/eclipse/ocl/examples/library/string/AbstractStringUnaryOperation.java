@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractStringUnaryOperation.java,v 1.1.2.3 2011/01/08 15:34:42 ewillink Exp $
+ * $Id: AbstractStringUnaryOperation.java,v 1.1.2.4 2011/01/14 14:54:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
@@ -37,7 +37,7 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 		}
 		String sourceString = sourceVal.asString();
 		if (sourceString == null) {
-			return null;
+			return valueFactory.createInvalidValue("non-String source");
 		}
 		return evaluateString(valueFactory, sourceString);
 	}
@@ -57,7 +57,7 @@ public abstract class AbstractStringUnaryOperation extends AbstractUnaryOperatio
 	 * @return result
 	 */
 	protected Value evaluateNull(ValueFactory valueFactory, Value left) {
-		return null;
+		return valueFactory.createInvalidValue(left, null, "null-source", null);
 	}
 	
 	/**
