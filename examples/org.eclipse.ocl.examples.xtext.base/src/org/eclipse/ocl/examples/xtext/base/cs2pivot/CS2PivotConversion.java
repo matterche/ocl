@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.9 2011/01/12 10:28:49 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.10 2011/01/14 14:52:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -120,10 +121,17 @@ public class CS2PivotConversion extends AbstractConversion
 		this.pivotManager = converter.getPivotManager();
 	}
 
+	public void addDiagnostic(ModelElementCS csElement, Diagnostic diagnostic) {
+		csElement.getError().add(diagnostic.getMessage());
+	}
+
 //	public void addError(ModelElementCS csElement, String message) {
 //		csElement.getError().add(message);
 //	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addError(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS, java.lang.String, java.lang.Object)
+	 */
 	public OclExpression addError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
 		csElement.getError().add(boundMessage);
@@ -138,6 +146,9 @@ public class CS2PivotConversion extends AbstractConversion
 //		csElement.getError().add(message);
 //	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addWarning(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS, java.lang.String, java.lang.Object)
+	 */
 	public void addWarning(ModelElementCS csElement, String message, Object... bindings) {
 		csElement.getError().add(NLS.bind(message, bindings));
 	}
