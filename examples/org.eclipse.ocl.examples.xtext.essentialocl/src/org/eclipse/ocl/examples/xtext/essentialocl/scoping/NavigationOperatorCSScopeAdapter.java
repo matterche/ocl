@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.5 2011/01/13 19:16:12 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.6 2011/01/14 14:54:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -49,7 +50,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			}
 			else {
 				Type type = csSource.getType();
-				if (target.getName().equals("->")) {
+				if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
 					environmentView.addElementsOfScope(pivotManager, type, scopeView);					
 					if (!(type instanceof CollectionType)) {
 						Type setType = pivotManager.getSetType(type);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.10 2011/01/13 19:16:12 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.11 2011/01/14 14:54:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
@@ -82,6 +83,7 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -342,8 +344,187 @@ public class EssentialOCLLeft2RightVisitor
 		return result;
 	}
 
-	protected LoopExp handleIterationCall(NavigatingExpCS csNavigatingExp, Iteration iteration) {
-		OclExpression source = resolveNavigationSource(csNavigatingExp, iteration);
+	protected OclExpression handleNavigatingOperationExpCS(NavigatingExpCS csNavigatingExp) {
+		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
+		NamedElement namedElement = csNamedExp.getNamedElement();
+		if (namedElement.eIsProxy()) {
+			return context.addError(csNamedExp, OCLMessages.ErrorUnresolvedOperationName, csNamedExp);
+		}
+		else if (namedElement instanceof Operation) {
+			Operation operation = (Operation)namedElement;
+			OclExpression source = resolveNavigationSource(csNavigatingExp, operation);
+			CallExp callExp;
+			if (operation instanceof Iteration) {
+				callExp = resolveIterationCall(csNavigatingExp, source, (Iteration)operation);
+			}
+			else {
+				callExp = resolveOperationCall(csNavigatingExp, source, operation);
+			}
+			OclExpression expression = resolveNavigationFeature(csNavigatingExp, source, operation, callExp);
+			return checkImplementation(csNavigatingExp, operation, callExp, expression);
+		}
+		else {
+			return context.addError(csNamedExp, "Operation name expected");
+		}
+	}
+
+	protected OclExpression checkImplementation(NamedExpCS csNavigatingExp,
+			Feature feature, CallExp callExp, OclExpression expression) {
+		CallableImplementation implementation;
+		try {
+			implementation = pivotManager.getImplementation(feature);
+		} catch (Exception e) {
+			return context.addError(csNavigatingExp, "Failed to load '" + feature.getImplementationClass() + "': " + e);
+		}
+		if (implementation != null) {
+			Diagnostic diagnostic = implementation.validate(pivotManager, callExp);
+			if (diagnostic != null) {
+				context.addDiagnostic(csNavigatingExp, diagnostic);
+			}
+		}
+		return expression;
+	}
+
+	protected OclExpression handleNavigatingPropertyExpCS(NamedExpCS csNamedExp) {
+		NamedElement namedElement = csNamedExp.getNamedElement();
+		if (namedElement.eIsProxy()) {
+			return context.addError(csNamedExp, OCLMessages.ErrorUnresolvedPropertyName, csNamedExp);
+		}
+		if (namedElement instanceof Property) {
+			return handlePropertyCall(csNamedExp, (Property)namedElement);
+		}
+		else {
+			return context.addError(csNamedExp, "Property name expected");
+		}
+	}
+
+	protected OclExpression handlePropertyCall(NamedExpCS csNameExp, Property property) {
+		OclExpression source = resolveNavigationSource(csNameExp, property);
+		PropertyCallExp expression = resolvePropertyCall(csNameExp, property);
+		return resolveNavigationFeature(csNameExp, source, property, expression);
+	}
+
+	protected TypeExp handleTypeExp(ExpCS csExp, Type type) {
+		TypeExp expression = context.refreshExpression(TypeExp.class, PivotPackage.Literals.TYPE_EXP, csExp);
+		context.setType(expression, pivotManager.getClassifierType());
+		expression.setReferredType(type);
+		return expression;
+	}
+
+	protected VariableExp handleVariableExp(NameExpCS csNameExp, VariableDeclaration variableDeclaration) {
+		VariableExp expression = context.refreshExpression(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csNameExp);
+		expression.setReferredVariable(variableDeclaration);
+		context.setType(expression, variableDeclaration.getType());
+		return expression;
+	}
+
+	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
+		prefixExpCS.setParent(null);
+		for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperator()) {
+			if (csParent instanceof UnaryOperatorCS) {
+				csParent.setSource(csUnaryOperator);
+			}
+			else if (csParent instanceof BinaryOperatorCS) {
+				if (csParent.getSource() == prefixExpCS) {
+					csParent.setSource(csUnaryOperator);
+				}
+				else {
+					((BinaryOperatorCS) csParent).setArgument(csUnaryOperator);
+				}
+			}
+			csUnaryOperator.setParent(csParent);
+			ExpCS csChild = prefixExpCS.getOwnedExpression();
+//			if (csChild instanceof NamedExpCS) {
+//				csChild = ((NamedExpCS)csChild).getSimpleNamedExp();
+//			}
+			csUnaryOperator.setSource(csChild);
+			csChild.setParent(csUnaryOperator);
+			csParent = csUnaryOperator;
+		}
+	}
+
+	protected void installInfixPivotElement(OperatorCS csOperator) {
+		if (csOperator instanceof NavigationOperatorCS) {
+//			NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS) csOperator;
+//			CallExp pivotElement = PivotUtil.getPivot(CallExp.class, csNavigationOperator.getArgument());
+//			context.reusePivotElement(csNavigationOperator, pivotElement);
+			return;
+		}
+		// FIXME ?? Do this earlier
+		ExpCS csSource = csOperator.getSource();
+		OperationCallExp pivotElement = PivotUtil.getPivot(OperationCallExp.class, csOperator);
+		if (csSource != null) {
+			OclExpression pivotChild = PivotUtil.getPivot(OclExpression.class, csSource);
+			pivotElement.setSource(pivotChild);
+		}
+		if (csOperator instanceof BinaryOperatorCS) {
+			ExpCS csArgument = ((BinaryOperatorCS) csOperator).getArgument();
+			if (csArgument != null) {
+				OclExpression pivotRight = PivotUtil.getPivot(OclExpression.class, csArgument);
+				pivotElement.getArguments().add(pivotRight);
+			}
+		}
+		Operation operation = context.resolveOperationCall(pivotElement);
+		if (operation == null) {
+			context.addError(csOperator, OCLMessages.ErrorUnresolvedOperationCall, csOperator);
+		}
+		pivotElement.setReferredOperation(operation);
+		if (operation != null) {
+			context.setType(pivotElement, operation.getType());
+		}
+	}
+
+	protected void interleavePrefixes(InfixExpCS csElement) {
+		for (ExpCS csExp : csElement.getOwnedExpression()) {
+			if (csExp instanceof PrefixExpCS) {
+				PrefixExpCS prefixExpCS = (PrefixExpCS)csExp;
+				OperatorCS csExpressionParent = prefixExpCS.getParent();
+				initializePrefixOperators(prefixExpCS, csExpressionParent);			
+				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperator()) {
+					interleaveUnaryOperator(csUnaryOperator);
+				}			
+			}
+		}
+	}
+	
+	protected void interleaveUnaryOperator(UnaryOperatorCS csOperator) {
+		OperatorCS csParent = csOperator.getParent();
+		ExpCS csExp = csOperator.getSource();
+		if (csParent instanceof BinaryOperatorCS) {
+			Precedence parentPrecedence = pivotManager.getInfixPrecedence(csParent.getName());
+			Precedence unaryPrecedence = pivotManager.getPrefixPrecedence(csOperator.getName());
+			if (parentPrecedence.getOrder().compareTo(unaryPrecedence.getOrder()) < 0) {
+				OperatorCS csGrandParent = csParent.getParent();
+				if (csExp == csParent.getSource()) {
+					if (csGrandParent instanceof BinaryOperatorCS) {
+						if (csGrandParent.getSource() == csParent) {
+							csGrandParent.setSource(csOperator);
+						}
+						else {
+							((BinaryOperatorCS) csGrandParent).setArgument(csOperator);
+						}
+					}
+					else {
+						csGrandParent.setSource(csOperator);
+					}
+					csParent.setParent(csOperator);
+					csOperator.setSource(csParent);
+					((BinaryOperatorCS) csParent).setSource(csExp);
+				}
+				else if (csExp == ((BinaryOperatorCS) csParent).getArgument()) {
+					if (csGrandParent instanceof BinaryOperatorCS) {
+						if (csGrandParent.getSource() == csParent) {
+							csGrandParent.setSource(csExp);
+							csGrandParent.setParent(csOperator);
+							csOperator.setSource(csGrandParent);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	protected LoopExp resolveIterationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Iteration iteration) {
 		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
 //		List<Parameter> iterators = iteration.getOwnedIterators();
 		List<Parameter> accumulators = iteration.getOwnedAccumulators();
@@ -355,7 +536,6 @@ public class EssentialOCLLeft2RightVisitor
 			expression = context.refreshExpression(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, csNamedExp);
 		}
 		expression.setReferredIteration(iteration);
-		expression.setSource(source);
 		expression.setType(iteration.getType());
 		context.reusePivotElement(csNavigatingExp, expression);		
 		//
@@ -503,223 +683,11 @@ public class EssentialOCLLeft2RightVisitor
 		return expression;
 	}
 
-	protected OclExpression handleNavigatingOperationExpCS(NavigatingExpCS csNavigatingExp) {
-		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
-		NamedElement namedElement = csNamedExp.getNamedElement();
-		if (namedElement.eIsProxy()) {
-			return context.addError(csNamedExp, OCLMessages.ErrorUnresolvedOperationName, csNamedExp);
-		}
-		if (namedElement instanceof Iteration) {
-			return handleIterationCall(csNavigatingExp, (Iteration)namedElement);
-		}
-		else if (namedElement instanceof Operation) {
-			return handleOperationCall(csNavigatingExp, (Operation)namedElement);
-		}
-		else {
-			return context.addError(csNamedExp, "Operation name expected");
-		}
-	}
-
-	protected OclExpression handleNavigatingPropertyExpCS(NamedExpCS csNamedExp) {
-		NamedElement namedElement = csNamedExp.getNamedElement();
-		if (namedElement.eIsProxy()) {
-			return context.addError(csNamedExp, OCLMessages.ErrorUnresolvedPropertyName, csNamedExp);
-		}
-		if (namedElement instanceof Property) {
-			return handlePropertyCall(csNamedExp, (Property)namedElement);
-		}
-		else {
-			return context.addError(csNamedExp, "Property name expected");
-		}
-	}
-
-	protected OperationCallExp handleOperationCall(NavigatingExpCS csNavigatingExp, Operation operation) {
-		OclExpression source = resolveNavigationSource(csNavigatingExp, operation);
-		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
-		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNamedExp);
-		expression.setSource(source);
-		expression.setReferredOperation(operation);
-//		if (csNavigatingExp.getAccs().size() > 0) {
-//			addError(csNavigatingExp, "Operation calls cannot specify accumulators");			
-//		}
-//		if (csNavigatingExp.getExps().size() > 0) {
-//			addError(csNavigatingExp, "Operation calls cannot specify iterators");			
-//		}
-		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
-		for (NavigatingArgCS csArgument : csNavigatingExp.getArgument()) {
-			if (csArgument instanceof NavigatingArgOrBodyCS) {
-				NavigatingArgOrBodyCS csArg = (NavigatingArgOrBodyCS)csArgument;
-//				if (csArg.getInit() != null) {
-//					addError(csArg, "Unexpected initializer for parameter");
-//				}
-				if (csArg.getOwnedType() != null) {
-					context.addError(csArg, "Unexpected type for parameter");
-				}
-				OclExpression arg = context.refreshExpTree(OclExpression.class, csArg.getName());
-				if (arg != null) {
-					context.installPivotElement(csArg, arg);
-					pivotArguments.add(arg);
-				}
-			}
-			else {
-				context.addError(csNavigatingExp, "Operation calls can only specify parameters");			
-			}
-		}
-		if (csNavigatingExp.getArgument().size() < operation.getOwnedParameters().size()) {
-			context.addError(csNavigatingExp, "Operation call has too few parameters");			
-		}
-		else if (csNavigatingExp.getArgument().size() > operation.getOwnedParameters().size()) {
-			context.addError(csNavigatingExp, "Operation call has too many parameters");			
-		}
-		context.refreshList(expression.getArguments(), pivotArguments);
-		Type returnType = operation.getType();
-		Map<TemplateParameter, ParameterableElement> substitutions = getTemplateParameters(operation);
-		updateSubstitutions(substitutions, operation.getClass_(), expression.getSource().getType());
-		for (int i = 0; i < expression.getArguments().size(); i++) {
-			Parameter parameter = operation.getOwnedParameters().get(i);
-			OclExpression argument = expression.getArguments().get(i);
-			updateSubstitutions(substitutions, parameter.getType(), argument.getType());
-		}
-		if (substitutions != null) {
-			returnType = resolveReturnType(returnType, substitutions);
-		}
-		expression.setType(returnType);
-		context.reusePivotElement(csNavigatingExp, expression);
-		return expression;
-	}
-
-	protected OclExpression handlePropertyCall(NamedExpCS csNameExp, Property property) {
-		OclExpression source = resolveNavigationSource(csNameExp, property);
-		PropertyCallExp expression = context.refreshExpression(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNameExp);
-		expression.setReferredProperty(property);
-		context.setType(expression, pivotManager.getTypeWithMultiplicity(property));		// FIXME resolve template parameter		
-		return resolveNavigationFeature(csNameExp, source, property, expression);
-	}
-
-	protected TypeExp handleTypeExp(ExpCS csExp, Type type) {
-		TypeExp expression = context.refreshExpression(TypeExp.class, PivotPackage.Literals.TYPE_EXP, csExp);
-		context.setType(expression, pivotManager.getClassifierType());
-		expression.setReferredType(type);
-		return expression;
-	}
-
-	protected VariableExp handleVariableExp(NameExpCS csNameExp, VariableDeclaration variableDeclaration) {
-		VariableExp expression = context.refreshExpression(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csNameExp);
-		expression.setReferredVariable(variableDeclaration);
-		context.setType(expression, variableDeclaration.getType());
-		return expression;
-	}
-
-	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
-		prefixExpCS.setParent(null);
-		for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperator()) {
-			if (csParent instanceof UnaryOperatorCS) {
-				csParent.setSource(csUnaryOperator);
-			}
-			else if (csParent instanceof BinaryOperatorCS) {
-				if (csParent.getSource() == prefixExpCS) {
-					csParent.setSource(csUnaryOperator);
-				}
-				else {
-					((BinaryOperatorCS) csParent).setArgument(csUnaryOperator);
-				}
-			}
-			csUnaryOperator.setParent(csParent);
-			ExpCS csChild = prefixExpCS.getOwnedExpression();
-//			if (csChild instanceof NamedExpCS) {
-//				csChild = ((NamedExpCS)csChild).getSimpleNamedExp();
-//			}
-			csUnaryOperator.setSource(csChild);
-			csChild.setParent(csUnaryOperator);
-			csParent = csUnaryOperator;
-		}
-	}
-
-	protected void installInfixPivotElement(OperatorCS csOperator) {
-		if (csOperator instanceof NavigationOperatorCS) {
-//			NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS) csOperator;
-//			CallExp pivotElement = PivotUtil.getPivot(CallExp.class, csNavigationOperator.getArgument());
-//			context.reusePivotElement(csNavigationOperator, pivotElement);
-			return;
-		}
-		// FIXME ?? Do this earlier
-		ExpCS csSource = csOperator.getSource();
-		OperationCallExp pivotElement = PivotUtil.getPivot(OperationCallExp.class, csOperator);
-		if (csSource != null) {
-			OclExpression pivotChild = PivotUtil.getPivot(OclExpression.class, csSource);
-			pivotElement.setSource(pivotChild);
-		}
-		if (csOperator instanceof BinaryOperatorCS) {
-			ExpCS csArgument = ((BinaryOperatorCS) csOperator).getArgument();
-			if (csArgument != null) {
-				OclExpression pivotRight = PivotUtil.getPivot(OclExpression.class, csArgument);
-				pivotElement.getArguments().add(pivotRight);
-			}
-		}
-		Operation operation = context.resolveOperationCall(pivotElement);
-		if (operation == null) {
-			context.addError(csOperator, OCLMessages.ErrorUnresolvedOperationCall, csOperator);
-		}
-		pivotElement.setReferredOperation(operation);
-		if (operation != null) {
-			context.setType(pivotElement, operation.getType());
-		}
-	}
-
-	protected void interleavePrefixes(InfixExpCS csElement) {
-		for (ExpCS csExp : csElement.getOwnedExpression()) {
-			if (csExp instanceof PrefixExpCS) {
-				PrefixExpCS prefixExpCS = (PrefixExpCS)csExp;
-				OperatorCS csExpressionParent = prefixExpCS.getParent();
-				initializePrefixOperators(prefixExpCS, csExpressionParent);			
-				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperator()) {
-					interleaveUnaryOperator(csUnaryOperator);
-				}			
-			}
-		}
-	}
-	
-	protected void interleaveUnaryOperator(UnaryOperatorCS csOperator) {
-		OperatorCS csParent = csOperator.getParent();
-		ExpCS csExp = csOperator.getSource();
-		if (csParent instanceof BinaryOperatorCS) {
-			Precedence parentPrecedence = pivotManager.getInfixPrecedence(csParent.getName());
-			Precedence unaryPrecedence = pivotManager.getPrefixPrecedence(csOperator.getName());
-			if (parentPrecedence.getOrder().compareTo(unaryPrecedence.getOrder()) < 0) {
-				OperatorCS csGrandParent = csParent.getParent();
-				if (csExp == csParent.getSource()) {
-					if (csGrandParent instanceof BinaryOperatorCS) {
-						if (csGrandParent.getSource() == csParent) {
-							csGrandParent.setSource(csOperator);
-						}
-						else {
-							((BinaryOperatorCS) csGrandParent).setArgument(csOperator);
-						}
-					}
-					else {
-						csGrandParent.setSource(csOperator);
-					}
-					csParent.setParent(csOperator);
-					csOperator.setSource(csParent);
-					((BinaryOperatorCS) csParent).setSource(csExp);
-				}
-				else if (csExp == ((BinaryOperatorCS) csParent).getArgument()) {
-					if (csGrandParent instanceof BinaryOperatorCS) {
-						if (csGrandParent.getSource() == csParent) {
-							csGrandParent.setSource(csExp);
-							csGrandParent.setParent(csOperator);
-							csOperator.setSource(csGrandParent);
-						}
-					}
-				}
-			}
-		}
-	}
-
 	/**
 	 * Resolve any implicit collect().
 	 */
 	protected OclExpression resolveNavigationFeature(NamedExpCS csElement, OclExpression source, Feature feature, CallExp callExp) {
+		CallExp navigationExp = callExp;
 		Type actualSourceType = source.getType();
 		Type requiredSourceType = feature.getFeaturingClass();
 		if (!(requiredSourceType instanceof CollectionType) && (actualSourceType instanceof CollectionType)) {
@@ -727,7 +695,6 @@ public class EssentialOCLLeft2RightVisitor
 			String moniker = csElement.getMoniker() + "~collect";
 			IteratorExp iteratorExp = context.refreshMonikeredElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, moniker);
 			iteratorExp.setImplicit(true);
-			iteratorExp.setSource(source);
 			Iteration resolvedIteration = (Iteration) pivotManager.resolveOperation(pivotManager.getCollectionType(), "collect");
 			iteratorExp.setReferredIteration(resolvedIteration);
 			Variable iterator = context.refreshMonikeredElement(Variable.class, PivotPackage.Literals.VARIABLE, moniker + "|iterator~1_");
@@ -742,20 +709,14 @@ public class EssentialOCLLeft2RightVisitor
 			callExp.setSource(variableExp);			
 			iteratorExp.setBody(callExp);
 			iteratorExp.setType(pivotManager.getCollectionType(feature.isOrdered(), feature.isUnique(), elementType));
-			OperatorCS csOperator = csElement.getParent();
-			if ((csOperator != null) && (csOperator.getSource() != csElement)) {
-				context.reusePivotElement(csOperator, iteratorExp);
-			}
-			return iteratorExp;
+			navigationExp = iteratorExp;
 		}
-		else {
-			callExp.setSource(source);
-			OperatorCS csOperator = csElement.getParent();
-			if ((csOperator != null) && (csOperator.getSource() != csElement)) {
-				context.reusePivotElement(csOperator, callExp);
-			}
-			return callExp;
+		navigationExp.setSource(source);
+		OperatorCS csOperator = csElement.getParent();
+		if ((csOperator != null) && (csOperator.getSource() != csElement)) {
+			context.reusePivotElement(csOperator, navigationExp);
 		}
+		return checkImplementation(csElement, feature, callExp, navigationExp);
 	}
 
 	/**
@@ -805,6 +766,65 @@ public class EssentialOCLLeft2RightVisitor
 			source = expression;
 		} */
 		return source;
+	}
+
+	protected OperationCallExp resolveOperationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Operation operation) {
+		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
+		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNamedExp);
+		expression.setReferredOperation(operation);
+//		if (csNavigatingExp.getAccs().size() > 0) {
+//			addError(csNavigatingExp, "Operation calls cannot specify accumulators");			
+//		}
+//		if (csNavigatingExp.getExps().size() > 0) {
+//			addError(csNavigatingExp, "Operation calls cannot specify iterators");			
+//		}
+		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
+		for (NavigatingArgCS csArgument : csNavigatingExp.getArgument()) {
+			if (csArgument instanceof NavigatingArgOrBodyCS) {
+				NavigatingArgOrBodyCS csArg = (NavigatingArgOrBodyCS)csArgument;
+//				if (csArg.getInit() != null) {
+//					addError(csArg, "Unexpected initializer for parameter");
+//				}
+				if (csArg.getOwnedType() != null) {
+					context.addError(csArg, "Unexpected type for parameter");
+				}
+				OclExpression arg = context.refreshExpTree(OclExpression.class, csArg.getName());
+				if (arg != null) {
+					context.installPivotElement(csArg, arg);
+					pivotArguments.add(arg);
+				}
+			}
+			else {
+				context.addError(csNavigatingExp, "Operation calls can only specify parameters");			
+			}
+		}
+		if (csNavigatingExp.getArgument().size() < operation.getOwnedParameters().size()) {
+			context.addError(csNavigatingExp, "Operation call has too few parameters");			
+		}
+		else if (csNavigatingExp.getArgument().size() > operation.getOwnedParameters().size()) {
+			context.addError(csNavigatingExp, "Operation call has too many parameters");			
+		}
+		context.refreshList(expression.getArguments(), pivotArguments);
+		Type returnType = operation.getType();
+		Map<TemplateParameter, ParameterableElement> substitutions = getTemplateParameters(operation);
+		updateSubstitutions(substitutions, operation.getClass_(), source.getType());
+		for (int i = 0; i < expression.getArguments().size(); i++) {
+			Parameter parameter = operation.getOwnedParameters().get(i);
+			OclExpression argument = expression.getArguments().get(i);
+			updateSubstitutions(substitutions, parameter.getType(), argument.getType());
+		}
+		if (substitutions != null) {
+			returnType = resolveReturnType(returnType, substitutions);
+		}
+		expression.setType(returnType);
+		return expression;
+	}
+
+	protected PropertyCallExp resolvePropertyCall(NamedExpCS csNameExp, Property property) {
+		PropertyCallExp expression = context.refreshExpression(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNameExp);
+		expression.setReferredProperty(property);
+		context.setType(expression, pivotManager.getTypeWithMultiplicity(property));		// FIXME resolve template parameter		
+		return expression;
 	}
 
 	private Type resolveReturnType(Type type, Map<TemplateParameter, ParameterableElement> substitutions) {
@@ -1266,18 +1286,6 @@ public class EssentialOCLLeft2RightVisitor
 			context.reusePivotElement(csNavigationOperator, navigatingExp);
 			return navigatingExp;
 		}
-/*		OclExpression source = ((CallExp) navigatingExp).getSource();
-		Type actualSourceType = source.getType();
-		if ((requiredSourceType instanceof CollectionType) && !(actualSourceType instanceof CollectionType)) {
-			OperationCallExp expression = context.refreshMonikeredElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNavigationOperator);
-			expression.setImplicit(true);
-			expression.setSource(source);
-			expression.setName("oclAsSet");
-			Operation resolvedOperation = context.resolveOperationCall(expression);
-			expression.setReferredOperation(resolvedOperation);
-			expression.setType(pivotManager.getCollectionType("Set", actualSourceType));
-			((CallExp) navigatingExp).setSource(expression);
-		} */
 		context.reusePivotElement(csNavigationOperator, navigatingExp);
 		return navigatingExp;
 	}
