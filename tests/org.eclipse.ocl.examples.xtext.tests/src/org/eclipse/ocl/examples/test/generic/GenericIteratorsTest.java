@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.5 2011/01/13 19:17:15 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.6 2011/01/14 14:55:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -337,23 +337,32 @@ public abstract class GenericIteratorsTest
     /**
      * Tests the closure() iterator.
      */
+    // pkg1
+    // pkg1::pkg2
+    // pkg1::pkg2::jim
+    // pkg1::bob
+    // pkg1::pkg3
+    // pkg1::pkg3::pkg4
+    // pkg1::pkg3::pkg5
+    // pkg1::pkg3::pkg5::george
     public void test_closure() {
     	CollectionValue expected1 = valueFactory.createSetOf(pkg1, pkg3, pkg5); // closure does not include self (george)
         assertQueryEquals(george, expected1, "self->closure(nestingPackage)");
 
         CollectionValue expected2 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        CollectionValue expected2a = valueFactory.createOrderedSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected2, "self->closure(nestedPackage)");
-        assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(nestedPackage)");
+// FIXME not a valid test for UML's unordered nested packages
+//        assertQueryEquals(pkg1, expected2a, "self->asSequence()->closure(nestedPackage)");
         assertQueryEquals(pkg1, expected2, "self->closure(nestedPackage->asSequence())");
 	    SetValue expected3 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
-        assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
+        assertQueryEquals(pkg1, expected3, "self->asBag()->closure(nestedPackage)");
+        assertQueryEquals(pkg1, expected3, "self->closure(nestedPackage->asBag())");
 
         // empty closure
-        CollectionValue expected4 = valueFactory.createSetOf();
-        assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
+        assertQueryEquals(pkg1, valueFactory.getEmptySetValue(), "self->closure(nestingPackage)");
         // empty closure
-        assertQueryEquals(pkg1, expected4, "self->asSequence()->closure(%nestingPackage)");
+        assertQueryEquals(pkg1, valueFactory.getEmptyOrderedSetValue(), "self->asSequence()->closure(nestingPackage)");
     }
 
     /**
@@ -364,7 +373,7 @@ public abstract class GenericIteratorsTest
         Property nestedPackage = reflection.getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
         Property nestingPackage = reflection.getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
 
-        helper.setContext(getMetaclass(denormalize("%Reference")));
+        helper.setContext(pivotManager.getPivotType("Property"));
 
         SetValue expected = valueFactory.createSetOf(nestedPackage, nestingPackage); // cyclic closure *does* include self
         assertQueryEquals(nestingPackage, expected, "self->closure(opposite)");
@@ -388,8 +397,9 @@ public abstract class GenericIteratorsTest
      */
     public void test_closureValidation() {
         // non-recursive reference
+        assertQueryInvalid(pkg1, "self->closure(xyzzy)");
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"self->closure(%ownedType)",
+        	"self->closure(ownedType)",
         	OCLMessages.NonStd_Iterator_, "closure");
     }
 
@@ -515,7 +525,7 @@ public abstract class GenericIteratorsTest
      * isUnique iterator expression treats it like any other value.
      */
     public void test_isUnique_invalidBody_142518() {
-        assertQueryFalse(EcorePackage.eINSTANCE,
+    	assertQueryInvalid(EcorePackage.eINSTANCE,
             "let b:Boolean = null in Bag{1, 2, 3}->isUnique(b and b)");
 
         assertQueryFalse(EcorePackage.eINSTANCE,
@@ -687,10 +697,11 @@ public abstract class GenericIteratorsTest
      * the body expression type has a <tt>&lt;</tt> operation.
      */
     public void test_sortedByRequiresComparability_192729() {
-    	Type context = getMetaclass(denormalize("%Package"));
-    	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-    		"%ownedType->sortedBy(e | e)",
-        	OCLMessages.OperationNotFound_ERROR_, "<", denormalize("%Type"));
+    	Type context = pivotManager.getPivotType("Package");
+    	Type type = pivotManager.getPivotType("Type");
+     	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+    		"ownedType->sortedBy(e | e)",
+        	OCLMessages.WarningUndefinedOperation, "<", type.toString());
        
     	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
     }

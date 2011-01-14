@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.1.2.6 2011/01/08 11:42:53 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.1.2.7 2011/01/14 14:55:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
-import org.eclipse.ocl.examples.pivot.ImplementableElement;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -102,14 +102,14 @@ public class OCLstdlibTests extends XtextTestCase
 				assertEquals(fileType.getClass(), javaType.getClass());
 				assertEquals(fileType.getMoniker(), javaType.getMoniker());
 			}
-			if (fileElement instanceof ImplementableElement) {
-				String fileClass = ((ImplementableElement)fileElement).getImplementationClass();
-				String javaClass = ((ImplementableElement)javaElement).getImplementationClass();
+			if (fileElement instanceof Feature) {
+				String fileClass = ((Feature)fileElement).getImplementationClass();
+				String javaClass = ((Feature)javaElement).getImplementationClass();
 				if (fileClass == null) {
-					fileClass = ((ImplementableElement)fileElement).getImplementation().getClass().getCanonicalName();
+					fileClass = ((Feature)fileElement).getImplementation().getClass().getCanonicalName();
 				}
 				if (javaClass == null) {
-					javaClass = ((ImplementableElement)javaElement).getImplementation().getClass().getCanonicalName();
+					javaClass = ((Feature)javaElement).getImplementation().getClass().getCanonicalName();
 				}
 				assertEquals(fileClass, javaClass);
 			}
