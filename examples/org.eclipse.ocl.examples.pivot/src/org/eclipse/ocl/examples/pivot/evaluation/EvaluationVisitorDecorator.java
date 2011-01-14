@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.1.2.7 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.1.2.8 2011/01/14 14:53:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -125,21 +125,6 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Value>
     /**
      * Delegates to my decorated visitor.
      */
-//	public Object getValueOfVariable(VariableDeclaration variable) {
-//        return getDelegate().getValueOfVariable(variable);
-//	}
-
-    /**
-     * Delegates to my decorated visitor.
-     * @throws Exception 
-     */
-//	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception {
-//        return getDelegate().loadImplementationClass(implementationClass);
-//	}
-
-    /**
-     * Delegates to my decorated visitor.
-     */
 	public void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor) {
         getDelegate().setUndecoratedVisitor(evaluationVisitor);
 	}
@@ -151,13 +136,6 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Value>
 	public Value visitConstraint(Constraint constraint) {
         return getDelegate().visitConstraint(constraint);
     }
-
-    /**
-     * Delegates to my decorated visitor.
-     */
-//    public Value visitExpression(OclExpression expression) {
-//        return getDelegate().visitExpression(expression);
-//    }
 
     /**
      * Delegates to my decorated visitor.

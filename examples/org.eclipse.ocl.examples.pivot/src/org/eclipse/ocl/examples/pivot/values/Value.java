@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.1.2.6 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: Value.java,v 1.1.2.7 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -50,6 +50,7 @@ public interface Value
 	TypeValue asTypeValue();
 	UniqueCollectionValue asUniqueCollectionValue();
 	Type getType(StandardLibrary standardLibrary, Type staticType);
+	ValueFactory getValueFactory();	
 	boolean isFalse();
 	boolean isInvalid();
 	boolean isNull();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.1.2.11 2011/01/13 19:15:38 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.1.2.12 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -41,12 +41,12 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -58,7 +58,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -368,8 +367,6 @@ public class PivotValidator
 				return validateFeatureCallExp((FeatureCallExp)value, diagnostics, context);
 			case PivotPackage.IF_EXP:
 				return validateIfExp((IfExp)value, diagnostics, context);
-			case PivotPackage.IMPLEMENTABLE_ELEMENT:
-				return validateImplementableElement((ImplementableElement)value, diagnostics, context);
 			case PivotPackage.INTEGER_LITERAL_EXP:
 				return validateIntegerLiteralExp((IntegerLiteralExp)value, diagnostics, context);
 			case PivotPackage.INVALID_LITERAL_EXP:
@@ -633,17 +630,6 @@ public class PivotValidator
 			Property property, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return property.validateBindingToAttribute(diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateImplementableElement(
-			ImplementableElement implementableElement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)implementableElement, diagnostics, context);
 	}
 
 	/**

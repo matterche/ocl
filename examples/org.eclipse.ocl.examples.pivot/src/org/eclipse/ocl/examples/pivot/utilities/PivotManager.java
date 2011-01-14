@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.18 2011/01/13 19:15:40 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.19 2011/01/14 14:53:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -657,6 +658,33 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		return globalTypes;
 	}
 
+	/**
+	 * Return the implementation of a feature.
+	 * 
+	 * @param feature to be implemented.
+	 * @return the implementation, or null if the feature has no implementation
+	 * as is the case for a normal model feature
+	 * @throws ClassNotFoundException if the implementation class realising
+	 * the implementation is not loadable 
+	 * @throws NoSuchFieldException if the implementation class realising
+	 * the implementation does not provide a static INSTANCE field
+	 * @throws SecurityException if the implementation class is not accessible
+	 * @throws IllegalAccessException if the implementation class is not accessible
+	 * @throws IllegalArgumentException if the implementation class is not accessible
+	 */
+	public CallableImplementation getImplementation(Feature feature) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = feature.getImplementation();
+		if (implementation == null) {
+			String implementationClassName = feature.getImplementationClass();
+			if (implementationClassName != null) {
+				Class<?> theClass = Class.forName(implementationClassName);
+				Field field = theClass.getField("INSTANCE");
+				implementation = (CallableImplementation) field.get(null);
+			}
+		}
+		return implementation;
+	}
+
 	public Precedence getInfixPrecedence(String operatorName) {
 		if (infixToPrecedenceNameMap == null) {
 			compilePrecedences(computePivotRootPackages());
@@ -849,13 +877,6 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 //		}
 		loadLibrary(resource);
 		return resource;
-	}
-
-	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception {
-		Class<?> theClass = Class.forName(implementationClass);
-		Field field = theClass.getField("INSTANCE");
-		Object object = field.get(null);
-		return (CallableImplementation) object;
 	}
 
 	public void loadLibrary(Resource pivotResource) {

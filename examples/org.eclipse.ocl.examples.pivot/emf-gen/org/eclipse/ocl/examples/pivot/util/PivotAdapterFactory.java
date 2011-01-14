@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.1.2.9 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.1.2.10 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -34,12 +34,12 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -51,7 +51,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -336,11 +335,6 @@ public class PivotAdapterFactory
 			public Adapter caseIfExp(IfExp object)
 			{
 				return createIfExpAdapter();
-			}
-			@Override
-			public Adapter caseImplementableElement(ImplementableElement object)
-			{
-				return createImplementableElementAdapter();
 			}
 			@Override
 			public Adapter caseIntegerLiteralExp(IntegerLiteralExp object)
@@ -1876,20 +1870,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createAssociationClassAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.ImplementableElement <em>Implementable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.ImplementableElement
-	 * @generated
-	 */
-	public Adapter createImplementableElementAdapter() {
 		return null;
 	}
 

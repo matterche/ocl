@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1.2.6 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.1.2.7 2011/01/14 14:53:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -203,14 +202,19 @@ public class ToStringVisitor extends AbstractVisitor2<String>
     protected String handleOperationCallExp(OperationCallExp oc,
             String sourceResult, List<String> argumentResults) {
         
-		OclExpression source = oc.getSource();
-		Type sourceType = source != null ? source.getType() : null;
+//		OclExpression source = oc.getSource();
+//		Type sourceType = source != null ? source.getType() : null;
 		Operation oper = oc.getReferredOperation();
 		
 		result.append(sourceResult);
-		result.append(sourceType instanceof CollectionType ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-		result.append(getName(oper != null ? oper : oc));
-		
+		if (oper != null) {
+			result.append(oper.getFeaturingClass() instanceof CollectionType ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			result.append(getName(oper));
+		}
+		else {
+			result.append(PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			result.append(getName(oc));
+		}
         result.append('(');
         for (Iterator<String> iter = argumentResults.iterator(); iter.hasNext();) {
 			result.append(iter.next());
@@ -267,7 +271,9 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 			return getName(property);
 		}
 		
-		result.append(sourceResult + "." + getName(property));	//$NON-NLS-1$
+		result.append(sourceResult);	//$NON-NLS-1$
+		result.append(property.getFeaturingClass() instanceof CollectionType ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+		result.append(getName(property));	//$NON-NLS-1$
 		maybeAtPre(pc);
 		
 		if (!qualifierResults.isEmpty()) {

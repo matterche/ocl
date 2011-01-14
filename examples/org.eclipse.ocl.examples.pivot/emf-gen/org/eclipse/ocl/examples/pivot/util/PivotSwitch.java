@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.1.2.11 2011/01/13 19:15:38 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.1.2.12 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -34,12 +34,12 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -51,7 +51,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -443,7 +442,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseNamespace(completeIteration);
 				if (result == null) result = caseParameterableElement(completeIteration);
 				if (result == null) result = caseTemplateableElement(completeIteration);
-				if (result == null) result = caseImplementableElement(completeIteration);
 				if (result == null) result = caseNamedElement(completeIteration);
 				if (result == null) result = caseTypedMultiplicityElement(completeIteration);
 				if (result == null) result = caseTypedElement(completeIteration);
@@ -464,7 +462,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseNamespace(completeOperation);
 				if (result == null) result = caseParameterableElement(completeOperation);
 				if (result == null) result = caseTemplateableElement(completeOperation);
-				if (result == null) result = caseImplementableElement(completeOperation);
 				if (result == null) result = caseNamedElement(completeOperation);
 				if (result == null) result = caseTypedMultiplicityElement(completeOperation);
 				if (result == null) result = caseTypedElement(completeOperation);
@@ -498,7 +495,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseProperty(completeProperty);
 				if (result == null) result = caseFeature(completeProperty);
 				if (result == null) result = caseParameterableElement(completeProperty);
-				if (result == null) result = caseImplementableElement(completeProperty);
 				if (result == null) result = caseNamedElement(completeProperty);
 				if (result == null) result = caseTypedMultiplicityElement(completeProperty);
 				if (result == null) result = caseTypedElement(completeProperty);
@@ -681,13 +677,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PivotPackage.IMPLEMENTABLE_ELEMENT:
-			{
-				ImplementableElement implementableElement = (ImplementableElement)theEObject;
-				T result = caseImplementableElement(implementableElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case PivotPackage.INTEGER_LITERAL_EXP:
 			{
 				IntegerLiteralExp integerLiteralExp = (IntegerLiteralExp)theEObject;
@@ -762,7 +751,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseNamespace(iteration);
 				if (result == null) result = caseParameterableElement(iteration);
 				if (result == null) result = caseTemplateableElement(iteration);
-				if (result == null) result = caseImplementableElement(iteration);
 				if (result == null) result = caseNamedElement(iteration);
 				if (result == null) result = caseTypedMultiplicityElement(iteration);
 				if (result == null) result = caseTypedElement(iteration);
@@ -1003,7 +991,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseNamespace(operation);
 				if (result == null) result = caseParameterableElement(operation);
 				if (result == null) result = caseTemplateableElement(operation);
-				if (result == null) result = caseImplementableElement(operation);
 				if (result == null) result = caseNamedElement(operation);
 				if (result == null) result = caseTypedMultiplicityElement(operation);
 				if (result == null) result = caseTypedElement(operation);
@@ -1162,7 +1149,6 @@ public class PivotSwitch<T> {
 				T result = caseProperty(property);
 				if (result == null) result = caseFeature(property);
 				if (result == null) result = caseParameterableElement(property);
-				if (result == null) result = caseImplementableElement(property);
 				if (result == null) result = caseNamedElement(property);
 				if (result == null) result = caseTypedMultiplicityElement(property);
 				if (result == null) result = caseTypedElement(property);
@@ -2856,21 +2842,6 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseAssociationClass(AssociationClass object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Implementable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Implementable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseImplementableElement(ImplementableElement object) {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.1.2.8 2011/01/12 10:29:49 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.1.2.9 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -207,6 +207,10 @@ public class CompletePropertyImpl
 				return getLower();
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				return getUpper();
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
+				return getImplementationClass();
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
+				return getImplementation();
 			case PivotPackage.COMPLETE_PROPERTY__FEATURING_CLASS:
 				return getFeaturingClass();
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
@@ -215,10 +219,6 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
-			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
-				return getImplementationClass();
-			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
-				return getImplementation();
 			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
 				return isReadOnly();
 			case PivotPackage.COMPLETE_PROPERTY__DEFAULT:
@@ -304,17 +304,17 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				setUpper((BigInteger)newValue);
 				return;
-			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
-				return;
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
 				setImplementationClass((String)newValue);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
 				setImplementation((CallableImplementation)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
@@ -408,17 +408,17 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
-			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
 				setImplementation(IMPLEMENTATION_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
@@ -500,16 +500,16 @@ public class CompletePropertyImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.COMPLETE_PROPERTY__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
+				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
+			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.COMPLETE_PROPERTY__FEATURING_CLASS:
 				return getFeaturingClass() != null;
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:
 				return templateParameter != null;
-			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION_CLASS:
-				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
-			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
-				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.COMPLETE_PROPERTY__IS_READ_ONLY:
 				return ((eFlags & IS_READ_ONLY_EFLAG) != 0) != IS_READ_ONLY_EDEFAULT;
 			case PivotPackage.COMPLETE_PROPERTY__DEFAULT:

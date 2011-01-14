@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperationImpl.java,v 1.1.2.6 2011/01/12 10:29:49 ewillink Exp $
+ * $Id: CompleteOperationImpl.java,v 1.1.2.7 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -221,6 +221,10 @@ public class CompleteOperationImpl
 				return getLower();
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				return getUpper();
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
+				return getImplementationClass();
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
+				return getImplementation();
 			case PivotPackage.COMPLETE_OPERATION__FEATURING_CLASS:
 				return getFeaturingClass();
 			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
@@ -234,10 +238,6 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				if (resolve) return getOwnedTemplateSignature();
 				return basicGetOwnedTemplateSignature();
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
-				return getImplementationClass();
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
-				return getImplementation();
 			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
 				return getRaisedExceptions();
 			case PivotPackage.COMPLETE_OPERATION__OWNED_PARAMETER:
@@ -306,6 +306,12 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				setUpper((BigInteger)newValue);
 				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
+				setImplementationClass((String)newValue);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
+				setImplementation((CallableImplementation)newValue);
+				return;
 			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
 				return;
@@ -318,12 +324,6 @@ public class CompleteOperationImpl
 				return;
 			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
-				setImplementationClass((String)newValue);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
-				setImplementation((CallableImplementation)newValue);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
 				getRaisedExceptions().clear();
@@ -391,6 +391,12 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
+				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
+				return;
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
+				setImplementation(IMPLEMENTATION_EDEFAULT);
+				return;
 			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
@@ -402,12 +408,6 @@ public class CompleteOperationImpl
 				return;
 			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
-				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
-				return;
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
-				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
 				getRaisedExceptions().clear();
@@ -462,6 +462,10 @@ public class CompleteOperationImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.COMPLETE_OPERATION__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
+				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
+			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.COMPLETE_OPERATION__FEATURING_CLASS:
 				return getFeaturingClass() != null;
 			case PivotPackage.COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER:
@@ -472,10 +476,6 @@ public class CompleteOperationImpl
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION_CLASS:
-				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
-			case PivotPackage.COMPLETE_OPERATION__IMPLEMENTATION:
-				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.COMPLETE_OPERATION__RAISED_EXCEPTION:
 				return raisedExceptions != null && !raisedExceptions.isEmpty();
 			case PivotPackage.COMPLETE_OPERATION__OWNED_PARAMETER:

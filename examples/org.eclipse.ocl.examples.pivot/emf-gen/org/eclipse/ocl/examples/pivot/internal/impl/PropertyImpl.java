@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.1.2.9 2011/01/13 19:15:37 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.1.2.10 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.AssociationClass;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -63,12 +62,12 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getImplementationClass <em>Implementation Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getImplementationClass <em>Implementation Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isComposite <em>Is Composite</em>}</li>
@@ -172,16 +171,6 @@ public class PropertyImpl
 	protected BigInteger upper = UPPER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTemplateParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateParameter templateParameter;
-
-	/**
 	 * The default value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,6 +209,16 @@ public class PropertyImpl
 	 * @ordered
 	 */
 	protected CallableImplementation implementation = IMPLEMENTATION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTemplateParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateParameter templateParameter;
 
 	/**
 	 * The default value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
@@ -1334,6 +1333,10 @@ public class PropertyImpl
 				return getLower();
 			case PivotPackage.PROPERTY__UPPER:
 				return getUpper();
+			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
+				return getImplementationClass();
+			case PivotPackage.PROPERTY__IMPLEMENTATION:
+				return getImplementation();
 			case PivotPackage.PROPERTY__FEATURING_CLASS:
 				return getFeaturingClass();
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
@@ -1342,10 +1345,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
-			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
-				return getImplementationClass();
-			case PivotPackage.PROPERTY__IMPLEMENTATION:
-				return getImplementation();
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				return isReadOnly();
 			case PivotPackage.PROPERTY__DEFAULT:
@@ -1425,17 +1424,17 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__UPPER:
 				setUpper((BigInteger)newValue);
 				return;
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
-				return;
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				setImplementationClass((String)newValue);
 				return;
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
 				setImplementation((CallableImplementation)newValue);
+				return;
+			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
@@ -1523,17 +1522,17 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
 				return;
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
 				setImplementation(IMPLEMENTATION_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
@@ -1609,16 +1608,16 @@ public class PropertyImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.PROPERTY__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
+			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
+				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
+			case PivotPackage.PROPERTY__IMPLEMENTATION:
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.PROPERTY__FEATURING_CLASS:
 				return getFeaturingClass() != null;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				return templateParameter != null;
-			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
-				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
-			case PivotPackage.PROPERTY__IMPLEMENTATION:
-				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				return ((eFlags & IS_READ_ONLY_EFLAG) != 0) != IS_READ_ONLY_EDEFAULT;
 			case PivotPackage.PROPERTY__DEFAULT:
@@ -1678,6 +1677,8 @@ public class PropertyImpl
 		{
 			switch (derivedFeatureID)
 			{
+				case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS: return PivotPackage.FEATURE__IMPLEMENTATION_CLASS;
+				case PivotPackage.PROPERTY__IMPLEMENTATION: return PivotPackage.FEATURE__IMPLEMENTATION;
 				case PivotPackage.PROPERTY__FEATURING_CLASS: return PivotPackage.FEATURE__FEATURING_CLASS;
 				default: return -1;
 			}
@@ -1688,15 +1689,6 @@ public class PropertyImpl
 			{
 				case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER: return PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
 				case PivotPackage.PROPERTY__TEMPLATE_PARAMETER: return PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER;
-				default: return -1;
-			}
-		}
-		if (baseClass == ImplementableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS: return PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS;
-				case PivotPackage.PROPERTY__IMPLEMENTATION: return PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION;
 				default: return -1;
 			}
 		}
@@ -1732,6 +1724,8 @@ public class PropertyImpl
 		{
 			switch (baseFeatureID)
 			{
+				case PivotPackage.FEATURE__IMPLEMENTATION_CLASS: return PivotPackage.PROPERTY__IMPLEMENTATION_CLASS;
+				case PivotPackage.FEATURE__IMPLEMENTATION: return PivotPackage.PROPERTY__IMPLEMENTATION;
 				case PivotPackage.FEATURE__FEATURING_CLASS: return PivotPackage.PROPERTY__FEATURING_CLASS;
 				default: return -1;
 			}
@@ -1742,15 +1736,6 @@ public class PropertyImpl
 			{
 				case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER: return PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER;
 				case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER: return PivotPackage.PROPERTY__TEMPLATE_PARAMETER;
-				default: return -1;
-			}
-		}
-		if (baseClass == ImplementableElement.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS: return PivotPackage.PROPERTY__IMPLEMENTATION_CLASS;
-				case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION: return PivotPackage.PROPERTY__IMPLEMENTATION;
 				default: return -1;
 			}
 		}
@@ -1797,13 +1782,6 @@ public class PropertyImpl
 			switch (baseOperationID)
 			{
 				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.PROPERTY___IS_TEMPLATE_PARAMETER;
-				default: return -1;
-			}
-		}
-		if (baseClass == ImplementableElement.class)
-		{
-			switch (baseOperationID)
-			{
 				default: return -1;
 			}
 		}

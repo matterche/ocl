@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.1.2.7 2011/01/08 12:37:52 ewillink Exp $
+ * $Id: LoopExpImpl.java,v 1.1.2.8 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -320,6 +321,8 @@ public abstract class LoopExpImpl
 				return basicGetSource();
 			case PivotPackage.LOOP_EXP__IMPLICIT:
 				return isImplicit();
+			case PivotPackage.LOOP_EXP__REFERRED_FEATURE:
+				return getReferredFeature();
 			case PivotPackage.LOOP_EXP__BODY:
 				if (resolve) return getBody();
 				return basicGetBody();
@@ -462,6 +465,8 @@ public abstract class LoopExpImpl
 				return source != null;
 			case PivotPackage.LOOP_EXP__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
+			case PivotPackage.LOOP_EXP__REFERRED_FEATURE:
+				return getReferredFeature() != null;
 			case PivotPackage.LOOP_EXP__BODY:
 				return body != null;
 			case PivotPackage.LOOP_EXP__ITERATOR:
@@ -475,5 +480,11 @@ public abstract class LoopExpImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitLoopExp(this);
+	}
+
+	@Override
+	public Feature getReferredFeature()
+	{
+		return getReferredIteration();
 	}
 } //LoopExpImpl

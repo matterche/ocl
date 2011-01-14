@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.1.2.8 2011/01/13 19:15:37 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.1.2.9 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -70,14 +69,14 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getImplementationClass <em>Implementation Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getTemplateBindings <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getImplementationClass <em>Implementation Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getRaisedExceptions <em>Raised Exception</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwnedParameters <em>Owned Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getPrecedence <em>Precedence</em>}</li>
@@ -172,36 +171,6 @@ public class OperationImpl
 	protected BigInteger upper = UPPER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTemplateParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateParameter templateParameter;
-
-	/**
-	 * The cached value of the '{@link #getTemplateBindings() <em>Template Binding</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTemplateBindings()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TemplateBinding> templateBindings;
-
-	/**
-	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateSignature()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateSignature ownedTemplateSignature;
-
-	/**
 	 * The default value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -240,6 +209,36 @@ public class OperationImpl
 	 * @ordered
 	 */
 	protected CallableImplementation implementation = IMPLEMENTATION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTemplateParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateParameter templateParameter;
+
+	/**
+	 * The cached value of the '{@link #getTemplateBindings() <em>Template Binding</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTemplateBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TemplateBinding> templateBindings;
+
+	/**
+	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTemplateSignature()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateSignature ownedTemplateSignature;
 
 	/**
 	 * The cached value of the '{@link #getRaisedExceptions() <em>Raised Exception</em>}' reference list.
@@ -1068,6 +1067,10 @@ public class OperationImpl
 				return getLower();
 			case PivotPackage.OPERATION__UPPER:
 				return getUpper();
+			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
+				return getImplementationClass();
+			case PivotPackage.OPERATION__IMPLEMENTATION:
+				return getImplementation();
 			case PivotPackage.OPERATION__FEATURING_CLASS:
 				return getFeaturingClass();
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
@@ -1081,10 +1084,6 @@ public class OperationImpl
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				if (resolve) return getOwnedTemplateSignature();
 				return basicGetOwnedTemplateSignature();
-			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
-				return getImplementationClass();
-			case PivotPackage.OPERATION__IMPLEMENTATION:
-				return getImplementation();
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
 				return getRaisedExceptions();
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
@@ -1145,6 +1144,12 @@ public class OperationImpl
 			case PivotPackage.OPERATION__UPPER:
 				setUpper((BigInteger)newValue);
 				return;
+			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
+				setImplementationClass((String)newValue);
+				return;
+			case PivotPackage.OPERATION__IMPLEMENTATION:
+				setImplementation((CallableImplementation)newValue);
+				return;
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
 				return;
@@ -1157,12 +1162,6 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
-				setImplementationClass((String)newValue);
-				return;
-			case PivotPackage.OPERATION__IMPLEMENTATION:
-				setImplementation((CallableImplementation)newValue);
 				return;
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
 				getRaisedExceptions().clear();
@@ -1224,6 +1223,12 @@ public class OperationImpl
 			case PivotPackage.OPERATION__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
+			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
+				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
+				return;
+			case PivotPackage.OPERATION__IMPLEMENTATION:
+				setImplementation(IMPLEMENTATION_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
@@ -1235,12 +1240,6 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
-				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
-				return;
-			case PivotPackage.OPERATION__IMPLEMENTATION:
-				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
 				getRaisedExceptions().clear();
@@ -1289,6 +1288,10 @@ public class OperationImpl
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.OPERATION__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
+			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
+				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
+			case PivotPackage.OPERATION__IMPLEMENTATION:
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.OPERATION__FEATURING_CLASS:
 				return getFeaturingClass() != null;
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
@@ -1299,10 +1302,6 @@ public class OperationImpl
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
-				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
-			case PivotPackage.OPERATION__IMPLEMENTATION:
-				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
 				return raisedExceptions != null && !raisedExceptions.isEmpty();
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
@@ -1344,6 +1343,8 @@ public class OperationImpl
 		{
 			switch (derivedFeatureID)
 			{
+				case PivotPackage.OPERATION__IMPLEMENTATION_CLASS: return PivotPackage.FEATURE__IMPLEMENTATION_CLASS;
+				case PivotPackage.OPERATION__IMPLEMENTATION: return PivotPackage.FEATURE__IMPLEMENTATION;
 				case PivotPackage.OPERATION__FEATURING_CLASS: return PivotPackage.FEATURE__FEATURING_CLASS;
 				default: return -1;
 			}
@@ -1370,15 +1371,6 @@ public class OperationImpl
 			{
 				case PivotPackage.OPERATION__TEMPLATE_BINDING: return PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING;
 				case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
-				default: return -1;
-			}
-		}
-		if (baseClass == ImplementableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.OPERATION__IMPLEMENTATION_CLASS: return PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS;
-				case PivotPackage.OPERATION__IMPLEMENTATION: return PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION;
 				default: return -1;
 			}
 		}
@@ -1414,6 +1406,8 @@ public class OperationImpl
 		{
 			switch (baseFeatureID)
 			{
+				case PivotPackage.FEATURE__IMPLEMENTATION_CLASS: return PivotPackage.OPERATION__IMPLEMENTATION_CLASS;
+				case PivotPackage.FEATURE__IMPLEMENTATION: return PivotPackage.OPERATION__IMPLEMENTATION;
 				case PivotPackage.FEATURE__FEATURING_CLASS: return PivotPackage.OPERATION__FEATURING_CLASS;
 				default: return -1;
 			}
@@ -1440,15 +1434,6 @@ public class OperationImpl
 			{
 				case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING: return PivotPackage.OPERATION__TEMPLATE_BINDING;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE;
-				default: return -1;
-			}
-		}
-		if (baseClass == ImplementableElement.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION_CLASS: return PivotPackage.OPERATION__IMPLEMENTATION_CLASS;
-				case PivotPackage.IMPLEMENTABLE_ELEMENT__IMPLEMENTATION: return PivotPackage.OPERATION__IMPLEMENTATION;
 				default: return -1;
 			}
 		}
@@ -1511,13 +1496,6 @@ public class OperationImpl
 			{
 				case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS: return PivotPackage.OPERATION___PARAMETERABLE_ELEMENTS;
 				case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE: return PivotPackage.OPERATION___IS_TEMPLATE;
-				default: return -1;
-			}
-		}
-		if (baseClass == ImplementableElement.class)
-		{
-			switch (baseOperationID)
-			{
 				default: return -1;
 			}
 		}

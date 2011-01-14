@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CallableImplementation.java,v 1.1.2.2 2010/12/23 19:25:11 ewillink Exp $
+ * $Id: CallableImplementation.java,v 1.1.2.3 2011/01/14 14:53:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -30,8 +32,8 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  * @extends PivotObject
  * @generated NOT
  */
-public interface CallableImplementation {
-
+public interface CallableImplementation
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,4 +42,5 @@ public interface CallableImplementation {
 	 */
 	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp call);
 
+	Diagnostic validate(PivotManager pivotManager, CallExp callExp);
 } // CallableImplementation

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.1.2.4 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.1.2.5 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -220,6 +221,8 @@ public class OperationCallExpImpl
 				return basicGetSource();
 			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
 				return isImplicit();
+			case PivotPackage.OPERATION_CALL_EXP__REFERRED_FEATURE:
+				return getReferredFeature();
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return isPre();
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
@@ -361,6 +364,8 @@ public class OperationCallExpImpl
 				return source != null;
 			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
+			case PivotPackage.OPERATION_CALL_EXP__REFERRED_FEATURE:
+				return getReferredFeature() != null;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
@@ -374,5 +379,11 @@ public class OperationCallExpImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitOperationCallExp(this);
+	}
+
+	@Override
+	public Feature getReferredFeature()
+	{
+		return getReferredOperation();
 	}
 } //OperationCallExpImpl

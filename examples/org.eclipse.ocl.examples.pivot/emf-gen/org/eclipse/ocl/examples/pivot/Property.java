@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Property.java,v 1.1.2.5 2011/01/13 19:15:38 ewillink Exp $
+ * $Id: Property.java,v 1.1.2.6 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -55,7 +55,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Property
-		extends TypedElement, Feature, MultiplicityElement, ParameterableElement, ImplementableElement {
+		extends TypedElement, Feature, MultiplicityElement, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.

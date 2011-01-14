@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.1.2.7 2011/01/08 12:37:52 ewillink Exp $
+ * $Id: CallExpImpl.java,v 1.1.2.8 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -43,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#isImplicit <em>Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#getReferredFeature <em>Referred Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -218,6 +220,13 @@ public abstract class CallExpImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract Feature getReferredFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -266,6 +275,8 @@ public abstract class CallExpImpl
 				return basicGetSource();
 			case PivotPackage.CALL_EXP__IMPLICIT:
 				return isImplicit();
+			case PivotPackage.CALL_EXP__REFERRED_FEATURE:
+				return getReferredFeature();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -381,6 +392,8 @@ public abstract class CallExpImpl
 				return source != null;
 			case PivotPackage.CALL_EXP__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
+			case PivotPackage.CALL_EXP__REFERRED_FEATURE:
+				return getReferredFeature() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

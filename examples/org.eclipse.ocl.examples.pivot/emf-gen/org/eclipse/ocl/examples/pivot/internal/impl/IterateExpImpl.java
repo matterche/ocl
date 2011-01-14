@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.1.2.6 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: IterateExpImpl.java,v 1.1.2.7 2011/01/14 14:53:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,15 +20,11 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -231,6 +227,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return basicGetSource();
 			case PivotPackage.ITERATE_EXP__IMPLICIT:
 				return isImplicit();
+			case PivotPackage.ITERATE_EXP__REFERRED_FEATURE:
+				return getReferredFeature();
 			case PivotPackage.ITERATE_EXP__BODY:
 				if (resolve) return getBody();
 				return basicGetBody();
@@ -385,6 +383,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return source != null;
 			case PivotPackage.ITERATE_EXP__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
+			case PivotPackage.ITERATE_EXP__REFERRED_FEATURE:
+				return getReferredFeature() != null;
 			case PivotPackage.ITERATE_EXP__BODY:
 				return body != null;
 			case PivotPackage.ITERATE_EXP__ITERATOR:

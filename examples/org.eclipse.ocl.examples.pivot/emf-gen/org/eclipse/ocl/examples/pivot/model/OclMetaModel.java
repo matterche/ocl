@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OclMetaModel.java,v 1.1.2.7 2011/01/13 20:19:04 ewillink Exp $
+ * $Id: OclMetaModel.java,v 1.1.2.8 2011/01/14 14:53:31 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.model;
 
@@ -70,119 +70,118 @@ public class OclMetaModel extends XMLResourceImpl
 		
 		Class symbol_16 = PivotFactory.eINSTANCE.createClass(); // pivot|CallExp
 		Property symbol_17 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CallExp::implicit pivot|CallExp|implicit
-		Property symbol_18 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CallExp::source pivot|CallExp|source
+		Property symbol_18 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CallExp::referredFeature pivot|CallExp|referredFeature
+		Property symbol_19 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CallExp::source pivot|CallExp|source
 		
-		Class symbol_19 = PivotFactory.eINSTANCE.createClass(); // pivot|CallOperationAction
-		Property symbol_20 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CallOperationAction::operation pivot|CallOperationAction|operation
+		Class symbol_20 = PivotFactory.eINSTANCE.createClass(); // pivot|CallOperationAction
+		Property symbol_21 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CallOperationAction::operation pivot|CallOperationAction|operation
 		
-		Class symbol_21 = PivotFactory.eINSTANCE.createClass(); // pivot|CallableImplementation
+		Class symbol_22 = PivotFactory.eINSTANCE.createClass(); // pivot|CallableImplementation
 		
-		Class symbol_22 = PivotFactory.eINSTANCE.createClass(); // pivot|Class
-		Property symbol_23 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::isAbstract pivot|Class|isAbstract
-		Property symbol_24 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::isInterface pivot|Class|isInterface
-		Property symbol_25 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::ownedAttribute pivot|Class|ownedAttribute
-		Property symbol_26 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::ownedOperation pivot|Class|ownedOperation
-		Property symbol_27 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::subClass pivot|Class|subClass
-		Property symbol_28 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::superClass pivot|Class|superClass
+		Class symbol_23 = PivotFactory.eINSTANCE.createClass(); // pivot|Class
+		Property symbol_24 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::isAbstract pivot|Class|isAbstract
+		Property symbol_25 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::isInterface pivot|Class|isInterface
+		Property symbol_26 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::ownedAttribute pivot|Class|ownedAttribute
+		Property symbol_27 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::ownedOperation pivot|Class|ownedOperation
+		Property symbol_28 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::subClass pivot|Class|subClass
+		Property symbol_29 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Class::superClass pivot|Class|superClass
 		
-		Class symbol_29 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionItem
-		Property symbol_30 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionItem::item pivot|CollectionItem|item
+		Class symbol_30 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionItem
+		Property symbol_31 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionItem::item pivot|CollectionItem|item
 		
-		Class symbol_31 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionKind
+		Class symbol_32 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionKind
 		
-		Class symbol_32 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionLiteralExp
-		Property symbol_33 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionLiteralExp::kind pivot|CollectionLiteralExp|kind
-		Property symbol_34 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionLiteralExp::part pivot|CollectionLiteralExp|part
+		Class symbol_33 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionLiteralExp
+		Property symbol_34 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionLiteralExp::kind pivot|CollectionLiteralExp|kind
+		Property symbol_35 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionLiteralExp::part pivot|CollectionLiteralExp|part
 		
-		Class symbol_35 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionLiteralPart
+		Class symbol_36 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionLiteralPart
 		
-		Class symbol_36 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionRange
-		Property symbol_37 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionRange::first pivot|CollectionRange|first
-		Property symbol_38 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionRange::last pivot|CollectionRange|last
+		Class symbol_37 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionRange
+		Property symbol_38 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionRange::first pivot|CollectionRange|first
+		Property symbol_39 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionRange::last pivot|CollectionRange|last
 		
-		Class symbol_39 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionType
-		Property symbol_40 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionType::elementType pivot|CollectionType|elementType
+		Class symbol_40 = PivotFactory.eINSTANCE.createClass(); // pivot|CollectionType
+		Property symbol_41 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CollectionType::elementType pivot|CollectionType|elementType
 		
-		Class symbol_41 = PivotFactory.eINSTANCE.createClass(); // pivot|Comment
-		Property symbol_42 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Comment::annotatedElement pivot|Comment|annotatedElement
-		Property symbol_43 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Comment::body pivot|Comment|body
+		Class symbol_42 = PivotFactory.eINSTANCE.createClass(); // pivot|Comment
+		Property symbol_43 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Comment::annotatedElement pivot|Comment|annotatedElement
+		Property symbol_44 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Comment::body pivot|Comment|body
 		
-		Class symbol_44 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteEnvironment
+		Class symbol_45 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteEnvironment
 		
-		Class symbol_45 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteIteration
-		Property symbol_46 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeAccumulator pivot|CompleteIteration|completeAccumulator
-		Property symbol_47 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeEnvironment pivot|CompleteIteration|completeEnvironment
-		Property symbol_48 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeIterator pivot|CompleteIteration|completeIterator
-		Property symbol_49 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeParameter pivot|CompleteIteration|completeParameter
-		Property symbol_50 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::model pivot|CompleteIteration|model
+		Class symbol_46 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteIteration
+		Property symbol_47 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeAccumulator pivot|CompleteIteration|completeAccumulator
+		Property symbol_48 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeEnvironment pivot|CompleteIteration|completeEnvironment
+		Property symbol_49 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeIterator pivot|CompleteIteration|completeIterator
+		Property symbol_50 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::completeParameter pivot|CompleteIteration|completeParameter
+		Property symbol_51 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteIteration::model pivot|CompleteIteration|model
 		
-		Class symbol_51 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteOperation
-		Property symbol_52 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteOperation::completeEnvironment pivot|CompleteOperation|completeEnvironment
-		Property symbol_53 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteOperation::completeParameter pivot|CompleteOperation|completeParameter
-		Property symbol_54 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteOperation::model pivot|CompleteOperation|model
+		Class symbol_52 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteOperation
+		Property symbol_53 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteOperation::completeEnvironment pivot|CompleteOperation|completeEnvironment
+		Property symbol_54 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteOperation::completeParameter pivot|CompleteOperation|completeParameter
+		Property symbol_55 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteOperation::model pivot|CompleteOperation|model
 		
-		Class symbol_55 = PivotFactory.eINSTANCE.createClass(); // pivot|CompletePackage
-		Property symbol_56 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::completeEnvironment pivot|CompletePackage|completeEnvironment
-		Property symbol_57 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::completePackage pivot|CompletePackage|completePackage
-		Property symbol_58 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::completeType pivot|CompletePackage|completeType
-		Property symbol_59 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::model pivot|CompletePackage|model
+		Class symbol_56 = PivotFactory.eINSTANCE.createClass(); // pivot|CompletePackage
+		Property symbol_57 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::completeEnvironment pivot|CompletePackage|completeEnvironment
+		Property symbol_58 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::completePackage pivot|CompletePackage|completePackage
+		Property symbol_59 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::completeType pivot|CompletePackage|completeType
+		Property symbol_60 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompletePackage::model pivot|CompletePackage|model
 		
-		Class symbol_60 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteProperty
-		Property symbol_61 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteProperty::completeEnvironment pivot|CompleteProperty|completeEnvironment
-		Property symbol_62 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteProperty::model pivot|CompleteProperty|model
+		Class symbol_61 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteProperty
+		Property symbol_62 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteProperty::completeEnvironment pivot|CompleteProperty|completeEnvironment
+		Property symbol_63 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteProperty::model pivot|CompleteProperty|model
 		
-		Class symbol_63 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteType
-		Property symbol_64 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeEnvironment pivot|CompleteType|completeEnvironment
-		Property symbol_65 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeOperation pivot|CompleteType|completeOperation
-		Property symbol_66 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeProperty pivot|CompleteType|completeProperty
-		Property symbol_67 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeSuperType pivot|CompleteType|completeSuperType
-		Property symbol_68 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::model pivot|CompleteType|model
+		Class symbol_64 = PivotFactory.eINSTANCE.createClass(); // pivot|CompleteType
+		Property symbol_65 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeEnvironment pivot|CompleteType|completeEnvironment
+		Property symbol_66 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeOperation pivot|CompleteType|completeOperation
+		Property symbol_67 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeProperty pivot|CompleteType|completeProperty
+		Property symbol_68 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::completeSuperType pivot|CompleteType|completeSuperType
+		Property symbol_69 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::CompleteType::model pivot|CompleteType|model
 		
-		Class symbol_69 = PivotFactory.eINSTANCE.createClass(); // pivot|Constraint
-		Property symbol_70 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::constrainedElement pivot|Constraint|constrainedElement
-		Property symbol_71 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::context pivot|Constraint|context
-		Property symbol_72 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::specification pivot|Constraint|specification
-		Property symbol_73 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::stereotype pivot|Constraint|stereotype
+		Class symbol_70 = PivotFactory.eINSTANCE.createClass(); // pivot|Constraint
+		Property symbol_71 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::constrainedElement pivot|Constraint|constrainedElement
+		Property symbol_72 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::context pivot|Constraint|context
+		Property symbol_73 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::specification pivot|Constraint|specification
+		Property symbol_74 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Constraint::stereotype pivot|Constraint|stereotype
 		
-		Class symbol_74 = PivotFactory.eINSTANCE.createClass(); // pivot|DataType
-		Property symbol_75 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::DataType::isSerializable pivot|DataType|isSerializable
+		Class symbol_75 = PivotFactory.eINSTANCE.createClass(); // pivot|DataType
+		Property symbol_76 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::DataType::isSerializable pivot|DataType|isSerializable
 		
-		Class symbol_76 = PivotFactory.eINSTANCE.createClass(); // pivot|Detail
-		Property symbol_77 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Detail::value pivot|Detail|value
+		Class symbol_77 = PivotFactory.eINSTANCE.createClass(); // pivot|Detail
+		Property symbol_78 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Detail::value pivot|Detail|value
 		
-		Class symbol_78 = PivotFactory.eINSTANCE.createClass(); // pivot|Element
-		Property symbol_79 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Element::ownedComment pivot|Element|ownedComment
+		Class symbol_79 = PivotFactory.eINSTANCE.createClass(); // pivot|Element
+		Property symbol_80 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Element::ownedComment pivot|Element|ownedComment
 		
-		Class symbol_80 = PivotFactory.eINSTANCE.createClass(); // pivot|EnumLiteralExp
-		Property symbol_81 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::EnumLiteralExp::referredEnumLiteral pivot|EnumLiteralExp|referredEnumLiteral
+		Class symbol_81 = PivotFactory.eINSTANCE.createClass(); // pivot|EnumLiteralExp
+		Property symbol_82 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::EnumLiteralExp::referredEnumLiteral pivot|EnumLiteralExp|referredEnumLiteral
 		
-		Class symbol_82 = PivotFactory.eINSTANCE.createClass(); // pivot|Enumeration
-		Property symbol_83 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Enumeration::ownedLiteral pivot|Enumeration|ownedLiteral
+		Class symbol_83 = PivotFactory.eINSTANCE.createClass(); // pivot|Enumeration
+		Property symbol_84 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Enumeration::ownedLiteral pivot|Enumeration|ownedLiteral
 		
-		Class symbol_84 = PivotFactory.eINSTANCE.createClass(); // pivot|EnumerationLiteral
-		Property symbol_85 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::EnumerationLiteral::enumeration pivot|EnumerationLiteral|enumeration
-		Property symbol_86 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::EnumerationLiteral::value pivot|EnumerationLiteral|value
+		Class symbol_85 = PivotFactory.eINSTANCE.createClass(); // pivot|EnumerationLiteral
+		Property symbol_86 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::EnumerationLiteral::enumeration pivot|EnumerationLiteral|enumeration
+		Property symbol_87 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::EnumerationLiteral::value pivot|EnumerationLiteral|value
 		
-		Class symbol_87 = PivotFactory.eINSTANCE.createClass(); // pivot|ExpressionInOcl
-		Property symbol_88 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::bodyExpression pivot|ExpressionInOcl|bodyExpression
-		Property symbol_89 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::contextVariable pivot|ExpressionInOcl|contextVariable
-		Property symbol_90 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::parameterVariable pivot|ExpressionInOcl|parameterVariable
-		Property symbol_91 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::resultVariable pivot|ExpressionInOcl|resultVariable
+		Class symbol_88 = PivotFactory.eINSTANCE.createClass(); // pivot|ExpressionInOcl
+		Property symbol_89 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::bodyExpression pivot|ExpressionInOcl|bodyExpression
+		Property symbol_90 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::contextVariable pivot|ExpressionInOcl|contextVariable
+		Property symbol_91 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::parameterVariable pivot|ExpressionInOcl|parameterVariable
+		Property symbol_92 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ExpressionInOcl::resultVariable pivot|ExpressionInOcl|resultVariable
 		
-		Class symbol_92 = PivotFactory.eINSTANCE.createClass(); // pivot|Feature
-		Property symbol_93 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Feature::featuringClass pivot|Feature|featuringClass
+		Class symbol_93 = PivotFactory.eINSTANCE.createClass(); // pivot|Feature
+		Property symbol_94 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Feature::featuringClass pivot|Feature|featuringClass
+		Property symbol_95 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Feature::implementation pivot|Feature|implementation
+		Property symbol_96 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::Feature::implementationClass pivot|Feature|implementationClass
 		
-		Class symbol_94 = PivotFactory.eINSTANCE.createClass(); // pivot|FeatureCallExp
-		Property symbol_95 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::FeatureCallExp::isPre pivot|FeatureCallExp|isPre
+		Class symbol_97 = PivotFactory.eINSTANCE.createClass(); // pivot|FeatureCallExp
+		Property symbol_98 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::FeatureCallExp::isPre pivot|FeatureCallExp|isPre
 		
-		Class symbol_96 = PivotFactory.eINSTANCE.createClass(); // pivot|IfExp
-		Property symbol_97 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::IfExp::condition pivot|IfExp|condition
-		Property symbol_98 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::IfExp::elseExpression pivot|IfExp|elseExpression
-		Property symbol_99 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::IfExp::thenExpression pivot|IfExp|thenExpression
-		
-		Class symbol_100 = PivotFactory.eINSTANCE.createClass(); // pivot|ImplementableElement
-		Property symbol_101 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ImplementableElement::implementation pivot|ImplementableElement|implementation
-		Property symbol_102 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::ImplementableElement::implementationClass pivot|ImplementableElement|implementationClass
+		Class symbol_99 = PivotFactory.eINSTANCE.createClass(); // pivot|IfExp
+		Property symbol_100 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::IfExp::condition pivot|IfExp|condition
+		Property symbol_101 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::IfExp::elseExpression pivot|IfExp|elseExpression
+		Property symbol_102 = PivotFactory.eINSTANCE.createProperty(); // pivot.ecore::pivot::IfExp::thenExpression pivot|IfExp|thenExpression
 		
 		Class symbol_103 = PivotFactory.eINSTANCE.createClass(); // pivot|Int
 		
@@ -444,7 +443,7 @@ public class OclMetaModel extends XMLResourceImpl
 		symbol_2.getSuperClasses().add(symbol_144);
 		{ // pivot.ecore::pivot::Annotation::ownedContent pivot|Annotation|ownedContent
 			symbol_3.setName("ownedContent");
-			symbol_3.setType(symbol_78);  // pivot|Element
+			symbol_3.setType(symbol_79);  // pivot|Element
 			symbol_3.setLower(BigInteger.valueOf(0));
 			symbol_3.setUpper(BigInteger.valueOf(-1));
 			symbol_3.setIsOrdered(true);
@@ -455,7 +454,7 @@ public class OclMetaModel extends XMLResourceImpl
 		}
 		{ // pivot.ecore::pivot::Annotation::ownedDetail pivot|Annotation|ownedDetail
 			symbol_4.setName("ownedDetail");
-			symbol_4.setType(symbol_76);  // pivot|Detail
+			symbol_4.setType(symbol_77);  // pivot|Detail
 			symbol_4.setLower(BigInteger.valueOf(0));
 			symbol_4.setUpper(BigInteger.valueOf(-1));
 			symbol_4.setIsOrdered(true);
@@ -466,7 +465,7 @@ public class OclMetaModel extends XMLResourceImpl
 		}
 		{ // pivot.ecore::pivot::Annotation::reference pivot|Annotation|reference
 			symbol_5.setName("reference");
-			symbol_5.setType(symbol_78);  // pivot|Element
+			symbol_5.setType(symbol_79);  // pivot|Element
 			symbol_5.setLower(BigInteger.valueOf(0));
 			symbol_5.setUpper(BigInteger.valueOf(-1));
 			symbol_5.setIsOrdered(true);
@@ -479,13 +478,13 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::AnyType pivot|AnyType
 		//
 		symbol_6.setName("AnyType");
-		symbol_6.getSuperClasses().add(symbol_22);
+		symbol_6.getSuperClasses().add(symbol_23);
 		symbol_1.getOwnedTypes().add(symbol_6);
 		//
 		// pivot.ecore::pivot::AssociationClass pivot|AssociationClass
 		//
 		symbol_7.setName("AssociationClass");
-		symbol_7.getSuperClasses().add(symbol_22);
+		symbol_7.getSuperClasses().add(symbol_23);
 		{ // pivot.ecore::pivot::AssociationClass::unownedAttribute pivot|AssociationClass|unownedAttribute
 			symbol_8.setName("unownedAttribute");
 			symbol_8.setType(symbol_189);  // pivot|Property
@@ -520,7 +519,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::BagType pivot|BagType
 		//
 		symbol_12.setName("BagType");
-		symbol_12.getSuperClasses().add(symbol_39);
+		symbol_12.getSuperClasses().add(symbol_40);
 		symbol_1.getOwnedTypes().add(symbol_12);
 		//
 		// pivot.ecore::pivot::BooleanLiteralExp pivot|BooleanLiteralExp
@@ -549,308 +548,307 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_17.setIsResolveProxies(true);
 			symbol_16.getOwnedAttributes().add(symbol_17);
 		}
-		{ // pivot.ecore::pivot::CallExp::source pivot|CallExp|source
-			symbol_18.setName("source");
-			symbol_18.setType(symbol_156);  // pivot|OclExpression
+		{ // pivot.ecore::pivot::CallExp::referredFeature pivot|CallExp|referredFeature
+			symbol_18.setName("referredFeature");
+			symbol_18.setType(symbol_93);  // pivot|Feature
 			symbol_18.setLower(BigInteger.valueOf(0));
 			
-			symbol_18.setIsComposite(true);
-			symbol_18.setIsResolveProxies(true);
+			symbol_18.setIsDerived(true);
+			symbol_18.setIsReadOnly(true);
+			symbol_18.setIsTransient(true);
+			symbol_18.setIsVolatile(true);
 			symbol_16.getOwnedAttributes().add(symbol_18);
+		}
+		{ // pivot.ecore::pivot::CallExp::source pivot|CallExp|source
+			symbol_19.setName("source");
+			symbol_19.setType(symbol_156);  // pivot|OclExpression
+			symbol_19.setLower(BigInteger.valueOf(0));
+			
+			symbol_19.setIsComposite(true);
+			symbol_19.setIsResolveProxies(true);
+			symbol_16.getOwnedAttributes().add(symbol_19);
 		}
 		symbol_1.getOwnedTypes().add(symbol_16);
 		//
 		// pivot.ecore::pivot::CallOperationAction pivot|CallOperationAction
 		//
-		symbol_19.setName("CallOperationAction");
-		symbol_19.getSuperClasses().add(symbol_144);
+		symbol_20.setName("CallOperationAction");
+		symbol_20.getSuperClasses().add(symbol_144);
 		{ // pivot.ecore::pivot::CallOperationAction::operation pivot|CallOperationAction|operation
-			symbol_20.setName("operation");
-			symbol_20.setType(symbol_160);  // pivot|Operation
+			symbol_21.setName("operation");
+			symbol_21.setType(symbol_160);  // pivot|Operation
 			
-			symbol_20.setIsResolveProxies(true);
-			symbol_19.getOwnedAttributes().add(symbol_20);
+			symbol_21.setIsResolveProxies(true);
+			symbol_20.getOwnedAttributes().add(symbol_21);
 		}
-		symbol_1.getOwnedTypes().add(symbol_19);
+		symbol_1.getOwnedTypes().add(symbol_20);
 		//
 		// pivot.ecore::pivot::CallableImplementation pivot|CallableImplementation
 		//
-		symbol_21.setName("CallableImplementation");
-		symbol_1.getOwnedTypes().add(symbol_21);
+		symbol_22.setName("CallableImplementation");
+		symbol_1.getOwnedTypes().add(symbol_22);
 		//
 		// pivot.ecore::pivot::Class pivot|Class
 		//
-		symbol_22.setName("Class");
-		symbol_22.getSuperClasses().add(symbol_149);
-		symbol_22.getSuperClasses().add(symbol_249);
+		symbol_23.setName("Class");
+		symbol_23.getSuperClasses().add(symbol_149);
+		symbol_23.getSuperClasses().add(symbol_249);
 		{ // pivot.ecore::pivot::Class::isAbstract pivot|Class|isAbstract
-			symbol_23.setName("isAbstract");
-			symbol_23.setType(symbol_13);  // pivot|Boolean
-			
-			symbol_23.setIsResolveProxies(true);
-			symbol_22.getOwnedAttributes().add(symbol_23);
-		}
-		{ // pivot.ecore::pivot::Class::isInterface pivot|Class|isInterface
-			symbol_24.setName("isInterface");
+			symbol_24.setName("isAbstract");
 			symbol_24.setType(symbol_13);  // pivot|Boolean
 			
 			symbol_24.setIsResolveProxies(true);
-			symbol_22.getOwnedAttributes().add(symbol_24);
+			symbol_23.getOwnedAttributes().add(symbol_24);
+		}
+		{ // pivot.ecore::pivot::Class::isInterface pivot|Class|isInterface
+			symbol_25.setName("isInterface");
+			symbol_25.setType(symbol_13);  // pivot|Boolean
+			
+			symbol_25.setIsResolveProxies(true);
+			symbol_23.getOwnedAttributes().add(symbol_25);
 		}
 		{ // pivot.ecore::pivot::Class::ownedAttribute pivot|Class|ownedAttribute
-			symbol_25.setName("ownedAttribute");
-			symbol_25.setType(symbol_189);  // pivot|Property
-			symbol_25.setLower(BigInteger.valueOf(0));
-			symbol_25.setUpper(BigInteger.valueOf(-1));
-			symbol_25.setIsOrdered(true);
-			
-			symbol_25.setIsComposite(true);
-			symbol_25.setIsResolveProxies(true);
-			symbol_25.setOpposite(symbol_191);
-			symbol_22.getOwnedAttributes().add(symbol_25);
-		}
-		{ // pivot.ecore::pivot::Class::ownedOperation pivot|Class|ownedOperation
-			symbol_26.setName("ownedOperation");
-			symbol_26.setType(symbol_160);  // pivot|Operation
+			symbol_26.setName("ownedAttribute");
+			symbol_26.setType(symbol_189);  // pivot|Property
 			symbol_26.setLower(BigInteger.valueOf(0));
 			symbol_26.setUpper(BigInteger.valueOf(-1));
 			symbol_26.setIsOrdered(true);
 			
 			symbol_26.setIsComposite(true);
 			symbol_26.setIsResolveProxies(true);
-			symbol_26.setOpposite(symbol_161);
-			symbol_22.getOwnedAttributes().add(symbol_26);
+			symbol_26.setOpposite(symbol_191);
+			symbol_23.getOwnedAttributes().add(symbol_26);
 		}
-		{ // pivot.ecore::pivot::Class::subClass pivot|Class|subClass
-			symbol_27.setName("subClass");
-			symbol_27.setType(symbol_22);  // pivot|Class
+		{ // pivot.ecore::pivot::Class::ownedOperation pivot|Class|ownedOperation
+			symbol_27.setName("ownedOperation");
+			symbol_27.setType(symbol_160);  // pivot|Operation
 			symbol_27.setLower(BigInteger.valueOf(0));
 			symbol_27.setUpper(BigInteger.valueOf(-1));
+			symbol_27.setIsOrdered(true);
 			
-			symbol_27.setIsTransient(true);
-			symbol_22.getOwnedAttributes().add(symbol_27);
+			symbol_27.setIsComposite(true);
+			symbol_27.setIsResolveProxies(true);
+			symbol_27.setOpposite(symbol_161);
+			symbol_23.getOwnedAttributes().add(symbol_27);
 		}
-		{ // pivot.ecore::pivot::Class::superClass pivot|Class|superClass
-			symbol_28.setName("superClass");
-			symbol_28.setType(symbol_22);  // pivot|Class
+		{ // pivot.ecore::pivot::Class::subClass pivot|Class|subClass
+			symbol_28.setName("subClass");
+			symbol_28.setType(symbol_23);  // pivot|Class
 			symbol_28.setLower(BigInteger.valueOf(0));
 			symbol_28.setUpper(BigInteger.valueOf(-1));
 			
-			symbol_28.setIsResolveProxies(true);
-			symbol_22.getOwnedAttributes().add(symbol_28);
+			symbol_28.setIsTransient(true);
+			symbol_23.getOwnedAttributes().add(symbol_28);
 		}
-		symbol_1.getOwnedTypes().add(symbol_22);
+		{ // pivot.ecore::pivot::Class::superClass pivot|Class|superClass
+			symbol_29.setName("superClass");
+			symbol_29.setType(symbol_23);  // pivot|Class
+			symbol_29.setLower(BigInteger.valueOf(0));
+			symbol_29.setUpper(BigInteger.valueOf(-1));
+			
+			symbol_29.setIsResolveProxies(true);
+			symbol_23.getOwnedAttributes().add(symbol_29);
+		}
+		symbol_1.getOwnedTypes().add(symbol_23);
 		//
 		// pivot.ecore::pivot::CollectionItem pivot|CollectionItem
 		//
-		symbol_29.setName("CollectionItem");
-		symbol_29.getSuperClasses().add(symbol_35);
+		symbol_30.setName("CollectionItem");
+		symbol_30.getSuperClasses().add(symbol_36);
 		{ // pivot.ecore::pivot::CollectionItem::item pivot|CollectionItem|item
-			symbol_30.setName("item");
-			symbol_30.setType(symbol_156);  // pivot|OclExpression
+			symbol_31.setName("item");
+			symbol_31.setType(symbol_156);  // pivot|OclExpression
 			
-			symbol_30.setIsComposite(true);
-			symbol_30.setIsResolveProxies(true);
-			symbol_29.getOwnedAttributes().add(symbol_30);
+			symbol_31.setIsComposite(true);
+			symbol_31.setIsResolveProxies(true);
+			symbol_30.getOwnedAttributes().add(symbol_31);
 		}
-		symbol_1.getOwnedTypes().add(symbol_29);
+		symbol_1.getOwnedTypes().add(symbol_30);
 		//
 		// pivot.ecore::pivot::CollectionKind pivot|CollectionKind
 		//
-		symbol_31.setName("CollectionKind");
-		symbol_1.getOwnedTypes().add(symbol_31);
+		symbol_32.setName("CollectionKind");
+		symbol_1.getOwnedTypes().add(symbol_32);
 		//
 		// pivot.ecore::pivot::CollectionLiteralExp pivot|CollectionLiteralExp
 		//
-		symbol_32.setName("CollectionLiteralExp");
-		symbol_32.getSuperClasses().add(symbol_123);
+		symbol_33.setName("CollectionLiteralExp");
+		symbol_33.getSuperClasses().add(symbol_123);
 		{ // pivot.ecore::pivot::CollectionLiteralExp::kind pivot|CollectionLiteralExp|kind
-			symbol_33.setName("kind");
-			symbol_33.setType(symbol_31);  // pivot|CollectionKind
+			symbol_34.setName("kind");
+			symbol_34.setType(symbol_32);  // pivot|CollectionKind
 			
-			symbol_33.setIsResolveProxies(true);
-			symbol_32.getOwnedAttributes().add(symbol_33);
+			symbol_34.setIsResolveProxies(true);
+			symbol_33.getOwnedAttributes().add(symbol_34);
 		}
 		{ // pivot.ecore::pivot::CollectionLiteralExp::part pivot|CollectionLiteralExp|part
-			symbol_34.setName("part");
-			symbol_34.setType(symbol_35);  // pivot|CollectionLiteralPart
-			symbol_34.setLower(BigInteger.valueOf(0));
-			symbol_34.setUpper(BigInteger.valueOf(-1));
-			symbol_34.setIsOrdered(true);
+			symbol_35.setName("part");
+			symbol_35.setType(symbol_36);  // pivot|CollectionLiteralPart
+			symbol_35.setLower(BigInteger.valueOf(0));
+			symbol_35.setUpper(BigInteger.valueOf(-1));
+			symbol_35.setIsOrdered(true);
 			
-			symbol_34.setIsComposite(true);
-			symbol_34.setIsResolveProxies(true);
-			symbol_32.getOwnedAttributes().add(symbol_34);
+			symbol_35.setIsComposite(true);
+			symbol_35.setIsResolveProxies(true);
+			symbol_33.getOwnedAttributes().add(symbol_35);
 		}
-		symbol_1.getOwnedTypes().add(symbol_32);
+		symbol_1.getOwnedTypes().add(symbol_33);
 		//
 		// pivot.ecore::pivot::CollectionLiteralPart pivot|CollectionLiteralPart
 		//
-		symbol_35.setName("CollectionLiteralPart");
-		symbol_35.getSuperClasses().add(symbol_257);
-		symbol_1.getOwnedTypes().add(symbol_35);
+		symbol_36.setName("CollectionLiteralPart");
+		symbol_36.getSuperClasses().add(symbol_257);
+		symbol_1.getOwnedTypes().add(symbol_36);
 		//
 		// pivot.ecore::pivot::CollectionRange pivot|CollectionRange
 		//
-		symbol_36.setName("CollectionRange");
-		symbol_36.getSuperClasses().add(symbol_35);
+		symbol_37.setName("CollectionRange");
+		symbol_37.getSuperClasses().add(symbol_36);
 		{ // pivot.ecore::pivot::CollectionRange::first pivot|CollectionRange|first
-			symbol_37.setName("first");
-			symbol_37.setType(symbol_156);  // pivot|OclExpression
-			
-			symbol_37.setIsComposite(true);
-			symbol_37.setIsResolveProxies(true);
-			symbol_36.getOwnedAttributes().add(symbol_37);
-		}
-		{ // pivot.ecore::pivot::CollectionRange::last pivot|CollectionRange|last
-			symbol_38.setName("last");
+			symbol_38.setName("first");
 			symbol_38.setType(symbol_156);  // pivot|OclExpression
 			
 			symbol_38.setIsComposite(true);
 			symbol_38.setIsResolveProxies(true);
-			symbol_36.getOwnedAttributes().add(symbol_38);
+			symbol_37.getOwnedAttributes().add(symbol_38);
 		}
-		symbol_1.getOwnedTypes().add(symbol_36);
+		{ // pivot.ecore::pivot::CollectionRange::last pivot|CollectionRange|last
+			symbol_39.setName("last");
+			symbol_39.setType(symbol_156);  // pivot|OclExpression
+			
+			symbol_39.setIsComposite(true);
+			symbol_39.setIsResolveProxies(true);
+			symbol_37.getOwnedAttributes().add(symbol_39);
+		}
+		symbol_1.getOwnedTypes().add(symbol_37);
 		//
 		// pivot.ecore::pivot::CollectionType pivot|CollectionType
 		//
-		symbol_39.setName("CollectionType");
-		symbol_39.getSuperClasses().add(symbol_74);
+		symbol_40.setName("CollectionType");
+		symbol_40.getSuperClasses().add(symbol_75);
 		{ // pivot.ecore::pivot::CollectionType::elementType pivot|CollectionType|elementType
-			symbol_40.setName("elementType");
-			symbol_40.setType(symbol_249);  // pivot|Type
+			symbol_41.setName("elementType");
+			symbol_41.setType(symbol_249);  // pivot|Type
 			
-			symbol_40.setIsResolveProxies(true);
-			symbol_39.getOwnedAttributes().add(symbol_40);
+			symbol_41.setIsResolveProxies(true);
+			symbol_40.getOwnedAttributes().add(symbol_41);
 		}
-		symbol_1.getOwnedTypes().add(symbol_39);
+		symbol_1.getOwnedTypes().add(symbol_40);
 		//
 		// pivot.ecore::pivot::Comment pivot|Comment
 		//
-		symbol_41.setName("Comment");
-		symbol_41.getSuperClasses().add(symbol_78);
+		symbol_42.setName("Comment");
+		symbol_42.getSuperClasses().add(symbol_79);
 		{ // pivot.ecore::pivot::Comment::annotatedElement pivot|Comment|annotatedElement
-			symbol_42.setName("annotatedElement");
-			symbol_42.setType(symbol_78);  // pivot|Element
-			symbol_42.setLower(BigInteger.valueOf(0));
-			symbol_42.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_42.setIsResolveProxies(true);
-			symbol_41.getOwnedAttributes().add(symbol_42);
-		}
-		{ // pivot.ecore::pivot::Comment::body pivot|Comment|body
-			symbol_43.setName("body");
-			symbol_43.setType(symbol_216);  // pivot|String
+			symbol_43.setName("annotatedElement");
+			symbol_43.setType(symbol_79);  // pivot|Element
 			symbol_43.setLower(BigInteger.valueOf(0));
+			symbol_43.setUpper(BigInteger.valueOf(-1));
 			
 			symbol_43.setIsResolveProxies(true);
-			symbol_41.getOwnedAttributes().add(symbol_43);
+			symbol_42.getOwnedAttributes().add(symbol_43);
 		}
-		symbol_1.getOwnedTypes().add(symbol_41);
+		{ // pivot.ecore::pivot::Comment::body pivot|Comment|body
+			symbol_44.setName("body");
+			symbol_44.setType(symbol_216);  // pivot|String
+			symbol_44.setLower(BigInteger.valueOf(0));
+			
+			symbol_44.setIsResolveProxies(true);
+			symbol_42.getOwnedAttributes().add(symbol_44);
+		}
+		symbol_1.getOwnedTypes().add(symbol_42);
 		//
 		// pivot.ecore::pivot::CompleteEnvironment pivot|CompleteEnvironment
 		//
-		symbol_44.setName("CompleteEnvironment");
-		symbol_44.getSuperClasses().add(symbol_170);
+		symbol_45.setName("CompleteEnvironment");
+		symbol_45.getSuperClasses().add(symbol_170);
 		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteIteration() pivot|CompleteEnvironment|getCompleteIteration(pivot|Iteration)
 			Operation symbol_281 = PivotFactory.eINSTANCE.createOperation();
 			symbol_281.setName("getCompleteIteration");
-			symbol_281.setType(symbol_45);  // pivot|CompleteIteration
+			symbol_281.setType(symbol_46);  // pivot|CompleteIteration
 			
 			Parameter symbol_282 = PivotFactory.eINSTANCE.createParameter();
 			symbol_282.setName("model");
 			symbol_282.setType(symbol_115);  // pivot|Iteration
 			
 			symbol_281.getOwnedParameters().add(symbol_282);
-			symbol_44.getOwnedOperations().add(symbol_281);
+			symbol_45.getOwnedOperations().add(symbol_281);
 		}
 		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteOperation() pivot|CompleteEnvironment|getCompleteOperation(pivot|Operation)
 			Operation symbol_283 = PivotFactory.eINSTANCE.createOperation();
 			symbol_283.setName("getCompleteOperation");
-			symbol_283.setType(symbol_51);  // pivot|CompleteOperation
+			symbol_283.setType(symbol_52);  // pivot|CompleteOperation
 			
 			Parameter symbol_284 = PivotFactory.eINSTANCE.createParameter();
 			symbol_284.setName("model");
 			symbol_284.setType(symbol_160);  // pivot|Operation
 			
 			symbol_283.getOwnedParameters().add(symbol_284);
-			symbol_44.getOwnedOperations().add(symbol_283);
+			symbol_45.getOwnedOperations().add(symbol_283);
 		}
 		{	// pivot.ecore::pivot::CompleteEnvironment::getCompletePackage() pivot|CompleteEnvironment|getCompletePackage(pivot|Package)
 			Operation symbol_285 = PivotFactory.eINSTANCE.createOperation();
 			symbol_285.setName("getCompletePackage");
-			symbol_285.setType(symbol_55);  // pivot|CompletePackage
+			symbol_285.setType(symbol_56);  // pivot|CompletePackage
 			
 			Parameter symbol_286 = PivotFactory.eINSTANCE.createParameter();
 			symbol_286.setName("model");
 			symbol_286.setType(symbol_170);  // pivot|Package
 			
 			symbol_285.getOwnedParameters().add(symbol_286);
-			symbol_44.getOwnedOperations().add(symbol_285);
+			symbol_45.getOwnedOperations().add(symbol_285);
 		}
 		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteProperty() pivot|CompleteEnvironment|getCompleteProperty(pivot|Property)
 			Operation symbol_287 = PivotFactory.eINSTANCE.createOperation();
 			symbol_287.setName("getCompleteProperty");
-			symbol_287.setType(symbol_60);  // pivot|CompleteProperty
+			symbol_287.setType(symbol_61);  // pivot|CompleteProperty
 			
 			Parameter symbol_288 = PivotFactory.eINSTANCE.createParameter();
 			symbol_288.setName("model");
 			symbol_288.setType(symbol_189);  // pivot|Property
 			
 			symbol_287.getOwnedParameters().add(symbol_288);
-			symbol_44.getOwnedOperations().add(symbol_287);
+			symbol_45.getOwnedOperations().add(symbol_287);
 		}
 		{	// pivot.ecore::pivot::CompleteEnvironment::getCompleteType() pivot|CompleteEnvironment|getCompleteType(pivot|Type)
 			Operation symbol_289 = PivotFactory.eINSTANCE.createOperation();
 			symbol_289.setName("getCompleteType");
-			symbol_289.setType(symbol_63);  // pivot|CompleteType
+			symbol_289.setType(symbol_64);  // pivot|CompleteType
 			
 			Parameter symbol_290 = PivotFactory.eINSTANCE.createParameter();
 			symbol_290.setName("model");
 			symbol_290.setType(symbol_249);  // pivot|Type
 			
 			symbol_289.getOwnedParameters().add(symbol_290);
-			symbol_44.getOwnedOperations().add(symbol_289);
+			symbol_45.getOwnedOperations().add(symbol_289);
 		}
-		symbol_1.getOwnedTypes().add(symbol_44);
+		symbol_1.getOwnedTypes().add(symbol_45);
 		//
 		// pivot.ecore::pivot::CompleteIteration pivot|CompleteIteration
 		//
-		symbol_45.setName("CompleteIteration");
-		symbol_45.getSuperClasses().add(symbol_115);
+		symbol_46.setName("CompleteIteration");
+		symbol_46.getSuperClasses().add(symbol_115);
 		{ // pivot.ecore::pivot::CompleteIteration::completeAccumulator pivot|CompleteIteration|completeAccumulator
-			symbol_46.setName("completeAccumulator");
-			symbol_46.setType(symbol_178);  // pivot|Parameter
-			symbol_46.setLower(BigInteger.valueOf(0));
-			symbol_46.setUpper(BigInteger.valueOf(-1));
+			symbol_47.setName("completeAccumulator");
+			symbol_47.setType(symbol_178);  // pivot|Parameter
+			symbol_47.setLower(BigInteger.valueOf(0));
+			symbol_47.setUpper(BigInteger.valueOf(-1));
 			
-			symbol_46.setIsDerived(true);
-			symbol_46.setIsReadOnly(true);
-			symbol_46.setIsResolveProxies(true);
-			symbol_46.setIsVolatile(true);
-			symbol_45.getOwnedAttributes().add(symbol_46);
+			symbol_47.setIsDerived(true);
+			symbol_47.setIsReadOnly(true);
+			symbol_47.setIsResolveProxies(true);
+			symbol_47.setIsVolatile(true);
+			symbol_46.getOwnedAttributes().add(symbol_47);
 		}
 		{ // pivot.ecore::pivot::CompleteIteration::completeEnvironment pivot|CompleteIteration|completeEnvironment
-			symbol_47.setName("completeEnvironment");
-			symbol_47.setType(symbol_44);  // pivot|CompleteEnvironment
+			symbol_48.setName("completeEnvironment");
+			symbol_48.setType(symbol_45);  // pivot|CompleteEnvironment
 			
-			symbol_47.setIsResolveProxies(true);
-			symbol_45.getOwnedAttributes().add(symbol_47);
+			symbol_48.setIsResolveProxies(true);
+			symbol_46.getOwnedAttributes().add(symbol_48);
 		}
 		{ // pivot.ecore::pivot::CompleteIteration::completeIterator pivot|CompleteIteration|completeIterator
-			symbol_48.setName("completeIterator");
-			symbol_48.setType(symbol_178);  // pivot|Parameter
-			symbol_48.setLower(BigInteger.valueOf(0));
-			symbol_48.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_48.setIsDerived(true);
-			symbol_48.setIsReadOnly(true);
-			symbol_48.setIsResolveProxies(true);
-			symbol_48.setIsVolatile(true);
-			symbol_45.getOwnedAttributes().add(symbol_48);
-		}
-		{ // pivot.ecore::pivot::CompleteIteration::completeParameter pivot|CompleteIteration|completeParameter
-			symbol_49.setName("completeParameter");
+			symbol_49.setName("completeIterator");
 			symbol_49.setType(symbol_178);  // pivot|Parameter
 			symbol_49.setLower(BigInteger.valueOf(0));
 			symbol_49.setUpper(BigInteger.valueOf(-1));
@@ -859,75 +857,75 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_49.setIsReadOnly(true);
 			symbol_49.setIsResolveProxies(true);
 			symbol_49.setIsVolatile(true);
-			symbol_45.getOwnedAttributes().add(symbol_49);
+			symbol_46.getOwnedAttributes().add(symbol_49);
+		}
+		{ // pivot.ecore::pivot::CompleteIteration::completeParameter pivot|CompleteIteration|completeParameter
+			symbol_50.setName("completeParameter");
+			symbol_50.setType(symbol_178);  // pivot|Parameter
+			symbol_50.setLower(BigInteger.valueOf(0));
+			symbol_50.setUpper(BigInteger.valueOf(-1));
+			
+			symbol_50.setIsDerived(true);
+			symbol_50.setIsReadOnly(true);
+			symbol_50.setIsResolveProxies(true);
+			symbol_50.setIsVolatile(true);
+			symbol_46.getOwnedAttributes().add(symbol_50);
 		}
 		{ // pivot.ecore::pivot::CompleteIteration::model pivot|CompleteIteration|model
-			symbol_50.setName("model");
-			symbol_50.setType(symbol_115);  // pivot|Iteration
+			symbol_51.setName("model");
+			symbol_51.setType(symbol_115);  // pivot|Iteration
 			
-			symbol_50.setIsResolveProxies(true);
-			symbol_45.getOwnedAttributes().add(symbol_50);
+			symbol_51.setIsResolveProxies(true);
+			symbol_46.getOwnedAttributes().add(symbol_51);
 		}
-		symbol_1.getOwnedTypes().add(symbol_45);
+		symbol_1.getOwnedTypes().add(symbol_46);
 		//
 		// pivot.ecore::pivot::CompleteOperation pivot|CompleteOperation
 		//
-		symbol_51.setName("CompleteOperation");
-		symbol_51.getSuperClasses().add(symbol_160);
+		symbol_52.setName("CompleteOperation");
+		symbol_52.getSuperClasses().add(symbol_160);
 		{ // pivot.ecore::pivot::CompleteOperation::completeEnvironment pivot|CompleteOperation|completeEnvironment
-			symbol_52.setName("completeEnvironment");
-			symbol_52.setType(symbol_44);  // pivot|CompleteEnvironment
+			symbol_53.setName("completeEnvironment");
+			symbol_53.setType(symbol_45);  // pivot|CompleteEnvironment
 			
-			symbol_52.setIsResolveProxies(true);
-			symbol_51.getOwnedAttributes().add(symbol_52);
+			symbol_53.setIsResolveProxies(true);
+			symbol_52.getOwnedAttributes().add(symbol_53);
 		}
 		{ // pivot.ecore::pivot::CompleteOperation::completeParameter pivot|CompleteOperation|completeParameter
-			symbol_53.setName("completeParameter");
-			symbol_53.setType(symbol_178);  // pivot|Parameter
-			symbol_53.setLower(BigInteger.valueOf(0));
-			symbol_53.setUpper(BigInteger.valueOf(-1));
+			symbol_54.setName("completeParameter");
+			symbol_54.setType(symbol_178);  // pivot|Parameter
+			symbol_54.setLower(BigInteger.valueOf(0));
+			symbol_54.setUpper(BigInteger.valueOf(-1));
 			
-			symbol_53.setIsDerived(true);
-			symbol_53.setIsReadOnly(true);
-			symbol_53.setIsResolveProxies(true);
-			symbol_53.setIsVolatile(true);
-			symbol_51.getOwnedAttributes().add(symbol_53);
+			symbol_54.setIsDerived(true);
+			symbol_54.setIsReadOnly(true);
+			symbol_54.setIsResolveProxies(true);
+			symbol_54.setIsVolatile(true);
+			symbol_52.getOwnedAttributes().add(symbol_54);
 		}
 		{ // pivot.ecore::pivot::CompleteOperation::model pivot|CompleteOperation|model
-			symbol_54.setName("model");
-			symbol_54.setType(symbol_160);  // pivot|Operation
+			symbol_55.setName("model");
+			symbol_55.setType(symbol_160);  // pivot|Operation
 			
-			symbol_54.setIsResolveProxies(true);
-			symbol_51.getOwnedAttributes().add(symbol_54);
+			symbol_55.setIsResolveProxies(true);
+			symbol_52.getOwnedAttributes().add(symbol_55);
 		}
-		symbol_1.getOwnedTypes().add(symbol_51);
+		symbol_1.getOwnedTypes().add(symbol_52);
 		//
 		// pivot.ecore::pivot::CompletePackage pivot|CompletePackage
 		//
-		symbol_55.setName("CompletePackage");
-		symbol_55.getSuperClasses().add(symbol_170);
+		symbol_56.setName("CompletePackage");
+		symbol_56.getSuperClasses().add(symbol_170);
 		{ // pivot.ecore::pivot::CompletePackage::completeEnvironment pivot|CompletePackage|completeEnvironment
-			symbol_56.setName("completeEnvironment");
-			symbol_56.setType(symbol_44);  // pivot|CompleteEnvironment
+			symbol_57.setName("completeEnvironment");
+			symbol_57.setType(symbol_45);  // pivot|CompleteEnvironment
 			
-			symbol_56.setIsResolveProxies(true);
-			symbol_55.getOwnedAttributes().add(symbol_56);
+			symbol_57.setIsResolveProxies(true);
+			symbol_56.getOwnedAttributes().add(symbol_57);
 		}
 		{ // pivot.ecore::pivot::CompletePackage::completePackage pivot|CompletePackage|completePackage
-			symbol_57.setName("completePackage");
-			symbol_57.setType(symbol_55);  // pivot|CompletePackage
-			symbol_57.setLower(BigInteger.valueOf(0));
-			symbol_57.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_57.setIsDerived(true);
-			symbol_57.setIsReadOnly(true);
-			symbol_57.setIsResolveProxies(true);
-			symbol_57.setIsVolatile(true);
-			symbol_55.getOwnedAttributes().add(symbol_57);
-		}
-		{ // pivot.ecore::pivot::CompletePackage::completeType pivot|CompletePackage|completeType
-			symbol_58.setName("completeType");
-			symbol_58.setType(symbol_63);  // pivot|CompleteType
+			symbol_58.setName("completePackage");
+			symbol_58.setType(symbol_56);  // pivot|CompletePackage
 			symbol_58.setLower(BigInteger.valueOf(0));
 			symbol_58.setUpper(BigInteger.valueOf(-1));
 			
@@ -935,63 +933,63 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_58.setIsReadOnly(true);
 			symbol_58.setIsResolveProxies(true);
 			symbol_58.setIsVolatile(true);
-			symbol_55.getOwnedAttributes().add(symbol_58);
+			symbol_56.getOwnedAttributes().add(symbol_58);
+		}
+		{ // pivot.ecore::pivot::CompletePackage::completeType pivot|CompletePackage|completeType
+			symbol_59.setName("completeType");
+			symbol_59.setType(symbol_64);  // pivot|CompleteType
+			symbol_59.setLower(BigInteger.valueOf(0));
+			symbol_59.setUpper(BigInteger.valueOf(-1));
+			
+			symbol_59.setIsDerived(true);
+			symbol_59.setIsReadOnly(true);
+			symbol_59.setIsResolveProxies(true);
+			symbol_59.setIsVolatile(true);
+			symbol_56.getOwnedAttributes().add(symbol_59);
 		}
 		{ // pivot.ecore::pivot::CompletePackage::model pivot|CompletePackage|model
-			symbol_59.setName("model");
-			symbol_59.setType(symbol_170);  // pivot|Package
+			symbol_60.setName("model");
+			symbol_60.setType(symbol_170);  // pivot|Package
 			
-			symbol_59.setIsResolveProxies(true);
-			symbol_55.getOwnedAttributes().add(symbol_59);
+			symbol_60.setIsResolveProxies(true);
+			symbol_56.getOwnedAttributes().add(symbol_60);
 		}
-		symbol_1.getOwnedTypes().add(symbol_55);
+		symbol_1.getOwnedTypes().add(symbol_56);
 		//
 		// pivot.ecore::pivot::CompleteProperty pivot|CompleteProperty
 		//
-		symbol_60.setName("CompleteProperty");
-		symbol_60.getSuperClasses().add(symbol_189);
+		symbol_61.setName("CompleteProperty");
+		symbol_61.getSuperClasses().add(symbol_189);
 		{ // pivot.ecore::pivot::CompleteProperty::completeEnvironment pivot|CompleteProperty|completeEnvironment
-			symbol_61.setName("completeEnvironment");
-			symbol_61.setType(symbol_44);  // pivot|CompleteEnvironment
-			
-			symbol_61.setIsResolveProxies(true);
-			symbol_60.getOwnedAttributes().add(symbol_61);
-		}
-		{ // pivot.ecore::pivot::CompleteProperty::model pivot|CompleteProperty|model
-			symbol_62.setName("model");
-			symbol_62.setType(symbol_189);  // pivot|Property
+			symbol_62.setName("completeEnvironment");
+			symbol_62.setType(symbol_45);  // pivot|CompleteEnvironment
 			
 			symbol_62.setIsResolveProxies(true);
-			symbol_60.getOwnedAttributes().add(symbol_62);
+			symbol_61.getOwnedAttributes().add(symbol_62);
 		}
-		symbol_1.getOwnedTypes().add(symbol_60);
+		{ // pivot.ecore::pivot::CompleteProperty::model pivot|CompleteProperty|model
+			symbol_63.setName("model");
+			symbol_63.setType(symbol_189);  // pivot|Property
+			
+			symbol_63.setIsResolveProxies(true);
+			symbol_61.getOwnedAttributes().add(symbol_63);
+		}
+		symbol_1.getOwnedTypes().add(symbol_61);
 		//
 		// pivot.ecore::pivot::CompleteType pivot|CompleteType
 		//
-		symbol_63.setName("CompleteType");
-		symbol_63.getSuperClasses().add(symbol_22);
+		symbol_64.setName("CompleteType");
+		symbol_64.getSuperClasses().add(symbol_23);
 		{ // pivot.ecore::pivot::CompleteType::completeEnvironment pivot|CompleteType|completeEnvironment
-			symbol_64.setName("completeEnvironment");
-			symbol_64.setType(symbol_44);  // pivot|CompleteEnvironment
+			symbol_65.setName("completeEnvironment");
+			symbol_65.setType(symbol_45);  // pivot|CompleteEnvironment
 			
-			symbol_64.setIsResolveProxies(true);
-			symbol_63.getOwnedAttributes().add(symbol_64);
+			symbol_65.setIsResolveProxies(true);
+			symbol_64.getOwnedAttributes().add(symbol_65);
 		}
 		{ // pivot.ecore::pivot::CompleteType::completeOperation pivot|CompleteType|completeOperation
-			symbol_65.setName("completeOperation");
-			symbol_65.setType(symbol_51);  // pivot|CompleteOperation
-			symbol_65.setLower(BigInteger.valueOf(0));
-			symbol_65.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_65.setIsDerived(true);
-			symbol_65.setIsReadOnly(true);
-			symbol_65.setIsResolveProxies(true);
-			symbol_65.setIsVolatile(true);
-			symbol_63.getOwnedAttributes().add(symbol_65);
-		}
-		{ // pivot.ecore::pivot::CompleteType::completeProperty pivot|CompleteType|completeProperty
-			symbol_66.setName("completeProperty");
-			symbol_66.setType(symbol_60);  // pivot|CompleteProperty
+			symbol_66.setName("completeOperation");
+			symbol_66.setType(symbol_52);  // pivot|CompleteOperation
 			symbol_66.setLower(BigInteger.valueOf(0));
 			symbol_66.setUpper(BigInteger.valueOf(-1));
 			
@@ -999,11 +997,11 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_66.setIsReadOnly(true);
 			symbol_66.setIsResolveProxies(true);
 			symbol_66.setIsVolatile(true);
-			symbol_63.getOwnedAttributes().add(symbol_66);
+			symbol_64.getOwnedAttributes().add(symbol_66);
 		}
-		{ // pivot.ecore::pivot::CompleteType::completeSuperType pivot|CompleteType|completeSuperType
-			symbol_67.setName("completeSuperType");
-			symbol_67.setType(symbol_63);  // pivot|CompleteType
+		{ // pivot.ecore::pivot::CompleteType::completeProperty pivot|CompleteType|completeProperty
+			symbol_67.setName("completeProperty");
+			symbol_67.setType(symbol_61);  // pivot|CompleteProperty
 			symbol_67.setLower(BigInteger.valueOf(0));
 			symbol_67.setUpper(BigInteger.valueOf(-1));
 			
@@ -1011,14 +1009,26 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_67.setIsReadOnly(true);
 			symbol_67.setIsResolveProxies(true);
 			symbol_67.setIsVolatile(true);
-			symbol_63.getOwnedAttributes().add(symbol_67);
+			symbol_64.getOwnedAttributes().add(symbol_67);
+		}
+		{ // pivot.ecore::pivot::CompleteType::completeSuperType pivot|CompleteType|completeSuperType
+			symbol_68.setName("completeSuperType");
+			symbol_68.setType(symbol_64);  // pivot|CompleteType
+			symbol_68.setLower(BigInteger.valueOf(0));
+			symbol_68.setUpper(BigInteger.valueOf(-1));
+			
+			symbol_68.setIsDerived(true);
+			symbol_68.setIsReadOnly(true);
+			symbol_68.setIsResolveProxies(true);
+			symbol_68.setIsVolatile(true);
+			symbol_64.getOwnedAttributes().add(symbol_68);
 		}
 		{ // pivot.ecore::pivot::CompleteType::model pivot|CompleteType|model
-			symbol_68.setName("model");
-			symbol_68.setType(symbol_249);  // pivot|Type
+			symbol_69.setName("model");
+			symbol_69.setType(symbol_249);  // pivot|Type
 			
-			symbol_68.setIsResolveProxies(true);
-			symbol_63.getOwnedAttributes().add(symbol_68);
+			symbol_69.setIsResolveProxies(true);
+			symbol_64.getOwnedAttributes().add(symbol_69);
 		}
 		{	// pivot.ecore::pivot::CompleteType::conformsTo() pivot|CompleteType|conformsTo(pivot|CompleteType)
 			Operation symbol_291 = PivotFactory.eINSTANCE.createOperation();
@@ -1027,15 +1037,15 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			Parameter symbol_292 = PivotFactory.eINSTANCE.createParameter();
 			symbol_292.setName("aType");
-			symbol_292.setType(symbol_63);  // pivot|CompleteType
+			symbol_292.setType(symbol_64);  // pivot|CompleteType
 			
 			symbol_291.getOwnedParameters().add(symbol_292);
-			symbol_63.getOwnedOperations().add(symbol_291);
+			symbol_64.getOwnedOperations().add(symbol_291);
 		}
 		{	// pivot.ecore::pivot::CompleteType::getCompleteIterations() pivot|CompleteType|getCompleteIterations(pivot|String)
 			Operation symbol_293 = PivotFactory.eINSTANCE.createOperation();
 			symbol_293.setName("getCompleteIterations");
-			symbol_293.setType(symbol_45);  // pivot|CompleteIteration
+			symbol_293.setType(symbol_46);  // pivot|CompleteIteration
 			symbol_293.setLower(BigInteger.valueOf(0));
 			symbol_293.setUpper(BigInteger.valueOf(-1));
 			
@@ -1044,12 +1054,12 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_294.setType(symbol_216);  // pivot|String
 			
 			symbol_293.getOwnedParameters().add(symbol_294);
-			symbol_63.getOwnedOperations().add(symbol_293);
+			symbol_64.getOwnedOperations().add(symbol_293);
 		}
 		{	// pivot.ecore::pivot::CompleteType::getCompleteOperations() pivot|CompleteType|getCompleteOperations(pivot|String)
 			Operation symbol_295 = PivotFactory.eINSTANCE.createOperation();
 			symbol_295.setName("getCompleteOperations");
-			symbol_295.setType(symbol_51);  // pivot|CompleteOperation
+			symbol_295.setType(symbol_52);  // pivot|CompleteOperation
 			symbol_295.setLower(BigInteger.valueOf(0));
 			symbol_295.setUpper(BigInteger.valueOf(-1));
 			
@@ -1058,297 +1068,292 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_296.setType(symbol_216);  // pivot|String
 			
 			symbol_295.getOwnedParameters().add(symbol_296);
-			symbol_63.getOwnedOperations().add(symbol_295);
+			symbol_64.getOwnedOperations().add(symbol_295);
 		}
 		{	// pivot.ecore::pivot::CompleteType::getDynamicIteration() pivot|CompleteType|getDynamicIteration(pivot|CompleteIteration)
 			Operation symbol_297 = PivotFactory.eINSTANCE.createOperation();
 			symbol_297.setName("getDynamicIteration");
-			symbol_297.setType(symbol_45);  // pivot|CompleteIteration
+			symbol_297.setType(symbol_46);  // pivot|CompleteIteration
 			
 			Parameter symbol_298 = PivotFactory.eINSTANCE.createParameter();
 			symbol_298.setName("staticOperation");
-			symbol_298.setType(symbol_45);  // pivot|CompleteIteration
+			symbol_298.setType(symbol_46);  // pivot|CompleteIteration
 			
 			symbol_297.getOwnedParameters().add(symbol_298);
-			symbol_63.getOwnedOperations().add(symbol_297);
+			symbol_64.getOwnedOperations().add(symbol_297);
 		}
 		{	// pivot.ecore::pivot::CompleteType::getDynamicOperation() pivot|CompleteType|getDynamicOperation(pivot|CompleteOperation)
 			Operation symbol_299 = PivotFactory.eINSTANCE.createOperation();
 			symbol_299.setName("getDynamicOperation");
-			symbol_299.setType(symbol_51);  // pivot|CompleteOperation
+			symbol_299.setType(symbol_52);  // pivot|CompleteOperation
 			
 			Parameter symbol_300 = PivotFactory.eINSTANCE.createParameter();
 			symbol_300.setName("staticOperation");
-			symbol_300.setType(symbol_51);  // pivot|CompleteOperation
+			symbol_300.setType(symbol_52);  // pivot|CompleteOperation
 			
 			symbol_299.getOwnedParameters().add(symbol_300);
-			symbol_63.getOwnedOperations().add(symbol_299);
+			symbol_64.getOwnedOperations().add(symbol_299);
 		}
-		symbol_1.getOwnedTypes().add(symbol_63);
+		symbol_1.getOwnedTypes().add(symbol_64);
 		//
 		// pivot.ecore::pivot::Constraint pivot|Constraint
 		//
-		symbol_69.setName("Constraint");
-		symbol_69.getSuperClasses().add(symbol_144);
+		symbol_70.setName("Constraint");
+		symbol_70.getSuperClasses().add(symbol_144);
 		{ // pivot.ecore::pivot::Constraint::constrainedElement pivot|Constraint|constrainedElement
-			symbol_70.setName("constrainedElement");
-			symbol_70.setType(symbol_78);  // pivot|Element
-			symbol_70.setLower(BigInteger.valueOf(0));
-			symbol_70.setUpper(BigInteger.valueOf(-1));
-			symbol_70.setIsOrdered(true);
-			
-			symbol_70.setIsResolveProxies(true);
-			symbol_69.getOwnedAttributes().add(symbol_70);
-		}
-		{ // pivot.ecore::pivot::Constraint::context pivot|Constraint|context
-			symbol_71.setName("context");
-			symbol_71.setType(symbol_144);  // pivot|NamedElement
+			symbol_71.setName("constrainedElement");
+			symbol_71.setType(symbol_79);  // pivot|Element
 			symbol_71.setLower(BigInteger.valueOf(0));
+			symbol_71.setUpper(BigInteger.valueOf(-1));
+			symbol_71.setIsOrdered(true);
 			
 			symbol_71.setIsResolveProxies(true);
-			symbol_69.getOwnedAttributes().add(symbol_71);
+			symbol_70.getOwnedAttributes().add(symbol_71);
+		}
+		{ // pivot.ecore::pivot::Constraint::context pivot|Constraint|context
+			symbol_72.setName("context");
+			symbol_72.setType(symbol_144);  // pivot|NamedElement
+			symbol_72.setLower(BigInteger.valueOf(0));
+			
+			symbol_72.setIsResolveProxies(true);
+			symbol_70.getOwnedAttributes().add(symbol_72);
 		}
 		{ // pivot.ecore::pivot::Constraint::specification pivot|Constraint|specification
-			symbol_72.setName("specification");
-			symbol_72.setType(symbol_264);  // pivot|ValueSpecification
+			symbol_73.setName("specification");
+			symbol_73.setType(symbol_264);  // pivot|ValueSpecification
 			
-			symbol_72.setIsComposite(true);
-			symbol_72.setIsResolveProxies(true);
-			symbol_69.getOwnedAttributes().add(symbol_72);
+			symbol_73.setIsComposite(true);
+			symbol_73.setIsResolveProxies(true);
+			symbol_70.getOwnedAttributes().add(symbol_73);
 		}
 		{ // pivot.ecore::pivot::Constraint::stereotype pivot|Constraint|stereotype
-			symbol_73.setName("stereotype");
-			symbol_73.setType(symbol_216);  // pivot|String
-			symbol_73.setLower(BigInteger.valueOf(0));
+			symbol_74.setName("stereotype");
+			symbol_74.setType(symbol_216);  // pivot|String
+			symbol_74.setLower(BigInteger.valueOf(0));
 			
-			symbol_73.setIsResolveProxies(true);
-			symbol_69.getOwnedAttributes().add(symbol_73);
+			symbol_74.setIsResolveProxies(true);
+			symbol_70.getOwnedAttributes().add(symbol_74);
 		}
-		symbol_1.getOwnedTypes().add(symbol_69);
+		symbol_1.getOwnedTypes().add(symbol_70);
 		//
 		// pivot.ecore::pivot::DataType pivot|DataType
 		//
-		symbol_74.setName("DataType");
-		symbol_74.getSuperClasses().add(symbol_22);
+		symbol_75.setName("DataType");
+		symbol_75.getSuperClasses().add(symbol_23);
 		{ // pivot.ecore::pivot::DataType::isSerializable pivot|DataType|isSerializable
-			symbol_75.setName("isSerializable");
-			symbol_75.setType(symbol_13);  // pivot|Boolean
+			symbol_76.setName("isSerializable");
+			symbol_76.setType(symbol_13);  // pivot|Boolean
 			
-			symbol_75.setIsResolveProxies(true);
-			symbol_74.getOwnedAttributes().add(symbol_75);
+			symbol_76.setIsResolveProxies(true);
+			symbol_75.getOwnedAttributes().add(symbol_76);
 		}
-		symbol_1.getOwnedTypes().add(symbol_74);
+		symbol_1.getOwnedTypes().add(symbol_75);
 		//
 		// pivot.ecore::pivot::Detail pivot|Detail
 		//
-		symbol_76.setName("Detail");
-		symbol_76.getSuperClasses().add(symbol_144);
+		symbol_77.setName("Detail");
+		symbol_77.getSuperClasses().add(symbol_144);
 		{ // pivot.ecore::pivot::Detail::value pivot|Detail|value
-			symbol_77.setName("value");
-			symbol_77.setType(symbol_216);  // pivot|String
-			symbol_77.setUpper(BigInteger.valueOf(-1));
+			symbol_78.setName("value");
+			symbol_78.setType(symbol_216);  // pivot|String
+			symbol_78.setUpper(BigInteger.valueOf(-1));
 			
-			symbol_77.setIsResolveProxies(true);
-			symbol_76.getOwnedAttributes().add(symbol_77);
+			symbol_78.setIsResolveProxies(true);
+			symbol_77.getOwnedAttributes().add(symbol_78);
 		}
-		symbol_1.getOwnedTypes().add(symbol_76);
+		symbol_1.getOwnedTypes().add(symbol_77);
 		//
 		// pivot.ecore::pivot::Element pivot|Element
 		//
-		symbol_78.setName("Element");
-		symbol_78.getSuperClasses().add(symbol_273);
+		symbol_79.setName("Element");
+		symbol_79.getSuperClasses().add(symbol_273);
 		{ // pivot.ecore::pivot::Element::ownedComment pivot|Element|ownedComment
-			symbol_79.setName("ownedComment");
-			symbol_79.setType(symbol_41);  // pivot|Comment
-			symbol_79.setLower(BigInteger.valueOf(0));
-			symbol_79.setUpper(BigInteger.valueOf(-1));
+			symbol_80.setName("ownedComment");
+			symbol_80.setType(symbol_42);  // pivot|Comment
+			symbol_80.setLower(BigInteger.valueOf(0));
+			symbol_80.setUpper(BigInteger.valueOf(-1));
 			
-			symbol_79.setIsComposite(true);
-			symbol_79.setIsResolveProxies(true);
-			symbol_78.getOwnedAttributes().add(symbol_79);
+			symbol_80.setIsComposite(true);
+			symbol_80.setIsResolveProxies(true);
+			symbol_79.getOwnedAttributes().add(symbol_80);
 		}
-		symbol_1.getOwnedTypes().add(symbol_78);
+		symbol_1.getOwnedTypes().add(symbol_79);
 		//
 		// pivot.ecore::pivot::EnumLiteralExp pivot|EnumLiteralExp
 		//
-		symbol_80.setName("EnumLiteralExp");
-		symbol_80.getSuperClasses().add(symbol_123);
+		symbol_81.setName("EnumLiteralExp");
+		symbol_81.getSuperClasses().add(symbol_123);
 		{ // pivot.ecore::pivot::EnumLiteralExp::referredEnumLiteral pivot|EnumLiteralExp|referredEnumLiteral
-			symbol_81.setName("referredEnumLiteral");
-			symbol_81.setType(symbol_84);  // pivot|EnumerationLiteral
-			symbol_81.setLower(BigInteger.valueOf(0));
+			symbol_82.setName("referredEnumLiteral");
+			symbol_82.setType(symbol_85);  // pivot|EnumerationLiteral
+			symbol_82.setLower(BigInteger.valueOf(0));
 			
-			symbol_81.setIsResolveProxies(true);
-			symbol_80.getOwnedAttributes().add(symbol_81);
+			symbol_82.setIsResolveProxies(true);
+			symbol_81.getOwnedAttributes().add(symbol_82);
 		}
-		symbol_1.getOwnedTypes().add(symbol_80);
+		symbol_1.getOwnedTypes().add(symbol_81);
 		//
 		// pivot.ecore::pivot::Enumeration pivot|Enumeration
 		//
-		symbol_82.setName("Enumeration");
-		symbol_82.getSuperClasses().add(symbol_74);
+		symbol_83.setName("Enumeration");
+		symbol_83.getSuperClasses().add(symbol_75);
 		{ // pivot.ecore::pivot::Enumeration::ownedLiteral pivot|Enumeration|ownedLiteral
-			symbol_83.setName("ownedLiteral");
-			symbol_83.setType(symbol_84);  // pivot|EnumerationLiteral
-			symbol_83.setLower(BigInteger.valueOf(0));
-			symbol_83.setUpper(BigInteger.valueOf(-1));
-			symbol_83.setIsOrdered(true);
+			symbol_84.setName("ownedLiteral");
+			symbol_84.setType(symbol_85);  // pivot|EnumerationLiteral
+			symbol_84.setLower(BigInteger.valueOf(0));
+			symbol_84.setUpper(BigInteger.valueOf(-1));
+			symbol_84.setIsOrdered(true);
 			
-			symbol_83.setIsComposite(true);
-			symbol_83.setIsResolveProxies(true);
-			symbol_83.setOpposite(symbol_85);
-			symbol_82.getOwnedAttributes().add(symbol_83);
+			symbol_84.setIsComposite(true);
+			symbol_84.setIsResolveProxies(true);
+			symbol_84.setOpposite(symbol_86);
+			symbol_83.getOwnedAttributes().add(symbol_84);
 		}
-		symbol_1.getOwnedTypes().add(symbol_82);
+		symbol_1.getOwnedTypes().add(symbol_83);
 		//
 		// pivot.ecore::pivot::EnumerationLiteral pivot|EnumerationLiteral
 		//
-		symbol_84.setName("EnumerationLiteral");
-		symbol_84.getSuperClasses().add(symbol_144);
+		symbol_85.setName("EnumerationLiteral");
+		symbol_85.getSuperClasses().add(symbol_144);
 		{ // pivot.ecore::pivot::EnumerationLiteral::enumeration pivot|EnumerationLiteral|enumeration
-			symbol_85.setName("enumeration");
-			symbol_85.setType(symbol_82);  // pivot|Enumeration
-			symbol_85.setLower(BigInteger.valueOf(0));
-			
-			symbol_85.setIsResolveProxies(true);
-			symbol_85.setOpposite(symbol_83);
-			symbol_84.getOwnedAttributes().add(symbol_85);
-		}
-		{ // pivot.ecore::pivot::EnumerationLiteral::value pivot|EnumerationLiteral|value
-			symbol_86.setName("value");
-			symbol_86.setType(symbol_104);  // pivot|Integer
+			symbol_86.setName("enumeration");
+			symbol_86.setType(symbol_83);  // pivot|Enumeration
 			symbol_86.setLower(BigInteger.valueOf(0));
 			
 			symbol_86.setIsResolveProxies(true);
-			symbol_84.getOwnedAttributes().add(symbol_86);
+			symbol_86.setOpposite(symbol_84);
+			symbol_85.getOwnedAttributes().add(symbol_86);
 		}
-		symbol_1.getOwnedTypes().add(symbol_84);
+		{ // pivot.ecore::pivot::EnumerationLiteral::value pivot|EnumerationLiteral|value
+			symbol_87.setName("value");
+			symbol_87.setType(symbol_104);  // pivot|Integer
+			symbol_87.setLower(BigInteger.valueOf(0));
+			
+			symbol_87.setIsResolveProxies(true);
+			symbol_85.getOwnedAttributes().add(symbol_87);
+		}
+		symbol_1.getOwnedTypes().add(symbol_85);
 		//
 		// pivot.ecore::pivot::ExpressionInOcl pivot|ExpressionInOcl
 		//
-		symbol_87.setName("ExpressionInOcl");
-		symbol_87.getSuperClasses().add(symbol_157);
+		symbol_88.setName("ExpressionInOcl");
+		symbol_88.getSuperClasses().add(symbol_157);
 		{ // pivot.ecore::pivot::ExpressionInOcl::bodyExpression pivot|ExpressionInOcl|bodyExpression
-			symbol_88.setName("bodyExpression");
-			symbol_88.setType(symbol_156);  // pivot|OclExpression
-			
-			symbol_88.setIsComposite(true);
-			symbol_88.setIsResolveProxies(true);
-			symbol_87.getOwnedAttributes().add(symbol_88);
-		}
-		{ // pivot.ecore::pivot::ExpressionInOcl::contextVariable pivot|ExpressionInOcl|contextVariable
-			symbol_89.setName("contextVariable");
-			symbol_89.setType(symbol_265);  // pivot|Variable
-			symbol_89.setLower(BigInteger.valueOf(0));
+			symbol_89.setName("bodyExpression");
+			symbol_89.setType(symbol_156);  // pivot|OclExpression
 			
 			symbol_89.setIsComposite(true);
 			symbol_89.setIsResolveProxies(true);
-			symbol_87.getOwnedAttributes().add(symbol_89);
+			symbol_88.getOwnedAttributes().add(symbol_89);
 		}
-		{ // pivot.ecore::pivot::ExpressionInOcl::parameterVariable pivot|ExpressionInOcl|parameterVariable
-			symbol_90.setName("parameterVariable");
+		{ // pivot.ecore::pivot::ExpressionInOcl::contextVariable pivot|ExpressionInOcl|contextVariable
+			symbol_90.setName("contextVariable");
 			symbol_90.setType(symbol_265);  // pivot|Variable
 			symbol_90.setLower(BigInteger.valueOf(0));
-			symbol_90.setUpper(BigInteger.valueOf(-1));
-			symbol_90.setIsOrdered(true);
 			
 			symbol_90.setIsComposite(true);
 			symbol_90.setIsResolveProxies(true);
-			symbol_87.getOwnedAttributes().add(symbol_90);
+			symbol_88.getOwnedAttributes().add(symbol_90);
 		}
-		{ // pivot.ecore::pivot::ExpressionInOcl::resultVariable pivot|ExpressionInOcl|resultVariable
-			symbol_91.setName("resultVariable");
+		{ // pivot.ecore::pivot::ExpressionInOcl::parameterVariable pivot|ExpressionInOcl|parameterVariable
+			symbol_91.setName("parameterVariable");
 			symbol_91.setType(symbol_265);  // pivot|Variable
 			symbol_91.setLower(BigInteger.valueOf(0));
+			symbol_91.setUpper(BigInteger.valueOf(-1));
+			symbol_91.setIsOrdered(true);
 			
 			symbol_91.setIsComposite(true);
 			symbol_91.setIsResolveProxies(true);
-			symbol_87.getOwnedAttributes().add(symbol_91);
+			symbol_88.getOwnedAttributes().add(symbol_91);
 		}
-		symbol_1.getOwnedTypes().add(symbol_87);
+		{ // pivot.ecore::pivot::ExpressionInOcl::resultVariable pivot|ExpressionInOcl|resultVariable
+			symbol_92.setName("resultVariable");
+			symbol_92.setType(symbol_265);  // pivot|Variable
+			symbol_92.setLower(BigInteger.valueOf(0));
+			
+			symbol_92.setIsComposite(true);
+			symbol_92.setIsResolveProxies(true);
+			symbol_88.getOwnedAttributes().add(symbol_92);
+		}
+		symbol_1.getOwnedTypes().add(symbol_88);
 		//
 		// pivot.ecore::pivot::Feature pivot|Feature
 		//
-		symbol_92.setName("Feature");
-		symbol_92.getSuperClasses().add(symbol_144);
-		symbol_92.getSuperClasses().add(symbol_259);
+		symbol_93.setName("Feature");
+		symbol_93.getSuperClasses().add(symbol_144);
+		symbol_93.getSuperClasses().add(symbol_259);
 		{ // pivot.ecore::pivot::Feature::featuringClass pivot|Feature|featuringClass
-			symbol_93.setName("featuringClass");
-			symbol_93.setType(symbol_22);  // pivot|Class
-			symbol_93.setLower(BigInteger.valueOf(0));
+			symbol_94.setName("featuringClass");
+			symbol_94.setType(symbol_23);  // pivot|Class
+			symbol_94.setLower(BigInteger.valueOf(0));
 			
-			symbol_93.setIsDerived(true);
-			symbol_93.setIsReadOnly(true);
-			symbol_93.setIsTransient(true);
-			symbol_93.setIsVolatile(true);
-			symbol_92.getOwnedAttributes().add(symbol_93);
+			symbol_94.setIsDerived(true);
+			symbol_94.setIsReadOnly(true);
+			symbol_94.setIsTransient(true);
+			symbol_94.setIsVolatile(true);
+			symbol_93.getOwnedAttributes().add(symbol_94);
 		}
-		symbol_1.getOwnedTypes().add(symbol_92);
+		{ // pivot.ecore::pivot::Feature::implementation pivot|Feature|implementation
+			symbol_95.setName("implementation");
+			symbol_95.setType(symbol_22);  // pivot|CallableImplementation
+			symbol_95.setLower(BigInteger.valueOf(0));
+			
+			symbol_95.setIsResolveProxies(true);
+			symbol_95.setIsTransient(true);
+			symbol_93.getOwnedAttributes().add(symbol_95);
+		}
+		{ // pivot.ecore::pivot::Feature::implementationClass pivot|Feature|implementationClass
+			symbol_96.setName("implementationClass");
+			symbol_96.setType(symbol_216);  // pivot|String
+			symbol_96.setLower(BigInteger.valueOf(0));
+			
+			symbol_96.setIsResolveProxies(true);
+			symbol_93.getOwnedAttributes().add(symbol_96);
+		}
+		symbol_1.getOwnedTypes().add(symbol_93);
 		//
 		// pivot.ecore::pivot::FeatureCallExp pivot|FeatureCallExp
 		//
-		symbol_94.setName("FeatureCallExp");
-		symbol_94.getSuperClasses().add(symbol_16);
+		symbol_97.setName("FeatureCallExp");
+		symbol_97.getSuperClasses().add(symbol_16);
 		{ // pivot.ecore::pivot::FeatureCallExp::isPre pivot|FeatureCallExp|isPre
-			symbol_95.setName("isPre");
-			symbol_95.setType(symbol_13);  // pivot|Boolean
+			symbol_98.setName("isPre");
+			symbol_98.setType(symbol_13);  // pivot|Boolean
 			
-			symbol_95.setIsResolveProxies(true);
-			symbol_94.getOwnedAttributes().add(symbol_95);
+			symbol_98.setIsResolveProxies(true);
+			symbol_97.getOwnedAttributes().add(symbol_98);
 		}
-		symbol_1.getOwnedTypes().add(symbol_94);
+		symbol_1.getOwnedTypes().add(symbol_97);
 		//
 		// pivot.ecore::pivot::IfExp pivot|IfExp
 		//
-		symbol_96.setName("IfExp");
-		symbol_96.getSuperClasses().add(symbol_156);
+		symbol_99.setName("IfExp");
+		symbol_99.getSuperClasses().add(symbol_156);
 		{ // pivot.ecore::pivot::IfExp::condition pivot|IfExp|condition
-			symbol_97.setName("condition");
-			symbol_97.setType(symbol_156);  // pivot|OclExpression
+			symbol_100.setName("condition");
+			symbol_100.setType(symbol_156);  // pivot|OclExpression
 			
-			symbol_97.setIsComposite(true);
-			symbol_97.setIsResolveProxies(true);
-			symbol_96.getOwnedAttributes().add(symbol_97);
+			symbol_100.setIsComposite(true);
+			symbol_100.setIsResolveProxies(true);
+			symbol_99.getOwnedAttributes().add(symbol_100);
 		}
 		{ // pivot.ecore::pivot::IfExp::elseExpression pivot|IfExp|elseExpression
-			symbol_98.setName("elseExpression");
-			symbol_98.setType(symbol_156);  // pivot|OclExpression
+			symbol_101.setName("elseExpression");
+			symbol_101.setType(symbol_156);  // pivot|OclExpression
 			
-			symbol_98.setIsComposite(true);
-			symbol_98.setIsResolveProxies(true);
-			symbol_96.getOwnedAttributes().add(symbol_98);
+			symbol_101.setIsComposite(true);
+			symbol_101.setIsResolveProxies(true);
+			symbol_99.getOwnedAttributes().add(symbol_101);
 		}
 		{ // pivot.ecore::pivot::IfExp::thenExpression pivot|IfExp|thenExpression
-			symbol_99.setName("thenExpression");
-			symbol_99.setType(symbol_156);  // pivot|OclExpression
+			symbol_102.setName("thenExpression");
+			symbol_102.setType(symbol_156);  // pivot|OclExpression
 			
-			symbol_99.setIsComposite(true);
-			symbol_99.setIsResolveProxies(true);
-			symbol_96.getOwnedAttributes().add(symbol_99);
-		}
-		symbol_1.getOwnedTypes().add(symbol_96);
-		//
-		// pivot.ecore::pivot::ImplementableElement pivot|ImplementableElement
-		//
-		symbol_100.setName("ImplementableElement");
-		{ // pivot.ecore::pivot::ImplementableElement::implementation pivot|ImplementableElement|implementation
-			symbol_101.setName("implementation");
-			symbol_101.setType(symbol_21);  // pivot|CallableImplementation
-			symbol_101.setLower(BigInteger.valueOf(0));
-			
-			symbol_101.setIsResolveProxies(true);
-			symbol_101.setIsTransient(true);
-			symbol_100.getOwnedAttributes().add(symbol_101);
-		}
-		{ // pivot.ecore::pivot::ImplementableElement::implementationClass pivot|ImplementableElement|implementationClass
-			symbol_102.setName("implementationClass");
-			symbol_102.setType(symbol_216);  // pivot|String
-			symbol_102.setLower(BigInteger.valueOf(0));
-			
+			symbol_102.setIsComposite(true);
 			symbol_102.setIsResolveProxies(true);
-			symbol_100.getOwnedAttributes().add(symbol_102);
+			symbol_99.getOwnedAttributes().add(symbol_102);
 		}
-		symbol_1.getOwnedTypes().add(symbol_100);
+		symbol_1.getOwnedTypes().add(symbol_99);
 		//
 		// pivot.ecore::pivot::Int pivot|Int
 		//
@@ -1409,7 +1414,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::InvalidType pivot|InvalidType
 		//
 		symbol_112.setName("InvalidType");
-		symbol_112.getSuperClasses().add(symbol_22);
+		symbol_112.getSuperClasses().add(symbol_23);
 		symbol_1.getOwnedTypes().add(symbol_112);
 		//
 		// pivot.ecore::pivot::IterateExp pivot|IterateExp
@@ -1543,7 +1548,7 @@ public class OclMetaModel extends XMLResourceImpl
 		}
 		{ // pivot.ecore::pivot::MessageExp::calledOperation pivot|MessageExp|calledOperation
 			symbol_130.setName("calledOperation");
-			symbol_130.setType(symbol_19);  // pivot|CallOperationAction
+			symbol_130.setType(symbol_20);  // pivot|CallOperationAction
 			symbol_130.setLower(BigInteger.valueOf(0));
 			
 			symbol_130.setIsComposite(true);
@@ -1594,7 +1599,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::MonikeredElement pivot|MonikeredElement
 		//
 		symbol_136.setName("MonikeredElement");
-		symbol_136.getSuperClasses().add(symbol_78);
+		symbol_136.getSuperClasses().add(symbol_79);
 		{ // pivot.ecore::pivot::MonikeredElement::moniker pivot|MonikeredElement|moniker
 			symbol_137.setName("moniker");
 			symbol_137.setType(symbol_216);  // pivot|String
@@ -1703,8 +1708,8 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::NamedElement pivot|NamedElement
 		//
 		symbol_144.setName("NamedElement");
-		symbol_144.getSuperClasses().add(symbol_143);
 		symbol_144.getSuperClasses().add(symbol_136);
+		symbol_144.getSuperClasses().add(symbol_143);
 		{ // pivot.ecore::pivot::NamedElement::isStatic pivot|NamedElement|isStatic
 			symbol_145.setName("isStatic");
 			symbol_145.setType(symbol_13);  // pivot|Boolean
@@ -1733,7 +1738,7 @@ public class OclMetaModel extends XMLResourceImpl
 		}
 		{ // pivot.ecore::pivot::NamedElement::ownedRule pivot|NamedElement|ownedRule
 			symbol_148.setName("ownedRule");
-			symbol_148.setType(symbol_69);  // pivot|Constraint
+			symbol_148.setType(symbol_70);  // pivot|Constraint
 			symbol_148.setLower(BigInteger.valueOf(0));
 			symbol_148.setUpper(BigInteger.valueOf(-1));
 			
@@ -1752,7 +1757,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::NavigationCallExp pivot|NavigationCallExp
 		//
 		symbol_150.setName("NavigationCallExp");
-		symbol_150.getSuperClasses().add(symbol_94);
+		symbol_150.getSuperClasses().add(symbol_97);
 		{ // pivot.ecore::pivot::NavigationCallExp::navigationSource pivot|NavigationCallExp|navigationSource
 			symbol_151.setName("navigationSource");
 			symbol_151.setType(symbol_189);  // pivot|Property
@@ -1827,20 +1832,19 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::Operation pivot|Operation
 		//
 		symbol_160.setName("Operation");
-		symbol_160.getSuperClasses().add(symbol_149);
 		symbol_160.getSuperClasses().add(symbol_257);
-		symbol_160.getSuperClasses().add(symbol_138);
-		symbol_160.getSuperClasses().add(symbol_100);
-		symbol_160.getSuperClasses().add(symbol_240);
 		symbol_160.getSuperClasses().add(symbol_180);
-		symbol_160.getSuperClasses().add(symbol_92);
+		symbol_160.getSuperClasses().add(symbol_138);
+		symbol_160.getSuperClasses().add(symbol_93);
+		symbol_160.getSuperClasses().add(symbol_240);
+		symbol_160.getSuperClasses().add(symbol_149);
 		{ // pivot.ecore::pivot::Operation::class pivot|Operation|class
 			symbol_161.setName("class");
-			symbol_161.setType(symbol_22);  // pivot|Class
+			symbol_161.setType(symbol_23);  // pivot|Class
 			symbol_161.setLower(BigInteger.valueOf(0));
 			
 			symbol_161.setIsResolveProxies(true);
-			symbol_161.setOpposite(symbol_26);
+			symbol_161.setOpposite(symbol_27);
 			symbol_160.getOwnedAttributes().add(symbol_161);
 		}
 		{ // pivot.ecore::pivot::Operation::ownedParameter pivot|Operation|ownedParameter
@@ -1877,7 +1881,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::OperationCallExp pivot|OperationCallExp
 		//
 		symbol_165.setName("OperationCallExp");
-		symbol_165.getSuperClasses().add(symbol_94);
+		symbol_165.getSuperClasses().add(symbol_97);
 		{ // pivot.ecore::pivot::OperationCallExp::argument pivot|OperationCallExp|argument
 			symbol_166.setName("argument");
 			symbol_166.setType(symbol_156);  // pivot|OclExpression
@@ -1908,14 +1912,14 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::OrderedSetType pivot|OrderedSetType
 		//
 		symbol_169.setName("OrderedSetType");
-		symbol_169.getSuperClasses().add(symbol_39);
+		symbol_169.getSuperClasses().add(symbol_40);
 		symbol_1.getOwnedTypes().add(symbol_169);
 		//
 		// pivot.ecore::pivot::Package pivot|Package
 		//
 		symbol_170.setName("Package");
-		symbol_170.getSuperClasses().add(symbol_149);
 		symbol_170.getSuperClasses().add(symbol_240);
+		symbol_170.getSuperClasses().add(symbol_149);
 		{ // pivot.ecore::pivot::Package::nestedPackage pivot|Package|nestedPackage
 			symbol_171.setName("nestedPackage");
 			symbol_171.setType(symbol_170);  // pivot|Package
@@ -2065,17 +2069,16 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::PrimitiveType pivot|PrimitiveType
 		//
 		symbol_188.setName("PrimitiveType");
-		symbol_188.getSuperClasses().add(symbol_74);
+		symbol_188.getSuperClasses().add(symbol_75);
 		symbol_1.getOwnedTypes().add(symbol_188);
 		//
 		// pivot.ecore::pivot::Property pivot|Property
 		//
 		symbol_189.setName("Property");
 		symbol_189.getSuperClasses().add(symbol_257);
-		symbol_189.getSuperClasses().add(symbol_138);
-		symbol_189.getSuperClasses().add(symbol_100);
 		symbol_189.getSuperClasses().add(symbol_180);
-		symbol_189.getSuperClasses().add(symbol_92);
+		symbol_189.getSuperClasses().add(symbol_138);
+		symbol_189.getSuperClasses().add(symbol_93);
 		{ // pivot.ecore::pivot::Property::association pivot|Property|association
 			symbol_190.setName("association");
 			symbol_190.setType(symbol_7);  // pivot|AssociationClass
@@ -2087,11 +2090,11 @@ public class OclMetaModel extends XMLResourceImpl
 		}
 		{ // pivot.ecore::pivot::Property::class pivot|Property|class
 			symbol_191.setName("class");
-			symbol_191.setType(symbol_22);  // pivot|Class
+			symbol_191.setType(symbol_23);  // pivot|Class
 			symbol_191.setLower(BigInteger.valueOf(0));
 			
 			symbol_191.setIsResolveProxies(true);
-			symbol_191.setOpposite(symbol_25);
+			symbol_191.setOpposite(symbol_26);
 			symbol_189.getOwnedAttributes().add(symbol_191);
 		}
 		{ // pivot.ecore::pivot::Property::default pivot|Property|default
@@ -2220,13 +2223,13 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::SequenceType pivot|SequenceType
 		//
 		symbol_210.setName("SequenceType");
-		symbol_210.getSuperClasses().add(symbol_39);
+		symbol_210.getSuperClasses().add(symbol_40);
 		symbol_1.getOwnedTypes().add(symbol_210);
 		//
 		// pivot.ecore::pivot::SetType pivot|SetType
 		//
 		symbol_211.setName("SetType");
-		symbol_211.getSuperClasses().add(symbol_39);
+		symbol_211.getSuperClasses().add(symbol_40);
 		symbol_1.getOwnedTypes().add(symbol_211);
 		//
 		// pivot.ecore::pivot::Signal pivot|Signal
@@ -2271,7 +2274,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::TemplateBinding pivot|TemplateBinding
 		//
 		symbol_219.setName("TemplateBinding");
-		symbol_219.getSuperClasses().add(symbol_78);
+		symbol_219.getSuperClasses().add(symbol_79);
 		{ // pivot.ecore::pivot::TemplateBinding::boundElement pivot|TemplateBinding|boundElement
 			symbol_220.setName("boundElement");
 			symbol_220.setType(symbol_240);  // pivot|TemplateableElement
@@ -2303,7 +2306,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::TemplateParameter pivot|TemplateParameter
 		//
 		symbol_223.setName("TemplateParameter");
-		symbol_223.getSuperClasses().add(symbol_78);
+		symbol_223.getSuperClasses().add(symbol_79);
 		{ // pivot.ecore::pivot::TemplateParameter::default pivot|TemplateParameter|default
 			symbol_224.setName("default");
 			symbol_224.setType(symbol_180);  // pivot|ParameterableElement
@@ -2352,7 +2355,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::TemplateParameterSubstitution pivot|TemplateParameterSubstitution
 		//
 		symbol_229.setName("TemplateParameterSubstitution");
-		symbol_229.getSuperClasses().add(symbol_78);
+		symbol_229.getSuperClasses().add(symbol_79);
 		{ // pivot.ecore::pivot::TemplateParameterSubstitution::actual pivot|TemplateParameterSubstitution|actual
 			symbol_230.setName("actual");
 			symbol_230.setType(symbol_180);  // pivot|ParameterableElement
@@ -2518,15 +2521,15 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::TupleType pivot|TupleType
 		//
 		symbol_248.setName("TupleType");
-		symbol_248.getSuperClasses().add(symbol_74);
+		symbol_248.getSuperClasses().add(symbol_75);
 		symbol_1.getOwnedTypes().add(symbol_248);
 		//
 		// pivot.ecore::pivot::Type pivot|Type
 		//
 		symbol_249.setName("Type");
+		symbol_249.getSuperClasses().add(symbol_180);
 		symbol_249.getSuperClasses().add(symbol_144);
 		symbol_249.getSuperClasses().add(symbol_240);
-		symbol_249.getSuperClasses().add(symbol_180);
 		{ // pivot.ecore::pivot::Type::instanceClassName pivot|Type|instanceClassName
 			symbol_250.setName("instanceClassName");
 			symbol_250.setType(symbol_216);  // pivot|String
@@ -2751,7 +2754,7 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::VoidType pivot|VoidType
 		//
 		symbol_280.setName("VoidType");
-		symbol_280.getSuperClasses().add(symbol_22);
+		symbol_280.getSuperClasses().add(symbol_23);
 		symbol_1.getOwnedTypes().add(symbol_280);
 
 		Class elementClass = (Class) PivotUtil.getNamedElement(symbol_1.getOwnedTypes(), "Element");

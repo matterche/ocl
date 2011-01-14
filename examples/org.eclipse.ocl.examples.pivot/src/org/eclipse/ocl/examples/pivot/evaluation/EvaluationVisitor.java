@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.1.2.8 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.1.2.9 2011/01/14 14:53:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -65,15 +65,6 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
 	public StandardLibrary getStandardLibrary();
 
 	public ValueFactory getValueFactory();
-
-	/**
-	 * Load the implementation class that realises a feature.
-	 * 
-	 * @param implementationClass name
-	 * @return class
-	 * @throws Exception from class loading
-	 */
-//	public CallableImplementation loadImplementationClass(String implementationClass) throws Exception;
     
     /**
      * Configures the specified decorated visitor to correctly handle the

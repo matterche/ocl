@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.15 2011/01/13 19:15:39 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.16 2011/01/14 14:53:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -47,14 +47,15 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.ImplementableElement;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -98,9 +99,6 @@ import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
  */
 public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 {
-
-//	private static int tempCounter = 0;
-    
 	public static boolean isSimpleRange(CollectionLiteralExp cl) {
 		List<CollectionLiteralPart> partsList = cl.getParts();
 		int size = partsList.size();
@@ -127,12 +125,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		super(env, evalEnv, modelManager);
 		this.valueFactory = evalEnv.getValueFactory();
 	}
-
-
-
-//	private static synchronized String generateName() {
-//		return "__result__" + tempCounter++;//$NON-NLS-1$
-//	}
 
 	// private static inner class for lazy lists over an integer range
 	private static final class IntegerRangeList extends AbstractValue
@@ -227,38 +219,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		private int last;
 	}
 
-//	public void addVariable(VariableDeclaration variableDeclaration) {
-//		getEvaluationEnvironment().add(variable.getName(), variable);
-//	}
-
-	protected Value callImplementation(ImplementableElement implementableElement, Value sourceValue, CallExp callExp) {
-		if (implementableElement == null) {
-			return valueFactory.createInvalidValue(sourceValue, callExp, "No implementable element", null);
-		}
-		CallableImplementation implementation = implementableElement.getImplementation();
-		if (implementation == null) {
-			String implementationClassName = implementableElement.getImplementationClass();
-			try {
-				implementation = pivotManager.loadImplementationClass(implementationClassName);
-			} catch (Exception e) {
-				return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", e);
-			}
-			if (implementation == null) {
-				return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + implementationClassName + "'", null);
-			}
-		}
-		try {
-			EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
-			Value result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
-			return result;
-		}
-		catch (Exception e) {
-			// This is a backstop. Library operations should catch their own exceptions
-			//  and produce a better reason as a result.
-			return valueFactory.createInvalidValue(sourceValue, callExp, "Evaluation failure", e);
-		}
-	}
-
 	public EvaluationVisitor createNestedVisitor() {
 		Environment env = getEnvironment();
 		EnvironmentFactory factory = env.getFactory();
@@ -322,6 +282,70 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return ((Visitable) value).accept(getUndecoratedVisitor());
 		}
 		return value;
+	}
+
+	protected Value handleCall(Feature feature, Value sourceValue, CallExp callExp) {
+		// FIXME merge into single caller
+		if (feature == null) {
+			return valueFactory.createInvalidValue(sourceValue, callExp, "No implementable element", null);
+		}
+		CallableImplementation implementation;
+		try {
+			implementation = pivotManager.getImplementation(feature);
+			if (implementation == null) {
+				return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + feature.getImplementationClass() + "'", null);
+			}
+		} catch (Exception e) {
+			return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + feature.getImplementationClass() + "'", e);
+		}
+		try {
+			EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
+			Value result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
+			if (result == null) {
+				result = valueFactory.createInvalidValue(sourceValue, callExp, "Java-Null", null);
+			}
+			return result;
+		}
+		catch (Exception e) {
+			// This is a backstop. Library operations should catch their own exceptions
+			//  and produce a better reason as a result.
+			return valueFactory.createInvalidValue(sourceValue, callExp, "Evaluation failure", e);
+		}
+	}
+
+	protected Value handleLoopExp(LoopExp loopExp, Iteration staticIteration) {
+		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+		CompleteIteration staticCompleteIteration = completeManager.getCompleteIteration(staticIteration);
+		OclExpression source = loopExp.getSource();
+		Value sourceValue = source.accept(getUndecoratedVisitor());
+		Type staticSourceType = source.getType();
+		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
+		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
+		CompleteIteration dynamicIteration = dynamicCompleteType.getDynamicIteration(staticCompleteIteration);
+		return handleCall(dynamicIteration, sourceValue, loopExp);
+	}
+	
+	protected Value handleOperationCallExp(OperationCallExp operationCallExp, Operation staticOperation) {
+		OclExpression source = operationCallExp.getSource();
+		Value sourceValue = source.accept(getUndecoratedVisitor());
+/*		if (sourceValue instanceof TypeValue) {
+			Type dynamicSourceType = ((TypeValue)sourceValue).getType();
+			Operation staticOperation = operationCallExp.getReferredOperation();
+			CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
+			CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
+			CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
+			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
+		}
+		else {
+*/
+		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
+		Type staticSourceType = source.getType();
+		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
+		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
+		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
+		return handleCall(dynamicOperation, sourceValue, operationCallExp);
 	}
 
 	/**
@@ -528,41 +552,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	/**
 	 * Callback for an IterateExp visit.
-	 *
-	@Override
-    public Object visitIterateExp(IterateExp iterateExp) {
-		OclExpression source = iterateExp.getSource();	// FIXME self
-		Object sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
-		Iterate iterate = iterateExp.getReferredIterate();
-		return callImplementation(iterate, sourceValue, iterateExp);
-	} */
-
-	/**
-	 * Callback for an IteratorExp visit.
-	 *
-	@Override
-    public Object visitIteratorExp(IteratorExp iteratorExp) {
-		OclExpression source = iteratorExp.getSource();	// FIXME self
-		Object sourceValue = source != null ? source.accept(getUndecoratedVisitor()) : null;
-		Iterator iterator = iteratorExp.getReferredIterator();
-		return callImplementation(iterator, sourceValue, iteratorExp);
-	} */
-
-	/**
-	 * Callback for an IteratorExp visit.
 	 */
 	@Override
     public Value visitIterateExp(IterateExp iterateExp) {
-		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
-		Iteration staticIteration = iterateExp.getReferredIteration();
-		CompleteIteration staticCompleteIteration = completeManager.getCompleteIteration(staticIteration);
-		OclExpression source = iterateExp.getSource();
-		Value sourceValue = source.accept(getUndecoratedVisitor());
-		Type staticSourceType = source.getType();
-		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
-		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-		CompleteIteration dynamicIteration = dynamicCompleteType.getDynamicIteration(staticCompleteIteration);
-		return callImplementation(dynamicIteration, sourceValue, iterateExp);
+		return handleLoopExp(iterateExp, iterateExp.getReferredIteration());
 	}
 
 	/**
@@ -570,16 +563,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitIteratorExp(IteratorExp iteratorExp) {
-		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
-		Iteration staticIteration = iteratorExp.getReferredIteration();
-		CompleteIteration staticCompleteIteration = completeManager.getCompleteIteration(staticIteration);
-		OclExpression source = iteratorExp.getSource();
-		Value sourceValue = source.accept(getUndecoratedVisitor());
-		Type staticSourceType = source.getType();
-		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
-		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-		CompleteIteration dynamicIteration = dynamicCompleteType.getDynamicIteration(staticCompleteIteration);
-		return callImplementation(dynamicIteration, sourceValue, iteratorExp);
+		return handleLoopExp(iteratorExp, iteratorExp.getReferredIteration());
 	}
 
 	/**
@@ -630,27 +614,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitOperationCallExp(OperationCallExp operationCallExp) {
-		OclExpression source = operationCallExp.getSource();
-		Value sourceValue = source.accept(getUndecoratedVisitor());
-/*		if (sourceValue instanceof TypeValue) {
-			Type dynamicSourceType = ((TypeValue)sourceValue).getType();
-			Operation staticOperation = operationCallExp.getReferredOperation();
-			CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
-			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-			CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
-			CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
-			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
-		}
-		else {
-*/
-		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
-		Operation staticOperation = operationCallExp.getReferredOperation();
-		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-		Type staticSourceType = source.getType();
-		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
-		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
-		return callImplementation(dynamicOperation, sourceValue, operationCallExp);
+		return handleOperationCallExp(operationCallExp, operationCallExp.getReferredOperation());
 	}
 
 	/**
@@ -670,28 +634,24 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		OclExpression source = propertyCallExp.getSource();
 		Value sourceValue = source.accept(getUndecoratedVisitor());
 		Property property = propertyCallExp.getReferredProperty();
-//		if (property == null) {
-//			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "No referredProperty", null);
-//		}
-		CallableImplementation implementation = property.getImplementation();
-		if (implementation == null) {
-			String implementationClassName = property.getImplementationClass();
-			if (implementationClassName == null) {
-				return defaultPropertyCallExp(sourceValue, propertyCallExp);
-			}
-			else {
-				try {
-					implementation = pivotManager.loadImplementationClass(implementationClassName);
-				} catch (Exception e) {
-					return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Failed to load '" + implementationClassName + "'", e);
-				}
-				if (implementation == null) {
-					return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Failed to load '" + implementationClassName + "'", null);
-				}
-			}
+		CallableImplementation implementation;
+		try {
+			implementation = pivotManager.getImplementation(property);
+		} catch (Exception e) {
+			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Failed to load '" + property.getImplementationClass() + "'", e);
 		}
 		try {
-			return implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
+			Value resultValue;
+			if (implementation == null) {
+				resultValue = defaultPropertyCallExp(sourceValue, propertyCallExp);
+			}
+			else {
+				resultValue = implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
+			}
+			if (resultValue == null) {
+				resultValue = valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Java-Null", null);
+			}
+			return resultValue;
 		}
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
