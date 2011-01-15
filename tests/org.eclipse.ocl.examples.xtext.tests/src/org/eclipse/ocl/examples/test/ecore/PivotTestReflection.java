@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestReflection.java,v 1.1.2.2 2010/12/06 18:47:46 ewillink Exp $
+ * $Id: PivotTestReflection.java,v 1.1.2.3 2011/01/15 09:41:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.ecore;
 
@@ -460,7 +460,7 @@ TestReflection.Static
 
 	public Package getUMLMetamodel() {
 		// TODO Auto-generated method stub
-		return null;
+		return pivotManager.getPivotPackage();
 	}
 
 	public Type getUMLString() {

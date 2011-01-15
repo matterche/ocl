@@ -13,14 +13,13 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.6 2011/01/14 14:55:26 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.7 2011/01/15 09:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -33,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
@@ -350,7 +350,7 @@ public abstract class GenericIteratorsTest
         assertQueryEquals(george, expected1, "self->closure(nestingPackage)");
 
         CollectionValue expected2 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        CollectionValue expected2a = valueFactory.createOrderedSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+//        CollectionValue expected2a = valueFactory.createOrderedSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected2, "self->closure(nestedPackage)");
 // FIXME not a valid test for UML's unordered nested packages
 //        assertQueryEquals(pkg1, expected2a, "self->asSequence()->closure(nestedPackage)");
@@ -394,14 +394,14 @@ public abstract class GenericIteratorsTest
 
     /**
      * Tests the validation of the closure() iterator.
-     */
+     *
     public void test_closureValidation() {
         // non-recursive reference
         assertQueryInvalid(pkg1, "self->closure(xyzzy)");
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"self->closure(ownedType)",
         	OCLMessages.NonStd_Iterator_, "closure");
-    }
+    } */
 
     /**
      * Tests the validation of the closure() iterator for conformance of the
@@ -429,7 +429,7 @@ public abstract class GenericIteratorsTest
         // assigned recursively
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"self->closure(getFakes())",
-        	OCLMessages.NonStd_Iterator_, "closure");
+        	OCLMessages.WarningNonConformingBodyType, fake, subFake);
 
         // this should parse OK because the result of the closure expression
         // is more specific than the iterator variable, so it can be
@@ -571,21 +571,16 @@ public abstract class GenericIteratorsTest
      */
     public void test_closure_invalidBody_142518() {
         assertQueryInvalid(getUMLMetamodel(),
-            "let c : %Type = invalid in %ownedType->closure(c)");
+            "let c : pivot::Type = invalid in ownedType->closure(c)");
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
-        Object result = assertQueryEvaluate(getUMLMetamodel(),
-            "let c : Set(%Type) = Set{null} in %ownedType->closure(c)");
-
-        assertTrue(result instanceof Collection<?>);
-
-//        Collection<?> collResult = (Collection<?>) result;
-//        assertTrue(collResult.isEmpty());
+        assertQueryResults(getUMLMetamodel(), "Set{null}",
+    		"let c : Set(pivot::Type) = Set{null} in ownedType->closure(c)");
  
-        Set<Object> expected = Collections.singleton(getNull());
-        assertQueryEquals(EcorePackage.eINSTANCE, expected,
-        	"let c : Set(%Type) = Set{null} in %ownedType->closure(c)");
+//        Set<Object> expected = Collections.singleton(getNull());
+//        assertQueryEquals(EcorePackage.eINSTANCE, expected,
+//        	"let c : Set(pivot::Type) = Set{null} in ownedType->closure(c)");
     }
 
 	/**
@@ -597,8 +592,12 @@ public abstract class GenericIteratorsTest
             "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())");
 
         // same deal for null values
-        assertQueryInvalid(EcorePackage.eINSTANCE,
-            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))");
+//        assertQueryInvalid(EcorePackage.eINSTANCE,
+//            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))");
+        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
+        	"Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))",
+        	OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, "null");
+
     }
 
     /**
@@ -701,7 +700,7 @@ public abstract class GenericIteratorsTest
     	Type type = pivotManager.getPivotType("Type");
      	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		"ownedType->sortedBy(e | e)",
-        	OCLMessages.WarningUndefinedOperation, "<", type.toString());
+        	OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type.toString());
        
     	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
     }

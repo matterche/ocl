@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.7 2011/01/13 19:17:16 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.8 2011/01/15 09:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
 
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 
 /**
  * Tests for OclAny operations.
@@ -143,18 +144,18 @@ public abstract class GenericEvaluateOclAnyOperationsTest
 
 	public void testLessThanInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid < 0", OCLMessages.ErrorUnresolvedOperationCall, "<");
-//		assertSemanticErrorQuery("0 < invalid", OCLMessages.ErrorUnresolvedOperationCall, "<");
+		assertSemanticErrorQuery("invalid < 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OPERATOR);
+//		assertSemanticErrorQuery("0 < invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < invalid");
-		assertSemanticErrorQuery("invalid < invalid", OCLMessages.ErrorUnresolvedOperationCall, "<");
+		assertSemanticErrorQuery("invalid < invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OPERATOR);
 	}
 
 	public void testLessThanNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null < 0", OCLMessages.ErrorUnresolvedOperationCall, "<");
-//		assertSemanticErrorQuery("0 < null", OCLMessages.ErrorUnresolvedOperationCall, "<");
+		assertSemanticErrorQuery("null < 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OPERATOR);
+//		assertSemanticErrorQuery("0 < null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < null");
-		assertSemanticErrorQuery("null < null", OCLMessages.ErrorUnresolvedOperationCall, "<");
+		assertSemanticErrorQuery("null < null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OPERATOR);
 	}
 
 	public void testLessThanOrEqualInvalid() {

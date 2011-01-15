@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.12 2011/01/12 10:31:42 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.13 2011/01/15 09:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -190,7 +190,7 @@ public abstract class GenericTestSuite
 	 * resolved by bindings.
 	 */
      protected void assertBadQuery(Class<?> exception, int severity,
-    		 String expression, String messageTemplate, String... bindings) {
+    		 String expression, String messageTemplate, Object... bindings) {
 		String denormalized = denormalize(expression);
         try {
         	@SuppressWarnings("unused")
