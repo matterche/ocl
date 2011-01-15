@@ -4503,9 +4503,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	////  keep it as simple as possible and avoid backtracking.
 	//
 	//NavigatingExpCS returns NamedExpCS:
-	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgOrBodyCS (","
-	//	argument+=NavigatingArgOrBodyCS)* (";" argument+=NavigatingAccCS ("," argument+=NavigatingAccCS)*)? ("|"
-	//	argument+=NavigatingBodyCS ("," argument+=NavigatingBodyCS)*)?)? ")")?;
+	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
+	//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
+	//	(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")")?;
 	public EssentialOCLGrammarAccess.NavigatingExpCSElements getNavigatingExpCSAccess() {
 		return gaEssentialOCL.getNavigatingExpCSAccess();
 	}
@@ -4514,34 +4514,44 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingExpCSAccess().getRule();
 	}
 
-	//NavigatingArgOrBodyCS:
-	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)?;
-	public EssentialOCLGrammarAccess.NavigatingArgOrBodyCSElements getNavigatingArgOrBodyCSAccess() {
-		return gaEssentialOCL.getNavigatingArgOrBodyCSAccess();
+	//NavigatingArgCS:
+	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public EssentialOCLGrammarAccess.NavigatingArgCSElements getNavigatingArgCSAccess() {
+		return gaEssentialOCL.getNavigatingArgCSAccess();
 	}
 	
-	public ParserRule getNavigatingArgOrBodyCSRule() {
-		return getNavigatingArgOrBodyCSAccess().getRule();
+	public ParserRule getNavigatingArgCSRule() {
+		return getNavigatingArgCSAccess().getRule();
 	}
 
-	//NavigatingAccCS:
-	//	name=NavigatingArgExpCS ":" ownedType=TypeExpCS "=" init=ExpCS;
-	public EssentialOCLGrammarAccess.NavigatingAccCSElements getNavigatingAccCSAccess() {
-		return gaEssentialOCL.getNavigatingAccCSAccess();
+	//NavigatingBarArgCS returns NavigatingArgCS:
+	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public EssentialOCLGrammarAccess.NavigatingBarArgCSElements getNavigatingBarArgCSAccess() {
+		return gaEssentialOCL.getNavigatingBarArgCSAccess();
 	}
 	
-	public ParserRule getNavigatingAccCSRule() {
-		return getNavigatingAccCSAccess().getRule();
+	public ParserRule getNavigatingBarArgCSRule() {
+		return getNavigatingBarArgCSAccess().getRule();
 	}
 
-	//NavigatingBodyCS:
-	//	name=NavigatingArgExpCS;
-	public EssentialOCLGrammarAccess.NavigatingBodyCSElements getNavigatingBodyCSAccess() {
-		return gaEssentialOCL.getNavigatingBodyCSAccess();
+	//NavigatingCommaArgCS returns NavigatingArgCS:
+	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public EssentialOCLGrammarAccess.NavigatingCommaArgCSElements getNavigatingCommaArgCSAccess() {
+		return gaEssentialOCL.getNavigatingCommaArgCSAccess();
 	}
 	
-	public ParserRule getNavigatingBodyCSRule() {
-		return getNavigatingBodyCSAccess().getRule();
+	public ParserRule getNavigatingCommaArgCSRule() {
+		return getNavigatingCommaArgCSAccess().getRule();
+	}
+
+	//NavigatingSemiArgCS returns NavigatingArgCS:
+	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public EssentialOCLGrammarAccess.NavigatingSemiArgCSElements getNavigatingSemiArgCSAccess() {
+		return gaEssentialOCL.getNavigatingSemiArgCSAccess();
+	}
+	
+	public ParserRule getNavigatingSemiArgCSRule() {
+		return getNavigatingSemiArgCSAccess().getRule();
 	}
 
 	//// Intended to be overridden
