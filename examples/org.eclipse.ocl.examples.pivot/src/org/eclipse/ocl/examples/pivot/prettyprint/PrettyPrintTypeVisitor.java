@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.1 2011/01/15 15:12:29 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.2 2011/01/15 21:38:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 
 /**
  */
@@ -135,7 +136,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		else {
 			EObject parent = element.eContainer();
 			if ((parent instanceof org.eclipse.ocl.examples.pivot.Package) &&
-					"orphanage".equals(((org.eclipse.ocl.examples.pivot.Package)parent).getName())) {
+					PivotConstants.ORPHANAGE_NAME.equals(((org.eclipse.ocl.examples.pivot.Package)parent).getName())) {
 				return;
 			}
 			if (parent == scope) {
