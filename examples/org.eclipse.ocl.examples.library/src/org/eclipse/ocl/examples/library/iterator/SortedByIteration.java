@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.10 2011/01/15 09:41:20 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.11 2011/01/15 20:50:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -71,6 +71,10 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 			this.sourceVal = sourceVal;
 			this.iteratorExp = iteratorExp;
 			this.binaryImplementation = binaryImplementation;
+		}
+
+		public Object asObject() {
+			return content;
 		}
 		
 		public int compare(Value o1, Value o2) {
