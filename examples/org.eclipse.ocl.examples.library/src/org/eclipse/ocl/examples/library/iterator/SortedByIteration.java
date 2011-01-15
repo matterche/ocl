@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.9 2011/01/14 14:54:33 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.10 2011/01/15 09:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,30 +23,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.library.AbstractIteration;
+import org.eclipse.ocl.examples.library.IterationManager;
+import org.eclipse.ocl.examples.library.ValidationWarning;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.Value.BinaryOperation;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * SelectIteration realises the Collection::sortedBy() library iteration.
@@ -127,7 +129,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 
 	public static final SortedByIteration INSTANCE = new SortedByIteration();
 
-	public Value evaluate(final EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();		
 		PivotManager pivotManager = evaluationEnvironment.getPivotManager();
@@ -135,9 +137,9 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 		OclExpression body = iteratorExp.getBody();		
 		Type staticValueType = body.getType();
 //		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
-		Operation staticLessThanOperation = pivotManager.resolveOperation(staticValueType, "<", staticValueType);
+		Operation staticLessThanOperation = pivotManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
 		if (staticLessThanOperation == null) {
-			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "No '<' operation defined", null);
+			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "No '" + PivotConstants.LESS_THAN_OPERATOR + "' operation defined", null);
 		}
 		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticLessThanOperation);
 //		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
@@ -157,57 +159,58 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", e);
 		}
 		SortingValue accumulatorValue = new SortingValue(evaluationEnvironment, sourceVal, iteratorExp, binaryImplementation);
-		return evaluateIteration(evaluationVisitor, (CollectionValue) sourceVal, iteratorExp, accumulatorValue);
+//		IterationManager iterationManager = new IterationManager(evaluationVisitor, iteratorExp, (CollectionValue) sourceVal);
+//		return evaluateIteration(iterationManager, accumulatorValue);
+//		Accumulator accumulatorValue = createAccumulationValue(valueFactory, true, false);
+		return evaluateIteration(new IterationManager<SortingValue>(evaluationVisitor,
+				iteratorExp, sourceVal, accumulatorValue));
 	}
 	
 	@Override
-	protected Value resolveTerminalValue(EvaluationEnvironment env, SortingValue accumulatorValue) {
+	protected Value resolveTerminalValue(IterationManager<SortingValue> iterationManager) {
+		SortingValue accumulatorValue = iterationManager.getAccumulatorValue();
 		return accumulatorValue.createSortedValue();
 	}
 
 	@Override
-    protected Value updateAccumulator(EvaluationVisitor evaluationVisitor, List<? extends VariableDeclaration> iterators,
-    		OclExpression body, SortingValue accumulatorValue) {
-		Value bodyVal = body.accept(evaluationVisitor);		
+    protected Value updateAccumulator(IterationManager<SortingValue> iterationManager) {
+		SortingValue accumulatorValue = iterationManager.getAccumulatorValue();
+		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
 			return bodyVal.toInvalidValue();				// Null body is invalid
 		}
 		// must have exactly one iterator
-		EvaluationEnvironment env = evaluationVisitor.getEvaluationEnvironment();
-		String iterName = iterators.get(0).getName();
-		Value iterVal = env.getValueOf(iterName);
-		accumulatorValue.put(iterVal, bodyVal);
+		Value iterValue = iterationManager.get(0);
+		accumulatorValue.put(iterValue, bodyVal);
 		return null;										// Carry on
 	}
 
 	@Override
 	public Diagnostic validate(PivotManager pivotManager, CallExp callExp) {
-		Iteration iteration = ((LoopExp)callExp).getReferredIteration();
 		Type type = ((LoopExp)callExp).getBody().getType();
-		Operation operation = pivotManager.resolveOperation(type, "<", type);
+		TemplateParameter templateParameter = type.getOwningTemplateParameter();
+		if (templateParameter != null) {
+			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, callExp.getSource().getType());
+//			templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(templateParameterSubstitutions, callExp.getReferredOperation());
+			type = (Type) templateParameterSubstitutions.get(templateParameter);
+		}
+		Operation operation = pivotManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
 		try {
 			if (operation == null) {
-				return new Warning(OCLMessages.WarningUndefinedOperation, "<", type);
+				return new ValidationWarning(OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type);
 			}
 			CallableImplementation implementation = pivotManager.getImplementation(operation);
 			if (implementation == null) {
-				return new Warning("Failed to load '" + operation.getImplementationClass() + "'");
+				return new ValidationWarning("Failed to load '" + operation.getImplementationClass() + "'");
 			}
 			else if (!(implementation instanceof Value.BinaryOperation)) {
-				return new Warning(type.toString() + "::_'<'(" + type.toString() + ") is not a binary operation");
+				return new ValidationWarning(type.toString() + "::_'" + PivotConstants.LESS_THAN_OPERATOR + "'(" + type.toString() + ") is not a binary operation");
 			}
 			else {
 				return null;
 			}
 		} catch (Exception e) {
-			return new Warning("Failed to load '" + operation.getImplementationClass() + "'");  //, e);
-		}
-	}
-	
-	public static class Warning extends BasicDiagnostic
-	{
-		public Warning(String messageTemplate, Object... bindings) {
-			super("Validation", WARNING, NLS.bind(messageTemplate, bindings), null);
+			return new ValidationWarning("Failed to load '" + operation.getImplementationClass() + "'");  //, e);
 		}
 	}
 }

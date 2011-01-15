@@ -12,22 +12,17 @@
  *
  * </copyright>
  *
- * $Id: CollectNestedIteration.java,v 1.1.2.10 2011/01/14 14:54:33 ewillink Exp $
+ * $Id: CollectNestedIteration.java,v 1.1.2.11 2011/01/15 09:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import java.util.List;
-
 import org.eclipse.ocl.examples.library.AbstractIteration;
+import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue.Accumulator;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -40,28 +35,24 @@ public class CollectNestedIteration extends AbstractIteration<CollectionValue.Ac
 {
 	public static final CollectNestedIteration INSTANCE = new CollectNestedIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
 		Type sourceType = iteratorExp.getSource().getType();
 		boolean isOrdered = stdlib.isOrdered(sourceType);
 		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, false);
-		return evaluateIteration(evaluationVisitor, (CollectionValue) sourceVal, iteratorExp, accumulatorValue);
-	}
-	
-	@Override
-	protected Value resolveTerminalValue(EvaluationEnvironment env, Accumulator accumulatorValue) {
-		return accumulatorValue;
+		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
+				iteratorExp, sourceVal, accumulatorValue));
 	}
 
 	@Override
-    protected Value updateAccumulator(EvaluationVisitor evaluationVisitor, List<? extends VariableDeclaration> iterators,
-    		OclExpression body, CollectionValue.Accumulator accumulatorValue) {
-		Value bodyVal = body.accept(evaluationVisitor);		
+    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
+		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
+		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isInvalid()) {
-			return bodyVal;				// invalid body is invalid
+			return bodyVal;							// invalid body is invalid
 		}
 		accumulatorValue.add(bodyVal);
-		return null;										// Carry on
+		return null;								// Carry on
 	}
 }

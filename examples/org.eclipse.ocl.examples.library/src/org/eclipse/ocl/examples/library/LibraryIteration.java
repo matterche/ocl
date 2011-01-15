@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: LibraryIteration.java,v 1.1.2.4 2011/01/12 10:28:53 ewillink Exp $
+ * $Id: LibraryIteration.java,v 1.1.2.5 2011/01/15 09:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -35,5 +36,5 @@ public interface LibraryIteration extends LibraryFeature
 	 * @param iterationCall the iteration and additional arguments
 	 * @return the evaluated value
 	 */
-	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iterationCall);
+	Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iterationCall);
 }

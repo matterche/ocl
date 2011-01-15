@@ -12,22 +12,17 @@
  *
  * </copyright>
  *
- * $Id: ExistsIteration.java,v 1.1.2.9 2011/01/14 14:54:33 ewillink Exp $
+ * $Id: ExistsIteration.java,v 1.1.2.10 2011/01/15 09:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import java.util.List;
-
 import org.eclipse.ocl.examples.library.AbstractIteration;
+import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue.Accumulator;
 
 /**
  * ExistsIteration realises the Collection::exists() library iteration.
@@ -38,29 +33,29 @@ public class ExistsIteration extends AbstractIteration<CollectionValue.Accumulat
 {
 	public static final ExistsIteration INSTANCE = new ExistsIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, LoopExp iteratorExp) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, true, false);
-		return evaluateIteration(evaluationVisitor, (CollectionValue) sourceVal, iteratorExp, accumulatorValue);
+		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
+				iteratorExp, sourceVal, accumulatorValue));
 	}
 	
 	@Override
-	protected Value resolveTerminalValue(EvaluationEnvironment env, Accumulator accumulatorValue) {
-		return env.getValueFactory().getFalse();
+	protected Value resolveTerminalValue(IterationManager<CollectionValue.Accumulator> iterationManager) {
+		return iterationManager.getFalse();
 	}
 	
 	@Override
-    protected Value updateAccumulator(EvaluationVisitor evaluationVisitor, List<? extends VariableDeclaration> iterators,
-    		OclExpression body, CollectionValue.Accumulator accumulatorValue) {
-		Value bodyVal = body.accept(evaluationVisitor);		
+    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
+		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			return bodyVal.toInvalidValue();				// Null body is invalid
+			return bodyVal.toInvalidValue();		// Null body is invalid
 		}
 		else if (bodyVal.isFalse()) {
-			return null;									// Carry on for nothing found
+			return null;							// Carry on for nothing found
 		}
 		else {
-			return evaluationVisitor.getValueFactory().getTrue();			// Abort after a find
+			return iterationManager.getTrue();		// Abort after a find
 		}
 	}
 }
