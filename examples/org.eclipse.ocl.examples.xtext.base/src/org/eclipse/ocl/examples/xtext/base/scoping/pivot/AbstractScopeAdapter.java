@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.7 2010/12/26 15:20:17 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.8 2011/01/15 19:03:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -106,6 +106,10 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		Element pivotElement = csElement.getPivot();
 		if (pivotElement == null) {
 //			logger.warn("getScopeAdapter for null pivot");
+			return getScopeCSAdapter(csElement);
+		}
+		if (pivotElement.eResource() == null) {
+//			logger.warn("getScopeAdapter for null resource");
 			return getScopeCSAdapter(csElement);
 		}
 		ScopeAdapter adapter = PivotUtil.getAdapter(ScopeAdapter.class, pivotElement);
