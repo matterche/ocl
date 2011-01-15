@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.6 2011/01/12 10:30:52 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.7 2011/01/15 19:03:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -32,9 +32,9 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
 public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, OperationCallExp>
@@ -46,8 +46,10 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EObject fromArgument = scopeView.getChild();
+		// Note that we only need to find the feature, which can be identified
+		// from the enclosing type. The correct source object is resolved later.
 		for (NavigatingArgCS csArgument : target.getArgument()) {
-			if (csArgument instanceof NavigatingBodyCS) {
+			if (csArgument.getRole() == NavigationRole.EXPRESSION) {
 				break;
 			}
 			Element pivot = csArgument.getPivot();
@@ -55,12 +57,24 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 				if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Variable) pivot) > 0) {
 					return null;
 				}
+				Type type = ((Variable)pivot).getType();
+				environmentView.addElementsOfScope(pivotManager, type, scopeView);
+				if (environmentView.getSize() > 0) {
+					return null;
+				}
+				if (type instanceof CollectionType) {		// FIXME use navigation operator dependent semantics
+					environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+					if (environmentView.getSize() > 0) {
+						return null;
+					}
+				}
 			}
 			if (csArgument == fromArgument) {
 				break;
 			}
 		}
-		EObject csParent = getParent().getTarget();
+//		EObject csParent = getParent().getTarget();
+		EObject csParent = target.eContainer();
 		if (csParent instanceof InfixExpCS) {
 			OperatorCS csOperator = target.getParent();
 			if (csOperator != null) {

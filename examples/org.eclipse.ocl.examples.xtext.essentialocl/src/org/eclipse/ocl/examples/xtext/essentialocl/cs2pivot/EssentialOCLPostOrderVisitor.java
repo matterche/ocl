@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.9 2011/01/15 09:41:13 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.10 2011/01/15 19:03:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -47,6 +48,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
@@ -187,6 +189,42 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
+		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
+		if (csArguments.size() > 0) {
+			// Last argument is always an expression
+			//	then preceding initialized terms are accumulators
+			//	 then preceding terms are iterators
+			NavigationRole role = NavigationRole.EXPRESSION;
+			for (int i = csArguments.size()-1; i >= 0; i--) {
+				NavigatingArgCS csArgument = csArguments.get(i);
+				switch (role) {
+					case EXPRESSION: {
+						csArgument.setRole(NavigationRole.EXPRESSION);
+						if ("|".equals(csArgument.getPrefix())) {
+							role = NavigationRole.ACCUMULATOR;
+						}
+						break;
+					}
+					case ACCUMULATOR: {
+						if (csArgument.getInit() != null) {
+							csArgument.setRole(NavigationRole.ACCUMULATOR);
+							if (";".equals(csArgument.getPrefix())) {
+								role = NavigationRole.ITERATOR;
+							}
+						}
+						else {
+							role = NavigationRole.ITERATOR;
+							csArgument.setRole(NavigationRole.ITERATOR);
+						}
+						break;
+					}
+					case ITERATOR: {
+						csArgument.setRole(NavigationRole.ITERATOR);
+						break;
+					}
+				}
+			}
+		}
 		return null;
 	}
 

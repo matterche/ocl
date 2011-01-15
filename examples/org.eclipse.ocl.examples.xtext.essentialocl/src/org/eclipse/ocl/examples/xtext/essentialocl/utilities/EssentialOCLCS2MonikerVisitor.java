@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.7 2011/01/13 19:16:12 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.8 2011/01/15 19:03:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -46,11 +46,10 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLitera
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
@@ -123,7 +122,20 @@ public class EssentialOCLCS2MonikerVisitor
 			index = ((List<?>)pivotingParent.eGet(pivotingFeature)).indexOf(pivotingChild);
 			if (pivotingFeature == EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT) {
 				NavigatingExpCS csNavigatingExp = (NavigatingExpCS)pivotingParent;
-				int argsOrBodies = 0;
+				NavigatingArgCS csNavigatingArg = csNavigatingExp.getArgument().get(index);
+				switch (csNavigatingArg.getRole()) {
+					case ITERATOR: pivotingFeature = PivotPackage.Literals.LOOP_EXP__ITERATOR; break;
+					case ACCUMULATOR: pivotingFeature = PivotPackage.Literals.ITERATE_EXP__RESULT; break;
+					case EXPRESSION: pivotingFeature = PivotPackage.Literals.LOOP_EXP__BODY; break;
+				}
+				int roleIndex = 0;
+				for ( ; roleIndex < index; roleIndex++) {
+					if (csNavigatingExp.getArgument().get(index - (roleIndex+1)).getRole() != csNavigatingArg.getRole()) {
+						break;
+					}
+				}
+				index = roleIndex;
+	/*			int argsOrBodies = 0;
 				int accs = 0;
 				int bodies = 0;
 				for (NavigatingArgCS csNavigatingArg : csNavigatingExp.getArgument()) {
@@ -149,7 +161,7 @@ public class EssentialOCLCS2MonikerVisitor
 						index += argsOrBodies;
 						pivotingFeature = PivotPackage.Literals.LOOP_EXP__ITERATOR;
 					}
-				}
+				} */
 			}
 		}
 		else if (pivotingFeature == EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS) {
@@ -166,8 +178,10 @@ public class EssentialOCLCS2MonikerVisitor
 			context.append(index);
 		}
 		context.append(MONIKER_OPERATOR_SEPARATOR);
-		if ((pivotingChild instanceof NavigatingAccCS) && (object == ((NavigatingAccCS)pivotingChild).getInit())) {
-			appendNameExpCSName((NameExpCS) ((NavigatingAccCS)pivotingChild).getName());
+		if ((pivotingChild instanceof NavigatingArgCS)
+		 && (((NavigatingArgCS)pivotingChild).getRole() == NavigationRole.ACCUMULATOR)
+		 && (object == ((NavigatingArgCS)pivotingChild).getInit())) {
+			appendNameExpCSName((NameExpCS) ((NavigatingArgCS)pivotingChild).getName());
 			context.append(MONIKER_SCOPE_SEPARATOR);
 			context.append(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION.getName());
 			context.append(MONIKER_OPERATOR_SEPARATOR);

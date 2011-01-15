@@ -1639,27 +1639,19 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
 		private final Assignment cArgumentAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
-		private final RuleCall cArgumentNavigatingArgOrBodyCSParserRuleCall_1_2_0_0 = (RuleCall)cArgumentAssignment_1_2_0.eContents().get(0);
-		private final Group cGroup_1_2_1 = (Group)cGroup_1_2.eContents().get(1);
-		private final Keyword cCommaKeyword_1_2_1_0 = (Keyword)cGroup_1_2_1.eContents().get(0);
-		private final Assignment cArgumentAssignment_1_2_1_1 = (Assignment)cGroup_1_2_1.eContents().get(1);
-		private final RuleCall cArgumentNavigatingArgOrBodyCSParserRuleCall_1_2_1_1_0 = (RuleCall)cArgumentAssignment_1_2_1_1.eContents().get(0);
+		private final RuleCall cArgumentNavigatingArgCSParserRuleCall_1_2_0_0 = (RuleCall)cArgumentAssignment_1_2_0.eContents().get(0);
+		private final Assignment cArgumentAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_1_2_1_0 = (RuleCall)cArgumentAssignment_1_2_1.eContents().get(0);
 		private final Group cGroup_1_2_2 = (Group)cGroup_1_2.eContents().get(2);
-		private final Keyword cSemicolonKeyword_1_2_2_0 = (Keyword)cGroup_1_2_2.eContents().get(0);
+		private final Assignment cArgumentAssignment_1_2_2_0 = (Assignment)cGroup_1_2_2.eContents().get(0);
+		private final RuleCall cArgumentNavigatingSemiArgCSParserRuleCall_1_2_2_0_0 = (RuleCall)cArgumentAssignment_1_2_2_0.eContents().get(0);
 		private final Assignment cArgumentAssignment_1_2_2_1 = (Assignment)cGroup_1_2_2.eContents().get(1);
-		private final RuleCall cArgumentNavigatingAccCSParserRuleCall_1_2_2_1_0 = (RuleCall)cArgumentAssignment_1_2_2_1.eContents().get(0);
-		private final Group cGroup_1_2_2_2 = (Group)cGroup_1_2_2.eContents().get(2);
-		private final Keyword cCommaKeyword_1_2_2_2_0 = (Keyword)cGroup_1_2_2_2.eContents().get(0);
-		private final Assignment cArgumentAssignment_1_2_2_2_1 = (Assignment)cGroup_1_2_2_2.eContents().get(1);
-		private final RuleCall cArgumentNavigatingAccCSParserRuleCall_1_2_2_2_1_0 = (RuleCall)cArgumentAssignment_1_2_2_2_1.eContents().get(0);
+		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_1_2_2_1_0 = (RuleCall)cArgumentAssignment_1_2_2_1.eContents().get(0);
 		private final Group cGroup_1_2_3 = (Group)cGroup_1_2.eContents().get(3);
-		private final Keyword cVerticalLineKeyword_1_2_3_0 = (Keyword)cGroup_1_2_3.eContents().get(0);
+		private final Assignment cArgumentAssignment_1_2_3_0 = (Assignment)cGroup_1_2_3.eContents().get(0);
+		private final RuleCall cArgumentNavigatingBarArgCSParserRuleCall_1_2_3_0_0 = (RuleCall)cArgumentAssignment_1_2_3_0.eContents().get(0);
 		private final Assignment cArgumentAssignment_1_2_3_1 = (Assignment)cGroup_1_2_3.eContents().get(1);
-		private final RuleCall cArgumentNavigatingBodyCSParserRuleCall_1_2_3_1_0 = (RuleCall)cArgumentAssignment_1_2_3_1.eContents().get(0);
-		private final Group cGroup_1_2_3_2 = (Group)cGroup_1_2_3.eContents().get(2);
-		private final Keyword cCommaKeyword_1_2_3_2_0 = (Keyword)cGroup_1_2_3_2.eContents().get(0);
-		private final Assignment cArgumentAssignment_1_2_3_2_1 = (Assignment)cGroup_1_2_3_2.eContents().get(1);
-		private final RuleCall cArgumentNavigatingBodyCSParserRuleCall_1_2_3_2_1_0 = (RuleCall)cArgumentAssignment_1_2_3_2_1.eContents().get(0);
+		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_1_2_3_1_0 = (RuleCall)cArgumentAssignment_1_2_3_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
@@ -1667,22 +1659,22 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		////  keep it as simple as possible and avoid backtracking.
 		//
 		//NavigatingExpCS returns NamedExpCS:
-		//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgOrBodyCS (","
-		//	argument+=NavigatingArgOrBodyCS)* (";" argument+=NavigatingAccCS ("," argument+=NavigatingAccCS)*)? ("|"
-		//	argument+=NavigatingBodyCS ("," argument+=NavigatingBodyCS)*)?)? ")")?;
+		//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
+		//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
+		//	(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")")?;
 		public ParserRule getRule() { return rule; }
 
-		//NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgOrBodyCS (","
-		//argument+=NavigatingArgOrBodyCS)* (";" argument+=NavigatingAccCS ("," argument+=NavigatingAccCS)*)? ("|"
-		//argument+=NavigatingBodyCS ("," argument+=NavigatingBodyCS)*)?)? ")")?
+		//NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS*
+		//(argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS
+		//argument+=NavigatingCommaArgCS*)?)? ")")?
 		public Group getGroup() { return cGroup; }
 
 		//NavigatingExpCS_Base
 		public RuleCall getNavigatingExpCS_BaseParserRuleCall_0() { return cNavigatingExpCS_BaseParserRuleCall_0; }
 
-		//({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgOrBodyCS ("," argument+=NavigatingArgOrBodyCS)* (";"
-		//argument+=NavigatingAccCS ("," argument+=NavigatingAccCS)*)? ("|" argument+=NavigatingBodyCS (","
-		//argument+=NavigatingBodyCS)*)?)? ")")?
+		//({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS*
+		//(argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS
+		//argument+=NavigatingCommaArgCS*)?)? ")")?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{NavigatingExpCS.namedExp=current}
@@ -1691,82 +1683,58 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
 
-		//(argument+=NavigatingArgOrBodyCS ("," argument+=NavigatingArgOrBodyCS)* (";" argument+=NavigatingAccCS (","
-		//argument+=NavigatingAccCS)*)? ("|" argument+=NavigatingBodyCS ("," argument+=NavigatingBodyCS)*)?)?
+		//(argument+=NavigatingArgCS argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS
+		//argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)?
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
-		//argument+=NavigatingArgOrBodyCS
+		//argument+=NavigatingArgCS
 		public Assignment getArgumentAssignment_1_2_0() { return cArgumentAssignment_1_2_0; }
 
-		//NavigatingArgOrBodyCS
-		public RuleCall getArgumentNavigatingArgOrBodyCSParserRuleCall_1_2_0_0() { return cArgumentNavigatingArgOrBodyCSParserRuleCall_1_2_0_0; }
+		//NavigatingArgCS
+		public RuleCall getArgumentNavigatingArgCSParserRuleCall_1_2_0_0() { return cArgumentNavigatingArgCSParserRuleCall_1_2_0_0; }
 
-		//("," argument+=NavigatingArgOrBodyCS)*
-		public Group getGroup_1_2_1() { return cGroup_1_2_1; }
+		//argument+=NavigatingCommaArgCS*
+		public Assignment getArgumentAssignment_1_2_1() { return cArgumentAssignment_1_2_1; }
 
-		//","
-		public Keyword getCommaKeyword_1_2_1_0() { return cCommaKeyword_1_2_1_0; }
+		//NavigatingCommaArgCS
+		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_1_2_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_1_2_1_0; }
 
-		//argument+=NavigatingArgOrBodyCS
-		public Assignment getArgumentAssignment_1_2_1_1() { return cArgumentAssignment_1_2_1_1; }
-
-		//NavigatingArgOrBodyCS
-		public RuleCall getArgumentNavigatingArgOrBodyCSParserRuleCall_1_2_1_1_0() { return cArgumentNavigatingArgOrBodyCSParserRuleCall_1_2_1_1_0; }
-
-		//(";" argument+=NavigatingAccCS ("," argument+=NavigatingAccCS)*)?
+		//(argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
 		public Group getGroup_1_2_2() { return cGroup_1_2_2; }
 
-		//";"
-		public Keyword getSemicolonKeyword_1_2_2_0() { return cSemicolonKeyword_1_2_2_0; }
+		//argument+=NavigatingSemiArgCS
+		public Assignment getArgumentAssignment_1_2_2_0() { return cArgumentAssignment_1_2_2_0; }
 
-		//argument+=NavigatingAccCS
+		//NavigatingSemiArgCS
+		public RuleCall getArgumentNavigatingSemiArgCSParserRuleCall_1_2_2_0_0() { return cArgumentNavigatingSemiArgCSParserRuleCall_1_2_2_0_0; }
+
+		//argument+=NavigatingCommaArgCS*
 		public Assignment getArgumentAssignment_1_2_2_1() { return cArgumentAssignment_1_2_2_1; }
 
-		//NavigatingAccCS
-		public RuleCall getArgumentNavigatingAccCSParserRuleCall_1_2_2_1_0() { return cArgumentNavigatingAccCSParserRuleCall_1_2_2_1_0; }
+		//NavigatingCommaArgCS
+		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_1_2_2_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_1_2_2_1_0; }
 
-		//("," argument+=NavigatingAccCS)*
-		public Group getGroup_1_2_2_2() { return cGroup_1_2_2_2; }
-
-		//","
-		public Keyword getCommaKeyword_1_2_2_2_0() { return cCommaKeyword_1_2_2_2_0; }
-
-		//argument+=NavigatingAccCS
-		public Assignment getArgumentAssignment_1_2_2_2_1() { return cArgumentAssignment_1_2_2_2_1; }
-
-		//NavigatingAccCS
-		public RuleCall getArgumentNavigatingAccCSParserRuleCall_1_2_2_2_1_0() { return cArgumentNavigatingAccCSParserRuleCall_1_2_2_2_1_0; }
-
-		//("|" argument+=NavigatingBodyCS ("," argument+=NavigatingBodyCS)*)?
+		//(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?
 		public Group getGroup_1_2_3() { return cGroup_1_2_3; }
 
-		//"|"
-		public Keyword getVerticalLineKeyword_1_2_3_0() { return cVerticalLineKeyword_1_2_3_0; }
+		//argument+=NavigatingBarArgCS
+		public Assignment getArgumentAssignment_1_2_3_0() { return cArgumentAssignment_1_2_3_0; }
 
-		//argument+=NavigatingBodyCS
+		//NavigatingBarArgCS
+		public RuleCall getArgumentNavigatingBarArgCSParserRuleCall_1_2_3_0_0() { return cArgumentNavigatingBarArgCSParserRuleCall_1_2_3_0_0; }
+
+		//argument+=NavigatingCommaArgCS*
 		public Assignment getArgumentAssignment_1_2_3_1() { return cArgumentAssignment_1_2_3_1; }
 
-		//NavigatingBodyCS
-		public RuleCall getArgumentNavigatingBodyCSParserRuleCall_1_2_3_1_0() { return cArgumentNavigatingBodyCSParserRuleCall_1_2_3_1_0; }
-
-		//("," argument+=NavigatingBodyCS)*
-		public Group getGroup_1_2_3_2() { return cGroup_1_2_3_2; }
-
-		//","
-		public Keyword getCommaKeyword_1_2_3_2_0() { return cCommaKeyword_1_2_3_2_0; }
-
-		//argument+=NavigatingBodyCS
-		public Assignment getArgumentAssignment_1_2_3_2_1() { return cArgumentAssignment_1_2_3_2_1; }
-
-		//NavigatingBodyCS
-		public RuleCall getArgumentNavigatingBodyCSParserRuleCall_1_2_3_2_1_0() { return cArgumentNavigatingBodyCSParserRuleCall_1_2_3_2_1_0; }
+		//NavigatingCommaArgCS
+		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_1_2_3_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_1_2_3_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
 	}
 
-	public class NavigatingArgOrBodyCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingArgOrBodyCS");
+	public class NavigatingArgCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingArgCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNavigatingArgExpCSParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -1774,12 +1742,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cOwnedTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_1_1_0 = (RuleCall)cOwnedTypeAssignment_1_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cInitAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_2_1_0 = (RuleCall)cInitAssignment_2_1.eContents().get(0);
 		
-		//NavigatingArgOrBodyCS:
-		//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)?;
+		//NavigatingArgCS:
+		//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=NavigatingArgExpCS (":" ownedType=TypeExpCS)?
+		//name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
 		public Group getGroup() { return cGroup; }
 
 		//name=NavigatingArgExpCS
@@ -1799,66 +1771,198 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//TypeExpCS
 		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_1_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_1_1_0; }
-	}
 
-	public class NavigatingAccCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingAccCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameNavigatingArgExpCSParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cInitAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cInitExpCSParserRuleCall_4_0 = (RuleCall)cInitAssignment_4.eContents().get(0);
-		
-		//NavigatingAccCS:
-		//	name=NavigatingArgExpCS ":" ownedType=TypeExpCS "=" init=ExpCS;
-		public ParserRule getRule() { return rule; }
-
-		//name=NavigatingArgExpCS ":" ownedType=TypeExpCS "=" init=ExpCS
-		public Group getGroup() { return cGroup; }
-
-		//name=NavigatingArgExpCS
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//NavigatingArgExpCS
-		public RuleCall getNameNavigatingArgExpCSParserRuleCall_0_0() { return cNameNavigatingArgExpCSParserRuleCall_0_0; }
-
-		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-
-		//ownedType=TypeExpCS
-		public Assignment getOwnedTypeAssignment_2() { return cOwnedTypeAssignment_2; }
-
-		//TypeExpCS
-		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_0; }
+		//("=" init=ExpCS)?
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
+		public Keyword getEqualsSignKeyword_2_0() { return cEqualsSignKeyword_2_0; }
 
 		//init=ExpCS
-		public Assignment getInitAssignment_4() { return cInitAssignment_4; }
+		public Assignment getInitAssignment_2_1() { return cInitAssignment_2_1; }
 
 		//ExpCS
-		public RuleCall getInitExpCSParserRuleCall_4_0() { return cInitExpCSParserRuleCall_4_0; }
+		public RuleCall getInitExpCSParserRuleCall_2_1_0() { return cInitExpCSParserRuleCall_2_1_0; }
 	}
 
-	public class NavigatingBodyCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingBodyCS");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameNavigatingArgExpCSParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+	public class NavigatingBarArgCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingBarArgCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPrefixAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrefixVerticalLineKeyword_0_0 = (Keyword)cPrefixAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNavigatingArgExpCSParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cOwnedTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_1_0 = (RuleCall)cOwnedTypeAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cEqualsSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cInitAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_3_1_0 = (RuleCall)cInitAssignment_3_1.eContents().get(0);
 		
-		//NavigatingBodyCS:
-		//	name=NavigatingArgExpCS;
+		//NavigatingBarArgCS returns NavigatingArgCS:
+		//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
 		public ParserRule getRule() { return rule; }
 
+		//prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
+		public Group getGroup() { return cGroup; }
+
+		//prefix="|"
+		public Assignment getPrefixAssignment_0() { return cPrefixAssignment_0; }
+
+		//"|"
+		public Keyword getPrefixVerticalLineKeyword_0_0() { return cPrefixVerticalLineKeyword_0_0; }
+
 		//name=NavigatingArgExpCS
-		public Assignment getNameAssignment() { return cNameAssignment; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//NavigatingArgExpCS
-		public RuleCall getNameNavigatingArgExpCSParserRuleCall_0() { return cNameNavigatingArgExpCSParserRuleCall_0; }
+		public RuleCall getNameNavigatingArgExpCSParserRuleCall_1_0() { return cNameNavigatingArgExpCSParserRuleCall_1_0; }
+
+		//(":" ownedType=TypeExpCS)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//":"
+		public Keyword getColonKeyword_2_0() { return cColonKeyword_2_0; }
+
+		//ownedType=TypeExpCS
+		public Assignment getOwnedTypeAssignment_2_1() { return cOwnedTypeAssignment_2_1; }
+
+		//TypeExpCS
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_1_0; }
+
+		//("=" init=ExpCS)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_3_0() { return cEqualsSignKeyword_3_0; }
+
+		//init=ExpCS
+		public Assignment getInitAssignment_3_1() { return cInitAssignment_3_1; }
+
+		//ExpCS
+		public RuleCall getInitExpCSParserRuleCall_3_1_0() { return cInitExpCSParserRuleCall_3_1_0; }
+	}
+
+	public class NavigatingCommaArgCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingCommaArgCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPrefixAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrefixCommaKeyword_0_0 = (Keyword)cPrefixAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNavigatingArgExpCSParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cOwnedTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_1_0 = (RuleCall)cOwnedTypeAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cEqualsSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cInitAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_3_1_0 = (RuleCall)cInitAssignment_3_1.eContents().get(0);
+		
+		//NavigatingCommaArgCS returns NavigatingArgCS:
+		//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+		public ParserRule getRule() { return rule; }
+
+		//prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
+		public Group getGroup() { return cGroup; }
+
+		//prefix=","
+		public Assignment getPrefixAssignment_0() { return cPrefixAssignment_0; }
+
+		//","
+		public Keyword getPrefixCommaKeyword_0_0() { return cPrefixCommaKeyword_0_0; }
+
+		//name=NavigatingArgExpCS
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//NavigatingArgExpCS
+		public RuleCall getNameNavigatingArgExpCSParserRuleCall_1_0() { return cNameNavigatingArgExpCSParserRuleCall_1_0; }
+
+		//(":" ownedType=TypeExpCS)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//":"
+		public Keyword getColonKeyword_2_0() { return cColonKeyword_2_0; }
+
+		//ownedType=TypeExpCS
+		public Assignment getOwnedTypeAssignment_2_1() { return cOwnedTypeAssignment_2_1; }
+
+		//TypeExpCS
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_1_0; }
+
+		//("=" init=ExpCS)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_3_0() { return cEqualsSignKeyword_3_0; }
+
+		//init=ExpCS
+		public Assignment getInitAssignment_3_1() { return cInitAssignment_3_1; }
+
+		//ExpCS
+		public RuleCall getInitExpCSParserRuleCall_3_1_0() { return cInitExpCSParserRuleCall_3_1_0; }
+	}
+
+	public class NavigatingSemiArgCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingSemiArgCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPrefixAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrefixSemicolonKeyword_0_0 = (Keyword)cPrefixAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNavigatingArgExpCSParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cOwnedTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_1_0 = (RuleCall)cOwnedTypeAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cEqualsSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cInitAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_3_1_0 = (RuleCall)cInitAssignment_3_1.eContents().get(0);
+		
+		//NavigatingSemiArgCS returns NavigatingArgCS:
+		//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+		public ParserRule getRule() { return rule; }
+
+		//prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
+		public Group getGroup() { return cGroup; }
+
+		//prefix=";"
+		public Assignment getPrefixAssignment_0() { return cPrefixAssignment_0; }
+
+		//";"
+		public Keyword getPrefixSemicolonKeyword_0_0() { return cPrefixSemicolonKeyword_0_0; }
+
+		//name=NavigatingArgExpCS
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//NavigatingArgExpCS
+		public RuleCall getNameNavigatingArgExpCSParserRuleCall_1_0() { return cNameNavigatingArgExpCSParserRuleCall_1_0; }
+
+		//(":" ownedType=TypeExpCS)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//":"
+		public Keyword getColonKeyword_2_0() { return cColonKeyword_2_0; }
+
+		//ownedType=TypeExpCS
+		public Assignment getOwnedTypeAssignment_2_1() { return cOwnedTypeAssignment_2_1; }
+
+		//TypeExpCS
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_1_0; }
+
+		//("=" init=ExpCS)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_3_0() { return cEqualsSignKeyword_3_0; }
+
+		//init=ExpCS
+		public Assignment getInitAssignment_3_1() { return cInitAssignment_3_1; }
+
+		//ExpCS
+		public RuleCall getInitExpCSParserRuleCall_3_1_0() { return cInitExpCSParserRuleCall_3_1_0; }
 	}
 
 	public class NavigatingArgExpCSElements extends AbstractParserRuleElementFinder {
@@ -2137,9 +2241,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private IndexExpCSElements pIndexExpCS;
 	private NavigatingExpCS_BaseElements pNavigatingExpCS_Base;
 	private NavigatingExpCSElements pNavigatingExpCS;
-	private NavigatingArgOrBodyCSElements pNavigatingArgOrBodyCS;
-	private NavigatingAccCSElements pNavigatingAccCS;
-	private NavigatingBodyCSElements pNavigatingBodyCS;
+	private NavigatingArgCSElements pNavigatingArgCS;
+	private NavigatingBarArgCSElements pNavigatingBarArgCS;
+	private NavigatingCommaArgCSElements pNavigatingCommaArgCS;
+	private NavigatingSemiArgCSElements pNavigatingSemiArgCS;
 	private NavigatingArgExpCSElements pNavigatingArgExpCS;
 	private IfExpCSElements pIfExpCS;
 	private LetExpCSElements pLetExpCS;
@@ -2765,9 +2870,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////  keep it as simple as possible and avoid backtracking.
 	//
 	//NavigatingExpCS returns NamedExpCS:
-	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgOrBodyCS (","
-	//	argument+=NavigatingArgOrBodyCS)* (";" argument+=NavigatingAccCS ("," argument+=NavigatingAccCS)*)? ("|"
-	//	argument+=NavigatingBodyCS ("," argument+=NavigatingBodyCS)*)?)? ")")?;
+	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
+	//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
+	//	(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")")?;
 	public NavigatingExpCSElements getNavigatingExpCSAccess() {
 		return (pNavigatingExpCS != null) ? pNavigatingExpCS : (pNavigatingExpCS = new NavigatingExpCSElements());
 	}
@@ -2776,34 +2881,44 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingExpCSAccess().getRule();
 	}
 
-	//NavigatingArgOrBodyCS:
-	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)?;
-	public NavigatingArgOrBodyCSElements getNavigatingArgOrBodyCSAccess() {
-		return (pNavigatingArgOrBodyCS != null) ? pNavigatingArgOrBodyCS : (pNavigatingArgOrBodyCS = new NavigatingArgOrBodyCSElements());
+	//NavigatingArgCS:
+	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public NavigatingArgCSElements getNavigatingArgCSAccess() {
+		return (pNavigatingArgCS != null) ? pNavigatingArgCS : (pNavigatingArgCS = new NavigatingArgCSElements());
 	}
 	
-	public ParserRule getNavigatingArgOrBodyCSRule() {
-		return getNavigatingArgOrBodyCSAccess().getRule();
+	public ParserRule getNavigatingArgCSRule() {
+		return getNavigatingArgCSAccess().getRule();
 	}
 
-	//NavigatingAccCS:
-	//	name=NavigatingArgExpCS ":" ownedType=TypeExpCS "=" init=ExpCS;
-	public NavigatingAccCSElements getNavigatingAccCSAccess() {
-		return (pNavigatingAccCS != null) ? pNavigatingAccCS : (pNavigatingAccCS = new NavigatingAccCSElements());
+	//NavigatingBarArgCS returns NavigatingArgCS:
+	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public NavigatingBarArgCSElements getNavigatingBarArgCSAccess() {
+		return (pNavigatingBarArgCS != null) ? pNavigatingBarArgCS : (pNavigatingBarArgCS = new NavigatingBarArgCSElements());
 	}
 	
-	public ParserRule getNavigatingAccCSRule() {
-		return getNavigatingAccCSAccess().getRule();
+	public ParserRule getNavigatingBarArgCSRule() {
+		return getNavigatingBarArgCSAccess().getRule();
 	}
 
-	//NavigatingBodyCS:
-	//	name=NavigatingArgExpCS;
-	public NavigatingBodyCSElements getNavigatingBodyCSAccess() {
-		return (pNavigatingBodyCS != null) ? pNavigatingBodyCS : (pNavigatingBodyCS = new NavigatingBodyCSElements());
+	//NavigatingCommaArgCS returns NavigatingArgCS:
+	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public NavigatingCommaArgCSElements getNavigatingCommaArgCSAccess() {
+		return (pNavigatingCommaArgCS != null) ? pNavigatingCommaArgCS : (pNavigatingCommaArgCS = new NavigatingCommaArgCSElements());
 	}
 	
-	public ParserRule getNavigatingBodyCSRule() {
-		return getNavigatingBodyCSAccess().getRule();
+	public ParserRule getNavigatingCommaArgCSRule() {
+		return getNavigatingCommaArgCSAccess().getRule();
+	}
+
+	//NavigatingSemiArgCS returns NavigatingArgCS:
+	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	public NavigatingSemiArgCSElements getNavigatingSemiArgCSAccess() {
+		return (pNavigatingSemiArgCS != null) ? pNavigatingSemiArgCS : (pNavigatingSemiArgCS = new NavigatingSemiArgCSElements());
+	}
+	
+	public ParserRule getNavigatingSemiArgCSRule() {
+		return getNavigatingSemiArgCSAccess().getRule();
 	}
 
 	//// Intended to be overridden

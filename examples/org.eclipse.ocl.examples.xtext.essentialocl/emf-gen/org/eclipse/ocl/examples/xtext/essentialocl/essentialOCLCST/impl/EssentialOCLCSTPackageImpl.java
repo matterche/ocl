@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackageImpl.java,v 1.6.6.5 2010/12/19 15:54:34 ewillink Exp $
+ * $Id: EssentialOCLCSTPackageImpl.java,v 1.6.6.6 2011/01/15 19:03:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -44,12 +45,10 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingBodyCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
@@ -163,6 +162,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum navigationRoleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass literalExpCSEClass = null;
 
 	/**
@@ -185,27 +191,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * @generated
 	 */
 	private EClass navigatingArgCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass navigatingArgOrBodyCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass navigatingAccCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass navigatingBodyCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -687,6 +672,16 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getNavigationRole()
+	{
+		return navigationRoleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLiteralExpCS() {
 		return literalExpCSEClass;
 	}
@@ -754,9 +749,29 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNavigatingArgCS_Role()
+	{
+		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNavigatingArgCS_Prefix()
+	{
+		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getNavigatingArgCS_Name()
 	{
-		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -764,9 +779,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNavigatingArgOrBodyCS()
+	public EReference getNavigatingArgCS_OwnedType()
 	{
-		return navigatingArgOrBodyCSEClass;
+		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -774,49 +789,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNavigatingArgOrBodyCS_OwnedType()
+	public EReference getNavigatingArgCS_Init()
 	{
-		return (EReference)navigatingArgOrBodyCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getNavigatingAccCS()
-	{
-		return navigatingAccCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNavigatingAccCS_OwnedType()
-	{
-		return (EReference)navigatingAccCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNavigatingAccCS_Init()
-	{
-		return (EReference)navigatingAccCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getNavigatingBodyCS()
-	{
-		return navigatingBodyCSEClass;
+		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1323,16 +1298,11 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		navigatingArgCSEClass = createEClass(NAVIGATING_ARG_CS);
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__NAVIGATING_EXP);
+		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__ROLE);
+		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__PREFIX);
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__NAME);
-
-		navigatingArgOrBodyCSEClass = createEClass(NAVIGATING_ARG_OR_BODY_CS);
-		createEReference(navigatingArgOrBodyCSEClass, NAVIGATING_ARG_OR_BODY_CS__OWNED_TYPE);
-
-		navigatingAccCSEClass = createEClass(NAVIGATING_ACC_CS);
-		createEReference(navigatingAccCSEClass, NAVIGATING_ACC_CS__OWNED_TYPE);
-		createEReference(navigatingAccCSEClass, NAVIGATING_ACC_CS__INIT);
-
-		navigatingBodyCSEClass = createEClass(NAVIGATING_BODY_CS);
+		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNED_TYPE);
+		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__INIT);
 
 		navigatingExpCSEClass = createEClass(NAVIGATING_EXP_CS);
 		createEReference(navigatingExpCSEClass, NAVIGATING_EXP_CS__ARGUMENT);
@@ -1383,6 +1353,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		variableCSEClass = createEClass(VARIABLE_CS);
 		createEReference(variableCSEClass, VARIABLE_CS__OWNED_TYPE);
 		createEReference(variableCSEClass, VARIABLE_CS__INIT_EXPRESSION);
+
+		// Create enums
+		navigationRoleEEnum = createEEnum(NAVIGATION_ROLE);
 
 		// Create data types
 		bigNumberEDataType = createEDataType(BIG_NUMBER);
@@ -1442,9 +1415,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		nameExpCSEClass.getESuperTypes().add(this.getSimpleNamedExpCS());
 		namedExpCSEClass.getESuperTypes().add(this.getExpCS());
 		navigatingArgCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
-		navigatingArgOrBodyCSEClass.getESuperTypes().add(this.getNavigatingArgCS());
-		navigatingAccCSEClass.getESuperTypes().add(this.getNavigatingArgCS());
-		navigatingBodyCSEClass.getESuperTypes().add(this.getNavigatingArgCS());
 		navigatingExpCSEClass.getESuperTypes().add(this.getDecoratedNamedExpCS());
 		navigationOperatorCSEClass.getESuperTypes().add(this.getBinaryOperatorCS());
 		nestedExpCSEClass.getESuperTypes().add(this.getExpCS());
@@ -1531,18 +1501,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		addEOperation(namedExpCSEClass, this.getSimpleNamedExpCS(), "getSimpleNamedExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(navigatingArgCSEClass, NavigatingArgCS.class, "NavigatingArgCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(navigatingArgCSEClass, NavigatingArgCS.class, "NavigatingArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_NavigatingExp(), this.getNavigatingExpCS(), this.getNavigatingExpCS_Argument(), "navigatingExp", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getNavigatingArgCS_Role(), this.getNavigationRole(), "role", null, 0, 1, NavigatingArgCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getNavigatingArgCS_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_Name(), this.getExpCS(), null, "name", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(navigatingArgOrBodyCSEClass, NavigatingArgOrBodyCS.class, "NavigatingArgOrBodyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNavigatingArgOrBodyCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, NavigatingArgOrBodyCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(navigatingAccCSEClass, NavigatingAccCS.class, "NavigatingAccCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNavigatingAccCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, NavigatingAccCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getNavigatingAccCS_Init(), this.getExpCS(), null, "init", null, 0, 1, NavigatingAccCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(navigatingBodyCSEClass, NavigatingBodyCS.class, "NavigatingBodyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getNavigatingArgCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNavigatingArgCS_Init(), this.getExpCS(), null, "init", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(navigatingExpCSEClass, NavigatingExpCS.class, "NavigatingExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNavigatingExpCS_Argument(), this.getNavigatingArgCS(), this.getNavigatingArgCS_NavigatingExp(), "argument", null, 0, -1, NavigatingExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1593,6 +1558,12 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(variableCSEClass, VariableCS.class, "VariableCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getVariableCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, VariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getVariableCS_InitExpression(), this.getExpCS(), null, "initExpression", null, 0, 1, VariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		// Initialize enums and add enum literals
+		initEEnum(navigationRoleEEnum, NavigationRole.class, "NavigationRole"); //$NON-NLS-1$
+		addEEnumLiteral(navigationRoleEEnum, NavigationRole.ITERATOR);
+		addEEnumLiteral(navigationRoleEEnum, NavigationRole.ACCUMULATOR);
+		addEEnumLiteral(navigationRoleEEnum, NavigationRole.EXPRESSION);
 
 		// Initialize data types
 		initEDataType(bigNumberEDataType, Number.class, "BigNumber", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

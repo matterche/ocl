@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.4 2011/01/12 10:30:52 ewillink Exp $
+ * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.5 2011/01/15 19:03:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ContextCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpCSScopeAdapter;
@@ -134,6 +135,11 @@ public class EssentialOCLScopeVisitor
 	@Override
 	public ScopeCSAdapter visitTypeNameExpCS(TypeNameExpCS eObject) {
 		return new TypeNameExpCSScopeAdapter(context, eObject);
+	}
+	
+	@Override
+	public ScopeCSAdapter visitUnaryOperatorCS(UnaryOperatorCS eObject) {
+		return new EmptyCSScopeAdapter(context, eObject);
 	}
 
 	@Override

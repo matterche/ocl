@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactory.java,v 1.4.6.4 2010/12/19 15:54:35 ewillink Exp $
+ * $Id: EssentialOCLCSTFactory.java,v 1.4.6.5 2011/01/15 19:03:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -153,31 +153,13 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	NameExpCS createNameExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Navigating Arg Or Body CS</em>'.
+	 * Returns a new object of class '<em>Navigating Arg CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Navigating Arg Or Body CS</em>'.
+	 * @return a new object of class '<em>Navigating Arg CS</em>'.
 	 * @generated
 	 */
-	NavigatingArgOrBodyCS createNavigatingArgOrBodyCS();
-
-	/**
-	 * Returns a new object of class '<em>Navigating Acc CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Navigating Acc CS</em>'.
-	 * @generated
-	 */
-	NavigatingAccCS createNavigatingAccCS();
-
-	/**
-	 * Returns a new object of class '<em>Navigating Body CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Navigating Body CS</em>'.
-	 * @generated
-	 */
-	NavigatingBodyCS createNavigatingBodyCS();
+	NavigatingArgCS createNavigatingArgCS();
 
 	/**
 	 * Returns a new object of class '<em>Navigating Exp CS</em>'.
