@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.8 2011/01/12 10:30:52 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.9 2011/01/15 09:41:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -21,6 +21,7 @@ import java.util.Collections;
 import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
@@ -240,7 +241,12 @@ public class EssentialOCLPostOrderVisitor
 			@SuppressWarnings("unused")
 			Namespace dummy = namespace;	// Resolves the proxies from the outside.
 		}
-		context.installPivotElement(csTypeNameExp, csTypeNameExp.getElement());
+		Type element = csTypeNameExp.getElement();
+		if ((element == null) || element.eIsProxy()) {
+			context.addError(csTypeNameExp, OCLMessages.ErrorUnresolvedTypeName, csTypeNameExp.toString());
+			element = context.getPivotManager().getInvalidType();	// FIXME with reason
+		}
+		context.installPivotElement(csTypeNameExp, element);
 		return null;
 	}
 

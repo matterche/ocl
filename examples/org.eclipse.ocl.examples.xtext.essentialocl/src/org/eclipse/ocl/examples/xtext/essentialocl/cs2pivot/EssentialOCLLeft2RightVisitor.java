@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.11 2011/01/14 14:54:28 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.12 2011/01/15 09:41:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -302,6 +302,9 @@ public class EssentialOCLLeft2RightVisitor
 			ContextCS csContext = (ContextCS) csExp;
 			ExpressionInOcl pivotElement = PivotUtil.getPivot(ExpressionInOcl.class, csContext);
 			return pivotElement.getContextVariable();
+		}
+		else if (eContainer instanceof ContextCS) {
+			return getImplicitSource((ModelElementCS) eContainer, namedElement);
 		}
 		if (eContainer instanceof ExpCS) {
 			return getImplicitSource((ModelElementCS) eContainer, namedElement);

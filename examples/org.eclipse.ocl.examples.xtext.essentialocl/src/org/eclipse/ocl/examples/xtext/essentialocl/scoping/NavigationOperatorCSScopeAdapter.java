@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.6 2011/01/14 14:54:28 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.7 2011/01/15 09:41:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -30,6 +32,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingAccCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgOrBodyCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 
 public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<NavigationOperatorCS, CallExp>
@@ -50,17 +56,29 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			}
 			else {
 				Type type = csSource.getType();
-				if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
-					environmentView.addElementsOfScope(pivotManager, type, scopeView);					
-					if (!(type instanceof CollectionType)) {
-						Type setType = pivotManager.getSetType(type);
-						environmentView.addElementsOfScope(pivotManager, setType, scopeView);
+				EnvironmentView.Filter filter = null;
+				try {
+					if (target.getArgument() instanceof NavigatingExpCS) {
+						filter = new ArgumentCountFilter((NavigatingExpCS)target.getArgument());
+						environmentView.addFilter(filter);
+					}
+					if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+						environmentView.addElementsOfScope(pivotManager, type, scopeView);					
+						if (!(type instanceof CollectionType)) {
+							Type setType = pivotManager.getSetType(type);
+							environmentView.addElementsOfScope(pivotManager, setType, scopeView);
+						}
+					}
+					else {
+						environmentView.addElementsOfScope(pivotManager, type, scopeView);					
+						if (type instanceof CollectionType) {
+							environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+						}
 					}
 				}
-				else {
-					environmentView.addElementsOfScope(pivotManager, type, scopeView);					
-					if (type instanceof CollectionType) {
-						environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+				finally {
+					if (filter != null) {
+						environmentView.removeFilter(filter);
 					}
 				}
 			}
@@ -71,6 +89,39 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 		else {
 			ExpCS parent = target.getParent();
 			return getScopeAdapter(parent).getOuterScopeView(null);
+		}
+	}
+	
+	private class ArgumentCountFilter implements EnvironmentView.Filter
+	{
+		private final int argsOrBodies;
+		
+		public ArgumentCountFilter(NavigatingExpCS csNavigatingExp) {
+			int argsOrBodies = 0;
+			int accs = 0;
+			int bodies = 0;
+			for (NavigatingArgCS csNavigatingArg : csNavigatingExp.getArgument()) {
+				if (csNavigatingArg instanceof NavigatingArgOrBodyCS) {
+					argsOrBodies++;
+				}
+				else if (csNavigatingArg instanceof NavigatingAccCS) {
+					accs++;
+				}
+				else {		// NavigatingBodyCS
+					bodies++;
+				}
+			}
+			this.argsOrBodies = (accs+bodies) > 0 ? argsOrBodies : 0;
+		}
+
+		public boolean filter(EObject eObject) {
+			if (eObject instanceof Iteration) {
+				int iteratorCount = ((Iteration)eObject).getOwnedIterators().size();
+				if ((0 < argsOrBodies) && (iteratorCount != argsOrBodies)) {
+					return false;
+				}
+			}
+			return true;
 		}
 	}
 }
