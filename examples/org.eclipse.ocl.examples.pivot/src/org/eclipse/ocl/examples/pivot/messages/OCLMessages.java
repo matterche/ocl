@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.1.2.5 2011/01/14 14:53:29 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.1.2.6 2011/01/15 09:41:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -33,18 +33,6 @@ import java.util.ResourceBundle;
 public class OCLMessages {
 
 	static final String BUNDLE_NAME = "org.eclipse.ocl.examples.pivot.messages.OCLMessages"; //$NON-NLS-1$
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public static String no_message;
     public static String Input_ERROR_;
@@ -278,8 +266,10 @@ public class OCLMessages {
 	public static String ErrorUnresolvedOperationCall;
 	public static String ErrorUnresolvedOperationName;
 	public static String ErrorUnresolvedPropertyName;
+	public static String ErrorUnresolvedTypeName;
 
 	public static String WarningExtraIteratorIgnored;
+	public static String WarningNonConformingBodyType;
 	public static String WarningUndefinedOperation;
 
 		

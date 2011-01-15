@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.1.2.7 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.1.2.8 2011/01/15 09:41:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -52,7 +52,8 @@ public interface PivotConstants
 
 	static final String COLLECTION_NAVIGATION_OPERATOR = "->";
 	static final String OBJECT_NAVIGATION_OPERATOR = ".";
-
+	static final String LESS_THAN_OPERATOR = "<";
+	
 	static final String MONIKER_IF_EXP = "if";
 	static final String MONIKER_INVALID_LITERAL_EXP = "invalid";
 	static final String MONIKER_LET_EXP = "let";
