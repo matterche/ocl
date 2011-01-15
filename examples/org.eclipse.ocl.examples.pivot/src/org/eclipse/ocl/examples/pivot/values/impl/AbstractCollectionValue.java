@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.1.2.6 2011/01/13 20:19:04 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.1.2.7 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -77,6 +77,10 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 	@Override
 	public CollectionValue asCollectionValue() {
 		return this;
+	}
+
+	public Object asObject() {
+		return elements;
 	}
 
     @Override

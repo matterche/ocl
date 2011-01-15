@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.1.2.1 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.1.2.2 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,6 +64,8 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.library.JavaLessThanOperation;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
 public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
@@ -332,17 +335,24 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	protected void copyDataTypeOrEnum(DataType pivotElement, EDataType eDataType) {
 		copyClassifier(pivotElement, eDataType);
 		pivotElement.setIsSerializable(eDataType.isSerializable());
-	}
+		Class<?> instanceClass = eDataType.getInstanceClass();
+		if (instanceClass != null) {
+			try {
+				Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
+				Operation operation = PivotFactory.eINSTANCE.createOperation();
+				operation.setName(PivotConstants.LESS_THAN_OPERATOR);
+				operation.setImplementation(new JavaLessThanOperation(declaredMethod));
+				Parameter parameter = PivotFactory.eINSTANCE.createParameter();
+				parameter.setName("that");
+				parameter.setType(pivotElement);
+				operation.getOwnedParameters().add(parameter);
+				operation.setType(converter.getPivotManager().getBooleanType());
+				pivotElement.getOwnedOperations().add(operation);
 
-/*		public void copyDetailLines(List<String> lines, String value) {
-			String[] splitLines = value.split("\n");
-			for (int i = 0; i < splitLines.length-1; i++) {
-				lines.add(splitLines[i] + '\n');
+			} catch (Exception e) {
 			}
-			if (splitLines.length > 0) {
-				lines.add(splitLines[splitLines.length-1]);
-			}
-		} */
+		}
+	}
 
 	protected void copyModelElement(Element pivotElement, EModelElement eModelElement) {
 		setOriginalMapping(pivotElement, eModelElement);

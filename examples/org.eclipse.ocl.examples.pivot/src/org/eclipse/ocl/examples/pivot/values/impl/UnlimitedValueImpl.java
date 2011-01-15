@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.1.2.4 2011/01/15 20:50:51 ewillink Exp $
  */
 /**
  * <copyright>
@@ -28,7 +28,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.1.2.4 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -48,6 +48,10 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 	}
 
 	public UnlimitedValueImpl abs() {
+		return this;
+	}
+
+	public Object asObject() {
 		return this;
 	}
 

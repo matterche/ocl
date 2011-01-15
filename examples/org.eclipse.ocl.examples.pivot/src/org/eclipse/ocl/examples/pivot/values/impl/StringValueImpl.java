@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringValueImpl.java,v 1.1.2.5 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: StringValueImpl.java,v 1.1.2.6 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -28,6 +28,10 @@ public class StringValueImpl extends AbstractValue implements StringValue
 	public StringValueImpl(ValueFactory valueFactory, String value) {
 		super(valueFactory);
 		this.value = value;
+	}
+
+	public Object asObject() {
+		return value;
 	}
 
 	@Override

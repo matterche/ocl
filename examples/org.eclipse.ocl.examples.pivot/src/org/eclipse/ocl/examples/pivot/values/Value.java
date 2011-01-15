@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.1.2.7 2011/01/14 14:53:29 ewillink Exp $
+ * $Id: Value.java,v 1.1.2.8 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -39,6 +39,7 @@ public interface Value
 	Integer asInteger();
 	IntegerValue asIntegerValue();
 	InvalidValue asInvalidValue();
+	Object asObject();
 	OrderedCollectionValue asOrderedCollectionValue();
 	OrderedSetValue asOrderedSetValue();
 	RealValue asRealValue();

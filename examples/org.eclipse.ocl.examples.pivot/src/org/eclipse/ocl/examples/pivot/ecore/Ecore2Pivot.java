@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.1.2.5 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.1.2.6 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -265,6 +265,10 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		}
 		return ePackages;
 	} */
+
+	public PivotManager getPivotManager() {
+		return pivotManager;
+	}
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {

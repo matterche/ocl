@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.1.2.4 2011/01/15 20:50:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -71,6 +71,10 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
     }
+
+	public Object asObject() {
+		return parts;
+	}
 
     // implements the inherited specification
     public TupleType getTupleType() {

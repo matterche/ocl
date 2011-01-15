@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanValueImpl.java,v 1.1.2.3 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: BooleanValueImpl.java,v 1.1.2.4 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -43,6 +43,10 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 	@Override
 	public BooleanValue asFalse() {
 		return valueFactory.booleanValueOf(!value);
+	}
+
+	public Object asObject() {
+		return value;
 	}
 
 	@Override

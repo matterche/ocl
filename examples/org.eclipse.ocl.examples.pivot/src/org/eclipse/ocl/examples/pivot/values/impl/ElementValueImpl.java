@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementValueImpl.java,v 1.1.2.4 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: ElementValueImpl.java,v 1.1.2.5 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -34,6 +34,10 @@ public class ElementValueImpl<E extends Element> extends AbstractValue implement
 
 	@Override
 	public Element asElement() {
+		return element;
+	}
+
+	public Object asObject() {
 		return element;
 	}
 

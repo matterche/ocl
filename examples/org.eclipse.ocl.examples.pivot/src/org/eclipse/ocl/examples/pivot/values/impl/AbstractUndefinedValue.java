@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedValue.java,v 1.1.2.3 2011/01/14 14:53:31 ewillink Exp $
+ * $Id: AbstractUndefinedValue.java,v 1.1.2.4 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -64,6 +64,10 @@ public abstract class AbstractUndefinedValue implements NullValue
 
 	public IntegerValue asIntegerValue() {
 		return toInvalidValue();
+	}
+
+	public Object asObject() {
+		return null;
 	}
 
 	public RealValue asRealValue() {

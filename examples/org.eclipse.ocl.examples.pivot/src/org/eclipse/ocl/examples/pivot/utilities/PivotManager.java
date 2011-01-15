@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.19 2011/01/14 14:53:31 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.20 2011/01/15 20:50:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -116,8 +116,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			setType(type);
 		}
 	}
-
-
+	
 	private static final Logger logger = Logger.getLogger(PivotManager.class);
 
 	// public static final String OMG_OCL_LANG1 = "omg.ocl.lang";

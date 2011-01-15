@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.16 2011/01/14 14:53:31 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.17 2011/01/15 20:50:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -138,6 +138,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			super(valueFactory);
 			this.first = first;
 			this.last = last;
+		}
+
+		public Object asObject() {
+			return this;
 		}
 
 //		public int getFirst() {
