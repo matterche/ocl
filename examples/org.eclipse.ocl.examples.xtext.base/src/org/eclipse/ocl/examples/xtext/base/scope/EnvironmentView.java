@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.6 2011/01/13 20:18:59 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.7 2011/01/15 09:41:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -50,10 +50,17 @@ import org.eclipse.xtext.resource.IEObjectDescription;
  */
 public class EnvironmentView
 {		
+	public static interface Filter 
+	{
+		public boolean filter(EObject eObject);
+	}
+	
+	protected final EStructuralFeature reference;
+
+	protected final String name;
 	private final Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single EObject or List<EObject>
-	private final EStructuralFeature reference;
 	private List<EClass> requiredAlternatives = null;
-	private final String name;
+	private List<Filter> filters = null;
 
 	public EnvironmentView(EStructuralFeature reference, String name) {
 		this.reference = reference;
@@ -72,28 +79,38 @@ public class EnvironmentView
 	 * @return the number of elements added; 1 if added, 0 if not
 	 */
 	public int addElement(String elementName, EObject element) {
-		if ((element != null) && ((name == null) || name.equals(elementName))) {
-			Object value = contentsByName.get(elementName);
-			if (value == null) {
-				contentsByName.put(elementName, element);
+		if (element == null) {
+			return 0;
+		}
+		if ((name != null) && !name.equals(elementName)) {
+			return 0;
+		}
+		if (filters != null) {
+			for (Filter filter : filters) {
+				if (!filter.filter(element)) {
+					return 0;
+				}
+			}
+		}
+		Object value = contentsByName.get(elementName);
+		if (value == null) {
+			contentsByName.put(elementName, element);
+		}
+		else {
+			List<EObject> values;
+			if (value instanceof EObject) {
+				values = new ArrayList<EObject>();
+				values.add((EObject) value);
+				contentsByName.put(elementName, values);
 			}
 			else {
-				List<EObject> values;
-				if (value instanceof EObject) {
-					values = new ArrayList<EObject>();
-					values.add((EObject) value);
-					contentsByName.put(elementName, values);
-				}
-				else {
-					@SuppressWarnings("unchecked")
-					List<EObject> castValue = (List<EObject>)value;
-					values = castValue;
-				}
-				values.add(element);
+				@SuppressWarnings("unchecked")
+				List<EObject> castValue = (List<EObject>)value;
+				values = castValue;
 			}
-			return 1;
+			values.add(element);
 		}
-		return 0;
+		return 1;
 	}
 
 	public int addElements(EClass eClass, Collection<? extends EObject> elements) {
@@ -132,6 +149,13 @@ public class EnvironmentView
 		}
 	}
 
+	public void addFilter(Filter filter) {
+		if (filters == null) {
+			filters = new ArrayList<Filter>();
+		}
+		filters.add(filter);
+	}
+	
 	public int addNamedElement(Nameable namedElement) {
 		if (namedElement != null) {
 			return addElement(namedElement.getName(), namedElement);
@@ -232,9 +256,13 @@ public class EnvironmentView
 		return contents;
 	}
 
-	public Object getName() {
+	public String getName() {
 		return name;
 	}
+	
+//	public EStructuralFeature getReference() {
+//		return reference;
+//	}
 
 	public EClassifier getRequiredType() {
 		return reference != null ? reference.getEType() : null;
@@ -242,6 +270,12 @@ public class EnvironmentView
 
 	public int getSize() {
 		return contentsByName.size();
+	}
+
+	public void removeFilter(Filter filter) {
+		if (filters != null) {
+			filters.remove(filter);
+		}
 	}
 
 	public void require(EClass... requiredClasses) {
