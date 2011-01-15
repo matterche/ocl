@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateIteration.java,v 1.1.2.3 2011/01/15 09:41:20 ewillink Exp $
+ * $Id: IterateIteration.java,v 1.1.2.4 2011/01/15 19:05:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -20,17 +20,14 @@ import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
- * IsUniqueIteration realises the Collection::isUnique() library iteration.
+ * IsUniqueIteration realizes the Collection::isUnique() library iteration.
  * 
  * @since 3.1
  */
@@ -40,29 +37,17 @@ public class IterateIteration extends AbstractIteration<CollectionValue>
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iterateExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-		Type sourceType = iterateExp.getSource().getType();
-		boolean isOrdered = stdlib.isOrdered(sourceType);
-		boolean isUnique = stdlib.isUnique(sourceType);
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, isUnique);
-		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
 		Variable accumulator = ((IterateExp)iterateExp).getResult();
-		String explicitAccumulatorName = null;
-		if (!accumulator.isImplicit()) {
-			explicitAccumulatorName = accumulator.getName();
-//			evaluationEnvironment.add(explicitAccumulatorName, accumulatorValue);		
-//			evaluationEnvironment.add(accumulator.getRepresentedParameter().getName(), accumulatorValue);		
-//			evaluationEnvironment.addVariable(accumulator.getRepresentedParameter(), accumulatorValue);		
+		Value initValue = accumulator.getInitExpression().accept(evaluationVisitor);
+		if (initValue.isUndefined()) {
+			return initValue.toInvalidValue();
 		}
-		try {
-			return evaluateIteration(new IterationManager<CollectionValue>(evaluationVisitor,
+		CollectionValue accumulatorValue = initValue.asCollectionValue();
+		if (accumulatorValue == null) {
+			return valueFactory.createInvalidValue("non-collection accumulator initalizer");
+		}
+		return evaluateIteration(new IterationManager<CollectionValue>(evaluationVisitor,
 					iterateExp, sourceVal, accumulatorValue));
-		}
-		finally {
-			if (explicitAccumulatorName != null) {
-				evaluationEnvironment.remove(explicitAccumulatorName);		
-			}
-		}
 	}
 
 	@Override
