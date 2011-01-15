@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.3.6.3 2010/12/31 19:11:49 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.3.6.4 2011/01/15 21:38:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 
@@ -57,7 +58,7 @@ public class RoundTripTests extends XtextTestCase
 		assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
 		
 		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(pivotManager, pivotResource));
-		outputObjects.remove(EcoreUtils.getNamedElement((List<? extends ENamedElement>)outputObjects, "orphanage"));
+		outputObjects.remove(EcoreUtils.getNamedElement((List<? extends ENamedElement>)outputObjects, PivotConstants.ORPHANAGE_NAME));
 		if (outputObjects.size() == 1) {
 			outputObjects = ((EPackage)outputObjects.get(0)).getESubpackages();
 		}
