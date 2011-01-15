@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllXtextTests.java,v 1.1.6.4 2011/01/08 11:42:53 ewillink Exp $
+ * $Id: AllXtextTests.java,v 1.1.6.5 2011/01/15 20:50:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.test.ecore.EvaluateCollectionOperationsTest;
 import org.eclipse.ocl.examples.test.ecore.EvaluateNumericOperationsTest;
 import org.eclipse.ocl.examples.test.ecore.EvaluateOclAnyOperationsTest;
 import org.eclipse.ocl.examples.test.ecore.EvaluateStringOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.IteratorsTest;
 
 /**
  * Tests for the Xtext editor support.
@@ -58,6 +59,7 @@ public class AllXtextTests
 		result.addTestSuite(EvaluateNumericOperationsTest.class);
 		result.addTestSuite(EvaluateOclAnyOperationsTest.class);
 		result.addTestSuite(EvaluateStringOperationsTest.class);
+		result.addTestSuite(IteratorsTest.class);
 //		result.addTestSuite(LoadTests.class);
 //		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);

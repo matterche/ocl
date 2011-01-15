@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.7 2011/01/15 09:41:08 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.8 2011/01/15 20:50:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -660,35 +660,35 @@ public abstract class GenericIteratorsTest
     public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.WarningExtraIteratorIgnored, "exists");
+        	OCLMessages.ErrorUnresolvedOperationName, "exists");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.WarningExtraIteratorIgnored, "forAll");
+        	OCLMessages.ErrorUnresolvedOperationName, "forAll");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.WarningExtraIteratorIgnored, "collect");
+        	OCLMessages.ErrorUnresolvedOperationName, "collect");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.WarningExtraIteratorIgnored, "any");
+        	OCLMessages.ErrorUnresolvedOperationName, "any");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.WarningExtraIteratorIgnored, "one");
+        	OCLMessages.ErrorUnresolvedOperationName, "one");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.WarningExtraIteratorIgnored, "select");
+        	OCLMessages.ErrorUnresolvedOperationName, "select");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.WarningExtraIteratorIgnored, "reject");
+        	OCLMessages.ErrorUnresolvedOperationName, "reject");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.WarningExtraIteratorIgnored, "isUnique");
+        	OCLMessages.ErrorUnresolvedOperationName, "isUnique");
     }
 
 	/**
