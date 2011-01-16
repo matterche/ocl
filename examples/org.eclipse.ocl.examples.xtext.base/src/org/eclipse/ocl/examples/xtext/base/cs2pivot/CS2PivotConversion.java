@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.10 2011/01/14 14:52:00 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.11 2011/01/16 09:03:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -136,6 +136,7 @@ public class CS2PivotConversion extends AbstractConversion
 		String boundMessage = NLS.bind(message, bindings);
 		csElement.getError().add(boundMessage);
 		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+		invalidLiteralExp.setType(pivotManager.getInvalidType());
 		invalidLiteralExp.setObject(csElement);
 		invalidLiteralExp.setReason(boundMessage);
 		installPivotElementInternal(csElement, invalidLiteralExp);
@@ -165,7 +166,9 @@ public class CS2PivotConversion extends AbstractConversion
 						hasNoErrors = false;
 						int offset = node.getOffset();
 						int length = node.getLength();
-						problemHandler.analyzerProblem(Severity.ERROR, error, "CS2Pivot", offset, offset+length);
+						if (problemHandler != null) {				// FIXME Why null/why this check interactively
+							problemHandler.analyzerProblem(Severity.ERROR, error, "CS2Pivot", offset, offset+length);
+						}
 					}
 				}
 			}
@@ -859,8 +862,8 @@ public class CS2PivotConversion extends AbstractConversion
 			if (unspecializedPivotElement instanceof Type) {
 				EClass eClass = unspecializedPivotElement.eClass();
 				@SuppressWarnings("unchecked")
-				Class<? extends org.eclipse.ocl.examples.pivot.Class> pivotClazz = (Class<? extends org.eclipse.ocl.examples.pivot.Class>) eClass.getInstanceClass();
-				org.eclipse.ocl.examples.pivot.Class pivotClass = refreshMonikeredElement(pivotClazz, eClass, csElement);
+				Class<? extends Type> pivotClazz = (Class<? extends Type>) eClass.getInstanceClass();
+				Type pivotClass = refreshMonikeredElement(pivotClazz, eClass, csElement);
 				refreshName(pivotClass, ((Type)unspecializedPivotElement).getName());
 				specializedPivotElement = pivotClass;
 				if (pivotClass instanceof CollectionType) {

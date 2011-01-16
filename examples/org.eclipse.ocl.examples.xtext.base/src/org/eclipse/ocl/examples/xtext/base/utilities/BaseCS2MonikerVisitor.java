@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.3 2011/01/08 11:39:00 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.4 2011/01/16 09:03:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -147,8 +147,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 		if (csConstraint.getName() != null) {
 			context.appendNameCS(csConstraint);
 		}
-//		context.append(SCOPE_SEPARATOR);			// To match ExpressioninOcl
-//		context.append('z');						// To match ExpressioninOcl
 		return true;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.1.2.3 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.1.2.4 2011/01/16 09:03:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EmptyScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ExpressionInOclScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.IterateExpScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.IteratorExpScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.LetExpScopeAdapter;
@@ -66,7 +67,7 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Pi
 
 	@Override
 	public ScopeAdapter visitExpressionInOcl(ExpressionInOcl pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new ExpressionInOclScopeAdapter(context, pivotElement);
 	}
 
 	@Override
