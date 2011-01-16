@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.2 2011/01/15 21:38:34 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.3 2011/01/16 18:43:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -43,7 +43,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
  */
 public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Namespace>
 {
-	protected static final String NULL_PLACEHOLDER = "<null>";
+	public static final String NULL_PLACEHOLDER = "<null>";
 	
 	public static String prettyPrint(Visitable element, Namespace scope) {
 		PrettyPrintTypeVisitor visitor = new PrettyPrintTypeVisitor(scope);
@@ -120,7 +120,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		}
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			append(prefix);
-			appendName(parameter);
+			appendElement(parameter.getType());
 			prefix = ",";
 		}
 		append(")");
