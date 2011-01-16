@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotReflectionImpl.java,v 1.1.2.2 2011/01/12 10:29:52 ewillink Exp $
+ * $Id: PivotReflectionImpl.java,v 1.1.2.3 2011/01/16 18:39:17 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -55,7 +55,7 @@ public class PivotReflectionImpl implements UMLReflection {
     public String getDescription(Object namedElement) {
         if (namedElement instanceof TypedElement) {
             Type type = ((TypedElement) namedElement).getType();
-            return (type == null) ? pivotManager.getNullType().getName()
+            return (type == null) ? pivotManager.getOclVoidType().getName()
                 : type.getName();
         } else if (namedElement instanceof EnumerationLiteral) {
             return ((EnumerationLiteral) namedElement).getEnumeration().getName();

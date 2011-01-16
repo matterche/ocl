@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.10 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.11 2011/01/16 18:39:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -172,7 +172,7 @@ public abstract class AbstractEvaluationVisitor
 	}
 	
     public final Type getInvalidType() {
-        return getStandardLibrary().getInvalidType();
+        return getStandardLibrary().getOclInvalidType();
     }
 	
     /**
@@ -186,7 +186,7 @@ public abstract class AbstractEvaluationVisitor
 	}
 	
     public final Type getNullType() {
-        return getStandardLibrary().getNullType();
+        return getStandardLibrary().getOclVoidType();
     }
     
     /**

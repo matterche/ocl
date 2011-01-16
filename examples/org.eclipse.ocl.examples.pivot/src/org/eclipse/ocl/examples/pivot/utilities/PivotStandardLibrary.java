@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.1.2.8 2011/01/13 19:15:40 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.1.2.9 2011/01/16 18:39:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -21,13 +21,17 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
+import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 
 public abstract class PivotStandardLibrary implements StandardLibrary
@@ -52,14 +56,13 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private PrimitiveType booleanType = null;
 	private org.eclipse.ocl.examples.pivot.Class classifierType = null;
 	private PrimitiveType integerType = null;
-	private Type invalidType = null;
-	private Type nullType = null;
+	private AnyType oclAnyType = null;
+	private InvalidType oclInvalidType = null;
+	private VoidType oclVoidType = null;
 	private PrimitiveType realType = null;
 	private PrimitiveType stringType = null;
 	private Type tupleType = null;
 	private PrimitiveType unlimitedNaturalType = null;
-	private Type oclInvalidType = null;
-	private Type oclVoidType = null;
 	
 	org.eclipse.ocl.examples.pivot.Package pivotPackage = null;
 	
@@ -98,8 +101,8 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return classifierType;
 	}
 
-	public Type getCollectionType() {
-		return getRequiredLibraryType("Collection");
+	public CollectionType getCollectionType() {
+		return (CollectionType) getRequiredLibraryType("Collection");
 	}
 
 	public Type getCollectionTypeType() {
@@ -113,12 +116,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return integerType;
 	}
 
-	public Type getInvalidType() {
-		if (invalidType == null) {
-			invalidType = getRequiredLibraryType("OclInvalid");
-		}
-		return invalidType;
-	}
+//	public Type getInvalidType() {
+//		if (invalidType == null) {
+//			invalidType = getRequiredLibraryType("OclInvalid");
+//		}
+//		return invalidType;
+//	}
 
 	public Type getLibraryType(String typeName) {
 		if (nameToLibraryTypeMap == null) {
@@ -128,20 +131,16 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return nameToLibraryTypeMap.get(typeName);
 	}
 
-	public Type getNullType() {
-		if (nullType == null) {
-			nullType = getRequiredLibraryType("OclVoid");
+	public AnyType getOclAnyType() {
+		if (oclAnyType == null) {
+			oclAnyType = (AnyType) getRequiredLibraryType("OclAny");
 		}
-		return nullType;
+		return oclAnyType;
 	}
 
-	public Type getOclAnyType() {
-		return getRequiredLibraryType("OclAny");
-	}
-
-	public Type getOclInvalidType() {
+	public InvalidType getOclInvalidType() {
 		if (oclInvalidType == null) {
-			oclInvalidType = getRequiredLibraryType("OclInvalid");
+			oclInvalidType = (InvalidType) getRequiredLibraryType("OclInvalid");
 		}
 		return oclInvalidType;
 	}
@@ -150,9 +149,9 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return getRequiredLibraryType("OclMessage");
 	}
 
-	public Type getOclVoidType() {
+	public VoidType getOclVoidType() {
 		if (oclVoidType == null) {
-			oclVoidType = getRequiredLibraryType("OclVoid");
+			oclVoidType = (VoidType) getRequiredLibraryType("OclVoid");
 		}
 		return oclVoidType;
 	}

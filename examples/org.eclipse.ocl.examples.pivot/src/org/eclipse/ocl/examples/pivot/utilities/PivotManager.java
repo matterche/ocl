@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.20 2011/01/15 20:50:51 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.21 2011/01/16 18:39:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
@@ -420,6 +421,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			return !(requiredType instanceof InvalidType);
 		}
 		if (actualType instanceof InvalidType) {
+			return true;
+		}
+		if (requiredType instanceof AnyType) {
 			return true;
 		}
 		for (org.eclipse.ocl.examples.pivot.Class superClass : actualType.getSuperClasses()) {
@@ -1064,6 +1068,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	public Set<Operation> resolveOperations(org.eclipse.ocl.examples.pivot.Class pivotClass,
 			String operationName, Type... pivotArguments) {
+		@SuppressWarnings("unused")
 		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, pivotClass);
 		Set<Operation> pivotOperations = resolveLocalOperation(pivotClass, operationName, pivotArguments);
 		for (TemplateBinding templateBinding : pivotClass.getTemplateBindings()) {
@@ -1083,15 +1088,24 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			}
 		}
 		if (pivotOperations == null) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : pivotClass.getSuperClasses()) {
-				Set<Operation> superOperations = resolveOperations(superClass,
-					operationName, pivotArguments);
-				if (superOperations != null) {
-					if (pivotOperations == null) {
-						pivotOperations = superOperations;
-					} else {
-						pivotOperations.addAll(superOperations);
+			List<org.eclipse.ocl.examples.pivot.Class> superClasses = pivotClass.getSuperClasses();
+			if (!superClasses.isEmpty()) {
+				for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
+					Set<Operation> superOperations = resolveOperations(superClass,
+						operationName, pivotArguments);
+					if (superOperations != null) {
+						if (pivotOperations == null) {
+							pivotOperations = superOperations;
+						} else {
+							pivotOperations.addAll(superOperations);
+						}
 					}
+				}
+			}
+			else {
+				AnyType oclAnyType = getOclAnyType();
+				if (pivotClass != oclAnyType) {		// Typically a template parameter type
+					pivotOperations = resolveOperations(oclAnyType, operationName, pivotArguments);
 				}
 			}
 		}

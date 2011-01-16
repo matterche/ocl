@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.1.2.3 2010/12/26 15:21:28 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.1.2.4 2011/01/16 18:39:17 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -137,17 +137,17 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 		}
 
 		// OclVoid makes for easy cases
-		if ((type1 == stdlib.getNullType()) && (type2 != stdlib.getInvalidType())) {
+		if ((type1 == stdlib.getOclVoidType()) && (type2 != stdlib.getOclInvalidType())) {
 			return STRICT_SUBTYPE;
-		} else if ((type2 == stdlib.getNullType())
-			&& (type1 != stdlib.getInvalidType())) {
+		} else if ((type2 == stdlib.getOclVoidType())
+			&& (type1 != stdlib.getOclInvalidType())) {
 			return STRICT_SUPERTYPE;
 		}
 
 		// so does OclInvalid
-		if (type1 == stdlib.getInvalidType()) {
+		if (type1 == stdlib.getOclInvalidType()) {
 			return STRICT_SUBTYPE;
-		} else if (type2 == stdlib.getInvalidType()) {
+		} else if (type2 == stdlib.getOclInvalidType()) {
 			return STRICT_SUPERTYPE;
 		}
 
@@ -446,10 +446,10 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 //			return type1;
 //		}
 
-		if ((type1 == stdlib.getNullType()) || (type1 == stdlib.getInvalidType())) {
+		if ((type1 == stdlib.getOclVoidType()) || (type1 == stdlib.getOclInvalidType())) {
 			return type2;
 		}
-		if ((type2 == stdlib.getNullType()) || (type2 == stdlib.getInvalidType())) {
+		if ((type2 == stdlib.getOclVoidType()) || (type2 == stdlib.getOclInvalidType())) {
 			return type1;
 		}
 
@@ -900,7 +900,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 			if (result instanceof CollectionType) {
 				result = ((CollectionType) result).getElementType();
 
-				if (result == stdlib.getNullType()) {
+				if (result == stdlib.getOclVoidType()) {
 					// special case for empty collections, whose element type is
 					// OclVoid.
 					// We want any argument to be accepted, and to solely
@@ -921,7 +921,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 					ownerMatch = ((CollectionType) ownerMatch)
 						.getElementType();
 
-					if (ownerMatch == stdlib.getNullType()) {
+					if (ownerMatch == stdlib.getOclVoidType()) {
 						// special case for empty collections, whose element
 						// type is OclVoid.
 						// We want any argument to be accepted, and to solely
@@ -940,7 +940,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 					argMatch = ((CollectionType) argMatch)
 						.getElementType();
 
-					if (argMatch == stdlib.getNullType()) {
+					if (argMatch == stdlib.getOclVoidType()) {
 						// special case for empty collections, whose element
 						// type is OclVoid.
 						// We want any argument to be accepted, and to solely
@@ -1062,7 +1062,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 		// special handling for null and invalid values, whose types conform
 		// to all others
 		StandardLibrary lib = env.getOCLStandardLibrary();
-		if ((owner == lib.getNullType()) || (owner == lib.getInvalidType())) {
+		if ((owner == lib.getOclVoidType()) || (owner == lib.getOclInvalidType())) {
 			return findOperationForVoidOrInvalid(owner, name, args);
 		}
 

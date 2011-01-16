@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.1.2.6 2011/01/12 10:29:52 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.1.2.7 2011/01/16 18:39:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -41,7 +41,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>OclAny</tt> type (an instance of {@link AnyType})
      */
-	Type getOclAnyType();
+	AnyType getOclAnyType();
 	
     /**
      * Obtains the single instance of the {@link ClassifierType} metatype, named
@@ -57,7 +57,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>OclVoid</tt> type (an instance of {@link VoidType})
      */
-	Type getNullType();
+	VoidType getOclVoidType();
 	
     /**
      * Obtains the single instance of the {@link InvalidType} metatype, named
@@ -65,7 +65,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>OclInvalid</tt> type (an instance of {@link InvalidType})
      */
-	Type getInvalidType();
+	InvalidType getOclInvalidType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -122,7 +122,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Set(T)</tt> type (an instance of {@link SetType})
      */
-	Type getSetType();
+	SetType getSetType();
 	
     /**
      * Obtains the generic instance of the {@link OrderedSetType} metatype, named
@@ -130,7 +130,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>OrderedSet(T)</tt> type (an instance of {@link OrderedSetType})
      */
-	Type getOrderedSetType();
+	OrderedSetType getOrderedSetType();
 	
     /**
      * Obtains the generic instance of the {@link BagType} metatype, named
@@ -138,7 +138,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Bag(T)</tt> type (an instance of {@link BagType})
      */
-	Type getBagType();
+	BagType getBagType();
 	
     /**
      * Obtains the generic instance of the {@link SequenceType} metatype, named
@@ -146,7 +146,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Sequence(T)</tt> type (an instance of {@link SequenceType})
      */
-	Type getSequenceType();
+	SequenceType getSequenceType();
 	
     /**
      * Obtains the generic instance of the {@link CollectionType} metatype, named
@@ -154,7 +154,7 @@ public interface StandardLibrary {
      * 
      * @return the <tt>Collection(T)</tt> type (an instance of {@link CollectionType})
      */
-	Type getCollectionType();
+	CollectionType getCollectionType();
 	
 	Type getPivotType(String className);
     
