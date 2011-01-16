@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.11 2011/01/16 09:03:10 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.12 2011/01/16 18:38:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -82,6 +82,7 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.lpg.ProblemHandler.Severity;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
@@ -135,8 +136,10 @@ public class CS2PivotConversion extends AbstractConversion
 	public OclExpression addError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
 		csElement.getError().add(boundMessage);
+		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeUtil.getNode(csElement), boundMessage, "xyzzy");		// FIXME
+		csElement.eResource().getErrors().add(diagnostic);
 		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
-		invalidLiteralExp.setType(pivotManager.getInvalidType());
+		invalidLiteralExp.setType(pivotManager.getOclInvalidType());
 		invalidLiteralExp.setObject(csElement);
 		invalidLiteralExp.setReason(boundMessage);
 		installPivotElementInternal(csElement, invalidLiteralExp);
@@ -168,6 +171,9 @@ public class CS2PivotConversion extends AbstractConversion
 						int length = node.getLength();
 						if (problemHandler != null) {				// FIXME Why null/why this check interactively
 							problemHandler.analyzerProblem(Severity.ERROR, error, "CS2Pivot", offset, offset+length);
+						}
+						else {
+							logger.error(error);
 						}
 					}
 				}
@@ -725,7 +731,7 @@ public class CS2PivotConversion extends AbstractConversion
 	 */
 	public void setType(TypedElement pivotElement, Type type) {
 		if (type == null) {
-			type = pivotManager.getInvalidType();	// FIXME unresolved type with explanation
+			type = pivotManager.getOclInvalidType();	// FIXME unresolved type with explanation
 		}
 		if (type != pivotElement.getType()) {
 			pivotElement.setType(type);
