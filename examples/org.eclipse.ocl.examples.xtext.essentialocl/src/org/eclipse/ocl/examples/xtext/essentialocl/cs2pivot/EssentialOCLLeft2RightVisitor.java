@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.13 2011/01/15 19:03:05 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.14 2011/01/16 18:43:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -979,7 +979,7 @@ public class EssentialOCLLeft2RightVisitor
 			commonType = (Type) ownedElementType.getPivot();
 		}
 		if (commonType == null) {
-			commonType = pivotManager.getNullType();			// FIXME Use a clearer unspecified type
+			commonType = pivotManager.getOclVoidType();			// FIXME Use a clearer unspecified type
 		}
 		String collectionTypeName = ownedCollectionType.getName();
 		Type type = pivotManager.getLibraryType(collectionTypeName, Collections.singletonList(commonType));
@@ -1145,7 +1145,7 @@ public class EssentialOCLLeft2RightVisitor
 	@Override
 	public MonikeredElement visitInvalidLiteralExpCS(InvalidLiteralExpCS csInvalidLiteralExp) {
 		InvalidLiteralExp expression = PivotFactory.eINSTANCE.createInvalidLiteralExp();
-		expression.setType(pivotManager.getInvalidType());
+		expression.setType(pivotManager.getOclInvalidType());
 		expression.setObject(csInvalidLiteralExp);
 		expression.setExpression(null);
 		expression.setReason("invalid literal");
@@ -1272,6 +1272,7 @@ public class EssentialOCLLeft2RightVisitor
 		else {
 			navigatingExp = handleNavigatingPropertyExpCS((NamedExpCS) argument);
 		}
+		@SuppressWarnings("unused")
 		Type requiredSourceType = null;
 		if (navigatingExp instanceof LoopExp) {
 			requiredSourceType = ((LoopExp)navigatingExp).getReferredIteration().getFeaturingClass();
@@ -1297,7 +1298,7 @@ public class EssentialOCLLeft2RightVisitor
 	@Override
 	public MonikeredElement visitNullLiteralExpCS(NullLiteralExpCS csNullLiteralExp) {
 		NullLiteralExp expression = context.refreshExpression(NullLiteralExp.class, PivotPackage.Literals.NULL_LITERAL_EXP, csNullLiteralExp);
-		expression.setType(pivotManager.getNullType());
+		expression.setType(pivotManager.getOclVoidType());
 		return expression;
 	}
 
