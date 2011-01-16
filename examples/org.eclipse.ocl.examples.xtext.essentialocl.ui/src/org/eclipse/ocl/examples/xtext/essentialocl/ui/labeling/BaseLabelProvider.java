@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.1.2.2 2010/12/06 18:08:46 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.1.2.3 2011/01/16 09:03:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -26,23 +26,31 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -51,6 +59,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 import org.osgi.framework.Bundle;
@@ -318,6 +328,14 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
+	protected String image(BooleanLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/BooleanLiteralExp.gif";
+	}
+
+	protected String text(BooleanLiteralExp ele) {
+		return ele.getBooleanSymbol().toString();
+	}
+
 	protected String image(org.eclipse.ocl.examples.pivot.Class ele) {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif";
 	}
@@ -420,6 +438,14 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 //		appendString(s, ele.getUri());
 		return s.toString();
 	}
+
+	protected String image(IntegerLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/IntegerLiteralExp.gif";
+	}
+
+	protected String text(IntegerLiteralExp ele) {
+		return ele.getIntegerSymbol().toString();
+	}
 	
 	protected Object image(ModelElementCS ele) {
 		return doGetImage(ele.getPivot());
@@ -482,6 +508,26 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
+	protected String image(RealLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/RealLiteralExp.gif";
+	}
+
+	protected String text(RealLiteralExp ele) {
+		return ele.getRealSymbol().toString();
+	}
+
+	protected String image(StringLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/StringLiteralExp.gif";
+	}
+
+	protected String text(StringLiteralExp ele) {
+		return ele.getStringSymbol();
+	}
+
+	protected String text(TemplateParameter ele) {
+		return text(ele.getParameteredElement());
+	}
+
 	protected String image(TupleTypeCS ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleType.gif";
 	}
@@ -499,6 +545,39 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	protected String text(TypeRefCS ele) {
 		StringBuffer s = new StringBuffer();
 		appendType(s, ele);
+		return s.toString();
+	}
+
+	protected String image(UnlimitedNaturalLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/UnlimitedNaturalLiteralExp.gif";
+	}
+
+	protected String text(UnlimitedNaturalLiteralExp ele) {
+		return ele.getUnlimitedNaturalSymbol().toString();
+	}
+
+	protected String image(Variable ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/Variable.gif";
+	}
+
+	protected String text(Variable ele) {
+		StringBuffer s = new StringBuffer();
+		appendName(s, ele);
+		s.append(" : ");
+		appendType(s, ele.getType());
+		return s.toString();
+	}
+
+	protected String image(VariableExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/VariableExp.gif";
+	}
+
+	protected String text(VariableExp ele) {
+		StringBuffer s = new StringBuffer();
+		VariableDeclaration referredVariable = ele.getReferredVariable();
+		appendName(s, referredVariable);
+		s.append(" : ");
+		appendType(s, referredVariable.getType());
 		return s.toString();
 	}
 }

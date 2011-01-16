@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseTransformer.java,v 1.1.2.3 2010/12/11 10:44:29 ewillink Exp $
+ * $Id: BaseTransformer.java,v 1.1.2.4 2011/01/16 09:03:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -78,13 +79,6 @@ public class BaseTransformer extends AbstractDeclarativeSemanticModelTransformer
 		return appendContents(contents, pivotElement);
 	}
 
-	public List<EObject> getChildren(Operation pivotElement) {
-		List<EObject> contents = new ArrayList<EObject>();
-		addContents(contents, PivotUtil.getTemplateParameters(pivotElement));
-		addContents(contents, pivotElement.getOwnedParameters());
-		return appendContents(contents, pivotElement);
-	}
-
 	
 	public List<EObject> getChildren(org.eclipse.ocl.examples.pivot.Package pivotElement) {
 		List<EObject> contents = new ArrayList<EObject>();
@@ -92,6 +86,22 @@ public class BaseTransformer extends AbstractDeclarativeSemanticModelTransformer
 //		addContents(contents, pivotElement.getOwnedLibrary());
 		addContents(contents, pivotElement.getNestedPackages());
 		addContents(contents, pivotElement.getOwnedTypes());
+		return appendContents(contents, pivotElement);
+	}
+
+	public List<EObject> getChildren(Iteration pivotElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, PivotUtil.getTemplateParameters(pivotElement));
+		addContents(contents, pivotElement.getOwnedIterators());
+		addContents(contents, pivotElement.getOwnedAccumulators());
+		addContents(contents, pivotElement.getOwnedParameters());
+		return appendContents(contents, pivotElement);
+	}
+
+	public List<EObject> getChildren(Operation pivotElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, PivotUtil.getTemplateParameters(pivotElement));
+		addContents(contents, pivotElement.getOwnedParameters());
 		return appendContents(contents, pivotElement);
 	}
 
