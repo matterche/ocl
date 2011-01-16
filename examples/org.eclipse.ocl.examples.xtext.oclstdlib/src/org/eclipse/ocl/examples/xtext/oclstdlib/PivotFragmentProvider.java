@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFragmentProvider.java,v 1.1.2.2 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: PivotFragmentProvider.java,v 1.1.2.3 2011/01/16 09:03:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
@@ -26,7 +26,7 @@ public class PivotFragmentProvider extends DefaultFragmentProvider
 {
 	@Override
 	public EObject getEObject(Resource resource, String fragment, Fallback fallback) {
-		if (!fragment.startsWith("/")) {	// //.. fragments are CS URIs, relative framents are pivot URIs
+//		if (!fragment.startsWith("/")) {	// //.. fragments are CS URIs, relative framents are pivot URIs
 			CS2PivotResourceAdapter converter = CS2PivotResourceAdapter.findAdapter(resource);
 			if (converter != null) {
 				Resource pivotResource = converter.getPivotResource(resource);
@@ -35,9 +35,12 @@ public class PivotFragmentProvider extends DefaultFragmentProvider
 					if (eObject != null) {
 						return eObject;
 					}
+//					return null;
 				}
+//				return null;
 			}
-		}
+//			return null;
+//		}
 		return super.getEObject(resource, fragment, fallback);
 	}
 }

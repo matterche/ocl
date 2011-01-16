@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPostOrderVisitor.java,v 1.1.2.4 2010/12/19 15:57:40 ewillink Exp $
+ * $Id: OCLstdlibPostOrderVisitor.java,v 1.1.2.5 2011/01/16 09:03:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -100,7 +100,8 @@ public class OCLstdlibPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitLibConstraintCS(LibConstraintCS csLibConstraint) {
-		assert super.visitLibConstraintCS(csLibConstraint) == null;		// No super continuation
+		Continuation<?> superContinuation = super.visitLibConstraintCS(csLibConstraint);
+		assert superContinuation == null;		// No super continuation
 		return new LibConstraintCSCompletion(context, csLibConstraint);
 	}
 
