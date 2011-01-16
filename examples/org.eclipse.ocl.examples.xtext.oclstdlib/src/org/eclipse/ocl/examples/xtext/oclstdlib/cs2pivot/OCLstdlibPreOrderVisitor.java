@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.5 2010/12/28 12:26:04 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.1.2.6 2011/01/16 18:44:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -65,7 +66,7 @@ public class OCLstdlibPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			CollectionType type = PivotUtil.getPivot(CollectionType.class, csElement);
-			type.setElementType(context.getPivotManager().getOclVoidType());
+			type.setElementType((Type) type.getOwnedTemplateSignature().getParameters().get(0).getParameteredElement());
 			return null;
 		}
 	}
