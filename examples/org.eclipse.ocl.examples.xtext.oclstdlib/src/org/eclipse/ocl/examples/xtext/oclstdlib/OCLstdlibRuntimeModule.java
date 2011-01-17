@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibRuntimeModule.java,v 1.1.6.2 2010/12/06 18:14:19 ewillink Exp $
+ * $Id: OCLstdlibRuntimeModule.java,v 1.1.6.3 2011/01/17 08:11:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
@@ -45,9 +46,10 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	  return OCLstdlibValueConverterService.class;
 	}
 	
+	// URI remapping from CS to pivot
 	@Override
 	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
-		return PivotFragmentProvider.class;
+		return BaseFragmentProvider.class;
 	}
 
 	@Override
