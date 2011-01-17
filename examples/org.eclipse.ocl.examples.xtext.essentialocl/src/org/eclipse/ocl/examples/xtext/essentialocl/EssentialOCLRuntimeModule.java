@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.4 2011/01/17 08:11:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
@@ -27,6 +28,7 @@ import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
+import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
 
 /**
@@ -36,6 +38,12 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 {	
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return EssentialOCLCrossReferenceSerializer.class;
+	}
+	
+	// URI remapping from CS to pivot
+	@Override
+	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
+		return BaseFragmentProvider.class;
 	}
 	
 	@Override
