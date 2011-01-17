@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.3 2011/01/16 18:43:13 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.4 2011/01/17 08:11:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -134,7 +134,8 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 			append(NULL_PLACEHOLDER);	
 		}
 		else {
-			EObject parent = element.eContainer();
+//			EObject parent = element.eContainer();
+			EObject parent = PrettyPrintNameVisitor.getNamespace(element.eContainer());
 			if ((parent instanceof org.eclipse.ocl.examples.pivot.Package) &&
 					PivotConstants.ORPHANAGE_NAME.equals(((org.eclipse.ocl.examples.pivot.Package)parent).getName())) {
 				return;

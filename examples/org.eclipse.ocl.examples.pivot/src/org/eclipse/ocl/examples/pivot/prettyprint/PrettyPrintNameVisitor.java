@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintNameVisitor.java,v 1.1.2.1 2011/01/15 15:12:29 ewillink Exp $
+ * $Id: PrettyPrintNameVisitor.java,v 1.1.2.2 2011/01/17 08:11:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Class;
@@ -37,6 +38,18 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
  */
 public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Namespace>
 {	
+	public static Namespace getNamespace(EObject element) {
+		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+				return (Namespace) eObject;
+			}
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				return (Namespace) eObject;
+			}
+		}
+		return null;
+	}
+
 	public static String prettyPrint(Visitable element, Namespace scope) {
 		PrettyPrintNameVisitor visitor = new PrettyPrintNameVisitor(scope);
 		try {
