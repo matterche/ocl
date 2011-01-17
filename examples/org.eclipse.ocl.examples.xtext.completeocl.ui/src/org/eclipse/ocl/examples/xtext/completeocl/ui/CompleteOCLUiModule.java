@@ -12,17 +12,19 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLUiModule.java,v 1.3.6.2 2010/12/06 18:40:59 ewillink Exp $
+ * $Id: CompleteOCLUiModule.java,v 1.3.6.3 2011/01/17 08:11:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui;
 
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseSourceViewerConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.XtextSourceViewerConfiguration;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -35,10 +37,6 @@ public class CompleteOCLUiModule extends AbstractCompleteOCLUiModule
 {
 	public CompleteOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
-	}
-
-	public Class<? extends XtextDocument> bindXtextDocument() {
-		return BaseDocument.class;
 	}
 
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
@@ -55,5 +53,13 @@ public class CompleteOCLUiModule extends AbstractCompleteOCLUiModule
 
 	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return EssentialOCLHighlightingConfiguration.class;
+	}
+
+	public Class<? extends XtextDocument> bindXtextDocument() {
+		return BaseDocument.class;
+	}
+
+	public Class<? extends XtextSourceViewerConfiguration> bindXtextSourceViewerConfiguration() {
+		return BaseSourceViewerConfiguration.class;
 	}
 }
