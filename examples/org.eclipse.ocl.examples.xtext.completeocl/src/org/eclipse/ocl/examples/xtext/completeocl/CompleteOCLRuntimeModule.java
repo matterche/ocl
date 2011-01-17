@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.4.6.2 2010/12/06 18:36:45 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.4.6.3 2011/01/17 08:11:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingService;
@@ -28,6 +29,7 @@ import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
+import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
@@ -38,6 +40,12 @@ public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.com
 {
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return EssentialOCLCrossReferenceSerializer.class;
+	}
+	
+	// URI remapping from CS to pivot
+	@Override
+	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
+		return BaseFragmentProvider.class;
 	}
 	
 	@Override
