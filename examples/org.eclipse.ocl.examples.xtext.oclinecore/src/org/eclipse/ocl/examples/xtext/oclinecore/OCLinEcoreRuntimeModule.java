@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.3 2010/12/11 10:44:27 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.4 2011/01/17 08:11:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
@@ -28,6 +29,7 @@ import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
+import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
@@ -39,6 +41,12 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	// Reference value to text serialisation.
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return EssentialOCLCrossReferenceSerializer.class;
+	}
+	
+	// URI remapping from CS to pivot
+	@Override
+	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
+		return BaseFragmentProvider.class;
 	}
 	
 	@Override
