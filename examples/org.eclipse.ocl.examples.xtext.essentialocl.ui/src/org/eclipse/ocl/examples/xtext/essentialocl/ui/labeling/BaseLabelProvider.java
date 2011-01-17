@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.1.2.4 2011/01/16 18:43:55 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.1.2.5 2011/01/17 08:11:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -26,35 +26,75 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
+import org.eclipse.ocl.examples.pivot.BagType;
+import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
+import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.LiteralExp;
+import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.MessageExp;
+import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.NavigationCallExp;
+import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
+import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
@@ -326,12 +366,20 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
-	protected String image(BooleanLiteralExp ele) {
-		return "/org.eclipse.ocl.edit/icons/full/obj16/BooleanLiteralExp.gif";
+	protected String image(AnyType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/AnyType.gif";
 	}
 
-	protected String text(BooleanLiteralExp ele) {
-		return ele.getBooleanSymbol().toString();
+	protected String image(AssociationClassCallExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/AssociationClassCallExp.gif";
+	}
+
+	protected String image(BagType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/BagType.gif";
+	}
+
+	protected String image(BooleanLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/BooleanLiteralExp.gif";
 	}
 
 	protected String image(org.eclipse.ocl.examples.pivot.Class ele) {
@@ -346,6 +394,30 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
+	protected String image(CollectionItem ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionItem.gif";
+	}
+
+	protected String image(CollectionLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionLiteralExp.gif";
+	}
+
+	protected String image(CollectionLiteralPart ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionLiteralPart.gif";
+	}
+
+	protected String text(CollectionLiteralPart ele) {
+		return null;
+	}
+
+	protected String image(CollectionRange ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionRange.gif";
+	}
+
+	protected String image(CollectionType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionType.gif";
+	}
+
 	protected String image(Comment ele) {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif";
 	}
@@ -356,6 +428,10 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		appendString(s, ele.getBody(), 40);			
 		s.append("\"");
 		return s.toString();
+	}
+
+	protected String image(Constraint ele) {
+		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif";
 	}
 
 	protected String text(DataType ele) {
@@ -379,6 +455,10 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 			s.append("]");
 		}
 		return s.toString();
+	}
+
+	protected String image(EnumLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/EnumLiteralExp.gif";
 	}
 
 	protected String text(org.eclipse.ocl.examples.pivot.Enumeration ele) {
@@ -421,8 +501,16 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif";
 	}
 
-	protected String text(EnumerationLiteral ele) {
-		return ele.getName();
+	protected String image(ExpressionInOcl ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/ExpressionInOCL.gif";
+	}
+
+	protected String image(IfExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/IfExp.gif";
+	}
+
+	protected String text(IfExp ele) {
+		return "if";
 	}
 
 	protected String image(ImportCS ele) {
@@ -441,8 +529,40 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/IntegerLiteralExp.gif";
 	}
 
-	protected String text(IntegerLiteralExp ele) {
-		return ele.getIntegerSymbol().toString();
+	protected String image(InvalidLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/InvalidLiteralExp.gif";
+	}
+
+	protected String image(InvalidType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/InvalidType.gif";
+	}
+
+	protected String image(IterateExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/IterateExp.gif";
+	}
+
+	protected String image(IteratorExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/IteratorExp.gif";
+	}
+
+	protected String image(LetExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/LetExp.gif";
+	}
+
+	protected String image(LiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/LiteralExp.gif";
+	}
+
+	protected String image(LoopExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/LoopExp.gif";
+	}
+
+	protected String image(MessageExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/MessageExp.gif";
+	}
+
+	protected String image(MessageType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/MessageType.gif";
 	}
 	
 	protected Object image(ModelElementCS ele) {
@@ -451,6 +571,27 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	
 	protected Object text(ModelElementCS ele) {
 		return doGetText(ele.getPivot());
+	}
+
+	protected String image(NavigationCallExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/NavigationCallExp.gif";
+	}
+
+	protected String image(NullLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/NullLiteralExp.gif";
+	}
+
+	protected String image(NumericLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/NumericLiteralExp.gif";
+	}
+
+	protected String text(OclExpression ele) {
+		Namespace namespace = PrettyPrintNameVisitor.getNamespace(ele.eContainer());
+		StringBuffer s = new StringBuffer();
+		s.append(PrettyPrintExprVisitor.prettyPrint(ele, namespace));
+		s.append(" : ");
+		s.append(PrettyPrintTypeVisitor.prettyPrint(ele.getType(), namespace));
+		return s.toString();
 	}
 
 	protected String image(Operation ele) {
@@ -466,6 +607,14 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		appendType(s, ele.getType());
 		appendMultiplicity(s, ele);
 		return s.toString();
+	}
+
+	protected String image(OperationCallExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/OperationCallExp.gif";
+	}
+
+	protected String image(OrderedSetType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/OrderedSetType.gif";
 	}
 
 	protected String image(org.eclipse.ocl.examples.pivot.Package ele) {
@@ -489,7 +638,12 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
-	protected String image(PrimitiveTypeRefCS ele) {
+	protected String image(PrimitiveLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/PrimitiveLiteralExp.gif";
+	}
+
+	protected String image(PrimitiveType ele) {
+//		return "/org.eclipse.ocl.edit/icons/full/obj16/PrimitiveType.gif";
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif";
 	}
 
@@ -506,24 +660,48 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
+	protected String image(PropertyCallExp ele) {
+		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/PropertyCallExp.gif";
+	}
+
 	protected String image(RealLiteralExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/RealLiteralExp.gif";
 	}
 
-	protected String text(RealLiteralExp ele) {
-		return ele.getRealSymbol().toString();
+	protected String image(SequenceType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/SequenceType.gif";
+	}
+
+	protected String image(SetType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/SetType.gif";
+	}
+
+	protected String image(StateExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/StateExp.gif";
 	}
 
 	protected String image(StringLiteralExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/StringLiteralExp.gif";
 	}
 
-	protected String text(StringLiteralExp ele) {
-		return ele.getStringSymbol();
+	protected String image(TemplateParameter ele) {
+		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif";
 	}
 
 	protected String text(TemplateParameter ele) {
 		return text(ele.getParameteredElement());
+	}
+
+	protected String image(TemplateParameterType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/TemplateParameterType.gif";
+	}
+
+	protected String image(TupleLiteralExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleLiteralExp.gif";
+	}
+
+	protected String image(TupleLiteralPart ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleLiteralPart.gif";
 	}
 
 	protected String image(TupleTypeCS ele) {
@@ -536,8 +714,8 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
-	protected String image(TemplateParameter ele) {
-		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif";
+	protected String image(TypeExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/TypeExp.gif";
 	}
 
 	protected String text(TypeRefCS ele) {
@@ -550,32 +728,20 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/UnlimitedNaturalLiteralExp.gif";
 	}
 
-	protected String text(UnlimitedNaturalLiteralExp ele) {
-		return ele.getUnlimitedNaturalSymbol().toString();
-	}
-
 	protected String image(Variable ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/Variable.gif";
 	}
 
 	protected String text(Variable ele) {
-		StringBuffer s = new StringBuffer();
-		appendName(s, ele);
-		s.append(" : ");
-		appendType(s, ele.getType());
-		return s.toString();
+		Namespace namespace = PrettyPrintNameVisitor.getNamespace(ele.eContainer());
+		return PrettyPrintExprVisitor.prettyPrint(ele, namespace);
 	}
 
 	protected String image(VariableExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/VariableExp.gif";
 	}
 
-	protected String text(VariableExp ele) {
-		StringBuffer s = new StringBuffer();
-		VariableDeclaration referredVariable = ele.getReferredVariable();
-		appendName(s, referredVariable);
-		s.append(" : ");
-		appendType(s, referredVariable.getType());
-		return s.toString();
+	protected String image(VoidType ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/VoidType.gif";
 	}
 }
