@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.8 2011/01/15 19:03:27 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.9 2011/01/17 08:11:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -117,8 +117,17 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 			return adapter;
 		}
 		Resource csResource = csElement.eResource();
+		if (csResource == null) {
+			return null;
+		}
 		ResourceSet csResourceSet = csResource.getResourceSet();
+		if (csResourceSet == null) {
+			return null;
+		}
 		CS2PivotResourceSetAdapter csAdapter = CS2PivotResourceSetAdapter.findAdapter(csResourceSet);
+		if (csAdapter == null) {
+			return null;
+		}
 		PivotManager pivotManager = csAdapter.getPivotManager();
 //		PivotManager pivotManager = PivotManager.getAdapter(resourceSet);
 		PivotScopeVisitor visitor = new PivotScopeVisitor(pivotManager);
