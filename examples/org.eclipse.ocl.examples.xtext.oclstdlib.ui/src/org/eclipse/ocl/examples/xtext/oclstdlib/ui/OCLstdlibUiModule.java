@@ -4,10 +4,10 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui;
 
 
-import org.eclipse.jface.text.ITextHover;
-import org.eclipse.jface.text.source.ISourceViewer;
+
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseSourceViewerConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -55,17 +55,6 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 	}
 
 	public Class<? extends XtextSourceViewerConfiguration> bindXtextSourceViewerConfiguration() {
-		return MyXtextSourceViewerConfiguration.class;
-	}
-	
-	public static class MyXtextSourceViewerConfiguration extends XtextSourceViewerConfiguration {
-
-		@Override
-		public ITextHover getTextHover(ISourceViewer sourceViewer,
-				String contentType) {
-			// TODO Create composite hover here
-			return super.getTextHover(sourceViewer, contentType);
-		}
-		
+		return BaseSourceViewerConfiguration.class;
 	}
 }

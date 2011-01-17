@@ -1,3 +1,19 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010,2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: NonXtextResourceSetBasedProjectProvider.java,v 1.1.2.2 2011/01/17 08:11:44 ewillink Exp $
+ */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui;
 
 import org.eclipse.core.resources.IProject;
