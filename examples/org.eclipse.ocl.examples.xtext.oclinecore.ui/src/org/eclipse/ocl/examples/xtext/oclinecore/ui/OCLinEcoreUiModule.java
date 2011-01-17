@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiModule.java,v 1.5.6.2 2010/12/06 18:32:29 ewillink Exp $
+ * $Id: OCLinEcoreUiModule.java,v 1.5.6.3 2011/01/17 08:11:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseSourceViewerConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -26,6 +27,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.XtextSourceViewerConfiguration;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
@@ -85,5 +87,9 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 	@Override
 	public Class<? extends IResourceForEditorInputFactory> bindIResourceForEditorInputFactory() {
 		return OCLinEcoreResourceForEditorInputFactory.class;
+	}
+
+	public Class<? extends XtextSourceViewerConfiguration> bindXtextSourceViewerConfiguration() {
+		return BaseSourceViewerConfiguration.class;
 	}
 }
