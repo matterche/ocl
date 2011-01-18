@@ -12,25 +12,35 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.7.6.4 2010/12/06 18:47:46 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.7.6.5 2011/01/18 21:39:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
+import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
 
 /**
@@ -38,13 +48,16 @@ import org.eclipse.xtext.resource.XtextResource;
  */
 public class SerializeTests extends XtextTestCase
 {
-	public XtextResource doSerialize(String stem) throws IOException {
+	public XtextResource doSerialize(String stem) throws Exception {
 		String inputName = stem + ".ecore";
 		String pivotName = stem + ".ecore.pivot";
 		String outputName = stem + ".serialized.oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI outputURI = getProjectFileURI(outputName);
+		//
+		//	Load as Ecore
+		//
 		Resource ecoreResource = resourceSet.getResource(inputURI, true);
 //		List<String> conversionErrors = new ArrayList<String>();
 //		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
@@ -53,15 +66,18 @@ public class SerializeTests extends XtextTestCase
 //		Resource xtextResource = resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 //		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI);
 //		xtextResource.getContents().add(documentCS);
-
-		
+		//
+		//	Ecore to Pivot
+		//		
 		PivotManager pivotManager = new PivotManager();
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, pivotManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
 		assertNoResourceErrors("Normalisation failed", pivotResource);
 		assertNoValidationErrors("Normalisation invalid", pivotResource);
-//		
+		//
+		//	Pivot to CS
+		//		
 		ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
 //		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
 //		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
@@ -74,29 +90,69 @@ public class SerializeTests extends XtextTestCase
 		pivot2cs.update();
 		assertNoResourceErrors("Conversion failed", xtextResource);
 //		csResource.save(null);
-		
-		
-		
+		//
+		//	CS save and reload
+		//		
 //		pivotResource.setURI(pivotURI);
 		pivotResource.save(null);
 		
 		
 		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
-		xtextResource.save(null);
+		try {
+			xtextResource.save(null);
+		}
+		catch (XtextSerializationException e) {
+			e.printStackTrace();
+			String xmiName = stem + ".serialized.oclinecore.xmi";
+			URI xmiURI = getProjectFileURI(xmiName);
+			Resource xmiResource = resourceSet.createResource(xmiURI);
+			xmiResource.getContents().addAll(xtextResource.getContents());
+			xmiResource.save(null);
+			fail();
+		}
 		resourceSet.getResources().clear();
-		XtextResource reloadedResource = (XtextResource) resourceSet.getResource(outputURI, true);
-		assertNoResourceErrors("Reload failed", reloadedResource);
-		assertNoUnresolvedProxies("unresolved reload proxies", reloadedResource);
-		
+		BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
+		assertNoResourceErrors("Reload failed", xtextResource2);
+		assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
+		//
+		//	CS to Pivot
+		//	
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource2, pivotManager);
+		Resource pivotResource2 = adapter.getPivotResource(xtextResource2);
+		assertNoUnresolvedProxies("Unresolved proxies", pivotResource2);
+		String pivotName2 = stem + "2.ecore.pivot";
+		URI pivotURI2 = getProjectFileURI(pivotName2);
+		pivotResource2.setURI(pivotURI2);
+		pivotResource2.save(null);
+		//
+		//	Pivot to Ecore
+		//		
+		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(pivotManager, pivotResource2));
+		outputObjects.remove(EcoreUtils.getNamedElement((List<? extends ENamedElement>)outputObjects, PivotConstants.ORPHANAGE_NAME));
+		if (outputObjects.size() == 1) {
+			outputObjects = ((EPackage)outputObjects.get(0)).getESubpackages();
+		}
+		String inputName2 = stem + "2.ecore";
+		URI inputURI2 = getProjectFileURI(inputName2);
+		Resource ecoreResource2 = resourceSet.createResource(inputURI2);
+		ecoreResource2.getContents().addAll(outputObjects);
+		assertNoResourceErrors("Ecore2Pivot failed", ecoreResource2);
+		ecoreResource2.save(null);
+		assertNoValidationErrors("Ecore2Pivot invalid", ecoreResource2);
+		//
+		//
+		//
+//		assertSameModel(pivotResource, pivotResource2);
+		assertSameModel(ecoreResource, ecoreResource2);
 		
 		return xtextResource;
 	}
 	
-	public void testBug320689Serialize() throws IOException, InterruptedException {
+	public void testBug320689Serialize() throws Exception {
 		doSerialize("Bug320689");
 	}
 
-	public void testCompanySerialize() throws IOException, InterruptedException {
+	public void testCompanySerialize() throws Exception {
 //		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
 //		logger.setLevel(Level.TRACE);
 //		logger.addAppender(new ConsoleAppender(new SimpleLayout()));
@@ -106,58 +162,58 @@ public class SerializeTests extends XtextTestCase
 	}
 
 // FIXME fails due to Bug 286558
-	public void testEcoreSerialize() throws IOException, InterruptedException {
+	public void testEcoreSerialize() throws Exception {
 		doSerialize("Ecore");
 	}
 
-	public void testImportsSerialize() throws IOException, InterruptedException {
+	public void testImportsSerialize() throws Exception {
 		XtextResource xtextResource = doSerialize("Imports");
 		RootPackageCS documentCS = (RootPackageCS) xtextResource.getContents().get(0);
 		List<ImportCS> imports = documentCS.getOwnedImport();
 		assertEquals("One import", 1, imports.size());
 	}
 
-//	public void testMarkupSerialize() throws IOException, InterruptedException {
+//	public void testMarkupSerialize() throws Exception {
 //		doSerialize("Markup");
 //	}
 
-	public void testNamesSerialize() throws IOException, InterruptedException {
+	public void testNamesSerialize() throws Exception {
 		doSerialize("Names");
 	}
 
-	public void testOCLinEcoreCSTSerialize() throws IOException, InterruptedException {
+	public void testOCLinEcoreCSTSerialize() throws Exception {
 		doSerialize("OCLinEcoreCST");
 	}
 
-	public void testOCLstdlibSerialize() throws IOException, InterruptedException {
+	public void testOCLstdlibSerialize() throws Exception {
 		doSerialize("OCLstdlib");
 	}
 
-	public void testOCLSerialize() throws IOException, InterruptedException {
+	public void testOCLSerialize() throws Exception {
 		doSerialize("OCL");
 	}
 
-	public void testOCLCSTSerialize() throws IOException, InterruptedException {
+	public void testOCLCSTSerialize() throws Exception {
 		doSerialize("OCLCST");
 	}
 
-	public void testOCLEcoreSerialize() throws IOException, InterruptedException {
+	public void testOCLEcoreSerialize() throws Exception {
 		doSerialize("OCLEcore");
 	}
 
-	public void testQVTSerialize() throws IOException, InterruptedException {
+	public void testQVTSerialize() throws Exception {
 		doSerialize("QVT");
 	}	
 
-	public void testXMLNamespaceSerialize() throws IOException, InterruptedException {
+	public void testXMLNamespaceSerialize() throws Exception {
 		doSerialize("XMLNamespace");
 	}	
 
-	public void testXMLTypeSerialize() throws IOException, InterruptedException {
+	public void testXMLTypeSerialize() throws Exception {
 		doSerialize("XMLType");
 	}
 
-//	public void testTemp() throws IOException, InterruptedException {
+//	public void testTemp() throws Exception {
 //		doSerialize("temp");
 //	}	
 }
