@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.9 2011/01/18 21:38:55 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.10 2011/01/18 22:14:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -401,6 +401,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			EnumerationLiteral pivotEnumerationLiteral = context.refreshNamedElement(EnumerationLiteral.class,
 				PivotPackage.Literals.ENUMERATION_LITERAL, csEnumerationLiteral);
 			newPivotLiterals.add(pivotEnumerationLiteral);
+			pivotEnumerationLiteral.setValue(BigInteger.valueOf(csEnumerationLiteral.getValue()));
 		}
 		context.refreshList(pivotElement.getOwnedLiterals(), newPivotLiterals);
 	}
