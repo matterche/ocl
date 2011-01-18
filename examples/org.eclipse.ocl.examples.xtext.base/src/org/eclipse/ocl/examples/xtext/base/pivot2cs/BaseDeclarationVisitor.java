@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.5 2010/12/31 19:11:44 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.6 2011/01/18 21:38:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -106,7 +106,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitDataType(DataType object) {
 		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSTPackage.Literals.DATA_TYPE_CS, object);
-		context.refreshQualifiers(csElement.getQualifier(), "serailazable", object.isSerializable());
+		context.refreshQualifiers(csElement.getQualifier(), "serializable", object.isSerializable());
 		return csElement;
 	}
 
@@ -122,7 +122,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitEnumeration(org.eclipse.ocl.examples.pivot.Enumeration object) {
 		EnumerationCS csElement = context.refreshClassifier(EnumerationCS.class, BaseCSTPackage.Literals.ENUMERATION_CS, object);
 		context.refreshList(csElement.getOwnedLiterals(), context.visitDeclarations(EnumerationLiteralCS.class, object.getOwnedLiterals()));
-		context.refreshQualifiers(csElement.getQualifier(), "serailazable", object.isSerializable());
+		context.refreshQualifiers(csElement.getQualifier(), "serializable", object.isSerializable());
 		return csElement;
 	}
 

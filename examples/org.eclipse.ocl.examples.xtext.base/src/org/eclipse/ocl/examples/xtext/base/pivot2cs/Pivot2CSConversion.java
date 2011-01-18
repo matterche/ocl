@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.1.2.2 2010/12/31 19:11:44 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.1.2.3 2011/01/18 21:38:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -312,12 +312,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				csElement.setLower(lower);
 				csElement.setUpper(upper);
 			}
-			if (object.eIsSet(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_ORDERED)) {
-				csElement.getQualifier().add(object.isOrdered() ? "ordered" : "!ordered");
-			}
-			if (object.eIsSet(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_UNIQUE)) {
-				csElement.getQualifier().add(object.isUnique() ? "unique" : "!unique");
-			}
+			csElement.getQualifier().add(object.isOrdered() ? "ordered" : "!ordered");
+			csElement.getQualifier().add(object.isUnique() ? "unique" : "!unique");
 		}
 		return csElement;
 	}

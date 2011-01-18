@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.12 2011/01/16 18:38:18 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.13 2011/01/18 21:38:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -730,9 +730,9 @@ public class CS2PivotConversion extends AbstractConversion
 	 * @param type
 	 */
 	public void setType(TypedElement pivotElement, Type type) {
-		if (type == null) {
-			type = pivotManager.getOclInvalidType();	// FIXME unresolved type with explanation
-		}
+//		if (type == null) {
+//			type = pivotManager.getOclInvalidType();	// FIXME unresolved type with explanation
+//		}
 		if (type != pivotElement.getType()) {
 			pivotElement.setType(type);
 		}

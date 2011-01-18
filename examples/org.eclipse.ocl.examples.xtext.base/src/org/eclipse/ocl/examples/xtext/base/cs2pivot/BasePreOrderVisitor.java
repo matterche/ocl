@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.8 2011/01/07 12:13:17 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.9 2011/01/18 21:38:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -510,11 +511,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
-	public Continuation<?> visitReferenceCS(ReferenceCS object) {
-		return null;
-	}
-
-	@Override
 	public Continuation<?> visitReferenceCSRef(ReferenceCSRef object) {
 		return null;
 	}
@@ -525,10 +521,29 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		List<String> qualifiers = csStructuralFeature.getQualifier();
 		pivotElement.setIsComposite(qualifiers.contains("composes"));
 		pivotElement.setIsID(qualifiers.contains("id"));
+		pivotElement.setIsOrdered(qualifiers.contains("ordered"));
 		pivotElement.setIsResolveProxies(qualifiers.contains("resolve"));
 		pivotElement.setIsTransient(qualifiers.contains("transient"));
+		pivotElement.setIsUnique(qualifiers.contains("unique"));
 		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
 		pivotElement.setIsVolatile(qualifiers.contains("volatile"));
+		String multiplicity = csStructuralFeature.getMultiplicity();
+		if (multiplicity == null) {
+			pivotElement.setLower(BigInteger.valueOf(csStructuralFeature.getLower()));
+			pivotElement.setUpper(BigInteger.valueOf(csStructuralFeature.getUpper()));
+		}
+		else if ("*".equals(multiplicity)) {
+			pivotElement.setLower(BigInteger.valueOf(0));
+			pivotElement.setUpper(BigInteger.valueOf(-1));
+		}
+		else if ("+".equals(multiplicity)) {
+			pivotElement.setLower(BigInteger.valueOf(1));
+			pivotElement.setUpper(BigInteger.valueOf(-1));
+		}
+		else if ("?".equals(multiplicity)) {
+			pivotElement.setLower(BigInteger.valueOf(0));
+			pivotElement.setUpper(BigInteger.valueOf(1));
+		}
 		if (csStructuralFeature.eIsSet(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS__DEFAULT)) {
 			pivotElement.setDefault(csStructuralFeature.getDefault());
 		}
