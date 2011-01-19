@@ -12,16 +12,20 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.6 2011/01/18 21:38:55 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.7 2011/01/19 07:30:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -30,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
@@ -67,6 +72,11 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 
 	protected void handleConstraint(Constraint object, ConstraintCS csElement) {
 		csElement.setStereotype(object.getStereotype());
+		ValueSpecification specification = object.getSpecification();
+		if (specification instanceof OpaqueExpression) {
+			List<String> bodies = ((OpaqueExpression)specification).getBodies();
+			csElement.setExprString(StringUtils.splice(bodies, "\n"));
+		}
 	}
 
 	@Override

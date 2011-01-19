@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.10 2011/01/18 22:14:33 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.11 2011/01/19 07:30:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -53,7 +53,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
@@ -118,12 +117,12 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Operation pivotOperation = context.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
+			Operation pivotOperation = context.refreshTypedMultiplicityElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 			context.refreshTemplateSignature(csElement, pivotOperation);
 			List<ParameterCS> csParameters = csElement.getOwnedParameter();
 			List<Parameter> newPivotParameters = new ArrayList<Parameter>();
 			for (ParameterCS csParameter : csParameters) {
-				Parameter pivotParameter = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
 				newPivotParameters.add(pivotParameter);
 			}
 			context.refreshList(pivotOperation.getOwnedParameters(), newPivotParameters);
@@ -518,33 +517,14 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitStructuralFeatureCS(StructuralFeatureCS csStructuralFeature) {
-		Property pivotElement = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csStructuralFeature);
+		Property pivotElement = context.refreshTypedMultiplicityElement(Property.class, PivotPackage.Literals.PROPERTY, csStructuralFeature);
 		List<String> qualifiers = csStructuralFeature.getQualifier();
 		pivotElement.setIsComposite(qualifiers.contains("composes"));
 		pivotElement.setIsID(qualifiers.contains("id"));
-		pivotElement.setIsOrdered(qualifiers.contains("ordered"));
 		pivotElement.setIsResolveProxies(qualifiers.contains("resolve"));
 		pivotElement.setIsTransient(qualifiers.contains("transient"));
-		pivotElement.setIsUnique(qualifiers.contains("unique"));
 		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
 		pivotElement.setIsVolatile(qualifiers.contains("volatile"));
-		String multiplicity = csStructuralFeature.getMultiplicity();
-		if (multiplicity == null) {
-			pivotElement.setLower(BigInteger.valueOf(csStructuralFeature.getLower()));
-			pivotElement.setUpper(BigInteger.valueOf(csStructuralFeature.getUpper()));
-		}
-		else if ("*".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(0));
-			pivotElement.setUpper(BigInteger.valueOf(-1));
-		}
-		else if ("+".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(1));
-			pivotElement.setUpper(BigInteger.valueOf(-1));
-		}
-		else if ("?".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(0));
-			pivotElement.setUpper(BigInteger.valueOf(1));
-		}
 		if (csStructuralFeature.eIsSet(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS__DEFAULT)) {
 			pivotElement.setDefault(csStructuralFeature.getDefault());
 		}
@@ -553,6 +533,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 		return null;
 	}
+
 
 	@Override
 	public Continuation<?> visitTemplateBindingCS(TemplateBindingCS csTemplateBinding) {

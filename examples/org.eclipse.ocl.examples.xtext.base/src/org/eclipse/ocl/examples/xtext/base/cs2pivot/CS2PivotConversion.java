@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.13 2011/01/18 21:38:55 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.14 2011/01/19 07:30:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -54,6 +55,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
@@ -71,6 +73,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.OperationContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.PackageContentContinuation;
@@ -705,6 +708,32 @@ public class CS2PivotConversion extends AbstractConversion
 			newPivotTemplateParameters.add(pivotTemplateParameter);
 		}
 		refreshList(pivotTemplateSignature.getOwnedParameters(), newPivotTemplateParameters);
+	}
+	
+	public <T extends TypedMultiplicityElement> T  refreshTypedMultiplicityElement(Class<T> pivotClass,
+			EClass pivotEClass, TypedElementCS csStructuralFeature) {
+		T pivotElement = refreshNamedElement(pivotClass, pivotEClass, csStructuralFeature);
+		List<String> qualifiers = csStructuralFeature.getQualifier();
+		pivotElement.setIsOrdered(qualifiers.contains("ordered"));
+		pivotElement.setIsUnique(qualifiers.contains("unique"));
+		String multiplicity = csStructuralFeature.getMultiplicity();
+		if (multiplicity == null) {
+			pivotElement.setLower(BigInteger.valueOf(csStructuralFeature.getLower()));
+			pivotElement.setUpper(BigInteger.valueOf(csStructuralFeature.getUpper()));
+		}
+		else if ("*".equals(multiplicity)) {
+			pivotElement.setLower(BigInteger.valueOf(0));
+			pivotElement.setUpper(BigInteger.valueOf(-1));
+		}
+		else if ("+".equals(multiplicity)) {
+			pivotElement.setLower(BigInteger.valueOf(1));
+			pivotElement.setUpper(BigInteger.valueOf(-1));
+		}
+		else if ("?".equals(multiplicity)) {
+			pivotElement.setLower(BigInteger.valueOf(0));
+			pivotElement.setUpper(BigInteger.valueOf(1));
+		}
+		return pivotElement;
 	}
 
 	public Operation resolveOperationCall(OperationCallExp pivotElement) {
