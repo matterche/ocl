@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.1.2.3 2011/01/18 21:38:55 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.1.2.4 2011/01/19 22:22:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -268,6 +268,9 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	public <T extends StructuralFeatureCS> T refreshStructuralFeature(Class<T> csClass, EClass csEClass, Property object) {
 		T csElement = refreshTypedMultiplicityElement(csClass, csEClass, object);
+		refreshQualifiers(csElement.getQualifier(), "derived", object.isDerived());
+		refreshQualifiers(csElement.getQualifier(), "readonly", object.isReadOnly());
+		refreshQualifiers(csElement.getQualifier(), "static", object.isStatic());
 		refreshQualifiers(csElement.getQualifier(), "transient", object.isTransient());
 		refreshQualifiers(csElement.getQualifier(), "unsettable", object.isUnsettable());
 		refreshQualifiers(csElement.getQualifier(), "volatile", object.isVolatile());
@@ -287,6 +290,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			TypedRefCS typeRef = visitReference(TypedRefCS.class, type);
 			csElement.setOwnedType(typeRef);
 		}
+		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules()));
 		return csElement;
 	}
 
@@ -312,9 +316,9 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				csElement.setLower(lower);
 				csElement.setUpper(upper);
 			}
-			csElement.getQualifier().add(object.isOrdered() ? "ordered" : "!ordered");
-			csElement.getQualifier().add(object.isUnique() ? "unique" : "!unique");
 		}
+		csElement.getQualifier().add(object.isOrdered() ? "ordered" : "!ordered");
+		csElement.getQualifier().add(object.isUnique() ? "unique" : "!unique");
 		return csElement;
 	}
 

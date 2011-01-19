@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.7 2011/01/19 07:30:05 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.8 2011/01/19 22:22:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -154,7 +154,6 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		OperationCS csElement = context.refreshTypedMultiplicityElement(OperationCS.class, BaseCSTPackage.Literals.OPERATION_CS, object);
 		context.refreshList(csElement.getOwnedParameter(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters()));
 //		context.refreshList(csElement.getOwnedException(), context.visitList(ParameterCS.class, object.getOwnedRules()));
-		context.refreshList(csElement.getOwnedConstraint(), context.visitDeclarations(ConstraintCS.class, object.getOwnedRules()));
 		return csElement;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.14 2011/01/19 07:30:05 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.15 2011/01/19 22:22:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -56,6 +56,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
@@ -736,19 +737,25 @@ public class CS2PivotConversion extends AbstractConversion
 		return pivotElement;
 	}
 
-	public Operation resolveOperationCall(OperationCallExp pivotElement) {
+	public Operation resolveOperationCall(NamedElementCS csOperator, OperationCallExp pivotElement) {
 		OclExpression sourceExpression = pivotElement.getSource();
 		Type sourceType = sourceExpression.getType();
 		String operator = pivotElement.getName();
+		Operation operation;
 		List<OclExpression> arguments = pivotElement.getArguments();
 		if (arguments.isEmpty()) {
-			return pivotManager.resolveOperation(sourceType, operator);
+			operation = pivotManager.resolveOperation(sourceType, operator);
 		}
 		else {
 			OclExpression argumentExpression = arguments.get(0);
 			Type rightType = argumentExpression.getType();
-			return pivotManager.resolveOperation(sourceType, operator, rightType);
+			operation = pivotManager.resolveOperation(sourceType, operator, rightType);
 		}
+		if (operation == null) {
+			addError(csOperator, OCLMessages.ErrorUnresolvedOperationCall, csOperator);
+		}
+		pivotElement.setReferredOperation(operation);
+		return operation;
 	}
 
 	/**

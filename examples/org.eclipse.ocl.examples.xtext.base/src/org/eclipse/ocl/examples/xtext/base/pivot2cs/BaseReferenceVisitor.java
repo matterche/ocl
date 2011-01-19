@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.1.2.5 2011/01/19 07:30:05 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.1.2.6 2011/01/19 22:22:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -51,7 +51,8 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		csRef.setType(type);
 		csRef.setPivot(type);
 		org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(type);
-		if (!(type instanceof PrimitiveType) && (objectPackage != scopePackage)) {
+		if (!(type instanceof PrimitiveType) && (objectPackage.eResource() != scopePackage.eResource())) {
+//		if (!(type instanceof PrimitiveType) && (objectPackage != scopePackage)) {
 			context.importPackage(objectPackage);
 		}
 		List<TemplateBinding> templateBindings = object.getTemplateBindings();

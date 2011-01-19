@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.11 2011/01/19 07:30:05 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.12 2011/01/19 22:22:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -520,8 +520,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		Property pivotElement = context.refreshTypedMultiplicityElement(Property.class, PivotPackage.Literals.PROPERTY, csStructuralFeature);
 		List<String> qualifiers = csStructuralFeature.getQualifier();
 		pivotElement.setIsComposite(qualifiers.contains("composes"));
+		pivotElement.setIsDerived(qualifiers.contains("derived"));
 		pivotElement.setIsID(qualifiers.contains("id"));
+		pivotElement.setIsReadOnly(qualifiers.contains("readonly"));
 		pivotElement.setIsResolveProxies(qualifiers.contains("resolve"));
+		pivotElement.setIsStatic(qualifiers.contains("static"));
 		pivotElement.setIsTransient(qualifiers.contains("transient"));
 		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
 		pivotElement.setIsVolatile(qualifiers.contains("volatile"));
