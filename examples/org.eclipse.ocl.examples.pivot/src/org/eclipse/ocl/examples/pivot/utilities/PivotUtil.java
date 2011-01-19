@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.11 2011/01/15 22:50:59 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.12 2011/01/19 08:49:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -65,7 +65,7 @@ public class PivotUtil
 			if (o2 == null) {
 				return 1;
 			}
-			return o1.getOrder().compareTo(o2.getOrder()); // NB least positive
+			return o2.getOrder().compareTo(o1.getOrder()); // NB least positive
 															// is highest
 															// precedence
 		}
