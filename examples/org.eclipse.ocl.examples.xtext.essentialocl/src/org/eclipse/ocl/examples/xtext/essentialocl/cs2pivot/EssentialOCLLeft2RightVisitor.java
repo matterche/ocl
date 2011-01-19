@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.14 2011/01/16 18:43:34 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.15 2011/01/19 07:30:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -91,6 +91,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil.PrecedenceComparator;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -309,7 +310,16 @@ public class EssentialOCLLeft2RightVisitor
 			ExpressionInOcl pivotElement = PivotUtil.getPivot(ExpressionInOcl.class, csContext);
 			return pivotElement.getContextVariable();
 		}
+		else if (csExp instanceof ConstraintCS) {
+			ConstraintCS csContext = (ConstraintCS) csExp;
+			Constraint constraint = PivotUtil.getPivot(Constraint.class, csContext);
+			ExpressionInOcl pivotElement = (ExpressionInOcl) constraint.getSpecification();
+			return pivotElement.getContextVariable();
+		}
 		if (eContainer instanceof ContextCS) {
+			return getImplicitSource((ModelElementCS) eContainer, namedElement);
+		}
+		else if (eContainer instanceof ConstraintCS) {
 			return getImplicitSource((ModelElementCS) eContainer, namedElement);
 		}
 		else if (eContainer instanceof ExpCS) {
