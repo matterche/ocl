@@ -12,22 +12,23 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.7.6.5 2011/01/18 21:39:03 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.7.6.6 2011/01/19 22:22:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
@@ -40,7 +41,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
-import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
 
 /**
@@ -59,6 +59,7 @@ public class SerializeTests extends XtextTestCase
 		//	Load as Ecore
 		//
 		Resource ecoreResource = resourceSet.getResource(inputURI, true);
+		mapOwnURI(ecoreResource);
 //		List<String> conversionErrors = new ArrayList<String>();
 //		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
 //		Resource eResource = documentCS.eResource();
@@ -101,14 +102,14 @@ public class SerializeTests extends XtextTestCase
 		try {
 			xtextResource.save(null);
 		}
-		catch (XtextSerializationException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 			String xmiName = stem + ".serialized.oclinecore.xmi";
 			URI xmiURI = getProjectFileURI(xmiName);
 			Resource xmiResource = resourceSet.createResource(xmiURI);
 			xmiResource.getContents().addAll(xtextResource.getContents());
 			xmiResource.save(null);
-			fail();
+			fail(e.toString());
 		}
 		resourceSet.getResources().clear();
 		BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
@@ -146,6 +147,29 @@ public class SerializeTests extends XtextTestCase
 		assertSameModel(ecoreResource, ecoreResource2);
 		
 		return xtextResource;
+	}
+
+	/**
+	 * Some example files have inconsistent self references so map the URI back to
+	 * the resource.
+	 */
+	public void mapOwnURI(Resource resource) {
+		List<EObject> contents = resource.getContents();
+		if (contents.size() == 1) {
+			EObject root = contents.get(0);
+			if (root instanceof EPackage) {
+				EPackage rootPackage = (EPackage) root;
+				String nsURI = rootPackage.getNsURI();
+				if (nsURI != null) {
+					Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)resourceSet).getURIResourceMap();
+					if (uriResourceMap == null) {
+						uriResourceMap = new HashMap<URI, Resource>();
+						((ResourceSetImpl)resourceSet).setURIResourceMap(uriResourceMap);
+					}
+					uriResourceMap.put(URI.createURI(nsURI), resource);
+				}
+			}
+		}
 	}
 	
 	public void testBug320689Serialize() throws Exception {

@@ -208,6 +208,7 @@ public class XtextTestCase extends TestCase
 	public static void assertSameModel(Resource resource1, Resource resource2) throws IOException, InterruptedException {
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+//		options.put(MatchOptions.OPTION_DISTINCT_METAMODELS, Boolean.TRUE);
         MatchModel match = MatchService.doResourceMatch(resource1, resource2, options);
         List<UnmatchElement> unmatchedElements = match.getUnmatchedElements();
         int unmatchedSize = unmatchedElements.size();
