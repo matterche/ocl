@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreFormatter.java,v 1.4.6.2 2010/12/06 18:28:19 ewillink Exp $
+ * $Id: OCLinEcoreFormatter.java,v 1.4.6.3 2011/01/19 07:30:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.formatting;
 
@@ -118,8 +118,8 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			DataTypeCSElements a = f.getDataTypeCSAccess();
-			setBraces(c, a.getLeftCurlyBracketKeyword_5_0_0(), a.getRightCurlyBracketKeyword_5_0_2());
 			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_4_0(), a.getRightCurlyBracketKeyword_4_2());
+			setBraces(c, a.getLeftCurlyBracketKeyword_5_0_0(), a.getRightCurlyBracketKeyword_5_0_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_5_1());
 	    }
 	    {
@@ -136,7 +136,8 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			EnumerationCSElements a = f.getEnumerationCSAccess();
-			setBraces(c, a.getLeftCurlyBracketKeyword_4_0(), a.getRightCurlyBracketKeyword_4_2());
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_4_0(), a.getRightCurlyBracketKeyword_4_2());
+//			setBraces(c, a.getLeftCurlyBracketKeyword_4_0(), a.getRightCurlyBracketKeyword_4_2());
 			setBraces(c, a.getLeftCurlyBracketKeyword_5_0_0(), a.getRightCurlyBracketKeyword_5_0_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_5_1());
 	    }
