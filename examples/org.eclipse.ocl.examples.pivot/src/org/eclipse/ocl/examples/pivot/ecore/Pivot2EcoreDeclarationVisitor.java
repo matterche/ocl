@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.1.2.1 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.1.2.2 2011/01/19 07:30:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
@@ -65,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
@@ -204,8 +206,15 @@ public class Pivot2EcoreDeclarationVisitor
 		if (!(specification instanceof OpaqueExpression)) {
 			return null;
 		}
+		String exprString;
 		List<String> bodies = ((OpaqueExpression)specification).getBodies();
-		if ((bodies == null) || bodies.isEmpty()) {
+		if ((bodies != null) && !bodies.isEmpty()) {
+			exprString = StringUtils.splice(bodies, "");
+		}
+		else if (specification instanceof ExpressionInOcl) {
+			exprString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getBodyExpression(), PrettyPrintExprVisitor.getNamespace(specification));
+		}
+		else {
 			return null;
 		}
 		EModelElement eModelElement = context.getCreated(EModelElement.class, (Element)pivotConstraint.eContainer());
@@ -215,7 +224,6 @@ public class Pivot2EcoreDeclarationVisitor
 			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
 			eModelElement.getEAnnotations().add(oclAnnotation);
 		}
-		String exprString = StringUtils.splice(bodies, "");
 		String stereotype = pivotConstraint.getStereotype();
 		String name = pivotConstraint.getName();
 		if ("invariant".equals(stereotype)) {
