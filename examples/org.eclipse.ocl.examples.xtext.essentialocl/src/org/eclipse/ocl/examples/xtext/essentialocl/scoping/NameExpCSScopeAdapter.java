@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSScopeAdapter.java,v 1.1.2.3 2010/12/28 12:19:24 ewillink Exp $
+ * $Id: NameExpCSScopeAdapter.java,v 1.1.2.4 2011/01/19 22:22:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -38,25 +37,16 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		NameExpCS target = getTarget();
-		List<Namespace> namespaces = target.getNamespace();
-		int namespaceCount = namespaces.size();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT) {
+			List<Namespace> namespaces = target.getNamespace();
+			int namespaceCount = namespaces.size();
 			if (namespaceCount > 0) {
 				ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, namespaces.get(namespaceCount-1));
 				if (scopeAdapter != null) {
-//					return scopeAdapter.getOuterScopeView(scopeView.getTargetReference());
 					return scopeAdapter.computeLookup(environmentView, scopeView);
 				}				
 				return null;
 			}
-		}
-		else if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__NAMESPACE) {
-			EObject child = scopeView.getChild();
-//			if (child != namespaces.get(0)) {
-//				throw new UnsupportedOperationException("NameExpCSScopeAdapter.computeLookup namespace");
-//			}
-//			return null;
 		}
 		return scopeView.getOuterScope();
 	}

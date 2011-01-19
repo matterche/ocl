@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.5 2011/01/17 08:11:57 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.6 2011/01/19 22:22:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;

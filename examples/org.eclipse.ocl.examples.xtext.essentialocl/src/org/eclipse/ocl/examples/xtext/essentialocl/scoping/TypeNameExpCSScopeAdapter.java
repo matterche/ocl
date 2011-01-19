@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TypeNameExpCSScopeAdapter.java,v 1.1.2.2 2011/01/12 10:30:52 ewillink Exp $
+ * $Id: TypeNameExpCSScopeAdapter.java,v 1.1.2.3 2011/01/19 22:22:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.apache.log4j.Logger;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
@@ -31,8 +31,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS
 
 public class TypeNameExpCSScopeAdapter extends ModelElementCSScopeAdapter<TypeNameExpCS, Element>
 {
-	private static final Logger logger = Logger.getLogger(TypeNameExpCSScopeAdapter.class);
-
 	public TypeNameExpCSScopeAdapter(PivotManager pivotManager, TypeNameExpCS csElement) {
 		super(pivotManager, csElement, Element.class);	// FIXME
 	}
@@ -40,38 +38,14 @@ public class TypeNameExpCSScopeAdapter extends ModelElementCSScopeAdapter<TypeNa
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__NAMESPACE) {
-			InternalEList<Namespace> namespaces = (InternalEList<Namespace>) target.getNamespace();
-			for (int index = 0; index < namespaces.size(); index++) {
-				Namespace namespace = namespaces.basicGet(index);
-				if (namespace.eIsProxy()) {
-					if (index == 0) {
-						return scopeView.getOuterScope();
-					}
-					else {
-						ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, namespaces.get(index-1));
-						if (scopeAdapter != null) {
-							scopeAdapter.computeLookup(environmentView, scopeView);
-						}
-						return null;
-					}
-				}
-			}
-			logger.warn("TypeNameExpCS.namespace resolution with no unresolved proxies");
-		}
-		else if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__ELEMENT) {
-			InternalEList<Namespace> namespaces = (InternalEList<Namespace>) target.getNamespace();
-			for (int index = 0; index < namespaces.size(); index++) {	// FIXME debugging
-				Namespace namespace = namespaces.basicGet(index);
-				if (namespace.eIsProxy()) {
-					logger.warn("element resolution with unresolved namespace proxies");
-				}
-			}
-			if (namespaces.size() > 0) {
-				ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, namespaces.get(namespaces.size()-1));
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__ELEMENT) {
+			List<Namespace> namespaces = target.getNamespace();
+			int namespaceCount = namespaces.size();
+			if (namespaceCount > 0) {
+				ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, namespaces.get(namespaceCount-1));
 				if (scopeAdapter != null) {
 					return scopeAdapter.computeLookup(environmentView, scopeView);
-				}
+				}				
 				return null;
 			}
 		}
