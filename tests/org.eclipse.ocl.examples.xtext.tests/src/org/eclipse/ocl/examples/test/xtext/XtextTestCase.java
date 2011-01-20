@@ -205,11 +205,11 @@ public class XtextTestCase extends TestCase
 		assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
 	}
 	
-	public static void assertSameModel(Resource resource1, Resource resource2) throws IOException, InterruptedException {
+	public static void assertSameModel(Resource expectedResource, Resource actualResource) throws IOException, InterruptedException {
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
 //		options.put(MatchOptions.OPTION_DISTINCT_METAMODELS, Boolean.TRUE);
-        MatchModel match = MatchService.doResourceMatch(resource1, resource2, options);
+        MatchModel match = MatchService.doResourceMatch(actualResource, expectedResource, options);
         List<UnmatchElement> unmatchedElements = match.getUnmatchedElements();
         int unmatchedSize = unmatchedElements.size();
 		if (unmatchedSize > 0) {

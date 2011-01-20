@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.7.6.6 2011/01/19 22:22:43 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.7.6.7 2011/01/20 19:50:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
