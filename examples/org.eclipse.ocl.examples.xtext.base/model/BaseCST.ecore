@@ -148,6 +148,7 @@
       interface="true" eSuperTypes="#//MonikeredElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterizedTypeRefCS" abstract="true"
       eSuperTypes="#//TypedRefCS">
+    <eOperations name="getType" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateBinding" eType="#//TemplateBindingCS"
         containment="true" eOpposite="#//TemplateBindingCS/owningTemplateBindableElement"/>
   </eClassifiers>

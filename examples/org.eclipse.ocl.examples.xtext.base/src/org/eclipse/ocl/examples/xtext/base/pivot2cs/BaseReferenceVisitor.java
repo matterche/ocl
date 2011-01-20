@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.1.2.6 2011/01/19 22:22:49 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.1.2.7 2011/01/20 19:49:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -33,6 +34,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 
 public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pivot2CSConversion>
 {
@@ -44,16 +46,28 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 
 	@Override
 	public ElementCS visitClass(org.eclipse.ocl.examples.pivot.Class object) {
+		if (object.eContainingFeature() == PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL) {
+			WildcardTypeRefCS csRef = BaseCSTFactory.eINSTANCE.createWildcardTypeRefCS();
+			csRef.setPivot(object);
+			return csRef;
+		}
 		org.eclipse.ocl.examples.pivot.Class scopeClass = context.getScope();
 		org.eclipse.ocl.examples.pivot.Package scopePackage = PivotUtil.getPackage(scopeClass);
 		TypedTypeRefCS csRef = BaseCSTFactory.eINSTANCE.createTypedTypeRefCS();
 		Type type = PivotUtil.getUnspecializedTemplateableElement(object);
 		csRef.setType(type);
-		csRef.setPivot(type);
-		org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(type);
-		if (!(type instanceof PrimitiveType) && (objectPackage.eResource() != scopePackage.eResource())) {
-//		if (!(type instanceof PrimitiveType) && (objectPackage != scopePackage)) {
-			context.importPackage(objectPackage);
+		csRef.setPivot(type);		// FIXME object ??
+		if (!(type instanceof PrimitiveType)) {
+			org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(type);
+			if (objectPackage.eResource() == scopePackage.eResource()) {
+				// No need to import when in same resource
+			}
+			else if (objectPackage == context.getPivotManager().getOrphanPackage()) {
+				// No need to import orphans
+			}
+			else {
+				context.importPackage(objectPackage);
+			}
 		}
 		List<TemplateBinding> templateBindings = object.getTemplateBindings();
 		if (templateBindings.isEmpty()) {

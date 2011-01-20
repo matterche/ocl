@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.1.2.7 2011/01/07 12:13:17 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.1.2.8 2011/01/20 19:49:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -194,9 +194,10 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitReferenceCS(ReferenceCS csReference) {
-		@SuppressWarnings("unused")
 		Property pivotElement = PivotUtil.getPivot(Property.class, csReference);
-		// FIXME opposite
+		ReferenceCSRef pivotOppositeRef = csReference.getOpposite();
+		Property pivotOpposite = pivotOppositeRef != null ? pivotOppositeRef.getRef() : null;
+		pivotElement.setOpposite(pivotOpposite);
 		return visitTypedElementCS(csReference);
 	}
 
@@ -234,6 +235,5 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		context.setType(pivotElement, pivotType);
 		context.refreshPivotList(Constraint.class, pivotElement.getOwnedRules(), csTypedElement.getOwnedConstraint());
 		return null;
-//		return new TypedElementCSCompletion(context, csTypedElement, pivotElement);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.6.6.6 2010/12/28 12:18:29 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.6.6.7 2011/01/20 19:49:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -2394,6 +2394,8 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		initEClass(parameterizedTypeRefCSEClass, ParameterizedTypeRefCS.class, "ParameterizedTypeRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getParameterizedTypeRefCS_OwnedTemplateBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwningTemplateBindableElement(), "ownedTemplateBinding", null, 0, 1, ParameterizedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(parameterizedTypeRefCSEClass, thePivotPackage.getType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(primitiveTypeRefCSEClass, PrimitiveTypeRefCS.class, "PrimitiveTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

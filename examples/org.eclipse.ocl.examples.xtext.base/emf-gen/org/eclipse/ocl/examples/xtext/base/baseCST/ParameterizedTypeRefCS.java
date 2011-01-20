@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterizedTypeRefCS.java,v 1.2.6.2 2010/12/06 17:53:56 ewillink Exp $
+ * $Id: ParameterizedTypeRefCS.java,v 1.2.6.3 2011/01/20 19:49:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -64,5 +64,13 @@ public interface ParameterizedTypeRefCS extends TypedRefCS {
 	 */
 	void setOwnedTemplateBinding(TemplateBindingCS value);
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Type getType();
+
 	Type getPivot();
 } // ParameterizedTypeRefCS

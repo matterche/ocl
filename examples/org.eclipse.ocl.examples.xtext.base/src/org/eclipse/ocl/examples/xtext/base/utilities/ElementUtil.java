@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.1.2.5 2011/01/20 19:49:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
@@ -190,6 +191,9 @@ public class ElementUtil
 		Type type = csParameterizedTypeRef.getPivot();
 		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
 			ParameterableElementCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+			if (ownedActualParameter instanceof WildcardTypeRefCS) {
+				return true;
+			}
 			org.eclipse.ocl.examples.pivot.Class actualParameterClass = (org.eclipse.ocl.examples.pivot.Class) ownedActualParameter.getPivot();
 			TemplateParameter owningTemplateParameter = actualParameterClass.getOwningTemplateParameter();
 			if (owningTemplateParameter == null) {

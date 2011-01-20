@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.4 2011/01/16 09:03:10 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.5 2011/01/20 19:49:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -24,6 +24,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
@@ -41,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
@@ -472,7 +474,21 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 
 	@Override
 	public Object visitWildcardTypeRefCS(WildcardTypeRefCS object) {
-		context.append(WILDCARD_INDICATOR);
+		TemplateParameterSubstitutionCS csTemplateParameterSubstitution = (TemplateParameterSubstitutionCS)object.eContainer();
+		TemplateBindingCS csTemplateBinding = csTemplateParameterSubstitution.getOwningTemplateBinding();
+		int index = csTemplateBinding.getOwnedParameterSubstitution().indexOf(csTemplateParameterSubstitution);
+		ParameterizedTypeRefCS csTemplateBindableElement = csTemplateBinding.getOwningTemplateBindableElement();
+		Type type = csTemplateBindableElement.getType();
+		TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
+		context.appendElement(type);
+		context.append(BINDINGS_PREFIX);
+		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
+		if (index < templateParameters.size()) {
+			TemplateParameter templateParameter = templateParameters.get(index);
+			context.appendName(templateParameter.getParameteredElement());
+			context.append(MONIKER_SCOPE_SEPARATOR);
+		}
+		context.append(WILDCARD_INDICATOR + index);
 		return true;
 	}
 }

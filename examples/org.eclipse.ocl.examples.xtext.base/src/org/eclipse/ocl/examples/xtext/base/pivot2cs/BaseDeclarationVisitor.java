@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.8 2011/01/19 22:22:49 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.9 2011/01/20 19:49:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -153,7 +153,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitOperation(Operation object) {
 		OperationCS csElement = context.refreshTypedMultiplicityElement(OperationCS.class, BaseCSTPackage.Literals.OPERATION_CS, object);
 		context.refreshList(csElement.getOwnedParameter(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters()));
-//		context.refreshList(csElement.getOwnedException(), context.visitList(ParameterCS.class, object.getOwnedRules()));
+		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedExceptions()));
 		return csElement;
 	}
 
@@ -201,24 +201,6 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			return csElement;
 		}
 	}
-
-/*	@Override
-	public ElementCS visitTemplateBinding(TemplateBinding object) {
-//		TemplateParameterCS pivotElement = context.refreshMonikeredElement(TemplateParameterCS.class, BaseCSTPackage.Literals.TEMPLATE_PARAMETER_CS, object);
-		return null;
-	} */
-
-//	@Override
-//	public ElementCS visitTemplateParameter(TemplateParameter object) {
-//		TemplateParameterCS csElement = context.refreshMonikeredElement(TemplateParameterCS.class, BaseCSTPackage.Literals.TEMPLATE_PARAMETER_CS, object.getParameteredElement());
-//		return csElement;
-//	}
-
-/*	@Override
-	public ElementCS visitTemplateParameterSubstitution(TemplateParameterSubstitution object) {
-//		TemplateParameterCS pivotElement = context.refreshMonikeredElement(TemplateParameterCS.class, BaseCSTPackage.Literals.TEMPLATE_PARAMETER_CS, object);
-		return null;
-	} */
 
 	@Override
 	public ElementCS visitTemplateSignature(TemplateSignature object) {

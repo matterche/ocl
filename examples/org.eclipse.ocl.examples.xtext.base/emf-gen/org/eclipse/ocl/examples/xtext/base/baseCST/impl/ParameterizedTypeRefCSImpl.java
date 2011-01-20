@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterizedTypeRefCSImpl.java,v 1.2.6.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ParameterizedTypeRefCSImpl.java,v 1.2.6.3 2011/01/20 19:49:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -114,6 +114,13 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, newOwnedTemplateBinding, newOwnedTemplateBinding));
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract Type getType();
 
 	/**
 	 * <!-- begin-user-doc -->
