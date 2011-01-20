@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingDelegatingCompleteOCLCSVisitor.java,v 1.1.2.7 2011/01/15 19:00:17 ewillink Exp $
+ * $Id: AbstractExtendingDelegatingCompleteOCLCSVisitor.java,v 1.1.2.8 2011/01/20 19:48:57 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.completeocl.util;
 
