@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.3 2011/01/19 22:22:54 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.4 2011/01/20 19:49:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -66,7 +66,7 @@ public class EssentialOCLPreOrderVisitor
 			}
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
-				context.addError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement.toString());
+				context.addBadExpressionError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement.toString());
 				element = context.getPivotManager().getOclInvalidType();	// FIXME with reason
 			}
 			context.installPivotElement(csElement, element);

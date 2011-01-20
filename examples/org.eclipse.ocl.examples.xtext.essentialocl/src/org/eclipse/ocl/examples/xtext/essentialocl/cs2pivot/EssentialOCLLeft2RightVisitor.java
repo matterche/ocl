@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.16 2011/01/19 22:22:54 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.17 2011/01/20 19:49:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -348,7 +348,7 @@ public class EssentialOCLLeft2RightVisitor
 		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
 		NamedElement namedElement = csNamedExp.getNamedElement();
 		if (namedElement.eIsProxy()) {
-			return context.addError(csNamedExp, OCLMessages.ErrorUnresolvedOperationName, csNamedExp);
+			return context.addBadExpressionError(csNamedExp, OCLMessages.ErrorUnresolvedOperationName, csNamedExp);
 		}
 		else if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
@@ -368,7 +368,7 @@ public class EssentialOCLLeft2RightVisitor
 			return checkImplementation(csNavigatingExp, operation, callExp, expression);
 		}
 		else {
-			return context.addError(csNamedExp, "Operation name expected");
+			return context.addBadExpressionError(csNamedExp, "Operation name expected");
 		}
 	}
 
@@ -378,7 +378,7 @@ public class EssentialOCLLeft2RightVisitor
 		try {
 			implementation = pivotManager.getImplementation(feature);
 		} catch (Exception e) {
-			return context.addError(csNavigatingExp, "Failed to load '" + feature.getImplementationClass() + "': " + e);
+			return context.addBadExpressionError(csNavigatingExp, "Failed to load '" + feature.getImplementationClass() + "': " + e);
 		}
 		if (implementation != null) {
 			Diagnostic diagnostic = implementation.validate(pivotManager, callExp);
@@ -392,13 +392,13 @@ public class EssentialOCLLeft2RightVisitor
 	protected OclExpression handleNavigatingPropertyExpCS(NamedExpCS csNamedExp) {
 		NamedElement namedElement = csNamedExp.getNamedElement();
 		if (namedElement.eIsProxy()) {
-			return context.addError(csNamedExp, OCLMessages.ErrorUnresolvedPropertyName, csNamedExp);
+			return context.addBadExpressionError(csNamedExp, OCLMessages.ErrorUnresolvedPropertyName, csNamedExp);
 		}
 		if (namedElement instanceof Property) {
 			return handlePropertyCall(csNamedExp, (Property)namedElement);
 		}
 		else {
-			return context.addError(csNamedExp, "Property name expected");
+			return context.addBadExpressionError(csNamedExp, "Property name expected");
 		}
 	}
 
@@ -550,7 +550,7 @@ public class EssentialOCLLeft2RightVisitor
 				continue;
 			}
 			if (csArgument.getInit() != null) {
-				context.addError(csArgument, "Unexpected initializer for iterator");
+				context.addBadExpressionError(csArgument, "Unexpected initializer for iterator");
 			}
 //			if (csArgument.getOwnedType() == null) {
 //				context.addError(csArgument, "Missing type for iterator");
@@ -598,7 +598,7 @@ public class EssentialOCLLeft2RightVisitor
 				break;
 			}
 			if (csArgument.getInit() == null) {
-				context.addError(csArgument, "Missing initializer for accumulator");
+				context.addBadExpressionError(csArgument, "Missing initializer for accumulator");
 			}
 //			if (csArgument.getOwnedType() != null) {
 //				context.addError(csArgument, "Unexpected type for parameter");
@@ -630,14 +630,14 @@ public class EssentialOCLLeft2RightVisitor
 		//
 		if (expression instanceof IterateExp) {
 			if (pivotAccumulators.size() > 1) {
-				context.addError(csNavigatingExp, "Iterate calls cannot have more than one accumulator");			
+				context.addBadExpressionError(csNavigatingExp, "Iterate calls cannot have more than one accumulator");			
 			}
 			else {
 				((IterateExp)expression).setResult(pivotAccumulators.get(0));
 			}
 		}
 		else if (pivotAccumulators.size() > 0) {
-			context.addError(csNavigatingExp, "Iteration calls cannot have an accumulator");			
+			context.addBadExpressionError(csNavigatingExp, "Iteration calls cannot have an accumulator");			
 		}
 //		resolveLoopBody(csNavigatingExp, expression);
 		return expression;
@@ -651,10 +651,10 @@ public class EssentialOCLLeft2RightVisitor
 		for (NavigatingArgCS csArgument : csNavigatingExp.getArgument()) {
 			if (csArgument.getRole() == NavigationRole.EXPRESSION) {
 				if (csArgument.getInit() != null) {
-					context.addError(csArgument, "Unexpected initializer for expression");
+					context.addBadExpressionError(csArgument, "Unexpected initializer for expression");
 				}
 				if (csArgument.getOwnedType() != null) {
-					context.addError(csArgument, "Unexpected type for expression");
+					context.addBadExpressionError(csArgument, "Unexpected type for expression");
 				}
 				OclExpression exp = context.refreshExpTree(OclExpression.class, csArgument.getName());
 				context.installPivotElement(csArgument, exp);
@@ -663,7 +663,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		if (pivotBodies.size() > 0) {
 			if (pivotBodies.size() > 1) {
-				context.addError(csNavigatingExp, "Iteration calls cannot have more than one body");			
+				context.addBadExpressionError(csNavigatingExp, "Iteration calls cannot have more than one body");			
 			}
 			expression.setBody(pivotBodies.get(0));
 		}
@@ -757,14 +757,14 @@ public class EssentialOCLLeft2RightVisitor
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
 		if (csArguments.size() > 0) {
 			if (csArguments.get(0).getRole() != NavigationRole.EXPRESSION) {
-				context.addError(csNavigatingExp, "Operation calls can only specify expressions");			
+				context.addBadExpressionError(csNavigatingExp, "Operation calls can only specify expressions");			
 			}
 			for (NavigatingArgCS csArgument : csArguments) {
 				if (csArgument.getInit() != null) {
-					context.addError(csArgument, "Unexpected initializer for expression");
+					context.addBadExpressionError(csArgument, "Unexpected initializer for expression");
 				}
 				if (csArgument.getOwnedType() != null) {
-					context.addError(csArgument, "Unexpected type for expression");
+					context.addBadExpressionError(csArgument, "Unexpected type for expression");
 				}
 				OclExpression arg = context.refreshExpTree(OclExpression.class, csArgument.getName());
 				if (arg != null) {
@@ -774,10 +774,10 @@ public class EssentialOCLLeft2RightVisitor
 			}
 		}
 		if (csArguments.size() < operation.getOwnedParameters().size()) {
-			context.addError(csNavigatingExp, "Operation call has too few parameters");			
+			context.addBadExpressionError(csNavigatingExp, "Operation call has too few parameters");			
 		}
 		else if (csArguments.size() > operation.getOwnedParameters().size()) {
-			context.addError(csNavigatingExp, "Operation call has too many parameters");			
+			context.addBadExpressionError(csNavigatingExp, "Operation call has too many parameters");			
 		}
 		context.refreshList(expression.getArguments(), pivotArguments);
 		Type returnType = operation.getType();
@@ -1205,7 +1205,7 @@ public class EssentialOCLLeft2RightVisitor
 		else {
 			NamedElement element = csNameExp.getElement();
 			if (element.eIsProxy()) {
-				return context.addError(csNameExp, OCLMessages.ErrorUnresolvedName, csNameExp);
+				return context.addBadExpressionError(csNameExp, OCLMessages.ErrorUnresolvedName, csNameExp);
 			}
 			else if (element instanceof VariableDeclaration) {
 				return handleVariableExp(csNameExp, (VariableDeclaration)element);
@@ -1214,13 +1214,13 @@ public class EssentialOCLLeft2RightVisitor
 				return handlePropertyCall(csNameExp, (Property) element);
 			}
 			else if (element instanceof Operation) {
-				return context.addError(csNameExp, "No parameters for operation " + element.getName());
+				return context.addBadExpressionError(csNameExp, "No parameters for operation " + element.getName());
 			}
 			else if (element instanceof Type) {
 				return handleTypeExp(csNameExp, (Type) element);
 			}
 			else {
-				return context.addError(csNameExp, "Unsupported NameExpCS " + element.eClass().getName());		// FIXME
+				return context.addBadExpressionError(csNameExp, "Unsupported NameExpCS " + element.eClass().getName());		// FIXME
 			}
 		}
 	}
