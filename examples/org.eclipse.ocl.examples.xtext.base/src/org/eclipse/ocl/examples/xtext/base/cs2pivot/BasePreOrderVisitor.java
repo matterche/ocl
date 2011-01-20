@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.13 2011/01/20 19:49:07 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.14 2011/01/20 19:59:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -375,7 +375,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 //			return !type.eIsProxy();
 //		}
 
-		@Override
+/*		@Override
 		public boolean canExecute() {
 			if (!super.canExecute()) {
 				return false;
@@ -388,7 +388,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				}
 			}
 			return true;
-		}
+		} */
 
 		@Override
 		public BasicContinuation<?> execute() {
