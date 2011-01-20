@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractConversion.java,v 1.1.2.2 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: AbstractConversion.java,v 1.1.2.3 2011/01/20 19:49:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -56,50 +56,11 @@ public abstract class AbstractConversion extends EcoreUtil
 		return true;
 	}
 
-	public <T> void refreshList(List<? super T> elements, List<? extends T> newElements) {
-		int newMax = newElements.size();
-		for (int i = 0; i < newMax; i++) {					// Invariant: lists are equal up to index i
-			T newElement = newElements.get(i);
-			int oldMax = elements.size();
-			boolean reused = false;;
-			for (int j = i; j < oldMax; j++) {
-				Object oldElement = elements.get(j);
-				if (oldElement == newElement) {
-					if (j != i) {
-						elements.remove(j);
-						elements.add(i, newElement);
-					}
-					reused = true;
-					break;
-				}
-			}
-			if (!reused) {
-				if (i < oldMax) {
-					elements.add(i, newElement);
-				}
-				else {
-					elements.add(newElement);
-				}
-			}
-			assert newElements.get(i) == elements.get(i);
-		}
-		for (int k = elements.size(); k > newMax; ) {
-			elements.remove(--k);
-		}
-		assert newElements.size() == elements.size();
+	public <T> void refreshList(List<? super T> oldElements, List<? extends T> newElements) {
+		PivotUtil.refreshList(oldElements, newElements);
 	}
 
 	protected <T> void refreshSet(List<? super T> oldElements, Collection<? extends T> newElements) {
-		for (int i = oldElements.size(); i-- > 0;) {	// Remove any oldElements not in newElements
-			Object oldElement = oldElements.get(i);
-			if (!newElements.contains(oldElement)) {
-				oldElements.remove(i);
-			}
-		}
-		for (T newElement : newElements) {				// Add any newElements not in oldElements
-			if (!oldElements.contains(newElement)) {
-				oldElements.add(newElement);
-			}
-		}
+		PivotUtil.refreshSet(oldElements, newElements);
 	}
 }

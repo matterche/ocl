@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.1.2.6 2011/01/15 20:50:51 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.1.2.7 2011/01/20 19:49:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -526,7 +526,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 //			csTypeRef.setSuper(doSwitchAll(eGenericType.getSuper()));
 			return csTypeRef; */
 		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotFactory.eINSTANCE.createClass();
-		String name = "wildcard";
+		String name = PivotConstants.WILDCARD_NAME;
 		EStructuralFeature eFeature = eGenericType.eContainmentFeature();
 		if ((eFeature != null) && eFeature.isMany()) {
 			EObject eContainer = eGenericType.eContainer();

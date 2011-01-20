@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.21 2011/01/16 18:39:17 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.22 2011/01/20 19:49:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -767,6 +767,8 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		if (pivotOrphans == null) {
 			pivotOrphans = PivotFactory.eINSTANCE.createPackage();
 			pivotOrphans.setName(PivotConstants.ORPHANAGE_NAME);
+			pivotOrphans.setNsURI(PivotConstants.ORPHANAGE_URI);
+			pivotOrphans.setNsPrefix(PivotConstants.ORPHANAGE_PREFIX);
 			URI uri = URI.createURI(PivotConstants.ORPHANAGE_URI);
 			Resource orphanage = pivotResourceSet.createResource(uri);
 			orphanage.getContents().add(pivotOrphans);
@@ -1010,23 +1012,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 			}
 		}
 		List<org.eclipse.ocl.examples.pivot.Class> oldSuperClasses = specializedClass.getSuperClasses();
-		int iMin = Math.min(newSuperClasses.size(), oldSuperClasses.size());
-		int i = 0;
-		for ( ; i < iMin; i++) {
-			org.eclipse.ocl.examples.pivot.Class oldSuperClass = oldSuperClasses.get(i);
-			org.eclipse.ocl.examples.pivot.Class newSuperClass = newSuperClasses.get(i);
-			if (oldSuperClass != newSuperClass) {
-				oldSuperClasses.remove(oldSuperClass);
-				oldSuperClasses.set(i, newSuperClass);
-			}
-		}
-		for ( ; i < newSuperClasses.size(); i++) {
-			oldSuperClasses.add(newSuperClasses.get(i)); 
-		}
-		for ( ; i < oldSuperClasses.size(); i++) {
-			oldSuperClasses.remove(i); 
-		}
-		assert oldSuperClasses.equals(newSuperClasses);
+		PivotUtil.refreshList(oldSuperClasses, newSuperClasses);
 	}
 
 	// FIXME Lose this duplication

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.13 2011/01/19 22:22:45 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.14 2011/01/20 19:49:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -158,6 +158,13 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 //			context.append(SCOPE_SEPARATOR);
 			context.appendName(templateableClass);
 			context.appendTemplateBindings(object);
+		}
+		else if (object.eContainer() instanceof TemplateParameterSubstitution) {
+			TemplateParameter formal = ((TemplateParameterSubstitution)object.eContainer()).getFormal();
+			int index = formal.getSignature().getParameters().indexOf(formal);
+			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
+//			context.append(WILDCARD_INDICATOR + (index > 1 ? index : ""));
+			context.append(WILDCARD_INDICATOR + index);
 		}
 		else {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);

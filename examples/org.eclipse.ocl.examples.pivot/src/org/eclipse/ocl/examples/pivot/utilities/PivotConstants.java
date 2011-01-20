@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.1.2.9 2011/01/15 21:38:34 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.1.2.10 2011/01/20 19:49:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -66,7 +66,10 @@ public interface PivotConstants
 	static final String MONIKER_EXP_CHILD_PREFIX = "x";
 	
 	static final String ORPHANAGE_NAME = "orphanage";
+	static final String ORPHANAGE_PREFIX = "orphanage";
 	static final String ORPHANAGE_URI = "http://www.eclipse.org/ocl/3.1.0/orphanage";
+
+	static final String WILDCARD_NAME = "wildcard";
 	
 	public static Map<EStructuralFeature,String> roleNames = new HashMap<EStructuralFeature,String>();
 }
