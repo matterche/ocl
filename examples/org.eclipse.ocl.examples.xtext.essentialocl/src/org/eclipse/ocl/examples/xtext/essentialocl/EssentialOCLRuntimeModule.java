@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.4 2011/01/17 08:11:57 ewillink Exp $
+ * $Id: EssentialOCLRuntimeModule.java,v 1.1.6.5 2011/01/21 11:28:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
+import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
@@ -30,12 +31,17 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.validation.CompositeEValidator;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.essentialocl.AbstractEssentialOCLRuntimeModule
 {	
+	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
+		return NoEObjectCompositeEValidator.class;
+	}
+
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return EssentialOCLCrossReferenceSerializer.class;
 	}

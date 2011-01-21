@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.7.6.2 2010/12/06 18:03:09 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.7.6.3 2011/01/21 11:28:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -32,7 +32,7 @@ import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.conversion.impl.AbstractDeclarativeValueConverterService;
 import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
-import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 
 import com.google.common.collect.ImmutableSet;
@@ -43,7 +43,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	public IValueConverter<String> DOUBLE_QUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
 			@Override
-			protected String internalToValue(String string, AbstractNode node) {
+			protected String internalToValue(String string, INode node) {
 				try {
 					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), true);
 				} catch(IllegalArgumentException e) {
@@ -86,7 +86,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 //			private Set<String> unrestrictedKeywords = ImmutableSet.copyOf(getKeywords(getGrammar(), "Unrestricted"));
 			
 			@Override
-			protected String internalToValue(String string, AbstractNode node) {
+			protected String internalToValue(String string, INode node) {
 				int length = string.length();
 				if (string.startsWith("_'") && (length >= 3) && string.endsWith("'")) {
 					return string.substring(2, length-1);
@@ -121,7 +121,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	public IValueConverter<String> ML_SINGLE_QUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
 			@Override
-			protected String internalToValue(String string, AbstractNode node) {
+			protected String internalToValue(String string, INode node) {
 				try {
 					return Strings.convertFromJavaString(string.substring(2, string.length() - 2), true);
 				} catch(IllegalArgumentException e) {
@@ -145,7 +145,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	public IValueConverter<Number> NUMBER_LITERAL() {
 		return new IValueConverter<Number>() {
 			
-			public Number toValue(String string, AbstractNode node) {
+			public Number toValue(String string, INode node) {
 				if (Strings.isEmpty(string))
 					throw new ValueConverterException("Couldn't convert empty string to number", node, null);
 				try {
@@ -170,7 +170,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	public IValueConverter<String> SINGLE_QUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
 			@Override
-			protected String internalToValue(String string, AbstractNode node) {
+			protected String internalToValue(String string, INode node) {
 				try {
 					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), true);
 				} catch(IllegalArgumentException e) {

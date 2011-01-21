@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.18 2011/01/21 06:31:35 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.19 2011/01/21 11:28:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -138,9 +138,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNatu
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLUtils;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class EssentialOCLLeft2RightVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<MonikeredElement, CS2PivotConversion, BaseLeft2RightVisitor>
@@ -254,6 +254,28 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		return null;
 	}
+
+	/*	private Map<TemplateParameter, ParameterableElement> getParameterSubstitutions(OperationCallExp callExpression) {
+			Map<TemplateParameter, ParameterableElement> result = null;
+			result = gatherParameterSubstitutions(result, callExpression.getSource().getType());
+			for (OclExpression argument : callExpression.getArguments()) {
+				result = gatherParameterSubstitutions(result, argument.getType());
+			}
+			return result;
+		}
+
+		private Map<TemplateParameter, ParameterableElement> gatherParameterSubstitutions(
+				Map<TemplateParameter, ParameterableElement> result, Type sourceType) {
+			for (TemplateBinding templateBinding : sourceType.getTemplateBindings()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+					if (result == null) {
+						result = new HashMap<TemplateParameter, ParameterableElement>();
+					}
+					result.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
+				}
+			}
+			return result;
+		} */
 
 	protected VariableDeclaration getImplicitSource(ModelElementCS csExp, NamedElement namedElement) {
 		EObject eContainer = csExp.eContainer();
@@ -559,8 +581,8 @@ public class EssentialOCLLeft2RightVisitor
 //				context.addError(csArgument, "Missing type for iterator");
 //			}
 			ExpCS csName = csArgument.getName();
-			CompositeNode node = NodeUtil.getNode(csName);
-			LeafNode leafNode = ElementUtil.getLeafNode(node);
+			ICompositeNode node = NodeModelUtils.getNode(csName);
+			ILeafNode leafNode = ElementUtil.getLeafNode(node);
 			String varName = leafNode.getText();
 			Variable iterator = context.refreshMonikeredElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
 			context.installPivotElement(csName, iterator);
@@ -607,8 +629,8 @@ public class EssentialOCLLeft2RightVisitor
 //				context.addError(csArgument, "Unexpected type for parameter");
 //			}
 			ExpCS csName = csArgument.getName();
-			CompositeNode node = NodeUtil.getNode(csName);
-			LeafNode leafNode = ElementUtil.getLeafNode(node);
+			ICompositeNode node = NodeModelUtils.getNode(csName);
+			ILeafNode leafNode = ElementUtil.getLeafNode(node);
 			String varName = leafNode.getText();
 			Variable acc = context.refreshMonikeredElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
 			context.installPivotElement(csName, acc);

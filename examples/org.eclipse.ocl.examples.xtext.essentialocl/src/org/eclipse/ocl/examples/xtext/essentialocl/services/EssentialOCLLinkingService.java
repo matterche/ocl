@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.1.2.5 2010/12/19 15:54:33 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.1.2.6 2011/01/21 11:28:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -31,8 +31,9 @@ import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.LeafNode;
+import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
@@ -52,7 +53,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 	private IGlobalScopeProvider globalScopeProvider;
 	
 	@Override
-	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
+	public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
 		try {
 			depth++;
 			String text = getText(node);
@@ -68,7 +69,8 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 			String uri = TypesPackage.eNS_URI;
 //			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// FIXME this is costly; don't inflict it when not needed
 			if (ref.getEReferenceType().getEPackage().getNsURI().equals(uri)) {
-				scope = globalScopeProvider.getScope(context, ref);
+//				scope = globalScopeProvider.getScope(context, ref);
+				scope = globalScopeProvider.getScope(context.eResource(), ref, null);
 			}
 			else {
 //				Resource eResource = context.eResource();
@@ -92,7 +94,8 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text);
 				}
 			}
-			IEObjectDescription eObjectDescription = scope.getContentByName(text);
+			QualifiedName qualifiedName = QualifiedName.create(text);	// FIXME use IQualifiedNameConverter
+			IEObjectDescription eObjectDescription = scope.getSingleElement(qualifiedName);
 			if (eObjectDescription != null) {
 				EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
 				if (traceLookup) {
@@ -108,7 +111,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 			if (traceLookup) {
 				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
 			}
-			eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
+			eObjectDescription = scope.getSingleElement(qualifiedName);	// FIXME conditionalise this retry for debug
 //			}
 			if (scopeAdapter != null) {
 				scopeAdapter.setUnresolvable();
@@ -133,8 +136,8 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 //		}
 	}
 
-	public String getText(AbstractNode node) {
-		LeafNode leafNode = ElementUtil.getLeafNode(node);
+	public String getText(INode node) {
+		ILeafNode leafNode = ElementUtil.getLeafNode(node);
 		if (leafNode == null) {
 			return null;
 		}

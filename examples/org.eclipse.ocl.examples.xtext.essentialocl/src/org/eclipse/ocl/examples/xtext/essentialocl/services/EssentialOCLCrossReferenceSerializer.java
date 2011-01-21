@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.6 2011/01/19 22:22:54 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.7 2011/01/21 11:28:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -42,7 +42,7 @@ import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.linking.impl.LinkingHelper;
-import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer;
 import org.eclipse.xtext.parsetree.reconstr.impl.CrossReferenceSerializer;
 
@@ -166,7 +166,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 	}
 
 	@Override
-	public String serializeCrossRef(EObject context, CrossReference grammarElement, EObject target, AbstractNode node) {
+	public String serializeCrossRef(EObject context, CrossReference grammarElement, EObject target, INode node) {
 		final EReference ref = GrammarUtil.getReference(grammarElement, context.eClass());
 		String text = null;
 		if (node != null) {

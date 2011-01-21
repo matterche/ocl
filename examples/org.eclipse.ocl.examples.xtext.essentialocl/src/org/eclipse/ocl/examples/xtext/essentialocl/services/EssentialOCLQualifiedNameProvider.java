@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLQualifiedNameProvider.java,v 1.1.2.1 2010/10/01 14:30:29 ewillink Exp $
+ * $Id: EssentialOCLQualifiedNameProvider.java,v 1.1.2.2 2011/01/21 11:28:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -20,8 +20,8 @@ import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 
 public class EssentialOCLQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider
 {
-	@Override
-	public String getDelimiter() {
-		return "::";
-	}
+//FIXME	@Override
+//	public String getDelimiter() {
+//		return "::";
+//	}
 }
