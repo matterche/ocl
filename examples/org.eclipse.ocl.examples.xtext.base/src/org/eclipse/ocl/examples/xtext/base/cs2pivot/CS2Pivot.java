@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.1.2.4 2010/12/28 12:18:28 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.1.2.5 2011/01/21 11:28:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -47,9 +47,9 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.LeafNode;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
 
 /**
  * CS2Pivot manages the equivalence between a Concrete Syntax Resources
@@ -81,13 +81,13 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return PivotUtil.getAdapter(CS2Pivot.class, resourceSet);
 	}
 
-	public static List<LeafNode> getDocumentationNodes(CompositeNode node) {
-		List<LeafNode> documentationNodes = null;
-		for (AbstractNode childNode : node.getChildren()) {
-			if (!(childNode instanceof LeafNode)) {
+	public static List<ILeafNode> getDocumentationNodes(ICompositeNode node) {
+		List<ILeafNode> documentationNodes = null;
+		for (INode childNode : node.getChildren()) {
+			if (!(childNode instanceof ILeafNode)) {
 				break;
 			}
-			LeafNode leafNode = (LeafNode) childNode;
+			ILeafNode leafNode = (ILeafNode) childNode;
 			EObject grammarElement = leafNode.getGrammarElement();
 			if (!(grammarElement instanceof TerminalRule)) {
 				break;
@@ -96,7 +96,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 			String name = terminalRule.getName();
 			if ("DOCUMENTATION".equals(name)) {
 				if (documentationNodes == null) {
-					documentationNodes = new ArrayList<LeafNode>();
+					documentationNodes = new ArrayList<ILeafNode>();
 				}
 				documentationNodes.add(leafNode);
 			}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLocationInFileProvider.java,v 1.1.2.1 2010/12/06 17:53:58 ewillink Exp $
+ * $Id: BaseLocationInFileProvider.java,v 1.1.2.2 2011/01/21 11:28:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -20,49 +20,42 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.DefaultLocationInFileProvider;
-import org.eclipse.xtext.util.TextLocation;
+import org.eclipse.xtext.util.ITextRegion;
+import org.eclipse.xtext.util.TextRegion;
 
-public class BaseLocationInFileProvider extends DefaultLocationInFileProvider {
-
+public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
+{
 	@Override
-	public TextLocation getLocation(EObject owner,
-			EStructuralFeature feature, int indexInList) {
-		// TODO Auto-generated method stub
-		return super.getLocation(owner, feature, indexInList);
-	}
-
-	@Override
-	public TextLocation getLocation(EObject obj) {
+	protected ITextRegion getTextRegion(EObject obj, boolean isSignificant) {
 		if (obj instanceof MonikeredElement) {
 			MonikeredElementCS csMonikeredElement = getCsElement(obj);
 			if (csMonikeredElement != null) {
-				return super.getLocation(csMonikeredElement);
+				return super.getTextRegion(csMonikeredElement, isSignificant);
 			}
 		}
 		else if (obj instanceof Comment) {
 			MonikeredElementCS csMonikeredElement = getCsElement(obj.eContainer());
 			if (csMonikeredElement != null) {
-				CompositeNode node = NodeUtil.getNode(csMonikeredElement);
-				List<LeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
-				LeafNode first = documentationNodes.get(0);
-				LeafNode last = documentationNodes.get(documentationNodes.size()-1);
+				ICompositeNode node = NodeModelUtils.getNode(csMonikeredElement);
+				List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
+				ILeafNode first = documentationNodes.get(0);
+				ILeafNode last = documentationNodes.get(documentationNodes.size()-1);
 				int start = first.getOffset();
 				int end = last.getOffset() + last.getLength();
-				return new TextLocation(start, end-start);
+				return new TextRegion(start, end-start);
 			}
 		}
-		return super.getLocation(obj);
+		return super.getTextRegion(obj, isSignificant);
 	}
 
 	protected MonikeredElementCS getCsElement(EObject obj) {

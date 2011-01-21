@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.1.2.5 2010/12/28 12:18:29 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.1.2.6 2011/01/21 11:28:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -22,10 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.parsetree.NodeAdapter;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * An ElementCSScopeAdapter provides the basic behaviour for a family of derived
@@ -36,18 +33,19 @@ import org.eclipse.xtext.parsetree.NodeUtil;
  */
 public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends AbstractScopeAdapter<CS> implements ScopeCSAdapter
 {
+	@Deprecated
 	public static String getText(ElementCS csElement) {
-		NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(csElement);
+/*		NodeAdapter nodeAdapter = NodeModelUtils.getNodeAdapter(csElement);
 		if (nodeAdapter == null) {
 			return null;
 		}
-		CompositeNode compositeNode = nodeAdapter.getParserNode();
+		ICompositeNode compositeNode = nodeAdapter.getParserNode();
 		if (compositeNode == null) {
 			return null;
 		}
 		String string = null;
 		StringBuffer s = null;
-		for (LeafNode leaf : compositeNode.getLeafNodes()) {
+		for (ILeafNode leaf : compositeNode.getLeafNodes()) {
 			if (!leaf.isHidden()) {
 				String text = leaf.getText();
 				if (s != null) {
@@ -63,7 +61,8 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 				}
 			}
 		}
-		return s != null ? s.toString() : string;
+		return s != null ? s.toString() : string; */
+		return NodeModelUtils.getTextWithoutHidden(NodeModelUtils.getNode(csElement));
 	}
 	
 	protected final RootCSScopeAdapter root;

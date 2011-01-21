@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.16 2011/01/20 19:49:07 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.17 2011/01/21 11:28:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -89,9 +89,9 @@ import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.lpg.ProblemHandler.Severity;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class CS2PivotConversion extends AbstractConversion
 {	
@@ -142,7 +142,7 @@ public class CS2PivotConversion extends AbstractConversion
 	public OclExpression addBadExpressionError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
 		csElement.getError().add(boundMessage);
-		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeUtil.getNode(csElement), boundMessage, "xyzzy");		// FIXME
+		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
 		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
 		invalidLiteralExp.setType(pivotManager.getOclInvalidType());
@@ -155,7 +155,7 @@ public class CS2PivotConversion extends AbstractConversion
 	public Type addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
 		csElement.getError().add(boundMessage);
-		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeUtil.getNode(csElement), boundMessage, "xyzzy");		// FIXME
+		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
 		Type invalidType = pivotManager.getOclInvalidType();
 		installPivotElementInternal(csElement, invalidType);
@@ -181,7 +181,7 @@ public class CS2PivotConversion extends AbstractConversion
 				if (eObject instanceof ModelElementCS) {
 					ModelElementCS csElement = (ModelElementCS)eObject;
 					for (String error : csElement.getError()) {
-						CompositeNode node = NodeUtil.getNode(csElement);
+						ICompositeNode node = NodeModelUtils.getNode(csElement);
 						hasNoErrors = false;
 						int offset = node.getOffset();
 						int length = node.getLength();
@@ -641,12 +641,12 @@ public class CS2PivotConversion extends AbstractConversion
 		T pivotElement = refreshMonikeredElement(pivotClass, pivotEClass, csElement);
 		installPivotElement(csElement, pivotElement);
 		refreshName(pivotElement, csElement.getName());
-		CompositeNode node = NodeUtil.getNode(csElement);
+		ICompositeNode node = NodeModelUtils.getNode(csElement);
 		if (node != null) {
-			List<LeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
+			List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
 			if (documentationNodes != null) {
 				List<String> documentationStrings = new ArrayList<String>();
-				for (LeafNode documentationNode : documentationNodes) {
+				for (ILeafNode documentationNode : documentationNodes) {
 					String text = documentationNode.getText();
 					documentationStrings.add(text.substring(3, text.length()-3).trim());
 				}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1.2.5 2011/01/20 19:49:07 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.1.2.6 2011/01/21 11:28:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -44,11 +44,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.parsetree.NodeAdapter;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
 
 public class ElementUtil
 {
@@ -103,13 +100,13 @@ public class ElementUtil
 		return templateParameters.get(index);
 	}
 
-	public static LeafNode getLeafNode(AbstractNode node) {
-		LeafNode leafNode = null;
-		if (node instanceof LeafNode) {
-			return (LeafNode) node;
+	public static ILeafNode getLeafNode(INode node) {
+		ILeafNode leafNode = null;
+		if (node instanceof ILeafNode) {
+			return (ILeafNode) node;
 		}
 		else {
-			for (LeafNode lNode : node.getLeafNodes()) {
+			for (ILeafNode lNode : node.getLeafNodes()) {
 				if (!lNode.isHidden()) {
 					leafNode = lNode;
 					return leafNode;
@@ -128,10 +125,10 @@ public class ElementUtil
 		return null;
 	}
 
-	public static CompositeNode getParserNode(ElementCS csElement) {
-		NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(csElement);
-		return nodeAdapter != null ? nodeAdapter.getParserNode() : null;
-	}
+//	public static ICompositeNode getParserNode(ElementCS csElement) {
+//		NodeAdapter nodeAdapter = NodeModelUtils.getNodeAdapter(csElement);
+//		return nodeAdapter != null ? nodeAdapter.getParserNode() : null;
+//	}
 
 	public static PivotManager getPivotManager(Resource csResource) {
 		ResourceSet csResourceSet = csResource.getResourceSet();

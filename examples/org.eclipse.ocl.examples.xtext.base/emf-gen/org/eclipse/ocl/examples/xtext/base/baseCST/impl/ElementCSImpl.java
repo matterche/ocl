@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSImpl.java,v 1.4.6.2 2010/12/06 17:53:56 ewillink Exp $
+ * $Id: ElementCSImpl.java,v 1.4.6.3 2011/01/21 11:28:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.xtext.parsetree.CompositeNode;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,9 +66,9 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 
 	@Override
 	public String toString() {
-		CompositeNode parserNode = ElementUtil.getParserNode(this);
+		ICompositeNode parserNode = NodeModelUtils.getNode(this);
 		if (parserNode != null) {
-			return parserNode.serialize().trim();
+			return parserNode.getText().trim();
 		}
 		return "<" + eClass().getName() + ">";
 	}
