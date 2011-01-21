@@ -41,16 +41,16 @@ The character sequences for languages are defined by ISO 639.
 
 The character sequences for countries are defined by ISO 3166.
 
-'fr_CA' therefore identifies the locale for the French language in the Canada country.
+‘fr_CA’ therefore identifies the locale for the French language in the Canada country.
 
 Comparison of strings and consequently the collation order of Collection::sortedBy()
 conforms to the Unicode Collation algorithm defined by Unicode Technical Standard#10.
 
-The locale is 'en_us' by default but may be configured by a property constraint on OclAny::oclLocale.
+The locale is ‘en_us’ by default but may be configured by a property constraint on OclAny::oclLocale.
 
 The prevailing locale is defined by the prevailing value of oclLocale within the current environment;
 it may therefore be changed temporarily by using a Let expression.
-let oclLocale : String = 'fr_CA' in aString.toUpperCase()
+let oclLocale : String = ‘fr_CA’ in aString.toUpperCase()
 
 Iterators
 
@@ -216,32 +216,35 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as self.
 	If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of self. 
 
-	post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
-                  self->iterate(c; acc : Bag(T2) = Bag{} | 
-                       acc->union(c->flatten()->asBag() ) ) 
-               else 
-                  self 
-               endif 
+		post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
+	                  self->iterate(c; acc : Bag(T2) = Bag{} | 
+	                       acc->union(c->flatten()->asBag() ) ) 
+	               else 
+	                  self 
+	               endif ;
 	**/
-	operation flatten<T2>() : Bag<T2>;
+	operation flatten<T2>() : Bag<T2>
+	{
+	}
 	/**
 	The bag containing all elements of self plus object.
-
-	post: result->forAll(elem | 
-        if elem = object then
-           result->count(elem) = self->count(elem) + 1
-        else
-           result->count(elem) = self->count(elem)
-        endif)
-
-	post: self->forAll(elem | 
-        if elem = object then
-           result->count(elem) = self->count(elem) + 1
-        else
-           result->count(elem) = self->count(elem)
-        endif)
 	**/
-	operation including(object : T) : Bag<T>;
+	operation including(object : T) : Bag<T>
+	{
+		post a: result->forAll(elem | 
+	        if elem = object then
+	           result->count(elem) = self->count(elem) + 1
+	        else
+	           result->count(elem) = self->count(elem)
+	        endif);
+	
+		post b: self->forAll(elem | 
+	        if elem = object then
+	           result->count(elem) = self->count(elem) + 1
+	        else
+	           result->count(elem) = self->count(elem)
+	        endif);
+	}
 	/**
 	The intersection of self and bag.
 
@@ -400,11 +403,11 @@ type Collection<T> : CollectionType conformsTo OclAny {
 
 		T is the element type of the source collection.
 
-		Result is 'OrderedSet' if the source collection is ordered, 'Set' otherwise.
+		Result is ‘OrderedSet’ if the source collection is ordered, ‘Set’ otherwise.
 
-		add is 'append' if the source collection is ordered, 'including' otherwise.
+		add is ‘append’ if the source collection is ordered, ‘including’ otherwise.
 
-	The anonymous variables 'anonRecurse', 'anonAcc', 'anonInit', 'anonResults' and 'anonSources' are named for exposition purposes;
+	The anonymous variables ‘anonRecurse’, ‘anonAcc’, ‘anonInit’, ‘anonResults’ and ‘anonSources’ are named for exposition purposes;
 	they do not form part of the evaluation environment for body.
 	**/
 	iteration closure<T2>(i : T | expression : OclExpression) : Set<T2>;
@@ -551,7 +554,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 
 	post: result = ( self->size() = 0 )
 
-	Note: null->isEmpty() returns 'true' in virtue of the implicit casting from null to Bag{}
+	Note: null->isEmpty() returns ‘true’ in virtue of the implicit casting from null to Bag{}
 	**/
 	operation isEmpty() : Boolean;
 	/**
@@ -577,7 +580,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 
 	post: result = ( self->size() <> 0 )
 	
-	null->notEmpty() returns 'false' in virtue of the implicit casting from null to Bag{}.
+	null->notEmpty() returns ‘false’ in virtue of the implicit casting from null to Bag{}.
 	**/
 	operation notEmpty() : Boolean;
 	/**
@@ -729,13 +732,13 @@ type OclAny : AnyType {
 	then the oclAsType operation evaluates to invalid.
 
 	In the case of feature redefinition, casting an object to a supertype of its actual type
-	does not access the supertype's definition of the feature;
+	does not access the supertype’s definition of the feature;
 	according to the semantics of redefinition, the redefined feature simply does not exist for the object.
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
 	post: (result = self) and result.oclIsTypeOf( t ) 
 	**/
-	operation oclAsType<T>(type : Classifier) : T;
+	operation oclAsType<T>(_type : Classifier) : T;
 	/**
 	Evaluates to true if the self is in the state indentified by statespec. 
 
@@ -754,7 +757,7 @@ type OclAny : AnyType {
 
 	post: self.oclType().conformsTo(type)
 	**/
-	operation oclIsKindOf<T>(type : Classifier) : Boolean;
+	operation oclIsKindOf<T>(_type : Classifier) : Boolean;
 	/**
 	Can only be used in a postcondition.
 	Evaluates to true if the self is created during performing the operation (for instance, it didn’t exist at precondition time). 
@@ -1679,10 +1682,11 @@ type String : PrimitiveType conformsTo OclAny {
 	operation substring(lower : Integer, upper : Integer) : String;
 	/**
 	Converts self to a boolean value.
-
-	post: result = (self = 'true')
 	**/
-	operation toBoolean() : Boolean;
+	operation toBoolean() : Boolean
+	{
+		post: result = (self = 'true');
+	}
 	/**
 	Converts self to an Integer value.
 	**/
@@ -1749,83 +1753,84 @@ type UnlimitedNatural : PrimitiveType conformsTo Integer {
 	operation "/"(u : UnlimitedNatural) : Real precedence=MULTIPLICATIVE;
 	/**
 	True if self is greater than u.
-
-	post: if u = * then result = false
-	else if self = * then result = true
-	else result = self.toInteger() > u.toInteger() endif endif
 	**/
-	operation ">"(u : UnlimitedNatural) : Boolean precedence=RELATIONAL;
+	operation ">"(u : UnlimitedNatural) : Boolean precedence=RELATIONAL
+	{
+		post: if u = * then result = false
+		else if self = * then result = true
+		else result = self.toInteger() > u.toInteger() endif endif;
+	}
 	/**
 	True if self is less than u.
-
-	post: if self = * then result = false
-	else if u = * then result = true
-	else result = self.toInteger() < u.toInteger() endif endif
 	**/
-	operation "<"(u : UnlimitedNatural) : Boolean precedence=RELATIONAL;
+	operation "<"(u : UnlimitedNatural) : Boolean precedence=RELATIONAL
+	{	
+		post: if self = * then result = false
+		else if u = * then result = true
+		else result = self.toInteger() < u.toInteger() endif endif;		
+	}
 	/**
 	True if self is less than or equal to u.
-
-	post: if u = * then result = true
-	else if self = * then result = false
-	else result = self.toInteger() <= u.toInteger() endif endif
 	**/
-	operation "<="(u : UnlimitedNatural) : Boolean precedence=RELATIONAL;
+	operation "<="(u : UnlimitedNatural) : Boolean precedence=RELATIONAL
+	{		
+		post: if u = * then result = true
+		else if self = * then result = false
+		else result = self.toInteger() <= u.toInteger() endif endif;
+	}
 	/**
 	True if self is greater than or equal to u.
-
-	post: if self = * then result = true
-	else if u = * then result = false
-	else result = self.toInteger() >= u.toInteger() endif endif
 	**/
-	operation ">="(u : UnlimitedNatural) : Boolean precedence=RELATIONAL;
+	operation ">="(u : UnlimitedNatural) : Boolean precedence=RELATIONAL
+	{		
+		post: if self = * then result = true
+		else if u = * then result = false
+		else result = self.toInteger() >= u.toInteger() endif endif;
+	}
 --	operation abs() : Integer;
 	/**
 	The number of times that u fits completely within self. Evaluates to invalid if u is equal to zero or unlimited, or if self is unlimited.
-
-	post: result = (self / u).floor()
 	**/
-	operation div(u : UnlimitedNatural) : UnlimitedNatural;
+	operation div(u : UnlimitedNatural) : UnlimitedNatural
+	{		
+		post: result = (self / u).floor();
+	}
 	/**
 	The result is self modulo u. Evaluates to invalid if u is equal to zero or unlimited, or if self is unlimited.
-
-	post: result = self - (self.div(u) * u)
 	**/
-	operation mod(u : UnlimitedNatural) : UnlimitedNatural;
+	operation mod(u : UnlimitedNatural) : UnlimitedNatural
+	{		
+		post: result = self - (self.div(u) * u);
+	}
 	/**
 	The maximum of self and u.
-	
-	post: if self = * or u = * then result = *
-	else if self >= u then result = self else result = u endif endif
 	**/
-	operation max(u : UnlimitedNatural) : UnlimitedNatural;
+	operation max(u : UnlimitedNatural) : UnlimitedNatural
+	{		
+		post: if self = * or u = * then result = *
+		else if self >= u then result = self else result = u endif endif;
+	}
 	/**
 	The minimum of self and u.
-
-	post: if self = * then result = u
-	else if u = * then result = self
-	else if self <= u then result = self else result = u endif endif endif
 	**/
-	operation min(u : UnlimitedNatural) : UnlimitedNatural;
+	operation min(u : UnlimitedNatural) : UnlimitedNatural
+	{		
+		post: if self = * then result = u
+		else if u = * then result = self
+		else if self <= u then result = self else result = u endif endif endif;
+	}
 	/**
 	Converts self to an integer value. If self is unlimited the result is invalid.
-
-	post: if self = * then result = invalid
-	else result = self.oclAsType(Integer) endif
 	**/
-	operation toInteger() : Integer;
+	operation toInteger() : Integer
+	{		
+		post: if self = * then result = invalid
+		else result = self.oclAsType(Integer) endif;
+	}
 	/**
 	Converts self to a string value, using the canonical form as defined by http://www.w3.org/TR/xmlschema-2/#nonNegativeInteger.
-	If self is unlimited the result is '*'.
+	If self is unlimited the result is ‘*’.
 	**/
 	operation toString() : String;
 }
-
---type BagType {}
---type CollectionType {}
---type OrderedSetType {}
---type PrimitiveType {}
---type SequenceType {}
---type SetType {}
-
 }
