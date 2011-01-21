@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.4.6.3 2011/01/17 08:11:58 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.4.6.4 2011/01/21 11:28:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
+import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
@@ -32,12 +33,17 @@ import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSeri
 import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.validation.CompositeEValidator;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.completeocl.AbstractCompleteOCLRuntimeModule
 {
+	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
+		return NoEObjectCompositeEValidator.class;
+	}
+
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return EssentialOCLCrossReferenceSerializer.class;
 	}
