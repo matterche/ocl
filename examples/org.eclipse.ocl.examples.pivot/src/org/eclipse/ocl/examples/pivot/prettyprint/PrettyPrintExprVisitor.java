@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.1.2.2 2011/01/16 18:43:13 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.1.2.3 2011/01/21 11:24:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -55,6 +56,18 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
  */
 public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 {	
+	public static String prettyPrint(Element element) {
+		PrettyPrintExprVisitor visitor = new PrettyPrintExprVisitor(getNamespace(element.eContainer()));
+		try {
+			visitor.safeVisit(element);
+			return visitor.toString();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return visitor.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
+		}
+	}
+
 	public static String prettyPrint(Visitable element, Namespace scope) {
 		PrettyPrintExprVisitor visitor = new PrettyPrintExprVisitor(scope);
 		try {
