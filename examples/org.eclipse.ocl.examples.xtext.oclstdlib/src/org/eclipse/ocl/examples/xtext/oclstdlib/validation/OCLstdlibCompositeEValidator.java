@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
  
 public class OCLstdlibCompositeEValidator extends NoEObjectCompositeEValidator
@@ -14,8 +14,8 @@ public class OCLstdlibCompositeEValidator extends NoEObjectCompositeEValidator
 	@Override
 	public boolean validate(EObject csObject, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		if (csObject instanceof ModelElementCS) {
-			EObject pivotObject = ((ModelElementCS)csObject).getPivot();
+		if (csObject instanceof Pivotable) {
+			EObject pivotObject = ((Pivotable)csObject).getPivot();
 			if (pivotObject != null) {
 				return super.validate(pivotObject, diagnostics, context);
 			}
@@ -26,8 +26,8 @@ public class OCLstdlibCompositeEValidator extends NoEObjectCompositeEValidator
 	@Override
 	public boolean validate(EClass eClass, EObject csObject,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (csObject instanceof ModelElementCS) {
-			EObject pivotObject = ((ModelElementCS)csObject).getPivot();
+		if (csObject instanceof Pivotable) {
+			EObject pivotObject = ((Pivotable)csObject).getPivot();
 			if (pivotObject != null) {
 				return super.validate(pivotObject.eClass(), pivotObject, diagnostics, context);
 			}
