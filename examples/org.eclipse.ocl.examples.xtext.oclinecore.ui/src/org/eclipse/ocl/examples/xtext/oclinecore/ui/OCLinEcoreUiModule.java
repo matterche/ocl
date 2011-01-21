@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiModule.java,v 1.5.6.4 2011/01/21 11:23:00 ewillink Exp $
+ * $Id: OCLinEcoreUiModule.java,v 1.5.6.5 2011/01/21 14:06:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -26,6 +27,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.hover.DispatchingEObjectTextHover;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
@@ -57,6 +59,10 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 	public OCLinEcoreUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
+	
+	public Class<? extends DispatchingEObjectTextHover> bindDispatchingEObjectTextHover() {
+		return BaseEObjectTextHover.class;
+	}
 
 	public Class<? extends XtextDocument> bindXtextDocument() {
 		return OCLinEcoreDocument.class;
@@ -86,8 +92,4 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 	public Class<? extends IResourceForEditorInputFactory> bindIResourceForEditorInputFactory() {
 		return OCLinEcoreResourceForEditorInputFactory.class;
 	}
-
-//	public Class<? extends XtextSourceViewerConfiguration> bindXtextSourceViewerConfiguration() {
-//		return BaseSourceViewerConfiguration.class;
-//	}
 }
