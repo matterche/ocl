@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.17 2011/01/20 19:49:18 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.18 2011/01/21 06:31:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -508,12 +508,15 @@ public class EssentialOCLLeft2RightVisitor
 				(csParent instanceof BinaryOperatorCS)
 			 && (((BinaryOperatorCS)csParent).getArgument() == csElement);
 				csElement = csElement.getParent(), csParent = csElement.getParent()) {
-			OperationCallExp expression = PivotUtil.getPivot(OperationCallExp.class, csParent);
-			OclExpression arg = PivotUtil.getPivot(OclExpression.class, csElement);
-			context.refreshList(expression.getArguments(), Collections.singletonList(arg));
-			Operation operation = context.resolveOperationCall(csParent, expression);
-			if (operation != null) {
-				context.setType(expression, operation.getType());
+			OclExpression expression = PivotUtil.getPivot(OclExpression.class, csParent);
+			if ((expression instanceof OperationCallExp) && (expression.getType() == null)) {		// FIXME Avoid the need to bypass NavigationOperator reresolution
+				OperationCallExp operationCallExp = (OperationCallExp)expression;
+				OclExpression arg = PivotUtil.getPivot(OclExpression.class, csElement);
+				context.refreshList(operationCallExp.getArguments(), Collections.singletonList(arg));
+				Operation operation = context.resolveOperationCall(csParent, operationCallExp);
+				if (operation != null) {
+					context.setType(operationCallExp, operation.getType());
+				}
 			}
 		}
 	}
@@ -1104,11 +1107,11 @@ public class EssentialOCLLeft2RightVisitor
 		for (int i = 0; i < iMax; i++) {
 			BinaryOperatorCS csOperator = csOperators.get(i);
 			context.refreshExpTree(OclExpression.class, csOperator);
+			ExpCS csElement = csExpressions.get(i+1);
 			if (!(csOperator instanceof NavigationOperatorCS)) {
-				ExpCS csElement = csExpressions.get(i+1);
 				context.refreshExpTree(OclExpression.class, csElement);
-				resolveBinaryOperationArguments(csOperator, csElement);
 			}
+			resolveBinaryOperationArguments(csOperator, csElement);
 		}
 		//
 		//	Map the infix CS to the root of the AS tree.
@@ -1124,7 +1127,10 @@ public class EssentialOCLLeft2RightVisitor
 
 	@Override
 	public MonikeredElement visitInvalidLiteralExpCS(InvalidLiteralExpCS csInvalidLiteralExp) {
-		InvalidLiteralExp expression = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+		InvalidLiteralExp expression = PivotUtil.getPivot(InvalidLiteralExp.class, csInvalidLiteralExp);
+		if (expression == null) {
+			expression = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+		}
 		expression.setType(pivotManager.getOclInvalidType());
 		expression.setObject(csInvalidLiteralExp);
 		expression.setExpression(null);
