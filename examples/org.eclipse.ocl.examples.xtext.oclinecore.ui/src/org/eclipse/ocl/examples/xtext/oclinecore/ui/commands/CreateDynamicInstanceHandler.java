@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.2.6.2 2010/10/01 15:18:58 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.2.6.3 2011/01/21 11:23:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -45,11 +45,10 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
-import org.eclipse.xtext.parsetree.ParseTreeUtil;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -138,9 +137,11 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 						IParseResult parseResult = xtextResource.getParseResult();
 						if (parseResult == null)
 							throw new NullPointerException("parseResult is null");
-						CompositeNode rootNode = parseResult.getRootNode();
-						AbstractNode lastVisibleNode = ParseTreeUtil.getLastCompleteNodeByOffset(rootNode, selection.getOffset());
-						EObject currentModel = NodeUtil.getNearestSemanticObject(lastVisibleNode);						
+						ICompositeNode rootNode = parseResult.getRootNode();
+//						INode lastVisibleNode = NodeModelUtils.getLastCompleteNodeByOffset(rootNode, selection.getOffset());
+//						EObject currentModel = NodeModelUtils.getNearestSemanticObject(lastVisibleNode);						
+						INode lastVisibleNode = NodeModelUtils.findLeafNodeAtOffset(rootNode, selection.getOffset());
+						EObject currentModel = NodeModelUtils.findActualSemanticObjectFor(lastVisibleNode);						
 						if (!(currentModel instanceof ClassCS)) {
 							return null; 
 						}		

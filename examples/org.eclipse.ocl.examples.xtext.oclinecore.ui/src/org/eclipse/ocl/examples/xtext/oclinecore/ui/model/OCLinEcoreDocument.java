@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5.6.4 2010/12/06 18:32:29 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5.6.5 2011/01/21 11:23:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -31,6 +31,10 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
+import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer;
+
+import com.google.inject.Inject;
 
 /**
  * An OCLinEcoreDocument refines a document to support generation of an alternate (XMI) content
@@ -38,6 +42,11 @@ import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
  */
 public class OCLinEcoreDocument extends BaseDocument
 {
+	@Inject
+	public OCLinEcoreDocument(DocumentTokenSource tokenSource, ITextEditComposer composer) {
+		super(tokenSource, composer);
+	}
+
 	protected void checkForErrors(Resource resource) throws CoreException {
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
