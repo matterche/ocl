@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenerateCompleteOCLEditor.mwe2,v 1.1.2.1 2010/08/08 11:15:12 ewillink Exp $
+ * $Id: GenerateCompleteOCLEditor.mwe2,v 1.1.2.2 2011/01/21 11:32:12 ewillink Exp $
  * 
  * Run As->MWE2 Workflow to regenerate the editor.
  * If it fails with a stack dump, open the Xtext file and do
@@ -72,8 +72,11 @@ Workflow {
 			}
 				
 			// the following fragment tries to use the Antlr Generator fragment which can be installed via update manager from http://download.itemis.com/updates/
-			fragment = de.itemis.xtext.antlr.XtextAntlrGeneratorFragment {
-				options = { backtrack = true classSplitting = true }
+//			fragment = de.itemis.xtext.antlr.XtextAntlrGeneratorFragment {
+//				options = { backtrack = true classSplitting = true }
+//			}
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {
+				options = { backtrack = true classSplitting = true }			
 			}
 			
 			// check-based API for validation
@@ -104,15 +107,19 @@ Workflow {
 			fragment = labeling.LabelProviderFragment {}
 
 			// outline API 
-			fragment = outline.TransformerFragment {}
-			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+//			fragment = outline.TransformerFragment {}
+//			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			fragment = outline.OutlineTreeProviderFragment {}
 			fragment = outline.QuickOutlineFragment {}
 
 			// java-based API for content assistance 
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 						
-			fragment = de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment {
-				options = { backtrack = true classSplitting = true }
+//			fragment = de.itemis.xtext.antlr.XtextAntlrGeneratorFragment {
+//				options = { backtrack = true classSplitting = true}
+//			}
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
+				options = { backtrack = true classSplitting = true}			
 			}
 
 			fragment = builder.BuilderIntegrationFragment {}
