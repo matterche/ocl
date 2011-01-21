@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.1.2.5 2011/01/17 08:11:48 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.1.2.6 2011/01/21 11:23:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -66,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -638,6 +639,10 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
+	protected String text(Precedence ele) {
+		return PrettyPrintExprVisitor.prettyPrint(ele);
+	}
+
 	protected String image(PrimitiveLiteralExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/PrimitiveLiteralExp.gif";
 	}
@@ -733,8 +738,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(Variable ele) {
-		Namespace namespace = PrettyPrintNameVisitor.getNamespace(ele.eContainer());
-		return PrettyPrintExprVisitor.prettyPrint(ele, namespace);
+		return PrettyPrintExprVisitor.prettyPrint(ele);
 	}
 
 	protected String image(VariableExp ele) {

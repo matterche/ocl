@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.1.2.2 2010/12/11 10:44:29 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.1.2.3 2011/01/21 11:23:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
@@ -21,11 +21,20 @@ import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
+import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
+
+import com.google.inject.Inject;
 
 public class BaseDocument extends XtextDocument
 {
+	@Inject
+	public BaseDocument(DocumentTokenSource tokenSource, ITextEditComposer composer) {
+		super(tokenSource, composer);
+	}
+
 	protected XtextResource resource2;
 	
 	@Override

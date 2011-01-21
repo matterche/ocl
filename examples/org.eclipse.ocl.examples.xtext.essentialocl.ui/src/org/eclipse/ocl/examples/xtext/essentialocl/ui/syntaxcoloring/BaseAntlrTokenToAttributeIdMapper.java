@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BaseAntlrTokenToAttributeIdMapper.java,v 1.1.2.1 2010/12/06 18:08:46 ewillink Exp $
+ * $Id: BaseAntlrTokenToAttributeIdMapper.java,v 1.1.2.2 2011/01/21 11:23:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring;
 
+import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttributeIdMapper;
 
 public class BaseAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAttributeIdMapper
 {
