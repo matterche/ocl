@@ -3146,7 +3146,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnrestrictedNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPrimitiveTypeIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//TypeIdentifier returns ecore::EString:
+		//TypeIdentifier:
 		//	UnrestrictedName | PrimitiveTypeIdentifier;
 		public ParserRule getRule() { return rule; }
 
@@ -3849,7 +3849,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getTemplateSignatureCSAccess().getRule();
 	}
 
-	//TypeIdentifier returns ecore::EString:
+	//TypeIdentifier:
 	//	UnrestrictedName | PrimitiveTypeIdentifier;
 	public TypeIdentifierElements getTypeIdentifierAccess() {
 		return (pTypeIdentifier != null) ? pTypeIdentifier : (pTypeIdentifier = new TypeIdentifierElements());
@@ -3996,7 +3996,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return gaEssentialOCL.getANY_OTHERRule();
 	} 
 
-	//EssentialOCLReservedKeyword returns ecore::EString:
+	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
 	public EssentialOCLGrammarAccess.EssentialOCLReservedKeywordElements getEssentialOCLReservedKeywordAccess() {
 		return gaEssentialOCL.getEssentialOCLReservedKeywordAccess();
@@ -4006,7 +4006,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLReservedKeywordAccess().getRule();
 	}
 
-	//EssentialOCLUnrestrictedIdentifier returns ecore::EString:
+	//EssentialOCLUnrestrictedIdentifier:
 	//	"e" | "E" | "body" | "der" | "init" | "inv" | "post" | "pre";
 	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedIdentifierElements getEssentialOCLUnrestrictedIdentifierAccess() {
 		return gaEssentialOCL.getEssentialOCLUnrestrictedIdentifierAccess();
@@ -4016,7 +4016,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLUnrestrictedIdentifierAccess().getRule();
 	}
 
-	//EssentialOCLPrefixOperator returns ecore::EString:
+	//EssentialOCLPrefixOperator:
 	//	"-" | "not";
 	public EssentialOCLGrammarAccess.EssentialOCLPrefixOperatorElements getEssentialOCLPrefixOperatorAccess() {
 		return gaEssentialOCL.getEssentialOCLPrefixOperatorAccess();
@@ -4026,7 +4026,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLPrefixOperatorAccess().getRule();
 	}
 
-	//EssentialOCLInfixOperator returns ecore::EString:
+	//EssentialOCLInfixOperator:
 	//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies";
 	public EssentialOCLGrammarAccess.EssentialOCLInfixOperatorElements getEssentialOCLInfixOperatorAccess() {
 		return gaEssentialOCL.getEssentialOCLInfixOperatorAccess();
@@ -4036,7 +4036,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLInfixOperatorAccess().getRule();
 	}
 
-	//EssentialOCLNavigationOperator returns ecore::EString:
+	//EssentialOCLNavigationOperator:
 	//	"." | "->";
 	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorElements getEssentialOCLNavigationOperatorAccess() {
 		return gaEssentialOCL.getEssentialOCLNavigationOperatorAccess();
@@ -4046,7 +4046,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLNavigationOperatorAccess().getRule();
 	}
 
-	//Identifier returns ecore::EString:
+	//Identifier:
 	//	ID | EssentialOCLUnrestrictedIdentifier;
 	public EssentialOCLGrammarAccess.IdentifierElements getIdentifierAccess() {
 		return gaEssentialOCL.getIdentifierAccess();
@@ -4056,7 +4056,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getIdentifierAccess().getRule();
 	}
 
-	//StringLiteral returns ecore::EString:
+	//StringLiteral:
 	//	SINGLE_QUOTED_STRING;
 	public EssentialOCLGrammarAccess.StringLiteralElements getStringLiteralAccess() {
 		return gaEssentialOCL.getStringLiteralAccess();
@@ -4068,7 +4068,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Intended to be overridden
 	//
-	//PrefixOperator returns ecore::EString:
+	//PrefixOperator:
 	//	EssentialOCLPrefixOperator;
 	public EssentialOCLGrammarAccess.PrefixOperatorElements getPrefixOperatorAccess() {
 		return gaEssentialOCL.getPrefixOperatorAccess();
@@ -4080,7 +4080,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Intended to be overridden
 	//
-	//InfixOperator returns ecore::EString:
+	//InfixOperator:
 	//	EssentialOCLInfixOperator;
 	public EssentialOCLGrammarAccess.InfixOperatorElements getInfixOperatorAccess() {
 		return gaEssentialOCL.getInfixOperatorAccess();
@@ -4092,7 +4092,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Intended to be overridden
 	//
-	//NavigationOperator returns ecore::EString:
+	//NavigationOperator:
 	//	EssentialOCLNavigationOperator;
 	public EssentialOCLGrammarAccess.NavigationOperatorElements getNavigationOperatorAccess() {
 		return gaEssentialOCL.getNavigationOperatorAccess();
@@ -4146,7 +4146,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	////---------------------------------------------------------------------
 	//
-	//PrimitiveTypeIdentifier returns ecore::EString:
+	//PrimitiveTypeIdentifier:
 	//	"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid";
 	public EssentialOCLGrammarAccess.PrimitiveTypeIdentifierElements getPrimitiveTypeIdentifierAccess() {
 		return gaEssentialOCL.getPrimitiveTypeIdentifierAccess();

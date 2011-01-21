@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.4 2011/01/17 08:11:54 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.5.6.5 2011/01/21 11:29:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
+import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
-import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreGlobalScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
@@ -31,13 +31,17 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.scoping.IGlobalScopeProvider;
+import org.eclipse.xtext.validation.CompositeEValidator;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 {
+	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
+		return NoEObjectCompositeEValidator.class;
+	}
+
 	// Reference value to text serialisation.
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return EssentialOCLCrossReferenceSerializer.class;
@@ -72,10 +76,10 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	  return OCLinEcoreValueConverterService.class;
 	}
 
-	@Override
-	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return OCLinEcoreGlobalScopeProvider.class;
-	}
+//	@Override
+//	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+//		return OCLinEcoreGlobalScopeProvider.class;
+//	}
 
 //	@Override
 //	public Class<? extends IScopeProvider> bindIScopeProvider() {

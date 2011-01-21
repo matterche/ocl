@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.7.6.3 2010/12/11 10:44:27 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.7.6.4 2011/01/21 11:29:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -34,21 +34,21 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
-import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.nodemodel.INode;
 
 public class OCLinEcoreLinkingService extends EssentialOCLLinkingService
 {
 //	private static final Logger log = Logger.getLogger(OCLinEcoreLinkingService.class);
 	
 	@Override
-	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
+	public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
 		if ((ref == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS)) {
 			return getLinkedImport((ModelElementCS)context, node);
 		}
 		return super.getLinkedObjects(context, ref, node);
 	}
 
-	private List<EObject> getLinkedImport(ModelElementCS context, AbstractNode node) {
+	private List<EObject> getLinkedImport(ModelElementCS context, INode node) {
 		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
 		String text = getText(node);
 		if ((scopeAdapter instanceof ImportScopeAdapter) && (text != null)) {
