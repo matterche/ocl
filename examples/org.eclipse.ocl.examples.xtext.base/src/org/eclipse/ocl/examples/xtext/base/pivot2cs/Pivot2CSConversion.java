@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.1.2.4 2011/01/19 22:22:49 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.1.2.5 2011/01/22 13:30:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -306,6 +306,9 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				else if (upper == -1) {
 					csElement.setMultiplicity("*");				
 				}
+//				else if (upper == -2) {
+//					csElement.setMultiplicity("0..?");				
+//				}
 			}
 			else if (lower == 1) {
 				if (upper == -1) {
