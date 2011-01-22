@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Package.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Package.java,v 1.1.2.5 2011/01/22 07:05:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -111,7 +111,7 @@ public interface Package
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Precedence</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedPrecedence()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Precedence> getOwnedPrecedences();

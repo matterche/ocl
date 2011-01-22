@@ -111,7 +111,7 @@
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_tLJe0MlBEd-bx742yyafXQ" name="precedence" type="_zQ5xkMlAEd-bx742yyafXQ" lower="0"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_iGrr0MlBEd-bx742yyafXQ" name="Package">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_kJml0MlBEd-bx742yyafXQ" name="ownedPrecedence" type="_zQ5xkMlAEd-bx742yyafXQ" upper="*" lower="0" isComposite="true"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_kJml0MlBEd-bx742yyafXQ" name="ownedPrecedence" type="_zQ5xkMlAEd-bx742yyafXQ" isOrdered="true" upper="*" lower="0" isComposite="true"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_zQ5xkMlAEd-bx742yyafXQ" name="Precedence" superClass="_wOAoUMlAEd-bx742yyafXQ">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_IdkjoMlBEd-bx742yyafXQ" name="associativity" type="_2eERIMlAEd-bx742yyafXQ" lower="0" default="Left"/>

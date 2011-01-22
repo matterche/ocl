@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OclMetaModel.java,v 1.1.2.8 2011/01/14 14:53:31 ewillink Exp $
+ * $Id: OclMetaModel.java,v 1.1.2.9 2011/01/22 07:05:55 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.model;
 
@@ -1832,12 +1832,12 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::Operation pivot|Operation
 		//
 		symbol_160.setName("Operation");
-		symbol_160.getSuperClasses().add(symbol_257);
+		symbol_160.getSuperClasses().add(symbol_149);
 		symbol_160.getSuperClasses().add(symbol_180);
-		symbol_160.getSuperClasses().add(symbol_138);
 		symbol_160.getSuperClasses().add(symbol_93);
 		symbol_160.getSuperClasses().add(symbol_240);
-		symbol_160.getSuperClasses().add(symbol_149);
+		symbol_160.getSuperClasses().add(symbol_257);
+		symbol_160.getSuperClasses().add(symbol_138);
 		{ // pivot.ecore::pivot::Operation::class pivot|Operation|class
 			symbol_161.setName("class");
 			symbol_161.setType(symbol_23);  // pivot|Class
@@ -1918,8 +1918,8 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::Package pivot|Package
 		//
 		symbol_170.setName("Package");
-		symbol_170.getSuperClasses().add(symbol_240);
 		symbol_170.getSuperClasses().add(symbol_149);
+		symbol_170.getSuperClasses().add(symbol_240);
 		{ // pivot.ecore::pivot::Package::nestedPackage pivot|Package|nestedPackage
 			symbol_171.setName("nestedPackage");
 			symbol_171.setType(symbol_170);  // pivot|Package
@@ -1961,6 +1961,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_175.setType(symbol_184);  // pivot|Precedence
 			symbol_175.setLower(BigInteger.valueOf(0));
 			symbol_175.setUpper(BigInteger.valueOf(-1));
+			symbol_175.setIsOrdered(true);
 			
 			symbol_175.setIsComposite(true);
 			symbol_175.setIsResolveProxies(true);
@@ -2075,10 +2076,10 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::Property pivot|Property
 		//
 		symbol_189.setName("Property");
-		symbol_189.getSuperClasses().add(symbol_257);
 		symbol_189.getSuperClasses().add(symbol_180);
-		symbol_189.getSuperClasses().add(symbol_138);
 		symbol_189.getSuperClasses().add(symbol_93);
+		symbol_189.getSuperClasses().add(symbol_257);
+		symbol_189.getSuperClasses().add(symbol_138);
 		{ // pivot.ecore::pivot::Property::association pivot|Property|association
 			symbol_190.setName("association");
 			symbol_190.setType(symbol_7);  // pivot|AssociationClass
@@ -2528,8 +2529,8 @@ public class OclMetaModel extends XMLResourceImpl
 		//
 		symbol_249.setName("Type");
 		symbol_249.getSuperClasses().add(symbol_180);
-		symbol_249.getSuperClasses().add(symbol_144);
 		symbol_249.getSuperClasses().add(symbol_240);
+		symbol_249.getSuperClasses().add(symbol_144);
 		{ // pivot.ecore::pivot::Type::instanceClassName pivot|Type|instanceClassName
 			symbol_250.setName("instanceClassName");
 			symbol_250.setType(symbol_216);  // pivot|String
@@ -2628,8 +2629,8 @@ public class OclMetaModel extends XMLResourceImpl
 		// pivot.ecore::pivot::ValueSpecification pivot|ValueSpecification
 		//
 		symbol_264.setName("ValueSpecification");
-		symbol_264.getSuperClasses().add(symbol_257);
 		symbol_264.getSuperClasses().add(symbol_180);
+		symbol_264.getSuperClasses().add(symbol_257);
 		{	// pivot.ecore::pivot::ValueSpecification::booleanValue() pivot|ValueSpecification|booleanValue()
 			Operation symbol_312 = PivotFactory.eINSTANCE.createOperation();
 			symbol_312.setName("booleanValue");
