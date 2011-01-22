@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.17 2011/01/21 11:28:37 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.18 2011/01/22 11:30:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -96,6 +97,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 public class CS2PivotConversion extends AbstractConversion
 {	
 	private static final Logger logger = Logger.getLogger(CS2PivotConversion.class);
+	public static final TracingOption CONTINUATION = new TracingOption("org.eclipse.ocl.examples.xtext.base", "continuation");  //$NON-NLS-1$//$NON-NLS-2$
 
 	protected final CS2Pivot converter;
 	protected final ProblemHandler problemHandler;
@@ -529,8 +531,20 @@ public class CS2PivotConversion extends AbstractConversion
 	protected List<BasicContinuation<?>> progressContinuations(List<BasicContinuation<?>> continuations) {
 		List<BasicContinuation<?>> moreContinuations = new ArrayList<BasicContinuation<?>>();
 		boolean madeProgress = false;
+		boolean tracingOn = CONTINUATION.isActive();
+		if (tracingOn) {
+			CONTINUATION.println("-------------------------------------------------");
+			CONTINUATION.println(packagesHaveTypes.toString());
+			CONTINUATION.println(typesHaveSignatures.toString());
+			CONTINUATION.println(typesHaveSpecializations.toString());
+			CONTINUATION.println(operationsHaveTemplateParameters.toString());
+		}
 		for (BasicContinuation<?> continuation : continuations) {
-			if (continuation.canExecute()) {
+			boolean canExecute = continuation.canExecute();
+			if (tracingOn) {
+				CONTINUATION.println((canExecute ? "+ " : "- ") + continuation);
+			}
+			if (canExecute) {
 				madeProgress = true;
 				BasicContinuation<?> nextContinuation = continuation.execute();
 //				while ((nextContinuation != null) && nextContinuation.canExecute()) {

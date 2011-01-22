@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.1.2.4 2011/01/16 09:03:10 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.1.2.5 2011/01/22 11:30:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EmptyScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EnumerationScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ExpressionInOclScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.IterateExpScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.IteratorExpScopeAdapter;
@@ -63,6 +64,11 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Pi
 	@Override
 	public ScopeAdapter visitConstraint(Constraint pivotElement) {
 		return new EmptyScopeAdapter(context, pivotElement);
+	}
+	
+	@Override
+	public ScopeAdapter visitEnumeration(org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
+		return new EnumerationScopeAdapter(context, pivotElement);
 	}
 
 	@Override

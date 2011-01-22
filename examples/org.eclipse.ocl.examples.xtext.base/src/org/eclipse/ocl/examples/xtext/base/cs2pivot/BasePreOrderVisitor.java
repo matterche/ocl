@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.14 2011/01/20 19:59:54 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.15 2011/01/22 11:30:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
@@ -62,6 +63,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitution
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
@@ -297,12 +299,28 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 
 		@Override
+		public boolean canExecute() {
+			if (!super.canExecute()) {
+				return false;
+			}
+			for (TuplePartCS csTuplePart : csElement.getOwnedParts()) {
+				TypedRefCS ownedType = csTuplePart.getOwnedType();
+				if (ownedType.getPivot() == null) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		@Override
 		public BasicContinuation<?> execute() {
 			TupleType pivotTupleType = context.refreshNamedElement(TupleType.class, PivotPackage.Literals.TUPLE_TYPE, csElement);
 			List<TuplePartCS> csTupleParts = csElement.getOwnedParts();
 			List<Property> newPivotParts = new ArrayList<Property>();
 			for (TuplePartCS csTuplePart : csTupleParts) {
 				Property pivotPart = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csTuplePart);
+				Type partType = PivotUtil.getPivot(Type.class, csTuplePart.getOwnedType());
+				pivotPart.setType(partType);
 				newPivotParts.add(pivotPart);
 			}
 			context.refreshList(pivotTupleType.getOwnedAttributes(), newPivotParts);
@@ -573,6 +591,13 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			pivotElement.setNsURI(newNsURI);
 		}
 		return new PackageContentContinuation(context, csPackage);
+	}
+
+	@Override
+	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
+		Type type = context.getPivotManager().getLibraryType(csPrimitiveTypeRef.getName());
+		context.reusePivotElement(csPrimitiveTypeRef, type);
+		return null;
 	}
 
 	@Override
