@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,17 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.7 2011/01/15 19:03:06 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.8 2011/01/22 11:30:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -37,40 +39,66 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExp
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
-public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, OperationCallExp>
+public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, CallExp>
 {
 	public NavigatingExpCSScopeAdapter(PivotManager pivotManager, NavigatingExpCS eObject) {
-		super(pivotManager, eObject, OperationCallExp.class);
+		super(pivotManager, eObject, CallExp.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EObject fromArgument = scopeView.getChild();
-		// Note that we only need to find the feature, which can be identified
-		// from the enclosing type. The correct source object is resolved later.
-		for (NavigatingArgCS csArgument : target.getArgument()) {
-			if (csArgument.getRole() == NavigationRole.EXPRESSION) {
-				break;
-			}
-			Element pivot = csArgument.getPivot();
-			if (pivot instanceof Variable) {
-				if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Variable) pivot) > 0) {
-					return null;
-				}
-				Type type = ((Variable)pivot).getType();
-				environmentView.addElementsOfScope(pivotManager, type, scopeView);
-				if (environmentView.getSize() > 0) {
-					return null;
-				}
-				if (type instanceof CollectionType) {		// FIXME use navigation operator dependent semantics
-					environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+		if ((fromArgument instanceof NavigatingArgCS) && (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.EXPRESSION)) {
+			CallExp pivot = getPivot();
+			if (pivot instanceof LoopExp) {
+				for (Variable iterator : ((LoopExp)pivot).getIterators()) {
+					if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, iterator) > 0) {
+						return null;
+					}
+					environmentView.addElementsOfScope(pivotManager, iterator.getType(), scopeView);
 					if (environmentView.getSize() > 0) {
 						return null;
 					}
 				}
 			}
-			if (csArgument == fromArgument) {
-				break;
+			if (pivot instanceof IterateExp) {
+				Variable result = ((IterateExp)pivot).getResult();
+				if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, result) > 0) {
+					return null;
+				}
+				environmentView.addElementsOfScope(pivotManager, result.getType(), scopeView);
+				if (environmentView.getSize() > 0) {
+					return null;
+				}
+			}
+		}
+		else {
+			// Note that we only need to find the feature, which can be identified
+			// from the enclosing type. The correct source object is resolved later.
+			for (NavigatingArgCS csArgument : target.getArgument()) {
+				if (csArgument.getRole() == NavigationRole.EXPRESSION) {
+					break;
+				}
+				Element pivot = csArgument.getPivot();
+				if (pivot instanceof Variable) {
+					if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Variable) pivot) > 0) {
+						return null;
+					}
+					Type type = ((Variable)pivot).getType();
+					environmentView.addElementsOfScope(pivotManager, type, scopeView);
+					if (environmentView.getSize() > 0) {
+						return null;
+					}
+					if (type instanceof CollectionType) {		// FIXME use navigation operator dependent semantics
+						environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+						if (environmentView.getSize() > 0) {
+							return null;
+						}
+					}
+				}
+				if (csArgument == fromArgument) {
+					break;
+				}
 			}
 		}
 //		EObject csParent = getParent().getTarget();

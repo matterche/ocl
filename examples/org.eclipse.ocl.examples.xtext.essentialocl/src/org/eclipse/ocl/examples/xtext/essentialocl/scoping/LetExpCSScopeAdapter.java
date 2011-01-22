@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,16 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: LetExpCSScopeAdapter.java,v 1.1.2.4 2011/01/22 11:30:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -38,7 +39,13 @@ public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
 			for (VariableCS csVariable : target.getVariable()) {
-				environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Nameable) csVariable.getPivot());
+				Variable variable = PivotUtil.getPivot(Variable.class, csVariable);
+				if (variable != null) {		// Maybe null while resolving namespaces
+					environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, variable);
+					if (environmentView.getSize() <= 0) {
+						environmentView.addElementsOfScope(pivotManager, variable.getType(), scopeView);
+					}
+				}
 			}
 		}
 		return scopeView.getOuterScope();

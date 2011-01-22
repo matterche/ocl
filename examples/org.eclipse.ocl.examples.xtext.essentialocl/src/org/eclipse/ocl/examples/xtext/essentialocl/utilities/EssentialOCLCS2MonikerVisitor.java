@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.9 2011/01/21 11:28:33 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.1.2.10 2011/01/22 11:30:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -248,12 +249,9 @@ public class EssentialOCLCS2MonikerVisitor
 
 	@Override
 	public Object visitCollectionTypeCS(CollectionTypeCS object) {
-		// Element pivot = object.getPivot();
-		// if (pivot != null) {
-		// context.appendElement(pivot);
-		// return true;
-		// }
-		// context.appendParentCS(object, SCOPE_SEPARATOR);
+		Type specializedPivotType = PivotUtil.getPivot(Type.class, object);
+		Type unspecializedPivotType = PivotUtil.getUnspecializedTemplateableElement(specializedPivotType);
+		context.appendParent(unspecializedPivotType, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		TypeRefCS type = object.getOwnedType();
 		if (type != null) {

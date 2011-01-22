@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,17 +12,15 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.8 2011/01/15 19:03:06 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.9 2011/01/22 11:30:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -46,11 +44,10 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		BinaryOperatorCS csOperator = getTarget();
-		if (containmentFeature == PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
+		EObject child = scopeView.getChild();
+		if (child == csOperator.getArgument()) {
 			OclExpression csSource = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
-//			ScopeAdapter typeScopeAdapter = getScopeAdapter(pivotManager, source.getType());
 			if (csSource instanceof TypeExp) {
 				environmentView.addElementsOfScope(pivotManager, ((TypeExp)csSource).getReferredType(), scopeView);
 			}

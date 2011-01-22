@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.19 2011/01/21 11:28:33 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.20 2011/01/22 11:30:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -40,6 +40,8 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -408,6 +410,13 @@ public class EssentialOCLLeft2RightVisitor
 				context.addDiagnostic(csNavigatingExp, diagnostic);
 			}
 		}
+		return expression;
+	}
+
+	protected EnumLiteralExp handleEnumLiteralExp(ExpCS csExp, EnumerationLiteral enumerationLiteral) {
+		EnumLiteralExp expression = context.refreshExpression(EnumLiteralExp.class, PivotPackage.Literals.ENUM_LITERAL_EXP, csExp);
+		context.setType(expression, enumerationLiteral.getEnumeration());
+		expression.setReferredEnumLiteral(enumerationLiteral);
 		return expression;
 	}
 
@@ -981,6 +990,7 @@ public class EssentialOCLLeft2RightVisitor
 		CollectionLiteralExp expression = context.refreshExpression(CollectionLiteralExp.class, PivotPackage.Literals.COLLECTION_LITERAL_EXP, csCollectionLiteralExp);
 		context.refreshPivotList(CollectionLiteralPart.class, expression.getParts(), csCollectionLiteralExp.getOwnedParts());
 		CollectionTypeCS ownedCollectionType = csCollectionLiteralExp.getOwnedType();
+		String collectionTypeName = ownedCollectionType.getName();
 		TypedRefCS ownedElementType = ownedCollectionType.getOwnedType();
 		if (ownedElementType != null) {
 			commonType = (Type) ownedElementType.getPivot();
@@ -988,7 +998,6 @@ public class EssentialOCLLeft2RightVisitor
 		if (commonType == null) {
 			commonType = pivotManager.getOclVoidType();			// FIXME Use a clearer unspecified type
 		}
-		String collectionTypeName = ownedCollectionType.getName();
 		Type type = pivotManager.getLibraryType(collectionTypeName, Collections.singletonList(commonType));
 		context.setType(expression, type);
 		if (type instanceof BagType) {
@@ -1246,6 +1255,9 @@ public class EssentialOCLLeft2RightVisitor
 			}
 			else if (element instanceof Type) {
 				return handleTypeExp(csNameExp, (Type) element);
+			}
+			else if (element instanceof EnumerationLiteral) {
+				return handleEnumLiteralExp(csNameExp, (EnumerationLiteral) element);
 			}
 			else {
 				return context.addBadExpressionError(csNameExp, "Unsupported NameExpCS " + element.eClass().getName());		// FIXME

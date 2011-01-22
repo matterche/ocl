@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,18 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.12 2011/01/19 22:22:54 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.13 2011/01/22 11:30:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -105,7 +100,8 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csCollectionType) {
-		PivotManager pivotManager = context.getPivotManager();
+		// FIXME untemplated collections need type deduction here
+/*		PivotManager pivotManager = context.getPivotManager();
 		TypedRefCS csElementType = csCollectionType.getOwnedType();
 		Type type;
 		if (csElementType != null) {
@@ -116,7 +112,7 @@ public class EssentialOCLPostOrderVisitor
 			type = pivotManager.getLibraryType(csCollectionType.getName());
 		}
 		context.reusePivotElement(csCollectionType, type);
-		return null;
+*/		return null;
 	}
 
 	@Override

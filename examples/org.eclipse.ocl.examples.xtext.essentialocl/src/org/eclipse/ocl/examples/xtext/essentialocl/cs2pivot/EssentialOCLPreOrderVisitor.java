@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,18 +12,25 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.4 2011/01/20 19:49:18 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.5 2011/01/22 11:30:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
+
+import java.util.Collections;
 
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
@@ -36,6 +43,50 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegat
 public class EssentialOCLPreOrderVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Continuation<?>, CS2PivotConversion, BasePreOrderVisitor>
 {
+	protected static class CollectionTypeContinuation extends SingleContinuation<CollectionTypeCS>
+	{
+		public CollectionTypeContinuation(CS2PivotConversion context, CollectionTypeCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public boolean canExecute() {
+			if (!super.canExecute()) {
+				return false;
+			}
+			TypedRefCS csTypedRef = csElement.getOwnedType();
+			if (csTypedRef instanceof TypedTypeRefCSImpl) {
+				Type unspecializedPivotElement = ((TypedTypeRefCSImpl)csTypedRef).basicGetType();
+				if (unspecializedPivotElement == null) {
+					return false;
+				}
+//				if (unspecializedPivotElement.eIsProxy()) {
+//					return false;
+//				}
+			}
+			if (csTypedRef.getPivot() == null) {
+				return false;
+			}
+			return true;
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			PivotManager pivotManager = context.getPivotManager();
+			TypedRefCS csElementType = csElement.getOwnedType();
+			Type type;
+			if (csElementType != null) {
+				Type elementType = PivotUtil.getPivot(Type.class, csElementType);
+				type = pivotManager.getLibraryType(csElement.getName(), Collections.singletonList(elementType));
+			}
+			else {
+				type = pivotManager.getLibraryType(csElement.getName());
+			}
+			context.reusePivotElement(csElement, type);
+			return null;
+		}
+	}
+
 	protected static class NameExpContinuation extends SingleContinuation<NameExpCS>
 	{
 		public NameExpContinuation(CS2PivotConversion context, NameExpCS csElement) {
@@ -76,6 +127,19 @@ public class EssentialOCLPreOrderVisitor
 
 	public EssentialOCLPreOrderVisitor(CS2PivotConversion context) {
 		super(new BasePreOrderVisitor(context), context);
+	}
+
+	@Override
+	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csCollectionType) {
+		if (csCollectionType.getOwnedType() != null) {
+			return new CollectionTypeContinuation(context, csCollectionType);
+		}
+		else {
+			PivotManager pivotManager = context.getPivotManager();
+			Type type = pivotManager.getLibraryType(csCollectionType.getName());
+			context.reusePivotElement(csCollectionType, type);
+			return null;
+		}
 	}
 
 	@Override
