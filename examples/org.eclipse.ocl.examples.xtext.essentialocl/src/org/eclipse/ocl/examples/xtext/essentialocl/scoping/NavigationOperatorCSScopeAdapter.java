@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.9 2011/01/22 11:30:19 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.10 2011/01/22 19:09:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
@@ -44,10 +43,9 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		BinaryOperatorCS csOperator = getTarget();
 		EObject child = scopeView.getChild();
-		if (child == csOperator.getArgument()) {
-			OclExpression csSource = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
+		if (child == target.getArgument()) {
+			OclExpression csSource = PivotUtil.getPivot(OclExpression.class, target.getSource());
 			if (csSource instanceof TypeExp) {
 				environmentView.addElementsOfScope(pivotManager, ((TypeExp)csSource).getReferredType(), scopeView);
 			}

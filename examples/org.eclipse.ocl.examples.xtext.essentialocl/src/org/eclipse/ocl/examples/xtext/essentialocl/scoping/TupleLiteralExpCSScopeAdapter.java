@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.4 2011/01/22 19:09:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -30,8 +30,7 @@ public class TupleLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<TupleLitera
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-//		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		environmentView.addNamedElements(getTarget().getOwnedParts());
+		environmentView.addNamedElements(target.getOwnedParts());
 		return scopeView.getOuterScope();
 	}
 }

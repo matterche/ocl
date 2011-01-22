@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.8 2011/01/22 11:30:19 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.9 2011/01/22 19:09:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -52,7 +52,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			CallExp pivot = getPivot();
 			if (pivot instanceof LoopExp) {
 				for (Variable iterator : ((LoopExp)pivot).getIterators()) {
-					if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, iterator) > 0) {
+					if (environmentView.addNamedElement(iterator) > 0) {
 						return null;
 					}
 					environmentView.addElementsOfScope(pivotManager, iterator.getType(), scopeView);
@@ -63,7 +63,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			}
 			if (pivot instanceof IterateExp) {
 				Variable result = ((IterateExp)pivot).getResult();
-				if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, result) > 0) {
+				if (environmentView.addNamedElement(result) > 0) {
 					return null;
 				}
 				environmentView.addElementsOfScope(pivotManager, result.getType(), scopeView);
@@ -81,7 +81,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 				}
 				Element pivot = csArgument.getPivot();
 				if (pivot instanceof Variable) {
-					if (environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, (Variable) pivot) > 0) {
+					if (environmentView.addNamedElement((Variable) pivot) > 0) {
 						return null;
 					}
 					Type type = ((Variable)pivot).getType();

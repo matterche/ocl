@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.8 2011/01/22 13:30:48 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.9 2011/01/22 19:09:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -22,11 +22,13 @@ import java.util.List;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -128,7 +130,11 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 				//
 				//	Use the name rather than the alias if within the same resource
 				//
-				if (objectElement.eResource() == contextElement.eResource()) {
+				Resource objectResource = objectElement.eResource();
+				PivotManager pivotManager = PivotManager.findAdapter(objectResource.getResourceSet());
+				Resource orphanage = pivotManager.getOrphanPackage().eResource();
+				Resource contextResource = contextElement.eResource();
+				if ((objectResource == contextResource) || (contextResource == orphanage)) {
 					objectName = ((NamedElement)objectElement).getName();
 				}
 			}
@@ -138,6 +144,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		if (iSize > 0) {
 			s.append(valueConverter.toString(objectPath.get(iSize-1).name, "ID"));
 		}
+//		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
 		return s.toString();
 	}
 
