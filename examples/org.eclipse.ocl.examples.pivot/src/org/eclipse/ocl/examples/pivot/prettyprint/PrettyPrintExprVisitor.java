@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.1.2.3 2011/01/21 11:24:55 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.1.2.4 2011/01/22 11:30:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -144,7 +144,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitCollectionLiteralExp(CollectionLiteralExp object) {
-		delegate.appendName(object);
+		delegate.appendName(object.getType());
 		delegate.append("{");
 		String prefix = ""; //$NON-NLS-1$
 		for (CollectionLiteralPart part : object.getParts()) {

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1.2.7 2011/01/14 14:53:31 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.1.2.8 2011/01/22 11:30:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -880,6 +880,12 @@ public class ToStringVisitor extends AbstractVisitor2<String>
             	appendTemplateSignature(result, templateSignature);
     		}
 		}
+		return null;
+	}
+
+	@Override
+	public String visitEnumerationLiteral(EnumerationLiteral el) {
+		result.append(getName(el.eContainer(), "::", el));
 		return null;
 	}
 

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.14 2011/01/21 06:31:38 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.15 2011/01/22 11:30:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -58,16 +58,10 @@ public class PivotUtil
 	{
 		public static final PrecedenceComparator INSTANCE = new PrecedenceComparator();
 
-		public int compare(Precedence o1, Precedence o2) {
-			if (o1 == null) {
-				return o2 != null ? -1 : 0;
-			}
-			if (o2 == null) {
-				return 1;
-			}
-			return o1.getOrder().compareTo(o2.getOrder()); // NB least positive
-															// is highest
-															// precedence
+		public int compare(Precedence p1, Precedence p2) {
+			int o1 = p1 != null ? p1.getOrder().intValue() : -1;
+			int o2 = p2 != null ? p2.getOrder().intValue() : -1;
+			return o1 - o2; // NB least positive is highest precedence
 		}
 	}
 

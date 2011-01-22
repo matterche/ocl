@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreReferenceVisitor.java,v 1.1.2.2 2011/01/07 12:14:06 ewillink Exp $
+ * $Id: Pivot2EcoreReferenceVisitor.java,v 1.1.2.3 2011/01/22 11:30:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -190,6 +190,7 @@ public class Pivot2EcoreReferenceVisitor
 			EReference eReference = (EReference) eStructuralFeature;
 			Property pivotOpposite = pivotProperty.getOpposite();
 			if (pivotOpposite != null) {
+				// FIXME Use EAnnotations for non-navigable opposites as identified by an Association
 				EReference eOpposite = context.getCreated(EReference.class, pivotOpposite);
 				if (eOpposite != null) {
 					eReference.setEOpposite(eOpposite);

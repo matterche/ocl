@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.1.2.14 2011/01/20 19:49:23 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.1.2.15 2011/01/22 11:30:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
@@ -204,6 +205,13 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	public Object visitDetail(Detail object) {
 		context.appendParent(object, BINDINGS_PREFIX);
 		context.append(object.getName());
+		return true;
+	}
+
+	@Override
+	public Object visitEnumLiteralExp(EnumLiteralExp object) {
+		appendExpPrefix(object);
+		context.appendName(object.getReferredEnumLiteral());
 		return true;
 	}
 

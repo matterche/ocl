@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.1.2.2 2011/01/15 20:50:51 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.1.2.3 2011/01/22 11:30:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
+import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -248,13 +249,16 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 
 	@Override
 	public Property caseEReference(EReference eObject) {
-		Property pivotElement = converter.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, eObject);
-		EAnnotation oppositeRole = null; // FIXME eReference.getEAnnotation(EMOFExtendedMetaData.EMOF_PROPERTY_OPPOSITE_ROLE_NAME_ANNOTATION_SOURCE);
+		Property pivotElement = converter.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, eObject);	
+		EAnnotation oppositeRole = eObject.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
 		List<EAnnotation> excludedAnnotations = oppositeRole != null ? Collections.singletonList(oppositeRole) : null;
 		copyStructuralFeature(pivotElement, eObject, excludedAnnotations);
 		pivotElement.setIsComposite(eObject.isContainment());			
 		pivotElement.setIsResolveProxies(eObject.isResolveProxies());			
-		if ((eObject.getEOpposite() != null) || (excludedAnnotations != null) || !eObject.getEKeys().isEmpty()) {
+		if ((eObject.getEOpposite() != null)
+		 || (excludedAnnotations != null)
+		 || (oppositeRole != null)
+		 || !eObject.getEKeys().isEmpty()) {
 			converter.queueReference(eObject);	// Defer
 		}
 		return pivotElement;
