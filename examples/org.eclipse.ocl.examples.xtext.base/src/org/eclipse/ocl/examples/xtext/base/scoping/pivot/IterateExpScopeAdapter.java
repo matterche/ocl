@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpScopeAdapter.java,v 1.1.2.1 2010/12/19 15:51:37 ewillink Exp $
+ * $Id: IterateExpScopeAdapter.java,v 1.1.2.2 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -38,12 +38,12 @@ public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter<IterateExp
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
 			OclExpression source = target.getSource();
 			environmentView.addElementsOfScope(pivotManager, source.getType(), scopeView);
-			environmentView.addElements(PivotPackage.Literals.VARIABLE, target.getIterators());
-			environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, target.getResult());
+			environmentView.addElements(target.getIterators());
+			environmentView.addNamedElement(target.getResult());
 		}
 		else if (containmentFeature == PivotPackage.Literals.ITERATE_EXP__RESULT) {
 			OclExpression source = target.getSource();
-			environmentView.addElements(PivotPackage.Literals.VARIABLE, target.getIterators());
+			environmentView.addElements(target.getIterators());
 			environmentView.addElementsOfScope(pivotManager, source.getType(), scopeView);
 		}
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
@@ -51,7 +51,7 @@ public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter<IterateExp
 			environmentView.addElementsOfScope(pivotManager, source.getType(), scopeView);
 			EObject child = scopeView.getChild();
 			for (Variable iterator : target.getIterators()) {
-				environmentView.addNamedElement(PivotPackage.Literals.VARIABLE, iterator);
+				environmentView.addNamedElement(iterator);
 				if (iterator == child) {
 					break;
 				}

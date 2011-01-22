@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.1.2.9 2011/01/20 19:49:08 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.1.2.10 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -152,6 +152,10 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitOperation(Operation object) {
 		OperationCS csElement = context.refreshTypedMultiplicityElement(OperationCS.class, BaseCSTPackage.Literals.OPERATION_CS, object);
+		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
+		if (ownedTemplateSignature != null) {
+			csElement.setOwnedTemplateSignature(context.visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
+		}
 		context.refreshList(csElement.getOwnedParameter(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters()));
 		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedExceptions()));
 		return csElement;

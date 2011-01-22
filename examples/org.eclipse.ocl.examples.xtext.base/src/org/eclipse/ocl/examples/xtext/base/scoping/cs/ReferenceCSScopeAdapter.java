@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: ReferenceCSScopeAdapter.java,v 1.1.2.4 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
@@ -36,7 +35,7 @@ public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Pro
 
 	public void addAllReferences(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class csClass) {
 		int oldSize = environmentView.getSize();
-		environmentView.addNamedElements(PivotPackage.Literals.PROPERTY, csClass.getOwnedAttributes());
+		environmentView.addNamedElements(csClass.getOwnedAttributes());
 		int newSize = environmentView.getSize();
 		if (newSize <= oldSize) {
 			for (org.eclipse.ocl.examples.pivot.Class csTypeRef : csClass.getSuperClasses()) {
@@ -54,7 +53,6 @@ public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Pro
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == BaseCSTPackage.Literals.REFERENCE_CS__OPPOSITE) {
-			ReferenceCS target = getTarget();
 			TypedRefCS typeRef = target.getOwnedType();
 			if (typeRef instanceof ParameterizedTypeRefCS) {
 				Type type = ((ParameterizedTypeRefCS)typeRef).getPivot();

@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: PackageCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: PackageCSScopeAdapter.java,v 1.1.2.4 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -30,12 +29,10 @@ public class PackageCSScopeAdapter extends MonikeredElementCSScopeAdapter<Packag
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-//		TypeBindingsCS bindings = scopeView.getBindings();
 		org.eclipse.ocl.examples.pivot.Package pivot = getPivot();
 		if (pivot != null) {
-			environmentView.addNamedElements(PivotPackage.Literals.PACKAGE, pivot.getNestedPackages());
-			environmentView.addNamedElements(PivotPackage.Literals.TYPE, pivot.getOwnedTypes());
-			environmentView.addNamedElements(PivotPackage.Literals.NAMESPACE, pivot.getOwnedTypes());		// FIXME needed for Enums
+			environmentView.addNamedElements(pivot.getNestedPackages());
+			environmentView.addNamedElements(pivot.getOwnedTypes());
 		}
 		return scopeView.getOuterScope();
 	}

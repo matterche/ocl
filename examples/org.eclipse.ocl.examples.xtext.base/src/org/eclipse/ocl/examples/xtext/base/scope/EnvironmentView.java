@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.7 2011/01/15 09:41:17 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.8 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -59,7 +59,6 @@ public class EnvironmentView
 
 	protected final String name;
 	private final Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single EObject or List<EObject>
-	private List<EClass> requiredAlternatives = null;
 	private List<Filter> filters = null;
 
 	public EnvironmentView(EStructuralFeature reference, String name) {
@@ -113,22 +112,13 @@ public class EnvironmentView
 		return 1;
 	}
 
-	public int addElements(EClass eClass, Collection<? extends EObject> elements) {
+	public int addElements(Collection<? extends EObject> elements) {
 		int additions = 0;
-		if ((elements != null) && accepts(eClass)) {
+		if (elements != null) {
 			for (EObject element : elements) {
-				if ((element instanceof Nameable) && eClass.isSuperTypeOf(element.eClass())) {
+				if (element instanceof Nameable) {
 					Nameable namedElement = (Nameable)element;
-					if (requiredAlternatives != null) {
-						for (EClass requiredAlternative : requiredAlternatives) {
-							if (requiredAlternative.isSuperTypeOf(element.eClass())) {
-								additions += addElement(namedElement.getName(), namedElement);
-							}
-						}
-					}
-					else {				
-						additions += addElement(namedElement.getName(), namedElement);
-					}
+					additions += addElement(namedElement.getName(), namedElement);
 				}
 			}
 		}
@@ -163,48 +153,11 @@ public class EnvironmentView
 		return 0;
 	}
 
-	public int addNamedElement(EClass eClass, Nameable namedElement) {
-		if ((namedElement != null) && accepts(eClass)) {
-			if (eClass.isSuperTypeOf(namedElement.eClass())) {
-				if (requiredAlternatives != null) {
-					for (EClass requiredAlternative : requiredAlternatives) {
-						if (requiredAlternative.isSuperTypeOf(namedElement.eClass())) {
-							return addNamedElement(namedElement);
-						}
-					}
-				}
-				else {				
-					return addNamedElement(namedElement);
-				}
-			}
-		}
-		return 0;
-	}
-
-	public int addNamedElements(List<? extends Nameable> namedElements) {
+	public int addNamedElements(Collection<? extends Nameable> namedElements) {
 		int additions = 0;
-		for (Nameable namedElement : namedElements) {
-			additions += addElement(namedElement.getName(), namedElement);
-		}
-		return additions;
-	}
-
-	public int addNamedElements(EClass eClass, Collection<? extends Nameable> namedElements) {
-		int additions = 0;
-		if ((namedElements != null) && accepts(eClass)) {
+		if (namedElements != null) {
 			for (Nameable namedElement : namedElements) {
-				if (eClass.isSuperTypeOf(namedElement.eClass())) {
-					if (requiredAlternatives != null) {
-						for (EClass requiredAlternative : requiredAlternatives) {
-							if (requiredAlternative.isSuperTypeOf(namedElement.eClass())) {
-								additions += addElement(namedElement.getName(), namedElement);
-							}
-						}
-					}
-					else {				
-						additions += addElement(namedElement.getName(), namedElement);
-					}
-				}
+				additions += addElement(namedElement.getName(), namedElement);
 			}
 		}
 		return additions;
@@ -278,17 +231,6 @@ public class EnvironmentView
 		}
 	}
 
-	public void require(EClass... requiredClasses) {
-		if (requiredClasses != null) {
-			if (requiredAlternatives == null) {
-				requiredAlternatives = new ArrayList<EClass>();
-			}
-			for (EClass requiredClass : requiredClasses) {
-				requiredAlternatives.add(requiredClass);
-			}
-		}	
-	}
-
 	@Override
 	public String toString() {
 		StringBuffer s = new StringBuffer();
@@ -296,16 +238,6 @@ public class EnvironmentView
 			s.append(reference.getName());
 			s.append(" : "); //$NON-NLS-1$
 			s.append(reference.getEType().getName());
-			if (requiredAlternatives != null) {
-				s.append(" && ("); //$NON-NLS-1$
-				String prefix = ""; //$NON-NLS-1$
-				for (EClass requiredAlternative : requiredAlternatives) {
-					s.append(prefix);
-					s.append(requiredAlternative.getName());
-					prefix = " || "; //$NON-NLS-1$
-				}
-				s.append(")"); //$NON-NLS-1$
-			}
 		}
 		s.append(" \""); //$NON-NLS-1$
 		if (name != null) {

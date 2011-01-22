@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.1.2.5 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -54,7 +53,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 		org.eclipse.ocl.examples.pivot.Class pivot = getPivot();
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_SUPER_TYPE) {
-				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
+				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_META_TYPE) {
 				environmentView.addNamedElement(pivotManager.getBagTypeType());
@@ -66,9 +65,9 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {
-				environmentView.addNamedElements(PivotPackage.Literals.OPERATION, pivot.getOwnedOperations());
-				environmentView.addNamedElements(PivotPackage.Literals.PROPERTY, pivot.getOwnedAttributes());
-				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
+				environmentView.addNamedElements(pivot.getOwnedOperations());
+				environmentView.addNamedElements(pivot.getOwnedAttributes());
+				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 				if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
 					addInheritedContents(environmentView, pivot, scopeView);

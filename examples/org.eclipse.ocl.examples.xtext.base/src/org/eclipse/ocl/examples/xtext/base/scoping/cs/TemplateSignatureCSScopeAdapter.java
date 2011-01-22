@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignatureCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: TemplateSignatureCSScopeAdapter.java,v 1.1.2.4 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -33,7 +32,7 @@ public class TemplateSignatureCSScopeAdapter extends MonikeredElementCSScopeAdap
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		TemplateSignature pivot = getPivot();
 		if (pivot != null) {
-			environmentView.addElements(PivotPackage.Literals.TEMPLATE_PARAMETER, pivot.getOwnedParameters());
+			environmentView.addElements(pivot.getOwnedParameters());
 		}
 		return scopeView.getOuterScope();
 	}

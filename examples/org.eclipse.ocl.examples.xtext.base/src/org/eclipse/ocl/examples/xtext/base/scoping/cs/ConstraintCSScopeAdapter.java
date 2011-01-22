@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.4 2010/12/19 15:51:36 ewillink Exp $
+ * $Id: ConstraintCSScopeAdapter.java,v 1.1.2.5 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -60,7 +60,6 @@ public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, C
 
 	@Override
 	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
-		ConstraintCS target = getTarget();
 		EObject eContainer = target.eContainer();
 		if (eContainer instanceof FeatureCS) {
 			eContainer = eContainer.eContainer();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: TupleTypeCSScopeAdapter.java,v 1.1.2.3 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -30,8 +30,7 @@ public class TupleTypeCSScopeAdapter extends BaseCSScopeAdapter<TupleTypeCS, Tup
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-//		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		environmentView.addNamedElements(getTarget().getOwnedParts());
+		environmentView.addNamedElements(target.getOwnedParts());
 		return scopeView.getOuterScope();
 	}
 }

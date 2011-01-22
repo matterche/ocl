@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.15 2011/01/22 11:30:55 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.16 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -66,6 +67,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -154,23 +156,24 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 	}
 	
-	protected static class QualifiedTypeRefContinuation extends SingleContinuation<QualifiedTypeRefCS>
+	protected static class QualifiedTypeRefElementContinuation extends SingleContinuation<QualifiedTypeRefCS>
 	{
-		private static Dependency[] computeDependencies(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
-			Dependency typeDependency = ElementUtil.isInOperation(csElement)
-				? context.getOperationsHaveTemplateParametersInterDependency()
-				: context.getPackagesHaveTypesInterDependency();
-			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
-			if (csTemplateBinding == null) {
-				return new Dependency[] {typeDependency, new PivotDependency(csElement.getElement())};
-			}
-			else {
-				return new Dependency[] {typeDependency, new PivotDependency(csElement.getElement()), new PivotDependency(csTemplateBinding)};
-			}
+		public QualifiedTypeRefElementContinuation(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
+			super(context, null, null, csElement, new PivotDependency(csElement.getElement()));
 		}
-		
-		public QualifiedTypeRefContinuation(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
-			super(context, null, null, csElement, computeDependencies(context, csElement));
+
+		@Override
+		public BasicContinuation<?> execute() {
+			Type type = PivotUtil.getPivot(Type.class, csElement.getElement());
+			context.reusePivotElement(csElement, type);
+			return null;
+		}
+	}
+	
+	protected static class QualifiedTypeRefNamespaceContinuation extends SingleContinuation<QualifiedTypeRefCS>
+	{
+		public QualifiedTypeRefNamespaceContinuation(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
 		}
 
 		@Override
@@ -179,9 +182,9 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				return false;
 			}
 			EObject csContainer = csElement.eContainer();
-			if (csContainer instanceof QualifiedRefCS<?>) {
-				Element pivot = ((QualifiedRefCS<?>)csContainer).getPivot();
-				if (pivot == null) {
+			if (csContainer instanceof QualifiedTypeRefCSImpl) {
+				Namespace namespace = ((QualifiedTypeRefCSImpl)csContainer).basicGetNamespace();
+				if (namespace.eIsProxy()) {
 					return false;
 				}
 			}
@@ -190,8 +193,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			context.installPivotElement(csElement, csElement.getElement().getPivot());
-			return null;
+			csElement.getNamespace();
+			return new QualifiedTypeRefElementContinuation(context, csElement);
 		}
 	}
 
@@ -387,26 +390,20 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			super(context, null, null, csElement, computeDependencies(context, csElement));
 		}
 
-//		@Override
-//		public boolean canExecute() {
-//			Type type = csElement.getType();
-//			return !type.eIsProxy();
-//		}
-
-/*		@Override
+		@Override
 		public boolean canExecute() {
 			if (!super.canExecute()) {
 				return false;
 			}
 			EObject csContainer = csElement.eContainer();
-			if (csContainer instanceof QualifiedRefCS<?>) {
-				Element pivot = ((QualifiedRefCS<?>)csContainer).getPivot();
-				if (pivot == null) {
+			if (csContainer instanceof QualifiedTypeRefCSImpl) {
+				Namespace namespace = ((QualifiedTypeRefCSImpl)csContainer).basicGetNamespace();
+				if (namespace.eIsProxy()) {
 					return false;
 				}
 			}
 			return true;
-		} */
+		}
 
 		@Override
 		public BasicContinuation<?> execute() {
@@ -602,7 +599,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitQualifiedTypeRefCS(QualifiedTypeRefCS csQualifiedTypeRef) {
-		return new QualifiedTypeRefContinuation(context, csQualifiedTypeRef);
+		return new QualifiedTypeRefNamespaceContinuation(context, csQualifiedTypeRef);
 	}
 
 	@Override

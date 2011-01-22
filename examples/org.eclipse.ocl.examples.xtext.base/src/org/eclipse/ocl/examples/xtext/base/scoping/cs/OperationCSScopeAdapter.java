@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OperationCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: OperationCSScopeAdapter.java,v 1.1.2.3 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -40,9 +41,11 @@ public class OperationCSScopeAdapter extends BaseCSScopeAdapter<OperationCS, Ope
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}
 			else {
-				environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, pivot.getOwnedParameters());
+				environmentView.addNamedElements(pivot.getOwnedParameters());
 			}
-			environmentView.addElements(PivotPackage.Literals.TEMPLATE_PARAMETER, PivotUtil.getTemplateParameters(pivot));
+			for (TemplateParameter templateParameter : PivotUtil.getTemplateParameters(pivot)) {
+				environmentView.addNamedElement((Nameable)templateParameter.getParameteredElement());
+			}
 		}
 		return scopeView.getOuterScope();
 	}

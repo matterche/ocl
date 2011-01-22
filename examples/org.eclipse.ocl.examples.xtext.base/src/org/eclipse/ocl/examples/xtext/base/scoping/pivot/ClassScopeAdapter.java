@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1.2.6 2011/01/07 12:13:18 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.1.2.7 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -49,17 +48,16 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		org.eclipse.ocl.examples.pivot.Class pivot = getTarget();
 		org.eclipse.ocl.examples.pivot.Class unspecializedPivot;
-		if (pivot.getTemplateBindings().size() > 0) {
-			unspecializedPivot = PivotUtil.getUnspecializedTemplateableElement(pivot);
+		if (target.getTemplateBindings().size() > 0) {
+			unspecializedPivot = PivotUtil.getUnspecializedTemplateableElement(target);
 		}
 		else {
-			unspecializedPivot = pivot;
-			environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
+			unspecializedPivot = target;
+			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(target));
 		}
-		environmentView.addNamedElements(PivotPackage.Literals.OPERATION, unspecializedPivot.getOwnedOperations());
-		environmentView.addNamedElements(PivotPackage.Literals.PROPERTY, unspecializedPivot.getOwnedAttributes());
+		environmentView.addNamedElements( unspecializedPivot.getOwnedOperations());
+		environmentView.addNamedElements(unspecializedPivot.getOwnedAttributes());
 		if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
 //			if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
 			addInheritedContents(environmentView, unspecializedPivot, scopeView);

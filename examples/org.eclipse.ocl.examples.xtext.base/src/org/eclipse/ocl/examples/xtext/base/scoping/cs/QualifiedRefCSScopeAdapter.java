@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedRefCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: QualifiedRefCSScopeAdapter.java,v 1.1.2.3 2011/01/22 19:09:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -35,7 +35,6 @@ public class QualifiedRefCSScopeAdapter<CS extends QualifiedRefCS<?>, P extends 
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == BaseCSTPackage.Literals.QUALIFIED_REF_CS__ELEMENT) {
-			CS target = getTarget();
 			ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, target.getNamespace());
 			if (scopeAdapter != null) {
 				scopeAdapter.computeLookup(environmentView, scopeView);
