@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.7 2011/01/21 11:28:32 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.8 2011/01/22 13:30:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -105,6 +105,9 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		int i = 0;
 		int iSize = objectPath.size();
 		int iMax = Math.min(iSize, contextPath.size());
+		//
+		//	Skip the common path elements
+		//
 		for ( ; i < iMax; i++) {
 			EObject objectElement = objectPath.get(i).element;
 			EObject contextElement = contextPath.get(i).element;
@@ -112,9 +115,24 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 				break;
 			}
 		}
+		//
+		//	Serialize the divergent elements
+		//
 		StringBuffer s = new StringBuffer();
 		for ( ; i < iSize-1; i++) {
-			s.append(valueConverter.toString(objectPath.get(i).name, "ID"));
+			PathElement objectPathElement = objectPath.get(i);
+			String objectName = objectPathElement.name;
+			if (s.length() == 0) {
+				EObject objectElement = objectPathElement.element;
+				EObject contextElement = contextPath.get(i).element;
+				//
+				//	Use the name rather than the alias if within the same resource
+				//
+				if (objectElement.eResource() == contextElement.eResource()) {
+					objectName = ((NamedElement)objectElement).getName();
+				}
+			}
+			s.append(valueConverter.toString(objectName, "ID"));
 			s.append("::");
 		}
 		if (iSize > 0) {
