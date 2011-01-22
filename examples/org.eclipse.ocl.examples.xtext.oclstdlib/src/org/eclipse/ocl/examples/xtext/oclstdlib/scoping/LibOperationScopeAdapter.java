@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: LibOperationScopeAdapter.java,v 1.5.6.3 2010/12/11 10:45:46 ewillink Exp $
+ * $Id: LibOperationScopeAdapter.java,v 1.5.6.4 2011/01/22 19:09:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
@@ -46,21 +45,20 @@ public class LibOperationScopeAdapter extends BaseCSScopeAdapter<OperationCS, Op
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}
 			else {
-				environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, pivot.getOwnedParameters());
+				environmentView.addNamedElements(pivot.getOwnedParameters());
 			}
-			environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
+			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 		}
 		else {
-			OperationCS target = getTarget();
 			TemplateSignatureCS csTemplateSignature = target.getOwnedTemplateSignature();
 			if (csTemplateSignature != null) {
 				for (TemplateParameterCS csTemplateParameter : csTemplateSignature.getOwnedTemplateParameter()) {
 					TemplateParameter templateParameter = (TemplateParameter) csTemplateParameter.getPivot();
 					if (templateParameter != null) {
-						environmentView.addNamedElement(PivotPackage.Literals.TYPE, (Nameable) templateParameter.getParameteredElement());
+						environmentView.addNamedElement((Nameable) templateParameter.getParameteredElement());
 					}
 					else {
-//						environmentView.addNamedElement(BaseCSTPackage.Literals.TYPE, (INamedElement) csTemplateParameter.getParameteredElement());
+//						environmentView.addNamedElement((INamedElement) csTemplateParameter.getParameteredElement());
 					}
 				}
 			}
