@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.6.6.3 2010/12/11 10:44:23 ewillink Exp $
+ * $Id: OperationContextScopeAdapter.java,v 1.6.6.4 2011/01/22 19:09:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -42,7 +42,7 @@ public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<Ope
 		if ((containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__PRES) 
 		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__BODIES) 
 		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__POSTS)) {
-			OperationRefCS csOperationRef = getTarget().getOperation();
+			OperationRefCS csOperationRef = target.getOperation();
 			while (csOperationRef instanceof QualifiedOperationRefCS) {
 				csOperationRef = ((QualifiedOperationRefCS)csOperationRef).getElement();
 			}

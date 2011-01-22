@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextScopeAdapter.java,v 1.5.6.3 2010/12/11 10:44:23 ewillink Exp $
+ * $Id: ClassifierContextScopeAdapter.java,v 1.5.6.4 2011/01/22 19:09:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -45,11 +45,11 @@ public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<Cl
 			return scopeView.getOuterScope();
 		}
 		else {
-			ClassifierRefCS csClassifierRef = getTarget().getClassifier();
+			ClassifierRefCS csClassifierRef = target.getClassifier();
 			if (csClassifierRef != null) {
 				ClassifierCS csClassifier = csClassifierRef.getClassifier();
 				environmentView.addElementsOfScope(csClassifier, scopeView);
-				String selfName = getTarget().getSelfName();
+				String selfName = target.getSelfName();
 				if (selfName == null) {
 					selfName = "self";
 				}

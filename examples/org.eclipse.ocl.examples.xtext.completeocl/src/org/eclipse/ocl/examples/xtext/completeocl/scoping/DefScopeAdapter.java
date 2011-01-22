@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: DefScopeAdapter.java,v 1.4.6.2 2010/12/11 10:44:23 ewillink Exp $
+ * $Id: DefScopeAdapter.java,v 1.4.6.3 2011/01/22 19:09:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -42,7 +41,7 @@ public class DefScopeAdapter extends EssentialOCLCSScopeAdapter<DefCS, TypedElem
 		else {
 			TypedElement pivot = getPivot();
 			if (pivot instanceof Operation) {
-				environmentView.addNamedElements(PivotPackage.Literals.PARAMETER, ((Operation)pivot).getOwnedParameters());
+				environmentView.addNamedElements(((Operation)pivot).getOwnedParameters());
 			}
 //			environmentView.addElement("result", operation);	// FIXME transient VariableCS		
 //			environmentView.addElement("self", (ElementCS) operation.eContainer());

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.5.6.3 2010/12/11 10:44:23 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.5.6.4 2011/01/22 19:09:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -43,7 +43,7 @@ public class PropertyContextScopeAdapter extends ModelElementCSScopeAdapter<Prop
 			return scopeView.getOuterScope();
 		}
 		else {
-			StructuralFeatureRefCS csStructuralFeatureRef = getTarget().getProperty();
+			StructuralFeatureRefCS csStructuralFeatureRef = target.getProperty();
 			while (csStructuralFeatureRef instanceof QualifiedStructuralFeatureRefCS) {
 				csStructuralFeatureRef = ((QualifiedStructuralFeatureRefCS)csStructuralFeatureRef).getElement();
 			}

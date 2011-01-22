@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationScopeAdapter.java,v 1.4.6.2 2010/12/11 10:44:23 ewillink Exp $
+ * $Id: PackageDeclarationScopeAdapter.java,v 1.4.6.3 2011/01/22 19:09:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -41,7 +41,7 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<P
 		}
 		if ((containmentFeature == null)
 		 || (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS)) {
-			PackageRefCS csPackageRef = getTarget().getPackage();
+			PackageRefCS csPackageRef = target.getPackage();
 			while (csPackageRef instanceof QualifiedPackageRefCS) {
 				csPackageRef = ((QualifiedPackageRefCS)csPackageRef).getElement();
 			}
