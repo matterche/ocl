@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.1.2.4 2011/01/22 11:30:38 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.1.2.5 2011/01/22 12:19:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -46,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -109,12 +111,14 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	protected void appendSourceNavigation(CallExp object) {
 		OclExpression source = object.getSource();
 		if (source != null) {
-			safeVisit(source);
-			if (source.getType() instanceof CollectionType) {
-				delegate.append("->");
-			}
-			else {
-				delegate.append(".");
+			if (!(source instanceof VariableExp) || !((VariableExp)source).isImplicit()) {
+				safeVisit(source);
+				if (source.getType() instanceof CollectionType) {
+					delegate.append("->");
+				}
+				else {
+					delegate.append(".");
+				}
 			}
 		}
 	}
@@ -215,22 +219,56 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	}
 
 	@Override
+	public Object visitIterateExp(IterateExp object) {
+		List<Variable> iterators = object.getIterators();
+		Operation referredOperation = object.getReferredIteration();
+		appendSourceNavigation(object);
+		delegate.appendName(referredOperation);
+		delegate.append("(");
+		if (iterators.size() > 0) {
+			boolean hasExplicitIterator = false;
+			String prefix = ""; //$NON-NLS-1$
+			for (Variable iterator : iterators) {
+				if (!iterator.isImplicit()) {
+					delegate.append(prefix);
+					safeVisit(iterator);
+					prefix = ", ";
+					hasExplicitIterator = true;
+				}
+			}
+			if (hasExplicitIterator) {
+				delegate.append(" ; ");
+			}
+			safeVisit(object.getResult());
+			delegate.append(" | ");
+		}
+		safeVisit(object.getBody());
+		delegate.append(")");
+		return null;
+	}
+
+	@Override
 	public Object visitIteratorExp(IteratorExp object) {
 		List<Variable> iterators = object.getIterators();
 		Operation referredOperation = object.getReferredIteration();
 		appendSourceNavigation(object);
 		delegate.appendName(referredOperation);
 		delegate.append("(");
-		String prefix = ""; //$NON-NLS-1$
 		if (iterators.size() > 0) {
+			boolean hasExplicitIterator = false;
+			String prefix = ""; //$NON-NLS-1$
 			for (Variable iterator : iterators) {
-				delegate.append(prefix);
-				safeVisit(iterator);
-				prefix = ", ";
+				if (!iterator.isImplicit()) {
+					delegate.append(prefix);
+					safeVisit(iterator);
+					prefix = ", ";
+					hasExplicitIterator = true;
+				}
 			}
-			prefix = " | ";
+			if (hasExplicitIterator) {
+				delegate.append(" | ");
+			}
 		}
-		delegate.append(prefix);
 		safeVisit(object.getBody());
 		delegate.append(")");
 		return null;
@@ -280,7 +318,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 			delegate.append(")");
 		}
 		else {
-			boolean lowerPrecedence = (currentPrecedence != null) && precedence.getOrder().compareTo(currentPrecedence.getOrder()) < 0;
+			boolean lowerPrecedence = (currentPrecedence != null) && precedence.getOrder().compareTo(currentPrecedence.getOrder()) > 0;
 			if (lowerPrecedence) {
 				delegate.append("(");
 			}
@@ -339,8 +377,8 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	@Override
 	public Object visitTupleLiteralPart(TupleLiteralPart object) {
 		delegate.appendName(object);
-		delegate.append(" : ");
-		delegate.safeVisit(object.getType());
+		delegate.append(" = ");
+		safeVisit(object.getInitExpression());
 		return null;
 	}
 
@@ -365,8 +403,16 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	@Override
 	public Object visitVariable(Variable object) {
 		delegate.appendName(object);
-		delegate.append(" : ");
-		delegate.safeVisit(object.getType());
+		Type type = object.getType();
+		if (type != null) {
+			delegate.append(" : ");
+			delegate.safeVisit(type);
+		}
+		OclExpression initExpression = object.getInitExpression();
+		if (initExpression != null) {
+			delegate.append(" = ");
+			safeVisit(initExpression);
+		}
 		return null;
 	}
 

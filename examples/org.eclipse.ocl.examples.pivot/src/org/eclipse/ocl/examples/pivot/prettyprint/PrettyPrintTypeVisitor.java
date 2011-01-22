@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.4 2011/01/17 08:11:52 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.1.2.5 2011/01/22 12:19:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -250,7 +250,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 			for (Property tuplePart : tupleParts) {
 				append(prefix);
 				appendName(tuplePart);
-				append(":");
+				append(" : ");
 				appendElement(tuplePart.getType());
 				prefix = ", ";
 			}
