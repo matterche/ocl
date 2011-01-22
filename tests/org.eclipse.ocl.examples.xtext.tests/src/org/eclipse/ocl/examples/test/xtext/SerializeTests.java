@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.7.6.7 2011/01/20 19:50:32 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.7.6.8 2011/01/22 11:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -181,6 +181,8 @@ public class SerializeTests extends XtextTestCase
 //		logger.addAppender(new ConsoleAppender(new SimpleLayout()));
 //		BaseScopeProvider.LOOKUP.setState(true);
 //		DocumentScopeAdapter.WORK.setState(true);
+//		CS2PivotConversion.CONTINUATION.setState(true);
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doSerialize("Company");
 	}
 
