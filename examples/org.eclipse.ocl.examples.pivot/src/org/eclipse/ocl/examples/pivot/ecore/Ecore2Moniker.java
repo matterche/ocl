@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Moniker.java,v 1.1.2.4 2010/12/31 19:12:32 ewillink Exp $
+ * $Id: Ecore2Moniker.java,v 1.1.2.5 2011/01/22 19:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -40,11 +40,11 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
  */
 public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 {
-	public static String toSignature(EModelElement eElement) {
-		Ecore2Moniker moniker = new Ecore2Moniker(true);
-		moniker.appendElement(eElement);
-		return moniker.toString();
-	}
+//	public static String toSignature(EModelElement eElement) {
+//		Ecore2Moniker moniker = new Ecore2Moniker(true);
+//		moniker.appendElement(eElement);
+//		return moniker.toString();
+//	}
 	
 	public static String toString(EModelElement eElement) {
 		Ecore2Moniker moniker = new Ecore2Moniker(false);

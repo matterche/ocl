@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.1.2.7 2011/01/08 11:39:39 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.1.2.8 2011/01/22 19:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -185,7 +185,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 			else if (element.eIsProxy()) {
 				append("<<unresolved-proxy>>");	
 			}
-			else  {
+			else {
 				assert element instanceof org.eclipse.ocl.examples.pivot.Package || element instanceof ExpressionInOcl : element.eClass().getName() + " has no parent";	
 			}
 		}

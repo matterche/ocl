@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.22 2011/01/20 19:49:23 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.23 2011/01/22 19:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -209,6 +209,9 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	
 	private Map<String, Namespace> globalNamespaces = new HashMap<String, Namespace>();
 	private Set<Type> globalTypes = new HashSet<Type>();
+//	private Map<Resource, Map<Element, String>> aliasMaps = new HashMap<Resource, Map<Element, String>>();
+//	private Map<String, Element> alias2pivot = new HashMap<String, Element>();
+//	private Map<Element, String> pivot2alias = new HashMap<Element, String>();
 
 	public PivotManager() {
 		this(new ResourceSetImpl());
@@ -1097,6 +1100,40 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		}
 		return pivotOperations;
 	}
+
+	/**
+	 * Add a resource-specific map of elements to preferred aliases, updating
+	 * the internal pivot-resource-set-wide map of elements to pivot-aliases
+	 * and vice-versa.
+	 * <b>
+	 * Note that pivot aliases are unique and used only for monikers.
+	 * 
+	 * @param resource
+	 * @param newAliasMap
+	 * @return
+	 *
+	public Map<Element, String> putAliasMap(Resource resource, Map<Element, String> newAliasMap) {
+		Map<Element, String> oldAliasMap = aliasMaps.put(resource, newAliasMap);
+		if (oldAliasMap != null) {
+			for (Element key : oldAliasMap.keySet()) {
+				pivot2alias.remove(key);
+				alias2pivot.remove(key);
+			}
+		}
+		if (newAliasMap != null) {
+			for (Element key : newAliasMap.keySet()) {
+				String baseString = newAliasMap.get(key);
+				String alias = PivotConstants.MONIKER_SCOPE_SEPARATOR + baseString;
+				int index = 0;
+				while (alias2pivot.containsKey(alias)) {
+					alias = PivotConstants.MONIKER_SCOPE_SEPARATOR + index++ + PivotConstants.MONIKER_OPERATOR_SEPARATOR + baseString;
+				}
+				pivot2alias.put(key, alias);
+				alias2pivot.put(alias, key);
+			}
+		}
+		return oldAliasMap;
+	} */
 
 	public Set<Operation> resolveLocalOperation(org.eclipse.ocl.examples.pivot.Class pivotClass,
 			String operationName, Type... pivotArguments) {
