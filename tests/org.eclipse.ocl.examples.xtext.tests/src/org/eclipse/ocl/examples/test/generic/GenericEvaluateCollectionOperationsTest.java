@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.9 2011/01/13 19:17:16 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.1.2.10 2011/01/23 12:32:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -475,6 +475,8 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryResults(null, "Bag{'c', 'a'}", "Bag{'b', 'a', 'b', 'c'}->excluding('b')");
 		assertQueryResults(null, "Set{'c', 'a'}", "Set{'a', 'b', 'c'}->excluding('b')");
 		assertQueryResults(null, "OrderedSet{'a', 'c'}", "OrderedSet{'a', 'b', 'c'}->excluding('b')");
+		assertQueryResults(null, "Sequence{1,3,4}", "Sequence{1..4}->excluding(2)");
+		assertQueryResults(null, "Sequence{1..3,6..9}", "Sequence{1..4,6,7..9}->excluding(4)");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Sequence(String) = invalid in s->excluding('a')");
 		assertQueryInvalid(null, "let b : Bag(String) = invalid in b->excluding('a')");
@@ -715,6 +717,9 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryResults(null, "Bag{'c', 'b', 'a'}", "Bag{'a', 'b'}->including('c')");
 		assertQueryResults(null, "Set{'a', 'c', 'b'}", "Set{'a', 'b'}->including('c')");
 		assertQueryResults(null, "OrderedSet{'a', 'b', 'c'}", "OrderedSet{'a', 'b'}->including('c')");
+		assertQueryResults(null, "OrderedSet{1..2,3..4}", "OrderedSet{1..4}->including(4)");
+		assertQueryResults(null, "Sequence{1..2,3..4,4}", "Sequence{1..4}->including(4)");
+		assertQueryResults(null, "Set{1..9}", "Set{1..4,6,7..9}->including(5)");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Sequence(String) = invalid in s->including('a')");
 		assertQueryInvalid(null, "let b : Bag(String) = invalid in b->including('a')");
