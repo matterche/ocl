@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.17 2011/01/15 20:50:51 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.18 2011/01/23 12:31:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -65,7 +64,6 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
@@ -79,15 +77,12 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -99,7 +94,7 @@ import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
  */
 public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 {
-	public static boolean isSimpleRange(CollectionLiteralExp cl) {
+/*	public static boolean isSimpleRange(CollectionLiteralExp cl) {
 		List<CollectionLiteralPart> partsList = cl.getParts();
 		int size = partsList.size();
 		if (size == 1) {
@@ -107,7 +102,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return part instanceof CollectionRange;
 		}
 		return false;
-	}
+	} */
 	
 	protected final ValueFactory valueFactory;;
 	
@@ -124,103 +119,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			ModelManager modelManager) {
 		super(env, evalEnv, modelManager);
 		this.valueFactory = evalEnv.getValueFactory();
-	}
-
-	// private static inner class for lazy lists over an integer range
-	private static final class IntegerRangeList extends AbstractValue
-		/*extends AbstractList<Integer>*/ {
-
-//		public IntegerRangeList() {
-//			super();
-//		}
-
-		public IntegerRangeList(ValueFactory valueFactory, int first, int last) {
-			super(valueFactory);
-			this.first = first;
-			this.last = last;
-		}
-
-		public Object asObject() {
-			return this;
-		}
-
-//		public int getFirst() {
-//			return first;
-//		}
-
-//		public int getLast() {
-//			return last;
-//		}
-
-//		@Override
-        public int size() {
-			return last - first + 1;
-		}
-
-//		@Override
-        public Integer get(int index) {
-			if (index < 0 || index >= size()) {
-				String message = OCLMessages.bind(
-						OCLMessages.IndexOutOfRange_ERROR_,
-						new Object[] {
-								Integer.toString(index),
-								Integer.toString(first),
-								Integer.toString(last)});
-				IllegalArgumentException error = new IllegalArgumentException(
-					message);
-				PivotPlugin.throwing(getClass(), "get", error);//$NON-NLS-1$
-				throw error;
-			}
-			return new Integer(first + index);
-		}
-
-        public Type getType(StandardLibrary standardLibrary, Type staticType) {
-    		return (first >= 0) && (last >= 0) ? standardLibrary.getUnlimitedNaturalType() : standardLibrary.getIntegerType();
-		}
-
-		//		@Override
-        public java.util.Iterator<Integer> iterator() {
-			// local iterator class that provides
-			// hasNext() and next() methods appropriate
-			// for this range set
-			class IntegerRangeIterator
-				implements java.util.Iterator<Integer> {
-
-				public IntegerRangeIterator() {
-					curr = first;
-					initialized = false;
-				}
-
-				public Integer next() {
-					if (!initialized) {
-						curr = first - 1;
-						initialized = true;
-					}
-					if (hasNext()) {
-                        return new Integer(++curr);
-                    }
-					throw new NoSuchElementException();
-				}
-
-				public boolean hasNext() {
-					return curr < last;
-				}
-
-				public void remove() {
-					throw new UnsupportedOperationException();
-				}
-
-				private int curr;
-
-				private boolean initialized;
-			}
-
-			return new IntegerRangeIterator();
-		}
-
-		private int first;
-
-		private int last;
 	}
 
 	public EvaluationVisitor createNestedVisitor() {
@@ -394,8 +292,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
 		List<CollectionLiteralPart> parts = cl.getParts();
-
-		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
+		// FIXME Re-instate and test this integer range optimisation 
+/*		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
 			// construct a list with a lazy iterator for it.
 			CollectionRange collRange = (CollectionRange) parts.get(0);
@@ -433,8 +331,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //            }
 
 			// construct a lazy integer list for the range
-			return new IntegerRangeList(valueFactory, firstInt, lastInt);
-		} else {
+			return new IntegerRangeValueImpl(valueFactory, firstInt, lastInt);
+		} else */
+		{
 			List<Value> results = new ArrayList<Value>();
 			// not a sequence or not a simple range
 			for (CollectionLiteralPart part : parts) {
