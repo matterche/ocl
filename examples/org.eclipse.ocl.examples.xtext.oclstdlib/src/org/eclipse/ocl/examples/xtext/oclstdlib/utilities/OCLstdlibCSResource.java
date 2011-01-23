@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSResource.java,v 1.1.2.2 2010/12/11 10:45:46 ewillink Exp $
+ * $Id: OCLstdlibCSResource.java,v 1.1.2.3 2011/01/23 15:42:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -37,15 +34,7 @@ public class OCLstdlibCSResource extends EssentialOCLCSResource
 	}
 
 	@Override
-	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
-			NotificationChain notifications) {
-		if (resourceSet != null) {
-			CS2PivotResourceSetAdapter adapter = CS2PivotResourceSetAdapter.findAdapter(resourceSet);
-			if (adapter == null) {
-				PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
-				CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
-			}
-		}
-		return super.basicSetResourceSet(resourceSet, notifications);
+	public PivotManager createPivotManager() {
+		return new PivotManager.NoDefaultLibrary();
 	}
 }

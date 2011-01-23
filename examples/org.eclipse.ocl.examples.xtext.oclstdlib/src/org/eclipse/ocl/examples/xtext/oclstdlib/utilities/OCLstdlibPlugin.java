@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPlugin.java,v 1.1.2.1 2010/10/01 14:34:05 ewillink Exp $
+ * $Id: OCLstdlibPlugin.java,v 1.1.2.2 2011/01/23 15:42:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
@@ -104,5 +104,4 @@ public final class OCLstdlibPlugin extends EMFPlugin {
 			super.start(context);
 		}
 	}
-
 }
