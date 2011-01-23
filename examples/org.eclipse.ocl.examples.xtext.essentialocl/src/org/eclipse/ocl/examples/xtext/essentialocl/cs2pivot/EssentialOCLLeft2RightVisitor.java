@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.20 2011/01/22 11:30:19 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.21 2011/01/23 12:00:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -1210,7 +1210,7 @@ public class EssentialOCLLeft2RightVisitor
 			OclExpression in = context.refreshExpTree(OclExpression.class, csLetExp.getIn());
 			lastLetExp.setIn(in);
 			Type type = in.getType();
-			for (OclExpression letExp = firstLetExp; letExp != in; letExp = ((LetExp)letExp).getIn()) {
+			for (OclExpression letExp = firstLetExp; (letExp != in) && (letExp != null); letExp = ((LetExp)letExp).getIn()) {
 				context.setType(letExp, type);
 			}
 		}

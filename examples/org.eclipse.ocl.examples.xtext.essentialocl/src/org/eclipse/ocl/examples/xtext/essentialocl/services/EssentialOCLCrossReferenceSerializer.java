@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.9 2011/01/22 19:09:20 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.10 2011/01/23 12:00:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -37,8 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
@@ -93,9 +91,9 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			}
 			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
 			Element pivot = csContext.getPivot();
-			RootScopeAdapter documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(csRef);
-			List<PathElement> contextPath = getPath(documentScopeAdapter, pivot);
-			List<PathElement> objectPath = getPath(documentScopeAdapter, (Element)object);
+			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
+			List<PathElement> contextPath = getPath(aliasAnalysis, pivot);
+			List<PathElement> objectPath = getPath(aliasAnalysis, (Element)object);
 			return getDivergentPath(objectPath, contextPath);
 		}
 		else {
@@ -144,16 +142,16 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		if (iSize > 0) {
 			s.append(valueConverter.toString(objectPath.get(iSize-1).name, "ID"));
 		}
-//		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
+		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
 		return s.toString();
 	}
 
-	private List<PathElement> getPath(RootScopeAdapter documentScopeAdapter, Element eObject) {
+	private List<PathElement> getPath(AliasAnalysis aliasAnalysis, Element eObject) {
 //		if (eObject instanceof Pivotable) {
 //			eObject = ((Pivotable)eObject).getPivot();
 //		}
 		if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-			String alias = AliasAdapter.getAlias(eObject);
+			String alias = aliasAnalysis.getAlias(eObject);
 			if (alias != null) {
 				List<PathElement> result = new ArrayList<PathElement>();
 				result.add(new PathElement(alias, eObject));
@@ -164,7 +162,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		if (eContainer == null) {
 			return new ArrayList<PathElement>();
 		}
-		List<PathElement> result = getPath(documentScopeAdapter, (Element) eContainer);
+		List<PathElement> result = getPath(aliasAnalysis, (Element) eContainer);
 		if (eObject instanceof NamedElement) {
 			result.add(new PathElement(((NamedElement)eObject).getName(), eObject));
 		}
