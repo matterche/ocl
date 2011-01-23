@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPlugin.java,v 1.1.2.3 2010/12/19 18:33:46 ewillink Exp $
+ * $Id: EssentialOCLPlugin.java,v 1.1.2.4 2011/01/23 15:42:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -99,9 +100,8 @@ public final class EssentialOCLPlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			EssentialOCLCS2MonikerVisitor.FACTORY.getClass();
+			EssentialOCLStandaloneSetup.init();
 			super.start(context);
 		}
 	}
-
 }

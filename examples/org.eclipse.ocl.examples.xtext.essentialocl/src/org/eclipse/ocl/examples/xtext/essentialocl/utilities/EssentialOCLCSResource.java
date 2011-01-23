@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.1.2.2 2010/12/28 12:19:24 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.1.2.3 2011/01/23 15:42:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -37,6 +37,10 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
 			PivotManager pivotManager) {
 		return new EssentialOCLCS2Pivot(cs2pivotResourceMap, pivotManager);
+	}
+
+	public PivotManager createPivotManager() {
+		return new PivotManager();
 	}
 
 	public PivotEnvironment getEnvironment() {
