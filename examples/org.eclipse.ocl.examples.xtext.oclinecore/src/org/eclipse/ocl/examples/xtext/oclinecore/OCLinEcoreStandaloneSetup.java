@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreStandaloneSetup.java,v 1.1.6.4 2010/12/19 18:33:50 ewillink Exp $
+ * $Id: OCLinEcoreStandaloneSetup.java,v 1.1.6.5 2011/01/23 15:42:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclinecore;
@@ -24,8 +24,8 @@ import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCS2MonikerV
  * Initialization support for running Xtext languages 
  * without equinox extension registry
  */
-public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerated{
-
+public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerated
+{
 	public static void doSetup() {
 		init();
 		new OCLinEcoreStandaloneSetup().createInjectorAndDoEMFRegistration();
