@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.1.2.9 2011/01/22 11:30:55 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.1.2.10 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -39,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
@@ -101,6 +104,15 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 			PivotPackage.Literals.ANNOTATION, csAnnotation);
 		context.handleVisitNamedElement(csAnnotation, pivotElement);
 		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csAnnotation.getOwnedDetail());
+		context.refreshPivotList(Element.class, pivotElement.getOwnedContents(), csAnnotation.getOwnedContent());
+		List<ModelElementCSRef> csReferences = csAnnotation.getReference();
+		if (csReferences.size() > 0) {		// FIXME this seems highly suspect, why a CS rather than pivot ref
+			List<ModelElementCS> csElements = new ArrayList<ModelElementCS>(csReferences.size());
+			for (ModelElementCSRef csReference : csReferences) {
+				csElements.add(csReference.getRef());
+			}
+			context.refreshPivotList(Element.class, pivotElement.getReferences(), csElements);
+		}
 		return null;
 	}
 

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.1.2.6 2011/01/21 11:28:37 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.1.2.7 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * An ElementCSScopeAdapter provides the basic behaviour for a family of derived
@@ -32,39 +31,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * @param <T>
  */
 public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends AbstractScopeAdapter<CS> implements ScopeCSAdapter
-{
-	@Deprecated
-	public static String getText(ElementCS csElement) {
-/*		NodeAdapter nodeAdapter = NodeModelUtils.getNodeAdapter(csElement);
-		if (nodeAdapter == null) {
-			return null;
-		}
-		ICompositeNode compositeNode = nodeAdapter.getParserNode();
-		if (compositeNode == null) {
-			return null;
-		}
-		String string = null;
-		StringBuffer s = null;
-		for (ILeafNode leaf : compositeNode.getLeafNodes()) {
-			if (!leaf.isHidden()) {
-				String text = leaf.getText();
-				if (s != null) {
-					s.append(text);
-				}
-				else if (string != null) {
-					s = new StringBuffer();
-					s.append(string);
-					s.append(text);
-				}
-				else {
-					string = text;
-				}
-			}
-		}
-		return s != null ? s.toString() : string; */
-		return NodeModelUtils.getTextWithoutHidden(NodeModelUtils.getNode(csElement));
-	}
-	
+{	
 	protected final RootCSScopeAdapter root;
 	protected long unresolveableModificationCount = -1;
 	
@@ -81,28 +48,6 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 	public RootCSScopeAdapter getRootScopeAdapter() {
 		return root;
 	}
-
-/*	public PivotManager getPivotManager() {
-		Resource csResource = target.eResource();
-		CS2PivotResourceAdapter cs2PivotResourceAdapter = CS2PivotResourceAdapter.findAdapter(csResource);
-		if (cs2PivotResourceAdapter == null) {
-			return null;
-		}
-		PivotManager pivotManager = cs2PivotResourceAdapter.getPivotManager();
-		return pivotManager;
-	} */
-
-//	public final String getMoniker() {
-//		return CS2Moniker.toString(target);
-//	}
-
-	/**
-	 * Return the source text of the target node.
-	 * @return
-	 */
-	public String getText() {
-		return ElementCSScopeAdapter.getText(target);
-	}
 	
 	public boolean isUnresolvable() {
 		return (root == null) || (unresolveableModificationCount >= root.getModificationCount());
@@ -113,11 +58,6 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 			unresolveableModificationCount = root.getModificationCount();
 		}
 	}
-
-//	@Override
-//	public String toString() {
-//		return String.valueOf(getMoniker());
-//	}
 
 	@Override
 	public String toString() {

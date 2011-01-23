@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.16 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.17 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -193,8 +194,15 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			csElement.getNamespace();
-			return new QualifiedTypeRefElementContinuation(context, csElement);
+			Namespace namespace = csElement.getNamespace();
+			if (namespace.eIsProxy()) {
+				InvalidType badType = context.addBadTypeError(csElement, OCLMessages.ErrorUnresolvedNamespaceName, ElementUtil.getText(csElement));
+				csElement.setNamespace(badType);
+				return null;
+			}
+			else {
+				return new QualifiedTypeRefElementContinuation(context, csElement);
+			}
 		}
 	}
 
@@ -244,6 +252,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				return false;
 			}
 			ParameterizedTypeRefCS csParameterizedTypeRef = csElement.getOwningTemplateBindableElement();
+			if (csParameterizedTypeRef.eContainer() instanceof QualifiedTypeRefCSImpl) {	// FIXME Cleanup with a ResolvableElement interface
+				if (((QualifiedTypeRefCSImpl)csParameterizedTypeRef.eContainer()).basicGetNamespace().eIsProxy()) {
+					return false;
+				}
+			}
 			if (csParameterizedTypeRef instanceof TypedTypeRefCSImpl) {
 				Type unspecializedPivotElement = ((TypedTypeRefCSImpl)csParameterizedTypeRef).basicGetType();
 				if (unspecializedPivotElement == null) {
@@ -409,7 +422,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		public BasicContinuation<?> execute() {
 			Type pivotType = csElement.getType();
 			if (pivotType.eIsProxy()) {
-				context.addBadTypeError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement);
+				Type badType = context.addBadTypeError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement);
+				csElement.setType(badType);
 			}
 			else {
 				TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();

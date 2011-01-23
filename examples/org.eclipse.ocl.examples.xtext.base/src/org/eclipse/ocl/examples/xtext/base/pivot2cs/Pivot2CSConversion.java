@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.1.2.5 2011/01/22 13:30:50 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.1.2.6 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
@@ -80,16 +79,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	private final Map<EClass, BaseDeclarationVisitor> declarationVisitorMap = new HashMap<EClass, BaseDeclarationVisitor>();
 	private final Map<EClass, BaseReferenceVisitor> referenceVisitorMap = new HashMap<EClass, BaseReferenceVisitor>();
 	private Set<org.eclipse.ocl.examples.pivot.Package> importedPackages = null;
-	/**
-	 * Set of all names during session.
-	 */
-	private Set<String> allNames = new HashSet<String>();
-
-	/**
-	 * Set of all aliases.
-	 */
-	private Map<String, org.eclipse.ocl.examples.pivot.Package> alias2package = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
-	private Map<org.eclipse.ocl.examples.pivot.Package, String> package2alias = new HashMap<org.eclipse.ocl.examples.pivot.Package, String>();
 	
 	public Pivot2CSConversion(Pivot2CS converter) {
 		this.converter = converter;
@@ -108,6 +97,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	}
 
 	protected void createImports(Resource csResource, Set<Package> importedPackages) {
+		AliasAnalysis.dispose(csResource);			// Force reanalysis
 		URI oclinecoreURI = csResource.getURI(); //.appendFileExtension("oclinecore");
 		RootPackageCS documentCS = (RootPackageCS) csResource.getContents().get(0);
 		List<ImportCS> imports = documentCS.getOwnedImport();
@@ -117,31 +107,15 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 //				continue;		// Don't import defined packages
 //			}
 			ImportCS importCS = BaseCSTFactory.eINSTANCE.createImportCS();
-			String alias = package2alias.get(importedPackage);
-			if (alias == null) {
-				alias = importedPackage.getNsPrefix();
-				if (alias == null) {
-					alias = "_";
-				}
-				String suffixedAlias = alias;
-				for (int i = 0; alias2package.containsKey(suffixedAlias) || allNames.contains(suffixedAlias); i++) {
-					suffixedAlias = alias + "_" + i;
-				}
-				alias = suffixedAlias;
-				alias2package.put(alias, importedPackage);
-				package2alias.put(importedPackage, alias);
-			}
+			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csResource);
+			String alias = aliasAnalysis.getAlias(importedPackage);
 			importCS.setName(alias);
 			importCS.setNamespace(importedPackage);
 			importCS.setPivot(importedPackage);
-//			String fullURI = importedPackage.getNsURI();
 			EObject eObject = ((PivotObjectImpl)importedPackage).getTarget();
 			URI fullURI = EcoreUtil.getURI(eObject != null ? eObject : importedPackage);
 			URI deresolvedURI = fullURI.deresolve(oclinecoreURI);
 			importCS.setUri(deresolvedURI.toString());
-//			importCS.setUri(fullURI);
-//			PackageCS csPackage = getCS(importedPackage, PackageCS.class);
-// FIXME			importCS.setNamespace(csPackage);
 			imports.add(importCS);
 		}
 	}
@@ -246,7 +220,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		T csElement = refreshMonikeredElement(csClass, csEClass, object);
 		String name = object.getName();
 		csElement.setName(name);
-		allNames.add(name);
 		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations()));
 //		refreshList(csElement.getOwnedComment(), context.visitList(CommentCS.class, object.getOwnedComments()));
 		return csElement;
@@ -338,7 +311,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	public void update(Collection<? extends Resource> csResources) {
 		Map<Resource, Set<org.eclipse.ocl.examples.pivot.Package>> imports = new HashMap<Resource, Set<org.eclipse.ocl.examples.pivot.Package>>();
 		//
-		//	Perform the pre-order traversal.
+		//	Perform the pre-order traversal to create the CS for each declaration. A
+		//	separate reference pass is not needed since references are to the pivot model.
 		//
 		for (Resource csResource : csResources) {
 			importedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
@@ -346,16 +320,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			List<PackageCS> list = visitDeclarations(PackageCS.class, pivotResource.getContents());
 			refreshList(csResource.getContents(), list);
 			imports.put(csResource, importedPackages);
-			AliasAdapter adapter = AliasAdapter.getAdapter(pivotResource);
-			for (Map.Entry<EObject, String> aliasEntry : adapter.getAliasMap().entrySet()) {
-				EObject pivot = aliasEntry.getKey();
-				String alias = aliasEntry.getValue();
-				if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
-					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)pivot;
-					alias2package.put(alias, pivotPackage);
-					package2alias.put(pivotPackage, alias);
-				}
-			}
 		}
 		for (Resource csResource : csResources) {
 			createImports(csResource, imports.get(csResource));

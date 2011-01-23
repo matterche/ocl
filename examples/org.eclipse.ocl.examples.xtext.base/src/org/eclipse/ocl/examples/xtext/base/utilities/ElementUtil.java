@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1.2.6 2011/01/21 11:28:38 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.1.2.7 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class ElementUtil
 {
@@ -159,6 +160,37 @@ public class ElementUtil
 		}
 		return ECollections.emptyEList();
 	} */
+
+	public static String getText(ElementCS csElement) {
+/*		NodeAdapter nodeAdapter = NodeModelUtils.getNodeAdapter(csElement);
+		if (nodeAdapter == null) {
+			return null;
+		}
+		ICompositeNode compositeNode = nodeAdapter.getParserNode();
+		if (compositeNode == null) {
+			return null;
+		}
+		String string = null;
+		StringBuffer s = null;
+		for (ILeafNode leaf : compositeNode.getLeafNodes()) {
+			if (!leaf.isHidden()) {
+				String text = leaf.getText();
+				if (s != null) {
+					s.append(text);
+				}
+				else if (string != null) {
+					s = new StringBuffer();
+					s.append(string);
+					s.append(text);
+				}
+				else {
+					string = text;
+				}
+			}
+		}
+		return s != null ? s.toString() : string; */
+		return NodeModelUtils.getTextWithoutHidden(NodeModelUtils.getNode(csElement));
+	}
 	
 /*	public static TypeBindingCS getTypeBinding(TypeParameterCS typeParameter, TypeBindingsCS bindings) {
 		if (bindings != null) {

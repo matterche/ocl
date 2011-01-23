@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.18 2011/01/22 11:30:55 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.19 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -154,12 +155,12 @@ public class CS2PivotConversion extends AbstractConversion
 		return invalidLiteralExp;
 	}
 
-	public Type addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
+	public InvalidType addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
 		csElement.getError().add(boundMessage);
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
-		Type invalidType = pivotManager.getOclInvalidType();
+		InvalidType invalidType = pivotManager.getOclInvalidType();
 		installPivotElementInternal(csElement, invalidType);
 		return invalidType;
 	}

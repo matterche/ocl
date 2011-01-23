@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CS.java,v 1.1.2.5 2011/01/21 11:28:38 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.1.2.6 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -231,10 +231,10 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		return oldElement;
 	}
 
-	public void refreshAliasMap(Resource csResource) {
-		Resource pivotResource = cs2pivotResourceMap.get(csResource);
-		AliasAdapter.getAdapter(pivotResource).refreshMap(aliasMap);
-	}
+//	public void refreshAliasMap(Resource csResource) {
+//		Resource pivotResource = cs2pivotResourceMap.get(csResource);
+//		AliasAdapter.getAdapter(pivotResource).refreshMap(aliasMap);
+//	}
 
 	/**
 	 * Reset all the CS monikers for test purposes.

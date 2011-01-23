@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.5 2011/01/20 19:49:07 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.6 2011/01/23 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -69,7 +69,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -460,10 +459,10 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 	}
 
 	protected String getTemplateParameterName(TypedTypeRefCS csElement) {
-		String text = ElementCSScopeAdapter.getText(csElement);
+		String text = ElementUtil.getText(csElement);
 		TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 		if (csTemplateBinding != null) {
-			String text2 = ElementCSScopeAdapter.getText(csTemplateBinding);
+			String text2 = ElementUtil.getText(csTemplateBinding);
 			int index = text.indexOf(text2);
 			if (index >= 0) {
 				text = text.substring(0, index);
