@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCodeGenerator.java,v 1.1.2.3 2010/12/19 17:47:02 ewillink Exp $
+ * $Id: OCLstdlibCodeGenerator.java,v 1.1.2.4 2011/01/23 15:42:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -33,8 +33,6 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.examples.build.acceleo.GenerateOCLstdlib;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotSaver;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -85,15 +83,14 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 		log.info("Loading OCL library '" + fileURI);
 		try {
 			ResourceSet resourceSet = getResourceSet();
-			PivotManager pivotManager = new PivotManager.NoDefaultLibrary();
-			CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(fileURI, true);
 			String message = PivotUtil.getResourceErrorsString(xtextResource, "OCLstdlib parse failure");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
 			}
-			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextResource, pivotManager);
+			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+			adapter.refreshPivotMappings();
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
 			List<Object> arguments = new ArrayList<Object>();
 			arguments.add(javaPackageName);

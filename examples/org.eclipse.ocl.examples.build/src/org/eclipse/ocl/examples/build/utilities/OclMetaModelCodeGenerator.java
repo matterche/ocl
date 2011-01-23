@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclMetaModelCodeGenerator.java,v 1.1.2.1 2010/12/28 12:21:54 ewillink Exp $
+ * $Id: OclMetaModelCodeGenerator.java,v 1.1.2.2 2011/01/23 15:42:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -35,9 +35,9 @@ import org.eclipse.ocl.examples.build.acceleo.GenerateOclMetaModel;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
 /**
@@ -85,14 +85,14 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 		log.info("Loading Pivot Model '" + fileURI);
 		try {
 			ResourceSet resourceSet = getResourceSet();
-			PivotManager pivotManager = new PivotManager();
-			CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 			Resource ecoreResource = resourceSet.getResource(fileURI, true);
+			TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(ecoreResource, null);
 			String ecoreErrorsString = PivotUtil.getResourceErrorsString(ecoreResource, "Loading " + fileURI);
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
+			PivotManager pivotManager = adapter.getPivotManager();
 			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, pivotManager);
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 			Package pivotPackage = pivotRoot.getNestedPackages().get(0);
