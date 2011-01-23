@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.1.2.5 2010/12/28 12:26:35 ewillink Exp $
+ * $Id: PivotTests.java,v 1.1.2.6 2011/01/23 15:42:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -35,12 +35,13 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.lpg.StringProblemHandler;
@@ -214,10 +215,10 @@ public class PivotTests extends XtextTestCase
 		return converter;
 	} */
 
-	public Resource doLoadOCLstdlib(String stem, String extension) throws IOException {
+	public BaseCSResource doLoadOCLstdlib(String stem, String extension) throws IOException {
 		resourceSet = new ResourceSetImpl();
 		PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
-		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+//		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
@@ -227,7 +228,8 @@ public class PivotTests extends XtextTestCase
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
-		Resource xtextResource = resourceSet.getResource(inputURI, true);
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
+		TypeManagerResourceAdapter.getAdapter(xtextResource, pivotManager);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 		assertNoResourceErrors("Load failed", xtextResource);
 		assertNoCSErrors("Load failed", xtextResource);
@@ -257,7 +259,7 @@ public class PivotTests extends XtextTestCase
 	protected void doPivotTestOCLstdlib(String stem) throws IOException {
 		String pivotName = stem + ".pivot";
 		URI pivotURI = getProjectFileURI(pivotName);
-		Resource csResource = doLoadOCLstdlib(stem, "oclstdlib");
+		BaseCSResource csResource = doLoadOCLstdlib(stem, "oclstdlib");
 		//
 		//	Create Pivot model from CS
 		//

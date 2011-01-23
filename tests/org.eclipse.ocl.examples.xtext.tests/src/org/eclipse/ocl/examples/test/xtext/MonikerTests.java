@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.1.2.6 2011/01/07 12:16:52 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.1.2.7 2011/01/23 15:42:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
 import org.eclipse.ocl.examples.pivot.ecore.EcoreAliasCreator;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -180,8 +179,6 @@ public class MonikerTests extends XtextTestCase
 		String pivotName = stem + ".pivot";
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
-		PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
-		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 		BaseCSResource csResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Load failed", csResource);
 		assertNoUnresolvedProxies("Unresolved proxies", csResource);
@@ -200,6 +197,7 @@ public class MonikerTests extends XtextTestCase
 		Map<String, MonikeredElementCS> csMonikerMap = checkCSMonikers(csResource);
 		checkCShasPivots(csResource, csMonikerMap);
 		checkCSandPivotMonikers(csMonikerMap);
+		PivotManager pivotManager = adapter.getPivotManager();
 		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(pivotManager.getPivotResourceSet());
 		{
 			StringBuffer s = null;

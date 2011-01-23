@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TestPrettyPrinter.java,v 1.1.2.1 2011/01/15 15:12:27 ewillink Exp $
+ * $Id: TestPrettyPrinter.java,v 1.1.2.2 2011/01/23 15:42:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -34,7 +34,8 @@ public class TestPrettyPrinter extends XtextTestCase
 	public void testDeclarations() throws IOException {
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextResource, null);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+		adapter.refreshPivotMappings();
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
@@ -48,7 +49,8 @@ public class TestPrettyPrinter extends XtextTestCase
 	public void testSignatures() throws IOException {
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextResource, null);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+		adapter.refreshPivotMappings();
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
