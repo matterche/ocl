@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.1.2.6 2011/01/15 09:41:25 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.1.2.7 2011/01/23 12:00:36 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -263,6 +263,7 @@ public class OCLMessages {
 	
 //-----------------------------------------------------------
 	public static String ErrorUnresolvedName;
+	public static String ErrorUnresolvedNamespaceName;
 	public static String ErrorUnresolvedOperationCall;
 	public static String ErrorUnresolvedOperationName;
 	public static String ErrorUnresolvedPropertyName;
