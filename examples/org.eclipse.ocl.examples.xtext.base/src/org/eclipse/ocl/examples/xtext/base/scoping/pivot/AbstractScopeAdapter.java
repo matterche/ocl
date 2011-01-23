@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1.2.9 2011/01/17 08:11:42 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.1.2.10 2011/01/23 15:42:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -26,10 +26,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -120,16 +118,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		if (csResource == null) {
 			return null;
 		}
-		ResourceSet csResourceSet = csResource.getResourceSet();
-		if (csResourceSet == null) {
-			return null;
-		}
-		CS2PivotResourceSetAdapter csAdapter = CS2PivotResourceSetAdapter.findAdapter(csResourceSet);
-		if (csAdapter == null) {
-			return null;
-		}
-		PivotManager pivotManager = csAdapter.getPivotManager();
-//		PivotManager pivotManager = PivotManager.getAdapter(resourceSet);
+		PivotManager pivotManager = PivotUtil.getPivotManager(csResource);//		PivotManager pivotManager = PivotManager.getAdapter(resourceSet);
 		PivotScopeVisitor visitor = new PivotScopeVisitor(pivotManager);
 		return pivotElement.accept(visitor);	
 	}

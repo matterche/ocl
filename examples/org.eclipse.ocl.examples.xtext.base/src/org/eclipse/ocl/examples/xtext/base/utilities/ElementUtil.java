@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1.2.7 2011/01/23 12:00:41 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.1.2.8 2011/01/23 15:42:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -20,15 +20,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -124,19 +121,6 @@ public class ElementUtil
 			}
 		}
 		return null;
-	}
-
-//	public static ICompositeNode getParserNode(ElementCS csElement) {
-//		NodeAdapter nodeAdapter = NodeModelUtils.getNodeAdapter(csElement);
-//		return nodeAdapter != null ? nodeAdapter.getParserNode() : null;
-//	}
-
-	public static PivotManager getPivotManager(Resource csResource) {
-		ResourceSet csResourceSet = csResource.getResourceSet();
-		CS2PivotResourceSetAdapter adapter = CS2PivotResourceSetAdapter.getAdapter(csResourceSet, null);
-		PivotManager pivotManager = adapter.getPivotManager();
-		assert pivotManager != null;
-		return pivotManager;
 	}
 
 	public static ScopeAdapter getScopeAdapter(PivotManager pivotManager, Element element) {

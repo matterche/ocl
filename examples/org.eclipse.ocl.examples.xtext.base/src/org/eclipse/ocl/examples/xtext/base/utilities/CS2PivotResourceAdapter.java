@@ -1,3 +1,19 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010,2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: CS2PivotResourceAdapter.java,v 1.1.2.5 2011/01/23 15:42:35 ewillink Exp $
+ */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
 import java.util.HashMap;
@@ -5,14 +21,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -24,22 +39,32 @@ import org.eclipse.ocl.lpg.ProblemHandler;
  * A CS2PivotResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public class CS2PivotResourceAdapter implements Adapter
+public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 {		
-	public static CS2PivotResourceAdapter findAdapter(Resource csResource) {
+	public static CS2PivotResourceAdapter findAdapter(BaseCSResource csResource) {
 		if (csResource == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(CS2PivotResourceAdapter.class, csResource);
+		TypeManagerResourceAdapter adapter = PivotUtil.getAdapter(TypeManagerResourceAdapter.class, csResource);
+		if (adapter == null) {
+			return null;
+		}
+		if (adapter instanceof CS2PivotResourceAdapter) {
+			return (CS2PivotResourceAdapter) adapter;
+		}
+		List<Adapter> eAdapters = csResource.eAdapters();
+		eAdapters.remove(adapter);
+		CS2PivotResourceAdapter derivedAdapter = new CS2PivotResourceAdapter(csResource, adapter.getPivotManager());
+		eAdapters.add(derivedAdapter);
+		return derivedAdapter;
 	}
 	
 	public static CS2PivotResourceAdapter getAdapter(BaseCSResource csResource, PivotManager pivotManager) {
 		List<Adapter> eAdapters = csResource.eAdapters();
-		CS2PivotResourceAdapter adapter = PivotUtil.getAdapter(CS2PivotResourceAdapter.class, eAdapters);
+		CS2PivotResourceAdapter adapter = findAdapter(csResource);
 		if (adapter == null) {
-			pivotManager = ElementUtil.getPivotManager(csResource);
 			if (pivotManager == null) {
-				pivotManager = new PivotManager();
+				pivotManager = csResource.createPivotManager();
 			}
 			adapter = new CS2PivotResourceAdapter(csResource, pivotManager);
 			eAdapters.add(adapter);
@@ -47,22 +72,12 @@ public class CS2PivotResourceAdapter implements Adapter
 		return adapter;
 	}
 	
-	public static CS2PivotResourceAdapter refreshPivotMappings(BaseCSResource csResource, PivotManager pivotManager) {
-		CSAliasCreator.refreshPackageAliases(csResource);
-		CS2PivotResourceAdapter adapter = getAdapter(csResource, pivotManager);
-		adapter.refreshPivotMappings();
-		return adapter;
-	}
-	
-	private final Resource csResource;
 	protected final ProblemHandler problemHandler;
-	private final PivotManager pivotManager;
 	private final CS2Pivot converter;
 	
 	public CS2PivotResourceAdapter(BaseCSResource csResource, PivotManager pivotManager) {
-		this.csResource = csResource;
+		super(csResource, pivotManager);
 		this.problemHandler = csResource.getProblemHandler();
-		this.pivotManager = pivotManager;
 		Map<Resource, Resource> cs2pivotResourceMap = computeCS2PivotResourceMap(
 			csResource, pivotManager);
 		converter = csResource.createCS2Pivot(cs2pivotResourceMap, pivotManager);
@@ -92,7 +107,7 @@ public class CS2PivotResourceAdapter implements Adapter
 	}
 
 	public long getModificationCount() {
-		List<EObject> contents = csResource.getContents();
+		List<EObject> contents = resource.getContents();
 		if (!contents.isEmpty()) {
 			ElementCS csElement = (ElementCS) contents.get(0);
 			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
@@ -105,31 +120,18 @@ public class CS2PivotResourceAdapter implements Adapter
 		}
 		return -1;
 	}
-	
-	public PivotManager getPivotManager() {
-		return pivotManager;
-	}
 
 	public Resource getPivotResource(Resource csResource) {
 		return converter.getPivotResource(csResource);
 	}
 
-	public Resource getTarget() {
-		return csResource;
-	}
-
+	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == CS2PivotResourceAdapter.class;
+		return super.isAdapterForType(type) || (type == CS2PivotResourceAdapter.class);
 	}	
 	
 	public void refreshPivotMappings() {
+		CSAliasCreator.refreshPackageAliases(resource);
 		converter.update(problemHandler);
-	}
-
-	public void notifyChanged(Notification notification) {
-	}
-
-	public void setTarget(Notifier newTarget) {
-		assert newTarget == csResource;
 	}
 }

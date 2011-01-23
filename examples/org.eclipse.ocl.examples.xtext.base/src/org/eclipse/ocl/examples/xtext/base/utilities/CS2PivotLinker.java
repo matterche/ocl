@@ -1,8 +1,23 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010,2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: CS2PivotLinker.java,v 1.1.2.3 2011/01/23 15:42:35 ewillink Exp $
+ */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 
@@ -16,8 +31,11 @@ public class CS2PivotLinker extends LazyLinker
 	protected void afterModelLinked(EObject model, IDiagnosticConsumer diagnosticsConsumer) {
 		Resource eResource = model.eResource();		// FIXME Try to do a narrower refresh
 		if ((eResource instanceof BaseCSResource) && eResource.getErrors().isEmpty()) {
-			CS2PivotResourceSetAdapter resourceSetAdapter = CS2PivotResourceSetAdapter.getAdapter(eResource.getResourceSet(), null);
-			CS2PivotResourceAdapter.refreshPivotMappings((BaseCSResource) eResource, resourceSetAdapter.getPivotManager());
+			System.out.println("Starting to refreshPivotMappings for " + eResource.getURI());
+			BaseCSResource csResource = (BaseCSResource) eResource;
+			CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
+			resourceAdapter.refreshPivotMappings();
+			System.out.println("Finished refreshPivotMappings for " + eResource.getURI());
 		}
 	}
 }

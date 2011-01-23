@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.1.2.5 2011/01/22 11:30:55 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.1.2.6 2011/01/23 15:42:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
@@ -114,6 +115,11 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Pi
 		else {
 			return new PackageScopeAdapter(context, pivotElement);
 		}
+	}
+
+	@Override
+	public ScopeAdapter visitProperty(Property pivotElement) {
+		return new EmptyScopeAdapter(context, pivotElement);
 	}
 
 	@Override
