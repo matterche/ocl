@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.1.2.7 2011/01/14 14:55:26 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.1.2.8 2011/01/23 12:00:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -75,7 +74,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
 		Resource javaResource = OCLstdlib.INSTANCE;
-		PivotAliasCreator.refreshPackageAliases(javaResource);
+//		PivotAliasCreator.refreshPackageAliases(javaResource);
 		assertNoResourceErrors("Java Model", javaResource);
 		assertNoUnresolvedProxies("Java Model", javaResource);
 		assertNoValidationErrors("Java Model", javaResource);
