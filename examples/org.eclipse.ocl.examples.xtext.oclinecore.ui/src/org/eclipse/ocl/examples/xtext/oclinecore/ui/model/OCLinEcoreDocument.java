@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5.6.5 2011/01/21 11:23:00 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5.6.6 2011/01/23 15:42:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
@@ -70,7 +71,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	}
 
 	public void saveAsPivot(ResourceSet resourceSet, URI uri, StringWriter writer) throws CoreException, IOException {
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource2);
 		XMLResource pivotResource = (XMLResource) adapter.getPivotResource(resource2);
 		checkForErrors(pivotResource);
 		pivotResource.save(writer, null);
