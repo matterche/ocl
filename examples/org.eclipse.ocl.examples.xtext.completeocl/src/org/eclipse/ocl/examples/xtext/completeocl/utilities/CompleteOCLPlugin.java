@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPlugin.java,v 1.1.2.2 2010/12/06 18:36:43 ewillink Exp $
+ * $Id: CompleteOCLPlugin.java,v 1.1.2.3 2011/01/23 15:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -99,9 +100,8 @@ public final class CompleteOCLPlugin extends EMFPlugin {
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-//			CompleteOCL2MonikerSwitch.FACTORY.getClass();
+			CompleteOCLStandaloneSetup.init();
 			super.start(context);
 		}
 	}
-
 }
