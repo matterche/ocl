@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2008 IBM Corporation and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1.2.6 2011/01/13 19:15:38 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.1.2.7 2011/01/23 15:42:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -39,9 +39,8 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
-
 
 /**
  * Implementation of the {@link OclMetaModel.Helper} convenience interface.
@@ -61,9 +60,9 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		environment.getProblemHandler().beginParse();
 		PivotManager pivotManager = environment.getPivotManager();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 		URI uri = URI.createURI("test.essentialocl");
 		Resource resource = resourceSet.createResource(uri);
+		TypeManagerResourceAdapter.getAdapter(resource, pivotManager);
 		if (resource instanceof EvaluationContext) {
 			((EvaluationContext)resource).setEnvironment(environment);
 		}
@@ -99,9 +98,9 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		PivotEnvironment environment = (PivotEnvironment) getEnvironment();
 		PivotManager pivotManager = environment.getPivotManager();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 		URI uri = URI.createURI("test.essentialocl");
 		Resource resource = resourceSet.createResource(uri);
+		TypeManagerResourceAdapter.getAdapter(resource, pivotManager);
 		if (resource instanceof EvaluationContext) {
 			((EvaluationContext)resource).setEnvironment(environment);
 		}

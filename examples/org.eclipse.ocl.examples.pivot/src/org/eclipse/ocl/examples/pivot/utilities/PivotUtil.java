@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.15 2011/01/22 11:30:38 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.16 2011/01/23 15:42:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -215,6 +215,13 @@ public class PivotUtil
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
 		return castElement;
+	}
+
+	public static PivotManager getPivotManager(Resource resource) {
+		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(resource, null);
+		PivotManager pivotManager = adapter.getPivotManager();
+		assert pivotManager != null;
+		return pivotManager;
 	}
 
 	public static String getResourceErrorsString(Resource resource, String prefix) {
