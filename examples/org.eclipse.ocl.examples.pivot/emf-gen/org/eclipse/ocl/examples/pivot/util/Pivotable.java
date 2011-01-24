@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivotable.java,v 1.1.2.1 2010/12/06 17:20:45 ewillink Exp $
+ * $Id: Pivotable.java,v 1.1.2.2 2011/01/24 08:26:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -22,4 +22,5 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
 public interface Pivotable extends PivotObject
 {
 	Element getPivot();
+	void resetPivot();
 }

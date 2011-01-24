@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.23 2011/01/22 19:09:24 ewillink Exp $
+ * $Id: PivotManager.java,v 1.1.2.24 2011/01/24 08:26:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -183,8 +183,6 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 
 	protected final ResourceSet pivotResourceSet;
 	protected org.eclipse.ocl.examples.pivot.Package pivotOrphans = null;
-	protected Map<String, org.eclipse.ocl.examples.pivot.Package> packageMap1 = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
-
 
 	protected final CompleteEnvironmentManager completeEnvironmentManager = new CompleteEnvironmentManager(this);
 
