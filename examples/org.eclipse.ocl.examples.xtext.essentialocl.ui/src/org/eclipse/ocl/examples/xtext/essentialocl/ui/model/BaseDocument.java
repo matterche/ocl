@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.1.2.3 2011/01/21 11:23:41 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.1.2.4 2011/01/24 08:27:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
@@ -35,11 +36,11 @@ public class BaseDocument extends XtextDocument
 		super(tokenSource, composer);
 	}
 
-	protected XtextResource resource2;
+	protected BaseCSResource resource2;
 	
 	@Override
 	public void setInput(XtextResource resource) {
-		this.resource2 = resource;
+		this.resource2 = (BaseCSResource) resource;
 		super.setInput(resource);
 	}
 
