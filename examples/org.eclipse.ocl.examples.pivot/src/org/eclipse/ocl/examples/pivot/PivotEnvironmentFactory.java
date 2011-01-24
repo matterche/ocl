@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEnvironmentFactory.java,v 1.1.2.2 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: PivotEnvironmentFactory.java,v 1.1.2.3 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.PivotEvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 
 
@@ -41,7 +41,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	 */
     public static PivotEnvironmentFactory INSTANCE = new PivotEnvironmentFactory();
 	
-    protected final PivotManager pivotManager;
+    protected final TypeManager typeManager;
 
 	private final EPackage.Registry registry;
 
@@ -58,18 +58,18 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
      * environments I create will use to look up packages.
      * 
      * @param reg my package registry (must not be <code>null</code>)
-	 * @param pivotManager 
+	 * @param typeManager 
 	 */
-	public PivotEnvironmentFactory(EPackage.Registry reg, PivotManager pivotManager) {
+	public PivotEnvironmentFactory(EPackage.Registry reg, TypeManager typeManager) {
 		super();
 		this.registry = reg;
-		this.pivotManager = pivotManager != null ? pivotManager : new PivotManager();
+		this.typeManager = typeManager != null ? typeManager : new TypeManager();
 	}
 	
     // implements the inherited specification
     public PivotEnvironment createEnvironment() {
 //    	throw new UnsupportedOperationException(getClass().getName() + ".createEnvironment");
-		PivotEnvironment result = new PivotEnvironment(registry, pivotManager);
+		PivotEnvironment result = new PivotEnvironment(registry, typeManager);
 		result.setFactory(this);
 		return result;
 	}
@@ -141,7 +141,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 
     // implements the inherited specification
 	public PivotEvaluationEnvironment createEvaluationEnvironment() {
-		return new PivotEvaluationEnvironment(pivotManager);
+		return new PivotEvaluationEnvironment(typeManager);
 	}
 
     // implements the inherited specification
@@ -149,8 +149,8 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		return new PivotEvaluationEnvironment(parent);
 	}
 	
-	public PivotManager getPivotManager() {
-		return pivotManager;
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	@Override

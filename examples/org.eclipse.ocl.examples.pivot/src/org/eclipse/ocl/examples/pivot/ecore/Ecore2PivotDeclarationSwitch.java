@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.1.2.3 2011/01/22 11:30:38 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.1.2.4 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -350,7 +350,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				parameter.setName("that");
 				parameter.setType(pivotElement);
 				operation.getOwnedParameters().add(parameter);
-				operation.setType(converter.getPivotManager().getBooleanType());
+				operation.setType(converter.getTypeManager().getBooleanType());
 				pivotElement.getOwnedOperations().add(operation);
 
 			} catch (Exception e) {

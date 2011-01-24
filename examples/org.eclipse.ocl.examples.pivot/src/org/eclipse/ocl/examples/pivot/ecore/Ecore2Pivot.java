@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.1.2.7 2011/01/20 19:49:23 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.1.2.8 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -57,14 +57,14 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotConstants
 {
 	private static final Logger logger = Logger.getLogger(Ecore2Pivot.class);
 
-	public static Ecore2Pivot getAdapter(Resource resource, PivotManager pivotManager) {
+	public static Ecore2Pivot getAdapter(Resource resource, TypeManager typeManager) {
 		if (resource == null) {
 			return null;
 		}
@@ -73,7 +73,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		if (adapter != null) {
 			return adapter;
 		}
-		adapter = new Ecore2Pivot(resource, pivotManager);
+		adapter = new Ecore2Pivot(resource, typeManager);
 		eAdapters.add(adapter);
 		return adapter;
 	}
@@ -86,19 +86,19 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static org.eclipse.ocl.examples.pivot.Package importFromEcore(PivotManager pivotManager, String alias, Resource ecoreResource) {
+	public static org.eclipse.ocl.examples.pivot.Package importFromEcore(TypeManager typeManager, String alias, Resource ecoreResource) {
 		if (ecoreResource == null) {
 			return null;
 		}
-		Ecore2Pivot conversion = getAdapter(ecoreResource, pivotManager);
+		Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
 		return conversion.getPivotRoot();
 	}
 
-/*	public static Ecore2Pivot createConverter(PivotManager pivotManager, Resource ecoreResource) {
+/*	public static Ecore2Pivot createConverter(TypeManager typeManager, Resource ecoreResource) {
 		EList<Adapter> eAdapters = ecoreResource.eAdapters();
 		Ecore2Pivot conversion = (Ecore2Pivot) EcoreUtil.getAdapter(eAdapters, Ecore2Pivot.class);
 		if (conversion == null) {
-			conversion = new Ecore2Pivot(pivotManager);
+			conversion = new Ecore2Pivot(typeManager);
 			eAdapters.add(conversion);
 		}
 		return conversion;
@@ -111,12 +111,12 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	 * 
 	 * @return the pivot element
 	 */
-	public static Element importFromEcore(PivotManager pivotManager, String alias, EObject eObject) {
+	public static Element importFromEcore(TypeManager typeManager, String alias, EObject eObject) {
 		if (eObject == null) {
 			return null;
 		}
 		Resource ecoreResource = eObject.eResource();
-		Ecore2Pivot conversion = getAdapter(ecoreResource, pivotManager);
+		Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
 		if (pivotRoot == null) {
 			return null;
@@ -151,7 +151,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	
 	private List<Resource.Diagnostic> errors = null;
 	
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	protected final Resource ecoreResource;					// Set via eAdapters.add()
 	
 	protected org.eclipse.ocl.examples.pivot.Package pivotRoot = null;	// Set by importResource
@@ -160,9 +160,9 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	
 //	private Map<String, MonikeredElement> moniker2PivotMap = null;
 	
-	public Ecore2Pivot(Resource ecoreResource, PivotManager pivotManager) {
+	public Ecore2Pivot(Resource ecoreResource, TypeManager typeManager) {
 		this.ecoreResource = ecoreResource;
-		this.pivotManager = pivotManager;
+		this.typeManager = typeManager;
 	}
 	
 	public void addCreated(EObject eObject, Element pivotElement) {
@@ -232,7 +232,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2Pivot converter = getAdapter(resource, pivotManager);
+				Ecore2Pivot converter = getAdapter(resource, typeManager);
 				if (allConverters.add(converter)) {
 					converter.getPivotRoot();
 //					allEClassifiers.addAll(converter.allEClassifiers);
@@ -265,10 +265,6 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		}
 		return ePackages;
 	} */
-
-	public PivotManager getPivotManager() {
-		return pivotManager;
-	}
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {
@@ -293,8 +289,12 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		return ecoreResource;
 	}
 
+	public TypeManager getTypeManager() {
+		return typeManager;
+	}
+
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
-		Resource pivotResource = pivotManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
+		Resource pivotResource = typeManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
 		pivotRoot = PivotFactory.eINSTANCE.createPackage();
 		pivotRoot.setName(ecoreURI.lastSegment());
 		pivotResource.getContents().add(pivotRoot);
@@ -315,7 +315,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		}
 		for (List<TemplateableElement> pivotElements : specializations.values()) {
 			for (TemplateableElement pivotElement : pivotElements) {
-				pivotManager.addOrphanType((Type)pivotElement);
+				typeManager.addOrphanType((Type)pivotElement);
 			}
 		}
 		for (EObject eObject : referencers) {
@@ -375,16 +375,16 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		Type pivotType = null;
 		if (eClassifier.getEPackage() == EcorePackage.eINSTANCE) {
 			if (eClassifier == EcorePackage.Literals.EBOOLEAN) {
-				pivotType = pivotManager.getBooleanType();
+				pivotType = typeManager.getBooleanType();
 			}
 			else if (eClassifier == EcorePackage.Literals.EBIG_INTEGER) {
-				pivotType = pivotManager.getIntegerType();
+				pivotType = typeManager.getIntegerType();
 			}
 			else if (eClassifier == EcorePackage.Literals.EBIG_DECIMAL) {
-				pivotType = pivotManager.getRealType();
+				pivotType = typeManager.getRealType();
 			}
 			else if (eClassifier == EcorePackage.Literals.ESTRING) {
-				pivotType = pivotManager.getStringType();
+				pivotType = typeManager.getStringType();
 			}
 //			if (primitiveTypeName != null) {
 //				PrimitiveTypeRefCS csTypeRef = BaseCSTFactory.eINSTANCE.createPrimitiveTypeRefCS();

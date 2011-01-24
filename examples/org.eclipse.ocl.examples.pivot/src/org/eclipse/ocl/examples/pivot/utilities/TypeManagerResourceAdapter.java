@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManagerResourceAdapter.java,v 1.1.2.1 2011/01/23 15:42:27 ewillink Exp $
+ * $Id: TypeManagerResourceAdapter.java,v 1.1.2.2 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -36,33 +36,33 @@ public class TypeManagerResourceAdapter implements Adapter
 		return PivotUtil.getAdapter(TypeManagerResourceAdapter.class, resource);
 	}
 	
-	public static TypeManagerResourceAdapter getAdapter(Resource resource, PivotManager pivotManager) {
+	public static TypeManagerResourceAdapter getAdapter(Resource resource, TypeManager typeManager) {
 		List<Adapter> eAdapters = resource.eAdapters();
 		TypeManagerResourceAdapter adapter = PivotUtil.getAdapter(TypeManagerResourceAdapter.class, eAdapters);
 		if (adapter == null) {
-			if (pivotManager == null) {
-				pivotManager = new PivotManager();
+			if (typeManager == null) {
+				typeManager = new TypeManager();
 			}
-			adapter = new TypeManagerResourceAdapter(resource, pivotManager);
+			adapter = new TypeManagerResourceAdapter(resource, typeManager);
 			eAdapters.add(adapter);
 		}
 		return adapter;
 	}
 	
 	protected final Resource resource;
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	
-	public TypeManagerResourceAdapter(Resource resource, PivotManager pivotManager) {
+	public TypeManagerResourceAdapter(Resource resource, TypeManager typeManager) {
 		this.resource = resource;
-		this.pivotManager = pivotManager;
-	}
-	
-	public PivotManager getPivotManager() {
-		return pivotManager;
+		this.typeManager = typeManager;
 	}
 
 	public Resource getTarget() {
 		return resource;
+	}
+	
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	public boolean isAdapterForType(Object type) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: JavaLessThanOperation.java,v 1.1.2.1 2011/01/15 20:50:51 ewillink Exp $
+ * $Id: JavaLessThanOperation.java,v 1.1.2.2 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -57,7 +57,7 @@ public class JavaLessThanOperation implements CallableImplementation, Value.Bina
 		}
 	}
 
-	public Diagnostic validate(PivotManager pivotManager, CallExp callExp) {
+	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
 		return null;
 	}
 	

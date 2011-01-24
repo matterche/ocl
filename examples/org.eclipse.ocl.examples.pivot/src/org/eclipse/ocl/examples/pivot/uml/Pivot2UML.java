@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UML.java,v 1.1.2.1 2011/01/24 18:45:58 ewillink Exp $
+ * $Id: Pivot2UML.java,v 1.1.2.2 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -31,15 +31,15 @@ import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Pivot2UML extends AbstractConversion
 {
 	public static final Logger logger = Logger.getLogger(Pivot2UML.class);
 
-	public static List<EObject> createResource(PivotManager pivotManager, Resource pivotResource) {
+	public static List<EObject> createResource(TypeManager typeManager, Resource pivotResource) {
 		List<EObject> pivotRoots = pivotResource.getContents();
-		Pivot2UML converter = new Pivot2UML(pivotManager);
+		Pivot2UML converter = new Pivot2UML(typeManager);
 		return converter.convertAll(pivotRoots);
 	}
 
@@ -59,14 +59,14 @@ public class Pivot2UML extends AbstractConversion
 	protected final Pivot2UMLDeclarationVisitor pass1 = new Pivot2UMLDeclarationVisitor(this);	
 	protected final Pivot2UMLReferenceVisitor pass2 = new Pivot2UMLReferenceVisitor(this);
 	
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 //	protected final ResourceSet resourceSet;
 //	protected final Resource csResource;
 //	protected final XMLResource eResource;
 	
 
-	public Pivot2UML(PivotManager pivotManager/*ResourceSet resourceSet, Resource csResource, URI ecoreURI*/) {
-		this.pivotManager = pivotManager;
+	public Pivot2UML(TypeManager typeManager/*ResourceSet resourceSet, Resource csResource, URI ecoreURI*/) {
+		this.typeManager = typeManager;
 //		this.resourceSet = resourceSet;
 //		this.csResource = csResource;
 //		this.eResource = (XMLResource) new EcoreResourceFactoryImpl().createResource(ecoreURI);
@@ -128,8 +128,8 @@ public class Pivot2UML extends AbstractConversion
 		return castElement;
 	}
 	
-	public PivotManager getPivotManager() {
-		return pivotManager;
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	public void putCreated(Element pivotElement, EModelElement eModelElement) {

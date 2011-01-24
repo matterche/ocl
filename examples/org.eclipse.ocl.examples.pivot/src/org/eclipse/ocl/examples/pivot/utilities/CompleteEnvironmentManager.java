@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentManager.java,v 1.1.2.3 2011/01/12 10:29:50 ewillink Exp $
+ * $Id: CompleteEnvironmentManager.java,v 1.1.2.4 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -37,7 +37,7 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 {	
 	private static final Logger logger = Logger.getLogger(CompleteEnvironmentManager.class);
 
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 
 	private Map<Iteration, CompleteIteration> completeIterationMap = new HashMap<Iteration, CompleteIteration>();
 	private Map<org.eclipse.ocl.examples.pivot.Package, CompletePackage> completePackageMap = new HashMap<org.eclipse.ocl.examples.pivot.Package, CompletePackage>();
@@ -45,8 +45,8 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 	private Map<Property, CompleteProperty> completePropertyMap = new HashMap<Property, CompleteProperty>();
 	private Map<Type, CompleteType> completeTypeMap = new HashMap<Type, CompleteType>();
 
-	public CompleteEnvironmentManager(PivotManager pivotManager) {
-		this.pivotManager = pivotManager;
+	public CompleteEnvironmentManager(TypeManager typeManager) {
+		this.typeManager = typeManager;
 	}
 	
 	protected CompleteType createCompleteType(Type type) {
@@ -216,7 +216,7 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 		return completeProperty;
 	}
 	
-	public PivotManager getPivotManager() {
-		return pivotManager;
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 }

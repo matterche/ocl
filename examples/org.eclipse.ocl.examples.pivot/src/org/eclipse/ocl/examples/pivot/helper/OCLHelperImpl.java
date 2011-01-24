@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1.2.7 2011/01/23 15:42:27 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.1.2.8 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * Implementation of the {@link OclMetaModel.Helper} convenience interface.
@@ -58,11 +58,11 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 	public ExpressionInOcl createQuery(String expression) throws ParserException {
 		PivotEnvironment environment = (PivotEnvironment) getEnvironment();
 		environment.getProblemHandler().beginParse();
-		PivotManager pivotManager = environment.getPivotManager();
+		TypeManager typeManager = environment.getTypeManager();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		URI uri = URI.createURI("test.essentialocl");
 		Resource resource = resourceSet.createResource(uri);
-		TypeManagerResourceAdapter.getAdapter(resource, pivotManager);
+		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
 		if (resource instanceof EvaluationContext) {
 			((EvaluationContext)resource).setEnvironment(environment);
 		}
@@ -96,11 +96,11 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 
 	public Constraint createInvariant(String expression) throws ParserException {
 		PivotEnvironment environment = (PivotEnvironment) getEnvironment();
-		PivotManager pivotManager = environment.getPivotManager();
+		TypeManager typeManager = environment.getTypeManager();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		URI uri = URI.createURI("test.essentialocl");
 		Resource resource = resourceSet.createResource(uri);
-		TypeManagerResourceAdapter.getAdapter(resource, pivotManager);
+		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
 		if (resource instanceof EvaluationContext) {
 			((EvaluationContext)resource).setEnvironment(environment);
 		}

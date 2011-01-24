@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEvaluationEnvironment.java,v 1.1.2.5 2011/01/08 15:35:07 ewillink Exp $
+ * $Id: PivotEvaluationEnvironment.java,v 1.1.2.6 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.util.UnicodeSupport;
@@ -44,8 +44,8 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     /**
      * Initializes me.
      */
-    public PivotEvaluationEnvironment(PivotManager pivotManager) {
-        super(pivotManager);
+    public PivotEvaluationEnvironment(TypeManager typeManager) {
+        super(typeManager);
     }
 
     /**
@@ -330,7 +330,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     // implements the inherited specification
     public ModelManager createModelManager(Object object) {
         if (object instanceof EObject) {
-            return new PivotModelManager(pivotManager, (EObject) object);
+            return new PivotModelManager(typeManager, (EObject) object);
         }
         return ModelManager.NULL;
     }
@@ -428,6 +428,6 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     }
 
 	public ValueFactory getValueFactory() {
-		return pivotManager.getValueFactory();
+		return typeManager.getValueFactory();
 	}
 }

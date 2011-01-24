@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintNameVisitor.java,v 1.1.2.2 2011/01/17 08:11:52 ewillink Exp $
+ * $Id: PrettyPrintNameVisitor.java,v 1.1.2.3 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  */
@@ -80,7 +80,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 	}
 	
 	protected final PrettyPrintTypeVisitor delegate;
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	
 	/**
 	 * Initializes me.
@@ -90,7 +90,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 		delegate = new PrettyPrintTypeVisitor(scope);
 		Resource resource = scope != null ? scope.eResource() : null;
 		ResourceSet resourceSet = resource !=  null ? resource.getResourceSet() : null;
-		pivotManager = PivotManager.getAdapter(resourceSet);
+		typeManager = TypeManager.getAdapter(resourceSet);
 	}
 
 	@Override

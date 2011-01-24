@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotManager.java,v 1.1.2.24 2011/01/24 08:26:59 ewillink Exp $
+ * $Id: TypeManager.java,v 1.1.2.1 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -81,7 +81,7 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
- * A PivotManager adapts a ResourceSet to provide facilities for the pivot
+ * A TypeManager adapts a ResourceSet to provide facilities for the pivot
  * model.
  * <p>
  * An PivotURI entry is maintained for each non-null EPackage.nsURI to
@@ -91,19 +91,19 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * An PivotPrefix entry is maintained for each non-null EPackage.nsPrefix to
  * facilitate alias generation for monikers.
  */
-public class PivotManager extends PivotStandardLibrary implements Adapter
+public class TypeManager extends PivotStandardLibrary implements Adapter
 {
 	/**
-	 * A PivotManager.NoDefaultLibrary should be used when the OCL standard
+	 * A TypeManager.NoDefaultLibrary should be used when the OCL standard
 	 * library is loaded as a pivot resource. This may be achieved by associating
 	 * it with the ResourceSet used to load Ecore/UML/Concrete Syntax models
-	 * before any such models are accessed via a PivotManager.
+	 * before any such models are accessed via a TypeManager.
 	 * <pre>
-	 * 	PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
-	 *	CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+	 * 	TypeManager typeManager =  new TypeManager.NoDefaultLibrary();
+	 *	CS2PivotResourceSetAdapter.getAdapter(resourceSet, typeManager);
 	 * </pre>
 	 */
-	public static class NoDefaultLibrary extends PivotManager
+	public static class NoDefaultLibrary extends TypeManager
 	{
 		public NoDefaultLibrary() {
 			StandardLibraryContribution.REGISTRY.put(DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
@@ -118,26 +118,26 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 		}
 	}
 	
-	private static final Logger logger = Logger.getLogger(PivotManager.class);
+	private static final Logger logger = Logger.getLogger(TypeManager.class);
 
 	// public static final String OMG_OCL_LANG1 = "omg.ocl.lang";
 	// public static final String OMG_OCL_STDLIB1 = "omg.ocl.stdlib";
 
-	public static PivotManager findAdapter(ResourceSet resourceSet) {
+	public static TypeManager findAdapter(ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(PivotManager.class, resourceSet);
+		return PivotUtil.getAdapter(TypeManager.class, resourceSet);
 	}
 
-	public static PivotManager getAdapter(ResourceSet resourceSet) {
+	public static TypeManager getAdapter(ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			return null;
 		}
 		List<Adapter> eAdapters = resourceSet.eAdapters();
-		PivotManager adapter = PivotUtil.getAdapter(PivotManager.class, eAdapters);
+		TypeManager adapter = PivotUtil.getAdapter(TypeManager.class, eAdapters);
 		if (adapter == null) {
-			adapter = new PivotManager(resourceSet);
+			adapter = new TypeManager(resourceSet);
 			eAdapters.add(adapter);
 		}
 		return adapter;
@@ -211,12 +211,12 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 //	private Map<String, Element> alias2pivot = new HashMap<String, Element>();
 //	private Map<Element, String> pivot2alias = new HashMap<Element, String>();
 
-	public PivotManager() {
+	public TypeManager() {
 		this(new ResourceSetImpl());
 		initializePivotResourceSet(pivotResourceSet);
 	}
 
-	public PivotManager(ResourceSet pivotResourceSet) {
+	public TypeManager(ResourceSet pivotResourceSet) {
 		this.pivotResourceSet = pivotResourceSet;
 		pivotResourceSet.eAdapters().add(this);
 	}
@@ -578,7 +578,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 				commonProperty = rightProperty;
 			}
 			if (commonProperty == null) {
-				commonProperty = new PivotManager.TuplePart(leftProperty.getName(), commonType);
+				commonProperty = new TypeManager.TuplePart(leftProperty.getName(), commonType);
 			}
 			commonProperties.add(commonProperty);
 		}
@@ -856,7 +856,7 @@ public class PivotManager extends PivotStandardLibrary implements Adapter
 	}
 
 	public boolean isAdapterForType(Object type) {
-		return type == PivotManager.class;
+		return type == TypeManager.class;
 	}
 
 	protected boolean isInOrphanage(EObject eObject) {

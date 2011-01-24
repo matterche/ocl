@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CallableImplementation.java,v 1.1.2.3 2011/01/14 14:53:31 ewillink Exp $
+ * $Id: CallableImplementation.java,v 1.1.2.4 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -42,5 +42,5 @@ public interface CallableImplementation
 	 */
 	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp call);
 
-	Diagnostic validate(PivotManager pivotManager, CallExp callExp);
+	Diagnostic validate(TypeManager typeManager, CallExp callExp);
 } // CallableImplementation

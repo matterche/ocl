@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.1.2.16 2011/01/23 15:42:27 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.1.2.17 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -217,13 +217,6 @@ public class PivotUtil
 		return castElement;
 	}
 
-	public static PivotManager getPivotManager(Resource resource) {
-		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(resource, null);
-		PivotManager pivotManager = adapter.getPivotManager();
-		assert pivotManager != null;
-		return pivotManager;
-	}
-
 	public static String getResourceErrorsString(Resource resource, String prefix) {
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() <= 0) {
@@ -268,6 +261,13 @@ public class PivotUtil
 			results.add(templateParameter.getParameteredElement());
 		}
 		return results;
+	}
+
+	public static TypeManager getTypeManager(Resource resource) {
+		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(resource, null);
+		TypeManager typeManager = adapter.getTypeManager();
+		assert typeManager != null;
+		return typeManager;
 	}
 
 	public static List<Type> getTypeTemplateParameterables(TemplateableElement templateableElement) {

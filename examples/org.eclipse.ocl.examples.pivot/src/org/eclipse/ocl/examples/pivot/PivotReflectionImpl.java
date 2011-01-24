@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2010 IBM Corporation and others.
+ * Copyright (c) 2006,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotReflectionImpl.java,v 1.1.2.3 2011/01/16 18:39:17 ewillink Exp $
+ * $Id: PivotReflectionImpl.java,v 1.1.2.4 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -29,7 +29,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * Implementation of the UML reflection service for the Ecore environment.
@@ -38,13 +38,13 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
  */
 public class PivotReflectionImpl implements UMLReflection {
 
-    protected final PivotManager pivotManager;
+    protected final TypeManager typeManager;
 
     /**
      * Initializes me.
      */
-    protected PivotReflectionImpl(PivotManager pivotManager) {
-        this.pivotManager = pivotManager;
+    protected PivotReflectionImpl(TypeManager typeManager) {
+        this.typeManager = typeManager;
     }
     
     /**
@@ -55,7 +55,7 @@ public class PivotReflectionImpl implements UMLReflection {
     public String getDescription(Object namedElement) {
         if (namedElement instanceof TypedElement) {
             Type type = ((TypedElement) namedElement).getType();
-            return (type == null) ? pivotManager.getOclVoidType().getName()
+            return (type == null) ? typeManager.getOclVoidType().getName()
                 : type.getName();
         } else if (namedElement instanceof EnumerationLiteral) {
             return ((EnumerationLiteral) namedElement).getEnumeration().getName();
@@ -106,7 +106,7 @@ public class PivotReflectionImpl implements UMLReflection {
         
         if (metaElement == PivotPackage.Literals.MULTIPLICITY_ELEMENT___UPPER_BOUND) {
             // the upper bound of multiplicity has UnlimitedNatural type
-        	result = pivotManager.getUnlimitedNaturalType();
+        	result = typeManager.getUnlimitedNaturalType();
         } else if (metaElement instanceof TypedMultiplicityElement) {
         	TypedMultiplicityElement typedElement = (TypedMultiplicityElement) metaElement;
             result = typedElement.getType();
@@ -435,10 +435,10 @@ public class PivotReflectionImpl implements UMLReflection {
         if (type1 instanceof org.eclipse.ocl.examples.pivot.Class && type2 instanceof org.eclipse.ocl.examples.pivot.Class) {
             org.eclipse.ocl.examples.pivot.Class eClass1 = (org.eclipse.ocl.examples.pivot.Class) type1;
             org.eclipse.ocl.examples.pivot.Class eClass2 = (org.eclipse.ocl.examples.pivot.Class) type2;
-            if (pivotManager.conformsTo(eClass2, eClass1)) {
+            if (typeManager.conformsTo(eClass2, eClass1)) {
                 return eClass1;
             }
-            if (pivotManager.conformsTo(eClass1, eClass2)) {
+            if (typeManager.conformsTo(eClass1, eClass2)) {
                 return eClass2;
             }
             List<org.eclipse.ocl.examples.pivot.Class> allSuperAndSelf1 = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(
@@ -499,28 +499,28 @@ public class PivotReflectionImpl implements UMLReflection {
         if (instanceClass != null) {
 	        if (instanceClass == Boolean.class
 	            || instanceClass == boolean.class) {
-	            return pivotManager.getBooleanType();
+	            return typeManager.getBooleanType();
 	        } else if (instanceClass == Double.class
 				|| instanceClass == BigDecimal.class
 				|| instanceClass == double.class
 				|| instanceClass == Float.class || instanceClass == float.class) {
-				return pivotManager.getRealType();
+				return typeManager.getRealType();
 			} else if (instanceClass == String.class) {
-				return pivotManager.getStringType();
+				return typeManager.getStringType();
 			} else if (instanceClass == Integer.class
 				|| instanceClass == int.class || instanceClass == Long.class
 				|| instanceClass == long.class || instanceClass == Short.class
 				|| instanceClass == short.class
 				|| instanceClass == BigInteger.class) {
-				return pivotManager.getIntegerType();
+				return typeManager.getIntegerType();
 	        } else if (List.class.isAssignableFrom(instanceClass)) {
-	            return pivotManager.getSequenceType();
+	            return typeManager.getSequenceType();
 	        } else if (Set.class.isAssignableFrom(instanceClass)) {
-	            return pivotManager.getSetType();
+	            return typeManager.getSetType();
 	        } else if (Collection.class.isAssignableFrom(instanceClass)) {
-	            return pivotManager.getCollectionType();
+	            return typeManager.getCollectionType();
 	        } else if (instanceClass == Object.class) {
-	            return pivotManager.getOclAnyType();
+	            return typeManager.getOclAnyType();
 	        }
         } */
         

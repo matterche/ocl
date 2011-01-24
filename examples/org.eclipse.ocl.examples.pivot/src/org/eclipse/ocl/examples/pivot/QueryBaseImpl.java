@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corporation, and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.1.2.7 2011/01/08 18:23:09 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.1.2.8 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -145,7 +145,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			result = ev.visitExpression(expression);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = environment.getPivotManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
+			result = environment.getTypeManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
 		}
 		
 		return result;

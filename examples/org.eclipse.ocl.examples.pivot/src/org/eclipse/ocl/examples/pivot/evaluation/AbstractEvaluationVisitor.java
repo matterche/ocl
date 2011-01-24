@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1.2.11 2011/01/16 18:39:17 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.1.2.12 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -65,7 +65,7 @@ public abstract class AbstractEvaluationVisitor
 	
 	private EvaluationEnvironment evalEnv;
 	private Environment env;
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	
 	private ModelManager modelManager;
 
@@ -92,7 +92,7 @@ public abstract class AbstractEvaluationVisitor
         super(null);
         this.evalEnv = evalEnv;
         this.env = env;
-        this.pivotManager = env.getPivotManager();
+        this.typeManager = env.getTypeManager();
         this.modelManager = modelManager;
         
         this.undecoratedVisitor = this;  // assume I have no decorator
@@ -260,7 +260,7 @@ public abstract class AbstractEvaluationVisitor
      * @return the OCL standard library
      */
 	public StandardLibrary getStandardLibrary() {
-		return pivotManager;
+		return typeManager;
 	}
     
     /**

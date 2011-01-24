@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotModelManager.java,v 1.1.2.3 2010/12/31 19:18:26 ewillink Exp $
+ * $Id: PivotModelManager.java,v 1.1.2.4 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -28,16 +28,16 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class PivotModelManager extends LazyModelManager
 {
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	private Ecore2Pivot ecoreConverter = null;
 	
-	public PivotModelManager(PivotManager pivotManager, EObject context) {
+	public PivotModelManager(TypeManager typeManager, EObject context) {
 		super(context);
-		this.pivotManager = pivotManager;
+		this.typeManager = typeManager;
 	}
 
 	// implements the inherited specification
@@ -47,7 +47,7 @@ public class PivotModelManager extends LazyModelManager
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType;
 		if (ePackage == PivotPackage.eINSTANCE) {
-			objectType = pivotManager.getPivotType(eClass.getName());
+			objectType = typeManager.getPivotType(eClass.getName());
 		}
 		else {
 			Resource resource = eClass.eResource();
@@ -58,11 +58,11 @@ public class PivotModelManager extends LazyModelManager
 			else {
 				roots = Collections.singletonList(EcoreUtil.getRootContainer(eClass));
 			}
-			ecoreConverter = new Ecore2Pivot(null, pivotManager);
+			ecoreConverter = new Ecore2Pivot(null, typeManager);
 			ecoreConverter.importObjects(roots, URI.createURI("temp://eval"));
 			objectType = ecoreConverter.getPivotType(eClass);
 //			throw new UnsupportedOperationException();
 		}
-	    return pivotManager.conformsTo(objectType, requiredType);
+	    return typeManager.conformsTo(objectType, requiredType);
 	}
 }

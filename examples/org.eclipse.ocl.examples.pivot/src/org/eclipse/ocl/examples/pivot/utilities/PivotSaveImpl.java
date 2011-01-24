@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaveImpl.java,v 1.1.2.1 2010/12/06 17:20:42 ewillink Exp $
+ * $Id: PivotSaveImpl.java,v 1.1.2.2 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -47,7 +47,7 @@ public final class PivotSaveImpl extends XMISaveImpl
 	protected void init(XMLResource resource, Map<?, ?> options) {
 		PivotSaver saver = new PivotSaver(resource);
 		saver.localizeSpecializations();
-		PivotManager.setMonikerAsID(Collections.singletonList(resource));
+		TypeManager.setMonikerAsID(Collections.singletonList(resource));
 		super.init(resource, options);
 	}
 }

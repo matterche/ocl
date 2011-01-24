@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.4 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.1.2.5 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.Option;
@@ -52,7 +52,7 @@ import org.eclipse.ocl.util.Adaptable;
 public abstract class AbstractEvaluationEnvironment
 		implements EvaluationEnvironment, Adaptable, Customizable {
 	
-    protected final PivotManager pivotManager;
+    protected final TypeManager typeManager;
 
 	private final EvaluationEnvironment parent;
     private final Map<String, Value> map = new HashMap<String, Value>();
@@ -60,13 +60,13 @@ public abstract class AbstractEvaluationEnvironment
 
     private final Map<Option<?>, Object> options = new HashMap<Option<?>, Object>();
     
-    protected AbstractEvaluationEnvironment(PivotManager pivotManager) {
-    	this.pivotManager = pivotManager;
+    protected AbstractEvaluationEnvironment(TypeManager typeManager) {
+    	this.typeManager = typeManager;
     	this.parent = null;
     }
     
     protected AbstractEvaluationEnvironment(EvaluationEnvironment parent) {	
-    	this.pivotManager = parent.getPivotManager();
+    	this.typeManager = parent.getTypeManager();
     	this.parent = parent;
     }
     
@@ -79,8 +79,8 @@ public abstract class AbstractEvaluationEnvironment
     	return parent;
     }
     
-	public PivotManager getPivotManager() {
-		return pivotManager;
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
     
     /**

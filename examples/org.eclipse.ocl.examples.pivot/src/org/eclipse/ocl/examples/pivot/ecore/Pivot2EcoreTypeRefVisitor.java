@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.1.2.2 2011/01/07 12:14:06 ewillink Exp $
+ * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.1.2.3 2011/01/24 19:29:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -75,19 +75,19 @@ public class Pivot2EcoreTypeRefVisitor
 
 	@Override
 	public EClassifier visitPrimitiveType(PrimitiveType pivotType) {
-		if (pivotType == context.getPivotManager().getBooleanType()) {
+		if (pivotType == context.getTypeManager().getBooleanType()) {
 			return EcorePackage.Literals.EBOOLEAN;
 		}
-		else if (pivotType == context.getPivotManager().getIntegerType()) {
+		else if (pivotType == context.getTypeManager().getIntegerType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
-		else if (pivotType == context.getPivotManager().getRealType()) {
+		else if (pivotType == context.getTypeManager().getRealType()) {
 			return EcorePackage.Literals.EBIG_DECIMAL;
 		}
-		else if (pivotType == context.getPivotManager().getStringType()) {
+		else if (pivotType == context.getTypeManager().getStringType()) {
 			return EcorePackage.Literals.ESTRING;
 		}
-		else if (pivotType == context.getPivotManager().getUnlimitedNaturalType()) {
+		else if (pivotType == context.getTypeManager().getUnlimitedNaturalType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
 		else {

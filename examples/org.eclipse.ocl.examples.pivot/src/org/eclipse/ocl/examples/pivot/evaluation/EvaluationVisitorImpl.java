@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1.2.18 2011/01/23 12:31:22 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.1.2.19 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -193,7 +193,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		CallableImplementation implementation;
 		try {
-			implementation = pivotManager.getImplementation(feature);
+			implementation = typeManager.getImplementation(feature);
 			if (implementation == null) {
 				return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + feature.getImplementationClass() + "'", null);
 			}
@@ -216,7 +216,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	protected Value handleLoopExp(LoopExp loopExp, Iteration staticIteration) {
-		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+		CompleteEnvironmentManager completeManager = getEnvironment().getTypeManager().getCompleteEnvironmentManager();
 		CompleteIteration staticCompleteIteration = completeManager.getCompleteIteration(staticIteration);
 		OclExpression source = loopExp.getSource();
 		Value sourceValue = source.accept(getUndecoratedVisitor());
@@ -233,7 +233,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 /*		if (sourceValue instanceof TypeValue) {
 			Type dynamicSourceType = ((TypeValue)sourceValue).getType();
 			Operation staticOperation = operationCallExp.getReferredOperation();
-			CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+			CompleteEnvironmentManager completeManager = getEnvironment().getTypeManager().getCompleteEnvironmentManager();
 			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
 			CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
 			CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
@@ -241,7 +241,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		else {
 */
-		CompleteEnvironmentManager completeManager = getEnvironment().getPivotManager().getCompleteEnvironmentManager();
+		CompleteEnvironmentManager completeManager = getEnvironment().getTypeManager().getCompleteEnvironmentManager();
 		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
 		Type staticSourceType = source.getType();
 		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
@@ -539,7 +539,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Property property = propertyCallExp.getReferredProperty();
 		CallableImplementation implementation;
 		try {
-			implementation = pivotManager.getImplementation(property);
+			implementation = typeManager.getImplementation(property);
 		} catch (Exception e) {
 			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Failed to load '" + property.getImplementationClass() + "'", e);
 		}
@@ -611,7 +611,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			// Set the tuple field with the value of the init expression
 			propertyValues.put(part, part.accept(getUndecoratedVisitor()));
 		}
-//		TupleType tupleType = getEvaluationEnvironment().getPivotManager().getTupleType(type.getName(), propertyValues.keySet());
+//		TupleType tupleType = getEvaluationEnvironment().getTypeManager().getTupleType(type.getName(), propertyValues.keySet());
 		return valueFactory.createTupleValue((TupleType) type, propertyValues);
 	}
 	

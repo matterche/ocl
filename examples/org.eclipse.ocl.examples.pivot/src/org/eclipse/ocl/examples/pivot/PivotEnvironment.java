@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEnvironment.java,v 1.1.2.3 2010/12/28 12:17:28 ewillink Exp $
+ * $Id: PivotEnvironment.java,v 1.1.2.4 2011/01/24 19:29:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.lpg.ProblemHandler;
 
@@ -83,7 +83,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	
 	private TypeResolver typeResolver;
 
-	private PivotManager pivotManager;
+	private TypeManager typeManager;
 
 	private UMLReflection uml;
 	
@@ -92,11 +92,11 @@ public class PivotEnvironment extends AbstractEnvironment {
 	 * 
 	 * @param reg a package registry
 	 */
-	public PivotEnvironment(EPackage.Registry reg, PivotManager pivotManager) {
+	public PivotEnvironment(EPackage.Registry reg, TypeManager typeManager) {
 		registry = reg;
 		typeResolver = createTypeResolver();
-		this.pivotManager = pivotManager;
-		uml = new PivotReflectionImpl(pivotManager);
+		this.typeManager = typeManager;
+		uml = new PivotReflectionImpl(typeManager);
 	}
 	
     /**
@@ -122,7 +122,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 		if (parent != null) {
 			registry = parent.registry;
 			typeResolver = parent.typeResolver;
-			pivotManager = parent.pivotManager;
+			typeManager = parent.typeManager;
 			uml = parent.uml;
 		} else {
 			registry = EPackage.Registry.INSTANCE;
@@ -639,11 +639,11 @@ public class PivotEnvironment extends AbstractEnvironment {
 	}
 
 	public StandardLibrary getOCLStandardLibrary() {
-		return pivotManager;
+		return typeManager;
 	}
 
-	public PivotManager getPivotManager() {
-		return pivotManager;
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Package lookupPackage(List<String> names) {
