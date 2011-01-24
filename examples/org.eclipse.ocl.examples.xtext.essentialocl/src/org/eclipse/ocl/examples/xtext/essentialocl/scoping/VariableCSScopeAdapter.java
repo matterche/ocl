@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: VariableCSScopeAdapter.java,v 1.1.2.3 2011/01/22 19:09:20 ewillink Exp $
+ * $Id: VariableCSScopeAdapter.java,v 1.1.2.4 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class VariableCSScopeAdapter extends EssentialOCLCSScopeAdapter<VariableCS, Variable>
 {
-	public VariableCSScopeAdapter(PivotManager pivotManager, VariableCS csElement) {
-		super(pivotManager, csElement, Variable.class);
+	public VariableCSScopeAdapter(TypeManager typeManager, VariableCS csElement) {
+		super(typeManager, csElement, Variable.class);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class VariableCSScopeAdapter extends EssentialOCLCSScopeAdapter<VariableC
 		else {
 			TypeRefCS type = target.getOwnedType();
 			Type libType = getLibraryType(type);
-			environmentView.addElementsOfScope(pivotManager, libType, scopeView);
+			environmentView.addElementsOfScope(typeManager, libType, scopeView);
 			return scopeView.getOuterScope();
 		}
 	}

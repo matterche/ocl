@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardDocumentScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:57 ewillink Exp $
+ * $Id: StandardDocumentScopeAdapter.java,v 1.1.2.4 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 
@@ -38,8 +38,8 @@ public abstract class StandardDocumentScopeAdapter<CS extends RootPackageCS, P e
 //	protected Map<String, org.eclipse.ocl.examples.pivot.Package> libraryNameMap = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 //	protected Map<String, Type> libraryTypeMap = new HashMap<String, Type>();
 
-	public StandardDocumentScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
-		super(pivotManager, csElement, pivotClass);
+	public StandardDocumentScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
+		super(typeManager, csElement, pivotClass);
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSScopeAdapter.java,v 1.1.2.5 2011/01/22 11:30:19 ewillink Exp $
+ * $Id: NameExpCSScopeAdapter.java,v 1.1.2.6 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -50,8 +50,8 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 	private static EnvironmentView.Filter noOperationsFilter = new NoOperations();
 	private static EnvironmentView.Filter operationsOnlyFilter = new OperationsOnly();
 	
-	public NameExpCSScopeAdapter(PivotManager pivotManager, NameExpCS csElement) {
-		super(pivotManager, csElement, OclExpression.class);
+	public NameExpCSScopeAdapter(TypeManager typeManager, NameExpCS csElement) {
+		super(typeManager, csElement, OclExpression.class);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 			List<Namespace> namespaces = target.getNamespace();
 			int namespaceCount = namespaces.size();
 			if (namespaceCount > 0) {
-				ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, namespaces.get(namespaceCount-1));
+				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespaces.get(namespaceCount-1));
 				if (scopeAdapter != null) {
 					return scopeAdapter.computeLookup(environmentView, scopeView);
 				}				

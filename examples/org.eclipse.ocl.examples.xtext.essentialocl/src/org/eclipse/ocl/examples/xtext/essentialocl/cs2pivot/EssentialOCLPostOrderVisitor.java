@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.14 2011/01/24 08:26:55 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.1.2.15 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -66,15 +66,15 @@ public class EssentialOCLPostOrderVisitor
 	@Override
 	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csCollectionType) {
 		// FIXME untemplated collections need type deduction here
-/*		PivotManager pivotManager = context.getPivotManager();
+/*		TypeManager typeManager = context.getTypeManager();
 		TypedRefCS csElementType = csCollectionType.getOwnedType();
 		Type type;
 		if (csElementType != null) {
 			Type elementType = PivotUtil.getPivot(Type.class, csElementType);
-			type = pivotManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
+			type = typeManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
 		}
 		else {
-			type = pivotManager.getLibraryType(csCollectionType.getName());
+			type = typeManager.getLibraryType(csCollectionType.getName());
 		}
 		context.reusePivotElement(csCollectionType, type);
 */		return null;

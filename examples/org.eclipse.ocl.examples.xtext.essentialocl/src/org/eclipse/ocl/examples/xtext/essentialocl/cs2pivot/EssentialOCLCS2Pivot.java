@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:02 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.1.2.4 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -50,8 +50,8 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			return new EssentialOCLPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager) {
-			return new EssentialOCLScopeVisitor(pivotManager);
+		public BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager) {
+			return new EssentialOCLScopeVisitor(typeManager);
 		}
 
 		public EPackage getEPackage() {
@@ -61,7 +61,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 
 	public static CS2Pivot.Factory FACTORY = new Factory();
 		
-	public EssentialOCLCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, PivotManager pivotManager) {
-		super(cs2pivotResourceMap, pivotManager);
+	public EssentialOCLCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
+		super(cs2pivotResourceMap, typeManager);
 	}
 }

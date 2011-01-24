@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.4 2011/01/22 19:09:20 ewillink Exp $
+ * $Id: TupleLiteralExpCSScopeAdapter.java,v 1.1.2.5 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 
 public class TupleLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<TupleLiteralExpCS, TupleLiteralExp>
 {
-	public TupleLiteralExpCSScopeAdapter(PivotManager pivotManager, TupleLiteralExpCS csElement) {
-		super(pivotManager, csElement, TupleLiteralExp.class);
+	public TupleLiteralExpCSScopeAdapter(TypeManager typeManager, TupleLiteralExpCS csElement) {
+		super(typeManager, csElement, TupleLiteralExp.class);
 	}
 
 	@Override

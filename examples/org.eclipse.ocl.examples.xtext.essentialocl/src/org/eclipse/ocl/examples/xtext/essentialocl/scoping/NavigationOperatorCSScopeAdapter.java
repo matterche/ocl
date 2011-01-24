@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.10 2011/01/22 19:09:20 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.1.2.11 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -37,8 +37,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRol
 
 public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<NavigationOperatorCS, CallExp>
 {
-	public NavigationOperatorCSScopeAdapter(PivotManager pivotManager, NavigationOperatorCS eObject) {
-		super(pivotManager, eObject, CallExp.class);
+	public NavigationOperatorCSScopeAdapter(TypeManager typeManager, NavigationOperatorCS eObject) {
+		super(typeManager, eObject, CallExp.class);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 		if (child == target.getArgument()) {
 			OclExpression csSource = PivotUtil.getPivot(OclExpression.class, target.getSource());
 			if (csSource instanceof TypeExp) {
-				environmentView.addElementsOfScope(pivotManager, ((TypeExp)csSource).getReferredType(), scopeView);
+				environmentView.addElementsOfScope(typeManager, ((TypeExp)csSource).getReferredType(), scopeView);
 			}
 			else {
 				Type type = csSource.getType();
@@ -58,16 +58,16 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 						environmentView.addFilter(filter);
 					}
 					if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
-						environmentView.addElementsOfScope(pivotManager, type, scopeView);					
+						environmentView.addElementsOfScope(typeManager, type, scopeView);					
 						if (!(type instanceof CollectionType)) {
-							Type setType = pivotManager.getSetType(type);
-							environmentView.addElementsOfScope(pivotManager, setType, scopeView);
+							Type setType = typeManager.getSetType(type);
+							environmentView.addElementsOfScope(typeManager, setType, scopeView);
 						}
 					}
 					else {
-						environmentView.addElementsOfScope(pivotManager, type, scopeView);					
+						environmentView.addElementsOfScope(typeManager, type, scopeView);					
 						if (type instanceof CollectionType) {
-							environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+							environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
 						}
 					}
 				}

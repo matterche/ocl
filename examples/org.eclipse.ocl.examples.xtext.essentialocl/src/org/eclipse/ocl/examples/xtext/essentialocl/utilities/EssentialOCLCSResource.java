@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.1.2.3 2011/01/23 15:42:25 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.1.2.4 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -21,7 +21,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
@@ -35,12 +35,12 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	
 	public CS2Pivot createCS2Pivot(
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
-			PivotManager pivotManager) {
-		return new EssentialOCLCS2Pivot(cs2pivotResourceMap, pivotManager);
+			TypeManager typeManager) {
+		return new EssentialOCLCS2Pivot(cs2pivotResourceMap, typeManager);
 	}
 
-	public PivotManager createPivotManager() {
-		return new PivotManager();
+	public TypeManager createTypeManager() {
+		return new TypeManager();
 	}
 
 	public PivotEnvironment getEnvironment() {

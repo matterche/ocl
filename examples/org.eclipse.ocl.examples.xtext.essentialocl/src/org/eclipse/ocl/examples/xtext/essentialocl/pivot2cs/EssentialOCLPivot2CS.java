@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPivot2CS.java,v 1.1.2.1 2010/12/06 18:03:08 ewillink Exp $
+ * $Id: EssentialOCLPivot2CS.java,v 1.1.2.2 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs;
 
@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BasePivot2CS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
@@ -51,7 +51,7 @@ public class EssentialOCLPivot2CS extends BasePivot2CS
 
 	public static Pivot2CS.Factory FACTORY = new Factory();
 		
-	public EssentialOCLPivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, PivotManager pivotManager) {
-		super(cs2pivotResourceMap, pivotManager);
+	public EssentialOCLPivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
+		super(cs2pivotResourceMap, typeManager);
 	}
 }

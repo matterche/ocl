@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeNameExpCSScopeAdapter.java,v 1.1.2.3 2011/01/19 22:22:54 ewillink Exp $
+ * $Id: TypeNameExpCSScopeAdapter.java,v 1.1.2.4 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -21,7 +21,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -31,8 +31,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS
 
 public class TypeNameExpCSScopeAdapter extends ModelElementCSScopeAdapter<TypeNameExpCS, Element>
 {
-	public TypeNameExpCSScopeAdapter(PivotManager pivotManager, TypeNameExpCS csElement) {
-		super(pivotManager, csElement, Element.class);	// FIXME
+	public TypeNameExpCSScopeAdapter(TypeManager typeManager, TypeNameExpCS csElement) {
+		super(typeManager, csElement, Element.class);	// FIXME
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class TypeNameExpCSScopeAdapter extends ModelElementCSScopeAdapter<TypeNa
 			List<Namespace> namespaces = target.getNamespace();
 			int namespaceCount = namespaces.size();
 			if (namespaceCount > 0) {
-				ScopeAdapter scopeAdapter = getScopeAdapter(pivotManager, namespaces.get(namespaceCount-1));
+				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespaces.get(namespaceCount-1));
 				if (scopeAdapter != null) {
 					return scopeAdapter.computeLookup(environmentView, scopeView);
 				}				

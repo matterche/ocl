@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.9 2011/01/22 19:09:20 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.1.2.10 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -41,8 +41,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
 public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, CallExp>
 {
-	public NavigatingExpCSScopeAdapter(PivotManager pivotManager, NavigatingExpCS eObject) {
-		super(pivotManager, eObject, CallExp.class);
+	public NavigatingExpCSScopeAdapter(TypeManager typeManager, NavigatingExpCS eObject) {
+		super(typeManager, eObject, CallExp.class);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 					if (environmentView.addNamedElement(iterator) > 0) {
 						return null;
 					}
-					environmentView.addElementsOfScope(pivotManager, iterator.getType(), scopeView);
+					environmentView.addElementsOfScope(typeManager, iterator.getType(), scopeView);
 					if (environmentView.getSize() > 0) {
 						return null;
 					}
@@ -66,7 +66,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 				if (environmentView.addNamedElement(result) > 0) {
 					return null;
 				}
-				environmentView.addElementsOfScope(pivotManager, result.getType(), scopeView);
+				environmentView.addElementsOfScope(typeManager, result.getType(), scopeView);
 				if (environmentView.getSize() > 0) {
 					return null;
 				}
@@ -85,12 +85,12 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 						return null;
 					}
 					Type type = ((Variable)pivot).getType();
-					environmentView.addElementsOfScope(pivotManager, type, scopeView);
+					environmentView.addElementsOfScope(typeManager, type, scopeView);
 					if (environmentView.getSize() > 0) {
 						return null;
 					}
 					if (type instanceof CollectionType) {		// FIXME use navigation operator dependent semantics
-						environmentView.addElementsOfScope(pivotManager, ((CollectionType)type).getElementType(), scopeView);
+						environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
 						if (environmentView.getSize() > 0) {
 							return null;
 						}
@@ -114,8 +114,8 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 					OclExpression source = (OclExpression)csSource.getPivot();
 					Type sourceType = source != null ? source.getType() : null;
 					if (PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(csOperator.getName()) && !(sourceType instanceof CollectionType)) {
-						Type setType = pivotManager.getSetType();				// Implicit set
-						environmentView.addElementsOfScope(pivotManager, setType, scopeView);
+						Type setType = typeManager.getSetType();				// Implicit set
+						environmentView.addElementsOfScope(typeManager, setType, scopeView);
 					}
 					else {														// Normal dot navigation
 						return new BaseScopeView(scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);

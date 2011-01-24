@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSScopeAdapter.java,v 1.1.2.5 2011/01/22 19:09:20 ewillink Exp $
+ * $Id: LetExpCSScopeAdapter.java,v 1.1.2.6 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 {
-	public LetExpCSScopeAdapter(PivotManager pivotManager, LetExpCS csElement) {
-		super(pivotManager, csElement, LetExp.class);
+	public LetExpCSScopeAdapter(TypeManager typeManager, LetExpCS csElement) {
+		super(typeManager, csElement, LetExp.class);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 				if (variable != null) {		// Maybe null while resolving namespaces
 					environmentView.addNamedElement(variable);
 					if (environmentView.getSize() <= 0) {
-						environmentView.addElementsOfScope(pivotManager, variable.getType(), scopeView);
+						environmentView.addElementsOfScope(typeManager, variable.getType(), scopeView);
 					}
 				}
 			}

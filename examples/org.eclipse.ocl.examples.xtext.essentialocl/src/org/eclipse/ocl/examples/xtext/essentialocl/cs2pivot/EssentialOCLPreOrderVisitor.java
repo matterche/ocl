@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.5 2011/01/22 11:30:19 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.1.2.6 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -21,7 +21,7 @@ import java.util.Collections;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
@@ -72,15 +72,15 @@ public class EssentialOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			PivotManager pivotManager = context.getPivotManager();
+			TypeManager typeManager = context.getTypeManager();
 			TypedRefCS csElementType = csElement.getOwnedType();
 			Type type;
 			if (csElementType != null) {
 				Type elementType = PivotUtil.getPivot(Type.class, csElementType);
-				type = pivotManager.getLibraryType(csElement.getName(), Collections.singletonList(elementType));
+				type = typeManager.getLibraryType(csElement.getName(), Collections.singletonList(elementType));
 			}
 			else {
-				type = pivotManager.getLibraryType(csElement.getName());
+				type = typeManager.getLibraryType(csElement.getName());
 			}
 			context.reusePivotElement(csElement, type);
 			return null;
@@ -118,7 +118,7 @@ public class EssentialOCLPreOrderVisitor
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
 				context.addBadExpressionError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement.toString());
-				element = context.getPivotManager().getOclInvalidType();	// FIXME with reason
+				element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
 			}
 			context.installPivotElement(csElement, element);
 			return null;
@@ -135,8 +135,8 @@ public class EssentialOCLPreOrderVisitor
 			return new CollectionTypeContinuation(context, csCollectionType);
 		}
 		else {
-			PivotManager pivotManager = context.getPivotManager();
-			Type type = pivotManager.getLibraryType(csCollectionType.getName());
+			TypeManager typeManager = context.getTypeManager();
+			Type type = typeManager.getLibraryType(csCollectionType.getName());
 			context.reusePivotElement(csCollectionType, type);
 			return null;
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.10 2011/01/23 12:00:32 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.1.2.11 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -129,8 +129,8 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 				//	Use the name rather than the alias if within the same resource
 				//
 				Resource objectResource = objectElement.eResource();
-				PivotManager pivotManager = PivotManager.findAdapter(objectResource.getResourceSet());
-				Resource orphanage = pivotManager.getOrphanPackage().eResource();
+				TypeManager typeManager = TypeManager.findAdapter(objectResource.getResourceSet());
+				Resource orphanage = typeManager.getOrphanPackage().eResource();
 				Resource contextResource = contextElement.eResource();
 				if ((objectResource == contextResource) || (contextResource == orphanage)) {
 					objectName = ((NamedElement)objectElement).getName();

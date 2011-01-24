@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.5 2011/01/15 19:03:05 ewillink Exp $
+ * $Id: EssentialOCLScopeVisitor.java,v 1.1.2.6 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseScopeVisitor;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
@@ -51,9 +51,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.VariableCSScopeAdapte
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 
 public class EssentialOCLScopeVisitor
-	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<ScopeCSAdapter, PivotManager, BaseScopeVisitor>
+	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<ScopeCSAdapter, TypeManager, BaseScopeVisitor>
 {
-	public EssentialOCLScopeVisitor(PivotManager context) {
+	public EssentialOCLScopeVisitor(TypeManager context) {
 		super(new BaseScopeVisitor(context), context);
 	}
 	

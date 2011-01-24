@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.5 2011/01/15 19:03:06 ewillink Exp $
+ * $Id: EssentialOCLCSScopeAdapter.java,v 1.1.2.6 2011/01/24 19:28:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
@@ -31,23 +31,23 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS
 
 public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends BaseCSScopeAdapter<CS, P>
 {	
-	protected EssentialOCLCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
-		super(pivotManager, csElement, pivotClass);
+	protected EssentialOCLCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
+		super(typeManager, csElement, pivotClass);
 	}	
 
-	protected EssentialOCLCSScopeAdapter(PivotManager pivotManager, EObject eParent, CS csElement, Class<P> pivotClass) {
-		super(pivotManager, eParent, csElement, pivotClass);
+	protected EssentialOCLCSScopeAdapter(TypeManager typeManager, EObject eParent, CS csElement, Class<P> pivotClass) {
+		super(typeManager, eParent, csElement, pivotClass);
 	}	
 
 	@Override
 	public Type getLibraryType(ElementCS csElement) {
 		if (csElement instanceof PrimitiveTypeRefCS) {
-			return pivotManager.getCollectionType(((PrimitiveTypeRefCS)csElement).getName(), null);
+			return typeManager.getCollectionType(((PrimitiveTypeRefCS)csElement).getName(), null);
 		}
 		else if (csElement instanceof CollectionTypeCS) {
 			CollectionTypeCS collectionType = (CollectionTypeCS)csElement;
 			Type elementType = getLibraryType(collectionType.getOwnedType());
-			return pivotManager.getCollectionType(collectionType.getName(), elementType);
+			return typeManager.getCollectionType(collectionType.getName(), elementType);
 		}
 		else if (csElement instanceof TupleTypeCS) {			
 			TupleTypeCS tupleType = (TupleTypeCS)csElement;
