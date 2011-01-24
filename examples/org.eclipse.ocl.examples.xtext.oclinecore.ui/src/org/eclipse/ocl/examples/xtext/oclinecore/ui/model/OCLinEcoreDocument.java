@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5.6.6 2011/01/23 15:42:33 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5.6.7 2011/01/24 08:27:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -25,11 +25,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
@@ -60,20 +61,31 @@ public class OCLinEcoreDocument extends BaseDocument
 		}
 	}
 
+	protected XMLResource getPivotResouce() throws CoreException {
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
+		XMLResource pivotResource = (XMLResource) adapter.getPivotResource(resource2);
+		checkForErrors(pivotResource);
+		return pivotResource;
+	}
+
 	/**
 	 * Fill outputStream with the XMI representation of the Ecore to be saved.
 	 */
-	public void saveAsEcore(ResourceSet resourceSet, URI ecoreURI, Writer writer) throws IOException, CoreException {
-/*		OCLinEcore2Ecore copier = new OCLinEcore2Ecore(resourceSet, resource2, ecoreURI);
-		XMLResource ecoreResource = copier.exportToEcore();
+	public void saveAsEcore(Writer writer) throws IOException, CoreException {
+		XMLResource pivotResource = getPivotResouce();
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
+		List<EObject> ecoreContents = Pivot2Ecore.createResource(adapter.getPivotManager(), pivotResource);
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		URI ecoreURI = URI.createURI("internal.ecore");
+		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
+		ecoreResource.getContents().addAll(ecoreContents);
 		checkForErrors(ecoreResource);
-		ecoreResource.save(writer, null); */
+		ecoreResource.save(writer, null);
 	}
 
-	public void saveAsPivot(ResourceSet resourceSet, URI uri, StringWriter writer) throws CoreException, IOException {
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource2);
-		XMLResource pivotResource = (XMLResource) adapter.getPivotResource(resource2);
-		checkForErrors(pivotResource);
+	public void saveAsPivot(StringWriter writer) throws CoreException, IOException {
+		XMLResource pivotResource = getPivotResouce();
 		pivotResource.save(writer, null);
 	}
+
 }

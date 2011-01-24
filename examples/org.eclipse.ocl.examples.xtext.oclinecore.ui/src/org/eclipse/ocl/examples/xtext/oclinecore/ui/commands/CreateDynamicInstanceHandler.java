@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.2.6.3 2011/01/21 11:23:00 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.2.6.4 2011/01/24 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -141,6 +141,9 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 //						INode lastVisibleNode = NodeModelUtils.getLastCompleteNodeByOffset(rootNode, selection.getOffset());
 //						EObject currentModel = NodeModelUtils.getNearestSemanticObject(lastVisibleNode);						
 						INode lastVisibleNode = NodeModelUtils.findLeafNodeAtOffset(rootNode, selection.getOffset());
+						if (lastVisibleNode == null) {
+							return null; 
+						}		
 						EObject currentModel = NodeModelUtils.findActualSemanticObjectFor(lastVisibleNode);						
 						if (!(currentModel instanceof ClassCS)) {
 							return null; 
