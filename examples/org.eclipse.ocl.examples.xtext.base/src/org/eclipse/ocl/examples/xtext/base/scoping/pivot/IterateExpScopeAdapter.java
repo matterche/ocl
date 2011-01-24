@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpScopeAdapter.java,v 1.1.2.2 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: IterateExpScopeAdapter.java,v 1.1.2.3 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -22,14 +22,14 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter<IterateExp>
 {
-	public IterateExpScopeAdapter(PivotManager pivotManager, IterateExp pivotElement) {
-		super(pivotManager, pivotElement);
+	public IterateExpScopeAdapter(TypeManager typeManager, IterateExp pivotElement) {
+		super(typeManager, pivotElement);
 	}
 
 	@Override
@@ -37,18 +37,18 @@ public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter<IterateExp
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
 			OclExpression source = target.getSource();
-			environmentView.addElementsOfScope(pivotManager, source.getType(), scopeView);
+			environmentView.addElementsOfScope(typeManager, source.getType(), scopeView);
 			environmentView.addElements(target.getIterators());
 			environmentView.addNamedElement(target.getResult());
 		}
 		else if (containmentFeature == PivotPackage.Literals.ITERATE_EXP__RESULT) {
 			OclExpression source = target.getSource();
 			environmentView.addElements(target.getIterators());
-			environmentView.addElementsOfScope(pivotManager, source.getType(), scopeView);
+			environmentView.addElementsOfScope(typeManager, source.getType(), scopeView);
 		}
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
 			OclExpression source = target.getSource();
-			environmentView.addElementsOfScope(pivotManager, source.getType(), scopeView);
+			environmentView.addElementsOfScope(typeManager, source.getType(), scopeView);
 			EObject child = scopeView.getChild();
 			for (Variable iterator : target.getIterators()) {
 				environmentView.addNamedElement(iterator);

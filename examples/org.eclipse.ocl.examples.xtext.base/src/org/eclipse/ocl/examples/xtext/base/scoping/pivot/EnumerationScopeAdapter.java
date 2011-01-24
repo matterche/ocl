@@ -12,18 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EnumerationScopeAdapter.java,v 1.1.2.2 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: EnumerationScopeAdapter.java,v 1.1.2.3 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Enumeration>
 {
-	public EnumerationScopeAdapter(PivotManager pivotManager, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
-		super(pivotManager, pivotElement);
+	public EnumerationScopeAdapter(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
+		super(typeManager, pivotElement);
 	}
 
 	@Override

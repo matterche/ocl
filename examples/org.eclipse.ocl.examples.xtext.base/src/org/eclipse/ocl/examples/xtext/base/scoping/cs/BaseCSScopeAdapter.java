@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.1.2.6 2010/12/26 15:20:17 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.1.2.7 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -39,12 +39,12 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends MonikeredElementCSScopeAdapter<CS, P>
 {	
-	protected BaseCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
-		super(pivotManager, csElement, pivotClass);
+	protected BaseCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
+		super(typeManager, csElement, pivotClass);
 	}
 
-	protected BaseCSScopeAdapter(PivotManager pivotManager, EObject csDocumentElement, CS csElement, Class<P> pivotClass) {
-		super(pivotManager, csDocumentElement, csElement, pivotClass);
+	protected BaseCSScopeAdapter(TypeManager typeManager, EObject csDocumentElement, CS csElement, Class<P> pivotClass) {
+		super(typeManager, csDocumentElement, csElement, pivotClass);
 	}
 
 	protected Type commonConformantType(Type firstTypeCS, Type secondTypeCS) {
@@ -77,7 +77,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			}
 		} */
 		else {
-			candidateType = pivotManager.getClassifierType();
+			candidateType = typeManager.getClassifierType();
 			if (candidateType == requiredType) {
 				return true;
 			}
@@ -89,7 +89,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		List<TypedRefCS> superTypes = csClass.getOwnedSuperType();
 		int size = superTypes.size();
 		if (size == 0) {
-			Type libType = pivotManager.getClassifierType();
+			Type libType = typeManager.getClassifierType();
 			return Collections.singletonList(libType);
 		} else if (size == 1) {
 			Type result = getLibraryType(superTypes.get(0));
@@ -131,7 +131,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 	 * @return
 	 *
 	protected Type getLibraryType(String name) { // FIXME Change to private
-		return getPivotManager().getLibraryType(name, null);
+		return getTypeManager().getLibraryType(name, null);
 	} */
 
 	public Type getLibraryType(ElementCS csElement) {
@@ -148,31 +148,31 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		else if (csElement instanceof ClassifierCS) {		// DataType
 			EObject eObject = ((ClassifierCS) csElement).getPivot();
 			if (eObject == EcorePackage.Literals.EBIG_DECIMAL) {
-				return pivotManager.getRealType();
+				return typeManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EBIG_INTEGER) {
-				return pivotManager.getIntegerType();
+				return typeManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.EBOOLEAN) {
-				return pivotManager.getBooleanType();
+				return typeManager.getBooleanType();
 			}
 			else if (eObject == EcorePackage.Literals.EBOOLEAN_OBJECT) {
-				return pivotManager.getBooleanType();
+				return typeManager.getBooleanType();
 			}
 			else if (eObject == EcorePackage.Literals.EDOUBLE) {
-				return pivotManager.getRealType();
+				return typeManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EDOUBLE_OBJECT) {
-				return pivotManager.getRealType();
+				return typeManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EINT) {
-				return pivotManager.getIntegerType();
+				return typeManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.EINTEGER_OBJECT) {
-				return pivotManager.getIntegerType();
+				return typeManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.ESTRING) {
-				return pivotManager.getStringType();
+				return typeManager.getStringType();
 			}
 			return (Type) ((ClassifierCS) csElement).getPivot();
 		}
@@ -187,7 +187,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			String collectionTypeName = ElementUtil.getCollectionTypeName(typedElement);
 			Type csType = getLibraryType(type);
 			if (collectionTypeName != null) {
-				return pivotManager.getCollectionType(collectionTypeName, csType);
+				return typeManager.getCollectionType(collectionTypeName, csType);
 			}
 			else {
 				return csType;
@@ -196,7 +196,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		else if (csElement instanceof PrimitiveTypeRefCS) {
 			PrimitiveTypeRefCS primitiveTypeRefCS = (PrimitiveTypeRefCS)csElement;
 			String name = primitiveTypeRefCS.getName();
-			return pivotManager.getLibraryType(name);
+			return typeManager.getLibraryType(name);
 		}
 		else if (csElement instanceof QualifiedTypeRefCS) {
 			QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)csElement;

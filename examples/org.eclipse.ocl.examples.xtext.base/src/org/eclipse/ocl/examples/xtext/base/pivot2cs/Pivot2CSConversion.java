@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.1.2.6 2011/01/23 12:00:41 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.1.2.7 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -43,7 +43,7 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
@@ -70,7 +70,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	private static final Logger logger = Logger.getLogger(Pivot2CSConversion.class);
 
 	protected final Pivot2CS converter;
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	protected final BaseDeclarationVisitor defaultDeclarationVisitor;
 	protected final BaseReferenceVisitor defaultReferenceVisitor;
 	
@@ -82,7 +82,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	
 	public Pivot2CSConversion(Pivot2CS converter) {
 		this.converter = converter;
-		this.pivotManager = converter.getPivotManager();
+		this.typeManager = converter.getTypeManager();
 		this.defaultDeclarationVisitor = converter.createDefaultDeclarationVisitor(this);
 		this.defaultReferenceVisitor = converter.createDefaultReferenceVisitor(this);
 	}
@@ -137,8 +137,9 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 		return declarationVisitor;
 	}
-	public PivotManager getPivotManager() {
-		return pivotManager;
+	
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	public BaseReferenceVisitor getReferenceVisitor(EClass eClass) {

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2Pivot.java,v 1.1.2.3 2010/12/13 08:15:11 ewillink Exp $
+ * $Id: BaseCS2Pivot.java,v 1.1.2.4 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -88,8 +88,8 @@ public class BaseCS2Pivot extends CS2Pivot
 			return new BasePreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager) {
-			return new BaseScopeVisitor(pivotManager);
+		public BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager) {
+			return new BaseScopeVisitor(typeManager);
 		}
 
 		public EPackage getEPackage() {
@@ -100,7 +100,7 @@ public class BaseCS2Pivot extends CS2Pivot
 	public static CS2Pivot.Factory FACTORY = new Factory();
 
 	public BaseCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
-			PivotManager pivotManager) {
-		super(cs2pivotResourceMap, pivotManager);
+			TypeManager typeManager) {
+		super(cs2pivotResourceMap, typeManager);
 	}
 }

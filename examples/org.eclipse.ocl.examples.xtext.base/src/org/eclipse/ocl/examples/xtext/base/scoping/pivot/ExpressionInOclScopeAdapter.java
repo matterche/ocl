@@ -12,21 +12,21 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOclScopeAdapter.java,v 1.1.2.3 2011/01/16 09:03:09 ewillink Exp $
+ * $Id: ExpressionInOclScopeAdapter.java,v 1.1.2.4 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ExpressionInOclScopeAdapter extends AbstractPivotScopeAdapter<ExpressionInOcl>
 {
-	public ExpressionInOclScopeAdapter(PivotManager pivotManager, ExpressionInOcl pivotElement) {
-		super(pivotManager, pivotElement);
+	public ExpressionInOclScopeAdapter(TypeManager typeManager, ExpressionInOcl pivotElement) {
+		super(typeManager, pivotElement);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class ExpressionInOclScopeAdapter extends AbstractPivotScopeAdapter<Expre
 		if (contextVariable != null) {
 			environmentView.addNamedElement(contextVariable);
 			Type type = contextVariable.getType();
-			environmentView.addElementsOfScope(pivotManager, type, scopeView);
+			environmentView.addElementsOfScope(typeManager, type, scopeView);
 		}
 		Variable resultVariable = target.getResultVariable();
 		if (resultVariable != null) {

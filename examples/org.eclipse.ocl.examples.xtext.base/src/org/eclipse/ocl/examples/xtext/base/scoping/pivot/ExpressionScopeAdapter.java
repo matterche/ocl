@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: ExpressionScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: ExpressionScopeAdapter.java,v 1.1.2.3 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public abstract class ExpressionScopeAdapter<P extends OclExpression> extends AbstractPivotScopeAdapter<P>
 {
-	public ExpressionScopeAdapter(PivotManager pivotManager, P pivotElement) {
-		super(pivotManager, pivotElement);
+	public ExpressionScopeAdapter(TypeManager typeManager, P pivotElement) {
+		super(typeManager, pivotElement);
 	}
 }

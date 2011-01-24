@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EmptyCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: EmptyCSScopeAdapter.java,v 1.1.2.3 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 
 /**
@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
  */
 public class EmptyCSScopeAdapter extends ElementCSScopeAdapter<ElementCS>
 {
-	public EmptyCSScopeAdapter(PivotManager pivotManager, ElementCS csElement) {
-		super(pivotManager, csElement);
+	public EmptyCSScopeAdapter(TypeManager typeManager, ElementCS csElement) {
+		super(typeManager, csElement);
 	}
 }

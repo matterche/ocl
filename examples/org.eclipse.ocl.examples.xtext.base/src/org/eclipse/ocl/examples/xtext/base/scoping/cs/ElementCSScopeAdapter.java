@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.1.2.7 2011/01/23 12:00:41 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.1.2.8 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
@@ -35,12 +35,12 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 	protected final RootCSScopeAdapter root;
 	protected long unresolveableModificationCount = -1;
 	
-	protected ElementCSScopeAdapter(PivotManager pivotManager, CS csElement) {
-		this(pivotManager, getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
+	protected ElementCSScopeAdapter(TypeManager typeManager, CS csElement) {
+		this(typeManager, getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
 	}
 
-	protected ElementCSScopeAdapter(PivotManager pivotManager, ScopeCSAdapter parent, CS target) {
-		super(pivotManager, parent, target);
+	protected ElementCSScopeAdapter(TypeManager typeManager, ScopeCSAdapter parent, CS target) {
+		super(typeManager, parent, target);
 		this.root = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 		assert (root != null) || (target instanceof RootCS);
 	}	

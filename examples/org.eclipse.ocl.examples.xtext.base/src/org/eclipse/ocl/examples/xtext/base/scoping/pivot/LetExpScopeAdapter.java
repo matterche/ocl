@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,21 +12,21 @@
  *
  * </copyright>
  *
- * $Id: LetExpScopeAdapter.java,v 1.1.2.3 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: LetExpScopeAdapter.java,v 1.1.2.4 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class LetExpScopeAdapter extends ExpressionScopeAdapter<LetExp>
 {
-	public LetExpScopeAdapter(PivotManager pivotManager, LetExp pivotElement) {
-		super(pivotManager, pivotElement);
+	public LetExpScopeAdapter(TypeManager typeManager, LetExp pivotElement) {
+		super(typeManager, pivotElement);
 	}
 
 	@Override

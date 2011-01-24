@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.1.2.17 2011/01/23 12:00:41 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.1.2.18 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -232,7 +232,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		public BasicContinuation<?> execute() {
 			TemplateBinding pivotElement = PivotUtil.getPivot(TemplateBinding.class, csElement);
 			TemplateableElement boundElement = pivotElement.getBoundElement();
-			context.getPivotManager().resolveSuperClasses((org.eclipse.ocl.examples.pivot.Class)boundElement);
+			context.getTypeManager().resolveSuperClasses((org.eclipse.ocl.examples.pivot.Class)boundElement);
 			return null;
 		}
 	} */
@@ -340,7 +340,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				newPivotParts.add(pivotPart);
 			}
 			context.refreshList(pivotTupleType.getOwnedAttributes(), newPivotParts);
-			context.getPivotManager().addOrphanType(pivotTupleType);
+			context.getTypeManager().addOrphanType(pivotTupleType);
 			return null;
 		}
 	}
@@ -606,7 +606,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
-		Type type = context.getPivotManager().getLibraryType(csPrimitiveTypeRef.getName());
+		Type type = context.getTypeManager().getLibraryType(csPrimitiveTypeRef.getName());
 		context.reusePivotElement(csPrimitiveTypeRef, type);
 		return null;
 	}

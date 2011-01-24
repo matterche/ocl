@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.1.2.6 2011/01/23 15:42:35 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.1.2.7 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EmptyScopeAdapter;
@@ -48,11 +48,11 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.OperationScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PackageScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.RootPackageScopeAdapter;
 
-public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, PivotManager> implements PivotConstants
+public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, TypeManager> implements PivotConstants
 {	
 	private static final Logger logger = Logger.getLogger(PivotScopeVisitor.class);
 
-	public PivotScopeVisitor(PivotManager context) {
+	public PivotScopeVisitor(TypeManager context) {
 		super(context);
 		assert context != null;
 	}

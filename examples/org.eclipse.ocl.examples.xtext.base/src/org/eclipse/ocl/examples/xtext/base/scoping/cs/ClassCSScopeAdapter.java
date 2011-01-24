@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.1.2.5 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.1.2.6 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -29,19 +29,19 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse.ocl.examples.pivot.Class>
 {
-	public ClassCSScopeAdapter(PivotManager pivotManager, ClassCS csElement) {
-		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Class.class);
+	public ClassCSScopeAdapter(TypeManager typeManager, ClassCS csElement) {
+		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Class.class);
 	}
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
 		List<org.eclipse.ocl.examples.pivot.Class> superClasses = target.getSuperClasses();
 		if (superClasses.size() > 0) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
-					environmentView.addElementsOfScope(pivotManager, superClass, scopeView);
+					environmentView.addElementsOfScope(typeManager, superClass, scopeView);
 			}
 		}
 		else {
-			Type libType = pivotManager.getClassifierType();
+			Type libType = typeManager.getClassifierType();
 			addLibContents(environmentView, libType, scopeView);
 		}
 	}
@@ -56,12 +56,12 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_META_TYPE) {
-				environmentView.addNamedElement(pivotManager.getBagTypeType());
-				environmentView.addNamedElement(pivotManager.getCollectionTypeType());
-				environmentView.addNamedElement(pivotManager.getOrderedSetTypeType());
-				environmentView.addNamedElement(pivotManager.getSequenceTypeType());
-				environmentView.addNamedElement(pivotManager.getSetTypeType());
-				environmentView.addNamedElement(pivotManager.getPrimitiveTypeType());
+				environmentView.addNamedElement(typeManager.getBagTypeType());
+				environmentView.addNamedElement(typeManager.getCollectionTypeType());
+				environmentView.addNamedElement(typeManager.getOrderedSetTypeType());
+				environmentView.addNamedElement(typeManager.getSequenceTypeType());
+				environmentView.addNamedElement(typeManager.getSetTypeType());
+				environmentView.addNamedElement(typeManager.getPrimitiveTypeType());
 				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {

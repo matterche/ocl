@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSScopeAdapter.java,v 1.1.2.5 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: RootPackageCSScopeAdapter.java,v 1.1.2.6 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPackageCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public RootPackageCSScopeAdapter(PivotManager pivotManager, RootPackageCS csElement) {
-		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public RootPackageCSScopeAdapter(TypeManager typeManager, RootPackageCS csElement) {
+		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSScopeAdapter.java,v 1.1.2.4 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: TypedTypeRefCSScopeAdapter.java,v 1.1.2.5 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TypedTypeRefCSScopeAdapter extends ModelElementCSScopeAdapter<TypedTypeRefCS, Type>
 {
-	public TypedTypeRefCSScopeAdapter(PivotManager pivotManager, TypedTypeRefCS csElement) {
-		super(pivotManager, csElement, Type.class);
+	public TypedTypeRefCSScopeAdapter(TypeManager typeManager, TypedTypeRefCS csElement) {
+		super(typeManager, csElement, Type.class);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class TypedTypeRefCSScopeAdapter extends ModelElementCSScopeAdapter<Typed
 		}
 		else {
 			Type type = target.getType();
-			environmentView.addElementsOfScope(pivotManager, type, scopeView);
+			environmentView.addElementsOfScope(typeManager, type, scopeView);
 			return scopeView.getOuterScope();
 		}
 	}

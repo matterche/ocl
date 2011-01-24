@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.1.2.7 2011/01/20 19:49:08 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.1.2.8 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -62,7 +62,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 			if (objectPackage.eResource() == scopePackage.eResource()) {
 				// No need to import when in same resource
 			}
-			else if (objectPackage == context.getPivotManager().getOrphanPackage()) {
+			else if (objectPackage == context.getTypeManager().getOrphanPackage()) {
 				// No need to import orphans
 			}
 			else {

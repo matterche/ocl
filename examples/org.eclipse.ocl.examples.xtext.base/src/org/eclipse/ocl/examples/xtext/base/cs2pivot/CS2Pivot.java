@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.1.2.5 2011/01/21 11:28:37 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.1.2.6 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -64,7 +64,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		BaseCSVisitor<MonikeredElement, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<ScopeCSAdapter, PivotManager> createScopeVisitor(PivotManager pivotManager);
+		BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager);
 		EPackage getEPackage();
 	}
 
@@ -113,7 +113,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return documentationNodes;
 	}
 	
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	
 	/**
 	 * Mapping of each CS resource to its corresponding pivot Resource.
@@ -135,19 +135,19 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	 */
 	protected final Map<EObject, String> aliasMap = new HashMap<EObject, String>();
 
-	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, PivotManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, PivotManager>>();
+	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>>();
 
-	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, PivotManager pivotManager) {
+	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
-		this.pivotManager = pivotManager;
-		moniker2PivotMap = pivotManager.computeMoniker2PivotMap(getPivotResources());
-		pivotManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
+		this.typeManager = typeManager;
+		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
+		typeManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
 	}
 	
 	public CS2Pivot(CS2Pivot aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
-		this.pivotManager = aConverter.pivotManager;
-		moniker2PivotMap = pivotManager.computeMoniker2PivotMap(getPivotResources());
+		this.typeManager = aConverter.typeManager;
+		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
 	}
 
 	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
@@ -204,24 +204,20 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return moniker2PivotMap.get(moniker);
 	}
 
-	public PivotManager getPivotManager() {
-		return pivotManager;
-	}
-
 	public Resource getPivotResource(Resource csResource) {
 		return cs2pivotResourceMap.get(csResource);
 	}
 
 	public Collection<? extends Resource> getPivotResources() {
-		return pivotManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
+		return typeManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
 	}
 
-	public BaseCSVisitor<ScopeCSAdapter, PivotManager> getScopeVisitor(EPackage ePackage) {
-		BaseCSVisitor<ScopeCSAdapter, PivotManager> scopeVisitor = scopeVisitorMap.get(ePackage);
+	public BaseCSVisitor<ScopeCSAdapter, TypeManager> getScopeVisitor(EPackage ePackage) {
+		BaseCSVisitor<ScopeCSAdapter, TypeManager> scopeVisitor = scopeVisitorMap.get(ePackage);
 		if ((scopeVisitor == null) && !scopeVisitorMap.containsKey(ePackage)) {
 			Factory factory = getFactory(ePackage);
 			if (factory != null) {
-				scopeVisitor = factory.createScopeVisitor(pivotManager);
+				scopeVisitor = factory.createScopeVisitor(typeManager);
 				if (scopeVisitor == null) {
 					logger.error("No Scope Visitor created for " + ePackage.getName());
 				}
@@ -235,7 +231,11 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 
 	public Notifier getTarget() {
-		return pivotManager.getPivotResourceSet();
+		return typeManager.getPivotResourceSet();
+	}
+
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	public boolean isAdapterForType(Object type) {
@@ -288,7 +288,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == pivotManager.getPivotResourceSet();
+		assert newTarget == typeManager.getPivotResourceSet();
 	}
 	
 	public void update(ProblemHandler problemHandler) {

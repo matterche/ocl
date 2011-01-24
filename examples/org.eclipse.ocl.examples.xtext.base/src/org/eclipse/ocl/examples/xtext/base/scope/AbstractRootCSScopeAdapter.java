@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.5 2011/01/12 10:28:49 ewillink Exp $
+ * $Id: AbstractRootCSScopeAdapter.java,v 1.1.2.6 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
@@ -35,19 +35,19 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 {
 	private long modificationCount = 0;
 
-	public AbstractRootCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
-		super(pivotManager, csElement, pivotClass);
+	public AbstractRootCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
+		super(typeManager, csElement, pivotClass);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
-			for (Type type : pivotManager.getGlobalTypes()) {
+			for (Type type : typeManager.getGlobalTypes()) {
 				environmentView.addNamedElement(type);
 			}
 		}
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-			for (Map.Entry<String, Namespace> entry : pivotManager.getGlobalNamespaces()) {
+			for (Map.Entry<String, Namespace> entry : typeManager.getGlobalNamespaces()) {
 				environmentView.addElement(entry.getKey(), entry.getValue());
 			}
 		}

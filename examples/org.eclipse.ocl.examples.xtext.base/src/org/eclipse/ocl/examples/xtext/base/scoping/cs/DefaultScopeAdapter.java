@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: DefaultScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: DefaultScopeAdapter.java,v 1.1.2.4 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 
@@ -29,8 +29,8 @@ public class DefaultScopeAdapter extends AbstractScopeAdapter<EObject>
 {
 	private static final Logger logger = Logger.getLogger(DefaultScopeAdapter.class);
 
-	public DefaultScopeAdapter(PivotManager pivotManager, EObject eObject) {
-		super(pivotManager, null, eObject);
+	public DefaultScopeAdapter(TypeManager typeManager, EObject eObject) {
+		super(typeManager, null, eObject);
 		logger.warn("Using DefaultScopeAdapter for '" + eObject.eClass().getName() + "'");
 	}
 

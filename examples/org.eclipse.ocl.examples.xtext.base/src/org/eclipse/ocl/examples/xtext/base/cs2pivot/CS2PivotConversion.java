@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.20 2011/01/24 08:27:04 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.21 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -62,7 +62,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -102,7 +102,7 @@ public class CS2PivotConversion extends AbstractConversion
 
 	protected final CS2Pivot converter;
 	protected final ProblemHandler problemHandler;
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
 	
 	/**
@@ -128,7 +128,7 @@ public class CS2PivotConversion extends AbstractConversion
 	public CS2PivotConversion(CS2Pivot converter, ProblemHandler problemHandler) {
 		this.converter = converter;
 		this.problemHandler = problemHandler;
-		this.pivotManager = converter.getPivotManager();
+		this.typeManager = converter.getTypeManager();
 	}
 
 	public void addDiagnostic(ModelElementCS csElement, Diagnostic diagnostic) {
@@ -148,7 +148,7 @@ public class CS2PivotConversion extends AbstractConversion
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
 		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
-		invalidLiteralExp.setType(pivotManager.getOclInvalidType());
+		invalidLiteralExp.setType(typeManager.getOclInvalidType());
 		invalidLiteralExp.setObject(csElement);
 		invalidLiteralExp.setReason(boundMessage);
 		installPivotElementInternal(csElement, invalidLiteralExp);
@@ -160,7 +160,7 @@ public class CS2PivotConversion extends AbstractConversion
 		csElement.getError().add(boundMessage);
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
-		InvalidType invalidType = pivotManager.getOclInvalidType();
+		InvalidType invalidType = typeManager.getOclInvalidType();
 		installPivotElementInternal(csElement, invalidType);
 		return invalidType;
 	}
@@ -292,10 +292,6 @@ public class CS2PivotConversion extends AbstractConversion
 		return castElement;
 	}
 
-	public PivotManager getPivotManager() {
-		return pivotManager;
-	}
-
 	public BaseCSVisitor<Continuation<?>, CS2PivotConversion> getPostOrderVisitor(EPackage ePackage) {
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> postOrderVisitor = postOrderVisitorMap.get(ePackage);
 		if ((postOrderVisitor == null) && !postOrderVisitorMap.containsKey(ePackage)) {
@@ -368,6 +364,10 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		}
 		return pivotTemplateSignatures;
+	}
+
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	public InterDependency<TemplateSignatureContinuation> getTypesHaveSignaturesInterDependency() {
@@ -771,12 +771,12 @@ public class CS2PivotConversion extends AbstractConversion
 		Operation operation;
 		List<OclExpression> arguments = pivotElement.getArguments();
 		if (arguments.isEmpty()) {
-			operation = pivotManager.resolveOperation(sourceType, operator);
+			operation = typeManager.resolveOperation(sourceType, operator);
 		}
 		else {
 			OclExpression argumentExpression = arguments.get(0);
 			Type rightType = argumentExpression.getType();
-			operation = pivotManager.resolveOperation(sourceType, operator, rightType);
+			operation = typeManager.resolveOperation(sourceType, operator, rightType);
 		}
 		if (operation == null) {
 			addBadExpressionError(csOperator, OCLMessages.ErrorUnresolvedOperationCall, csOperator);
@@ -794,7 +794,7 @@ public class CS2PivotConversion extends AbstractConversion
 	 */
 	public void setType(TypedElement pivotElement, Type type) {
 //		if (type == null) {
-//			type = pivotManager.getOclInvalidType();	// FIXME unresolved type with explanation
+//			type = typeManager.getOclInvalidType();	// FIXME unresolved type with explanation
 //		}
 		if (type != pivotElement.getType()) {
 			pivotElement.setType(type);
@@ -959,7 +959,7 @@ public class CS2PivotConversion extends AbstractConversion
 				logger.error("Missing support for non-type specialization " + moniker); //$NON-NLS-1$
 				return null;
 			}
-			pivotManager.addOrphanType((Type) specializedPivotElement);
+			typeManager.addOrphanType((Type) specializedPivotElement);
 		}
 		installPivotElement(csElement, specializedPivotElement);
 //		specializedPivotElement.toString();			// FIXME debugging
@@ -1050,7 +1050,7 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		//	Load the library by loading external content or exploiting the pre-ordered content. 
 		//
-		Type oclAnyType = pivotManager.getOclAnyType();
+		Type oclAnyType = typeManager.getOclAnyType();
 		if (oclAnyType == null) {
 			return false;				// FIXME throw ??
 		}
@@ -1079,7 +1079,7 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		//	Finally resolve the base classes of template specializations
 		//
-		pivotManager.resolveSpecializationBaseClasses();
+		typeManager.resolveSpecializationBaseClasses();
 		hasNoErrors = checkForNoErrors(csResources);
 		if (!hasNoErrors) {
 			return false;
@@ -1090,7 +1090,7 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		for (Resource csResource : csResources) {
 			Resource pivotResource = converter.getPivotResource(csResource);
-			PivotManager.setMonikerAsID(Collections.singletonList(pivotResource));	// FIXME purge
+			TypeManager.setMonikerAsID(Collections.singletonList(pivotResource));	// FIXME purge
 		}
 		return true;
 	}

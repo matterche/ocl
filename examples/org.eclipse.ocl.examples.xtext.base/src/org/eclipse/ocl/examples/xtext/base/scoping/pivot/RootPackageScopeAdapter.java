@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: RootPackageScopeAdapter.java,v 1.1.2.3 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: RootPackageScopeAdapter.java,v 1.1.2.4 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -25,8 +25,8 @@ public class RootPackageScopeAdapter
 extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Package>
 implements RootScopeAdapter
 {
-	public RootPackageScopeAdapter(PivotManager pivotManager, org.eclipse.ocl.examples.pivot.Package pivotElement) {
-		super(pivotManager, null, pivotElement);
+	public RootPackageScopeAdapter(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Package pivotElement) {
+		super(typeManager, null, pivotElement);
 	}
 
 	@Override

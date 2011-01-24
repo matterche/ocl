@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CS.java,v 1.1.2.6 2011/01/23 12:00:41 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.1.2.7 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -110,7 +110,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		return documentationNodes;
 	}
 	
-	protected final PivotManager pivotManager;
+	protected final TypeManager typeManager;
 	
 	/**
 	 * Mapping of each CS resource to its corresponding pivot Resource.
@@ -132,17 +132,17 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	 */
 	protected final Map<EObject, String> aliasMap = new HashMap<EObject, String>();
 	
-	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, PivotManager pivotManager) {
+	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
-		this.pivotManager = pivotManager;
-		moniker2PivotMap = pivotManager.computeMoniker2PivotMap(getPivotResources());
-		pivotManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
+		this.typeManager = typeManager;
+		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
+		typeManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
 	}
 	
 	public Pivot2CS(Pivot2CS aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
-		this.pivotManager = aConverter.pivotManager;
-		moniker2PivotMap = pivotManager.computeMoniker2PivotMap(getPivotResources());
+		this.typeManager = aConverter.typeManager;
+		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
 	}
 
 //	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
@@ -199,10 +199,6 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		return moniker2PivotMap.get(moniker);
 	}
 
-	public PivotManager getPivotManager() {
-		return pivotManager;
-	}
-
 	public Resource getPivotResource(Resource csResource) {
 		return cs2pivotResourceMap.get(csResource);
 	}
@@ -212,7 +208,11 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	}
 
 	public Notifier getTarget() {
-		return pivotManager.getPivotResourceSet();
+		return typeManager.getPivotResourceSet();
+	}
+
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	public boolean isAdapterForType(Object type) {
@@ -265,7 +265,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	}
 
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == pivotManager.getPivotResourceSet();
+		assert newTarget == typeManager.getPivotResourceSet();
 	}
 	
 	public void update() {

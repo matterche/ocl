@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ImportScopeAdapter.java,v 1.1.2.3 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: ImportScopeAdapter.java,v 1.1.2.4 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -29,18 +29,18 @@ public class ImportScopeAdapter extends MonikeredElementCSScopeAdapter<ImportCS,
 	private URI uri = null;
 	private Element importedElement = null;
 	
-	public ImportScopeAdapter(PivotManager pivotManager, ImportCS csElement) {
-		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public ImportScopeAdapter(TypeManager typeManager, ImportCS csElement) {
+		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == null) {
-			environmentView.addElementsOfScope(pivotManager, importedElement, scopeView);
+			environmentView.addElementsOfScope(typeManager, importedElement, scopeView);
 		}
 		else {
-			environmentView.addElementsOfScope(pivotManager, importedElement, scopeView);
+			environmentView.addElementsOfScope(typeManager, importedElement, scopeView);
 		}
 		return scopeView.getOuterScope();
 	}

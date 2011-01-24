@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,34 +12,34 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1.2.7 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.1.2.8 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Class>
 {
-	public ClassScopeAdapter(PivotManager pivotManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		super(pivotManager, pivotElement);
+	public ClassScopeAdapter(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
+		super(typeManager, pivotElement);
 	}
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
 		List<org.eclipse.ocl.examples.pivot.Class> superClasses = target.getSuperClasses();
 		if (superClasses.size() > 0) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
-				environmentView.addElementsOfScope(pivotManager, superClass, scopeView);
+				environmentView.addElementsOfScope(typeManager, superClass, scopeView);
 			}
 		}
 		else {
-			Type anyType = pivotManager.getOclAnyType();
-			Type libType = pivotManager.getClassifierType();
+			Type anyType = typeManager.getOclAnyType();
+			Type libType = typeManager.getClassifierType();
 			if ((libType != target) && (anyType != target)){		// FIXME Is this the right place for the trap
 				addLibContents(environmentView, libType, scopeView);
 			}
@@ -74,8 +74,8 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 	}
 
 /*	@Override
-	public PivotManager getPivotManager() {
+	public TypeManager getTypeManager() {
 		Resource resource = target.eResource();
-		return PivotManager.getAdapter(resource.getResourceSet());
+		return TypeManager.getAdapter(resource.getResourceSet());
 	} */
 }

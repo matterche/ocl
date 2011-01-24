@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterSubstitutionCSScopeAdapter.java,v 1.1.2.2 2010/12/11 10:45:32 ewillink Exp $
+ * $Id: TemplateParameterSubstitutionCSScopeAdapter.java,v 1.1.2.3 2011/01/24 19:29:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TemplateParameterSubstitutionCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateParameterSubstitutionCS, TemplateParameterSubstitution>
 {
-	public TemplateParameterSubstitutionCSScopeAdapter(PivotManager pivotManager, TemplateParameterSubstitutionCS csElement) {
-		super(pivotManager, csElement, TemplateParameterSubstitution.class);
+	public TemplateParameterSubstitutionCSScopeAdapter(TypeManager typeManager, TemplateParameterSubstitutionCS csElement) {
+		super(typeManager, csElement, TemplateParameterSubstitution.class);
 	}
 
 	@Override

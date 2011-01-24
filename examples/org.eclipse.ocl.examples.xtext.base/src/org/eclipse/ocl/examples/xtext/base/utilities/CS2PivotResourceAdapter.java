@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.1.2.5 2011/01/23 15:42:35 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.1.2.6 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -54,19 +54,19 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 		}
 		List<Adapter> eAdapters = csResource.eAdapters();
 		eAdapters.remove(adapter);
-		CS2PivotResourceAdapter derivedAdapter = new CS2PivotResourceAdapter(csResource, adapter.getPivotManager());
+		CS2PivotResourceAdapter derivedAdapter = new CS2PivotResourceAdapter(csResource, adapter.getTypeManager());
 		eAdapters.add(derivedAdapter);
 		return derivedAdapter;
 	}
 	
-	public static CS2PivotResourceAdapter getAdapter(BaseCSResource csResource, PivotManager pivotManager) {
+	public static CS2PivotResourceAdapter getAdapter(BaseCSResource csResource, TypeManager typeManager) {
 		List<Adapter> eAdapters = csResource.eAdapters();
 		CS2PivotResourceAdapter adapter = findAdapter(csResource);
 		if (adapter == null) {
-			if (pivotManager == null) {
-				pivotManager = csResource.createPivotManager();
+			if (typeManager == null) {
+				typeManager = csResource.createTypeManager();
 			}
-			adapter = new CS2PivotResourceAdapter(csResource, pivotManager);
+			adapter = new CS2PivotResourceAdapter(csResource, typeManager);
 			eAdapters.add(adapter);
 		}
 		return adapter;
@@ -75,16 +75,16 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 	protected final ProblemHandler problemHandler;
 	private final CS2Pivot converter;
 	
-	public CS2PivotResourceAdapter(BaseCSResource csResource, PivotManager pivotManager) {
-		super(csResource, pivotManager);
+	public CS2PivotResourceAdapter(BaseCSResource csResource, TypeManager typeManager) {
+		super(csResource, typeManager);
 		this.problemHandler = csResource.getProblemHandler();
 		Map<Resource, Resource> cs2pivotResourceMap = computeCS2PivotResourceMap(
-			csResource, pivotManager);
-		converter = csResource.createCS2Pivot(cs2pivotResourceMap, pivotManager);
+			csResource, typeManager);
+		converter = csResource.createCS2Pivot(cs2pivotResourceMap, typeManager);
 	}
 
-	public Map<Resource, Resource> computeCS2PivotResourceMap(Resource csResource, PivotManager pivotManager) {
-		ResourceSet pivotResourceSet = pivotManager.getTarget();
+	public Map<Resource, Resource> computeCS2PivotResourceMap(Resource csResource, TypeManager typeManager) {
+		ResourceSet pivotResourceSet = typeManager.getTarget();
 		Map<Resource,Resource> cs2pivotResourceMap = new HashMap<Resource,Resource>();
 		for (Resource acsResource : csResource.getResourceSet().getResources()) {
 			URI uri = acsResource.getURI();

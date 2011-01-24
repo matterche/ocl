@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4.6.8 2011/01/22 19:09:31 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4.6.9 2011/01/24 19:29:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -125,8 +125,8 @@ public class EnvironmentView
 		return additions;
 	}
 
-	public void addElementsOfScope(PivotManager pivotManager, Element element, ScopeView scopeView) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(pivotManager, element);
+	public void addElementsOfScope(TypeManager typeManager, Element element, ScopeView scopeView) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(typeManager, element);
 		if (scopeAdapter != null) {
 			scopeAdapter.computeLookup(this, scopeView);
 		}
