@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSResource.java,v 1.1.2.1 2010/12/06 18:28:15 ewillink Exp $
+ * $Id: OCLinEcoreCSResource.java,v 1.1.2.2 2011/01/24 19:30:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.utilities;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot.OCLinEcoreCS2Pivot;
@@ -29,7 +29,7 @@ public class OCLinEcoreCSResource extends EssentialOCLCSResource
 	@Override
 	public CS2Pivot createCS2Pivot(
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
-			PivotManager pivotManager) {
-		return new OCLinEcoreCS2Pivot(cs2pivotResourceMap, pivotManager);
+			TypeManager typeManager) {
+		return new OCLinEcoreCS2Pivot(cs2pivotResourceMap, typeManager);
 	}
 }

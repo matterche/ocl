@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSScopeAdapter.java,v 1.1.2.3 2010/12/11 10:44:26 ewillink Exp $
+ * $Id: OCLinEcoreCSScopeAdapter.java,v 1.1.2.4 2011/01/24 19:30:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
 public class OCLinEcoreCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends EssentialOCLCSScopeAdapter<CS, P>
 {
-	public OCLinEcoreCSScopeAdapter(PivotManager pivotManager, CS csElement, Class<P> pivotClass) {
-		super(pivotManager, csElement, pivotClass);
+	public OCLinEcoreCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
+		super(typeManager, csElement, pivotClass);
 	}
 	
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.7.6.5 2011/01/23 15:42:41 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.7.6.6 2011/01/24 19:30:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -63,8 +63,8 @@ public class OCLinEcoreLinkingService extends EssentialOCLLinkingService
 			}
 			else {
 				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(csResource, null);
-				PivotManager pivotManager = adapter.getPivotManager();
-				importedElement = pivotManager.loadResource(uri, ((ImportCS)context).getName());				
+				TypeManager typeManager = adapter.getTypeManager();
+				importedElement = typeManager.loadResource(uri, ((ImportCS)context).getName());				
 				importScopeAdapter.setImportedElement(uri, importedElement);
 			}
 			if (importedElement != null) {

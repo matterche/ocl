@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PostconditionScopeAdapter.java,v 1.3.6.2 2010/12/11 10:44:26 ewillink Exp $
+ * $Id: PostconditionScopeAdapter.java,v 1.3.6.3 2011/01/24 19:30:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstra
 
 public class PostconditionScopeAdapter extends EssentialOCLCSScopeAdapter<OCLinEcoreConstraintCS, Constraint>
 {
-	public PostconditionScopeAdapter(PivotManager pivotManager, OCLinEcoreConstraintCS csElement) {
-		super(pivotManager, csElement, Constraint.class);
+	public PostconditionScopeAdapter(TypeManager typeManager, OCLinEcoreConstraintCS csElement) {
+		super(typeManager, csElement, Constraint.class);
 	}
 
 	@Override
