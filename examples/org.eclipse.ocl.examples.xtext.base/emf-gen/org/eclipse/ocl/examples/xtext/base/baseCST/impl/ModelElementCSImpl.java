@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSImpl.java,v 1.1.6.2 2010/12/06 17:53:57 ewillink Exp $
+ * $Id: ModelElementCSImpl.java,v 1.1.6.3 2011/01/24 08:27:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -309,6 +309,10 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	public void resetPivot() {
+		setPivot(null);
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.1.2.19 2011/01/23 12:00:41 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.1.2.20 2011/01/24 08:27:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -474,10 +474,10 @@ public class CS2PivotConversion extends AbstractConversion
 			if (oldPivotElement.eResource() != null) {
 				logger.warn("Conflicting pivot element for " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$
 			}
-			else {
+//			else {
 				assert !newPivotElement.eIsProxy();
 				csElement.setPivot(newPivotElement);
-			}
+//			}
 		} else {
 //			logger.info("Duplicate pivot element for " + csClassName + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 		}
