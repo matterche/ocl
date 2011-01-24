@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5.6.7 2011/01/24 08:27:06 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5.6.8 2011/01/24 18:46:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -31,8 +31,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
 import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer;
 
@@ -69,7 +71,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	}
 
 	/**
-	 * Fill outputStream with the XMI representation of the Ecore to be saved.
+	 * Write the XMI representation of the Ecore to be saved.
 	 */
 	public void saveAsEcore(Writer writer) throws IOException, CoreException {
 		XMLResource pivotResource = getPivotResouce();
@@ -83,9 +85,26 @@ public class OCLinEcoreDocument extends BaseDocument
 		ecoreResource.save(writer, null);
 	}
 
+	/**
+	 * Write the XMI representation of the Pivot to be saved.
+	 */
 	public void saveAsPivot(StringWriter writer) throws CoreException, IOException {
 		XMLResource pivotResource = getPivotResouce();
 		pivotResource.save(writer, null);
 	}
 
+	/**
+	 * Write the XMI representation of the UML to be saved.
+	 */
+	public void saveAsUML(Writer writer) throws IOException, CoreException {
+		XMLResource pivotResource = getPivotResouce();
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
+		List<EObject> umlContents = Pivot2UML.createResource(adapter.getPivotManager(), pivotResource);
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		URI umlURI = URI.createURI("internal.uml");
+		UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
+		umlResource.getContents().addAll(umlContents);
+		checkForErrors(umlResource);
+		umlResource.save(writer, null);
+	}
 }

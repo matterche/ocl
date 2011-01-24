@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.5 2011/01/24 08:27:06 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.6 2011/01/24 18:46:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -47,6 +47,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
@@ -102,10 +103,10 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 //					ResourceSet resourceSet = getResourceSet();
 					((OCLinEcoreDocument) document).saveAsPivot(xmlWriter);
 				}
-//				else if (PERSIST_AS_UML.equals(saveAs)) {
+				else if (PERSIST_AS_UML.equals(saveAs)) {
 //					ResourceSet resourceSet = getResourceSet();
-//					((OCLinEcoreDocument) document).saveAsUML(xmlWriter);
-//				}
+					((OCLinEcoreDocument) document).saveAsUML(xmlWriter);
+				}
 				else {
 					log.warn("Unknown saveAs '" + saveAs + "'");
 				}
@@ -162,9 +163,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				inputStream = createResettableInputStream(inputStream);
 			}
 			boolean isXML = isXML(inputStream);		
-			String persistAs = isXML ? PERSIST_AS_ECORE : PERSIST_AS_OCLINECORE;		// FIXME PERSIST_AS_PIVOT
-			loadedAsMap.put(document, persistAs);
-			saveAsMap.put(document, persistAs);
+			String persistAs = PERSIST_AS_OCLINECORE;
 			if (isXML) {
 				ResourceSet resourceSet = new ResourceSetImpl(); // getResourceSet();
 				URI uri = uriMap.get(document);
@@ -197,12 +196,22 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, pivotManager);
 						org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 						pivotResource = pivotRoot.eResource();
+						persistAs = PERSIST_AS_ECORE;
 					}
 					else if (xmiRoot instanceof org.eclipse.ocl.examples.pivot.Package) {
 						pivotResource = xmiResource;
+						persistAs = PERSIST_AS_PIVOT;
 					}
-					// FIXME UML, general extensibility
+					else if (xmiRoot instanceof org.eclipse.uml2.uml.Package) {
+						UML2Pivot uml2Pivot = UML2Pivot.getAdapter(xmiResource, pivotManager);
+						org.eclipse.ocl.examples.pivot.Package pivotRoot = uml2Pivot.getPivotRoot();
+						pivotResource = pivotRoot.eResource();
+						persistAs = PERSIST_AS_UML;
+					}
+					// FIXME general extensibility
 				}
+				loadedAsMap.put(document, persistAs);
+				saveAsMap.put(document, persistAs);
 //				
 				ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
 //				csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
@@ -238,9 +247,9 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 					}
 				}
 				xtextResource.unload();
-//				resourceSet.getResources().remove(xtextResource);
+				resourceSet.getResources().remove(xtextResource);
 //				resourceSet.getResources().remove(pivotResource);
-//				resourceSet.getResources().remove(xmiResource);
+				resourceSet.getResources().remove(xmiResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
 			}
 		} catch (IOException e) {
