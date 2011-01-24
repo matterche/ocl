@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClosureIteration.java,v 1.1.2.11 2011/01/15 09:41:20 ewillink Exp $
+ * $Id: ClosureIteration.java,v 1.1.2.12 2011/01/24 19:29:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -79,13 +79,13 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 	}
 
 	@Override
-	public Diagnostic validate(PivotManager pivotManager, CallExp callExp) {
+	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
 		Type bodyType = ((IteratorExp)callExp).getBody().getType();
 		if (bodyType instanceof CollectionType) {
 			bodyType = ((CollectionType)bodyType).getElementType();
 		}
 		Type iteratorType = ((IteratorExp)callExp).getIterators().get(0).getType();
-		if (!pivotManager.conformsTo(bodyType, iteratorType)) {
+		if (!typeManager.conformsTo(bodyType, iteratorType)) {
 			return new ValidationWarning(OCLMessages.WarningNonConformingBodyType, bodyType, iteratorType);
 		}
 		return null;

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.1.2.11 2011/01/15 20:50:46 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.1.2.12 2011/01/24 19:29:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -113,7 +113,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 			}
 			// create result from the sorted collection
 			Type sourceType = iteratorExp.getSource().getType();
-			boolean isUnique = env.getPivotManager().isUnique(sourceType);
+			boolean isUnique = env.getTypeManager().isUnique(sourceType);
 			return valueFactory.createCollectionValue(true, isUnique, result);
 		}
 
@@ -136,12 +136,12 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();		
-		PivotManager pivotManager = evaluationEnvironment.getPivotManager();
-		CompleteEnvironmentManager completeManager = pivotManager.getCompleteEnvironmentManager();
+		TypeManager typeManager = evaluationEnvironment.getTypeManager();
+		CompleteEnvironmentManager completeManager = typeManager.getCompleteEnvironmentManager();
 		OclExpression body = iteratorExp.getBody();		
 		Type staticValueType = body.getType();
 //		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
-		Operation staticLessThanOperation = pivotManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
+		Operation staticLessThanOperation = typeManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
 		if (staticLessThanOperation == null) {
 			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "No '" + PivotConstants.LESS_THAN_OPERATOR + "' operation defined", null);
 		}
@@ -151,7 +151,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 //		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
 		Value.BinaryOperation binaryImplementation;
 		try {
-			CallableImplementation implementation = pivotManager.getImplementation(staticCompleteOperation);
+			CallableImplementation implementation = typeManager.getImplementation(staticCompleteOperation);
 			if (implementation == null) {
 				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", null);
 			}
@@ -190,7 +190,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	}
 
 	@Override
-	public Diagnostic validate(PivotManager pivotManager, CallExp callExp) {
+	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
 		Type type = ((LoopExp)callExp).getBody().getType();
 		TemplateParameter templateParameter = type.getOwningTemplateParameter();
 		if (templateParameter != null) {
@@ -198,12 +198,12 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 //			templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(templateParameterSubstitutions, callExp.getReferredOperation());
 			type = (Type) templateParameterSubstitutions.get(templateParameter);
 		}
-		Operation operation = pivotManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
+		Operation operation = typeManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
 		try {
 			if (operation == null) {
 				return new ValidationWarning(OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type);
 			}
-			CallableImplementation implementation = pivotManager.getImplementation(operation);
+			CallableImplementation implementation = typeManager.getImplementation(operation);
 			if (implementation == null) {
 				return new ValidationWarning("Failed to load '" + operation.getImplementationClass() + "'");
 			}

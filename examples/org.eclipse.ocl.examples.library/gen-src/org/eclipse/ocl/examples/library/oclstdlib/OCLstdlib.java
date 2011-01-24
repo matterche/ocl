@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OCLstdlib.java,v 1.1.2.17 2011/01/22 07:01:16 ewillink Exp $
+ * $Id: OCLstdlib.java,v 1.1.2.18 2011/01/24 19:29:05 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.library.oclstdlib;
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * This is the http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib Standard Library
@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
  * This Standard Library may be registered as the definition of a Standard Library for
  * the OCL evaluation framework by invoking {@link #install}.
  * <p>
- * The Standard Library is normally activated when the PivotManager attempts
+ * The Standard Library is normally activated when the TypeManager attempts
  * to locate a library type when its default Standard Library URI is the same
  * as this Standard Library.
  */
@@ -94,7 +94,7 @@ public class OCLstdlib extends XMLResourceImpl
 		super(URI.createURI(STDLIB_URI));
 		getContents().add(create());
 		PivotAliasCreator.refreshPackageAliases(this);
-		PivotManager.setMonikerAsID(Collections.singletonList(this));
+		TypeManager.setMonikerAsID(Collections.singletonList(this));
 	}
 
 	/**

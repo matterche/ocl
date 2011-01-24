@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id: AbstractFeature.java,v 1.1.2.7 2011/01/14 14:54:33 ewillink Exp $
+ * $Id: AbstractFeature.java,v 1.1.2.8 2011/01/24 19:29:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * @since 3.1
  */
 public abstract class AbstractFeature implements LibraryFeature
 {
-	public Diagnostic validate(PivotManager pivotManager, CallExp callExp) {
+	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
 		return null;
 	}
 }
