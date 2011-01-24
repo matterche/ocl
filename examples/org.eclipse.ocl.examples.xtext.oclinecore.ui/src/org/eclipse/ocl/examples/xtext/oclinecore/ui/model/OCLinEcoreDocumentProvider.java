@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.6 2011/01/24 18:46:09 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.6.6.7 2011/01/24 19:29:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
@@ -188,12 +188,12 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 				}
 //				RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, "", ecoreResource);		
-				PivotManager pivotManager = new PivotManager();
+				TypeManager typeManager = new TypeManager();
 				Resource pivotResource = null;
 				if (xmiResource.getContents().size() > 0) {
 					EObject xmiRoot = xmiResource.getContents().get(0);
 					if (xmiRoot instanceof EPackage) {
-						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, pivotManager);
+						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, typeManager);
 						org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 						pivotResource = pivotRoot.eResource();
 						persistAs = PERSIST_AS_ECORE;
@@ -203,7 +203,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 						persistAs = PERSIST_AS_PIVOT;
 					}
 					else if (xmiRoot instanceof org.eclipse.uml2.uml.Package) {
-						UML2Pivot uml2Pivot = UML2Pivot.getAdapter(xmiResource, pivotManager);
+						UML2Pivot uml2Pivot = UML2Pivot.getAdapter(xmiResource, typeManager);
 						org.eclipse.ocl.examples.pivot.Package pivotRoot = uml2Pivot.getPivotRoot();
 						pivotResource = pivotRoot.eResource();
 						persistAs = PERSIST_AS_UML;
@@ -221,7 +221,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				Resource csResource = resourceSet.createResource(oclinecoreURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 				Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
 				cs2PivotResourceMap.put(csResource, pivotResource);
-				Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, pivotManager);
+				Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
 				pivot2cs.update();
 //				csResource.save(null);
 				Resource xtextResource = csResource;		

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5.6.8 2011/01/24 18:46:09 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5.6.9 2011/01/24 19:29:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -76,7 +76,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	public void saveAsEcore(Writer writer) throws IOException, CoreException {
 		XMLResource pivotResource = getPivotResouce();
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
-		List<EObject> ecoreContents = Pivot2Ecore.createResource(adapter.getPivotManager(), pivotResource);
+		List<EObject> ecoreContents = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource);
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		URI ecoreURI = URI.createURI("internal.ecore");
 		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
@@ -99,7 +99,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	public void saveAsUML(Writer writer) throws IOException, CoreException {
 		XMLResource pivotResource = getPivotResouce();
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
-		List<EObject> umlContents = Pivot2UML.createResource(adapter.getPivotManager(), pivotResource);
+		List<EObject> umlContents = Pivot2UML.createResource(adapter.getTypeManager(), pivotResource);
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		URI umlURI = URI.createURI("internal.uml");
 		UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
