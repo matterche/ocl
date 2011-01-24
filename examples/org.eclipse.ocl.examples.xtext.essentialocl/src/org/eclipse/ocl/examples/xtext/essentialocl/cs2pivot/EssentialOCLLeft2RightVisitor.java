@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.21 2011/01/23 12:00:32 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.1.2.22 2011/01/24 08:26:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -191,8 +191,7 @@ public class EssentialOCLLeft2RightVisitor
 				while ((csSource.getParent() != null) && (csSource.getParent() != csOperator)) {
 					csSource = csSource.getParent();
 				}
-				csSource.setParent(csOperator);
-				csOperator.setSource(csSource);
+				setSource(csOperator, csSource);
 				//
 				//	Establish parent-child relationship of operator argument
 				//
@@ -200,8 +199,7 @@ public class EssentialOCLLeft2RightVisitor
 				while ((csArgument.getParent() != null) && (csArgument.getParent() != csOperator)) {
 					csArgument = csArgument.getParent();
 				}
-				csArgument.setParent(csOperator);
-				csOperator.setArgument(csArgument);
+				setArgument(csOperator, csArgument);
 			}
 		}
 	}
@@ -454,23 +452,21 @@ public class EssentialOCLLeft2RightVisitor
 	}
 
 	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
-		prefixExpCS.setParent(null);
+		prefixExpCS.setParent(null);		// FIXME asymmetric
 		for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperator()) {
 			if (csParent instanceof UnaryOperatorCS) {
-				csParent.setSource(csUnaryOperator);
+				setSource(csParent, csUnaryOperator);
 			}
 			else if (csParent instanceof BinaryOperatorCS) {
 				if (csParent.getSource() == prefixExpCS) {
-					csParent.setSource(csUnaryOperator);
+					setSource(csParent, csUnaryOperator);
 				}
 				else {
-					((BinaryOperatorCS) csParent).setArgument(csUnaryOperator);
+					setArgument((BinaryOperatorCS) csParent, csUnaryOperator);
 				}
 			}
-			csUnaryOperator.setParent(csParent);
 			ExpCS csChild = prefixExpCS.getOwnedExpression();
-			csUnaryOperator.setSource(csChild);
-			csChild.setParent(csUnaryOperator);
+			setSource(csUnaryOperator, csChild);
 			csParent = csUnaryOperator;
 		}
 	}
@@ -499,27 +495,25 @@ public class EssentialOCLLeft2RightVisitor
 				if (csOperator == csParent.getSource()) {
 					if (csGrandParent instanceof BinaryOperatorCS) {
 						if (csGrandParent.getSource() == csParent) {
-							csGrandParent.setSource(csOperator);
+							setSource(csGrandParent, csOperator);
 						}
 						else {
-							((BinaryOperatorCS) csGrandParent).setArgument(csOperator);
+							setArgument((BinaryOperatorCS) csGrandParent, csOperator);
 						}
 					}
 //					else {
-//						csGrandParent.setSource(csOperator);
+//						setSource(csGrandParent, csOperator);
 //					}
-					csOperator.setParent(csGrandParent);
-					csParent.setParent(csOperator);
-					csOperator.setSource(csParent);
-					((BinaryOperatorCS) csParent).setSource(csExp);
-					csExp.setParent(csParent);
+					setSource(csParent, null);			// Avoid a transient loop
+					setSource(csOperator, csParent);
+					setSource(csParent, csExp);
 				}
 				else if (csOperator == ((BinaryOperatorCS) csParent).getArgument()) {
 					if (csGrandParent instanceof BinaryOperatorCS) {
 						if (csGrandParent.getSource() == csParent) {
-							csGrandParent.setSource(csExp);
-							csGrandParent.setParent(csOperator);
-							csOperator.setSource(csGrandParent);
+							setSource(csOperator, null);			// Avoid a transient loop
+							setSource(csGrandParent, csExp);		
+							setSource(csOperator, csGrandParent);
 						}
 					}
 				}
@@ -920,6 +914,40 @@ public class EssentialOCLLeft2RightVisitor
 		return type;
 	}
 
+	private void setArgument(BinaryOperatorCS csParent, ExpCS csArgument) {
+		csArgument.setParent(csParent);
+		csParent.setArgument(csArgument);
+		int i = 0;
+		for (OperatorCS csOperator = csParent.getParent(); csOperator != null; csOperator = csOperator.getParent()) {
+			if (csOperator == csParent) {
+				logger.error("Operator loop established");
+			}
+			else if (i++ > 1000) {
+				logger.error("Operator depth limit exceeded");
+			}
+		}
+	}
+
+	private void setSource(OperatorCS csParent, ExpCS csSource) {
+		if (csSource != null) {
+			csSource.setParent(csParent);
+			int i = 0;
+			for (OperatorCS csOperator = csParent.getParent(); csOperator != null; csOperator = csOperator.getParent()) {
+				if (csOperator == csParent) {
+					logger.error("Operator loop established");
+				}
+				else if (i++ > 1000) {
+					logger.error("Operator depth limit exceeded");
+				}
+			}
+			csParent.setSource(csSource);
+		}
+		else {
+			csParent.getSource().setParent(null);
+			csParent.setSource(csSource);
+		}
+	}
+
 	private void updateSubstitutions(Map<TemplateParameter, ParameterableElement> substitutions, Type formalType, Type actualType) {		
 		TemplateParameter formalTemplateParameter = formalType.getOwningTemplateParameter();
 		if (formalTemplateParameter != null) {
@@ -1148,7 +1176,7 @@ public class EssentialOCLLeft2RightVisitor
 		//	Map the infix CS to the root of the AS tree.
 		//
 		ExpCS csRoot = csOperators.get(0);
-		for (ExpCS csParent = csRoot.getParent(); csParent != null; csParent = csRoot.getParent()) {
+		for (ExpCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
 			csRoot = csParent;
 		}
 		OclExpression pivot = PivotUtil.getPivot(OclExpression.class, csRoot);
