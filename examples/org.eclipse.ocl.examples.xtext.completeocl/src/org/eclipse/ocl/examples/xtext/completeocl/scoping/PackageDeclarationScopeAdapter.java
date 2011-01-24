@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationScopeAdapter.java,v 1.4.6.3 2011/01/22 19:09:28 ewillink Exp $
+ * $Id: PackageDeclarationScopeAdapter.java,v 1.4.6.4 2011/01/24 19:29:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAd
 
 public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<PackageDeclarationCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageDeclarationScopeAdapter(PivotManager pivotManager, PackageDeclarationCS csElement) {
-		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public PackageDeclarationScopeAdapter(TypeManager typeManager, PackageDeclarationCS csElement) {
+		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextScopeAdapter.java,v 1.5.6.4 2011/01/22 19:09:28 ewillink Exp $
+ * $Id: ClassifierContextScopeAdapter.java,v 1.5.6.5 2011/01/24 19:29:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -21,7 +21,7 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
@@ -34,8 +34,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 
 public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<ClassifierContextDeclCS, Type>
 {
-	public ClassifierContextScopeAdapter(PivotManager pivotManager, ClassifierContextDeclCS csElement) {
-		super(pivotManager, csElement, Type.class);
+	public ClassifierContextScopeAdapter(TypeManager typeManager, ClassifierContextDeclCS csElement) {
+		super(typeManager, csElement, Type.class);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: DefScopeAdapter.java,v 1.4.6.3 2011/01/22 19:09:28 ewillink Exp $
+ * $Id: DefScopeAdapter.java,v 1.4.6.4 2011/01/24 19:29:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAd
 
 public class DefScopeAdapter extends EssentialOCLCSScopeAdapter<DefCS, TypedElement>
 {
-	public DefScopeAdapter(PivotManager pivotManager, DefCS csElement) {
-		super(pivotManager, csElement, TypedElement.class);
+	public DefScopeAdapter(TypeManager typeManager, DefCS csElement) {
+		super(typeManager, csElement, TypedElement.class);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.5.6.4 2011/01/22 19:09:28 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.5.6.5 2011/01/24 19:29:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
@@ -32,8 +32,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContext
 
 public class PropertyContextScopeAdapter extends ModelElementCSScopeAdapter<PropertyContextDeclCS, Property>
 {
-	public PropertyContextScopeAdapter(PivotManager pivotManager, PropertyContextDeclCS csElement) {
-		super(pivotManager, csElement, Property.class);
+	public PropertyContextScopeAdapter(TypeManager typeManager, PropertyContextDeclCS csElement) {
+		super(typeManager, csElement, Property.class);
 	}
 
 	@Override

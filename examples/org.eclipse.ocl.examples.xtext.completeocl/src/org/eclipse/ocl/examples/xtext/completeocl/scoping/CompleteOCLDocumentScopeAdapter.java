@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.6.6.2 2010/12/11 10:44:23 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.6.6.3 2011/01/24 19:29:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -27,8 +27,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.StandardDocumentScope
 
 public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapter<CompleteOCLDocumentCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public CompleteOCLDocumentScopeAdapter(PivotManager pivotManager, CompleteOCLDocumentCS csElement) {
-		super(pivotManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public CompleteOCLDocumentScopeAdapter(TypeManager typeManager, CompleteOCLDocumentCS csElement) {
+		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
