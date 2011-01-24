@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclMetaModelCodeGenerator.java,v 1.1.2.2 2011/01/23 15:42:32 ewillink Exp $
+ * $Id: OclMetaModelCodeGenerator.java,v 1.1.2.3 2011/01/24 19:29:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.build.acceleo.GenerateOclMetaModel;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
@@ -92,8 +92,8 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
-			PivotManager pivotManager = adapter.getPivotManager();
-			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, pivotManager);
+			TypeManager typeManager = adapter.getTypeManager();
+			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 			Package pivotPackage = pivotRoot.getNestedPackages().get(0);
 			Resource pivotResource = pivotRoot.eResource();
