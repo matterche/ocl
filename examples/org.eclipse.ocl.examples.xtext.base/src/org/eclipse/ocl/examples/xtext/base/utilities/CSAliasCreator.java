@@ -20,11 +20,12 @@ public class CSAliasCreator extends AliasAdapter.AbstractCreator
 		if (eObject instanceof PackageCS) {
 			PackageCS csPackage = (PackageCS)eObject;
 			String moniker = csPackage.getMoniker();
+			return moniker;
 //			String nsPrefix = csPackage.getNsPrefix();
 //			if (nsPrefix != null) {
 //				return nsPrefix;
 //			}
-			return moniker;
+//			return csPackage.getName();
 		}
 		return null;
 	}

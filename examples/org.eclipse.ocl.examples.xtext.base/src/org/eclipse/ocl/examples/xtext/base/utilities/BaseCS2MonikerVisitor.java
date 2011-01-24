@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.6 2011/01/23 12:00:41 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.1.2.7 2011/01/24 18:46:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -196,10 +197,14 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 
 	@Override
 	public Object visitPackageCS(PackageCS object) {
+		String alias = AliasAdapter.getAlias(object);
+		if (alias != null) {
+			return alias;
+		}
 		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(object);
 		RootCSScopeAdapter documentScopeAdapter = scopeAdapter.getRootScopeAdapter();
 		if (documentScopeAdapter != null) {
-			String alias = documentScopeAdapter.getAlias(object);
+			alias = documentScopeAdapter.getAlias(object);
 			if (alias != null) {
 				context.append(alias);
 				return true;
@@ -276,10 +281,14 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 
 	@Override
 	public Object visitRootPackageCS(RootPackageCS object) {
+		String alias = AliasAdapter.getAlias(object);
+		if (alias != null) {
+			return alias;
+		}
 		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(object);
 		RootCSScopeAdapter documentScopeAdapter = scopeAdapter.getRootScopeAdapter();
 		if (documentScopeAdapter != null) {
-			String alias = documentScopeAdapter.getAlias(object);
+			alias = documentScopeAdapter.getAlias(object);
 			if (alias != null) {
 				context.append(alias);
 				return true;
