@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibScopeVisitor.java,v 1.1.2.1 2010/12/11 10:45:46 ewillink Exp $
+ * $Id: OCLstdlibScopeVisitor.java,v 1.1.2.2 2011/01/24 19:29:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ConstraintCSScopeAdapter;
@@ -32,9 +32,9 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.LibOperationScopeAdapter
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
 public class OCLstdlibScopeVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<ScopeCSAdapter, PivotManager, EssentialOCLScopeVisitor>
+	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<ScopeCSAdapter, TypeManager, EssentialOCLScopeVisitor>
 {
-	public OCLstdlibScopeVisitor(PivotManager context) {
+	public OCLstdlibScopeVisitor(TypeManager context) {
 		super(new EssentialOCLScopeVisitor(context), context);
 	}
 	
