@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.3.6.4 2011/01/15 21:38:32 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.3.6.5 2011/01/24 19:34:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 
 /**
@@ -48,8 +48,8 @@ public class RoundTripTests extends XtextTestCase
 		assertNoResourceErrors("Ecore load", inputResource);
 		assertNoValidationErrors("Ecore load", inputResource);
 		
-		PivotManager pivotManager = new PivotManager();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(inputResource, pivotManager);
+		TypeManager typeManager = new TypeManager();
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(inputResource, typeManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
 		pivotResource.setURI(pivotURI);
@@ -57,7 +57,7 @@ public class RoundTripTests extends XtextTestCase
 		pivotResource.save(null);
 		assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
 		
-		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(pivotManager, pivotResource));
+		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(typeManager, pivotResource));
 		outputObjects.remove(EcoreUtils.getNamedElement((List<? extends ENamedElement>)outputObjects, PivotConstants.ORPHANAGE_NAME));
 		if (outputObjects.size() == 1) {
 			outputObjects = ((EPackage)outputObjects.get(0)).getESubpackages();

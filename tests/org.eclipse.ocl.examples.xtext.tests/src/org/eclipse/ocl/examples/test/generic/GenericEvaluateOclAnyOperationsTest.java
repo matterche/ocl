@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2009,2010 Eclipse Modeling Project and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.8 2011/01/15 09:41:08 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.1.2.9 2011/01/24 19:34:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -40,7 +40,7 @@ public abstract class GenericEvaluateOclAnyOperationsTest
     @Override
     protected void setUp() {
         super.setUp();
-		pivotManager.addGlobalNamespace("pivot", pivotManager.getPivotPackage());
+		typeManager.addGlobalNamespace("pivot", typeManager.getPivotPackage());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.1.2.9 2011/01/23 15:42:39 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.1.2.10 2011/01/24 19:34:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 
@@ -82,11 +82,11 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Check similar content
 		//
-		Map<String,MonikeredElement> fileMoniker2PivotMap = new PivotManager().computeMoniker2PivotMap(Collections.singletonList(fileResource));
+		Map<String,MonikeredElement> fileMoniker2PivotMap = new TypeManager().computeMoniker2PivotMap(Collections.singletonList(fileResource));
 //		for (String moniker : fileMoniker2PivotMap.keySet()) {
 //			System.out.println("File : " + moniker);
 //		}
-		Map<String,MonikeredElement> javaMoniker2PivotMap = new PivotManager().computeMoniker2PivotMap(Collections.singletonList(javaResource));
+		Map<String,MonikeredElement> javaMoniker2PivotMap = new TypeManager().computeMoniker2PivotMap(Collections.singletonList(javaResource));
 //		for (String moniker : javaMoniker2PivotMap.keySet()) {
 //			System.out.println("Java : " + moniker);
 //		}
@@ -140,7 +140,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
 		Precedence p2c = createPrecedence(root2, "D", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new PivotManager().compilePrecedences(rootPackages);
+		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(1, p1b.getOrder().intValue());
 		assertEquals(3, p1c.getOrder().intValue());
@@ -160,7 +160,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2a = createPrecedence(root2, "B", AssociativityKind.LEFT);
 		Precedence p2b = createPrecedence(root2, "A", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new PivotManager().compilePrecedences(rootPackages);
+		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(1, p1b.getOrder().intValue());
 		assertEquals(1, p2a.getOrder().intValue());
@@ -176,7 +176,7 @@ public class OCLstdlibTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Package root2 = PivotFactory.eINSTANCE.createPackage();
 		Precedence p2a = createPrecedence(root2, "A", AssociativityKind.RIGHT);
 		rootPackages.add(root2);
-		List<String> errors = new PivotManager().compilePrecedences(rootPackages);
+		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(0, p2a.getOrder().intValue());
 		assertEquals(1, errors.size());
@@ -194,7 +194,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
 		Precedence p2c = createPrecedence(root2, "D", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new PivotManager().compilePrecedences(rootPackages);
+		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(2, p1b.getOrder().intValue());
 		assertEquals(3, p1c.getOrder().intValue());
@@ -214,7 +214,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2a = createPrecedence(root2, "A", AssociativityKind.LEFT);
 		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new PivotManager().compilePrecedences(rootPackages);
+		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(2, p1b.getOrder().intValue());
 		assertEquals(0, p2a.getOrder().intValue());

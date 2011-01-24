@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1.2.13 2011/01/15 09:41:08 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.1.2.14 2011/01/24 19:34:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -66,7 +66,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
@@ -154,7 +154,7 @@ public abstract class GenericTestSuite
 		initialized = true;
 	}
 
-	protected PivotManager pivotManager;
+	protected TypeManager typeManager;
 	protected ValueFactory valueFactory;
 	protected TestReflection.Static staticReflection;
 	protected OCL ocl;
@@ -885,7 +885,7 @@ public abstract class GenericTestSuite
 
 	protected Value evaluate(OCLHelper aHelper, Object context,
             String expression) throws ParserException {
-//        pivotManager.getPivotResourceSet().getResources().clear();
+//        typeManager.getPivotResourceSet().getResources().clear();
 		ExpressionInOcl query = aHelper.createQuery(expression);
         @SuppressWarnings("unused")
 		String s = query.toString();		// FIXME debugging
@@ -966,7 +966,7 @@ public abstract class GenericTestSuite
 //    }
 	
 //	protected Object getInvalid() {
-//		return environment.getPivotManager().getInvalidValue();
+//		return environment.getTypeManager().getInvalidValue();
 //	}
     
 	protected Type getMetaclass(String name) {
@@ -1162,9 +1162,9 @@ public abstract class GenericTestSuite
 		rootLogger.addAppender(new TestCaseAppender());
 //		rootLogger.removeAppender("default");
 		EssentialOCLStandaloneSetup.doSetup();
-		pivotManager = new PivotManager();
-		valueFactory = pivotManager.getValueFactory();
-		pivotManager.loadLibrary(OCLstdlib.INSTANCE);
+		typeManager = new TypeManager();
+		valueFactory = typeManager.getValueFactory();
+		typeManager.loadLibrary(OCLstdlib.INSTANCE);
 		staticReflection = getStaticReflection();
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
         	disposeResourceSet();

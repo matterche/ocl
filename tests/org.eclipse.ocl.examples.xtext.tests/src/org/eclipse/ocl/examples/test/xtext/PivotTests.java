@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.1.2.6 2011/01/23 15:42:39 ewillink Exp $
+ * $Id: PivotTests.java,v 1.1.2.7 2011/01/24 19:34:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -217,8 +217,8 @@ public class PivotTests extends XtextTestCase
 
 	public BaseCSResource doLoadOCLstdlib(String stem, String extension) throws IOException {
 		resourceSet = new ResourceSetImpl();
-		PivotManager pivotManager =  new PivotManager.NoDefaultLibrary();
-//		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
+		TypeManager typeManager =  new TypeManager.NoDefaultLibrary();
+//		CS2PivotResourceSetAdapter.getAdapter(resourceSet, typeManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
@@ -229,7 +229,7 @@ public class PivotTests extends XtextTestCase
 		URI output2URI = getProjectFileURI(output2Name);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
-		TypeManagerResourceAdapter.getAdapter(xtextResource, pivotManager);
+		TypeManagerResourceAdapter.getAdapter(xtextResource, typeManager);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 		assertNoResourceErrors("Load failed", xtextResource);
 		assertNoCSErrors("Load failed", xtextResource);
@@ -300,8 +300,8 @@ public class PivotTests extends XtextTestCase
 	}
 	
 	public void doPivotTestEcore(String stem) throws IOException {
-		PivotManager pivotManager = new PivotManager();
-		ResourceSet pivotResourceSet = pivotManager.getPivotResourceSet();
+		TypeManager typeManager = new TypeManager();
+		ResourceSet pivotResourceSet = typeManager.getPivotResourceSet();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 //		String libraryName = "oclstdlib.pivot";
@@ -323,7 +323,7 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 //		EcoreAliasCreator.createPackageAliases(ecoreResource);
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, pivotManager);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
@@ -354,7 +354,7 @@ public class PivotTests extends XtextTestCase
 		Resource csResource = csResourceSet.createResource(csURI);
 		Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
 		cs2PivotResourceMap.put(csResource, pivotResource);
-		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, pivotManager);
+		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
 		pivot2cs.update();
 		csResource.save(null);
 	

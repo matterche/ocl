@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2009 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestReflection.java,v 1.1.2.3 2011/01/15 09:41:08 ewillink Exp $
+ * $Id: PivotTestReflection.java,v 1.1.2.4 2011/01/24 19:34:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.ecore;
 
@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotReflectionImpl;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.test.generic.TestReflection;
 
 @SuppressWarnings("nls")
@@ -70,8 +70,8 @@ TestReflection.Static
 	 */
 	private Map<String, String> normalizers = null;
 
-	public PivotTestReflection(PivotManager pivotManager) {
-		super(pivotManager);
+	public PivotTestReflection(TypeManager typeManager) {
+		super(typeManager);
 	}
 
 	public void addSupertype(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class superClass) {
@@ -100,7 +100,7 @@ TestReflection.Static
 
 	public OCL createOCL(ResourceSet resourceSet) {
 		Registry packageRegistry = resourceSet.getPackageRegistry();
-		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, pivotManager);
+		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
 		return OCL.newInstance(envFactory);
 	}
 
@@ -442,15 +442,15 @@ TestReflection.Static
 	}
 
 	public Type getMetaclass(String name) {
-		return pivotManager.getRequiredLibraryType(name);
+		return typeManager.getRequiredLibraryType(name);
 	}
 
 	public Type getUMLBoolean() {
-		return pivotManager.getBooleanType();
+		return typeManager.getBooleanType();
 	}
 
 	public Type getUMLInteger() {
-		return pivotManager.getIntegerType();
+		return typeManager.getIntegerType();
 	}
 
 //	public Type getUMLLong() {
@@ -460,14 +460,14 @@ TestReflection.Static
 
 	public Package getUMLMetamodel() {
 		// TODO Auto-generated method stub
-		return pivotManager.getPivotPackage();
+		return typeManager.getPivotPackage();
 	}
 
 	public Type getUMLString() {
-		return pivotManager.getStringType();
+		return typeManager.getStringType();
 	}
 
 	public Type getUMLUnlimitedNatural() {
-		return pivotManager.getUnlimitedNaturalType();
+		return typeManager.getUnlimitedNaturalType();
 	}
 }

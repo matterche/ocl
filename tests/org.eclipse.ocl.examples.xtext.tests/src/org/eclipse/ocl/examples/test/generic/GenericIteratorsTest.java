@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2010 IBM Corporation and others.
+ * Copyright (c) 2006,2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.1.2.8 2011/01/15 20:50:44 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.1.2.9 2011/01/24 19:34:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -61,7 +61,7 @@ public abstract class GenericIteratorsTest
     @Override
     protected void setUp() {
         super.setUp();
-		pivotManager.addGlobalNamespace("pivot", pivotManager.getPivotPackage());
+		typeManager.addGlobalNamespace("pivot", typeManager.getPivotPackage());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
@@ -82,7 +82,7 @@ public abstract class GenericIteratorsTest
         pkg4 = reflection.createNestedPackage(pkg3, "pkg4");
         pkg5 = reflection.createNestedPackage(pkg3, "pkg5");
         george = reflection.createNestedPackage(pkg5, "george");
-        helper.setContext(pivotManager.getPivotType("Package"));
+        helper.setContext(typeManager.getPivotType("Package"));
     }
 
     /**
@@ -369,11 +369,11 @@ public abstract class GenericIteratorsTest
      * Tests that the closure() iterator handles cycles.
      */
     public void test_closure_cycles() {
-        Type packageMetaclass = pivotManager.getPivotType("Package");
+        Type packageMetaclass = typeManager.getPivotType("Package");
         Property nestedPackage = reflection.getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
         Property nestingPackage = reflection.getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
 
-        helper.setContext(pivotManager.getPivotType("Property"));
+        helper.setContext(typeManager.getPivotType("Property"));
 
         SetValue expected = valueFactory.createSetOf(nestedPackage, nestingPackage); // cyclic closure *does* include self
         assertQueryEquals(nestingPackage, expected, "self->closure(opposite)");
@@ -696,8 +696,8 @@ public abstract class GenericIteratorsTest
      * the body expression type has a <tt>&lt;</tt> operation.
      */
     public void test_sortedByRequiresComparability_192729() {
-    	Type context = pivotManager.getPivotType("Package");
-    	Type type = pivotManager.getPivotType("Type");
+    	Type context = typeManager.getPivotType("Package");
+    	Type type = typeManager.getPivotType("Type");
      	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		"ownedType->sortedBy(e | e)",
         	OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type.toString());

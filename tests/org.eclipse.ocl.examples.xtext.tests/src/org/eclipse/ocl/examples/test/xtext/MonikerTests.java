@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.1.2.7 2011/01/23 15:42:39 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.1.2.8 2011/01/24 19:34:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
 import org.eclipse.ocl.examples.pivot.ecore.EcoreAliasCreator;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -197,8 +197,8 @@ public class MonikerTests extends XtextTestCase
 		Map<String, MonikeredElementCS> csMonikerMap = checkCSMonikers(csResource);
 		checkCShasPivots(csResource, csMonikerMap);
 		checkCSandPivotMonikers(csMonikerMap);
-		PivotManager pivotManager = adapter.getPivotManager();
-		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(pivotManager.getPivotResourceSet());
+		TypeManager typeManager = adapter.getTypeManager();
+		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(typeManager.getPivotResourceSet());
 		{
 			StringBuffer s = null;
 			for (String m : csMonikerMap.keySet()) {

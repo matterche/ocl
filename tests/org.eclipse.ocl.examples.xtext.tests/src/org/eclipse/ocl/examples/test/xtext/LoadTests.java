@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.8.6.6 2011/01/07 12:16:52 ewillink Exp $
+ * $Id: LoadTests.java,v 1.8.6.7 2011/01/24 19:34:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -32,8 +32,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-import org.eclipse.ocl.examples.pivot.utilities.CS2PivotResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -44,12 +43,12 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
  */
 public class LoadTests extends XtextTestCase
 {	
-	protected PivotManager pivotManager = null;
+	protected TypeManager typeManager = null;
 	
 	@Override
 	protected void tearDown() throws Exception {
-		pivotManager = null;
-		StandardLibraryContribution.REGISTRY.put(PivotManager.DEFAULT_OCL_STDLIB_URI, null);
+		typeManager = null;
+		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, null);
 		super.tearDown();
 	}
 
@@ -123,13 +122,9 @@ public class LoadTests extends XtextTestCase
 		URI cstURI = getProjectFileURI(cstName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI savedURI = getProjectFileURI(savedName);
-		if (pivotManager == null) {
-			pivotManager = new PivotManager();
-		}
-		CS2PivotResourceSetAdapter.getAdapter(resourceSet, pivotManager);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, pivotManager);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
@@ -171,8 +166,8 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
-		pivotManager = new PivotManager();
-		pivotManager.loadLibrary(OCLstdlib.INSTANCE);
+		typeManager = new TypeManager();
+		typeManager.loadLibrary(OCLstdlib.INSTANCE);
 		doLoad_Concrete("Expression", "oclinecore");
 	}	
 
@@ -193,7 +188,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		StandardLibraryContribution.REGISTRY.put(PivotManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
+		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource resource = doLoad_Concrete("oclstdlib", "oclstdlib");
 		checkSignatures(resource);
 	}

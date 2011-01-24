@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 E.D.Willink and others.
+ * Copyright (c) 2008,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -68,7 +68,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -407,7 +407,7 @@ public class XtextTestCase extends TestCase
 //		URI projectURI = getProjectFileURI("dummy");
 //		URI projectOCLstdlibURI = URI.createURI("oclstdlib.oclstdlib").resolve(projectURI);
 //		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
-		StandardLibraryContribution.REGISTRY.put(PivotManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
+		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
 
         String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
         EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,

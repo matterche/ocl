@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2010 IBM Corporation and others.
+ * Copyright (c) 2006,2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.1.2.3 2011/01/15 20:50:44 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.1.2.4 2011/01/24 19:34:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;
@@ -37,7 +37,7 @@ public class IteratorsTest extends GenericIteratorsTest
 
 	@Override
 	public PivotTestReflection getStaticReflection() {
-		return new PivotTestReflection(pivotManager);
+		return new PivotTestReflection(typeManager);
 	}
     
     /**
@@ -48,14 +48,14 @@ public class IteratorsTest extends GenericIteratorsTest
 	public void test_sortedByRequiresComparability_192729() {
     	super.test_sortedByRequiresComparability_192729();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
-    	Type context = pivotManager.getPivotType("Package");
+    	Type context = typeManager.getPivotType("Package");
         
         // EDate defines '<' by having a Comparable instance class
         assertQuery(context, "let dates : Sequence(ecore::EDate) = Sequence{} in dates->sortedBy(e | e)");
     }
 	
 	public void loadEPackage(String alias, EPackage ePackage) {		
-		Element ecoreElement = Ecore2Pivot.importFromEcore(pivotManager, alias, ePackage);
-		pivotManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
+		Element ecoreElement = Ecore2Pivot.importFromEcore(typeManager, alias, ePackage);
+		typeManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
 	}
 }

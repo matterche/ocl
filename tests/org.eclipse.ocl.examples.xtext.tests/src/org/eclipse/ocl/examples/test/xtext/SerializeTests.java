@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.7.6.8 2011/01/22 11:31:32 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.7.6.9 2011/01/24 19:34:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
@@ -69,8 +69,8 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	Ecore to Pivot
 		//		
-		PivotManager pivotManager = new PivotManager();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, pivotManager);
+		TypeManager typeManager = new TypeManager();
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
 		assertNoResourceErrors("Normalisation failed", pivotResource);
@@ -86,7 +86,7 @@ public class SerializeTests extends XtextTestCase
 		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 		Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
 		cs2PivotResourceMap.put(xtextResource, pivotResource);
-		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, pivotManager);
+		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
 		pivot2cs.update();
 		assertNoResourceErrors("Conversion failed", xtextResource);
 //		csResource.save(null);
@@ -117,7 +117,7 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	CS to Pivot
 		//	
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource2, pivotManager);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource2, typeManager);
 		Resource pivotResource2 = adapter.getPivotResource(xtextResource2);
 		assertNoUnresolvedProxies("Unresolved proxies", pivotResource2);
 		String pivotName2 = stem + "2.ecore.pivot";
@@ -127,7 +127,7 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	Pivot to Ecore
 		//		
-		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(pivotManager, pivotResource2));
+		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(typeManager, pivotResource2));
 		outputObjects.remove(EcoreUtils.getNamedElement((List<? extends ENamedElement>)outputObjects, PivotConstants.ORPHANAGE_NAME));
 		if (outputObjects.size() == 1) {
 			outputObjects = ((EPackage)outputObjects.get(0)).getESubpackages();
