@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintNameVisitor.java,v 1.5 2011/05/22 21:06:19 ewillink Exp $
+ * $Id: PrettyPrintNameVisitor.java,v 1.4 2011/05/13 18:41:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  */
-public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Namespace>
+public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,PrettyPrintOptions>
 {	
 	public static Namespace getNamespace(EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
@@ -51,8 +51,16 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 		return null;
 	}
 
-	public static String prettyPrint(Visitable element, Namespace scope) {
-		PrettyPrintNameVisitor visitor = new PrettyPrintNameVisitor(scope);
+	public static String prettyPrint(Visitable element) {
+		return prettyPrint(element, PrettyPrintTypeVisitor.createOptions(null));
+	}
+
+	public static String prettyPrint(Visitable element, Namespace namespace) {
+		return prettyPrint(element, PrettyPrintTypeVisitor.createOptions(namespace));
+	}
+
+	public static String prettyPrint(Visitable element, PrettyPrintOptions options) {
+		PrettyPrintNameVisitor visitor = new PrettyPrintNameVisitor(options);
 		try {
 			visitor.safeVisit(element);
 			return visitor.toString();
@@ -68,10 +76,20 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 		public Printer() {}
 		
 		public String prettyPrint(Visitable element, Namespace scope) {
-			PrettyPrintNameVisitor visitor = new PrettyPrintNameVisitor(scope);
+			return prettyPrint(element, PrettyPrintTypeVisitor.createOptions(scope));
+		}
+		public String prettyPrintAsTextile(Visitable element, Namespace scope) {
+			PrettyPrintOptions options = PrettyPrintTypeVisitor.createOptions(scope);
+			options.setUseParentheses(false);
+			return prettyPrint(element, options);
+		}
+		public String prettyPrint(Visitable element, PrettyPrintOptions options) {
+			PrettyPrintNameVisitor visitor = new PrettyPrintNameVisitor(options);
 			try {
 				visitor.safeVisit(element);
-				return visitor.toString();
+				String string = visitor.toString(options.getIndentStep(), options.getLinelength());
+//				System.out.println("Name-prettyPrint : " + element.eClass().getName() + "/" + element.eClass().getName() + " => " + string);
+				return string;
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -86,9 +104,10 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 	/**
 	 * Initializes me.
 	 */
-	public PrettyPrintNameVisitor(Namespace scope) {
-		super(scope);
-		delegate = new PrettyPrintTypeVisitor(scope);
+	public PrettyPrintNameVisitor(PrettyPrintOptions options) {
+		super(options);
+		delegate = new PrettyPrintTypeVisitor(options);
+		Namespace scope = options.getScope();
 		Resource resource = scope != null ? scope.eResource() : null;
 		ResourceSet resourceSet = resource !=  null ? resource.getResourceSet() : null;
 		typeManager = TypeManager.getAdapter(resourceSet);
@@ -97,6 +116,10 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 	@Override
 	public String toString() {
 		return delegate.toString();
+	}
+	
+	public String toString(String indent, int lineLength) {
+		return delegate.toString(indent, lineLength);
 	}
 
 	@Override
@@ -111,53 +134,55 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 	@Override
 	public String visitNamedElement(NamedElement object) {
 		delegate.appendParent(null, object, "::");
-		delegate.appendName(object, PrettyPrintTypeVisitor.reservedNames);
+		delegate.appendName(object, context.getReservedNames());
 		return null;
 	}
 
 	@Override
 	public Object visitOperation(Operation object) {
-		delegate.appendParent(null, object, "::");
+//		delegate.appendParent(null, object, "::");
 		delegate.appendName(object);
 		delegate.appendTemplateParameters(object);
 		delegate.appendTemplateBindings(object);
-		delegate.appendParameters(object);
+		delegate.appendParameters(object, true);
 		Type type = object.getType();
 		if (type != null) {
 			delegate.append(" : ");
-			delegate.appendTypedMultiplicity(object);
+			delegate.appendElement(type);
+			delegate.appendMultiplicity(object);
 		}
 		return null;
 	}
 
 	@Override
 	public Object visitTemplateParameter(TemplateParameter object) {
-		delegate.appendParent(null, object.getSignature(), "::");
+//		delegate.appendParent(null, object.getSignature(), "::");
 		delegate.appendName((NamedElement) object.getParameteredElement());
 		return null;
 	}
 
 	@Override
 	public Object visitTupleType(TupleType object) {
+		boolean useParentheses = context.getUseParentheses();
 		delegate.appendParent(object.eContainer(), object, "::");
 		delegate.appendName(object);
-		delegate.append("(");
 		List<Property> tupleParts = object.getOwnedAttributes();
 		if (!tupleParts.isEmpty()) {
+			delegate.append(useParentheses ? "(" : "<");
 			String prefix = ""; //$NON-NLS-1$
 			for (Property tuplePart : tupleParts) {
 				delegate.append(prefix);
 				delegate.appendElement(tuplePart);
 				prefix = ",";
 			}
+			delegate.append(useParentheses ? ")" : ">");
 		}
-		delegate.append(")");
 		return null;
 	}
 
 	@Override
 	public Object visitType(Type object) {
-		delegate.appendParent(null, object, "::");
+		delegate.appendParent(context.getScope(), object, "::");
 		delegate.appendName(object);
 		delegate.appendTemplateParameters(object);
 		delegate.appendTemplateBindings(object);
@@ -166,7 +191,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 
 	@Override
 	public Object visitTypedElement(TypedElement object) {
-		delegate.appendParent(null, object, "::");
+		delegate.appendParent(context.getScope(), object, "::");
 		delegate.appendName(object);
 		delegate.append(" : ");
 		delegate.appendElement(object.getType());
@@ -175,10 +200,8 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 
 	@Override
 	public Object visitTypedMultiplicityElement(TypedMultiplicityElement object) {
-		delegate.appendParent(null, object, "::");
-		delegate.appendName(object);
-		delegate.append(" : ");
-		delegate.appendTypedMultiplicity(object);
+		visitTypedElement(object);
+		delegate.appendMultiplicity(object);
 		return null;
 	}
 

@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
@@ -61,8 +62,16 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  */
 public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 {	
-	public static String prettyPrint(Element element) {
-		PrettyPrintExprVisitor visitor = new PrettyPrintExprVisitor(getNamespace(element.eContainer()));
+	public static String prettyPrint(Visitable element) {
+		return prettyPrint(element, PrettyPrintTypeVisitor.createOptions(null));
+	}
+
+	public static String prettyPrint(Visitable element, Namespace namespace) {
+		return prettyPrint(element, PrettyPrintTypeVisitor.createOptions(namespace));
+	}
+
+	public static String prettyPrint(Visitable element, PrettyPrintOptions options) {
+		PrettyPrintNameVisitor visitor = new PrettyPrintExprVisitor(options);
 		try {
 			visitor.safeVisit(element);
 			return visitor.toString();
@@ -73,42 +82,16 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		}
 	}
 
-	public static String prettyPrint(Visitable element, Namespace scope) {
-		PrettyPrintExprVisitor visitor = new PrettyPrintExprVisitor(scope);
-		try {
-			visitor.safeVisit(element);
-			return visitor.toString();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return visitor.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
-		}
-	}
-
-	public static class Printer
-	{
-		public Printer() {}
-		
-		public String prettyPrint(Visitable element, Namespace scope) {
-			PrettyPrintExprVisitor visitor = new PrettyPrintExprVisitor(scope);
-			try {
-				visitor.safeVisit(element);
-				return visitor.toString();
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-				return visitor.toString() + " ... " + e.getClass().getName() + " - " + e.getLocalizedMessage();
-			}
-		}
-	}
-	
 	private Precedence currentPrecedence = null;
 	
 	/**
 	 * Initializes me.
 	 */
-	public PrettyPrintExprVisitor(Namespace scope) {
-		super(scope);
+//	public PrettyPrintExprVisitor(Namespace scope) {
+//		super(new PrettyPrintOptions.Global(scope));
+//	}
+	public PrettyPrintExprVisitor(PrettyPrintOptions options) {
+		super(options);
 	}
 
 	protected void appendSourceNavigation(CallExp object) {
@@ -158,35 +141,64 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitCollectionLiteralExp(CollectionLiteralExp object) {
-		delegate.appendName(object.getType(), PrettyPrintTypeVisitor.reservedNames);
-		delegate.append("{");
-		String prefix = ""; //$NON-NLS-1$
-		for (CollectionLiteralPart part : object.getParts()) {
-			delegate.append(prefix);
-			safeVisit(part);
-			prefix = ", ";
+		delegate.appendName(object.getType(), context.getReservedNames());
+		List<CollectionLiteralPart> parts = object.getParts();
+		if (parts.isEmpty()) {
+			delegate.append("{}");
 		}
-		delegate.append("}");
+		else {
+			delegate.push("{", "");
+			String prefix = ""; //$NON-NLS-1$
+			for (CollectionLiteralPart part : parts) {
+				delegate.append(prefix);
+				safeVisit(part);
+				prefix = ", ";
+			}
+			delegate.exdent("", "}", "");
+			delegate.pop();
+		}
 		return null;
 	}
 
 	@Override
 	public Object visitCollectionRange(CollectionRange object) {
 		safeVisit(object.getFirst());
-		delegate.append("..");
+		delegate.next("", "..", "");
         safeVisit(object.getLast());
 		return null;
 	}
 
 	@Override
 	public Object visitConstraint(Constraint object) {
-		delegate.append(object.getStereotype());
+		String stereotype = object.getStereotype();
+		if (UMLReflection.BODY.equals(stereotype)) {
+			delegate.append("body");
+		}
+		else if (UMLReflection.DERIVATION.equals(stereotype)) {
+			delegate.append("der");
+		}
+		else if (UMLReflection.INITIAL.equals(stereotype)) {
+			delegate.append("init");
+		}
+		else if (UMLReflection.INVARIANT.equals(stereotype)) {
+			delegate.append("inv");
+		}
+		else if (UMLReflection.POSTCONDITION.equals(stereotype)) {
+			delegate.append("post");
+		}
+		else if (UMLReflection.PRECONDITION.equals(stereotype)) {
+			delegate.append("pre");
+		}
+		else {
+			delegate.append(stereotype);
+		}
 		if (object.getName() != null) {
 			delegate.append(" ");
 			delegate.appendName(object);
 		}
-		delegate.append(": ");
+		delegate.push(":", " ");
         safeVisit(object.getSpecification());
+		delegate.pop();
 		return null;
 	}
 
@@ -204,15 +216,14 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitIfExp(IfExp object) {
-//		pushPrecedence("let");
-		delegate.append("if ");
+		delegate.push("if", " ");
 		safeVisit(object.getCondition());
-		delegate.append(" then ");
-        safeVisit(object.getThenExpression());
-		delegate.append(" else ");
+		delegate.exdent(" ", "then", " ");
+		safeVisit(object.getThenExpression());
+		delegate.exdent(" ", "else", " ");
         safeVisit(object.getElseExpression());
-		delegate.append(" endif");
-//		popPrecedence("let");
+		delegate.exdent(" ", "endif", "");
+		delegate.pop();
 		return null;
 	}
 
@@ -234,26 +245,32 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		Operation referredOperation = object.getReferredIteration();
 		appendSourceNavigation(object);
 		delegate.appendName(referredOperation);
-		delegate.append("(");
+		delegate.push("(", "");
+		String prefix = null;
 		if (iterators.size() > 0) {
 			boolean hasExplicitIterator = false;
-			String prefix = ""; //$NON-NLS-1$
 			for (Variable iterator : iterators) {
 				if (!iterator.isImplicit()) {
-					delegate.append(prefix);
+					if (prefix != null) {
+						delegate.next(null, prefix, " ");
+					}
 					safeVisit(iterator);
-					prefix = ", ";
+					prefix = ",";
 					hasExplicitIterator = true;
 				}
 			}
 			if (hasExplicitIterator) {
-				delegate.append(" ; ");
+				prefix = ";";
+			}
+			if (prefix != null) {
+				delegate.next(null, prefix, " ");
 			}
 			safeVisit(object.getResult());
-			delegate.append(" | ");
+			delegate.next(null, " |", " ");
 		}
 		safeVisit(object.getBody());
-		delegate.append(")");
+		delegate.next("", ")", "");
+		delegate.pop();
 		return null;
 	}
 
@@ -263,35 +280,40 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		Operation referredOperation = object.getReferredIteration();
 		appendSourceNavigation(object);
 		delegate.appendName(referredOperation);
-		delegate.append("(");
+		delegate.push("(", "");
 		if (iterators.size() > 0) {
+			String prefix = null;
 			boolean hasExplicitIterator = false;
-			String prefix = ""; //$NON-NLS-1$
 			for (Variable iterator : iterators) {
 				if (!iterator.isImplicit()) {
-					delegate.append(prefix);
+					if (prefix != null) {
+						delegate.next(null, prefix, " ");
+					}
 					safeVisit(iterator);
-					prefix = ", ";
+					prefix = ",";
 					hasExplicitIterator = true;
 				}
 			}
 			if (hasExplicitIterator) {
-				delegate.append(" | ");
+				delegate.next(null, " |", " ");
+			}
+			else if (prefix != null) {
+				delegate.next(null, prefix, " ");
 			}
 		}
 		safeVisit(object.getBody());
-		delegate.append(")");
+		delegate.next("", ")", "");
+		delegate.pop();
 		return null;
 	}
 
 	@Override
 	public Object visitLetExp(LetExp object) {
-//		pushPrecedence("let");
-		delegate.append("let ");
+		delegate.push("let", " ");
 		safeVisit(object.getVariable());
-		delegate.append(" in ");
+		delegate.exdent(" ", "in", " ");
         safeVisit(object.getIn());
-//		popPrecedence("let");
+		delegate.pop();
 		return null;
 	}
 
@@ -318,34 +340,38 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		if (precedence == null) {
 			appendSourceNavigation(object);
 			delegate.appendName(referredOperation);
-			delegate.append("(");
-			String prefix = ""; //$NON-NLS-1$
+			delegate.push("(", "");
+			String prefix = null; //$NON-NLS-1$
 			for (OclExpression argument : arguments) {
-				delegate.append(prefix);
+				if (prefix != null) {
+					delegate.next(null, prefix, " ");
+				}
 				precedenceVisit(argument, null);
-				prefix = ", ";
+				prefix = ",";
 			}
-			delegate.append(")");
+			delegate.next("", ")", "");
+			delegate.pop();
 		}
 		else {
 			boolean lowerPrecedence = (currentPrecedence != null) && precedence.getOrder().compareTo(currentPrecedence.getOrder()) > 0;
 			if (lowerPrecedence) {
-				delegate.append("(");
+				delegate.push("(", null);
 			}
 			if (arguments.size() == 0) {			// Prefix
 				delegate.appendName(referredOperation, null);
-				delegate.append(" ");
+				if ((referredOperation != null) && PivotUtil.isValidIdentifier(referredOperation.getName())) {
+					delegate.append(" ");			// No space for unary minus
+				}
 				precedenceVisit(source, precedence);
 			}
 			else {			// Infix
 				precedenceVisit(source, precedence);
-				delegate.append(" ");
-				delegate.appendName(referredOperation, null);
-				delegate.append(" ");
+				delegate.next(" ", delegate.getName(referredOperation, null), " ");
 				precedenceVisit(arguments.get(0), precedence);
 			}
 			if (lowerPrecedence) {
-				delegate.append(")");
+				delegate.exdent("", ")", "");
+				delegate.pop();
 			}
 		}
 		return null;
@@ -386,14 +412,15 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	@Override
 	public Object visitTupleLiteralExp(TupleLiteralExp object) {
 		delegate.append("Tuple");
-		delegate.append("{");
+		delegate.push("{", "");
 		String prefix = ""; //$NON-NLS-1$
 		for (TupleLiteralPart part : object.getParts()) {
 			delegate.append(prefix);
 			safeVisit(part);
 			prefix = ", ";
 		}
-		delegate.append("}");
+		delegate.exdent("", "}", "");
+		delegate.pop();
 		return null;
 	}
 

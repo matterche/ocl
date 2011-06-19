@@ -39,7 +39,7 @@ public class TestPrettyPrinter extends XtextTestCase
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof NamedElement) {
-				String s = PrettyPrintNameVisitor.prettyPrint((Element) eObject, null);
+				String s = PrettyPrintNameVisitor.prettyPrint((Element) eObject);
 				System.out.println(eObject.eClass().getName() + " : " + s);
 			}
 		}
@@ -54,7 +54,7 @@ public class TestPrettyPrinter extends XtextTestCase
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof NamedElement) {
-				String s = PrettyPrintTypeVisitor.prettyPrint((Element) eObject, null);
+				String s = PrettyPrintTypeVisitor.prettyPrint((Element) eObject);
 				System.out.println(eObject.eClass().getName() + " : " + s);
 			}
 		}

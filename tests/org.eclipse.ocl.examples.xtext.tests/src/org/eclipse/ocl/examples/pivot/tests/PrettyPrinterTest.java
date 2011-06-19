@@ -18,8 +18,14 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions.Global;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
  * Tests for OclAny operations.
@@ -36,7 +42,8 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
 	protected Object assertPrintResults(Object context, String expression) {
 		try {
 			ExpressionInOcl query = helper.createQuery(expression);
-			String prettyExpression = PrettyPrintExprVisitor.prettyPrint(query, null);
+			PrettyPrintOptions.Global options = PrettyPrintTypeVisitor.createOptions(null);
+			String prettyExpression = PrettyPrintExprVisitor.prettyPrint(query, options);
 			assertEquals(expression, prettyExpression);
 		} catch (ParserException e) {
             fail("Failed to parse \"" + expression + "\": " + e.getLocalizedMessage());
@@ -47,7 +54,7 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
 	protected Object assertPrintResults(Object context, String expression, String expectedExpression) {
 		try {
 			ExpressionInOcl query = helper.createQuery(expression);
-			String prettyExpression = PrettyPrintExprVisitor.prettyPrint(query, null);
+			String prettyExpression = PrettyPrintExprVisitor.prettyPrint(query);
 			assertEquals(expectedExpression, prettyExpression);
 		} catch (ParserException e) {
             fail("Failed to parse \"" + expression + "\": " + e.getLocalizedMessage());
