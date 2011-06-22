@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   <rm:property key="checkout.location" value="${workspace.root}"/>
-  <rm:property key="git.checkout.location" value="${checkout.location}/ocl.eclipse.ocl.git"/>
+  <rm:property key="git.checkout.location" value="${checkout.location}/org.eclipse.ocl.git"/>
   <rm:property key="git.ocl.remote.repository.location" value="git://git.eclipse.org/gitroot/mdt/org.eclipse.ocl.git"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
   <rm:property key="build.type" mutable="false" value="S"/>
-  <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="local.releng"/>
+  <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="git.ocl"/>
   <rm:locator pattern="^org\.eclipse\.emf\.compare.*" searchPathRef="emfcompare"/>
   <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
@@ -18,7 +18,7 @@
   <rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="xtext"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
-  <rm:searchPath name="local.releng">
+  <rm:searchPath name="git.ocl">
     <rm:provider componentTypes="buckminster" readerType="git" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
