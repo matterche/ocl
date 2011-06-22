@@ -4,7 +4,7 @@
   <rm:property key="git.checkout.location" value="${checkout.location}/org.eclipse.ocl.git"/>
   <rm:property key="git.ocl.remote.repository.location" value="git://git.eclipse.org/gitroot/mdt/org.eclipse.ocl.git"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
-  <rm:property key="build.type" mutable="false" value="S"/>
+  <rm:property key="build.type" mutable="false" value="M"/>
   <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="git.ocl"/>
   <rm:locator pattern="^org\.eclipse\.emf\.compare.*" searchPathRef="emfcompare"/>
   <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
@@ -22,7 +22,7 @@
     <rm:provider componentTypes="buckminster" readerType="git" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
-      <rm:uri format="{0}, releng/{1}">
+      <rm:uri format="{0},releng/{1}">
         <bc:propertyRef key="git.checkout.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -40,6 +40,12 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/emf/updates/2.7milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.7">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -66,6 +72,12 @@
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/modeling/emf/compare/updates/releases/1.2">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="uml">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=I)(build.type=N))" readerType="p2" source="false" mutable="false">
@@ -79,6 +91,12 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/mdt/updates/milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/modeling/mdt/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -124,7 +142,7 @@
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/modeling/emft/mwe/updates">
+      <rm:uri format="{0}/modeling/emft/mwe/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -187,6 +205,12 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/eclipse/updates/3.7milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/eclipse/updates/3.7">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
