@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
-  <rm:property key="checkout.location" value="${workspace.root}"/>
-  <rm:property key="git.checkout.location" value="${checkout.location}/org.eclipse.ocl.git"/>
   <rm:property key="git.ocl.remote.repository.location" value="git://git.eclipse.org/gitroot/mdt/org.eclipse.ocl.git"/>
+  <rm:property key="git.ocl.local.repository.location" value="${workspace.root}/org.eclipse.ocl.git"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
   <rm:property key="build.type" mutable="false" value="M"/>
   <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="git.ocl"/>
@@ -23,7 +22,7 @@
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
       <rm:uri format="{0},releng/{1}">
-        <bc:propertyRef key="git.checkout.location"/>
+        <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
