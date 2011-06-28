@@ -114,7 +114,7 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="git">
       <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
-      <rm:uri format="{0},feature/{1}-feature">
+      <rm:uri format="{0},features/{1}-feature">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
