@@ -17,6 +17,5 @@ Require-Bundle: org.junit4;bundle-version="[4.5.0,5.0.0)";visibility:=reexport,
  org.eclipse.ui.editors;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ocl.examples.modelregistry;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.ocl.examples.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.ocl.examples.parser;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
+ org.eclipse.ocl.examples.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
