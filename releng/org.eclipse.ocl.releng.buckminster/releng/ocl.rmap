@@ -133,7 +133,7 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="git">
+    <rm:provider componentTypes="osgi.bundle,unknown" readerType="git">
       <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
       <rm:uri format="{0},examples/{1}">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
