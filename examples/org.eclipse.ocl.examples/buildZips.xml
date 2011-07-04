@@ -34,9 +34,9 @@
 		</zip>
 		
 		<!-- EMF plugin examples --> 
-		<zip destfile="zips/library.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library"/>
+		<!-- <zip destfile="zips/library.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library"/>
 		<zip destfile="zips/libraryEdit.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library.edit"/>
-		<zip destfile="zips/libraryEditor.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library.editor"/>
+		<zip destfile="zips/libraryEditor.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library.editor"/>-->
 	</target>
 
 	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.ocl.examples.">
