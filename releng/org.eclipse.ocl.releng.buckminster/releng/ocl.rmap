@@ -2,7 +2,6 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   <rm:property key="cvs.modeling.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling"/>
   <rm:property key="cvs.eclipse.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse"/>
-  <rm:property key="git.ocl.remote.repository.location" value="git://git.eclipse.org/gitroot/mdt/org.eclipse.ocl.git"/>
   <rm:property key="git.ocl.local.repository.location" value="${workspace.root}/org.eclipse.ocl.git"/>
   <rm:locator pattern="^lpg\.runtime\.java.*$" searchPathRef="p2_orbit" failOnError="false"/>
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="git_ocl"/>
@@ -96,52 +95,45 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="git_ocl">
-    <rm:provider componentTypes="buckminster,eclipse.feature" readerType="git" mutable="false">
+  <rm:searchPath name="local_ocl">
+    <rm:provider componentTypes="buckminster,eclipse.feature" readerType="local" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
       <rm:uri format="{0},releng/{1}">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature" readerType="git">
-      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
+    <rm:provider componentTypes="eclipse.feature" readerType="local">
       <rm:uri format="{0},releng/{1}-feature">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature" readerType="git">
-      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
+    <rm:provider componentTypes="eclipse.feature" readerType="local">
       <rm:uri format="{0},features/{1}-feature">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="git">
-      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0},plugins/{1}">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="git">
-      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0},doc/{1}">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle,unknown" readerType="git">
-      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
+    <rm:provider componentTypes="osgi.bundle,unknown" readerType="local">
       <rm:uri format="{0},examples/{1}">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="git">
-      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0},tests/{1}">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
