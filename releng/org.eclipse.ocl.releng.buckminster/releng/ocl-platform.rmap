@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:mspec="http://www.eclipse.org/buckminster/MetaData-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
-  <mspec:property key="git.ocl.remote.repository.location" value="git://git.eclipse.org/gitroot/mdt/org.eclipse.ocl.git"/>
-  <mspec:property key="git.ocl.local.repository.location" value="${workspace.root}/org.eclipse.ocl.git"/>
-  <mspec:property key="eclipse.download" value="http://download.eclipse.org"/>
-  <mspec:property key="build.type" mutable="false" value="I"/>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+  <rm:property key="git.ocl.remote.repository.location" value="git://git.eclipse.org/gitroot/mdt/org.eclipse.ocl.git"/>
+  <rm:property key="git.ocl.local.repository.location" value="${workspace.root}/org.eclipse.ocl.git"/>
+  <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
+  <rm:property key="build.type" mutable="false" value="I"/>
   <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="git.ocl"/>
   <rm:locator pattern="^org\.eclipse\.emf\.compare.*" searchPathRef="emfcompare"/>
   <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
@@ -19,8 +19,8 @@
   <rm:locator searchPathRef="orbit"/>
   <rm:searchPath name="git.ocl">
     <rm:provider componentTypes="buckminster" readerType="git" mutable="false">
-      <mspec:property key="buckminster.mutable" value="false"/>
-      <mspec:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:property key="git.remote.uri" value="${git.ocl.remote.repository.location}"/>
       <rm:uri format="{0},releng/{1}">
         <bc:propertyRef key="git.ocl.local.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
@@ -29,21 +29,21 @@
   </rm:searchPath>
   <rm:searchPath name="emf">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=I)(build.type=N))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/emf/updates/2.7-I-builds">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/emf/updates/2.7milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" mutable="false">
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/emf/updates/2.7">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -51,29 +51,29 @@
   </rm:searchPath>
   <rm:searchPath name="emfcompare">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=N)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/compare/updates/nightly/1.2">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=I)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/compare/updates/releases/1.2">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/compare/updates/milestones/1.2">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emf/compare/updates/releases/1.2">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -81,22 +81,22 @@
   </rm:searchPath>
   <rm:searchPath name="uml">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=I)(build.type=N))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/mdt/updates/interim">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/mdt/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/mdt/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -104,22 +104,22 @@
   </rm:searchPath>
   <rm:searchPath name="xtext">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=I)(build.type=N)(build.type=S))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/tmf/updates/nightly">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/tmf/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/tmf/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -127,22 +127,22 @@
   </rm:searchPath>
   <rm:searchPath name="mwe">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=I)(build.type=N)(build.type=S))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emft/mwe/updates/nightly">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emft/mwe/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -150,22 +150,22 @@
   </rm:searchPath>
   <rm:searchPath name="xpand">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=I)(build.type=N)(build.type=S))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/m2t/xpand/updates/nightly">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/m2t/xpand/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -173,22 +173,22 @@
   </rm:searchPath>
   <rm:searchPath name="gef">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=I)(build.type=N))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/tools/gef/updates/interim">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/tools/gef/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/tools/gef/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -196,28 +196,28 @@
   </rm:searchPath>
   <rm:searchPath name="platform">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=N)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/eclipse/updates/3.8-N-builds">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=I)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/eclipse/updates/3.8-I-builds">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=S)" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/eclipse/updates/3.8milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=M)(build.type=R))" readerType="p2" mutable="false">
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/eclipse/updates/3.7">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -225,8 +225,8 @@
   </rm:searchPath>
   <rm:searchPath name="orbit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <mspec:property key="buckminster.source" value="false"/>
-      <mspec:property key="buckminster.mutable" value="false"/>
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/tools/orbit/downloads/drops/R20110523182458/repository">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
