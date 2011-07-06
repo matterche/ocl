@@ -78,8 +78,9 @@
 	</target>
 
 	<!-- adolfosbh: Target called by buckminster in order to create textile documentation -->
-	<target name="buckminster.build.textile.doc" description="Create textile documentation creation">	
-		<ant antfile="textileBuild.xml" target="build-doc" inheritall="true"/>		
+	<target name="buckminster.build.textile.doc" description="Create textile documentation creation">
+		<!-- Temporarilly deactivate textileDoc.
+		 <ant antfile="textileBuild.xml" target="build-doc" inheritall="true"/>-->		
 	</target>
 			
 	<target name="build.index" depends="init" description="Builds search index for the plug-in" if="eclipse.running">
