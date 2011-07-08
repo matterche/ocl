@@ -60,15 +60,15 @@ public class OCLstdlibRenameStrategy extends AbstractRenameStrategy {
 	private ILocationInFileProvider locationProvider;
 
 	protected OCLstdlibRenameStrategy(IRenameElementContext renameElementContext, NamedElement targetEObject, ILocationInFileProvider locationProvider) {
-		super(targetEObject);
+		super(targetEObject, PivotPackage.Literals.NAMED_ELEMENT__NAME);
 		this.contextResourceURI = renameElementContext.getContextResourceURI();
 		this.editor = (XtextEditor) renameElementContext.getTriggeringEditor();
 		this.locationProvider = locationProvider;
 	}
 	public void createDeclarationUpdates(String newName, ResourceSet resourceSet, IRefactoringUpdateAcceptor updateAcceptor) {
 		applyDeclarationChange(newName, resourceSet);
-		Resource targetResource = resourceSet.getResource(targetElementOriginalURI.trimFragment(), false);
-		EObject targetElement = resourceSet.getEObject(targetElementOriginalURI, false);
+		Resource targetResource = resourceSet.getResource(getTargetElementOriginalURI().trimFragment(), false);
+		EObject targetElement = resourceSet.getEObject(getTargetElementOriginalURI(), false);
 		IXtextDocument document = editor.getDocument();
 		ITextRegion textRegion = locationProvider.getSignificantTextRegion(targetElement);
 		ReplaceEdit textEdit = new ReplaceEdit(textRegion.getOffset(), textRegion.getLength(), newName);
@@ -85,16 +85,9 @@ public class OCLstdlibRenameStrategy extends AbstractRenameStrategy {
 			((NamedElement) targetElement).setName(newName);
 			return targetElement;
 		}
-		EAttribute nameAttribute = getNameAttribute(targetElement);
+		EAttribute nameAttribute = getNameAttribute();
 		targetElement.eSet(nameAttribute, newName);
 		return targetElement;
 	}
-
-	@Override
-	protected EAttribute getNameAttribute(EObject eObject) {
-		if (eObject instanceof NamedElement) {
-			return PivotPackage.Literals.NAMED_ELEMENT__NAME;
-		}
-		return super.getNameAttribute(eObject);
-	}
+	
 }
