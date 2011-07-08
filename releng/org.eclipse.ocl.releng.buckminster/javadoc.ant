@@ -8,8 +8,8 @@
 		<property name="checkoutLocation" value="../.." />
 		<property name="targetPlatform" value="${eclipse.home}" />
 
-		<property name="pluginsSourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/plugins/" />
-		<property name="examplesSourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/examples/" />
+		<property name="pluginsSourcesLocation" value="${checkoutLocation}/org.eclipse.ocl.git/plugins/" />
+		<property name="examplesSourcesLocation" value="${checkoutLocation}/org.eclipse.oc.git/examples/" />
 
 
 		<echo message="Source code location ${sourcesLocation}" />
