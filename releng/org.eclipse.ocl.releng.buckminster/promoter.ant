@@ -229,11 +229,14 @@
 		<condition property="composite.repository.base" value="nightly/${version}">
 			<matches pattern="^N" string="${saved.build.id}" />
 		</condition>
+		<condition property="composite.repository.base" value="maintenance/${version}">
+			<matches pattern="^M" string="${saved.build.id}" />
+		</condition>
 		<condition property="composite.repository.base" value="interim/${version}">
 			<matches pattern="^I" string="${saved.build.id}" />
 		</condition>
 		<condition property="composite.repository.base" value="milestones/${version}/${saved.build.id}">
-			<matches pattern="^[MS]" string="${saved.build.id}" />
+			<matches pattern="^S" string="${saved.build.id}" />
 		</condition>
 		<condition property="composite.repository.base" value="releases/${version}/${base.version}">
 			<matches pattern="^R" string="${saved.build.id}" />
