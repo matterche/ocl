@@ -9,10 +9,6 @@
 
 	<target name="-define.package.qualifier">
 		<property name="incubation.qualifier" value="" />
-		<!-- if the build id starts with S/R/M build.stable property will be set -->
-		<condition property="build.stable" value="true">
-			<matches string="${build.id}" pattern="^[S|R|M](d)*" />
-		</condition>
 
 		<!-- if the build.alias is non-empty then use it in preference -->
 		<condition property="package.qualifier" value="${incubation.qualifier}-${build.alias}">
@@ -48,21 +44,27 @@
 	</target>
 
 
-	<!-- Appends p2 download statistic data to the artifacts.xml-->
-	<target name="-statistic.add" if="build.stable">
+	<!-- Tuning up the p2 repository (statistics, mirrorsURL,..) -->
+	<target name="-tuneup.p2.repository">
 		<echo>Stable build ${build.id} - adding statistic data</echo>
 		<property name="repository.root" value="${sp:repository}" />
 		<property name="qualifier" value="${package.qualifier}" />
+		<condition property="repository.type" value="nightly">
+			<matches string="${build.id}" pattern="^N" />
+		</condition>
+		<condition property="repository.type" value="interim">
+			<matches string="${build.id}" pattern="^I" />
+		</condition>
 		<condition property="repository.type" value="milestones">
 			<matches string="${build.id}" pattern="^S" />
 		</condition>
 		<condition property="repository.type" value="maintenance">
-			<matches string="${build.id}" pattern="[M](d)*" />
+			<matches string="${build.id}" pattern="^M" />
 		</condition>
 		<condition property="repository.type" value="releases">
-			<matches string="${build.id}" pattern="[R](d)*" />
+			<matches string="${build.id}" pattern="^R" />
 		</condition>
-		<ant antfile="statistics/statistics.ant" target="addStatistic" inheritall="true" />
+		<ant antfile="p2RepoTuning/p2RepoTuning.ant" target="tuneup.p2.repository" inheritall="true" />
 	</target>
 
 	<target name="-locate.launcher.jar" unless="launcher.jar">
