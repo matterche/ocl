@@ -22,6 +22,13 @@
 			</cs:actorProperties>
 		</cs:private>
 
+		<cs:private name="tuneup.p2.repository" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="-tuneup.p2.repository" />
+			</cs:actorProperties>
+		</cs:private>
+		
 		<cs:public name="package.mdt-ocl-Update" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
@@ -32,6 +39,7 @@
 			</cs:properties>
 			<cs:prerequisites>
                 <cs:attribute name="create.category.xml" alias="create.category" />
+                <cs:attribute name="tuneup.p2.repository" alias="tuneup.repository" />
 				<cs:attribute name="site.p2" alias="repository" />
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />

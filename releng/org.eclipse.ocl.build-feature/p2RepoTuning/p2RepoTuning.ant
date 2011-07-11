@@ -1,9 +1,10 @@
-<project name="P2 Download Statistics" default="addStatistic">
-	<target name="addStatistic">
+<project name="P2 Repository Tuning" default="tuneup.p2.repository">
+	<target name="tuneup.p2.repository">
 		<property name="repository.root" value="." />
 		<property name="repository.type" value="milestones" />
-		<property name="qualifier" value="-3.2.0" />
-		<echo>Append statistic for ${qualifier} information in ${repository.root}</echo>
+		<property name="version" value="0.0.0" />
+		<property name="qualifier" value="_0.0.0" />
+		<echo>Append statistic and mirrorsURL for ${qualifier} information in ${repository.root}</echo>
 		<copy file="${repository.root}/artifacts.jar" tofile="artifacts.jar.backup" />
 		<unjar src="${repository.root}/artifacts.jar" dest="." />
 		<move file="artifacts.xml" tofile="artifacts.xml.original" />
