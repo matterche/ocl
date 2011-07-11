@@ -9,6 +9,10 @@
 
 	<target name="-define.package.qualifier">
 		<property name="incubation.qualifier" value="" />
+		<!-- if the build id starts with S/R/M build.stable property will be set -->
+		<condition property="build.stable" value="true">
+			<matches string="${build.id}" pattern="^[S|R|M](d)*" />
+		</condition>
 
 		<!-- if the build.alias is non-empty then use it in preference -->
 		<condition property="package.qualifier" value="${incubation.qualifier}-${build.alias}">
@@ -25,6 +29,7 @@
 			</and>
 		</condition>
 	</target>
+
 	<!-- Modify category xml (replace package qualifier) -->
 	<target name="-create.category.xml" depends="-define.package.qualifier">
 		<loadfile property="modifiedCategoryXml" srcFile="category.xml.template">
@@ -37,9 +42,27 @@
 
 	<target name="package.site" depends="-define.package.qualifier">
 		<mkdir dir="${sp:output}" />
-
 		<!-- create the desired ZIP file -->
 		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}${package.qualifier}.zip" />
+		<antcall target="-statistic.add" inheritall="true" />
+	</target>
+
+
+	<!-- Appends p2 download statistic data to the artifacts.xml-->
+	<target name="-statistic.add" if="build.stable">
+		<echo>Stable build ${build.id} - adding statistic data</echo>
+		<property name="repository.root" value="${sp:repository}" />
+		<property name="qualifier" value="${package.qualifier}" />
+		<condition property="repository.type" value="milestones">
+			<matches string="${build.id}" pattern="^S" />
+		</condition>
+		<condition property="repository.type" value="maintenance">
+			<matches string="${build.id}" pattern="[M](d)*" />
+		</condition>
+		<condition property="repository.type" value="releases">
+			<matches string="${build.id}" pattern="[R](d)*" />
+		</condition>
+		<ant antfile="statistics/statistics.ant" target="addStatistic" inheritall="true" />
 	</target>
 
 	<target name="-locate.launcher.jar" unless="launcher.jar">
