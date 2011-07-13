@@ -9,8 +9,9 @@
 		<unjar src="${repository.root}/artifacts.jar" dest="." />
 		<move file="artifacts.xml" tofile="artifacts.xml.original" />
 		<xslt style="p2RepoTuning/p2RepoTuning.xsl" in="artifacts.xml.original" out="artifacts.xml">
-			<param name="qualifier" expression="${qualifier}" />
 			<param name="repo_type" expression="${repository.type}"/>
+			<param name="version" expression="${version}"/>
+			<param name="qualifier" expression="${qualifier}" />
 		</xslt>
 		<zip destfile="${repository.root}/artifacts.jar" filesonly="true" basedir="." includes="artifacts.xml" />
 	</target>

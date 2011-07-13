@@ -4,7 +4,6 @@
 	<xsl:param name="repo_type" />
 	<xsl:param name="version" />
 	<xsl:param name="qualifier" />
-	
 
 	<xsl:template match="/">
 		<xsl:processing-instruction name="artifactRepository">version='1.1.0'</xsl:processing-instruction>
@@ -63,14 +62,14 @@
 	<xsl:template name="bundles_properties">
 		<properties size='{@size+1}'>
 			<xsl:copy-of select="property" />
-			<property name='download.stats' value='{../@id}_bundle_{$qualifier}'/>
+			<property name='download.stats' value='{../@id}_{$qualifier}_bundle'/>
 		</properties>
 	</xsl:template>
 	
 	<xsl:template name="features_properties">
 		<properties size='{@size+1}'>
 			<xsl:copy-of select="property" />
-			<property name='download.stats' value='{../@id}_feature_{$qualifier}'/>
+			<property name='download.stats' value='{../@id}_{$qualifier}_feature'/>
 		</properties>
 	</xsl:template>
 	

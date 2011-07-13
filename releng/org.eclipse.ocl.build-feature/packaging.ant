@@ -44,10 +44,15 @@
 
 
 	<!-- Tuning up the p2 repository (statistics, mirrorsURL,..) -->
-	<target name="-tuneup.p2.repository">
+	<target name="-tuneup.p2.repository" depends="-define.package.qualifier">
 		<echo>Stable build ${build.id} - adding statistic data</echo>
 		<property name="repository.root" value="${sp:repository}" />
-		<property name="qualifier" value="${package.qualifier}" />
+		<condition property="qualifier" value="${build.alias}" else="${build.id}">
+			<and>
+				<isset property="build.alias" />
+				<length string="${build.alias}" when="greater" length="0" />
+			</and>
+		</condition>
 		<condition property="repository.type" value="nightly">
 			<matches string="${build.id}" pattern="^N" />
 		</condition>
