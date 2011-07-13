@@ -57,7 +57,6 @@
 		match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.ocl']/properties">
 		<xsl:call-template name="bundles_properties" />
 	</xsl:template>
-
 	
 	<xsl:template name="bundles_properties">
 		<properties size='{@size+1}'>
@@ -72,8 +71,6 @@
 			<property name='download.stats' value='{../@id}_{$qualifier}_feature'/>
 		</properties>
 	</xsl:template>
-	
-
 
 	<xsl:template match="*">
 		<xsl:copy>

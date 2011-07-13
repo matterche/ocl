@@ -32,7 +32,7 @@
 		<cs:public name="package.mdt-ocl-Update" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
-				<cs:property key="targets" value="package.site -tuneup.p2.repository" />
+				<cs:property key="targets" value=" -tuneup.p2.repository package.site" />
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="package.name" value="mdt-ocl-Update" />
