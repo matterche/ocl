@@ -18,6 +18,11 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import org.eclipse.ocl.examples.pivot.values.impl.IntegerIntValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.IntegerLongValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.IntegerValueImpl;
 
 
 /**
@@ -34,11 +39,49 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 //        helper.setContext(getMetaclass(denormalize("%Package")));
         helper.setContext(getMetaclass("Classifier"));
     }
+
+	public void testIntValue() {
+		assert valueFactory.integerValueOf(Integer.MAX_VALUE) instanceof IntegerIntValueImpl;
+		assert valueFactory.integerValueOf((long)Integer.MAX_VALUE) instanceof IntegerIntValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Integer.MAX_VALUE)) instanceof IntegerIntValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Integer.MAX_VALUE + 1L)) instanceof IntegerLongValueImpl;
+
+		assert valueFactory.integerValueOf(Long.MAX_VALUE) instanceof IntegerLongValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Long.MAX_VALUE)) instanceof IntegerLongValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.ONE)) instanceof IntegerValueImpl;
+
+		assert valueFactory.integerValueOf(Integer.MIN_VALUE) instanceof IntegerIntValueImpl;
+		assert valueFactory.integerValueOf((long)Integer.MIN_VALUE) instanceof IntegerIntValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Integer.MIN_VALUE)) instanceof IntegerIntValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Integer.MIN_VALUE - 1L)) instanceof IntegerLongValueImpl;
+
+		assert valueFactory.integerValueOf(Long.MIN_VALUE) instanceof IntegerLongValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Long.MIN_VALUE)) instanceof IntegerLongValueImpl;
+		assert valueFactory.integerValueOf(BigInteger.valueOf(Long.MIN_VALUE).subtract(BigInteger.ONE)) instanceof IntegerValueImpl;
+    }
+
+    public void testIntPlus() {
+		// hashCode, equals
+    }
+
+    public void testIntMinus() {
+		// hashCode, equals
+    }
     
 	public void testNumberAbs() {
 		// Integer::abs()
 		assertQueryEquals(null, 3, "3.abs()");
 		assertQueryEquals(null, 3, "(-3).abs()");
+
+		assertQueryEquals(null, 2147483647, "2147483647.abs()");
+		assertQueryEquals(null, 2147483648L, "2147483648.abs()");
+		assertQueryEquals(null, 2147483649L, "(-2147483649).abs()");
+		assertQueryEquals(null, 2147483648L, "(-2147483648).abs()");
+
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE), "9223372036854775807.abs()");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63), "9223372036854775808.abs()");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).add(BigInteger.ONE), "(-9223372036854775809).abs()");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63), "(-9223372036854775808).abs()");
 
 		// Real::abs()
 		assertQueryEquals(null, 3.0, "(3.0).abs()", 0.0);
@@ -165,6 +208,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryTrue(null, "3 > -2");
 		assertQueryFalse(null, "-3 > -2");
 
+		assertQueryTrue(null, "2147483648 > 2147483647");
+		assertQueryFalse(null, "2147483647 > 2147483648");
+		assertQueryFalse(null, "-2147483649 > -2147483648");
+		assertQueryTrue(null, "-2147483648 > -2147483649");
+
+		assertQueryTrue(null, "9223372036854775808 > 9223372036854775807");
+		assertQueryFalse(null, "9223372036854775807 > 9223372036854775808");
+		assertQueryFalse(null, "-9223372036854775809 > -9223372036854775808");
+		assertQueryTrue(null, "-9223372036854775808 > -9223372036854775809");
+
 		// Real::greaterThan(Real)
 		assertQueryTrue(null, "3.0 > 2.0");
 		assertQueryFalse(null, "-3.0 > 2.0");
@@ -208,6 +261,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryFalse(null, "-3 >= 2");
 		assertQueryTrue(null, "3 >= -2");
 		assertQueryFalse(null, "-3 >= -2");
+
+		assertQueryTrue(null, "2147483648 >= 2147483647");
+		assertQueryFalse(null, "2147483647 >= 2147483648");
+		assertQueryFalse(null, "-2147483649 >= -2147483648");
+		assertQueryTrue(null, "-2147483648 >= -2147483649");
+
+		assertQueryTrue(null, "9223372036854775808 >= 9223372036854775807");
+		assertQueryFalse(null, "9223372036854775807 >= 9223372036854775808");
+		assertQueryFalse(null, "-9223372036854775809 >= -9223372036854775808");
+		assertQueryTrue(null, "-9223372036854775808 >= -9223372036854775809");
 
 		// Real::greaterThanOrEqual(Real)
 		assertQueryTrue(null, "3.0 >= 2.0");
@@ -253,6 +316,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryFalse(null, "3 < -2");
 		assertQueryTrue(null, "-3 < -2");
 
+		assertQueryFalse(null, "2147483648 < 2147483647");
+		assertQueryTrue(null, "2147483647 < 2147483648");
+		assertQueryTrue(null, "-2147483649 < -2147483648");
+		assertQueryFalse(null, "-2147483648 < -2147483649");
+
+		assertQueryFalse(null, "9223372036854775808 < 9223372036854775807");
+		assertQueryTrue(null, "9223372036854775807 < 9223372036854775808");
+		assertQueryTrue(null, "-9223372036854775809 < -9223372036854775808");
+		assertQueryFalse(null, "-9223372036854775808 < -9223372036854775809");
+
 		// Real::lessThan(Real)
 		assertQueryFalse(null, "3.0 < 2.0");
 		assertQueryTrue(null, "-3.0 < 2.0");
@@ -296,6 +369,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryTrue(null, "-3 <= 2");
 		assertQueryFalse(null, "3 <= -2");
 		assertQueryTrue(null, "-3 <= -2");
+
+		assertQueryFalse(null, "2147483648 <= 2147483647");
+		assertQueryTrue(null, "2147483647 <= 2147483648");
+		assertQueryTrue(null, "-2147483649 <= -2147483648");
+		assertQueryFalse(null, "-2147483648 <= -2147483649");
+
+		assertQueryFalse(null, "9223372036854775808 <= 9223372036854775807");
+		assertQueryTrue(null, "9223372036854775807 <= 9223372036854775808");
+		assertQueryTrue(null, "-9223372036854775809 <= -9223372036854775808");
+		assertQueryFalse(null, "-9223372036854775808 <= -9223372036854775809");
 
 		// Real::lessThanOrEqual(Real)
 		assertQueryFalse(null, "3.0 <= 2.0");
@@ -341,6 +424,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, 3, "3.max(-2)");
 		assertQueryEquals(null, -2, "(-3).max(-2)");
 
+		assertQueryEquals(null, 2147483648L, "2147483648.max(2147483647)");
+		assertQueryEquals(null, 2147483648L, "2147483647.max(2147483648)");
+		assertQueryEquals(null, -2147483648L, "(-2147483649).max(-2147483648)");
+		assertQueryEquals(null, -2147483648L, "(-2147483648).max(-2147483649)");
+
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63), "9223372036854775808.max(9223372036854775807)");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63), "9223372036854775807.max(9223372036854775808)");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate(), "(-9223372036854775809).max(-9223372036854775808)");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate(), "(-9223372036854775808).max(-9223372036854775809)");
+
 		// Integer::max(Real)
 		assertQueryEquals(null, 3.0, "3.max(2.0)", 0.0);
 		assertQueryEquals(null, 2.0, "(-3).max(2.0)", 0.0);
@@ -385,6 +478,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, -2, "3.min(-2)");
 		assertQueryEquals(null, -3, "(-3).min(-2)");
 
+		assertQueryEquals(null, 2147483647, "2147483648.min(2147483647)");
+		assertQueryEquals(null, 2147483647, "2147483647.min(2147483648)");
+		assertQueryEquals(null, -2147483649L, "(-2147483649).min(-2147483648)");
+		assertQueryEquals(null, -2147483649L, "(-2147483648).min(-2147483649)");
+
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE), "9223372036854775808.min(9223372036854775807)");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE), "9223372036854775807.min(9223372036854775808)");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate().subtract(BigInteger.ONE), "(-9223372036854775809).min(-9223372036854775808)");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate().subtract(BigInteger.ONE), "(-9223372036854775808).min(-9223372036854775809)");
+
 		// Integer::min(Real)
 		assertQueryEquals(null, 2.0, "3.min(2.0)", 0.0);
 		assertQueryEquals(null, -3.0, "(-3).min(2.0)", 0.0);
@@ -426,6 +529,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		// Integer::-(Integer)
 		assertQueryEquals(null, 0, "1 - 1");
 		assertQueryEquals(null, 5, "1 - -4");
+
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(31).subtract(BigInteger.ONE), "2147483646 - -1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(31), "2147483647 - -1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE), "9223372036854775806 - -1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63), "9223372036854775807 - -1");
+
+		assertQueryEquals(null, BigInteger.ONE.negate().shiftLeft(31), "-2147483647 - 1");
+		assertQueryEquals(null, BigInteger.ONE.negate().shiftLeft(31).subtract(BigInteger.ONE), "-2147483648 - 1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate(), "-9223372036854775807 - 1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate().subtract(BigInteger.ONE), "-9223372036854775808 - 1");
 
 		// Integer::-(Real)
 		assertQueryEquals(null, 0.0, "1 - 1.0", 2 * doubleEpsilon);
@@ -483,6 +596,14 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 	public void testNumberNegate() {
 		assertQueryEquals(null, -1, "-1");
 		assertQueryEquals(null, -1.0, "-1.0", 0.0);
+
+		assertQueryEquals(null, -2147483647, "-2147483647");
+		assertQueryEquals(null, -2147483648, "-2147483648");
+		assertQueryEquals(null, -2147483649L, "-2147483649");
+
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate().add(BigInteger.ONE), "-9223372036854775807");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate(), "-9223372036854775808");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).negate().subtract(BigInteger.ONE), "-9223372036854775809");
 		// invalid
 		assertQueryInvalid(null, "let i : Integer = invalid in -i");
 		assertQueryInvalid(null, "let r : Real = invalid in -r");
@@ -525,6 +646,16 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		// Integer::+(Integer)
 		assertQueryEquals(null, 2, "1 + 1");
 		assertQueryEquals(null, -3, "1 + -4");
+
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(31).subtract(BigInteger.ONE), "2147483646 + 1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(31), "2147483647 + 1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE), "9223372036854775806 + 1");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(63), "9223372036854775807 + 1");
+
+		assertQueryEquals(null, BigInteger.ONE.negate().shiftLeft(31), "-2147483647 + -1");
+		assertQueryEquals(null, BigInteger.ONE.negate().shiftLeft(31).subtract(BigInteger.ONE), "-2147483648 + -1");
+		assertQueryEquals(null, BigInteger.ONE.negate().shiftLeft(63), "-9223372036854775807 + -1");
+		assertQueryEquals(null, BigInteger.ONE.negate().shiftLeft(63).subtract(BigInteger.ONE), "-9223372036854775808 + -1");
 
 		// Integer::+(Real)
 		assertQueryEquals(null, 2.0, "1 + 1.0", 2 * doubleEpsilon);
@@ -578,6 +709,9 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		// Integer::*(Integer)
 		assertQueryEquals(null, 1, "1 * 1");
 		assertQueryEquals(null, -4, "1 * -4");
+
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(62), "-2147483648 * -2147483648");
+		assertQueryEquals(null, BigInteger.ONE.shiftLeft(126), "-9223372036854775808 * -9223372036854775808");
 
 		// Integer::*(Real)
 		assertQueryEquals(null, 1.0, "1 * 1.0", 0.0);

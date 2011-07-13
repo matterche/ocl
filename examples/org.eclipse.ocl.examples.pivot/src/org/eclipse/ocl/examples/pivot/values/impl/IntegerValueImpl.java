@@ -155,11 +155,11 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 	}
 
 	public IntegerValue max(IntegerValue right) throws InvalidValueException {
-		return valueFactory.integerValueOf(value.max(right.bigIntegerValue()));
+		return value.compareTo(right.bigIntegerValue()) >= 0 ? this : right;
 	}
 
 	public IntegerValue min(IntegerValue right) throws InvalidValueException {
-		return valueFactory.integerValueOf(value.min(right.bigIntegerValue()));
+		return value.compareTo(right.bigIntegerValue()) <= 0 ? this : right;
 	}
 
 	public IntegerValue mod(IntegerValue right) throws InvalidValueException {

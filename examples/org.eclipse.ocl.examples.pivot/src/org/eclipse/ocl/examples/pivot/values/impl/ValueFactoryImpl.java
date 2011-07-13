@@ -62,6 +62,10 @@ import org.eclipse.osgi.util.NLS;
 
 public class ValueFactoryImpl implements ValueFactory
 {
+	public static final BigInteger INTEGER_MAX_VALUE = BigInteger.valueOf(Integer.MAX_VALUE);
+	public static final BigInteger INTEGER_MIN_VALUE = BigInteger.valueOf(Integer.MIN_VALUE);
+	public static final BigInteger LONG_MAX_VALUE = BigInteger.valueOf(Long.MAX_VALUE);
+	public static final BigInteger LONG_MIN_VALUE = BigInteger.valueOf(Long.MIN_VALUE);
 	private static final String maxLongValue = Long.toString(Long.MAX_VALUE);
 	private static final int maxLongSize = maxLongValue.length();	
 	
@@ -345,11 +349,41 @@ public class ValueFactoryImpl implements ValueFactory
 		return zeroValue;
 	}
 
+	public IntegerValue integerValueOf(int value) {
+		return new IntegerIntValueImpl(this, value);
+	}
+
 	public IntegerValue integerValueOf(long value) {
-		return new IntegerValueImpl(this, value);
+		if (value >= 0) {
+			if (value <= Integer.MAX_VALUE) {
+				return new IntegerIntValueImpl(this, (int) value);
+			}
+		}
+		else {
+			if (value >= Integer.MIN_VALUE) {
+				return new IntegerIntValueImpl(this, (int) value);
+			}
+		}
+		return new IntegerLongValueImpl(this, value);
 	}
 	
 	public IntegerValue integerValueOf(BigInteger value) {
+		if (value.signum() >= 0) {
+			if (value.compareTo(INTEGER_MAX_VALUE) <= 0) {
+				return new IntegerIntValueImpl(this, value.intValue());
+			}
+			if (value.compareTo(LONG_MAX_VALUE) <= 0) {
+				return new IntegerLongValueImpl(this, value.longValue());
+			}
+		}
+		else {
+			if (value.compareTo(INTEGER_MIN_VALUE) >= 0) {
+				return new IntegerIntValueImpl(this, value.intValue());
+			}
+			if (value.compareTo(LONG_MIN_VALUE) >= 0) {
+				return new IntegerLongValueImpl(this, value.longValue());
+			}
+		}
 		return new IntegerValueImpl(this, value);
 	}
 	

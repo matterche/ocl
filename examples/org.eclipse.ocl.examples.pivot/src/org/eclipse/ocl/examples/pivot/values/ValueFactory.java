@@ -92,6 +92,7 @@ public interface ValueFactory
 	public UnlimitedValue getUnlimited();
 	public NumericValue getZero();
 	
+	public IntegerValue integerValueOf(int value);
 	public IntegerValue integerValueOf(long value);
 	public IntegerValue integerValueOf(BigInteger value);
 	public IntegerValue integerValueOf(String aValue) throws InvalidValueException;
