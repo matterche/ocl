@@ -44,7 +44,7 @@
 
 
 	<!-- Tuning up the p2 repository (statistics, mirrorsURL,..) -->
-	<target name="-tuneup.p2.repository" depends="-define.package.qualifier">
+	<target name="-tuneup.p2.repository">
 		<echo>Tuning up p2 repository for the build ${build.id}</echo>
 		<property name="repository.root" value="${sp:repository}" />
 		<condition property="qualifier" value="${build.alias}" else="${build.id}">
