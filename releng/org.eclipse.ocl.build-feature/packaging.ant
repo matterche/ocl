@@ -25,6 +25,7 @@
 			</and>
 		</condition>
 	</target>
+
 	<!-- Modify category xml (replace package qualifier) -->
 	<target name="-create.category.xml" depends="-define.package.qualifier">
 		<loadfile property="modifiedCategoryXml" srcFile="category.xml.template">
@@ -37,9 +38,37 @@
 
 	<target name="package.site" depends="-define.package.qualifier">
 		<mkdir dir="${sp:output}" />
-
 		<!-- create the desired ZIP file -->
 		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}${package.qualifier}.zip" />
+	</target>
+
+
+	<!-- Tuning up the p2 repository (statistics, mirrorsURL,..) -->
+	<target name="-tuneup.p2.repository">
+		<echo>Tuning up p2 repository for the build ${build.id}</echo>
+		<property name="repository.root" value="${sp:repository}" />
+		<condition property="qualifier" value="${build.alias}" else="${build.id}">
+			<and>
+				<isset property="build.alias" />
+				<length string="${build.alias}" when="greater" length="0" />
+			</and>
+		</condition>
+		<condition property="repository.type" value="nightly">
+			<matches string="${build.id}" pattern="^N" />
+		</condition>
+		<condition property="repository.type" value="interim">
+			<matches string="${build.id}" pattern="^I" />
+		</condition>
+		<condition property="repository.type" value="milestones">
+			<matches string="${build.id}" pattern="^S" />
+		</condition>
+		<condition property="repository.type" value="maintenance">
+			<matches string="${build.id}" pattern="^M" />
+		</condition>
+		<condition property="repository.type" value="releases">
+			<matches string="${build.id}" pattern="^R" />
+		</condition>
+		<ant antfile="p2RepoTuning/p2RepoTuning.ant" target="tuneup.p2.repository" inheritall="true" />
 	</target>
 
 	<target name="-locate.launcher.jar" unless="launcher.jar">
