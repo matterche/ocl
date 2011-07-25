@@ -268,7 +268,7 @@ public class EcoreEvaluationEnvironment
 	 * @return the collection kind appropriate to the multiplicity, orderedness,
 	 *         and uniqueness of the element, or <code>null</code> if it is not
 	 *         many
-	 * @since 3.1
+	 * @since 3.2
 	 */
 	protected static CollectionKind getCollectionKind(ETypedElement element) {
 		EClassifier oclType = UMLReflectionImpl.INSTANCE.getOCLType(element);
@@ -303,7 +303,7 @@ public class EcoreEvaluationEnvironment
 	 *         as required
 	 * 
 	 * @see #getCollectionKind(ETypedElement)
-	 * @since 3.1
+	 * @since 3.2
 	 */
 	protected Object coerceValue(ETypedElement element, Object value, boolean copy) {
 		CollectionKind kind = getCollectionKind(element);
