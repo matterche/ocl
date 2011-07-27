@@ -37,6 +37,7 @@
 	</target>
 
 	<target name="package.site" depends="-define.package.qualifier">
+		<echo>Packaging site: ${package.name}</echo>
 		<mkdir dir="${sp:output}" />
 		<!-- create the desired ZIP file -->
 		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}${package.qualifier}.zip" />
