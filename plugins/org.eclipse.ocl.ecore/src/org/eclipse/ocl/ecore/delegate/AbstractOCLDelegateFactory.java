@@ -61,4 +61,13 @@ public abstract class AbstractOCLDelegateFactory
 	public String getURI() {
 		return delegateURI;
 	}
+
+	// FIXME Make protected for 3.2
+	OCLDelegateDomain loadDelegateDomain(EPackage ePackage) {
+		if (delegateDomain == null) {
+			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
+			delegateDomain = (OCLDelegateDomain) ePackageAdapter.loadDelegateDomain(delegateURI);
+		}
+		return delegateDomain;
+	}
 }

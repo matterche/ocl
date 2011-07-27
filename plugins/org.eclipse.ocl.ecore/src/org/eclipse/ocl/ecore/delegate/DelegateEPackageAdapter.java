@@ -133,11 +133,7 @@ public class DelegateEPackageAdapter extends AdapterImpl {
 	private void initializeDelegatedBehavior(String delegateURI, DelegatedBehavior<?, ?, ?> delegatedBehavior) {
 		String behaviorName = delegatedBehavior.getName();
 		synchronized (delegateDomainMap) {
-			DelegateDomain delegateDomain = delegateDomainMap.get(delegateURI);
-			if (delegateDomain == null) {
-				delegateDomain = createDelegateDomain(delegateURI);
-				delegateDomainMap.put(delegateURI, delegateDomain);
-			}
+			DelegateDomain delegateDomain = loadDelegateDomain(delegateURI);
 			List<DelegateDomain> delegateBehaviorList = delegatedBehaviorMap.get(behaviorName);
 			if (delegateBehaviorList == null) {
 				delegateBehaviorList = new ArrayList<DelegateDomain>();
@@ -152,6 +148,19 @@ public class DelegateEPackageAdapter extends AdapterImpl {
 	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == DelegateEPackageAdapter.class;
+	}
+
+	// FIXME Make public for 3.2
+	DelegateDomain loadDelegateDomain(String delegateURI) {
+		if (delegateDomainMap == null) {
+			getDelegateDomains();
+		}
+		DelegateDomain delegateDomain = delegateDomainMap.get(delegateURI);
+		if (delegateDomain == null) {
+			delegateDomain = createDelegateDomain(delegateURI);
+			delegateDomainMap.put(delegateURI, delegateDomain);
+		}
+		return delegateDomain;
 	}
 
 	@Override

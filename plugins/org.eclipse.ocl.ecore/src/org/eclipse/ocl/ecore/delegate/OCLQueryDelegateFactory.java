@@ -58,10 +58,22 @@ public class OCLQueryDelegateFactory
 
 	public QueryDelegate createQueryDelegate(EClassifier context,
 			Map<String, EClassifier> parameters, String expression) {
-		OCLDelegateDomain delegateDomain = getDelegateDomain(context.getEPackage());
+		OCLDelegateDomain delegateDomain = loadDelegateDomain(context.getEPackage());
 		return new OCLQueryDelegate(delegateDomain, context, parameters, expression);
 	}
 	
+/*	@Override
+	protected OCLDelegateDomain getDelegateDomain(EPackage ePackage) {
+		super.getDelegateDomain(ePackage);
+		if (delegateDomain == null) {
+//			DelegateDomain.Factory.Registry.INSTANCE.put(OCLDelegateDomain.OCL_DELEGATE_URI, GLOBAL);
+			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
+			delegateDomain = (OCLDelegateDomain) ePackageAdapter.createDelegateDomain(delegateURI);
+			ePackageAdapter.delegateDomainMap.put(delegateURI, delegateDomain);
+		}
+		return delegateDomain;
+	} */
+
 	/**
 	 * The Global variant of the Factory delegates to a local ResourceSet factory if one
 	 * can be located at the QueryDelegate.Factory.Registry

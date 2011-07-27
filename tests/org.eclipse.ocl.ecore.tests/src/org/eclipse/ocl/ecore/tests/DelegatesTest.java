@@ -58,6 +58,9 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
+import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
+import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.ecore.EcoreFactory;
@@ -940,6 +943,23 @@ public class DelegatesTest extends AbstractTestSuite
 		initPackageRegistrations();
 		doTest_queryExecutionWithExceptions(COMPANY_XMI);
 		assertFalse(usedLocalRegistry);
+	}
+
+	public void test_queryExecutionWithLibrary() {
+		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+		String n = "n";
+		String expression = "self.name";
+		Library library = EXTLibraryFactory.eINSTANCE.createLibrary();
+		library.setName("test");
+		Map<String, EClassifier> parameters = new HashMap<String, EClassifier>();
+		parameters.put(n, EcorePackage.Literals.ESTRING);
+		QueryDelegate delegate = factory.createQueryDelegate(EXTLibraryPackage.Literals.LIBRARY,
+			parameters, expression);
+		Map<String, Object> bindings = new HashMap<String, Object>();
+		bindings.put(n, "test");
+		Object result = execute(delegate, library, bindings);
+		assertEquals(result, "test");
 	}
 
 	/**

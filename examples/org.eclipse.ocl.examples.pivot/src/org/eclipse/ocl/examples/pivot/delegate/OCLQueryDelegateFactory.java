@@ -55,7 +55,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 		implements QueryDelegate.Factory {
 	public QueryDelegate createQueryDelegate(EClassifier context, Map<String, EClassifier> parameters, String expression) {
-		OCLDelegateDomain delegateDomain = getDelegateDomain(context.getEPackage());
+		OCLDelegateDomain delegateDomain = loadDelegateDomain(context.getEPackage());
 		Type modelType = delegateDomain.getPivot(Type.class, context);
 		ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
 		specification.getBodies().add(expression);

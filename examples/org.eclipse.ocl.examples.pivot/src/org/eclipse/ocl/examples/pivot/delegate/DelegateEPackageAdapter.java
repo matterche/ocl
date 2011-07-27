@@ -155,6 +155,19 @@ public class DelegateEPackageAdapter extends AdapterImpl
 		return type == DelegateEPackageAdapter.class;
 	}
 
+	// FIXME Make public for 3.2
+	DelegateDomain loadDelegateDomain(String delegateURI) {
+		if (delegateDomainMap == null) {
+			getDelegateDomains();
+		}
+		DelegateDomain delegateDomain = delegateDomainMap.get(delegateURI);
+		if (delegateDomain == null) {
+			delegateDomain = createDelegateDomain(delegateURI);
+			delegateDomainMap.put(delegateURI, delegateDomain);
+		}
+		return delegateDomain;
+	}
+
 	@Override
 	public void setTarget(Notifier newTarget) {
 		EPackage resourceSet = (EPackage) newTarget;
