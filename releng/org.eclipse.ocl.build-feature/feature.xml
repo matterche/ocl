@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.ocl.build"
-      label="%featureName"
+      label="Eclipse OCL Build Site"
       version="3.2.0.qualifier"
-      provider-name="%featureProvider"
+      provider-name="Eclipse Modeling Project"
       license-feature="org.eclipse.ocl.license"
       license-feature-version="1.0.0.qualifier">
 
    <description>
-      %featureDescription
+      Single feature to drive the build for all other Eclipse OCL features.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
