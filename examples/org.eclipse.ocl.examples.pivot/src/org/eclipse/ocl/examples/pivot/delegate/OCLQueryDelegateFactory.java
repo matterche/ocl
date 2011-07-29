@@ -9,6 +9,7 @@
  * 
  * Contributors:
  *   Kenn Hussey - Initial API and implementation
+ *   E.D.Willink - Bug 353171
  * 
  * </copyright>
  *

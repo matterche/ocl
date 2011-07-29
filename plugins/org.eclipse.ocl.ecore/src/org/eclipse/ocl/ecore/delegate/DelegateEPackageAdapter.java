@@ -9,6 +9,7 @@
  * 
  * Contributors: 
  *   E.D.Willink - Initial API and implementation
+ *   E.D.Willink - Bug 353171
  *
  * </copyright>
  *
@@ -84,6 +85,9 @@ public class DelegateEPackageAdapter extends AdapterImpl {
 		return factory.createDelegateDomain(delegateURI, ePackage);
 	}
 
+	/**
+	 * Return the DelegateDomain for this package and for delegateURI, returning null it does not exist. 
+	 */
 	public DelegateDomain getDelegateDomain(String delegateURI) {
 		if (delegateDomainMap == null) {
 			getDelegateDomains();
@@ -150,8 +154,12 @@ public class DelegateEPackageAdapter extends AdapterImpl {
 		return type == DelegateEPackageAdapter.class;
 	}
 
-	// FIXME Make public for 3.2
-	DelegateDomain loadDelegateDomain(String delegateURI) {
+	/**
+	 * Return the DelegateDomain for this package and for delegateURI, creating one if it does not already exist. 
+	 *
+	 * @since 3.2
+	 */
+	public DelegateDomain loadDelegateDomain(String delegateURI) {
 		if (delegateDomainMap == null) {
 			getDelegateDomains();
 		}

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010 Kenn Hussey and others.
+ * Copyright (c) 2010, 2011 Kenn Hussey and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  * 
  * Contributors:
  *   Kenn Hussey - Initial API and implementation
+ *   E.D.Willink - Bug 353171
  * 
  * </copyright>
  *
@@ -61,18 +62,6 @@ public class OCLQueryDelegateFactory
 		OCLDelegateDomain delegateDomain = loadDelegateDomain(context.getEPackage());
 		return new OCLQueryDelegate(delegateDomain, context, parameters, expression);
 	}
-	
-/*	@Override
-	protected OCLDelegateDomain getDelegateDomain(EPackage ePackage) {
-		super.getDelegateDomain(ePackage);
-		if (delegateDomain == null) {
-//			DelegateDomain.Factory.Registry.INSTANCE.put(OCLDelegateDomain.OCL_DELEGATE_URI, GLOBAL);
-			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
-			delegateDomain = (OCLDelegateDomain) ePackageAdapter.createDelegateDomain(delegateURI);
-			ePackageAdapter.delegateDomainMap.put(delegateURI, delegateDomain);
-		}
-		return delegateDomain;
-	} */
 
 	/**
 	 * The Global variant of the Factory delegates to a local ResourceSet factory if one

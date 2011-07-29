@@ -9,6 +9,7 @@
  * 
  * Contributors:
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
+ *   E.D.Willink - Bug 353171
  * 
  * </copyright>
  *
@@ -62,8 +63,12 @@ public abstract class AbstractOCLDelegateFactory
 		return delegateURI;
 	}
 
-	// FIXME Make protected for 3.2
-	OCLDelegateDomain loadDelegateDomain(EPackage ePackage) {
+	/**
+	 * Return the DelegateDomain for this package, creating one if it does not already exist. 
+	 *
+	 * @since 3.2
+	 */
+	protected OCLDelegateDomain loadDelegateDomain(EPackage ePackage) {
 		if (delegateDomain == null) {
 			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
 			delegateDomain = (OCLDelegateDomain) ePackageAdapter.loadDelegateDomain(delegateURI);
