@@ -9,7 +9,7 @@
  * 
  * Contributors:
  *  C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
- * 	E.D.Willink - Bug 306079, 322159
+ * 	E.D.Willink - Bug 306079, 322159, 353171
  *  K.Hussey - Bug 331143
  * 
  * </copyright>
@@ -945,7 +945,10 @@ public class DelegatesTest extends AbstractTestSuite
 		assertFalse(usedLocalRegistry);
 	}
 
-	public void test_queryExecutionWithLibrary() {
+	/**
+	 * Verify that query delegates work independently of other EAnnotation declared delegates.
+	 */
+	public void test_queryExecution_Bug353171() {
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
 			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
 		String n = "n";
