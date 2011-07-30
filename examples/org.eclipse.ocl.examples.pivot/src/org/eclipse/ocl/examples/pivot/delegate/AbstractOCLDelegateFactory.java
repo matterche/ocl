@@ -51,9 +51,9 @@ public abstract class AbstractOCLDelegateFactory
 	/**
 	 * Return the DelegateDomain for this package, creating one if it does not already exist. 
 	 *
-	 * @since 3.2
+	 * @since 3.1.1
 	 */
-	protected OCLDelegateDomain loadDelegateDomain(EPackage ePackage) {
+	OCLDelegateDomain loadDelegateDomain(EPackage ePackage) {
 		DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
 		return (OCLDelegateDomain) ePackageAdapter.loadDelegateDomain(delegateURI);
 	}
