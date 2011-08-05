@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="ocl-tools.rmap">
+    <cq:rootRequest name="org.eclipse.ocl.releng.tools.build" componentType="eclipse.feature"/>
+    <cq:property key="target.arch" value="*"/>
+    <cq:property key="target.os" value="*"/>
+    <cq:property key="target.ws" value="*"/>
+<!--    <cq:advisorNode namePattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?\.source$" skipComponent="true"/>
+    <cq:advisorNode namePattern="^org.eclipse.equinox.launcher\..+$" skipComponent="true"/>
+    <cq:advisorNode namePattern="^com\.google\.(?:appengine|gwt)\.eclipse\.core$" filter="(without.gdt=true)" skipComponent="true"/> -->
+    <cq:advisorNode namePattern="^org\.eclipse\.ocl.*\.source$" skipComponent="true"/>
+    <cq:advisorNode filter="(resolve.target.platform=true)" useTargetPlatform="false"/>
+</cq:componentQuery>

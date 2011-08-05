@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="org.eclipse.ocl.all.sdk" version="0.0.0">
+      <category name="mdt.ocl.core"/>
+   </feature>
+   <category-def name="mdt.ocl.core" label="Eclipse OCL Core${package.qualifier}">
+      <description>
+         Eclipse OCL Core features.
+      </description>
+   </category-def>
+</site>

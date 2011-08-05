@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="org.eclipse.ocl.examples" version="0.0.0">
+      <category name="mdt.ocl.tools"/>
+   </feature>
+   <!--<feature id="org.eclipse.ocl.master" version="0.0.0">
+      <category name="mdt.ocl.tools"/>
+   </feature>-->
+   <category-def name="mdt.ocl.tools" label="Eclipse OCL Tools${package.qualifier}">
+      <description>
+         Eclipse OCL Tools features.
+      </description>
+   </category-def>
+</site>

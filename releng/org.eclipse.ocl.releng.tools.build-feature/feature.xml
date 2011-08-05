@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.ocl.build"
-      label="Eclipse OCL Build Site"
-      version="4.0.0.qualifier"
+      id="org.eclipse.ocl.releng.tools.build"
+      label="Eclipse OCL Tools Build Site"
+      version="3.2.0.qualifier"
       provider-name="Eclipse Modeling Project"
       license-feature="org.eclipse.ocl.license"
       license-feature-version="1.0.0.qualifier">
 
    <description>
-      Single feature to drive the build for all other Eclipse OCL features.
+      Single feature to drive the build for all other Eclipse OCL Tools features.
    </description>
 
    <copyright>
-	[Documentation] Copyright text will be taken from the shared license feature
+		[Documentation] Copyright text will be taken from the shared license feature
    </copyright>
 
    <includes
-         id="org.eclipse.ocl.master"
+         id="org.eclipse.ocl.examples"
          version="0.0.0"/>
 
 </feature>
