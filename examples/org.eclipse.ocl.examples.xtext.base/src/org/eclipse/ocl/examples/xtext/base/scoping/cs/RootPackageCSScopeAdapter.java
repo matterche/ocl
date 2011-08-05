@@ -49,15 +49,9 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 						}
 					}
 					else {
-//						if (environmentView.addNamedElement(namespace) > 0) {
-//							EcoreUtil.resolveAll(namespace);
-//						}
 						environmentView.addElement(importName, namespace);
 					}
 				}
-			}
-			if (pivotPackage != null) {
-				environmentView.addNamedElements(typeManager.getLocalPackages(pivotPackage));		// Overrides imports
 			}
 		}
 		if (environmentView.accepts(PivotPackage.Literals.PRECEDENCE)) {
@@ -65,24 +59,6 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 				environmentView.addNamedElements(typeManager.getPrecedences(pivotPackage));		// Overrides imports
 			}
 		}
-/*		if (environmentView.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
-			for (ImportCS anImport : getTarget().getOwnedImport()) {
-				if (anImport.getName() == null) {
-					Namespace namespace = anImport.getNamespace();
-					if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-						environmentView.addNamedElements(((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackages());
-					}
-				}
-				else {
-					if (environmentView.addNamedElement(anImport) > 0) {
-						EcoreUtil.resolveAll(anImport.getNamespace());
-					}
-				}
-			}
-			if (pivot != null) {
-				environmentView.addNamedElements(pivot.getNestedPackages());		// Overrides imports
-			}
-		} */
 		return null;
 	}
 }
