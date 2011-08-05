@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -88,7 +89,8 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 			}
 			ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespace);
 			if (scopeAdapter != null) {
-				return scopeAdapter.computeLookup(environmentView, scopeView);
+				BaseScopeView nestedScopeView = new BaseScopeView(typeManager, scopeAdapter, null, scopeView.getTargetReference(), null);
+				environmentView.computeLookups(nestedScopeView);
 			}				
 			return null;
 		}
@@ -116,13 +118,13 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 					return scopeView.getOuterScope();
 				}
 				else {
-					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, internalNamespaces.get(i-1));
+					Namespace parentNamespace = internalNamespaces.get(i-1);
+					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, parentNamespace);
 					if (scopeAdapter != null) {
-						return scopeAdapter.computeLookup(environmentView, scopeView);
+						BaseScopeView nestedScopeView = new BaseScopeView(typeManager, scopeAdapter, null, scopeView.getTargetReference(), null);
+						environmentView.computeLookups(nestedScopeView);
 					}
-					else {
-						return null;
-					}
+					return null;
 				}
 			}
 		}
