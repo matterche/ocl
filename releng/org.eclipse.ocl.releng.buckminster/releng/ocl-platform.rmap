@@ -3,7 +3,7 @@
   <rm:property key="git.ocl.remote.repository.location" value="git://git.eclipse.org/gitroot/mdt/org.eclipse.ocl.git"/>
   <rm:property key="git.ocl.local.repository.location" value="${workspace.root}/org.eclipse.ocl.git"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
-  <rm:property key="build.type" mutable="false" value="I"/>
+  <rm:property key="build.type" mutable="false" value="N"/>
   <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="git.ocl"/>
   <rm:locator pattern="^org\.eclipse\.emf\.compare.*" searchPathRef="emfcompare"/>
   <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
@@ -195,14 +195,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="platform">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=N)" readerType="p2" source="false" mutable="false">
-      <rm:property key="buckminster.source" value="false"/>
-      <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/eclipse/updates/3.8-N-builds">
-        <bc:propertyRef key="eclipse.download"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(build.type=I)" readerType="p2" source="false" mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(|(build.type=I)(build.type=N))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/eclipse/updates/3.8-I-builds">
