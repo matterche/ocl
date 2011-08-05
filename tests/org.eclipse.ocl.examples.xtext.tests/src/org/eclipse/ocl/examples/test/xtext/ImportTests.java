@@ -17,11 +17,8 @@
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Writer;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -85,6 +82,31 @@ public class ImportTests extends XtextTestCase
 		super.tearDown();
 	}
 
+	protected void createTestImport_OCLinEcore_Bug353793_Files()
+			throws IOException {
+		TypeManager typeManager = new TypeManager();
+		String testFileA =
+				"package A1 : A2 = 'A3'{\n" +
+				"    class A;\n" +
+				"}\n";
+		createOCLinEcoreFile("Bug353793A.oclinecore", testFileA);
+		String testFileB =
+				"package B1 : B2 = 'B3'{\n" +
+				"    class B;\n" +
+				"}\n";
+		createOCLinEcoreFile("Bug353793B.oclinecore", testFileB);
+		String testFileE =
+				"package E1 : E2 = 'E3'{\n" +
+				"    class E;\n" +
+				"}\n";
+		createEcoreFile(typeManager, "Bug353793E.ecore", testFileE);
+		String testFileF =
+				"package F1 : F2 = 'F3'{\n" +
+				"    class F;\n" +
+				"}\n";
+		createEcoreFile(typeManager, "Bug353793F.ecore", testFileF);
+	}	
+
 	protected void doBadLoadFromString(String fileName, String testFile, Bag<String> expectedErrorMessages) throws Exception {
 		if (typeManager == null) {
 			typeManager = new TypeManager();
@@ -142,13 +164,6 @@ public class ImportTests extends XtextTestCase
 		adapter.dispose();
 		unloadPivot(typeManager);
 	}
-	
-	public void createFile(String fileName, String customLibrary) throws IOException {
-		File file = new File(getProjectFile(), fileName);
-		Writer writer = new FileWriter(file);
-		writer.append(customLibrary);
-		writer.close();
-	}
 
 	protected String getNoSuchFileMessage() {
 		String os = System.getProperty("os.name");
@@ -167,7 +182,7 @@ public class ImportTests extends XtextTestCase
 			"context _'Integer'\n" +
 			"def: isPositive() : Boolean = true\n" +
 			"endpackage\n";
-		createFile("more.ocl", moreCompleteOCL);
+		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
 		String testFile =
 			"include 'more.ocl'\n" +
 			"package ocl\n" +
@@ -229,7 +244,7 @@ public class ImportTests extends XtextTestCase
 			"operation spacedOut() : String => 'org.eclipse.ocl.examples.test.xtext.ImportTests$SpacedOut';\n" +
 			"}\n" +
 			"}\n";
-		createFile("custom.oclstdlib", customLibrary);
+		createOCLinEcoreFile("custom.oclstdlib", customLibrary);
 		String testFile =
 			"library 'minimal.oclstdlib'\n" +
 			"library 'custom.oclstdlib'\n" +
@@ -268,6 +283,72 @@ public class ImportTests extends XtextTestCase
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ocl", NLS.bind(template2, getProjectFileURI("NoSuchFile2.ocl").toFileString())));
 		doBadLoadFromString("string.ocl", testFile, bag);
+	}
+
+	public void testImport_OCLinEcore_Bug353793_Good() throws Exception {
+		createTestImport_OCLinEcore_Bug353793_Files();
+		String testFileGood =
+				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
+				"import A0 : 'Bug353793A.oclinecore';\n" +
+				"import 'Bug353793B.oclinecore';\n" +
+				"import 'Bug353793E.ecore';\n" +
+				"import F0 : 'Bug353793F.ecore';\n" +
+				"import G0 : 'Bug353793F.ecore#/';\n" +
+				"package C1 : C2 = 'C3'\n" +
+				"{\n" +
+				"    class AD01 extends A0::A1::A;\n" +
+				"    class AD011 extends A0::A1::A1::A;\n" +
+				"    class BD1 extends B1::B;\n" +
+				"    class BD11 extends B1::B1::B;\n" +
+				"    class ED1 extends E1::E;\n" +
+				"    class FD01 extends F0::F1::F;\n" +
+				"    class GD01 extends G0::F1::F;\n" +
+				"    class GD0 extends G0::F;\n" +
+				"}\n";
+		doLoadFromString("Bug353793good.oclinecore", testFileGood);
+	}
+
+	public void testImport_OCLinEcore_Bug353793_Bad() throws Exception {
+		createTestImport_OCLinEcore_Bug353793_Files();
+		String testFileBad =
+				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
+				"import A0 : 'Bug353793A.oclinecore';\n" +
+				"import 'Bug353793B.oclinecore';\n" +
+				"import 'Bug353793E.ecore';\n" +
+				"import F0 : 'Bug353793F.ecore';\n" +
+				"import G0 : 'Bug353793F.ecore#/';\n" +
+				"package C1 : C2 = 'C3'\n" +
+				"{\n" +
+				"    class AD0 extends A0::A;\n" +
+				"    class AD1 extends A1::A;\n" +
+				"    class AD2 extends A2::A;\n" +
+				"    class AD3 extends A3::A;\n" +
+				"    class BD0 extends B0::B;\n" +
+				"    class BD01 extends B0::B1::B;\n" +
+				"    class BD2 extends B2::B;\n" +
+				"    class BD3 extends B3::B;\n" +
+				"    class GDC extends G0::C1::GD01;\n" +
+				"}\n";
+		Bag<String> bag = new BagImpl<String>();
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A1"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A2"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A3"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
+//BUG353966		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B1"));
+//BUG353966		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B2"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B3"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "C1"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "GD01"));
+		doBadLoadFromString("Bug353793bad.oclinecore", testFileBad, bag);
 	}
 	
 	public void testImport_OCLinEcore_Ecore() throws Exception {
@@ -333,7 +414,7 @@ public class ImportTests extends XtextTestCase
 			"operation spacedOut() : String => 'org.eclipse.ocl.examples.test.xtext.ImportTests$SpacedOut';\n" +
 			"}\n" +
 			"}\n";
-		createFile("custom.oclstdlib", customLibrary);
+		createOCLinEcoreFile("custom.oclstdlib", customLibrary);
 		String testFile =
 			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" + 
 			"import 'custom.oclstdlib';\n" +

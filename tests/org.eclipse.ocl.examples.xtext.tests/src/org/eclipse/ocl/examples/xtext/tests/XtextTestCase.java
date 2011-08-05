@@ -11,7 +11,9 @@
 package org.eclipse.ocl.examples.xtext.tests;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
@@ -477,6 +479,38 @@ public class XtextTestCase extends TestCase
 			fail(e.toString());
 		}
 		return xtextResource;
+	}
+	
+	public void createEcoreFile(TypeManager typeManager, String fileName, String fileContent) throws IOException {
+		String inputName = fileName + ".oclinecore";
+		createOCLinEcoreFile(inputName, fileContent);
+		URI inputURI = getProjectFileURI(inputName);
+		URI ecoreURI = getProjectFileURI(fileName);
+		CS2PivotResourceAdapter adapter = null;
+		try {
+			ResourceSet resourceSet2 = typeManager.getExternalResourceSet();
+			BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(inputURI, true);
+			assertNoResourceErrors("Load failed", xtextResource);
+			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+			Resource pivotResource = adapter.getPivotResource(xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+			Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI);
+			assertNoResourceErrors("To Ecore errors", ecoreResource);
+			ecoreResource.save(null);
+		}
+		finally {
+			if (adapter != null) {
+				adapter.dispose();
+			}
+		}
+	}
+	
+	public void createOCLinEcoreFile(String fileName, String fileContent) throws IOException {
+		File file = new File(getProjectFile(), fileName);
+		Writer writer = new FileWriter(file);
+		writer.append(fileContent);
+		writer.close();
 	}
 
 	protected Resource getPivotFromEcore(TypeManager typeManager, Resource ecoreResource) {
