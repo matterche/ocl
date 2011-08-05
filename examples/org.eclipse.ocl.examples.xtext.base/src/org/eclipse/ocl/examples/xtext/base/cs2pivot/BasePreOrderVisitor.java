@@ -97,7 +97,20 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	protected static class ClassSupersContinuation extends SingleContinuation<ClassCS>
 	{
 		public ClassSupersContinuation(CS2PivotConversion context, org.eclipse.ocl.examples.pivot.Class pivotParent, ClassCS csElement) {
-			super(context, pivotParent, null, csElement, context.getTypesHaveSpecializationsInterDependency());
+			super(context, pivotParent, null, csElement);
+		}
+
+		@Override
+		public boolean canExecute() {
+			if (!super.canExecute()) {
+				return false;
+			}
+			for (TypedRefCS csSuperType : csElement.getOwnedSuperType()) {
+				if (csSuperType.getPivot() == null) {
+					return false;
+				}
+			}
+			return true;
 		}
 
 		@Override
