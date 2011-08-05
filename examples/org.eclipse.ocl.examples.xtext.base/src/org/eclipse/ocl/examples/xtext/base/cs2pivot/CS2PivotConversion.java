@@ -1095,7 +1095,10 @@ public class CS2PivotConversion extends AbstractConversion
 			List<T> newPivotElements = new ArrayList<T>();
 			for (MonikeredElementCS csElement : csElements) {
 				String moniker = csElement.getMoniker();
-				T pivotElement = getPivotElement(pivotClass, moniker);
+				T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
+				if (pivotElement == null) {
+					pivotElement = getPivotElement(pivotClass, moniker);
+				}
 				if (pivotElement != null) {
 					newPivotElements.add(pivotElement);
 				}
