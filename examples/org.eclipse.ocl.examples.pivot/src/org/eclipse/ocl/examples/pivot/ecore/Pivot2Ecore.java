@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -63,7 +62,6 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
@@ -211,7 +209,6 @@ public class Pivot2Ecore extends AbstractConversion
 		org.eclipse.ocl.examples.pivot.Package orphanage = typeManager.getOrphanPackage();
 		Map<EObject, Collection<Setting>> externalCrossReferences = EcoreUtil.ExternalCrossReferencer.find(pivotPackage);
 		for (EObject externalCrossReference : externalCrossReferences.keySet()) {
-			org.eclipse.ocl.examples.pivot.Package referencedPackage = null;
 			if (externalCrossReference instanceof Operation) {
 				externalCrossReference = ((Operation)externalCrossReference).getClass_();
 			}
@@ -224,8 +221,9 @@ public class Pivot2Ecore extends AbstractConversion
 			while (externalCrossReference instanceof org.eclipse.ocl.examples.pivot.Package) {
 				org.eclipse.ocl.examples.pivot.Package nestingPackage = ((org.eclipse.ocl.examples.pivot.Package)externalCrossReference).getNestingPackage();
 				if (nestingPackage == null) {
-					externalCrossReference = nestingPackage;
+					break;
 				}
+				externalCrossReference = nestingPackage;
 			}
 			Resource resource = externalCrossReference.eResource();
 			if (resource == pivotResource) {

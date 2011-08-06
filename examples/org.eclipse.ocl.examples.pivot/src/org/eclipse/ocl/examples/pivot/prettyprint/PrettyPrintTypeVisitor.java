@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.6 2011/05/13 18:41:43 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.7 2011/05/22 21:06:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -28,11 +28,11 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -42,9 +42,11 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions.Global;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -314,10 +316,13 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		nestedVisitor.safeVisit(element);
 	}
 
-	public void appendMultiplicity(MultiplicityElement object) {
-		int lower = object.getLower().intValue();
-		int upper = object.getUpper().intValue();
-		PivotUtil.appendMultiplicity(pendingText, lower, upper);
+	protected void appendMultiplicity(int lower, int upper) {
+		if (delegate != null) {
+			delegate.appendMultiplicity(lower, upper);
+		}
+		else {
+			PivotUtil.appendMultiplicity(pendingText, lower, upper);
+		}
 	}
 
 	protected void appendName(NamedElement object) {
@@ -339,8 +344,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 					appendName(parameter);
 					append(" : ");
 				}
-				appendElement(operation, parameter.getType());
-				appendMultiplicity(parameter);
+				appendTypedMultiplicity(parameter);
 				prefix = ", ";
 			}
 			if (iteration.getOwnedAccumulators().size() > 0) {
@@ -351,8 +355,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 						append(" : ");
 					}
 					append(prefix);
-					appendElement(operation, parameter.getType());
-					appendMultiplicity(parameter);
+					appendTypedMultiplicity(parameter);
 					prefix = ", ";
 				}
 			}
@@ -364,14 +367,13 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 				appendName(parameter);
 				append(" : ");
 			}
-			appendElement(operation, parameter.getType());
-			appendMultiplicity(parameter);
+			appendTypedMultiplicity(parameter);
 			prefix = ", ";
 		}
 		append(")");
 	}
 
-	protected void appendParent(EObject scope, Element element, String parentSeparator) {
+    protected void appendParent(EObject scope, Element element, String parentSeparator) { // FIXME Use appendQualifiedName instead
 		for (EObject eObject = scope; eObject != null; eObject = eObject.eContainer()) {
 			if (element == eObject) {
 				return;	
@@ -386,9 +388,17 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		else {
 //			EObject parent = element.eContainer();
 			EObject parent = PrettyPrintNameVisitor.getNamespace(element.eContainer());
-			if ((parent instanceof org.eclipse.ocl.examples.pivot.Package) &&
-					PivotConstants.ORPHANAGE_NAME.equals(((org.eclipse.ocl.examples.pivot.Package)parent).getName())) {
-				return;
+            if (parent instanceof org.eclipse.ocl.examples.pivot.Package) {
+                String name = ((org.eclipse.ocl.examples.pivot.Package)parent).getName();
+                if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
+                    return;
+                }
+                if (PivotPackage.eNAME.equals(name)) {
+                    return;
+                }
+                if ("ocl".equals(name)) {            // FIXME constant needed
+                    return;
+                }
 			}
 			if ((element instanceof Operation) &&
 				(parent instanceof org.eclipse.ocl.examples.pivot.Class) &&
@@ -402,8 +412,24 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 			if (parent == scope) {
 				return;
 			}
-			if (parent instanceof Visitable) {
-				safeVisit((Visitable) parent);
+            if (parent instanceof Visitable) {
+                List<PathElement> parentPath = getPath(parent);
+                int iMax = parentPath.size();
+                int i = 0;
+                if (scope != null) {
+                    List<PathElement> scopePath = getPath(scope);
+                    i = PathElement.getCommonLength(parentPath, scopePath);
+                }
+                if (i < iMax) {
+//                    append(parentPath.get(i++).getName());
+                    safeVisit((Visitable) parentPath.get(i++).getElement());
+                    while (i < iMax) {
+                        append("::");               
+//                        append(parentPath.get(i++).getName());
+                        safeVisit((Visitable) parentPath.get(i++).getElement());
+                    }
+                }
+//                safeVisit((Visitable) parent);
 			}
 			else  {
 				assert element instanceof org.eclipse.ocl.examples.pivot.Package || element instanceof ExpressionInOcl : element.eClass().getName();	
@@ -411,6 +437,35 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		}
 		append(parentSeparator);
 	}
+
+    public void appendQualifiedName(Element element) {
+        Namespace parent = PrettyPrintNameVisitor.getNamespace(element.eContainer());
+        List<PathElement> parentPath = getPath(parent);
+        int iMax = parentPath.size();
+        int i = 0;
+        Namespace scope = context.getScope();
+        if (scope != null) {
+            List<PathElement> scopePath = getPath(scope);
+            i = PathElement.getCommonLength(parentPath, scopePath);
+        }
+        if ((i == 0) && (i < iMax)) {
+            String name = parentPath.get(0).getName();
+            if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
+                i++;
+            }
+            else if (PivotPackage.eNAME.equals(name)) {
+                i++;
+            }
+            else if ("ocl".equals(name)) {            // FIXME constant needed
+                i++;
+            }
+        }
+        while (i < iMax) {
+            safeVisit((Visitable) parentPath.get(i++).getElement());
+            append("::");               
+        }
+        safeVisit(element);
+    }
 	
 	protected void appendTemplateBindings(TemplateableElement typeRef) {
 		boolean useParentheses = context.getUseParentheses() && (typeRef instanceof CollectionType);
@@ -449,6 +504,46 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 			}
 		}
 	}
+
+	public void appendTypedMultiplicity(TypedMultiplicityElement object) {
+		int lower = object.getLower().intValue();
+		int upper = object.getUpper().intValue();
+		if (upper != 1) {
+			if (object.isOrdered()) {
+				if (object.isUnique()) {
+					append("OrderedSet<");
+				}
+				else {
+					append("Sequence<");
+				}
+			}
+			else {
+				if (object.isUnique()) {
+					append("Set<");
+				}
+				else {
+					append("Bag<");
+				}
+			}
+			appendElement(object.getType());
+			if ((lower > 0) || (upper >= 0)) {
+				appendMultiplicity(lower, upper);
+			}
+			append(">");
+		}
+		else {
+			appendElement(object.getType());
+			appendMultiplicity(lower, upper);
+		}
+	}
+	  
+    public List<PathElement> getPath(EObject element) {
+        List<PathElement> path = new ArrayList<PathElement>();
+        for (EObject parent = element; parent instanceof NamedElement; parent = parent.eContainer()) {
+            path.add(0, new PathElement(((NamedElement)parent).getName(), parent));
+        }
+        return path;
+    }
 
 	@Override
 	public String toString() {
@@ -512,14 +607,14 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 
 	@Override
 	public String visitNamedElement(NamedElement object) {
-		appendParent(null, object, "::");
+//		appendParent(null, object, "::");
 		appendName(object, context.getReservedNames());
 		return null;
 	}
 
 	@Override
 	public Object visitOperation(Operation operation) {
-		appendParent(null, operation, "::");
+//		appendParent(null, operation, "::");
 		appendName(operation, context.getReservedNames());
 		appendTemplateParameters(operation);
 		appendTemplateBindings(operation);
@@ -529,14 +624,14 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 			Iteration iteration = (Iteration)operation;
 			for (Parameter parameter : iteration.getOwnedIterators()) {
 				append(prefix);
-				appendElement(parameter.getType());
+				appendTypedMultiplicity(parameter);
 				prefix = ",";
 			}
 			if (iteration.getOwnedAccumulators().size() > 0) {
 				prefix = ";";
 				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					append(prefix);
-					appendElement(parameter.getType());
+					appendTypedMultiplicity(parameter);
 					prefix = ",";
 				}
 			}
@@ -544,7 +639,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		}
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			append(prefix);
-			appendElement(parameter.getType());
+			appendTypedMultiplicity(parameter);
 			prefix = ",";
 		}
 		append(")");
@@ -580,7 +675,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 
 	@Override
 	public Object visitType(Type object) {
-		appendParent(object.eContainer(), object, "::");
+//		appendParent(object.eContainer(), object, "::");
 		appendName(object, context.getReservedNames());
 		appendTemplateParameters(object);
 		appendTemplateBindings(object);
@@ -589,8 +684,15 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 
 	@Override
 	public Object visitTypedElement(TypedElement object) {
-		appendParent(object.eContainer(), object, "::");
+//		appendParent(object.eContainer(), object, "::");
 		appendElement(object.getType());
+		return null;
+	}
+
+	@Override
+	public Object visitTypedMultiplicityElement(TypedMultiplicityElement object) {
+//		appendParent(object.eContainer(), object, "::");
+		appendTypedMultiplicity(object);
 		return null;
 	}
 

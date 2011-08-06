@@ -392,7 +392,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		Type type = object.getType();
 		if (type != null) {
 			delegate.append(" : ");
-			delegate.safeVisit(type);
+			delegate.appendQualifiedName(type);
 		}
 		return null;
 	}
@@ -443,7 +443,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitTypeExp(TypeExp object) {
-		delegate.safeVisit(object.getReferredType());
+		delegate.appendQualifiedName(object.getReferredType());
 		return null;
 	}
 
@@ -465,7 +465,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		Type type = object.getType();
 		if (type != null) {
 			delegate.append(" : ");
-			delegate.safeVisit(type);
+			delegate.appendQualifiedName(type);
 		}
 		OclExpression initExpression = object.getInitExpression();
 		if (initExpression != null) {
