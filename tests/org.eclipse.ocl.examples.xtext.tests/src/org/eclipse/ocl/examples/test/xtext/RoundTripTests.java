@@ -35,8 +35,11 @@ import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -103,35 +106,79 @@ public class RoundTripTests extends XtextTestCase
 			typeManager.dispose();
 		}
 	}
+	
+	public BaseCSResource createXtextFromURI(TypeManager typeManager, URI xtextURI) throws IOException {
+		ResourceSet resourceSet2 = typeManager.getExternalResourceSet();
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(xtextURI, true);
+		assertNoResourceErrors("Load failed", xtextResource);
+		return xtextResource;
+	}
+	
+	public PivotResource createPivotFromXtext(TypeManager typeManager, BaseCSResource xtextResource) throws IOException {
+		CS2PivotResourceAdapter adapter = null;
+		try {
+			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+			PivotResource pivotResource = (PivotResource)adapter.getPivotResource(xtextResource);
+			assertNoResourceErrors("To Pivot errors", xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			List<EObject> pivotContents = pivotResource.getContents();
+			assertEquals(1, pivotContents.size());
+			assertNoValidationErrors("Pivot validation errors", pivotContents.get(0));
+			return pivotResource;
+		}
+		finally {
+			if (adapter != null) {
+				adapter.dispose();
+			}
+		}
+	}
+	
+	public Resource createEcoreFromPivot(TypeManager typeManager, PivotResource pivotResource, URI ecoreURI) throws IOException {
+		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI);
+		assertNoResourceErrors("To Ecore errors", ecoreResource);
+		if (ecoreURI != null) {
+			ecoreResource.save(null);
+		}
+		return ecoreResource;
+	}
+	
+	public PivotResource createPivotFromEcore(TypeManager typeManager, Resource ecoreResource) throws IOException {
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
+		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
+		PivotResource pivotResource = (PivotResource) pivotRoot.eResource();
+//		pivotResource.setURI(pivotURI);
+		assertNoResourceErrors("Ecore2Pivot failed", pivotResource);
+//		pivotResource.save(null);
+		assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
+		return pivotResource;
+	}
+	
+	public BaseCSResource createXtextFromPivot(TypeManager typeManager, PivotResource pivotResource, URI xtextURI) throws IOException {
+		return (BaseCSResource) savePivotAsCS(typeManager, pivotResource, xtextURI);
+	}
 
-	public void doRoundTripFromOclInEcore(String stem) throws IOException, InterruptedException {
+	public void doRoundTripFromOCLinEcore(TypeManager typeManager1, String stem) throws IOException, InterruptedException {
 		String inputName = stem + ".oclinecore";
-		String middleName = stem + ".converted.ecore";
+		String ecoreName = stem + ".ecore";
 		String outputName = stem + ".regenerated.oclinecore";
-		String output2Name = stem + ".reconverted.ecore";
 		URI inputURI = getProjectFileURI(inputName);
-		URI middleURI = getProjectFileURI(middleName);
+		URI ecoreURI = getProjectFileURI(ecoreName);
 		URI outputURI = getProjectFileURI(outputName);
-		URI output2URI = getProjectFileURI(output2Name);
-		Resource leftResource = resourceSet.getResource(inputURI, true);
-		assertNoResourceErrors("Load failed", leftResource);
-//		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, leftResource, middleURI);
-//		Resource middleResource = cs2e.exportToEcore();
-//		assertEquals("To Ecore errors", 0, middleResource.getErrors().size());
-//		middleResource.save(null);
-//		resourceSet.getResources().add(middleResource);
-		RootPackageCS csDocument = null; // FIXME Ecore2OCLinEcore.importFromEcore(resourceSet, null, middleResource);
-		assertNoResourceErrors("From Ecore errors", csDocument.eResource());
-		Resource rightResource = resourceSet.createResource(outputURI);
-//		middleResource.getContents().addAll(csObjects);
-		rightResource.getContents().add(csDocument);
-		rightResource.save(null);
-//		OCLinEcore2Ecore cs2e2 = new OCLinEcore2Ecore(resourceSet, rightResource, output2URI);
-//		Resource right2Resource = cs2e2.exportToEcore();
-		assertNoResourceErrors("To Ecore errors", rightResource);
-//		right2Resource.save(null);
-//		resourceSet.getResources().add(right2Resource);
-//    	assertSameModel(middleResource, right2Resource);
+
+		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager1);
+		BaseCSResource xtextResource1 = createXtextFromURI(typeManager1, inputURI);
+		PivotResource pivotResource1 = createPivotFromXtext(typeManager1, xtextResource1);
+		Resource ecoreResource = createEcoreFromPivot(typeManager1, pivotResource1, ecoreURI);
+		TypeManager typeManager2 = new TypeManager();
+		PivotResource pivotResource2 = createPivotFromEcore(typeManager2, ecoreResource);
+		BaseCSResource xtextResource2 = createXtextFromPivot(typeManager2, pivotResource2, outputURI);
+		TypeManager typeManager3 = new TypeManager();
+		BaseCSResource xtextResource3 = createXtextFromURI(typeManager3, outputURI);
+		PivotResource pivotResource3 = createPivotFromXtext(typeManager3, xtextResource3);
+    	assertSameModel(pivotResource1, pivotResource3);
+//		unloadCS(resourceSet);
+//		adapter.dispose();
+		unloadPivot(typeManager1);
 	}
 	
 	public void doRoundTripFromUml(String stem) throws IOException, InterruptedException {
@@ -191,6 +238,26 @@ public class RoundTripTests extends XtextTestCase
 			if (ClassUtils.equals(name, element.getName()))
 				return element;
 		return null;				
+	}
+
+	public void testBug350894RoundTrip() throws IOException, InterruptedException {
+		String testFileA = 
+				"package a : aa = 'aaa'\n" +
+				"{\n" +
+				"class A;\n" +
+				"}\n";
+		createEcoreFile(new TypeManager(), "Bug350894A.ecore", testFileA);
+		String testFileB = 
+				"import aa : 'Bug350894A.ecore#/';\n" +
+				"package b : bb = 'bbb'\n" +
+				"{\n" +
+				"class B\n" +
+				"{\n" +
+				"invariant : not oclIsKindOf(aa::A);\n" +
+				"}\n" +
+				"}\n";
+		createOCLinEcoreFile("Bug350894B.oclinecore", testFileB);
+		doRoundTripFromOCLinEcore(new TypeManager(), "Bug350894B");
 	}
 
 	public void testCompanyRoundTrip() throws IOException, InterruptedException {
