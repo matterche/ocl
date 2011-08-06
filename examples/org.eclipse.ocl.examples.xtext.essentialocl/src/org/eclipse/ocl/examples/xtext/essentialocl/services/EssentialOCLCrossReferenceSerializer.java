@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -47,23 +48,6 @@ import com.google.inject.Inject;
 
 public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializer
 {
-	private class PathElement
-	{
-		public final String name;
-		public final EObject element;
-		
-		public PathElement(String name, EObject element) {
-			super();
-			this.name = name;
-			this.element = element;
-		}
-		
-		@Override
-		public String toString() {
-			return name;
-		}
-	}
-	
 	@Inject
 	private LinkingHelper linkingHelper;
 
@@ -99,19 +83,8 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 	}
 
 	private String getDivergentPath(List<PathElement> objectPath, List<PathElement> contextPath) {
-		int i = 0;
 		int iSize = objectPath.size();
-		int iMax = Math.min(iSize, contextPath.size());
-		//
-		//	Skip the common path elements
-		//
-		for ( ; i < iMax; i++) {
-			EObject objectElement = objectPath.get(i).element;
-			EObject contextElement = contextPath.get(i).element;
-			if (!objectElement.equals(contextElement)) {
-				break;
-			}
-		}
+		int i = PathElement.getCommonLength(objectPath, contextPath);
 		//
 		//	Serialize the divergent elements
 		//
@@ -119,10 +92,10 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		String ruleName = "UnrestrictedName";
 		for ( ; i < iSize-1; i++) {
 			PathElement objectPathElement = objectPath.get(i);
-			String objectName = objectPathElement.name;
+			String objectName = objectPathElement.getName();
 			if (s.length() == 0) {
-				EObject objectElement = objectPathElement.element;
-				EObject contextElement = contextPath.get(i).element;
+				EObject objectElement = objectPathElement.getElement();
+				EObject contextElement = contextPath.get(i).getElement();
 				//
 				//	Use the name rather than the alias if within the same resource
 				//
@@ -139,7 +112,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			ruleName = "UnreservedName";
 		}
 		if (iSize > 0) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1).name, ruleName));
+			s.append(valueConverter.toString(objectPath.get(iSize-1).getName(), ruleName));
 		}
 //		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
 		return s.toString();
