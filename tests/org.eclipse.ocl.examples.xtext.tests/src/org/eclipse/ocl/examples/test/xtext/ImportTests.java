@@ -27,9 +27,11 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -149,6 +151,56 @@ public class ImportTests extends XtextTestCase
 		writer.append(customLibrary);
 		writer.close();
 	}
+	
+	public void createEcoreFile(TypeManager typeManager, String fileName, String fileContent) throws IOException {
+		String inputName = fileName + ".oclinecore";
+		createFile(inputName, fileContent);
+		URI inputURI = getProjectFileURI(inputName);
+		URI ecoreURI = getProjectFileURI(fileName);
+		CS2PivotResourceAdapter adapter = null;
+		try {
+			ResourceSet resourceSet2 = typeManager.getExternalResourceSet();
+			BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(inputURI, true);
+			assertNoResourceErrors("Load failed", xtextResource);
+			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+			Resource pivotResource = adapter.getPivotResource(xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+			Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI);
+			assertNoResourceErrors("To Ecore errors", ecoreResource);
+			ecoreResource.save(null);
+		}
+		finally {
+			if (adapter != null) {
+				adapter.dispose();
+			}
+		}
+	}
+
+	protected void createTestImport_OCLinEcore_Bug353793_Files()
+			throws IOException {
+		TypeManager typeManager = new TypeManager();
+		String testFileA =
+				"package A1 : A2 = 'A3'{\n" +
+				"    class A;\n" +
+				"}\n";
+		createFile("Bug353793A.oclinecore", testFileA);
+		String testFileB =
+				"package B1 : B2 = 'B3'{\n" +
+				"    class B;\n" +
+				"}\n";
+		createFile("Bug353793B.oclinecore", testFileB);
+		String testFileE =
+				"package E1 : E2 = 'E3'{\n" +
+				"    class E;\n" +
+				"}\n";
+		createEcoreFile(typeManager, "Bug353793E.ecore", testFileE);
+		String testFileF =
+				"package F1 : F2 = 'F3'{\n" +
+				"    class F;\n" +
+				"}\n";
+		createEcoreFile(typeManager, "Bug353793F.ecore", testFileF);
+	}	
 
 	protected String getNoSuchFileMessage() {
 		String os = System.getProperty("os.name");
@@ -268,6 +320,72 @@ public class ImportTests extends XtextTestCase
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ocl", NLS.bind(template2, getProjectFileURI("NoSuchFile2.ocl").toFileString())));
 		doBadLoadFromString("string.ocl", testFile, bag);
+	}
+
+	public void testImport_OCLinEcore_Bug353793_Good() throws Exception {
+		createTestImport_OCLinEcore_Bug353793_Files();
+		String testFileGood =
+				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
+				"import A0 : 'Bug353793A.oclinecore';\n" +
+				"import 'Bug353793B.oclinecore';\n" +
+				"import 'Bug353793E.ecore';\n" +
+				"import F0 : 'Bug353793F.ecore';\n" +
+				"import G0 : 'Bug353793F.ecore#/';\n" +
+				"package C1 : C2 = 'C3'\n" +
+				"{\n" +
+				"    class AD01 extends A0::A1::A;\n" +
+				"    class AD011 extends A0::A1::A1::A;\n" +
+				"    class BD1 extends B1::B;\n" +
+				"    class BD11 extends B1::B1::B;\n" +
+				"    class ED1 extends E1::E;\n" +
+				"    class FD01 extends F0::F1::F;\n" +
+				"    class GD01 extends G0::F1::F;\n" +
+				"    class GD0 extends G0::F;\n" +
+				"}\n";
+		doLoadFromString("Bug353793good.oclinecore", testFileGood);
+	}
+
+	public void testImport_OCLinEcore_Bug353793_Bad() throws Exception {
+		createTestImport_OCLinEcore_Bug353793_Files();
+		String testFileBad =
+				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
+				"import A0 : 'Bug353793A.oclinecore';\n" +
+				"import 'Bug353793B.oclinecore';\n" +
+				"import 'Bug353793E.ecore';\n" +
+				"import F0 : 'Bug353793F.ecore';\n" +
+				"import G0 : 'Bug353793F.ecore#/';\n" +
+				"package C1 : C2 = 'C3'\n" +
+				"{\n" +
+				"    class AD0 extends A0::A;\n" +
+				"    class AD1 extends A1::A;\n" +
+				"    class AD2 extends A2::A;\n" +
+				"    class AD3 extends A3::A;\n" +
+				"    class BD0 extends B0::B;\n" +
+				"    class BD01 extends B0::B1::B;\n" +
+				"    class BD2 extends B2::B;\n" +
+				"    class BD3 extends B3::B;\n" +
+				"    class GDC extends G0::C1::GD01;\n" +
+				"}\n";
+		Bag<String> bag = new BagImpl<String>();
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A1"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A2"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A3"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
+//BUG353966		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B1"));
+//BUG353966		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B2"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B3"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "C1"));
+		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "GD01"));
+		doBadLoadFromString("Bug353793bad.oclinecore", testFileBad, bag);
 	}
 	
 	public void testImport_OCLinEcore_Ecore() throws Exception {
