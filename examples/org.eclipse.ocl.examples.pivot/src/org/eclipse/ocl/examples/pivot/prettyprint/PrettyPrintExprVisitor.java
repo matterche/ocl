@@ -27,13 +27,13 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -59,6 +59,8 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
+ * The PrettyPrintExprVisitor supports pretty printing of OCL expressions.
+ * PrettyPrintOptions may be used to configure the printing.
  */
 public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 {	
@@ -106,7 +108,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 				else {
 					safeVisit(source);
 				}
-				if (source.getType() instanceof CollectionType) {
+				if ((source.getType() instanceof CollectionType) && !object.isImplicit()) {
 					delegate.append("->");
 				}
 				else {
@@ -276,34 +278,41 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitIteratorExp(IteratorExp object) {
+		Iteration referredIteration = object.getReferredIteration();
 		List<Variable> iterators = object.getIterators();
-		Operation referredOperation = object.getReferredIteration();
 		appendSourceNavigation(object);
-		delegate.appendName(referredOperation);
-		delegate.push("(", "");
-		if (iterators.size() > 0) {
-			String prefix = null;
-			boolean hasExplicitIterator = false;
-			for (Variable iterator : iterators) {
-				if (!iterator.isImplicit()) {
-					if (prefix != null) {
-						delegate.next(null, prefix, " ");
+		if (object.isImplicit()) {
+			assert referredIteration.getName().equals("collect");
+			assert iterators.size() == 1;
+			safeVisit(object.getBody());
+		}
+		else {
+			delegate.appendName(referredIteration);
+			delegate.push("(", "");
+			if (iterators.size() > 0) {
+				String prefix = null;
+				boolean hasExplicitIterator = false;
+				for (Variable iterator : iterators) {
+					if (!iterator.isImplicit()) {
+						if (prefix != null) {
+							delegate.next(null, prefix, " ");
+						}
+						safeVisit(iterator);
+						prefix = ",";
+						hasExplicitIterator = true;
 					}
-					safeVisit(iterator);
-					prefix = ",";
-					hasExplicitIterator = true;
+				}
+				if (hasExplicitIterator) {
+					delegate.next(null, " |", " ");
+				}
+				else if (prefix != null) {
+					delegate.next(null, prefix, " ");
 				}
 			}
-			if (hasExplicitIterator) {
-				delegate.next(null, " |", " ");
-			}
-			else if (prefix != null) {
-				delegate.next(null, prefix, " ");
-			}
+			safeVisit(object.getBody());
+			delegate.next("", ")", "");
+			delegate.pop();
 		}
-		safeVisit(object.getBody());
-		delegate.next("", ")", "");
-		delegate.pop();
 		return null;
 	}
 

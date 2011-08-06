@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.7 2011/05/13 18:41:43 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -21,9 +21,14 @@ import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.Namespace;
 
+/**
+ * PrettyPrintOptions defines the capability to provide options to the PrettyPrinter
+ */
 public abstract class PrettyPrintOptions
 {
-	
+	/**
+	 * Global PrettyPrintOptions apply regardless of pretty printer nesting.
+	 */
 	public static class Global extends PrettyPrintOptions
 	{
 		private String indentStep = "  ";
@@ -97,6 +102,9 @@ public abstract class PrettyPrintOptions
 		}
 	}
 	
+	/**
+	 * Local PrettyPrintOptions may be overridden in nested pretty printer contexts.
+	 */
 	public static class Local extends PrettyPrintOptions
 	{
 		private PrettyPrintOptions options;

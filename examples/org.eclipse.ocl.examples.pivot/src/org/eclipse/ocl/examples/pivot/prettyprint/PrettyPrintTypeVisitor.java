@@ -49,6 +49,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
+ * The PrettyPrintNameVisitor supports pretty printing of a type-like signature.
+ * PrettyPrintOptions may be used to configure the printing.
  */
 public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,PrettyPrintOptions>
 {
@@ -66,7 +68,6 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		private List<Fragment> children = null;
 		private boolean lineWrap = true;
 		private boolean exdented = false;
-//		private int length = 0;
 		
 		public Fragment(Fragment parent, int depth, String prefix, String text, String suffix) {
 			this.parent = parent;

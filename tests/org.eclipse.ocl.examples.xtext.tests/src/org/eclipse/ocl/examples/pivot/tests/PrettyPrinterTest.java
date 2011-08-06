@@ -18,14 +18,10 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions.Global;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
  * Tests for OclAny operations.
@@ -102,9 +98,9 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
 	}
 
 	/**
-	 * Tests the precedence on a specialized collection operator.
+	 * Tests the non-printing of implicoit collect's realization.
 	 */
 	public void test_ImplicitCollect() {
-// FIXME		assertPrintResults(null, "Set{1}.toString()");
+		assertPrintResults(null, "Set{1}.toString()");
 	}
 }

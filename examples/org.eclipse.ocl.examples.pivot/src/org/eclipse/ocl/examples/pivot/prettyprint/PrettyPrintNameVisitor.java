@@ -36,6 +36,8 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
+ * The PrettyPrintNameVisitor supports pretty printing of a name-like description.
+ * PrettyPrintOptions may be used to configure the printing.
  */
 public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,PrettyPrintOptions>
 {	
