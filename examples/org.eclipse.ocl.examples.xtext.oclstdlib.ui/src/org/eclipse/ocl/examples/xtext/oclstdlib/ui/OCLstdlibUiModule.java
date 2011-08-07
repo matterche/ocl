@@ -14,7 +14,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTo
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
 import org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring.OCLstdlibReferenceUpdater;
-import org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring.OCLstdlibRenameStrategy;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
@@ -55,10 +54,10 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 		return BaseLocationInFileProvider.class;
 	}
 	
-	@SuppressWarnings("restriction")
-	public Class<? extends org.eclipse.xtext.ui.refactoring.IRenameStrategy.Provider> bindIRenameStrategy$Provider() {
-		return OCLstdlibRenameStrategy.Provider.class;
-	}
+//	@SuppressWarnings("restriction")
+//	public Class<? extends org.eclipse.xtext.ui.refactoring.IRenameStrategy.Provider> bindIRenameStrategy$Provider() {
+//		return OCLstdlibRenameStrategy.Provider.class;
+//	}
 	
 	@SuppressWarnings("restriction")
 	public Class<? extends org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder> bindIReferenceFinder() {
