@@ -16,31 +16,12 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.text.edits.ReplaceEdit;
-import org.eclipse.xtext.resource.ILocationInFileProvider;
-import org.eclipse.xtext.ui.editor.XtextEditor;
-import org.eclipse.xtext.ui.editor.model.IXtextDocument;
-import org.eclipse.xtext.ui.refactoring.IRefactoringUpdateAcceptor;
-import org.eclipse.xtext.ui.refactoring.IRenameStrategy;
-import org.eclipse.xtext.ui.refactoring.impl.AbstractRenameStrategy;
-import org.eclipse.xtext.ui.refactoring.impl.RefactoringStatusException;
-import org.eclipse.xtext.ui.refactoring.ui.IRenameElementContext;
-import org.eclipse.xtext.util.ITextRegion;
-
-import com.google.inject.Inject;
 
 /**
  * Encapsulates the model changes of a rename refactoring.
  */
-@SuppressWarnings("restriction")
-public class OCLstdlibRenameStrategy extends AbstractRenameStrategy {
+//@SuppressWarnings("restriction")
+public class OCLstdlibRenameStrategy { /*extends AbstractRenameStrategy {
 
 	public static class Provider implements IRenameStrategy.Provider
 	{		
@@ -88,6 +69,6 @@ public class OCLstdlibRenameStrategy extends AbstractRenameStrategy {
 		EAttribute nameAttribute = getNameAttribute();
 		targetElement.eSet(nameAttribute, newName);
 		return targetElement;
-	}
+	} */
 	
 }
