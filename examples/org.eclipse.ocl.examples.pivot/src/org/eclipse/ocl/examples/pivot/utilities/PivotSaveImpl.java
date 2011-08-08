@@ -33,20 +33,13 @@ public final class PivotSaveImpl extends XMISaveImpl
 		super(helper);
 	}
 
-	@Override
-	protected String convertURI(String uri) {
-		// TODO Auto-generated method stub
-		return super.convertURI(uri);
-	}
-
 	/**
 	 * Prepare a pivot resource for save by redirecting all type references to
 	 * specializations to local copies of the specializations.
 	 */
 	@Override
 	protected void init(XMLResource resource, Map<?, ?> options) {
-		PivotSaver saver = new PivotSaver(resource);
-		saver.localizeSpecializations();
+		PivotUtil.localizeSpecializations(resource);
 		TypeManager.setMonikerAsID(Collections.singletonList(resource));
 		super.init(resource, options);
 	}

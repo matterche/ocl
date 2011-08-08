@@ -202,7 +202,7 @@ public class Pivot2EcoreDeclarationVisitor
 				eOperation.getEAnnotations().add(eAnnotation);
 				eClass.getEOperations().add(eOperation);
 				context.putCreated(pivotConstraint, eOperation);
-				Pivot2Ecore.installDelegate(eOperation, pivotConstraint);
+				Pivot2Ecore.installDelegate(eOperation, pivotConstraint, context.getEcoreURI());
 			}
 		}
 		return eClass;
@@ -211,7 +211,7 @@ public class Pivot2EcoreDeclarationVisitor
 	@Override
 	public EObject visitConstraint(Constraint pivotConstraint) {
 		EModelElement eModelElement = context.getCreated(EModelElement.class, (Element)pivotConstraint.eContainer());
-		Pivot2Ecore.installDelegate(eModelElement, pivotConstraint);
+		Pivot2Ecore.installDelegate(eModelElement, pivotConstraint, context.getEcoreURI());
 		return null;
 	}
 

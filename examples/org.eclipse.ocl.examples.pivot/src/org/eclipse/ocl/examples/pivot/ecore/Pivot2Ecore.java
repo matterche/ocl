@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -33,23 +32,18 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
@@ -57,8 +51,9 @@ import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
-import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -68,49 +63,35 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 public class Pivot2Ecore extends AbstractConversion
 {
 	public static final Logger logger = Logger.getLogger(Pivot2Ecore.class);
-
-	public static List<EObject> createResource(TypeManager typeManager, Resource pivotResource) {
-		List<EObject> pivotRoots = pivotResource.getContents();
-		Pivot2Ecore converter = new Pivot2Ecore(typeManager);
-		return converter.convertAll(pivotRoots);
-	}
 	
 	public static XMLResource createResource(TypeManager typeManager, Resource pivotResource, URI ecoreURI) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
+		List<EObject> contents = ecoreResource.getContents();
 		List<EObject> pivotRoots = pivotResource.getContents();
-		Pivot2Ecore converter = new Pivot2Ecore(typeManager);
-		List<? extends EObject> outputObjects = new ArrayList<EObject>(converter.convertAll(pivotRoots));
+		Pivot2Ecore converter = new Pivot2Ecore(typeManager, ecoreURI);
+		List<? extends EObject> outputObjects = converter.convertAll(pivotRoots);
 		for (EObject eObject : outputObjects) {
-			EPackage ePackage = (EPackage)eObject;
-			if ((eObject instanceof EPackage) && !PivotConstants.ORPHANAGE_NAME.equals(ePackage.getName())) {
-				ecoreResource.getContents().addAll(ePackage.getESubpackages());
-			}
-		}
-		for (EObject eObject1 : pivotResource.getContents()) {
-			if (eObject1 instanceof PackageImpl) {
-				for (EObject eObject2 : eObject1.eContents()) {
-					if (eObject2 instanceof org.eclipse.ocl.examples.pivot.Package) {
-						org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject2;
-						EObject target = converter.getCreated(EPackage.class, pivotPackage);
-						if (target instanceof EPackage) {
-							installImports(typeManager, pivotPackage, (EPackage) target);
-						}
-					}
-				}
+			if ((eObject instanceof EPackage) && !PivotConstants.ORPHANAGE_NAME.equals(((EPackage)eObject).getName())) {
+				List<EPackage> eSubpackages = ((EPackage)eObject).getESubpackages();
+				contents.addAll(eSubpackages);
+				eSubpackages.clear();
 			}
 		}
 		return ecoreResource;
 	}
 	
-	public static boolean installDelegate(EModelElement eModelElement, Constraint pivotConstraint) {
+	public static boolean installDelegate(EModelElement eModelElement, Constraint pivotConstraint, URI ecoreURI) {
 		ValueSpecification specification = pivotConstraint.getSpecification();
 		if (!(specification instanceof OpaqueExpression)) {
 			return false;
 		}
 		String exprString = PivotUtil.getBody((OpaqueExpression) specification);
+		Namespace namespace = PrettyPrintExprVisitor.getNamespace(specification);
+		PrettyPrintOptions.Global options = PrettyPrintTypeVisitor.createOptions(namespace);
+		options.setBaseURI(ecoreURI);
 		if ((exprString == null) && (specification instanceof ExpressionInOcl)) {
-			exprString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getBodyExpression(), PrettyPrintExprVisitor.getNamespace(specification));
+			exprString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getBodyExpression(), options);
 		}
 		if (exprString == null) {
 			return false;
@@ -131,7 +112,7 @@ public class Pivot2Ecore extends AbstractConversion
 				oclAnnotation.getDetails().put(name, exprString);
 				String messageString = PivotUtil.getMessage((OpaqueExpression) specification);
 				if ((messageString == null) && (specification instanceof ExpressionInOcl)) {
-					messageString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getMessageExpression(), PrettyPrintExprVisitor.getNamespace(specification));
+					messageString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getMessageExpression(), options);
 				}
 				if ((messageString != null) && (messageString.length() > 0)) {
 					oclAnnotation.getDetails().put(name + "$message", messageString);
@@ -201,67 +182,6 @@ public class Pivot2Ecore extends AbstractConversion
 		details.put(ValidationBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 	}
 
-	public static void installImports(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Package pivotPackage, EPackage ePackage) {
-		HashSet<org.eclipse.ocl.examples.pivot.Package> externalRoots = null;
-		Resource pivotResource = pivotPackage.eResource();
-		List<Library> libraries = typeManager.getLibraries();
-		org.eclipse.ocl.examples.pivot.Package mmPackage = typeManager.getPivotMetaModel();
-		org.eclipse.ocl.examples.pivot.Package orphanage = typeManager.getOrphanPackage();
-		Map<EObject, Collection<Setting>> externalCrossReferences = EcoreUtil.ExternalCrossReferencer.find(pivotPackage);
-		for (EObject externalCrossReference : externalCrossReferences.keySet()) {
-			if (externalCrossReference instanceof Operation) {
-				externalCrossReference = ((Operation)externalCrossReference).getClass_();
-			}
-			else if (externalCrossReference instanceof Property) {
-				externalCrossReference = ((Property)externalCrossReference).getClass_();
-			}
-			if (externalCrossReference instanceof org.eclipse.ocl.examples.pivot.Class) {
-				externalCrossReference = ((org.eclipse.ocl.examples.pivot.Class)externalCrossReference).getPackage();
-			}
-			while (externalCrossReference instanceof org.eclipse.ocl.examples.pivot.Package) {
-				org.eclipse.ocl.examples.pivot.Package nestingPackage = ((org.eclipse.ocl.examples.pivot.Package)externalCrossReference).getNestingPackage();
-				if (nestingPackage == null) {
-					break;
-				}
-				externalCrossReference = nestingPackage;
-			}
-			Resource resource = externalCrossReference.eResource();
-			if (resource == pivotResource) {
-				System.out.println("non-xref to " + externalCrossReference);
-			}
-			else if (libraries.contains(externalCrossReference)) {
-				System.out.println("lib-xref to " + externalCrossReference);
-			}
-			else if (externalCrossReference == mmPackage) {
-				System.out.println("mm-xref to " + externalCrossReference);
-			}
-			else if (externalCrossReference == orphanage) {
-				System.out.println("orphan-xref to " + externalCrossReference);
-			}
-			else if (externalCrossReference instanceof org.eclipse.ocl.examples.pivot.Package) {
-				System.out.println("xref to " + externalCrossReference + " in " + resource);
-				if (externalRoots == null) {
-					externalRoots = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-				}
-				externalRoots.add((org.eclipse.ocl.examples.pivot.Package)externalCrossReference);
-			}
-		}
-		if (externalRoots != null) {
-			URI targetURI = ePackage.eResource().getURI();
-			URIConverter uriConverter = typeManager.getExternalResourceSet().getURIConverter();
-			for (org.eclipse.ocl.examples.pivot.Package externalRoot : externalRoots) {
-				URI uri = externalRoot.eResource().getURI();
-				URI normalizedURI = uriConverter.normalize(uri);
-				URI deresolvedURI = normalizedURI.deresolve(targetURI);
-			    EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			    eAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-			    eAnnotation.getDetails().put("alias", externalRoot.getName());
-			    eAnnotation.getDetails().put("uri", deresolvedURI.toString());
-			    ePackage.getEAnnotations().add(eAnnotation);
-			}
-		}
-	}
-
 	/**
 	 * Mapping of pivot elements to the resulting E elements.
 	 */
@@ -279,16 +199,11 @@ public class Pivot2Ecore extends AbstractConversion
 	protected final Pivot2EcoreReferenceVisitor pass2 = new Pivot2EcoreReferenceVisitor(this);
 	
 	protected final TypeManager typeManager;
-//	protected final ResourceSet resourceSet;
-//	protected final Resource csResource;
-//	protected final XMLResource eResource;
+	protected final URI ecoreURI;
 	
-
-	public Pivot2Ecore(TypeManager typeManager/*ResourceSet resourceSet, Resource csResource, URI ecoreURI*/) {
+	public Pivot2Ecore(TypeManager typeManager, URI ecoreURI) {
 		this.typeManager = typeManager;
-//		this.resourceSet = resourceSet;
-//		this.csResource = csResource;
-//		this.eResource = (XMLResource) new EcoreResourceFactoryImpl().createResource(ecoreURI);
+		this.ecoreURI = ecoreURI;
 	}
 	
 	protected EObject convert(Element pivotObject) {
@@ -312,25 +227,15 @@ public class Pivot2Ecore extends AbstractConversion
 		return eObjects;
 	}
 
+	public void defer(Element pivotElement) {
+		deferMap.add(pivotElement);
+	}
+
 	protected void error(String message) {
 		if (errors == null) {
 			errors = new ArrayList<Resource.Diagnostic>();
 		}
 		errors.add(new XMIException(message));
-	}
-
-/*	public XMLResource exportToEcore() {
-		OCLinEcoreDocumentCS document = (OCLinEcoreDocumentCS) csResource.getContents().get(0);
-		Collection<? extends EObject> ecoreContents = convertAll(document.getPackages());
-		eResource.getContents().addAll(ecoreContents);
-		if (errors != null) {
-			eResource.getErrors().addAll(errors);
-		}
-		return eResource;
-	} */
-
-	public void defer(Element pivotElement) {
-		deferMap.add(pivotElement);
 	}
 
 	public <T extends EObject> T getCreated(Class<T> requiredClass, Element pivotElement) {
@@ -346,8 +251,12 @@ public class Pivot2Ecore extends AbstractConversion
 		T castElement = (T) eModelElement;
 		return castElement;
 	}
+
+	public final URI getEcoreURI() {
+		return ecoreURI;
+	}
 	
-	public TypeManager getTypeManager() {
+	public final TypeManager getTypeManager() {
 		return typeManager;
 	}
 

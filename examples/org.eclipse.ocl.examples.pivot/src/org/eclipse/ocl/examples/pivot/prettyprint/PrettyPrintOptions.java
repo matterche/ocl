@@ -16,9 +16,12 @@
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.ocl.examples.pivot.Namespace;
 
 /**
@@ -36,9 +39,18 @@ public abstract class PrettyPrintOptions
 		private boolean useParentheses = true;
 		private final Set<String> reservedNames = new HashSet<String>();
 		private final Set<String> restrictedNames = new HashSet<String>();
+		private Map<Namespace, String> namespace2alias = new HashMap<Namespace, String>();
+		private URI baseURI = null;
 		
 		public Global(Namespace scope) {
 			super(scope);
+		}
+		
+		public void addAliases(Namespace  namespace, String alias) {
+			if (namespace2alias == null) {
+				namespace2alias = new HashMap<Namespace, String>();
+			}
+			namespace2alias.put(namespace, alias);
 		}
 		
 		@Override
@@ -57,6 +69,16 @@ public abstract class PrettyPrintOptions
 		}
 		
 		@Override
+		public String getAlias(Namespace namespace) {
+			return namespace2alias != null ? namespace2alias.get(namespace) : null;
+		}
+
+		@Override
+		public URI getBaseURI() {
+			return baseURI;
+		}
+
+		@Override
 		public Global getGlobalOptions() {
 			return this;
 		}
@@ -71,6 +93,10 @@ public abstract class PrettyPrintOptions
 			return linelength;
 		}
 
+		public Set<Namespace> getAliasedNamespaces() {
+			return namespace2alias.keySet();
+		}
+		
 		@Override
 		public Set<String> getReservedNames() {
 			return reservedNames;
@@ -84,6 +110,14 @@ public abstract class PrettyPrintOptions
 		@Override
 		public boolean getUseParentheses() {
 			return useParentheses;
+		}
+		
+		public void setAliases(Map<Namespace,String> namespace2alias) {
+			this.namespace2alias = namespace2alias;
+		}
+
+		public void setBaseURI(URI baseURI) {
+			this.baseURI  = baseURI;
 		}
 
 		@Override
@@ -168,6 +202,21 @@ public abstract class PrettyPrintOptions
 	public abstract void addReservedNames(Iterable<String> names);
 	
 	public abstract void addRestrictedNames(Iterable<String> names);
+
+	/**
+	 * Return a name to be used when referencing element as the first element in a qualified name.
+	 */
+	public String getAlias(Namespace namespace) {
+		return getGlobalOptions().getAlias(namespace);
+	}
+
+	/**
+	 * Return a URI against which to deresolve the first element of qualified names that
+	 * reference external resources. Null leaves URIs in global form.
+	 */
+	public URI getBaseURI() {
+		return getGlobalOptions().getBaseURI();
+	}
 
 	public abstract Global getGlobalOptions();
 

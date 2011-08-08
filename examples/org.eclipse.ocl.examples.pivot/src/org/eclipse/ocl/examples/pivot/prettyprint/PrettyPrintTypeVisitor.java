@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -449,8 +450,15 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
             i = PathElement.getCommonLength(parentPath, scopePath);
         }
         if ((i == 0) && (i < iMax)) {
-            String name = parentPath.get(0).getName();
-            if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
+            PathElement rootPathElement = parentPath.get(0);
+			String name = rootPathElement.getName();
+        	String alias = context.getAlias((Namespace)rootPathElement.getElement());
+        	if (alias != null) {
+        		append(getName(alias, context.getReservedNames()));
+        		append("::");               
+                i++;
+            }
+            else if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
                 i++;
             }
             else if (PivotPackage.eNAME.equals(name)) {
@@ -458,6 +466,21 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
             }
             else if ("ocl".equals(name)) {            // FIXME constant needed
                 i++;
+            }
+            else {
+            	URI uri = rootPathElement.getElement().eResource().getURI();
+            	if (uri != null) {
+                	if (PivotUtil.isPivotURI(uri)) {
+                		uri = PivotUtil.getNonPivotURI(uri);
+                	}
+                	URI baseURI = context.getBaseURI();
+                	if (baseURI != null) {
+                		uri = uri.deresolve(baseURI);
+                	}
+            		append(getName(uri.toString(), context.getReservedNames()));
+            		append("::");               
+                    i++;
+            	}
             }
         }
         while (i < iMax) {
@@ -539,8 +562,8 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 	  
     public List<PathElement> getPath(EObject element) {
         List<PathElement> path = new ArrayList<PathElement>();
-        for (EObject parent = element; parent instanceof NamedElement; parent = parent.eContainer()) {
-            path.add(0, new PathElement(((NamedElement)parent).getName(), parent));
+        for (EObject parent = element; parent instanceof Namespace; parent = parent.eContainer()) {
+            path.add(0, new PathElement(((Namespace)parent).getName(), parent));
         }
         return path;
     }
@@ -752,7 +775,10 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		if (object == null) {
 			return NULL_PLACEHOLDER;
 		}
-		String name = object.getName();
+		return getName(object.getName(), keywords);
+	}
+
+	public String getName(String name, Set<String> keywords) {
 		if ((keywords == null) || (!keywords.contains(name)) && PivotUtil.isValidIdentifier(name)) {
 			return name;
 		}

@@ -16,8 +16,11 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -52,6 +55,24 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 						environmentView.addElement(importName, namespace);
 					}
 				}
+			}
+			if ((pivotPackage != null) && !environmentView.hasFinalResult()) {
+				URI baseURI = pivotPackage.eResource().getURI();
+            	if (baseURI != null) {
+                	if (PivotUtil.isPivotURI(baseURI)) {
+                		baseURI = PivotUtil.getNonPivotURI(baseURI);
+                	}
+                	if (baseURI != null) {
+                		String name = environmentView.getName();
+						URI uri = URI.createURI(name).resolve(baseURI);
+						try {
+							Element importedElement = typeManager.loadResource(uri, null);				
+							environmentView.addElement(name, importedElement);
+						} catch (Exception e) {
+							// if it doesn't load just treat it as unresolved
+						}
+                	}
+            	}
 			}
 		}
 		if (environmentView.accepts(PivotPackage.Literals.PRECEDENCE)) {

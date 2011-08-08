@@ -68,7 +68,7 @@ public class PivotInstaller
 		if (eTarget instanceof EClassifier) {
 			EClassifier eClassifier = (EClassifier)eTarget;
 			for (Constraint constraint : typeManager.getLocalConstraints(pivotType)) {
-				if (Pivot2Ecore.installDelegate(eClassifier, constraint)) {
+				if (Pivot2Ecore.installDelegate(eClassifier, constraint, null)) {
 					hasDelegates = true;
 				}
 			}

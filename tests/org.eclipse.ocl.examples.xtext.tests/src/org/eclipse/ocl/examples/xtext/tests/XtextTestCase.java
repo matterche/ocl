@@ -43,7 +43,6 @@ import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
 import org.eclipse.emf.compare.match.service.MatchService;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -58,7 +57,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -222,6 +220,10 @@ public class XtextTestCase extends TestCase
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
 //		options.put(MatchOptions.OPTION_DISTINCT_METAMODELS, Boolean.TRUE);
+		assertSameModel(expectedResource, actualResource, options);
+	}
+	
+	public static void assertSameModel(Resource expectedResource, Resource actualResource, Map<String,Object> options) throws IOException, InterruptedException {
         MatchModel match = MatchService.doResourceMatch(actualResource, expectedResource, options);
         List<UnmatchElement> unmatchedElements = match.getUnmatchedElements();
         int unmatchedSize = unmatchedElements.size();
@@ -588,20 +590,10 @@ public class XtextTestCase extends TestCase
 	}
 
 	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI, boolean validateSaved) throws IOException {
-		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(typeManager, pivotResource));
-		@SuppressWarnings("unchecked")
-		List<? extends ENamedElement> castOutputObjects = (List<? extends ENamedElement>)outputObjects;
-		outputObjects.remove(EcoreUtils.getNamedElement(castOutputObjects, PivotConstants.ORPHANAGE_NAME));
-		EPackage rootPackage = null;
-		if (outputObjects.size() == 1) {
-			rootPackage = (EPackage)outputObjects.get(0);
-			outputObjects = rootPackage.getESubpackages();
+		if (ecoreURI == null) {
+			ecoreURI = URI.createURI("test.ecore");
 		}
-		Resource ecoreResource = resourceSet.createResource(ecoreURI != null ? ecoreURI : URI.createURI("test.ecore"));
-		ecoreResource.getContents().addAll(outputObjects);
-		if (rootPackage != null) {
-			rootPackage.getESubpackages().clear();
-		}
+		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI);
 		assertNoResourceErrors("Ecore2Pivot failed", ecoreResource);
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
