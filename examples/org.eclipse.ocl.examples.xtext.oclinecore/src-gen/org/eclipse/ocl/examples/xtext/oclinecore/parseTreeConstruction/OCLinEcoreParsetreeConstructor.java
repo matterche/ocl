@@ -117,13 +117,14 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule RootPackageCS ****************
  *
  * //generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
- * 
  * RootPackageCS returns base::RootPackageCS:
- * 	("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS* ownedNestedPackage+=PackageCS*;
+ * 	{base::RootPackageCS} ("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS*
+ * 	ownedNestedPackage+=PackageCS*;
  *
  **/
 
-// ("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS* ownedNestedPackage+=PackageCS*
+// {base::RootPackageCS} ("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS*
+// ownedNestedPackage+=PackageCS*
 protected class RootPackageCS_Group extends GroupToken {
 	
 	public RootPackageCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -138,55 +139,34 @@ protected class RootPackageCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RootPackageCS_OwnedNestedPackageAssignment_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new RootPackageCS_OwnedImportAssignment_2(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new RootPackageCS_OwnedLibraryAssignment_1(lastRuleCallOrigin, this, 2, inst);
-			case 3: return new RootPackageCS_Group_0(lastRuleCallOrigin, this, 3, inst);
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index - 4, inst);
+			case 0: return new RootPackageCS_OwnedNestedPackageAssignment_4(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new RootPackageCS_OwnedImportAssignment_3(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new RootPackageCS_OwnedLibraryAssignment_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new RootPackageCS_Group_1(lastRuleCallOrigin, this, 3, inst);
+			case 4: return new RootPackageCS_RootPackageCSAction_0(lastRuleCallOrigin, this, 4, inst);
+			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getRootPackageCSRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getRootPackageCSAccess().getRootPackageCSAction_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// ("module" name=UnrestrictedName)?
-protected class RootPackageCS_Group_0 extends GroupToken {
-	
-	public RootPackageCS_Group_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+// {base::RootPackageCS}
+protected class RootPackageCS_RootPackageCSAction_0 extends ActionToken  {
+
+	public RootPackageCS_RootPackageCSAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getRootPackageCSAccess().getGroup_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new RootPackageCS_NameAssignment_0_1(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// "module"
-protected class RootPackageCS_ModuleKeyword_0_0 extends KeywordToken  {
-	
-	public RootPackageCS_ModuleKeyword_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getRootPackageCSAccess().getModuleKeyword_0_0();
+	public Action getGrammarElement() {
+		return grammarAccess.getRootPackageCSAccess().getRootPackageCSAction_0();
 	}
 
     @Override
@@ -196,24 +176,73 @@ protected class RootPackageCS_ModuleKeyword_0_0 extends KeywordToken  {
 		}	
 	}
 
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(!eObjectConsumer.isConsumed()) return null;
+		return eObjectConsumer;
+	}
 }
 
-// name=UnrestrictedName
-protected class RootPackageCS_NameAssignment_0_1 extends AssignmentToken  {
+// ("module" name=UnrestrictedName)?
+protected class RootPackageCS_Group_1 extends GroupToken {
 	
-	public RootPackageCS_NameAssignment_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RootPackageCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getRootPackageCSAccess().getNameAssignment_0_1();
+	public Group getGrammarElement() {
+		return grammarAccess.getRootPackageCSAccess().getGroup_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RootPackageCS_ModuleKeyword_0_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RootPackageCS_NameAssignment_1_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "module"
+protected class RootPackageCS_ModuleKeyword_1_0 extends KeywordToken  {
+	
+	public RootPackageCS_ModuleKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getRootPackageCSAccess().getModuleKeyword_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new RootPackageCS_RootPackageCSAction_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// name=UnrestrictedName
+protected class RootPackageCS_NameAssignment_1_1 extends AssignmentToken  {
+	
+	public RootPackageCS_NameAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getRootPackageCSAccess().getNameAssignment_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new RootPackageCS_ModuleKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -222,9 +251,9 @@ protected class RootPackageCS_NameAssignment_0_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("name",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getRootPackageCSAccess().getNameUnrestrictedNameParserRuleCall_0_1_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getRootPackageCSAccess().getNameUnrestrictedNameParserRuleCall_1_1_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getRootPackageCSAccess().getNameUnrestrictedNameParserRuleCall_0_1_0();
+			element = grammarAccess.getRootPackageCSAccess().getNameUnrestrictedNameParserRuleCall_1_1_0();
 			return obj;
 		}
 		return null;
@@ -234,15 +263,15 @@ protected class RootPackageCS_NameAssignment_0_1 extends AssignmentToken  {
 
 
 // ownedLibrary+=LibraryCS*
-protected class RootPackageCS_OwnedLibraryAssignment_1 extends AssignmentToken  {
+protected class RootPackageCS_OwnedLibraryAssignment_2 extends AssignmentToken  {
 	
-	public RootPackageCS_OwnedLibraryAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RootPackageCS_OwnedLibraryAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRootPackageCSAccess().getOwnedLibraryAssignment_1();
+		return grammarAccess.getRootPackageCSAccess().getOwnedLibraryAssignment_2();
 	}
 
     @Override
@@ -261,7 +290,7 @@ protected class RootPackageCS_OwnedLibraryAssignment_1 extends AssignmentToken  
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getLibraryCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRootPackageCSAccess().getOwnedLibraryLibraryCSParserRuleCall_1_0(); 
+				element = grammarAccess.getRootPackageCSAccess().getOwnedLibraryLibraryCSParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -273,23 +302,24 @@ protected class RootPackageCS_OwnedLibraryAssignment_1 extends AssignmentToken  
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RootPackageCS_OwnedLibraryAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new RootPackageCS_Group_0(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index - 2, consumed);
+			case 0: return new RootPackageCS_OwnedLibraryAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new RootPackageCS_Group_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new RootPackageCS_RootPackageCSAction_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
 		}	
 	}	
 }
 
 // ownedImport+=ImportCS*
-protected class RootPackageCS_OwnedImportAssignment_2 extends AssignmentToken  {
+protected class RootPackageCS_OwnedImportAssignment_3 extends AssignmentToken  {
 	
-	public RootPackageCS_OwnedImportAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RootPackageCS_OwnedImportAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRootPackageCSAccess().getOwnedImportAssignment_2();
+		return grammarAccess.getRootPackageCSAccess().getOwnedImportAssignment_3();
 	}
 
     @Override
@@ -308,7 +338,7 @@ protected class RootPackageCS_OwnedImportAssignment_2 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getImportCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRootPackageCSAccess().getOwnedImportImportCSParserRuleCall_2_0(); 
+				element = grammarAccess.getRootPackageCSAccess().getOwnedImportImportCSParserRuleCall_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -320,24 +350,25 @@ protected class RootPackageCS_OwnedImportAssignment_2 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RootPackageCS_OwnedImportAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new RootPackageCS_OwnedLibraryAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new RootPackageCS_Group_0(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index - 3, consumed);
+			case 0: return new RootPackageCS_OwnedImportAssignment_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new RootPackageCS_OwnedLibraryAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new RootPackageCS_Group_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 3: return new RootPackageCS_RootPackageCSAction_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
 		}	
 	}	
 }
 
 // ownedNestedPackage+=PackageCS*
-protected class RootPackageCS_OwnedNestedPackageAssignment_3 extends AssignmentToken  {
+protected class RootPackageCS_OwnedNestedPackageAssignment_4 extends AssignmentToken  {
 	
-	public RootPackageCS_OwnedNestedPackageAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RootPackageCS_OwnedNestedPackageAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRootPackageCSAccess().getOwnedNestedPackageAssignment_3();
+		return grammarAccess.getRootPackageCSAccess().getOwnedNestedPackageAssignment_4();
 	}
 
     @Override
@@ -356,7 +387,7 @@ protected class RootPackageCS_OwnedNestedPackageAssignment_3 extends AssignmentT
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getPackageCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRootPackageCSAccess().getOwnedNestedPackagePackageCSParserRuleCall_3_0(); 
+				element = grammarAccess.getRootPackageCSAccess().getOwnedNestedPackagePackageCSParserRuleCall_4_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -368,11 +399,12 @@ protected class RootPackageCS_OwnedNestedPackageAssignment_3 extends AssignmentT
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RootPackageCS_OwnedNestedPackageAssignment_3(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new RootPackageCS_OwnedImportAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new RootPackageCS_OwnedLibraryAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
-			case 3: return new RootPackageCS_Group_0(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index - 4, consumed);
+			case 0: return new RootPackageCS_OwnedNestedPackageAssignment_4(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new RootPackageCS_OwnedImportAssignment_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new RootPackageCS_OwnedLibraryAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 3: return new RootPackageCS_Group_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 4: return new RootPackageCS_RootPackageCSAction_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
 		}	
 	}	
 }
@@ -14684,7 +14716,6 @@ protected class WildcardTypeRefCS_SuperAssignment_2_1_1 extends AssignmentToken 
 /************ begin Rule Model ****************
  *
  * //generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
- * 
  * Model returns ContextCS:
  * 	ownedExpression=ExpCS;
  *
@@ -15829,11 +15860,8 @@ protected class TuplePartCS_OwnedTypeAssignment_2 extends AssignmentToken  {
 /************ begin Rule CollectionLiteralExpCS ****************
  *
  * //---------------------------------------------------------------------
- * 
  * //  Literals
- * 
  * //---------------------------------------------------------------------
- * 
  * CollectionLiteralExpCS:
  * 	ownedType=CollectionTypeCS "{" (ownedParts+=CollectionLiteralPartCS ("," ownedParts+=CollectionLiteralPartCS)*)? "}";
  *
@@ -17718,7 +17746,6 @@ protected class TypeLiteralExpCS_OwnedTypeAssignment extends AssignmentToken  {
 /************ begin Rule TypeNameExpCS ****************
  *
  * //TypeNameExpCS returns base::QualifiedTypeRefCS:
- * 
  * TypeNameExpCS:
  * 	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
  * 	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName];
@@ -18143,21 +18170,13 @@ protected class TypeExpCS_TypeLiteralCSParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule ExpCS ****************
  *
  * //---------------------------------------------------------------------
- * 
  * //  Expressions
- * 
  * //---------------------------------------------------------------------
- * 
  * // An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
- * 
  * //  that let is right associative, whereas infix operators are left associative.
- * 
  * //   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
- * 
  * // is
- * 
  * //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
- * 
  * ExpCS:
  * 	InfixedExpCS;
  *
@@ -20245,7 +20264,6 @@ protected class IndexExpCS_RightSquareBracketKeyword_1_5_3 extends KeywordToken 
 /************ begin Rule NavigatingExpCS_Base ****************
  *
  * //	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
- * 
  * NavigatingExpCS_Base returns NamedExpCS:
  * 	IndexExpCS;
  *
@@ -20294,9 +20312,7 @@ protected class NavigatingExpCS_Base_IndexExpCSParserRuleCall extends RuleCallTo
 /************ begin Rule NavigatingExpCS ****************
  *
  * // For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
- * 
  * //  keep it as simple as possible and avoid backtracking.
- * 
  * NavigatingExpCS returns NamedExpCS:
  * 	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
  * 	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
@@ -22027,9 +22043,7 @@ protected class NavigatingSemiArgCS_InitAssignment_3_1 extends AssignmentToken  
 /************ begin Rule NavigatingArgExpCS ****************
  *
  * // Intended to be overridden
- * 
  * //	'?'	-- defined by Complete OCL
- * 
  * NavigatingArgExpCS returns ExpCS:
  * 	ExpCS;
  *

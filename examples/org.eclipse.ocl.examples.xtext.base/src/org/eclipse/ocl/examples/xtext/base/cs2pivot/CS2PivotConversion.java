@@ -31,6 +31,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -806,6 +807,15 @@ public class CS2PivotConversion extends AbstractConversion
 		String name = csPackage.getName();
 		if (name == null) {
 			name = PivotConstants.NULL_ROOT;
+			if (eContainer == null) {
+				Resource csResource = csPackage.eResource();
+				if (csResource != null) {
+					URI csURI = csResource.getURI();
+					if (csURI != null) {
+						name = csURI.lastSegment();
+					}
+				}
+			}
 		}
 		s.append(name);
 		return s.toString();

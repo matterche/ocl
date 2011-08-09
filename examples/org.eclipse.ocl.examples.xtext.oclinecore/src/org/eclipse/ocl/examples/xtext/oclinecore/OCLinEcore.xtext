@@ -24,7 +24,7 @@ import "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLin
 //generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
 
 RootPackageCS returns base::RootPackageCS:
-	('module' name=UnrestrictedName)?
+	{base::RootPackageCS} ('module' name=UnrestrictedName)?
 	(ownedLibrary+=LibraryCS)*
 	(ownedImport+=ImportCS)*
 	(ownedNestedPackage+=PackageCS)*

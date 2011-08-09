@@ -20,55 +20,60 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class RootPackageCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RootPackageCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cModuleKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cNameUnrestrictedNameParserRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
-		private final Assignment cOwnedLibraryAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedLibraryLibraryCSParserRuleCall_1_0 = (RuleCall)cOwnedLibraryAssignment_1.eContents().get(0);
-		private final Assignment cOwnedImportAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedImportImportCSParserRuleCall_2_0 = (RuleCall)cOwnedImportAssignment_2.eContents().get(0);
-		private final Assignment cOwnedNestedPackageAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedNestedPackagePackageCSParserRuleCall_3_0 = (RuleCall)cOwnedNestedPackageAssignment_3.eContents().get(0);
+		private final Action cRootPackageCSAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cModuleKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameUnrestrictedNameParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final Assignment cOwnedLibraryAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedLibraryLibraryCSParserRuleCall_2_0 = (RuleCall)cOwnedLibraryAssignment_2.eContents().get(0);
+		private final Assignment cOwnedImportAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOwnedImportImportCSParserRuleCall_3_0 = (RuleCall)cOwnedImportAssignment_3.eContents().get(0);
+		private final Assignment cOwnedNestedPackageAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cOwnedNestedPackagePackageCSParserRuleCall_4_0 = (RuleCall)cOwnedNestedPackageAssignment_4.eContents().get(0);
 		
 		////generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
-		//
 		//RootPackageCS returns base::RootPackageCS:
-		//	("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS* ownedNestedPackage+=PackageCS*;
+		//	{base::RootPackageCS} ("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS*
+		//	ownedNestedPackage+=PackageCS*;
 		public ParserRule getRule() { return rule; }
 
-		//("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS* ownedNestedPackage+=PackageCS*
+		//{base::RootPackageCS} ("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS*
+		//ownedNestedPackage+=PackageCS*
 		public Group getGroup() { return cGroup; }
 
+		//{base::RootPackageCS}
+		public Action getRootPackageCSAction_0() { return cRootPackageCSAction_0; }
+
 		//("module" name=UnrestrictedName)?
-		public Group getGroup_0() { return cGroup_0; }
+		public Group getGroup_1() { return cGroup_1; }
 
 		//"module"
-		public Keyword getModuleKeyword_0_0() { return cModuleKeyword_0_0; }
+		public Keyword getModuleKeyword_1_0() { return cModuleKeyword_1_0; }
 
 		//name=UnrestrictedName
-		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
 
 		//UnrestrictedName
-		public RuleCall getNameUnrestrictedNameParserRuleCall_0_1_0() { return cNameUnrestrictedNameParserRuleCall_0_1_0; }
+		public RuleCall getNameUnrestrictedNameParserRuleCall_1_1_0() { return cNameUnrestrictedNameParserRuleCall_1_1_0; }
 
 		//ownedLibrary+=LibraryCS*
-		public Assignment getOwnedLibraryAssignment_1() { return cOwnedLibraryAssignment_1; }
+		public Assignment getOwnedLibraryAssignment_2() { return cOwnedLibraryAssignment_2; }
 
 		//LibraryCS
-		public RuleCall getOwnedLibraryLibraryCSParserRuleCall_1_0() { return cOwnedLibraryLibraryCSParserRuleCall_1_0; }
+		public RuleCall getOwnedLibraryLibraryCSParserRuleCall_2_0() { return cOwnedLibraryLibraryCSParserRuleCall_2_0; }
 
 		//ownedImport+=ImportCS*
-		public Assignment getOwnedImportAssignment_2() { return cOwnedImportAssignment_2; }
+		public Assignment getOwnedImportAssignment_3() { return cOwnedImportAssignment_3; }
 
 		//ImportCS
-		public RuleCall getOwnedImportImportCSParserRuleCall_2_0() { return cOwnedImportImportCSParserRuleCall_2_0; }
+		public RuleCall getOwnedImportImportCSParserRuleCall_3_0() { return cOwnedImportImportCSParserRuleCall_3_0; }
 
 		//ownedNestedPackage+=PackageCS*
-		public Assignment getOwnedNestedPackageAssignment_3() { return cOwnedNestedPackageAssignment_3; }
+		public Assignment getOwnedNestedPackageAssignment_4() { return cOwnedNestedPackageAssignment_4; }
 
 		//PackageCS
-		public RuleCall getOwnedNestedPackagePackageCSParserRuleCall_3_0() { return cOwnedNestedPackagePackageCSParserRuleCall_3_0; }
+		public RuleCall getOwnedNestedPackagePackageCSParserRuleCall_4_0() { return cOwnedNestedPackagePackageCSParserRuleCall_4_0; }
 	}
 
 	public class INTEGERElements extends AbstractParserRuleElementFinder {
@@ -3434,9 +3439,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	////generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
-	//
 	//RootPackageCS returns base::RootPackageCS:
-	//	("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS* ownedNestedPackage+=PackageCS*;
+	//	{base::RootPackageCS} ("module" name=UnrestrictedName)? ownedLibrary+=LibraryCS* ownedImport+=ImportCS*
+	//	ownedNestedPackage+=PackageCS*;
 	public RootPackageCSElements getRootPackageCSAccess() {
 		return (pRootPackageCS != null) ? pRootPackageCS : (pRootPackageCS = new RootPackageCSElements());
 	}
@@ -3446,9 +3451,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Never forward parsed; just provides a placeholder
-	//
 	//terminal UNQUOTED_STRING: //  for reverse serialisation of embedded OCL 
-	//
 	//	"£$%^£$%^";
 	public TerminalRule getUNQUOTED_STRINGRule() {
 		return (tUNQUOTED_STRING != null) ? tUNQUOTED_STRING : (tUNQUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNQUOTED_STRING"));
@@ -3887,7 +3890,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
-	//
 	//Model returns ContextCS:
 	//	ownedExpression=ExpCS;
 	public EssentialOCLGrammarAccess.ModelElements getModelAccess() {
@@ -3939,7 +3941,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// String to allow diverse re-use
-	//
 	//terminal INT:
 	//	"0".."9"+;
 	public TerminalRule getINTRule() {
@@ -3947,7 +3948,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
-	//
 	//NUMBER_LITERAL returns BigNumber:
 	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
 	public EssentialOCLGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
@@ -4059,7 +4059,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
-	//
 	//PrefixOperator:
 	//	EssentialOCLPrefixOperator;
 	public EssentialOCLGrammarAccess.PrefixOperatorElements getPrefixOperatorAccess() {
@@ -4071,7 +4070,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
-	//
 	//InfixOperator:
 	//	EssentialOCLInfixOperator;
 	public EssentialOCLGrammarAccess.InfixOperatorElements getInfixOperatorAccess() {
@@ -4083,7 +4081,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
-	//
 	//NavigationOperator:
 	//	EssentialOCLNavigationOperator;
 	public EssentialOCLGrammarAccess.NavigationOperatorElements getNavigationOperatorAccess() {
@@ -4095,11 +4092,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
-	//
 	////  Names
-	//
 	////---------------------------------------------------------------------
-	//
 	//EssentialOCLUnrestrictedName returns ecore::EString:
 	//	Identifier;
 	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedNameElements getEssentialOCLUnrestrictedNameAccess() {
@@ -4121,7 +4115,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
-	//
 	//UnreservedName returns ecore::EString:
 	//	EssentialOCLUnreservedName;
 	public EssentialOCLGrammarAccess.UnreservedNameElements getUnreservedNameAccess() {
@@ -4133,11 +4126,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
-	//
 	////  Types
-	//
 	////---------------------------------------------------------------------
-	//
 	//PrimitiveTypeIdentifier:
 	//	"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid";
 	public EssentialOCLGrammarAccess.PrimitiveTypeIdentifierElements getPrimitiveTypeIdentifierAccess() {
@@ -4200,11 +4190,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
-	//
 	////  Literals
-	//
 	////---------------------------------------------------------------------
-	//
 	//CollectionLiteralExpCS:
 	//	ownedType=CollectionTypeCS "{" (ownedParts+=CollectionLiteralPartCS ("," ownedParts+=CollectionLiteralPartCS)*)? "}";
 	public EssentialOCLGrammarAccess.CollectionLiteralExpCSElements getCollectionLiteralExpCSAccess() {
@@ -4337,7 +4324,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////TypeNameExpCS returns base::QualifiedTypeRefCS:
-	//
 	//TypeNameExpCS:
 	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
 	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName];
@@ -4360,21 +4346,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
-	//
 	////  Expressions
-	//
 	////---------------------------------------------------------------------
-	//
 	//// An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
-	//
 	////  that let is right associative, whereas infix operators are left associative.
-	//
 	////   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
-	//
 	//// is
-	//
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
-	//
 	//ExpCS:
 	//	InfixedExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
@@ -4480,7 +4458,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
-	//
 	//NavigatingExpCS_Base returns NamedExpCS:
 	//	IndexExpCS;
 	public EssentialOCLGrammarAccess.NavigatingExpCS_BaseElements getNavigatingExpCS_BaseAccess() {
@@ -4492,9 +4469,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
-	//
 	////  keep it as simple as possible and avoid backtracking.
-	//
 	//NavigatingExpCS returns NamedExpCS:
 	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
 	//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
@@ -4548,9 +4523,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
-	//
 	////	'?'	-- defined by Complete OCL
-	//
 	//NavigatingArgExpCS returns ExpCS:
 	//	ExpCS;
 	public EssentialOCLGrammarAccess.NavigatingArgExpCSElements getNavigatingArgExpCSAccess() {

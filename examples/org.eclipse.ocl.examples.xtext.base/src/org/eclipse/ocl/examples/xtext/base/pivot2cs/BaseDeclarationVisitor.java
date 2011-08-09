@@ -173,7 +173,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public PackageCS visitPackage(org.eclipse.ocl.examples.pivot.Package object) {
 		PackageCS csElement;
 		if (object.eContainer() == null) {
-			csElement = context.refreshNamedElement(RootPackageCS.class, BaseCSTPackage.Literals.ROOT_PACKAGE_CS, object);
+			// Lose the name to lose the 'module' declaration, there are no annotations
+			csElement = context.refreshMonikeredElement(RootPackageCS.class, BaseCSTPackage.Literals.ROOT_PACKAGE_CS, object);
 		}
 		else {
 			PackageCS csPackage = context.refreshNamedElement(PackageCS.class, BaseCSTPackage.Literals.PACKAGE_CS, object);

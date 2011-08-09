@@ -91,6 +91,7 @@ public class RoundTripTests extends XtextTestCase
 		cs2PivotResourceMap.put(xtextResource, pivotResource);
 		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
 		pivot2cs.update();
+		xtextResource.save(null);
 		assertNoResourceErrors("Conversion failed", xtextResource);
 		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
 		return (BaseCSResource) xtextResource;

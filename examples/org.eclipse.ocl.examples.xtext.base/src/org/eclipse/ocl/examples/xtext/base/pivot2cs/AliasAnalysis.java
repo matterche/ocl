@@ -28,9 +28,11 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 
 /**
  * An AliasAnalysis is dynamically created to support the serialization
@@ -81,14 +83,18 @@ public class AliasAnalysis extends AdapterImpl
 	private void computeAliases() {
 		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
 			if ((localPackage.getNsPrefix() != null) || (localPackage.getNestingPackage() == null)) {
-				String alias = computeAlias(localPackage);
-				allAliases.put(localPackage, alias);
+				if (!allAliases.containsKey(localPackage)) {
+					String alias = computeAlias(localPackage);
+					allAliases.put(localPackage, alias);
+				}
 			}
 		}
 		for (org.eclipse.ocl.examples.pivot.Package otherPackage : otherPackages) {
 			if ((otherPackage.getNsPrefix() != null) || (otherPackage.getNestingPackage() == null)) {
-				String alias = computeAlias(otherPackage);
-				allAliases.put(otherPackage, alias);
+				if (!allAliases.containsKey(otherPackage)) {
+					String alias = computeAlias(otherPackage);
+					allAliases.put(otherPackage, alias);
+				}
 			}
 		}
 	}
@@ -119,6 +125,13 @@ public class AliasAnalysis extends AdapterImpl
 	private void computePackages() {
 		for (TreeIterator<EObject> tit = ((Resource)target).getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
+			if (eObject instanceof ImportCS) {
+				String name = ((ImportCS)eObject).getName();
+				Namespace namespace = ((ImportCS)eObject).getNamespace();
+				if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+					allAliases.put((org.eclipse.ocl.examples.pivot.Package) namespace, name);
+				}
+			}
 			if (eObject instanceof Pivotable) {
 				eObject = ((Pivotable)eObject).getPivot();
 			}
