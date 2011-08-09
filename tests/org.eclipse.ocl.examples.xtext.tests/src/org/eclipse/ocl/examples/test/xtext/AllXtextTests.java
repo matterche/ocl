@@ -73,6 +73,7 @@ public class AllXtextTests
 		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
 		result.addTestSuite(EditTests.class);
+		result.addTestSuite(MarkupTests.class);
 		return result;
 	}
 
