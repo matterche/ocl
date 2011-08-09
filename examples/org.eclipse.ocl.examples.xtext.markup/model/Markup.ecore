@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="markup"
+    nsURI="http://www.eclipse.org/ocl/3.2.0/Markup" nsPrefix="markup">
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundElement" eSuperTypes="#//MarkupElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//MarkupElement" containment="true" resolveProxies="false" eOpposite="#//MarkupElement/owner"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FontElement" eSuperTypes="#//CompoundElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="font" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FigElement" eSuperTypes="#//MarkupElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="src" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="def" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FigRefElement" eSuperTypes="#//MarkupElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" lowerBound="1" eType="#//FigElement"
+        resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Markup" eSuperTypes="#//CompoundElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkupElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//CompoundElement"
+        eOpposite="#//CompoundElement/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        changeable="false" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewLineElement" eSuperTypes="#//MarkupElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" unique="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NullElement" eSuperTypes="#//CompoundElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclElement" eSuperTypes="#//CompoundElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TextElement" eSuperTypes="#//MarkupElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

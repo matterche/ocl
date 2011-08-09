@@ -73043,36 +73043,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     }
     // $ANTLR end synpred194_InternalOCLinEcore
 
-    // $ANTLR start synpred197_InternalOCLinEcore
-    public final void synpred197_InternalOCLinEcore_fragment() throws RecognitionException {   
-        // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:5288:1: ( ( ( rule__NameExpCS__Group_0__0 ) ) )
-        // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:5288:1: ( ( rule__NameExpCS__Group_0__0 ) )
-        {
-        // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:5288:1: ( ( rule__NameExpCS__Group_0__0 ) )
-        // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:5289:1: ( rule__NameExpCS__Group_0__0 )
-        {
-        if ( state.backtracking==0 ) {
-           before(grammarAccess.getNameExpCSAccess().getGroup_0()); 
-        }
-        // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:5290:1: ( rule__NameExpCS__Group_0__0 )
-        // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:5290:2: rule__NameExpCS__Group_0__0
-        {
-        pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_0__0_in_synpred197_InternalOCLinEcore11873);
-        rule__NameExpCS__Group_0__0();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-
-        }
-
-
-        }
-    }
-    // $ANTLR end synpred197_InternalOCLinEcore
-
     // $ANTLR start synpred293_InternalOCLinEcore
     public final void synpred293_InternalOCLinEcore_fragment() throws RecognitionException {   
         // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:15096:2: ( rule__NUMBER_LITERAL__Group_1__0 )
@@ -73150,11 +73120,81 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
 
     // Delegated rules
 
+    public final boolean synpred293_InternalOCLinEcore() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred293_InternalOCLinEcore_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred309_InternalOCLinEcore() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred309_InternalOCLinEcore_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred297_InternalOCLinEcore() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred297_InternalOCLinEcore_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred192_InternalOCLinEcore() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred192_InternalOCLinEcore_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred308_InternalOCLinEcore() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred308_InternalOCLinEcore_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred194_InternalOCLinEcore() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred194_InternalOCLinEcore_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -73225,90 +73265,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
         int start = input.mark();
         try {
             synpred193_InternalOCLinEcore_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred197_InternalOCLinEcore() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred197_InternalOCLinEcore_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred293_InternalOCLinEcore() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred293_InternalOCLinEcore_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred192_InternalOCLinEcore() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred192_InternalOCLinEcore_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred297_InternalOCLinEcore() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred297_InternalOCLinEcore_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred194_InternalOCLinEcore() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred194_InternalOCLinEcore_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred308_InternalOCLinEcore() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred308_InternalOCLinEcore_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -74883,65 +74839,146 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     static final String DFA74_eotS =
         "\55\uffff";
     static final String DFA74_eofS =
-        "\55\uffff";
+        "\1\uffff\52\54\2\uffff";
     static final String DFA74_minS =
-        "\1\6\52\0\2\uffff";
+        "\1\6\52\17\2\uffff";
     static final String DFA74_maxS =
-        "\1\72\52\0\2\uffff";
+        "\1\72\52\172\2\uffff";
     static final String DFA74_acceptS =
         "\53\uffff\1\1\1\2";
     static final String DFA74_specialS =
-        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
-        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
-        "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
-        "\1\46\1\47\1\50\1\51\2\uffff}>";
+        "\55\uffff}>";
     static final String[] DFA74_transitionS = {
             "\1\1\1\2\10\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
             "\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31"+
             "\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
             "\1\46\1\47\1\50\1\51\1\52\3\uffff\1\3\1\4",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
+            "\1\54\46\uffff\2\54\3\uffff\1\54\1\uffff\15\54\16\uffff\4"+
+            "\54\1\uffff\4\54\2\uffff\1\53\3\uffff\3\54\1\uffff\1\54\16\uffff"+
+            "\1\54",
             "",
             ""
     };
@@ -74977,647 +75014,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
         }
         public String getDescription() {
             return "5283:1: rule__NameExpCS__Alternatives : ( ( ( rule__NameExpCS__Group_0__0 ) ) | ( ( rule__NameExpCS__ElementAssignment_1 ) ) );";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA74_1 = input.LA(1);
-
-                         
-                        int index74_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA74_2 = input.LA(1);
-
-                         
-                        int index74_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA74_3 = input.LA(1);
-
-                         
-                        int index74_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA74_4 = input.LA(1);
-
-                         
-                        int index74_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA74_5 = input.LA(1);
-
-                         
-                        int index74_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA74_6 = input.LA(1);
-
-                         
-                        int index74_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA74_7 = input.LA(1);
-
-                         
-                        int index74_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA74_8 = input.LA(1);
-
-                         
-                        int index74_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA74_9 = input.LA(1);
-
-                         
-                        int index74_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA74_10 = input.LA(1);
-
-                         
-                        int index74_10 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_10);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA74_11 = input.LA(1);
-
-                         
-                        int index74_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA74_12 = input.LA(1);
-
-                         
-                        int index74_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
-                        int LA74_13 = input.LA(1);
-
-                         
-                        int index74_13 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_13);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
-                        int LA74_14 = input.LA(1);
-
-                         
-                        int index74_14 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_14);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA74_15 = input.LA(1);
-
-                         
-                        int index74_15 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_15);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
-                        int LA74_16 = input.LA(1);
-
-                         
-                        int index74_16 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_16);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
-                        int LA74_17 = input.LA(1);
-
-                         
-                        int index74_17 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_17);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 17 : 
-                        int LA74_18 = input.LA(1);
-
-                         
-                        int index74_18 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_18);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 18 : 
-                        int LA74_19 = input.LA(1);
-
-                         
-                        int index74_19 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_19);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 19 : 
-                        int LA74_20 = input.LA(1);
-
-                         
-                        int index74_20 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_20);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 20 : 
-                        int LA74_21 = input.LA(1);
-
-                         
-                        int index74_21 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_21);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 21 : 
-                        int LA74_22 = input.LA(1);
-
-                         
-                        int index74_22 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_22);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 22 : 
-                        int LA74_23 = input.LA(1);
-
-                         
-                        int index74_23 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_23);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 23 : 
-                        int LA74_24 = input.LA(1);
-
-                         
-                        int index74_24 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_24);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 24 : 
-                        int LA74_25 = input.LA(1);
-
-                         
-                        int index74_25 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_25);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 25 : 
-                        int LA74_26 = input.LA(1);
-
-                         
-                        int index74_26 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_26);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 26 : 
-                        int LA74_27 = input.LA(1);
-
-                         
-                        int index74_27 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_27);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 27 : 
-                        int LA74_28 = input.LA(1);
-
-                         
-                        int index74_28 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_28);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 28 : 
-                        int LA74_29 = input.LA(1);
-
-                         
-                        int index74_29 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_29);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 29 : 
-                        int LA74_30 = input.LA(1);
-
-                         
-                        int index74_30 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_30);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 30 : 
-                        int LA74_31 = input.LA(1);
-
-                         
-                        int index74_31 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_31);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 31 : 
-                        int LA74_32 = input.LA(1);
-
-                         
-                        int index74_32 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_32);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 32 : 
-                        int LA74_33 = input.LA(1);
-
-                         
-                        int index74_33 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_33);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 33 : 
-                        int LA74_34 = input.LA(1);
-
-                         
-                        int index74_34 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_34);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 34 : 
-                        int LA74_35 = input.LA(1);
-
-                         
-                        int index74_35 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_35);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 35 : 
-                        int LA74_36 = input.LA(1);
-
-                         
-                        int index74_36 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_36);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 36 : 
-                        int LA74_37 = input.LA(1);
-
-                         
-                        int index74_37 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_37);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 37 : 
-                        int LA74_38 = input.LA(1);
-
-                         
-                        int index74_38 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_38);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 38 : 
-                        int LA74_39 = input.LA(1);
-
-                         
-                        int index74_39 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_39);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 39 : 
-                        int LA74_40 = input.LA(1);
-
-                         
-                        int index74_40 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_40);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 40 : 
-                        int LA74_41 = input.LA(1);
-
-                         
-                        int index74_41 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_41);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 41 : 
-                        int LA74_42 = input.LA(1);
-
-                         
-                        int index74_42 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred197_InternalOCLinEcore()) ) {s = 43;}
-
-                        else if ( (true) ) {s = 44;}
-
-                         
-                        input.seek(index74_42);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 74, _s, input);
-            error(nvae);
-            throw nvae;
         }
     }
     static final String DFA168_eotS =
@@ -79141,7 +78537,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
         public static final BitSet FOLLOW_ruleTupleLiteralExpCS_in_synpred192_InternalOCLinEcore11756 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionLiteralExpCS_in_synpred193_InternalOCLinEcore11773 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypeLiteralExpCS_in_synpred194_InternalOCLinEcore11790 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group_0__0_in_synpred197_InternalOCLinEcore11873 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__NUMBER_LITERAL__Group_1__0_in_synpred293_InternalOCLinEcore31249 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionTypeCS__Alternatives_1_in_synpred296_InternalOCLinEcore31736 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TupleTypeCS__Alternatives_1_in_synpred297_InternalOCLinEcore32232 = new BitSet(new long[]{0x0000000000000002L});

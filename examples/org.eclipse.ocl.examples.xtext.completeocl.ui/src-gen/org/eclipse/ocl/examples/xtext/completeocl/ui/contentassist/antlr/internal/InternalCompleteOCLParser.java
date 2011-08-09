@@ -43842,6 +43842,21 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
     }
     // $ANTLR end synpred134_InternalCompleteOCL
 
+    // $ANTLR start synpred136_InternalCompleteOCL
+    public final void synpred136_InternalCompleteOCL_fragment() throws RecognitionException {   
+        // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:9908:2: ( rule__NameExpCS__Group_0_0_2__0 )
+        // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:9908:2: rule__NameExpCS__Group_0_0_2__0
+        {
+        pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_0_0_2__0_in_synpred136_InternalCompleteOCL20279);
+        rule__NameExpCS__Group_0_0_2__0();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred136_InternalCompleteOCL
+
     // Delegated rules
 
     public final boolean synpred30_InternalCompleteOCL() {
@@ -43947,6 +43962,20 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
         int start = input.mark();
         try {
             synpred85_InternalCompleteOCL_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred136_InternalCompleteOCL() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred136_InternalCompleteOCL_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -46779,112 +46808,52 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
     static final String DFA85_eotS =
         "\42\uffff";
     static final String DFA85_eofS =
-        "\1\uffff\37\40\2\uffff";
+        "\42\uffff";
     static final String DFA85_minS =
-        "\1\5\37\16\2\uffff";
+        "\1\5\37\0\2\uffff";
     static final String DFA85_maxS =
-        "\1\75\37\131\2\uffff";
+        "\1\75\37\0\2\uffff";
     static final String DFA85_acceptS =
-        "\40\uffff\1\2\1\1";
+        "\40\uffff\1\1\1\2";
     static final String DFA85_specialS =
-        "\42\uffff}>";
+        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
+        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
+        "\1\31\1\32\1\33\1\34\1\35\1\36\2\uffff}>";
     static final String[] DFA85_transitionS = {
             "\1\1\1\2\11\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
             "\1\16\1\17\1\25\1\26\1\27\1\30\1\31\1\32\1\33\1\34\1\35\1\36"+
             "\1\3\1\4\21\uffff\1\37\1\20\1\21\1\22\1\23\1\24",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
-            "\6\40\2\uffff\2\40\1\uffff\2\40\14\uffff\2\40\1\uffff\16\40"+
-            "\6\uffff\1\40\1\41\6\40\2\uffff\2\40\2\uffff\2\40\1\uffff\3"+
-            "\40\1\uffff\1\40\1\uffff\1\40\2\uffff\2\40",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
             "",
             ""
     };
@@ -46920,6 +46889,482 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
         }
         public String getDescription() {
             return "()* loopback of 9908:1: ( rule__NameExpCS__Group_0_0_2__0 )*";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA85_1 = input.LA(1);
+
+                         
+                        int index85_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA85_2 = input.LA(1);
+
+                         
+                        int index85_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA85_3 = input.LA(1);
+
+                         
+                        int index85_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA85_4 = input.LA(1);
+
+                         
+                        int index85_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA85_5 = input.LA(1);
+
+                         
+                        int index85_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA85_6 = input.LA(1);
+
+                         
+                        int index85_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA85_7 = input.LA(1);
+
+                         
+                        int index85_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA85_8 = input.LA(1);
+
+                         
+                        int index85_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA85_9 = input.LA(1);
+
+                         
+                        int index85_9 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_9);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA85_10 = input.LA(1);
+
+                         
+                        int index85_10 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
+                        int LA85_11 = input.LA(1);
+
+                         
+                        int index85_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_11);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 11 : 
+                        int LA85_12 = input.LA(1);
+
+                         
+                        int index85_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_12);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 12 : 
+                        int LA85_13 = input.LA(1);
+
+                         
+                        int index85_13 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_13);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 13 : 
+                        int LA85_14 = input.LA(1);
+
+                         
+                        int index85_14 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_14);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
+                        int LA85_15 = input.LA(1);
+
+                         
+                        int index85_15 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_15);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 15 : 
+                        int LA85_16 = input.LA(1);
+
+                         
+                        int index85_16 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_16);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA85_17 = input.LA(1);
+
+                         
+                        int index85_17 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_17);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA85_18 = input.LA(1);
+
+                         
+                        int index85_18 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_18);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
+                        int LA85_19 = input.LA(1);
+
+                         
+                        int index85_19 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_19);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 19 : 
+                        int LA85_20 = input.LA(1);
+
+                         
+                        int index85_20 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_20);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 20 : 
+                        int LA85_21 = input.LA(1);
+
+                         
+                        int index85_21 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_21);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 21 : 
+                        int LA85_22 = input.LA(1);
+
+                         
+                        int index85_22 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_22);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 22 : 
+                        int LA85_23 = input.LA(1);
+
+                         
+                        int index85_23 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_23);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 23 : 
+                        int LA85_24 = input.LA(1);
+
+                         
+                        int index85_24 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_24);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 24 : 
+                        int LA85_25 = input.LA(1);
+
+                         
+                        int index85_25 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_25);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 25 : 
+                        int LA85_26 = input.LA(1);
+
+                         
+                        int index85_26 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_26);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 26 : 
+                        int LA85_27 = input.LA(1);
+
+                         
+                        int index85_27 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_27);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 27 : 
+                        int LA85_28 = input.LA(1);
+
+                         
+                        int index85_28 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_28);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 28 : 
+                        int LA85_29 = input.LA(1);
+
+                         
+                        int index85_29 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_29);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 29 : 
+                        int LA85_30 = input.LA(1);
+
+                         
+                        int index85_30 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_30);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 30 : 
+                        int LA85_31 = input.LA(1);
+
+                         
+                        int index85_31 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred136_InternalCompleteOCL()) ) {s = 32;}
+
+                        else if ( (true) ) {s = 33;}
+
+                         
+                        input.seek(index85_31);
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 85, _s, input);
+            error(nvae);
+            throw nvae;
         }
     }
  
@@ -48208,6 +48653,7 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
         public static final BitSet FOLLOW_rule__TupleTypeCS__Alternatives_1_in_synpred122_InternalCompleteOCL15991 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__InfixedExpCS__Group_1__0_in_synpred133_InternalCompleteOCL19513 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__InfixedExpCS__Group_1_1__0_in_synpred134_InternalCompleteOCL19650 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group_0_0_2__0_in_synpred136_InternalCompleteOCL20279 = new BitSet(new long[]{0x0000000000000002L});
     }
 
 

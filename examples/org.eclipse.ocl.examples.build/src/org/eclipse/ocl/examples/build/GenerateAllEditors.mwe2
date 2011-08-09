@@ -25,6 +25,7 @@ module GenerateAllEditors
  */
 Workflow {
   component = @GenerateEssentialOCLEditor {}
+  component = @GenerateMarkupEditor {}
   component = @GenerateOCLinEcoreEditor {}
   component = @GenerateCompleteOCLEditor {}
   component = @GenerateOCLstdlibEditor {}
