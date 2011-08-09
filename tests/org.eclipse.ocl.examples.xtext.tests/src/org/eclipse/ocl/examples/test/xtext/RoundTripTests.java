@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
@@ -48,7 +47,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.resource.XtextResource;
 
 /**
- * Test that an Ecore file can be loaded as OCLinEcore than saved back as Ecore.
+ * Test that an Ecore file can be loaded as OCLinEcore then saved back as Ecore.
  */
 public class RoundTripTests extends XtextTestCase
 {
@@ -172,9 +171,6 @@ public class RoundTripTests extends XtextTestCase
 		TypeManager typeManager3 = new TypeManager();
 		BaseCSResource xtextResource3 = createXtextFromURI(typeManager3, outputURI);
 		PivotResource pivotResource3 = createPivotFromXtext(typeManager3, xtextResource3);
-		NamedElement eObject = (NamedElement) pivotResource1.getContents().get(0);
-		eObject.setName(ecoreName); // WIP
-		eObject.setMoniker(ecoreName); // WIP
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
