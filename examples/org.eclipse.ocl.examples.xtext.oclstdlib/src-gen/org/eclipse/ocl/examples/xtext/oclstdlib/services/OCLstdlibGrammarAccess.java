@@ -50,6 +50,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
+		//
 		//Library returns LibRootPackageCS:
 		//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
 		//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
@@ -2272,6 +2273,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
+	//
 	//Library returns LibRootPackageCS:
 	//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
 	//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
@@ -2671,6 +2673,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
+	//
 	//Model returns ContextCS:
 	//	ownedExpression=ExpCS;
 	public EssentialOCLGrammarAccess.ModelElements getModelAccess() {
@@ -2716,6 +2719,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// String to allow diverse re-use
+	//
 	//terminal INT:
 	//	"0".."9"+;
 	public TerminalRule getINTRule() {
@@ -2723,6 +2727,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
+	//
 	//NUMBER_LITERAL returns BigNumber:
 	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
 	public EssentialOCLGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
@@ -2733,8 +2738,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNUMBER_LITERALAccess().getRule();
 	}
 
+	//terminal DOCUMENTATION:
+	//	"/ **"->"* /";
+	public TerminalRule getDOCUMENTATIONRule() {
+		return gaEssentialOCL.getDOCUMENTATIONRule();
+	} 
+
 	//terminal ML_COMMENT:
-	//	"/ *" "*"? !"*"->"* /";
+	//	"/ *" !"*"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaEssentialOCL.getML_COMMENTRule();
 	} 
@@ -2818,6 +2829,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
+	//
 	//PrefixOperator:
 	//	EssentialOCLPrefixOperator;
 	public EssentialOCLGrammarAccess.PrefixOperatorElements getPrefixOperatorAccess() {
@@ -2829,6 +2841,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
+	//
 	//InfixOperator:
 	//	EssentialOCLInfixOperator;
 	public EssentialOCLGrammarAccess.InfixOperatorElements getInfixOperatorAccess() {
@@ -2840,6 +2853,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
+	//
 	//NavigationOperator:
 	//	EssentialOCLNavigationOperator;
 	public EssentialOCLGrammarAccess.NavigationOperatorElements getNavigationOperatorAccess() {
@@ -2851,8 +2865,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
+	//
 	////  Names
+	//
 	////---------------------------------------------------------------------
+	//
 	//EssentialOCLUnrestrictedName returns ecore::EString:
 	//	Identifier;
 	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedNameElements getEssentialOCLUnrestrictedNameAccess() {
@@ -2864,6 +2881,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
+	//
 	//UnrestrictedName returns ecore::EString:
 	//	EssentialOCLUnrestrictedName;
 	public EssentialOCLGrammarAccess.UnrestrictedNameElements getUnrestrictedNameAccess() {
@@ -2885,6 +2903,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
+	//
 	//UnreservedName returns ecore::EString:
 	//	EssentialOCLUnreservedName;
 	public EssentialOCLGrammarAccess.UnreservedNameElements getUnreservedNameAccess() {
@@ -2896,8 +2915,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
+	//
 	////  Types
+	//
 	////---------------------------------------------------------------------
+	//
 	//PrimitiveTypeIdentifier:
 	//	"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid";
 	public EssentialOCLGrammarAccess.PrimitiveTypeIdentifierElements getPrimitiveTypeIdentifierAccess() {
@@ -2960,8 +2982,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
+	//
 	////  Literals
+	//
 	////---------------------------------------------------------------------
+	//
 	//CollectionLiteralExpCS:
 	//	ownedType=CollectionTypeCS "{" (ownedParts+=CollectionLiteralPartCS ("," ownedParts+=CollectionLiteralPartCS)*)? "}";
 	public EssentialOCLGrammarAccess.CollectionLiteralExpCSElements getCollectionLiteralExpCSAccess() {
@@ -3094,6 +3119,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////TypeNameExpCS returns base::QualifiedTypeRefCS:
+	//
 	//TypeNameExpCS:
 	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
 	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName];
@@ -3116,13 +3142,21 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////---------------------------------------------------------------------
+	//
 	////  Expressions
+	//
 	////---------------------------------------------------------------------
+	//
 	//// An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
+	//
 	////  that let is right associative, whereas infix operators are left associative.
+	//
 	////   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
+	//
 	//// is
+	//
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
+	//
 	//ExpCS:
 	//	InfixedExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
@@ -3228,6 +3262,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
+	//
 	//NavigatingExpCS_Base returns NamedExpCS:
 	//	IndexExpCS;
 	public EssentialOCLGrammarAccess.NavigatingExpCS_BaseElements getNavigatingExpCS_BaseAccess() {
@@ -3239,7 +3274,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
+	//
 	////  keep it as simple as possible and avoid backtracking.
+	//
 	//NavigatingExpCS returns NamedExpCS:
 	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
 	//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
@@ -3293,7 +3330,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overridden
+	//
 	////	'?'	-- defined by Complete OCL
+	//
 	//NavigatingArgExpCS returns ExpCS:
 	//	ExpCS;
 	public EssentialOCLGrammarAccess.NavigatingArgExpCSElements getNavigatingArgExpCSAccess() {

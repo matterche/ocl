@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 
 public class EssentialOCLQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider
@@ -25,8 +24,4 @@ public class EssentialOCLQualifiedNameProvider extends DefaultDeclarativeQualifi
 //	public String getDelimiter() {
 //		return "::";
 //	}
-
-	protected String name(NamedElement namdElement) {
-		return namdElement.getName();
-	}
 }
