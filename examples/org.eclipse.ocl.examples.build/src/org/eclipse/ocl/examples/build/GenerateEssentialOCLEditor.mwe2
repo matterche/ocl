@@ -34,6 +34,12 @@ var essentialOCLruntimeProject = "../${essentialOCLprojectName}"
 Workflow {
     bean = StandaloneSetup {
 		platformUri = "${essentialOCLruntimeProject}/.."
+//		registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+//        uriMap = {
+//            from="platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+//            to="classpath:/model/Ecore.genmodel"
+//          }
+//BUG350428		registerGenModelFile = "classpath:/model/Ecore.genmodel"
 	}
 	
 	component = DirectoryCleaner {
@@ -59,9 +65,9 @@ Workflow {
 			fragment = grammarAccess.GrammarAccessFragment {}
 			
 			// generates Java API for the generated EPackages 
-			fragment = ecore.EcoreGeneratorFragment {
-				referencedGenModels = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
-			}
+//			fragment = ecore.EcoreGeneratorFragment {
+//				referencedGenModels = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+//			}
 			
 			// the serialization component
 			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
