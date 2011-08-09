@@ -24,9 +24,6 @@ public class BaseAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAttrib
 
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		if("RULE_DOCUMENTATION".equals(tokenName)) {
-			return DefaultHighlightingConfiguration.COMMENT_ID;
-		}
 		if("RULE_DOUBLE_QUOTED_STRING".equals(tokenName)) {
 			return DefaultHighlightingConfiguration.STRING_ID;
 		}

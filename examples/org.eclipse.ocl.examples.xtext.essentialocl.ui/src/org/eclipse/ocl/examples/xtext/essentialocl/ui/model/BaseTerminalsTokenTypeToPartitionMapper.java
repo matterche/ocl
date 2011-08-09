@@ -27,7 +27,6 @@ public class BaseTerminalsTokenTypeToPartitionMapper extends TerminalsTokenTypeT
 	public final static String STRING_LITERAL_PARTITION1 = "__string1";
 	public final static String STRING_LITERAL_PARTITION2 = "__string2";
 	public final static String ML_STRING_LITERAL_PARTITION = "__ml_string";
-	public final static String DOCUMENTATION_PARTITION = "__documentation";
 	public final static String ESCAPED_ID_PARTITION = "__escaped_id";
 	
 	protected static final String[] BASE_SUPPORTED_PARTITIONS = new String[]{
@@ -35,16 +34,13 @@ public class BaseTerminalsTokenTypeToPartitionMapper extends TerminalsTokenTypeT
 		STRING_LITERAL_PARTITION1,
 		STRING_LITERAL_PARTITION2,
 		ML_STRING_LITERAL_PARTITION,
-		DOCUMENTATION_PARTITION,
 		ESCAPED_ID_PARTITION,
 		IDocument.DEFAULT_CONTENT_TYPE
 	};
 	
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		if ("RULE_DOCUMENTATION".equals(tokenName)) {
-			return DOCUMENTATION_PARTITION;
-		} else if ("RULE_ML_COMMENT".equals(tokenName)) {
+		if ("RULE_ML_COMMENT".equals(tokenName)) {
 			return COMMENT_PARTITION;
 		} else if ("RULE_SL_COMMENT".equals(tokenName)) {
 			return COMMENT_PARTITION;

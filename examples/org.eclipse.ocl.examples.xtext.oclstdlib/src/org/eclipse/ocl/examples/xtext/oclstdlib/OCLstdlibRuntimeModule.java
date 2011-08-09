@@ -18,6 +18,7 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
+import org.eclipse.ocl.examples.xtext.base.services.PivotResourceServiceProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
@@ -30,6 +31,7 @@ import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.resource.IFragmentProvider;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.CompositeEValidator;
@@ -76,6 +78,11 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	@Override
 	public Class<? extends ILinkingService> bindILinkingService() {
 		return EssentialOCLLinkingService.class;
+	}
+
+	// pivot: scheme support
+	public Class<? extends IResourceServiceProvider> bindIResourceServiceProvider() {
+		return PivotResourceServiceProvider.class;
 	}
 
 	@Override

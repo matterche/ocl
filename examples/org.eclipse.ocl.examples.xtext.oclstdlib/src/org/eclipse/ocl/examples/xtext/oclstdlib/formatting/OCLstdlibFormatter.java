@@ -187,8 +187,6 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 	    	c.setLinewrap().after(f.getSL_COMMENTRule());
 		    c.setLinewrap(2).before(f.getML_COMMENTRule());
 		    c.setLinewrap().after(f.getML_COMMENTRule());
-		    c.setLinewrap(2).before(f.getDOCUMENTATIONRule());
-		    c.setLinewrap().after(f.getDOCUMENTATIONRule());
 		    c.setLinewrap(2).before(f.getML_SINGLE_QUOTED_STRINGRule());
 		    c.setLinewrap().after(f.getML_SINGLE_QUOTED_STRINGRule());
 	    }

@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
+import org.eclipse.ocl.examples.xtext.base.services.PivotResourceServiceProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
@@ -31,6 +32,7 @@ import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.IFragmentProvider;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 
 import com.google.inject.Binder;
@@ -86,6 +88,11 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return EssentialOCLQualifiedNameProvider.class;
+	}
+
+	// pivot: scheme support
+	public Class<? extends IResourceServiceProvider> bindIResourceServiceProvider() {
+		return PivotResourceServiceProvider.class;
 	}
 
 //	@Override
