@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.ui;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.findrefs.BaseReferenceFinder;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectHoverProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
@@ -29,7 +29,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.ui.editor.IURIEditorOpener;
 import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
-import org.eclipse.xtext.ui.editor.hover.DispatchingEObjectTextHover;
+import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
@@ -48,9 +48,9 @@ public class EssentialOCLUiModule extends org.eclipse.ocl.examples.xtext.essenti
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
 		return BaseAntlrTokenToAttributeIdMapper.class;
 	}
-	
-	public Class<? extends DispatchingEObjectTextHover> bindDispatchingEObjectTextHover() {
-		return BaseEObjectTextHover.class;
+		
+	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
+		return BaseEObjectHoverProvider.class;
 	}
 	
 	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {

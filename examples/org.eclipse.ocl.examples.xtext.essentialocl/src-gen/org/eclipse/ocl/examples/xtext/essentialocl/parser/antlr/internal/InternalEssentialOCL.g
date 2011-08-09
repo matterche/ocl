@@ -3788,9 +3788,7 @@ RULE_ESCAPED_ID : '_' RULE_SINGLE_QUOTED_STRING;
 
 RULE_INT : ('0'..'9')+;
 
-RULE_DOCUMENTATION : '/**' ( options {greedy=false;} : . )*'*/';
-
-RULE_ML_COMMENT : '/*' ~('*') ( options {greedy=false;} : . )*'*/';
+RULE_ML_COMMENT : '/*' '*'? ~('*') ( options {greedy=false;} : . )*'*/';
 
 RULE_SL_COMMENT : '--' ~(('\n'|'\r'))* ('\r'? '\n')?;
 

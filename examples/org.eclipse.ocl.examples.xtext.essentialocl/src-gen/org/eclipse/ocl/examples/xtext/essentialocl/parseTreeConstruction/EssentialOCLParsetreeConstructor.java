@@ -82,7 +82,6 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Model ****************
  *
  * //generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
- * 
  * Model returns ContextCS:
  * 	ownedExpression=ExpCS;
  *
@@ -1228,11 +1227,8 @@ protected class TuplePartCS_OwnedTypeAssignment_2 extends AssignmentToken  {
 /************ begin Rule CollectionLiteralExpCS ****************
  *
  * //---------------------------------------------------------------------
- * 
  * //  Literals
- * 
  * //---------------------------------------------------------------------
- * 
  * CollectionLiteralExpCS:
  * 	ownedType=CollectionTypeCS "{" (ownedParts+=CollectionLiteralPartCS ("," ownedParts+=CollectionLiteralPartCS)*)? "}";
  *
@@ -3117,7 +3113,6 @@ protected class TypeLiteralExpCS_OwnedTypeAssignment extends AssignmentToken  {
 /************ begin Rule TypeNameExpCS ****************
  *
  * //TypeNameExpCS returns base::QualifiedTypeRefCS:
- * 
  * TypeNameExpCS:
  * 	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
  * 	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName];
@@ -3542,21 +3537,13 @@ protected class TypeExpCS_TypeLiteralCSParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule ExpCS ****************
  *
  * //---------------------------------------------------------------------
- * 
  * //  Expressions
- * 
  * //---------------------------------------------------------------------
- * 
  * // An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
- * 
  * //  that let is right associative, whereas infix operators are left associative.
- * 
  * //   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
- * 
  * // is
- * 
  * //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
- * 
  * ExpCS:
  * 	InfixedExpCS;
  *
@@ -5644,7 +5631,6 @@ protected class IndexExpCS_RightSquareBracketKeyword_1_5_3 extends KeywordToken 
 /************ begin Rule NavigatingExpCS_Base ****************
  *
  * //	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
- * 
  * NavigatingExpCS_Base returns NamedExpCS:
  * 	IndexExpCS;
  *
@@ -5693,9 +5679,7 @@ protected class NavigatingExpCS_Base_IndexExpCSParserRuleCall extends RuleCallTo
 /************ begin Rule NavigatingExpCS ****************
  *
  * // For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
- * 
  * //  keep it as simple as possible and avoid backtracking.
- * 
  * NavigatingExpCS returns NamedExpCS:
  * 	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
  * 	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
@@ -7426,9 +7410,7 @@ protected class NavigatingSemiArgCS_InitAssignment_3_1 extends AssignmentToken  
 /************ begin Rule NavigatingArgExpCS ****************
  *
  * // Intended to be overridden
- * 
  * //	'?'	-- defined by Complete OCL
- * 
  * NavigatingArgExpCS returns ExpCS:
  * 	ExpCS;
  *
