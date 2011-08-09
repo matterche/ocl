@@ -16,14 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.markup.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
 import org.eclipse.ocl.examples.xtext.markup.MarkupPackage;
 import org.eclipse.ocl.examples.xtext.markup.OclElement;
 

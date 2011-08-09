@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.markup;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
