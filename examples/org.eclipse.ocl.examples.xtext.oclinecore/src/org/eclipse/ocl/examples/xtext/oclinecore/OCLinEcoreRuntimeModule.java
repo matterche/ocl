@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.oclinecore;
 
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
+import org.eclipse.ocl.examples.xtext.base.services.PivotResourceServiceProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
@@ -33,6 +34,7 @@ import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.IFragmentProvider;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.service.SingletonBinding;
 
@@ -86,6 +88,11 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return EssentialOCLQualifiedNameProvider.class;
+	}
+
+	// pivot: scheme support
+	public Class<? extends IResourceServiceProvider> bindIResourceServiceProvider() {
+		return PivotResourceServiceProvider.class;
 	}
 	
 	// DataType text to value parsing.

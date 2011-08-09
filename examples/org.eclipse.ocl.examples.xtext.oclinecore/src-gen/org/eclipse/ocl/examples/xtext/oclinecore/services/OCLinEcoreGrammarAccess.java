@@ -3958,14 +3958,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getNUMBER_LITERALAccess().getRule();
 	}
 
-	//terminal DOCUMENTATION:
-	//	"/ **"->"* /";
-	public TerminalRule getDOCUMENTATIONRule() {
-		return gaEssentialOCL.getDOCUMENTATIONRule();
-	} 
-
 	//terminal ML_COMMENT:
-	//	"/ *" !"*"->"* /";
+	//	"/ *" "*"? !"*"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaEssentialOCL.getML_COMMENTRule();
 	} 

@@ -55,6 +55,7 @@ import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * CS2Pivot manages the equivalence between a Concrete Syntax Resources
@@ -143,17 +144,18 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 			}
 			TerminalRule terminalRule = (TerminalRule) grammarElement;
 			String name = terminalRule.getName();
-			if ("DOCUMENTATION".equals(name)) {
-				if (documentationNodes == null) {
-					documentationNodes = new ArrayList<ILeafNode>();
-				}
-				documentationNodes.add(leafNode);
-			}
-			else if ("WS".equals(name)) {
+			if ("WS".equals(name)) {
 			}
 			else if ("SL_COMMENT".equals(name)) {
 			}
 			else if ("ML_COMMENT".equals(name)) {
+				String text = NodeModelUtils.getTokenText(leafNode);
+				if (text.startsWith("/**")) {
+					if (documentationNodes == null) {
+						documentationNodes = new ArrayList<ILeafNode>();
+					}
+					documentationNodes.add(leafNode);
+				}
 			}
 			else {
 				break;

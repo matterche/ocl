@@ -16,11 +16,9 @@
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -40,10 +38,6 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
-import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.ILeafNode;
-import org.eclipse.xtext.nodemodel.INode;
 
 /**
  * CS2Pivot manages the equivalence between a Concrete Syntax Resources
@@ -77,38 +71,6 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 			return null;
 		}
 		return PivotUtil.getAdapter(Pivot2CS.class, resourceSet);
-	}
-
-	public static List<ILeafNode> getDocumentationNodes(ICompositeNode node) {
-		List<ILeafNode> documentationNodes = null;
-		for (INode childNode : node.getChildren()) {
-			if (!(childNode instanceof ILeafNode)) {
-				break;
-			}
-			ILeafNode leafNode = (ILeafNode) childNode;
-			EObject grammarElement = leafNode.getGrammarElement();
-			if (!(grammarElement instanceof TerminalRule)) {
-				break;
-			}
-			TerminalRule terminalRule = (TerminalRule) grammarElement;
-			String name = terminalRule.getName();
-			if ("DOCUMENTATION".equals(name)) {
-				if (documentationNodes == null) {
-					documentationNodes = new ArrayList<ILeafNode>();
-				}
-				documentationNodes.add(leafNode);
-			}
-			else if ("WS".equals(name)) {
-			}
-			else if ("SL_COMMENT".equals(name)) {
-			}
-			else if ("ML_COMMENT".equals(name)) {
-			}
-			else {
-				break;
-			}
-		}
-		return documentationNodes;
 	}
 	
 	protected final TypeManager typeManager;

@@ -1060,7 +1060,11 @@ public class CS2PivotConversion extends AbstractConversion
 				List<String> documentationStrings = new ArrayList<String>();
 				for (ILeafNode documentationNode : documentationNodes) {
 					String text = documentationNode.getText();
-					documentationStrings.add(text.substring(3, text.length()-3).trim());
+					int startIndex = text.startsWith("/**") ? 3 : 0;
+					int endIndex = text.length() - (text.endsWith("*/") ? text.endsWith("**/") ? 3 : 2 : 0);
+					if (startIndex < endIndex) {
+						documentationStrings.add(text.substring(startIndex, endIndex).trim());
+					}
 				}
 				List<Comment> ownedComments = pivotElement.getOwnedComments();
 				int iMax = Math.min(documentationStrings.size(), ownedComments.size());
