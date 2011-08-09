@@ -19,12 +19,12 @@ package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.findrefs.BaseReferenceFinder;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectHoverProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
+import org.eclipse.ocl.examples.xtext.markup.ui.hover.MarkupHoverProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
@@ -67,7 +67,7 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 	}
 	
 	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
-		return BaseEObjectHoverProvider.class;
+		return MarkupHoverProvider.class;
 	}
 
 	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
