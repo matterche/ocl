@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
@@ -175,6 +176,7 @@ public class RoundTripTests extends XtextTestCase
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+		((NamedElement)pivotResource3.getContents().get(0)).setName(((NamedElement)pivotResource1.getContents().get(0)).getName());
     	assertSameModel(pivotResource1, pivotResource3, options);
 		unloadPivot(typeManager1);
 	}

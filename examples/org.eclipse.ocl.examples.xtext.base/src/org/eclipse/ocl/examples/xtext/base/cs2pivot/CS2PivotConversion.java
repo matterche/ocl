@@ -1192,12 +1192,22 @@ public class CS2PivotConversion extends AbstractConversion
 			String qualifiedName = getQualifiedName(new StringBuffer(), csElement);
 			pivotObject = oldPackagesByQualifiedName.get(qualifiedName);
 		}
+		String name = csElement.getName();
+		if ((name == null) && (csElement.eContainer() == null)) {
+			Resource csResource = csElement.eResource();
+			if (csResource != null) {
+				URI csURI = csResource.getURI();
+				if (csURI != null) {
+					name = csURI.lastSegment();
+				}
+			}
+		}
 		if (pivotObject == null) {
-			pivotObject = oldPackagesByName.get(csElement.getName());
+			pivotObject = oldPackagesByName.get(name);
 		}
 		T pivotElement;
 		if (pivotObject == null) {
-			pivotElement = typeManager.createPackage(pivotClass, pivotEClass, csElement.getName(), csElement.getNsURI());
+			pivotElement = typeManager.createPackage(pivotClass, pivotEClass, name, csElement.getNsURI());
 			moniker = pivotElement.getMoniker();
 			logger.trace("Created " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			typeManager.installPackage(pivotElement);
@@ -1212,7 +1222,7 @@ public class CS2PivotConversion extends AbstractConversion
 			moniker = pivotElement.getMoniker();
 //			assert !pivotElement.hasMoniker() || moniker.equals(pivotElement.getMoniker());
 			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-			refreshName(pivotElement, csElement.getName());
+			refreshName(pivotElement, name);
 		}
 		putPivotElement(moniker, pivotElement);
 		installPivotElement(csElement, pivotElement);
