@@ -590,10 +590,8 @@ public class XtextTestCase extends TestCase
 	}
 
 	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI, boolean validateSaved) throws IOException {
-		if (ecoreURI == null) {
-			ecoreURI = URI.createURI("test.ecore");
-		}
-		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI);
+		URI uri = ecoreURI != null ? ecoreURI : URI.createURI("test.ecore");
+		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, uri);
 		assertNoResourceErrors("Ecore2Pivot failed", ecoreResource);
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
