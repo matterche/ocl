@@ -237,7 +237,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		@Override
 		public void dispose() {
 			if (target != null) {
-				typeCaches.package2packages.remove(target.getMoniker());
+				typeCaches.removePackage(target);
 			}
 			target.eAdapters().remove(this);
 		}
