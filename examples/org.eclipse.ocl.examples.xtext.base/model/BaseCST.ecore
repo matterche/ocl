@@ -11,9 +11,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationCS" eSuperTypes="#//AnnotationElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" upperBound="-1"
         eType="#//ModelElementCS" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//MonikeredElement"
-        resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedReference" upperBound="-1"
+        eType="#//ModelElementRefCS" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationElementCS" abstract="true"
       eSuperTypes="#//NamedElementCS">
@@ -30,9 +29,6 @@
         eType="#//StructuralFeatureCS" containment="true" resolveProxies="false" eOpposite="#//StructuralFeatureCS/owner"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMetaType" eType="#//TypedRefCS"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassCSRef" eSuperTypes="#//ElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ClassCS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierCS" abstract="true" eSuperTypes="#//NamedElementCS #//TypeCS #//TemplateableElementCS #//ParameterableElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//PackageCS"
@@ -103,6 +99,11 @@
         transient="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalXmiId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElementRefCS" eSuperTypes="#//ModelElementCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MonikeredElementCS" abstract="true"
       eSuperTypes="#//ModelElementCS">

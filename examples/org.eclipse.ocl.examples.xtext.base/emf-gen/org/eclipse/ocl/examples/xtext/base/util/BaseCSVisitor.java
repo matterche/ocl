@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: BaseCSVisitor.java,v 1.12 2011/05/20 15:27:24 ewillink Exp $
+ * $Id$
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -51,7 +51,6 @@ public interface BaseCSVisitor<R, C>
 	R visitAnnotationElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS object);
 	R visitAttributeCS(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS object);
 	R visitClassCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS object);
-	R visitClassCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef object);
 	R visitClassifierCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS object);
 	R visitCollectionTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS object);
 	R visitConstraintCS(org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS object);
@@ -65,6 +64,7 @@ public interface BaseCSVisitor<R, C>
 	R visitLambdaTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS object);
 	R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object);
 	R visitModelElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS object);
+	R visitModelElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS object);
 	R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object);
 	R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object);
 	R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object);

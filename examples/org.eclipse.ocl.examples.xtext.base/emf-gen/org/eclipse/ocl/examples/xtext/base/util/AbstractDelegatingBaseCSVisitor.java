@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingBaseCSVisitor.java,v 1.12 2011/05/20 15:27:24 ewillink Exp $
+ * $Id$
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -77,10 +77,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitClassCS(object);
 	}
 
-	public R visitClassCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef object) {
-		return delegate.visitClassCSRef(object);
-	}
-
 	public R visitClassifierCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS object) {
 		return delegate.visitClassifierCS(object);
 	}
@@ -131,6 +127,10 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 
 	public R visitModelElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS object) {
 		return delegate.visitModelElementCS(object);
+	}
+
+	public R visitModelElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS object) {
+		return delegate.visitModelElementRefCS(object);
 	}
 
 	public R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object) {

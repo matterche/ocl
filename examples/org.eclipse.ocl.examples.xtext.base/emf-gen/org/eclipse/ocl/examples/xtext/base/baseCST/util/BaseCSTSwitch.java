@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
@@ -42,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
@@ -193,15 +193,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(classCS);
 				if (result == null) result = casePivotable(classCS);
 				if (result == null) result = caseVisitableCS(classCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.CLASS_CS_REF:
-			{
-				ClassCSRef classCSRef = (ClassCSRef)theEObject;
-				T result = caseClassCSRef(classCSRef);
-				if (result == null) result = caseElementCS(classCSRef);
-				if (result == null) result = caseVisitableCS(classCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -411,6 +402,17 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(modelElementCS);
 				if (result == null) result = casePivotable(modelElementCS);
 				if (result == null) result = caseVisitableCS(modelElementCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS:
+			{
+				ModelElementRefCS modelElementRefCS = (ModelElementRefCS)theEObject;
+				T result = caseModelElementRefCS(modelElementRefCS);
+				if (result == null) result = caseModelElementCS(modelElementRefCS);
+				if (result == null) result = caseElementCS(modelElementRefCS);
+				if (result == null) result = casePivotable(modelElementRefCS);
+				if (result == null) result = caseVisitableCS(modelElementRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -857,21 +859,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class CS Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class CS Ref</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassCSRef(ClassCSRef object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1084,6 +1071,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelElementCS(ModelElementCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementRefCS(ModelElementRefCS object)
+	{
 		return null;
 	}
 

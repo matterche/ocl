@@ -186,7 +186,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 
 	public <T extends Element> void doSwitchAll(Class<T> pivotClass, Collection<T> pivotElements, List<? extends EObject> eObjects) {
 		for (EObject eObject : eObjects) {
-			T pivotElement = converter.getCreated(pivotClass, eObject);
+			T pivotElement = converter.getPivotElement(pivotClass, eObject);
 			if (pivotElement != null) {
 				pivotElements.add(pivotElement);
 			}

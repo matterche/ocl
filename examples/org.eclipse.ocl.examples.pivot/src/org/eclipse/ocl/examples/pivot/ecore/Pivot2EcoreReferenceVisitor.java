@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
 public class Pivot2EcoreReferenceVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
@@ -99,8 +100,13 @@ public class Pivot2EcoreReferenceVisitor
 		EAnnotation eAnnotation = context.getCreated(EAnnotation.class, pivotAnnotation);
 		eAnnotation.getReferences().clear();
 		for (Element pivotReference : pivotAnnotation.getReferences()) {
-			EObject eReference = context.getCreated(EObject.class, pivotReference);
-			eAnnotation.getReferences().add(eReference);
+			EObject target = context.getCreated(EObject.class, pivotReference);
+			if ((target == null) && (pivotReference instanceof PivotObjectImpl)) {
+				target = ((PivotObjectImpl)pivotReference).getTarget();
+			}
+			if (target != null) {
+				eAnnotation.getReferences().add(target);
+			}
 		}
 		return eAnnotation;
 	}

@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -107,7 +107,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.ANNOTATION_CS: return createAnnotationCS();
 			case BaseCSTPackage.ATTRIBUTE_CS: return createAttributeCS();
 			case BaseCSTPackage.CLASS_CS: return createClassCS();
-			case BaseCSTPackage.CLASS_CS_REF: return createClassCSRef();
 			case BaseCSTPackage.COLLECTION_TYPE_REF_CS: return createCollectionTypeRefCS();
 			case BaseCSTPackage.CONSTRAINT_CS: return createConstraintCS();
 			case BaseCSTPackage.DATA_TYPE_CS: return createDataTypeCS();
@@ -118,6 +117,7 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.IMPORT_CS: return createImportCS();
 			case BaseCSTPackage.LAMBDA_TYPE_CS: return createLambdaTypeCS();
 			case BaseCSTPackage.LIBRARY_CS: return createLibraryCS();
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS: return createModelElementRefCS();
 			case BaseCSTPackage.OPERATION_CS: return createOperationCS();
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
@@ -202,16 +202,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public ClassCS createClassCS() {
 		ClassCSImpl classCS = new ClassCSImpl();
 		return classCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClassCSRef createClassCSRef() {
-		ClassCSRefImpl classCSRef = new ClassCSRefImpl();
-		return classCSRef;
 	}
 
 	/**
@@ -318,6 +308,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public LibraryCS createLibraryCS() {
 		LibraryCSImpl libraryCS = new LibraryCSImpl();
 		return libraryCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementRefCS createModelElementRefCS()
+	{
+		ModelElementRefCSImpl modelElementRefCS = new ModelElementRefCSImpl();
+		return modelElementRefCS;
 	}
 
 	/**

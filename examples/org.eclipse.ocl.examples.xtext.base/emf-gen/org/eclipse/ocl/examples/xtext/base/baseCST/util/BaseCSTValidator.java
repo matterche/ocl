@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
@@ -159,8 +159,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateAttributeCS((AttributeCS)value, diagnostics, context);
 			case BaseCSTPackage.CLASS_CS:
 				return validateClassCS((ClassCS)value, diagnostics, context);
-			case BaseCSTPackage.CLASS_CS_REF:
-				return validateClassCSRef((ClassCSRef)value, diagnostics, context);
 			case BaseCSTPackage.CLASSIFIER_CS:
 				return validateClassifierCS((ClassifierCS)value, diagnostics, context);
 			case BaseCSTPackage.COLLECTION_TYPE_REF_CS:
@@ -189,6 +187,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateLibraryCS((LibraryCS)value, diagnostics, context);
 			case BaseCSTPackage.MODEL_ELEMENT_CS:
 				return validateModelElementCS((ModelElementCS)value, diagnostics, context);
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS:
+				return validateModelElementRefCS((ModelElementRefCS)value, diagnostics, context);
 			case BaseCSTPackage.MONIKERED_ELEMENT_CS:
 				return validateMonikeredElementCS((MonikeredElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMED_ELEMENT_CS:
@@ -290,16 +290,6 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateClassCS(ClassCS classCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(classCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateClassCSRef(ClassCSRef classCSRef, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(classCSRef, diagnostics, context);
 	}
 
 	/**
@@ -440,6 +430,16 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateModelElementCS(ModelElementCS modelElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(modelElementCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelElementRefCS(ModelElementRefCS modelElementRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(modelElementRefCS, diagnostics, context);
 	}
 
 	/**

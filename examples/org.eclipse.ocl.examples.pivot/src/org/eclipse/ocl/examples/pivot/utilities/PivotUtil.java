@@ -827,7 +827,7 @@ public class PivotUtil
 		for (int k = newElements.size(); k-- > 0; ) {
 			T newElement = newElements.get(k);
 			if (newElement.eIsProxy()) {
-				elements.remove(k);			// Lose oldContent before adding possible 'duplicates'
+				elements.remove(newElement);			// Lose oldContent before adding possible 'duplicates'
 			}
 		}
 		for (int k = elements.size(); k-- > 0; ) {

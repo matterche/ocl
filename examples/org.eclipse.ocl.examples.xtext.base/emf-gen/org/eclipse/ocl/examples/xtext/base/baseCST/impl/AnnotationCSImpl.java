@@ -23,12 +23,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
@@ -39,7 +38,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationCSImpl#getOwnedContent <em>Owned Content</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationCSImpl#getReference <em>Reference</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationCSImpl#getOwnedReference <em>Owned Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,14 +56,14 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	protected EList<ModelElementCS> ownedContent;
 
 	/**
-	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference list.
+	 * The cached value of the '{@link #getOwnedReference() <em>Owned Reference</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReference()
+	 * @see #getOwnedReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MonikeredElement> reference;
+	protected EList<ModelElementRefCS> ownedReference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,13 +103,13 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MonikeredElement> getReference()
+	public EList<ModelElementRefCS> getOwnedReference()
 	{
-		if (reference == null)
+		if (ownedReference == null)
 		{
-			reference = new EObjectEList<MonikeredElement>(MonikeredElement.class, this, BaseCSTPackage.ANNOTATION_CS__REFERENCE);
+			ownedReference = new EObjectContainmentEList<ModelElementRefCS>(ModelElementRefCS.class, this, BaseCSTPackage.ANNOTATION_CS__OWNED_REFERENCE);
 		}
-		return reference;
+		return ownedReference;
 	}
 
 	/**
@@ -124,6 +123,8 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 		{
 			case BaseCSTPackage.ANNOTATION_CS__OWNED_CONTENT:
 				return ((InternalEList<?>)getOwnedContent()).basicRemove(otherEnd, msgs);
+			case BaseCSTPackage.ANNOTATION_CS__OWNED_REFERENCE:
+				return ((InternalEList<?>)getOwnedReference()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -139,8 +140,8 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 		{
 			case BaseCSTPackage.ANNOTATION_CS__OWNED_CONTENT:
 				return getOwnedContent();
-			case BaseCSTPackage.ANNOTATION_CS__REFERENCE:
-				return getReference();
+			case BaseCSTPackage.ANNOTATION_CS__OWNED_REFERENCE:
+				return getOwnedReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,9 +160,9 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 				getOwnedContent().clear();
 				getOwnedContent().addAll((Collection<? extends ModelElementCS>)newValue);
 				return;
-			case BaseCSTPackage.ANNOTATION_CS__REFERENCE:
-				getReference().clear();
-				getReference().addAll((Collection<? extends MonikeredElement>)newValue);
+			case BaseCSTPackage.ANNOTATION_CS__OWNED_REFERENCE:
+				getOwnedReference().clear();
+				getOwnedReference().addAll((Collection<? extends ModelElementRefCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,8 +180,8 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 			case BaseCSTPackage.ANNOTATION_CS__OWNED_CONTENT:
 				getOwnedContent().clear();
 				return;
-			case BaseCSTPackage.ANNOTATION_CS__REFERENCE:
-				getReference().clear();
+			case BaseCSTPackage.ANNOTATION_CS__OWNED_REFERENCE:
+				getOwnedReference().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -197,8 +198,8 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 		{
 			case BaseCSTPackage.ANNOTATION_CS__OWNED_CONTENT:
 				return ownedContent != null && !ownedContent.isEmpty();
-			case BaseCSTPackage.ANNOTATION_CS__REFERENCE:
-				return reference != null && !reference.isEmpty();
+			case BaseCSTPackage.ANNOTATION_CS__OWNED_REFERENCE:
+				return ownedReference != null && !ownedReference.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

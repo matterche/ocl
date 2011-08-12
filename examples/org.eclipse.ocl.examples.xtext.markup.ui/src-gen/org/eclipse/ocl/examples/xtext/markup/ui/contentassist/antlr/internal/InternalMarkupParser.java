@@ -4,7 +4,6 @@ import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
@@ -81,11 +80,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleMarkup"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:62:1: entryRuleMarkup : ruleMarkup EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:61:1: entryRuleMarkup : ruleMarkup EOF ;
     public final void entryRuleMarkup() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:63:1: ( ruleMarkup EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:64:1: ruleMarkup EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:62:1: ( ruleMarkup EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:63:1: ruleMarkup EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMarkupRule()); 
@@ -115,22 +114,22 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleMarkup"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:71:1: ruleMarkup : ( ( rule__Markup__ElementsAssignment )* ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:70:1: ruleMarkup : ( ( rule__Markup__ElementsAssignment )* ) ;
     public final void ruleMarkup() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:75:2: ( ( ( rule__Markup__ElementsAssignment )* ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:76:1: ( ( rule__Markup__ElementsAssignment )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:74:2: ( ( ( rule__Markup__ElementsAssignment )* ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:75:1: ( ( rule__Markup__ElementsAssignment )* )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:76:1: ( ( rule__Markup__ElementsAssignment )* )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:77:1: ( rule__Markup__ElementsAssignment )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:75:1: ( ( rule__Markup__ElementsAssignment )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:76:1: ( rule__Markup__ElementsAssignment )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMarkupAccess().getElementsAssignment()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:78:1: ( rule__Markup__ElementsAssignment )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:77:1: ( rule__Markup__ElementsAssignment )*
             loop1:
             do {
                 int alt1=2;
@@ -143,7 +142,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:78:2: rule__Markup__ElementsAssignment
+            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:77:2: rule__Markup__ElementsAssignment
             	    {
             	    pushFollow(FollowSets000.FOLLOW_rule__Markup__ElementsAssignment_in_ruleMarkup100);
             	    rule__Markup__ElementsAssignment();
@@ -184,11 +183,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleMarkupElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:90:1: entryRuleMarkupElement : ruleMarkupElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:89:1: entryRuleMarkupElement : ruleMarkupElement EOF ;
     public final void entryRuleMarkupElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:91:1: ( ruleMarkupElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:92:1: ruleMarkupElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:90:1: ( ruleMarkupElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:91:1: ruleMarkupElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMarkupElementRule()); 
@@ -218,23 +217,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleMarkupElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:99:1: ruleMarkupElement : ( ( rule__MarkupElement__Alternatives ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:98:1: ruleMarkupElement : ( ( rule__MarkupElement__Alternatives ) ) ;
     public final void ruleMarkupElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:103:2: ( ( ( rule__MarkupElement__Alternatives ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:104:1: ( ( rule__MarkupElement__Alternatives ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:102:2: ( ( ( rule__MarkupElement__Alternatives ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:103:1: ( ( rule__MarkupElement__Alternatives ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:104:1: ( ( rule__MarkupElement__Alternatives ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:105:1: ( rule__MarkupElement__Alternatives )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:103:1: ( ( rule__MarkupElement__Alternatives ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:104:1: ( rule__MarkupElement__Alternatives )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMarkupElementAccess().getAlternatives()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:106:1: ( rule__MarkupElement__Alternatives )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:106:2: rule__MarkupElement__Alternatives
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:105:1: ( rule__MarkupElement__Alternatives )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:105:2: rule__MarkupElement__Alternatives
             {
             pushFollow(FollowSets000.FOLLOW_rule__MarkupElement__Alternatives_in_ruleMarkupElement161);
             rule__MarkupElement__Alternatives();
@@ -269,11 +268,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleTextElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:118:1: entryRuleTextElement : ruleTextElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:117:1: entryRuleTextElement : ruleTextElement EOF ;
     public final void entryRuleTextElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:119:1: ( ruleTextElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:120:1: ruleTextElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:118:1: ( ruleTextElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:119:1: ruleTextElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTextElementRule()); 
@@ -303,26 +302,26 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleTextElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:127:1: ruleTextElement : ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:126:1: ruleTextElement : ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) ) ;
     public final void ruleTextElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:131:2: ( ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:132:1: ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:130:2: ( ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:131:1: ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:132:1: ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:133:1: ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:131:1: ( ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:132:1: ( ( rule__TextElement__TextAssignment ) ) ( ( rule__TextElement__TextAssignment )* )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:133:1: ( ( rule__TextElement__TextAssignment ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:134:1: ( rule__TextElement__TextAssignment )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:132:1: ( ( rule__TextElement__TextAssignment ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:133:1: ( rule__TextElement__TextAssignment )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTextElementAccess().getTextAssignment()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:135:1: ( rule__TextElement__TextAssignment )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:135:2: rule__TextElement__TextAssignment
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:134:1: ( rule__TextElement__TextAssignment )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:134:2: rule__TextElement__TextAssignment
             {
             pushFollow(FollowSets000.FOLLOW_rule__TextElement__TextAssignment_in_ruleTextElement223);
             rule__TextElement__TextAssignment();
@@ -338,13 +337,13 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:138:1: ( ( rule__TextElement__TextAssignment )* )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:139:1: ( rule__TextElement__TextAssignment )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:137:1: ( ( rule__TextElement__TextAssignment )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:138:1: ( rule__TextElement__TextAssignment )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTextElementAccess().getTextAssignment()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:140:1: ( rule__TextElement__TextAssignment )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:139:1: ( rule__TextElement__TextAssignment )*
             loop2:
             do {
                 int alt2=2;
@@ -387,7 +386,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:140:2: rule__TextElement__TextAssignment
+            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:139:2: rule__TextElement__TextAssignment
             	    {
             	    pushFollow(FollowSets000.FOLLOW_rule__TextElement__TextAssignment_in_ruleTextElement235);
             	    rule__TextElement__TextAssignment();
@@ -431,11 +430,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleNewLineElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:153:1: entryRuleNewLineElement : ruleNewLineElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:152:1: entryRuleNewLineElement : ruleNewLineElement EOF ;
     public final void entryRuleNewLineElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:154:1: ( ruleNewLineElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:155:1: ruleNewLineElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:153:1: ( ruleNewLineElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:154:1: ruleNewLineElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNewLineElementRule()); 
@@ -465,23 +464,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleNewLineElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:162:1: ruleNewLineElement : ( ( rule__NewLineElement__TextAssignment ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:161:1: ruleNewLineElement : ( ( rule__NewLineElement__TextAssignment ) ) ;
     public final void ruleNewLineElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:166:2: ( ( ( rule__NewLineElement__TextAssignment ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:167:1: ( ( rule__NewLineElement__TextAssignment ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:165:2: ( ( ( rule__NewLineElement__TextAssignment ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:166:1: ( ( rule__NewLineElement__TextAssignment ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:167:1: ( ( rule__NewLineElement__TextAssignment ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:168:1: ( rule__NewLineElement__TextAssignment )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:166:1: ( ( rule__NewLineElement__TextAssignment ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:167:1: ( rule__NewLineElement__TextAssignment )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNewLineElementAccess().getTextAssignment()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:169:1: ( rule__NewLineElement__TextAssignment )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:169:2: rule__NewLineElement__TextAssignment
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:168:1: ( rule__NewLineElement__TextAssignment )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:168:2: rule__NewLineElement__TextAssignment
             {
             pushFollow(FollowSets000.FOLLOW_rule__NewLineElement__TextAssignment_in_ruleNewLineElement298);
             rule__NewLineElement__TextAssignment();
@@ -516,11 +515,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleFontElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:181:1: entryRuleFontElement : ruleFontElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:180:1: entryRuleFontElement : ruleFontElement EOF ;
     public final void entryRuleFontElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:182:1: ( ruleFontElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:183:1: ruleFontElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:181:1: ( ruleFontElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:182:1: ruleFontElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFontElementRule()); 
@@ -550,23 +549,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleFontElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:190:1: ruleFontElement : ( ( rule__FontElement__Group__0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:189:1: ruleFontElement : ( ( rule__FontElement__Group__0 ) ) ;
     public final void ruleFontElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:194:2: ( ( ( rule__FontElement__Group__0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:195:1: ( ( rule__FontElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:193:2: ( ( ( rule__FontElement__Group__0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:194:1: ( ( rule__FontElement__Group__0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:195:1: ( ( rule__FontElement__Group__0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:196:1: ( rule__FontElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:194:1: ( ( rule__FontElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:195:1: ( rule__FontElement__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFontElementAccess().getGroup()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:197:1: ( rule__FontElement__Group__0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:197:2: rule__FontElement__Group__0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:196:1: ( rule__FontElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:196:2: rule__FontElement__Group__0
             {
             pushFollow(FollowSets000.FOLLOW_rule__FontElement__Group__0_in_ruleFontElement358);
             rule__FontElement__Group__0();
@@ -601,11 +600,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleFigElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:209:1: entryRuleFigElement : ruleFigElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:208:1: entryRuleFigElement : ruleFigElement EOF ;
     public final void entryRuleFigElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:210:1: ( ruleFigElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:211:1: ruleFigElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:209:1: ( ruleFigElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:210:1: ruleFigElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementRule()); 
@@ -635,23 +634,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleFigElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:218:1: ruleFigElement : ( ( rule__FigElement__Group__0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:217:1: ruleFigElement : ( ( rule__FigElement__Group__0 ) ) ;
     public final void ruleFigElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:222:2: ( ( ( rule__FigElement__Group__0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:223:1: ( ( rule__FigElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:221:2: ( ( ( rule__FigElement__Group__0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:222:1: ( ( rule__FigElement__Group__0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:223:1: ( ( rule__FigElement__Group__0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:224:1: ( rule__FigElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:222:1: ( ( rule__FigElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:223:1: ( rule__FigElement__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getGroup()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:225:1: ( rule__FigElement__Group__0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:225:2: rule__FigElement__Group__0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:224:1: ( rule__FigElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:224:2: rule__FigElement__Group__0
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group__0_in_ruleFigElement418);
             rule__FigElement__Group__0();
@@ -686,11 +685,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleFigRefElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:237:1: entryRuleFigRefElement : ruleFigRefElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:236:1: entryRuleFigRefElement : ruleFigRefElement EOF ;
     public final void entryRuleFigRefElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:238:1: ( ruleFigRefElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:239:1: ruleFigRefElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:237:1: ( ruleFigRefElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:238:1: ruleFigRefElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigRefElementRule()); 
@@ -720,23 +719,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleFigRefElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:246:1: ruleFigRefElement : ( ( rule__FigRefElement__Group__0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:245:1: ruleFigRefElement : ( ( rule__FigRefElement__Group__0 ) ) ;
     public final void ruleFigRefElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:250:2: ( ( ( rule__FigRefElement__Group__0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:251:1: ( ( rule__FigRefElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:249:2: ( ( ( rule__FigRefElement__Group__0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:250:1: ( ( rule__FigRefElement__Group__0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:251:1: ( ( rule__FigRefElement__Group__0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:252:1: ( rule__FigRefElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:250:1: ( ( rule__FigRefElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:251:1: ( rule__FigRefElement__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigRefElementAccess().getGroup()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:253:1: ( rule__FigRefElement__Group__0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:253:2: rule__FigRefElement__Group__0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:252:1: ( rule__FigRefElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:252:2: rule__FigRefElement__Group__0
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigRefElement__Group__0_in_ruleFigRefElement478);
             rule__FigRefElement__Group__0();
@@ -771,11 +770,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleNullElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:265:1: entryRuleNullElement : ruleNullElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:264:1: entryRuleNullElement : ruleNullElement EOF ;
     public final void entryRuleNullElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:266:1: ( ruleNullElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:267:1: ruleNullElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:265:1: ( ruleNullElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:266:1: ruleNullElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullElementRule()); 
@@ -805,23 +804,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleNullElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:274:1: ruleNullElement : ( ( rule__NullElement__Group__0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:273:1: ruleNullElement : ( ( rule__NullElement__Group__0 ) ) ;
     public final void ruleNullElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:278:2: ( ( ( rule__NullElement__Group__0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:279:1: ( ( rule__NullElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:277:2: ( ( ( rule__NullElement__Group__0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:278:1: ( ( rule__NullElement__Group__0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:279:1: ( ( rule__NullElement__Group__0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:280:1: ( rule__NullElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:278:1: ( ( rule__NullElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:279:1: ( rule__NullElement__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullElementAccess().getGroup()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:281:1: ( rule__NullElement__Group__0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:281:2: rule__NullElement__Group__0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:280:1: ( rule__NullElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:280:2: rule__NullElement__Group__0
             {
             pushFollow(FollowSets000.FOLLOW_rule__NullElement__Group__0_in_ruleNullElement538);
             rule__NullElement__Group__0();
@@ -856,11 +855,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleOclElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:293:1: entryRuleOclElement : ruleOclElement EOF ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:292:1: entryRuleOclElement : ruleOclElement EOF ;
     public final void entryRuleOclElement() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:294:1: ( ruleOclElement EOF )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:295:1: ruleOclElement EOF
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:293:1: ( ruleOclElement EOF )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:294:1: ruleOclElement EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOclElementRule()); 
@@ -890,23 +889,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleOclElement"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:302:1: ruleOclElement : ( ( rule__OclElement__Group__0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:301:1: ruleOclElement : ( ( rule__OclElement__Group__0 ) ) ;
     public final void ruleOclElement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:306:2: ( ( ( rule__OclElement__Group__0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:307:1: ( ( rule__OclElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:305:2: ( ( ( rule__OclElement__Group__0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:306:1: ( ( rule__OclElement__Group__0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:307:1: ( ( rule__OclElement__Group__0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:308:1: ( rule__OclElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:306:1: ( ( rule__OclElement__Group__0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:307:1: ( rule__OclElement__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOclElementAccess().getGroup()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:309:1: ( rule__OclElement__Group__0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:309:2: rule__OclElement__Group__0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:308:1: ( rule__OclElement__Group__0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:308:2: rule__OclElement__Group__0
             {
             pushFollow(FollowSets000.FOLLOW_rule__OclElement__Group__0_in_ruleOclElement598);
             rule__OclElement__Group__0();
@@ -941,13 +940,13 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MarkupElement__Alternatives"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:323:1: rule__MarkupElement__Alternatives : ( ( ruleFontElement ) | ( ruleNewLineElement ) | ( ruleTextElement ) | ( ruleFigElement ) | ( ruleFigRefElement ) | ( ruleNullElement ) | ( ruleOclElement ) );
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:322:1: rule__MarkupElement__Alternatives : ( ( ruleFontElement ) | ( ruleNewLineElement ) | ( ruleTextElement ) | ( ruleFigElement ) | ( ruleFigRefElement ) | ( ruleNullElement ) | ( ruleOclElement ) );
     public final void rule__MarkupElement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:327:1: ( ( ruleFontElement ) | ( ruleNewLineElement ) | ( ruleTextElement ) | ( ruleFigElement ) | ( ruleFigRefElement ) | ( ruleNullElement ) | ( ruleOclElement ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:326:1: ( ( ruleFontElement ) | ( ruleNewLineElement ) | ( ruleTextElement ) | ( ruleFigElement ) | ( ruleFigRefElement ) | ( ruleNullElement ) | ( ruleOclElement ) )
             int alt3=7;
             switch ( input.LA(1) ) {
             case 11:
@@ -999,10 +998,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:328:1: ( ruleFontElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:327:1: ( ruleFontElement )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:328:1: ( ruleFontElement )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:329:1: ruleFontElement
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:327:1: ( ruleFontElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:328:1: ruleFontElement
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMarkupElementAccess().getFontElementParserRuleCall_0()); 
@@ -1022,10 +1021,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:334:6: ( ruleNewLineElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:333:6: ( ruleNewLineElement )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:334:6: ( ruleNewLineElement )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:335:1: ruleNewLineElement
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:333:6: ( ruleNewLineElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:334:1: ruleNewLineElement
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMarkupElementAccess().getNewLineElementParserRuleCall_1()); 
@@ -1045,10 +1044,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:340:6: ( ruleTextElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:339:6: ( ruleTextElement )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:340:6: ( ruleTextElement )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:341:1: ruleTextElement
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:339:6: ( ruleTextElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:340:1: ruleTextElement
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMarkupElementAccess().getTextElementParserRuleCall_2()); 
@@ -1068,10 +1067,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:346:6: ( ruleFigElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:345:6: ( ruleFigElement )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:346:6: ( ruleFigElement )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:347:1: ruleFigElement
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:345:6: ( ruleFigElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:346:1: ruleFigElement
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMarkupElementAccess().getFigElementParserRuleCall_3()); 
@@ -1091,10 +1090,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:352:6: ( ruleFigRefElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:351:6: ( ruleFigRefElement )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:352:6: ( ruleFigRefElement )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:353:1: ruleFigRefElement
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:351:6: ( ruleFigRefElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:352:1: ruleFigRefElement
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMarkupElementAccess().getFigRefElementParserRuleCall_4()); 
@@ -1114,10 +1113,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:358:6: ( ruleNullElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:357:6: ( ruleNullElement )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:358:6: ( ruleNullElement )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:359:1: ruleNullElement
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:357:6: ( ruleNullElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:358:1: ruleNullElement
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMarkupElementAccess().getNullElementParserRuleCall_5()); 
@@ -1137,10 +1136,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:364:6: ( ruleOclElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:363:6: ( ruleOclElement )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:364:6: ( ruleOclElement )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:365:1: ruleOclElement
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:363:6: ( ruleOclElement )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:364:1: ruleOclElement
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMarkupElementAccess().getOclElementParserRuleCall_6()); 
@@ -1177,13 +1176,13 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TextElement__TextAlternatives_0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:375:1: rule__TextElement__TextAlternatives_0 : ( ( RULE_ID ) | ( RULE_WORD ) | ( RULE_WS ) );
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:374:1: rule__TextElement__TextAlternatives_0 : ( ( RULE_ID ) | ( RULE_WORD ) | ( RULE_WS ) );
     public final void rule__TextElement__TextAlternatives_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:379:1: ( ( RULE_ID ) | ( RULE_WORD ) | ( RULE_WS ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:378:1: ( ( RULE_ID ) | ( RULE_WORD ) | ( RULE_WS ) )
             int alt4=3;
             switch ( input.LA(1) ) {
             case RULE_ID:
@@ -1211,10 +1210,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:380:1: ( RULE_ID )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:379:1: ( RULE_ID )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:380:1: ( RULE_ID )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:381:1: RULE_ID
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:379:1: ( RULE_ID )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:380:1: RULE_ID
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getTextElementAccess().getTextIDTerminalRuleCall_0_0()); 
@@ -1230,10 +1229,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:386:6: ( RULE_WORD )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:385:6: ( RULE_WORD )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:386:6: ( RULE_WORD )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:387:1: RULE_WORD
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:385:6: ( RULE_WORD )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:386:1: RULE_WORD
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getTextElementAccess().getTextWORDTerminalRuleCall_0_1()); 
@@ -1249,10 +1248,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:392:6: ( RULE_WS )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:391:6: ( RULE_WS )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:392:6: ( RULE_WS )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:393:1: RULE_WS
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:391:6: ( RULE_WS )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:392:1: RULE_WS
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getTextElementAccess().getTextWSTerminalRuleCall_0_2()); 
@@ -1285,13 +1284,13 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__FontAlternatives_0_0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:403:1: rule__FontElement__FontAlternatives_0_0 : ( ( 'b[' ) | ( 'e[' ) );
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:402:1: rule__FontElement__FontAlternatives_0_0 : ( ( 'b[' ) | ( 'e[' ) );
     public final void rule__FontElement__FontAlternatives_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:407:1: ( ( 'b[' ) | ( 'e[' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:406:1: ( ( 'b[' ) | ( 'e[' ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1310,10 +1309,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:408:1: ( 'b[' )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:407:1: ( 'b[' )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:408:1: ( 'b[' )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:409:1: 'b['
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:407:1: ( 'b[' )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:408:1: 'b['
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFontElementAccess().getFontBKeyword_0_0_0()); 
@@ -1329,10 +1328,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:416:6: ( 'e[' )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:415:6: ( 'e[' )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:416:6: ( 'e[' )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:417:1: 'e['
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:415:6: ( 'e[' )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:416:1: 'e['
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFontElementAccess().getFontEKeyword_0_0_1()); 
@@ -1365,13 +1364,13 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Alternatives_0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:429:1: rule__FigElement__Alternatives_0 : ( ( 'fig[' ) | ( ( rule__FigElement__Group_0_1__0 ) ) );
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:428:1: rule__FigElement__Alternatives_0 : ( ( 'fig[' ) | ( ( rule__FigElement__Group_0_1__0 ) ) );
     public final void rule__FigElement__Alternatives_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:433:1: ( ( 'fig[' ) | ( ( rule__FigElement__Group_0_1__0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:432:1: ( ( 'fig[' ) | ( ( rule__FigElement__Group_0_1__0 ) ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1390,10 +1389,10 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:434:1: ( 'fig[' )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:433:1: ( 'fig[' )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:434:1: ( 'fig[' )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:435:1: 'fig['
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:433:1: ( 'fig[' )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:434:1: 'fig['
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFigElementAccess().getFigKeyword_0_0()); 
@@ -1409,16 +1408,16 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:442:6: ( ( rule__FigElement__Group_0_1__0 ) )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:441:6: ( ( rule__FigElement__Group_0_1__0 ) )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:442:6: ( ( rule__FigElement__Group_0_1__0 ) )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:443:1: ( rule__FigElement__Group_0_1__0 )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:441:6: ( ( rule__FigElement__Group_0_1__0 ) )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:442:1: ( rule__FigElement__Group_0_1__0 )
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFigElementAccess().getGroup_0_1()); 
                     }
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:444:1: ( rule__FigElement__Group_0_1__0 )
-                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:444:2: rule__FigElement__Group_0_1__0
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:443:1: ( rule__FigElement__Group_0_1__0 )
+                    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:443:2: rule__FigElement__Group_0_1__0
                     {
                     pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group_0_1__0_in_rule__FigElement__Alternatives_0911);
                     rule__FigElement__Group_0_1__0();
@@ -1455,14 +1454,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__Group__0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:456:1: rule__FontElement__Group__0 : rule__FontElement__Group__0__Impl rule__FontElement__Group__1 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:455:1: rule__FontElement__Group__0 : rule__FontElement__Group__0__Impl rule__FontElement__Group__1 ;
     public final void rule__FontElement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:460:1: ( rule__FontElement__Group__0__Impl rule__FontElement__Group__1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:461:2: rule__FontElement__Group__0__Impl rule__FontElement__Group__1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:459:1: ( rule__FontElement__Group__0__Impl rule__FontElement__Group__1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:460:2: rule__FontElement__Group__0__Impl rule__FontElement__Group__1
             {
             pushFollow(FollowSets000.FOLLOW_rule__FontElement__Group__0__Impl_in_rule__FontElement__Group__0943);
             rule__FontElement__Group__0__Impl();
@@ -1493,23 +1492,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__Group__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:468:1: rule__FontElement__Group__0__Impl : ( ( rule__FontElement__FontAssignment_0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:467:1: rule__FontElement__Group__0__Impl : ( ( rule__FontElement__FontAssignment_0 ) ) ;
     public final void rule__FontElement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:472:1: ( ( ( rule__FontElement__FontAssignment_0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:473:1: ( ( rule__FontElement__FontAssignment_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:471:1: ( ( ( rule__FontElement__FontAssignment_0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:472:1: ( ( rule__FontElement__FontAssignment_0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:473:1: ( ( rule__FontElement__FontAssignment_0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:474:1: ( rule__FontElement__FontAssignment_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:472:1: ( ( rule__FontElement__FontAssignment_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:473:1: ( rule__FontElement__FontAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFontElementAccess().getFontAssignment_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:475:1: ( rule__FontElement__FontAssignment_0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:475:2: rule__FontElement__FontAssignment_0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:474:1: ( rule__FontElement__FontAssignment_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:474:2: rule__FontElement__FontAssignment_0
             {
             pushFollow(FollowSets000.FOLLOW_rule__FontElement__FontAssignment_0_in_rule__FontElement__Group__0__Impl973);
             rule__FontElement__FontAssignment_0();
@@ -1544,14 +1543,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__Group__1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:485:1: rule__FontElement__Group__1 : rule__FontElement__Group__1__Impl rule__FontElement__Group__2 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:484:1: rule__FontElement__Group__1 : rule__FontElement__Group__1__Impl rule__FontElement__Group__2 ;
     public final void rule__FontElement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:489:1: ( rule__FontElement__Group__1__Impl rule__FontElement__Group__2 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:490:2: rule__FontElement__Group__1__Impl rule__FontElement__Group__2
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:488:1: ( rule__FontElement__Group__1__Impl rule__FontElement__Group__2 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:489:2: rule__FontElement__Group__1__Impl rule__FontElement__Group__2
             {
             pushFollow(FollowSets000.FOLLOW_rule__FontElement__Group__1__Impl_in_rule__FontElement__Group__11003);
             rule__FontElement__Group__1__Impl();
@@ -1582,22 +1581,22 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__Group__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:497:1: rule__FontElement__Group__1__Impl : ( ( rule__FontElement__ElementsAssignment_1 )* ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:496:1: rule__FontElement__Group__1__Impl : ( ( rule__FontElement__ElementsAssignment_1 )* ) ;
     public final void rule__FontElement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:501:1: ( ( ( rule__FontElement__ElementsAssignment_1 )* ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:502:1: ( ( rule__FontElement__ElementsAssignment_1 )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:500:1: ( ( ( rule__FontElement__ElementsAssignment_1 )* ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:501:1: ( ( rule__FontElement__ElementsAssignment_1 )* )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:502:1: ( ( rule__FontElement__ElementsAssignment_1 )* )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:503:1: ( rule__FontElement__ElementsAssignment_1 )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:501:1: ( ( rule__FontElement__ElementsAssignment_1 )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:502:1: ( rule__FontElement__ElementsAssignment_1 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFontElementAccess().getElementsAssignment_1()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:504:1: ( rule__FontElement__ElementsAssignment_1 )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:503:1: ( rule__FontElement__ElementsAssignment_1 )*
             loop7:
             do {
                 int alt7=2;
@@ -1610,7 +1609,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:504:2: rule__FontElement__ElementsAssignment_1
+            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:503:2: rule__FontElement__ElementsAssignment_1
             	    {
             	    pushFollow(FollowSets000.FOLLOW_rule__FontElement__ElementsAssignment_1_in_rule__FontElement__Group__1__Impl1033);
             	    rule__FontElement__ElementsAssignment_1();
@@ -1651,14 +1650,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__Group__2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:514:1: rule__FontElement__Group__2 : rule__FontElement__Group__2__Impl ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:513:1: rule__FontElement__Group__2 : rule__FontElement__Group__2__Impl ;
     public final void rule__FontElement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:518:1: ( rule__FontElement__Group__2__Impl )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:519:2: rule__FontElement__Group__2__Impl
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:517:1: ( rule__FontElement__Group__2__Impl )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:518:2: rule__FontElement__Group__2__Impl
             {
             pushFollow(FollowSets000.FOLLOW_rule__FontElement__Group__2__Impl_in_rule__FontElement__Group__21064);
             rule__FontElement__Group__2__Impl();
@@ -1684,17 +1683,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__Group__2__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:525:1: rule__FontElement__Group__2__Impl : ( ']' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:524:1: rule__FontElement__Group__2__Impl : ( ']' ) ;
     public final void rule__FontElement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:529:1: ( ( ']' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:530:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:528:1: ( ( ']' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:529:1: ( ']' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:530:1: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:531:1: ']'
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:529:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:530:1: ']'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFontElementAccess().getRightSquareBracketKeyword_2()); 
@@ -1725,14 +1724,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group__0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:550:1: rule__FigElement__Group__0 : rule__FigElement__Group__0__Impl rule__FigElement__Group__1 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:549:1: rule__FigElement__Group__0 : rule__FigElement__Group__0__Impl rule__FigElement__Group__1 ;
     public final void rule__FigElement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:554:1: ( rule__FigElement__Group__0__Impl rule__FigElement__Group__1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:555:2: rule__FigElement__Group__0__Impl rule__FigElement__Group__1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:553:1: ( rule__FigElement__Group__0__Impl rule__FigElement__Group__1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:554:2: rule__FigElement__Group__0__Impl rule__FigElement__Group__1
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group__0__Impl_in_rule__FigElement__Group__01129);
             rule__FigElement__Group__0__Impl();
@@ -1763,23 +1762,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:562:1: rule__FigElement__Group__0__Impl : ( ( rule__FigElement__Alternatives_0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:561:1: rule__FigElement__Group__0__Impl : ( ( rule__FigElement__Alternatives_0 ) ) ;
     public final void rule__FigElement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:566:1: ( ( ( rule__FigElement__Alternatives_0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:567:1: ( ( rule__FigElement__Alternatives_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:565:1: ( ( ( rule__FigElement__Alternatives_0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:566:1: ( ( rule__FigElement__Alternatives_0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:567:1: ( ( rule__FigElement__Alternatives_0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:568:1: ( rule__FigElement__Alternatives_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:566:1: ( ( rule__FigElement__Alternatives_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:567:1: ( rule__FigElement__Alternatives_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getAlternatives_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:569:1: ( rule__FigElement__Alternatives_0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:569:2: rule__FigElement__Alternatives_0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:568:1: ( rule__FigElement__Alternatives_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:568:2: rule__FigElement__Alternatives_0
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Alternatives_0_in_rule__FigElement__Group__0__Impl1159);
             rule__FigElement__Alternatives_0();
@@ -1814,14 +1813,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group__1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:579:1: rule__FigElement__Group__1 : rule__FigElement__Group__1__Impl rule__FigElement__Group__2 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:578:1: rule__FigElement__Group__1 : rule__FigElement__Group__1__Impl rule__FigElement__Group__2 ;
     public final void rule__FigElement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:583:1: ( rule__FigElement__Group__1__Impl rule__FigElement__Group__2 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:584:2: rule__FigElement__Group__1__Impl rule__FigElement__Group__2
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:582:1: ( rule__FigElement__Group__1__Impl rule__FigElement__Group__2 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:583:2: rule__FigElement__Group__1__Impl rule__FigElement__Group__2
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group__1__Impl_in_rule__FigElement__Group__11189);
             rule__FigElement__Group__1__Impl();
@@ -1852,23 +1851,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:591:1: rule__FigElement__Group__1__Impl : ( ( rule__FigElement__SrcAssignment_1 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:590:1: rule__FigElement__Group__1__Impl : ( ( rule__FigElement__SrcAssignment_1 ) ) ;
     public final void rule__FigElement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:595:1: ( ( ( rule__FigElement__SrcAssignment_1 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:596:1: ( ( rule__FigElement__SrcAssignment_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:594:1: ( ( ( rule__FigElement__SrcAssignment_1 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:595:1: ( ( rule__FigElement__SrcAssignment_1 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:596:1: ( ( rule__FigElement__SrcAssignment_1 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:597:1: ( rule__FigElement__SrcAssignment_1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:595:1: ( ( rule__FigElement__SrcAssignment_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:596:1: ( rule__FigElement__SrcAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getSrcAssignment_1()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:598:1: ( rule__FigElement__SrcAssignment_1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:598:2: rule__FigElement__SrcAssignment_1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:597:1: ( rule__FigElement__SrcAssignment_1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:597:2: rule__FigElement__SrcAssignment_1
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__SrcAssignment_1_in_rule__FigElement__Group__1__Impl1219);
             rule__FigElement__SrcAssignment_1();
@@ -1903,14 +1902,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group__2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:608:1: rule__FigElement__Group__2 : rule__FigElement__Group__2__Impl ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:607:1: rule__FigElement__Group__2 : rule__FigElement__Group__2__Impl ;
     public final void rule__FigElement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:612:1: ( rule__FigElement__Group__2__Impl )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:613:2: rule__FigElement__Group__2__Impl
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:611:1: ( rule__FigElement__Group__2__Impl )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:612:2: rule__FigElement__Group__2__Impl
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group__2__Impl_in_rule__FigElement__Group__21249);
             rule__FigElement__Group__2__Impl();
@@ -1936,17 +1935,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group__2__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:619:1: rule__FigElement__Group__2__Impl : ( ']' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:618:1: rule__FigElement__Group__2__Impl : ( ']' ) ;
     public final void rule__FigElement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:623:1: ( ( ']' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:624:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:622:1: ( ( ']' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:623:1: ( ']' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:624:1: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:625:1: ']'
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:623:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:624:1: ']'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getRightSquareBracketKeyword_2()); 
@@ -1977,14 +1976,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group_0_1__0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:644:1: rule__FigElement__Group_0_1__0 : rule__FigElement__Group_0_1__0__Impl rule__FigElement__Group_0_1__1 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:643:1: rule__FigElement__Group_0_1__0 : rule__FigElement__Group_0_1__0__Impl rule__FigElement__Group_0_1__1 ;
     public final void rule__FigElement__Group_0_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:648:1: ( rule__FigElement__Group_0_1__0__Impl rule__FigElement__Group_0_1__1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:649:2: rule__FigElement__Group_0_1__0__Impl rule__FigElement__Group_0_1__1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:647:1: ( rule__FigElement__Group_0_1__0__Impl rule__FigElement__Group_0_1__1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:648:2: rule__FigElement__Group_0_1__0__Impl rule__FigElement__Group_0_1__1
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group_0_1__0__Impl_in_rule__FigElement__Group_0_1__01314);
             rule__FigElement__Group_0_1__0__Impl();
@@ -2015,17 +2014,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group_0_1__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:656:1: rule__FigElement__Group_0_1__0__Impl : ( 'fig:' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:655:1: rule__FigElement__Group_0_1__0__Impl : ( 'fig:' ) ;
     public final void rule__FigElement__Group_0_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:660:1: ( ( 'fig:' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:661:1: ( 'fig:' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:659:1: ( ( 'fig:' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:660:1: ( 'fig:' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:661:1: ( 'fig:' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:662:1: 'fig:'
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:660:1: ( 'fig:' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:661:1: 'fig:'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getFigKeyword_0_1_0()); 
@@ -2056,14 +2055,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group_0_1__1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:675:1: rule__FigElement__Group_0_1__1 : rule__FigElement__Group_0_1__1__Impl rule__FigElement__Group_0_1__2 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:674:1: rule__FigElement__Group_0_1__1 : rule__FigElement__Group_0_1__1__Impl rule__FigElement__Group_0_1__2 ;
     public final void rule__FigElement__Group_0_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:679:1: ( rule__FigElement__Group_0_1__1__Impl rule__FigElement__Group_0_1__2 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:680:2: rule__FigElement__Group_0_1__1__Impl rule__FigElement__Group_0_1__2
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:678:1: ( rule__FigElement__Group_0_1__1__Impl rule__FigElement__Group_0_1__2 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:679:2: rule__FigElement__Group_0_1__1__Impl rule__FigElement__Group_0_1__2
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group_0_1__1__Impl_in_rule__FigElement__Group_0_1__11376);
             rule__FigElement__Group_0_1__1__Impl();
@@ -2094,23 +2093,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group_0_1__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:687:1: rule__FigElement__Group_0_1__1__Impl : ( ( rule__FigElement__IdAssignment_0_1_1 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:686:1: rule__FigElement__Group_0_1__1__Impl : ( ( rule__FigElement__IdAssignment_0_1_1 ) ) ;
     public final void rule__FigElement__Group_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:691:1: ( ( ( rule__FigElement__IdAssignment_0_1_1 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:692:1: ( ( rule__FigElement__IdAssignment_0_1_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:690:1: ( ( ( rule__FigElement__IdAssignment_0_1_1 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:691:1: ( ( rule__FigElement__IdAssignment_0_1_1 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:692:1: ( ( rule__FigElement__IdAssignment_0_1_1 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:693:1: ( rule__FigElement__IdAssignment_0_1_1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:691:1: ( ( rule__FigElement__IdAssignment_0_1_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:692:1: ( rule__FigElement__IdAssignment_0_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getIdAssignment_0_1_1()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:694:1: ( rule__FigElement__IdAssignment_0_1_1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:694:2: rule__FigElement__IdAssignment_0_1_1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:693:1: ( rule__FigElement__IdAssignment_0_1_1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:693:2: rule__FigElement__IdAssignment_0_1_1
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__IdAssignment_0_1_1_in_rule__FigElement__Group_0_1__1__Impl1406);
             rule__FigElement__IdAssignment_0_1_1();
@@ -2145,14 +2144,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group_0_1__2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:704:1: rule__FigElement__Group_0_1__2 : rule__FigElement__Group_0_1__2__Impl ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:703:1: rule__FigElement__Group_0_1__2 : rule__FigElement__Group_0_1__2__Impl ;
     public final void rule__FigElement__Group_0_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:708:1: ( rule__FigElement__Group_0_1__2__Impl )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:709:2: rule__FigElement__Group_0_1__2__Impl
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:707:1: ( rule__FigElement__Group_0_1__2__Impl )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:708:2: rule__FigElement__Group_0_1__2__Impl
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigElement__Group_0_1__2__Impl_in_rule__FigElement__Group_0_1__21436);
             rule__FigElement__Group_0_1__2__Impl();
@@ -2178,17 +2177,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__Group_0_1__2__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:715:1: rule__FigElement__Group_0_1__2__Impl : ( '[' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:714:1: rule__FigElement__Group_0_1__2__Impl : ( '[' ) ;
     public final void rule__FigElement__Group_0_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:719:1: ( ( '[' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:720:1: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:718:1: ( ( '[' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:719:1: ( '[' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:720:1: ( '[' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:721:1: '['
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:719:1: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:720:1: '['
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getLeftSquareBracketKeyword_0_1_2()); 
@@ -2219,14 +2218,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigRefElement__Group__0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:740:1: rule__FigRefElement__Group__0 : rule__FigRefElement__Group__0__Impl rule__FigRefElement__Group__1 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:739:1: rule__FigRefElement__Group__0 : rule__FigRefElement__Group__0__Impl rule__FigRefElement__Group__1 ;
     public final void rule__FigRefElement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:744:1: ( rule__FigRefElement__Group__0__Impl rule__FigRefElement__Group__1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:745:2: rule__FigRefElement__Group__0__Impl rule__FigRefElement__Group__1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:743:1: ( rule__FigRefElement__Group__0__Impl rule__FigRefElement__Group__1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:744:2: rule__FigRefElement__Group__0__Impl rule__FigRefElement__Group__1
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigRefElement__Group__0__Impl_in_rule__FigRefElement__Group__01501);
             rule__FigRefElement__Group__0__Impl();
@@ -2257,17 +2256,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigRefElement__Group__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:752:1: rule__FigRefElement__Group__0__Impl : ( 'fig-[' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:751:1: rule__FigRefElement__Group__0__Impl : ( 'fig-[' ) ;
     public final void rule__FigRefElement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:756:1: ( ( 'fig-[' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:757:1: ( 'fig-[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:755:1: ( ( 'fig-[' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:756:1: ( 'fig-[' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:757:1: ( 'fig-[' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:758:1: 'fig-['
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:756:1: ( 'fig-[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:757:1: 'fig-['
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigRefElementAccess().getFigKeyword_0()); 
@@ -2298,14 +2297,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigRefElement__Group__1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:771:1: rule__FigRefElement__Group__1 : rule__FigRefElement__Group__1__Impl rule__FigRefElement__Group__2 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:770:1: rule__FigRefElement__Group__1 : rule__FigRefElement__Group__1__Impl rule__FigRefElement__Group__2 ;
     public final void rule__FigRefElement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:775:1: ( rule__FigRefElement__Group__1__Impl rule__FigRefElement__Group__2 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:776:2: rule__FigRefElement__Group__1__Impl rule__FigRefElement__Group__2
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:774:1: ( rule__FigRefElement__Group__1__Impl rule__FigRefElement__Group__2 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:775:2: rule__FigRefElement__Group__1__Impl rule__FigRefElement__Group__2
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigRefElement__Group__1__Impl_in_rule__FigRefElement__Group__11563);
             rule__FigRefElement__Group__1__Impl();
@@ -2336,23 +2335,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigRefElement__Group__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:783:1: rule__FigRefElement__Group__1__Impl : ( ( rule__FigRefElement__RefAssignment_1 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:782:1: rule__FigRefElement__Group__1__Impl : ( ( rule__FigRefElement__RefAssignment_1 ) ) ;
     public final void rule__FigRefElement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:787:1: ( ( ( rule__FigRefElement__RefAssignment_1 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:788:1: ( ( rule__FigRefElement__RefAssignment_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:786:1: ( ( ( rule__FigRefElement__RefAssignment_1 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:787:1: ( ( rule__FigRefElement__RefAssignment_1 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:788:1: ( ( rule__FigRefElement__RefAssignment_1 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:789:1: ( rule__FigRefElement__RefAssignment_1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:787:1: ( ( rule__FigRefElement__RefAssignment_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:788:1: ( rule__FigRefElement__RefAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigRefElementAccess().getRefAssignment_1()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:790:1: ( rule__FigRefElement__RefAssignment_1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:790:2: rule__FigRefElement__RefAssignment_1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:789:1: ( rule__FigRefElement__RefAssignment_1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:789:2: rule__FigRefElement__RefAssignment_1
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigRefElement__RefAssignment_1_in_rule__FigRefElement__Group__1__Impl1593);
             rule__FigRefElement__RefAssignment_1();
@@ -2387,14 +2386,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigRefElement__Group__2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:800:1: rule__FigRefElement__Group__2 : rule__FigRefElement__Group__2__Impl ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:799:1: rule__FigRefElement__Group__2 : rule__FigRefElement__Group__2__Impl ;
     public final void rule__FigRefElement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:804:1: ( rule__FigRefElement__Group__2__Impl )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:805:2: rule__FigRefElement__Group__2__Impl
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:803:1: ( rule__FigRefElement__Group__2__Impl )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:804:2: rule__FigRefElement__Group__2__Impl
             {
             pushFollow(FollowSets000.FOLLOW_rule__FigRefElement__Group__2__Impl_in_rule__FigRefElement__Group__21623);
             rule__FigRefElement__Group__2__Impl();
@@ -2420,17 +2419,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigRefElement__Group__2__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:811:1: rule__FigRefElement__Group__2__Impl : ( ']' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:810:1: rule__FigRefElement__Group__2__Impl : ( ']' ) ;
     public final void rule__FigRefElement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:815:1: ( ( ']' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:816:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:814:1: ( ( ']' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:815:1: ( ']' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:816:1: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:817:1: ']'
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:815:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:816:1: ']'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigRefElementAccess().getRightSquareBracketKeyword_2()); 
@@ -2461,14 +2460,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:836:1: rule__NullElement__Group__0 : rule__NullElement__Group__0__Impl rule__NullElement__Group__1 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:835:1: rule__NullElement__Group__0 : rule__NullElement__Group__0__Impl rule__NullElement__Group__1 ;
     public final void rule__NullElement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:840:1: ( rule__NullElement__Group__0__Impl rule__NullElement__Group__1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:841:2: rule__NullElement__Group__0__Impl rule__NullElement__Group__1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:839:1: ( rule__NullElement__Group__0__Impl rule__NullElement__Group__1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:840:2: rule__NullElement__Group__0__Impl rule__NullElement__Group__1
             {
             pushFollow(FollowSets000.FOLLOW_rule__NullElement__Group__0__Impl_in_rule__NullElement__Group__01688);
             rule__NullElement__Group__0__Impl();
@@ -2499,23 +2498,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:848:1: rule__NullElement__Group__0__Impl : ( () ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:847:1: rule__NullElement__Group__0__Impl : ( () ) ;
     public final void rule__NullElement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:852:1: ( ( () ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:853:1: ( () )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:851:1: ( ( () ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:852:1: ( () )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:853:1: ( () )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:854:1: ()
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:852:1: ( () )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:853:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullElementAccess().getNullElementAction_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:855:1: ()
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:857:1: 
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:854:1: ()
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:856:1: 
             {
             }
 
@@ -2540,14 +2539,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:867:1: rule__NullElement__Group__1 : rule__NullElement__Group__1__Impl rule__NullElement__Group__2 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:866:1: rule__NullElement__Group__1 : rule__NullElement__Group__1__Impl rule__NullElement__Group__2 ;
     public final void rule__NullElement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:871:1: ( rule__NullElement__Group__1__Impl rule__NullElement__Group__2 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:872:2: rule__NullElement__Group__1__Impl rule__NullElement__Group__2
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:870:1: ( rule__NullElement__Group__1__Impl rule__NullElement__Group__2 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:871:2: rule__NullElement__Group__1__Impl rule__NullElement__Group__2
             {
             pushFollow(FollowSets000.FOLLOW_rule__NullElement__Group__1__Impl_in_rule__NullElement__Group__11749);
             rule__NullElement__Group__1__Impl();
@@ -2578,17 +2577,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:879:1: rule__NullElement__Group__1__Impl : ( '[' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:878:1: rule__NullElement__Group__1__Impl : ( '[' ) ;
     public final void rule__NullElement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:883:1: ( ( '[' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:884:1: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:882:1: ( ( '[' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:883:1: ( '[' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:884:1: ( '[' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:885:1: '['
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:883:1: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:884:1: '['
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullElementAccess().getLeftSquareBracketKeyword_1()); 
@@ -2619,14 +2618,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:898:1: rule__NullElement__Group__2 : rule__NullElement__Group__2__Impl rule__NullElement__Group__3 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:897:1: rule__NullElement__Group__2 : rule__NullElement__Group__2__Impl rule__NullElement__Group__3 ;
     public final void rule__NullElement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:902:1: ( rule__NullElement__Group__2__Impl rule__NullElement__Group__3 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:903:2: rule__NullElement__Group__2__Impl rule__NullElement__Group__3
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:901:1: ( rule__NullElement__Group__2__Impl rule__NullElement__Group__3 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:902:2: rule__NullElement__Group__2__Impl rule__NullElement__Group__3
             {
             pushFollow(FollowSets000.FOLLOW_rule__NullElement__Group__2__Impl_in_rule__NullElement__Group__21811);
             rule__NullElement__Group__2__Impl();
@@ -2657,22 +2656,22 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__2__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:910:1: rule__NullElement__Group__2__Impl : ( ( rule__NullElement__ElementsAssignment_2 )* ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:909:1: rule__NullElement__Group__2__Impl : ( ( rule__NullElement__ElementsAssignment_2 )* ) ;
     public final void rule__NullElement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:914:1: ( ( ( rule__NullElement__ElementsAssignment_2 )* ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:915:1: ( ( rule__NullElement__ElementsAssignment_2 )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:913:1: ( ( ( rule__NullElement__ElementsAssignment_2 )* ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:914:1: ( ( rule__NullElement__ElementsAssignment_2 )* )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:915:1: ( ( rule__NullElement__ElementsAssignment_2 )* )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:916:1: ( rule__NullElement__ElementsAssignment_2 )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:914:1: ( ( rule__NullElement__ElementsAssignment_2 )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:915:1: ( rule__NullElement__ElementsAssignment_2 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullElementAccess().getElementsAssignment_2()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:917:1: ( rule__NullElement__ElementsAssignment_2 )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:916:1: ( rule__NullElement__ElementsAssignment_2 )*
             loop8:
             do {
                 int alt8=2;
@@ -2685,7 +2684,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:917:2: rule__NullElement__ElementsAssignment_2
+            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:916:2: rule__NullElement__ElementsAssignment_2
             	    {
             	    pushFollow(FollowSets000.FOLLOW_rule__NullElement__ElementsAssignment_2_in_rule__NullElement__Group__2__Impl1841);
             	    rule__NullElement__ElementsAssignment_2();
@@ -2726,14 +2725,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__3"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:927:1: rule__NullElement__Group__3 : rule__NullElement__Group__3__Impl ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:926:1: rule__NullElement__Group__3 : rule__NullElement__Group__3__Impl ;
     public final void rule__NullElement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:931:1: ( rule__NullElement__Group__3__Impl )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:932:2: rule__NullElement__Group__3__Impl
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:930:1: ( rule__NullElement__Group__3__Impl )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:931:2: rule__NullElement__Group__3__Impl
             {
             pushFollow(FollowSets000.FOLLOW_rule__NullElement__Group__3__Impl_in_rule__NullElement__Group__31872);
             rule__NullElement__Group__3__Impl();
@@ -2759,17 +2758,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__Group__3__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:938:1: rule__NullElement__Group__3__Impl : ( ']' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:937:1: rule__NullElement__Group__3__Impl : ( ']' ) ;
     public final void rule__NullElement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:942:1: ( ( ']' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:943:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:941:1: ( ( ']' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:942:1: ( ']' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:943:1: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:944:1: ']'
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:942:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:943:1: ']'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullElementAccess().getRightSquareBracketKeyword_3()); 
@@ -2800,14 +2799,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:965:1: rule__OclElement__Group__0 : rule__OclElement__Group__0__Impl rule__OclElement__Group__1 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:964:1: rule__OclElement__Group__0 : rule__OclElement__Group__0__Impl rule__OclElement__Group__1 ;
     public final void rule__OclElement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:969:1: ( rule__OclElement__Group__0__Impl rule__OclElement__Group__1 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:970:2: rule__OclElement__Group__0__Impl rule__OclElement__Group__1
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:968:1: ( rule__OclElement__Group__0__Impl rule__OclElement__Group__1 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:969:2: rule__OclElement__Group__0__Impl rule__OclElement__Group__1
             {
             pushFollow(FollowSets000.FOLLOW_rule__OclElement__Group__0__Impl_in_rule__OclElement__Group__01939);
             rule__OclElement__Group__0__Impl();
@@ -2838,23 +2837,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:977:1: rule__OclElement__Group__0__Impl : ( () ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:976:1: rule__OclElement__Group__0__Impl : ( () ) ;
     public final void rule__OclElement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:981:1: ( ( () ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:982:1: ( () )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:980:1: ( ( () ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:981:1: ( () )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:982:1: ( () )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:983:1: ()
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:981:1: ( () )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:982:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOclElementAccess().getOclElementAction_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:984:1: ()
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:986:1: 
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:983:1: ()
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:985:1: 
             {
             }
 
@@ -2879,14 +2878,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:996:1: rule__OclElement__Group__1 : rule__OclElement__Group__1__Impl rule__OclElement__Group__2 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:995:1: rule__OclElement__Group__1 : rule__OclElement__Group__1__Impl rule__OclElement__Group__2 ;
     public final void rule__OclElement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1000:1: ( rule__OclElement__Group__1__Impl rule__OclElement__Group__2 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1001:2: rule__OclElement__Group__1__Impl rule__OclElement__Group__2
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:999:1: ( rule__OclElement__Group__1__Impl rule__OclElement__Group__2 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1000:2: rule__OclElement__Group__1__Impl rule__OclElement__Group__2
             {
             pushFollow(FollowSets000.FOLLOW_rule__OclElement__Group__1__Impl_in_rule__OclElement__Group__12000);
             rule__OclElement__Group__1__Impl();
@@ -2917,17 +2916,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1008:1: rule__OclElement__Group__1__Impl : ( 'ocl[' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1007:1: rule__OclElement__Group__1__Impl : ( 'ocl[' ) ;
     public final void rule__OclElement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1012:1: ( ( 'ocl[' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1013:1: ( 'ocl[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1011:1: ( ( 'ocl[' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1012:1: ( 'ocl[' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1013:1: ( 'ocl[' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1014:1: 'ocl['
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1012:1: ( 'ocl[' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1013:1: 'ocl['
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOclElementAccess().getOclKeyword_1()); 
@@ -2958,14 +2957,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1027:1: rule__OclElement__Group__2 : rule__OclElement__Group__2__Impl rule__OclElement__Group__3 ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1026:1: rule__OclElement__Group__2 : rule__OclElement__Group__2__Impl rule__OclElement__Group__3 ;
     public final void rule__OclElement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1031:1: ( rule__OclElement__Group__2__Impl rule__OclElement__Group__3 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1032:2: rule__OclElement__Group__2__Impl rule__OclElement__Group__3
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1030:1: ( rule__OclElement__Group__2__Impl rule__OclElement__Group__3 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1031:2: rule__OclElement__Group__2__Impl rule__OclElement__Group__3
             {
             pushFollow(FollowSets000.FOLLOW_rule__OclElement__Group__2__Impl_in_rule__OclElement__Group__22062);
             rule__OclElement__Group__2__Impl();
@@ -2996,22 +2995,22 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__2__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1039:1: rule__OclElement__Group__2__Impl : ( ( rule__OclElement__ElementsAssignment_2 )* ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1038:1: rule__OclElement__Group__2__Impl : ( ( rule__OclElement__ElementsAssignment_2 )* ) ;
     public final void rule__OclElement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1043:1: ( ( ( rule__OclElement__ElementsAssignment_2 )* ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1044:1: ( ( rule__OclElement__ElementsAssignment_2 )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1042:1: ( ( ( rule__OclElement__ElementsAssignment_2 )* ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1043:1: ( ( rule__OclElement__ElementsAssignment_2 )* )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1044:1: ( ( rule__OclElement__ElementsAssignment_2 )* )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1045:1: ( rule__OclElement__ElementsAssignment_2 )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1043:1: ( ( rule__OclElement__ElementsAssignment_2 )* )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1044:1: ( rule__OclElement__ElementsAssignment_2 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOclElementAccess().getElementsAssignment_2()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1046:1: ( rule__OclElement__ElementsAssignment_2 )*
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1045:1: ( rule__OclElement__ElementsAssignment_2 )*
             loop9:
             do {
                 int alt9=2;
@@ -3024,7 +3023,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1046:2: rule__OclElement__ElementsAssignment_2
+            	    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1045:2: rule__OclElement__ElementsAssignment_2
             	    {
             	    pushFollow(FollowSets000.FOLLOW_rule__OclElement__ElementsAssignment_2_in_rule__OclElement__Group__2__Impl2092);
             	    rule__OclElement__ElementsAssignment_2();
@@ -3065,14 +3064,14 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__3"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1056:1: rule__OclElement__Group__3 : rule__OclElement__Group__3__Impl ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1055:1: rule__OclElement__Group__3 : rule__OclElement__Group__3__Impl ;
     public final void rule__OclElement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1060:1: ( rule__OclElement__Group__3__Impl )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1061:2: rule__OclElement__Group__3__Impl
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1059:1: ( rule__OclElement__Group__3__Impl )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1060:2: rule__OclElement__Group__3__Impl
             {
             pushFollow(FollowSets000.FOLLOW_rule__OclElement__Group__3__Impl_in_rule__OclElement__Group__32123);
             rule__OclElement__Group__3__Impl();
@@ -3098,17 +3097,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__Group__3__Impl"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1067:1: rule__OclElement__Group__3__Impl : ( ']' ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1066:1: rule__OclElement__Group__3__Impl : ( ']' ) ;
     public final void rule__OclElement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1071:1: ( ( ']' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1072:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1070:1: ( ( ']' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1071:1: ( ']' )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1072:1: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1073:1: ']'
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1071:1: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1072:1: ']'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOclElementAccess().getRightSquareBracketKeyword_3()); 
@@ -3139,17 +3138,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Markup__ElementsAssignment"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1095:1: rule__Markup__ElementsAssignment : ( ruleMarkupElement ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1094:1: rule__Markup__ElementsAssignment : ( ruleMarkupElement ) ;
     public final void rule__Markup__ElementsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1099:1: ( ( ruleMarkupElement ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1100:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1098:1: ( ( ruleMarkupElement ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1099:1: ( ruleMarkupElement )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1100:1: ( ruleMarkupElement )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1101:1: ruleMarkupElement
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1099:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1100:1: ruleMarkupElement
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMarkupAccess().getElementsMarkupElementParserRuleCall_0()); 
@@ -3184,23 +3183,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TextElement__TextAssignment"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1110:1: rule__TextElement__TextAssignment : ( ( rule__TextElement__TextAlternatives_0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1109:1: rule__TextElement__TextAssignment : ( ( rule__TextElement__TextAlternatives_0 ) ) ;
     public final void rule__TextElement__TextAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1114:1: ( ( ( rule__TextElement__TextAlternatives_0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1115:1: ( ( rule__TextElement__TextAlternatives_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1113:1: ( ( ( rule__TextElement__TextAlternatives_0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1114:1: ( ( rule__TextElement__TextAlternatives_0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1115:1: ( ( rule__TextElement__TextAlternatives_0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1116:1: ( rule__TextElement__TextAlternatives_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1114:1: ( ( rule__TextElement__TextAlternatives_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1115:1: ( rule__TextElement__TextAlternatives_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTextElementAccess().getTextAlternatives_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1117:1: ( rule__TextElement__TextAlternatives_0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1117:2: rule__TextElement__TextAlternatives_0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1116:1: ( rule__TextElement__TextAlternatives_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1116:2: rule__TextElement__TextAlternatives_0
             {
             pushFollow(FollowSets000.FOLLOW_rule__TextElement__TextAlternatives_0_in_rule__TextElement__TextAssignment2226);
             rule__TextElement__TextAlternatives_0();
@@ -3235,17 +3234,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NewLineElement__TextAssignment"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1126:1: rule__NewLineElement__TextAssignment : ( RULE_NL ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1125:1: rule__NewLineElement__TextAssignment : ( RULE_NL ) ;
     public final void rule__NewLineElement__TextAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1130:1: ( ( RULE_NL ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1131:1: ( RULE_NL )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1129:1: ( ( RULE_NL ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1130:1: ( RULE_NL )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1131:1: ( RULE_NL )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1132:1: RULE_NL
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1130:1: ( RULE_NL )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1131:1: RULE_NL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNewLineElementAccess().getTextNLTerminalRuleCall_0()); 
@@ -3276,23 +3275,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__FontAssignment_0"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1141:1: rule__FontElement__FontAssignment_0 : ( ( rule__FontElement__FontAlternatives_0_0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1140:1: rule__FontElement__FontAssignment_0 : ( ( rule__FontElement__FontAlternatives_0_0 ) ) ;
     public final void rule__FontElement__FontAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1145:1: ( ( ( rule__FontElement__FontAlternatives_0_0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1146:1: ( ( rule__FontElement__FontAlternatives_0_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1144:1: ( ( ( rule__FontElement__FontAlternatives_0_0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1145:1: ( ( rule__FontElement__FontAlternatives_0_0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1146:1: ( ( rule__FontElement__FontAlternatives_0_0 ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1147:1: ( rule__FontElement__FontAlternatives_0_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1145:1: ( ( rule__FontElement__FontAlternatives_0_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1146:1: ( rule__FontElement__FontAlternatives_0_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFontElementAccess().getFontAlternatives_0_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1148:1: ( rule__FontElement__FontAlternatives_0_0 )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1148:2: rule__FontElement__FontAlternatives_0_0
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1147:1: ( rule__FontElement__FontAlternatives_0_0 )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1147:2: rule__FontElement__FontAlternatives_0_0
             {
             pushFollow(FollowSets000.FOLLOW_rule__FontElement__FontAlternatives_0_0_in_rule__FontElement__FontAssignment_02290);
             rule__FontElement__FontAlternatives_0_0();
@@ -3327,17 +3326,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FontElement__ElementsAssignment_1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1157:1: rule__FontElement__ElementsAssignment_1 : ( ruleMarkupElement ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1156:1: rule__FontElement__ElementsAssignment_1 : ( ruleMarkupElement ) ;
     public final void rule__FontElement__ElementsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1161:1: ( ( ruleMarkupElement ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1162:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1160:1: ( ( ruleMarkupElement ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1161:1: ( ruleMarkupElement )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1162:1: ( ruleMarkupElement )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1163:1: ruleMarkupElement
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1161:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1162:1: ruleMarkupElement
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFontElementAccess().getElementsMarkupElementParserRuleCall_1_0()); 
@@ -3372,17 +3371,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__IdAssignment_0_1_1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1172:1: rule__FigElement__IdAssignment_0_1_1 : ( RULE_ID ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1171:1: rule__FigElement__IdAssignment_0_1_1 : ( RULE_ID ) ;
     public final void rule__FigElement__IdAssignment_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1176:1: ( ( RULE_ID ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1177:1: ( RULE_ID )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1175:1: ( ( RULE_ID ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1176:1: ( RULE_ID )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1177:1: ( RULE_ID )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1178:1: RULE_ID
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1176:1: ( RULE_ID )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1177:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getIdIDTerminalRuleCall_0_1_1_0()); 
@@ -3413,17 +3412,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigElement__SrcAssignment_1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1187:1: rule__FigElement__SrcAssignment_1 : ( RULE_STRING ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1186:1: rule__FigElement__SrcAssignment_1 : ( RULE_STRING ) ;
     public final void rule__FigElement__SrcAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1191:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1192:1: ( RULE_STRING )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1190:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1191:1: ( RULE_STRING )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1192:1: ( RULE_STRING )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1193:1: RULE_STRING
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1191:1: ( RULE_STRING )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1192:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigElementAccess().getSrcSTRINGTerminalRuleCall_1_0()); 
@@ -3454,23 +3453,23 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FigRefElement__RefAssignment_1"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1202:1: rule__FigRefElement__RefAssignment_1 : ( ( RULE_ID ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1201:1: rule__FigRefElement__RefAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__FigRefElement__RefAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1206:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1207:1: ( ( RULE_ID ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1205:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1206:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1207:1: ( ( RULE_ID ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1208:1: ( RULE_ID )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1206:1: ( ( RULE_ID ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1207:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigRefElementAccess().getRefFigElementCrossReference_1_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1209:1: ( RULE_ID )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1210:1: RULE_ID
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1208:1: ( RULE_ID )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1209:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFigRefElementAccess().getRefFigElementIDTerminalRuleCall_1_0_1()); 
@@ -3507,17 +3506,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullElement__ElementsAssignment_2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1221:1: rule__NullElement__ElementsAssignment_2 : ( ruleMarkupElement ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1220:1: rule__NullElement__ElementsAssignment_2 : ( ruleMarkupElement ) ;
     public final void rule__NullElement__ElementsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1225:1: ( ( ruleMarkupElement ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1226:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1224:1: ( ( ruleMarkupElement ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1225:1: ( ruleMarkupElement )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1226:1: ( ruleMarkupElement )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1227:1: ruleMarkupElement
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1225:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1226:1: ruleMarkupElement
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullElementAccess().getElementsMarkupElementParserRuleCall_2_0()); 
@@ -3552,17 +3551,17 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OclElement__ElementsAssignment_2"
-    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1236:1: rule__OclElement__ElementsAssignment_2 : ( ruleMarkupElement ) ;
+    // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1235:1: rule__OclElement__ElementsAssignment_2 : ( ruleMarkupElement ) ;
     public final void rule__OclElement__ElementsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1240:1: ( ( ruleMarkupElement ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1241:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1239:1: ( ( ruleMarkupElement ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1240:1: ( ruleMarkupElement )
             {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1241:1: ( ruleMarkupElement )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1242:1: ruleMarkupElement
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1240:1: ( ruleMarkupElement )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1241:1: ruleMarkupElement
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOclElementAccess().getElementsMarkupElementParserRuleCall_2_0()); 
@@ -3597,8 +3596,8 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred2_InternalMarkup
     public final void synpred2_InternalMarkup_fragment() throws RecognitionException {   
-        // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:140:2: ( rule__TextElement__TextAssignment )
-        // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:140:2: rule__TextElement__TextAssignment
+        // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:139:2: ( rule__TextElement__TextAssignment )
+        // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:139:2: rule__TextElement__TextAssignment
         {
         pushFollow(FollowSets000.FOLLOW_rule__TextElement__TextAssignment_in_synpred2_InternalMarkup235);
         rule__TextElement__TextAssignment();

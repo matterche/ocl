@@ -886,7 +886,7 @@ public class InternalMarkupLexer extends Lexer {
         }
     }
 
-    class DFA8 extends DFA {
+    static class DFA8 extends DFA {
 
         public DFA8(BaseRecognizer recognizer) {
             this.recognizer = recognizer;

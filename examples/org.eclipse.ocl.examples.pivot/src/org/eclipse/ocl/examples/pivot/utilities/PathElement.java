@@ -16,9 +16,11 @@
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.Namespace;
 
 /**
  * A PathElement represents a segment in a qualified name.
@@ -39,6 +41,18 @@ public class PathElement
 		}
 		return iMax;
 	}
+	  
+    public static List<PathElement> getPath(EObject element) {
+        List<PathElement> path = new ArrayList<PathElement>();
+        EObject parent = element;
+        for (; (parent != null) && !(parent instanceof Namespace); parent = parent.eContainer()) {
+        }
+        for (; parent instanceof Namespace; parent = parent.eContainer()) {
+            Namespace namespace = (Namespace)parent;
+			path.add(0, new PathElement(namespace.getName(), namespace));
+        }
+        return path;
+    }
 
 	protected final String name;
 	protected final EObject element;

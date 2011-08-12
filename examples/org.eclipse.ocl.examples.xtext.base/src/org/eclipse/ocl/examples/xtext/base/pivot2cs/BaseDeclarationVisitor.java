@@ -16,12 +16,18 @@
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -33,9 +39,11 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -46,6 +54,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -57,6 +66,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, Pivot2CSConversion>
 {
@@ -64,11 +74,50 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		super(context);		// NB this class is stateless since separate instances exist per CS package
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ElementCS visitAnnotation(org.eclipse.ocl.examples.pivot.Annotation object) {
 		AnnotationCS csElement = context.refreshNamedElement(AnnotationCS.class, BaseCSTPackage.Literals.ANNOTATION_CS, object);
 		context.refreshList(csElement.getOwnedContent(), context.visitDeclarations(ModelElementCS.class, object.getOwnedContents(), null));
 		context.refreshList(csElement.getOwnedDetail(), context.visitDeclarations(DetailCS.class, object.getOwnedDetails(), null));
+		List<Element> references = object.getReferences();
+		if (references.size() > 0) {
+			List<PathElement> scopePath = PathElement.getPath(object.eContainer());
+			int iSize = scopePath.size();
+			List<ModelElementRefCS> csReferences = new ArrayList<ModelElementRefCS>(references.size());
+			for (Element reference : references) {
+				ModelElementRefCS csRef = BaseCSTFactory.eINSTANCE.createModelElementRefCS();
+				//
+				//	We can convert two kinds of references:
+				//  -- random external elements can be referenced as a direct URI.
+				//  -- simple, e.g. Type, internal elements can be accessed by (optionally qualified) name 
+				//    -- but Annotations are not in namemspace and Operations may be ambiguous
+				//        so pending a FIXME to Bug 354608 we leave them as (broken) direct URIs
+				//
+				if (ElementUtil.isReferenceable(reference)) {
+					List<PathElement> referencePath = PathElement.getPath(reference.eContainer());	
+					int i = PathElement.getCommonLength(scopePath, referencePath);
+			        if ((i == 0) && (i < iSize)) {
+			        	EObject rootNamespace = referencePath.get(0).getElement();
+						if (rootNamespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+							context.importPackage((org.eclipse.ocl.examples.pivot.Package)rootNamespace);
+						}
+			        }
+					List<Namespace> namespaces = csRef.getNamespace();
+					int iMax = Math.min(iSize, referencePath.size());
+					for ( ; i < iMax; i++) {
+						EObject element = referencePath.get(i).getElement();
+						namespaces.add((Namespace) element);
+					}
+				}
+				csRef.setElement(reference);
+				csReferences.add(csRef);
+			}
+			context.refreshList(csElement.getOwnedReference(), csReferences);
+		}
+		else {
+			csElement.getOwnedReference().clear();
+		}
 		return csElement;
 	}
 
@@ -90,7 +139,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			new Pivot2CS.Predicate<Type>()
 			{
 				public boolean filter(Type element) {
-					return (element != classType) && (element != classifierType);
+					return (element != classType) && (element != classifierType);	// FIXME make this redundant
 				}
 			}));
 		context.refreshQualifiers(csElement.getQualifier(), "abstract", object.isAbstract());

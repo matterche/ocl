@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS#getOwnedContent <em>Owned Content</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS#getReference <em>Reference</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS#getOwnedReference <em>Owned Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,19 +53,19 @@ public interface AnnotationCS extends AnnotationElementCS {
 	EList<ModelElementCS> getOwnedContent();
 
 	/**
-	 * Returns the value of the '<em><b>Reference</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.MonikeredElement}.
+	 * Returns the value of the '<em><b>Owned Reference</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Reference</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Reference</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reference</em>' reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getAnnotationCS_Reference()
-	 * @model resolveProxies="false"
+	 * @return the value of the '<em>Owned Reference</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getAnnotationCS_OwnedReference()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<MonikeredElement> getReference();
+	EList<ModelElementRefCS> getOwnedReference();
 
 } // AnnotationCS

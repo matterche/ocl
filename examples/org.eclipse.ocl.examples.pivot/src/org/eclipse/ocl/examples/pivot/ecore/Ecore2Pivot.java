@@ -334,6 +334,35 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		return castElement;
 	}
 	
+	public <T extends Element> T getPivotElement(Class<T> requiredClass, EObject eObject) {
+		if (pivotRoot == null) {
+			getPivotRoot();
+		}
+		Element element = createMap.get(eObject);
+		if (element == null) {
+			Resource resource = eObject.eResource();
+			if ((resource != ecoreResource) && (resource != null)) {
+				Ecore2Pivot converter = getAdapter(resource, typeManager);
+				if (allConverters.add(converter)) {
+					converter.getPivotRoot();
+					for (Map.Entry<EObject, Element> entry : converter.createMap.entrySet()) {
+						createMap.put(entry.getKey(), entry.getValue());
+					}
+				}
+			}
+			element = createMap.get(eObject);
+		}
+		if (element == null) {
+			error("Unresolved " + eObject);
+		}
+		else if (!requiredClass.isAssignableFrom(element.getClass())) {
+			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) element;
+		return castElement;
+	}
+	
 	public Type getPivotType(EObject eObject) {
 		Element pivotElement = createMap.get(eObject);
 		if (pivotElement == null) {

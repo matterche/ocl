@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -47,6 +48,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.EnumCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.LambdaTypeCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.LibraryScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementRefCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.OperationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.PackageCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ReferenceCSScopeAdapter;
@@ -109,6 +111,11 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	@Override
 	public ScopeCSAdapter visitLibraryCS(LibraryCS eObject) {
 		return new LibraryScopeAdapter(context, eObject);
+	}
+
+	@Override
+	public ScopeCSAdapter visitModelElementRefCS(ModelElementRefCS eObject) {
+		return new ModelElementRefCSScopeAdapter(context, eObject);
 	}
 
 	@Override

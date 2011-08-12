@@ -414,11 +414,11 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 				return;
 			}
             if (parent instanceof Visitable) {
-                List<PathElement> parentPath = getPath(parent);
+                List<PathElement> parentPath = PathElement.getPath(parent);
                 int iMax = parentPath.size();
                 int i = 0;
                 if (scope != null) {
-                    List<PathElement> scopePath = getPath(scope);
+                    List<PathElement> scopePath = PathElement.getPath(scope);
                     i = PathElement.getCommonLength(parentPath, scopePath);
                 }
                 if (i < iMax) {
@@ -441,12 +441,12 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 
     public void appendQualifiedName(Element element) {
         Namespace parent = PrettyPrintNameVisitor.getNamespace(element.eContainer());
-        List<PathElement> parentPath = getPath(parent);
+        List<PathElement> parentPath = PathElement.getPath(parent);
         int iMax = parentPath.size();
         int i = 0;
         Namespace scope = context.getScope();
         if (scope != null) {
-            List<PathElement> scopePath = getPath(scope);
+            List<PathElement> scopePath = PathElement.getPath(scope);
             i = PathElement.getCommonLength(parentPath, scopePath);
         }
         if ((i == 0) && (i < iMax)) {
@@ -559,14 +559,6 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 			appendMultiplicity(lower, upper);
 		}
 	}
-	  
-    public List<PathElement> getPath(EObject element) {
-        List<PathElement> path = new ArrayList<PathElement>();
-        for (EObject parent = element; parent instanceof Namespace; parent = parent.eContainer()) {
-            path.add(0, new PathElement(((Namespace)parent).getName(), parent));
-        }
-        return path;
-    }
 
 	@Override
 	public String toString() {

@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
@@ -113,7 +115,17 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		context.handleVisitNamedElement(csAnnotation, pivotElement);
 		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csAnnotation.getOwnedDetail());
 		context.refreshPivotList(Element.class, pivotElement.getOwnedContents(), csAnnotation.getOwnedContent());
-		context.refreshList(pivotElement.getReferences(), csAnnotation.getReference());
+		List<ModelElementRefCS> csReferences = csAnnotation.getOwnedReference();
+		if (csReferences.size() > 0) {
+			List<Element> references = new ArrayList<Element>(csReferences.size());
+			for (ModelElementRefCS csReference : csReferences) {
+				references.add(csReference.getElement());
+			}
+			context.refreshList(pivotElement.getReferences(), references);
+		}
+		else {
+			pivotElement.getReferences().clear();
+		}
 		return null;
 	}
 
@@ -181,6 +193,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitModelElementCS(ModelElementCS csModelElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitModelElementRefCS(ModelElementRefCS object) {
 		return null;
 	}
 

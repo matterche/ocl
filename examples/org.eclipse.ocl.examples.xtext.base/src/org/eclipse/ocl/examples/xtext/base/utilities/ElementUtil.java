@@ -26,10 +26,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -243,6 +245,14 @@ public class ElementUtil
 
 	public static boolean isOrdered(TypedElementCS csTypedElement) {
 		return csTypedElement.getQualifier().contains("ordered");
+	}
+
+	/**
+	 * Return true if element is able to be referenced by OCLinEcore. Other elements await FIXME Bug 354608.
+	 */
+	@Deprecated
+	public static boolean isReferenceable(EObject reference) {
+		return (reference instanceof Property) || (reference instanceof Type) || (reference instanceof org.eclipse.ocl.examples.pivot.Package);
 	}
 
 	public static boolean isUnique(TypedElementCS csTypedElement) {
