@@ -145,14 +145,30 @@ public class GenerateModel extends AbstractWorkflowComponent {
 		return showProgress;
 	}
 
+	/**
+	 * Define the genModel from which to generate a Java model.
+	 * 
+	 * @param genModel URI of the genmodel
+	 */
 	public void setGenModel(String genModel) {
 		this.genModel = genModel;
 	}
 
+	/**
+	 * Define a ReseourceSet to be used for for required resources. This allows the same ResourceSet to
+	 * be shared for multiple modeling purposes.
+	 * 
+	 * @param resourceSet the ResourceSet
+	 */
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
 	}
 
+	/**
+	 * Whether to display GenModel newTask activity.
+	 * 
+	 * @param showProgress
+	 */
 	public void setShowProgress(boolean showProgress) {
 		this.showProgress = showProgress;
 	}
