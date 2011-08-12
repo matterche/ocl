@@ -77,6 +77,7 @@ UnrestrictedName returns ecore::EString:
 |	'precondition'
 |	'property'
 |	'readonly'
+|	'reference'
 |	'resolve'
 |	'serializable'
 |	'static'
@@ -114,12 +115,12 @@ PreconditionConstraintCS returns OCLinEcoreConstraintCS:
 ;
 
 AnnotationCS returns base::AnnotationCS:
-	'annotation' name=(UnrestrictedName|SINGLE_QUOTED_STRING)
+	{base::AnnotationCS} 'annotation' name=(UnrestrictedName|SINGLE_QUOTED_STRING)?
 	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
 	(('{' (ownedAnnotation+=AnnotationElementCS
 	     | ownedContent+=ModelElementCS
-	     | reference+=[pivot::MonikeredElement|UnrestrictedName])+
-	  '}')
+	     | ownedReference+=ModelElementRefCS
+	  )+'}')
 	|';'
 	)
 ;
@@ -222,6 +223,14 @@ ModelElementCS returns base::ModelElementCS:
 	ClassifierCS | EnumerationLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
 ;
 
+ModelElementRefCS returns base::ModelElementRefCS:
+	'reference' (
+		((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
+		 element=[pivot::Element|UnreservedName])
+		| element=[pivot::Element|UnrestrictedName])
+	) ';'
+;
+
 OperationCS returns base::OperationCS:
 	(qualifier+='static' | qualifier+='definition')*
 	'operation' name=UnrestrictedName
@@ -243,7 +252,7 @@ OperationCS returns base::OperationCS:
 
 PackageCS returns base::PackageCS:
 	'package' name=UnrestrictedName
-	(':' nsPrefix=UnrestrictedName '=' nsURI=SINGLE_QUOTED_STRING)?
+	(':' nsPrefix=UnrestrictedName)? ('=' nsURI=SINGLE_QUOTED_STRING)?
 	(('{'
 		(ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)*
 		'}')

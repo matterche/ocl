@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
@@ -60,6 +61,7 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
+import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSyntaxException;
 
 /**
  * OCLinEcoreDocumentProvider orchestrates the load and saving of optional XMI content
@@ -90,6 +92,30 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				outputStream.write(buffer, 0, len);
 			}
 		return new ByteArrayInputStream(outputStream.toByteArray());
+	}
+
+	protected void diagnoseErrors(XtextResource xtextResource, Exception e) throws CoreException {
+		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
+		if (diagnostics.size() > 0) {
+			StringBuffer s = new StringBuffer();
+			s.append("Concrete Syntax validation failed");
+			for (Diagnostic diagnostic : diagnostics) {
+				s.append("\n");
+				s.append(diagnostic.toString());
+			}
+			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString(), e));
+		}
+		else {
+			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
+		}
+	}
+
+	private void diagnoseErrors(Resource resource) throws CoreException {
+		List<Resource.Diagnostic> errors = resource.getErrors();
+		if (errors.size() > 0) {
+			String formattedMessage = PivotUtil.formatResourceDiagnostics(errors, "Failed to load", "\n");
+			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, formattedMessage));
+		}
 	}
 
 	@Override
@@ -202,6 +228,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, typeManager);
 						org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 						pivotResource = pivotRoot.eResource();
+						diagnoseErrors(pivotResource);
 						persistAs = PERSIST_AS_ECORE;
 					}
 					else if (xmiRoot instanceof org.eclipse.ocl.examples.pivot.Package) {
@@ -237,20 +264,10 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {
 					xtextResource.save(outputStream, null);
+				} catch (InvalidConcreteSyntaxException e) {
+					diagnoseErrors((XtextResource) xtextResource, e);
 				} catch (XtextSerializationException e) {
-					List<Diagnostic> diagnostics = ((XtextResource) xtextResource).validateConcreteSyntax();
-					if (diagnostics.size() > 0) {
-						StringBuffer s = new StringBuffer();
-						s.append("Concrete Syntax validation failed");
-						for (Diagnostic diagnostic : diagnostics) {
-							s.append("\n");
-							s.append(diagnostic.toString());
-						}
-						throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString(), e));
-					}
-					else {
-						throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
-					}
+					diagnoseErrors((XtextResource) xtextResource, e);
 				}
 				xtextResource.unload();
 				resourceSet.getResources().remove(xtextResource);

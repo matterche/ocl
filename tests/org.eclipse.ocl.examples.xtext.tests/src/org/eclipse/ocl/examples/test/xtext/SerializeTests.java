@@ -36,9 +36,9 @@ import org.eclipse.xtext.resource.XtextResource;
 public class SerializeTests extends XtextTestCase
 {
 	public XtextResource doSerialize(String stem) throws Exception {
-		return doSerialize(stem, stem);
+		return doSerialize(stem, stem, true);
 	}
-	public XtextResource doSerialize(String stem, String referenceStem) throws Exception {
+	public XtextResource doSerialize(String stem, String referenceStem, boolean doCompare) throws Exception {
 		//
 		//	Load as Ecore
 		//
@@ -81,7 +81,9 @@ public class SerializeTests extends XtextTestCase
 			String referenceName = referenceStem + ".ecore";
 			URI referenceURI = getProjectFileURI(referenceName);
 			Resource referenceResource = loadEcore(referenceURI);
-			assertSameModel(referenceResource, ecoreResource2);		
+			if (doCompare) {	// Workaround for Bug 354621
+				assertSameModel(referenceResource, ecoreResource2);		
+			}
 			return xtextResource;
 		}
 		finally {
@@ -170,6 +172,10 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_Bug323741() throws Exception {
 		doSerialize("Bug323741");
 	}
+	
+	public void testSerialize_Bug354336() throws Exception {
+		doSerialize("Bug354336", "Bug354336", false);		// FIXME Model check suppressed because of Bug 354621
+	}
 
 	public void testSerialize_Company() throws Exception {
 //		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
@@ -179,7 +185,7 @@ public class SerializeTests extends XtextTestCase
 //		DocumentScopeAdapter.WORK.setState(true);
 //		CS2PivotConversion.CONTINUATION.setState(true);
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doSerialize("Company", "Company.reference");
+		doSerialize("Company", "Company.reference", true);
 	}
 
 	public void testSerialize_ConstraintMessages() throws Exception {
