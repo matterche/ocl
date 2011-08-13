@@ -142,7 +142,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Pret
 
 	@Override
 	public Object visitOperation(Operation object) {
-//		delegate.appendParent(context.getScope(), object, "::");
+		delegate.appendParent(context.getScope(), object, "::");
 		delegate.appendName(object);
 		delegate.appendTemplateParameters(object);
 		delegate.appendTemplateBindings(object);
