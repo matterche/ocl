@@ -102,7 +102,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 		} catch (Exception e) {
 			StringWriter s = new StringWriter();
 			e.printStackTrace(new PrintWriter(s));
-			return s.toString();
+			return s.toString().replace("\n", "\n<br>");
 		}
 	}
 
@@ -143,9 +143,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 
 	@Override
 	protected String getFirstLine(EObject eObject) {
-		// TODO Auto-generated method stub
 		String firstLine = super.getFirstLine(eObject);
-//		return firstLine;
 		Element pivotElement = null;
 		if (eObject instanceof Pivotable) {
 			pivotElement = PivotUtil.getPivot(Element.class, (Pivotable)eObject);
