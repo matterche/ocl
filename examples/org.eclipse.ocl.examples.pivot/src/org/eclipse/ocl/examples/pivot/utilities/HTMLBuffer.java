@@ -22,14 +22,15 @@ package org.eclipse.ocl.examples.pivot.utilities;
 public class HTMLBuffer
 {
 	protected final StringBuffer s = new StringBuffer();
+	private boolean inPara = false;
 
 	public void append(String string) {
 		for (int i = 0; i < string.length(); i++) {
-			appendChar(string.charAt(i));
+			append(string.charAt(i));
 		}		
 	}
 	
-	public void appendChar(char c) {
+	public void append(char c) {
 		switch (c) {
 		case '&': s.append("&amp;"); break;
 		case '<': s.append("&lt;"); break;
@@ -38,16 +39,78 @@ public class HTMLBuffer
 		}
 	}
 
-	public void appendTag(String tag) {
+	protected void appendTag(String tag) {
 		s.append("<");
 		s.append(tag);
 		s.append(">");
 	}
 
-	public void appendUntag(String tag) {
+	protected void appendUntag(String tag) {
 		s.append("</");
 		s.append(tag);
 		s.append(">");
+	}
+	
+	/**
+	 * End a colored font by emitting a </font> tag.
+	 */
+	public void endFontColor() {
+		appendUntag("font"); 
+	}
+	
+	/**
+	 * End a tagged font by emitting a </fontName> tag.
+	 */
+	public void endFontName(String fontName) {
+		appendUntag(fontName); 
+	}
+	
+	/**
+	 * End a paragraph by emitting a </p> tag, unless no paragraph is active.
+	 */
+	public void endParagraph() {
+		if (inPara) {
+			appendUntag("p");
+			inPara = false;
+		}
+	}
+
+	/**
+	 * End underlining by emitting a </u> tag.
+	 */
+	public void endUnderline() {
+		appendUntag("u");
+	}
+	
+	/**
+	 * Start a colored font by emitting a <font color="colorName"> tag.
+	 */
+	public void startFontColor(String colorName) {
+		appendTag("font color=\"" + colorName + "\""); 
+	}
+	
+	/**
+	 * Start a tagged font by emitting a <fontName> tag.
+	 */
+	public void startFontName(String fontName) {
+		appendTag(fontName); 
+	}
+	
+	/**
+	 * Start a paragraph by emitting a <p> tag, unless a paragraph is already active.
+	 */
+	public void startParagraph() {
+		if (!inPara) {
+			appendTag("p");
+			inPara = true;
+		}
+	}
+
+	/**
+	 * Start underlining by emitting a <u> tag.
+	 */
+	public void startUnderline() {
+		appendTag("u");
 	}
 	
 	@Override

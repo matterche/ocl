@@ -47,7 +47,9 @@ public class MarkupParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFigElementAccess().getGroup_0_1(), "rule__FigElement__Group_0_1__0");
 					put(grammarAccess.getFigRefElementAccess().getGroup(), "rule__FigRefElement__Group__0");
 					put(grammarAccess.getNullElementAccess().getGroup(), "rule__NullElement__Group__0");
-					put(grammarAccess.getOclElementAccess().getGroup(), "rule__OclElement__Group__0");
+					put(grammarAccess.getOclCodeElementAccess().getGroup(), "rule__OclCodeElement__Group__0");
+					put(grammarAccess.getOclEvalElementAccess().getGroup(), "rule__OclEvalElement__Group__0");
+					put(grammarAccess.getOclTextElementAccess().getGroup(), "rule__OclTextElement__Group__0");
 					put(grammarAccess.getMarkupAccess().getElementsAssignment(), "rule__Markup__ElementsAssignment");
 					put(grammarAccess.getTextElementAccess().getTextAssignment(), "rule__TextElement__TextAssignment");
 					put(grammarAccess.getNewLineElementAccess().getTextAssignment(), "rule__NewLineElement__TextAssignment");
@@ -57,7 +59,9 @@ public class MarkupParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFigElementAccess().getSrcAssignment_1(), "rule__FigElement__SrcAssignment_1");
 					put(grammarAccess.getFigRefElementAccess().getRefAssignment_1(), "rule__FigRefElement__RefAssignment_1");
 					put(grammarAccess.getNullElementAccess().getElementsAssignment_2(), "rule__NullElement__ElementsAssignment_2");
-					put(grammarAccess.getOclElementAccess().getElementsAssignment_2(), "rule__OclElement__ElementsAssignment_2");
+					put(grammarAccess.getOclCodeElementAccess().getElementsAssignment_2(), "rule__OclCodeElement__ElementsAssignment_2");
+					put(grammarAccess.getOclEvalElementAccess().getElementsAssignment_2(), "rule__OclEvalElement__ElementsAssignment_2");
+					put(grammarAccess.getOclTextElementAccess().getElementsAssignment_2(), "rule__OclTextElement__ElementsAssignment_2");
 				}
 			};
 		}

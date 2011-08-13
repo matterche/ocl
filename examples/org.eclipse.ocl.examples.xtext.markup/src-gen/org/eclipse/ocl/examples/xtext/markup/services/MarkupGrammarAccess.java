@@ -41,13 +41,17 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFigElementParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cFigRefElementParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cNullElementParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cOclElementParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cOclCodeElementParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cOclEvalElementParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cOclTextElementParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//MarkupElement:
-		//	FontElement | NewLineElement | TextElement | FigElement | FigRefElement | NullElement | OclElement;
+		//	FontElement | NewLineElement | TextElement | FigElement | FigRefElement | NullElement | OclCodeElement |
+		//	OclEvalElement | OclTextElement;
 		public ParserRule getRule() { return rule; }
 
-		//FontElement | NewLineElement | TextElement | FigElement | FigRefElement | NullElement | OclElement
+		//FontElement | NewLineElement | TextElement | FigElement | FigRefElement | NullElement | OclCodeElement | OclEvalElement
+		//| OclTextElement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//FontElement
@@ -68,8 +72,14 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		//NullElement
 		public RuleCall getNullElementParserRuleCall_5() { return cNullElementParserRuleCall_5; }
 
-		//OclElement
-		public RuleCall getOclElementParserRuleCall_6() { return cOclElementParserRuleCall_6; }
+		//OclCodeElement
+		public RuleCall getOclCodeElementParserRuleCall_6() { return cOclCodeElementParserRuleCall_6; }
+
+		//OclEvalElement
+		public RuleCall getOclEvalElementParserRuleCall_7() { return cOclEvalElementParserRuleCall_7; }
+
+		//OclTextElement
+		public RuleCall getOclTextElementParserRuleCall_8() { return cOclTextElementParserRuleCall_8; }
 	}
 
 	public class TextElementElements extends AbstractParserRuleElementFinder {
@@ -272,27 +282,91 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 
-	public class OclElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OclElement");
+	public class OclCodeElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OclCodeElement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cOclElementAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cOclKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Action cOclCodeElementAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cOclCodeKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cElementsMarkupElementParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//OclElement:
-		//	{OclElement} "ocl[" elements+=MarkupElement* "]";
+		//OclCodeElement:
+		//	{OclCodeElement} "oclCode[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
-		//{OclElement} "ocl[" elements+=MarkupElement* "]"
+		//{OclCodeElement} "oclCode[" elements+=MarkupElement* "]"
 		public Group getGroup() { return cGroup; }
 
-		//{OclElement}
-		public Action getOclElementAction_0() { return cOclElementAction_0; }
+		//{OclCodeElement}
+		public Action getOclCodeElementAction_0() { return cOclCodeElementAction_0; }
 
-		//"ocl["
-		public Keyword getOclKeyword_1() { return cOclKeyword_1; }
+		//"oclCode["
+		public Keyword getOclCodeKeyword_1() { return cOclCodeKeyword_1; }
+
+		//elements+=MarkupElement*
+		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
+
+		//MarkupElement
+		public RuleCall getElementsMarkupElementParserRuleCall_2_0() { return cElementsMarkupElementParserRuleCall_2_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
+
+	public class OclEvalElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OclEvalElement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cOclEvalElementAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cOclEvalKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementsMarkupElementParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//OclEvalElement:
+		//	{OclEvalElement} "oclEval[" elements+=MarkupElement* "]";
+		public ParserRule getRule() { return rule; }
+
+		//{OclEvalElement} "oclEval[" elements+=MarkupElement* "]"
+		public Group getGroup() { return cGroup; }
+
+		//{OclEvalElement}
+		public Action getOclEvalElementAction_0() { return cOclEvalElementAction_0; }
+
+		//"oclEval["
+		public Keyword getOclEvalKeyword_1() { return cOclEvalKeyword_1; }
+
+		//elements+=MarkupElement*
+		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
+
+		//MarkupElement
+		public RuleCall getElementsMarkupElementParserRuleCall_2_0() { return cElementsMarkupElementParserRuleCall_2_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
+
+	public class OclTextElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OclTextElement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cOclTextElementAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cOclTextKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementsMarkupElementParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//OclTextElement:
+		//	{OclTextElement} "oclText[" elements+=MarkupElement* "]";
+		public ParserRule getRule() { return rule; }
+
+		//{OclTextElement} "oclText[" elements+=MarkupElement* "]"
+		public Group getGroup() { return cGroup; }
+
+		//{OclTextElement}
+		public Action getOclTextElementAction_0() { return cOclTextElementAction_0; }
+
+		//"oclText["
+		public Keyword getOclTextKeyword_1() { return cOclTextKeyword_1; }
 
 		//elements+=MarkupElement*
 		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
@@ -312,14 +386,16 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFigKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		private final Keyword cFigKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		private final Keyword cFigKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cOclKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cOclCodeKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cOclEvalKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cOclTextKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cRightSquareBracketKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
 		
 		//MarkupKeyword:
-		//	"b[" | "e[" | "fig[" | "fig:" | "fig-[" | "ocl[" | "]";
+		//	"b[" | "e[" | "fig[" | "fig:" | "fig-[" | "oclCode[" | "oclEval[" | "oclText[" | "]";
 		public ParserRule getRule() { return rule; }
 
-		//"b[" | "e[" | "fig[" | "fig:" | "fig-[" | "ocl[" | "]"
+		//"b[" | "e[" | "fig[" | "fig:" | "fig-[" | "oclCode[" | "oclEval[" | "oclText[" | "]"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"b["
@@ -337,11 +413,17 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		//"fig-["
 		public Keyword getFigKeyword_4() { return cFigKeyword_4; }
 
-		//"ocl["
-		public Keyword getOclKeyword_5() { return cOclKeyword_5; }
+		//"oclCode["
+		public Keyword getOclCodeKeyword_5() { return cOclCodeKeyword_5; }
+
+		//"oclEval["
+		public Keyword getOclEvalKeyword_6() { return cOclEvalKeyword_6; }
+
+		//"oclText["
+		public Keyword getOclTextKeyword_7() { return cOclTextKeyword_7; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+		public Keyword getRightSquareBracketKeyword_8() { return cRightSquareBracketKeyword_8; }
 	}
 	
 	
@@ -353,7 +435,9 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	private FigElementElements pFigElement;
 	private FigRefElementElements pFigRefElement;
 	private NullElementElements pNullElement;
-	private OclElementElements pOclElement;
+	private OclCodeElementElements pOclCodeElement;
+	private OclEvalElementElements pOclEvalElement;
+	private OclTextElementElements pOclTextElement;
 	private MarkupKeywordElements pMarkupKeyword;
 	private TerminalRule tID;
 	private TerminalRule tWORD;
@@ -387,7 +471,8 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MarkupElement:
-	//	FontElement | NewLineElement | TextElement | FigElement | FigRefElement | NullElement | OclElement;
+	//	FontElement | NewLineElement | TextElement | FigElement | FigRefElement | NullElement | OclCodeElement |
+	//	OclEvalElement | OclTextElement;
 	public MarkupElementElements getMarkupElementAccess() {
 		return (pMarkupElement != null) ? pMarkupElement : (pMarkupElement = new MarkupElementElements());
 	}
@@ -456,18 +541,38 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		return getNullElementAccess().getRule();
 	}
 
-	//OclElement:
-	//	{OclElement} "ocl[" elements+=MarkupElement* "]";
-	public OclElementElements getOclElementAccess() {
-		return (pOclElement != null) ? pOclElement : (pOclElement = new OclElementElements());
+	//OclCodeElement:
+	//	{OclCodeElement} "oclCode[" elements+=MarkupElement* "]";
+	public OclCodeElementElements getOclCodeElementAccess() {
+		return (pOclCodeElement != null) ? pOclCodeElement : (pOclCodeElement = new OclCodeElementElements());
 	}
 	
-	public ParserRule getOclElementRule() {
-		return getOclElementAccess().getRule();
+	public ParserRule getOclCodeElementRule() {
+		return getOclCodeElementAccess().getRule();
+	}
+
+	//OclEvalElement:
+	//	{OclEvalElement} "oclEval[" elements+=MarkupElement* "]";
+	public OclEvalElementElements getOclEvalElementAccess() {
+		return (pOclEvalElement != null) ? pOclEvalElement : (pOclEvalElement = new OclEvalElementElements());
+	}
+	
+	public ParserRule getOclEvalElementRule() {
+		return getOclEvalElementAccess().getRule();
+	}
+
+	//OclTextElement:
+	//	{OclTextElement} "oclText[" elements+=MarkupElement* "]";
+	public OclTextElementElements getOclTextElementAccess() {
+		return (pOclTextElement != null) ? pOclTextElement : (pOclTextElement = new OclTextElementElements());
+	}
+	
+	public ParserRule getOclTextElementRule() {
+		return getOclTextElementAccess().getRule();
 	}
 
 	//MarkupKeyword:
-	//	"b[" | "e[" | "fig[" | "fig:" | "fig-[" | "ocl[" | "]";
+	//	"b[" | "e[" | "fig[" | "fig:" | "fig-[" | "oclCode[" | "oclEval[" | "oclText[" | "]";
 	public MarkupKeywordElements getMarkupKeywordAccess() {
 		return (pMarkupKeyword != null) ? pMarkupKeyword : (pMarkupKeyword = new MarkupKeywordElements());
 	}

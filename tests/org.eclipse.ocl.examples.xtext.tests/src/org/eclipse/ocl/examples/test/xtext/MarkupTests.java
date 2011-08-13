@@ -19,6 +19,8 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.examples.pivot.SemanticException;
+import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
@@ -64,6 +66,17 @@ public class MarkupTests extends XtextTestCase
 		return markup;
 	}
 
+	protected void doBadHtmlTest(String testString, Class<?> exceptionClass) throws Exception {
+		try {
+			Markup markup = doDecode(testString);
+			@SuppressWarnings("unused")
+			String testResult = MarkupToHTML.toString(null, null, markup);
+			fail(toPrintable(testString) + " expected " + exceptionClass.getName());
+		} catch (Exception e) {
+			assertEquals(toPrintable(testString), exceptionClass, e.getClass());
+		}
+	}
+
 	protected void doHtmlTest(Object context, String expected, String testString) throws Exception {
 		Markup markup = doDecode(testString);
 		String testResult = MarkupToHTML.toString(null, context, markup);
@@ -89,6 +102,12 @@ public class MarkupTests extends XtextTestCase
 			System.out.println(context + MarkupToTree.toString(markup));
 			assertEquals(context, testString, testResult);
 		}
+	}
+
+	protected String htmlEncode(String string) {
+		HTMLBuffer html = new HTMLBuffer();
+		html.append(string);
+		return html.toString();
 	}
 
 	protected String toPrintable(String testString) {
@@ -125,16 +144,23 @@ public class MarkupTests extends XtextTestCase
 		doNewlineCountTest(3, "\r\n\r \n");
 	}
 
-	public void testOCL() throws Exception {
-//		doHtmlTest(null, "45", "ocl[5a9]");
-		doHtmlTest(null, "45", "ocl[5*9]");
-		doHtmlTest(EcorePackage.Literals.EBIG_DECIMAL, "EBigDecimal", "ocl[self.name]");
+	public void testOclEval() throws Exception {
+//		doHtmlTest(null, "45", "oclEval[5a9]");
+		doHtmlTest(null, "45", "oclEval[5*9]");
+		doHtmlTest(EcorePackage.Literals.EBIG_DECIMAL, "EBigDecimal", "oclEval[self.name]");
+		doHtmlTest(null, "true", "oclEval[null->isEmpty()]");
+		doHtmlTest(null, "true", "oclEval[null->isEmpty()]");
+	}
+
+	public void testOclText() throws Exception {
+		doHtmlTest(null, "<tt>" + htmlEncode("null->isEmpty()") + "</tt>", "oclText[null->isEmpty()]");
+		doBadHtmlTest("oclText[null->isBad()]", SemanticException.class);
 	}
 
 	public void testStrings() {
 		doStringTest("a b[c] d");
 		doStringTest("a\rb\n\rc\t\nd");
-		doStringTest("ocl[a.c[4]]");
-		doStringTest("ocl[a.b[4]]");
+		doStringTest("oclEval[a.c[4]]");
+		doStringTest("oclEval[a.b[4]]");
 	}
 }

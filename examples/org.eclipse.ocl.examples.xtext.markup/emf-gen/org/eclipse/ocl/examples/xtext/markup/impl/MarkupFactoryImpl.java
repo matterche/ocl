@@ -85,7 +85,9 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 			case MarkupPackage.MARKUP_ELEMENT: return createMarkupElement();
 			case MarkupPackage.NEW_LINE_ELEMENT: return createNewLineElement();
 			case MarkupPackage.NULL_ELEMENT: return createNullElement();
-			case MarkupPackage.OCL_ELEMENT: return createOclElement();
+			case MarkupPackage.OCL_CODE_ELEMENT: return createOclCodeElement();
+			case MarkupPackage.OCL_EVAL_ELEMENT: return createOclEvalElement();
+			case MarkupPackage.OCL_TEXT_ELEMENT: return createOclTextElement();
 			case MarkupPackage.TEXT_ELEMENT: return createTextElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -177,9 +179,29 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclElement createOclElement() {
-		OclElementImpl oclElement = new OclElementImpl();
-		return oclElement;
+	public OclCodeElement createOclCodeElement() {
+		OclCodeElementImpl oclCodeElement = new OclCodeElementImpl();
+		return oclCodeElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OclEvalElement createOclEvalElement() {
+		OclEvalElementImpl oclEvalElement = new OclEvalElementImpl();
+		return oclEvalElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OclTextElement createOclTextElement() {
+		OclTextElementImpl oclTextElement = new OclTextElementImpl();
+		return oclTextElement;
 	}
 
 	/**

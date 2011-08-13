@@ -31,7 +31,9 @@ import org.eclipse.ocl.examples.xtext.markup.MarkupFactory;
 import org.eclipse.ocl.examples.xtext.markup.MarkupPackage;
 import org.eclipse.ocl.examples.xtext.markup.NewLineElement;
 import org.eclipse.ocl.examples.xtext.markup.NullElement;
-import org.eclipse.ocl.examples.xtext.markup.OclElement;
+import org.eclipse.ocl.examples.xtext.markup.OclCodeElement;
+import org.eclipse.ocl.examples.xtext.markup.OclEvalElement;
+import org.eclipse.ocl.examples.xtext.markup.OclTextElement;
 import org.eclipse.ocl.examples.xtext.markup.TextElement;
 
 /**
@@ -102,7 +104,21 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass oclElementEClass = null;
+	private EClass oclCodeElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclEvalElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclTextElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -339,8 +355,26 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOclElement() {
-		return oclElementEClass;
+	public EClass getOclCodeElement() {
+		return oclCodeElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOclEvalElement() {
+		return oclEvalElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOclTextElement() {
+		return oclTextElementEClass;
 	}
 
 	/**
@@ -415,7 +449,11 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 
 		nullElementEClass = createEClass(NULL_ELEMENT);
 
-		oclElementEClass = createEClass(OCL_ELEMENT);
+		oclCodeElementEClass = createEClass(OCL_CODE_ELEMENT);
+
+		oclEvalElementEClass = createEClass(OCL_EVAL_ELEMENT);
+
+		oclTextElementEClass = createEClass(OCL_TEXT_ELEMENT);
 
 		textElementEClass = createEClass(TEXT_ELEMENT);
 		createEAttribute(textElementEClass, TEXT_ELEMENT__TEXT);
@@ -456,7 +494,9 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 		markupEClass.getESuperTypes().add(this.getCompoundElement());
 		newLineElementEClass.getESuperTypes().add(this.getMarkupElement());
 		nullElementEClass.getESuperTypes().add(this.getCompoundElement());
-		oclElementEClass.getESuperTypes().add(this.getCompoundElement());
+		oclCodeElementEClass.getESuperTypes().add(this.getCompoundElement());
+		oclEvalElementEClass.getESuperTypes().add(this.getCompoundElement());
+		oclTextElementEClass.getESuperTypes().add(this.getCompoundElement());
 		textElementEClass.getESuperTypes().add(this.getMarkupElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -486,7 +526,11 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 
 		initEClass(nullElementEClass, NullElement.class, "NullElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(oclElementEClass, OclElement.class, "OclElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(oclCodeElementEClass, OclCodeElement.class, "OclCodeElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(oclEvalElementEClass, OclEvalElement.class, "OclEvalElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(oclTextElementEClass, OclTextElement.class, "OclTextElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(textElementEClass, TextElement.class, "TextElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTextElement_Text(), ecorePackage.getEString(), "text", null, 0, -1, TextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

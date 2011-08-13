@@ -108,13 +108,31 @@ public interface MarkupFactory extends EFactory {
 	NullElement createNullElement();
 
 	/**
-	 * Returns a new object of class '<em>Ocl Element</em>'.
+	 * Returns a new object of class '<em>Ocl Code Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Element</em>'.
+	 * @return a new object of class '<em>Ocl Code Element</em>'.
 	 * @generated
 	 */
-	OclElement createOclElement();
+	OclCodeElement createOclCodeElement();
+
+	/**
+	 * Returns a new object of class '<em>Ocl Eval Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ocl Eval Element</em>'.
+	 * @generated
+	 */
+	OclEvalElement createOclEvalElement();
+
+	/**
+	 * Returns a new object of class '<em>Ocl Text Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ocl Text Element</em>'.
+	 * @generated
+	 */
+	OclTextElement createOclTextElement();
 
 	/**
 	 * Returns a new object of class '<em>Text Element</em>'.

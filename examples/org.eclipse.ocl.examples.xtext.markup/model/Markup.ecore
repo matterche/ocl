@@ -34,7 +34,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NullElement" eSuperTypes="#//CompoundElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclElement" eSuperTypes="#//CompoundElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclCodeElement" eSuperTypes="#//CompoundElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclEvalElement" eSuperTypes="#//CompoundElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclTextElement" eSuperTypes="#//CompoundElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="TextElement" eSuperTypes="#//MarkupElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

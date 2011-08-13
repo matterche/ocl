@@ -26,6 +26,9 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -55,6 +58,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		}
 	}
 	
+	private OCL ocl = null;
 	private TypeManager typeManager;
 	protected final Object context;
 	protected final HTMLBuffer s = new HTMLBuffer();
@@ -85,49 +89,57 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		else {
 			htmlFont = "???";
 		}
-		s.appendTag(htmlFont);
+		s.startFontName(htmlFont);
 		caseCompoundElement(object);
-		s.appendUntag(htmlFont);
+		s.endFontName(htmlFont);
 		return s;
 	}
 
 	@Override
 	public HTMLBuffer caseNewLineElement(NewLineElement object) {
-		s.append(object.getText());
+		int newLines = MarkupUtils.getNewlineCount(object);
+		if (newLines <= 1) {
+			s.append("\n");
+		}
+		else {
+			s.append("\n");
+			s.endParagraph();
+			s.startParagraph();
+			s.append("\n");
+		}
 		return s;
 	}
 
 	@Override
 	public HTMLBuffer caseNullElement(NullElement object) {
-		s.appendChar('[');
+		s.append('[');
 		caseCompoundElement(object);
-		s.appendChar(']');
+		s.append(']');
 		return s;
 	}
 
 	@Override
-	public HTMLBuffer caseOclElement(OclElement object) {
+	public HTMLBuffer caseOclCodeElement(OclCodeElement object) {
+		s.startFontName("pre");
 		String oclString = MarkupToString.toString(object.getElements());		
-
-		Registry packageRegistry = null; //resourceSet.getPackageRegistry();
-		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
-		OCL ocl = OCL.newInstance(envFactory);
-		if (typeManager == null) {
-			typeManager = envFactory.getTypeManager();
-		}
-		OCLHelper helper = ocl.createOCLHelper();
 		try {
-			if (context instanceof EObject) {
-				EClass eClass = ((EObject)context).eClass();
-				Type pivotType = typeManager.getPivotType(eClass.getName());
-				if (pivotType == null) {
-					Resource resource = eClass.eResource();
-					Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
-					pivotType = ecore2Pivot.getCreated(Type.class, eClass);
-				}
-				helper.setContext(pivotType);
-			}
-			ExpressionInOcl query = helper.createQuery(oclString);
+			ExpressionInOcl query = createQuery(oclString);
+			String text = PrettyPrintExprVisitor.prettyPrint(query);
+			s.append(text);
+		} catch (ParserException e) {
+			throw new InvalidMarkupException(e);
+		} finally {
+			s.endFontName("pre");
+		}
+		return s;
+	}
+
+	@Override
+	public HTMLBuffer caseOclEvalElement(OclEvalElement object) {
+		String oclString = MarkupToString.toString(object.getElements());		
+		try {
+			OCL ocl = getOCL();
+			ExpressionInOcl query = createQuery(oclString);
 			Value value = ocl.evaluate(context, query);
 			if (value instanceof StringValue) {
 				s.append(((StringValue)value).stringValue());
@@ -142,13 +154,31 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 	}
 
 	@Override
+	public HTMLBuffer caseOclTextElement(OclTextElement object) {
+		s.startFontName("tt");
+		String oclString = MarkupToString.toString(object.getElements());		
+		try {
+			ExpressionInOcl query = createQuery(oclString);
+			PrettyPrintOptions.Global options = PrettyPrintTypeVisitor.createOptions(null);
+			options.setLinelength(Integer.MAX_VALUE);
+			String text = PrettyPrintExprVisitor.prettyPrint(query, options);
+			s.append(text);
+		} catch (ParserException e) {
+			throw new InvalidMarkupException(e);
+		} finally {
+			s.endFontName("tt");
+		}
+		return s;
+	}
+
+	@Override
 	public HTMLBuffer caseTextElement(TextElement object) {
 		for (String text : object.getText()) {
 			int iMax = text.length();
 			if (iMax > 0) {
 				char c = text.charAt(0);
 				if ((c == ' ') || (c == '\t')) {
-					s.appendChar(' ');
+					s.append(' ');
 				}
 				else {
 					for (int i = 0; i < iMax; ) {
@@ -156,12 +186,28 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 						if ((c == '\\') && (i < iMax)) {
 							c  = text.charAt(i++);
 						}
-						s.appendChar(c);
+						s.append(c);
 					}
 				}
 			}
 		}
 		return s;
+	}
+
+	protected ExpressionInOcl createQuery(String oclString) throws ParserException {
+		OCL ocl = getOCL();
+		OCLHelper helper = ocl.createOCLHelper();
+		if (context instanceof EObject) {
+			EClass eClass = ((EObject)context).eClass();
+			Type pivotType = typeManager.getPivotType(eClass.getName());
+			if (pivotType == null) {
+				Resource resource = eClass.eResource();
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
+				pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+			}
+			helper.setContext(pivotType);
+		}
+		return helper.createQuery(oclString);
 	}
 
 	@Override
@@ -170,6 +216,18 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		s.append(object.eClass().getName());
 		s.append(">");
 		return s;
+	}
+
+	protected OCL getOCL() {
+		if (ocl == null) {
+			Registry packageRegistry = null; //resourceSet.getPackageRegistry();
+			PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
+			ocl = OCL.newInstance(envFactory);
+			if (typeManager == null) {
+				typeManager = envFactory.getTypeManager();
+			}
+		}
+		return ocl;
 	}
 
 	@Override

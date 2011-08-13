@@ -73,8 +73,24 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseOclElement(OclElement object) {
-		s.append("ocl[");
+	public StringBuffer caseOclCodeElement(OclCodeElement object) {
+		s.append("oclCode[");
+		caseCompoundElement(object);
+		s.append("]");
+		return s;
+	}
+
+	@Override
+	public StringBuffer caseOclEvalElement(OclEvalElement object) {
+		s.append("oclEval[");
+		caseCompoundElement(object);
+		s.append("]");
+		return s;
+	}
+
+	@Override
+	public StringBuffer caseOclTextElement(OclTextElement object) {
+		s.append("oclText[");
 		caseCompoundElement(object);
 		s.append("]");
 		return s;

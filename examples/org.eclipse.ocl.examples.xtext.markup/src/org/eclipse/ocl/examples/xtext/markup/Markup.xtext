@@ -31,7 +31,9 @@ MarkupElement:
 |	FigElement
 |	FigRefElement
 |	NullElement
-|	OclElement
+|	OclCodeElement
+|	OclEvalElement
+|	OclTextElement
 ;
 
 TextElement:
@@ -58,8 +60,16 @@ NullElement:
 	{NullElement} '[' elements+=MarkupElement* ']'
 ;
 
-OclElement:
-	{OclElement} 'ocl[' elements+=MarkupElement* ']'
+OclCodeElement:
+	{OclCodeElement} 'oclCode[' elements+=MarkupElement* ']'
+;
+
+OclEvalElement:
+	{OclEvalElement} 'oclEval[' elements+=MarkupElement* ']'
+;
+
+OclTextElement:
+	{OclTextElement} 'oclText[' elements+=MarkupElement* ']'
 ;
 
 MarkupKeyword:
@@ -68,7 +78,9 @@ MarkupKeyword:
 |	'fig['
 |	'fig:'
 |	'fig-['
-|	'ocl['
+|	'oclCode['
+|	'oclEval['
+|	'oclText['
 |	']'
 ;
 //terminal INT returns ecore::EInt: ('0'..'9')+;

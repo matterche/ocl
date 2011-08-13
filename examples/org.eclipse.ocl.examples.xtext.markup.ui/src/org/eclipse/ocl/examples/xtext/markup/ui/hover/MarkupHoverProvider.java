@@ -16,6 +16,8 @@
  */
 package org.eclipse.ocl.examples.xtext.markup.ui.hover;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -71,25 +73,25 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			for (int start : starts) {
 				int end = errorMap.get(start);
 				while (i < start) {
-					htmlBuffer.appendChar(documentation.charAt(i++));
+					htmlBuffer.append(documentation.charAt(i++));
 				}
-				htmlBuffer.appendTag("font color=\"red\""); 
-				htmlBuffer.appendTag("u");
+				htmlBuffer.startFontColor("red"); 
+				htmlBuffer.startUnderline();
 				while (i < end) {
-					htmlBuffer.appendChar(documentation.charAt(i++));
+					htmlBuffer.append(documentation.charAt(i++));
 				}
-				htmlBuffer.appendUntag("u");
-				htmlBuffer.appendUntag("font"); 
+				htmlBuffer.endUnderline();
+				htmlBuffer.endFontColor(); 
 			}
-			htmlBuffer.appendTag("font color=\"red\""); 
-			htmlBuffer.appendTag("p");
-			htmlBuffer.appendUntag("p");
+			htmlBuffer.startFontColor("red"); 
+			htmlBuffer.startParagraph();
+			htmlBuffer.endParagraph();
 			for (INode parseError :parseErrors) {
-				htmlBuffer.appendTag("p");
+				htmlBuffer.startParagraph();
 				htmlBuffer.append(parseError.getSyntaxErrorMessage().getMessage());
-				htmlBuffer.appendUntag("p");
+				htmlBuffer.endParagraph();
 			}
-			htmlBuffer.appendUntag("font"); 
+			htmlBuffer.endFontColor(); 
 			return htmlBuffer.toString();
 		}
 		if (o instanceof Pivotable) {
@@ -98,9 +100,9 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 		try {
 			return MarkupUtils.toHTML(typeManager, o, markup);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			StringWriter s = new StringWriter();
+			e.printStackTrace(new PrintWriter(s));
+			return s.toString();
 		}
 	}
 

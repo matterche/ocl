@@ -465,14 +465,14 @@ public interface MarkupPackage extends EPackage {
 	int NULL_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclElementImpl <em>Ocl Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclCodeElementImpl <em>Ocl Code Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclElementImpl
-	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclElement()
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclCodeElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclCodeElement()
 	 * @generated
 	 */
-	int OCL_ELEMENT = 8;
+	int OCL_CODE_ELEMENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -481,7 +481,7 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_ELEMENT__OWNER = COMPOUND_ELEMENT__OWNER;
+	int OCL_CODE_ELEMENT__OWNER = COMPOUND_ELEMENT__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -490,7 +490,7 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_ELEMENT__UNIQUE_ID = COMPOUND_ELEMENT__UNIQUE_ID;
+	int OCL_CODE_ELEMENT__UNIQUE_ID = COMPOUND_ELEMENT__UNIQUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -499,16 +499,108 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_ELEMENT__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
+	int OCL_CODE_ELEMENT__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
 
 	/**
-	 * The number of structural features of the '<em>Ocl Element</em>' class.
+	 * The number of structural features of the '<em>Ocl Code Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_CODE_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclEvalElementImpl <em>Ocl Eval Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclEvalElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclEvalElement()
+	 * @generated
+	 */
+	int OCL_EVAL_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EVAL_ELEMENT__OWNER = COMPOUND_ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EVAL_ELEMENT__UNIQUE_ID = COMPOUND_ELEMENT__UNIQUE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EVAL_ELEMENT__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Ocl Eval Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EVAL_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclTextElementImpl <em>Ocl Text Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclTextElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclTextElement()
+	 * @generated
+	 */
+	int OCL_TEXT_ELEMENT = 10;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TEXT_ELEMENT__OWNER = COMPOUND_ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TEXT_ELEMENT__UNIQUE_ID = COMPOUND_ELEMENT__UNIQUE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TEXT_ELEMENT__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Ocl Text Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_TEXT_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.TextElementImpl <em>Text Element</em>}' class.
@@ -518,7 +610,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getTextElement()
 	 * @generated
 	 */
-	int TEXT_ELEMENT = 9;
+	int TEXT_ELEMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -748,14 +840,34 @@ public interface MarkupPackage extends EPackage {
 	EClass getNullElement();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.OclElement <em>Ocl Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.OclCodeElement <em>Ocl Code Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ocl Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.OclElement
+	 * @return the meta object for class '<em>Ocl Code Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.OclCodeElement
 	 * @generated
 	 */
-	EClass getOclElement();
+	EClass getOclCodeElement();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.OclEvalElement <em>Ocl Eval Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ocl Eval Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.OclEvalElement
+	 * @generated
+	 */
+	EClass getOclEvalElement();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.OclTextElement <em>Ocl Text Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ocl Text Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.OclTextElement
+	 * @generated
+	 */
+	EClass getOclTextElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.TextElement <em>Text Element</em>}'.
@@ -961,14 +1073,34 @@ public interface MarkupPackage extends EPackage {
 		EClass NULL_ELEMENT = eINSTANCE.getNullElement();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclElementImpl <em>Ocl Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclCodeElementImpl <em>Ocl Code Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclElementImpl
-		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclElement()
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclCodeElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclCodeElement()
 		 * @generated
 		 */
-		EClass OCL_ELEMENT = eINSTANCE.getOclElement();
+		EClass OCL_CODE_ELEMENT = eINSTANCE.getOclCodeElement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclEvalElementImpl <em>Ocl Eval Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclEvalElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclEvalElement()
+		 * @generated
+		 */
+		EClass OCL_EVAL_ELEMENT = eINSTANCE.getOclEvalElement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.OclTextElementImpl <em>Ocl Text Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.OclTextElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclTextElement()
+		 * @generated
+		 */
+		EClass OCL_TEXT_ELEMENT = eINSTANCE.getOclTextElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.TextElementImpl <em>Text Element</em>}' class.

@@ -145,11 +145,27 @@ public class MarkupSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MarkupPackage.OCL_ELEMENT: {
-				OclElement oclElement = (OclElement)theEObject;
-				T result = caseOclElement(oclElement);
-				if (result == null) result = caseCompoundElement(oclElement);
-				if (result == null) result = caseMarkupElement(oclElement);
+			case MarkupPackage.OCL_CODE_ELEMENT: {
+				OclCodeElement oclCodeElement = (OclCodeElement)theEObject;
+				T result = caseOclCodeElement(oclCodeElement);
+				if (result == null) result = caseCompoundElement(oclCodeElement);
+				if (result == null) result = caseMarkupElement(oclCodeElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MarkupPackage.OCL_EVAL_ELEMENT: {
+				OclEvalElement oclEvalElement = (OclEvalElement)theEObject;
+				T result = caseOclEvalElement(oclEvalElement);
+				if (result == null) result = caseCompoundElement(oclEvalElement);
+				if (result == null) result = caseMarkupElement(oclEvalElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MarkupPackage.OCL_TEXT_ELEMENT: {
+				OclTextElement oclTextElement = (OclTextElement)theEObject;
+				T result = caseOclTextElement(oclTextElement);
+				if (result == null) result = caseCompoundElement(oclTextElement);
+				if (result == null) result = caseMarkupElement(oclTextElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -285,17 +301,47 @@ public class MarkupSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ocl Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Code Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ocl Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Code Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOclElement(OclElement object) {
+	public T caseOclCodeElement(OclCodeElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Eval Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Eval Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclEvalElement(OclEvalElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Text Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Text Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclTextElement(OclTextElement object) {
 		return null;
 	}
 
