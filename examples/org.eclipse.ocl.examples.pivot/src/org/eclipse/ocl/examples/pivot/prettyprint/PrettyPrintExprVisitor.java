@@ -108,11 +108,13 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 				else {
 					safeVisit(source);
 				}
-				if ((source.getType() instanceof CollectionType) && !object.isImplicit()) {
-					delegate.append("->");
+				if (source.getType() instanceof CollectionType) {
+					delegate.append(object.isImplicit() ? "." : "->");				// "." for implicit collect
 				}
 				else {
-					delegate.append(".");
+					if (!object.isImplicit()) {
+						delegate.append(".");
+					}
 				}
 			}
 		}
@@ -348,18 +350,20 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		Precedence precedence = referredOperation != null ? referredOperation.getPrecedence() : null;
 		if (precedence == null) {
 			appendSourceNavigation(object);
-			delegate.appendName(referredOperation);
-			delegate.push("(", "");
-			String prefix = null; //$NON-NLS-1$
-			for (OclExpression argument : arguments) {
-				if (prefix != null) {
-					delegate.next(null, prefix, " ");
+			if (!object.isImplicit()) {
+				delegate.appendName(referredOperation);
+				delegate.push("(", "");
+				String prefix = null; //$NON-NLS-1$
+				for (OclExpression argument : arguments) {
+					if (prefix != null) {
+						delegate.next(null, prefix, " ");
+					}
+					precedenceVisit(argument, null);
+					prefix = ",";
 				}
-				precedenceVisit(argument, null);
-				prefix = ",";
+				delegate.next("", ")", "");
+				delegate.pop();
 			}
-			delegate.next("", ")", "");
-			delegate.pop();
 		}
 		else {
 			boolean lowerPrecedence = (currentPrecedence != null) && precedence.getOrder().compareTo(currentPrecedence.getOrder()) > 0;
