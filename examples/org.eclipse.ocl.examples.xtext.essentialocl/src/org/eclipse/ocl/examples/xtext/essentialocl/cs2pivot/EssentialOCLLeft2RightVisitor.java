@@ -658,6 +658,9 @@ public class EssentialOCLLeft2RightVisitor
 		EnvironmentView environmentView = new EnvironmentView(typeManager, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, expression.getName());
 		environmentView.addFilter(filter);
 		Type sourceType = expression.getSource().getType();
+		if (sourceType instanceof LambdaType) {								// FIXME Modularize this
+			sourceType = ((LambdaType)sourceType).getResultType();
+		}
 		int size = 0;
 		if (sourceType != null) {
 			size = environmentView.computeLookups(sourceType);
@@ -671,6 +674,9 @@ public class EssentialOCLLeft2RightVisitor
 			StringBuffer s = new StringBuffer();
 			for (OclExpression argument : expression.getArguments()) {
 				Type argumentType = argument.getType();
+				if (argumentType instanceof LambdaType) {								// FIXME Modularize this
+					argumentType = ((LambdaType)argumentType).getResultType();
+				}
 				if (s.length() > 0) {
 					s.append(",");
 				}
@@ -947,6 +953,8 @@ public class EssentialOCLLeft2RightVisitor
 			if (contextVariable == null) {
 				contextVariable = PivotFactory.eINSTANCE.createVariable();
 			}
+	        List<Variable> parameterVariables = pivotElement.getParameterVariables();
+	        parameterVariables.clear();
 			Type contextType;
 			if (specificationContext instanceof Type) {
 				contextType = (Type) specificationContext;
@@ -955,14 +963,15 @@ public class EssentialOCLLeft2RightVisitor
 				contextType = PivotUtil.getFeaturingClass((Feature)specificationContext);
 				if (specificationContext instanceof Operation) {
 					context.setType(contextVariable, contextType);
-			        for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
+					for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
 				        Variable param = PivotFactory.eINSTANCE.createVariable();
 				        param.setName(parameter.getName());
 						context.setTypeWithMultiplicity(param, parameter);
 				        param.setRepresentedParameter(parameter);
-				        pivotElement.getParameterVariables().add(param);
+				        parameterVariables.add(param);
 			        }					
 				}
+				// NB Iteration iterators/results are not externally visible.
 			}
 			else {
 				contextType = typeManager.getOclInvalidType();
