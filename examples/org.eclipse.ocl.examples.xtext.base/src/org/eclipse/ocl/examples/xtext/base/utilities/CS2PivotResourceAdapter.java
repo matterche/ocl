@@ -70,6 +70,7 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 				if (typeManager == null) {
 					typeManager = csResource.createTypeManager();
 				}
+				typeManager.addClassLoader(csResource.getClass().getClassLoader());
 			}
 			adapter = new CS2PivotResourceAdapter(csResource, typeManager);
 			eAdapters.add(adapter);

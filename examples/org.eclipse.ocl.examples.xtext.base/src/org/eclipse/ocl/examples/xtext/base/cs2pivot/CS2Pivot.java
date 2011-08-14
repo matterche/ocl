@@ -319,10 +319,19 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	public void update(IDiagnosticConsumer diagnosticsConsumer) {
 //		System.out.println("==========================================================================");
 		moniker2PivotCSMap = null;			// Recomputation necessary
-		CS2PivotConversion conversion = new CS2PivotConversion(this, diagnosticsConsumer, getCSResources());
+		Collection<? extends Resource> csResources = getCSResources();
+//		for (Resource csResource : csResources) {
+//			System.out.println("CS " + csResource.getClass().getName() + "@" + csResource.hashCode() + " " + csResource.getURI());
+//		}
+		CS2PivotConversion conversion = new CS2PivotConversion(this, diagnosticsConsumer, csResources);
 		conversion.update();
 //		System.out.println("---------------------------------------------------------------------------");
-		Collection<? extends Resource> pivotResources = cs2pivotResourceMap.values();
-		conversion.garbageCollect(pivotResources);
+//		Collection<? extends Resource> pivotResources = cs2pivotResourceMap.values();
+//		for (Entry<? extends Resource, ? extends Resource> entry : cs2pivotResourceMap.entrySet()) {
+//			Resource csResource = entry.getKey();
+//			Resource pivotResource = entry.getValue();
+//			System.out.println("CS " + csResource.getClass().getName() + "@" + csResource.hashCode() + " => " + pivotResource.getClass().getName() + "@" + pivotResource.hashCode());
+//		}
+		conversion.garbageCollect(cs2pivotResourceMap);
 	}
 }

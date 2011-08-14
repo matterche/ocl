@@ -33,10 +33,12 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -328,7 +330,12 @@ public class TypeManager extends TypeCaches implements Adapter
 	/**
 	 * Elements protected from garbage collection
 	 */
-	private Set<Element> lockedElements = new HashSet<Element>();;
+	private EAnnotation lockingAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+	
+	/**
+	 * ClassLoaders that may be able to load a library implementation.
+	 */
+	private List<ClassLoader> classLoaders = null;
 	
 	public TypeManager() {
 		this(new ResourceSetImpl());
@@ -343,6 +350,15 @@ public class TypeManager extends TypeCaches implements Adapter
 //			+ " " + pivotResourceSet.getClass().getSimpleName() + "@" + pivotResourceSet.hashCode());		
 	}
 
+	public void addClassLoader(ClassLoader classLoader) {
+		if (classLoaders == null) {
+			classLoaders = new ArrayList<ClassLoader>();
+		}
+		if (!classLoaders.contains(classLoader)) {
+			classLoaders.add(classLoader);
+		}
+	}
+
 	public void addExternalResource(External2Pivot external2Pivot) {
 		external2PivotMap.put(external2Pivot.getURI(), external2Pivot);
 	}
@@ -355,8 +371,13 @@ public class TypeManager extends TypeCaches implements Adapter
 		return globalTypes.addAll(types);
 	}
 
-	public boolean addLockedElement(Element lockedElement) {
-		return lockedElements.add(lockedElement);
+	public void addLockedElement(Object lockedElement) {
+		if (lockedElement instanceof EObject) {
+			List<EObject> lockingReferences = lockingAnnotation.getReferences();
+			if (!lockingReferences.contains(lockedElement)) {
+				lockingReferences.add((EObject) lockedElement);
+			}
+		}
 	}
 
 //	public void addPackage(String key, Package pivotPackage) {
@@ -1078,7 +1099,28 @@ public class TypeManager extends TypeCaches implements Adapter
 		if (implementation == null) {
 			String implementationClassName = feature.getImplementationClass();
 			if (implementationClassName != null) {
-				Class<?> theClass = Class.forName(implementationClassName);
+				Class<?> theClass = null;
+				if (classLoaders == null) {
+					ClassLoader classLoader = feature.getClass().getClassLoader();
+					theClass = classLoader.loadClass(implementationClassName);
+				}
+				else {
+					ClassNotFoundException e = null;
+					for (ClassLoader classLoader : classLoaders) {
+						try {
+							theClass = classLoader.loadClass(implementationClassName);
+							break;
+						} catch (ClassNotFoundException e1) {
+							if (e == null) {
+								e = e1;
+							}
+						}						
+					}
+					if (e != null) {
+						throw e;
+					}
+				}
+				@SuppressWarnings("null")
 				Field field = theClass.getField("INSTANCE");
 				implementation = (CallableImplementation) field.get(null);
 			}
@@ -1279,8 +1321,8 @@ public class TypeManager extends TypeCaches implements Adapter
 		return specializedType;
 	}
 
-	public Set<? extends Element> getLockedElements() {
-		return lockedElements ;
+	public EObject getLockingObject() {
+		return lockingAnnotation;
 	}
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotMetaModel() {
@@ -1710,7 +1752,9 @@ public class TypeManager extends TypeCaches implements Adapter
 		}
 		for (org.eclipse.ocl.examples.pivot.Package rootPackage : computePivotRootPackages()) {
 			if (rootPackage instanceof Library) {
-				pivotLibraries.add((Library) rootPackage);
+				if (!pivotLibraries.contains(rootPackage)) {
+					pivotLibraries.add((Library) rootPackage);
+				}
 				loadLibraryPackage(rootPackage);
 			}
 		}

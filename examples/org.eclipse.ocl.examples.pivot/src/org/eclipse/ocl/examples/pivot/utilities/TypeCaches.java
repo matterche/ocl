@@ -1437,6 +1437,25 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 		return false;
 	}
+	
+	/**
+	 * Eliminate any cached usage of anObject
+	 */
+	public void kill(Object anObject) {
+		if (anObject instanceof MonikeredElement) {
+			MonikeredElement monikeredObject = (MonikeredElement)anObject;
+			if (monikeredObject.hasMoniker()) {
+				String moniker = monikeredObject.getMoniker();
+//				System.out.println("Kill " + anObject.getClass().getName() + "@" + anObject.hashCode() + " " + moniker);
+				@SuppressWarnings("unused")
+				OrphanNode removedOrphan = moniker2orphan.remove(moniker);
+				@SuppressWarnings("unused")
+				Map<String, Operation> removedType = type2operation2operation.remove(moniker);
+				@SuppressWarnings("unused")
+				Iterable<org.eclipse.ocl.examples.pivot.Class> removedClass = class2classes.remove(moniker);
+			}
+		}
+	}
 
 	protected abstract void lazyLoadPivotMetaModel();
 
