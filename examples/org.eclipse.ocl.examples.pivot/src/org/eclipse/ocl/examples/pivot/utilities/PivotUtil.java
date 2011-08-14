@@ -368,6 +368,43 @@ public class PivotUtil
 		return resource;
 	}
 
+	public static void debugObjectUsage(String prefix, EObject element) {
+		StringBuffer s = new StringBuffer();
+		s.append(prefix);
+		if (element != null) {
+			s.append(element.eClass().getName());
+			s.append("@");
+			s.append(Integer.toHexString(element.hashCode()));
+			Resource eResource = element.eResource();
+			if ((element instanceof MonikeredElement) && (((MonikeredElement)element).hasMoniker() || (eResource != null))) {
+				s.append(" ");
+				s.append(((MonikeredElement) element).getMoniker());
+			}
+			if (eResource != null) {
+				s.append(" ");
+				s.append(eResource.getURI());
+			}
+		}
+		else {
+			s.append("null");
+		}
+		System.out.println(s.toString());
+	}
+
+	public static boolean debugWellContainedness(Type type) {
+		if (type.eResource() == null) {
+			PivotUtil.debugObjectUsage("Badly contained ", type);
+			return false;
+		}
+		if (type instanceof CollectionType) {
+			if (!debugWellContainedness(((CollectionType)type).getElementType())) {
+				PivotUtil.debugObjectUsage("Badly contained ", type);
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static Type findTypeOf(TypeManager typeManager, EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
