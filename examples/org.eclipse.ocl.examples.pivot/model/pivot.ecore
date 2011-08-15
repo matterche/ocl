@@ -474,8 +474,8 @@
         <details key="documentation" value="The name of the NamedElement."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRule" ordered="false"
-        upperBound="-1" eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRule" upperBound="-1"
+        eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
         lowerBound="1" eType="#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" upperBound="-1"

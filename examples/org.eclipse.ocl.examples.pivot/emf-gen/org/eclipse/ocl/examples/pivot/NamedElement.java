@@ -107,7 +107,7 @@ public interface NamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Rule</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_OwnedRule()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Constraint> getOwnedRules();

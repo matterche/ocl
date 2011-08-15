@@ -693,8 +693,8 @@ public class OclMetaModel extends XMLResourceImpl
 		//
 		symbol_25.setName("Class");
 		//symbol_25.setMoniker("pivot!Class");
-		symbol_25.getSuperClasses().add(symbol_141); // pivot!Namespace
 		symbol_25.getSuperClasses().add(symbol_278); // pivot!Type
+		symbol_25.getSuperClasses().add(symbol_141); // pivot!Namespace
 		{ // pivot.ecore::pivot::Class::Class pivot!Class!Class
 			symbol_26.setName("Class");
 			symbol_26.setType(symbol_25);  // pivot!Class
@@ -1177,7 +1177,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_79.setIsComposite(true);
 			symbol_79.setIsResolveProxies(true);
-			symbol_79.setOpposite(symbol_152);
 			symbol_78.getOwnedAttributes().add(symbol_79);
 		}
 		{ // pivot.ecore::pivot::ExpressionInOcl::contextVariable pivot!ExpressionInOcl!contextVariable
@@ -1196,6 +1195,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_81.setIsComposite(true);
 			symbol_81.setIsResolveProxies(true);
+			symbol_81.setOpposite(symbol_152);
 			symbol_78.getOwnedAttributes().add(symbol_81);
 		}
 		{ // pivot.ecore::pivot::ExpressionInOcl::parameterVariable pivot!ExpressionInOcl!parameterVariable
@@ -1207,6 +1207,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_82.setIsComposite(true);
 			symbol_82.setIsResolveProxies(true);
+			symbol_82.setOpposite(symbol_308);
 			symbol_78.getOwnedAttributes().add(symbol_82);
 		}
 		{ // pivot.ecore::pivot::ExpressionInOcl::resultVariable pivot!ExpressionInOcl!resultVariable
@@ -1216,7 +1217,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_83.setIsComposite(true);
 			symbol_83.setIsResolveProxies(true);
-			symbol_83.setOpposite(symbol_308);
 			symbol_78.getOwnedAttributes().add(symbol_83);
 		}
 		symbol_1.getOwnedTypes().add(symbol_78);
@@ -1278,6 +1278,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_91.setIsComposite(true);
 			symbol_91.setIsResolveProxies(true);
+			symbol_91.setOpposite(symbol_153);
 			symbol_89.getOwnedAttributes().add(symbol_91);
 		}
 		{ // pivot.ecore::pivot::IfExp::thenExpression pivot!IfExp!thenExpression
@@ -1286,7 +1287,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_92.setIsComposite(true);
 			symbol_92.setIsResolveProxies(true);
-			symbol_92.setOpposite(symbol_153);
 			symbol_89.getOwnedAttributes().add(symbol_92);
 		}
 		symbol_1.getOwnedTypes().add(symbol_89);
@@ -1737,6 +1737,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_140.setType(symbol_52);  // pivot!Constraint
 			symbol_140.setLower(BigInteger.valueOf(0));
 			symbol_140.setUpper(BigInteger.valueOf(-1));
+			symbol_140.setIsOrdered(true);
 			
 			symbol_140.setIsComposite(true);
 			symbol_140.setIsResolveProxies(true);
@@ -1980,8 +1981,8 @@ public class OclMetaModel extends XMLResourceImpl
 		//
 		symbol_166.setName("Operation");
 		//symbol_166.setMoniker("pivot!Operation");
-		symbol_166.getSuperClasses().add(symbol_141); // pivot!Namespace
 		symbol_166.getSuperClasses().add(symbol_191); // pivot!ParameterableElement
+		symbol_166.getSuperClasses().add(symbol_141); // pivot!Namespace
 		symbol_166.getSuperClasses().add(symbol_84); // pivot!Feature
 		symbol_166.getSuperClasses().add(symbol_267); // pivot!TemplateableElement
 		{ // pivot.ecore::pivot::Operation::CallOperationAction pivot!Operation!CallOperationAction
@@ -2179,8 +2180,8 @@ public class OclMetaModel extends XMLResourceImpl
 		//
 		symbol_187.setName("Parameter");
 		//symbol_187.setMoniker("pivot!Parameter");
-		symbol_187.getSuperClasses().add(symbol_297); // pivot!TypedMultiplicityElement
 		symbol_187.getSuperClasses().add(symbol_315); // pivot!VariableDeclaration
+		symbol_187.getSuperClasses().add(symbol_297); // pivot!TypedMultiplicityElement
 		{ // pivot.ecore::pivot::Parameter::Iteration pivot!Parameter!Iteration
 			symbol_188.setName("Iteration");
 			symbol_188.setType(symbol_101);  // pivot!Iteration
@@ -2960,8 +2961,8 @@ public class OclMetaModel extends XMLResourceImpl
 		symbol_278.setName("Type");
 		//symbol_278.setMoniker("pivot!Type");
 		symbol_278.getSuperClasses().add(symbol_191); // pivot!ParameterableElement
-		symbol_278.getSuperClasses().add(symbol_267); // pivot!TemplateableElement
 		symbol_278.getSuperClasses().add(symbol_135); // pivot!NamedElement
+		symbol_278.getSuperClasses().add(symbol_267); // pivot!TemplateableElement
 		{ // pivot.ecore::pivot::Type::ClassifierType pivot!Type!ClassifierType
 			symbol_279.setName("ClassifierType");
 			symbol_279.setType(symbol_33);  // pivot!ClassifierType
@@ -3166,6 +3167,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_302.setType(symbol_278);  // pivot!Type
 			
 			symbol_302.setIsResolveProxies(true);
+			symbol_302.setOpposite(symbol_287);
 			symbol_301.getOwnedAttributes().add(symbol_302);
 		}
 		{ // pivot.ecore::pivot::UnspecifiedType::upperBound pivot!UnspecifiedType!upperBound
@@ -3173,7 +3175,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_303.setType(symbol_278);  // pivot!Type
 			
 			symbol_303.setIsResolveProxies(true);
-			symbol_303.setOpposite(symbol_287);
 			symbol_301.getOwnedAttributes().add(symbol_303);
 		}
 		symbol_1.getOwnedTypes().add(symbol_301);
@@ -3189,8 +3190,8 @@ public class OclMetaModel extends XMLResourceImpl
 		//
 		symbol_305.setName("ValueSpecification");
 		//symbol_305.setMoniker("pivot!ValueSpecification");
-		symbol_305.getSuperClasses().add(symbol_191); // pivot!ParameterableElement
 		symbol_305.getSuperClasses().add(symbol_295); // pivot!TypedElement
+		symbol_305.getSuperClasses().add(symbol_191); // pivot!ParameterableElement
 		{ // pivot.ecore::pivot::ValueSpecification::Constraint pivot!ValueSpecification!Constraint
 			symbol_306.setName("Constraint");
 			symbol_306.setType(symbol_52);  // pivot!Constraint

@@ -503,7 +503,7 @@
         </ownedAttribute>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_MUAiUK5pEd-xTJkHwX_SlQ" name="NamedElement" isAbstract="true">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_FR6McbB1Ed-sntd82PWy7Q" name="ownedRule" type="_JhArsK5oEd-xTJkHwX_SlQ" upper="*" lower="0" isComposite="true"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_FR6McbB1Ed-sntd82PWy7Q" name="ownedRule" type="_JhArsK5oEd-xTJkHwX_SlQ" isOrdered="true" upper="*" lower="0" isComposite="true"/>
       </ownedMember>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
