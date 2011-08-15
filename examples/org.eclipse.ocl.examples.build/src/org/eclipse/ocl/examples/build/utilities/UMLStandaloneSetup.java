@@ -16,8 +16,6 @@
  */
 package org.eclipse.ocl.examples.build.utilities;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -41,6 +39,29 @@ public class UMLStandaloneSetup extends StandaloneSetup
 {
 	private Logger log = Logger.getLogger(getClass());
 
+	public UMLStandaloneSetup() {
+		log.info("Registering UML Resources");
+		ResourceSet targetResourceSet = null;
+		Resource.Factory.Registry resourceFactoryRegistry = Resource.Factory.Registry.INSTANCE;
+		resourceFactoryRegistry.getExtensionToFactoryMap().put(
+				UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		resourceFactoryRegistry.getExtensionToFactoryMap().put(
+				CMOF2UMLResource.FILE_EXTENSION, CMOF2UMLResource.Factory.INSTANCE);
+		Map<URI, URI> uriMap = targetResourceSet != null
+			? targetResourceSet.getURIConverter().getURIMap()
+			: URIConverter.URI_MAP;		
+//	uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createFileURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/profiles/", true)); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/metamodels/", true)); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
+		EPackage.Registry registry2 = registry;		// Workaround JDT invisible class anomally
+		registry2.put(Ecore2XMLPackage.eNS_URI, Ecore2XMLPackage.eINSTANCE);
+//		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Ecore/5", URI.createURI("pathmap://UML_PROFILES/Ecore.profile.uml#_0"));
+//		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Standard/1", URI.createURI("pathmap://UML_PROFILES/Standard.profile.uml#_0"));
+		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Ecore/5", URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/UML_PROFILES/Ecore.profile.uml#_0", true));
+		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Standard/1", URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/UML_PROFILES/Standard.profile.uml#_0", true));
+	}
+	
 	/**
 	 * Adds an <tt>org.eclipse.uml2.uml.dynamic_package</tt> extension
 	 * 
@@ -61,71 +82,5 @@ public class UMLStandaloneSetup extends StandaloneSetup
 		catch (final Exception e) {
 			throw new ConfigurationException(e);
 		}
-	}
-
-	/**
-	 * sets the org.eclipse.uml2.uml.resources uri for standalone execution
-	 * 
-	 * @param pathToUMLResources which is typically "../org.eclipse.uml2.uml.resources"
-	 */
-	public void setUmlResourcesUri(String pathToUMLResources) {
-		File f = new File(pathToUMLResources);
-		if (!f.exists())
-			throw new ConfigurationException("The pathToUMLResources location '" + pathToUMLResources + "' does not exist");
-		if (!f.isDirectory())
-			throw new ConfigurationException("The pathToUMLResources location must point to a directory");
-		String path = f.getAbsolutePath();
-		try {
-			path = f.getCanonicalPath();
-		}
-		catch (IOException e) {
-			log.error("Error when registering UML Resources location", e);
-		}
-		log.info("Registering UML Resources uri '" + path + "'");
-		ResourceSet targetResourceSet = null;
-		Resource.Factory.Registry resourceFactoryRegistry = targetResourceSet != null
-			? targetResourceSet.getResourceFactoryRegistry()
-			: Resource.Factory.Registry.INSTANCE;
-		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-				UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-				CMOF2UMLResource.FILE_EXTENSION, CMOF2UMLResource.Factory.INSTANCE);
-		Map<URI, URI> uriMap = targetResourceSet != null
-			? targetResourceSet.getURIConverter().getURIMap()
-			: URIConverter.URI_MAP;		
-//	uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createFileURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createFileURI(path + "/profiles/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createFileURI(path + "/metamodels/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createFileURI(path + "/libraries/")); //$NON-NLS-1$
-		EPackage.Registry registry2 = registry;		// Workaround JDT invisible class anomally
-		registry2.put(Ecore2XMLPackage.eNS_URI, Ecore2XMLPackage.eINSTANCE);
-		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Ecore/5", URI.createURI("pathmap://UML_PROFILES/Ecore.profile.uml#_0"));
-		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Standard/1", URI.createURI("pathmap://UML_PROFILES/Standard.profile.uml#_0"));
-	}
-
-	/**
-	 * sets the org.eclipse.uml2.uml uri for standalone execution
-	 * 
-	 * @param pathToUML which is typically "../org.eclipse.uml2.uml"
-	 */
-	public void setUmlUri(String pathToUML) {
-		File f = new File(pathToUML);
-		if (!f.exists())
-			throw new ConfigurationException("The pathToUML location '" + pathToUML + "' does not exist");
-		if (!f.isDirectory())
-			throw new ConfigurationException("The pathToUML location must point to a directory");
-		String path = f.getAbsolutePath();
-		try {
-			path = f.getCanonicalPath();
-		}
-		catch (IOException e) {
-			log.error("Error when registering UML location", e);
-		}
-		log.info("Registering UML uri '" + path + "'");
-		ResourceSet targetResourceSet = null;
-		Map<URI, URI> uriMap = targetResourceSet != null
-			? targetResourceSet.getURIConverter().getURIMap()
-			: URIConverter.URI_MAP;		
-		uriMap.put(URI.createURI("platform:/plugin/org.eclipse.uml2.uml/"), URI.createFileURI(path + "/")); //$NON-NLS-1$
 	}
 }

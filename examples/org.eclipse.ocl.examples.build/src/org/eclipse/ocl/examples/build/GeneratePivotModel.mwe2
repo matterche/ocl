@@ -34,12 +34,18 @@ var projectName = "org.eclipse.ocl.examples.pivot"
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
-    	platformUri = ".."
+	   	platformUri = "./META-INF"		// A local folder to minimize workspace searching
+   		scanClassPath = true			// But we do need to search the plugin-space
+    	uriMap = Mapping {
+    		from = "platform:/plugin/org.eclipse.uml2.uml.resources/"
+    		to = "platform:/resource/org.eclipse.uml2.uml.resources/"
+    	}
+    	uriMap = Mapping {
+    		from = "platform:/plugin/org.eclipse.uml2.uml/"
+    		to = "platform:/resource/org.eclipse.uml2.uml/"
+    	}
     }
-    bean = UMLStandaloneSetup { resourceSet = resourceSet
-    	umlResourcesUri = "../org.eclipse.uml2.uml.resources"
-    	umlUri = "../org.eclipse.uml2.uml"
-    }
+    bean = UMLStandaloneSetup { resourceSet = resourceSet }
     bean = UMLGenModelSetup { resourceSet = resourceSet }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${pivotSlot}"

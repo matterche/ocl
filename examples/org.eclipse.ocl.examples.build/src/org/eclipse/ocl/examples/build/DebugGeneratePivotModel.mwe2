@@ -37,8 +37,8 @@ Workflow {
     	platformUri = ".."
     }
     bean = UMLStandaloneSetup { resourceSet = resourceSet
-    	umlResourcesUri = "../org.eclipse.uml2.uml.resources"
-    	umlUri = "../org.eclipse.uml2.uml"
+//    	umlResourcesUri = "../org.eclipse.uml2.uml.resources"
+//    	umlUri = "../org.eclipse.uml2.uml"
     }
     bean = UMLGenModelSetup { resourceSet = resourceSet }
     component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
