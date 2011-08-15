@@ -12,93 +12,93 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalCompleteOCLLexer extends Lexer {
-    public static final int T__42=42;
-    public static final int T__86=86;
+    public static final int T__68=68;
+    public static final int T__69=69;
+    public static final int T__66=66;
+    public static final int T__67=67;
+    public static final int T__29=29;
+    public static final int T__64=64;
     public static final int T__28=28;
+    public static final int T__65=65;
+    public static final int T__27=27;
+    public static final int T__62=62;
+    public static final int T__26=26;
+    public static final int T__63=63;
+    public static final int T__25=25;
+    public static final int T__24=24;
     public static final int T__23=23;
+    public static final int T__22=22;
+    public static final int RULE_ANY_OTHER=13;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int RULE_ESCAPED_ID=6;
+    public static final int RULE_DOUBLE_QUOTED_STRING=8;
+    public static final int T__61=61;
+    public static final int EOF=-1;
+    public static final int T__60=60;
+    public static final int T__55=55;
+    public static final int T__56=56;
+    public static final int T__19=19;
     public static final int T__57=57;
+    public static final int T__58=58;
+    public static final int T__16=16;
     public static final int T__51=51;
+    public static final int T__15=15;
+    public static final int T__52=52;
+    public static final int T__18=18;
+    public static final int T__53=53;
+    public static final int T__54=54;
+    public static final int T__17=17;
+    public static final int T__14=14;
+    public static final int T__59=59;
+    public static final int RULE_SIMPLE_ID=5;
+    public static final int RULE_INT=7;
+    public static final int T__50=50;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int RULE_ML_SINGLE_QUOTED_STRING=9;
+    public static final int T__46=46;
     public static final int T__80=80;
     public static final int T__47=47;
-    public static final int T__69=69;
-    public static final int T__73=73;
-    public static final int T__50=50;
-    public static final int T__21=21;
-    public static final int RULE_ML_SINGLE_QUOTED_STRING=9;
-    public static final int T__19=19;
-    public static final int T__65=65;
-    public static final int T__72=72;
-    public static final int T__70=70;
-    public static final int T__67=67;
-    public static final int T__87=87;
-    public static final int T__74=74;
-    public static final int T__39=39;
-    public static final int T__30=30;
-    public static final int T__46=46;
-    public static final int T__52=52;
-    public static final int T__68=68;
-    public static final int T__17=17;
-    public static final int T__62=62;
-    public static final int RULE_INT=7;
-    public static final int T__27=27;
-    public static final int T__24=24;
+    public static final int T__81=81;
+    public static final int T__44=44;
+    public static final int T__82=82;
+    public static final int T__45=45;
+    public static final int T__83=83;
+    public static final int T__48=48;
     public static final int T__49=49;
     public static final int RULE_SINGLE_QUOTED_STRING=4;
-    public static final int T__61=61;
-    public static final int RULE_DOUBLE_QUOTED_STRING=8;
-    public static final int T__59=59;
-    public static final int T__54=54;
-    public static final int T__48=48;
-    public static final int T__34=34;
-    public static final int T__56=56;
-    public static final int T__15=15;
-    public static final int RULE_ML_COMMENT=10;
-    public static final int T__35=35;
-    public static final int T__78=78;
-    public static final int T__36=36;
-    public static final int T__89=89;
-    public static final int T__20=20;
-    public static final int T__58=58;
-    public static final int T__79=79;
-    public static final int T__64=64;
-    public static final int RULE_SIMPLE_ID=5;
-    public static final int T__44=44;
-    public static final int T__66=66;
-    public static final int T__33=33;
-    public static final int T__14=14;
-    public static final int T__88=88;
-    public static final int T__22=22;
-    public static final int T__77=77;
-    public static final int T__45=45;
-    public static final int T__29=29;
-    public static final int T__55=55;
-    public static final int RULE_ESCAPED_ID=6;
-    public static final int T__84=84;
-    public static final int T__63=63;
-    public static final int RULE_WS=12;
-    public static final int T__43=43;
-    public static final int T__75=75;
-    public static final int T__31=31;
-    public static final int T__40=40;
-    public static final int EOF=-1;
-    public static final int T__53=53;
-    public static final int T__32=32;
-    public static final int T__16=16;
     public static final int T__85=85;
-    public static final int T__38=38;
-    public static final int T__37=37;
-    public static final int T__76=76;
-    public static final int T__26=26;
-    public static final int T__82=82;
-    public static final int RULE_ANY_OTHER=13;
-    public static final int T__25=25;
-    public static final int T__81=81;
+    public static final int T__84=84;
     public static final int RULE_SL_COMMENT=11;
-    public static final int T__60=60;
-    public static final int T__83=83;
-    public static final int T__41=41;
-    public static final int T__18=18;
+    public static final int T__87=87;
+    public static final int T__86=86;
+    public static final int T__89=89;
+    public static final int T__88=88;
+    public static final int RULE_ML_COMMENT=10;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int T__33=33;
     public static final int T__71=71;
+    public static final int T__34=34;
+    public static final int T__72=72;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__70=70;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int T__76=76;
+    public static final int RULE_WS=12;
+    public static final int T__75=75;
+    public static final int T__74=74;
+    public static final int T__73=73;
+    public static final int T__79=79;
+    public static final int T__78=78;
+    public static final int T__77=77;
 
     // delegates
     // delegators
@@ -2028,64 +2028,37 @@ public class InternalCompleteOCLLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:17: ( '/*' ( '*' )? ~ ( '*' ) ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:19: '/*' ( '*' )? ~ ( '*' ) ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:24: ( '*' )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
-
-            if ( (LA6_0=='*') ) {
-                alt6=1;
-            }
-            switch (alt6) {
-                case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:24: '*'
-                    {
-                    match('*'); 
-
-                    }
-                    break;
-
-            }
-
-            if ( (input.LA(1)>='\u0000' && input.LA(1)<=')')||(input.LA(1)>='+' && input.LA(1)<='\uFFFF') ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:36: ( options {greedy=false; } : . )*
-            loop7:
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:24: ( options {greedy=false; } : . )*
+            loop6:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt6=2;
+                int LA6_0 = input.LA(1);
 
-                if ( (LA7_0=='*') ) {
-                    int LA7_1 = input.LA(2);
+                if ( (LA6_0=='*') ) {
+                    int LA6_1 = input.LA(2);
 
-                    if ( (LA7_1=='/') ) {
-                        alt7=2;
+                    if ( (LA6_1=='/') ) {
+                        alt6=2;
                     }
-                    else if ( ((LA7_1>='\u0000' && LA7_1<='.')||(LA7_1>='0' && LA7_1<='\uFFFF')) ) {
-                        alt7=1;
+                    else if ( ((LA6_1>='\u0000' && LA6_1<='.')||(LA6_1>='0' && LA6_1<='\uFFFF')) ) {
+                        alt6=1;
                     }
 
 
                 }
-                else if ( ((LA7_0>='\u0000' && LA7_0<=')')||(LA7_0>='+' && LA7_0<='\uFFFF')) ) {
-                    alt7=1;
+                else if ( ((LA6_0>='\u0000' && LA6_0<=')')||(LA6_0>='+' && LA6_0<='\uFFFF')) ) {
+                    alt6=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:64: .
+            	    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5674:52: .
             	    {
             	    matchAny(); 
 
@@ -2093,7 +2066,7 @@ public class InternalCompleteOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop7;
+            	    break loop6;
                 }
             } while (true);
 
@@ -2121,17 +2094,17 @@ public class InternalCompleteOCLLexer extends Lexer {
             match("--"); 
 
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5676:24: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop8:
+            loop7:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( ((LA8_0>='\u0000' && LA8_0<='\t')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\uFFFF')) ) {
-                    alt8=1;
+                if ( ((LA7_0>='\u0000' && LA7_0<='\t')||(LA7_0>='\u000B' && LA7_0<='\f')||(LA7_0>='\u000E' && LA7_0<='\uFFFF')) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt7) {
             	case 1 :
             	    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5676:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
@@ -2149,29 +2122,29 @@ public class InternalCompleteOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop7;
                 }
             } while (true);
 
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5676:40: ( ( '\\r' )? '\\n' )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA10_0=='\n'||LA10_0=='\r') ) {
-                alt10=1;
+            if ( (LA9_0=='\n'||LA9_0=='\r') ) {
+                alt9=1;
             }
-            switch (alt10) {
+            switch (alt9) {
                 case 1 :
                     // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5676:41: ( '\\r' )? '\\n'
                     {
                     // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5676:41: ( '\\r' )?
-                    int alt9=2;
-                    int LA9_0 = input.LA(1);
+                    int alt8=2;
+                    int LA8_0 = input.LA(1);
 
-                    if ( (LA9_0=='\r') ) {
-                        alt9=1;
+                    if ( (LA8_0=='\r') ) {
+                        alt8=1;
                     }
-                    switch (alt9) {
+                    switch (alt8) {
                         case 1 :
                             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5676:41: '\\r'
                             {
@@ -2209,18 +2182,18 @@ public class InternalCompleteOCLLexer extends Lexer {
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5678:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:5678:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt11=0;
-            loop11:
+            int cnt10=0;
+            loop10:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {
-                    alt11=1;
+                if ( ((LA10_0>='\t' && LA10_0<='\n')||LA10_0=='\r'||LA10_0==' ') ) {
+                    alt10=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt10) {
             	case 1 :
             	    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:
             	    {
@@ -2238,12 +2211,12 @@ public class InternalCompleteOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt11 >= 1 ) break loop11;
+            	    if ( cnt10 >= 1 ) break loop10;
                         EarlyExitException eee =
-                            new EarlyExitException(11, input);
+                            new EarlyExitException(10, input);
                         throw eee;
                 }
-                cnt11++;
+                cnt10++;
             } while (true);
 
 
@@ -2279,9 +2252,9 @@ public class InternalCompleteOCLLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1:8: ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=86;
-        alt12 = dfa12.predict(input);
-        switch (alt12) {
+        int alt11=86;
+        alt11 = dfa11.predict(input);
+        switch (alt11) {
             case 1 :
                 // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1:10: T__14
                 {
@@ -2890,8 +2863,8 @@ public class InternalCompleteOCLLexer extends Lexer {
     }
 
 
-    protected DFA12 dfa12 = new DFA12(this);
-    static final String DFA12_eotS =
+    protected DFA11 dfa11 = new DFA11(this);
+    static final String DFA11_eotS =
         "\1\uffff\1\65\14\67\1\114\1\67\4\uffff\1\125\2\uffff\1\131\1\132"+
         "\1\uffff\1\136\1\67\1\uffff\1\144\1\146\1\151\5\67\2\uffff\2\67"+
         "\4\uffff\2\63\1\67\6\uffff\1\67\1\uffff\3\67\1\u0085\1\u0086\16"+
@@ -2909,9 +2882,9 @@ public class InternalCompleteOCLLexer extends Lexer {
         "\1\67\1\uffff\2\67\10\uffff\1\u0131\3\67\1\u0135\1\uffff\3\67\1"+
         "\uffff\3\67\1\uffff\4\67\1\u0140\1\u0141\1\u0142\1\u0143\1\u0144"+
         "\1\67\5\uffff\4\67\1\u014a\1\uffff";
-    static final String DFA12_eofS =
+    static final String DFA11_eofS =
         "\u014b\uffff";
-    static final String DFA12_minS =
+    static final String DFA11_minS =
         "\1\0\1\136\2\157\1\145\1\146\1\145\2\141\1\156\2\145\1\156\1\143"+
         "\1\72\1\145\4\uffff\1\60\2\uffff\1\56\1\60\1\uffff\1\55\1\157\1"+
         "\uffff\1\47\2\75\1\156\1\162\1\157\1\165\1\157\2\uffff\1\150\1\141"+
@@ -2936,7 +2909,7 @@ public class InternalCompleteOCLLexer extends Lexer {
         "\1\60\1\144\1\151\1\147\1\60\1\uffff\1\145\1\147\1\157\1\uffff\1"+
         "\116\1\144\1\145\1\uffff\1\164\1\145\1\156\1\141\5\60\1\164\5\uffff"+
         "\1\165\1\162\1\141\1\154\1\60\1\uffff";
-    static final String DFA12_maxS =
+    static final String DFA11_maxS =
         "\1\uffff\1\136\2\157\1\145\1\156\1\151\1\162\1\157\1\156\1\145"+
         "\1\164\1\156\1\162\1\72\1\164\4\uffff\1\172\2\uffff\1\56\1\172\1"+
         "\uffff\1\76\1\165\1\uffff\1\52\1\75\1\76\1\156\1\162\1\157\1\165"+
@@ -2962,7 +2935,7 @@ public class InternalCompleteOCLLexer extends Lexer {
         "\1\172\1\144\1\151\1\147\1\172\1\uffff\1\145\1\147\1\157\1\uffff"+
         "\1\116\1\144\1\145\1\uffff\1\164\1\145\1\156\1\141\5\172\1\164\5"+
         "\uffff\1\165\1\162\1\141\1\154\1\172\1\uffff";
-    static final String DFA12_acceptS =
+    static final String DFA11_acceptS =
         "\20\uffff\1\33\1\34\1\35\1\36\1\uffff\1\41\1\42\2\uffff\1\46\2"+
         "\uffff\1\51\10\uffff\1\73\1\74\2\uffff\1\102\1\103\1\104\1\105\3"+
         "\uffff\1\120\1\122\1\125\1\126\1\2\1\1\1\uffff\1\120\23\uffff\1"+
@@ -2977,9 +2950,9 @@ public class InternalCompleteOCLLexer extends Lexer {
         "\1\uffff\1\6\1\7\7\uffff\1\21\2\uffff\1\23\5\uffff\1\32\2\uffff"+
         "\1\4\1\63\1\10\1\100\1\13\1\37\1\16\1\17\5\uffff\1\27\3\uffff\1"+
         "\70\3\uffff\1\26\12\uffff\1\24\1\25\1\72\1\40\1\71\5\uffff\1\22";
-    static final String DFA12_specialS =
+    static final String DFA11_specialS =
         "\1\2\54\uffff\1\0\1\1\u011c\uffff}>";
-    static final String[] DFA12_transitionS = {
+    static final String[] DFA11_transitionS = {
             "\11\63\2\62\2\63\1\62\22\63\1\62\1\63\1\55\4\63\1\56\1\20\1"+
             "\22\1\34\1\31\1\21\1\32\1\27\1\35\12\61\1\16\1\54\1\37\1\23"+
             "\1\36\1\26\1\25\1\60\1\10\1\44\1\60\1\30\3\60\1\11\5\60\1\15"+
@@ -3321,34 +3294,34 @@ public class InternalCompleteOCLLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA12_eot = DFA.unpackEncodedString(DFA12_eotS);
-    static final short[] DFA12_eof = DFA.unpackEncodedString(DFA12_eofS);
-    static final char[] DFA12_min = DFA.unpackEncodedStringToUnsignedChars(DFA12_minS);
-    static final char[] DFA12_max = DFA.unpackEncodedStringToUnsignedChars(DFA12_maxS);
-    static final short[] DFA12_accept = DFA.unpackEncodedString(DFA12_acceptS);
-    static final short[] DFA12_special = DFA.unpackEncodedString(DFA12_specialS);
-    static final short[][] DFA12_transition;
+    static final short[] DFA11_eot = DFA.unpackEncodedString(DFA11_eotS);
+    static final short[] DFA11_eof = DFA.unpackEncodedString(DFA11_eofS);
+    static final char[] DFA11_min = DFA.unpackEncodedStringToUnsignedChars(DFA11_minS);
+    static final char[] DFA11_max = DFA.unpackEncodedStringToUnsignedChars(DFA11_maxS);
+    static final short[] DFA11_accept = DFA.unpackEncodedString(DFA11_acceptS);
+    static final short[] DFA11_special = DFA.unpackEncodedString(DFA11_specialS);
+    static final short[][] DFA11_transition;
 
     static {
-        int numStates = DFA12_transitionS.length;
-        DFA12_transition = new short[numStates][];
+        int numStates = DFA11_transitionS.length;
+        DFA11_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA12_transition[i] = DFA.unpackEncodedString(DFA12_transitionS[i]);
+            DFA11_transition[i] = DFA.unpackEncodedString(DFA11_transitionS[i]);
         }
     }
 
-    static class DFA12 extends DFA {
+    static class DFA11 extends DFA {
 
-        public DFA12(BaseRecognizer recognizer) {
+        public DFA11(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 12;
-            this.eot = DFA12_eot;
-            this.eof = DFA12_eof;
-            this.min = DFA12_min;
-            this.max = DFA12_max;
-            this.accept = DFA12_accept;
-            this.special = DFA12_special;
-            this.transition = DFA12_transition;
+            this.decisionNumber = 11;
+            this.eot = DFA11_eot;
+            this.eof = DFA11_eof;
+            this.min = DFA11_min;
+            this.max = DFA11_max;
+            this.accept = DFA11_accept;
+            this.special = DFA11_special;
+            this.transition = DFA11_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
@@ -3358,136 +3331,136 @@ public class InternalCompleteOCLLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_45 = input.LA(1);
+                        int LA11_45 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_45>='\u0000' && LA12_45<='\uFFFF')) ) {s = 120;}
+                        if ( ((LA11_45>='\u0000' && LA11_45<='\uFFFF')) ) {s = 120;}
 
                         else s = 51;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA12_46 = input.LA(1);
+                        int LA11_46 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_46>='\u0000' && LA12_46<='\uFFFF')) ) {s = 121;}
+                        if ( ((LA11_46>='\u0000' && LA11_46<='\uFFFF')) ) {s = 121;}
 
                         else s = 51;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_0 = input.LA(1);
+                        int LA11_0 = input.LA(1);
 
                         s = -1;
-                        if ( (LA12_0=='^') ) {s = 1;}
+                        if ( (LA11_0=='^') ) {s = 1;}
 
-                        else if ( (LA12_0=='b') ) {s = 2;}
+                        else if ( (LA11_0=='b') ) {s = 2;}
 
-                        else if ( (LA12_0=='c') ) {s = 3;}
+                        else if ( (LA11_0=='c') ) {s = 3;}
 
-                        else if ( (LA12_0=='d') ) {s = 4;}
+                        else if ( (LA11_0=='d') ) {s = 4;}
 
-                        else if ( (LA12_0=='i') ) {s = 5;}
+                        else if ( (LA11_0=='i') ) {s = 5;}
 
-                        else if ( (LA12_0=='l') ) {s = 6;}
+                        else if ( (LA11_0=='l') ) {s = 6;}
 
-                        else if ( (LA12_0=='p') ) {s = 7;}
+                        else if ( (LA11_0=='p') ) {s = 7;}
 
-                        else if ( (LA12_0=='B') ) {s = 8;}
+                        else if ( (LA11_0=='B') ) {s = 8;}
 
-                        else if ( (LA12_0=='I') ) {s = 9;}
+                        else if ( (LA11_0=='I') ) {s = 9;}
 
-                        else if ( (LA12_0=='R') ) {s = 10;}
+                        else if ( (LA11_0=='R') ) {s = 10;}
 
-                        else if ( (LA12_0=='S') ) {s = 11;}
+                        else if ( (LA11_0=='S') ) {s = 11;}
 
-                        else if ( (LA12_0=='U') ) {s = 12;}
+                        else if ( (LA11_0=='U') ) {s = 12;}
 
-                        else if ( (LA12_0=='O') ) {s = 13;}
+                        else if ( (LA11_0=='O') ) {s = 13;}
 
-                        else if ( (LA12_0==':') ) {s = 14;}
+                        else if ( (LA11_0==':') ) {s = 14;}
 
-                        else if ( (LA12_0=='s') ) {s = 15;}
+                        else if ( (LA11_0=='s') ) {s = 15;}
 
-                        else if ( (LA12_0=='(') ) {s = 16;}
+                        else if ( (LA11_0=='(') ) {s = 16;}
 
-                        else if ( (LA12_0==',') ) {s = 17;}
+                        else if ( (LA11_0==',') ) {s = 17;}
 
-                        else if ( (LA12_0==')') ) {s = 18;}
+                        else if ( (LA11_0==')') ) {s = 18;}
 
-                        else if ( (LA12_0=='=') ) {s = 19;}
+                        else if ( (LA11_0=='=') ) {s = 19;}
 
-                        else if ( (LA12_0=='e') ) {s = 20;}
+                        else if ( (LA11_0=='e') ) {s = 20;}
 
-                        else if ( (LA12_0=='@') ) {s = 21;}
+                        else if ( (LA11_0=='@') ) {s = 21;}
 
-                        else if ( (LA12_0=='?') ) {s = 22;}
+                        else if ( (LA11_0=='?') ) {s = 22;}
 
-                        else if ( (LA12_0=='.') ) {s = 23;}
+                        else if ( (LA11_0=='.') ) {s = 23;}
 
-                        else if ( (LA12_0=='E') ) {s = 24;}
+                        else if ( (LA11_0=='E') ) {s = 24;}
 
-                        else if ( (LA12_0=='+') ) {s = 25;}
+                        else if ( (LA11_0=='+') ) {s = 25;}
 
-                        else if ( (LA12_0=='-') ) {s = 26;}
+                        else if ( (LA11_0=='-') ) {s = 26;}
 
-                        else if ( (LA12_0=='n') ) {s = 27;}
+                        else if ( (LA11_0=='n') ) {s = 27;}
 
-                        else if ( (LA12_0=='*') ) {s = 28;}
+                        else if ( (LA11_0=='*') ) {s = 28;}
 
-                        else if ( (LA12_0=='/') ) {s = 29;}
+                        else if ( (LA11_0=='/') ) {s = 29;}
 
-                        else if ( (LA12_0=='>') ) {s = 30;}
+                        else if ( (LA11_0=='>') ) {s = 30;}
 
-                        else if ( (LA12_0=='<') ) {s = 31;}
+                        else if ( (LA11_0=='<') ) {s = 31;}
 
-                        else if ( (LA12_0=='a') ) {s = 32;}
+                        else if ( (LA11_0=='a') ) {s = 32;}
 
-                        else if ( (LA12_0=='o') ) {s = 33;}
+                        else if ( (LA11_0=='o') ) {s = 33;}
 
-                        else if ( (LA12_0=='x') ) {s = 34;}
+                        else if ( (LA11_0=='x') ) {s = 34;}
 
-                        else if ( (LA12_0=='T') ) {s = 35;}
+                        else if ( (LA11_0=='T') ) {s = 35;}
 
-                        else if ( (LA12_0=='C') ) {s = 36;}
+                        else if ( (LA11_0=='C') ) {s = 36;}
 
-                        else if ( (LA12_0=='{') ) {s = 37;}
+                        else if ( (LA11_0=='{') ) {s = 37;}
 
-                        else if ( (LA12_0=='}') ) {s = 38;}
+                        else if ( (LA11_0=='}') ) {s = 38;}
 
-                        else if ( (LA12_0=='t') ) {s = 39;}
+                        else if ( (LA11_0=='t') ) {s = 39;}
 
-                        else if ( (LA12_0=='f') ) {s = 40;}
+                        else if ( (LA11_0=='f') ) {s = 40;}
 
-                        else if ( (LA12_0=='[') ) {s = 41;}
+                        else if ( (LA11_0=='[') ) {s = 41;}
 
-                        else if ( (LA12_0==']') ) {s = 42;}
+                        else if ( (LA11_0==']') ) {s = 42;}
 
-                        else if ( (LA12_0=='|') ) {s = 43;}
+                        else if ( (LA11_0=='|') ) {s = 43;}
 
-                        else if ( (LA12_0==';') ) {s = 44;}
+                        else if ( (LA11_0==';') ) {s = 44;}
 
-                        else if ( (LA12_0=='\"') ) {s = 45;}
+                        else if ( (LA11_0=='\"') ) {s = 45;}
 
-                        else if ( (LA12_0=='\'') ) {s = 46;}
+                        else if ( (LA11_0=='\'') ) {s = 46;}
 
-                        else if ( (LA12_0=='_') ) {s = 47;}
+                        else if ( (LA11_0=='_') ) {s = 47;}
 
-                        else if ( (LA12_0=='A'||LA12_0=='D'||(LA12_0>='F' && LA12_0<='H')||(LA12_0>='J' && LA12_0<='N')||(LA12_0>='P' && LA12_0<='Q')||(LA12_0>='V' && LA12_0<='Z')||(LA12_0>='g' && LA12_0<='h')||(LA12_0>='j' && LA12_0<='k')||LA12_0=='m'||(LA12_0>='q' && LA12_0<='r')||(LA12_0>='u' && LA12_0<='w')||(LA12_0>='y' && LA12_0<='z')) ) {s = 48;}
+                        else if ( (LA11_0=='A'||LA11_0=='D'||(LA11_0>='F' && LA11_0<='H')||(LA11_0>='J' && LA11_0<='N')||(LA11_0>='P' && LA11_0<='Q')||(LA11_0>='V' && LA11_0<='Z')||(LA11_0>='g' && LA11_0<='h')||(LA11_0>='j' && LA11_0<='k')||LA11_0=='m'||(LA11_0>='q' && LA11_0<='r')||(LA11_0>='u' && LA11_0<='w')||(LA11_0>='y' && LA11_0<='z')) ) {s = 48;}
 
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 49;}
+                        else if ( ((LA11_0>='0' && LA11_0<='9')) ) {s = 49;}
 
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 50;}
+                        else if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {s = 50;}
 
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 51;}
+                        else if ( ((LA11_0>='\u0000' && LA11_0<='\b')||(LA11_0>='\u000B' && LA11_0<='\f')||(LA11_0>='\u000E' && LA11_0<='\u001F')||LA11_0=='!'||(LA11_0>='#' && LA11_0<='&')||LA11_0=='\\'||LA11_0=='`'||(LA11_0>='~' && LA11_0<='\uFFFF')) ) {s = 51;}
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 12, _s, input);
+                new NoViableAltException(getDescription(), 11, _s, input);
             error(nvae);
             throw nvae;
         }

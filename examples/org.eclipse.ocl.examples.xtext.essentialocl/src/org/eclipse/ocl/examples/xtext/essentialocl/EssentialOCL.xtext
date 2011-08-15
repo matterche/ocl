@@ -47,7 +47,7 @@ NUMBER_LITERAL returns BigNumber: // Not terminal to allow parser backtracking t
 	INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
 
 terminal ML_COMMENT:
-	'/*' '*'? !('*')->'*/';
+	'/*' ->'*/';
 
 terminal SL_COMMENT:
 	'--' !('\n' | '\r')* ('\r'? '\n')?;

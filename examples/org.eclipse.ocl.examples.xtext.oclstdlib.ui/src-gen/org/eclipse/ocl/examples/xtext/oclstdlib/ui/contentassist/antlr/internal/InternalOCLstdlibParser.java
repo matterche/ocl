@@ -25,96 +25,96 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_SINGLE_QUOTED_STRING", "RULE_DOUBLE_QUOTED_STRING", "RULE_ML_SINGLE_QUOTED_STRING", "RULE_SIMPLE_ID", "RULE_ESCAPED_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'annotation'", "'conformsTo'", "'documentation'", "'extends'", "'import'", "'inv'", "'iteration'", "'left'", "'library'", "'operation'", "'package'", "'post'", "'pre'", "'precedence'", "'property'", "'right'", "'static'", "'super'", "'type'", "'Lambda'", "'Tuple'", "';'", "'+'", "'?'", "'e'", "'E'", "'-'", "'and'", "'else'", "'endif'", "'if'", "'implies'", "'in'", "'let'", "'not'", "'or'", "'then'", "'xor'", "'/'", "'>'", "'<'", "'>='", "'<='", "'='", "'<>'", "'.'", "'->'", "'Boolean'", "'Integer'", "'Real'", "'String'", "'UnlimitedNatural'", "'OclAny'", "'OclInvalid'", "'OclVoid'", "'Set'", "'Bag'", "'Sequence'", "'Collection'", "'OrderedSet'", "'{'", "'}'", "':'", "'('", "')'", "','", "'|'", "'=>'", "'['", "']'", "'..'", "'&&'", "'::'", "'invalid'", "'null'", "'self'", "'true'", "'false'"
     };
-    public static final int T__42=42;
-    public static final int T__47=47;
-    public static final int T__73=73;
-    public static final int T__21=21;
-    public static final int RULE_ML_SINGLE_QUOTED_STRING=7;
-    public static final int T__72=72;
-    public static final int T__70=70;
-    public static final int T__39=39;
-    public static final int T__30=30;
-    public static final int T__46=46;
-    public static final int T__49=49;
-    public static final int RULE_DOUBLE_QUOTED_STRING=6;
-    public static final int T__48=48;
-    public static final int T__54=54;
-    public static final int T__89=89;
-    public static final int T__20=20;
-    public static final int T__79=79;
-    public static final int T__64=64;
-    public static final int T__44=44;
-    public static final int T__66=66;
-    public static final int T__92=92;
-    public static final int T__14=14;
-    public static final int T__88=88;
-    public static final int T__22=22;
-    public static final int RULE_ESCAPED_ID=9;
-    public static final int T__90=90;
-    public static final int T__63=63;
-    public static final int RULE_WS=12;
-    public static final int T__43=43;
-    public static final int T__91=91;
-    public static final int T__40=40;
-    public static final int T__85=85;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
-    public static final int RULE_SL_COMMENT=11;
-    public static final int T__60=60;
-    public static final int T__41=41;
-    public static final int T__86=86;
-    public static final int T__28=28;
-    public static final int T__23=23;
-    public static final int T__57=57;
-    public static final int T__51=51;
-    public static final int T__80=80;
-    public static final int T__69=69;
-    public static final int T__50=50;
-    public static final int T__19=19;
-    public static final int T__65=65;
-    public static final int T__67=67;
-    public static final int T__87=87;
-    public static final int T__74=74;
-    public static final int T__52=52;
-    public static final int T__68=68;
-    public static final int T__17=17;
-    public static final int T__62=62;
-    public static final int RULE_INT=4;
-    public static final int T__27=27;
     public static final int T__24=24;
-    public static final int T__61=61;
-    public static final int RULE_SINGLE_QUOTED_STRING=5;
-    public static final int T__59=59;
-    public static final int T__34=34;
-    public static final int T__15=15;
-    public static final int T__56=56;
-    public static final int RULE_ML_COMMENT=10;
-    public static final int T__35=35;
-    public static final int T__78=78;
-    public static final int T__36=36;
-    public static final int T__58=58;
-    public static final int RULE_SIMPLE_ID=8;
-    public static final int T__33=33;
-    public static final int T__77=77;
-    public static final int T__45=45;
-    public static final int T__29=29;
-    public static final int T__55=55;
-    public static final int T__84=84;
-    public static final int T__75=75;
-    public static final int T__31=31;
-    public static final int EOF=-1;
-    public static final int T__53=53;
-    public static final int T__32=32;
-    public static final int T__16=16;
-    public static final int T__38=38;
-    public static final int T__37=37;
-    public static final int T__76=76;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=13;
-    public static final int T__82=82;
-    public static final int T__81=81;
-    public static final int T__83=83;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int RULE_ESCAPED_ID=9;
+    public static final int RULE_DOUBLE_QUOTED_STRING=6;
+    public static final int EOF=-1;
+    public static final int T__19=19;
+    public static final int T__91=91;
+    public static final int T__92=92;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__90=90;
     public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__14=14;
+    public static final int RULE_SIMPLE_ID=8;
+    public static final int T__80=80;
+    public static final int T__81=81;
+    public static final int T__82=82;
+    public static final int T__83=83;
+    public static final int RULE_SINGLE_QUOTED_STRING=5;
+    public static final int T__85=85;
+    public static final int T__84=84;
+    public static final int T__87=87;
+    public static final int T__86=86;
+    public static final int T__89=89;
+    public static final int T__88=88;
+    public static final int RULE_ML_COMMENT=10;
     public static final int T__71=71;
+    public static final int T__72=72;
+    public static final int T__70=70;
+    public static final int T__76=76;
+    public static final int T__75=75;
+    public static final int T__74=74;
+    public static final int T__73=73;
+    public static final int T__79=79;
+    public static final int T__78=78;
+    public static final int T__77=77;
+    public static final int T__68=68;
+    public static final int T__69=69;
+    public static final int T__66=66;
+    public static final int T__67=67;
+    public static final int T__64=64;
+    public static final int T__65=65;
+    public static final int T__62=62;
+    public static final int T__63=63;
+    public static final int T__61=61;
+    public static final int T__60=60;
+    public static final int T__55=55;
+    public static final int T__56=56;
+    public static final int T__57=57;
+    public static final int T__58=58;
+    public static final int T__51=51;
+    public static final int T__52=52;
+    public static final int T__53=53;
+    public static final int T__54=54;
+    public static final int T__59=59;
+    public static final int RULE_INT=4;
+    public static final int T__50=50;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int RULE_ML_SINGLE_QUOTED_STRING=7;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int RULE_SL_COMMENT=11;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=12;
 
     // delegates
     // delegators
@@ -9574,11 +9574,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                 {
                 int LA10_2 = input.LA(2);
 
-                if ( (LA10_2==29) ) {
-                    alt10=2;
-                }
-                else if ( (LA10_2==24) ) {
+                if ( (LA10_2==24) ) {
                     alt10=1;
+                }
+                else if ( (LA10_2==29) ) {
+                    alt10=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -58173,109 +58173,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
     // Delegated rules
 
-    public final boolean synpred89_InternalOCLstdlib() {
+    public final boolean synpred121_InternalOCLstdlib() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred89_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred176_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred176_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred57_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred57_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred28_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred28_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred194_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred194_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred182_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred182_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred58_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred58_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred178_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred178_InternalOCLstdlib_fragment(); // can never throw exception
+            synpred121_InternalOCLstdlib_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -58299,6 +58201,104 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         state.failed=false;
         return success;
     }
+    public final boolean synpred57_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred57_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred89_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred89_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred181_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred181_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred182_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred182_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred178_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred178_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred28_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred28_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred176_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred176_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred120_InternalOCLstdlib() {
         state.backtracking++;
         int start = input.mark();
@@ -58313,11 +58313,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         state.failed=false;
         return success;
     }
-    public final boolean synpred193_InternalOCLstdlib() {
+    public final boolean synpred194_InternalOCLstdlib() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred193_InternalOCLstdlib_fragment(); // can never throw exception
+            synpred194_InternalOCLstdlib_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -58341,20 +58341,6 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         state.failed=false;
         return success;
     }
-    public final boolean synpred122_InternalOCLstdlib() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred122_InternalOCLstdlib_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred117_InternalOCLstdlib() {
         state.backtracking++;
         int start = input.mark();
@@ -58369,11 +58355,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         state.failed=false;
         return success;
     }
-    public final boolean synpred121_InternalOCLstdlib() {
+    public final boolean synpred122_InternalOCLstdlib() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred121_InternalOCLstdlib_fragment(); // can never throw exception
+            synpred122_InternalOCLstdlib_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -58383,11 +58369,25 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         state.failed=false;
         return success;
     }
-    public final boolean synpred181_InternalOCLstdlib() {
+    public final boolean synpred193_InternalOCLstdlib() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred181_InternalOCLstdlib_fragment(); // can never throw exception
+            synpred193_InternalOCLstdlib_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred58_InternalOCLstdlib() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred58_InternalOCLstdlib_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -58423,8 +58423,8 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final String DFA6_acceptS =
         "\1\uffff\1\1\25\uffff\1\2\1\3\1\5\1\6\1\4";
     static final String DFA6_specialS =
-        "\2\uffff\1\10\1\23\1\5\1\20\1\16\1\4\1\22\1\7\1\13\1\14\1\12\1"+
-        "\24\1\2\1\3\1\0\1\1\1\17\1\21\1\11\1\15\1\6\5\uffff}>";
+        "\2\uffff\1\3\1\14\1\0\1\1\1\12\1\4\1\17\1\10\1\23\1\6\1\22\1\5"+
+        "\1\16\1\2\1\20\1\7\1\21\1\11\1\15\1\24\1\13\5\uffff}>";
     static final String[] DFA6_transitionS = {
             "\1\27\1\uffff\2\1\5\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11"+
             "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25"+
@@ -58495,10 +58495,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA6_16 = input.LA(1);
+                        int LA6_4 = input.LA(1);
 
                          
-                        int index6_16 = input.index();
+                        int index6_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
@@ -58506,14 +58506,14 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
 
                          
-                        input.seek(index6_16);
+                        input.seek(index6_4);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA6_17 = input.LA(1);
+                        int LA6_5 = input.LA(1);
 
                          
-                        int index6_17 = input.index();
+                        int index6_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
@@ -58521,25 +58521,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
 
                          
-                        input.seek(index6_17);
+                        input.seek(index6_5);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA6_14 = input.LA(1);
-
-                         
-                        int index6_14 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_14);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
                         int LA6_15 = input.LA(1);
 
                          
@@ -58552,6 +58537,21 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
                          
                         input.seek(index6_15);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA6_2 = input.LA(1);
+
+                         
+                        int index6_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_2);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
@@ -58570,10 +58570,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA6_4 = input.LA(1);
+                        int LA6_13 = input.LA(1);
 
                          
-                        int index6_4 = input.index();
+                        int index6_13 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
@@ -58581,100 +58581,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
 
                          
-                        input.seek(index6_4);
+                        input.seek(index6_13);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA6_22 = input.LA(1);
-
-                         
-                        int index6_22 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_22);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA6_9 = input.LA(1);
-
-                         
-                        int index6_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA6_2 = input.LA(1);
-
-                         
-                        int index6_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA6_20 = input.LA(1);
-
-                         
-                        int index6_20 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_20);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA6_12 = input.LA(1);
-
-                         
-                        int index6_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA6_10 = input.LA(1);
-
-                         
-                        int index6_10 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_10);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
                         int LA6_11 = input.LA(1);
 
                          
@@ -58689,11 +58599,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index6_11);
                         if ( s>=0 ) return s;
                         break;
-                    case 13 : 
-                        int LA6_21 = input.LA(1);
+                    case 7 : 
+                        int LA6_17 = input.LA(1);
 
                          
-                        int index6_21 = input.index();
+                        int index6_17 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
@@ -58701,14 +58611,14 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
 
                          
-                        input.seek(index6_21);
+                        input.seek(index6_17);
                         if ( s>=0 ) return s;
                         break;
-                    case 14 : 
-                        int LA6_6 = input.LA(1);
+                    case 8 : 
+                        int LA6_9 = input.LA(1);
 
                          
-                        int index6_6 = input.index();
+                        int index6_9 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
@@ -58716,40 +58626,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
 
                          
-                        input.seek(index6_6);
+                        input.seek(index6_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 15 : 
-                        int LA6_18 = input.LA(1);
-
-                         
-                        int index6_18 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_18);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
-                        int LA6_5 = input.LA(1);
-
-                         
-                        int index6_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
-
-                         
-                        input.seek(index6_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 17 : 
+                    case 9 : 
                         int LA6_19 = input.LA(1);
 
                          
@@ -58764,11 +58644,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index6_19);
                         if ( s>=0 ) return s;
                         break;
-                    case 18 : 
-                        int LA6_8 = input.LA(1);
+                    case 10 : 
+                        int LA6_6 = input.LA(1);
 
                          
-                        int index6_8 = input.index();
+                        int index6_6 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
@@ -58776,10 +58656,25 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
 
                          
-                        input.seek(index6_8);
+                        input.seek(index6_6);
                         if ( s>=0 ) return s;
                         break;
-                    case 19 : 
+                    case 11 : 
+                        int LA6_22 = input.LA(1);
+
+                         
+                        int index6_22 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_22);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 12 : 
                         int LA6_3 = input.LA(1);
 
                          
@@ -58794,11 +58689,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index6_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 20 : 
-                        int LA6_13 = input.LA(1);
+                    case 13 : 
+                        int LA6_20 = input.LA(1);
 
                          
-                        int index6_13 = input.index();
+                        int index6_20 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
@@ -58806,7 +58701,112 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
 
                          
-                        input.seek(index6_13);
+                        input.seek(index6_20);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
+                        int LA6_14 = input.LA(1);
+
+                         
+                        int index6_14 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_14);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 15 : 
+                        int LA6_8 = input.LA(1);
+
+                         
+                        int index6_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA6_16 = input.LA(1);
+
+                         
+                        int index6_16 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_16);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA6_18 = input.LA(1);
+
+                         
+                        int index6_18 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_18);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
+                        int LA6_12 = input.LA(1);
+
+                         
+                        int index6_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_12);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 19 : 
+                        int LA6_10 = input.LA(1);
+
+                         
+                        int index6_10 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 20 : 
+                        int LA6_21 = input.LA(1);
+
+                         
+                        int index6_21 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 27;}
+
+                         
+                        input.seek(index6_21);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -59247,69 +59247,69 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final String DFA48_eotS =
         "\34\uffff";
     static final String DFA48_eofS =
-        "\1\uffff\31\33\2\uffff";
+        "\1\uffff\31\32\2\uffff";
     static final String DFA48_minS =
         "\1\10\31\16\2\uffff";
     static final String DFA48_maxS =
         "\1\50\31\127\2\uffff";
     static final String DFA48_acceptS =
-        "\32\uffff\1\1\1\2";
+        "\32\uffff\1\2\1\1";
     static final String DFA48_specialS =
         "\34\uffff}>";
     static final String[] DFA48_transitionS = {
             "\1\1\1\2\5\uffff\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
             "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\3"+
             "\uffff\1\30\1\31",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
-            "\1\33\25\uffff\2\33\3\uffff\4\33\1\uffff\2\33\2\uffff\14\33"+
-            "\16\uffff\6\33\1\uffff\3\33\1\uffff\1\32",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
+            "\1\32\25\uffff\2\32\3\uffff\4\32\1\uffff\2\32\2\uffff\14\32"+
+            "\16\uffff\6\32\1\uffff\3\32\1\uffff\1\33",
             "",
             ""
     };
@@ -59507,7 +59507,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final String DFA99_eofS =
         "\1\2\73\uffff";
     static final String DFA99_minS =
-        "\1\34\1\6\1\uffff\25\22\1\6\3\22\1\uffff\1\6\1\0\2\6\25\22\1\6"+
+        "\1\34\1\6\1\uffff\26\22\1\6\2\22\1\uffff\1\6\1\0\2\6\25\22\1\6"+
         "\3\22\2\6";
     static final String DFA99_maxS =
         "\1\126\1\112\1\uffff\31\127\1\uffff\1\112\1\0\35\127";
@@ -59518,11 +59518,13 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final String[] DFA99_transitionS = {
             "\1\2\7\uffff\1\2\21\uffff\1\2\1\1\23\uffff\1\2\2\uffff\6\2"+
             "\2\uffff\1\2",
-            "\1\34\1\uffff\1\3\1\4\5\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1"+
-            "\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1"+
-            "\27\1\30\1\31\2\uffff\1\34\1\32\1\33\1\uffff\13\34\11\uffff"+
+            "\1\34\1\uffff\1\4\1\5\5\uffff\1\6\1\7\1\10\1\11\1\12\1\13"+
+            "\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
+            "\1\30\1\31\1\3\2\uffff\1\34\1\32\1\33\1\uffff\13\34\11\uffff"+
             "\15\34",
             "",
+            "\1\2\15\uffff\1\2\25\uffff\1\36\1\34\30\uffff\1\35\6\uffff"+
+            "\1\34",
             "\1\2\15\uffff\1\2\25\uffff\1\36\1\34\30\uffff\1\35\6\uffff"+
             "\1\34",
             "\1\2\15\uffff\1\2\25\uffff\1\36\1\34\30\uffff\1\35\6\uffff"+
@@ -59568,8 +59570,6 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             "\1\34\1\uffff\2\34\5\uffff\3\34\1\37\15\34\1\40\3\34\3\uffff"+
             "\2\34\1\uffff\13\34\1\uffff\1\36\1\34\6\uffff\15\34\5\uffff"+
             "\1\35\6\uffff\1\34",
-            "\1\2\15\uffff\1\2\25\uffff\1\36\1\34\30\uffff\1\35\6\uffff"+
-            "\1\34",
             "\1\2\15\uffff\1\2\25\uffff\1\36\1\34\30\uffff\1\35\6\uffff"+
             "\1\34",
             "\1\2\15\uffff\1\2\25\uffff\1\36\1\34\30\uffff\1\35\6\uffff"+
@@ -60016,8 +60016,8 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final String DFA116_acceptS =
         "\21\uffff\1\2\1\1";
     static final String DFA116_specialS =
-        "\1\uffff\1\7\1\17\1\4\1\16\1\11\1\0\1\15\1\14\1\3\1\12\1\10\1\5"+
-        "\1\6\1\13\1\2\1\1\2\uffff}>";
+        "\1\uffff\1\4\1\13\1\5\1\7\1\10\1\6\1\16\1\1\1\11\1\12\1\17\1\14"+
+        "\1\3\1\2\1\15\1\0\2\uffff}>";
     static final String[] DFA116_transitionS = {
             "\1\1\25\uffff\1\21\1\3\3\uffff\1\4\1\13\2\21\1\uffff\1\16\1"+
             "\21\2\uffff\1\14\1\21\1\15\1\2\1\5\1\6\1\7\1\10\1\11\1\12\1"+
@@ -60079,21 +60079,6 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA116_6 = input.LA(1);
-
-                         
-                        int index116_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 17;}
-
-                         
-                        input.seek(index116_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA116_16 = input.LA(1);
 
                          
@@ -60108,11 +60093,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index116_16);
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
-                        int LA116_15 = input.LA(1);
+                    case 1 : 
+                        int LA116_8 = input.LA(1);
 
                          
-                        int index116_15 = input.index();
+                        int index116_8 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
@@ -60120,55 +60105,25 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 17;}
 
                          
-                        input.seek(index116_15);
+                        input.seek(index116_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA116_14 = input.LA(1);
+
+                         
+                        int index116_14 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 17;}
+
+                         
+                        input.seek(index116_14);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA116_9 = input.LA(1);
-
-                         
-                        int index116_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 17;}
-
-                         
-                        input.seek(index116_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA116_3 = input.LA(1);
-
-                         
-                        int index116_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 17;}
-
-                         
-                        input.seek(index116_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA116_12 = input.LA(1);
-
-                         
-                        int index116_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 17;}
-
-                         
-                        input.seek(index116_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
                         int LA116_13 = input.LA(1);
 
                          
@@ -60183,7 +60138,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index116_13);
                         if ( s>=0 ) return s;
                         break;
-                    case 7 : 
+                    case 4 : 
                         int LA116_1 = input.LA(1);
 
                          
@@ -60198,11 +60153,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index116_1);
                         if ( s>=0 ) return s;
                         break;
-                    case 8 : 
-                        int LA116_11 = input.LA(1);
+                    case 5 : 
+                        int LA116_3 = input.LA(1);
 
                          
-                        int index116_11 = input.index();
+                        int index116_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
@@ -60210,10 +60165,40 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 17;}
 
                          
-                        input.seek(index116_11);
+                        input.seek(index116_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 9 : 
+                    case 6 : 
+                        int LA116_6 = input.LA(1);
+
+                         
+                        int index116_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 17;}
+
+                         
+                        input.seek(index116_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA116_4 = input.LA(1);
+
+                         
+                        int index116_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 17;}
+
+                         
+                        input.seek(index116_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
                         int LA116_5 = input.LA(1);
 
                          
@@ -60226,6 +60211,21 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
                          
                         input.seek(index116_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA116_9 = input.LA(1);
+
+                         
+                        int index116_9 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 17;}
+
+                         
+                        input.seek(index116_9);
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
@@ -60244,10 +60244,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA116_14 = input.LA(1);
+                        int LA116_2 = input.LA(1);
 
                          
-                        int index116_14 = input.index();
+                        int index116_2 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
@@ -60255,14 +60255,14 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 17;}
 
                          
-                        input.seek(index116_14);
+                        input.seek(index116_2);
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA116_8 = input.LA(1);
+                        int LA116_12 = input.LA(1);
 
                          
-                        int index116_8 = input.index();
+                        int index116_12 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
@@ -60270,10 +60270,25 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 17;}
 
                          
-                        input.seek(index116_8);
+                        input.seek(index116_12);
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
+                        int LA116_15 = input.LA(1);
+
+                         
+                        int index116_15 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 17;}
+
+                         
+                        input.seek(index116_15);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
                         int LA116_7 = input.LA(1);
 
                          
@@ -60288,26 +60303,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index116_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 14 : 
-                        int LA116_4 = input.LA(1);
-
-                         
-                        int index116_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 17;}
-
-                         
-                        input.seek(index116_4);
-                        if ( s>=0 ) return s;
-                        break;
                     case 15 : 
-                        int LA116_2 = input.LA(1);
+                        int LA116_11 = input.LA(1);
 
                          
-                        int index116_2 = input.index();
+                        int index116_11 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred193_InternalOCLstdlib()) ) {s = 18;}
@@ -60315,7 +60315,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 17;}
 
                          
-                        input.seek(index116_2);
+                        input.seek(index116_11);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -60337,8 +60337,8 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final String DFA117_acceptS =
         "\1\uffff\1\2\20\uffff\1\1";
     static final String DFA117_specialS =
-        "\2\uffff\1\3\1\7\1\17\1\4\1\16\1\11\1\0\1\15\1\14\1\12\1\10\1\5"+
-        "\1\6\1\13\1\2\1\1\1\uffff}>";
+        "\2\uffff\1\7\1\4\1\13\1\5\1\10\1\11\1\6\1\16\1\1\1\12\1\17\1\14"+
+        "\1\3\1\2\1\15\1\0\1\uffff}>";
     static final String[] DFA117_transitionS = {
             "\1\3\25\uffff\1\1\1\5\3\uffff\1\6\1\14\2\1\1\uffff\1\17\1\1"+
             "\2\uffff\1\15\1\1\1\16\1\4\1\7\1\10\1\11\1\12\1\2\1\13\1\20"+
@@ -60400,21 +60400,6 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA117_8 = input.LA(1);
-
-                         
-                        int index117_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index117_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA117_17 = input.LA(1);
 
                          
@@ -60429,11 +60414,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index117_17);
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
-                        int LA117_16 = input.LA(1);
+                    case 1 : 
+                        int LA117_10 = input.LA(1);
 
                          
-                        int index117_16 = input.index();
+                        int index117_10 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
@@ -60441,55 +60426,25 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index117_16);
+                        input.seek(index117_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA117_15 = input.LA(1);
+
+                         
+                        int index117_15 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index117_15);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA117_2 = input.LA(1);
-
-                         
-                        int index117_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index117_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA117_5 = input.LA(1);
-
-                         
-                        int index117_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index117_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA117_13 = input.LA(1);
-
-                         
-                        int index117_13 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index117_13);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
                         int LA117_14 = input.LA(1);
 
                          
@@ -60504,7 +60459,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index117_14);
                         if ( s>=0 ) return s;
                         break;
-                    case 7 : 
+                    case 4 : 
                         int LA117_3 = input.LA(1);
 
                          
@@ -60519,11 +60474,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index117_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 8 : 
-                        int LA117_12 = input.LA(1);
+                    case 5 : 
+                        int LA117_5 = input.LA(1);
 
                          
-                        int index117_12 = input.index();
+                        int index117_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
@@ -60531,7 +60486,52 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index117_12);
+                        input.seek(index117_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA117_8 = input.LA(1);
+
+                         
+                        int index117_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index117_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA117_2 = input.LA(1);
+
+                         
+                        int index117_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index117_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA117_6 = input.LA(1);
+
+                         
+                        int index117_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index117_6);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
@@ -60565,10 +60565,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA117_15 = input.LA(1);
+                        int LA117_4 = input.LA(1);
 
                          
-                        int index117_15 = input.index();
+                        int index117_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
@@ -60576,14 +60576,14 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index117_15);
+                        input.seek(index117_4);
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA117_10 = input.LA(1);
+                        int LA117_13 = input.LA(1);
 
                          
-                        int index117_10 = input.index();
+                        int index117_13 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
@@ -60591,10 +60591,25 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index117_10);
+                        input.seek(index117_13);
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
+                        int LA117_16 = input.LA(1);
+
+                         
+                        int index117_16 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index117_16);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
                         int LA117_9 = input.LA(1);
 
                          
@@ -60609,26 +60624,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         input.seek(index117_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 14 : 
-                        int LA117_6 = input.LA(1);
-
-                         
-                        int index117_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index117_6);
-                        if ( s>=0 ) return s;
-                        break;
                     case 15 : 
-                        int LA117_4 = input.LA(1);
+                        int LA117_12 = input.LA(1);
 
                          
-                        int index117_4 = input.index();
+                        int index117_12 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred194_InternalOCLstdlib()) ) {s = 18;}
@@ -60636,7 +60636,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index117_4);
+                        input.seek(index117_12);
                         if ( s>=0 ) return s;
                         break;
             }

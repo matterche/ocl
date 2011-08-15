@@ -182,10 +182,6 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="/*"/>
-      <elements xsi:type="xtext:Keyword" cardinality="?" value="*"/>
-      <elements xsi:type="xtext:NegatedToken">
-        <terminal xsi:type="xtext:Keyword" value="*"/>
-      </elements>
       <elements xsi:type="xtext:UntilToken">
         <terminal xsi:type="xtext:Keyword" value="*/"/>
       </elements>
