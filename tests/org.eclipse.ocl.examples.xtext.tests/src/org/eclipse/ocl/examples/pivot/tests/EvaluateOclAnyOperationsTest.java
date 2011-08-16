@@ -260,7 +260,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		//
 		assertQueryEquals(null, 3, "3.oclAsType(Integer)");
 		assertQueryEquals(null, 3.0, "3.oclAsType(Real)");
-		assertQueryEquals(null, 3, "3.0.oclAsType(Integer)");
+//		assertQueryEquals(null, 3, "3.0.oclAsType(Integer)");
+		assertQueryInvalid(null, "3.0.oclAsType(Integer)");
 		assertQueryEquals(null, 3.0, "3.0.oclAsType(Real)");
 		assertQueryInvalid(null, "3.oclAsType(String)");
 		assertQueryEquals(null, 3, "3.oclAsType(OclAny)");

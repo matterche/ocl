@@ -23,19 +23,15 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
- * NumericOclAsTypeOperation realises the Real::oclAsType() library operation.
- * 
- * @since 3.1
+ * UnlimitedNaturalOclAsTypeOperation realizes the UnlimitedNatural::oclAsType() library operation.
  */
-public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
+public class UnlimitedNaturalOclAsTypeOperation extends OclAnyOclAsTypeOperation
 {
-	public static final NumericOclAsTypeOperation INSTANCE = new NumericOclAsTypeOperation();
+	public static final UnlimitedNaturalOclAsTypeOperation INSTANCE = new UnlimitedNaturalOclAsTypeOperation();
 
 	@Override
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
@@ -51,39 +47,10 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 			if (sourceVal.isUnlimited() && ((argType == typeManager.getIntegerType()) || (argType == typeManager.getRealType()))) {
 				return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonFiniteIntegerValue);
 			}
-			else if ((sourceVal instanceof IntegerValue) && (argType == typeManager.getRealType())) {
-				return ((IntegerValue)sourceVal).toRealValue();
-			}
-			else {
-				return sourceVal;
-			}
+			return sourceVal;
 		}
 		else {
-			RealValue realValue = sourceVal.asRealValue();
-			if (realValue != null) {
-				if (argType == typeManager.getUnlimitedNaturalType()) {
-					if (realValue.signum() < 0) {
-						return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonPositiveUnlimitedNaturalValue);
-					}
-					return realValue.toIntegerValue();
-				}
-				else if (argType == typeManager.getIntegerType()) {
-					return realValue.toIntegerValue();
-				}
-				else {
-					return evaluationVisitor.throwInvalidEvaluation(null, operationCall, argType, EvaluatorMessages.IncompatibleArgumentType, argType);
-				}
-			}
-			IntegerValue integerValue = sourceVal.asIntegerValue();
-			if (integerValue != null) {
-				if (argType == typeManager.getUnlimitedNaturalType()) {
-					if (integerValue.signum() < 0) {
-						return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonPositiveUnlimitedNaturalValue);
-					}
-					return integerValue;
-				}
-			}
-			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.UnknownSourceType);
+			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, argType, EvaluatorMessages.IncompatibleArgumentType, argType);
 		}
 	}
 }
