@@ -921,9 +921,11 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		else if (type.getOwningTemplateParameter() != null) {
 			return iterable;
 		}
+		else  if (type instanceof org.eclipse.ocl.examples.pivot.Class){
+			return (org.eclipse.ocl.examples.pivot.Class) type;
+		}
 		else {
-//			assert PivotConstants.ORPHANAGE_NAME.equals(type.getName());
-			return iterable;
+			return null;
 		}
 	}
 
