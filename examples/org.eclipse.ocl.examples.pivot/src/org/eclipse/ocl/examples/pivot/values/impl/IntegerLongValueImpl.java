@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -28,11 +28,15 @@ import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
-
+/**
+ * IntegerLongValueImpl provides an implementation of an IntegerValue using a Java
+ * long representation. Operations resulting in numeric growth may return
+ * IntegerValueImpl that uses BigInteger.
+ */
 public class IntegerLongValueImpl extends AbstractValue implements IntegerValue
 {
-	private final long value;
-	private BigInteger bigValue = null;
+	private final long value;			// The value.
+	private BigInteger bigValue = null;	// Lazily computed BigInteger counterpart.
 	
 	public IntegerLongValueImpl(ValueFactory valueFactory, long value) {
 		super(valueFactory);
@@ -155,16 +159,6 @@ public class IntegerLongValueImpl extends AbstractValue implements IntegerValue
 			BigDecimal bigDecimalValue = ((RealValue)obj).bigDecimalValue();
 			return (bigDecimalValue != null) && (bigDecimalValue().compareTo(bigDecimalValue) == 0);
 		}
-/*		if (obj instanceof NumericValue) {
-			try {
-				obj = ((NumericValue)obj).toIntegerValue();
-				if (obj instanceof IntegerValue) {
-					return value.equals(((IntegerValue)obj).bigIntegerValue());
-				}
-			} catch (InvalidValueException e) {
-				throw new IllegalArgumentException(e);
-			}
-		} */
 		return false;
 	}
 

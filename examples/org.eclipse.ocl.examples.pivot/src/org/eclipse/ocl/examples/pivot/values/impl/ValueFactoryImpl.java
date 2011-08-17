@@ -354,17 +354,12 @@ public class ValueFactoryImpl implements ValueFactory
 	}
 
 	public IntegerValue integerValueOf(long value) {
-		if (value >= 0) {
-			if (value <= Integer.MAX_VALUE) {
-				return new IntegerIntValueImpl(this, (int) value);
-			}
+		if ((Integer.MIN_VALUE <= value) && (value <= Integer.MAX_VALUE)) {
+			return new IntegerIntValueImpl(this, (int) value);
 		}
 		else {
-			if (value >= Integer.MIN_VALUE) {
-				return new IntegerIntValueImpl(this, (int) value);
-			}
+			return new IntegerLongValueImpl(this, value);
 		}
-		return new IntegerLongValueImpl(this, value);
 	}
 	
 	public IntegerValue integerValueOf(BigInteger value) {
