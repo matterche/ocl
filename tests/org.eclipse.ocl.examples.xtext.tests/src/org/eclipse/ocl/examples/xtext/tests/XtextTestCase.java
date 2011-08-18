@@ -19,8 +19,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import junit.framework.TestCase;
 
@@ -83,6 +85,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManagedAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.test.xtext.DiffToText;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
@@ -287,6 +290,29 @@ public class XtextTestCase extends TestCase
 		} catch (Exception e) {
 		}
 		return false;
+	}
+
+	/**
+	 * Return the difference between expectedMessages and actualMessages, or null if no differences.
+	 * 
+	 * The return is formatted one message per line with a leading new-line followed by
+	 * an expected/actual count in parentheses followed by the messages 
+	 */
+	public static String formatMessageDifferences(Bag<String> expectedMessages, Bag<String> actualMessages) {
+		Set<String> allMessages = new HashSet<String>(expectedMessages);
+		allMessages.addAll(actualMessages);
+		StringBuffer s = null;
+		for (String message : allMessages) {
+			int actualCount = actualMessages.count(message);
+			int expectedCount = expectedMessages.count(message);
+			if (actualCount != expectedCount) {
+				if (s == null) {
+					s = new StringBuffer();
+				}
+				s.append("\n  (" + expectedCount + "/" + actualCount + ") " + message);
+			}
+		}
+		return s != null ? s.toString() : null;
 	}
 
 	protected static boolean hasCorrespondingCS(MonikeredElement pivotElement) {

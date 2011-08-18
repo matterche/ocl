@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ImportTests.java,v 1.4 2011/05/22 16:41:51 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -121,22 +119,9 @@ public class ImportTests extends XtextTestCase
 			for (Resource.Diagnostic actualError : xtextResource.getErrors()) {
 				actualErrorMessages.add(actualError.getMessage());
 			}
-			Set<String> allErrorMessages = new HashSet<String>(expectedErrorMessages);
-			allErrorMessages.addAll(actualErrorMessages);
-			StringBuffer s = null;
-			for (String errorMessage : allErrorMessages) {
-				int actualCount = actualErrorMessages.count(errorMessage);
-				int expectedCount = expectedErrorMessages.count(errorMessage);
-				if (actualCount != expectedCount) {
-					if (s == null) {
-						s = new StringBuffer();
-						s.append("Inconsistent load errors (expected/actual) message");
-					}
-					s.append("\n  (" + expectedCount + "/" + actualCount + ") " + errorMessage);
-				}
-			}
+			String s = formatMessageDifferences(expectedErrorMessages, actualErrorMessages);
 			if (s != null) {
-				fail(s.toString());
+				fail("Inconsistent load errors (expected/actual) message" + s);
 			}
 		} finally {
 			unloadCS(resourceSet);
