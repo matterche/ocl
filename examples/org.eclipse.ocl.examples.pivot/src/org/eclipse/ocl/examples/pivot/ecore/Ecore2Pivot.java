@@ -117,31 +117,21 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	}
 
 	public static Ecore2Pivot getAdapter(Resource resource, TypeManager typeManager) {
-		assert typeManager != null;
 		if (resource == null) {
 			return null;
 		}
-		List<Adapter> eAdapters = resource.eAdapters();
-		Ecore2Pivot adapter = findAdapter(resource, typeManager);
-		if (adapter != null) {
-			return adapter;
+		Ecore2Pivot adapter;
+		if (typeManager == null) {
+			typeManager = new TypeManager();
 		}
-/*//		Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
-		System.out.println("EPackage.Registry");
-		for (String key : EPackage.Registry.INSTANCE.keySet()) {
-			System.out.println(key + " -> " + EPackage.Registry.INSTANCE.get(key));
+		else {
+			adapter = findAdapter(resource, typeManager);
+			if (adapter != null) {
+				return adapter;
+			}
 		}
-		Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
-		System.out.println("PlatformResourceMap");
-		for (String key : platformResourceMap.keySet()) {
-			System.out.println(key + " -> " + platformResourceMap.get(key));
-		}
-		Map<URI, URI> platformURIMap = EcorePlugin.computePlatformURIMap();
-		System.out.println("PlatformURIMap");
-		for (URI key : platformURIMap.keySet()) {
-			System.out.println(key + " -> " + platformURIMap.get(key));
-		} */
 		adapter = new Ecore2Pivot(resource, typeManager);
+		List<Adapter> eAdapters = resource.eAdapters();
 		eAdapters.add(adapter);
 		return adapter;
 	}

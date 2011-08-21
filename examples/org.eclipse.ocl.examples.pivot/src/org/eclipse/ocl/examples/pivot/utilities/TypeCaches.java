@@ -929,6 +929,35 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 	}
 
+	/**
+	 * REturn all constraints applicable to a type and its superclasses.
+	 */
+	public Iterable<Constraint> getAllConstraints(Type type) {
+		Set<Constraint> allConstraints = getAllConstraints(type, null);
+		if (allConstraints != null) {
+			return allConstraints;
+		}
+		else {
+			return Collections.emptyList();
+		}
+	}
+
+	protected Set<Constraint> getAllConstraints(Type type, Set<Constraint> knownConstraints) {
+		for (Constraint constraint : getLocalConstraints(type)) {
+			if (knownConstraints == null) {
+				knownConstraints = new HashSet<Constraint>();
+				knownConstraints.add(constraint);
+			}
+			else if (!knownConstraints.add(constraint)) {	// Already contained implies multiple inheritance second visit
+				return knownConstraints;
+			}
+		}
+		for (Type superType : getSuperClasses(type)) {
+			knownConstraints = getAllConstraints(superType, knownConstraints);
+		}
+		return knownConstraints;
+	}
+
 	public Iterable<Operation> getAllOperations(Operation operation) {
 		Iterable<Operation> iterable = operation2operations.get(operation.getMoniker());
 		assert iterable != null;

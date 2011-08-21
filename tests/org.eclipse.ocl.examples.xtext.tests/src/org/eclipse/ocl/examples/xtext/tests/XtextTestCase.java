@@ -57,6 +57,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
@@ -74,6 +75,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegateFactory;
+import org.eclipse.ocl.examples.pivot.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
@@ -668,7 +670,8 @@ public class XtextTestCase extends TestCase
             new OCLSettingDelegateFactory.Global());
         EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
             new OCLValidationDelegateFactory.Global());
-	
+		QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+			new OCLQueryDelegateFactory.Global());
 	}
 
 	@Override

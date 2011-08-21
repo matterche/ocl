@@ -20,11 +20,9 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
@@ -32,19 +30,13 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.emf.ecore.util.QueryDelegate;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegateFactory;
-import org.eclipse.ocl.examples.pivot.delegate.OCLQueryDelegateFactory;
-import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
-import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.impl.BagImpl;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.completeocl.validation.CompleteOCLEObjectValidator;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.osgi.util.NLS;
@@ -97,22 +89,21 @@ public class ValidateTests extends XtextTestCase
 			}
 		}
 	}
-	
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
-		EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(
-			oclDelegateURI, new OCLInvocationDelegateFactory.Global());
-		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE
-			.put(oclDelegateURI, new OCLSettingDelegateFactory.Global());
-		EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
-			new OCLValidationDelegateFactory.Global());
-		QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-			new OCLQueryDelegateFactory.Global());
+
+	protected EObject eCreate(EPackage ePackage, String className) {
+		EClass eClass = (EClass) ePackage.getEClassifier(className);
+		EFactory eFactoryInstance = ePackage.getEFactoryInstance();
+		return eFactoryInstance.create(eClass);
 	}
 
-	@Override
+	protected void eSet(EObject eObject, String eFeatureName, Object value) {
+		EClass eClass = eObject.eClass();
+		EStructuralFeature eFeature = eClass.getEStructuralFeature(eFeatureName);
+		assert eFeature != null;
+		eObject.eSet(eFeature, value);
+	}
+
+/*	@Override
 	protected void tearDown() throws Exception {
 		unloadCS(resourceSet);
 		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
@@ -127,33 +118,67 @@ public class ValidateTests extends XtextTestCase
 			typeManager = null;
 		}
 		super.tearDown();
+	} */
+
+	public void testValidate_Validate_completeocl() throws IOException, InterruptedException {
+		//
+		//	Create model
+		//
+		Resource ecoreResource = doLoadOCLinEcore("Validate", "oclinecore");
+		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
+		URI oclURI = getProjectFileURI("Validate.ocl");
+		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage, oclURI);
+		EValidator.Registry.INSTANCE.put(validatePackage, completeOCLEObjectValidator);
+		EObject testInstance = eCreate(validatePackage, "Level3");
+		String template = OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_;
+		//
+		//	No errors
+		//
+		eSet(testInstance, "ref", "xx");
+		eSet(testInstance, "l1", "xx");
+		eSet(testInstance, "l2a", "xx");
+		eSet(testInstance, "l2b", "xx");
+		eSet(testInstance, "l3", "xx");
+		String objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
+		checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
+		//
+		//	CompleteOCL errors all round
+		//
+		eSet(testInstance, "ref", "xxx");
+		eSet(testInstance, "l1", "xxx");
+		eSet(testInstance, "l2a", "xxx");
+		eSet(testInstance, "l2b", "xxx");
+		eSet(testInstance, "l3", "xxx");
+		checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
+			NLS.bind(template,  "V1", objectLabel),
+			NLS.bind(template,  "V2a", objectLabel),
+			NLS.bind(template,  "V2b", objectLabel),
+			NLS.bind(template,  "V3", objectLabel));
+		//
+		//	One CompleteOCl and one OCLinEcore
+		//
+		eSet(testInstance, "ref", "ok");
+		eSet(testInstance, "l1", "ok");
+		eSet(testInstance, "l2a", "bad");
+		eSet(testInstance, "l2b", "ok");
+		eSet(testInstance, "l3", "ok");
+		checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
+			NLS.bind(template,  "L2a", objectLabel),
+			NLS.bind(template,  "V2a", objectLabel));
 	}
 
 	public void testValidate_Validate_oclinecore() throws IOException, InterruptedException {
 		//
-		//	Create model and dynamic accessors
+		//	Create model
 		//
 		Resource ecoreResource = doLoadOCLinEcore("Validate", "oclinecore");
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
-		EClass validateL1 = (EClass) validatePackage.getEClassifier("Level1");
-		EClass validateL2a = (EClass) validatePackage.getEClassifier("Level2a");
-		EClass validateL2b = (EClass) validatePackage.getEClassifier("Level2b");
-		EClass validateL3 = (EClass) validatePackage.getEClassifier("Level3");
-		EAttribute validate_ref = (EAttribute) validateL1.getEStructuralFeature("ref");
-		EAttribute validate_l1 = (EAttribute) validateL1.getEStructuralFeature("l1");
-		EAttribute validate_l2a = (EAttribute) validateL2a.getEStructuralFeature("l2a");
-		EAttribute validate_l2b = (EAttribute) validateL2b.getEStructuralFeature("l2b");
-		EAttribute validate_l3 = (EAttribute) validateL3.getEStructuralFeature("l3");
-		EFactory validateFactory = validatePackage.getEFactoryInstance();
-		//
-		//	Create trivial test instance
-		//
-		EObject testInstance = validateFactory.create(validateL3);
-		testInstance.eSet(validate_ref, "ref");
-		testInstance.eSet(validate_l1, "l1");
-		testInstance.eSet(validate_l2a, "l2a");
-		testInstance.eSet(validate_l2b, "l2b");
-		testInstance.eSet(validate_l3, "l3");
+		EObject testInstance = eCreate(validatePackage, "Level3");
+		eSet(testInstance, "ref", "ref");
+		eSet(testInstance, "l1", "l1");
+		eSet(testInstance, "l2a", "l2a");
+		eSet(testInstance, "l2b", "l2b");
+		eSet(testInstance, "l3", "l3");
 		String objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
 		//
 		//	Check EObjectValidator errors
@@ -163,7 +188,7 @@ public class ValidateTests extends XtextTestCase
 		checkValidationDiagnostics(testInstance, Diagnostic.ERROR,
 			NLS.bind(template,  "L1", objectLabel),
 			NLS.bind(template,  "L2a", objectLabel),
-//EcoreFeature		NLS.bind(template,  "L2b", objectLabel),
+//BUG355184		NLS.bind(template,  "L2b", objectLabel),
 			NLS.bind(template,  "L3", objectLabel));
 		//
 		//	Check OCLinEcoreEObjectValidator warnings and distinct message
@@ -173,26 +198,26 @@ public class ValidateTests extends XtextTestCase
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 			NLS.bind(template,  "L1", objectLabel),
 			NLS.bind(template,  "L2a", objectLabel),
-//EcoreFeature		NLS.bind(template,  "L2b", objectLabel),
+//BUG355184		NLS.bind(template,  "L2b", objectLabel),
 			NLS.bind(template,  "L3", objectLabel));
 		//
 		//	No errors
 		//
-		testInstance.eSet(validate_ref, "ok");
-		testInstance.eSet(validate_l1, "ok");
-		testInstance.eSet(validate_l2a, "ok");
-		testInstance.eSet(validate_l2b, "ok");
-		testInstance.eSet(validate_l3, "ok");
+		eSet(testInstance, "ref", "ok");
+		eSet(testInstance, "l1", "ok");
+		eSet(testInstance, "l2a", "ok");
+		eSet(testInstance, "l2b", "ok");
+		eSet(testInstance, "l3", "ok");
 		objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
 		//
 		//	Just one error
 		//
-		testInstance.eSet(validate_ref, "ok");
-		testInstance.eSet(validate_l1, "bad");
-		testInstance.eSet(validate_l2a, "ok");
-		testInstance.eSet(validate_l2b, "ok");
-		testInstance.eSet(validate_l3, "ok");
+		eSet(testInstance, "ref", "ok");
+		eSet(testInstance, "l1", "bad");
+		eSet(testInstance, "l2a", "ok");
+		eSet(testInstance, "l2b", "ok");
+		eSet(testInstance, "l3", "ok");
 		objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 			NLS.bind(template,  "L1", objectLabel));
